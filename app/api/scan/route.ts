@@ -55,12 +55,14 @@ function runDemoSimulation(sessionId: string) {
 
 export async function POST(request: Request) {
   const formData = await request.formData();
-  const files = formData.getAll("images").filter(isFile);
+  const imageFiles = formData.getAll("images").filter(isFile);
+  const documentFiles = formData.getAll("documents").filter(isFile);
 
   const parsed = StartScanRequestSchema.safeParse({
     category: formData.get("category") ?? "electronics",
     markets: parseMarkets(formData.get("markets")),
-    imageCount: files.length,
+    imageCount: imageFiles.length,
+    documentCount: documentFiles.length,
   });
 
   if (!parsed.success) {
@@ -75,6 +77,30 @@ export async function POST(request: Request) {
     );
   }
 
+  if (imageFiles.length === 0) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "BAD_INPUT",
+          message: "请至少上传 1 张图片。",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  if (documentFiles.length > 5) {
+    return NextResponse.json(
+      {
+        error: {
+          code: "BAD_INPUT",
+          message: "文档数量不能超过 5 个。",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
   const sessionId = `scan_${ulid()}`;
   createSession(sessionId);
 
@@ -82,15 +108,25 @@ export async function POST(request: Request) {
     runDemoSimulation(sessionId);
   } else {
     const images = await Promise.all(
-      files.map(async (file) => ({
+      imageFiles.map(async (file) => ({
         buffer: Buffer.from(await file.arrayBuffer()),
         originalName: file.name,
         mimeType: file.type || "application/octet-stream",
       }))
     );
 
+    const documents = await Promise.all(
+      documentFiles.map(async (file) => ({
+        buffer: Buffer.from(await file.arrayBuffer()),
+        originalName: file.name,
+        mimeType: file.type || "application/octet-stream",
+        size: file.size,
+      }))
+    );
+
     runScan(sessionId, {
       images,
+      documents,
       category: parsed.data.category as ProductCategory,
       markets: parsed.data.markets,
     }).catch((error) => {

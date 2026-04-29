@@ -1,8 +1,8 @@
 # 火鹰合规 RAG 架构方案
 
-> 文档版本: 1.1
+> 文档版本: 1.4
 > 创建时间: 2026-04-28
-> 最后更新: 2026-04-28（整合专家评审意见）
+> 最后更新: 2026-04-29（静态 RAG + 硬门架构确定，Agentic 方案否决）
 > 状态: 待确认后实施
 
 ---
@@ -166,7 +166,7 @@ Parent-Child 转换（完整条款上下文）
 ### 3.1 整体架构
 
 ```
-用户上传产品图片
+用户上传产品图片 + 选择目标市场
        │
        ▼
 ┌─────────────────────────────────────────────────────┐
@@ -176,48 +176,53 @@ Parent-Child 转换（完整条款上下文）
                      │
                      ▼
 ┌─────────────────────────────────────────────────────┐
-│  结构化 Query 分解 (Query Decomposer)             │
-│  → markets / product_categories / search_queries   │
-│  → must_check_regulations（规则兜底）              │
+│  Query Rewrite（轻量规则）                          │
+│  用户表述 → 法规术语映射（50行代码，详见 4.4）     │
+│  例: "铅含量" → "lead content Article 22 REACH"  │
+│       "充电宝" → "lithium battery power bank CE"  │
 └────────────────────┬────────────────────────────────┘
                      │
        ┌─────────────┴─────────────┐
        ▼                           ▼
 ┌──────────────────────────────────────────────────────┐
-│  混合检索 (Hybrid Retrieval)                         │
+│  混合检索（并行，EU + US + CN 同时发起）             │
 │                                                        │
 │  ┌──────────────┐  ┌──────────────┐  ┌────────────┐  │
-│  │ Dense检索    │  │ BM25检索    │  │ 元数据    │  │
-│  │ Child Chunk  │  │ (术语精确) │  │ 过滤      │  │
-│  │ Top-50      │  │ Top-50     │  │ market    │  │
-│  └──────┬──────┘  └──────┬──────┘  └────────────┘  │
-│         └─────────────────┼──────────────────┘        │
+│  │ BGE-M3       │  │ BM25检索    │  │ 元数据    │  │
+│  │ Dense Top-50 │  │ Top-50     │  │ 过滤      │  │
+│  └──────┬──────┘  └──────┬──────┘  │ market    │  │
+│         └─────────────────┼──────────┴────────────┘  │
 │                           ▼                           │
 │         RRF 融合 (Reciprocal Rank Fusion)            │
 │                           ▼                           │
 │         must_check 强制注入                          │
-│         （充电宝必须含 REACH/RoHS，即使检索未召回）  │
+│         （充电宝 → REACH/RoHS/GPSR，即使未召回）    │
 │                           ▼                           │
 │         BGE-reranker Cross-Encoder → Top-10          │
 └────────────────────┬─────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────┐
-│  Parent-Child Chunk 转换                             │
-│  Child Chunk 检索精准 → 换取 Parent Chunk 完整条款  │
+│  Parent-Child 上下文组装                             │
+│  Child 精准召回 → 换取 Parent 完整 Article           │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────┐
-│  LLM 生成 (Claude Sonnet)                           │
-│  Prompt: 严格引用原文，超出范围必须说明             │
+│  LLM 生成报告 (Claude Sonnet)                       │
+│  Prompt: 每个结论必须附 [Article No., p.Page]       │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────┐
-│  后置引用验证 (Citation Verifier)                    │
-│  验证报告中每条引用是否在原文可找到                  │
-│  标记:  ✅ 已验证  /  ⚠️ 未验证                      │
+│  Citation Verifier（硬门）⚡                         │
+│  检查每条引用是否在原文可找到                         │
+│                                                        │
+│  ┌──────────────────────────────────────────────┐   │
+│  │  IF verified == 0  → 拒绝生成，返回错误       │   │
+│  │  IF verified < 3   → ⚠️警告，允许生成        │   │
+│  │  IF verified >= 3  → ✅通过                  │   │
+│  └──────────────────────────────────────────────┘   │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -442,91 +447,159 @@ Embedding 输入（description 字段）:
 | 镉 (Cd)  | 0.01%   | 均质材料    | RoHS Annex II    |
 ```
 
-### 4.4 Query 分解：结构化检索参数
+### 4.4 Query Rewrite：轻量规则映射
 
-```python
-QUERY_DECOMPOSE_PROMPT = """
-你是合规法规专家。给定产品描述，输出结构化检索参数。
+**背景：** 用户 query 表述（如"充电宝铅含量限制"）与法规原文措辞（如"lead content Article 22 REACH Regulation"）常有差异。BGE-M3 的 sparse 向量可部分缓解，但精确术语仍需显式 rewrite 补充。
 
-产品: {product_description}
-目标市场: {markets}
+**实现：50行规则，无需 Agent。**
 
-输出严格 JSON 格式:
-{
-  "markets": ["EU", "US"],
-  "product_categories": ["电池产品", "便携式电子设备"],
-  "regulatory_domains": ["化学品安全", "电气安全", "无线电频谱"],
-  "search_queries": [
-    "锂电池便携式充电宝 欧盟认证",
-    "power bank lithium battery EU compliance",
-    "portable battery CE marking requirements",
-    "REACH restriction battery materials"
-  ],
-  "must_check_regulations": ["REACH", "RoHS", "新电池法", "RED", "LVD", "GPSR"],
-  "keywords": ["锂电池", "充电宝", "便携式储能", "lithium", "power bank"]
+```typescript
+// query_rewrite_rules.ts
+const rewriteRules = [
+  {
+    // 中文产品名 → 法规术语
+    trigger: ["充电宝", "移动电源", "便携储能"],
+    market: "EU",
+    rewrites: [
+      "lithium battery portable power bank REACH Article 22",
+      "CE marking GPSR Article 4 portable electronic",
+      "RoHS Annex II heavy metal lead cadmium",
+    ],
+  },
+  {
+    trigger: ["玩具", "儿童产品"],
+    market: "EU",
+    rewrites: [
+      "EN 71-3 migrated elements toy safety",
+      "REACH Annex XVII phthalate restriction",
+      "GPSR Article 5 product safety",
+    ],
+  },
+  {
+    trigger: ["锂电池", "锂离子电池"],
+    market: "EU",
+    rewrites: [
+      "Regulation 2023/1542 battery EU new rules",
+      "REACH Article 22 chemical restriction",
+      "CLP regulation lithium hazard classification",
+    ],
+  },
+  {
+    trigger: ["FCC", "美国认证"],
+    market: "US",
+    rewrites: [
+      "FCC Part 15 unintentional radiator",
+      "CPSIA lead content limit 100ppm",
+      "TSCA chemical substance inventory",
+    ],
+  },
+  {
+    trigger: ["CCC认证", "中国认证"],
+    market: "CN",
+    rewrites: [
+      "GB 31241 lithium battery safety",
+      "CCC mandatory certification electronics",
+    ],
+  },
+];
+
+function rewriteQuery(query: string, market: string): string[] {
+  const queries = [query]; // 保留原始 query（给 dense 向量用）
+  for (const rule of rewriteRules) {
+    if (rule.market !== market) continue;
+    if (rule.trigger.some(t => query.includes(t))) {
+      queries.push(...rule.rewrites); // 追加精确术语 query（给 BM25/sparse 用）
+    }
+  }
+  return [...new Set(queries)]; // 去重
 }
-"""
 ```
 
-**must_check_regulations 规则兜底机制：**
+**执行时机：** rewrite 后每个 query 并行发起，召回结果合并去重。
+
+**扩展方式：** Phase 2 检索验证时发现的新召回盲区，追加到 `rewriteRules` 即可，无需改架构。
+
+### 4.5 must_check 规则兜底机制
+
+检索结果注入前，按产品类别强制补充特定法规，即使命中数为 0：
 
 ```
-充电宝类产品 → 必须包含 REACH + RoHS + CE + GPSR
-玩具类产品   → 必须包含 EN 71 + REACH + GPSR
-电子产品     → 必须包含 LVD + EMC + RED + RoHS
+充电宝类产品 → 必须注入 REACH + RoHS + GPSR + CE 相关条款
+玩具类产品   → 必须注入 EN 71 + REACH Annex XVII + GPSR 相关条款
+电子产品     → 必须注入 LVD + EMC + RED + RoHS 相关条款
+纺织品       → 必须注入 REACH Annex XVII（偶氮染料）+ Oeko-Tex 相关条款
 ```
 
-即使检索未召回，must_check 指定的法规条款也会被强制注入到上下文。
+实现：从预设法规列表中按类别查 nano_vectordb，强制追加 Top-3 chunks 到召回集。
 
-### 4.5 引用验证层（后置检查）
+### 4.6 Citation Verifier：硬门验证层
+
+**为什么是硬门而不是 Agent 循环：**
+
+- Agent 自纠错循环（Retriever → 验证 → 失败 → 重检）额外增加 10-15s 延迟
+- 在本场景下，召回失败的根本原因多是 chunk 质量问题或 query 表述，修复 chunk 质量比让 Agent 重试更有效
+- CitationVerifier 作为**反应式硬门**（生成后检查）比**预防式 Agent 循环**更轻、更可预测
+
+**实现：**
 
 ```python
 def verify_citations(report_text: str, retrieved_chunks: list[dict]) -> dict:
-    """
-    验证报告中每条引用是否在检索到的原文中可以找到
-    """
-    # 提取报告中的所有引用标记
+    """验证报告中每条引用是否在原文可找到"""
     import re
+
+    # Step 1: 提取报告中的所有引用标记
     citations = re.findall(
         r'\[([^\]]+(?:Article|第.*?条)[^\]]*)\]',
         report_text
     )
 
     verified = []
-    hallucinated = []
+    unverified = []
 
     for citation in citations:
-        found = any(
-            citation_in_chunk(citation, chunk)
-            for chunk in retrieved_chunks
-        )
+        found = any(citation_in_chunk(citation, chunk)
+                    for chunk in retrieved_chunks)
         if found:
             verified.append(citation)
         else:
-            hallucinated.append(citation)
+            unverified.append(citation)
+
+    total = len(citations)
+    verified_count = len(verified)
 
     return {
         "verified_citations": verified,
-        "hallucinated_citations": hallucinated,
-        "confidence": len(verified) / len(citations) if citations else 1.0,
-        "status": "PASS" if not hallucinated else "WARN",
+        "unverified_citations": unverified,
+        "confidence": verified_count / total if total > 0 else 1.0,
+        "status": "PASS" if not unverified else (
+            "WARN" if verified_count >= 3 else "FAIL"
+        ),
+        # 硬门判断
+        "gate_passed": verified_count >= 3,
+        "report_allowed": verified_count > 0,  # 有至少1条才允许展示
     }
 
 
 def citation_in_chunk(citation: str, chunk: dict) -> bool:
-    """
-    判断某条引用是否在 chunk 中有对应内容
-    宽松匹配：Article 编号 + 部分关键词
-    """
+    """判断某条引用是否在 chunk 原文中有对应"""
     content = chunk.get("content", "") + chunk.get("source", "")
-    # 提取 Article 编号
-    article_match = re.search(r'(Article\s*\d+|[第一二三四五六七八九十\d]+条)',
-                               citation)
+    # 提取 Article 编号（如 "Article 22"、"第22条"）
+    article_match = re.search(
+        r'(Article\s*\d+[\d\w]*|[第一二三四五六七八九十百\d]+条)',
+        citation
+    )
     if not article_match:
         return False
-    article_id = article_match.group(1)
-    # 检查 Article ID 是否在 chunk 中
-    return article_id.lower() in content.lower()
+    return article_match.group(1).lower() in content.lower()
+```
+
+**硬门判断逻辑：**
+
+```
+gate_passed = True   →  ✅ 通过：≥3条已验证引用
+report_allowed = True →  ⚠️ 警告：1-2条已验证引用，允许生成但标注
+report_allowed = False →  ❌ 拒绝：0条已验证引用，不生成报告
+                           返回："检索不足，无法生成有依据的合规报告"
 ```
 
 **前端展示：**
@@ -534,143 +607,515 @@ def citation_in_chunk(citation: str, chunk: dict) -> bool:
 ```
 ✅ [已验证] REACH Article 22, p.156 — "铅含量不得超过 0.01%..."
 ⚠️ [未验证] EU《新电池法》Article 61 — （检索未找到对应原文，请核实）
+❌ [拒绝] 当前报告含 0 条可验证引用，拒绝展示
+```
+
+### 4.7 Hallucination Grader（LLM-as-Judge，可选增强）
+
+在 CitationVerifier（规则）基础上，增加 LLM 裁判层作为可选增强，用于检测**无法正则提取但实际无引用的结论**：
+
+```python
+HALLUCINATION_GRADE_PROMPT = """
+你是一个严谨的法律合规审核员。
+给定用户问题、检索到的法规原文、生成的报告，判断报告每个结论是否在原文中有依据。
+
+问题: {question}
+检索原文: {retrieved_contexts}
+报告: {generated_report}
+
+对每个结论打分：
+- grounded: 结论在原文中有明确依据
+- partial: 结论部分有依据，但不完整或超出原文范围
+- ungrounded: 结论在原文中找不到依据（幻觉）
+
+输出 JSON：
+{{"grades": [{{"conclusion": "...", "score": "grounded|partial|ungrounded", "reason": "..."}}]}}
+"""
+```
+
+此模块为可选增强（Phase 3 视召回验证效果决定是否启用），不影响核心架构。
+
+---
+
+## 五、框架调研与选型过程
+
+### 5.0 Agentic RAG 评估与决策（最终结论）
+
+**在决定架构之前，先回答一个问题：需要 Agent 吗？**
+
+#### 调研结论：不需要，Static RAG + 硬门已足够
+
+经过对 Agentic RAG 主流方案的系统评估（LangGraph Multi-Agent Corrective RAG / Self-RAG / ReAct 循环 / Multi-Agent Supervisor），核心判断如下：
+
+**Agentic RAG 解决的三个核心问题：**
+
+| 能力 | 解决问题 | 本场景是否需要 |
+|------|---------|--------------|
+| 自纠错循环 | 首次检索失败时换 query 重试 | ❌ BGE-M3 dense+sparse + BM25 首次命中率已足够高，失败根因在 chunk 质量而非 query 表述 |
+| Supervisor 规划 | 决定下一步调哪个工具 | ❌ 工具选择固定：search → verify → generate，无需规划 |
+| 迭代优化 | 逐步逼近正确答案 | ❌ 合规报告 query 结构化（产品+市场），非开放域探索 |
+
+**Agentic 的代价：**
+- 额外延迟 10-15s（多次 LLM 调用 + Agent 协调）
+- 多 Agent 协调增加 debug 复杂度
+- 在本场景（召回失败根因是 chunk 质量而非 query 表述）下，投入产出比差
+
+**最终决策：不采用 Agentic 架构，理由如下：**
+
+> Agentic RAG 的核心价值在于"预防幻觉"（通过预防式自纠错）。但在我们场景，CitationVerifier 作为"反应式硬门"（生成后检查）已足够防止无引用报告输出。修复 chunk 质量比加 Agent 循环更根本。
+
+**唯一保留的轻量 Agentic 元素：Query Rewrite 规则（50行，详见 4.4）**
+
+---
+
+### 5.1 候选框架对比
+
+经过全网调研（2024-2026 生产级 RAG / 法律 RAG 案例），核心候选框架对比如下：
+
+#### 5.1.1 RAGFlow（infiniflow/ragflow）
+
+| 维度 | 详情 |
+|------|------|
+| 基本信息 | 79,187 stars，Apache 2.0，EMNLP 2025 收录，极活跃 |
+| 核心优势 | 模板化分块（可定义 Article 边界模板）、引用可视化、Citation Grounding |
+| 支持格式 | PDF / DOCX / HTML / Word / Excel / 图片扫描件，多语言 |
+| 不足 | Docker 部署（16GB+ RAM），内置 hallucination 检测缺失，chunk 模板质量依赖人工定义 |
+| 对 attrax 价值 | **参考**：引用可视化逻辑 + chunk 模板设计思想 |
+| 结论 | 不直接采用，不部署 Docker 服务 |
+
+#### 5.1.2 LlamaIndex
+
+| 维度 | 详情 |
+|------|------|
+| 基本信息 | 主流 RAG 编排框架，Pydantic 原生，Context7 文档 21,515 个代码示例 |
+| 核心优势 | `BaseRetriever` 抽象体系成熟，`VectorIndex` + `BM25Retriever` + `EnsembleRetriever`（RRF）开箱即用，Pydantic Node metadata，Parent-Child Node 管理 |
+| 幻觉检测 | 无内置，但 `with_structured_output()` + LLM-as-Judge 可自行构建 |
+| 对 attrax 价值 | **核心采用**：作为检索编排层，替代纯 FastAPI 拼接 |
+| 结论 | ✅ 采用，作为检索编排骨架 |
+
+#### 5.1.3 LangChain / LangGraph
+
+| 维度 | 详情 |
+|------|------|
+| 基本信息 | 最大 RAG/LLM 生态，LangSmith 评估平台 |
+| 核心优势 | Hallucination grading pipeline 成熟（`grader_llm.with_structured_output(GradeHallucinations)`），多阶段 Agent 编排，streaming + structured output |
+| 不足 | 学习曲线陡，LangGraph 编排复杂度过高，法律合规逻辑仍需自行构建 |
+| 对 attrax 价值 | **参考**：Hallucination grading 模式借鉴到 Citation Verifier |
+| 结论 | 不整体采用，吸收其 hallucination grading 思想 |
+
+#### 5.1.4 Dify
+
+| 维度 | 详情 |
+|------|------|
+| 基本信息 | 中国市场流行，开源 LLM 应用开发平台 |
+| 核心优势 | 可视化 workflow 编排，中文支持好 |
+| 不足 | 无 Article/Section 感知，引用精度非核心关注点，precision-critical 场景需大量定制 |
+| 对 attrax 价值 | 无 |
+| 结论 | ❌ 不采用 |
+
+#### 5.1.5 MMA-RAG（Champ-X/MMA-RAG）
+
+| 维度 | 详情 |
+|------|------|
+| 基本信息 | 79 stars，活跃项目，KB-aware multimodal RAG |
+| 核心优势 | One-Pass hybrid 检索（dense + sparse + rerank），`citation_pov` 引用视角模式，intent 路由，Parent-Child chunk 策略 |
+| 对 attrax 价值 | **参考**：One-Pass hybrid 检索架构 + citation_pov 思想 |
+| 结论 | ❌ 不整体采用，吸收其检索模式思想 |
+
+#### 5.1.6 LightRAG（HKUDS/LightRAG）
+
+| 维度 | 详情 |
+|------|------|
+| 基本信息 | 34,000 stars，EMNLP 2025，香港大学 |
+| 核心优势 | `NanoVectorDBStorage`：嵌入式 JSON 向量存储（`nano_vectordb` 库），零外部依赖 |
+| 不足 | 固定 1200 token 分块（不适法律条款），无 BM25，无 Reranker，`kg_query` 实体提取精度不够 |
+| 对 attrax 价值 | **部分采用**：`nano_vectordb` 替代 Qdrant |
+| 结论 | ✅ 采纳 nano_vectordb，其他自建 |
+
+#### 5.1.7 选型矩阵汇总
+
+| 框架 | 编排层 | 向量存储 | 分块策略 | BM25 | Reranker | Citation Verifier | Docker 依赖 | 结论 |
+|------|--------|---------|---------|------|----------|-------------------|-------------|------|
+| RAGFlow | ✅ | Qdrant | ✅ 模板化 | ❌ | ❌ | ✅ 可视化 | ❌ 16GB+ | 参考 |
+| LlamaIndex | ✅ 自建 | 均可 | 自建 | ✅ | ✅ | 自建 | 无要求 | **✅ 采用** |
+| LangChain | ✅ | 均可 | 自建 | ✅ | ✅ | 借鉴 grading | 无要求 | 参考 |
+| Dify | ⚠️ | ⚠️ | ❌ | ❌ | ❌ | ❌ | Docker | ❌ |
+| MMA-RAG | ⚠️ | Qdrant | ✅ PC | ❌ | ✅ | ✅ pov | Docker | 参考 |
+| LightRAG | ❌ | ✅ nano | ❌ 固定token | ❌ | ❌ | ❌ | 无 | nano_vectordb |
+
+---
+
+### 5.2 最终架构：LlamaIndex 编排层 + nano_vectordb 存储 + 自建法律专用组件
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    attrax 合规 RAG 系统分层架构                      │
+├─────────────────────────────────────────────────────────────────────┤
+│  [Next.js 前端]  →  HTTP POST  →  [FastAPI 网关 / LlamaIndex 编排] │
+│                                        │                             │
+│  ┌─────────────────────────────────────┼─────────────────────────┐  │
+│  │              LlamaIndex 检索编排层                            │  │
+│  │  QueryEngine → VectorIndex + BM25Retriever → EnsembleRetriever│  │
+│  │              → ParentChildNodeAssembler → CitationGrader     │  │
+│  └─────────────────────────────────────┼─────────────────────────┘  │
+│                                        │                             │
+│  ┌──────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────┐ │
+│  │nano_vec  │  │ 自建         │  │ BGE-reranker │  │ 自建      │ │
+│  │tordb     │  │ LegalChunker │  │ -v2-m3       │  │ Citation  │ │
+│  │(向量存储) │  │ (Article边界)│  │ (Cross-Enc)  │  │ Verifier  │ │
+│  └──────────┘  └──────────────┘  └──────────────┘  └───────────┘ │
+│         │                                                          │
+│  ┌─────────────────────────────────────────────────────────────┐  │
+│  │  LLM 层: Claude 4 Sonnet（已有 SDK）                         │  │
+│  │  Prompt 强制格式：每个结论 → [Article No.] + [Page No.]       │  │
+│  └─────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**层级说明：**
+
+```
+第一层：LlamaIndex QueryEngine
+  职责：组合 VectorIndex + BM25Retriever + EnsembleRetriever(rrf)
+  不自己实现检索逻辑，依赖 LlamaIndex 成熟抽象
+
+第二层：自建法律专用组件
+  LegalChunker      — 按 Article/Section 边界分块（LlamaIndex Node 对象）
+  CitationVerifier   — 生成后引用验证（LlamaIndex 钩子注入）
+  ParentChildAssembler — Child 召回 → Parent 上下文组装
+
+第三层：底层存储 / 模型
+  nano_vectordb     — LlamaIndex VectorStore 后端
+  BGE-M3            — 嵌入模型（dense + sparse 联合向量）
+  BGE-reranker-v2-m3 — Cross-Encoder 重排
+  Claude 4 Sonnet   — LLM 生成层
 ```
 
 ---
 
-## 五、技术选型
+## 六、技术选型详解
 
-| 环节 | 选型 | 理由 |
-|------|------|------|
-| RAG 服务框架 | **FastAPI** | 轻量、异步、与 Python ML 生态无缝集成 |
-| 向量库 | **Qdrant** | Docker 一键启动，metadata filter 支持好，性能高 |
-| 嵌入模型 | **voyage-multilingual-3** | 100+语言，中日韩英混排效果好 |
-| Reranker | **BGE-reranker-v2-m3** | 中文法规 rerank 效果最佳，本地可部署 |
-| PDF 解析 | **pdfplumber** | 已验证 100% 成功，Windows 兼容 |
-| DOCX 解析 | **python-docx** | 直接读 XML，无外部依赖 |
-| HTML 解析 | **BeautifulSoup4 + Playwright** | 静态 HTML 用 BS4，JS 渲染用 Playwright |
-| JS 渲染处理 | **Playwright** | 处理动态内容嵌 JS 的 HTML |
-| LLM | **Claude 4 Sonnet** | 已有 SDK，中文生成质量高 |
-| 编码检测 | **chardet** | GBK/UTF-8 自动检测 |
+### 6.1 编排层：LlamaIndex
+
+**为什么用 LlamaIndex 而不是纯 FastAPI？**
+
+| 对比维度 | 纯 FastAPI 拼接 | LlamaIndex |
+|---------|---------------|------------|
+| 向量检索 | 需手写 nano_vectordb 调用逻辑 | `VectorStoreIndex` 一行接入 |
+| BM25 | 需手写 rank_bm25 或调用库 | `BM25Retriever` 开箱即用 |
+| Ensemble（RRF） | 需手写融合算法 | `EnsembleRetriever(rrf)` 一行 |
+| Parent-Child Node | 需自行设计存储和查询逻辑 | `ParentChildNodeAssembler` 有成熟模式 |
+| 自定义 Retriever | 需实现 `BaseRetriever` 接口 | 同上，且框架提供统一调度 |
+| 后续扩展 | 逐行改 | 增加 Retriever子类，热插拔 |
+
+LlamaIndex 在检索编排上的积累远超过手写 FastAPI，且不锁定存储层（nano_vectordb 可作为 `VectorStore` 后端接入）。
+
+**选型版本：`llama-index >= 0.11.0`（Python 3.10+）**
+
+### 6.2 向量存储：nano_vectordb（LightRAG 依赖）
+
+**为什么不用 Qdrant？**
+
+Qdrant 需要 Docker 部署，公司 IT 可能不允许，且本项目规模（~20k Child Chunks）完全不需要专门向量数据库的性能。
+
+**为什么不用 pgvector？**
+
+pgvector 需要 PostgreSQL 部署，同样增加运维依赖。
+
+**nano_vectordb 详情：**
+
+- 库名：`nano_vectordb`，LightRAG 同款依赖
+- 存储介质：`workspace/vdb_legal.json`（JSON 文件，追加写入）
+- 检索性能：~20k 向量，毫秒级
+- metadata filter：支持 dict filter
+- 向量维度：BGE-M3 输出 1024 维
+- 不足：超大规模（>1M 向量）需迁移 Qdrant，当前规模无压力
+
+### 6.3 嵌入模型：BGE-M3（替换 voyage）
+
+**对比：voyage-multilingual-3 vs BGE-M3**
+
+| 维度 | voyage-multilingual-3 | BGE-M3 |
+|------|----------------------|--------|
+| 出品 | Voyage AI（商业） | 北京人工智能研究院（BAAI，开源） |
+| 多语言 | 100+语言 | 100+语言，含中文最优 |
+| dense + sparse | 仅 dense | **dense + sparse 联合**（一次输出同时含两种向量） |
+| 中文效果 | 良好 | **最强**（BAAI 专门针对中日韩优化） |
+| 调用方式 | 云端 API（需付费） | **本地推理**（无 API 费用） |
+| 部署需求 | 无（API 调用） | CPU 推理即可（FP16 ~4GB 显存或纯 CPU） |
+| EU/US/CN 混排 | 一般 | **最优**：同一模型覆盖三种语言 |
+| 评测（MTEB） | top-tier | **SOTA**（MTEB 榜单 top3） |
+
+**最终决策：BGE-M3，本地推理，零 API 费用**
+
+理由：
+1. EU/US/CN 三语混排场景，BGE-M3 是 SOTA
+2. dense + sparse 联合向量：sparse 向量提供精确术语匹配（如 Article 编号、CAS 号），补充 BM25 的弱化版
+3. 完全本地推理，无 API 费用，无网络依赖，无隐私风险
+4. BGE-reranker-v2-m3 同体系，rerank 效果最佳
+
+**模型规格：**
+- 模型名：`BAAI/bge-m3`（HuggingFace）
+- 向量维度：1024（dense）+ sparse（ColBERT-style）
+- 量化版：`bge-m3-quantized`（INT8，推理更快，精度损失 < 1%）
+
+### 6.4 Reranker：BGE-reranker-v2-m3
+
+- 模型名：`BAAI/bge-reranker-v2-m3`
+- 类型：Cross-Encoder
+- 用途：Top-50 → Top-10 精排
+- 部署：本地推理，FP16 或 INT8 量化
+- 理由：BAAI 同体系，与 BGE-M3 联合优化效果最好，中文法规 rerank 效果最佳
+
+### 6.5 PDF 解析：pdfplumber
+
+**为什么不是 PyMuPDF？**
+
+| 维度 | pdfplumber | PyMuPDF |
+|------|-----------|---------|
+| 表格提取 | ✅ 优秀（已验证 18 EU PDF 100% 成功） | ⚠️ 一般 |
+| 页码保留 | ✅ 天然保留 | ⚠️ 需额外处理 |
+| 纯文本提取 | ✅ 成功 | ✅ 成功 |
+| 布局感知 | 基础 | 更强 |
+| API 简洁性 | 简单 | 更灵活 |
+
+已验证 `pdfplumber` 对 EU PDF 100% 解析成功，继续使用。
+
+### 6.6 DOCX 解析：python-docx
+
+已有验证，稳定可靠。
+
+### 6.7 HTML 解析：BeautifulSoup4 + Playwright
+
+分类处理路由不变（UTF-8 / GBK / JS 渲染）。
+
+### 6.8 LLM：Claude 4 Sonnet
+
+已有 SDK，中文生成质量最优，保持不变。
+
+### 6.9 BM25：rank_bm25（LlamaIndex 依赖）
+
+LlamaIndex 的 `BM25Retriever` 底层使用 `rank_bm25`，无需额外选型。BM25 负责：
+- Article 编号精确匹配（"Article 22"）
+- CAS 号匹配（"CAS 7439-92-1"）
+- 化学物质名称精确匹配（"lead" / "铅" / "Pb"）
+
+### 6.10 表格处理：LlamaIndex TableNode + 自建 dual-field
+
+LlamaIndex 提供 `TableNode` 类型，支持表格结构化存储。配合自建 dual-field 策略（description + raw_table），满足报告引用展示需求。
+
+### 6.11 完整选型总表
+
+| 层级 | 组件 | 选型 | 决策理由 |
+|------|------|------|---------|
+| **编排层** | RAG 编排框架 | **LlamaIndex 0.11+** | 成熟检索抽象，VectorStore 可插拔，本地推理 |
+| **向量存储** | 向量数据库 | **nano_vectordb**（LightRAG 同款） | 嵌入式 JSON，零外部依赖，LlamaIndex VectorStore 后端接入 |
+| **嵌入模型** | Embedding | **BGE-M3**（BAAI） | 三语 SOTA，dense+sparse 联合，本地推理零费用 |
+| **Reranker** | Cross-Encoder | **BGE-reranker-v2-m3** | 同体系，本地推理，中文法规精度最高 |
+| **LLM** | 大语言模型 | **Claude 4 Sonnet** | 已有 SDK，中文质量最优 |
+| **PDF 解析** | PDF 处理 | **pdfplumber** | 已验证 100% EU PDF 成功 |
+| **DOCX 解析** | Word 处理 | **python-docx** | 直接读 XML，稳定 |
+| **HTML 解析** | 网页处理 | **BeautifulSoup4 + Playwright** | 分类路由处理 |
+| **BM25** | 稀疏检索 | **rank_bm25**（LlamaIndex 内置） | Article/CAS/化学品精确召回 |
+| **表格处理** | 表格存储/检索 | **LlamaIndex TableNode + dual-field** | description 入检索，raw_table 用于展示 |
+| **引用验证** | Hallucination 检测 | **自建 CitationVerifier**（借鉴 LangChain grading 模式） | 法律合规特有层 |
+| **分块策略** | Chunking | **自建 LegalChunker** | 按 Article/Section 边界，非固定 token |
 
 ---
 
-## 六、文件结构
+## 七、文件结构
 
 ```
 attrax/
-├── rag-service/                  # 独立 Python FastAPI RAG 服务
-│   ├── main.py                  # FastAPI 应用入口
+├── rag-service/                    # 独立 Python FastAPI RAG 服务（Static RAG + 硬门）
+│   ├── main.py                    # FastAPI 应用入口
 │   ├── parser/
 │   │   ├── __init__.py
-│   │   ├── pdf_parser.py        # pdfplumber 解析
-│   │   ├── docx_parser.py      # python-docx 解析
-│   │   ├── html_parser.py       # BS4 + Playwright 解析
-│   │   └── classifier.py         # HTML 类型分类
+│   │   ├── pdf_parser.py          # pdfplumber 解析
+│   │   ├── docx_parser.py        # python-docx 解析
+│   │   ├── html_parser.py         # BS4 + Playwright 解析
+│   │   └── classifier.py          # HTML 类型分类
 │   ├── chunker/
 │   │   ├── __init__.py
-│   │   ├── legal_chunker.py      # Parent-Child 分块
-│   │   └── table_processor.py    # 表格描述化
+│   │   ├── legal_chunker.py      # Parent-Child 分块（按 Article/Section 边界）
+│   │   │                          # 输出: LlamaIndex Document/Node 对象
+│   │   └── table_processor.py     # 表格 dual-field 处理
+│   ├── index/
+│   │   ├── __init__.py
+│   │   ├── legal_index.py         # LlamaIndex VectorStoreIndex 构建
+│   │   │                          # nano_vectordb 作为 VectorStore 后端
+│   │   ├── parent_child.py        # Parent-Child Node Assembler
+│   │   └── query_engine.py        # LlamaIndex QueryEngine 组装
+│   │                              # VectorIndex + BM25Retriever + EnsembleRetriever
 │   ├── retrieval/
 │   │   ├── __init__.py
-│   │   ├── query_decomposer.py  # 结构化 Query 分解
-│   │   ├── dense_retriever.py   # 向量检索（voyage API）
-│   │   ├── bm25_retriever.py    # BM25 全文检索
-│   │   ├── fusion.py            # RRF 融合
-│   │   └── reranker.py          # BGE-reranker 重排
+│   │   ├── query_rewrite.py        # Query Rewrite 规则映射（50行）
+│   │   ├── query_decomposer.py    # 结构化 Query 分解
+│   │   ├── dense_retriever.py      # BGE-M3 嵌入（本地推理）
+│   │   ├── bm25_retriever.py      # BM25Retriever（LlamaIndex 内置 rank_bm25）
+│   │   ├── fusion.py               # RRF 融合（LlamaIndex EnsembleRetriever）
+│   │   └── reranker.py            # BGE-reranker-v2-m3 Cross-Encoder 重排
 │   ├── verify/
-│   │   └── citation_verifier.py  # 引用验证
+│   │   ├── __init__.py
+│   │   ├── citation_verifier.py    # 引用验证（硬门，规则模式）
+│   │   │                              # gate_passed / report_allowed 判断
+│   │   └── hallucination_grader.py # LLM-as-Judge（可选增强，Phase 3 后视情况启用）
 │   ├── generator/
-│   │   └── compliance_reporter.py  # LLM 生成报告
-│   ├── storage/
-│   │   └── qdrant_client.py     # Qdrant 连接和操作
+│   │   └── compliance_reporter.py  # LLM 生成报告（Claude 4 Sonnet）
 │   ├── models/
-│   │   └── schemas.py           # Pydantic 数据模型
-│   ├── config.py                 # 配置管理
-│   ├── requirements.txt          # Python 依赖
-│   └── Dockerfile               # Docker 打包
+│   │   ├── schemas.py              # Pydantic 数据模型
+│   │   │                              # LegalCitation, ChunkMetadata, ComplianceReport
+│   │   └── node_schemas.py         # LlamaIndex Node metadata schema
+│   ├── config.py                   # 配置管理（BGE 模型路径、nano_vectordb 路径等）
+│   ├── requirements.txt            # Python 依赖
+│   └── tests/                      # 单元测试
+│       ├── test_legal_chunker.py
+│       ├── test_citation_verifier.py
+│       ├── test_query_rewrite.py
+│       └── test_retrieval.py
+│
+├── models/                         # 本地模型（不随代码 push）
+│   ├── bge-m3/                     # BGE-M3 嵌入模型（~2GB）
+│   └── bge-reranker-v2-m3/          # BGE-reranker 模型（~1GB）
 │
 ├── data/
-│   └── corpus/                  # 预解析法规语料库（构建后生成）
-│       ├── eu/                   # EU 法规 JSON
-│       ├── us/                   # 美国法规 JSON
-│       ├── asia/                 # 亚洲法规 JSON
-│       ├── products/             # 产品专项分析 JSON
-│       └── index.json            # 全量索引
+│   └── corpus/                      # 预解析法规语料库（构建后生成）
+│       ├── eu/                      # EU 法规 JSON
+│       ├── us/                      # 美国法规 JSON
+│       ├── asia/                    # 亚洲法规 JSON
+│       ├── products/                # 产品专项分析 JSON
+│       └── index.json              # 全量索引（含版本号、日期）
 │
 ├── scripts/
-│   ├── build_corpus.py           # 批量构建语料库脚本
-│   ├── ingest_to_qdrant.py       # 批量入 Qdrant 脚本
-│   └── test_retrieval.py          # 检索测试脚本
+│   ├── build_corpus.py              # 批量构建语料库（→ LlamaIndex Document）
+│   ├── ingest_to_index.py           # 批量写入 LlamaIndex VectorStore（nano_vectordb 后端）
+│   └── test_retrieval.py            # 检索测试（验证 Top-K 召回质量）
 │
-├── src/                          # Next.js（现有代码）
-│   └── app/api/scan/route.ts      # 转发请求到 rag-service
+├── src/                             # Next.js（现有代码）
+│   └── app/api/scan/route.ts        # 转发请求到 rag-service
 │
 └── docs/
-    └── RAG-ARCHITECTURE.md       # 本文档
+    └── RAG-ARCHITECTURE.md          # 本文档
 ```
+
+> **注意**：`models/` 目录不随 git push，需在部署时下载或初始化脚本拉取。
+> **注意**：无 `agents/` 目录，无需多 Agent 协调。
 
 ---
 
-## 七、实施计划
+## 八、实施计划
+
+> **架构原则：静态 RAG + 硬门，无 Agentic 循环。简单即正确。**
 
 ### Phase 0：基础设施验证（0.5天）
 
 ```
-目标: 验证所有外部依赖可以连通
+目标: 验证所有外部依赖可用
 步骤:
-1. 安装 rag-service Python 依赖
-2. docker pull qdrant/qdrant && docker run 起 Qdrant
-3. 验证 voyage API（云端）可连通
-4. 验证 BGE-reranker 可本地加载
-5. 验证 Python FastAPI 服务启动成功
+1. pip install llama-index nano-vectordb transformers torch
+   （llama-index >= 0.11.0，含 rank_bm25、BM25Retriever、EnsembleRetriever）
+2. 下载 BGE-M3 模型权重（~2GB，HuggingFace）
+   python -c "from llama_index.embeddings.huggingface import HuggingFaceEmbedding; HuggingFaceEmbedding('BAAI/bge-m3')"
+3. 下载 BGE-reranker-v2-m3 模型权重（~1GB）
+4. 验证 nano_vectordb JSON 写入/读取（workspace/vdb_legal.json）
+5. 验证 BGE-M3 本地推理（CPU 推理 < 5s/batch）
+6. 验证 LlamaIndex VectorStoreIndex + BM25Retriever + EnsembleRetriever(rrf) 组合
+7. 验证 FastAPI 服务启动（uvicorn）
+8. 验证 Claude 4 Sonnet SDK 连通
+注: 无 Docker，无 Qdrant，无云端 embedding API 依赖
 ```
 
-### Phase 1：语料库构建（1.5天）
+**依赖安装命令：**
+```bash
+pip install llama-index>=0.11.0 \
+  nano-vectordb \
+  transformers sentencepiece torch \
+  pdfplumber python-docx beautifulsoup4 playwright \
+  chardet anthropic pydantic
+playwright install chromium  # 若有 JS 渲染 HTML
+```
+
+### Phase 1：语料库构建（2天）
 
 **专注 18个 EU PDF + 9个 DOCX，不碰 HTML**
 
 ```
-目标: 建立可用基线
+目标: 建立可用基线（LlamaIndex Document → VectorStoreIndex）
 步骤:
-1. 运行 build_corpus.py 解析 EU PDF → Parent-Child JSON
-2. 运行 build_corpus.py 解析 DOCX → JSON（含表格描述化）
-3. 运行 ingest_to_qdrant.py 入 Qdrant
-4. 验证: test_retrieval.py 抽检 5 个文件
+1. 运行 build_corpus.py 解析 EU PDF
+   → pdfplumber 提取文本 + 页码
+   → LegalChunker 按 Article/Section 边界分块
+   → 输出: LlamaIndex Document（带 metadata: doc_name, article_no, page_range）
+   → Child + Parent Node 对
+2. 运行 build_corpus.py 解析 DOCX（含表格 → dual-field description + raw_table）
+3. 运行 ingest_to_index.py
+   → LlamaIndex VectorStoreIndex(storage_context=nano_vectordb)
+   → 写入 workspace/vdb_legal.json
+4. 验证: test_retrieval.py 抽检 5 个 query
+   → 检查 Top-10 召回是否命中正确 Article
+```
+
+**LlamaIndex 接入 nano_vectordb 示例代码：**
+```python
+from llama_index.core import VectorStoreIndex
+from llama_index.core.storage import StorageContext
+from nano_vectordb import NanoVectorStore
+
+# nano_vectordb 作为 LlamaIndex VectorStore 后端
+vector_store = NanoVectorStore(workspace="workspace", namespace="legal")
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
+# 构建索引
+index = VectorStoreIndex.from_documents(
+    documents,          # LegalChunker 输出的 LlamaIndex Document
+    storage_context=storage_context,
+    embed_model=BGE_M3_EMBED_MODEL,
+)
 ```
 
 ### Phase 2：检索验证（1天）
 
 ```
-目标: 召回率验证（目标: 90%+ 准确）
+目标: 召回率验证（目标: Top-10 90%+ 命中正确 Article）
 步骤:
-1. 准备 10+ 个测试 query
-2. 检查 Top-10 是否召回正确条款
-3. 调整 chunk size / reranker threshold / RRF weight
-4. 测试 must_check 强制注入机制
-5. 测试引用验证（verify_citations）
+1. 准备 10+ 个测试 query（见下表）
+2. 验证 Query Rewrite 规则补充效果（"充电宝" query 是否命中 REACH Article 22）
+3. 验证 EnsembleRetriever(dense + BM25, rrf) 召回质量
+4. 验证 BGE-reranker Top-50 → Top-10 精排效果
+5. 验证 must_check 强制注入（充电宝 → REACH/RoHS/GPSR 必须召回）
+6. 验证 Parent-Child 转换（Child 召回后获取 Parent 完整 Article）
+7. 新发现召回盲区 → 追加到 query_rewrite_rules.ts
 ```
 
 **测试 Query 列表：**
 
 | # | 产品 | 市场 | 预期召回 |
 |---|------|------|----------|
-| 1 | 充电宝 | EU | REACH + RoHS + GPSR + CE |
-| 2 | 乒乓球拍 | EU | REACH + GPSR + EN 71 |
-| 3 | 锂电池 | US | FCC + DOT + TSCA |
-| 4 | 电子手表 | EU | LVD + EMC + RED + GPSR |
-| 5 | 蓝牙音箱 | EU + US | RED + FCC + CE |
+| 1 | 充电宝 | EU | REACH Article 22（铅含量）+ RoHS Annex II |
+| 2 | 乒乓球拍 | EU | REACH Annex XVII（增塑剂）+ GPSR Article 5 |
+| 3 | 锂电池 | US | TSCA 化学物质清单 + DOT 运输规定 |
+| 4 | 电子手表 | EU | RED Article 3（射频频谱）+ LVD 安全要求 |
+| 5 | 蓝牙音箱 | EU + US | RED + EMC + FCC Part 15 |
+| 6 | 儿童玩具 | EU | EN 71-3（可迁移元素）+ REACH Annex XVII |
+| 7 | 充电宝 | CN | CCC 认证 + GB 31241（锂电池） |
+| 8 | 纺织品 | EU | REACH Annex XVII（偶氮染料）+ Oeko-Tex |
 
-### Phase 3：接入 attrax（2天）
+### Phase 3：引用验证硬门 + 报告生成（2天）
 
 ```
-目标: 端到端跑出第一张真实报告
+目标: 端到端跑出第一张带引用的合规报告，验证硬门逻辑
 步骤:
-1. 启动 rag-service FastAPI 服务
-2. 修改 app/api/scan/route.ts → POST rag-service
-3. 接入 Vision 识别结果 → Query 分解
-4. 接入 Claude LLM 生成报告（含引用验证）
-5. 前端展示报告（引用溯源高亮）
+1. 实现 CitationVerifier 硬门（规则模式）
+   → 正则提取报告中的 Article/条款编号
+   → 与检索到的 Chunk 原文交叉验证
+   → 硬门判断: verified>=3 ✅ / 1-2 ⚠️ / 0 ❌拒绝
+2. 接入 Claude 4 Sonnet 生成报告
+   → Prompt 强制每个结论附 [Article No., p.Page]
+   → 引用原文 blockquote
+3. 测试硬门：
+   a. 正常 query → 验证通过 → 展示报告
+   b. 随机 query → 验证失败 → 返回错误（不生成幻觉报告）
+4. 可选：启用 hallucination_grader（LLM-as-Judge）增强
 ```
 
 ### Phase 4：扩充语料（1天）
@@ -680,13 +1125,26 @@ attrax/
 步骤:
 1. 分类处理 35 个 HTML（静态 UTF-8 / GBK / JS渲染）
 2. Playwright 处理 JS 渲染类（~10个）
-3. 增量入 Qdrant
+3. 增量入 LlamaIndex VectorStore（upsert）
 4. 评估 7 个截图 PDF：OCR 还是放弃
 ```
 
+### Phase 5：接入 attrax 前端（1天）
+
+```
+目标: 端到端联调
+步骤:
+1. 启动 rag-service: uvicorn rag-service.main:app
+2. 修改 app/api/scan/route.ts → POST rag-service
+3. Vision 识别结果 → Query Rewrite → 检索 → 硬门验证 → 生成报告
+4. 前端展示：✅ 已验证 / ⚠️ 警告 / ❌ 拒绝 标签 + Markdown/PDF 导出
+```
+
+**预估端到端延迟：5-10s**（并行 EU+US+CN 检索 + 单次 LLM 生成）
+
 ---
 
-## 八、数据更新流程
+## 九（备选）、数据更新流程
 
 ```
 法规更新事件
@@ -698,7 +1156,11 @@ attrax/
 POST /build-corpus（单文件增量构建）
        │
        ▼
-DELETE /corpus/{doc_id}（删旧版本） + POST /corpus（存新版本）
+LegalChunker 重新分块 → LlamaIndex Document
+       │
+       ▼
+VectorStoreIndex.upsert() → nano_vectordb JSON 增量写入
+（支持按 doc_id 覆盖旧版本）
        │
        ▼
 验证检索效果
@@ -706,32 +1168,57 @@ DELETE /corpus/{doc_id}（删旧版本） + POST /corpus（存新版本）
 
 ---
 
-## 九、风险与对策
+## 十、风险与对策
 
 | 风险 | 影响 | 对策 |
 |------|------|------|
 | Python/TS 分裂架构 | BGE-reranker 无法在 TS 环境运行 | ✅ 已修正：统一 Python FastAPI |
 | REACH Annex XVII 超长 chunk | embedding 截断，核心条款丢失 | ✅ 已修正：Parent-Child 双层结构 |
 | HTML 质量差 | 召回率低 | 分类处理，JS渲染用 Playwright |
-| LLM 编造条款编号 | 报告引用不准确 | ✅ 已修正：后置引用验证层 |
-| 法规版本过期 | 报告引用旧条款 | index.json 带版本号和日期 |
-| 表格信息丢失 | 二维关系线性化后语义稀薄 | ✅ 已修正：description + raw_table 双字段 |
-| Qdrant Docker 不被允许 | 无法本地部署 | 考虑云端 Qdrant 或纯 BM25 备选 |
+| LLM 编造条款编号 | 报告引用不准确 | ✅ 已修正：CitationVerifier（规则）+ hallucination_grader（LLM-as-Judge）双层验证 |
+| 法规版本过期 | 报告引用旧条款 | index.json 带版本号和日期，upsert 机制 |
+| 表格信息丢失 | 二维关系线性化后语义稀薄 | ✅ 已修正：LlamaIndex TableNode + dual-field |
+| Qdrant Docker 不被允许 | 无法本地部署 | ✅ 已解决：nano_vectordb 嵌入式，无需 Docker |
+| BGE-M3 推理速度 | CPU 推理可能较慢（~2-5s/batch） | INT8 量化版；首批加载后缓存模型；实测满足 Phase 1 需求 |
+| nano_vectordb 规模上限 | JSON 文件超过 1M 向量后性能下降 | 超量时迁移至 Qdrant（LlamaIndex VectorStore 后端热插拔） |
+| LlamaIndex 版本兼容 | 大版本升级可能破坏 API | 锁定 >= 0.11.0，升级前跑全套回归测试 |
+| 多语言 Chunk 质量 | 中英混合法规（如 EU 中英双语 PDF）分块可能切碎 | LegalChunker 增加双语感知：英文 Article 标题 + 中文正文 → 同 parent |
 
 ---
 
-## 十、确认事项（需在实施前确认）
+## 十一、确认事项（实施前确认）
 
-1. **Qdrant 部署**: 公司 IT 是否允许 Docker 部署？若不允许，使用云端 Qdrant（qdrant.cloud）。
-2. **Embedding 方式**: voyage API 云端调用（按量付费）还是本地部署（需 GPU）？
-3. **法规更新频率**: 法规多久更新一次？影响版本管理设计。
-4. **用户上传法规**: 是否需要支持用户自行上传法规文件入库？还是管理员维护？
+> 以下事项在方案评审时已做决策（2026-04-29），供参考。实施前如有变化请更新。
+
+**已确认事项：**
+
+| 事项 | 决策 | 原因 |
+|------|------|------|
+| 向量存储 | **nano_vectordb**（LightRAG 同款） | 零 Docker 依赖，嵌入式 JSON，LlamaIndex VectorStore 后端接入 |
+| 嵌入模型 | **BGE-M3**（本地推理） | SOTA 三语，dense+sparse 联合，零 API 费用 |
+| 编排层 | **LlamaIndex 0.11+** | 成熟检索抽象，VectorStore 热插拔 |
+| Reranker | **BGE-reranker-v2-m3** | BAAI 同体系，本地推理 |
+| 架构风格 | **Static RAG + 硬门**（无 Agentic） | 延迟 5-10s，满足"快"；硬门验证满足"准"；Agentic 增加 10-15s 且复杂度过高 |
+| Query Rewrite | **50行规则**（无 Agent） | 覆盖术语差异，扩展方式为追加规则，无需改架构 |
+
+**待实施前确认：**
+
+| 事项 | 说明 |
+|------|------|
+| BGE-M3 模型下载 | HuggingFace 网络是否可达？如不可达需准备离线文件（约 3GB） |
+| 法规更新频率 | 影响版本管理和 upsert 策略（已设计 upsert 机制，待确认频率） |
+| 用户上传法规 | 管理员维护 vs 用户自助入库（已设计增量构建 API，待确认） |
+| 报告语言 | 中文 vs 英文（影响 Prompt 设计，文档已按中文设计） |
+| 数据规模 | 预估 ~15k-25k Child Chunks，nano_vectordb JSON 预计 50-200MB |
 
 ---
 
-## 十一、版本历史
+## 十二、版本历史
 
 | 版本 | 日期 | 变更内容 |
 |------|------|---------|
 | 1.0 | 2026-04-28 | 初版方案 |
 | 1.1 | 2026-04-28 | 整合专家评审意见：统一 Python FastAPI、Parent-Child 分块、HTML 分类处理、表格描述化、结构化 Query 分解、引用验证层 |
+| 1.2 | 2026-04-28 | LightRAG 调研整合：以 nano_vectordb 替代 Qdrant（零外部依赖），移除 Docker 要求；自建 LegalChunker/HybridRetrieval/CitationVerifier |
+| 1.3 | 2026-04-28 | 企业 RAG + 法律 RAG 全网调研整合：增加 LlamaIndex 编排层（替代纯 FastAPI），voyage → BGE-M3（本地推理零费用，SOTA 三语），增加 Hallucination Grader（LangChain grading 模式），更新 Phase 0-5 实施计划，更新风险清单 |
+| 1.4 | 2026-04-29 | 架构决策：否决 Agentic RAG（延迟高、复杂、不适合本场景），采用 Static RAG + CitationVerifier 硬门；增加 Section 5.0（Agentic 评估决策）；新增 4.4 Query Rewrite（50行规则替代 Agent）；Section 3 架构图更新；Phase 1 延长至 2天（增加 LegalChunker 开发）；预估延迟 5-10s |

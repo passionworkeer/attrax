@@ -44,3 +44,27 @@ public/uploads/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ─── 合规语料库 ────────────────────────────────────────────────
+# corpus/ 下的二进制法规文件不纳入版本控制，只保留元数据
+data/corpus/**/*.pdf
+data/corpus/**/*.docx
+data/corpus/**/*.doc
+data/corpus/**/processed/
+data/corpus/**/screenshot_pending/
+data/corpus/**/reference/
+
+# analysis/ 是生成产物，不纳入版本控制
+data/analysis/
+
+# 临时输出文件
+*.txt
+integration_result.txt
+check_result.txt
+
+# scripts/ 中的一次性调试脚本（骨架工具保留）
+scripts/deep_check.py
+scripts/final_verify.py
+scripts/full_check.py
+scripts/fix_analysis_rest.py
+scripts/fix_document_analysis.py
