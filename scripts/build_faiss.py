@@ -5,7 +5,7 @@ build_faiss.py - Build Faiss index from corpus
 Pipeline:
 1. Load all processed JSON files from data/corpus/processed/
 2. Chunk with LegalChunker
-3. Embed with Cohere embed-multilingual-v3 (requires COHERE_API_KEY)
+3. Embed with ModelScope Qwen3-Embedding-0.6B (requires MODELSCOPE_API_KEY)
 4. Save Faiss index + JSON metadata to data/faiss/
 
 Usage:
@@ -24,14 +24,14 @@ os.chdir(Path(__file__).parent.parent)
 
 from rag_service.config import settings
 from rag_service.chunker.legal_chunker import chunk_document
-from rag_service.retrieval.cohere_embedder import CohereEmbedder
+from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger(__name__)
 
 PROCESSED_DIR = Path("data/corpus/processed")
 FAISS_DIR = Path("data/faiss")
-BATCH_SIZE = 96
+BATCH_SIZE = 1
 
 
 def load_processed_files() -> list[dict]:
@@ -88,29 +88,15 @@ def chunk_documents(docs: list[dict]) -> list[dict]:
 
 
 def embed_chunks(chunks: list[dict]) -> list[dict]:
-    """Embed chunks with Cohere embed-multilingual-v3."""
-    if not settings.cohere_api_key:
-        logger.error("COHERE_API_KEY not set, cannot embed")
-        return chunks
-
-    embedder = CohereEmbedder(api_key=settings.cohere_api_key)
+    """Embed chunks with local ModelScope Qwen3-Embedding-0.6B."""
+    embedder = ModelScopeEmbedder()
     texts = []
     for chunk in chunks:
         prepend = chunk.get("prepend_en", chunk.get("prepend_zh", ""))
         content = chunk.get("content", "")
         texts.append(f"{prepend}\n{content}" if prepend else content)
 
-    vectors = []
-    for i in range(0, len(texts), BATCH_SIZE):
-        batch = texts[i:i+BATCH_SIZE]
-        try:
-            batch_vectors = embedder.embed_batch(batch)
-            vectors.extend(batch_vectors)
-            logger.info(f"  Embedded {i+len(batch)}/{len(chunks)} chunks")
-        except Exception as e:
-            logger.error(f"Batch embed failed at {i}: {e}")
-            vectors.extend([[0.0] * 1024] * len(batch))
-
+    vectors = embedder.embed_batch(texts)
     for chunk, vec in zip(chunks, vectors):
         chunk["vector"] = vec
 
@@ -166,9 +152,6 @@ def main():
     chunks = chunk_documents(docs)
 
     if not args.skip_embed:
-        if not settings.cohere_api_key:
-            logger.error("COHERE_API_KEY required for embedding")
-            return
         chunks = embed_chunks(chunks)
     else:
         logger.info("Skipping embedding (--skip-embed)")
