@@ -34,7 +34,7 @@ describe('Scan Pipeline', () => {
   })
 
   describe('runScan', () => {
-    it('updates session to failed when rag-service is unreachable', async () => {
+    it('degrades to mock when rag-service is unreachable', async () => {
       vi.spyOn(global, 'fetch').mockRejectedValueOnce(new TypeError('network error'))
 
       const sessionId = 'test_network_error'
@@ -47,8 +47,8 @@ describe('Scan Pipeline', () => {
       })
 
       const session = getSession(sessionId)
-      expect(session?.status).toBe('failed')
-      expect(session?.error).toBeTruthy()
+      expect(session?.status).toBe('ready')
+      expect(session?.result).toBeDefined()
     })
 
     it('maps PASS status to ready session', async () => {

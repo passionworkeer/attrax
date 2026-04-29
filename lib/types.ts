@@ -124,7 +124,7 @@ export interface ComplianceReportResult {
     region: string;
     score: number;
   }>;
-  images: never[];
+  images: undefined;
   documents: Array<{
     documentId: string;
     name: string;
@@ -133,8 +133,8 @@ export interface ComplianceReportResult {
     mimeType: string;
     url: string;
   }>;
-  riskPoints: never[];
-  checklist: never[];
+  riskPoints: undefined;
+  checklist: undefined;
   generatedAt: string;
   modelInfo: { ragProvider: string; latencyMs: number };
 }
