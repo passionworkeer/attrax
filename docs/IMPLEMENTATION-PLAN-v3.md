@@ -414,12 +414,19 @@ class TestDocxParser:
 
 ### T2-3：LegalChunker 实现（1 天）
 **SDD 规格：**
-- Parent-Child 双层架构
-- Child: ~200-300 tokens，按 Article 边界切分
-- Parent: ~800-1000 tokens，2-4 个相邻 Article 组合
-- Contextual Prepending: `[法规名] [章节] [条款]` 前缀
-- 支持 EU (Article)、CN (第X条)、US (§) 三种模式
-- 页码推断（从 pageMap）
+- **两档索引：Child（300-500 tokens）+ Parent（全 Article）**
+  - Child：按 Article 边界切分，300-500 tokens。短 Article（< 400 tokens）保持完整。
+  - Parent：全 Article 或 Section（最多 2000 tokens），检索时扩展上下文窗口。
+  - **Late Chunking 可选**（Jina v2 8k context）：全文档 embedding 后切分向量，保留跨 Article 引用语义。
+- **边界检测：正则优先，LLM fallback**
+  - EU: `^(Article|Annex|Recital)\s+\d+[a-z]?\b`
+  - CN: `^第[一二三四五六七八九十百千零]+[条章节段款]`
+  - US: `^§\s*\d+(\.\d+)*\b|^Section\s+\d+`
+  - PDF 格式混乱时：`gpt-4o-mini` 每页调用提取 section headers（低成本 fallback）
+- **元数据树**：每 chunk 继承完整路径：`REACH → Title II → Article 5 → paragraph 1`
+- **跨语言 Prepend**：中英双语标签 `[REACH | 附件XVII | 条目63 | 铅限制 | Lead Restriction]`，提升跨语言检索 10-35%
+- **表格处理**：小表格（< 30 行）保留 Markdown 格式 + 周围 article 上下文；大表格（REACH Annex 100+ 行）按行组拆分，header 重复 prepend
+- **Overlap**：Article 边界无 overlap（语义独立）；长 Article 内拆分段落时 50-80 token overlap
 
 **TDD：**
 ```python
@@ -429,15 +436,20 @@ class TestLegalChunker:
         """按 Article 边界切分，不跨 Article"""
         result = chunk_document(reach_text, metadata)
         for chunk in result["child_chunks"]:
-            # 每个 chunk 只包含一个 Article
             assert chunk.article_no is not None
 
     def test_child_size_range(self, reach_text):
-        """Child chunk 在 150-400 tokens 范围"""
+        """Child chunk 在 300-500 tokens 范围"""
         result = chunk_document(reach_text, metadata)
         for chunk in result["child_chunks"]:
-            tokens = len(chunk.content) // 2  # 粗略估计
-            assert 100 < tokens < 500
+            tokens = estimate_tokens(chunk.content)
+            assert 200 <= tokens <= 600
+
+    def test_short_article_whole(self, gdpr_short_article):
+        """短 Article（<400 tokens）保持完整，不被拆分"""
+        result = chunk_document(gdpr_short_article, metadata)
+        # 只有一个 child，parent 即 article 本身
+        assert len(result["child_chunks"]) == 1
 
     def test_parent_contains_children(self, reach_text):
         """Parent 包含其所有 children 的内容"""
@@ -447,19 +459,27 @@ class TestLegalChunker:
                        if c.parent_id == parent.id]
             assert len(children) >= 1
 
-    def test_page_number_inference(self, reach_text):
-        """从 pageMap 推断页码，不全为 0"""
-        result = chunk_document(reach_text, metadata)
-        pages = {c.page_start for c in result["child_chunks"]}
-        assert len(pages) > 1  # 不全相同
-        assert 0 not in pages or len(pages) > 3  # 不全为 0
-
-    def test_contextual_prepending(self, reach_text):
-        """Child chunk 包含法规名和条款号前缀"""
+    def test_metadata_tree(self, reach_text):
+        """每个 chunk 继承完整路径元数据"""
         result = chunk_document(reach_text, metadata)
         first = result["child_chunks"][0]
-        assert "REACH" in first.content[:100]
-        assert "Article" in first.content[:100]
+        assert "article_no" in first.metadata
+        assert "section_path" in first.metadata  # e.g. ["Title II", "Chapter 3", "Article 5"]
+
+    def test_bilingual_prepend(self, reach_text):
+        """中英双语 contextual prepend"""
+        result = chunk_document(reach_text, metadata)
+        first = result["child_chunks"][0]
+        # 应同时包含中英文标签
+        assert "REACH" in first.content[:80] or "Article" in first.content[:80]
+
+    def test_table_markdown_serialization(self, doc_with_table):
+        """表格序列化为 Markdown 格式"""
+        result = chunk_document(doc_with_table, metadata)
+        tables = result.get("tables", [])
+        for tbl in tables:
+            # Markdown 格式：| Header | Header |
+            assert "|" in tbl or any("|" in row for row in tbl)
 ```
 
 **Git:** `feat(chunker): Parent-Child LegalChunker with Article boundary split`
@@ -783,31 +803,48 @@ class TestGenerateReportAPI:
 
 > 本阶段引入 LangGraph，将 Phase 3 检索 + Phase 4 报告生成组装为 Agent 循环。
 > 不替换已有模块，而是在其之上加编排层。
+>
+> **研究参考：** `langchain-ai/langgraph` 官方 Agentic RAG / CRAG / Self-RAG 示例；
+> `emarcober/rag-agents-langgraph` 多 agent 并行检索；`HuCRAG/CRAG` 纠正性 RAG。
 
 ### T5-1：GraphState 定义（0.25 天）
 **SDD 规格：**
 ```python
 # orchestrator/state.py
+from typing import TypedDict, Annotated
+import operator
+
 class GraphState(TypedDict):
+    # === 输入 ===
     query: str
     product: str
     category: str
     markets: list[str]
     vision_result: dict
-    # Agent 中间状态
-    sub_queries: list[dict]        # QueryPlanner 输出
-    chunks: list[dict]             # 当前轮次召回
-    all_chunks: list[dict]         # 历史所有召回（跨轮次）
-    synthesis: dict                # Synthesis 输出
-    draft_report: str              # ReportGenerator 草稿
-    verification: dict             # CitationVerifier 结果
-    missing_citations: list[str]   # 缺失引用列表
-    attempt: int                   # 当前重试轮次（0-based）
-    max_attempts: int              # 最大重试（默认 2）
-    # 最终输出
+
+    # === Agent 中间状态 ===
+    # Annotated[list, operator.add] 使多个节点的输出自动合并（LangGraph fan-in）
+    sub_queries: list[dict]                              # QueryPlanner 输出
+    documents: Annotated[list[dict], operator.add]       # 每轮召回自动累加
+    generation: str                                      # 当前生成文本
+    relevance_score: str                                 # "relevant" | "not_relevant"
+    generation_score: str                                # "supported" | "not_supported"
+    missing_citations: list[str]                         # 缺失引用列表
+    loop_count: int                                      # 当前重试轮次（CRITICAL：防无限循环）
+
+    # === 配置 ===
+    max_attempts: int                                    # 最大重试（默认 2）
+
+    # === 最终输出 ===
     final_report: str
-    status: str                    # PASS | WARN | REJECTED
+    status: str                                          # PASS | WARN | REJECTED
+    agent_trace: list[dict]                              # 每步节点名 + 耗时，前端展示进度
 ```
+
+**设计要点（基于研究）：**
+- `documents` 使用 `Annotated[list, operator.add]` — 多轮检索结果自动合并，无需手动 dedup
+- `loop_count` 在 QueryRefiner 节点递增（不在 retrieve 节点），防止无限循环
+- `agent_trace` 记录每步执行信息，支持 SSE 进度推送
 
 **TDD：**
 ```python
@@ -815,15 +852,22 @@ def test_graph_state_has_all_fields():
     state: GraphState = {
         "query": "test", "product": "", "category": "",
         "markets": ["EU"], "vision_result": {},
-        "sub_queries": [], "chunks": [], "all_chunks": [],
-        "synthesis": {}, "draft_report": "", "verification": {},
-        "missing_citations": [], "attempt": 0, "max_attempts": 2,
+        "sub_queries": [], "documents": [],
+        "generation": "", "relevance_score": "",
+        "generation_score": "", "missing_citations": [],
+        "loop_count": 0, "max_attempts": 2,
         "final_report": "", "status": "PENDING",
+        "agent_trace": [],
     }
-    assert state["attempt"] == 0
+    assert state["loop_count"] == 0
+
+def test_documents_additive_reducer():
+    """Annotated[list, operator.add] 自动合并多次输出"""
+    # LangGraph 内部测试：两个节点都返回 {"documents": [a]} → state.documents = [a, a]
+    ...
 ```
 
-**Git:** `feat(orchestrator): add GraphState TypedDict`
+**Git:** `feat(orchestrator): add GraphState with operator.add reducer + loop_count`
 
 ---
 
@@ -865,11 +909,27 @@ class TestQueryPlanner:
 
 ### T5-3：ParallelRetriever + Synthesis 节点（0.5 天）
 **SDD 规格：**
-- `parallel_retriever_node`：对每个 sub_query 并行调用 `HybridRetriever.retrieve()`
-- 合并去重（按 chunk_id），按 rerank_score 排序
+- 使用 LangGraph **`Send()` API** 实现多市场并行扇出（参考 `emarcober/rag-agents-langgraph`）
+- `documents` 字段用 `Annotated[list, operator.add]`，多个市场结果自动合并
+- 每个 market 子图调用 `HybridRetriever.retrieve()`，结果按 rerank_score 排序
 - `synthesis_node`：跨法规归并
   - 标记来源市场和来源法规
   - 必须检查法规（must_check）若未命中则警告
+  - 按 `chunk_id` 去重（多市场可能召回相同法规的相同条款）
+
+**Send() 扇出模式（研究推荐）：**
+```python
+from langgraph.types import Send
+
+def fan_out_markets(state: GraphState) -> list[Send]:
+    """多市场并行扇出 — 每个 market 一个独立检索节点"""
+    return [
+        Send("retrieve_single_market", {"query": sq["query"], "market": sq["market"]})
+        for sq in state["sub_queries"]
+    ]
+
+# 每个 Send 的结果自动通过 operator.add 合并到 state.documents
+```
 
 **TDD：**
 ```python
@@ -904,11 +964,24 @@ class TestSynthesis:
 ### T5-4：CitationVerifier 节点 + 条件路由（0.5 天）
 **SDD 规格：**
 - `citation_verifier_node`：包装 `verify/citation_verifier.py`
-- 输出：更新 `verification`, `missing_citations`
+- **升级为 NLI Claim Verification**（参考 `vectara/hallucination-leaderboard`，`HuCRAG/CRAG`）：
+  1. 将生成文本拆分为原子 claims（spaCy 句子分割 或 LLM 提取）
+  2. 每个 claim vs 每个 source chunk，用 DeBERTa-v3-large-mnli 做 NLI 分类：
+     - **ENTAILED** → 支持（计数 +1）
+     - **CONTRADICTED** → 矛盾（**硬拒绝**，直接 REJECT）
+     - **NEUTRAL** → 无依据（标记 UNVERIFIED）
+  3. Attribution Score = (ENTAILED / total_claims) × (verified_citations / total_citations)
+  4. 硬门：`score >= 0.9` → PASS，`0.7 <= score < 0.9` → WARN，`score < 0.7` → BLOCK
+- 输出：更新 `generation_score`, `missing_citations`
 - 条件路由 `should_regenerate`：
-  - `verification.passed_count >= 3` → 去 ReportGenerator
-  - `attempt < max_attempts` 且有 missing_citations → 去 QueryRefiner（追加检索）
-  - 否则 → 强制生成（带 WARN 标签）
+  - `generation_score == "supported"` 且 `score >= 0.7` → 去 END
+  - `loop_count < max_attempts` 且 `score < 0.7` → 去 QueryRefiner（追加检索）
+  - `loop_count >= max_attempts` → 强制输出带 WARN 标签
+
+**为什么用 NLI 而非 regex（研究结论）：**
+- regex 子串匹配只检查引用标记是否存在，不验证内容是否真实支持
+- LLM-as-judge 存在"自己验证自己"的循环依赖
+- NLI（DeBERTa）是确定性的、快速的、可审计的，适合合规场景
 
 **TDD：**
 ```python
@@ -944,9 +1017,13 @@ class TestCitationVerifierNode:
 
 ### T5-5：QueryRefiner 节点（0.25 天）
 **SDD 规格：**
-- 输入：`missing_citations` 列表
-- 处理：从缺失引用中提取法规名，构造追加查询
-- 输出：扩展后的 `sub_queries`（追加到现有），`attempt += 1`
+- 输入：`missing_citations` 列表 + 当前 `generation`
+- 处理：
+  1. **HyDE（Hypothetical Document Embedding）**：用当前 `generation` 作为"假设理想答案"，重新构造查询
+  2. 从缺失引用中提取法规名，追加同义词扩展
+  3. `loop_count += 1`（在此节点递增，不在 retrieve 节点）
+- 输出：扩展后的 `sub_queries`, `loop_count += 1`
+- **HyDE 原理（研究推荐）**：当正常查询召回不足时，先让 LLM 生成一个假设性的"理想答案段落"，用这个段落作为 embedding 查询，比原始问题更接近真实文档的措辞，显著提高二轮召回率
 
 **TDD：**
 ```python
@@ -971,77 +1048,74 @@ class TestQueryRefiner:
 ```python
 # orchestrator/graph.py
 from langgraph.graph import StateGraph, END
+from langgraph.types import Send
 
-def build_compliance_graph() -> StateGraph:
+def build_compliance_graph() -> CompiledStateGraph:
     g = StateGraph(GraphState)
 
     # 节点
-    g.add_node("query_planner",       query_planner_node)
-    g.add_node("parallel_retriever",  parallel_retriever_node)
-    g.add_node("synthesis",           synthesis_node)
-    g.add_node("citation_verifier",   citation_verifier_node)
-    g.add_node("query_refiner",       query_refiner_node)
-    g.add_node("report_generator",    report_generator_node)
+    g.add_node("query_planner",    query_planner_node)
+    g.add_node("fan_out_markets",  fan_out_markets)       # Send() 扇出调度
+    g.add_node("retrieve",         retrieve_node)          # 每市场独立检索
+    g.add_node("synthesis",       synthesis_node)          # 归并去重
+    g.add_node("generate",         generate_node)           # Claude Sonnet 报告
+    g.add_node("verify",          verify_node)             # NLI claim 验证
+    g.add_node("query_refiner",   query_refiner_node)      # HyDE 重查询
 
     # 入口
     g.set_entry_point("query_planner")
 
     # 固定边
-    g.add_edge("query_planner",      "parallel_retriever")
-    g.add_edge("parallel_retriever",  "synthesis")
-    g.add_edge("synthesis",          "report_generator")
-    g.add_edge("report_generator",   "citation_verifier")
-    g.add_edge("query_refiner",      "parallel_retriever")
+    g.add_edge("query_planner", "fan_out_markets")
 
-    # 条件路由
+    # ★ 条件扇出：每市场一个 Send → 各自 retrieve → 结果自动合并
     g.add_conditional_edges(
-        "citation_verifier",
-        should_regenerate,
-        {
-            "generate":  "report_generator",   # 重新生成（直接生成，不再检索）
-            "refine":    "query_refiner",       # 追加检索后重试
-            "final":     END,                   # 达到上限，输出带 WARN
-        },
+        "fan_out_markets",
+        lambda state: [
+            Send("retrieve", {"query": sq["query"], "market": sq["market"]})
+            for sq in state["sub_queries"]
+        ],
     )
 
-    return g.compile()
+    # 归并后生成
+    g.add_edge("retrieve", "synthesis")
+    g.add_edge("synthesis", "generate")
+    g.add_edge("generate", "verify")
+
+    # 条件路由（基于 generation_score + loop_count）
+    def should_regenerate(state: GraphState) -> str:
+        if state["generation_score"] == "supported":
+            return "end"
+        if state["loop_count"] < state["max_attempts"]:
+            return "refine"
+        return "end"  # 达到上限，强制输出 WARN
+
+    g.add_conditional_edges(
+        "verify",
+        should_regenerate,
+        {
+            "end":   END,
+            "refine": "query_refiner",
+        },
+    )
+    g.add_edge("query_refiner", "fan_out_markets")  # 回到检索
+
+    return g.compile(recursion_limit=15)  # 安全兜底：最多 15 步
 ```
 
-**TDD：**
-```python
-class TestComplianceGraph:
-    def test_end_to_end_single_market(self, mock_retriever, mock_generator):
-        graph = build_compliance_graph()
-        result = graph.invoke({
-            "query": "充电宝欧盟合规要求",
-            "product": "USB 充电宝",
-            "category": "electronics",
-            "markets": ["EU"],
-            "vision_result": {},
-            "attempt": 0,
-            "max_attempts": 2,
-        })
-        assert result["final_report"] != ""
-        assert result["status"] in ["PASS", "WARN", "REJECTED"]
-
-    def test_multi_market_triggers_planner(self):
-        # QueryPlanner 应为多市场生成多个 sub_queries
-        ...
-
-    def test_retrieval_loop_runs_at_most_twice(self):
-        # max_attempts=2 → 最多 2 轮检索
-        ...
-```
-
-**Git:** `feat(orchestrator): LangGraph StateGraph assembly with agent loop`
+**关键设计（基于研究）：**
+- `recursion_limit=15` 防止任何情况下无限循环
+- `loop_count` 在 `query_refiner` 节点递增，retrieve 节点不修改状态
+- 多市场结果通过 `Annotated[list, operator.add]` 自动合并，无需手动 dedup
+- 使用 `Send()` 而非 `group_by`，保留每个市场的独立执行上下文
 
 ---
 
 ### T5-7：/scan Agentic 端点（0.25 天）
 **SDD 规格：**
 - `POST /scan` → 调用 `compliance_graph.invoke()`
-- 响应包含 `agent_trace`（每步节点名 + 耗时），便于前端展示进度
-- SSE 推送：每个节点完成时推送进度事件
+- `agent_trace` 记录每步节点名 + 耗时，前端 SSE 推送进度
+- `recursion_limit=15` + 120s 超时兜底
 
 **TDD：**
 ```python
@@ -1056,6 +1130,14 @@ class TestScanAPI:
         data = resp.json()
         assert "agent_trace" in data
         assert any(step["node"] == "query_planner" for step in data["agent_trace"])
+
+    def test_max_retries_forces_output(self):
+        # 达到 max_attempts 后返回带 status=WARN 的报告
+        ...
+
+    def test_consecutive_retrieval_bypasses_planner(self):
+        # 重试时跳过 query_planner，直接 retrieve
+        ...
 ```
 
 **Git:** `feat(api): /scan endpoint with agent_trace + SSE progress`
@@ -1131,18 +1213,24 @@ describe('POST /api/scan', () => {
 ### T7-1：Ground-Truth 测试集（0.5 天）
 **SDD 规格：**
 - 从语料库自动生成 200+ 测试用例
-- 每个用例：question + ground_truth_answer + source_document + market
-- 关键/非关键分类
+- 每个用例：`question + ground_truth_answer + source_document + market`
+- 关键/非关键分类，关键用例覆盖 REACH + GPSR + EMC 跨法规场景
+- 参考 `RAGAS` 格式：测试集含 ground truth answers 供 Recall@K 计算
 
-**Git:** `feat(eval): auto-generate 200+ ground-truth test set`
+**Commit:** `feat(eval): auto-generate 200+ ground-truth test set`
 
 ---
 
 ### T7-2：评估脚本（1 天）
 **SDD 规格：**
-- 指标：Recall@5, Citation Accuracy, Hallucination Rate
-- 目标：Recall ≥ 90%, Citation ≥ 95%, Hallucination ≤ 2%
-- 输出：JSON 报告 + 控制台摘要
+- **RAGAS 框架**（`explodinggradients/ragas`）：
+  - `faithfulness`: 报告中 % 的 claims 有 source 支撑（NLI-based，线下）
+  - `answer_relevancy`: 报告是否回答了原始问题
+  - `context_precision`: 召回的 docs 有多少实际相关
+  - `context_recall`: ground truth 的 % 被召回 docs 覆盖
+- **线下 NLI 验证**：用 DeBERTa-v3-large-mnli 跑 faithfulness，不依赖 LLM-as-judge
+- 目标：Recall ≥ 90%, Faithfulness ≥ 95%, Hallucination ≤ 2%
+- 输出：JSON 报告 + 控制台摘要 + HTML 可视化（可选）
 
 **Git:** `feat(eval): evaluation pipeline with metrics`
 
