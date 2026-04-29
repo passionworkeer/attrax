@@ -46,19 +46,32 @@ public/uploads/
 next-env.d.ts
 
 # ─── 合规语料库 ────────────────────────────────────────────────
-# corpus/ 下的二进制法规文件不纳入版本控制，只保留元数据
-data/corpus/**/*.pdf
-data/corpus/**/*.docx
-data/corpus/**/*.doc
-data/corpus/**/processed/
-data/corpus/**/screenshot_pending/
-data/corpus/**/reference/
+# 源文件（PDF/DOCX/HTML）不纳入版本控制
+data/全部法规/
+data/合规/
+data/corpus/eu/regulations/pdfs/
+data/corpus/eu/regulations/html/
+data/corpus/eu/products/
+data/corpus/eu/uk/
+data/corpus/us/
+data/corpus/cn/
+data/corpus/asia/
+data/corpus/middle_east/
+data/corpus/gcc/
+data/corpus/intl/
+data/corpus/reference/
+data/corpus/screenshot_pending/
+
+# processed/ JSON 和 manifest 纳入版本控制
+!data/corpus/processed/
+!data/corpus/manifest.json
+!data/corpus/corpus_index.json
+!data/corpus/README.md
 
 # analysis/ 是生成产物，不纳入版本控制
 data/analysis/
 
 # 临时输出文件
-*.txt
 integration_result.txt
 check_result.txt
 
@@ -68,3 +81,24 @@ scripts/final_verify.py
 scripts/full_check.py
 scripts/fix_analysis_rest.py
 scripts/fix_document_analysis.py
+
+# ─── Python ──────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ─── Docker ──────────────────────────────────────────────────
+qdrant_storage/
+
+# ─── API Keys ────────────────────────────────────────────────
+rag-service/.env
+!.env.example
+
+# ─── Embedding cache ─────────────────────────────────────────
+*.cache/
+embedding_cache/

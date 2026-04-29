@@ -1,0 +1,24 @@
+{
+  "fileName": "乒乓球拍欧盟合规成本与利润.docx",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\乒乓球拍欧盟合规成本与利润.docx",
+  "sourceType": "docx",
+  "pageCount": null,
+  "paragraphCount": 148,
+  "totalChars": 23096,
+  "hasTables": true,
+  "tableCount": 2,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "US",
+      "UK",
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "chemical",
+      "toy_safety"
+    ],
+    "charCount": 23243
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "fileName": "沙特Saber_SASO电子认证系统说明（QIMA指南）.html",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\saudi\\沙特Saber_SASO电子认证系统说明（QIMA指南）.html",
+  "sourceType": "html",
+  "pageCount": 1,
+  "totalChars": 14751,
+  "hasTables": false,
+  "tableCount": 0,
+  "metadata": {
+    "detectedMarkets": [
+      "US",
+      "SG",
+      "VN",
+      "MY",
+      "ID",
+      "SA",
+      "TH"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "toy_safety"
+    ],
+    "charCount": 14751
+  }
+}

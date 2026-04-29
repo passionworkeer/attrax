@@ -1,0 +1,22 @@
+{
+  "fileName": "欧盟合规充电宝成本与利润分析.docx",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧盟合规充电宝成本与利润分析.docx",
+  "sourceType": "docx",
+  "pageCount": null,
+  "paragraphCount": 90,
+  "totalChars": 6320,
+  "hasTables": true,
+  "tableCount": 10,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "chemical",
+      "EMC",
+      "battery"
+    ],
+    "charCount": 6409
+  }
+}

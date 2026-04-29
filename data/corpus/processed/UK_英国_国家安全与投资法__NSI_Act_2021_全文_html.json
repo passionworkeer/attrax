@@ -1,0 +1,19 @@
+{
+  "fileName": "英国《国家安全与投资法》（NSI Act 2021）全文.html",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\uk\\英国《国家安全与投资法》（NSI Act 2021）全文.html",
+  "sourceType": "html",
+  "pageCount": 1,
+  "totalChars": 15901,
+  "hasTables": false,
+  "tableCount": 0,
+  "metadata": {
+    "detectedMarkets": [
+      "UK"
+    ],
+    "regulatoryTypes": [
+      "data_privacy",
+      "investment"
+    ],
+    "charCount": 15901
+  }
+}

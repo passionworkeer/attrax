@@ -1,0 +1,23 @@
+{
+  "fileName": "出海合规法律法规政策清单.docx",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\出海合规法律法规政策清单.docx",
+  "sourceType": "docx",
+  "pageCount": null,
+  "paragraphCount": 17,
+  "totalChars": 2801,
+  "hasTables": true,
+  "tableCount": 1,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "CN",
+      "VN",
+      "SA"
+    ],
+    "regulatoryTypes": [
+      "data_privacy",
+      "investment"
+    ],
+    "charCount": 2817
+  }
+}
