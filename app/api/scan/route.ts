@@ -54,7 +54,21 @@ function runDemoSimulation(sessionId: string) {
 }
 
 export async function POST(request: Request) {
-  const formData = await request.formData();
+  let formData: FormData;
+  try {
+    formData = await request.formData();
+  } catch {
+    return NextResponse.json(
+      {
+        error: {
+          code: "BAD_INPUT",
+          message: "无效的请求格式",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
   const imageFiles = formData.getAll("images").filter(isFile);
   const documentFiles = formData.getAll("documents").filter(isFile);
 

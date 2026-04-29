@@ -1,14 +1,23 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { runScan } from '@/lib/pipeline/scan'
-import { createSession, getSession } from '@/lib/pipeline/session-store'
+import { createSession, getSession, clearStore } from '@/lib/pipeline/session-store'
 
 describe('Scan Pipeline', () => {
+  beforeEach(() => {
+    clearStore()
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
   describe('runScan', () => {
     it('updates session to failed when real pipeline not available', async () => {
       const sessionId = 'test_pipeline_session'
       createSession(sessionId)
 
-      await runScan(sessionId, {
+      const runPromise = runScan(sessionId, {
         images: [{
           buffer: Buffer.from('fake image data'),
           originalName: 'test.jpg',
@@ -18,8 +27,8 @@ describe('Scan Pipeline', () => {
         markets: ['EU'],
       })
 
-      // Give time for async operations
-      await new Promise(resolve => setTimeout(resolve, 100))
+      vi.advanceTimersByTime(2000)
+      await runPromise
 
       const session = getSession(sessionId)
       expect(session?.status).toBe('failed')
@@ -33,7 +42,7 @@ describe('Scan Pipeline', () => {
         const sessionId = `test_${category}`
         createSession(sessionId)
 
-        await runScan(sessionId, {
+        const runPromise = runScan(sessionId, {
           images: [{
             buffer: Buffer.from('test'),
             originalName: 'test.jpg',
@@ -43,7 +52,9 @@ describe('Scan Pipeline', () => {
           markets: ['EU'],
         })
 
-        await new Promise(resolve => setTimeout(resolve, 50))
+        vi.advanceTimersByTime(2000)
+        await runPromise
+
         const session = getSession(sessionId)
         expect(session).toBeDefined()
       }
@@ -62,7 +73,7 @@ describe('Scan Pipeline', () => {
         const sessionId = `test_markets_${markets.join('_')}`
         createSession(sessionId)
 
-        await runScan(sessionId, {
+        const runPromise = runScan(sessionId, {
           images: [{
             buffer: Buffer.from('test'),
             originalName: 'test.jpg',
@@ -72,7 +83,9 @@ describe('Scan Pipeline', () => {
           markets,
         })
 
-        await new Promise(resolve => setTimeout(resolve, 50))
+        vi.advanceTimersByTime(2000)
+        await runPromise
+
         const session = getSession(sessionId)
         expect(session).toBeDefined()
       }
@@ -82,13 +95,15 @@ describe('Scan Pipeline', () => {
       const sessionId = 'test_empty_images'
       createSession(sessionId)
 
-      await runScan(sessionId, {
+      const runPromise = runScan(sessionId, {
         images: [],
         category: 'electronics',
         markets: ['EU'],
       })
 
-      await new Promise(resolve => setTimeout(resolve, 50))
+      vi.advanceTimersByTime(2000)
+      await runPromise
+
       const session = getSession(sessionId)
       expect(session?.status).toBe('failed')
     })
