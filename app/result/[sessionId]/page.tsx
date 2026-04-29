@@ -67,16 +67,16 @@ function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["agentTra
                     <span className="text-xs text-muted-foreground">{duration}</span>
                   )}
                 </div>
-                {step.status && (
+                {step.status !== undefined && (
                   <p className="mt-0.5 text-xs text-muted-foreground">status: {String(step.status)}</p>
                 )}
                 {step.docs_retrieved !== undefined && (
                   <p className="mt-0.5 text-xs text-muted-foreground">
-                    docs retrieved: {step.docs_retrieved}
+                    docs retrieved: {String(step.docs_retrieved)}
                   </p>
                 )}
                 {step.score !== undefined && (
-                  <p className="mt-0.5 text-xs text-muted-foreground">score: {step.score}</p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">score: {String(step.score)}</p>
                 )}
               </div>
             </div>
@@ -117,7 +117,7 @@ function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrieved
 }
 
 function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
-  const meta = STATUS_META[result.complianceStatus] ?? STATUS_META.Unknown;
+  const meta = STATUS_META[result.complianceStatus] ?? STATUS_META.UNKNOWN;
   const gradeColor = GRADE_COLORS[result.scoreGrade] ?? "text-gray-400";
   const markets = result.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
 
@@ -126,7 +126,7 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
       {/* Score + Status Header */}
       <div className="flex flex-wrap items-start gap-4">
         <div className="flex flex-col items-center">
-          <span className={cn("text-5xl font-bold tabular-nums", gradeColor)}>
+          <span className={cn("text-4xl font-bold tabular-nums sm:text-5xl", gradeColor)}>
             {result.complianceScore}
           </span>
           <span className="text-xs text-muted-foreground">综合评分</span>
@@ -179,7 +179,7 @@ function LegacyResultView({ result }: { result: ScanResult }) {
   return (
     <>
       <div className="overflow-hidden rounded-3xl border border-border bg-blaze-dark/95">
-        <pre className="max-h-[70vh] overflow-auto p-6 text-sm leading-6 text-white/90">
+        <pre className="max-h-[70vh] overflow-auto p-6 text-xs leading-6 text-white/90 sm:text-sm">
           {JSON.stringify(result, null, 2)}
         </pre>
       </div>

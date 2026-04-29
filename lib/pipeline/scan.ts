@@ -122,7 +122,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     }
 
     ragResponse = (await resp.json()) as RagServiceResponse;
-  } catch (err) {
+  } catch {
     // rag-service unavailable — degrade gracefully to mock
     updateSession(sessionId, {
       progress: 70,

@@ -2,7 +2,7 @@
  * Unit tests for the Next.js /api/scan route behavior.
  * Run with: npx vitest run tests/unit/scan-route.test.ts
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
 // Mock modules used by the route
 vi.mock('@/lib/mock/scan-result', () => ({
