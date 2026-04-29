@@ -5,6 +5,7 @@
 > 创建时间：2026-04-29
 > 更新：v2.1（2026-04-29）- Bug修复 + GitHub研究增强）
 > 状态：已确认（Cohere API 路线：embed-multilingual-v3 + rerank-multilingual-v3 + Qdrant + jieba BM25）
+> 编排架构：LangGraph Agentic RAG（Plan → Retrieve → Verify → Re-retrieve → Synthesize → Generate）
 > 详细实施计划：IMPLEMENTATION-PLAN-v3.md
 
 ---
