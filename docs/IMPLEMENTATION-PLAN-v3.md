@@ -1,8 +1,9 @@
-# 火鹰合规 RAG 系统实施计划 v3.0
+# 火鹰合规 RAG 系统实施计划 v3.1
 
 > 基准文档：RAG-ARCHITECTURE-v2.1 + IMPLEMENTATION-PLAN-v2.1
 > 创建时间：2026-04-29
-> 技术路线：**Cohere API** (embed-multilingual-v3 + rerank-multilingual-v3)
+> 更新：v3.1（2026-04-29）— 升级为 Agentic RAG 架构（LangGraph 编排）
+> 技术路线：**Cohere API** (embed-multilingual-v3 + rerank-multilingual-v3) + **LangGraph** (Agent 编排)
 > 方法论：TDD (测试驱动) + SDD (规格驱动) + Git 原子提交
 
 ---
@@ -11,12 +12,12 @@
 
 | 维度 | 状态 | 详情 |
 |------|------|------|
-| 数据 (PDF) | ✅ 40 文件有 rawText | EU 18 个核心法规 + 部分 US/CN/Reference |
-| 数据 (HTML) | ❌ 37 文件无 rawText | JSON 中缺少 rawText 字段，需重跑解析 |
-| 数据 (DOCX) | ❌ 10 文件无 rawText | 同上 |
+| 数据 | ✅ 87/96 文件有 rawText | 91% 覆盖，2 个 PDF 有意留空（MY/TH PDPA，HTML 版已有内容） |
+| 数据质量 | ✅ 12M+ 字符 | EU 4.7M, US 3.6M, CN 2.1M 等 16 个市场 |
+| 3 个乱码文件 | ✅ 已修复 | gzip 解压 → 重新解析 → rawText 已写入 |
 | 前端骨架 | ✅ 完成 | Next.js 16 + shadcn/ui，Demo 模式可跑 |
 | rag-service | ❌ 不存在 | 需从零搭建 |
-| Git | ❌ 无 | 需初始化 |
+| Git | ⏳ 待初始化 | Phase 0 T0-1 待执行 |
 | Docker/Qdrant | ❌ 未运行 | 需部署 |
 | API Keys | ❌ 空 | 需填入 Cohere + Anthropic |
 | Python venv | ❌ 无 | 需创建 |
@@ -67,21 +68,31 @@ attrax/
 │   │   ├── legal_chunker.py        # Parent-Child 按 Article 切分
 │   │   └── table_processor.py      # 表格双重字段
 │   │
-│   ├── retrieval/                  # 检索管线
+│   ├── retrieval/                  # 检索管线（基础能力）
 │   │   ├── cohere_embedder.py      # Cohere embed-multilingual-v3
 │   │   ├── bm25_retriever.py       # jieba BM25
 │   │   ├── fusion.py               # RRF 融合
 │   │   ├── cohere_reranker.py      # Cohere rerank-multilingual-v3
 │   │   ├── must_check.py           # 强制注入
 │   │   ├── query_rewrite.py        # 规则 Rewrite
-│   │   ├── query_decomposer.py     # LLM 多市场分解
-│   │   └── hybrid_retriever.py     # 组装主类
+│   │   └── hybrid_retriever.py     # 组装主类（单次检索）
 │   │
 │   ├── verify/                     # 引用验证
 │   │   └── citation_verifier.py    # 硬门
 │   │
 │   ├── generate/                   # 报告生成
 │   │   └── report_generator.py     # Claude Sonnet
+│   │
+│   ├── orchestrator/               # ★ Agentic RAG 编排层（LangGraph）
+│   │   ├── graph.py                # LangGraph StateGraph 定义
+│   │   ├── state.py                # GraphState TypedDict
+│   │   ├── nodes/
+│   │   │   ├── query_planner.py    # 查询规划（分解 + 同义词扩展）
+│   │   │   ├── parallel_retriever.py  # 并行 Dense+BM25 → RRF+Rerank
+│   │   │   ├── synthesis.py        # 信息综合（跨法规归并）
+│   │   │   ├── citation_verifier.py  # 引用验证节点（包装 verify/）
+│   │   │   └── report_generator.py # 报告生成节点（包装 generate/）
+│   │   └── edges.py                # 条件路由（re-retrieve 决策）
 │   │
 │   ├── eval/                       # 评估
 │   │   ├── test_set.json
@@ -97,7 +108,9 @@ attrax/
 │       ├── test_citation_verifier.py
 │       ├── test_rrf_fusion.py
 │       ├── test_query_rewrite.py
-│       └── test_report_generator.py
+│       ├── test_report_generator.py
+│       ├── test_orchestrator.py    # ★ Agentic RAG 集成测试
+│       └── test_graph_nodes.py     # ★ 各节点单元测试
 │
 ├── scripts/                        # 现有脚本（保留）
 │   ├── batch_parse_corpus.py       # 修复版
@@ -107,6 +120,62 @@ attrax/
 ├── components/                     # UI 组件（现有）
 └── docs/                           # 文档（现有）
 ```
+
+### Agentic RAG 架构概览（v3.1 新增）
+
+传统 RAG 是线性管线（Retrieve → Generate），无法处理：
+- **多跳推理**：产品同时受 REACH + GPSR 约束，需跨法规交叉检索
+- **信息不足自动补救**：首轮召回不够时，自动追加检索而非盲目生成
+- **多市场并行**：EU+US+CN 三个市场独立检索后综合
+
+**解决方案：LangGraph StateGraph 编排**
+
+```
+                 ┌──────────────────────────────────────┐
+                 │            Agent Loop (max 2)        │
+                 │                                      │
+  用户查询 ─────▶│  [Query Planner]                     │
+                 │       │                              │
+                 │       ▼                              │
+                 │  [Parallel Retrieval]                │
+                 │   Dense + BM25 → RRF → Rerank       │
+                 │       │                              │
+                 │       ▼                              │
+                 │  [Synthesis]  ← 跨法规归并           │
+                 │       │                              │
+                 │       ▼                              │
+                 │  [Citation Verifier]                 │
+                 │       │                              │
+                 │       ├── PASS/ACCEPT ──────────────▶│──▶ [Report Generator]
+                 │       │                              │      │
+                 │       └── INSUFFICIENT ─┐            │      ▼
+                 │                          │            │   最终报告
+                 │              ┌───────────┘            │
+                 │              ▼                        │
+                 │    [Query Refiner]                    │
+                 │     追加同义词 / 跨法规扩展           │
+                 │              │                        │
+                 │              └────── 回到 Retrieval ──┘
+                 └──────────────────────────────────────┘
+```
+
+**关键节点说明：**
+
+| 节点 | 职责 | 输入 | 输出 |
+|------|------|------|------|
+| `QueryPlanner` | 查询分解 + 市场路由 + 同义词扩展 | 原始查询 + markets[] | per-market 子查询列表 |
+| `ParallelRetriever` | Dense+BM25 并行 → RRF 融合 → Rerank | 子查询 | Top-10 chunks |
+| `Synthesis` | 跨法规信息归并、去重、补充 | 多市场 chunks | 归并后 chunks |
+| `CitationVerifierNode` | 验证生成内容的引用完整性 | 报告草稿 + chunks | PASS/INSUFFICIENT + 缺失引用 |
+| `QueryRefiner` | 根据缺失引用追加检索条件 | 缺失引用列表 | 扩展后的查询 |
+| `ReportGeneratorNode` | Claude Sonnet 最终报告 | 归并后 chunks + 查询 | Markdown 报告 |
+
+**引入 LangGraph 的理由（研究结论）：**
+
+1. **多跳场景占比高**：充电宝 → REACH（铅）+ GPSR（安全）+ EMC 指令，单次召回无法覆盖
+2. **召回不足时无补救**：传统管线首轮召回差 → 报告质量差，无法自动修正
+3. **LangGraph 比 CrewAI 轻量**：状态图 + 条件路由，无需完整 agent framework
+4. **状态可追踪**：GraphState 记录每步中间结果，便于调试和 eval
 
 ---
 
@@ -710,9 +779,292 @@ class TestGenerateReportAPI:
 
 ---
 
-## Phase 5：前端-后端对接（2 天） — TDD
+## Phase 5：Agentic RAG 编排（2 天） — TDD
 
-### T5-1：Next.js API 转发层（1 天）
+> 本阶段引入 LangGraph，将 Phase 3 检索 + Phase 4 报告生成组装为 Agent 循环。
+> 不替换已有模块，而是在其之上加编排层。
+
+### T5-1：GraphState 定义（0.25 天）
+**SDD 规格：**
+```python
+# orchestrator/state.py
+class GraphState(TypedDict):
+    query: str
+    product: str
+    category: str
+    markets: list[str]
+    vision_result: dict
+    # Agent 中间状态
+    sub_queries: list[dict]        # QueryPlanner 输出
+    chunks: list[dict]             # 当前轮次召回
+    all_chunks: list[dict]         # 历史所有召回（跨轮次）
+    synthesis: dict                # Synthesis 输出
+    draft_report: str              # ReportGenerator 草稿
+    verification: dict             # CitationVerifier 结果
+    missing_citations: list[str]   # 缺失引用列表
+    attempt: int                   # 当前重试轮次（0-based）
+    max_attempts: int              # 最大重试（默认 2）
+    # 最终输出
+    final_report: str
+    status: str                    # PASS | WARN | REJECTED
+```
+
+**TDD：**
+```python
+def test_graph_state_has_all_fields():
+    state: GraphState = {
+        "query": "test", "product": "", "category": "",
+        "markets": ["EU"], "vision_result": {},
+        "sub_queries": [], "chunks": [], "all_chunks": [],
+        "synthesis": {}, "draft_report": "", "verification": {},
+        "missing_citations": [], "attempt": 0, "max_attempts": 2,
+        "final_report": "", "status": "PENDING",
+    }
+    assert state["attempt"] == 0
+```
+
+**Git:** `feat(orchestrator): add GraphState TypedDict`
+
+---
+
+### T5-2：QueryPlanner 节点（0.5 天）
+**SDD 规格：**
+- 输入：`GraphState.query`, `GraphState.markets`
+- 处理：
+  1. 规则引擎：同义词扩展（"充电宝" → "power bank 移动电源"）
+  2. LLM 分解：多市场 → per-market 子查询（可选，无 LLM 时用规则 fallback）
+  3. 产品类别 → must_check 法规列表预加载
+- 输出：更新 `state.sub_queries`
+
+**TDD：**
+```python
+# tests/test_graph_nodes.py
+class TestQueryPlanner:
+    def test_single_market(self):
+        state = mk_state(query="CE 标识要求", markets=["EU"])
+        result = query_planner_node(state)
+        assert len(result["sub_queries"]) == 1
+        assert result["sub_queries"][0]["market"] == "EU"
+
+    def test_multi_market_decompose(self):
+        state = mk_state(query="充电宝出口欧盟和美国", markets=["EU", "US"])
+        result = query_planner_node(state)
+        markets = {sq["market"] for sq in result["sub_queries"]}
+        assert markets == {"EU", "US"}
+
+    def test_synonym_expansion(self):
+        state = mk_state(query="充电宝铅含量", markets=["EU"])
+        result = query_planner_node(state)
+        expanded = result["sub_queries"][0]["query"]
+        assert "power bank" in expanded.lower() or "移动电源" in expanded
+```
+
+**Git:** `feat(orchestrator): QueryPlanner node with synonym + market decompose`
+
+---
+
+### T5-3：ParallelRetriever + Synthesis 节点（0.5 天）
+**SDD 规格：**
+- `parallel_retriever_node`：对每个 sub_query 并行调用 `HybridRetriever.retrieve()`
+- 合并去重（按 chunk_id），按 rerank_score 排序
+- `synthesis_node`：跨法规归并
+  - 标记来源市场和来源法规
+  - 必须检查法规（must_check）若未命中则警告
+
+**TDD：**
+```python
+class TestParallelRetriever:
+    def test_calls_retriever_per_sub_query(self, mock_hybrid):
+        state = mk_state(sub_queries=[
+            {"market": "EU", "query": "CE 标识"},
+            {"market": "US", "query": "FCC 认证"},
+        ])
+        result = parallel_retriever_node(state)
+        assert len(result["chunks"]) > 0
+        assert mock_hybrid.call_count == 2
+
+    def test_deduplicates_by_id(self):
+        # 两个市场召回相同 chunk → 只保留一个
+        ...
+
+class TestSynthesis:
+    def test_marks_market_source(self):
+        state = mk_state(chunks=[
+            {"id": "1", "market": "EU", "doc_name": "REACH"},
+            {"id": "2", "market": "US", "doc_name": "TSCA"},
+        ])
+        result = synthesis_node(state)
+        assert result["synthesis"]["markets_covered"] == {"EU", "US"}
+```
+
+**Git:** `feat(orchestrator): ParallelRetriever + Synthesis nodes`
+
+---
+
+### T5-4：CitationVerifier 节点 + 条件路由（0.5 天）
+**SDD 规格：**
+- `citation_verifier_node`：包装 `verify/citation_verifier.py`
+- 输出：更新 `verification`, `missing_citations`
+- 条件路由 `should_regenerate`：
+  - `verification.passed_count >= 3` → 去 ReportGenerator
+  - `attempt < max_attempts` 且有 missing_citations → 去 QueryRefiner（追加检索）
+  - 否则 → 强制生成（带 WARN 标签）
+
+**TDD：**
+```python
+class TestCitationVerifierNode:
+    def test_pass_goes_to_generate(self):
+        state = mk_state(
+            draft_report="[REACH Article 22 p.45] 铅含量限制",
+            chunks=[{"doc_name": "REACH", "article_no": "22",
+                     "page_start": 45, "content": "..."}],
+            attempt=0,
+        )
+        result = citation_verifier_node(state)
+        assert result["verification"]["passed_count"] >= 1
+
+    def test_insufficient_triggers_refine(self):
+        state = mk_state(
+            draft_report="[Fake Article 99 p.1]",
+            chunks=[{"doc_name": "REACH", "article_no": "22", ...}],
+            attempt=0, max_attempts=2,
+        )
+        # should_regenerate(state) == "query_refiner"
+        ...
+
+    def test_max_attempts_forces_generate(self):
+        state = mk_state(attempt=2, max_attempts=2)
+        # should_regenerate(state) == "report_generator"
+        ...
+```
+
+**Git:** `feat(orchestrator): CitationVerifier node + conditional routing edges`
+
+---
+
+### T5-5：QueryRefiner 节点（0.25 天）
+**SDD 规格：**
+- 输入：`missing_citations` 列表
+- 处理：从缺失引用中提取法规名，构造追加查询
+- 输出：扩展后的 `sub_queries`（追加到现有），`attempt += 1`
+
+**TDD：**
+```python
+class TestQueryRefiner:
+    def test_adds_queries_for_missing_citations(self):
+        state = mk_state(
+            missing_citations=["GPSR Article 8", "EMC Article 6"],
+            sub_queries=[{"market": "EU", "query": "CE 标识"}],
+            attempt=0,
+        )
+        result = query_refiner_node(state)
+        assert len(result["sub_queries"]) > len(state["sub_queries"])
+        assert result["attempt"] == 1
+```
+
+**Git:** `feat(orchestrator): QueryRefiner node for missing citations`
+
+---
+
+### T5-6：LangGraph StateGraph 组装（0.25 天）
+**SDD 规格：**
+```python
+# orchestrator/graph.py
+from langgraph.graph import StateGraph, END
+
+def build_compliance_graph() -> StateGraph:
+    g = StateGraph(GraphState)
+
+    # 节点
+    g.add_node("query_planner",       query_planner_node)
+    g.add_node("parallel_retriever",  parallel_retriever_node)
+    g.add_node("synthesis",           synthesis_node)
+    g.add_node("citation_verifier",   citation_verifier_node)
+    g.add_node("query_refiner",       query_refiner_node)
+    g.add_node("report_generator",    report_generator_node)
+
+    # 入口
+    g.set_entry_point("query_planner")
+
+    # 固定边
+    g.add_edge("query_planner",      "parallel_retriever")
+    g.add_edge("parallel_retriever",  "synthesis")
+    g.add_edge("synthesis",          "report_generator")
+    g.add_edge("report_generator",   "citation_verifier")
+    g.add_edge("query_refiner",      "parallel_retriever")
+
+    # 条件路由
+    g.add_conditional_edges(
+        "citation_verifier",
+        should_regenerate,
+        {
+            "generate":  "report_generator",   # 重新生成（直接生成，不再检索）
+            "refine":    "query_refiner",       # 追加检索后重试
+            "final":     END,                   # 达到上限，输出带 WARN
+        },
+    )
+
+    return g.compile()
+```
+
+**TDD：**
+```python
+class TestComplianceGraph:
+    def test_end_to_end_single_market(self, mock_retriever, mock_generator):
+        graph = build_compliance_graph()
+        result = graph.invoke({
+            "query": "充电宝欧盟合规要求",
+            "product": "USB 充电宝",
+            "category": "electronics",
+            "markets": ["EU"],
+            "vision_result": {},
+            "attempt": 0,
+            "max_attempts": 2,
+        })
+        assert result["final_report"] != ""
+        assert result["status"] in ["PASS", "WARN", "REJECTED"]
+
+    def test_multi_market_triggers_planner(self):
+        # QueryPlanner 应为多市场生成多个 sub_queries
+        ...
+
+    def test_retrieval_loop_runs_at_most_twice(self):
+        # max_attempts=2 → 最多 2 轮检索
+        ...
+```
+
+**Git:** `feat(orchestrator): LangGraph StateGraph assembly with agent loop`
+
+---
+
+### T5-7：/scan Agentic 端点（0.25 天）
+**SDD 规格：**
+- `POST /scan` → 调用 `compliance_graph.invoke()`
+- 响应包含 `agent_trace`（每步节点名 + 耗时），便于前端展示进度
+- SSE 推送：每个节点完成时推送进度事件
+
+**TDD：**
+```python
+class TestScanAPI:
+    def test_scan_returns_agent_trace(self, client):
+        resp = client.post("/scan", json={
+            "query": "CE 标识要求",
+            "category": "electronics",
+            "markets": ["EU"],
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "agent_trace" in data
+        assert any(step["node"] == "query_planner" for step in data["agent_trace"])
+```
+
+**Git:** `feat(api): /scan endpoint with agent_trace + SSE progress`
+
+---
+
+## Phase 6：前端-后端对接（2 天） — TDD
+
+### T6-1：Next.js API 转发层（1 天）
 **SDD 规格：**
 - `POST /api/scan` → 转发到 `http://localhost:8000/generate-report`
 - `GET /api/scan/[sessionId]` → 轮询 rag-service 状态
@@ -748,7 +1100,7 @@ describe('POST /api/scan', () => {
 
 ---
 
-### T5-2：前端 UI 适配（1 天）
+### T6-2：前端 UI 适配（1 天）
 **SDD 规格：**
 - 结果页展示 RAG 报告（Markdown 渲染）
 - 引用状态徽章：PASS (绿) / WARN (黄) / REJECTED (红)
@@ -767,56 +1119,10 @@ describe('POST /api/scan', () => {
 
 ---
 
-## Phase 6：多市场查询分解（2 天） — TDD
+## ~~旧 Phase 6：多市场查询分解~~ → 已合并至 Phase 5 T5-2 QueryPlanner
 
-### T6-1：Query Decomposer（1 天）
-**SDD 规格：**
-- LLM 将 "充电宝出口欧盟和美国" 分解为 per-market 子查询
-- 输出：`[{ market: "EU", query: "..." }, { market: "US", query: "..." }]`
-- Fallback：规则引擎（无 LLM 时）
-
-**TDD：**
-```python
-# tests/test_query_decomposer.py
-class TestQueryDecomposer:
-    def test_decomposes_multi_market(self):
-        """多市场查询正确分解"""
-        result = decomposer.decompose("充电宝出口欧盟和美国", ["EU", "US"])
-        assert len(result) == 2
-        markets = {r["market"] for r in result}
-        assert markets == {"EU", "US"}
-
-    def test_single_market_passthrough(self):
-        """单市场不分解"""
-        result = decomposer.decompose("CE 标识要求", ["EU"])
-        assert len(result) == 1
-        assert result[0]["market"] == "EU"
-```
-
-**Git:** `feat(retrieval): LLM QueryDecomposer for multi-market`
-
----
-
-### T6-2：多市场检索合并（1 天）
-**SDD 规格：**
-- 并行执行每个市场的检索
-- 合并去重（按 chunk_id）
-- 按 rerank_score 排序
-- 结果标记来源市场
-
-**TDD：**
-```python
-def test_multi_market_merge(self):
-    """多市场结果合并去重"""
-    eu_results = [{"id": "1", "rerank_score": 0.9}, {"id": "2", "rerank_score": 0.8}]
-    us_results = [{"id": "2", "rerank_score": 0.85}, {"id": "3", "rerank_score": 0.7}]
-    merged = merge_multi_market([eu_results, us_results], top_k=5)
-    ids = [r["id"] for r in merged]
-    assert len(ids) == 3  # 去重
-    assert merged[0]["id"] == "1"  # 最高分排第一
-```
-
-**Git:** `feat(retrieval): multi-market parallel retrieval + merge`
+> 多市场分解 + 并行检索 + 结果归并已作为 QueryPlanner / ParallelRetriever / Synthesis 节点
+> 实现在 Phase 5 Agentic RAG 编排中，不再单独成阶段。
 
 ---
 
@@ -855,11 +1161,11 @@ def test_multi_market_merge(self):
 ## 任务总表 + 依赖图
 
 ```
-Phase 0 (数据清理)          Phase 1 (环境)
+Phase 0 (数据清理) ✅          Phase 1 (环境)
 T0-1 Git Init ──┐          T1-1 Python venv ──┐
-T0-2 Fix rawText ─┤        T1-2 Qdrant ────────┤
-T0-3 Quality ────┘         T1-3 Env vars ──────┤
-                           T1-4 Skeleton ──────┘
+T0-2 Fix rawText ─┤ ✅      T1-2 Qdrant ────────┤
+T0-3 Quality ────┘ ✅       T1-3 Env vars ──────┤
+                            T1-4 Skeleton ──────┘
                                     │
                                     ▼
                            Phase 2 (语料库)
@@ -868,25 +1174,41 @@ T0-3 Quality ────┘         T1-3 Env vars ──────┤
                     T2-3 LegalChunker ─┤ (depends on T2-1,2)
                     T2-4 Ingestion ────┘ (depends on T2-3)
                                     │
-                    ┌───────────────┼───────────────┐
-                    ▼               ▼               ▼
-            Phase 3 (检索)    Phase 4 (报告)    Phase 6 (多市场)
-            T3-1 Dense        T4-1 Verifier     T6-1 Decomposer
-            T3-2 BM25         T4-2 Generator    T6-2 Multi-merge
-            T3-3 RRF+Must     T4-3 Endpoint
-            T3-4 Reranker         │
-            T3-5 Hybrid ──────────┤
-                    │              │
-                    ▼              ▼
-                Phase 5 (前后端对接)
-                T5-1 API 转发
-                T5-2 UI 适配
-                         │
-                         ▼
-                Phase 7 (评估)
-                T7-1 Test Set
-                T7-2 Eval Script
-                T7-3 CI Gate
+                    ┌───────────────┘
+                    ▼
+            Phase 3 (检索管线)
+            T3-1 Dense Retriever
+            T3-2 BM25 Retriever      ←┐
+            T3-3 RRF + Must Check     │ 独立并行
+            T3-4 Cohere Reranker     ←┘
+            T3-5 HybridRetriever 组装 (depends on T3-1~4)
+                    │
+                    ▼
+            Phase 4 (报告生成 + 硬门)
+            T4-1 Citation Verifier
+            T4-2 Report Generator
+            T4-3 /generate-report endpoint
+                    │
+                    ▼
+            Phase 5 (Agentic RAG 编排) ★ 新增
+            T5-1 GraphState
+            T5-2 QueryPlanner 节点   ←─┐
+            T5-3 ParallelRetriever     │ 可并行开发
+            T5-4 CitationVerifier 节点 ←┘
+            T5-5 QueryRefiner
+            T5-6 LangGraph 组装 (depends on T5-1~5)
+            T5-7 /scan endpoint (depends on T5-6)
+                    │
+                    ▼
+            Phase 6 (前后端对接)
+            T6-1 API 转发层
+            T6-2 UI 适配
+                    │
+                    ▼
+            Phase 7 (评估)
+            T7-1 Test Set
+            T7-2 Eval Script
+            T7-3 CI Gate
 ```
 
 ---
@@ -895,13 +1217,13 @@ T0-3 Quality ────┘         T1-3 Env vars ──────┤
 
 | 周 | Phase | 交付物 | 验收标准 |
 |----|-------|--------|---------|
-| W1 D1 | P0+P1 | Git 初始化 + 数据修复 + 环境搭建 | 56 个空文件修复为 0，Qdrant healthz OK |
-| W1 D2-4 | P2 | 语料库管线 | ~3000 child chunks 入库，REACH 可检索 |
-| W2 D1-3 | P3 | 检索管线 | 端到端检索可跑，召回率 > 85% |
-| W2 D4-5 | P4 | 报告生成 | /generate-report 可用，硬门生效 |
-| W3 D1-2 | P5 | 前后端对接 | 上传图片 → 看到 RAG 报告 |
-| W3 D3-4 | P6 | 多市场 | EU+US 并行检索 |
-| W3 D5 | P7 | 评估 | 200+ 测试集，recall > 90% |
+| W1 D1 | P0+P1 | Git 初始化 + 数据修复 + 环境搭建 | 91% 数据覆盖，Qdrant healthz OK |
+| W1 D2-4 | P2 | 语料库管线 | ~5000 child chunks 入库，REACH 可检索 |
+| W2 D1-3 | P3 | 检索管线 | HybridRetriever 端到端可跑，召回率 > 85% |
+| W2 D4-5 | P4 | 报告生成 | CitationVerifier 硬门生效，报告含引用 |
+| W3 D1-2 | P5 | Agentic RAG | LangGraph Agent 循环可跑，多市场查询可分解 |
+| W3 D3-4 | P6 | 前后端对接 | 上传图片 → Agent trace → RAG 报告 |
+| W3 D5 | P7 | 评估 | 200+ 测试集，recall > 90%，hallucination < 2% |
 
 **总计：~3 周**
 
@@ -914,7 +1236,10 @@ T0-3 Quality ────┘         T1-3 Env vars ──────┤
 | Cohere API 限流 | 中 | 中 | 批量 96 条/次，加 retry + exponential backoff |
 | Cohere API 延迟 | 低 | 中 | 本地缓存 embedding 结果，避免重复请求 |
 | HTML 解析质量参差 | 高 | 中 | BeautifulSoup + 正则 fallback，人工抽检 |
-| Claude 幻觉引用 | 高 | 高 | CitationVerifier 硬门拒绝 |
+| Claude 幻觉引用 | 高 | 高 | CitationVerifier 硬门拒绝 + Agent 循环补救 |
 | jieba 误切法律术语 | 中 | 中 | 加载法律术语词典（REACH, RoHS, GPSR 等） |
 | Qdrant 内存不足 | 低 | 低 | 5000 chunks × 1024 dim ≈ 20MB，无压力 |
 | Python 3.10 兼容性 | 低 | 低 | 所选依赖均支持 3.10 |
+| LangGraph 循环死锁 | 低 | 高 | max_attempts 硬上限（默认 2），超时 120s 兜底 |
+| Agent 循环延迟累积 | 中 | 中 | 单轮检索 < 10s，2 轮 < 25s，SSE 推送进度 |
+| LLM 多市场分解质量 | 中 | 中 | 规则 fallback + 单市场时跳过 LLM 分解 |
