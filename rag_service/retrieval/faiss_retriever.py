@@ -19,7 +19,7 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-DIM = 1024  # Cohere embed-multilingual-v3
+DIM = 1024  # ModelScope Qwen3-Embedding-0.6B
 
 
 class FaissRetriever:
