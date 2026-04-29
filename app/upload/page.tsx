@@ -138,10 +138,6 @@ export default function UploadPage() {
     setError(null);
   }
 
-  function removeImage(index: number) {
-    setImages((prev) => prev.filter((_, i) => i !== index));
-  }
-
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -196,7 +192,7 @@ export default function UploadPage() {
   const totalFiles = images.length + documents.length;
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-6 py-16">
+    <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-4 sm:px-6 py-16">
       <div className="rounded-4xl border border-white/60 bg-white/85 p-8 shadow-[0_30px_100px_rgba(26,26,46,0.12)] backdrop-blur">
         <p className="text-sm font-medium uppercase tracking-[0.24em] text-blaze-red/80">
           Upload
@@ -229,7 +225,7 @@ export default function UploadPage() {
             />
 
             {images.length > 0 && (
-              <div className="space-y-2">
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {images.map((file, i) => (
                   <ImagePreview key={`${file.name}-${i}`} file={file} />
                 ))}
