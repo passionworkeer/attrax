@@ -1,0 +1,1727 @@
+{
+  "generated": "2026-04-29T14:26:01.457764",
+  "summary": {
+    "total_files": 96,
+    "has_rawtext": 87,
+    "coverage": "91%",
+    "total_chars": 12086274,
+    "files_with_tables": 14,
+    "files_with_metadata": 94,
+    "issues_count": 2
+  },
+  "files": [
+    {
+      "name": "AE_阿联酋2021年第33号联邦法令_劳动关系规范法__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 11091,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "AE"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "AE_阿联酋2023年第55号_媒体监管联邦法令__html.json",
+      "sourceType": "html",
+      "rawTextChars": 10462,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "AE"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "AE_阿联酋央行_储值设施法规__UAE_Central_Bank_SVF说明__html.json",
+      "sourceType": "html",
+      "rawTextChars": 5874,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "CN_中国GB_44495-2024汽车整车信息安全技术要求_标准简介__html.json",
+      "sourceType": "html",
+      "rawTextChars": 2444,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "CN_中国_两用物项出口管制条例__2024__html.json",
+      "sourceType": "html",
+      "rawTextChars": 1427,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "CN_中国_两用物项出口管制条例__2024_说明_中国法律观察站__html.json",
+      "sourceType": "html",
+      "rawTextChars": 5507,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "CN_中国_企业境外投资管理办法__发改委令第11号__html.json",
+      "sourceType": "html",
+      "rawTextChars": 8462,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "CN_中国_出口管制法__2020_中国法学网全文_html.json",
+      "sourceType": "html",
+      "rawTextChars": 8353,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "export_control"
+        ]
+      }
+    },
+    {
+      "name": "CN_中国_出口管制法__2020_全文_中国司法观察站英文版__html.json",
+      "sourceType": "html",
+      "rawTextChars": 34570,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN",
+          "VN",
+          "ID"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "export_control"
+        ]
+      }
+    },
+    {
+      "name": "CN_中国_反垄断法__2022修正__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 8765,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "CN_中国_境外投资管理办法__商务部令2014年第3号__html.json",
+      "sourceType": "html",
+      "rawTextChars": 3086,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "CN_中国_禁止出口限制出口技术目录__2025修订_CSET英文分析__html.json",
+      "sourceType": "html",
+      "rawTextChars": 5864,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "CN_中国_禁止出口限制出口技术目录__2025修订_商务部科技部公告第28号__html.json",
+      "sourceType": "html",
+      "rawTextChars": 1134,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "CN_中国_禁止出口限制出口技术目录__2025修订_科技部官网公告__html.json",
+      "sourceType": "html",
+      "rawTextChars": 398,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "export_control"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_2026年通用场景产品出海欧美_欧盟_美国_合规要求全指南_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 4656,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "UK"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "battery",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_乒乓球拍欧盟合规成本与利润_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 24179,
+      "hasRawText": true,
+      "tableCount": 2,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "UK",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_欧盟乒乓球拍合规性分析_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 30769,
+      "hasRawText": true,
+      "tableCount": 3,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_欧盟合规充电宝成本与利润分析_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 9455,
+      "hasRawText": true,
+      "tableCount": 10,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "EMC",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_欧盟合规充电宝零件要求_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 27439,
+      "hasRawText": true,
+      "tableCount": 3,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_欧盟合规充电宝零件要求_副本_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 27439,
+      "hasRawText": true,
+      "tableCount": 3,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_欧美产品出海合规要求_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 29910,
+      "hasRawText": true,
+      "tableCount": 3,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "CN",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Products_表格-乒乓球拍合规成本与风险分析_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 1425,
+      "hasRawText": true,
+      "tableCount": 1,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "EU_Products_表格-欧盟充电宝合规成本与风险_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 1449,
+      "hasRawText": true,
+      "tableCount": 1,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_HTML_欧盟VAT电商IOSS和OSS一站式服务解读_html.json",
+      "sourceType": "html",
+      "rawTextChars": 9693,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "EU_Regulations_HTML_欧盟_Omnibus指令__Directive_EU_2019_2161_解读_html.json",
+      "sourceType": "html",
+      "rawTextChars": 36390,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_HTML_欧盟_工作时间指令__Directive_2003_88_EC__html.json",
+      "sourceType": "html",
+      "rawTextChars": 5844,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_HTML_欧盟_新电池法规__Regulation_EU_2023_1542_解读_html.json",
+      "sourceType": "html",
+      "rawTextChars": 7958,
+      "hasRawText": true,
+      "tableCount": 1,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "SA",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "data_privacy",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_HTML_欧盟外资审查框架_Regulation_EU_2021_821__html.json",
+      "sourceType": "html",
+      "rawTextChars": 33533,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "UK",
+          "SG"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_HTML_欧盟外资审查框架_USSC_FDI_Screening_研究报告__html.json",
+      "sourceType": "html",
+      "rawTextChars": 33533,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "UK",
+          "SG"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_AI_Act__EU__2024-1689_人工智能法_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 595849,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "investment",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_Blue_Guide_2022_欧盟产品规则实施指南_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 623748,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_CRD_2011-83-EU_消费者权益指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 104933,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_DMA__EU__2022-1925_数字市场法_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 261333,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "data_privacy",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_DSA__EU__2022-2065_数字服务法_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 421173,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_Decision_768-2008-EC_合格评定程序参考条款_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 167131,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "chemical"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_EMC_2014-30-EU_电磁兼容指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 95024,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "EMC"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_GDPR__EU__2016-679_通用数据保护条例_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 355906,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_GPSR__EU__2023-988_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 189060,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_LVD_2014-35-EU_低电压指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 60085,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_PLD_85-374-EEC_产品责任指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 19029,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_REACH__EC__1907-2006_化学品注册评估授权限制_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 956374,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "investment",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_RED_2014-53-EU_无线电设备指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 134809,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "EMC",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_Regulation__EC__765-2008_市场监督合格评定框架_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 75972,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_Regulation__EU__2019-1020_市场监督与产品合规_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 169725,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "EMC",
+          "export_control",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_RoHS_2011-65-EU_有害物质限制指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 73072,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "EMC",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_UCPD_2005-29-EC_不公平商业行为指令_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 54967,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "EU_Regulations_PDF_玩具安全法规__EC__2009-48_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 123541,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "GCC_海湾G-Mark认证体系说明_Intertek指南__html.json",
+      "sourceType": "html",
+      "rawTextChars": 11813,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "VN",
+          "SA",
+          "AE",
+          "TH",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "ID_印尼_2003年第13号人力法__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 157656,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "ID"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "ID_印尼_个人数据保护法__PDP_Law_No_27_of_2022_解读_html.json",
+      "sourceType": "html",
+      "rawTextChars": 21603,
+      "hasRawText": true,
+      "tableCount": 1,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "AE",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "ID_印尼_关于禁止垄断实践和不公平商业竞争的第5号法律__1999__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 36902,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "ID"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "ID_印尼_创造就业法__Omnibus_Law_No_6_of_2023_DS_Avocats解读__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 12635,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "ID"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "MY_马来西亚2025年新跨境数据传输指南说明_html.json",
+      "sourceType": "html",
+      "rawTextChars": 5526,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "MY",
+          "GCC"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "MY_马来西亚_个人数据保护法__PDPA_2010_Act_709__html.json",
+      "sourceType": "html",
+      "rawTextChars": 5526,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "MY",
+          "GCC"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "MY_马来西亚_个人数据保护法__PDPA_2010_Act_709__pdf.json",
+      "sourceType": "unknown",
+      "rawTextChars": 0,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": false,
+      "metadata": {}
+    },
+    {
+      "name": "Reference_出海合规法律法规政策清单__1__docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 37075,
+      "hasRawText": true,
+      "tableCount": 3,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "UK",
+          "CN",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "SA",
+          "AE",
+          "TH",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "EMC",
+          "battery",
+          "export_control",
+          "investment",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "Reference_出海合规法律法规政策清单_docx.json",
+      "sourceType": "docx",
+      "rawTextChars": 9215,
+      "hasRawText": true,
+      "tableCount": 1,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN",
+          "VN",
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "Reference_欧盟_数字市场法__DMA_Regulation_EU_2022_1925__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 14399,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Reference_欧盟_数字服务法__DSA_Regulation_EU_2022_2065__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 37096,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "Reference_欧盟_通用数据保护条例__GDPR_Regulation_EU_2016_679__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 341437,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "SA_沙特SFDA医疗器械监管要求说明_ITA指南__html.json",
+      "sourceType": "html",
+      "rawTextChars": 8942,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "SA_沙特Saber_SASO电子认证系统说明_QIMA指南__html.json",
+      "sourceType": "html",
+      "rawTextChars": 14751,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "US",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "SA",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "SA_沙特_个人数据保护法__PDPL_2021年修订版合规指南__html.json",
+      "sourceType": "html",
+      "rawTextChars": 22637,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN",
+          "SG",
+          "SA",
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "SA_沙特_个人数据保护法__PDPL_Royal_Decree_M_19_2021_英文分析_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 18768,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "SG_新加坡_个人数据保护法__PDPA_2024修订_Freshfields解读__html.json",
+      "sourceType": "html",
+      "rawTextChars": 13701,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "SG_新加坡_支付服务法__PSA_2019__html.json",
+      "sourceType": "html",
+      "rawTextChars": 34883,
+      "hasRawText": true,
+      "tableCount": 100,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "SG"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "SG_新加坡_支付服务法__PSA_MAS官方页面__html.json",
+      "sourceType": "html",
+      "rawTextChars": 15470,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "Screenshot_Pending_10_5710ecb863a33_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 727090,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "battery",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "Screenshot_Pending_1_PRVV0001-R1_UL_62368-1_2019_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 110146,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "Screenshot_Pending_2_power-sonic_com-Low_Voltage_Directive_LVD__IEC_-_Complete_Guide-fpscreenshot_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 6,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Screenshot_Pending_3_micomlabs_com-IEC_-_Standard_Compliance_Guide_-_MiCOM_Labs-fpscreenshot_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 6,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Screenshot_Pending_4_sgs_com-ECHA_Expands_Candidate_List_to__SVHCs__SGS_USA-fpscreenshot_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 6,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Screenshot_Pending_5_greensofttech_com-One_Substance_Added_to_EU_REACH_SVHC_List__SVHC-_Update__GreenSoft-fpscreenshot_.json",
+      "sourceType": "pdf",
+      "rawTextChars": 4,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Screenshot_Pending_6_PRVV0001-R1_UL_62368-1_2019_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 110146,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "battery"
+        ]
+      }
+    },
+    {
+      "name": "Screenshot_Pending_7_ul_com-IEC_-_Ask_the_Engineers_Question-and-Answer_Page__UL_Solutions-fpscreenshot_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 6,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Screenshot_Pending_8_5710ecb863a33_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 727090,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "battery",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "Screenshot_Pending_9_advancedenergy_com-Design_Considerations_for_Maximum_Temperature_per_IEC_Safety_Standards__Advance.json",
+      "sourceType": "pdf",
+      "rawTextChars": 8,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "Screenshot_Pending_chat_deepseek_com-产品出海欧美合规要求_-_DeepSeek-fpscreenshot_pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 2,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "TH_泰国_个人数据保护法__PDPA_2019_B_E__2562_英文版_html.json",
+      "sourceType": "html",
+      "rawTextChars": 49141,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "TH_泰国_个人数据保护法__PDPA_2019_B_E__2562_英文版_pdf.json",
+      "sourceType": "unknown",
+      "rawTextChars": 0,
+      "hasRawText": false,
+      "tableCount": 0,
+      "hasMetadata": false,
+      "metadata": {}
+    },
+    {
+      "name": "UK_英国_国家安全与投资法__NSI_Act_2021_全文_html.json",
+      "sourceType": "html",
+      "rawTextChars": 15828,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "UK"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "UN_联合国_UN_R155车辆网络安全管理体系法规__UNECE_WP29_Certivo解读__html.json",
+      "sourceType": "html",
+      "rawTextChars": 38926,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "UN_联合国_UN_R156软件升级管理体系法规__UN_R155_R156_合规指南__html.json",
+      "sourceType": "html",
+      "rawTextChars": 8187,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "chemical"
+        ]
+      }
+    },
+    {
+      "name": "US_加州_适龄设计规范法案__ADCA_AB_2273_官方解读_html.json",
+      "sourceType": "html",
+      "rawTextChars": 29305,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [
+          "data_privacy"
+        ]
+      }
+    },
+    {
+      "name": "US_美国_INFORM消费者法案__INFORM_Consumers_Act_S_936_117th_Congress__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 17218,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "US_美国_儿童在线隐私保护法__COPPA__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 350398,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "US"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "toy_safety"
+        ]
+      }
+    },
+    {
+      "name": "US_美国_外资投资风险审查现代化法案__FIRRMA_2018__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 2495198,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "CN",
+          "SG",
+          "VN",
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "EMC",
+          "battery",
+          "export_control",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "US_美国_通胀削减法案__IRA_2022__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 737540,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN",
+          "SG",
+          "SA",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "battery",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "VN_越南2018年_竞争法__Law_No_23_2018_QH14__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 110369,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "VN_越南TCVN国家标准认证说明_越南CR标志认证信息册__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 31618,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "VN_越南_第13号个人数据保护法令__Decree_13_2023__html.json",
+      "sourceType": "html",
+      "rawTextChars": 83994,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ]
+      }
+    },
+    {
+      "name": "VN_越南_第147号法令__Decree_147_2024_ND_CP_互联网服务信息管理_解读_html.json",
+      "sourceType": "html",
+      "rawTextChars": 9636,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "VN",
+          "ID",
+          "AE",
+          "TH"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "VN_越南_网络安全法__2018__html.json",
+      "sourceType": "html",
+      "rawTextChars": 3807,
+      "hasRawText": true,
+      "tableCount": 4,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "WIPO__专利合作条约__PCT_中文版_WIPO知识产权库__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 157694,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [
+          "US",
+          "UK",
+          "CN"
+        ],
+        "regulatoryTypes": []
+      }
+    },
+    {
+      "name": "WIPO__专利合作条约__PCT_英文版_WIPO_2018版__pdf.json",
+      "sourceType": "pdf",
+      "rawTextChars": 513887,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [
+          "chemical"
+        ]
+      }
+    },
+    {
+      "name": "WIPO__马德里协定与议定书__WIPO商标国际注册条约详情__html.json",
+      "sourceType": "html",
+      "rawTextChars": 66143,
+      "hasRawText": true,
+      "tableCount": 0,
+      "hasMetadata": true,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [
+          "chemical",
+          "investment"
+        ]
+      }
+    }
+  ],
+  "by_region": {
+    "AE": {
+      "count": 3,
+      "total_chars": 27427,
+      "has_rawtext": 3,
+      "has_tables": 0
+    },
+    "CN": {
+      "count": 11,
+      "total_chars": 80010,
+      "has_rawtext": 11,
+      "has_tables": 0
+    },
+    "EU": {
+      "count": 33,
+      "total_chars": 4765403,
+      "has_rawtext": 33,
+      "has_tables": 9
+    },
+    "GCC": {
+      "count": 1,
+      "total_chars": 11813,
+      "has_rawtext": 1,
+      "has_tables": 0
+    },
+    "ID": {
+      "count": 4,
+      "total_chars": 228796,
+      "has_rawtext": 4,
+      "has_tables": 1
+    },
+    "MY": {
+      "count": 3,
+      "total_chars": 11052,
+      "has_rawtext": 2,
+      "has_tables": 0
+    },
+    "Reference": {
+      "count": 5,
+      "total_chars": 439222,
+      "has_rawtext": 5,
+      "has_tables": 2
+    },
+    "SA": {
+      "count": 4,
+      "total_chars": 65098,
+      "has_rawtext": 4,
+      "has_tables": 0
+    },
+    "SG": {
+      "count": 3,
+      "total_chars": 64054,
+      "has_rawtext": 3,
+      "has_tables": 1
+    },
+    "Screenshot": {
+      "count": 11,
+      "total_chars": 1674510,
+      "has_rawtext": 4,
+      "has_tables": 0
+    },
+    "TH": {
+      "count": 2,
+      "total_chars": 49141,
+      "has_rawtext": 1,
+      "has_tables": 0
+    },
+    "UK": {
+      "count": 1,
+      "total_chars": 15828,
+      "has_rawtext": 1,
+      "has_tables": 0
+    },
+    "UN": {
+      "count": 2,
+      "total_chars": 47113,
+      "has_rawtext": 2,
+      "has_tables": 0
+    },
+    "US": {
+      "count": 5,
+      "total_chars": 3629659,
+      "has_rawtext": 5,
+      "has_tables": 0
+    },
+    "VN": {
+      "count": 5,
+      "total_chars": 239424,
+      "has_rawtext": 5,
+      "has_tables": 1
+    },
+    "WIPO": {
+      "count": 3,
+      "total_chars": 737724,
+      "has_rawtext": 3,
+      "has_tables": 0
+    }
+  },
+  "issues": [
+    {
+      "file": "MY_马来西亚_个人数据保护法__PDPA_2010_Act_709__pdf.json",
+      "issue": "empty_rawtext",
+      "note": "Source PDF missing. HTML version available and parsed."
+    },
+    {
+      "file": "TH_泰国_个人数据保护法__PDPA_2019_B_E__2562_英文版_pdf.json",
+      "issue": "empty_rawtext",
+      "note": "Source PDF missing. HTML version available and parsed."
+    }
+  ]
+}
