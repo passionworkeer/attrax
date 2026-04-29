@@ -1,4 +1,6 @@
 {
   "error": "PDF parse failed: No /Root object! - Is this really a PDF?",
-  "fileName": "马来西亚《个人数据保护法》（PDPA 2010，Act 709）.pdf"
+  "fileName": "马来西亚《个人数据保护法》（PDPA 2010，Act 709）.pdf",
+  "rawText": "",
+  "_note": "Source PDF missing. HTML version available and parsed."
 }
