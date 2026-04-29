@@ -1,0 +1,23 @@
+{
+  "fileName": "欧盟合规充电宝零件要求.docx",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧盟合规充电宝零件要求.docx",
+  "sourceType": "docx",
+  "pageCount": null,
+  "paragraphCount": 161,
+  "totalChars": 26608,
+  "hasTables": true,
+  "tableCount": 3,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "VN"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "chemical",
+      "EMC",
+      "battery"
+    ],
+    "charCount": 26768
+  }
+}

@@ -1,0 +1,920 @@
+# 火鹰合规 RAG 系统实施计划 v3.0
+
+> 基准文档：RAG-ARCHITECTURE-v2.1 + IMPLEMENTATION-PLAN-v2.1
+> 创建时间：2026-04-29
+> 技术路线：**Cohere API** (embed-multilingual-v3 + rerank-multilingual-v3)
+> 方法论：TDD (测试驱动) + SDD (规格驱动) + Git 原子提交
+
+---
+
+## 当前状态快照
+
+| 维度 | 状态 | 详情 |
+|------|------|------|
+| 数据 (PDF) | ✅ 40 文件有 rawText | EU 18 个核心法规 + 部分 US/CN/Reference |
+| 数据 (HTML) | ❌ 37 文件无 rawText | JSON 中缺少 rawText 字段，需重跑解析 |
+| 数据 (DOCX) | ❌ 10 文件无 rawText | 同上 |
+| 前端骨架 | ✅ 完成 | Next.js 16 + shadcn/ui，Demo 模式可跑 |
+| rag-service | ❌ 不存在 | 需从零搭建 |
+| Git | ❌ 无 | 需初始化 |
+| Docker/Qdrant | ❌ 未运行 | 需部署 |
+| API Keys | ❌ 空 | 需填入 Cohere + Anthropic |
+| Python venv | ❌ 无 | 需创建 |
+
+---
+
+## 全局约定
+
+### Git 分支策略
+```
+main                    ← 稳定版本
+├── feat/phase-0-data   ← 数据清理
+├── feat/phase-1-env    ← 环境搭建
+├── feat/phase-2-corpus ← 语料库管线
+├── feat/phase-3-retrieval ← 检索管线
+├── feat/phase-4-report ← 报告生成
+├── feat/phase-5-frontend ← 前后端对接
+├── feat/phase-6-multi-market ← 多市场
+└── feat/phase-7-eval   ← 评估管线
+```
+
+每个 phase 完成后合并到 main，打 tag：`v0.1.0-phase0`, `v0.2.0-phase1`...
+
+### TDD 工作流
+```
+RED    → 写测试，运行，看到失败
+GREEN  → 写最少代码让测试通过
+REFACTOR → 清理，保持测试通过
+```
+
+### SDD 规格驱动
+每个 task 先写规格文档（输入/输出/边界条件），再写测试，再实现。
+
+### 目录结构（最终）
+```
+attrax/
+├── rag-service/                    # Python FastAPI 服务
+│   ├── main.py                     # 入口 + lifespan
+│   ├── config.py                   # 环境变量
+│   ├── requirements.txt
+│   ├── .env                        # API Keys
+│   │
+│   ├── parser/                     # 文档解析
+│   │   ├── docling_parser.py       # PDF/DOCX/HTML → JSON
+│   │   └── html_parser.py          # HTML 专用（BeautifulSoup）
+│   │
+│   ├── chunker/                    # 分块
+│   │   ├── legal_chunker.py        # Parent-Child 按 Article 切分
+│   │   └── table_processor.py      # 表格双重字段
+│   │
+│   ├── retrieval/                  # 检索管线
+│   │   ├── cohere_embedder.py      # Cohere embed-multilingual-v3
+│   │   ├── bm25_retriever.py       # jieba BM25
+│   │   ├── fusion.py               # RRF 融合
+│   │   ├── cohere_reranker.py      # Cohere rerank-multilingual-v3
+│   │   ├── must_check.py           # 强制注入
+│   │   ├── query_rewrite.py        # 规则 Rewrite
+│   │   ├── query_decomposer.py     # LLM 多市场分解
+│   │   └── hybrid_retriever.py     # 组装主类
+│   │
+│   ├── verify/                     # 引用验证
+│   │   └── citation_verifier.py    # 硬门
+│   │
+│   ├── generate/                   # 报告生成
+│   │   └── report_generator.py     # Claude Sonnet
+│   │
+│   ├── eval/                       # 评估
+│   │   ├── test_set.json
+│   │   ├── run_eval.py
+│   │   └── metrics.py
+│   │
+│   └── tests/                      # 测试
+│       ├── conftest.py
+│       ├── test_html_parser.py
+│       ├── test_legal_chunker.py
+│       ├── test_bm25_retriever.py
+│       ├── test_cohere_embedder.py
+│       ├── test_citation_verifier.py
+│       ├── test_rrf_fusion.py
+│       ├── test_query_rewrite.py
+│       └── test_report_generator.py
+│
+├── scripts/                        # 现有脚本（保留）
+│   ├── batch_parse_corpus.py       # 修复版
+│   └── build_corpus.py             # 新增：批量入库
+│
+├── app/                            # Next.js 前端（现有）
+├── components/                     # UI 组件（现有）
+└── docs/                           # 文档（现有）
+```
+
+---
+
+## Phase 0：数据清理 + Git 初始化（0.5 天）
+
+### T0-1：Git 仓库初始化
+**SDD 规格：**
+- 初始化 git repo
+- 创建 `.gitignore`（node_modules, .next, .venv, *.pyc, __pycache__, .env, qdrant_storage/）
+- 首次提交所有现有代码
+
+**执行步骤：**
+```bash
+cd E:/desktop/火鹰合规/attrax
+git init
+# 创建 .gitignore
+git add .
+git commit -m "chore: initial commit - existing frontend + docs + data scripts"
+git tag v0.0.1-initial
+```
+
+**验证：** `git log` 有首次提交，`git status` 干净。
+
+**Commit:** `chore: init repo with existing frontend + docs + data scripts`
+
+---
+
+### T0-2：修复 HTML/DOCX rawText 缺失
+**SDD 规格：**
+- 输入：`data/corpus/` 下 37 个 HTML + 10 个 DOCX 原始文件
+- 输出：`data/corpus/processed/` 下对应 JSON，必须包含 `rawText` 字段且长度 > 100
+- 边界：文件不存在时跳过；编码错误时 fallback
+
+**TDD：**
+```python
+# tests/test_html_parser.py
+def test_html_parser_extracts_rawtext():
+    """HTML 解析必须输出 rawText 字段"""
+    result = parse_html("data/corpus/eu/regulations/html/sample.html")
+    assert "rawText" in result
+    assert len(result["rawText"]) > 100
+
+def test_docx_parser_extracts_rawtext():
+    """DOCX 解析必须输出 rawText 字段"""
+    result = parse_docx("data/corpus/eu/products/sample.docx")
+    assert "rawText" in result
+    assert len(result["rawText"]) > 100
+```
+
+**实现方案：**
+1. 修复 `batch_parse_corpus.py` 中 `parse_html()` 确认返回 rawText
+2. 对已处理的 37+10 个 JSON 文件，重新从源文件解析并覆盖
+3. 跳过 Screenshot_Pending 目录的扫描件
+
+**验证：**
+```bash
+D:/python/python.exe -c "
+import json, os
+empty = [f for f in os.listdir('data/corpus/processed')
+         if f.endswith('.json') and len(json.load(open(f,encoding='utf-8')).get('rawText','')) < 100
+         and 'Screenshot' not in f]
+print(f'Empty (non-screenshot): {len(empty)}')  # 目标: 0
+"
+```
+
+**Commit:** `fix: restore rawText for 37 HTML + 10 DOCX processed files`
+
+---
+
+### T0-3：数据质量审计
+**SDD 规格：**
+- 生成 `data/corpus/quality_report.json`
+- 每个文件报告：rawText 长度、pageMap 是否存在、metadata 完整度
+- 标记需要跳过的文件（扫描件、空文件）
+
+**Commit:** `chore: add data quality audit report`
+
+---
+
+## Phase 1：环境搭建（0.5 天）
+
+### T1-1：Python 环境
+**SDD 规格：**
+- Python 3.10.8（已安装于 D:\python\）
+- venv 路径：`attrax/.venv/`
+- 核心依赖：fastapi, uvicorn, cohere, rank_bm25, jieba, beautifulsoup4, python-docx, pdfplumber, anthropic, pydantic, python-dotenv, pytest
+
+**执行步骤：**
+```bash
+cd E:/desktop/火鹰合规/attrax
+D:/python/python.exe -m venv .venv
+source .venv/Scripts/activate
+pip install fastapi uvicorn cohere rank_bm25 jieba beautifulsoup4 \
+            python-docx pdfplumber anthropic pydantic python-dotenv pytest httpx
+pip freeze > rag-service/requirements.txt
+```
+
+**验证：**
+```bash
+python -c "import cohere; print('Cohere OK')"
+python -c "import jieba; print(jieba.lcut('REACH Article 22')); print('jieba OK')"
+python -c "import rank_bm25; print('BM25 OK')"
+```
+
+**Commit:** `chore: setup Python venv + requirements.txt`
+
+---
+
+### T1-2：Docker Qdrant 部署
+**SDD 规格：**
+- Qdrant Docker 容器，端口 6333/6334
+- 持久化存储：`qdrant_storage` volume
+- 两个 Collection：`legal_chunks`（带向量）、`legal_chunks_parents`（仅存储）
+
+**执行步骤：**
+```bash
+docker pull qdrant/qdrant
+docker run -d --name qdrant \
+  -p 6333:6333 -p 6334:6334 \
+  -v qdrant_storage:/qdrant/storage \
+  qdrant/qdrant
+curl http://localhost:6333/healthz
+```
+
+**TDD：**
+```python
+# tests/test_qdrant_init.py
+def test_qdrant_health():
+    resp = httpx.get("http://localhost:6333/healthz")
+    assert resp.status_code == 200
+
+def test_create_collections():
+    # 运行 init_collections.py
+    # 验证 collections 存在
+    client = QdrantClient(host="localhost", port=6333)
+    collections = [c.name for c in client.get_collections().collections]
+    assert "legal_chunks" in collections
+    assert "legal_chunks_parents" in collections
+```
+
+**Commit:** `chore: add Qdrant init script + health check tests`
+
+---
+
+### T1-3：环境变量配置
+**SDD 规格：**
+- `.env` 文件（rag-service/.env），不提交到 git
+- `.env.example` 提交到 git（无真实 key）
+- 必填：`COHERE_API_KEY`, `ANTHROPIC_API_KEY`
+- 可选：`QDRANT_HOST`, `QDRANT_PORT`
+
+```env
+# rag-service/.env.example
+COHERE_API_KEY=your-cohere-api-key
+ANTHROPIC_API_KEY=your-anthropic-api-key
+QDRANT_HOST=localhost
+QDRANT_PORT=6333
+DEMO_MODE=false
+```
+
+**验证：** `config.py` 能正确读取所有环境变量，缺失时抛明确错误。
+
+**Commit:** `chore: add env config + .env.example`
+
+---
+
+### T1-4：项目骨架创建
+**SDD 规格：**
+- 创建 rag-service/ 下所有目录和 `__init__.py`
+- 创建 `main.py`（FastAPI 入口，含 lifespan）
+- 创建 `config.py`（Pydantic Settings）
+
+**Commit:** `feat: create rag-service project skeleton`
+
+---
+
+## Phase 2：语料库管线（3 天） — TDD
+
+### T2-1：HTML 解析器增强（0.5 天）
+**SDD 规格：**
+- 输入：HTML 文件路径
+- 输出：`{ rawText, tables, metadata, pageCount: 1 }`
+- BeautifulSoup 替换正则解析，提取 `<article>`, `<main>`, 正文
+- 移除 nav/footer/script/style 噪音
+- 保留表格结构
+
+**TDD 测试优先：**
+```python
+# tests/test_html_parser.py
+class TestHtmlParser:
+    def test_extracts_main_text(self, sample_html_file):
+        result = parse_html(sample_html_file)
+        assert len(result["rawText"]) > 100
+        assert "<script>" not in result["rawText"]
+
+    def test_extracts_tables(self, html_with_tables):
+        result = parse_html(html_with_tables)
+        assert len(result["tables"]) > 0
+
+    def test_handles_encoding_error(self, gbk_html_file):
+        result = parse_html(gbk_html_file)
+        assert len(result["rawText"]) > 0
+
+    def test_truncates_very_long_html(self):
+        # 超过 100k 字符的 HTML 截断到 100k
+        ...
+```
+
+**Git:** `feat(parser): HTML parser with BeautifulSoup + encoding fallback`
+
+---
+
+### T2-2：DOCX 解析器（0.5 天）
+**SDD 规格：**
+- 输入：DOCX 文件路径
+- 输出：`{ rawText, tables, metadata, paragraphCount }`
+- 使用 `python-docx` 提取段落文本和表格
+
+**TDD：**
+```python
+# tests/test_docx_parser.py
+class TestDocxParser:
+    def test_extracts_paragraphs(self, sample_docx):
+        result = parse_docx(sample_docx)
+        assert len(result["rawText"]) > 100
+        assert result["paragraphCount"] > 0
+
+    def test_extracts_tables(self, docx_with_tables):
+        result = parse_docx(docx_with_tables)
+        assert len(result["tables"]) > 0
+```
+
+**Git:** `feat(parser): DOCX parser with python-docx`
+
+---
+
+### T2-3：LegalChunker 实现（1 天）
+**SDD 规格：**
+- Parent-Child 双层架构
+- Child: ~200-300 tokens，按 Article 边界切分
+- Parent: ~800-1000 tokens，2-4 个相邻 Article 组合
+- Contextual Prepending: `[法规名] [章节] [条款]` 前缀
+- 支持 EU (Article)、CN (第X条)、US (§) 三种模式
+- 页码推断（从 pageMap）
+
+**TDD：**
+```python
+# tests/test_legal_chunker.py
+class TestLegalChunker:
+    def test_article_boundary_split(self, reach_text):
+        """按 Article 边界切分，不跨 Article"""
+        result = chunk_document(reach_text, metadata)
+        for chunk in result["child_chunks"]:
+            # 每个 chunk 只包含一个 Article
+            assert chunk.article_no is not None
+
+    def test_child_size_range(self, reach_text):
+        """Child chunk 在 150-400 tokens 范围"""
+        result = chunk_document(reach_text, metadata)
+        for chunk in result["child_chunks"]:
+            tokens = len(chunk.content) // 2  # 粗略估计
+            assert 100 < tokens < 500
+
+    def test_parent_contains_children(self, reach_text):
+        """Parent 包含其所有 children 的内容"""
+        result = chunk_document(reach_text, metadata)
+        for parent in result["parent_chunks"]:
+            children = [c for c in result["child_chunks"]
+                       if c.parent_id == parent.id]
+            assert len(children) >= 1
+
+    def test_page_number_inference(self, reach_text):
+        """从 pageMap 推断页码，不全为 0"""
+        result = chunk_document(reach_text, metadata)
+        pages = {c.page_start for c in result["child_chunks"]}
+        assert len(pages) > 1  # 不全相同
+        assert 0 not in pages or len(pages) > 3  # 不全为 0
+
+    def test_contextual_prepending(self, reach_text):
+        """Child chunk 包含法规名和条款号前缀"""
+        result = chunk_document(reach_text, metadata)
+        first = result["child_chunks"][0]
+        assert "REACH" in first.content[:100]
+        assert "Article" in first.content[:100]
+```
+
+**Git:** `feat(chunker): Parent-Child LegalChunker with Article boundary split`
+
+---
+
+### T2-4：批量入库脚本（1 天）
+**SDD 规格：**
+- 输入：`data/corpus/processed/*.json`
+- 流程：JSON → LegalChunker → Cohere Embedding → Qdrant
+- Cohere 批量 embedding：每批 96 条（API 限制）
+- Parent chunks 存入 `legal_chunks_parents` collection
+- 输出：入库统计（child 数、parent 数、跳过数）
+
+**TDD：**
+```python
+# tests/test_ingestion.py
+class TestIngestion:
+    def test_cohere_embedding_dimension(self):
+        """Cohere embed-multilingual-v3 输出 1024 维"""
+        client = cohere.ClientV2(api_key=TEST_KEY)
+        resp = client.embed(texts=["test"], model="embed-multilingual-v3.0")
+        assert len(resp.embeddings[0]) == 1024
+
+    def test_batch_ingest_creates_points(self, qdrant_client, sample_chunks):
+        """入库后 Qdrant 中有对应 points"""
+        ingest_chunks(sample_chunks, "legal_chunks")
+        count = qdrant_client.count("legal_chunks").count
+        assert count >= len(sample_chunks)
+
+    def test_skips_empty_rawtext(self):
+        """rawText 为空的文件跳过"""
+        ...
+```
+
+**预期结果：**
+- ~40 个有 rawText 的文件 → ~3000-5000 child chunks
+- Parent chunks ~800-1500
+
+**Git:** `feat(ingest): corpus → chunks → Cohere embed → Qdrant pipeline`
+
+---
+
+## Phase 3：检索管线（3 天） — TDD
+
+### T3-1：Cohere Dense Retriever（0.5 天）
+**SDD 规格：**
+- 使用 `cohere.ClientV2.embed()` 
+- 模型：`embed-multilingual-v3.0`，1024 维
+- Contextual Prepending 在 embedding 前执行
+- 查询向量在 Qdrant 中做 cosine 搜索
+- 返回 Top-50
+
+**TDD：**
+```python
+# tests/test_cohere_embedder.py
+class TestCohereEmbedder:
+    def test_embed_query_returns_vector(self):
+        """查询 embedding 返回 1024 维向量"""
+        embedder = CohereEmbedder(api_key=TEST_KEY)
+        vec = embedder.embed_query("充电宝铅含量限制")
+        assert len(vec) == 1024
+
+    def test_embed_batch(self):
+        """批量 embedding 返回正确数量"""
+        embedder = CohereEmbedder(api_key=TEST_KEY)
+        vecs = embedder.embed_batch(["text1", "text2", "text3"])
+        assert len(vecs) == 3
+        assert all(len(v) == 1024 for v in vecs)
+
+    def test_search_returns_top_k(self, qdrant_with_data):
+        """检索返回指定数量的结果"""
+        retriever = CohereDenseRetriever(embedder, qdrant_client)
+        results = retriever.search("REACH 铅含量", top_k=10)
+        assert len(results) <= 10
+```
+
+**Git:** `feat(retrieval): Cohere dense embedder + Qdrant search`
+
+---
+
+### T3-2：jieba BM25 Retriever（0.5 天）
+**SDD 规格：**
+- jieba 分词，加载法律术语词典
+- BM25 索引从 Qdrant payload 的 content 字段构建
+- 支持中英文混合查询
+- 返回 Top-50
+
+**TDD：**
+```python
+# tests/test_bm25_retriever.py
+class TestBM25Retriever:
+    def test_chinese_tokenization(self):
+        """中文法律术语正确分词"""
+        tokens = tokenize("REACH法规铅含量限制要求")
+        assert "REACH" in tokens
+        assert "铅" in tokens or "铅含量" in tokens
+
+    def test_bm25_returns_relevant_results(self, bm25_with_data):
+        """BM25 返回相关结果"""
+        results = bm25.search("CE标识要求", top_k=10)
+        assert len(results) > 0
+        # 结果中应包含 CE 相关内容
+        assert any("CE" in r["content"] for r in results)
+```
+
+**Git:** `feat(retrieval): jieba BM25 retriever with legal term dict`
+
+---
+
+### T3-3：RRF 融合 + Must Check（0.5 天）
+**SDD 规格：**
+- RRF (Reciprocal Rank Fusion)，k=25
+- 融合 Dense Top-50 + BM25 Top-50
+- Must Check：按产品类别注入强制法规
+  - electronics → RoHS, EMC, LVD
+  - toy → EN 71, Toy Safety Directive
+  - appliance → LVD, ErP
+
+**TDD：**
+```python
+# tests/test_rrf_fusion.py
+class TestRRFFusion:
+    def test_rrf_merges_results(self):
+        """RRF 合并两个列表，按分数排序"""
+        dense = [{"id": "1", "score": 0.9}, {"id": "2", "score": 0.8}]
+        bm25 = [{"id": "2", "score": 10}, {"id": "3", "score": 8}]
+        fused = rrf_fuse(dense, bm25, k=25)
+        # id=2 在两个列表中都出现，应排最高
+        assert fused[0]["id"] == "2"
+
+    def test_must_check_injects(self):
+        """电子产品类别强制注入 RoHS"""
+        results = [{"id": "1", "content": "..."}]
+        injected = apply_must_check(results, "electronics")
+        # 应包含 RoHS 相关条款
+        assert any("RoHS" in r.get("doc_name", "") for r in injected)
+```
+
+**Git:** `feat(retrieval): RRF fusion + must_check injection`
+
+---
+
+### T3-4：Cohere Reranker（0.5 天）
+**SDD 规格：**
+- 使用 `cohere.ClientV2.rerank()`
+- 模型：`rerank-multilingual-v3.0`
+- 输入：query + Top-20 融合结果
+- 输出：Top-10 重排序结果
+
+**TDD：**
+```python
+# tests/test_cohere_reranker.py
+class TestCohereReranker:
+    def test_rerank_reorders_results(self):
+        """Reranker 重新排序结果"""
+        reranker = CohereReranker(api_key=TEST_KEY)
+        docs = ["REACH Article 22 铅含量", "GDPR 数据保护", "RoHS 有害物质"]
+        results = reranker.rerank("铅含量限制", docs, top_n=2)
+        assert len(results) == 2
+        # REACH 应排在 GDPR 前面
+        assert results[0]["index"] == 0
+```
+
+**Git:** `feat(retrieval): Cohere reranker integration`
+
+---
+
+### T3-5：HybridRetriever 组装 + Query Rewrite（1 天）
+**SDD 规格：**
+- 组装 Dense → BM25 → RRF → Must Check → Rerank → Parent 映射
+- Query Rewrite 规则引擎：
+  - "充电宝" → "移动电源 移动充电器 power bank"
+  - "加湿器" → "超声波加湿器 humidifier mist maker"
+- API 端点：`POST /retrieve`
+
+**TDD：**
+```python
+# tests/test_hybrid_retriever.py
+class TestHybridRetriever:
+    def test_end_to_end_retrieve(self):
+        """端到端检索返回结构化结果"""
+        result = hybrid.retrieve(
+            query="充电宝铅含量限制",
+            product_category="electronics",
+            market="EU",
+            top_k=5,
+        )
+        assert len(result["chunks"]) >= 3
+        for c in result["chunks"]:
+            assert "rerank_score" in c
+            assert "content" in c
+            assert "doc_name" in c
+
+    def test_query_rewrite(self):
+        """查询重写扩展同义词"""
+        rewritten = rewrite_query("充电宝出口欧盟")
+        assert "移动电源" in rewritten or "power bank" in rewritten.lower()
+
+# tests/test_api_retrieve.py
+class TestRetrieveAPI:
+    def test_retrieve_endpoint(self, client):
+        """POST /retrieve 返回 200"""
+        resp = client.post("/retrieve", json={
+            "query": "CE 标识要求",
+            "category": "electronics",
+            "markets": ["EU"],
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert "chunks" in data
+```
+
+**Git:** `feat(retrieval): HybridRetriever + Query Rewrite + /retrieve endpoint`
+
+---
+
+## Phase 4：报告生成 + 硬门（2 天） — TDD
+
+### T4-1：Citation Verifier（0.5 天）
+**SDD 规格：**
+- 输入：生成的报告文本 + 检索到的 chunks
+- 验证：报告中每个 `[法规名 Article X p.Y]` 引用是否存在于 chunks 中
+- 子串匹配（非精确匹配）
+- 输出：`{ verified_count, rejected_count, details[] }`
+
+**TDD：**
+```python
+# tests/test_citation_verifier.py
+class TestCitationVerifier:
+    def test_valid_citation_passes(self):
+        """报告中引用存在于 chunks 中 → verified"""
+        report = "铅含量限制参见 [REACH Article 22 p.45]"
+        chunks = [{"doc_name": "REACH", "article_no": "Article 22",
+                   "page_start": 45, "content": "..."}]
+        result = verifier.verify(report, chunks)
+        assert result.verified_count == 1
+
+    def test_fabricated_citation_rejected(self):
+        """报告中引用不存在于 chunks 中 → rejected"""
+        report = "参见 [Fake Regulation Article 99 p.1]"
+        chunks = [{"doc_name": "REACH", "article_no": "Article 22",
+                   "page_start": 45, "content": "..."}]
+        result = verifier.verify(report, chunks)
+        assert result.verified_count == 0
+        assert result.rejected_count == 1
+
+    def test_hard_gate_decisions(self):
+        """硬门决策：0 verified → REJECT, 1-2 → WARN, >=3 → PASS"""
+        # 用不同数量的 verified 构造测试
+        ...
+```
+
+**Git:** `feat(verify): CitationVerifier with hard gate logic`
+
+---
+
+### T4-2：报告生成器（1 天）
+**SDD 规格：**
+- Claude Sonnet 报告生成
+- Prompt 要求每个结论附带 `[法规名 Article X p.Y]` 引用
+- 禁止编造未出现在检索结果中的法规
+- 输出 Markdown 格式
+
+**TDD：**
+```python
+# tests/test_report_generator.py
+class TestReportGenerator:
+    def test_report_contains_citations(self):
+        """生成报告包含法规引用"""
+        generator = ReportGenerator(api_key=TEST_KEY)
+        report = generator.generate(
+            product="USB 充电宝",
+            markets=["EU"],
+            vision_result={"category": "electronics"},
+            chunks=[{"doc_name": "REACH", "article_no": "22", ...}],
+        )
+        assert "[REACH" in report or "Article" in report
+
+    def test_report_rejects_empty_chunks(self):
+        """chunks 为空时不生成报告"""
+        with pytest.raises(InsufficientContextError):
+            generator.generate(product="test", markets=["EU"],
+                             vision_result={}, chunks=[])
+```
+
+**Git:** `feat(generate): Claude Sonnet compliance report generator`
+
+---
+
+### T4-3：/generate-report 端点（0.5 天）
+**SDD 规格：**
+- 流程：检索 → 生成 → 验证 → 硬门决策
+- 响应：`{ status: "PASS"|"WARN"|"REJECTED", report, verification }`
+
+**TDD：**
+```python
+# tests/test_api_generate.py
+class TestGenerateReportAPI:
+    def test_full_pipeline(self, client):
+        """POST /generate-report 端到端"""
+        resp = client.post("/generate-report", json={
+            "query": "充电宝欧盟合规要求",
+            "product": "USB 充电宝",
+            "category": "electronics",
+            "markets": ["EU"],
+            "vision_result": {},
+        })
+        assert resp.status_code == 200
+        data = resp.json()
+        assert data["status"] in ["PASS", "WARN", "REJECTED"]
+        if data["status"] != "REJECTED":
+            assert len(data["report"]) > 100
+```
+
+**Git:** `feat(api): /generate-report endpoint with citation hard gate`
+
+---
+
+## Phase 5：前端-后端对接（2 天） — TDD
+
+### T5-1：Next.js API 转发层（1 天）
+**SDD 规格：**
+- `POST /api/scan` → 转发到 `http://localhost:8000/generate-report`
+- `GET /api/scan/[sessionId]` → 轮询 rag-service 状态
+- 超时处理：60s 无响应 → failed
+- 错误映射：rag-service 错误 → 前端友好消息
+
+**TDD：**
+```typescript
+// __tests__/api/scan.test.ts
+describe('POST /api/scan', () => {
+  it('forwards to rag-service and returns sessionId', async () => {
+    const formData = new FormData();
+    formData.append('images', mockFile);
+    formData.append('category', 'electronics');
+    formData.append('markets', 'EU,US');
+
+    const response = await POST(createRequest(formData));
+    expect(response.status).toBe(202);
+    const data = await response.json();
+    expect(data.sessionId).toBeDefined();
+    expect(data.pollUrl).toContain('/api/scan/');
+  });
+
+  it('returns 400 for empty upload', async () => {
+    const formData = new FormData();
+    const response = await POST(createRequest(formData));
+    expect(response.status).toBe(400);
+  });
+});
+```
+
+**Git:** `feat(api): forward scan requests to rag-service`
+
+---
+
+### T5-2：前端 UI 适配（1 天）
+**SDD 规格：**
+- 结果页展示 RAG 报告（Markdown 渲染）
+- 引用状态徽章：PASS (绿) / WARN (黄) / REJECTED (红)
+- 法规引用可点击跳转（如有 sourceUrl）
+- 进度条阶段文字对齐 rag-service 实际进度
+- 加载态、错误态、空态完善
+
+**验收标准：**
+- [ ] 上传图片 → 等待 → 显示 RAG 报告，全流程可跑
+- [ ] 报告中法规引用高亮显示
+- [ ] 引用验证状态清晰可见
+- [ ] 加载失败有重试按钮
+- [ ] 移动端响应式正常
+
+**Git:** `feat(ui): adapt result page for RAG report display`
+
+---
+
+## Phase 6：多市场查询分解（2 天） — TDD
+
+### T6-1：Query Decomposer（1 天）
+**SDD 规格：**
+- LLM 将 "充电宝出口欧盟和美国" 分解为 per-market 子查询
+- 输出：`[{ market: "EU", query: "..." }, { market: "US", query: "..." }]`
+- Fallback：规则引擎（无 LLM 时）
+
+**TDD：**
+```python
+# tests/test_query_decomposer.py
+class TestQueryDecomposer:
+    def test_decomposes_multi_market(self):
+        """多市场查询正确分解"""
+        result = decomposer.decompose("充电宝出口欧盟和美国", ["EU", "US"])
+        assert len(result) == 2
+        markets = {r["market"] for r in result}
+        assert markets == {"EU", "US"}
+
+    def test_single_market_passthrough(self):
+        """单市场不分解"""
+        result = decomposer.decompose("CE 标识要求", ["EU"])
+        assert len(result) == 1
+        assert result[0]["market"] == "EU"
+```
+
+**Git:** `feat(retrieval): LLM QueryDecomposer for multi-market`
+
+---
+
+### T6-2：多市场检索合并（1 天）
+**SDD 规格：**
+- 并行执行每个市场的检索
+- 合并去重（按 chunk_id）
+- 按 rerank_score 排序
+- 结果标记来源市场
+
+**TDD：**
+```python
+def test_multi_market_merge(self):
+    """多市场结果合并去重"""
+    eu_results = [{"id": "1", "rerank_score": 0.9}, {"id": "2", "rerank_score": 0.8}]
+    us_results = [{"id": "2", "rerank_score": 0.85}, {"id": "3", "rerank_score": 0.7}]
+    merged = merge_multi_market([eu_results, us_results], top_k=5)
+    ids = [r["id"] for r in merged]
+    assert len(ids) == 3  # 去重
+    assert merged[0]["id"] == "1"  # 最高分排第一
+```
+
+**Git:** `feat(retrieval): multi-market parallel retrieval + merge`
+
+---
+
+## Phase 7：评估管线（2 天） — TDD
+
+### T7-1：Ground-Truth 测试集（0.5 天）
+**SDD 规格：**
+- 从语料库自动生成 200+ 测试用例
+- 每个用例：question + ground_truth_answer + source_document + market
+- 关键/非关键分类
+
+**Git:** `feat(eval): auto-generate 200+ ground-truth test set`
+
+---
+
+### T7-2：评估脚本（1 天）
+**SDD 规格：**
+- 指标：Recall@5, Citation Accuracy, Hallucination Rate
+- 目标：Recall ≥ 90%, Citation ≥ 95%, Hallucination ≤ 2%
+- 输出：JSON 报告 + 控制台摘要
+
+**Git:** `feat(eval): evaluation pipeline with metrics`
+
+---
+
+### T7-3：CI 集成（0.5 天）
+**SDD 规格：**
+- GitHub Actions / 本地脚本
+- Push 时自动运行评估
+- 门禁：Recall ≥ 85%, Hallucination ≤ 5%
+
+**Git:** `ci: add RAG evaluation gate`
+
+---
+
+## 任务总表 + 依赖图
+
+```
+Phase 0 (数据清理)          Phase 1 (环境)
+T0-1 Git Init ──┐          T1-1 Python venv ──┐
+T0-2 Fix rawText ─┤        T1-2 Qdrant ────────┤
+T0-3 Quality ────┘         T1-3 Env vars ──────┤
+                           T1-4 Skeleton ──────┘
+                                    │
+                                    ▼
+                           Phase 2 (语料库)
+                    T2-1 HTML Parser ──┐
+                    T2-2 DOCX Parser ──┤
+                    T2-3 LegalChunker ─┤ (depends on T2-1,2)
+                    T2-4 Ingestion ────┘ (depends on T2-3)
+                                    │
+                    ┌───────────────┼───────────────┐
+                    ▼               ▼               ▼
+            Phase 3 (检索)    Phase 4 (报告)    Phase 6 (多市场)
+            T3-1 Dense        T4-1 Verifier     T6-1 Decomposer
+            T3-2 BM25         T4-2 Generator    T6-2 Multi-merge
+            T3-3 RRF+Must     T4-3 Endpoint
+            T3-4 Reranker         │
+            T3-5 Hybrid ──────────┤
+                    │              │
+                    ▼              ▼
+                Phase 5 (前后端对接)
+                T5-1 API 转发
+                T5-2 UI 适配
+                         │
+                         ▼
+                Phase 7 (评估)
+                T7-1 Test Set
+                T7-2 Eval Script
+                T7-3 CI Gate
+```
+
+---
+
+## 里程碑
+
+| 周 | Phase | 交付物 | 验收标准 |
+|----|-------|--------|---------|
+| W1 D1 | P0+P1 | Git 初始化 + 数据修复 + 环境搭建 | 56 个空文件修复为 0，Qdrant healthz OK |
+| W1 D2-4 | P2 | 语料库管线 | ~3000 child chunks 入库，REACH 可检索 |
+| W2 D1-3 | P3 | 检索管线 | 端到端检索可跑，召回率 > 85% |
+| W2 D4-5 | P4 | 报告生成 | /generate-report 可用，硬门生效 |
+| W3 D1-2 | P5 | 前后端对接 | 上传图片 → 看到 RAG 报告 |
+| W3 D3-4 | P6 | 多市场 | EU+US 并行检索 |
+| W3 D5 | P7 | 评估 | 200+ 测试集，recall > 90% |
+
+**总计：~3 周**
+
+---
+
+## 风险与对策
+
+| 风险 | 概率 | 影响 | 对策 |
+|------|------|------|------|
+| Cohere API 限流 | 中 | 中 | 批量 96 条/次，加 retry + exponential backoff |
+| Cohere API 延迟 | 低 | 中 | 本地缓存 embedding 结果，避免重复请求 |
+| HTML 解析质量参差 | 高 | 中 | BeautifulSoup + 正则 fallback，人工抽检 |
+| Claude 幻觉引用 | 高 | 高 | CitationVerifier 硬门拒绝 |
+| jieba 误切法律术语 | 中 | 中 | 加载法律术语词典（REACH, RoHS, GPSR 等） |
+| Qdrant 内存不足 | 低 | 低 | 5000 chunks × 1024 dim ≈ 20MB，无压力 |
+| Python 3.10 兼容性 | 低 | 低 | 所选依赖均支持 3.10 |

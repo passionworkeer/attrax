@@ -1,0 +1,20 @@
+{
+  "fileName": "表格-欧盟充电宝合规成本与风险.docx",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\表格-欧盟充电宝合规成本与风险.docx",
+  "sourceType": "docx",
+  "pageCount": null,
+  "paragraphCount": 14,
+  "totalChars": 667,
+  "hasTables": true,
+  "tableCount": 1,
+  "metadata": {
+    "detectedMarkets": [
+      "EU"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "battery"
+    ],
+    "charCount": 680
+  }
+}

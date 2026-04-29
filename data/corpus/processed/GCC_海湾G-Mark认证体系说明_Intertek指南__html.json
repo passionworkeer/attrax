@@ -1,0 +1,25 @@
+{
+  "fileName": "海湾G-Mark认证体系说明（Intertek指南）.html",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\gcc\\海湾G-Mark认证体系说明（Intertek指南）.html",
+  "sourceType": "html",
+  "pageCount": 1,
+  "totalChars": 11813,
+  "hasTables": false,
+  "tableCount": 0,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "VN",
+      "SA",
+      "AE",
+      "TH",
+      "GCC"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "chemical",
+      "toy_safety"
+    ],
+    "charCount": 11813
+  }
+}

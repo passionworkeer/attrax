@@ -1,0 +1,21 @@
+{
+  "fileName": "中国《出口管制法》（2020）全文（中国司法观察站英文版）.html",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《出口管制法》（2020）全文（中国司法观察站英文版）.html",
+  "sourceType": "html",
+  "pageCount": 1,
+  "totalChars": 34570,
+  "hasTables": false,
+  "tableCount": 0,
+  "metadata": {
+    "detectedMarkets": [
+      "CN",
+      "VN",
+      "ID"
+    ],
+    "regulatoryTypes": [
+      "data_privacy",
+      "export_control"
+    ],
+    "charCount": 34570
+  }
+}

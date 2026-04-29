@@ -1,0 +1,26 @@
+{
+  "fileName": "欧盟《新电池法规》（Regulation EU 2023_1542）解读.html",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟《新电池法规》（Regulation EU 2023_1542）解读.html",
+  "sourceType": "html",
+  "pageCount": 1,
+  "totalChars": 7958,
+  "hasTables": true,
+  "tableCount": 1,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "SG",
+      "VN",
+      "MY",
+      "ID",
+      "SA",
+      "TH"
+    ],
+    "regulatoryTypes": [
+      "chemical",
+      "data_privacy",
+      "battery"
+    ],
+    "charCount": 7958
+  }
+}

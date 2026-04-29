@@ -1,0 +1,35 @@
+{
+  "fileName": "出海合规法律法规政策清单 (1).docx",
+  "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\出海合规法律法规政策清单 (1).docx",
+  "sourceType": "docx",
+  "pageCount": null,
+  "paragraphCount": 223,
+  "totalChars": 35312,
+  "hasTables": true,
+  "tableCount": 3,
+  "metadata": {
+    "detectedMarkets": [
+      "EU",
+      "US",
+      "UK",
+      "CN",
+      "SG",
+      "VN",
+      "MY",
+      "ID",
+      "SA",
+      "AE",
+      "TH",
+      "GCC"
+    ],
+    "regulatoryTypes": [
+      "data_privacy",
+      "EMC",
+      "battery",
+      "export_control",
+      "investment",
+      "toy_safety"
+    ],
+    "charCount": 35534
+  }
+}
