@@ -4,31 +4,31 @@ main.py - FastAPI entry point for rag-service
 
 POST /scan → Agentic RAG graph
 GET /health
-GET /health/qdrant
 """
-import time
+import os
 import logging
 from contextlib import asynccontextmanager
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from qdrant_client import QdrantClient
 
 from config import settings
 from orchestrator.graph import run_compliance_graph
-from orchestrator.nodes.retriever import set_retriever
-from orchestrator.nodes.generator import set_generator
-from orchestrator.nodes.verifier import set_verifier
+from retrieval.faiss_retriever import FaissRetriever
 from retrieval.hybrid_retriever import HybridRetriever
-from retrieval.cohere_embedder import CohereEmbedder
+from retrieval.modelScope_embedder import ModelScopeEmbedder
 from retrieval.bm25_retriever import BM25Retriever
 from generate.report_generator import ReportGenerator
 from verify.citation_verifier import CitationVerifier
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+FAISS_INDEX_DIR = os.path.join(DATA_DIR, "faiss")
+CHILD_INDEX = os.path.join(FAISS_INDEX_DIR, "legal_chunks.index")
+CHILD_META = os.path.join(FAISS_INDEX_DIR, "legal_chunks_meta.json")
 
 # Global retriever (initialized on startup)
 _retriever: Optional[HybridRetriever] = None
@@ -41,33 +41,44 @@ async def lifespan(app: FastAPI):
 
     logger.info("Starting rag-service...")
 
-    # Initialize Qdrant client
-    try:
-        qc = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
-        qc.health()  # Check connection
-        logger.info("Qdrant connected")
-    except Exception as e:
-        logger.warning(f"Qdrant not available: {e}")
-        qc = None
+    # Initialize embedder (requires MODELSCOPE_API_KEY)
+    embedder = ModelScopeEmbedder(api_key=settings.modelscope_api_key) if settings.modelscope_api_key else None
+    if not embedder or not settings.modelscope_api_key:
+        logger.warning("MODELSCOPE_API_KEY not set - dense retrieval will be skipped")
 
-    # Initialize embedder
-    embedder = CohereEmbedder(api_key=settings.cohere_api_key) if settings.cohere_api_key else None
-
-    # Initialize BM25
+    # Initialize BM25 (no external dependency)
     bm25 = BM25Retriever()
 
-    # Initialize HybridRetriever
+    # Initialize Faiss retriever
+    faiss_ret = None
+    if os.path.exists(CHILD_INDEX) and os.path.exists(CHILD_META):
+        try:
+            faiss_ret = FaissRetriever.load(CHILD_INDEX, CHILD_META)
+            logger.info(f"Faiss index loaded: {len(faiss_ret)} vectors")
+        except Exception as e:
+            logger.warning(f"Failed to load Faiss index: {e}")
+    else:
+        logger.info(f"Faiss index not found at {FAISS_INDEX_DIR}, run scripts/build_faiss.py first")
+
+    # Build HybridRetriever
     _retriever = HybridRetriever(
         embedder=embedder,
         bm25=bm25,
-        qdrant_client=qc,
-        cohere_reranker_key=settings.cohere_api_key,
+        faiss_retriever=faiss_ret,
     )
 
+    # Load chunks into BM25
+    chunks = faiss_ret.chunks if faiss_ret else []
+    if chunks:
+        _retriever.load_chunks(chunks)
+        logger.info(f"BM25 index built with {len(chunks)} chunks")
+
     # Inject into orchestrator nodes
-    from orchestrator.nodes import retriever, generator, verifier
-    retriever.set_retriever(_retriever)
-    generator.set_generator(ReportGenerator(api_key=settings.anthropic_api_key))
+    from orchestrator.nodes import retriever as retriever_node
+    from orchestrator.nodes import generator
+    from orchestrator.nodes import verifier
+    retriever_node.set_retriever(_retriever)
+    generator.set_generator(ReportGenerator(api_key=settings.anthropic_api_key) if settings.anthropic_api_key else None)
     verifier.set_verifier(CitationVerifier())
 
     logger.info("rag-service ready")
@@ -75,7 +86,7 @@ async def lifespan(app: FastAPI):
     logger.info("rag-service shutting down")
 
 
-app = FastAPI(title="火鹰合规 RAG Service", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="火鹰合规 RAG Service", version="0.2.0", lifespan=lifespan)
 
 
 class ScanRequest(BaseModel):
@@ -87,39 +98,42 @@ class ScanRequest(BaseModel):
 
 
 class ScanResponse(BaseModel):
-    status: str      # PASS | WARN | REJECTED
+    status: str
     report: str
     agent_trace: list[dict]
     loop_count: int
+    documents: Optional[list[dict]] = None
 
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "version": "0.1.0"}
-
-
-@app.get("/health/qdrant")
-def qdrant_health():
-    try:
-        qc = QdrantClient(host=settings.qdrant_host, port=settings.qdrant_port)
-        qc.health()
-        return {"status": "ok", "qdrant": "connected"}
-    except Exception as e:
-        return {"status": "error", "qdrant": str(e)}
+    faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
+    return {
+        "status": "ok",
+        "version": "0.2.0",
+        "faiss_index": "loaded" if faiss_ok else "not_found",
+        "vector_count": len(_retriever.faiss_retriever) if faiss_ok else 0,
+    }
 
 
 @app.post("/scan", response_model=ScanResponse)
 def scan(req: ScanRequest):
-    """
-    Run Agentic RAG compliance scan.
-
-    Returns structured report with agent_trace and verification status.
-    """
+    """Run Agentic RAG compliance scan."""
     if settings.demo_mode:
         return ScanResponse(
             status="WARN",
             report="DEMO MODE: 请配置 COHERE_API_KEY 和 ANTHROPIC_API_KEY 以启用真实服务。",
             agent_trace=[{"node": "demo", "message": "demo mode active"}],
+            loop_count=0,
+        )
+
+    if not settings.cohere_api_key or not settings.anthropic_api_key:
+        return ScanResponse(
+            status="WARN",
+            report="缺少 API Keys：COHERE_API_KEY 和 ANTHROPIC_API_KEY 都需要配置。",
+            agent_trace=[{"node": "config_error", "missing_keys": [
+                k for k, v in {"COHERE_API_KEY": settings.cohere_api_key, "ANTHROPIC_API_KEY": settings.anthropic_api_key}.items() if not v
+            ]}],
             loop_count=0,
         )
 
@@ -137,47 +151,8 @@ def scan(req: ScanRequest):
             report=result["final_report"],
             agent_trace=result["agent_trace"],
             loop_count=result["loop_count"],
+            documents=result.get("retrieved_chunks", []),
         )
     except Exception as e:
         logger.error(f"Scan failed: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@app.post("/scan/stream")
-def scan_stream(req: ScanRequest):
-    """Streaming version - yields agent_trace events as they happen."""
-    async def event_generator():
-        if settings.demo_mode:
-            yield f"data: {'DEMO MODE' + chr(10)}\n\n"
-            return
-
-        # Simple SSE: stream final result
-        try:
-            result = run_compliance_graph(
-                query=req.query, product=req.product,
-                category=req.category, markets=req.markets,
-                vision_result=req.vision_result or {},
-            )
-            yield f"data: {result['status']}|{result['final_report'][:200]}\n\n"
-        except Exception as e:
-            yield f"data: ERROR|{str(e)}\n\n"
-
-    return StreamingResponse(event_generator(), media_type="text/event-stream")
-
-
-# ── Bulk ingestion endpoint ───────────────────────────────────────────────────
-@app.post("/ingest")
-def ingest(chunks: list[dict]):
-    """
-    Ingest chunks into vector store.
-    Called by build_corpus.py after LegalChunker.
-    """
-    if _retriever is None:
-        raise HTTPException(status_code=503, detail="Retriever not initialized")
-
-    try:
-        _retriever.load_chunks(chunks)
-        # Also embed and upsert to Qdrant if client available
-        return {"status": "ok", "chunks_loaded": len(chunks)}
-    except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
