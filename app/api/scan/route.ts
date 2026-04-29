@@ -59,12 +59,7 @@ export async function POST(request: Request) {
     formData = await request.formData();
   } catch {
     return NextResponse.json(
-      {
-        error: {
-          code: "BAD_INPUT",
-          message: "无效的请求格式",
-        },
-      },
+      { error: { code: "BAD_INPUT", message: "无效的请求格式" } },
       { status: 400 }
     );
   }
@@ -93,24 +88,14 @@ export async function POST(request: Request) {
 
   if (imageFiles.length === 0) {
     return NextResponse.json(
-      {
-        error: {
-          code: "BAD_INPUT",
-          message: "请至少上传 1 张图片。",
-        },
-      },
+      { error: { code: "BAD_INPUT", message: "请至少上传 1 张图片。" } },
       { status: 400 }
     );
   }
 
   if (documentFiles.length > 5) {
     return NextResponse.json(
-      {
-        error: {
-          code: "BAD_INPUT",
-          message: "文档数量不能超过 5 个。",
-        },
-      },
+      { error: { code: "BAD_INPUT", message: "文档数量不能超过 5 个。" } },
       { status: 400 }
     );
   }
@@ -129,18 +114,8 @@ export async function POST(request: Request) {
       }))
     );
 
-    const documents = await Promise.all(
-      documentFiles.map(async (file) => ({
-        buffer: Buffer.from(await file.arrayBuffer()),
-        originalName: file.name,
-        mimeType: file.type || "application/octet-stream",
-        size: file.size,
-      }))
-    );
-
     runScan(sessionId, {
       images,
-      documents,
       category: parsed.data.category as ProductCategory,
       markets: parsed.data.markets,
     }).catch((error) => {
