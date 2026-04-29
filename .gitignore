@@ -72,6 +72,9 @@ data/corpus/screenshot_pending/
 # analysis/ 是生成产物，不纳入版本控制
 data/analysis/
 
+# Faiss 索引（build_faiss.py 生成，每次构建更新）
+data/faiss/
+
 # 临时输出文件
 integration_result.txt
 check_result.txt
