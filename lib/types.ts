@@ -34,6 +34,17 @@ export interface ImageAsset {
     | "other";
 }
 
+export type DocumentType = "pdf" | "docx" | "html";
+
+export interface DocumentAsset {
+  documentId: string;
+  name: string;
+  size: number;
+  type: DocumentType;
+  mimeType: string;
+  url: string;
+}
+
 export interface RegulationRef {
   regId: string;
   code: string;
@@ -79,6 +90,7 @@ export interface ScanResult {
   complianceScore: number;
   scoreGrade: ScoreGrade;
   images: ImageAsset[];
+  documents: DocumentAsset[];
   riskPoints: RiskPoint[];
   checklist: ChecklistItem[];
   generatedAt: string;

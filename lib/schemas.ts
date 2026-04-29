@@ -40,6 +40,17 @@ export const ImageAssetSchema = z.object({
     .optional(),
 });
 
+export const DocumentTypeSchema = z.enum(["pdf", "docx", "html"]);
+
+export const DocumentAssetSchema = z.object({
+  documentId: z.string().min(1),
+  name: z.string().min(1),
+  size: z.number().nonnegative(),
+  type: DocumentTypeSchema,
+  mimeType: z.string().min(1),
+  url: z.string().min(1),
+});
+
 export const RegulationRefSchema = z.object({
   regId: z.string().min(1),
   code: z.string().min(1),
@@ -85,6 +96,7 @@ export const ScanResultSchema = z.object({
   complianceScore: z.number().min(0).max(100),
   scoreGrade: ScoreGradeSchema,
   images: z.array(ImageAssetSchema),
+  documents: z.array(DocumentAssetSchema),
   riskPoints: z.array(RiskPointSchema),
   checklist: z.array(ChecklistItemSchema),
   generatedAt: z.string().datetime(),
@@ -124,4 +136,5 @@ export const StartScanRequestSchema = z.object({
   category: ProductCategorySchema.default("electronics"),
   markets: z.array(MarketSchema).min(1).default(["EU", "US"]),
   imageCount: z.number().int().min(1).max(8),
+  documentCount: z.number().int().min(0).max(5).default(0),
 });
