@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/test-results
 
 # next.js
 /.next/
@@ -44,3 +45,58 @@ public/uploads/
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ─── 合规语料库 ────────────────────────────────────────────────
+# 源文件（PDF/DOCX/HTML）不纳入版本控制
+data/全部法规/
+data/合规/
+data/corpus/eu/regulations/pdfs/
+data/corpus/eu/regulations/html/
+data/corpus/eu/products/
+data/corpus/eu/uk/
+data/corpus/us/
+data/corpus/cn/
+data/corpus/asia/
+data/corpus/middle_east/
+data/corpus/gcc/
+data/corpus/intl/
+data/corpus/reference/
+data/corpus/screenshot_pending/
+
+# processed JSON 由 build_corpus.py 生成，不纳入版本控制
+data/corpus/processed/
+data/corpus/manifest.json
+data/corpus/corpus_index.json
+data/corpus/quality_report.json
+
+# analysis/ 是生成产物，不纳入版本控制
+data/analysis/
+
+# Faiss 索引（由 build_faiss.py 生成，存储于 ASCII 路径）
+data/faiss/
+C:/temp/faiss_index/
+
+# 临时输出文件
+integration_result.txt
+check_result.txt
+
+# scripts/ 调试脚本（不纳入版本控制）
+scripts/debug_dense.py
+scripts/test_retrieval_only.py
+
+# ─── Python ──────────────────────────────────────────────────
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ─── Docker ──────────────────────────────────────────────────
+qdrant_storage/
+
+# ─── Embedding cache ─────────────────────────────────────────
+*.cache/
+embedding_cache/

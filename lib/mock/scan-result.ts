@@ -29,6 +29,24 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
         angleHint: "nameplate",
       },
     ],
+    documents: [
+      {
+        documentId: "doc_01",
+        name: "产品规格书.pdf",
+        size: 524288,
+        type: "pdf",
+        mimeType: "application/pdf",
+        url: "/mock-fixtures/spec.pdf",
+      },
+      {
+        documentId: "doc_02",
+        name: "CE认证证书.docx",
+        size: 262144,
+        type: "docx",
+        mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        url: "/mock-fixtures/ce-cert.docx",
+      },
+    ],
     riskPoints: [
       {
         riskId: "risk_01",
