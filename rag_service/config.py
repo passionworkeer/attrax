@@ -14,11 +14,10 @@ _os.environ["NO_PROXY"] = "*"
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    cohere_api_key: str = ""
+    # ModelScope (embedding fallback — only used if Ollama + local Qwen both unavailable)
     modelscope_api_key: str = ""
-    anthropic_api_key: str = ""
 
-    # mimoTalk API (primary multi-modal LLM)
+    # mimoTalk (primary LLM — required)
     mimotalk_api_key: str = ""
     mimotalk_base_url: str = "https://token-plan-sgp.xiaomimimo.com/anthropic/v1"
     mimotalk_model: str = "mimo-v2.5"
@@ -26,7 +25,6 @@ class Settings(BaseSettings):
     demo_mode: bool = False
 
     class Config:
-        # Load from rag_service/.env relative to this file
         env_file = str(Path(__file__).parent / ".env")
         extra = "ignore"
 
