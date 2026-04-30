@@ -39,18 +39,22 @@ class HybridRetriever:
         qdrant_client: Optional[object] = None,
         cohere_reranker_key: Optional[str] = None,
     ):
-        if embedder is not None:
-            self.embedder = embedder
-        elif LOCAL_MODEL_PATH.exists():
-            self.embedder = LocalEmbedder()
-            logger.info("Using LocalEmbedder (local GPU)")
-        else:
-            self.embedder = ModelScopeEmbedder()
-            logger.info("Using ModelScopeEmbedder (API)")
         self.bm25 = bm25
         self.faiss_retriever = faiss_retriever
         self.reranker_key = cohere_reranker_key or __import__("os").environ.get("COHERE_API_KEY", "")
+        self._chunks: list[dict] = []
         self._chunks_loaded = False
+
+        # Lazy embedder initialization (deferred to _get_embedder to avoid proxy issues)
+        self._embedder = embedder  # None = will be lazily initialized
+
+        # Auto-load chunks from FaissRetriever so retrieve() works without explicit load_chunks()
+        if faiss_retriever is not None and hasattr(faiss_retriever, "chunks") and faiss_retriever.chunks:
+            self._chunks = faiss_retriever.chunks
+            self._chunks_loaded = True
+            if self.bm25:
+                self.bm25.build_index(faiss_retriever.chunks)
+            logger.info(f"HybridRetriever: auto-loaded {len(faiss_retriever.chunks)} chunks from FaissRetriever")
 
     def load_chunks(self, chunks: list[dict]):
         """Load chunks into BM25 index."""
@@ -65,11 +69,31 @@ class HybridRetriever:
             return []
 
         try:
-            query_vec = self.embedder.embed_query(query)
+            embedder = self._get_embedder()
+            if embedder is None:
+                logger.warning("No embedder available, skipping dense search")
+                return []
+            query_vec = embedder.embed_query(query)
             return self.faiss_retriever.search(query_vec, top_k)
         except Exception as e:
             logger.warning(f"Dense search failed: {e}")
             return []
+
+    def _get_embedder(self):
+        """Lazily get or initialize embedder with proxy disabled."""
+        if self._embedder is not None:
+            return self._embedder
+
+        import os as _os
+        _os.environ.setdefault("NO_PROXY", "*")
+
+        if LOCAL_MODEL_PATH.exists():
+            self._embedder = LocalEmbedder()
+            logger.info("Using LocalEmbedder (local GPU)")
+        else:
+            self._embedder = ModelScopeEmbedder()
+            logger.info("Using ModelScopeEmbedder (API)")
+        return self._embedder
 
     def retrieve(
         self,

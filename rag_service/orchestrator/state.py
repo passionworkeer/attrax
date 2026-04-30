@@ -16,6 +16,7 @@ class GraphState(TypedDict, total=False):
     category: str
     markets: list[str]
     vision_result: dict
+    images: list[dict]  # [{"buffer": bytes, "mime_type": str}]
 
     # === Agent intermediate state ===
     # Annotated[list, operator.add] → multiple Send() results auto-merge
@@ -38,7 +39,8 @@ class GraphState(TypedDict, total=False):
 
 
 def initial_state(query: str, product: str, category: str,
-                  markets: list[str], vision_result: dict) -> GraphState:
+                  markets: list[str], vision_result: dict,
+                  images: list[dict] = None) -> GraphState:
     """Create initial GraphState."""
     return GraphState(
         query=query,
@@ -46,6 +48,7 @@ def initial_state(query: str, product: str, category: str,
         category=category,
         markets=markets,
         vision_result=vision_result,
+        images=images or [],
         sub_queries=[],
         documents=[],
         generation="",
