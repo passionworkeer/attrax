@@ -17,7 +17,6 @@ from config import settings
 from orchestrator.graph import run_compliance_graph
 from retrieval.faiss_retriever import FaissRetriever
 from retrieval.hybrid_retriever import HybridRetriever
-from retrieval.modelScope_embedder import ModelScopeEmbedder
 from retrieval.bm25_retriever import BM25Retriever
 from generate.report_generator import ReportGenerator
 from verify.citation_verifier import CitationVerifier
@@ -41,11 +40,6 @@ async def lifespan(app: FastAPI):
 
     logger.info("Starting rag-service...")
 
-    # Initialize embedder (requires MODELSCOPE_API_KEY)
-    embedder = ModelScopeEmbedder(api_key=settings.modelscope_api_key) if settings.modelscope_api_key else None
-    if not embedder or not settings.modelscope_api_key:
-        logger.warning("MODELSCOPE_API_KEY not set - dense retrieval will be skipped")
-
     # Initialize BM25 (no external dependency)
     bm25 = BM25Retriever()
 
@@ -60,9 +54,8 @@ async def lifespan(app: FastAPI):
     else:
         logger.info(f"Faiss index not found at {FAISS_INDEX_DIR}, run scripts/build_faiss.py first")
 
-    # Build HybridRetriever
+    # Build HybridRetriever (auto-selects LocalEmbedder or ModelScopeEmbedder)
     _retriever = HybridRetriever(
-        embedder=embedder,
         bm25=bm25,
         faiss_retriever=faiss_ret,
     )
