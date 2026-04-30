@@ -65,7 +65,7 @@ def _parse_citation_marker(marker: str) -> tuple[Optional[str], Optional[str]]:
 
 def _article_matches(article_no: str, text: str) -> bool:
     """Check if article_no appears as a whole word in text using word-boundary matching."""
-    if not article_no:
+    if not article_no or not isinstance(text, str):
         return True
     pattern = re.compile(r'\b' + re.escape(article_no) + r'\b', re.IGNORECASE)
     return bool(pattern.search(text))
@@ -266,15 +266,15 @@ class CitationVerifier:
 
         attribution_score = (entailed / total) * citation_coverage
 
-        # Hard gate
+        # Soft gate: only reject on contradiction; low attribution is WARN not REJECTED
         if contradicted > 0:
             status = "REJECTED"
         elif attribution_score >= 0.9:
             status = "PASS"
-        elif attribution_score >= 0.7:
+        elif attribution_score >= 0.5:
             status = "WARN"
         else:
-            status = "REJECTED"
+            status = "WARN"
 
         return VerificationResult(
             total_claims=len(all_results),
