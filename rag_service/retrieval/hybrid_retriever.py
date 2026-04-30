@@ -7,6 +7,7 @@ Combines: Dense (Faiss) + BM25 -> RRF Fusion -> Must Check -> Rerank
 import logging
 from typing import Optional
 
+from retrieval.local_embedder import LocalEmbedder, MODEL_PATH as LOCAL_MODEL_PATH
 from retrieval.modelScope_embedder import ModelScopeEmbedder
 from retrieval.bm25_retriever import BM25Retriever
 from retrieval.fusion import rrf_fuse
@@ -32,13 +33,20 @@ class HybridRetriever:
 
     def __init__(
         self,
-        embedder: Optional[ModelScopeEmbedder] = None,
+        embedder=None,
         bm25: Optional[BM25Retriever] = None,
         faiss_retriever: Optional[FaissRetriever] = None,
         qdrant_client: Optional[object] = None,
         cohere_reranker_key: Optional[str] = None,
     ):
-        self.embedder = embedder or ModelScopeEmbedder()
+        if embedder is not None:
+            self.embedder = embedder
+        elif LOCAL_MODEL_PATH.exists():
+            self.embedder = LocalEmbedder()
+            logger.info("Using LocalEmbedder (local GPU)")
+        else:
+            self.embedder = ModelScopeEmbedder()
+            logger.info("Using ModelScopeEmbedder (API)")
         self.bm25 = bm25
         self.faiss_retriever = faiss_retriever
         self.reranker_key = cohere_reranker_key or __import__("os").environ.get("COHERE_API_KEY", "")
