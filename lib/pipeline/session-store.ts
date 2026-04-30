@@ -4,13 +4,15 @@ declare global {
   var __scanStore: Map<string, ScanStatus> | undefined;
 }
 
-const store = globalThis.__scanStore ?? new Map<string, ScanStatus>();
-
-if (!globalThis.__scanStore) {
-  globalThis.__scanStore = store;
+function getStore(): Map<string, ScanStatus> {
+  if (!globalThis.__scanStore) {
+    globalThis.__scanStore = new Map();
+  }
+  return globalThis.__scanStore;
 }
 
 export function createSession(sessionId: string): ScanStatus {
+  const store = getStore();
   const session: ScanStatus = {
     sessionId,
     status: "processing",
@@ -27,6 +29,7 @@ export function createSession(sessionId: string): ScanStatus {
 }
 
 export function updateSession(sessionId: string, patch: Partial<ScanStatus>) {
+  const store = getStore();
   const current = store.get(sessionId);
   if (!current) {
     return;
@@ -36,5 +39,9 @@ export function updateSession(sessionId: string, patch: Partial<ScanStatus>) {
 }
 
 export function getSession(sessionId: string) {
-  return store.get(sessionId);
+  return getStore().get(sessionId);
+}
+
+export function clearStore() {
+  globalThis.__scanStore = new Map();
 }
