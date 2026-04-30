@@ -12,8 +12,6 @@ import {
   ChecklistItemSchema,
   ScanResultSchema,
   ScanStatusSchema,
-  RawRiskSchema,
-  VisionOutputSchema,
   StartScanRequestSchema,
 } from '@/lib/schemas'
 
@@ -233,6 +231,7 @@ describe('ScanResultSchema', () => {
       complianceScore: 45,
       scoreGrade: 'D' as const,
       images: [],
+      documents: [],
       riskPoints: [],
       checklist: [],
       generatedAt: '2026-04-27T10:00:05.000Z',
@@ -249,6 +248,7 @@ describe('ScanResultSchema', () => {
       complianceScore: 150,
       scoreGrade: 'D' as const,
       images: [],
+      documents: [],
       riskPoints: [],
       checklist: [],
       generatedAt: '2026-04-27T10:00:05.000Z',
@@ -282,6 +282,7 @@ describe('ScanStatusSchema', () => {
         complianceScore: 45,
         scoreGrade: 'D' as const,
         images: [],
+        documents: [],
         riskPoints: [],
         checklist: [],
         generatedAt: '2026-04-27T10:00:05.000Z',
@@ -304,7 +305,7 @@ describe('ScanStatusSchema', () => {
   it('rejects invalid status value', () => {
     const status = {
       sessionId: 'scan_01JXXXXX',
-      status: 'unknown' as any,
+      status: 'unknown' as any, // eslint-disable-line @typescript-eslint/no-explicit-any
       progress: 50,
       stageText: '测试',
     }

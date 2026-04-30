@@ -1,0 +1,95 @@
+{
+  "summary": {
+    "run_time": "2026-04-29T18:18:13.554072",
+    "total": 3,
+    "success_count": 3,
+    "elapsed_seconds": 0.01,
+    "mode": "dry-run",
+    "base_url": "http://localhost:8000",
+    "success_rate": "100.0%",
+    "avg_faithfulness": 0.0
+  },
+  "results": [
+    {
+      "id": "test_001",
+      "question": "出口欧盟的电子产品中，REACH法规对铅、镉、汞等重金属有哪些限制？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "no answer or docs"
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "details": "token overlap: 12/24"
+        },
+        "context_precision": {
+          "score": 0.0,
+          "details": "no docs retrieved"
+        },
+        "context_recall": {
+          "score": 0.0,
+          "details": "no ground truth or docs"
+        }
+      },
+      "elapsed": 0.01
+    },
+    {
+      "id": "test_002",
+      "question": "REACH附录XVII第63条对邻苯二甲酸盐有什么限制要求？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "no answer or docs"
+        },
+        "answer_relevancy": {
+          "score": 0.316,
+          "details": "token overlap: 6/19"
+        },
+        "context_precision": {
+          "score": 0.0,
+          "details": "no docs retrieved"
+        },
+        "context_recall": {
+          "score": 0.0,
+          "details": "no ground truth or docs"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_003",
+      "question": "化妆品出口欧盟需要符合REACH的哪些规定？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "no answer or docs"
+        },
+        "answer_relevancy": {
+          "score": 0.2,
+          "details": "token overlap: 3/15"
+        },
+        "context_precision": {
+          "score": 0.0,
+          "details": "no docs retrieved"
+        },
+        "context_recall": {
+          "score": 0.0,
+          "details": "no ground truth or docs"
+        }
+      },
+      "elapsed": 0.0
+    }
+  ]
+}

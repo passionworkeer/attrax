@@ -1,11 +1,9 @@
-import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { createSession, updateSession, getSession } from '@/lib/pipeline/session-store'
-import type { ScanStatus } from '@/lib/types'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { createSession, updateSession, getSession, clearStore } from '@/lib/pipeline/session-store'
 
 describe('Session Store', () => {
   beforeEach(() => {
-    // Reset the global store before each test
-    globalThis.__scanStore = new Map()
+    clearStore()
   })
 
   describe('createSession', () => {
