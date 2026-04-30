@@ -7,12 +7,12 @@ Combines: Dense (Faiss) + BM25 -> RRF Fusion -> Must Check -> Rerank
 import logging
 from typing import Optional
 
-from retrieval.local_embedder import LocalEmbedder, MODEL_PATH as LOCAL_MODEL_PATH
-from retrieval.modelScope_embedder import ModelScopeEmbedder
-from retrieval.bm25_retriever import BM25Retriever
-from retrieval.fusion import rrf_fuse
-from retrieval.must_check import apply_must_check
-from retrieval.faiss_retriever import FaissRetriever
+from rag_service.retrieval.local_embedder import LocalEmbedder, MODEL_PATH as LOCAL_MODEL_PATH
+from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
+from rag_service.retrieval.bm25_retriever import BM25Retriever
+from rag_service.retrieval.fusion import rrf_fuse
+from rag_service.retrieval.must_check import apply_must_check
+from rag_service.retrieval.faiss_retriever import FaissRetriever
 
 logger = logging.getLogger(__name__)
 

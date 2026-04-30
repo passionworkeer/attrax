@@ -1,7 +1,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from parser.docx_parser import parse_docx, get_document_properties
+from rag_service.parser.docx_parser import parse_docx, get_document_properties
 
 
 def test_parse_docx_integration():

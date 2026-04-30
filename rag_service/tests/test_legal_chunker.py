@@ -1,7 +1,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from chunker.legal_chunker import (
+from rag_service.chunker.legal_chunker import (
     detect_boundary, split_by_boundaries, estimate_tokens,
     build_prepend, chunk_document
 )

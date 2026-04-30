@@ -63,28 +63,26 @@ data/corpus/intl/
 data/corpus/reference/
 data/corpus/screenshot_pending/
 
-# processed/ JSON 和 manifest 纳入版本控制
-!data/corpus/processed/
-!data/corpus/manifest.json
-!data/corpus/corpus_index.json
-!data/corpus/README.md
+# processed JSON 由 build_corpus.py 生成，不纳入版本控制
+data/corpus/processed/
+data/corpus/manifest.json
+data/corpus/corpus_index.json
+data/corpus/quality_report.json
 
 # analysis/ 是生成产物，不纳入版本控制
 data/analysis/
 
-# Faiss 索引（build_faiss.py 生成，每次构建更新）
+# Faiss 索引（由 build_faiss.py 生成，存储于 ASCII 路径）
 data/faiss/
+C:/temp/faiss_index/
 
 # 临时输出文件
 integration_result.txt
 check_result.txt
 
-# scripts/ 中的一次性调试脚本（骨架工具保留）
-scripts/deep_check.py
-scripts/final_verify.py
-scripts/full_check.py
-scripts/fix_analysis_rest.py
-scripts/fix_document_analysis.py
+# scripts/ 调试脚本（不纳入版本控制）
+scripts/debug_dense.py
+scripts/test_retrieval_only.py
 
 # ─── Python ──────────────────────────────────────────────────
 .venv/
@@ -98,10 +96,6 @@ htmlcov/
 
 # ─── Docker ──────────────────────────────────────────────────
 qdrant_storage/
-
-# ─── API Keys ────────────────────────────────────────────────
-rag-service/.env
-!.env.example
 
 # ─── Embedding cache ─────────────────────────────────────────
 *.cache/
