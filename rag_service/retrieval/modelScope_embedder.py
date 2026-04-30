@@ -8,6 +8,11 @@ Uses ModelScope inference API with:
 - Chunk-level error isolation (zero-fill on permanent failure)
 """
 import os
+# Disable system proxy for ModelScope API calls
+os.environ.setdefault("HTTP_PROXY", "")
+os.environ.setdefault("HTTPS_PROXY", "")
+os.environ.setdefault("NO_PROXY", "*")
+
 import re
 import time
 import logging

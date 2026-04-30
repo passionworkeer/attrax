@@ -7,11 +7,25 @@ Wraps ReportGenerator and updates state with generation text.
 from rag_service.orchestrator.state import GraphState
 
 _generator_instance = None
+_is_injected = False
 
 
 def set_generator(generator):
-    global _generator_instance
+    global _generator_instance, _is_injected
     _generator_instance = generator
+    _is_injected = True
+
+
+def _get_generator():
+    """Get generator with lazy initialization."""
+    global _generator_instance, _is_injected
+    if _generator_instance is None and not _is_injected:
+        try:
+            from rag_service.generate.report_generator import ReportGenerator
+            _generator_instance = ReportGenerator(api_key=None)
+        except Exception:
+            pass
+    return _generator_instance
 
 
 def generator_node(state: GraphState) -> dict:
@@ -21,7 +35,9 @@ def generator_node(state: GraphState) -> dict:
     markets = state.get("markets", ["EU"])
     documents = state.get("documents", [])
 
-    if not _generator_instance:
+    generator = _get_generator()
+
+    if not generator:
         return {
             "generation": "错误：报告生成器未初始化",
             "agent_trace": state.get("agent_trace", []) + [{"node": "generator", "error": "no_generator"}],
@@ -31,7 +47,7 @@ def generator_node(state: GraphState) -> dict:
         generation = "错误：未找到合规信息。请确保语料库已加载。"
     else:
         try:
-            generation = _generator_instance.generate(
+            generation = generator.generate(
                 query=query,
                 product=product,
                 market=", ".join(markets),
@@ -42,6 +58,7 @@ def generator_node(state: GraphState) -> dict:
 
     trace_entry = {
         "node": "generate",
+        "provider": generator.provider if hasattr(generator, "provider") else "unknown",
         "chunks_count": len(documents),
         "generation_length": len(generation),
     }
