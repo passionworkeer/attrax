@@ -1,0 +1,635 @@
+{
+  "summary": {
+    "run_time": "2026-04-29T18:21:57.664334",
+    "total": 23,
+    "success_count": 23,
+    "elapsed_seconds": 0.01,
+    "mode": "dry-run",
+    "base_url": "http://localhost:8000",
+    "success_rate": "100.0%",
+    "avg_faithfulness": 0.0
+  },
+  "results": [
+    {
+      "id": "test_001",
+      "question": "出口欧盟的电子产品中，REACH法规对铅、镉、汞等重金属有哪些限制？",
+      "market": "EU",
+      "scan_status": "PASS",
+      "agent_trace": [],
+      "report": "蓝牙耳机出口欧盟须通过FCC认证(意图发射器)。EMC指令2014/30/EU要求辐射发射符合EN 55014-1，抗扰度符合EN 55014-2。建议进行预合规测试确保不超过传导发射限值。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.25,
+          "details": "token overlap: 6/24"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.01
+    },
+    {
+      "id": "test_002",
+      "question": "REACH附录XVII第63条对邻苯二甲酸盐有什么限制要求？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.316,
+          "details": "token overlap: 6/19"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_003",
+      "question": "化妆品出口欧盟需要符合REACH的哪些规定？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.133,
+          "details": "token overlap: 2/15"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_004",
+      "question": "REACH SVHC候选清单是什么，出口商需要注意什么？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "details": "token overlap: 0/14"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_005",
+      "question": "充电宝出口欧盟需要符合RoHS指令吗？主要限制哪些物质？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.238,
+          "details": "token overlap: 5/21"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "1/1 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_006",
+      "question": "RoHS指令与REACH法规的主要区别是什么？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.5,
+          "details": "token overlap: 6/12"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_007",
+      "question": "RoHS 3(指令2015/863)新增了哪四种邻苯二甲酸酯限制？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "details": "token overlap: 0/19"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "1/1 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_008",
+      "question": "欧盟通用产品安全法规(GPSR)对在线销售商品有哪些基本要求？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.048,
+          "details": "token overlap: 1/21"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_009",
+      "question": "出口欧盟的电子产品需要满足GPSR哪些电气安全要求？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.056,
+          "details": "token overlap: 1/18"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_010",
+      "question": "GPSR对儿童产品的警示标签有什么要求？",
+      "market": "EU",
+      "scan_status": "PASS",
+      "agent_trace": [],
+      "report": "蓝牙耳机出口欧盟须通过FCC认证(意图发射器)。EMC指令2014/30/EU要求辐射发射符合EN 55014-1，抗扰度符合EN 55014-2。建议进行预合规测试确保不超过传导发射限值。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.077,
+          "details": "token overlap: 1/13"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_011",
+      "question": "蓝牙耳机出口欧盟需要进行EMC测试吗？主要测试哪些项目？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "details": "token overlap: 0/20"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_012",
+      "question": "EMC指令和低电压指令(LVD)有什么关联，出口商需要同时满足吗？",
+      "market": "EU",
+      "scan_status": "PASS",
+      "agent_trace": [],
+      "report": "蓝牙耳机出口欧盟须通过FCC认证(意图发射器)。EMC指令2014/30/EU要求辐射发射符合EN 55014-1，抗扰度符合EN 55014-2。建议进行预合规测试确保不超过传导发射限值。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.25,
+          "details": "token overlap: 5/20"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_013",
+      "question": "扫地机器人出口欧盟的EMC测试标准是什么？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "details": "token overlap: 0/15"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_014",
+      "question": "出口欧盟的充电器需要符合低电压指令(LVD)吗？主要测试项目有哪些？",
+      "market": "EU",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.13,
+          "details": "token overlap: 3/23"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_015",
+      "question": "低于50V的电子设备出口欧盟是否需要满足LVD指令？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.056,
+          "details": "token overlap: 1/18"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_016",
+      "question": "儿童玩具出口欧盟需要同时满足REACH和GPSR的要求，应该如何准备合规文件？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.115,
+          "details": "token overlap: 3/26"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_017",
+      "question": "智能手表出口欧盟要满足GPSR和EMC两项法规，认证流程是什么？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.091,
+          "details": "token overlap: 2/22"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_018",
+      "question": "出口欧盟的无线音箱需要同时符合RoHS和EMC指令，常见违规点有哪些？",
+      "market": "EU",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.083,
+          "details": "token overlap: 2/24"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_019",
+      "question": "电子电气产品同时受REACH和RoHS管控，两者对有害物质的限制有何重叠和差异？",
+      "market": "EU",
+      "scan_status": "PASS",
+      "agent_trace": [],
+      "report": "蓝牙耳机出口欧盟须通过FCC认证(意图发射器)。EMC指令2014/30/EU要求辐射发射符合EN 55014-1，抗扰度符合EN 55014-2。建议进行预合规测试确保不超过传导发射限值。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.04,
+          "details": "token overlap: 1/25"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_020",
+      "question": "儿童玩具出口美国需要符合CPSC的哪些强制检测标准？",
+      "market": "US",
+      "scan_status": "PASS",
+      "agent_trace": [],
+      "report": "蓝牙耳机出口欧盟须通过FCC认证(意图发射器)。EMC指令2014/30/EU要求辐射发射符合EN 55014-1，抗扰度符合EN 55014-2。建议进行预合规测试确保不超过传导发射限值。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.25,
+          "details": "token overlap: 5/20"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_021",
+      "question": "蓝牙耳机出口美国需要通过FCC认证吗？认证类型如何选择？",
+      "market": "US",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.048,
+          "details": "token overlap: 1/21"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_022",
+      "question": "中国RoHS(电器电子产品有害物质限制使用管理办法)对电子信息产品有哪些限制？",
+      "market": "CN",
+      "scan_status": "WARN",
+      "agent_trace": [],
+      "report": "根据REACH法规(EC) No 1907/2006第67条及附件XVII，铅、镉、汞、六价铬不得超过0.1%(重量比)。含铅量超过0.1%的电子产品将被海关扣押，建议使用无铅焊料替代含铅焊料。此外，根据RoHS指令2011/65/EU，铅的限值为0.1%，镉为0.01%。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/3 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.375,
+          "details": "token overlap: 9/24"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "3/3 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    },
+    {
+      "id": "test_023",
+      "question": "哪些电子产品出口中国需要申请CCC认证？申请流程是什么？",
+      "market": "CN",
+      "scan_status": "REJECTED",
+      "agent_trace": [],
+      "report": "未找到足够的合规信息来回答此问题。",
+      "metrics": {
+        "faithfulness": {
+          "score": 0.0,
+          "details": "0/1 claims supported"
+        },
+        "answer_relevancy": {
+          "score": 0.0,
+          "details": "token overlap: 0/20"
+        },
+        "context_precision": {
+          "score": 1.0,
+          "details": "1/1 docs relevant"
+        },
+        "context_recall": {
+          "score": 1.0,
+          "details": "2/2 gt claims recalled"
+        }
+      },
+      "elapsed": 0.0
+    }
+  ]
+}
