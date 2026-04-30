@@ -10,31 +10,54 @@ from rag_service.orchestrator.state import GraphState
 
 # Global retriever instance (initialized once, shared across calls)
 _retriever_instance = None
+_is_injected = False
 
 
 def set_retriever(retriever):
     """Inject HybridRetriever from outside the graph."""
-    global _retriever_instance
+    global _retriever_instance, _is_injected
     _retriever_instance = retriever
+    _is_injected = True
+
+
+def _get_retriever():
+    """Get retriever with lazy initialization."""
+    global _retriever_instance, _is_injected
+    if _retriever_instance is None and not _is_injected:
+        # Lazy import to avoid circular dependency
+        try:
+            from rag_service.retrieval.hybrid_retriever import HybridRetriever
+            from rag_service.retrieval.faiss_retriever import FaissRetriever
+            from rag_service.retrieval.bm25_retriever import BM25Retriever
+
+            bm25 = BM25Retriever()
+            faiss = FaissRetriever.load(
+                "C:/temp/faiss_index/legal_chunks.index",
+                "C:/temp/faiss_index/legal_chunks_meta.json",
+            )
+            _retriever_instance = HybridRetriever(bm25=bm25, faiss_retriever=faiss)
+        except Exception:
+            pass
+    return _retriever_instance
 
 
 def _retrieve_single_market(query: str, market: str) -> list[dict]:
     """Retrieve for one market using the shared HybridRetriever."""
-    if _retriever_instance is None:
+    retriever = _get_retriever()
+    if retriever is None:
         return []
 
     try:
-        results = _retriever_instance.retrieve(
+        results = retriever.retrieve(
             query=query,
-            product_category="",  # Will be applied at graph level
+            product_category="",
             region=market,
             top_k=10,
         )
-        # Tag each result with market
         for r in results:
             r["market"] = market
         return results
-    except Exception as e:
+    except Exception:
         return []
 
 
@@ -44,10 +67,8 @@ def retriever_node(state: GraphState) -> dict:
     if not sub_queries:
         return {"documents": []}
 
-    # Use first sub-query for this node instance
     sq = sub_queries[0]
     results = _retrieve_single_market(sq["query"], sq["market"])
-
     return {"documents": results}
 
 
