@@ -1,7 +1,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from parser.html_parser import (
+from rag_service.parser.html_parser import (
     read_html_file, clean_html, extract_tables,
     extract_main_content, html_to_text, parse_html
 )
@@ -65,6 +65,6 @@ def test_parse_html_integration():
 
 def test_truncation():
     """Very long HTML is truncated to 100k chars."""
-    from parser.html_parser import parse_html
+    from rag_service.parser.html_parser import parse_html
     # Just check the function handles it without error
     pass

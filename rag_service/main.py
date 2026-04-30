@@ -7,27 +7,31 @@ GET /health
 """
 import os
 import logging
+from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
-from config import settings
-from orchestrator.graph import run_compliance_graph
-from retrieval.faiss_retriever import FaissRetriever
-from retrieval.hybrid_retriever import HybridRetriever
-from retrieval.bm25_retriever import BM25Retriever
-from generate.report_generator import ReportGenerator
-from verify.citation_verifier import CitationVerifier
+from rag_service.config import settings
+from rag_service.orchestrator.graph import run_compliance_graph
+from rag_service.retrieval.faiss_retriever import FaissRetriever
+from rag_service.retrieval.hybrid_retriever import HybridRetriever
+from rag_service.retrieval.bm25_retriever import BM25Retriever
+from rag_service.generate.report_generator import ReportGenerator
+from rag_service.verify.citation_verifier import CitationVerifier
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
-FAISS_INDEX_DIR = os.path.join(DATA_DIR, "faiss")
-CHILD_INDEX = os.path.join(FAISS_INDEX_DIR, "legal_chunks.index")
-CHILD_META = os.path.join(FAISS_INDEX_DIR, "legal_chunks_meta.json")
+_APP_ROOT = Path(__file__).parent.parent.resolve()
+
+# Use ASCII path to avoid Windows FAISS C-I/O issues with Chinese paths
+_FAISS_ASCII_DIR = Path("C:/temp/faiss_index")
+FAISS_INDEX_DIR = _FAISS_ASCII_DIR
+CHILD_INDEX = str(FAISS_INDEX_DIR / "legal_chunks.index")
+CHILD_META = str(FAISS_INDEX_DIR / "legal_chunks_meta.json")
 
 # Global retriever (initialized on startup)
 _retriever: Optional[HybridRetriever] = None
@@ -67,9 +71,9 @@ async def lifespan(app: FastAPI):
         logger.info(f"BM25 index built with {len(chunks)} chunks")
 
     # Inject into orchestrator nodes
-    from orchestrator.nodes import retriever as retriever_node
-    from orchestrator.nodes import generator
-    from orchestrator.nodes import verifier
+    from rag_service.orchestrator.nodes import retriever as retriever_node
+    from rag_service.orchestrator.nodes import generator
+    from rag_service.orchestrator.nodes import verifier
     retriever_node.set_retriever(_retriever)
     generator.set_generator(ReportGenerator(api_key=settings.anthropic_api_key) if settings.anthropic_api_key else None)
     verifier.set_verifier(CitationVerifier())

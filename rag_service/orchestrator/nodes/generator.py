@@ -4,7 +4,7 @@ generator.py - Report generation node
 
 Wraps ReportGenerator and updates state with generation text.
 """
-from orchestrator.state import GraphState
+from rag_service.orchestrator.state import GraphState
 
 _generator_instance = None
 

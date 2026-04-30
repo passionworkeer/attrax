@@ -10,14 +10,14 @@ Complete agentic RAG graph with:
 """
 from langgraph.graph import StateGraph, END
 from langgraph.types import Send
-from orchestrator.state import GraphState, initial_state
+from rag_service.orchestrator.state import GraphState, initial_state
 
-from orchestrator.nodes.query_planner import query_planner_node
-from orchestrator.nodes.retriever import fan_out_markets, retriever_node
-from orchestrator.nodes.synthesis import synthesis_node
-from orchestrator.nodes.verifier import verifier_node, should_regenerate
-from orchestrator.nodes.refiner import refiner_node
-from orchestrator.nodes.generator import generator_node
+from rag_service.orchestrator.nodes.query_planner import query_planner_node
+from rag_service.orchestrator.nodes.retriever import fan_out_markets, retriever_node
+from rag_service.orchestrator.nodes.synthesis import synthesis_node
+from rag_service.orchestrator.nodes.verifier import verifier_node, should_regenerate
+from rag_service.orchestrator.nodes.refiner import refiner_node
+from rag_service.orchestrator.nodes.generator import generator_node
 
 
 def build_compliance_graph() -> StateGraph:

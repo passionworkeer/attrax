@@ -6,7 +6,7 @@ Uses LangGraph Send() to fan out per-market retrieval.
 """
 from typing import Optional
 from langgraph.types import Send
-from orchestrator.state import GraphState
+from rag_service.orchestrator.state import GraphState
 
 # Global retriever instance (initialized once, shared across calls)
 _retriever_instance = None

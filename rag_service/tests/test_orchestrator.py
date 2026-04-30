@@ -1,10 +1,10 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from orchestrator.state import GraphState, initial_state
-from orchestrator.nodes.query_planner import query_planner_node, expand_synonyms, decompose_markets
-from orchestrator.nodes.synthesis import synthesis_node
-from orchestrator.nodes.refiner import refiner_node
+from rag_service.orchestrator.state import GraphState, initial_state
+from rag_service.orchestrator.nodes.query_planner import query_planner_node, expand_synonyms, decompose_markets
+from rag_service.orchestrator.nodes.synthesis import synthesis_node
+from rag_service.orchestrator.nodes.refiner import refiner_node
 
 
 def test_graph_state_initialization():

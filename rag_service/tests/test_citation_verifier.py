@@ -1,7 +1,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from verify.citation_verifier import (
+from rag_service.verify.citation_verifier import (
     CitationVerifier, VerificationResult, ClaimResult
 )
 

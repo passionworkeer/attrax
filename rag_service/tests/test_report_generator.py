@@ -2,7 +2,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from generate.report_generator import ReportGenerator
+from rag_service.generate.report_generator import ReportGenerator
 
 
 def test_import():

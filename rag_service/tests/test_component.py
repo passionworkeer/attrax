@@ -27,7 +27,7 @@ class TestChunkerWithRealData:
                 if len(raw) < 1000:
                     continue
 
-                from chunker.legal_chunker import chunk_document
+                from rag_service.chunker.legal_chunker import chunk_document
                 result = chunk_document(raw, doc_name="REACH", region="EU")
 
                 assert "child_chunks" in result
@@ -55,7 +55,7 @@ class TestHybridRetrieverWithBM25:
 
     def test_bm25_search_returns_scored_results(self):
         """BM25 search returns results with scores."""
-        from retrieval.bm25_retriever import BM25Retriever
+        from rag_service.retrieval.bm25_retriever import BM25Retriever
 
         chunks = [
             {"id": "1", "content": "REACH Article 22 restricts lead content in electronic products.", "doc_name": "REACH"},
@@ -77,7 +77,7 @@ class TestHybridRetrieverWithBM25:
 
     def test_bm25_chinese_query(self):
         """BM25 handles Chinese queries correctly."""
-        from retrieval.bm25_retriever import BM25Retriever
+        from rag_service.retrieval.bm25_retriever import BM25Retriever
 
         chunks = [
             {"id": "1", "content": "REACH法规限制电子产品的铅含量。", "doc_name": "REACH"},
@@ -97,7 +97,7 @@ class TestFusionPipeline:
 
     def test_rrf_merges_dense_and_bm25(self):
         """RRF fusion correctly merges two result lists."""
-        from retrieval.fusion import rrf_fuse
+        from rag_service.retrieval.fusion import rrf_fuse
 
         dense = [
             {"id": "1", "score": 0.95, "doc_name": "REACH", "content": "Article 22 lead", "article_no": "22", "region": "EU"},
@@ -123,13 +123,13 @@ class TestFusionPipeline:
 
     def test_rrf_empty_inputs(self):
         """RRF handles empty input lists."""
-        from retrieval.fusion import rrf_fuse
+        from rag_service.retrieval.fusion import rrf_fuse
         result = rrf_fuse([], [], k=25)
         assert result == []
 
     def test_rrf_single_list(self):
         """RRF works with only one list."""
-        from retrieval.fusion import rrf_fuse
+        from rag_service.retrieval.fusion import rrf_fuse
         dense = [{"id": "1", "score": 0.9, "doc_name": "REACH", "content": "...", "article_no": "", "region": "EU"}]
         result = rrf_fuse(dense, [], k=25)
         assert len(result) == 1
@@ -140,7 +140,7 @@ class TestCitationVerifierIntegration:
 
     def test_verify_with_real_citation_format(self):
         """Verify a report with properly formatted citations."""
-        from verify.citation_verifier import CitationVerifier
+        from rag_service.verify.citation_verifier import CitationVerifier
 
         verifier = CitationVerifier()
 
@@ -165,7 +165,7 @@ class TestCitationVerifierIntegration:
 
     def test_detects_fabricated_citation(self):
         """System detects and blocks fabricated citations."""
-        from verify.citation_verifier import CitationVerifier
+        from rag_service.verify.citation_verifier import CitationVerifier
 
         verifier = CitationVerifier()
 
@@ -182,7 +182,7 @@ class TestCitationVerifierIntegration:
 
     def test_multi_market_chunks(self):
         """Verifier handles chunks from multiple markets."""
-        from verify.citation_verifier import CitationVerifier
+        from rag_service.verify.citation_verifier import CitationVerifier
 
         verifier = CitationVerifier()
 
@@ -202,8 +202,8 @@ class TestGraphStateFlow:
 
     def test_query_planner_creates_sub_queries(self):
         """QueryPlanner creates one sub-query per market."""
-        from orchestrator.state import initial_state
-        from orchestrator.nodes.query_planner import query_planner_node
+        from rag_service.orchestrator.state import initial_state
+        from rag_service.orchestrator.nodes.query_planner import query_planner_node
 
         state = initial_state(
             query="充电宝出口欧盟需要哪些认证？",
@@ -221,8 +221,8 @@ class TestGraphStateFlow:
 
     def test_synthesis_deduplicates_across_markets(self):
         """Synthesis deduplicates results from multiple markets."""
-        from orchestrator.state import GraphState
-        from orchestrator.nodes.synthesis import synthesis_node
+        from rag_service.orchestrator.state import GraphState
+        from rag_service.orchestrator.nodes.synthesis import synthesis_node
 
         docs = [
             {"id": "reach_22", "market": "EU", "doc_name": "REACH", "score": 0.9},
@@ -239,8 +239,8 @@ class TestGraphStateFlow:
 
     def test_refiner_expands_missing_regulations(self):
         """QueryRefiner extracts regulatory terms from missing citations."""
-        from orchestrator.state import GraphState
-        from orchestrator.nodes.refiner import refiner_node
+        from rag_service.orchestrator.state import GraphState
+        from rag_service.orchestrator.nodes.refiner import refiner_node
 
         state = GraphState(
             query="充电宝认证",
@@ -260,8 +260,8 @@ class TestGraphStateFlow:
 
     def test_should_regenerate_routing(self):
         """should_regenerate correctly routes based on state."""
-        from orchestrator.nodes.verifier import should_regenerate
-        from orchestrator.state import GraphState
+        from rag_service.orchestrator.nodes.verifier import should_regenerate
+        from rag_service.orchestrator.state import GraphState
 
         # PASS → end
         state = GraphState(generation_score="supported", loop_count=0, max_attempts=2, missing_citations=[])
@@ -281,7 +281,7 @@ class TestMustCheckIntegration:
 
     def test_electronics_injects_rohs(self):
         """Electronics category triggers RoHS must-check."""
-        from retrieval.must_check import apply_must_check
+        from rag_service.retrieval.must_check import apply_must_check
 
         results = [
             {"id": "1", "doc_name": "REACH", "region": "EU", "score": 0.9},
@@ -298,14 +298,14 @@ class TestMustCheckIntegration:
 
     def test_toy_triggers_en71(self):
         """Toy category triggers EN 71 must-check."""
-        from retrieval.must_check import get_must_check_regulations
+        from rag_service.retrieval.must_check import get_must_check_regulations
 
         regs = get_must_check_regulations("toy")
         assert len(regs) > 0
 
     def test_unknown_category_no_injection(self):
         """Unknown category doesn't inject anything."""
-        from retrieval.must_check import apply_must_check
+        from rag_service.retrieval.must_check import apply_must_check
 
         results = [{"id": "1", "doc_name": "REACH", "region": "EU", "score": 0.9}]
         all_chunks = []

@@ -27,60 +27,60 @@ def test_graph_imports():
 
 
 def test_hybrid_retriever_instantiates():
-    from retrieval.hybrid_retriever import HybridRetriever
-    from retrieval.cohere_embedder import CohereEmbedder
-    from retrieval.bm25_retriever import BM25Retriever
+    from rag_service.retrieval.hybrid_retriever import HybridRetriever
+    from rag_service.retrieval.cohere_embedder import CohereEmbedder
+    from rag_service.retrieval.bm25_retriever import BM25Retriever
     hr = HybridRetriever()
     assert hr is not None
 
 
 def test_citation_verifier_instantiates():
-    from verify.citation_verifier import CitationVerifier
+    from rag_service.verify.citation_verifier import CitationVerifier
     v = CitationVerifier()
     assert v is not None
 
 
 def test_report_generator_instantiates():
-    from generate.report_generator import ReportGenerator
+    from rag_service.generate.report_generator import ReportGenerator
     g = ReportGenerator()
     assert g is not None
 
 
 def test_legal_chunker_imports():
-    from chunker.legal_chunker import chunk_document, detect_boundary
+    from rag_service.chunker.legal_chunker import chunk_document, detect_boundary
     result = detect_boundary("Article 22 Restrictions")
     assert result is not None
     assert result["type"] == "EU"
 
 
 def test_parser_imports():
-    from parser.html_parser import parse_html, clean_html
-    from parser.docx_parser import parse_docx
+    from rag_service.parser.html_parser import parse_html, clean_html
+    from rag_service.parser.docx_parser import parse_docx
     assert callable(parse_html)
     assert callable(clean_html)
     assert callable(parse_docx)
 
 
 def test_fusion_imports():
-    from retrieval.fusion import rrf_fuse
+    from rag_service.retrieval.fusion import rrf_fuse
     result = rrf_fuse([], [], k=25)
     assert isinstance(result, list)
 
 
 def test_must_check_imports():
-    from retrieval.must_check import get_must_check_regulations, apply_must_check
+    from rag_service.retrieval.must_check import get_must_check_regulations, apply_must_check
     regs = get_must_check_regulations("electronics")
     assert len(regs) > 0
 
 
 def test_fastapi_app_imports():
-    from main import app
+    from rag_service.main import app
     assert app is not None
     assert app.title == "火鹰合规 RAG Service"
 
 
 def test_all_nodes_import():
-    from orchestrator.nodes import (
+    from rag_service.orchestrator.nodes import (
         query_planner_node, retriever_node, synthesis_node,
         verifier_node, refiner_node, generator_node,
     )
@@ -95,7 +95,7 @@ def test_bm25_tokenization():
 
 
 def test_query_planner_expands():
-    from orchestrator.nodes.query_planner import expand_synonyms
+    from rag_service.orchestrator.nodes.query_planner import expand_synonyms
     result = expand_synonyms("充电宝CE标识")
     assert "充电宝" in result
     assert len(result) > len("充电宝CE标识")

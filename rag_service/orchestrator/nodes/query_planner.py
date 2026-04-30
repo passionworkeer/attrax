@@ -7,8 +7,8 @@ Handles:
 2. Multi-market decomposition (LLM or rule fallback)
 3. Must-check regulation preloading
 """
-from orchestrator.state import GraphState
-from retrieval.must_check import get_must_check_regulations
+from rag_service.orchestrator.state import GraphState
+from rag_service.retrieval.must_check import get_must_check_regulations
 
 SYNONYM_MAP = {
     "充电宝": ["移动电源", "power bank", "便携式充电器", "USB charger", "移动充电器"],

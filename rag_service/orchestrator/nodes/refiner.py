@@ -5,7 +5,7 @@ refiner.py - Query refinement node with HyDE
 When citations are insufficient, refine the query and re-retrieve.
 """
 import re
-from orchestrator.state import GraphState
+from rag_service.orchestrator.state import GraphState
 
 
 def refiner_node(state: GraphState) -> dict:

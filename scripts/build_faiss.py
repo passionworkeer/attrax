@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger(__name__)
 
 PROCESSED_DIR = Path("data/corpus/processed")
-FAISS_DIR = Path("data/faiss")
+FAISS_DIR = Path("C:/temp/faiss_index")
 BATCH_SIZE = 1
 
 

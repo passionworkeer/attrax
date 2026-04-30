@@ -5,7 +5,7 @@ synthesis.py - Result synthesis node
 Merges and deduplicates chunks from multiple markets.
 Applies must_check regulation injection.
 """
-from orchestrator.state import GraphState
+from rag_service.orchestrator.state import GraphState
 
 
 def synthesis_node(state: GraphState) -> dict:

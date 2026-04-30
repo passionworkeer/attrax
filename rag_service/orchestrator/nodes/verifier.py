@@ -4,8 +4,8 @@ verifier.py - Citation verification node
 
 Wraps CitationVerifier and updates state with generation_score + missing_citations.
 """
-from orchestrator.state import GraphState
-from verify.citation_verifier import CitationVerifier
+from rag_service.orchestrator.state import GraphState
+from rag_service.verify.citation_verifier import CitationVerifier
 
 
 _verifier_instance = None

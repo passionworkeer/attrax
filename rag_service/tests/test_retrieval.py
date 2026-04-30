@@ -1,9 +1,9 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from retrieval.fusion import rrf_fuse, normalize_scores
-from retrieval.bm25_retriever import BM25Retriever
-from retrieval.must_check import get_must_check_regulations, apply_must_check
+from rag_service.retrieval.fusion import rrf_fuse, normalize_scores
+from rag_service.retrieval.bm25_retriever import BM25Retriever
+from rag_service.retrieval.must_check import get_must_check_regulations, apply_must_check
 
 
 def test_rrf_fuse_ranking():
