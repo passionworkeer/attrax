@@ -13,17 +13,15 @@ if not exist ".venv\Scripts\python.exe" (
 )
 
 REM Check .env
-if not exist "rag-service\.env" (
-    echo WARNING: rag-service\.env not found.
-    echo Copy rag-service\.env.example to rag-service\.env and add your API keys.
+if not exist "rag_service\.env" (
+    echo WARNING: rag_service\.env not found.
+    echo Copy rag_service\.env.example to rag_service\.env and add your API keys.
 )
 
-REM Check Qdrant
-curl -s http://localhost:6333/healthz > nul 2>&1
-if errorlevel 1 (
-    echo WARNING: Qdrant is not running.
-    echo To start Qdrant:
-    echo   docker run -d --name qdrant -p 6333:6333 -p 6334:6334 qdrant/qdrant
+REM Check FAISS index
+if not exist "C:\temp\faiss_index\legal_chunks.index" (
+    echo WARNING: FAISS index not found at C:\temp\faiss_index\
+    echo Run scripts\build_faiss.py to build the index first.
     echo.
 )
 

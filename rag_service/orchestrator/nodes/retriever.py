@@ -21,23 +21,30 @@ def set_retriever(retriever):
 
 
 def _get_retriever():
-    """Get retriever with lazy initialization."""
+    """Get retriever with lazy initialization. Ensures chunks are loaded."""
     global _retriever_instance, _is_injected
-    if _retriever_instance is None and not _is_injected:
-        # Lazy import to avoid circular dependency
+    if _retriever_instance is not None:
+        return _retriever_instance
+
+    if not _is_injected:
         try:
             from rag_service.retrieval.hybrid_retriever import HybridRetriever
             from rag_service.retrieval.faiss_retriever import FaissRetriever
             from rag_service.retrieval.bm25_retriever import BM25Retriever
 
-            bm25 = BM25Retriever()
             faiss = FaissRetriever.load(
                 "C:/temp/faiss_index/legal_chunks.index",
                 "C:/temp/faiss_index/legal_chunks_meta.json",
             )
+            bm25 = BM25Retriever()
             _retriever_instance = HybridRetriever(bm25=bm25, faiss_retriever=faiss)
+            # CRITICAL: load chunks into BM25 + HybridRetriever
+            chunks = faiss.chunks if faiss else []
+            if chunks:
+                _retriever_instance.load_chunks(chunks)
         except Exception:
             pass
+
     return _retriever_instance
 
 

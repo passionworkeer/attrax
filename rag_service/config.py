@@ -14,7 +14,7 @@ _os.environ["NO_PROXY"] = "*"
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    # ModelScope (embedding fallback — only used if Ollama + local Qwen both unavailable)
+    # ModelScope (embedding — Qwen3-Embedding-0.6B via API)
     modelscope_api_key: str = ""
 
     # mimoTalk (primary LLM — required)

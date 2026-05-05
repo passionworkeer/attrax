@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 DIM = 1024
 MAX_TEXT_LEN = 8000
-MIN_TEXT_LEN = 5  # Queries can be short; lower threshold for Chinese
+MIN_TEXT_LEN = 1  # Accept even single characters for short queries
 
 
 def clean_text(text: str) -> str:
@@ -89,6 +89,7 @@ class ModelScopeEmbedder:
                     model=self.MODEL,
                     input=cleaned,
                     encoding_format="float",
+                    timeout=30.0,  # 30s timeout per call
                 )
                 return resp.data[0].embedding
             except Exception as e:

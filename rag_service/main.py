@@ -26,7 +26,6 @@ from pydantic import BaseModel
 
 from rag_service.config import settings
 from rag_service.orchestrator.graph import run_compliance_graph
-from rag_service.orchestrator.graph import run_compliance_graph
 from rag_service.retrieval.faiss_retriever import FaissRetriever
 from rag_service.retrieval.hybrid_retriever import HybridRetriever
 from rag_service.retrieval.bm25_retriever import BM25Retriever
@@ -123,7 +122,7 @@ async def scan(req: ScanRequest):
     if settings.demo_mode:
         return ScanResponse(
             status="WARN",
-            report="DEMO MODE: 请配置 COHERE_API_KEY 和 ANTHROPIC_API_KEY 以启用真实服务。",
+            report="DEMO MODE: 请配置 MIMOTALK_API_KEY 以启用真实服务。",
             agent_trace=[{"node": "demo", "message": "demo mode active"}],
             loop_count=0,
         )
