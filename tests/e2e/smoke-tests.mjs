@@ -41,7 +41,7 @@ async function runSmokeTests() {
     await page.goto(`${BASE_URL}/upload`);
     await page.waitForSelector('h1');
     const title = await page.textContent('h1');
-    if (!title.includes('选择产品图片')) throw new Error('Upload page title not found');
+    if (!title.includes('上传产品资料')) throw new Error('Upload page title not found');
   });
 
   await test('Demo result page loads', async () => {
@@ -72,10 +72,11 @@ async function runSmokeTests() {
 
   await test('Can navigate to upload page', async () => {
     await page.goto(BASE_URL);
+    await page.waitForSelector('a:has-text("开始扫描")');
     await page.click('a:has-text("开始扫描")');
-    await page.waitForURL(/\/upload/);
+    await page.waitForURL(/\/upload/, { timeout: 10000 });
     const h1 = await page.textContent('h1');
-    if (!h1.includes('选择产品图片')) throw new Error('Navigation failed');
+    if (!h1.includes('上传产品资料')) throw new Error('Navigation failed');
   });
 
   await test('Can navigate to demo result', async () => {
@@ -90,14 +91,15 @@ async function runSmokeTests() {
 
   await test('Upload page has file input', async () => {
     await page.goto(`${BASE_URL}/upload`);
-    const input = await page.locator('input[type="file"]');
+    const input = await page.locator('input[type="file"]').first();
     if (!await input.isVisible()) throw new Error('File input not found');
   });
 
-  await test('Upload page shows selected file count', async () => {
+  await test('Upload page shows file prompt when empty', async () => {
     await page.goto(`${BASE_URL}/upload`);
-    const counter = await page.locator('text=已选择 0 张图片');
-    if (!await counter.isVisible()) throw new Error('File counter not found');
+    // When no files: shows "请上传至少 1 张图片"
+    const prompt = await page.locator('text=请上传至少 1 张图片');
+    if (!await prompt.isVisible()) throw new Error('File prompt not found');
   });
 
   await test('Upload page has submit button', async () => {
