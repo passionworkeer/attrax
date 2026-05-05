@@ -1,0 +1,769 @@
+{
+  "version": "1.0",
+  "created": "2026-04-29",
+  "description": "attrax 火鹰合规 法规语料库整理清单",
+  "summary": {
+    "total_files": 94,
+    "total_pdfs": 47,
+    "total_docx": 10,
+    "total_html": 37,
+    "by_region": {
+      "eu/regulations/pdfs": {
+        "name": "欧盟法规（官方PDF）",
+        "total": 18,
+        "pdfs": 18,
+        "docx": 0,
+        "html": 0
+      },
+      "eu/regulations/html": {
+        "name": "欧盟法规（解读HTML）",
+        "total": 6,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 6
+      },
+      "eu/products": {
+        "name": "欧盟产品合规分析",
+        "total": 9,
+        "pdfs": 1,
+        "docx": 8,
+        "html": 0
+      },
+      "eu/uk": {
+        "name": "英国法规",
+        "total": 1,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 1
+      },
+      "us": {
+        "name": "美国法规",
+        "total": 5,
+        "pdfs": 4,
+        "docx": 0,
+        "html": 1
+      },
+      "cn": {
+        "name": "中国法规",
+        "total": 11,
+        "pdfs": 1,
+        "docx": 0,
+        "html": 10
+      },
+      "asia/malaysia": {
+        "name": "马来西亚法规",
+        "total": 2,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 2
+      },
+      "asia/thailand": {
+        "name": "泰国法规",
+        "total": 1,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 1
+      },
+      "asia/singapore": {
+        "name": "新加坡法规",
+        "total": 3,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 3
+      },
+      "asia/indonesia": {
+        "name": "印度尼西亚法规",
+        "total": 4,
+        "pdfs": 3,
+        "docx": 0,
+        "html": 1
+      },
+      "asia/vietnam": {
+        "name": "越南法规",
+        "total": 5,
+        "pdfs": 2,
+        "docx": 0,
+        "html": 3
+      },
+      "middle_east/saudi": {
+        "name": "沙特阿拉伯法规",
+        "total": 4,
+        "pdfs": 1,
+        "docx": 0,
+        "html": 3
+      },
+      "middle_east/uae": {
+        "name": "阿联酋法规",
+        "total": 3,
+        "pdfs": 1,
+        "docx": 0,
+        "html": 2
+      },
+      "gcc": {
+        "name": "海湾国家法规",
+        "total": 1,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 1
+      },
+      "intl/wipo": {
+        "name": "WIPO国际条约",
+        "total": 3,
+        "pdfs": 2,
+        "docx": 0,
+        "html": 1
+      },
+      "intl/un": {
+        "name": "联合国法规",
+        "total": 2,
+        "pdfs": 0,
+        "docx": 0,
+        "html": 2
+      },
+      "reference": {
+        "name": "参考清单文档",
+        "total": 5,
+        "pdfs": 3,
+        "docx": 2,
+        "html": 0
+      },
+      "screenshot_pending": {
+        "name": "待OCR截图（暂不处理）",
+        "total": 11,
+        "pdfs": 11,
+        "docx": 0,
+        "html": 0
+      }
+    }
+  },
+  "files": [
+    {
+      "region": "eu/regulations/pdfs",
+      "files": [
+        {
+          "filename": "AI_Act_(EU)_2024-1689_人工智能法.pdf",
+          "type": "pdf",
+          "size_mb": 2.46
+        },
+        {
+          "filename": "Blue_Guide_2022_欧盟产品规则实施指南.pdf",
+          "type": "pdf",
+          "size_mb": 2.69
+        },
+        {
+          "filename": "CRD_2011-83-EU_消费者权益指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.89
+        },
+        {
+          "filename": "Decision_768-2008-EC_合格评定程序参考条款.pdf",
+          "type": "pdf",
+          "size_mb": 0.23
+        },
+        {
+          "filename": "DMA_(EU)_2022-1925_数字市场法.pdf",
+          "type": "pdf",
+          "size_mb": 1.06
+        },
+        {
+          "filename": "DSA_(EU)_2022-2065_数字服务法.pdf",
+          "type": "pdf",
+          "size_mb": 1.6
+        },
+        {
+          "filename": "EMC_2014-30-EU_电磁兼容指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.88
+        },
+        {
+          "filename": "GDPR_(EU)_2016-679_通用数据保护条例.pdf",
+          "type": "pdf",
+          "size_mb": 0.94
+        },
+        {
+          "filename": "GPSR_(EU)_2023-988.pdf",
+          "type": "pdf",
+          "size_mb": 0.95
+        },
+        {
+          "filename": "LVD_2014-35-EU_低电压指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.8
+        },
+        {
+          "filename": "PLD_85-374-EEC_产品责任指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.56
+        },
+        {
+          "filename": "REACH_(EC)_1907-2006_化学品注册评估授权限制.pdf",
+          "type": "pdf",
+          "size_mb": 1.78
+        },
+        {
+          "filename": "RED_2014-53-EU_无线电设备指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.63
+        },
+        {
+          "filename": "Regulation_(EC)_765-2008_市场监督合格评定框架.pdf",
+          "type": "pdf",
+          "size_mb": 0.16
+        },
+        {
+          "filename": "Regulation_(EU)_2019-1020_市场监督与产品合规.pdf",
+          "type": "pdf",
+          "size_mb": 0.62
+        },
+        {
+          "filename": "RoHS_2011-65-EU_有害物质限制指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.87
+        },
+        {
+          "filename": "UCPD_2005-29-EC_不公平商业行为指令.pdf",
+          "type": "pdf",
+          "size_mb": 0.14
+        },
+        {
+          "filename": "玩具安全法规_(EC)_2009-48.pdf",
+          "type": "pdf",
+          "size_mb": 0.97
+        }
+      ],
+      "total": 18,
+      "pdfs": 18,
+      "html": 0,
+      "docx": 0
+    },
+    {
+      "region": "eu/regulations/html",
+      "files": [
+        {
+          "filename": "欧盟VAT电商IOSS和OSS一站式服务解读.html",
+          "type": "html",
+          "size_mb": 0.22
+        },
+        {
+          "filename": "欧盟《Omnibus指令》（Directive EU 2019_2161）解读.html",
+          "type": "html",
+          "size_mb": 0.3
+        },
+        {
+          "filename": "欧盟《工作时间指令》（Directive 2003_88_EC）.html",
+          "type": "html",
+          "size_mb": 0.08
+        },
+        {
+          "filename": "欧盟《新电池法规》（Regulation EU 2023_1542）解读.html",
+          "type": "html",
+          "size_mb": 0.09
+        },
+        {
+          "filename": "欧盟外资审查框架（Regulation EU 2021_821）.html",
+          "type": "html",
+          "size_mb": 0.69
+        },
+        {
+          "filename": "欧盟外资审查框架（USSC FDI Screening 研究报告）.html",
+          "type": "html",
+          "size_mb": 0.69
+        }
+      ],
+      "total": 6,
+      "pdfs": 0,
+      "html": 6,
+      "docx": 0
+    },
+    {
+      "region": "eu/products",
+      "files": [
+        {
+          "filename": "2026年通用场景产品出海欧美（欧盟+美国）合规要求全指南.pdf",
+          "type": "pdf",
+          "size_mb": 0.47
+        },
+        {
+          "filename": "乒乓球拍欧盟合规成本与利润.docx",
+          "type": "docx",
+          "size_mb": 2.91
+        },
+        {
+          "filename": "欧盟乒乓球拍合规性分析.docx",
+          "type": "docx",
+          "size_mb": 0.17
+        },
+        {
+          "filename": "欧盟合规充电宝成本与利润分析.docx",
+          "type": "docx",
+          "size_mb": 2.92
+        },
+        {
+          "filename": "欧盟合规充电宝零件要求.docx",
+          "type": "docx",
+          "size_mb": 2.91
+        },
+        {
+          "filename": "欧盟合规充电宝零件要求_副本.docx",
+          "type": "docx",
+          "size_mb": 2.91
+        },
+        {
+          "filename": "欧美产品出海合规要求.docx",
+          "type": "docx",
+          "size_mb": 2.91
+        },
+        {
+          "filename": "表格-乒乓球拍合规成本与风险分析.docx",
+          "type": "docx",
+          "size_mb": 2.88
+        },
+        {
+          "filename": "表格-欧盟充电宝合规成本与风险.docx",
+          "type": "docx",
+          "size_mb": 2.88
+        }
+      ],
+      "total": 9,
+      "pdfs": 1,
+      "html": 0,
+      "docx": 8
+    },
+    {
+      "region": "eu/uk",
+      "files": [
+        {
+          "filename": "英国《国家安全与投资法》（NSI Act 2021）全文.html",
+          "type": "html",
+          "size_mb": 0.12
+        }
+      ],
+      "total": 1,
+      "pdfs": 0,
+      "html": 1,
+      "docx": 0
+    },
+    {
+      "region": "us",
+      "files": [
+        {
+          "filename": "加州《适龄设计规范法案》（ADCA，AB 2273）官方解读.html",
+          "type": "html",
+          "size_mb": 0.11
+        },
+        {
+          "filename": "美国《INFORM消费者法案》（INFORM Consumers Act，S.936 117th Congress）.pdf",
+          "type": "pdf",
+          "size_mb": 0.24
+        },
+        {
+          "filename": "美国《儿童在线隐私保护法》（COPPA）.pdf",
+          "type": "pdf",
+          "size_mb": 0.57
+        },
+        {
+          "filename": "美国《外资投资风险审查现代化法案》（FIRRMA 2018）.pdf",
+          "type": "pdf",
+          "size_mb": 2.1
+        },
+        {
+          "filename": "美国《通胀削减法案》（IRA 2022）.pdf",
+          "type": "pdf",
+          "size_mb": 0.7
+        }
+      ],
+      "total": 5,
+      "pdfs": 4,
+      "html": 1,
+      "docx": 0
+    },
+    {
+      "region": "cn",
+      "files": [
+        {
+          "filename": "中国GB 44495-2024汽车整车信息安全技术要求（标准简介）.html",
+          "type": "html",
+          "size_mb": 0.01
+        },
+        {
+          "filename": "中国《两用物项出口管制条例》（2024）.html",
+          "type": "html",
+          "size_mb": 0.03
+        },
+        {
+          "filename": "中国《两用物项出口管制条例》（2024）说明（中国法律观察站）.html",
+          "type": "html",
+          "size_mb": 0.02
+        },
+        {
+          "filename": "中国《企业境外投资管理办法》（发改委令第11号）.html",
+          "type": "html",
+          "size_mb": 0.07
+        },
+        {
+          "filename": "中国《出口管制法》（2020）中国法学网全文.html",
+          "type": "html",
+          "size_mb": 0.08
+        },
+        {
+          "filename": "中国《出口管制法》（2020）全文（中国司法观察站英文版）.html",
+          "type": "html",
+          "size_mb": 0.09
+        },
+        {
+          "filename": "中国《反垄断法》（2022修正）.pdf",
+          "type": "pdf",
+          "size_mb": 0.4
+        },
+        {
+          "filename": "中国《境外投资管理办法》（商务部令2014年第3号）.html",
+          "type": "html",
+          "size_mb": 0.01
+        },
+        {
+          "filename": "中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html",
+          "type": "html",
+          "size_mb": 0.14
+        },
+        {
+          "filename": "中国《禁止出口限制出口技术目录》（2025修订 科技部官网公告）.html",
+          "type": "html",
+          "size_mb": 0.01
+        },
+        {
+          "filename": "中国《禁止出口限制出口技术目录》（2025修订，商务部科技部公告第28号）.html",
+          "type": "html",
+          "size_mb": 0.0
+        }
+      ],
+      "total": 11,
+      "pdfs": 1,
+      "html": 10,
+      "docx": 0
+    },
+    {
+      "region": "asia/malaysia",
+      "files": [
+        {
+          "filename": "马来西亚2025年新跨境数据传输指南说明.html",
+          "type": "html",
+          "size_mb": 0.18
+        },
+        {
+          "filename": "马来西亚《个人数据保护法》（PDPA 2010，Act 709）.html",
+          "type": "html",
+          "size_mb": 0.18
+        }
+      ],
+      "total": 2,
+      "pdfs": 0,
+      "html": 2,
+      "docx": 0
+    },
+    {
+      "region": "asia/thailand",
+      "files": [
+        {
+          "filename": "泰国《个人数据保护法》（PDPA 2019，B.E. 2562）英文版.html",
+          "type": "html",
+          "size_mb": 0.14
+        }
+      ],
+      "total": 1,
+      "pdfs": 0,
+      "html": 1,
+      "docx": 0
+    },
+    {
+      "region": "asia/singapore",
+      "files": [
+        {
+          "filename": "新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html",
+          "type": "html",
+          "size_mb": 0.39
+        },
+        {
+          "filename": "新加坡《支付服务法》（PSA 2019）.html",
+          "type": "html",
+          "size_mb": 0.23
+        },
+        {
+          "filename": "新加坡《支付服务法》（PSA MAS官方页面）.html",
+          "type": "html",
+          "size_mb": 0.32
+        }
+      ],
+      "total": 3,
+      "pdfs": 0,
+      "html": 3,
+      "docx": 0
+    },
+    {
+      "region": "asia/indonesia",
+      "files": [
+        {
+          "filename": "印尼《2003年第13号人力法》.pdf",
+          "type": "pdf",
+          "size_mb": 0.46
+        },
+        {
+          "filename": "印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html",
+          "type": "html",
+          "size_mb": 0.1
+        },
+        {
+          "filename": "印尼《关于禁止垄断实践和不公平商业竞争的第5号法律》（1999）.pdf",
+          "type": "pdf",
+          "size_mb": 0.1
+        },
+        {
+          "filename": "印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf",
+          "type": "pdf",
+          "size_mb": 0.56
+        }
+      ],
+      "total": 4,
+      "pdfs": 3,
+      "html": 1,
+      "docx": 0
+    },
+    {
+      "region": "asia/vietnam",
+      "files": [
+        {
+          "filename": "越南2018年《竞争法》（Law No 23_2018_QH14）.pdf",
+          "type": "pdf",
+          "size_mb": 0.34
+        },
+        {
+          "filename": "越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf",
+          "type": "pdf",
+          "size_mb": 0.45
+        },
+        {
+          "filename": "越南《第13号个人数据保护法令》（Decree 13_2023）.html",
+          "type": "html",
+          "size_mb": 0.26
+        },
+        {
+          "filename": "越南《第147号法令》（Decree 147_2024_ND_CP，互联网服务信息管理）解读.html",
+          "type": "html",
+          "size_mb": 0.08
+        },
+        {
+          "filename": "越南《网络安全法》（2018）.html",
+          "type": "html",
+          "size_mb": 0.08
+        }
+      ],
+      "total": 5,
+      "pdfs": 2,
+      "html": 3,
+      "docx": 0
+    },
+    {
+      "region": "middle_east/saudi",
+      "files": [
+        {
+          "filename": "沙特Saber_SASO电子认证系统说明（QIMA指南）.html",
+          "type": "html",
+          "size_mb": 0.17
+        },
+        {
+          "filename": "沙特SFDA医疗器械监管要求说明（ITA指南）.html",
+          "type": "html",
+          "size_mb": 0.23
+        },
+        {
+          "filename": "沙特《个人数据保护法》（PDPL 2021年修订版合规指南）.html",
+          "type": "html",
+          "size_mb": 0.42
+        },
+        {
+          "filename": "沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf",
+          "type": "pdf",
+          "size_mb": 2.49
+        }
+      ],
+      "total": 4,
+      "pdfs": 1,
+      "html": 3,
+      "docx": 0
+    },
+    {
+      "region": "middle_east/uae",
+      "files": [
+        {
+          "filename": "阿联酋2021年第33号联邦法令（劳动关系规范法）.pdf",
+          "type": "pdf",
+          "size_mb": 0.25
+        },
+        {
+          "filename": "阿联酋2023年第55号《媒体监管联邦法令》.html",
+          "type": "html",
+          "size_mb": 0.07
+        },
+        {
+          "filename": "阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html",
+          "type": "html",
+          "size_mb": 0.07
+        }
+      ],
+      "total": 3,
+      "pdfs": 1,
+      "html": 2,
+      "docx": 0
+    },
+    {
+      "region": "gcc",
+      "files": [
+        {
+          "filename": "海湾G-Mark认证体系说明（Intertek指南）.html",
+          "type": "html",
+          "size_mb": 0.11
+        }
+      ],
+      "total": 1,
+      "html": 1,
+      "pdfs": 0,
+      "docx": 0
+    },
+    {
+      "region": "intl/wipo",
+      "files": [
+        {
+          "filename": "《专利合作条约》（PCT）中文版（WIPO知识产权库）.pdf",
+          "type": "pdf",
+          "size_mb": 2.44
+        },
+        {
+          "filename": "《专利合作条约》（PCT）英文版（WIPO 2018版）.pdf",
+          "type": "pdf",
+          "size_mb": 0.78
+        },
+        {
+          "filename": "《马德里协定与议定书》（WIPO商标国际注册条约详情）.html",
+          "type": "html",
+          "size_mb": 0.1
+        }
+      ],
+      "total": 3,
+      "pdfs": 2,
+      "html": 1,
+      "docx": 0
+    },
+    {
+      "region": "intl/un",
+      "files": [
+        {
+          "filename": "联合国《UN R155车辆网络安全管理体系法规》（UNECE WP29 Certivo解读）.html",
+          "type": "html",
+          "size_mb": 1.11
+        },
+        {
+          "filename": "联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html",
+          "type": "html",
+          "size_mb": 0.12
+        }
+      ],
+      "total": 2,
+      "pdfs": 0,
+      "html": 2,
+      "docx": 0
+    },
+    {
+      "region": "reference",
+      "files": [
+        {
+          "filename": "出海合规法律法规政策清单 (1).docx",
+          "type": "docx",
+          "size_mb": 2.92
+        },
+        {
+          "filename": "出海合规法律法规政策清单.docx",
+          "type": "docx",
+          "size_mb": 2.89
+        },
+        {
+          "filename": "欧盟《数字市场法》（DMA，Regulation EU 2022_1925）.pdf",
+          "type": "pdf",
+          "size_mb": 0.4
+        },
+        {
+          "filename": "欧盟《数字服务法》（DSA，Regulation EU 2022_2065）.pdf",
+          "type": "pdf",
+          "size_mb": 0.69
+        },
+        {
+          "filename": "欧盟《通用数据保护条例》（GDPR，Regulation EU 2016_679）.pdf",
+          "type": "pdf",
+          "size_mb": 0.54
+        }
+      ],
+      "total": 5,
+      "pdfs": 3,
+      "html": 0,
+      "docx": 2
+    },
+    {
+      "region": "screenshot_pending",
+      "files": [
+        {
+          "filename": "1 PRVV0001-R1_UL 62368-1 2019.pdf",
+          "type": "pdf",
+          "size_mb": 1.88
+        },
+        {
+          "filename": "10 5710ecb863a33.pdf",
+          "type": "pdf",
+          "size_mb": 3.75
+        },
+        {
+          "filename": "2 power-sonic.com-Low Voltage Directive LVD  IEC - Complete Guide-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 1.26
+        },
+        {
+          "filename": "3 micomlabs.com-IEC - Standard Compliance Guide - MiCOM Labs-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 2.04
+        },
+        {
+          "filename": "4 sgs.com-ECHA Expands Candidate List to  SVHCs  SGS USA-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 1.63
+        },
+        {
+          "filename": "5 greensofttech.com-One Substance Added to EU REACH SVHC List  SVHC- Update  GreenSoft-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 0.95
+        },
+        {
+          "filename": "6 PRVV0001-R1_UL 62368-1 2019.pdf",
+          "type": "pdf",
+          "size_mb": 1.88
+        },
+        {
+          "filename": "7 ul.com-IEC - Ask the Engineers Question-and-Answer Page  UL Solutions-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 1.65
+        },
+        {
+          "filename": "8 5710ecb863a33.pdf",
+          "type": "pdf",
+          "size_mb": 3.75
+        },
+        {
+          "filename": "9 advancedenergy.com-Design Considerations for Maximum Temperature per IEC Safety Standards  Advanced Energy-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 2.5
+        },
+        {
+          "filename": "chat.deepseek.com-产品出海欧美合规要求 - DeepSeek-fpscreenshot.pdf",
+          "type": "pdf",
+          "size_mb": 0.65
+        }
+      ]
+    }
+  ]
+}
