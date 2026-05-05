@@ -271,9 +271,9 @@ class TestGraphStateFlow:
         state = GraphState(generation_score="WARN", loop_count=0, max_attempts=2, missing_citations=["REACH Article 22"])
         assert should_regenerate(state) == "refine"
 
-        # MAX retries → force
+        # MAX retries → end (no force_generate in current implementation)
         state = GraphState(generation_score="WARN", loop_count=2, max_attempts=2, missing_citations=["REACH Article 22"])
-        assert should_regenerate(state) == "force_generate"
+        assert should_regenerate(state) == "end"
 
 
 class TestMustCheckIntegration:

@@ -1,16 +1,18 @@
 """
 Smoke tests: verify core modules can be imported and instantiated.
-Run with: .venv\\Scripts\\python.exe -m pytest rag-service/tests/test_smoke.py -v
+Run with: .venv\Scripts\python.exe -m pytest rag_service/tests/test_smoke.py -v
 """
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 
 def test_config_imports():
+    """Config loads with mimoTalk settings."""
     from config import Settings
-    s = Settings(cohere_api_key="test", anthropic_api_key="test")
-    assert s.cohere_api_key == "test"
-    assert s.anthropic_api_key == "test"
+    s = Settings(mimotalk_api_key="test-key")
+    assert s.mimotalk_api_key == "test-key"
+    assert s.mimotalk_base_url == "https://token-plan-sgp.xiaomimimo.com/anthropic/v1"
+    assert s.mimotalk_model == "mimo-v2.5"
 
 
 def test_state_imports():
@@ -27,8 +29,8 @@ def test_graph_imports():
 
 
 def test_hybrid_retriever_instantiates():
+    """HybridRetriever instantiates without CohereEmbedder."""
     from rag_service.retrieval.hybrid_retriever import HybridRetriever
-    from rag_service.retrieval.cohere_embedder import CohereEmbedder
     from rag_service.retrieval.bm25_retriever import BM25Retriever
     hr = HybridRetriever()
     assert hr is not None

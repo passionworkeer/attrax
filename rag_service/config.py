@@ -1,6 +1,6 @@
 """Configuration management using Pydantic Settings."""
 from pathlib import Path
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # CRITICAL: Disable system proxy BEFORE any HTTP calls (avoids WinError 10060)
 import os as _os
@@ -24,9 +24,10 @@ class Settings(BaseSettings):
 
     demo_mode: bool = False
 
-    class Config:
-        env_file = str(Path(__file__).parent / ".env")
-        extra = "ignore"
+    model_config = SettingsConfigDict(
+        env_file=str(Path(__file__).parent / ".env"),
+        extra="ignore",
+    )
 
 
 settings = Settings()
