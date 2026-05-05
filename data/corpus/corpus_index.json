@@ -1,0 +1,2102 @@
+{
+  "version": "1.0",
+  "created": "2026-04-29 09:07:59",
+  "stats": {
+    "total": 83,
+    "success": 83,
+    "failed": 0,
+    "by_region": {
+      "asia/indonesia": {
+        "total": 4,
+        "success": 4,
+        "failed": 0
+      },
+      "asia/malaysia": {
+        "total": 2,
+        "success": 2,
+        "failed": 0
+      },
+      "asia/singapore": {
+        "total": 3,
+        "success": 3,
+        "failed": 0
+      },
+      "asia/thailand": {
+        "total": 1,
+        "success": 1,
+        "failed": 0
+      },
+      "asia/vietnam": {
+        "total": 5,
+        "success": 5,
+        "failed": 0
+      },
+      "cn": {
+        "total": 11,
+        "success": 11,
+        "failed": 0
+      },
+      "eu/products": {
+        "total": 9,
+        "success": 9,
+        "failed": 0
+      },
+      "eu/regulations/html": {
+        "total": 6,
+        "success": 6,
+        "failed": 0
+      },
+      "eu/regulations/pdfs": {
+        "total": 18,
+        "success": 18,
+        "failed": 0
+      },
+      "eu/uk": {
+        "total": 1,
+        "success": 1,
+        "failed": 0
+      },
+      "gcc": {
+        "total": 1,
+        "success": 1,
+        "failed": 0
+      },
+      "intl/un": {
+        "total": 2,
+        "success": 2,
+        "failed": 0
+      },
+      "intl/wipo": {
+        "total": 3,
+        "success": 3,
+        "failed": 0
+      },
+      "middle_east/saudi": {
+        "total": 4,
+        "success": 4,
+        "failed": 0
+      },
+      "middle_east/uae": {
+        "total": 3,
+        "success": 3,
+        "failed": 0
+      },
+      "reference": {
+        "total": 5,
+        "success": 5,
+        "failed": 0
+      },
+      "us": {
+        "total": 5,
+        "success": 5,
+        "failed": 0
+      }
+    }
+  },
+  "files": [
+    {
+      "region": "asia/indonesia",
+      "regionLabel": "ID",
+      "fileName": "印尼《2003年第13号人力法》.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\indonesia\\印尼《2003年第13号人力法》.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\ID_印尼_2003年第13号人力法__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 99,
+      "paragraphCount": null,
+      "totalChars": 157460,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "ID"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 157656
+      },
+      "error": null
+    },
+    {
+      "region": "asia/indonesia",
+      "regionLabel": "ID",
+      "fileName": "印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\indonesia\\印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\ID_印尼_个人数据保护法__PDP_Law_No_27_of_2022_解读_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 21603,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "AE",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ],
+        "charCount": 21603
+      },
+      "error": null
+    },
+    {
+      "region": "asia/indonesia",
+      "regionLabel": "ID",
+      "fileName": "印尼《关于禁止垄断实践和不公平商业竞争的第5号法律》（1999）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\indonesia\\印尼《关于禁止垄断实践和不公平商业竞争的第5号法律》（1999）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\ID_印尼_关于禁止垄断实践和不公平商业竞争的第5号法律__1999__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 22,
+      "paragraphCount": null,
+      "totalChars": 36860,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "ID"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 36902
+      },
+      "error": null
+    },
+    {
+      "region": "asia/indonesia",
+      "regionLabel": "ID",
+      "fileName": "印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\indonesia\\印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\ID_印尼_创造就业法__Omnibus_Law_No_6_of_2023_DS_Avocats解读__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 5,
+      "paragraphCount": null,
+      "totalChars": 12627,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "ID"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 12635
+      },
+      "error": null
+    },
+    {
+      "region": "asia/malaysia",
+      "regionLabel": "MY",
+      "fileName": "马来西亚2025年新跨境数据传输指南说明.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\malaysia\\马来西亚2025年新跨境数据传输指南说明.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\MY_马来西亚2025年新跨境数据传输指南说明_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 5526,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "MY",
+          "GCC"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 5526
+      },
+      "error": null
+    },
+    {
+      "region": "asia/malaysia",
+      "regionLabel": "MY",
+      "fileName": "马来西亚《个人数据保护法》（PDPA 2010，Act 709）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\malaysia\\马来西亚《个人数据保护法》（PDPA 2010，Act 709）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\MY_马来西亚_个人数据保护法__PDPA_2010_Act_709__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 5526,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "MY",
+          "GCC"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 5526
+      },
+      "error": null
+    },
+    {
+      "region": "asia/singapore",
+      "regionLabel": "SG",
+      "fileName": "新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\singapore\\新加坡《个人数据保护法》（PDPA 2024修订，Freshfields解读）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SG_新加坡_个人数据保护法__PDPA_2024修订_Freshfields解读__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 13701,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 13701
+      },
+      "error": null
+    },
+    {
+      "region": "asia/singapore",
+      "regionLabel": "SG",
+      "fileName": "新加坡《支付服务法》（PSA 2019）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\singapore\\新加坡《支付服务法》（PSA 2019）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SG_新加坡_支付服务法__PSA_2019__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 34883,
+      "hasTables": true,
+      "tableCount": 100,
+      "metadata": {
+        "detectedMarkets": [
+          "SG"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 34883
+      },
+      "error": null
+    },
+    {
+      "region": "asia/singapore",
+      "regionLabel": "SG",
+      "fileName": "新加坡《支付服务法》（PSA MAS官方页面）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\singapore\\新加坡《支付服务法》（PSA MAS官方页面）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SG_新加坡_支付服务法__PSA_MAS官方页面__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 15524,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 15524
+      },
+      "error": null
+    },
+    {
+      "region": "asia/thailand",
+      "regionLabel": "TH",
+      "fileName": "泰国《个人数据保护法》（PDPA 2019，B.E. 2562）英文版.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\thailand\\泰国《个人数据保护法》（PDPA 2019，B.E. 2562）英文版.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\TH_泰国_个人数据保护法__PDPA_2019_B_E__2562_英文版_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 49141,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 49141
+      },
+      "error": null
+    },
+    {
+      "region": "asia/vietnam",
+      "regionLabel": "VN",
+      "fileName": "越南2018年《竞争法》（Law No 23_2018_QH14）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\vietnam\\越南2018年《竞争法》（Law No 23_2018_QH14）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\VN_越南2018年_竞争法__Law_No_23_2018_QH14__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 43,
+      "paragraphCount": null,
+      "totalChars": 110285,
+      "hasTables": true,
+      "tableCount": 43,
+      "metadata": {
+        "detectedMarkets": [
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 110369
+      },
+      "error": null
+    },
+    {
+      "region": "asia/vietnam",
+      "regionLabel": "VN",
+      "fileName": "越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\vietnam\\越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\VN_越南TCVN国家标准认证说明_越南CR标志认证信息册__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 26,
+      "paragraphCount": null,
+      "totalChars": 31568,
+      "hasTables": true,
+      "tableCount": 15,
+      "metadata": {
+        "detectedMarkets": [
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 31618
+      },
+      "error": null
+    },
+    {
+      "region": "asia/vietnam",
+      "regionLabel": "VN",
+      "fileName": "越南《第13号个人数据保护法令》（Decree 13_2023）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\vietnam\\越南《第13号个人数据保护法令》（Decree 13_2023）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\VN_越南_第13号个人数据保护法令__Decree_13_2023__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 83994,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ],
+        "charCount": 83994
+      },
+      "error": null
+    },
+    {
+      "region": "asia/vietnam",
+      "regionLabel": "VN",
+      "fileName": "越南《第147号法令》（Decree 147_2024_ND_CP，互联网服务信息管理）解读.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\vietnam\\越南《第147号法令》（Decree 147_2024_ND_CP，互联网服务信息管理）解读.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\VN_越南_第147号法令__Decree_147_2024_ND_CP_互联网服务信息管理_解读_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 9636,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "VN",
+          "ID",
+          "AE",
+          "TH"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 9636
+      },
+      "error": null
+    },
+    {
+      "region": "asia/vietnam",
+      "regionLabel": "VN",
+      "fileName": "越南《网络安全法》（2018）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\asia\\vietnam\\越南《网络安全法》（2018）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\VN_越南_网络安全法__2018__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 3807,
+      "hasTables": true,
+      "tableCount": 4,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 3807
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国GB 44495-2024汽车整车信息安全技术要求（标准简介）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国GB 44495-2024汽车整车信息安全技术要求（标准简介）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国GB_44495-2024汽车整车信息安全技术要求_标准简介__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 2444,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 2444
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《两用物项出口管制条例》（2024）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《两用物项出口管制条例》（2024）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_两用物项出口管制条例__2024__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 1427,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 1427
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《两用物项出口管制条例》（2024）说明（中国法律观察站）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《两用物项出口管制条例》（2024）说明（中国法律观察站）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_两用物项出口管制条例__2024_说明_中国法律观察站__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 5507,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 5507
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《企业境外投资管理办法》（发改委令第11号）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《企业境外投资管理办法》（发改委令第11号）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_企业境外投资管理办法__发改委令第11号__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 8462,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 8462
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《出口管制法》（2020）中国法学网全文.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《出口管制法》（2020）中国法学网全文.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_出口管制法__2020_中国法学网全文_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 8353,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "export_control"
+        ],
+        "charCount": 8353
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《出口管制法》（2020）全文（中国司法观察站英文版）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《出口管制法》（2020）全文（中国司法观察站英文版）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_出口管制法__2020_全文_中国司法观察站英文版__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 34570,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN",
+          "VN",
+          "ID"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "export_control"
+        ],
+        "charCount": 34570
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《反垄断法》（2022修正）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《反垄断法》（2022修正）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_反垄断法__2022修正__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 20,
+      "paragraphCount": null,
+      "totalChars": 8727,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 8765
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《境外投资管理办法》（商务部令2014年第3号）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《境外投资管理办法》（商务部令2014年第3号）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_境外投资管理办法__商务部令2014年第3号__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 3086,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 3086
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_禁止出口限制出口技术目录__2025修订_CSET英文分析__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 5874,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "battery"
+        ],
+        "charCount": 5874
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《禁止出口限制出口技术目录》（2025修订 科技部官网公告）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《禁止出口限制出口技术目录》（2025修订 科技部官网公告）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_禁止出口限制出口技术目录__2025修订_科技部官网公告__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 398,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "export_control"
+        ],
+        "charCount": 398
+      },
+      "error": null
+    },
+    {
+      "region": "cn",
+      "regionLabel": "CN",
+      "fileName": "中国《禁止出口限制出口技术目录》（2025修订，商务部科技部公告第28号）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\cn\\中国《禁止出口限制出口技术目录》（2025修订，商务部科技部公告第28号）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\CN_中国_禁止出口限制出口技术目录__2025修订_商务部科技部公告第28号__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 1134,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 1134
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "2026年通用场景产品出海欧美（欧盟+美国）合规要求全指南.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\2026年通用场景产品出海欧美（欧盟+美国）合规要求全指南.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_2026年通用场景产品出海欧美_欧盟_美国_合规要求全指南_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 5,
+      "paragraphCount": null,
+      "totalChars": 4648,
+      "hasTables": true,
+      "tableCount": 4,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "UK"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "battery",
+          "toy_safety"
+        ],
+        "charCount": 4656
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "乒乓球拍欧盟合规成本与利润.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\乒乓球拍欧盟合规成本与利润.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_乒乓球拍欧盟合规成本与利润_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 148,
+      "totalChars": 23096,
+      "hasTables": true,
+      "tableCount": 2,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "UK",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "toy_safety"
+        ],
+        "charCount": 23243
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "欧盟乒乓球拍合规性分析.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧盟乒乓球拍合规性分析.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_欧盟乒乓球拍合规性分析_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 187,
+      "totalChars": 29778,
+      "hasTables": true,
+      "tableCount": 3,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "toy_safety"
+        ],
+        "charCount": 29964
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "欧盟合规充电宝成本与利润分析.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧盟合规充电宝成本与利润分析.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_欧盟合规充电宝成本与利润分析_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 90,
+      "totalChars": 6320,
+      "hasTables": true,
+      "tableCount": 10,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "EMC",
+          "battery"
+        ],
+        "charCount": 6409
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "欧盟合规充电宝零件要求.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧盟合规充电宝零件要求.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_欧盟合规充电宝零件要求_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 161,
+      "totalChars": 26608,
+      "hasTables": true,
+      "tableCount": 3,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "battery"
+        ],
+        "charCount": 26768
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "欧盟合规充电宝零件要求_副本.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧盟合规充电宝零件要求_副本.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_欧盟合规充电宝零件要求_副本_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 161,
+      "totalChars": 26608,
+      "hasTables": true,
+      "tableCount": 3,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "VN"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "battery"
+        ],
+        "charCount": 26768
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "欧美产品出海合规要求.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\欧美产品出海合规要求.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_欧美产品出海合规要求_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 192,
+      "totalChars": 28604,
+      "hasTables": true,
+      "tableCount": 3,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "CN",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "toy_safety"
+        ],
+        "charCount": 28795
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "表格-乒乓球拍合规成本与风险分析.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\表格-乒乓球拍合规成本与风险分析.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_表格-乒乓球拍合规成本与风险分析_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 4,
+      "totalChars": 308,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 311
+      },
+      "error": null
+    },
+    {
+      "region": "eu/products",
+      "regionLabel": "EU_Products",
+      "fileName": "表格-欧盟充电宝合规成本与风险.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\products\\表格-欧盟充电宝合规成本与风险.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Products_表格-欧盟充电宝合规成本与风险_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 14,
+      "totalChars": 667,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "battery"
+        ],
+        "charCount": 680
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/html",
+      "regionLabel": "EU_Regulations_HTML",
+      "fileName": "欧盟VAT电商IOSS和OSS一站式服务解读.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟VAT电商IOSS和OSS一站式服务解读.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_HTML_欧盟VAT电商IOSS和OSS一站式服务解读_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 9693,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 9693
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/html",
+      "regionLabel": "EU_Regulations_HTML",
+      "fileName": "欧盟《Omnibus指令》（Directive EU 2019_2161）解读.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟《Omnibus指令》（Directive EU 2019_2161）解读.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_HTML_欧盟_Omnibus指令__Directive_EU_2019_2161_解读_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 36930,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 36930
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/html",
+      "regionLabel": "EU_Regulations_HTML",
+      "fileName": "欧盟《工作时间指令》（Directive 2003_88_EC）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟《工作时间指令》（Directive 2003_88_EC）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_HTML_欧盟_工作时间指令__Directive_2003_88_EC__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 5844,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 5844
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/html",
+      "regionLabel": "EU_Regulations_HTML",
+      "fileName": "欧盟《新电池法规》（Regulation EU 2023_1542）解读.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟《新电池法规》（Regulation EU 2023_1542）解读.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_HTML_欧盟_新电池法规__Regulation_EU_2023_1542_解读_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 7958,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "SA",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "data_privacy",
+          "battery"
+        ],
+        "charCount": 7958
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/html",
+      "regionLabel": "EU_Regulations_HTML",
+      "fileName": "欧盟外资审查框架（Regulation EU 2021_821）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟外资审查框架（Regulation EU 2021_821）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_HTML_欧盟外资审查框架_Regulation_EU_2021_821__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 33533,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "UK",
+          "SG"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 33533
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/html",
+      "regionLabel": "EU_Regulations_HTML",
+      "fileName": "欧盟外资审查框架（USSC FDI Screening 研究报告）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\html\\欧盟外资审查框架（USSC FDI Screening 研究报告）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_HTML_欧盟外资审查框架_USSC_FDI_Screening_研究报告__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 33533,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "UK",
+          "SG"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 33533
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "AI_Act_(EU)_2024-1689_人工智能法.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\AI_Act_(EU)_2024-1689_人工智能法.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_AI_Act__EU__2024-1689_人工智能法_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 144,
+      "paragraphCount": null,
+      "totalChars": 595563,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "investment",
+          "toy_safety"
+        ],
+        "charCount": 595849
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "Blue_Guide_2022_欧盟产品规则实施指南.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\Blue_Guide_2022_欧盟产品规则实施指南.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_Blue_Guide_2022_欧盟产品规则实施指南_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 156,
+      "paragraphCount": null,
+      "totalChars": 623438,
+      "hasTables": true,
+      "tableCount": 5,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "toy_safety"
+        ],
+        "charCount": 623748
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "CRD_2011-83-EU_消费者权益指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\CRD_2011-83-EU_消费者权益指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_CRD_2011-83-EU_消费者权益指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 25,
+      "paragraphCount": null,
+      "totalChars": 104885,
+      "hasTables": true,
+      "tableCount": 3,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 104933
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "DMA_(EU)_2022-1925_数字市场法.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\DMA_(EU)_2022-1925_数字市场法.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_DMA__EU__2022-1925_数字市场法_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 66,
+      "paragraphCount": null,
+      "totalChars": 261203,
+      "hasTables": true,
+      "tableCount": 2,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "data_privacy",
+          "investment"
+        ],
+        "charCount": 261333
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "DSA_(EU)_2022-2065_数字服务法.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\DSA_(EU)_2022-2065_数字服务法.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_DSA__EU__2022-2065_数字服务法_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 102,
+      "paragraphCount": null,
+      "totalChars": 420971,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "data_privacy"
+        ],
+        "charCount": 421173
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "Decision_768-2008-EC_合格评定程序参考条款.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\Decision_768-2008-EC_合格评定程序参考条款.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_Decision_768-2008-EC_合格评定程序参考条款_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 47,
+      "paragraphCount": null,
+      "totalChars": 167039,
+      "hasTables": true,
+      "tableCount": 9,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "chemical"
+        ],
+        "charCount": 167131
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "EMC_2014-30-EU_电磁兼容指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\EMC_2014-30-EU_电磁兼容指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_EMC_2014-30-EU_电磁兼容指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 28,
+      "paragraphCount": null,
+      "totalChars": 94970,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "EMC"
+        ],
+        "charCount": 95024
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "GDPR_(EU)_2016-679_通用数据保护条例.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\GDPR_(EU)_2016-679_通用数据保护条例.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_GDPR__EU__2016-679_通用数据保护条例_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 88,
+      "paragraphCount": null,
+      "totalChars": 355732,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 355906
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "GPSR_(EU)_2023-988.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\GPSR_(EU)_2023-988.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_GPSR__EU__2023-988_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 51,
+      "paragraphCount": null,
+      "totalChars": 188960,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "battery"
+        ],
+        "charCount": 189060
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "LVD_2014-35-EU_低电压指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\LVD_2014-35-EU_低电压指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_LVD_2014-35-EU_低电压指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 18,
+      "paragraphCount": null,
+      "totalChars": 60051,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 60085
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "PLD_85-374-EEC_产品责任指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\PLD_85-374-EEC_产品责任指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_PLD_85-374-EEC_产品责任指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 5,
+      "paragraphCount": null,
+      "totalChars": 19021,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 19029
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "REACH_(EC)_1907-2006_化学品注册评估授权限制.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\REACH_(EC)_1907-2006_化学品注册评估授权限制.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_REACH__EC__1907-2006_化学品注册评估授权限制_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 849,
+      "paragraphCount": null,
+      "totalChars": 954678,
+      "hasTables": true,
+      "tableCount": 454,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "investment",
+          "toy_safety"
+        ],
+        "charCount": 956374
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "RED_2014-53-EU_无线电设备指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\RED_2014-53-EU_无线电设备指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_RED_2014-53-EU_无线电设备指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 45,
+      "paragraphCount": null,
+      "totalChars": 134721,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "EMC",
+          "battery"
+        ],
+        "charCount": 134809
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "Regulation_(EC)_765-2008_市场监督合格评定框架.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\Regulation_(EC)_765-2008_市场监督合格评定框架.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_Regulation__EC__765-2008_市场监督合格评定框架_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 18,
+      "paragraphCount": null,
+      "totalChars": 75938,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "investment"
+        ],
+        "charCount": 75972
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "Regulation_(EU)_2019-1020_市场监督与产品合规.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\Regulation_(EU)_2019-1020_市场监督与产品合规.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_Regulation__EU__2019-1020_市场监督与产品合规_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 44,
+      "paragraphCount": null,
+      "totalChars": 169639,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "data_privacy",
+          "EMC",
+          "export_control",
+          "toy_safety"
+        ],
+        "charCount": 169725
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "RoHS_2011-65-EU_有害物质限制指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\RoHS_2011-65-EU_有害物质限制指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_RoHS_2011-65-EU_有害物质限制指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 23,
+      "paragraphCount": null,
+      "totalChars": 73028,
+      "hasTables": true,
+      "tableCount": 5,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "EMC",
+          "toy_safety"
+        ],
+        "charCount": 73072
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "UCPD_2005-29-EC_不公平商业行为指令.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\UCPD_2005-29-EC_不公平商业行为指令.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_UCPD_2005-29-EC_不公平商业行为指令_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 18,
+      "paragraphCount": null,
+      "totalChars": 54933,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 54967
+      },
+      "error": null
+    },
+    {
+      "region": "eu/regulations/pdfs",
+      "regionLabel": "EU_Regulations_PDF",
+      "fileName": "玩具安全法规_(EC)_2009-48.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\regulations\\pdfs\\玩具安全法规_(EC)_2009-48.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\EU_Regulations_PDF_玩具安全法规__EC__2009-48_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 37,
+      "paragraphCount": null,
+      "totalChars": 123469,
+      "hasTables": true,
+      "tableCount": 6,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "EMC",
+          "toy_safety"
+        ],
+        "charCount": 123541
+      },
+      "error": null
+    },
+    {
+      "region": "eu/uk",
+      "regionLabel": "UK",
+      "fileName": "英国《国家安全与投资法》（NSI Act 2021）全文.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\eu\\uk\\英国《国家安全与投资法》（NSI Act 2021）全文.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\UK_英国_国家安全与投资法__NSI_Act_2021_全文_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 15901,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "UK"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ],
+        "charCount": 15901
+      },
+      "error": null
+    },
+    {
+      "region": "gcc",
+      "regionLabel": "GCC",
+      "fileName": "海湾G-Mark认证体系说明（Intertek指南）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\gcc\\海湾G-Mark认证体系说明（Intertek指南）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\GCC_海湾G-Mark认证体系说明_Intertek指南__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 11813,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "VN",
+          "SA",
+          "AE",
+          "TH",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "chemical",
+          "toy_safety"
+        ],
+        "charCount": 11813
+      },
+      "error": null
+    },
+    {
+      "region": "intl/un",
+      "regionLabel": "UN",
+      "fileName": "联合国《UN R155车辆网络安全管理体系法规》（UNECE WP29 Certivo解读）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\intl\\un\\联合国《UN R155车辆网络安全管理体系法规》（UNECE WP29 Certivo解读）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\UN_联合国_UN_R155车辆网络安全管理体系法规__UNECE_WP29_Certivo解读__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 38926,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "investment"
+        ],
+        "charCount": 38926
+      },
+      "error": null
+    },
+    {
+      "region": "intl/un",
+      "regionLabel": "UN",
+      "fileName": "联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\intl\\un\\联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\UN_联合国_UN_R156软件升级管理体系法规__UN_R155_R156_合规指南__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 8187,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "chemical"
+        ],
+        "charCount": 8187
+      },
+      "error": null
+    },
+    {
+      "region": "intl/wipo",
+      "regionLabel": "WIPO",
+      "fileName": "《专利合作条约》（PCT）中文版（WIPO知识产权库）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\intl\\wipo\\《专利合作条约》（PCT）中文版（WIPO知识产权库）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\WIPO__专利合作条约__PCT_中文版_WIPO知识产权库__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 223,
+      "paragraphCount": null,
+      "totalChars": 157250,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "US",
+          "UK",
+          "CN"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 157694
+      },
+      "error": null
+    },
+    {
+      "region": "intl/wipo",
+      "regionLabel": "WIPO",
+      "fileName": "《专利合作条约》（PCT）英文版（WIPO 2018版）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\intl\\wipo\\《专利合作条约》（PCT）英文版（WIPO 2018版）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\WIPO__专利合作条约__PCT_英文版_WIPO_2018版__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 237,
+      "paragraphCount": null,
+      "totalChars": 513415,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [
+          "chemical"
+        ],
+        "charCount": 513887
+      },
+      "error": null
+    },
+    {
+      "region": "intl/wipo",
+      "regionLabel": "WIPO",
+      "fileName": "《马德里协定与议定书》（WIPO商标国际注册条约详情）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\intl\\wipo\\《马德里协定与议定书》（WIPO商标国际注册条约详情）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\WIPO__马德里协定与议定书__WIPO商标国际注册条约详情__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 66143,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [
+          "chemical",
+          "investment"
+        ],
+        "charCount": 66143
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/saudi",
+      "regionLabel": "SA",
+      "fileName": "沙特SFDA医疗器械监管要求说明（ITA指南）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\saudi\\沙特SFDA医疗器械监管要求说明（ITA指南）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SA_沙特SFDA医疗器械监管要求说明_ITA指南__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 8942,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "investment"
+        ],
+        "charCount": 8942
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/saudi",
+      "regionLabel": "SA",
+      "fileName": "沙特Saber_SASO电子认证系统说明（QIMA指南）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\saudi\\沙特Saber_SASO电子认证系统说明（QIMA指南）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SA_沙特Saber_SASO电子认证系统说明_QIMA指南__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 14751,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "US",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "SA",
+          "TH"
+        ],
+        "regulatoryTypes": [
+          "product_safety",
+          "toy_safety"
+        ],
+        "charCount": 14751
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/saudi",
+      "regionLabel": "SA",
+      "fileName": "沙特《个人数据保护法》（PDPL 2021年修订版合规指南）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\saudi\\沙特《个人数据保护法》（PDPL 2021年修订版合规指南）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SA_沙特_个人数据保护法__PDPL_2021年修订版合规指南__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 22709,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN",
+          "SG",
+          "SA",
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 22709
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/saudi",
+      "regionLabel": "SA",
+      "fileName": "沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\saudi\\沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\SA_沙特_个人数据保护法__PDPL_Royal_Decree_M_19_2021_英文分析_pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 13,
+      "paragraphCount": null,
+      "totalChars": 18744,
+      "hasTables": true,
+      "tableCount": 19,
+      "metadata": {
+        "detectedMarkets": [
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 18768
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/uae",
+      "regionLabel": "AE",
+      "fileName": "阿联酋2021年第33号联邦法令（劳动关系规范法）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\uae\\阿联酋2021年第33号联邦法令（劳动关系规范法）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\AE_阿联酋2021年第33号联邦法令_劳动关系规范法__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 4,
+      "paragraphCount": null,
+      "totalChars": 11085,
+      "hasTables": true,
+      "tableCount": 7,
+      "metadata": {
+        "detectedMarkets": [
+          "AE"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 11091
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/uae",
+      "regionLabel": "AE",
+      "fileName": "阿联酋2023年第55号《媒体监管联邦法令》.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\uae\\阿联酋2023年第55号《媒体监管联邦法令》.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\AE_阿联酋2023年第55号_媒体监管联邦法令__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 11186,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "AE"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 11186
+      },
+      "error": null
+    },
+    {
+      "region": "middle_east/uae",
+      "regionLabel": "AE",
+      "fileName": "阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\middle_east\\uae\\阿联酋央行《储值设施法规》（UAE Central Bank SVF说明）.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\AE_阿联酋央行_储值设施法规__UAE_Central_Bank_SVF说明__html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 5973,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "AE"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 5973
+      },
+      "error": null
+    },
+    {
+      "region": "reference",
+      "regionLabel": "Reference",
+      "fileName": "出海合规法律法规政策清单 (1).docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\出海合规法律法规政策清单 (1).docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\Reference_出海合规法律法规政策清单__1__docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 223,
+      "totalChars": 35312,
+      "hasTables": true,
+      "tableCount": 3,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "UK",
+          "CN",
+          "SG",
+          "VN",
+          "MY",
+          "ID",
+          "SA",
+          "AE",
+          "TH",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "EMC",
+          "battery",
+          "export_control",
+          "investment",
+          "toy_safety"
+        ],
+        "charCount": 35534
+      },
+      "error": null
+    },
+    {
+      "region": "reference",
+      "regionLabel": "Reference",
+      "fileName": "出海合规法律法规政策清单.docx",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\出海合规法律法规政策清单.docx",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\Reference_出海合规法律法规政策清单_docx.json",
+      "sourceType": "docx",
+      "pageCount": null,
+      "paragraphCount": 17,
+      "totalChars": 2801,
+      "hasTables": true,
+      "tableCount": 1,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN",
+          "VN",
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "investment"
+        ],
+        "charCount": 2817
+      },
+      "error": null
+    },
+    {
+      "region": "reference",
+      "regionLabel": "Reference",
+      "fileName": "欧盟《数字市场法》（DMA，Regulation EU 2022_1925）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\欧盟《数字市场法》（DMA，Regulation EU 2022_1925）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\Reference_欧盟_数字市场法__DMA_Regulation_EU_2022_1925__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 6,
+      "paragraphCount": null,
+      "totalChars": 14389,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [],
+        "charCount": 14399
+      },
+      "error": null
+    },
+    {
+      "region": "reference",
+      "regionLabel": "Reference",
+      "fileName": "欧盟《数字服务法》（DSA，Regulation EU 2022_2065）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\欧盟《数字服务法》（DSA，Regulation EU 2022_2065）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\Reference_欧盟_数字服务法__DSA_Regulation_EU_2022_2065__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 10,
+      "paragraphCount": null,
+      "totalChars": 37078,
+      "hasTables": true,
+      "tableCount": 5,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 37096
+      },
+      "error": null
+    },
+    {
+      "region": "reference",
+      "regionLabel": "Reference",
+      "fileName": "欧盟《通用数据保护条例》（GDPR，Regulation EU 2016_679）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\reference\\欧盟《通用数据保护条例》（GDPR，Regulation EU 2016_679）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\Reference_欧盟_通用数据保护条例__GDPR_Regulation_EU_2016_679__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 117,
+      "paragraphCount": null,
+      "totalChars": 341205,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU"
+        ],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 341437
+      },
+      "error": null
+    },
+    {
+      "region": "us",
+      "regionLabel": "US",
+      "fileName": "加州《适龄设计规范法案》（ADCA，AB 2273）官方解读.html",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\us\\加州《适龄设计规范法案》（ADCA，AB 2273）官方解读.html",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\US_加州_适龄设计规范法案__ADCA_AB_2273_官方解读_html.json",
+      "sourceType": "html",
+      "pageCount": 1,
+      "paragraphCount": null,
+      "totalChars": 29305,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [
+          "data_privacy"
+        ],
+        "charCount": 29305
+      },
+      "error": null
+    },
+    {
+      "region": "us",
+      "regionLabel": "US",
+      "fileName": "美国《INFORM消费者法案》（INFORM Consumers Act，S.936 117th Congress）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\us\\美国《INFORM消费者法案》（INFORM Consumers Act，S.936 117th Congress）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\US_美国_INFORM消费者法案__INFORM_Consumers_Act_S_936_117th_Congress__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 16,
+      "paragraphCount": null,
+      "totalChars": 17188,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [],
+        "regulatoryTypes": [],
+        "charCount": 17218
+      },
+      "error": null
+    },
+    {
+      "region": "us",
+      "regionLabel": "US",
+      "fileName": "美国《儿童在线隐私保护法》（COPPA）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\us\\美国《儿童在线隐私保护法》（COPPA）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\US_美国_儿童在线隐私保护法__COPPA__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 44,
+      "paragraphCount": null,
+      "totalChars": 350312,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "US"
+        ],
+        "regulatoryTypes": [
+          "data_privacy",
+          "toy_safety"
+        ],
+        "charCount": 350398
+      },
+      "error": null
+    },
+    {
+      "region": "us",
+      "regionLabel": "US",
+      "fileName": "美国《外资投资风险审查现代化法案》（FIRRMA 2018）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\us\\美国《外资投资风险审查现代化法案》（FIRRMA 2018）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\US_美国_外资投资风险审查现代化法案__FIRRMA_2018__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 789,
+      "paragraphCount": null,
+      "totalChars": 2493622,
+      "hasTables": true,
+      "tableCount": 27,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "US",
+          "CN",
+          "SG",
+          "VN",
+          "SA"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "EMC",
+          "battery",
+          "export_control",
+          "investment"
+        ],
+        "charCount": 2495198
+      },
+      "error": null
+    },
+    {
+      "region": "us",
+      "regionLabel": "US",
+      "fileName": "美国《通胀削减法案》（IRA 2022）.pdf",
+      "sourcePath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\us\\美国《通胀削减法案》（IRA 2022）.pdf",
+      "outputPath": "E:\\desktop\\火鹰合规\\attrax\\data\\corpus\\processed\\US_美国_通胀削减法案__IRA_2022__pdf.json",
+      "sourceType": "pdf",
+      "pageCount": 273,
+      "paragraphCount": null,
+      "totalChars": 736996,
+      "hasTables": false,
+      "tableCount": 0,
+      "metadata": {
+        "detectedMarkets": [
+          "EU",
+          "CN",
+          "SG",
+          "SA",
+          "GCC"
+        ],
+        "regulatoryTypes": [
+          "chemical",
+          "battery",
+          "investment"
+        ],
+        "charCount": 737540
+      },
+      "error": null
+    }
+  ]
+}
