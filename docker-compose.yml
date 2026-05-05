@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  rag-service:
+    build:
+      context: .
+      dockerfile: rag_service/Dockerfile
+    ports:
+      - "8001:8000"
+    environment:
+      - MIMOTALK_API_KEY=${MIMOTALK_API_KEY}
+      - MIMOTALK_BASE_URL=${MIMOTALK_BASE_URL:-https://token-plan-sgp.xiaomimimo.com/anthropic/v1}
+      - MIMOTALK_MODEL=${MIMOTALK_MODEL:-mimo-v2.5}
+      - MODELSCOPE_API_KEY=${MODELSCOPE_API_KEY}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      - FAISS_INDEX_DIR=/app/data/faiss
+      - NO_PROXY=*
+    volumes:
+      - ./data/faiss:/app/data/faiss
+      - ./data/corpus/processed:/app/data/corpus/processed
+      - ./rag_service/.env:/app/rag_service/.env:ro
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
