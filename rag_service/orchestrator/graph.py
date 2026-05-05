@@ -95,6 +95,7 @@ def run_compliance_graph(
     markets: list[str] = None,
     vision_result: dict = None,
     images: list[dict] = None,
+    documents: list[dict] = None,
 ) -> dict:
     """
     Run the full compliance graph.
@@ -116,6 +117,8 @@ def run_compliance_graph(
         vision_result = {}
     if images is None:
         images = []
+    if documents is None:
+        documents = []
 
     compiled = get_compiled_graph()
 
@@ -126,6 +129,7 @@ def run_compliance_graph(
         markets=markets,
         vision_result=vision_result,
         images=images,
+        documents=documents,
     )
 
     result = compiled.invoke(initial)

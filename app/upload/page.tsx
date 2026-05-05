@@ -28,6 +28,7 @@ const MARKETS: { value: Market; label: string }[] = [
   { value: "SA", label: "沙特" },
   { value: "AE", label: "阿联酋" },
 ];
+type ScanStartResponse = {
   sessionId: string;
   status: "processing";
   pollUrl: string;

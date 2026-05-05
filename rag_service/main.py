@@ -98,6 +98,7 @@ class ScanRequest(BaseModel):
     markets: list[str] = ["EU"]
     vision_result: Optional[dict] = None
     images: Optional[list[dict]] = None  # [{"buffer": base64_str, "mime_type": str, "name": str}]
+    documents: Optional[list[dict]] = None  # [{"name": str, "mime_type": str, "text": str}]
 
 
 class ScanResponse(BaseModel):
@@ -151,6 +152,7 @@ async def scan(req: ScanRequest):
             markets=req.markets,
             vision_result=req.vision_result or {},
             images=decoded_images,
+            documents=req.documents,
         )
     )
 
