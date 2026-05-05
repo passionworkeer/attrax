@@ -42,6 +42,12 @@ yarn-error.log*
 # runtime uploads
 public/uploads/
 
+# session persistence files (auto-generated at runtime)
+data/sessions/
+
+# test artifacts
+test-doc-upload/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -83,6 +89,12 @@ check_result.txt
 # scripts/ 调试脚本（不纳入版本控制）
 scripts/debug_dense.py
 scripts/test_retrieval_only.py
+
+# 归档脚本（不纳入版本控制）
+scripts/archive/
+
+# deepeval 评估产物（不纳入版本控制）
+.deepeval/
 
 # ─── Python ──────────────────────────────────────────────────
 .venv/

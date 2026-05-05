@@ -397,7 +397,7 @@ attrax/
 ├── docs/                         # 文档
 │   ├── PROJECT.md               # 项目描述
 │   ├── PRD.md                   # 产品需求文档
-│   ├── RAG-ARCHITECTURE-v2.md  # ⚠️ v2 旧版（已过时）
+│   ├── RAG-ARCHITECTURE-v2-LEGACY.md  # v2 旧版（已归档）
 │   ├── IMPLEMENTATION-PLAN-v3.md # 实施计划
 │   ├── PROJECT-STATUS.md        # 上线评估报告
 │   └── archived/               # 旧版本文档归档
@@ -630,7 +630,7 @@ RULES = {
 
 ## 相关文档
 
-- [RAG 架构文档](./docs/RAG-ARCHITECTURE-v2.md) - 详细技术架构说明
+- [RAG 架构文档](./docs/RAG-ARCHITECTURE-v2-LEGACY.md) - 详细技术架构说明（v2，已归档）
 - [实施计划](./docs/IMPLEMENTATION-PLAN-v3.md) - 开发路线图
 - [产品需求文档](./docs/PRD.md) - 产品功能规格
 - [项目描述](./docs/PROJECT.md) - 技术栈和目录结构
