@@ -10,34 +10,39 @@ def test_import():
     assert ReportGenerator is not None
 
 
-def test_instantiate_without_key():
-    """Can create instance without API key (lazy client init)."""
+def test_instantiate_without_key(monkeypatch):
+    """Can create instance without API key (env var cleared)."""
+    monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
     gen = ReportGenerator()
     assert gen.api_key == ""
-    assert gen._client is None
+    assert gen.provider == "mimotalk"
 
 
 def test_instantiate_with_key():
     """Can create instance with explicit API key."""
     gen = ReportGenerator(api_key="sk-test-key-123")
     assert gen.api_key == "sk-test-key-123"
-    assert gen._client is None  # lazy
+    assert gen.provider == "mimotalk"
 
 
-def test_generate_empty_chunks():
-    """With no chunks, returns error message without calling API."""
-    gen = ReportGenerator(api_key="sk-test-key-123")
+def test_generate_empty_chunks(monkeypatch):
+    """With no chunks, returns structured mock report without calling API."""
+    monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
+    gen = ReportGenerator(api_key="")
     result = gen.generate(
         query="What are the REACH requirements?",
         product="Battery",
         market="EU",
         chunks=[],
     )
-    assert "错误" in result or "error" in result.lower()
+    # Should return mock report (not a network call)
+    assert "Battery" in result or "EU" in result
+    assert "⚠️" in result  # Mock report contains warning emoji
 
 
-def test_generate_with_chunks_no_api_key():
-    """With no API key, returns error message."""
+def test_generate_with_chunks_no_api_key(monkeypatch):
+    """With no API key, returns mock report."""
+    monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
     gen = ReportGenerator(api_key="")
     result = gen.generate(
         query="REACH requirements?",
@@ -45,12 +50,13 @@ def test_generate_with_chunks_no_api_key():
         market="EU",
         chunks=[{"content": "REACH Article 22 restricts lead.", "doc_name": "REACH"}],
     )
-    # Should handle missing key gracefully
+    # Should handle gracefully (mock or API call)
     assert result is not None
 
 
-def test_generate_with_metadata():
+def test_generate_with_metadata(monkeypatch):
     """generate_with_metadata returns structured dict."""
+    monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
     gen = ReportGenerator(api_key="")
     chunks = [
         {"content": "REACH restricts lead.", "doc_name": "REACH", "product": "Battery", "market": "EU"},
