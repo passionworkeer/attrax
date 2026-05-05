@@ -29,25 +29,20 @@ async function runE2ETests() {
 
   console.log('\n📋 Upload Flow Tests:');
 
-  await test('Upload page has brand header', async () => {
+  await test('Upload page shows file prompt when empty', async () => {
     await page.goto(`${BASE_URL}/upload`);
-    const brand = await page.locator('text=Upload').first();
-    if (!await brand.isVisible()) throw new Error('Brand header not found');
-  });
-
-  await test('Upload page displays description', async () => {
-    await page.goto(`${BASE_URL}/upload`);
-    const desc = await page.locator('text=这是 P1 的占位上传页').first();
-    if (!await desc.isVisible()) throw new Error('Description not found');
+    await page.waitForTimeout(500);
+    const bodyText = await page.textContent('body');
+    // Real upload page shows "请上传至少 1 张图片" when empty
+    if (!bodyText.includes('请上传至少')) throw new Error('File prompt not found');
   });
 
   await test('Submit button is disabled initially', async () => {
     await page.goto(`${BASE_URL}/upload`);
-    const button = await page.locator('button[type="submit"]');
-    // Initially with 0 files, button might be enabled (depends on implementation)
+    const button = page.locator('button[type="submit"]');
     const isDisabled = await button.isDisabled();
-    // If not disabled, that's also valid - just checking UI state
-    console.log(`  - Button disabled: ${isDisabled}`);
+    // With 0 images, button should be disabled
+    if (!isDisabled) throw new Error('Submit should be disabled with 0 images');
   });
 
   console.log('\n📋 Demo Result Page Tests:');
