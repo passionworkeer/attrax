@@ -118,12 +118,19 @@ export async function POST(request: Request) {
     const pdfFiles = documentFiles.filter(
       (f) => f.type === "application/pdf" || f.name.endsWith(".pdf")
     );
-    const textFiles = documentFiles.filter(
-      (f) => f.type !== "application/pdf" && !f.name.endsWith(".pdf")
+    const docxFiles = documentFiles.filter(
+      (f) => f.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+             f.name.endsWith(".docx")
+    );
+    const rawTextFiles = documentFiles.filter(
+      (f) => f.type !== "application/pdf" &&
+             !f.name.endsWith(".pdf") &&
+             f.type !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
+             !f.name.endsWith(".docx")
     );
 
-    const documents = await Promise.all(
-      textFiles.map(async (file) => {
+    const textDocs = await Promise.all(
+      rawTextFiles.map(async (file) => {
         let text = "";
         try {
           text = await file.text();
@@ -135,6 +142,31 @@ export async function POST(request: Request) {
         };
       })
     );
+
+    // DOCX: extract text via mammoth on the browser side
+    // mammoth expects {buffer: Buffer} in Node.js, not {arrayBuffer: ArrayBuffer}
+    const docxDocs = await Promise.all(
+      docxFiles.map(async (file) => {
+        let text = "";
+        try {
+          const mammoth = await import("mammoth");
+          const arrayBuffer = await file.arrayBuffer();
+          // Convert ArrayBuffer to Buffer via Uint8Array copy
+          const buffer = Buffer.from(new Uint8Array(arrayBuffer));
+          const result = await mammoth.extractRawText({ buffer });
+          text = result.value;
+        } catch (e) {
+          console.warn(`mammoth extraction failed for ${file.name}:`, e);
+        }
+        return {
+          name: file.name,
+          mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          text: text.slice(0, 5000),
+        };
+      })
+    );
+
+    const documents = [...textDocs, ...docxDocs];
 
     // PDFs: send as base64 for backend pdfplumber extraction
     const pdfs = await Promise.all(
