@@ -40,12 +40,10 @@ AI 合规风险智能扫描平台 —— 帮助出海企业在上架前快速识
 | Zod | 4.3.6 | 数据验证 |
 | ULID | 3.0.2 | 会话 ID 生成 |
 
-### AI/视觉服务 (待接入)
+### AI/视觉服务
 | 技术 | 用途 |
 |------|------|
-| Claude (Anthropic) | 视觉分析 |
-| OpenAI GPT-4V | 视觉分析 |
-| Gemini (Google) | 视觉分析 |
+| mimoTalk (Anthropic SDK) | Vision 图像分析 + 报告生成 |
 
 ### 开发工具
 | 技术 | 用途 |
@@ -100,10 +98,10 @@ attrax/
 │   ├── mock/                     # Mock 数据
 │   │   └── scan-result.ts        # 模拟扫描结果
 │   ├── pipeline/                 # 扫描管线
-│   │   ├── scan.ts              # 真实扫描逻辑 (待接入)
-│   │   └── session-store.ts     # 会话存储
-│   ├── rag/                      # RAG 相关 (待开发)
-│   └── vision/                   # 视觉服务 (待开发)
+│   │   ├── scan.ts              # 扫描逻辑（调用 Next.js API）
+│   │   └── session-store.ts     # 会话存储（内存 Map）
+│   ├── rag/                      # RAG 相关工具函数
+└── vision/                   # 视觉服务集成
 │
 ├── public/                       # 静态资源
 │   ├── brand/                    # 品牌素材
@@ -112,6 +110,8 @@ attrax/
 │   └── uploads/                 # 用户上传
 │
 ├── data/                         # 数据文件
+│   ├── corpus/processed/        # 已解析语料（200+ JSON）
+│   ├── faiss/                   # FAISS 向量索引
 │   └── mock-fixtures/           # Mock 数据
 │
 ├── docs/                         # 文档
@@ -417,11 +417,10 @@ body {
 
 ## 12. 已知限制
 
-1. **扫描管线未接入**: 真实 Vision AI 尚未接入
-2. **无持久化存储**: 会话存储在内存，重启丢失
-3. **无用户系统**: 匿名使用，无登录
-4. **无数据库**: 无持久化数据存储
-5. **无图片存储**: 上传图片仅在内存处理，未持久化
+1. **无持久化存储**: 会话存储在内存 Map，重启丢失
+2. **无用户系统**: 匿名使用，无登录
+3. **Rerank 未接入**: cohere_reranker 已实现但未在管线中使用
+4. **截图 PDF 未处理**: data/corpus/screenshot_pending/ 下约 20 个截图为待 OCR 处理状态
 
 ---
 

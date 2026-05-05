@@ -1,4 +1,4 @@
-export type Market = "EU" | "US" | "UK";
+export type Market = "EU" | "US" | "UK" | "CN" | "AU" | "SA" | "AE";
 export type ProductCategory =
   | "electronics"
   | "appliance"

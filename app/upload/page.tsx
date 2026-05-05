@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type Market = "EU" | "US" | "UK" | "CN" | "JP" | "AU" | "BR" | "SA" | "AE";
+type Market = "EU" | "US" | "UK" | "CN" | "AU" | "SA" | "AE";
 type Category = "electronics" | "appliance" | "3c" | "toy" | "home" | "other";
 
 const CATEGORIES: { value: Category; label: string }[] = [
@@ -22,9 +22,7 @@ const MARKETS: { value: Market; label: string }[] = [
   { value: "US", label: "美国" },
   { value: "UK", label: "英国" },
   { value: "CN", label: "中国" },
-  { value: "JP", label: "日本" },
   { value: "AU", label: "澳大利亚" },
-  { value: "BR", label: "巴西" },
   { value: "SA", label: "沙特" },
   { value: "AE", label: "阿联酋" },
 ];
@@ -217,6 +215,15 @@ export default function UploadPage() {
   const totalFiles = images.length + documents.length;
 
   return (
+    <>
+      {submitting && (
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-blaze-dark/90 backdrop-blur-sm">
+          <div className="mb-6 h-14 w-14 animate-spin rounded-full border-4 border-white/20 border-t-red-400" />
+          <h2 className="text-xl font-semibold text-white">雄鹰正在起飞…</h2>
+          <p className="mt-2 text-sm text-white/60">正在上传图片并开始分析，请稍候</p>
+          <p className="mt-1 text-xs text-white/40">约需 15-30 秒，请勿关闭页面</p>
+        </div>
+      )}
     <main className="mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-4 sm:px-6 py-16">
       <div className="rounded-4xl border border-white/60 bg-white/85 p-8 shadow-[0_30px_100px_rgba(26,26,46,0.12)] backdrop-blur">
         <p className="text-sm font-medium uppercase tracking-[0.24em] text-blaze-red/80">
@@ -394,5 +401,6 @@ export default function UploadPage() {
         </form>
       </div>
     </main>
+    </>
   );
 }
