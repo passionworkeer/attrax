@@ -114,17 +114,19 @@ export async function POST(request: Request) {
       }))
     );
 
+    // Separate PDFs (sent as base64 for server-side extraction) from text-based docs
+    const pdfFiles = documentFiles.filter(
+      (f) => f.type === "application/pdf" || f.name.endsWith(".pdf")
+    );
+    const textFiles = documentFiles.filter(
+      (f) => f.type !== "application/pdf" && !f.name.endsWith(".pdf")
+    );
+
     const documents = await Promise.all(
-      documentFiles.map(async (file) => {
+      textFiles.map(async (file) => {
         let text = "";
         try {
-          if (file.type === "text/html" || file.name.endsWith(".html")) {
-            text = await file.text();
-          } else if (file.type === "application/pdf") {
-            text = "[PDF文档，请人工确认以下合规要求是否满足产品标准]";
-          } else {
-            text = await file.text().catch(() => "");
-          }
+          text = await file.text();
         } catch { /* ignore */ }
         return {
           name: file.name,
@@ -134,9 +136,19 @@ export async function POST(request: Request) {
       })
     );
 
+    // PDFs: send as base64 for backend pdfplumber extraction
+    const pdfs = await Promise.all(
+      pdfFiles.map(async (file) => ({
+        name: file.name,
+        buffer: Buffer.from(await file.arrayBuffer()).toString("base64"),
+        mimeType: "application/pdf",
+      }))
+    );
+
     runScan(sessionId, {
       images,
       documents,
+      pdfs,
       category: parsed.data.category as ProductCategory,
       markets: parsed.data.markets,
     }).catch((error) => {
