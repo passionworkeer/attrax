@@ -6,6 +6,7 @@ POST /scan → Agentic RAG graph
 GET /health
 """
 import os
+import io
 import logging
 import base64
 from pathlib import Path
@@ -99,6 +100,7 @@ class ScanRequest(BaseModel):
     vision_result: Optional[dict] = None
     images: Optional[list[dict]] = None  # [{"buffer": base64_str, "mime_type": str, "name": str}]
     documents: Optional[list[dict]] = None  # [{"name": str, "mime_type": str, "text": str}]
+    pdfs: Optional[list[dict]] = None  # [{"name": str, "buffer": base64_str}] — extracted server-side via pdfplumber
 
 
 class ScanResponse(BaseModel):
@@ -142,6 +144,35 @@ async def scan(req: ScanRequest):
                 "mime_type": img.get("mime_type", "image/jpeg"),
             })
 
+    # Extract text from user-uploaded PDFs using pdfplumber
+    extracted_pdf_docs = []
+    if req.pdfs:
+        try:
+            import pdfplumber
+            for pdf_item in req.pdfs:
+                name = pdf_item.get("name", "unknown.pdf")
+                buf = base64.b64decode(pdf_item.get("buffer", ""))
+                text_parts = []
+                try:
+                    with pdfplumber.open(io.BytesIO(buf)) as pdf:
+                        for page in pdf.pages:
+                            page_text = page.extract_text() or ""
+                            if page_text.strip():
+                                text_parts.append(page_text)
+                except Exception as e:
+                    logger.warning(f"PDF extraction failed for {name}: {e}")
+                full_text = "\n".join(text_parts)
+                extracted_pdf_docs.append({
+                    "name": name,
+                    "mime_type": "application/pdf",
+                    "text": full_text[:5000],
+                })
+        except ImportError:
+            logger.warning("pdfplumber not available")
+
+    # Merge extracted PDF text into documents list
+    all_docs = (req.documents or []) + extracted_pdf_docs
+
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(
         _executor,
@@ -152,7 +183,7 @@ async def scan(req: ScanRequest):
             markets=req.markets,
             vision_result=req.vision_result or {},
             images=decoded_images,
-            documents=req.documents,
+            documents=all_docs,
         )
     )
 
