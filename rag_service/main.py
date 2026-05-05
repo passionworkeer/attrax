@@ -159,5 +159,5 @@ async def scan(req: ScanRequest):
         report=result["final_report"],
         agent_trace=result["agent_trace"],
         loop_count=result["loop_count"],
-        documents=result.get("retrieved_chunks", []),
+        documents=result.get("documents", []),
     )
