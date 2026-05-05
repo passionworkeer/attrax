@@ -6,7 +6,8 @@
 |------|------|
 | [PROJECT.md](./PROJECT.md) | 项目描述 — 技术栈、架构、目录结构 |
 | [PRD.md](./PRD.md) | 产品需求文档 — 功能范围、验收标准 |
-| [RAG-ARCHITECTURE-v2.md](./RAG-ARCHITECTURE-v2.md) | RAG 架构文档 — 详细技术架构说明 |
+| [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md) | RAG 架构文档（当前实现） |
+| [RAG-ARCHITECTURE-v2-LEGACY.md](./RAG-ARCHITECTURE-v2-LEGACY.md) | RAG 架构文档 — 旧版（已归档） |
 | [IMPLEMENTATION-PLAN-v3.md](./IMPLEMENTATION-PLAN-v3.md) | 实施计划 — 开发路线图 |
 | [DOCUMENT-PIPELINE.md](./DOCUMENT-PIPELINE.md) | 文档处理管线 — 语料库构建流程 |
 
@@ -88,7 +89,7 @@ docs/
 | Vision AI | ✅ 完成 | mimoTalk vision |
 | 混合检索 | ✅ 完成 | FAISS + BM25 + RRF |
 | 多市场并行 | ✅ 完成 | LangGraph Send fan-out |
-| 引用验证 | ✅ 完成 | NLI 硬门 |
+| 引用验证 | ✅ 完成 | NLI 软门（attribution_score 0.9/0.5/0） |
 | 持久化存储 | ⏳ 计划中 | P2 |
 | 用户系统 | ⏳ 计划中 | P3-P4 |
 

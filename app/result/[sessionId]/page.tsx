@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { mockScanResult } from "@/lib/mock/scan-result";
+import { downloadReportAsPdf, downloadReportAsDocx } from "@/lib/report-export";
 import type { ScanResult, ScanStatus, ComplianceReportResult } from "@/lib/types";
 
 function isComplianceReport(r: unknown): r is ComplianceReportResult {
@@ -157,13 +158,35 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
 
       {/* Full Report */}
       <div className="rounded-2xl border border-border bg-card">
-        <div className="flex items-center justify-between border-b border-border px-5 py-3">
-          <h3 className="text-sm font-semibold">合规报告</h3>
-          {result.modelInfo && (
-            <span className="text-xs text-muted-foreground">
-              {result.modelInfo.ragProvider} · {(result.modelInfo.latencyMs / 1000).toFixed(1)}s
-            </span>
-          )}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
+          <div className="flex items-center gap-3">
+            <h3 className="text-sm font-semibold">合规报告</h3>
+            {result.modelInfo && (
+              <span className="text-xs text-muted-foreground">
+                {result.modelInfo.ragProvider} · {(result.modelInfo.latencyMs / 1000).toFixed(1)}s
+              </span>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => downloadReportAsPdf(result)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-red-400/50 hover:text-red-500"
+            >
+              <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
+                <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
+              </svg>
+              PDF
+            </button>
+            <button
+              onClick={() => downloadReportAsDocx(result)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-blue-400/50 hover:text-blue-500"
+            >
+              <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
+                <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
+              </svg>
+              Word
+            </button>
+          </div>
         </div>
         <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>

@@ -6,7 +6,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10+-blue)](#)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](#)
 
-**火鹰合规**是一个基于 RAG（检索增强生成）的跨境电商合规风险智能扫描平台。通过上传产品图片，AI 自动识别产品类别和目标市场，结合多市场法规知识库，生成带有精确法规引用的合规报告，帮助出海企业在产品上架前识别并整改合规风险。
+**火鹰合规**是一个基于 LangGraph Agentic RAG 的跨境电商合规风险智能扫描平台。通过上传产品图片，AI 自动识别产品类别和目标市场，结合多市场法规知识库，生成带有精确法规引用的合规报告。
 
 ---
 
@@ -18,9 +18,7 @@
 - [快速开始](#快速开始)
 - [项目结构](#项目结构)
 - [API 参考](#api-参考)
-- [核心组件说明](#核心组件说明)
-- [数据与语料库](#数据与语料库)
-- [开发指南](#开发指南)
+- [环境变量](#环境变量)
 
 ---
 
@@ -108,23 +106,14 @@
 |------|------|------|
 | Python | 3.10+ | 后端语言 |
 | FastAPI | 0.109.0 | HTTP 服务框架 |
-| LangGraph | 1.1.6 | Agent 编排 |
-| FAISS | 1.12.0 | 向量检索 |
+| LangGraph | 1.1.6 | Agent 编排（Send fan-out 多市场并行） |
+| FAISS | 1.12.0 | 本地向量检索（IndexFlatIP） |
 | jieba | 0.42.1 | 中文分词（BM25） |
-| Ollama / sentence-transformers | - | 本地 Embedding（降级链1） |
-| Local Qwen3-Embedding | 0.6B | 本地 Embedding（降级链2） |
-| ModelScope API | - | 云端 Embedding 降级链3 |
-| Anthropic SDK | - | Claude LLM（mimoTalk） |
+| Ollama | nomic-embed-text | 本地 Embedding（768 维） |
+| ModelScope Qwen3-Embedding | 0.6B | 云端 Embedding 降级 |
+| Anthropic SDK | 0.91.0 | mimoTalk LLM（Vision + 生成） |
 | pdfplumber | 0.11.8 | PDF 解析 |
-
-#### 部署
-
-| 技术 | 用途 |
-|------|------|
-| Docker | 容器化部署（推荐） |
-| uvicorn | ASGI 服务器 |
-| dotenv | 环境变量管理 |
-| FAISS | 本地向量索引（无需 Docker） |
+| Docker + Docker Compose | - | 容器化部署 |
 
 ---
 
@@ -147,21 +136,7 @@
 
 **优势**：在无网络或无 API Key 的情况下，系统自动降级到本地模型，确保服务持续可用。
 
-#### 2. 三级 Embedding 降级策略（Rerank 暂未实现）
-
-> ⚠️ **Rerank 当前未实现**：RRF 融合结果直接作为最终 Top-K 返回。
-> 如需精排，可接入 bge-reranker-v2-m3 或 Cohere Rerank API。
-
-```
-优先级 1: OllamaEmbedder (nomic-embed-text, 768-dim)
-         ↓ 本地 CPU，无需 GPU，完全免费
-优先级 2: LocalEmbedder (Qwen3-Embedding-0.6B, 1024-dim)
-         ↓ 本地 GPU/CPU，MIT 模型，零费用
-优先级 3: ModelScopeEmbedder (Qwen3-Embedding API)
-         ↓ 云端 API，按需付费
-```
-
-#### 3. Parent-Child 双层分块
+#### 2. Parent-Child 双层分块
 
 法律文本具有特殊的结构：超长表格（40,000+ tokens）、跨 Article 引用、条款编号体系。传统固定 token 分块会破坏法律条款的完整性。
 
@@ -176,7 +151,7 @@
 Article 22 原文内容...
 ```
 
-#### 4. 混合检索：Dense + BM25 + RRF
+#### 3. 混合检索：Dense + BM25 + RRF
 
 ```
 Query → ┌─→ Faiss Dense (向量相似度)
@@ -192,7 +167,7 @@ Query → ┌─→ Faiss Dense (向量相似度)
          Rerank (语义精排 Top-10)
 ```
 
-#### 5. Must-Check 强制注入机制
+#### 4. Must-Check 强制注入机制
 
 不同产品类别有必须检查的法规，即使向量检索命中数为零也会强制注入：
 
@@ -203,7 +178,7 @@ Query → ┌─→ Faiss Dense (向量相似度)
 | battery | 欧盟新电池法 2023/1542、REACH Article 22 |
 | textiles | REACH Annex XVII Item 43 (偶氮染料)、Oeko-Tex |
 
-#### 6. NLI 引用验证软门
+#### 5. NLI 引用验证软门
 
 每个结论必须附带法规引用，Citation Verifier 执行软门验证：
 
@@ -215,7 +190,7 @@ Query → ┌─→ Faiss Dense (向量相似度)
 
 > 注：归因分数 = (验证通过数 / 总引用数) × 引用覆盖率。当 NLI 模型不可用时，降级为文本重叠法。
 
-#### 7. LangGraph Agentic 编排
+#### 6. LangGraph Agentic 编排
 
 使用 LangGraph 的 `Send()` API 实现多市场并行检索，每个市场独立检索后汇聚到 Synthesis 节点：
 
@@ -234,7 +209,7 @@ QueryPlanner → [EU] → Fan-out
 | 维度 | 本项目方案 | 传统方案 |
 |------|-----------|---------|
 | Embedding | 三级降级（Ollama → Qwen → ModelScope） | 仅 API |
-| Rerank | 待实现 | 单一向量检索 |
+| Rerank | 未接入（cohere_reranker 存在但未在管线中使用） | 单一向量检索 |
 | 分块 | Parent-Child + 法律条款边界 | 固定 token |
 | 融合 | RRF (k=25) + Must-Check | 单一向量检索 |
 | 验证 | NLI 软门（归因分数 0.9/0.5/0） | 无 |
@@ -346,8 +321,7 @@ attrax/
 │   │   ├── ollama_embedder.py    # Ollama 本地 embedding
 │   │   ├── local_embedder.py     # 本地 Qwen embedding
 │   │   ├── modelScope_embedder.py # ModelScope API embedding
-│   │   ├── cohere_embedder.py    # ⚠️ 未集成
-│   │   └── cohere_reranker.py    # ⚠️ 未集成
+│   │   └── cohere_reranker.py    # ⚠️ 已实现但未接入管线
 │   ├── verify/                   # NLI 引用验证
 │   │   └── citation_verifier.py  # 归因分数软门
 │   ├── generate/                 # 报告生成
@@ -388,19 +362,19 @@ attrax/
 ├── data/                         # 数据文件
 │   ├── corpus/                  # 预解析语料库
 │   │   └── processed/            # 已处理文件（200+ JSON）
-│   ├── analysis/                # 分析结果
 │   ├── faiss/                   # FAISS 索引
 │   │   ├── legal_chunks.index   # 26MB 向量索引
 │   │   └── legal_chunks_meta.json # 15MB 元数据
 │   └── embedding_cache/          # Embedding 缓存
 
 ├── docs/                         # 文档
+│   ├── README.md                # 文档索引
 │   ├── PROJECT.md               # 项目描述
 │   ├── PRD.md                   # 产品需求文档
+│   ├── RAG-ARCHITECTURE-v3.md   # RAG 架构文档（当前）
 │   ├── RAG-ARCHITECTURE-v2-LEGACY.md  # v2 旧版（已归档）
 │   ├── IMPLEMENTATION-PLAN-v3.md # 实施计划
-│   ├── PROJECT-STATUS.md        # 上线评估报告
-│   └── archived/               # 旧版本文档归档
+│   └── PROJECT-STATUS.md        # 上线评估报告
 │
 ├── eval/                         # 评估脚本
 │   └── results/                  # 评估结果
@@ -531,7 +505,8 @@ LangGraph StateGraph，支持：
 | 截屏 PDF | PDF | ~20 个 | ⚠️ 待 OCR 处理 |
 | **processed 目录** | JSON | **200+ 个** | ✅ 已完成 |
 
-> 注：`data/全部法规/` 和 `data/合规/` 为冗余副本，建议清理。
+> ⚠️ `data/全部法规/` 和 `data/合规/` 为冗余副本，建议清理。
+> ⚠️ `data/corpus/screenshot_pending/` 下约 20 个 PDF 截图为待 OCR 处理状态。
 
 ### FAISS 索引
 
@@ -550,11 +525,6 @@ LangGraph StateGraph，支持：
 
 # 构建 FAISS 索引
 .venv\Scripts\python.exe scripts/build_faiss.py
-
-# 构建 Qdrant（可选，如使用 Qdrant 而非 FAISS）
-docker run -d --name qdrant -p 6333:6333 qdrant/qdrant
-.venv\Scripts\python.exe scripts/init_qdrant.py
-.venv\Scripts\python.exe scripts/build_corpus.py
 ```
 
 ---
@@ -617,25 +587,27 @@ RULES = {
 
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
-| `MIMOTALK_API_KEY` | - | mimoTalk LLM API Key（主要） |
+| `MIMOTALK_API_KEY` | - | mimoTalk LLM API Key（必填） |
 | `MIMOTALK_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | mimoTalk 端点 |
 | `MIMOTALK_MODEL` | `mimo-v2.5` | 模型名称 |
-| `COHERE_API_KEY` | - | Cohere Embedding/Rerank API Key |
-| `ANTHROPIC_API_KEY` | - | Anthropic Claude API Key |
-| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key |
-| `FAISS_INDEX_DIR` | `C:/temp/faiss_index` | FAISS 索引目录 |
+| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key（可选，Ollama 不可用时降级） |
+| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama 服务地址 |
+| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | Ollama Embedding 模型 |
+| `FAISS_INDEX_DIR` | `data/faiss` | FAISS 索引目录 |
 | `DEMO_MODE` | `false` | Demo 模式（无需 API Key） |
 
 ---
 
 ## 相关文档
 
-- [RAG 架构文档](./docs/RAG-ARCHITECTURE-v2-LEGACY.md) - 详细技术架构说明（v2，已归档）
+- [RAG 架构文档 v3](./docs/RAG-ARCHITECTURE-v3.md) - 详细技术架构说明（当前版本）
+- [RAG 架构文档 v2](./docs/RAG-ARCHITECTURE-v2-LEGACY.md) - 旧版架构（已归档）
 - [实施计划](./docs/IMPLEMENTATION-PLAN-v3.md) - 开发路线图
 - [产品需求文档](./docs/PRD.md) - 产品功能规格
 - [项目描述](./docs/PROJECT.md) - 技术栈和目录结构
+- [上线评估报告](./docs/PROJECT-STATUS.md) - 项目完成度评估
 
 ---
 
 **版本**：0.2.0
-**最后更新**：2026-04-30
+**最后更新**：2026-05-05

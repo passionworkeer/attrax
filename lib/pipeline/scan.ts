@@ -90,7 +90,6 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     progress: 10,
     stageText: "🔍 分析上传图片…",
   });
-  await sleep(800);
 
   // ── Stage 2: Query planning + retrieval ──────────────────────────────────
   updateSession(sessionId, {
@@ -143,7 +142,6 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       progress: 70,
       stageText: "⚠️ 后端服务不可用，降级到演示模式…",
     });
-    await sleep(300);
     updateSession(sessionId, {
       status: "ready",
       progress: 100,
