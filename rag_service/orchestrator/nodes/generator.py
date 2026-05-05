@@ -17,14 +17,19 @@ def set_generator(generator):
 
 
 def _get_generator():
-    """Get generator with lazy initialization."""
+    """Get generator. Prefers injected instance; falls back to lazy init from settings."""
     global _generator_instance, _is_injected
-    if _generator_instance is None and not _is_injected:
+    if _generator_instance is not None:
+        return _generator_instance
+
+    if not _is_injected:
         try:
+            from rag_service.config import settings
             from rag_service.generate.report_generator import ReportGenerator
-            _generator_instance = ReportGenerator(api_key=None)
+            _generator_instance = ReportGenerator(api_key=settings.mimotalk_api_key or None)
         except Exception:
             pass
+
     return _generator_instance
 
 
