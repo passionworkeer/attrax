@@ -81,7 +81,6 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     stageText: "🔍 分析上传图片…",
   });
   await sleep(800);
-  void images.length; // consumed by buildQuery above
 
   // ── Stage 2: Query planning + retrieval ──────────────────────────────────
   updateSession(sessionId, {
@@ -109,7 +108,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         product: category,
         category,
         markets,
-        vision_result: { image_count: images.length },
+        images: images.map((img) => ({
+          buffer: img.buffer.toString("base64"),
+          mime_type: img.mimeType,
+          name: img.originalName,
+        })),
       }),
       signal: controller.signal,
     });

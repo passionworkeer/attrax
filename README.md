@@ -111,17 +111,20 @@
 | LangGraph | 1.1.6 | Agent 编排 |
 | FAISS | 1.12.0 | 向量检索 |
 | jieba | 0.42.1 | 中文分词（BM25） |
-| Cohere SDK | 6.1.0 | Embedding + Rerank API |
-| Anthropic SDK | - | Claude LLM |
-| sentence-transformers | 5.1.1 | 本地 Embedding |
+| Ollama / sentence-transformers | - | 本地 Embedding（降级链1） |
+| Local Qwen3-Embedding | 0.6B | 本地 Embedding（降级链2） |
+| ModelScope API | - | 云端 Embedding 降级链3 |
+| Anthropic SDK | - | Claude LLM（mimoTalk） |
+| pdfplumber | 0.11.8 | PDF 解析 |
 
 #### 部署
 
 | 技术 | 用途 |
 |------|------|
-| Docker | Qdrant 向量数据库（可选） |
+| Docker | 容器化部署（推荐） |
 | uvicorn | ASGI 服务器 |
 | dotenv | 环境变量管理 |
+| FAISS | 本地向量索引（无需 Docker） |
 
 ---
 
@@ -144,15 +147,18 @@
 
 **优势**：在无网络或无 API Key 的情况下，系统自动降级到本地模型，确保服务持续可用。
 
-#### 2. 三级 Rerank 降级策略
+#### 2. 三级 Embedding 降级策略（Rerank 暂未实现）
+
+> ⚠️ **Rerank 当前未实现**：RRF 融合结果直接作为最终 Top-K 返回。
+> 如需精排，可接入 bge-reranker-v2-m3 或 Cohere Rerank API。
 
 ```
-优先级 1: OllamaReranker (bge-reranker-v2-m3, 本地)
-         ↓ MTEB Rerank SOTA，MIT，免费
-优先级 2: Cohere Rerank API
-         ↓ 精确语义重排
-优先级 3: 跳过（直接使用 RRF 融合结果）
-         ↓ 无额外延迟
+优先级 1: OllamaEmbedder (nomic-embed-text, 768-dim)
+         ↓ 本地 CPU，无需 GPU，完全免费
+优先级 2: LocalEmbedder (Qwen3-Embedding-0.6B, 1024-dim)
+         ↓ 本地 GPU/CPU，MIT 模型，零费用
+优先级 3: ModelScopeEmbedder (Qwen3-Embedding API)
+         ↓ 云端 API，按需付费
 ```
 
 #### 3. Parent-Child 双层分块
@@ -197,15 +203,17 @@ Query → ┌─→ Faiss Dense (向量相似度)
 | battery | 欧盟新电池法 2023/1542、REACH Article 22 |
 | textiles | REACH Annex XVII Item 43 (偶氮染料)、Oeko-Tex |
 
-#### 6. NLI 引用验证硬门
+#### 6. NLI 引用验证软门
 
-每个结论必须附带法规引用，Citation Verifier 执行硬门验证：
+每个结论必须附带法规引用，Citation Verifier 执行软门验证：
 
 | 验证状态 | 条件 | 处理 |
 |---------|------|------|
-| **PASS** | >= 3 条引用验证通过 | 正常展示报告 |
-| **WARN** | 1-2 条引用验证通过 | 展示报告 + 警告横幅 |
-| **REJECTED** | 0 条引用验证通过 | 拒绝生成，防止幻觉 |
+| **PASS** | 归因分数 >= 0.9 | 正常展示报告 |
+| **WARN** | 归因分数 0.5-0.9 | 展示报告 + 警告横幅 |
+| **REJECTED** | 存在矛盾内容 | 拒绝展示 |
+
+> 注：归因分数 = (验证通过数 / 总引用数) × 引用覆盖率。当 NLI 模型不可用时，降级为文本重叠法。
 
 #### 7. LangGraph Agentic 编排
 
@@ -225,13 +233,13 @@ QueryPlanner → [EU] → Fan-out
 
 | 维度 | 本项目方案 | 传统方案 |
 |------|-----------|---------|
-| Embedding | 三级降级（本地优先） | 仅 API |
-| Rerank | 三级降级（本地优先） | 仅 API |
+| Embedding | 三级降级（Ollama → Qwen → ModelScope） | 仅 API |
+| Rerank | 待实现 | 单一向量检索 |
 | 分块 | Parent-Child + 法律条款边界 | 固定 token |
 | 融合 | RRF (k=25) + Must-Check | 单一向量检索 |
-| 验证 | NLI 硬门（>= 3 条通过） | 无 |
+| 验证 | NLI 软门（归因分数 0.9/0.5/0） | 无 |
 | 编排 | LangGraph Agentic (并行 + 循环) | 串行 |
-| 语料 | 96 个文件，16+ 市场，12M+ 字符 | 单一市场 |
+| 语料 | 200+ 已处理文件，16+ 市场 | 单一市场 |
 
 ---
 
@@ -324,8 +332,11 @@ attrax/
 ├── rag_service/                  # Python RAG 服务
 │   ├── main.py                   # FastAPI 入口
 │   ├── config.py                 # 配置管理
-│   ├── parser/                   # 文档解析 (HTML/DOCX/PDF)
+│   ├── parser/                   # 文档解析
+│   │   ├── docx_parser.py        # DOCX 解析
+│   │   └── html_parser.py        # HTML 解析
 │   ├── chunker/                  # Parent-Child 分块
+│   │   └── legal_chunker.py      # 法律条款分块
 │   ├── retrieval/               # 混合检索管线
 │   │   ├── faiss_retriever.py    # FAISS 向量检索
 │   │   ├── bm25_retriever.py     # BM25 稀疏检索
@@ -334,45 +345,61 @@ attrax/
 │   │   ├── must_check.py         # 强制注入规则
 │   │   ├── ollama_embedder.py    # Ollama 本地 embedding
 │   │   ├── local_embedder.py     # 本地 Qwen embedding
-│   │   └── modelScope_embedder.py # ModelScope API embedding
+│   │   ├── modelScope_embedder.py # ModelScope API embedding
+│   │   ├── cohere_embedder.py    # ⚠️ 未集成
+│   │   └── cohere_reranker.py    # ⚠️ 未集成
 │   ├── verify/                   # NLI 引用验证
+│   │   └── citation_verifier.py  # 归因分数软门
 │   ├── generate/                 # 报告生成
-│   ├── llm/                      # LLM 客户端封装
+│   │   └── report_generator.py   # 报告生成器
+│   ├── eval/                     # 评估指标
+│   │   ├── metrics.py            # 评估指标
+│   │   └── run_eval.py           # 评估脚本
+│   ├── tests/                    # Python 单元测试
+│   │   ├── test_api_smoke.py
+│   │   ├── test_citation_verifier.py
+│   │   ├── test_component.py
+│   │   ├── test_docx_parser.py
+│   │   ├── test_html_parser.py
+│   │   ├── test_legal_chunker.py
+│   │   ├── test_orchestrator.py
+│   │   ├── test_report_generator.py
+│   │   ├── test_retrieval.py
+│   │   └── test_smoke.py
 │   └── orchestrator/             # LangGraph Agent 编排
 │       ├── state.py              # GraphState 定义
 │       ├── graph.py              # StateGraph 组装
-│       └── nodes/                # 7 个 Graph Node
+│       └── nodes/                # 8 个 Graph Node
 │           ├── vision.py         # Vision 分析
 │           ├── query_planner.py  # 查询规划
 │           ├── retriever.py      # 检索节点
 │           ├── synthesis.py      # 多市场结果汇聚
 │           ├── generator.py      # 报告生成
 │           ├── verifier.py       # NLI 验证
-│           └── refiner.py        # HyDE 查询精化
+│           ├── refiner.py        # HyDE 查询精化
+│           └── __init__.py
 │
 ├── scripts/                      # 运维脚本
-│   ├── init_qdrant.py           # Qdrant 初始化
 │   ├── build_corpus.py          # 批量构建语料库
 │   ├── build_faiss.py           # FAISS 索引构建
 │   ├── parse_regulation.py      # 法规解析
-│   └── start_rag.bat            # 服务启动脚本
-│
+│   └── start_rag.bat            # 服务启动脚本（Windows）
+
 ├── data/                         # 数据文件
-│   ├── corpus/                  # 预解析语料库 (96 个 JSON)
-│   │   ├── processed/            # 已处理文件
-│   │   ├── eu/                  # 欧盟法规
-│   │   ├── us/                  # 美国法规
-│   │   ├── cn/                  # 中国法规
-│   │   └── manifest.json        # 全量索引
+│   ├── corpus/                  # 预解析语料库
+│   │   └── processed/            # 已处理文件（200+ JSON）
 │   ├── analysis/                # 分析结果
 │   ├── faiss/                   # FAISS 索引
+│   │   ├── legal_chunks.index   # 26MB 向量索引
+│   │   └── legal_chunks_meta.json # 15MB 元数据
 │   └── embedding_cache/          # Embedding 缓存
-│
+
 ├── docs/                         # 文档
 │   ├── PROJECT.md               # 项目描述
 │   ├── PRD.md                   # 产品需求文档
-│   ├── RAG-ARCHITECTURE-v2.md  # RAG 架构文档 (当前)
+│   ├── RAG-ARCHITECTURE-v2.md  # ⚠️ v2 旧版（已过时）
 │   ├── IMPLEMENTATION-PLAN-v3.md # 实施计划
+│   ├── PROJECT-STATUS.md        # 上线评估报告
 │   └── archived/               # 旧版本文档归档
 │
 ├── eval/                         # 评估脚本
@@ -436,9 +463,9 @@ attrax/
 
 | 状态 | 含义 |
 |------|------|
-| `PASS` | 报告生成成功，>= 3 条引用通过验证 |
-| `WARN` | 报告生成成功，但仅 1-2 条引用验证通过 |
-| `REJECTED` | 引用不足，拒绝生成，防止幻觉 |
+| `PASS` | 归因分数 >= 0.9，报告生成成功 |
+| `WARN` | 归因分数 0.5-0.9，报告生成但存在不确定性 |
+| `REJECTED` | 存在矛盾内容，拒绝展示 |
 
 ---
 
@@ -457,7 +484,7 @@ attrax/
 3. RRF 融合（k=25）
 4. Must-Check 强制注入
 5. 区域过滤（EU/US/CN）
-6. Rerank 精排（Top-K）
+6. RRF 结果直接作为 Top-K 返回（Rerank 待实现）
 
 ### LegalChunker - 法律分块
 
@@ -474,10 +501,11 @@ attrax/
 
 `rag_service/verify/citation_verifier.py`
 
-NLI 硬门验证：
+NLI 软门验证（归因分数）：
 - 提取报告中的法规引用（Article No. + 页码）
 - 在检索到的原文 chunks 中交叉验证
-- 硬门决策：>= 3 ✅ / 1-2 ⚠️ / 0 ❌
+- 软门决策：归因 >= 0.9 ✅ PASS / 0.5-0.9 ⚠️ WARN / 有矛盾 ❌ REJECTED
+- 无 NLI 模型时降级为文本重叠法
 
 ### Graph Orchestrator - 图编排
 
@@ -498,16 +526,19 @@ LangGraph StateGraph，支持：
 |--------|------|------|------|
 | EU 法规 PDF | PDF | 18 个 | ✅ 已处理 |
 | 合规产品 DOCX | DOCX | 9 个 | ✅ 已处理 |
-| HTML 法规 | HTML | 35 个 | ✅ 已处理 |
-| 其他市场法规 | 混合 | 34 个 | ✅ 已处理 |
-| **总计** | - | **96 个** | **91% rawText 覆盖** |
+| HTML 法规 | HTML | 35+ 个 | ✅ 已处理 |
+| 其他市场法规 | 混合 | ~40 个 | ✅ 已处理 |
+| 截屏 PDF | PDF | ~20 个 | ⚠️ 待 OCR 处理 |
+| **processed 目录** | JSON | **200+ 个** | ✅ 已完成 |
+
+> 注：`data/全部法规/` 和 `data/合规/` 为冗余副本，建议清理。
 
 ### FAISS 索引
 
 - 位置：`data/faiss/legal_chunks.index`
-- 维度：1024（Qwen3-Embedding）
+- 维度：1024（Qwen3-Embedding / Ollama）
 - 向量数：~15,000 个 Chunk
-- 存储大小：~41 MB
+- 存储大小：~26 MB
 
 ### 语料库构建
 

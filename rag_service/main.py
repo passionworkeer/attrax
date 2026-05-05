@@ -7,6 +7,7 @@ GET /health
 """
 import os
 import logging
+import base64
 from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
@@ -38,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 _APP_ROOT = Path(__file__).parent.parent.resolve()
 
-_FAISS_ASCII_DIR = Path("C:/temp/faiss_index")
+_FAISS_ASCII_DIR = Path(os.environ.get("FAISS_INDEX_DIR", _APP_ROOT / "data" / "faiss"))
 FAISS_INDEX_DIR = _FAISS_ASCII_DIR
 CHILD_INDEX = str(FAISS_INDEX_DIR / "legal_chunks.index")
 CHILD_META = str(FAISS_INDEX_DIR / "legal_chunks_meta.json")
@@ -96,6 +97,7 @@ class ScanRequest(BaseModel):
     category: str = ""
     markets: list[str] = ["EU"]
     vision_result: Optional[dict] = None
+    images: Optional[list[dict]] = None  # [{"buffer": base64_str, "mime_type": str, "name": str}]
 
 
 class ScanResponse(BaseModel):
@@ -130,6 +132,15 @@ async def scan(req: ScanRequest):
             loop_count=0,
         )
 
+    decoded_images = []
+    if req.images:
+        for img in req.images:
+            buf = base64.b64decode(img.get("buffer", ""))
+            decoded_images.append({
+                "buffer": buf,
+                "mime_type": img.get("mime_type", "image/jpeg"),
+            })
+
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(
         _executor,
@@ -139,6 +150,7 @@ async def scan(req: ScanRequest):
             category=req.category,
             markets=req.markets,
             vision_result=req.vision_result or {},
+            images=decoded_images,
         )
     )
 

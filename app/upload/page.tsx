@@ -5,7 +5,29 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-type ScanStartResponse = {
+type Market = "EU" | "US" | "UK" | "CN" | "JP" | "AU" | "BR" | "SA" | "AE";
+type Category = "electronics" | "appliance" | "3c" | "toy" | "home" | "other";
+
+const CATEGORIES: { value: Category; label: string }[] = [
+  { value: "electronics", label: "电子产品" },
+  { value: "appliance", label: "家电" },
+  { value: "3c", label: "3C 数码" },
+  { value: "toy", label: "玩具" },
+  { value: "home", label: "家居" },
+  { value: "other", label: "其他" },
+];
+
+const MARKETS: { value: Market; label: string }[] = [
+  { value: "EU", label: "欧盟" },
+  { value: "US", label: "美国" },
+  { value: "UK", label: "英国" },
+  { value: "CN", label: "中国" },
+  { value: "JP", label: "日本" },
+  { value: "AU", label: "澳大利亚" },
+  { value: "BR", label: "巴西" },
+  { value: "SA", label: "沙特" },
+  { value: "AE", label: "阿联酋" },
+];
   sessionId: string;
   status: "processing";
   pollUrl: string;
@@ -111,6 +133,8 @@ export default function UploadPage() {
   const [documents, setDocuments] = useState<File[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Category>("electronics");
+  const [selectedMarkets, setSelectedMarkets] = useState<Market[]>(["EU", "US"]);
 
   function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
     const raw = Array.from(event.target.files ?? []);
@@ -158,8 +182,8 @@ export default function UploadPage() {
         formData.append("documents", file);
       }
 
-      formData.append("category", "electronics");
-      formData.append("markets", "EU,US");
+      formData.append("category", selectedCategory);
+      formData.append("markets", selectedMarkets.join(","));
 
       const response = await fetch("/api/scan", {
         method: "POST",
@@ -298,6 +322,56 @@ export default function UploadPage() {
             {totalFiles === 0
               ? "请上传至少 1 张图片"
               : `已选择 ${images.length} 张图片${documents.length > 0 ? `，${documents.length} 份文档` : ""}`}
+          </div>
+
+          {/* Category & Markets selectors */}
+          <div className="space-y-4">
+            <div>
+              <label className="mb-2 block text-sm font-medium">目标市场</label>
+              <div className="flex flex-wrap gap-2">
+                {MARKETS.map((m) => (
+                  <button
+                    key={m.value}
+                    type="button"
+                    onClick={() =>
+                      setSelectedMarkets((prev) =>
+                        prev.includes(m.value)
+                          ? prev.filter((x) => x !== m.value)
+                          : [...prev, m.value]
+                      )
+                    }
+                    className={cn(
+                      "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                      selectedMarkets.includes(m.value)
+                        ? "border-blaze-red bg-blaze-red/10 text-blaze-red"
+                        : "border-border bg-blaze-surface text-muted-foreground hover:border-blaze-red/40"
+                    )}
+                  >
+                    {m.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-medium">产品分类</label>
+              <div className="flex flex-wrap gap-2">
+                {CATEGORIES.map((c) => (
+                  <button
+                    key={c.value}
+                    type="button"
+                    onClick={() => setSelectedCategory(c.value)}
+                    className={cn(
+                      "rounded-full border px-3 py-1 text-xs font-medium transition-colors",
+                      selectedCategory === c.value
+                        ? "border-blaze-red bg-blaze-red/10 text-blaze-red"
+                        : "border-border bg-blaze-surface text-muted-foreground hover:border-blaze-red/40"
+                    )}
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Error */}
