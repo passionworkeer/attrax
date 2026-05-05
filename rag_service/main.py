@@ -91,7 +91,7 @@ app = FastAPI(title="火鹰合规 RAG Service", version="0.2.0", lifespan=lifesp
 
 
 class ScanRequest(BaseModel):
-    query: str
+    query: str = ""
     product: str = ""
     category: str = ""
     markets: list[str] = ["EU"]
@@ -119,6 +119,9 @@ def health():
 
 @app.post("/scan", response_model=ScanResponse)
 async def scan(req: ScanRequest):
+    if not req.query.strip():
+        raise HTTPException(status_code=400, detail="query is required")
+
     if settings.demo_mode:
         return ScanResponse(
             status="WARN",
