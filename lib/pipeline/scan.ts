@@ -23,6 +23,11 @@ export interface RunScanInput {
     originalName: string;
     mimeType: string;
   }>;
+  documents?: Array<{
+    name: string;
+    mimeType: string;
+    text: string;
+  }>;
   category: ProductCategory;
   markets: Market[];
   query?: string;
@@ -72,7 +77,7 @@ function buildQuery(
  * end-to-end user flow still works.
  */
 export async function runScan(sessionId: string, input: RunScanInput) {
-  const { images, category, markets } = input;
+  const { images, documents, category, markets } = input;
   const query = input.query ?? buildQuery(images, category, markets);
 
   // ── Stage 1: Vision analysis ──────────────────────────────────────────────
@@ -113,6 +118,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
           mime_type: img.mimeType,
           name: img.originalName,
         })),
+        documents: documents ?? [],
       }),
       signal: controller.signal,
     });

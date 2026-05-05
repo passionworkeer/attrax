@@ -76,6 +76,7 @@ class ReportGenerator:
         market: str,
         chunks: list[dict],
         max_tokens: int = 1536,
+        doc_context: str = "",
     ) -> str:
         """
         Generate compliance report via mimoTalk.
@@ -86,11 +87,18 @@ class ReportGenerator:
 
         source_context = _build_source_context(chunks)
 
+        doc_section = (
+            f"\n\n## 用户上传的产品文档\n{doc_context}\n"
+            if doc_context
+            else ""
+        )
+
         user_prompt = (
             f"产品：{product}\n"
             f"目标市场：{market}\n"
             f"用户问题：{query}\n\n"
             f"请根据上述来源文档，回答用户问题，生成合规报告。"
+            f"{doc_section}"
         )
 
         system = SYSTEM_PROMPT.format(source_chunks=source_context)

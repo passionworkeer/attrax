@@ -114,8 +114,29 @@ export async function POST(request: Request) {
       }))
     );
 
+    const documents = await Promise.all(
+      documentFiles.map(async (file) => {
+        let text = "";
+        try {
+          if (file.type === "text/html" || file.name.endsWith(".html")) {
+            text = await file.text();
+          } else if (file.type === "application/pdf") {
+            text = "[PDF文档，请人工确认以下合规要求是否满足产品标准]";
+          } else {
+            text = await file.text().catch(() => "");
+          }
+        } catch { /* ignore */ }
+        return {
+          name: file.name,
+          mimeType: file.type || "application/octet-stream",
+          text: text.slice(0, 5000),
+        };
+      })
+    );
+
     runScan(sessionId, {
       images,
+      documents,
       category: parsed.data.category as ProductCategory,
       markets: parsed.data.markets,
     }).catch((error) => {
