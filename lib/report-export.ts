@@ -126,6 +126,19 @@ function parseMarkdownToPdfText(text: string): string {
 
 export async function downloadReportAsPdf(result: ComplianceReportResult): Promise<void> {
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+  // Embed Noto Sans SC (supports Chinese) before any text is written.
+  // jsPDF addFont(url: URL) expects a browser URL object — use createObjectURL.
+  const fontBuffer = await fetch("/fonts/NotoSansSC-Regular.ttf").then((r) => r.arrayBuffer());
+  const fontBlob = new Blob([fontBuffer], { type: "font/truetype" });
+  const fontUrl = URL.createObjectURL(fontBlob);
+  try {
+    doc.addFont(fontUrl, "NotoSansSC", "normal");
+    doc.setFont("NotoSansSC", "normal");
+  } finally {
+    URL.revokeObjectURL(fontUrl);
+  }
+
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 20;
