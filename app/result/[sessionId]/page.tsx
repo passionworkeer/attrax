@@ -216,11 +216,11 @@ function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrieved
             )}
             <span className={cn(
               "ml-0.5 rounded px-1 py-0.5 text-[10px] tabular-nums",
-              c.score >= 0.9 ? "bg-emerald-500/20 text-emerald-400"
-              : c.score >= 0.7 ? "bg-blue-500/20 text-blue-400"
+              (c.score ?? 0) >= 0.9 ? "bg-emerald-500/20 text-emerald-400"
+              : (c.score ?? 0) >= 0.7 ? "bg-blue-500/20 text-blue-400"
               : "bg-white/10 text-white/40"
             )}>
-              {c.score.toFixed(2)}
+              {(c.score ?? 0).toFixed(2)}
             </span>
           </span>
         ))}
