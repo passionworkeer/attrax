@@ -14,7 +14,7 @@ Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
                           │
                     mimoTalk 报告生成
                           │
-               NLI 引用验证硬门（CitationVerifier）
+               NLI 引用验证软门（CitationVerifier）
                           │
               PASS / WARN / REJECTED + 最终报告
 ```
@@ -29,7 +29,7 @@ Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
 | 向量检索 | FAISS | 本地向量索引 |
 | 稀疏检索 | BM25 + jieba | 中文分词 |
 | 编排 | LangGraph 1.1 | Agent 状态机 |
-| 验证 | CitationVerifier (NLI) | 引用硬门 |
+| 验证 | CitationVerifier (NLI) | 引用软门（attribution_score 0.9/0.5/0） |
 
 ## 快速开始
 
@@ -55,7 +55,7 @@ cp rag_service/.env.example rag_service/.env
 
 ### 3. 准备 FAISS 索引
 
-FAISS 索引默认读取 `C:/temp/faiss_index/legal_chunks.index`。
+FAISS 索引默认读取 `data/faiss/legal_chunks.index`（可通过环境变量 `FAISS_INDEX_DIR` 配置）。
 
 如需构建索引：
 
@@ -124,9 +124,9 @@ scripts\start_rag.bat
 
 | 状态 | 含义 |
 |------|------|
-| `PASS` | >= 3 条引用通过 NLI 验证 |
-| `WARN` | 1-2 条引用通过 |
-| `REJECTED` | 引用不足，拒绝生成，防止幻觉 |
+| `PASS` | 归因分数 >= 0.9，报告正常展示 |
+| `WARN` | 归因分数 0.5-0.9，报告展示但有不确定性 |
+| `REJECTED` | 存在矛盾引用，拒绝展示 |
 
 ---
 
@@ -158,7 +158,7 @@ rag_service/
 └── orchestrator/       # LangGraph Agent 编排
     ├── state.py        # GraphState 定义
     ├── graph.py        # StateGraph 组装
-    └── nodes/          # 7 个 Graph Node
+    └── nodes/          # 8 个 Graph Node
         ├── vision.py         # Vision 分析
         ├── query_planner.py  # 查询规划
         ├── retriever.py      # 检索节点
@@ -172,7 +172,7 @@ scripts/
 ├── build_corpus.py    # 批量构建语料库
 └── start_rag.bat      # 服务启动脚本
 
-data/corpus/processed/  # 96 个已处理 JSON 文件
+data/corpus/processed/  # 200+ 个已处理 JSON 文件
 data/faiss/             # FAISS 索引文件
 ```
 
