@@ -187,10 +187,12 @@ async def scan(req: ScanRequest):
         )
     )
 
+    # Cap displayed documents at 15 — enough to be useful without overwhelming the UI
+    DISPLAY_DOC_CAP = 15
     return ScanResponse(
         status=result["status"],
         report=result["final_report"],
         agent_trace=result["agent_trace"],
         loop_count=result["loop_count"],
-        documents=result.get("documents", []),
+        documents=result.get("documents", [])[:DISPLAY_DOC_CAP],
     )
