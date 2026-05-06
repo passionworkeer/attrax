@@ -43,7 +43,7 @@ function loadSessionFromFile(sessionId: string): ScanStatus | null {
     const raw = readFileSync(filePath, "utf-8");
     const session: ScanStatus = JSON.parse(raw);
     // Auto-expire: skip if older than SESSION_TTL_MS
-    if (Date.now() - session._timestamp > SESSION_TTL_MS) {
+    if (Date.now() - (session as { _timestamp?: number })._timestamp! > SESSION_TTL_MS) {
       unlinkSync(filePath);
       return null;
     }

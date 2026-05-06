@@ -1,9 +1,12 @@
 # 火鹰合规 RAG 系统实施计划 v3.1
 
+> ⚠️ **历史文档** — 本文档描述的计划（Cohere/Qdrant/Docling 路线）**未按计划实现**。
+> 实际实现见 [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md)（Ollama/FAISS/pdfplumber 路线）。
+>
 > 基准文档：RAG-ARCHITECTURE-v2.1 + IMPLEMENTATION-PLAN-v2.1
 > 创建时间：2026-04-29
 > 更新：v3.1（2026-04-29）— 升级为 Agentic RAG 架构（LangGraph 编排）
-> 技术路线：**Cohere API** (embed-multilingual-v3 + rerank-multilingual-v3) + **LangGraph** (Agent 编排)
+> 技术路线（计划）：Cohere API + LangGraph（实际：Ollama + FAISS + mimoTalk）
 > 方法论：TDD (测试驱动) + SDD (规格驱动) + Git 原子提交
 
 ---

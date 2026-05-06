@@ -8,8 +8,9 @@
 | [PRD.md](./PRD.md) | 产品需求文档 — 功能范围、验收标准 |
 | [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md) | RAG 架构文档（当前实现） |
 | [RAG-ARCHITECTURE-v2-LEGACY.md](./RAG-ARCHITECTURE-v2-LEGACY.md) | RAG 架构文档 — 旧版（已归档） |
-| [IMPLEMENTATION-PLAN-v3.md](./IMPLEMENTATION-PLAN-v3.md) | 实施计划 — 开发路线图 |
+| [IMPLEMENTATION-PLAN-v3.md](./IMPLEMENTATION-PLAN-v3.md) | 实施计划（⚠️ 历史文档，实际路线已变更） |
 | [DOCUMENT-PIPELINE.md](./DOCUMENT-PIPELINE.md) | 文档处理管线 — 语料库构建流程 |
+| [PROJECT-STATUS.md](./PROJECT-STATUS.md) | 项目上线评估报告 — 完成度 + 阻塞问题 |
 
 ---
 
@@ -57,12 +58,14 @@ npm run test:e2e
 
 ```
 docs/
-├── README.md                 # 本文件
-├── PROJECT.md               # 项目描述
-├── PRD.md                   # 产品需求文档
-├── RAG-ARCHITECTURE-v2.md  # RAG 架构文档
-├── IMPLEMENTATION-PLAN-v3.md # 实施计划
-└── DOCUMENT-PIPELINE.md     # 文档处理管线
+├── README.md                          # 本文件
+├── PROJECT.md                        # 项目描述
+├── PRD.md                            # 产品需求文档
+├── RAG-ARCHITECTURE-v3.md            # RAG 架构文档（当前）
+├── RAG-ARCHITECTURE-v2-LEGACY.md     # RAG 架构文档（已归档）
+├── IMPLEMENTATION-PLAN-v3.md         # 实施计划（历史文档）
+├── PROJECT-STATUS.md                 # 项目上线评估报告
+└── DOCUMENT-PIPELINE.md              # 文档处理管线
 ```
 
 ---

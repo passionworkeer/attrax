@@ -225,8 +225,8 @@ QueryPlanner → [EU] → Fan-out
 - **Node.js** 18+
 - **Python** 3.10+
 - **npm / yarn / pnpm / bun**
-- 可选：**Docker**（Qdrant 向量数据库）
-- 可选：**Ollama**（本地 embedding/rerank）
+- 可选：**Docker + Docker Compose**（RAG Service 容器化）
+- 可选：**Ollama**（本地 embedding，默认 nomic-embed-text）
 
 ### 1. 安装前端依赖
 
@@ -251,11 +251,12 @@ RAG_SERVICE_URL=http://localhost:8000
 MIMOTALK_API_KEY=your_mimotalk_api_key
 MIMOTALK_BASE_URL=https://token-plan-sgp.xiaomimimo.com/anthropic/v1
 
-# 可选：Cohere API（embedding + rerank）
-COHERE_API_KEY=your_cohere_api_key
+# 可选：ModelScope API（云端 embedding，Ollama 不可用时降级）
+MODELSCOPE_API_KEY=your_modelscope_api_key
 
-# 可选：Anthropic API（Claude）
-ANTHROPIC_API_KEY=your_anthropic_api_key
+# 可选：Ollama（本地 embedding，如已安装）
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_EMBED_MODEL=nomic-embed-text
 ```
 
 ### 3. 启动 RAG Service（可选）
