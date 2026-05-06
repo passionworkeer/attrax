@@ -3,16 +3,30 @@
 import { useEffect } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { useScanPolling } from "@/lib/hooks/useScanPolling";
 import { cn } from "@/lib/utils";
+
+const STAGE_ICONS: Record<string, string> = {
+  "准备中": "🕐",
+  "分析上传图片": "🔍",
+  "规划检索策略": "🧠",
+  "检索合规法规库": "📚",
+  "生成合规报告": "✍️",
+  "报告生成完成": "✅",
+};
+
+function StageIcon({ text }: { text: string }) {
+  const icon = Object.entries(STAGE_ICONS).find(([k]) => text.includes(k))?.[1] ?? "⚙️";
+  return <span className="mr-1.5 text-base">{icon}</span>;
+}
 
 export default function BurningPage() {
   const router = useRouter();
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
-  const status = useScanPolling(sessionId);
+  const { status, displayProgress } = useScanPolling(sessionId);
 
   useEffect(() => {
     if (status?.status === "ready" && status.result) {
@@ -30,12 +44,54 @@ export default function BurningPage() {
           当前会话：<span className="font-mono text-white">{sessionId}</span>
         </p>
 
+        {/* Progress section */}
         <div className="mt-8 space-y-4 rounded-3xl bg-white/7 p-5">
-          <Progress value={status?.progress ?? 0} className="h-2 bg-white/10" />
-          <div className="flex items-center justify-between text-sm text-white/80">
-            <span>{status?.stageText ?? "等待任务启动…"}</span>
-            <span>{status?.progress ?? 0}%</span>
+          {/* Track */}
+          <div className="relative h-2 overflow-hidden rounded-full bg-white/10">
+            <motion.div
+              className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-blaze-red to-orange-400"
+              animate={{ width: `${displayProgress}%` }}
+              transition={{ duration: 0, ease: "linear" }}
+              style={{ width: `${displayProgress}%` }}
+            />
+            {/* Shimmer pulse when active */}
+            {status?.status === "processing" && (
+              <motion.div
+                className="absolute inset-y-0 rounded-full bg-white/20"
+                animate={{ x: ["-100%", "200%"] }}
+                transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+                style={{ width: "40%" }}
+              />
+            )}
           </div>
+
+          {/* Stage + percentage */}
+          <div className="flex items-center justify-between text-sm text-white/80">
+            <span className="flex items-center gap-1 min-w-0">
+              <StageIcon text={status?.stageText ?? "等待任务启动…"} />
+              <span className="truncate">{status?.stageText ?? "等待任务启动…"}</span>
+            </span>
+            <span className="ml-2 shrink-0 tabular-nums font-medium text-white/90">
+              {displayProgress}%
+            </span>
+          </div>
+
+          {/* Step dots */}
+          {status?.status === "processing" && (
+            <div className="flex justify-center gap-1.5 pt-1">
+              {[10, 30, 45, 65, 75, 90, 100].map((milestone) => (
+                <div
+                  key={milestone}
+                  className={cn(
+                    "h-1.5 w-1.5 rounded-full transition-all duration-300",
+                    displayProgress >= milestone
+                      ? "bg-blaze-red scale-110"
+                      : "bg-white/20"
+                  )}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {status?.status === "failed" ? (
