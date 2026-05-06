@@ -190,10 +190,9 @@ function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrieved
   const [expanded, setExpanded] = useState(false);
 
   if (!chunks.length) return null;
-
-  const visible = expanded ? chunks : chunks.slice(0, MAX_VISIBLE_CHUNKS);
-  const hiddenCount = chunks.length - MAX_VISIBLE_CHUNKS;
-
+  const DISPLAY_CAP = 15;
+  const visible = chunks.slice(0, DISPLAY_CAP);
+  const overflow = chunks.length - DISPLAY_CAP;
   return (
     <div className="mt-4">
       <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
@@ -225,14 +224,10 @@ function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrieved
             </span>
           </span>
         ))}
-
-        {!expanded && hiddenCount > 0 && (
-          <button
-            onClick={() => setExpanded(true)}
-            className="inline-flex items-center gap-1 rounded-full border border-dashed border-white/20 bg-white/5 px-3 py-1 text-xs text-white/50 transition-colors hover:border-blaze-red/40 hover:text-blaze-red"
-          >
-            + 还有 {hiddenCount} 条
-          </button>
+        {overflow > 0 && (
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-blaze-surface px-3 py-1 text-xs text-white/70">
+            还有 {overflow} 项…
+          </span>
         )}
       </div>
     </div>
