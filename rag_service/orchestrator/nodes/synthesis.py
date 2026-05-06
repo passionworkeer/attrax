@@ -12,17 +12,20 @@ def synthesis_node(state: GraphState) -> dict:
     """Synthesize retrieved chunks across markets.
 
     Two-stage deduplication:
-    1. Per-market dedup by chunk id (existing behavior)
+    1. Per-market dedup by chunk id (original behaviour)
     2. Cross-market dedup by doc_name → keep highest-scoring chunk per document
 
     Caps the pool sent to LLM context at 40 so generation quality is not harmed,
     while still being tight enough to avoid overwhelming downstream processing.
+
+    Score is set upstream in fusion.py: score = (dense_score + bm25_score) / 2.
+    RRF score is rank-based (max ~0.08) — not user-friendly; dense+bm25 avg gives
+    an intuitive 0-1 scale where both retrievers must perform well for a high score.
     """
     docs = state.get("documents", [])
-    category = state.get("category", "")
 
     if not docs:
-        return {"documents": []}
+        return {"documents": [], "agent_trace": state.get("agent_trace", [])}
 
     # ── Stage 1: per-market dedup by chunk id (original behaviour) ────────────
     seen_ids = set()
@@ -40,18 +43,17 @@ def synthesis_node(state: GraphState) -> dict:
     doc_name_best: dict[str, dict] = {}
     for doc in stage1:
         doc_name = doc.get("doc_name", "")
-        score = doc.get("rerank_score", doc.get("rrf_score", doc.get("score", 0)))
+        sort_key = doc.get("rrf_score", doc.get("score", 0))
         if not doc_name:
-            # nameless items (e.g. must-check) — keep all
             doc_name = f"_anon_{id(doc)}"
         existing = doc_name_best.get(doc_name)
-        if existing is None or score > existing.get("rerank_score", existing.get("score", 0)):
+        existing_key = existing.get("rrf_score", existing.get("score", 0)) if existing else -1
+        if sort_key >= existing_key:
             doc_name_best[doc_name] = doc
 
     unique_docs = list(doc_name_best.values())
-
-    # Sort by score descending
-    unique_docs.sort(key=lambda d: d.get("rerank_score", d.get("rrf_score", d.get("score", 0))), reverse=True)
+    # Sort by display score (dense+bm25 avg) descending
+    unique_docs.sort(key=lambda d: d.get("score", 0), reverse=True)
 
     # ── Stage 3: soft cap for LLM context (40 — generous but not bloated) ──────
     LLM_CONTEXT_CAP = 40
@@ -68,15 +70,9 @@ def synthesis_node(state: GraphState) -> dict:
         "markets_covered": list(markets_seen),
     }
 
-    # Normalize rrf_score → score for downstream consumers (frontend, main.py)
-    out_docs = []
-    for d in context_docs:
-        d2 = dict(d)
-        if "score" not in d2:
-            d2["score"] = d2.get("rrf_score", d2.get("dense_score", 0.0))
-        out_docs.append(d2)
-
+    # Score is already set by fusion.py: (dense_score + bm25_score) / 2
+    # No re-calculation needed here — preserves the value from upstream
     return {
-        "documents": out_docs,
+        "documents": context_docs,
         "agent_trace": state.get("agent_trace", []) + [trace_entry],
     }
