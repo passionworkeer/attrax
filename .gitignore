@@ -13,6 +13,8 @@
 # testing
 /coverage
 /test-results
+test-results/
+.pytest_cache/
 
 # next.js
 /.next/

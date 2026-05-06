@@ -4,9 +4,13 @@ retriever.py - Parallel retrieval node with Send() fan-out
 
 Uses LangGraph Send() to fan out per-market retrieval.
 """
+import os
+from pathlib import Path
 from typing import Optional
 from langgraph.types import Send
 from rag_service.orchestrator.state import GraphState
+
+_APP_ROOT = Path(__file__).parent.parent.parent
 
 # Global retriever instance (initialized once, shared across calls)
 _retriever_instance = None
@@ -32,9 +36,10 @@ def _get_retriever():
             from rag_service.retrieval.faiss_retriever import FaissRetriever
             from rag_service.retrieval.bm25_retriever import BM25Retriever
 
+            _faiss_dir = Path(os.environ.get("FAISS_INDEX_DIR", _APP_ROOT / "data" / "faiss"))
             faiss = FaissRetriever.load(
-                "C:/temp/faiss_index/legal_chunks.index",
-                "C:/temp/faiss_index/legal_chunks_meta.json",
+                str(_faiss_dir / "legal_chunks.index"),
+                str(_faiss_dir / "legal_chunks_meta.json"),
             )
             bm25 = BM25Retriever()
             _retriever_instance = HybridRetriever(bm25=bm25, faiss_retriever=faiss)

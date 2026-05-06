@@ -18,14 +18,16 @@ if not exist "rag_service\.env" (
     echo Copy rag_service\.env.example to rag_service\.env and add your API keys.
 )
 
-REM Check FAISS index
-if not exist "C:\temp\faiss_index\legal_chunks.index" (
-    echo WARNING: FAISS index not found at C:\temp\faiss_index\
+REM FAISS index path (auto-detected by service from FAISS_INDEX_DIR env or default)
+set FAISS_INDEX_DIR=%cd%\data\faiss
+if not exist "%FAISS_INDEX_DIR%\legal_chunks.index" (
+    echo WARNING: FAISS index not found at %FAISS_INDEX_DIR%
     echo Run scripts\build_faiss.py to build the index first.
     echo.
 )
 
-echo Starting rag-service on http://localhost:8000
+echo FAISS_INDEX_DIR=%FAISS_INDEX_DIR%
+echo Starting rag-service on http://localhost:8001
 echo Press Ctrl+C to stop.
 
-.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --host 0.0.0.0 --port 8000
+.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --host 0.0.0.0 --port 8001

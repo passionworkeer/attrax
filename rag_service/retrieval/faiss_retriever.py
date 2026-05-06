@@ -10,6 +10,8 @@ from __future__ import annotations
 import json
 import logging
 import os
+import shutil
+import tempfile
 from pathlib import Path
 from typing import Optional
 
@@ -121,11 +123,41 @@ class FaissRetriever:
 
     @classmethod
     def load(cls, index_path: str, meta_path: str) -> "FaissRetriever":
-        """Load index + metadata from disk; detects dimension automatically."""
-        inst = cls(index_path=index_path, meta_path=meta_path)
-        inst.index = faiss.read_index(index_path)
+        """Load index + metadata from disk; detects dimension automatically.
 
-        with open(meta_path, "r", encoding="utf-8") as f:
+        Handles non-ASCII paths (e.g. Chinese characters in Windows paths) by
+        copying files to a temp location that the faiss C extension can open.
+        """
+        inst = cls(index_path=index_path, meta_path=meta_path)
+
+        _index_path = index_path
+        _meta_path = meta_path
+
+        # Detect non-ASCII paths (faiss C extension can't open them on Windows)
+        def has_non_ascii(s: str) -> bool:
+            return any(ord(c) > 127 for c in s)
+
+        if has_non_ascii(index_path) or has_non_ascii(meta_path):
+            tmp_dir = tempfile.mkdtemp(prefix="faiss_")
+            logger.warning(
+                f"Non-ASCII path detected ({index_path}), "
+                f"copying index to temp dir {tmp_dir} for faiss C extension compatibility"
+            )
+            _index_path = os.path.join(tmp_dir, os.path.basename(index_path))
+            _meta_path = os.path.join(tmp_dir, os.path.basename(meta_path))
+            shutil.copy2(index_path, _index_path)
+            shutil.copy2(meta_path, _meta_path)
+            logger.info(f"Copied index files to temp location: {_index_path}")
+
+        try:
+            inst.index = faiss.read_index(_index_path)
+        except Exception as e:
+            raise RuntimeError(
+                f"Failed to load faiss index from {_index_path}. "
+                f"Original path was {index_path}. Error: {e}"
+            ) from e
+
+        with open(_meta_path, "r", encoding="utf-8") as f:
             data = json.load(f)
             # Support both old format (list) and new format (dict with dim)
             inst.chunks = data.get("chunks", data) if isinstance(data, dict) else data
