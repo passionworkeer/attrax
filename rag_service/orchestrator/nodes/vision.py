@@ -24,6 +24,7 @@ import base64
 import logging
 import urllib.request
 import urllib.error
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -131,7 +132,7 @@ class VisionAnalyzer:
 
     def analyze_images(self, images: list[dict]) -> dict:
         """
-        Analyze multiple images and merge results.
+        Analyze multiple images in parallel and merge results.
 
         Args:
             images: list of {"buffer": bytes, "mime_type": str, "name": str}
@@ -142,26 +143,49 @@ class VisionAnalyzer:
         if not images or not self.api_key:
             return _empty_vision_result()
 
+        if len(images) == 1:
+            # Single image: no parallelism overhead
+            result = self.analyze_single_image(
+                images[0].get("buffer", b""),
+                images[0].get("mime_type", "image/jpeg")
+            )
+            certs_list = result.get("certifications", [])
+            cert_str = ", ".join(c["mark"] for c in certs_list) if certs_list else "未发现认证标志"
+            enriched_query = _build_vision_enriched_query(
+                result.get("description", ""), certs_list
+            )
+            return {
+                "descriptions": [result.get("description", "")] if result.get("description") else [],
+                "combined_description": result.get("description", ""),
+                "certifications": certs_list,
+                "images_analyzed": 1,
+                "enriched_query": enriched_query,
+                "cert_summary": cert_str,
+            }
+
+        # Multiple images: parallel analysis via ThreadPoolExecutor
+        def _analyze_one(img: dict):
+            buf = img.get("buffer", b"")
+            if not buf:
+                return None
+            return self.analyze_single_image(buf, img.get("mime_type", "image/jpeg"))
+
         descriptions = []
         seen_certs = {}
 
-        for img in images:
-            buf = img.get("buffer", b"")
-            if not buf:
-                continue
-
-            result = self.analyze_single_image(
-                buf,
-                img.get("mime_type", "image/jpeg")
-            )
-
-            if result.get("description"):
-                descriptions.append(result["description"])
-
-            for cert in result.get("certifications", []):
-                mark = cert["mark"]
-                if mark not in seen_certs or cert["confidence"] == "high":
-                    seen_certs[mark] = cert
+        with ThreadPoolExecutor(max_workers=min(len(images), 4)) as pool:
+            futures = [pool.submit(_analyze_one, img) for img in images]
+            for future in as_completed(futures):
+                try:
+                    result = future.result()
+                    if result and result.get("description"):
+                        descriptions.append(result["description"])
+                    for cert in (result or {}).get("certifications", []):
+                        mark = cert["mark"]
+                        if mark not in seen_certs or cert["confidence"] == "high":
+                            seen_certs[mark] = cert
+                except Exception as e:
+                    logger.debug(f"Image analysis failed: {e}")
 
         combined_desc = "\n\n".join(descriptions)
         certs_list = list(seen_certs.values())

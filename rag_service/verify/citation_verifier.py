@@ -194,6 +194,7 @@ class CitationVerifier:
         Returns:
             VerificationResult with status and attribution score
         """
+        # Fast path: no chunks → skip expensive verification
         if not chunks:
             return VerificationResult(
                 total_claims=0,

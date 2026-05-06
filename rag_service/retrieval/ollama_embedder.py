@@ -71,6 +71,47 @@ def _ollama_embed_single(text: str, model: str) -> list[float]:
     return vec.tolist()
 
 
+def _ollama_embed_batch(texts: list[str], model: str, batch_size: int = 32) -> list[list[float]]:
+    """
+    Call Ollama /api/embed endpoint with batch prompts (single HTTP call for all texts).
+    Falls back to serial _ollama_embed_single on failure.
+    """
+    if not texts:
+        return []
+
+    results = []
+    for i in range(0, len(texts), batch_size):
+        batch = texts[i : i + batch_size]
+        body = json.dumps({
+            "model": model,
+            "input": batch,
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            f"{OLLAMA_BASE}/api/embed",
+            data=body,
+            headers={"Content-Type": "application/json"},
+        )
+
+        try:
+            with urllib.request.urlopen(req, timeout=120) as r:
+                data = json.loads(r.read())
+
+            embeddings = data.get("embeddings", [])
+            for emb in embeddings:
+                vec = np.array(emb, dtype=np.float32)
+                norm = np.linalg.norm(vec)
+                if norm > 0:
+                    vec = vec / norm
+                results.append(vec.tolist())
+        except Exception:
+            # Fallback to serial on API error (e.g. older Ollama version without /api/embed)
+            for text in batch:
+                results.append(_ollama_embed_single(text, model))
+
+    return results
+
+
 class OllamaEmbedder:
     """
     Local embedding via Ollama nomic-embed-text.
@@ -100,14 +141,15 @@ class OllamaEmbedder:
         logger.info(f"OllamaEmbedder ready: model={self.model}, dim={self.DIM}")
 
     def embed_texts(self, texts: list[str]) -> list[list[float]]:
-        """Embed a list of texts (one API call per text)."""
+        """Embed a list of texts using batch API (one HTTP call per batch)."""
         if not texts:
             return []
-        return [_ollama_embed_single(t, self.model) for t in texts]
+        return _ollama_embed_batch(texts, self.model)
 
     def embed_query(self, text: str) -> list[float]:
         """Embed a single query string."""
         return _ollama_embed_single(text, self.model)
 
     def embed_batch(self, texts: list[str], batch_size: int = 32) -> list[list[float]]:
-        return self.embed_texts(texts)
+        """Embed a batch of texts using Ollama /api/embed (single call per batch)."""
+        return _ollama_embed_batch(texts, self.model, batch_size)

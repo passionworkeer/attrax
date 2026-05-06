@@ -57,6 +57,14 @@ async def lifespan(app: FastAPI):
 
     bm25 = BM25Retriever()
 
+    # Pre-warm embedder at startup to avoid 3-8s probe delay on first query
+    from rag_service.retrieval.hybrid_retriever import _probe_embedders
+    warm_embedder, warm_name = _probe_embedders()
+    if warm_embedder:
+        logger.info(f"Embedding pre-warmed: {warm_name}")
+    else:
+        logger.warning("Embedding: all providers unavailable (BM25-only mode)")
+
     faiss_ret = None
     if os.path.exists(CHILD_INDEX) and os.path.exists(CHILD_META):
         try:
