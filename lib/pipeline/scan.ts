@@ -14,7 +14,7 @@ import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult } from "@/lib/mock/scan-result";
 import type { Market, ProductCategory } from "@/lib/types";
 
-const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8000";
+const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
 const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
 
 export interface RunScanInput {

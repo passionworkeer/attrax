@@ -6,7 +6,7 @@ Pipeline:
 1. Load all processed JSON files from data/corpus/processed/
 2. Chunk with LegalChunker
 3. Embed with ModelScope Qwen3-Embedding-0.6B (requires MODELSCOPE_API_KEY)
-4. Save Faiss index + JSON metadata to data/faiss/
+4. Save Faiss index + JSON metadata to data/faiss/ (or FAISS_INDEX_DIR env var)
 
 Usage:
     D:\python\python.exe scripts/build_faiss.py [--limit N]
@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger(__name__)
 
 PROCESSED_DIR = Path("data/corpus/processed")
-FAISS_DIR = Path("C:/temp/faiss_index")
+FAISS_DIR = Path(os.environ.get("FAISS_INDEX_DIR", "data/faiss"))
 BATCH_SIZE = 1
 
 
