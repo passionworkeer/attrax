@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -85,9 +86,11 @@ function ImagePreview({ file }: { file: File }) {
   const url = URL.createObjectURL(file);
   return (
     <div className="relative flex items-center gap-3 rounded-xl border border-border bg-muted/40 p-3">
-      <img
+      <Image
         src={url}
         alt={file.name}
+        width={64}
+        height={64}
         className="h-16 w-16 shrink-0 rounded-lg object-cover"
       />
       <div className="min-w-0 flex-1">
