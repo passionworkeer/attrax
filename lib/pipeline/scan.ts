@@ -212,10 +212,6 @@ export async function runScan(sessionId: string, input: RunScanInput) {
   });
 }
 
-function sleep(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 // ── Extended result types for RAG compliance ─────────────────────────────────
 
 export interface ComplianceReportResult {

@@ -93,7 +93,7 @@ function parseMarkdownToDocx(text: string): Paragraph[] {
       const content = line.replace(/^\d+\. /, "").replace(/\*\*(.*?)\*\*/g, "$1");
       paragraphs.push(
         new Paragraph({
-          children: [new TextRun({ text, size: 22 })],
+          children: [new TextRun({ text: content, size: 22 })],
           indent: { left: 360 },
           spacing: { after: 60 },
         })
@@ -164,7 +164,6 @@ export async function downloadReportAsPdf(result: ComplianceReportResult): Promi
   y += 36;
 
   // ── Status badge ─────────────────────────────────────
-  const statusColor = scoreColor;
   const fillR = Math.round(scoreColor[0] * 0.1);
   const fillG = Math.round(scoreColor[1] * 0.1);
   const fillB = Math.round(scoreColor[2] * 0.1);

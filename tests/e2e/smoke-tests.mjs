@@ -141,7 +141,7 @@ async function runSmokeTests() {
     // This test creates a mock file
     const response = await page.request.post(`${BASE_URL}/api/scan`, {
       multipart: {
-        images: await createMockFile(page),
+        images: await createMockFile(),
         category: 'electronics',
         markets: 'EU,US',
       },
@@ -151,7 +151,7 @@ async function runSmokeTests() {
     if (!json.sessionId) throw new Error('Expected sessionId in response');
   });
 
-  async function createMockFile(page) {
+  async function createMockFile() {
     // Create a minimal valid image file
     return {
       name: 'test.jpg',
