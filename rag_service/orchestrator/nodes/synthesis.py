@@ -40,7 +40,7 @@ def synthesis_node(state: GraphState) -> dict:
     doc_name_best: dict[str, dict] = {}
     for doc in stage1:
         doc_name = doc.get("doc_name", "")
-        score = doc.get("rerank_score", doc.get("score", 0))
+        score = doc.get("rerank_score", doc.get("rrf_score", doc.get("score", 0)))
         if not doc_name:
             # nameless items (e.g. must-check) — keep all
             doc_name = f"_anon_{id(doc)}"
@@ -51,7 +51,7 @@ def synthesis_node(state: GraphState) -> dict:
     unique_docs = list(doc_name_best.values())
 
     # Sort by score descending
-    unique_docs.sort(key=lambda d: d.get("rerank_score", d.get("score", 0)), reverse=True)
+    unique_docs.sort(key=lambda d: d.get("rerank_score", d.get("rrf_score", d.get("score", 0))), reverse=True)
 
     # ── Stage 3: soft cap for LLM context (40 — generous but not bloated) ──────
     LLM_CONTEXT_CAP = 40
@@ -68,7 +68,15 @@ def synthesis_node(state: GraphState) -> dict:
         "markets_covered": list(markets_seen),
     }
 
+    # Normalize rrf_score → score for downstream consumers (frontend, main.py)
+    out_docs = []
+    for d in context_docs:
+        d2 = dict(d)
+        if "score" not in d2:
+            d2["score"] = d2.get("rrf_score", d2.get("dense_score", 0.0))
+        out_docs.append(d2)
+
     return {
-        "documents": context_docs,
+        "documents": out_docs,
         "agent_trace": state.get("agent_trace", []) + [trace_entry],
     }
