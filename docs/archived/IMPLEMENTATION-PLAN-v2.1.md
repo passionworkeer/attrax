@@ -1,4 +1,8 @@
-# 火鹰合规 RAG 系统实施计划
+# 火鹰合规 RAG 系统实施计划 — 已归档
+
+> **状态**：已归档
+> **归档时间**：2026-05-07
+> **归档原因**：本计划描述的技术路线（Cohere/Qdrant/Docling）未按计划实现，已变更为 Ollama/FAISS/pdfplumber 路线。实际路线见 `docs/RAG-ARCHITECTURE-v3.md`。
 
 > 基准文档：RAG-ARCHITECTURE-v2.1
 > 创建时间：2026-04-29

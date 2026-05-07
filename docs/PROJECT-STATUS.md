@@ -92,6 +92,8 @@
 
 > **建议：** 将 `docs/RAG-ARCHITECTURE-v2.md` 重命名为 `docs/RAG-ARCHITECTURE-v2-LEGACY.md`，并补充当前实现的 `docs/RAG-ARCHITECTURE-v3.md`。
 
+> **注：** `RAG-ARCHITECTURE-v2-LEGACY.md` 和 `RAG-ARCHITECTURE.md`（archived/）均已归档，不再反映当前实现。
+
 ### 3.2 README.md 偏差
 
 - README 称 Cohere API 为可选（实际未使用）
