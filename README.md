@@ -18,7 +18,9 @@
 - [快速开始](#快速开始)
 - [项目结构](#项目结构)
 - [API 参考](#api-参考)
+- [前端扫描流程](#前端扫描流程)
 - [环境变量](#环境变量)
+- [开发指南](#开发指南)
 
 ---
 
@@ -63,11 +65,11 @@
 │  Next.js 前端 (React 19 + TypeScript + Tailwind CSS)     │
 │  /upload → /burning/[sessionId] → /result/[sessionId]   │
 └────────────────────────────┬────────────────────────────┘
-                             │ HTTP POST
+                             │ HTTP POST http://localhost:8001/scan
                              ▼
 ┌─────────────────────────────────────────────────────────┐
-│  FastAPI RAG Service (Python 3.10+)                      │
-│  /scan → LangGraph Agentic RAG Graph                     │
+│  FastAPI RAG Service (Python 3.10+, port 8001)          │
+│  /scan → LangGraph Agentic RAG Graph                    │
 │                                                          │
 │  ┌────────────────────────────────────────────────────┐  │
 │  │         LangGraph Agentic RAG Pipeline              │  │
@@ -79,7 +81,7 @@
 │  │                                    ↓               │  │
 │  │                              Generator             │  │
 │  │                                    ↓               │  │
-│  │                           NLI Citation Verifier    │  │
+│  │                           NLI Citation Verifier   │  │
 │  │                                    ↓               │  │
 │  │                      PASS / WARN / REJECTED        │  │
 │  └────────────────────────────────────────────────────┘  │
@@ -98,6 +100,11 @@
 | Tailwind CSS | 4.x | 样式框架 |
 | shadcn/ui | 4.4.0 | UI 组件库 |
 | framer-motion | 12.38.0 | 动画 |
+| react-markdown | 10.1.0 | Markdown 渲染 |
+| jspdf | 4.2.1 | PDF 导出 |
+| docx | 9.6.1 | DOCX 导出 |
+| zod | 4.3.6 | Schema 验证 |
+| Vitest / Playwright | - | 单元测试 / E2E |
 | Lucide React | 1.9.0 | 图标库 |
 
 #### RAG 后端
@@ -108,9 +115,9 @@
 | FastAPI | 0.109.0 | HTTP 服务框架 |
 | LangGraph | 1.1.6 | Agent 编排（Send fan-out 多市场并行） |
 | FAISS | 1.12.0 | 本地向量检索（IndexFlatIP） |
-| jieba | 0.42.1 | 中文分词（BM25） |
 | Ollama | nomic-embed-text | 本地 Embedding（768 维） |
 | ModelScope Qwen3-Embedding | 0.6B | 云端 Embedding 降级 |
+| jieba | 0.42.1 | 中文分词（BM25） |
 | Anthropic SDK | 0.91.0 | mimoTalk LLM（Vision + 生成） |
 | pdfplumber | 0.11.8 | PDF 解析 |
 | Docker + Docker Compose | - | 容器化部署 |
@@ -164,7 +171,7 @@ Query → ┌─→ Faiss Dense (向量相似度)
          Must-Check 强制注入
          (按产品类别注入必须检查的法规)
               ↓
-         Rerank (语义精排 Top-10)
+         RRF 结果直接返回（cohere_reranker 已实现但未接入管线）
 ```
 
 #### 4. Must-Check 强制注入机制
@@ -186,7 +193,7 @@ Query → ┌─→ Faiss Dense (向量相似度)
 |---------|------|------|
 | **PASS** | 归因分数 >= 0.9 | 正常展示报告 |
 | **WARN** | 归因分数 0.5-0.9 | 展示报告 + 警告横幅 |
-| **REJECTED** | 存在矛盾内容 | 拒绝展示 |
+| **REJECTED** | 存在矛盾内容 | 拒绝展示（触发重生成） |
 
 > 注：归因分数 = (验证通过数 / 总引用数) × 引用覆盖率。当 NLI 模型不可用时，降级为文本重叠法。
 
@@ -209,7 +216,7 @@ QueryPlanner → [EU] → Fan-out
 | 维度 | 本项目方案 | 传统方案 |
 |------|-----------|---------|
 | Embedding | 三级降级（Ollama → Qwen → ModelScope） | 仅 API |
-| Rerank | 未接入（cohere_reranker 存在但未在管线中使用） | 单一向量检索 |
+| Rerank | 已实现但未接入管线（cohere_reranker.py 存在，未调用） | 单一向量检索 |
 | 分块 | Parent-Child + 法律条款边界 | 固定 token |
 | 融合 | RRF (k=25) + Must-Check | 单一向量检索 |
 | 验证 | NLI 软门（归因分数 0.9/0.5/0） | 无 |
@@ -244,10 +251,7 @@ cp .env.local.example .env.local
 编辑 `.env.local`，填入必要的 API Key：
 
 ```env
-# RAG Service API（留空则使用 Demo 模式）
-RAG_SERVICE_URL=http://localhost:8000
-
-# mimoTalk API（主要 LLM）
+# mimoTalk API（主要 LLM，用于 Vision 分析 + 报告生成）
 MIMOTALK_API_KEY=your_mimotalk_api_key
 MIMOTALK_BASE_URL=https://token-plan-sgp.xiaomimimo.com/anthropic/v1
 
@@ -257,6 +261,14 @@ MODELSCOPE_API_KEY=your_modelscope_api_key
 # 可选：Ollama（本地 embedding，如已安装）
 OLLAMA_BASE_URL=http://localhost:11434
 OLLAMA_EMBED_MODEL=nomic-embed-text
+
+# RAG Service（默认端口 8001）
+RAG_SERVICE_URL=http://localhost:8001
+
+# Demo 模式（无需 API Key，使用模拟数据）
+DEMO_MODE=false
+
+DAILY_FREE_SCAN_LIMIT=3
 ```
 
 ### 3. 启动 RAG Service（可选）
@@ -268,7 +280,10 @@ OLLAMA_EMBED_MODEL=nomic-embed-text
 scripts\start_rag.bat
 
 # 方式 B：手动启动
-.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --port 8000
+D:\python\python.exe -m uvicorn rag_service.main:app --reload --port 8001
+
+# 方式 C：一键启动前端 + RAG
+start-all.bat
 ```
 
 ### 4. 启动前端
@@ -292,6 +307,8 @@ attrax/
 │   ├── burning/[sessionId]/      # 扫描中页面
 │   ├── result/[sessionId]/       # 扫描结果页
 │   └── api/scan/                 # API 路由
+│       ├── route.ts              # POST /api/scan — 创建扫描会话
+│       └── [sessionId]/route.ts  # GET /api/scan/[sessionId] — 轮询状态
 │
 ├── components/                   # UI 组件
 │   ├── ui/                       # shadcn/ui 基础组件
@@ -300,90 +317,80 @@ attrax/
 │   └── result/                   # 结果展示
 │
 ├── lib/                          # 核心库
-│   ├── schemas.ts                # Zod 验证 schema
-│   ├── pipeline/scan.ts          # 扫描管线
-│   ├── hooks/useScanPolling.ts  # 轮询 hook
-│   └── mock/scan-result.ts       # Mock 数据
+│   ├── schemas.ts                # Zod 验证 schema（StartScanRequestSchema 等）
+│   ├── types.ts                  # TypeScript 类型定义（Market, ProductCategory, ScanStatus）
+│   ├── pipeline/
+│   │   ├── scan.ts               # 扫描管线（调用 RAG 服务，端口 8001）
+│   │   └── session-store.ts      # 会话存储（globalThis.__scanStore + 文件持久化，TTL 1小时）
+│   ├── mock/
+│   │   └── scan-result.ts        # Demo 模式模拟数据
+│   └── hooks/
+│       └── useScanPolling.ts     # 轮询 hook
 │
-├── rag_service/                  # Python RAG 服务
-│   ├── main.py                   # FastAPI 入口
-│   ├── config.py                 # 配置管理
+├── rag_service/                  # Python RAG 服务（FastAPI，端口 8001）
+│   ├── main.py                   # FastAPI 入口，/scan + /health
+│   ├── config.py                 # 配置管理（settings）
 │   ├── parser/                   # 文档解析
 │   │   ├── docx_parser.py        # DOCX 解析
 │   │   └── html_parser.py        # HTML 解析
 │   ├── chunker/                  # Parent-Child 分块
 │   │   └── legal_chunker.py      # 法律条款分块
-│   ├── retrieval/               # 混合检索管线
+│   ├── retrieval/                 # 混合检索管线
 │   │   ├── faiss_retriever.py    # FAISS 向量检索
 │   │   ├── bm25_retriever.py     # BM25 稀疏检索
-│   │   ├── hybrid_retriever.py   # 混合检索主类
+│   │   ├── hybrid_retriever.py   # 混合检索主类（自动降级 Ollama→Qwen→BM25）
 │   │   ├── fusion.py             # RRF 融合
-│   │   ├── must_check.py         # 强制注入规则
+│   │   ├── must_check.py        # 强制注入规则
 │   │   ├── ollama_embedder.py    # Ollama 本地 embedding
-│   │   ├── local_embedder.py     # 本地 Qwen embedding
+│   │   ├── local_embedder.py    # 本地 Qwen embedding
 │   │   ├── modelScope_embedder.py # ModelScope API embedding
-│   │   └── cohere_reranker.py    # ⚠️ 已实现但未接入管线
+│   │   └── cohere_reranker.py   # ⚠️ 已实现但未接入管线
 │   ├── verify/                   # NLI 引用验证
 │   │   └── citation_verifier.py  # 归因分数软门
 │   ├── generate/                 # 报告生成
-│   │   └── report_generator.py   # 报告生成器
-│   ├── eval/                     # 评估指标
-│   │   ├── metrics.py            # 评估指标
-│   │   └── run_eval.py           # 评估脚本
-│   ├── tests/                    # Python 单元测试
-│   │   ├── test_api_smoke.py
-│   │   ├── test_citation_verifier.py
-│   │   ├── test_component.py
-│   │   ├── test_docx_parser.py
-│   │   ├── test_html_parser.py
-│   │   ├── test_legal_chunker.py
-│   │   ├── test_orchestrator.py
-│   │   ├── test_report_generator.py
-│   │   ├── test_retrieval.py
-│   │   └── test_smoke.py
-│   └── orchestrator/             # LangGraph Agent 编排
-│       ├── state.py              # GraphState 定义
-│       ├── graph.py              # StateGraph 组装
-│       └── nodes/                # 8 个 Graph Node
-│           ├── vision.py         # Vision 分析
-│           ├── query_planner.py  # 查询规划
-│           ├── retriever.py      # 检索节点
-│           ├── synthesis.py      # 多市场结果汇聚
-│           ├── generator.py      # 报告生成
-│           ├── verifier.py       # NLI 验证
-│           ├── refiner.py        # HyDE 查询精化
-│           └── __init__.py
+│   │   └── report_generator.py   # mimoTalk 报告生成器
+│   ├── orchestrator/             # LangGraph Agent 编排
+│   │   ├── state.py             # GraphState 定义
+│   │   ├── graph.py             # StateGraph 组装
+│   │   └── nodes/               # 8 个 Graph Node
+│   │       ├── vision.py        # Vision 分析（mimoTalk 多模态）
+│   │       ├── query_planner.py # 查询规划
+│   │       ├── retriever.py     # fan_out + retrieve 节点
+│   │       ├── synthesis.py     # RRF 融合 + must_check
+│   │       ├── generator.py     # 报告生成
+│   │       ├── verifier.py      # NLI 验证
+│   │       ├── refiner.py       # HyDE 查询精化
+│   │       └── __init__.py
+│   └── tests/                    # Python 单元测试（pytest）
 │
 ├── scripts/                      # 运维脚本
 │   ├── build_corpus.py          # 批量构建语料库
 │   ├── build_faiss.py           # FAISS 索引构建
 │   ├── parse_regulation.py      # 法规解析
-│   └── start_rag.bat            # 服务启动脚本（Windows）
-
+│   └── start_rag.bat            # RAG 服务启动脚本
+│
 ├── data/                         # 数据文件
-│   ├── corpus/                  # 预解析语料库
-│   │   └── processed/            # 已处理文件（200+ JSON）
 │   ├── faiss/                   # FAISS 索引
 │   │   ├── legal_chunks.index   # 26MB 向量索引
 │   │   └── legal_chunks_meta.json # 15MB 元数据
-│   └── embedding_cache/          # Embedding 缓存
-
+│   └── corpus/                  # 预解析语料库
+│       ├── processed/           # 已处理文件（200+ JSON）
+│       └── screenshot_pending/  # ⚠️ 待 OCR 处理（截屏 PDF）
+│
 ├── docs/                         # 文档
-│   ├── README.md                # 文档索引
-│   ├── PROJECT.md               # 项目描述
-│   ├── PRD.md                   # 产品需求文档
 │   ├── RAG-ARCHITECTURE-v3.md   # RAG 架构文档（当前）
 │   ├── RAG-ARCHITECTURE-v2-LEGACY.md  # v2 旧版（已归档）
 │   ├── IMPLEMENTATION-PLAN-v3.md # 实施计划
+│   ├── PRD.md                   # 产品需求文档
+│   ├── PROJECT.md               # 项目描述
 │   └── PROJECT-STATUS.md        # 上线评估报告
 │
-├── eval/                         # 评估脚本
-│   └── results/                  # 评估结果
+├── tests/                        # 测试
+│   ├── unit/                    # Vitest 单元测试
+│   ├── e2e/                     # Playwright E2E 测试
+│   └── smoke-tests.mjs         # Smoke 测试脚本
 │
-└── tests/                        # 测试
-    ├── unit/                    # 单元测试
-    ├── e2e/                     # E2E 测试
-    └── pressure/                # 压力测试
+└── docker-compose.yml            # 容器化部署（8001:8000 端口映射）
 ```
 
 ---
@@ -392,19 +399,40 @@ attrax/
 
 ### POST /scan - 合规扫描
 
-**请求：**
+**端点**：前端 `POST http://localhost:8001/scan`
+
+**请求（ScanRequest）**：
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| `query` | string | 是 | 用户查询文本 |
+| `product` | string | 是 | 产品名称 |
+| `category` | string | 是 | 产品分类（electronics / toys / battery / textiles 等） |
+| `markets` | string[] | 是 | 目标市场列表（EU / US / UK / CN / AU / SA / AE 等） |
+| `vision_result` | object | 否 | 预计算的 Vision 分析结果 |
+| `images` | array | 否 | 图片数组（buffer: base64, mime_type, name） |
+| `documents` | array | 否 | 文本文档数组（name, mime_type, text） |
+| `pdfs` | array | 否 | PDF 文件数组（buffer: base64, name）—— 后端 pdfplumber 提取 |
 
 ```json
 {
   "query": "充电宝出口欧盟需要哪些认证？",
-  "product": "USB 充电宝",
+  "product": "USB 充电宝 10000mAh",
   "category": "electronics",
   "markets": ["EU", "US"],
   "vision_result": {}
 }
 ```
 
-**响应：**
+**响应（ScanResponse）**：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `status` | string | PASS / WARN / REJECTED（见状态码说明） |
+| `report` | string | Markdown 格式合规报告 |
+| `agent_trace` | array | 各节点执行轨迹（调试用） |
+| `loop_count` | int | 重生成循环次数 |
+| `documents` | array | 检索到的相关法规片段（最多 15 条） |
 
 ```json
 {
@@ -419,7 +447,14 @@ attrax/
     {"node": "verify", "status": "PASS", "attribution_score": 0.95}
   ],
   "loop_count": 0,
-  "documents": [...]
+  "documents": [
+    {
+      "doc_name": "reach_regulation.json",
+      "article_no": "Article 22",
+      "chunk_id": "eu_reach_001",
+      "text": "Article 22 聚合物的注册要求..."
+    }
+  ]
 }
 ```
 
@@ -436,11 +471,13 @@ attrax/
 
 ### 状态码说明
 
-| 状态 | 含义 |
-|------|------|
-| `PASS` | 归因分数 >= 0.9，报告生成成功 |
-| `WARN` | 归因分数 0.5-0.9，报告生成但存在不确定性 |
-| `REJECTED` | 存在矛盾内容，拒绝展示 |
+| 状态 | attribution_score | 含义 | 报告行为 |
+|------|------------------|------|---------|
+| `PASS` | >= 0.9 | 高置信度，引用充分验证 | 正常展示报告 |
+| `WARN` | 0.5 - 0.9 | 中等置信度，部分引用未验证 | 展示报告 + 警告横幅 |
+| `REJECTED` | 存在 contradiction | 有矛盾引用 | 拒绝展示，自动触发重生成 |
+
+> 归因分数计算：`attribution_score = (验证通过数 / 总引用数) × 引用覆盖率`。当 NLI 模型不可用时，降级为文本重叠法。
 
 ---
 
@@ -458,8 +495,8 @@ attrax/
 2. BM25 检索（jieba 分词，Top-50）
 3. RRF 融合（k=25）
 4. Must-Check 强制注入
-5. 区域过滤（EU/US/CN）
-6. RRF 结果直接作为 Top-K 返回（Rerank 待实现）
+5. 区域过滤（EU/US/CN 等）
+6. RRF 结果直接作为 Top-K 返回（cohere_reranker 已实现但未接入管线）
 
 ### LegalChunker - 法律分块
 
@@ -506,13 +543,13 @@ LangGraph StateGraph，支持：
 | 截屏 PDF | PDF | ~20 个 | ⚠️ 待 OCR 处理 |
 | **processed 目录** | JSON | **200+ 个** | ✅ 已完成 |
 
-> ⚠️ `data/全部法规/` 和 `data/合规/` 为冗余副本，建议清理。
 > ⚠️ `data/corpus/screenshot_pending/` 下约 20 个 PDF 截图为待 OCR 处理状态。
+> ⚠️ `data/全部法规/` 和 `data/合规/` 为冗余副本，建议清理。
 
 ### FAISS 索引
 
 - 位置：`data/faiss/legal_chunks.index`
-- 维度：1024（Qwen3-Embedding / Ollama）
+- 维度：1024（Qwen3-Embedding / Ollama nomic-embed-text 768 维）
 - 向量数：~15,000 个 Chunk
 - 存储大小：~26 MB
 
@@ -522,11 +559,91 @@ LangGraph StateGraph，支持：
 
 ```bash
 # 解析法规文件
-.venv\Scripts\python.exe scripts/parse_regulation.py
+D:\python\python.exe scripts/parse_regulation.py
 
 # 构建 FAISS 索引
-.venv\Scripts\python.exe scripts/build_faiss.py
+D:\python\python.exe scripts/build_faiss.py
 ```
+
+---
+
+## 前端扫描流程
+
+前端实现三路由完整链路，支持 Demo 降级：
+
+```
+[首页 /] ──→ [上传页 /upload]
+              ↓ POST /api/scan (FormData)
+         [API Route: app/api/scan/route.ts]
+              ├─ 解析图片 → base64
+              ├─ 解析文档 (PDF→base64, DOCX→mammoth, HTML→文本)
+              ├─ 创建 session → session-store.ts
+              ├─ DEMO_MODE? → runDemoSimulation() [4.5s mock]
+              └─ 否则 → runScan() → RAG Service (8001/scan)
+              ↓ 返回 202 Accepted { sessionId }
+
+         [扫描中页 /burning/[sessionId]]
+              ↓ useScanPolling (800ms, ease-out 12%)
+              ↓ GET /api/scan/[sessionId]
+              ↓ displayProgress 动画 (requestAnimationFrame)
+              ↓ status === "ready" → sessionStorage.setItem → router.push
+
+         [结果页 /result/[sessionId]]
+              ├─ sessionId === "demo" → mockScanResult (跳过 API)
+              ├─ sessionStorage.getItem() → 优先缓存读取
+              └─ GET /api/scan/[sessionId] → 后备
+              ↓
+              isComplianceReport()?
+                  ├─ true → ComplianceReportView (markdown 报告 + Agent Trace 时间线 + 命中法规标签)
+                  └─ false → LegacyResultView (JSON dump + 文档列表)
+```
+
+### 会话存储（双层架构）
+
+- **内存 Map**：`globalThis.__scanStore` — 热读取，TTL 1 小时
+- **文件持久化**：`data/sessions/{sessionId}.json` — 进程重启可恢复
+- **过期清理**：启动时清理超过 SESSION_TTL_MS 的文件
+
+### 关键代码位置
+
+| 功能 | 文件 |
+|------|------|
+| 上传页面 | `app/upload/page.tsx` — 图片/文档选择，FormData 构建 |
+| API Route | `app/api/scan/route.ts` — POST 创建 session，GET 查询状态 |
+| 扫描管线 | `lib/pipeline/scan.ts` — 调用 RAG Service，超时 120s |
+| 会话存储 | `lib/pipeline/session-store.ts` — create/update/getSession |
+| 轮询 Hook | `lib/hooks/useScanPolling.ts` — 800ms 轮询 + ease-out 动画 |
+| 扫描中页 | `app/burning/[sessionId]/page.tsx` — 进度条 + 阶段文字 |
+| 结果页 | `app/result/[sessionId]/page.tsx` — ComplianceReportView + LegacyResultView |
+| Mock 数据 | `lib/mock/scan-result.ts` — `mockScanResult` (USB 加湿器 Demo) |
+
+### 评分等级映射
+
+RAG Service 返回 `status` (PASS/WARN/REJECTED) → 前端映射为评分：
+
+| RAG Status | 合规得分 | 评分等级 |
+|-----------|---------|---------|
+| PASS | 85 分 | B |
+| WARN | 55 分 | C |
+| REJECTED | 25 分 | D |
+
+评分等级颜色：A=绿色 / B=蓝色 / C=黄色 / D=红色。
+
+---
+
+## 环境变量参考
+
+| 变量 | 默认值 | 说明 |
+|------|--------|------|
+| `MIMOTALK_API_KEY` | - | mimoTalk LLM API Key（必填） |
+| `MIMOTALK_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | mimoTalk 端点 |
+| `MIMOTALK_MODEL` | `mimo-v2.5` | 模型名称 |
+| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key（可选） |
+| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama 服务地址 |
+| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | Ollama Embedding 模型 |
+| `RAG_SERVICE_URL` | `http://localhost:8001` | RAG 服务地址 |
+| `DEMO_MODE` | `false` | Demo 模式（使用 Mock 数据，无需 API Key） |
+| `DAILY_FREE_SCAN_LIMIT` | `3` | 每日免费扫描次数 |
 
 ---
 
@@ -536,16 +653,16 @@ LangGraph StateGraph，支持：
 
 ```bash
 # Python 测试
-.venv\Scripts\python.exe -m pytest rag_service/tests/ -v
+D:\python\python.exe -m pytest rag_service/tests/ -v
 
-# 前端测试
+# 前端单元测试 (Vitest)
 npm run test
 
-# E2E 测试
-npm run test:e2e
-
-# 覆盖率测试
+# 前端覆盖率测试
 npm run test:coverage
+
+# E2E 测试 (Playwright)
+npm run test:e2e
 ```
 
 ### 代码质量
@@ -584,18 +701,15 @@ RULES = {
 
 ---
 
-## 环境变量参考
+## 已知限制
 
-| 变量 | 默认值 | 说明 |
-|------|--------|------|
-| `MIMOTALK_API_KEY` | - | mimoTalk LLM API Key（必填） |
-| `MIMOTALK_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | mimoTalk 端点 |
-| `MIMOTALK_MODEL` | `mimo-v2.5` | 模型名称 |
-| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key（可选，Ollama 不可用时降级） |
-| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama 服务地址 |
-| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | Ollama Embedding 模型 |
-| `FAISS_INDEX_DIR` | `data/faiss` | FAISS 索引目录 |
-| `DEMO_MODE` | `false` | Demo 模式（无需 API Key） |
+| 限制 | 说明 |
+|------|------|
+| **无持久化** | 会话仅存储 1 小时（内存 + 文件 TTL），无数据库 |
+| **无用户系统** | 无登录/注册/权限控制 |
+| **cohere_reranker 未接入** | `cohere_reranker.py` 已实现，管线中未调用 |
+| **截屏 PDF 待 OCR** | `data/corpus/screenshot_pending/` 下约 20 个截屏未处理 |
+| **数据冗余** | `data/全部法规/` 和 `data/合规/` 为冗余副本 |
 
 ---
 
@@ -611,4 +725,4 @@ RULES = {
 ---
 
 **版本**：0.2.0
-**最后更新**：2026-05-05
+**最后更新**：2026-05-07
