@@ -94,13 +94,18 @@
 attrax/
 ├── app/                    # Next.js App Router（页面）
 │   └── api/              # Next.js API 路由（/api/scan）
-├── components/             # React 组件（UI 组件）
-│   └── ui/                # shadcn/ui 组件（Button, Card 等）
+├── components/             # React 组件
+│   ├── ui/               # shadcn/ui 组件（Button, Card 等）
+│   ├── burning/          # 扫描中动画页
+│   ├── flame/            # 火焰动画组件
+│   ├── result/           # 结果展示组件
+│   │   └── ProfitReportView.tsx  # 成本利润报告视图（含 PDF/DOCX 导出）
+│   └── upload/           # 上传组件
 ├── lib/                   # 核心库
 │   ├── schemas.ts         # Zod Schema（StartScanRequestSchema 等）
-│   ├── types.ts           # TypeScript 类型（Market, ProductCategory, ScanStatus）
+│   ├── types.ts           # TypeScript 类型（Market, ProductCategory, ScanStatus, ProfitReportResult, CostSummary）
 │   ├── utils.ts           # 通用工具函数
-│   ├── report-export.ts   # 报告导出（PDF/DOCX）
+│   ├── report-export.ts   # 报告导出（合规+利润，PDF/DOCX，含 Markdown 解析）
 │   ├── pipeline/
 │   │   ├── scan.ts        # 扫描管线（调用 RAG 8001）
 │   │   └── session-store.ts  # 会话存储（globalThis.__scanStore）

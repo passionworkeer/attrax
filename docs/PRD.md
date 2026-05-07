@@ -64,7 +64,7 @@
 - [x] 选择目标市场 (EU/US/UK/CN/AU/SA/AE，多选)
 - [x] 文档上传 (PDF/DOCX/HTML，最多 5 份)
 - [ ] 支持拖拽上传 (⚠️ 待实现)
-- [ ] 文件类型验证 (⚠️ 待实现)
+- [x] 文件类型验证 (✅ 部分完成，后端 ACCEPTED_IMAGE_TYPES 过滤)
 
 **当前状态**: ✅ 骨架完成（category/markets 硬编码部分已实现）
 
@@ -144,7 +144,7 @@
 - [x] 显示整改清单
 - [x] 显示法规引用
 - [x] 支持查看 Demo 结果
-- [ ] PDF/Word 报告导出 (⚠️ 待实现)
+- [x] PDF/Word 报告导出 (✅ 完成，lib/report-export.ts，含合规+利润报告)
 
 **当前状态**: ✅ 骨架完成
 
@@ -181,7 +181,7 @@
 |------|------|--------|
 | 图像标注 | 在原图上标注风险区域 BoundingBox | P2 |
 | 图片管理 | 上传历史、图片库 | P2 |
-| PDF/Word 报告导出 | 生成可分享的风险报告 | P2 |
+| PDF/Word 报告导出 | 生成可分享的风险报告 | ✅ P2 已完成 |
 | 多语言界面 | 中文/英文界面切换 | P2 |
 
 ---
@@ -436,6 +436,31 @@ type Severity = "critical" | "warning" | "info";
 
 // 合规评分等级
 type ScoreGrade = "A" | "B" | "C" | "D";
+
+// 成本汇总
+interface CostSummary {
+  bom: number;           // 材料成本（BOM）
+  packaging: number;    // 包装印刷
+  cert: number;         // 认证费摊销
+  epr: number;          // EPR 运营费
+  logistics: number;    // 物流渠道
+  asp: number;          // 平均售价
+  gp: number;           // 毛利润
+}
+
+// 利润报告结果（POST /profit-report）
+interface ProfitReportResult {
+  sessionId: string;
+  productType: string;
+  market: string;
+  report: string;                       // Markdown 报告（含成本对比表）
+  barebone: CostSummary;              // 裸奔模式成本
+  compliant: CostSummary;              // 合规模式成本
+  bareboneRiskExposure: number;        // 风险敞口（暴露金额）
+  compliantRiskExposure: number;       // 风险敞口（暴露金额）
+  keyConclusion: string;                // 关键结论
+  generatedAt: string;                  // 生成时间
+}
 ```
 
 ---

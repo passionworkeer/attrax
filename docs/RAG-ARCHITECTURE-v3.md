@@ -366,11 +366,30 @@ class ScanResponse(BaseModel):
 ```json
 {
   "status": "ok",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "faiss_index": "loaded" | "not_found",
   "vector_count": 0
 }
 ```
+
+### 6.3 POST /profit-report
+
+**成本利润分析报告**（可选功能，v0.3.0 新增）
+
+```python
+class ProfitReportRequest(BaseModel):
+    product: str = ""        # 产品名称（如"充电宝"）
+    category: str = ""       # 产品分类（electronics/toy/...）
+    markets: list[str] = ["EU"]  # 目标市场
+
+class ProfitReportResponse(BaseModel):
+    status: str              # SUCCESS / DEMO
+    report: str              # Markdown 报告（含成本对比表）
+    product: str
+    market: str
+```
+
+**Demo 模式**（无 MIMOTALK_API_KEY）：返回充电宝/乒乓球拍的预置成本数据。
 
 ---
 
@@ -500,7 +519,8 @@ RAG_SERVICE_URL=http://localhost:8001
 |------|------|---------|
 | 1.0 - 2.1 | 2026-04 | 初版至 v2 LEGACY（Cohere API / Qdrant / Docling 路线） |
 | **3.0** | **2026-05-05** | **当前实现**：Ollama 本地嵌入 + ModelScope 降级 + FAISS 本地索引 + pdfplumber + mimoTalk + 软门引用验证 |
-| **3.1** | **2026-05-07** | 补充前端接入说明（POST /api/scan → RAG）、cohere_reranker 未接入原因、三级 Embedding 降级触发条件、Parent-Child 分块实现细节、FAISS 索引构建脚本位置 |
+| **3.1** | **2026-05-07** | 补充前端接入说明、cohere_reranker 未接入原因、三级 Embedding 降级触发条件、Parent-Child 分块、FAISS 索引构建脚本 |
+| **3.2** | **2026-05-07** | 新增 POST /profit-report 接口（成本利润报告），版本号更正为 0.3.0，测试覆盖率更新（pytest 254 / vitest 156） |
 
 ---
 
