@@ -29,21 +29,41 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-PROMPT = """你是一位跨境电商产品合规专家。请仔细分析这张产品图片，提取以下信息用于合规评估：
+PROMPT = """你是一位跨境电商产品视觉识别专家。请仔细分析这张产品图片，准确识别产品类型。
 
-1. **产品类型**：这是什么产品？（如：充电器、玩具、家电等）
-2. **品牌/型号**：是否可见品牌名或型号？
-3. **认证标志**：图片中是否可见以下认证标志？
-   - CE（欧盟）、FCC（美国）、UKCA（英国）、CCC（中国）
-   - RoHS、WEEE、REACH
-   - 其他认证标志
-4. **警告标签**：是否有警告文字或符号？是什么语言？
-5. **铭牌信息**：电压、电流、功率等电气参数是否标注？
-6. **产品描述**：简短描述产品外观和主要功能
+**核心任务：只识别你绝对有把握的产品类型，禁止猜测不确定的产品。**
 
-请用中文输出，格式清晰有条理。"""
+请按以下格式输出：
 
-# ── Module-level singleton ─────────────────────────────────────────────────
+### 产品类型
+[仅输出一个最确定的产品类型，例如：蓝牙耳机、 USB充电器、电动玩具]
+[如果无法确定，输出：无法识别具体产品类型]
+
+### 核心特征
+[列出该产品的2-3个最核心特征，仅描述与合规相关的内容，如：蓝牙耳机、入耳式、有线充电盒、锂电池供电]
+
+### 认证标志
+[列出图片中清晰可见的认证标志，如：CE、FCC、CCC、RoHS等]
+[如果都没有，输出：无明显认证标志]
+
+### 重要提示
+- 如果图片是耳机，请只描述耳机相关特征，不要提及充电宝、移动电源等无关产品
+- 如果图片包含充电盒或电池仓，描述为"耳机充电盒"或"锂电池盒"，不要扩展为"充电宝"
+- 不要基于"可能有电池"就联想到电源适配器、移动电源等
+- 宁可描述模糊（如"音频设备"）也不要错报产品类型"""
+
+PRODUCT_TYPE_KEYWORDS = {
+    "充电宝": ["移动电源", "power bank", "便携式充电器"],
+    "耳机": ["蓝牙耳机", "有线耳机", "earphone", "headphone", "earbuds"],
+    "加湿器": ["超声波加湿器", "humidifier", "mist maker"],
+    "电池": ["电池组", "battery pack", "锂电池", "lithium battery"],
+    "玩具": ["儿童玩具", "玩具产品", "toy", "儿童产品"],
+    "化妆品": ["美妆", "cosmetic", "护肤品"],
+    "充电器": ["电源适配器", "USB charger", "充电头", "charging adapter"],
+    "灯具": ["LED灯", "台灯", "light", "lamp", "照明"],
+    "家电": ["家用电器", "household appliance"],
+    "蓝牙音箱": ["蓝牙音箱", "蓝牙音箱", "Bluetooth speaker", "wireless speaker"],
+}
 
 _analyzer_instance = None
 _is_injected = False
@@ -206,30 +226,86 @@ class VisionAnalyzer:
 def _parse_vision_text(raw: str, raw_response: str) -> dict:
     """Parse structured info from vision model output."""
     certifications = []
-    upper = raw.upper()
     cert_map = {
         "CE": {"region": "EU"}, "FCC": {"region": "US"},
         "UKCA": {"region": "UK"}, "CCC": {"region": "CN"},
         "ROHS": {"region": "EU"}, "WEEE": {"region": "EU"},
         "REACH": {"region": "EU"},
     }
+    upper = raw.upper()
     for mark, info in cert_map.items():
-        if mark in upper:
+        if f" {mark} " in f" {upper} " or f" {mark} " in f" {upper} ":
             certifications.append({"mark": mark, "region": info["region"], "confidence": "high"})
-        elif mark[0] in upper:
-            certifications.append({"mark": mark, "region": info["region"], "confidence": "low"})
+        elif f"{mark}" in upper:
+            # Only add if it's clearly a cert mention, not just text
+            for line in raw.split("\n"):
+                if mark in line.upper():
+                    certifications.append({"mark": mark, "region": info["region"], "confidence": "medium"})
+                    break
 
-    return {"description": raw, "certifications": certifications, "raw_response": raw_response}
+    # Extract product type from structured format
+    product_type = ""
+    core_features = []
+    lines = raw.split("\n")
+    current_section = ""
+    for line in lines:
+        line = line.strip()
+        if "产品类型" in line or "###" in line:
+            current_section = "product_type"
+            continue
+        elif "核心特征" in line or "特征" in line:
+            current_section = "features"
+            continue
+        elif "认证标志" in line:
+            current_section = "certs"
+            continue
+
+        if current_section == "product_type" and line:
+            # Only take the first meaningful line as product type
+            if not product_type and line not in ["无法识别具体产品类型", "无法确定"]:
+                product_type = line
+        elif current_section == "features" and line:
+            core_features.append(line)
+        elif current_section == "certs" and line and line not in ["无明显认证标志", "未发现认证标志"]:
+            for mark, info in cert_map.items():
+                if mark in line.upper():
+                    certs = [c["mark"] for c in certifications]
+                    if mark not in certs:
+                        certifications.append({"mark": mark, "region": info["region"], "confidence": "high"})
+
+    # Build enriched query: product type + core features only (no extra expansion)
+    cert_part = f"，认证标志：{', '.join(c['mark'] for c in certifications)}" if certifications else ""
+    features_part = f"，特征：{'；'.join(core_features[:3])}" if core_features else ""
+    enriched_query = f"{product_type}{features_part}{cert_part}" if product_type else raw[:300]
+
+    return {
+        "description": raw,
+        "product_type": product_type,
+        "core_features": core_features,
+        "certifications": certifications,
+        "raw_response": raw_response,
+        "enriched_query": enriched_query,
+    }
 
 
 def _build_vision_enriched_query(description: str, certifications: list[dict]) -> str:
-    """Build an enriched query incorporating vision analysis."""
-    if not description:
-        return ""
-    certs = [c["mark"] for c in certifications]
-    cert_part = f"，已发现认证标志：{', '.join(certs)}" if certs else "，未发现明显认证标志"
-    desc_snippet = description[:300].replace("\n", " ")
-    return f"{desc_snippet}{cert_part}"
+    """Build a focused enriched query from structured vision output."""
+    # Prefer structured fields if available
+    if "###" in description:
+        # Already structured — rebuild from raw
+        lines = description.split("\n")
+        parts = []
+        for line in lines:
+            line = line.strip()
+            if "产品类型" in line or line.startswith("###"):
+                continue
+            if line and not line.startswith("###") and line not in ["无法识别具体产品类型"]:
+                # Only include if it's likely product type or feature
+                if len(line) < 60 and not line.startswith("重要提示"):
+                    parts.append(line)
+        if parts:
+            return "，".join(parts[:4])
+    return description[:300].replace("\n", " ")
 
 
 def _empty_vision_result() -> dict:
