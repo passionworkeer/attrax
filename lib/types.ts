@@ -150,24 +150,24 @@ export interface ScanStatus {
 }
 
 export interface CostSummary {
-  bom: number;         // 材料成本（BOM）
-  packaging: number;   // 包装印刷
-  cert: number;        // 认证费摊销
-  epr: number;          // EPR 运营费
-  logistics: number;    // 物流渠道
-  asp: number;          // 平均售价
-  gp: number;           // 毛利润
+  bom: number;           // 材料成本（BOM）
+  packaging: number;       // 包装印刷
+  cert: number;           // 认证费摊销
+  epr: number;             // EPR 运营费
+  logistics: number;        // 物流渠道
+  asp: number;             // 平均售价
+  gp: number;              // 毛利润
 }
 
 export interface ProfitReportResult {
   sessionId: string;
   productType: string;
   market: string;
-  report: string;            // markdown（含表格）
+  report: string;               // markdown（含表格）
   barebone: CostSummary;
   compliant: CostSummary;
   bareboneRiskExposure: number;  // 风险敞口（暴露金额）
-  compliantRiskExposure: number;  // 风险敞口（暴露金额）
+  compliantRiskExposure: number; // 风险敞口（暴露金额）
   keyConclusion: string;
   generatedAt: string;
 }

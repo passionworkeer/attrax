@@ -97,7 +97,7 @@ async def lifespan(app: FastAPI):
     _executor.shutdown(wait=False)
 
 
-app = FastAPI(title="火鹰合规 RAG Service", version="0.2.0", lifespan=lifespan)
+app = FastAPI(title="火鹰合规 RAG Service", version="0.3.0", lifespan=lifespan)
 
 
 class ScanRequest(BaseModel):
@@ -119,12 +119,25 @@ class ScanResponse(BaseModel):
     documents: Optional[list[dict]] = None
 
 
+class ProfitReportRequest(BaseModel):
+    product: str = ""
+    category: str = ""
+    markets: list[str] = ["EU"]
+
+
+class ProfitReportResponse(BaseModel):
+    status: str
+    report: str
+    product: str
+    market: str
+
+
 @app.get("/health")
 def health():
     faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
     return {
         "status": "ok",
-        "version": "0.2.0",
+        "version": app.version,
         "faiss_index": "loaded" if faiss_ok else "not_found",
         "vector_count": len(_retriever.faiss_retriever) if faiss_ok else 0,
     }
@@ -204,3 +217,82 @@ async def scan(req: ScanRequest):
         loop_count=result["loop_count"],
         documents=result.get("documents", [])[:DISPLAY_DOC_CAP],
     )
+
+
+# ─── Profit Report ────────────────────────────────────────────────────────────
+
+@app.post("/profit-report", response_model=ProfitReportResponse)
+async def profit_report(req: ProfitReportRequest):
+    """
+    生成合规成本与利润分析报告。
+
+    接收产品类型和市场，从语料库检索相关文档，生成带完整成本表格的 markdown 报告。
+    充电宝和乒乓球拍使用预置数据（无需 LLM 调用），其他产品尝试 LLM 填充。
+    """
+    market = req.markets[0] if req.markets else "EU"
+    product_type = req.product or req.category or "通用产品"
+
+    if settings.demo_mode:
+        return ProfitReportResponse(
+            status="DEMO",
+            report="DEMO MODE: 请配置 MIMOTALK_API_KEY 以启用真实服务。",
+            product=product_type,
+            market=market,
+        )
+
+    def _generate() -> str:
+        # Retrieve relevant chunks from FAISS/BM25 index
+        if _retriever is None:
+            logger.warning("Retriever not initialized, using empty chunks")
+            chunks = []
+        else:
+            # Search for profit/cost related keywords
+            search_queries = [
+                f"{product_type} 合规 成本 利润",
+                f"{product_type} BOM 材料成本",
+                f"{product_type} 认证费 EPR",
+            ]
+            retrieved = _retriever.retrieve(search_queries[0], top_k=20)
+            # Also fetch by keyword combinations
+            for q in search_queries[1:]:
+                try:
+                    additional = _retriever.retrieve(q, top_k=10)
+                    doc_ids = {r.get("doc_id") or r.get("chunk_id") for r in retrieved}
+                    for item in additional:
+                        if (item.get("doc_id") or item.get("chunk_id")) not in doc_ids:
+                            retrieved.append(item)
+                            doc_ids.add(item.get("doc_id") or item.get("chunk_id"))
+                except Exception:
+                    pass
+            chunks = _normalize_chunks(retrieved)
+
+        gen = ReportGenerator(api_key=settings.mimotalk_api_key or None)
+        return gen.generate_profit_report(
+            product_type=product_type,
+            market=market,
+            chunks=chunks,
+        )
+
+    loop = asyncio.get_event_loop()
+    report_text = await loop.run_in_executor(_executor, _generate)
+
+    return ProfitReportResponse(
+        status="SUCCESS",
+        report=report_text,
+        product=product_type,
+        market=market,
+    )
+
+
+def _normalize_chunks(results: list) -> list[dict]:
+    """Normalize retriever output to the standard chunk dict format."""
+    out = []
+    for item in results:
+        if isinstance(item, dict):
+            out.append({
+                "content": item.get("content", "") or item.get("text", ""),
+                "doc_name": item.get("doc_name", "") or item.get("source", ""),
+                "chunk_id": item.get("chunk_id", ""),
+                "score": item.get("score", 0.0),
+            })
+    return out
