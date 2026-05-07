@@ -93,14 +93,19 @@
 ```
 attrax/
 ├── app/                    # Next.js App Router（页面）
+│   └── api/              # Next.js API 路由（/api/scan）
 ├── components/             # React 组件（UI 组件）
 │   └── ui/                # shadcn/ui 组件（Button, Card 等）
 ├── lib/                   # 核心库
 │   ├── schemas.ts         # Zod Schema（StartScanRequestSchema 等）
 │   ├── types.ts           # TypeScript 类型（Market, ProductCategory, ScanStatus）
+│   ├── utils.ts           # 通用工具函数
+│   ├── report-export.ts   # 报告导出（PDF/DOCX）
 │   ├── pipeline/
 │   │   ├── scan.ts        # 扫描管线（调用 RAG 8001）
 │   │   └── session-store.ts  # 会话存储（globalThis.__scanStore）
+│   ├── rag/              # RAG 服务调用封装
+│   ├── vision/           # Vision AI 调用封装
 │   ├── mock/
 │   │   └── scan-result.ts # Demo 模式模拟数据
 │   └── hooks/
@@ -111,26 +116,51 @@ attrax/
 │   ├── orchestrator/      # LangGraph 编排
 │   │   ├── graph.py      # StateGraph 装配
 │   │   ├── state.py      # GraphState 定义
-│   │   └── nodes/        # 8 个节点（vision/query_planner/retriever/synthesis/generator/verifier/refiner）
+│   │   └── nodes/        # 节点（vision/query_planner/retriever/generator/verifier/refiner）
 │   ├── retrieval/        # 检索管线
 │   │   ├── hybrid_retriever.py    # 混合检索主类
-│   │   ├── faiss_retriever.py      # FAISS 向量检索
-│   │   ├── bm25_retriever.py       # BM25 稀疏检索
-│   │   ├── ollama_embedder.py      # Ollama 本地 embedding
-│   │   ├── modelScope_embedder.py  # ModelScope API embedding
-│   │   └── cohere_reranker.py      # ⚠️ 已实现但未接入管线
+│   │   ├── faiss_retriever.py     # FAISS 向量检索
+│   │   ├── bm25_retriever.py      # BM25 稀疏检索
+│   │   ├── local_embedder.py      # 本地 embedder（Ollama nomic-embed-text）
+│   │   ├── modelScope_embedder.py # ModelScope Qwen3-Embedding
+│   │   ├── cohere_embedder.py     # Cohere Embedding
+│   │   ├── cohere_reranker.py     # ⚠️ 已实现但未接入管线
+│   │   └── fusion.py             # 多检索结果融合
+│   ├── parser/           # 文档解析
+│   │   ├── docx_parser.py        # DOCX 解析
+│   │   └── html_parser.py        # HTML 解析
 │   ├── verify/
-│   │   └── citation_verifier.py   # NLI 引用验证（软门）
+│   │   └── citation_verifier.py  # NLI 引用验证（软门）
 │   ├── generate/
-│   │   └── report_generator.py   # mimoTalk 报告生成
-│   └── chunker/
-│       └── legal_chunker.py     # Parent-Child 法律分块
+│   │   └── report_generator.py  # mimoTalk 报告生成
+│   ├── chunker/
+│   │   └── legal_chunker.py     # Parent-Child 法律分块
+│   └── tests/             # pytest 单元测试
 ├── data/                  # 数据文件
 │   ├── faiss/            # FAISS 索引（legal_chunks.index）
-│   ├── corpus/           # 语料库（processed/ 已处理 JSON）
+│   ├── corpus/           # 语料库（按地域组织）
+│   │   ├── asia/         # 东南亚法规（indonesia/malaysia/singapore/thailand/vietnam）
+│   │   ├── cn/           # 中国法规
+│   │   ├── eu/           # 欧盟法规（regulations/html/products/）
+│   │   ├── gcc/          # 海湾国家（G-Mark 等）
+│   │   ├── intl/         # 国际组织（WIPO/UN 等）
+│   │   ├── middle_east/  # 中东（saudi/uae）
+│   │   ├── us/           # 美国法规
+│   │   └── screenshot_pending/  # 截屏 PDF（待 OCR 处理）
+│   ├── analysis/         # 数据分析脚本输出（pdf_analysis.json 等）
+│   ├── mock-fixtures/    # Mock 测试数据
 │   └── sessions/         # 会话文件（TTL 1小时）
+├── tests/                # 前端测试
+│   ├── unit/             # Vitest 单元测试
+│   ├── e2e/              # Playwright E2E 测试
+│   └── setup.ts          # 测试配置
+├── public/               # 静态资源
+│   ├── uploads/          # 用户上传文件（临时）
+│   ├── mock-fixtures/    # Mock 静态资源
+│   └── brand/            # 品牌资产
 ├── docs/                 # 文档
-│   └── RAG-ARCHITECTURE-v3.md  # RAG 架构文档（当前）
+│   ├── RAG-ARCHITECTURE-v3.md  # RAG 架构文档（当前）
+│   └── archived/         # 已归档文档
 └── scripts/              # 运维脚本（start_rag.bat 等）
 ```
 
@@ -219,7 +249,6 @@ const StartScanRequestSchema = z.object({
 | **cohere_reranker 未接入** | `cohere_reranker.py` 已实现，但管线中未调用 |
 | **截屏 PDF 待 OCR** | `data/corpus/screenshot_pending/` 下约 20 个 PDF 截屏未处理 |
 | **无多语言** | 报告目前仅中文输出 |
-| **数据冗余** | `data/全部法规/` 和 `data/合规/` 为冗余副本 |
 
 ---
 

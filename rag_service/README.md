@@ -70,10 +70,10 @@ FAISS 索引默认读取 `data/faiss/legal_chunks.index`（可通过环境变量
 scripts\start_rag.bat
 
 # 方式 B：手动启动
-.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --port 8000
+.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --port 8001
 ```
 
-服务地址：`http://localhost:8000`
+服务地址：`http://localhost:8001`
 
 ---
 
@@ -150,6 +150,7 @@ rag_service/
 │   ├── faiss_retriever.py      # FAISS 向量检索
 │   ├── bm25_retriever.py       # BM25 稀疏检索
 │   ├── hybrid_retriever.py      # 混合检索（RRF 融合）
+│   ├── fusion.py                 # RRF 融合算法
 │   ├── ollama_embedder.py      # Ollama 本地 embedding
 │   ├── local_embedder.py       # 本地 Qwen3 embedding
 │   └── modelScope_embedder.py  # ModelScope API embedding

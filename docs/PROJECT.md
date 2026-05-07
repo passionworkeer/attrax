@@ -110,7 +110,7 @@
 |------|------|------|------|
 | **LLM (报告生成 + Vision)** | mimoTalk (mimo-v2.5) | - | Anthropic SDK 兼容，统一调用 |
 | **Embedding 优先级 1** | Ollama (nomic-embed-text) | 768-dim | 本地 CPU，完全免费，零依赖 |
-| **Embedding 优先级 2** | Qwen3-Embedding-0.6B | 1024-dim | 本地 GPU/CPU，可量化部署 |
+| **Embedding 优先级 2** | ModelScope Qwen3-Embedding-0.6B | 1024-dim | 本地 GPU/CPU，可量化部署 |
 | **Embedding 优先级 3** | ModelScope API | 云端 | 降级兜底，高质量 |
 
 ---
@@ -344,7 +344,7 @@ class ScanResponse(BaseModel):
 | 字符总量 | 12M+ | 涵盖主要跨境市场法规 |
 | 向量索引 | ~15,000 | FAISS Inner Product 索引 |
 | 预解析语料 | 200+ JSON | 已完成清洗和分块 |
-| 分块维度 | 1024-dim | Qwen3-Embedding / Ollama |
+| 分块维度 | 768-dim（Ollama nomic-embed-text）/ 1024-dim（ModelScope Qwen3） |
 
 ---
 
