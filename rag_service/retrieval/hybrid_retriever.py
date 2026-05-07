@@ -15,6 +15,7 @@ Embedding 降级链：
 Rerank: 不实现
 """
 import logging
+from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
 from rag_service.retrieval.bm25_retriever import BM25Retriever
@@ -161,7 +162,7 @@ class HybridRetriever:
         top_k: int = 20,
     ) -> list[dict]:
         """
-        Full hybrid retrieval pipeline.
+        Full hybrid retrieval pipeline (parallelized).
 
         Args:
             query: search query
@@ -176,26 +177,31 @@ class HybridRetriever:
             logger.warning("Chunks not loaded, returning empty")
             return []
 
-        # Step 1: Dense search (Faiss)
-        dense_results = self._dense_search(query, top_k=50)
+        # Run dense + BM25 in parallel
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            dense_future = pool.submit(self._dense_search, query, 50)
+            bm25_future = pool.submit(self._bm25_search, query, 50)
+            dense_results = dense_future.result()
+            bm25_results = bm25_future.result()
 
-        # Step 2: BM25 search
-        bm25_results = []
-        if self.bm25:
-            bm25_results = self.bm25.search(query, top_k=50)
-
-        # Step 3: RRF fusion
+        # RRF fusion
         if dense_results or bm25_results:
             fused = rrf_fuse(dense_results, bm25_results, k=25, top_k=top_k * 2)
         else:
             fused = []
 
-        # Step 4: Must-Check injection
+        # Must-Check injection
         if product_category and self._chunks:
             fused = apply_must_check(fused, product_category, self._chunks)
 
-        # Step 5: Region filter (case-insensitive)
+        # Region filter
         if region:
             fused = [r for r in fused if r.get("region", "").lower() == region.lower()]
 
         return fused[:top_k]
+
+    def _bm25_search(self, query: str, top_k: int) -> list[dict]:
+        """BM25 search helper (called in thread pool)."""
+        if self.bm25:
+            return self.bm25.search(query, top_k=top_k)
+        return []

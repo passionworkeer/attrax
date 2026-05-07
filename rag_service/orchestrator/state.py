@@ -30,7 +30,7 @@ class GraphState(TypedDict, total=False):
     loop_count: int                                   # Retry counter
 
     # === Configuration ===
-    max_attempts: int                                 # Max retrieval rounds (default 2)
+    max_attempts: int                                 # Max retrieval rounds (default 1, disable loop)
     hyde_query: str                                   # HyDE hypothetical query (optional)
 
     # === Output ===
