@@ -250,7 +250,7 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
     current_section = ""
     for line in lines:
         line = line.strip()
-        if "产品类型" in line or "###" in line:
+        if "产品类型" in line:
             current_section = "product_type"
             continue
         elif "核心特征" in line or "特征" in line:
@@ -258,6 +258,11 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
             continue
         elif "认证标志" in line:
             current_section = "certs"
+            continue
+
+        if "###" in line:
+            # Generic markdown heading without a recognised label — treat as product type
+            current_section = "product_type"
             continue
 
         if current_section == "product_type" and line:

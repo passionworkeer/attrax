@@ -64,7 +64,7 @@ def _retrieve_single_market(query: str, market: str) -> list[dict]:
             query=query,
             product_category="",
             region=market,
-            top_k=10,
+            top_k=15,
         )
         for r in results:
             r["market"] = market

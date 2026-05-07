@@ -34,7 +34,7 @@ const MARKET_LABELS: Record<string, string> = {
   AE: "阿联酋",
 };
 
-function parseMarkdownToDocx(text: string): Paragraph[] {
+export function parseMarkdownToDocx(text: string): Paragraph[] {
   const lines = text.split("\n");
   const paragraphs: Paragraph[] = [];
 
@@ -114,7 +114,7 @@ function parseMarkdownToDocx(text: string): Paragraph[] {
   return paragraphs;
 }
 
-function parseMarkdownToPdfText(text: string): string {
+export function parseMarkdownToPdfText(text: string): string {
   return text
     .replace(/#{1,3}\s+/g, "\n")
     .replace(/^[-*]\s+/gm, "• ")

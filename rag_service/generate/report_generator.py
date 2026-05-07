@@ -20,28 +20,35 @@ os.environ.setdefault("NO_PROXY", "*")
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """You are a cross-border e-commerce compliance expert, specializing in generating precise compliance reports for specific product types.
+SYSTEM_PROMPT = """你是跨境电商合规专家。根据用户上传的产品图片，生成精准的合规报告。
 
-RULES (MUST follow):
-1. STRICTLY focus on product type: report must ONLY cover the identified product (e.g. 'Bluetooth Earphone'), NEVER mix in unrelated products (e.g. power bank, mobile power)
-2. ONLY base on source documents: every factual claim must be from the provided regulatory sources
-3. Precise citations: every fact needs citation in format [Regulation Name/Article]
-4. NO speculation: do not infer requirements not in the documents
-5. Honest about gaps: if docs are insufficient, say '该方面暂无具体法规依据'
+**核心工作流（严格按顺序执行）：**
 
-Report structure (Chinese output, title must include specific product type):
+1. **确认产品**：根据图片，先明确描述具体产品（如"蓝牙耳机，带充电盒"），产品类型是报告的核心。
 
-## [产品名] 合规要求（针对该产品类型）
-## [产品名] 禁止/限制项目
-## [产品名] 合规建议
+2. **审查文档**：检索到的法规文档可能包含不同产品。先判断每篇文档是否与当前产品相关：
+   - 直接相关 → 使用该文档内容
+   - 不相关（如检索到充电宝法规，但当前产品是耳机）→ 跳过，不输出
+   - 跨界通用（如充电宝法规中关于锂电池运输的UN38.3条款）→ 选择其中通用条款选择性使用
+
+3. **报告生成**：只围绕产品图片识别的具体产品（如"蓝牙耳机"）生成报告，标题必须包含产品名。
+
+4. **引用要求**：每条事实必须标注来源 [法规名称/条款]，无来源不编造。
+
+5. **信息不足时**：明确说明"该方面暂无具体法规依据"，不推断。
+
+**报告结构（中文输出，标题必须含产品名）：**
+
+## [具体产品名] 合规要求（针对该产品）
+## [具体产品名] 禁止/限制项目
+## [具体产品名] 合规建议
 ## 法规引用
 
-Source documents:
-{source_chunks}
-"""
+来源文档（已按产品相关性过滤，通用条款已标注）：
+{source_chunks}"""
 
 
-def _build_source_context(chunks: list[dict], max_chunks: int = 8, max_chars: int = 800) -> str:
+def _build_source_context(chunks: list[dict], max_chunks: int = 20, max_chars: int = 600) -> str:
     """Build a compact source context string from chunks."""
     parts = []
     for i, chunk in enumerate(chunks[:max_chunks]):
@@ -75,7 +82,7 @@ class ReportGenerator:
         product: str,
         market: str,
         chunks: list[dict],
-        max_tokens: int = 1536,
+        max_tokens: int = 4096,
         doc_context: str = "",
     ) -> str:
         """
@@ -94,10 +101,12 @@ class ReportGenerator:
         )
 
         user_prompt = (
-            f"产品：{product}\n"
+            f"产品类型：{product}\n"
             f"目标市场：{market}\n"
             f"用户问题：{query}\n\n"
-            f"请根据上述来源文档，回答用户问题，生成合规报告。"
+            f"请根据以上来源文档，生成针对「{product}」的合规报告。\n"
+            f"【重要】报告中所有合规要求必须与「{product}」直接相关，"
+            f"不要混入充电宝、移动电源等其他产品内容。\n"
             f"{doc_section}"
         )
 
