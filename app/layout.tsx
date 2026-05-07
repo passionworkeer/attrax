@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { AnimatePresence, motion } from "framer-motion";
+import PageTransition from "@/components/PageTransition";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,16 +24,7 @@ export default function RootLayout({
     <html lang="zh-CN" className={`${inter.variable} h-full antialiased`} data-scroll-behavior="smooth">
       <body className="min-h-full">
         <TooltipProvider>
-          <AnimatePresence mode="wait">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-            >
-              {children}
-            </motion.div>
-          </AnimatePresence>
+          <PageTransition>{children}</PageTransition>
         </TooltipProvider>
       </body>
     </html>
