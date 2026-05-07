@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { useScanPolling } from "@/lib/hooks/useScanPolling";
 import { cn } from "@/lib/utils";
@@ -27,19 +27,49 @@ export default function BurningPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const { status, displayProgress } = useScanPolling(sessionId);
+  const [completing, setCompleting] = useState(false);
 
   useEffect(() => {
     if (status?.status === "ready" && status.result) {
+      setCompleting(true);
+      // Brief flash so user sees "完成" before the page swaps
       sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
-      router.push(`/result/${sessionId}`);
+      setTimeout(() => router.push(`/result/${sessionId}`), 700);
     }
   }, [router, sessionId, status]);
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-blaze-dark px-4 sm:px-6 py-16 text-white">
+      {/* Screen flash on completion */}
+      <AnimatePresence>
+        {completing && (
+          <motion.div
+            key="flash"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+            className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.1, opacity: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="flex flex-col items-center gap-3"
+            >
+              <div className="text-5xl">🔥</div>
+              <p className="text-lg font-semibold text-white">扫描完成！</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <section className="mx-4 w-full max-w-2xl rounded-4xl border border-white/10 bg-white/6 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur sm:mx-auto">
         <p className="text-sm uppercase tracking-[0.28em] text-white/55">Burning</p>
-        <h1 className="mt-4 text-3xl font-semibold">雄鹰正在分析你的产品</h1>
+        <h1 className="mt-4 text-3xl font-semibold">
+          {completing ? "雄鹰已准备就绪！" : "雄鹰正在分析你的产品"}
+        </h1>
         <p className="mt-3 text-sm leading-6 text-white/70">
           当前会话：<span className="font-mono text-white">{sessionId}</span>
         </p>
@@ -55,7 +85,7 @@ export default function BurningPage() {
               style={{ width: `${displayProgress}%` }}
             />
             {/* Shimmer pulse when active */}
-            {status?.status === "processing" && (
+            {status?.status === "processing" && !completing && (
               <motion.div
                 className="absolute inset-y-0 rounded-full bg-white/20"
                 animate={{ x: ["-100%", "200%"] }}
@@ -68,8 +98,10 @@ export default function BurningPage() {
           {/* Stage + percentage */}
           <div className="flex items-center justify-between text-sm text-white/80">
             <span className="flex items-center gap-1 min-w-0">
-              <StageIcon text={status?.stageText ?? "等待任务启动…"} />
-              <span className="truncate">{status?.stageText ?? "等待任务启动…"}</span>
+              <StageIcon text={completing ? "报告生成完成" : status?.stageText ?? "等待任务启动…"} />
+              <span className="truncate">
+                {completing ? "报告生成完成" : status?.stageText ?? "等待任务启动…"}
+              </span>
             </span>
             <span className="ml-2 shrink-0 tabular-nums font-medium text-white/90">
               {displayProgress}%
@@ -77,7 +109,7 @@ export default function BurningPage() {
           </div>
 
           {/* Step dots */}
-          {status?.status === "processing" && (
+          {status?.status === "processing" && !completing && (
             <div className="flex justify-center gap-1.5 pt-1">
               {[10, 30, 45, 65, 75, 90, 100].map((milestone) => (
                 <div

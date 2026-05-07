@@ -11,7 +11,42 @@
 
 ---
 
-## 当前状态快照
+## 实际完成情况（对照原计划）
+
+> **重要说明**：本文档描述的计划（Cohere/Qdrant/Docling 路线）**未按计划实现**。
+> 实际实现见 [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md)。
+
+| 原计划（本文档） | 实际实现 | 说明 |
+|----------------|---------|------|
+| Cohere API（embed-multilingual-v3） | **Ollama nomic-embed-text**（本地）+ **ModelScope Qwen3-Embedding-0.6B**（云端降级） | 免 API 费用，延迟低，支持三级降级 |
+| Qdrant（向量存储） | **FAISS 本地索引**（`data/faiss/legal_chunks.index`） | 轻量，无需 Docker，CPU 可跑 |
+| Docling（文档解析） | **pdfplumber + python-docx + BeautifulSoup** | 已集成于 `rag_service/parser/`，无需额外依赖 |
+| 硬门验证（≥3 验证通过） | **NLI 软门验证**（DeBERTa-v3-large-mnli） | attribution_score 0.9/0.5/0 三档，更灵活 |
+| Claude Sonnet（LLM） | **mimoTalk mimo-v2.5** | 统一调用，代理已禁用 |
+| Cohere Reranker | **未接入**（`cohere_reranker.py` 存在但未在管线中调用） | RRF 已提供足够排序精度 |
+| PostgreSQL（会话持久化） | **无**（in-memory only） | v0.2.0 尚未实现 |
+
+## 当前版本状态
+
+**v0.2.0 已完成功能清单：**
+
+| 功能 | 状态 | 关键文件 |
+|------|------|---------|
+| FastAPI 入口（POST /scan, GET /health） | ✅ | `rag_service/main.py` |
+| LangGraph 8 节点编排 | ✅ | `rag_service/orchestrator/graph.py` |
+| Ollama 本地嵌入（L1）+ ModelScope 降级（L2）+ 纯 BM25（L3） | ✅ | `rag_service/retrieval/ollama_embedder.py`, `modelScope_embedder.py` |
+| FAISS 本地向量检索 | ✅ | `rag_service/retrieval/faiss/faiss_retriever.py` |
+| BM25 检索（jieba 分词） | ✅ | `rag_service/retrieval/bm25_retriever.py` |
+| RRF 融合（k=25） | ✅ | `rag_service/retrieval/hybrid_retriever.py` |
+| must_check 强制注入 | ✅ | `rag_service/retrieval/must_check.py` |
+| NLI 引用验证（软门） | ✅ | `rag_service/verify/citation_verifier.py` |
+| mimoTalk 报告生成 | ✅ | `rag_service/generate/report_generator.py` |
+| PDF/DOCX/HTML 文档解析 | ✅ | `rag_service/parser/`（pdfplumber + python-docx + mammoth） |
+| FAISS 索引构建脚本 | ✅ | `scripts/build_faiss.py` |
+| 前端集成（lib/pipeline/scan.ts → RAG 服务） | ✅ | `lib/pipeline/scan.ts` |
+| Cohere Reranker | ⚠️ 未接入 | `rag_service/retrieval/cohere_reranker.py`（存在但未调用） |
+| 前端 docparser 模块 | ❌ 待实现 | `lib/docparser/` |
+| 会话持久化 | ❌ 待实现 | — |
 
 | 维度 | 状态 | 详情 |
 |------|------|------|
