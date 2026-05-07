@@ -328,7 +328,7 @@ class ScanResponse(BaseModel):
 # GET /health
 {
     "status": "ok",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "faiss_index": "loaded",
     "vector_count": 15342
 }
@@ -436,7 +436,7 @@ attrak/
 
 | 信息 | 值 |
 |------|-----|
-| 当前版本 | 0.2.0 |
+| 当前版本 | 0.3.0 |
 | 最后更新 | 2026-05-07 |
 | 架构状态 | 生产就绪 |
 

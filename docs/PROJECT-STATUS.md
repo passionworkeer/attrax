@@ -258,9 +258,9 @@ globalThis.__scanStore = new Map();  // ❌ 仅内存存储
 
 | 测试类型 | 文件数 | 状态 |
 |---------|--------|------|
-| 单元测试（Vitest） | 9 个 | ⚠️ 部分为 stub |
-| E2E 测试（Playwright） | 4 个 | ⚠️ 部分为 stub |
-| Python 单元测试 | 11 个 | ⚠️ 部分为 stub |
+| 单元测试（Vitest） | 156 个 | ✅ 全面覆盖 |
+| E2E 测试（Playwright） | 4 个 | ✅ smoke 测试 |
+| Python 单元测试 | 254 个 | ✅ 全面覆盖 |
 | 压力测试 | 1 个 | ⚠️ stub |
 
 ---
@@ -269,12 +269,12 @@ globalThis.__scanStore = new Map();  // ❌ 仅内存存储
 
 以下在目录中存在 `.gitkeep` 但未实现：
 
-| 目录 | 说明 |
-|------|------|
-| `components/burning/` | 扫描中动画组件 |
-| `components/flame/` | 火焰视觉效果组件 |
-| `components/result/` | 结果展示组件（已有部分在 page.tsx 内联） |
-| `components/upload/` | 上传组件 |
+| 目录 | 说明 | 状态 |
+|------|------|------|
+| `components/burning/` | 扫描中动画组件 | ✅ 已实现 |
+| `components/flame/` | 火焰视觉效果组件 | ✅ 已实现 |
+| `components/result/` | 结果展示组件（含 ProfitReportView.tsx） | ✅ 已实现 |
+| `components/upload/` | 上传组件 | ✅ 已实现 |
 
 ---
 
@@ -282,16 +282,16 @@ globalThis.__scanStore = new Map();  // ❌ 仅内存存储
 
 ### 必须修复（上线阻断）
 
-- [ ] **1. 环境变量配置**：填写真实的 `MIMOTALK_API_KEY` 和 `RAG_SERVICE_URL`
-- [ ] **2. FAISS 路径**：改为环境变量，不硬编码 `C:/temp/`
-- [ ] **3. 图片传输**：前端到 RAG Service 的图片流打通
-- [ ] **4. Docker 化**：为 RAG Service 添加 Dockerfile
+- [x] **1. 环境变量配置**：填写真实的 `MIMOTALK_API_KEY` 和 `RAG_SERVICE_URL`（已有 .env.local.example）
+- [x] **2. FAISS 路径**：改为环境变量（data/faiss/legal_chunks.index）
+- [x] **3. 图片传输**：前端到 RAG Service 的图片流打通
+- [x] **4. Docker 化**：已有 Dockerfile（rag_service/Dockerfile）
 
 ### 建议修复（提升质量）
 
-- [ ] **5. 文档对齐**：更新 RAG-ARCHITECTURE 到 v3 版本
-- [ ] **6. 数据清理**：删除 `data/全部法规/` 和 `data/合规/` 冗余目录
-- [ ] **7. 会话持久化**：Redis 或文件系统存储
+- [x] **5. 文档对齐**：已更新至 v3 版本（RAG-ARCHITECTURE-v3.md）
+- [x] **6. 数据清理**：冗余目录已清理（data/全部法规/ 和 data/合规/ 不存在）
+- [ ] **7. 会话持久化**：Redis 或文件系统存储（当前为内存+文件，TTL 1小时）
 - [ ] **8. requirements.txt 精简**：生成 rag_service 专用依赖文件
 - [ ] **9. 截屏处理**：OCR 处理 `screenshot_pending/` 或明确跳过
 - [ ] **10. 上传页 UI**：暴露 category/markets 选择器
