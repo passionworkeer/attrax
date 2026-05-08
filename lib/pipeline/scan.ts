@@ -12,7 +12,7 @@
  */
 import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult } from "@/lib/mock/scan-result";
-import type { Market, ProductCategory } from "@/lib/types";
+import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult } from "@/lib/types";
 
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
 const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
@@ -199,6 +199,38 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     modelInfo: { ragProvider: "mimotalk", latencyMs: 0 },
   };
 
+  // ── Stage 5: Fetch profit report (best-effort, does not block main flow) ──
+  let profitReport: ProfitReportResult | undefined;
+
+  try {
+    const profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        product: category,
+        category,
+        markets,
+      }),
+    });
+    if (profitResp.ok) {
+      const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
+      profitReport = {
+        sessionId,
+        productType: raw.product || category,
+        market: raw.market || markets[0] || "EU",
+        report: raw.report,
+        barebone: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 },
+        compliant: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 },
+        bareboneRiskExposure: 0,
+        compliantRiskExposure: 0,
+        keyConclusion: "",
+        generatedAt: new Date().toISOString(),
+      };
+    }
+  } catch {
+    // profit report is best-effort — do not block the main flow
+  }
+
   updateSession(sessionId, {
     status: statusMap[ragResponse.status] ?? "ready",
     progress: 100,
@@ -208,42 +240,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         : ragResponse.status === "WARN"
         ? "⚠️ 合规警告，请查看报告"
         : "🔴 合规风险，需关注",
-    result: complianceReport as unknown as Parameters<typeof updateSession>[1]["result"],
+    result: complianceReport as Parameters<typeof updateSession>[1]["result"],
+    profitReport,
   });
-}
-
-// ── Extended result types for RAG compliance ─────────────────────────────────
-
-export interface ComplianceReportResult {
-  sessionId: string;
-  scanTime: string;
-  productCategory: ProductCategory;
-  productName?: string;
-  targetMarkets: Market[];
-  complianceScore: number;
-  scoreGrade: "A" | "B" | "C" | "D";
-  complianceReport: string;
-  complianceStatus: "PASS" | "WARN" | "REJECTED" | "UNKNOWN";
-  agentTrace: Array<{ node: string; [key: string]: unknown }>;
-  loopCount: number;
-  retrievedChunks: Array<{
-    regId: string;
-    docName: string;
-    articleNo: string;
-    region: string;
-    score: number;
-  }>;
-  images: undefined;
-  documents: Array<{
-    documentId: string;
-    name: string;
-    size: number;
-    type: "pdf" | "docx" | "html";
-    mimeType: string;
-    url: string;
-  }>;
-  riskPoints: undefined;
-  checklist: undefined;
-  generatedAt: string;
-  modelInfo: { ragProvider: string; latencyMs: number };
 }
