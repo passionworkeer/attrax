@@ -12,10 +12,100 @@
  */
 import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult } from "@/lib/mock/scan-result";
-import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult } from "@/lib/types";
+import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult, CostSummary } from "@/lib/types";
 
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
 const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
+
+/** Parse numeric cost values from markdown table cells. */
+function parseCostValue(raw: string): number {
+  const match = raw.replace(/[,$]/g, "").match(/[\d.]+/);
+  return match ? parseFloat(match[0]) : 0;
+}
+
+/** Extract CostSummary from markdown profit report tables. */
+function extractCostSummary(markdown: string): { barebone: CostSummary; compliant: CostSummary; keyConclusion: string } {
+  const lines = markdown.split("\n");
+
+  const result = {
+    barebone: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 } as CostSummary,
+    compliant: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 } as CostSummary,
+    keyConclusion: "",
+  };
+
+  let mode: "idle" | "cost" | "revenue" = "idle";
+
+  for (const line of lines) {
+    if (!line.startsWith("|")) {
+      mode = "idle";
+      continue;
+    }
+
+    const cells = line.split("|").map((c) => c.trim()).filter(Boolean);
+    if (!cells.length) continue;
+
+    const first = cells[0] ?? "";
+
+    // BOM check must come before "成本" to avoid overshadowing
+    if (first.includes("BOM")) {
+      result.barebone.bom = parseCostValue(cells[1] ?? "");
+      result.compliant.bom = parseCostValue(cells[2] ?? "");
+    } else if (first === "收益项" || first.includes("收益")) {
+      mode = "revenue";
+      continue;
+    } else if (first === "成本项") {
+      mode = "cost";
+      continue;
+    } else if (first.includes("---") || !first) {
+      continue;
+    }
+
+    if (mode === "revenue") {
+      const b = cells[1] ?? "";
+      const c = cells[2] ?? "";
+      if (first.includes("平均售价") || first.includes("ASP")) {
+        result.barebone.asp = parseCostValue(b);
+        result.compliant.asp = parseCostValue(c);
+      } else if (first.includes("毛利润") && first.includes("单台")) {
+        result.barebone.gp = parseCostValue(b);
+        result.compliant.gp = parseCostValue(c);
+      }
+      continue;
+    }
+
+    if (mode === "cost") {
+      const b = cells[1] ?? "";
+      const c = cells[2] ?? "";
+      if (first.includes("包装")) {
+        result.barebone.packaging = parseCostValue(b);
+        result.compliant.packaging = parseCostValue(c);
+      } else if (first.includes("认证")) {
+        result.barebone.cert = parseCostValue(b);
+        result.compliant.cert = parseCostValue(c);
+      } else if (first.includes("EPR")) {
+        result.barebone.epr = parseCostValue(b);
+        result.compliant.epr = parseCostValue(c);
+      } else if (first.includes("售后") || first.includes("保修") || first.includes("预留")) {
+        result.barebone.gp = parseCostValue(b);
+        result.compliant.gp = parseCostValue(c);
+      } else if (first.includes("物流")) {
+        result.barebone.logistics = parseCostValue(b);
+        result.compliant.logistics = parseCostValue(c);
+      }
+
+      if (first.includes("总直接成本") || first.includes("总成本")) {
+        mode = "idle";
+      }
+      continue;
+    }
+
+    if (mode === "idle" && first.startsWith("**") && !result.keyConclusion) {
+      result.keyConclusion = first.replace(/^\*\*|\*\*$/g, "").trim();
+    }
+  }
+
+  return result;
+}
 
 export interface RunScanInput {
   images: Array<{
@@ -214,18 +304,21 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     });
     if (profitResp.ok) {
       const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
+      const extracted = extractCostSummary(raw.report);
       profitReport = {
         sessionId,
         productType: raw.product || category,
         market: raw.market || markets[0] || "EU",
         report: raw.report,
-        barebone: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 },
-        compliant: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 },
-        bareboneRiskExposure: 0,
-        compliantRiskExposure: 0,
-        keyConclusion: "",
+        barebone: extracted.barebone,
+        compliant: extracted.compliant,
+        bareboneRiskExposure: extracted.barebone.asp > 0 ? extracted.barebone.asp * 100 : 0,
+        compliantRiskExposure: extracted.compliant.asp > 0 ? extracted.compliant.asp * 5 : 0,
+        keyConclusion: extracted.keyConclusion,
         generatedAt: new Date().toISOString(),
       };
+    } else {
+      // profit resp not ok — skip, keep profitReport undefined
     }
   } catch {
     // profit report is best-effort — do not block the main flow
@@ -243,4 +336,5 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     result: complianceReport as Parameters<typeof updateSession>[1]["result"],
     profitReport,
   });
-}
+  
+  }

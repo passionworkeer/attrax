@@ -404,6 +404,15 @@ export default function ResultPage() {
           setResult(cachedResult);
           setMessage("已从会话缓存恢复结果。");
         });
+        // Still fetch the live API to get profitReport (sessionStorage only caches result)
+        fetch(`/api/scan/${sessionId}`, { cache: "no-store" })
+          .then((r) => r.ok ? r.json() : null)
+          .then((payload) => {
+            if (payload?.profitReport && isProfitReport(payload.profitReport)) {
+              setProfitReport(payload.profitReport);
+            }
+          })
+          .catch(() => {});
         return;
       } catch {
         sessionStorage.removeItem(`scan:${sessionId}`);
