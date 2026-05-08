@@ -157,17 +157,28 @@ export interface CostSummary {
   logistics: number;        // 物流渠道
   asp: number;             // 平均售价
   gp: number;              // 毛利润
+  warranty: number;        // 售后/保修预留
+  total: number;           // 总直接成本（不含 ASP）
 }
 
 export interface ProfitReportResult {
   sessionId: string;
   productType: string;
   market: string;
-  report: string;               // markdown（含表格）
+  report: string;               // markdown（含完整6章节）
   barebone: CostSummary;
   compliant: CostSummary;
   bareboneRiskExposure: number;  // 风险敞口（暴露金额）
   compliantRiskExposure: number; // 风险敞口（暴露金额）
   keyConclusion: string;
   generatedAt: string;
+  // 新增字段
+  premiumPct: string;            // 合规溢价，如 "37%"
+  breakevenUnits: string;        // 盈亏平衡台数
+  pricingStrategy: string;       // 定价策略建议
+  riskNote: string;              // 风险敞口说明
+  conclusions: string;           // 关键结论章节全文
+  references: string;           // 法规引用章节全文
+  bareboneGpm: number;         // 裸奔毛利率（0-100 数值）
+  compliantGpm: number;        // 合规毛利率（0-100 数值）
 }

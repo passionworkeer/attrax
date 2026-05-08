@@ -23,40 +23,117 @@ function parseCostValue(raw: string): number {
   return match ? parseFloat(match[0]) : 0;
 }
 
-/** Extract CostSummary from markdown profit report tables. */
-function extractCostSummary(markdown: string): { barebone: CostSummary; compliant: CostSummary; keyConclusion: string } {
+/** Extract CostSummary and extended fields from markdown profit report. */
+function extractCostSummary(markdown: string): {
+  barebone: CostSummary;
+  compliant: CostSummary;
+  keyConclusion: string;
+  premiumPct: string;
+  breakevenUnits: string;
+  pricingStrategy: string;
+  riskNote: string;
+  conclusions: string;
+  references: string;
+  bareboneGpm: number;
+  compliantGpm: number;
+} {
   const lines = markdown.split("\n");
 
+  const bareboneInit = { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0, warranty: 0, total: 0 };
+  const compliantInit = { ...bareboneInit };
+
   const result = {
-    barebone: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 } as CostSummary,
-    compliant: { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0 } as CostSummary,
+    barebone: bareboneInit as CostSummary,
+    compliant: compliantInit as CostSummary,
     keyConclusion: "",
+    premiumPct: "",
+    breakevenUnits: "",
+    pricingStrategy: "",
+    riskNote: "",
+    conclusions: "",
+    references: "",
+    bareboneGpm: 0,
+    compliantGpm: 0,
   };
 
   let mode: "idle" | "cost" | "revenue" = "idle";
+  let inSection4 = false; // 盈亏平衡分析
+  let inSection5 = false; // 关键结论
+  let inSection6 = false; // 法规引用
 
   for (const line of lines) {
-    if (!line.startsWith("|")) {
+    const trimmed = line.trim();
+
+    // ── Section detection ────────────────────────────────────────────────────
+    if (trimmed.startsWith("### 四") || /盈亏平衡/.test(trimmed)) {
+      inSection4 = true; inSection5 = false; inSection6 = false;
+    } else if (trimmed.startsWith("### 五") || /关键结论/.test(trimmed)) {
+      inSection4 = false; inSection5 = true; inSection6 = false;
+    } else if (trimmed.startsWith("### 六") || /法规引用/.test(trimmed)) {
+      inSection4 = false; inSection5 = false; inSection6 = true;
+    } else if (trimmed.startsWith("#") && !/盈亏平衡|关键结论|法规引用/.test(trimmed)) {
+      inSection4 = false; inSection5 = false; inSection6 = false;
+    }
+
+    // ── Section 4: 盈亏平衡分析 ─────────────────────────────────────────────
+    if (inSection4 && trimmed) {
+      if (/合规溢价/.test(trimmed)) {
+        result.premiumPct = parseCostValue(trimmed).toString() + "%";
+        if (!result.premiumPct.startsWith("0")) {
+          const m = trimmed.match(/([\d.]+)%/);
+          if (m) result.premiumPct = m[1] + "%";
+        }
+      } else if (/盈亏平衡/.test(trimmed)) {
+        const m = trimmed.match(/盈亏平衡[^：:]*[：:]\s*(.+)/);
+        result.breakevenUnits = m ? m[1].trim() : trimmed;
+      } else if (/定价策略/.test(trimmed)) {
+        const m = trimmed.match(/定价策略[：:]\s*(.+)/);
+        result.pricingStrategy = m ? m[1].trim() : trimmed;
+      }
+      continue;
+    }
+
+    // ── Section 5: 关键结论 ─────────────────────────────────────────────────
+    if (inSection5 && trimmed) {
+      if (result.conclusions) result.conclusions += "\n" + trimmed;
+      else result.conclusions = trimmed;
+      continue;
+    }
+
+    // ── Section 6: 法规引用 ────────────────────────────────────────────────
+    if (inSection6 && trimmed) {
+      if (result.references) result.references += "\n" + trimmed;
+      else result.references = trimmed;
+      continue;
+    }
+
+    // ── Markdown tables (cost & revenue) ───────────────────────────────────
+    if (!trimmed.startsWith("|")) {
       mode = "idle";
       continue;
     }
 
-    const cells = line.split("|").map((c) => c.trim()).filter(Boolean);
+    const cells = trimmed.split("|").map((c) => c.trim()).filter(Boolean);
     if (!cells.length) continue;
 
     const first = cells[0] ?? "";
 
-    // BOM check must come before "成本" to avoid overshadowing
+    if (first.includes("---") || first === "") continue;
+
     if (first.includes("BOM")) {
       result.barebone.bom = parseCostValue(cells[1] ?? "");
       result.compliant.bom = parseCostValue(cells[2] ?? "");
-    } else if (first === "收益项" || first.includes("收益")) {
-      mode = "revenue";
-      continue;
     } else if (first === "成本项") {
       mode = "cost";
       continue;
-    } else if (first.includes("---") || !first) {
+    } else if (first === "收益项" || /### 二/.test(trimmed) || first.includes("收益对比")) {
+      mode = "revenue";
+      continue;
+    } else if (first.includes("总直接成本") || first.includes("总成本")) {
+      // Parse total from table
+      result.barebone.total = parseCostValue(cells[1] ?? "");
+      result.compliant.total = parseCostValue(cells[2] ?? "");
+      mode = "idle";
       continue;
     }
 
@@ -69,6 +146,9 @@ function extractCostSummary(markdown: string): { barebone: CostSummary; complian
       } else if (first.includes("毛利润") && first.includes("单台")) {
         result.barebone.gp = parseCostValue(b);
         result.compliant.gp = parseCostValue(c);
+      } else if (first.includes("毛利率")) {
+        result.bareboneGpm = parseCostValue(b);
+        result.compliantGpm = parseCostValue(c);
       }
       continue;
     }
@@ -86,22 +166,36 @@ function extractCostSummary(markdown: string): { barebone: CostSummary; complian
         result.barebone.epr = parseCostValue(b);
         result.compliant.epr = parseCostValue(c);
       } else if (first.includes("售后") || first.includes("保修") || first.includes("预留")) {
-        result.barebone.gp = parseCostValue(b);
-        result.compliant.gp = parseCostValue(c);
+        result.barebone.warranty = parseCostValue(b);
+        result.compliant.warranty = parseCostValue(c);
       } else if (first.includes("物流")) {
         result.barebone.logistics = parseCostValue(b);
         result.compliant.logistics = parseCostValue(c);
       }
-
-      if (first.includes("总直接成本") || first.includes("总成本")) {
-        mode = "idle";
-      }
       continue;
     }
 
-    if (mode === "idle" && first.startsWith("**") && !result.keyConclusion) {
+    // ── riskNote detection (outside tables) ──────────────────────────────────
+    if (/风险敞口说明/.test(trimmed)) {
+      result.riskNote = trimmed.replace(/^[^：:]*[：:]\s*/, "").trim();
+    }
+
+    // ── keyConclusion fallback ───────────────────────────────────────────────
+    if (mode === "idle" && first.startsWith("**") && !result.keyConclusion && !inSection5) {
       result.keyConclusion = first.replace(/^\*\*|\*\*$/g, "").trim();
     }
+  }
+
+  // ── Fallback total if not found in table ─────────────────────────────────
+  const computeTotal = (c: CostSummary) =>
+    c.total || (c.bom + c.packaging + c.cert + c.epr + c.warranty + c.logistics);
+  result.barebone.total = computeTotal(result.barebone);
+  result.compliant.total = computeTotal(result.compliant);
+
+  // ── Fallback GPM from ASP & GP ───────────────────────────────────────────
+  if (result.barebone.asp > 0) {
+    result.bareboneGpm = result.bareboneGpm || (result.barebone.gp / result.barebone.asp) * 100;
+    result.compliantGpm = result.compliantGpm || (result.compliant.gp / result.compliant.asp) * 100;
   }
 
   return result;
@@ -316,6 +410,15 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         compliantRiskExposure: extracted.compliant.asp > 0 ? extracted.compliant.asp * 5 : 0,
         keyConclusion: extracted.keyConclusion,
         generatedAt: new Date().toISOString(),
+        // 新增字段
+        premiumPct: extracted.premiumPct,
+        breakevenUnits: extracted.breakevenUnits,
+        pricingStrategy: extracted.pricingStrategy,
+        riskNote: extracted.riskNote,
+        conclusions: extracted.conclusions,
+        references: extracted.references,
+        bareboneGpm: extracted.bareboneGpm,
+        compliantGpm: extracted.compliantGpm,
       };
     } else {
       // profit resp not ok — skip, keep profitReport undefined
