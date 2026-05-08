@@ -6,10 +6,12 @@ import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { buttonVariants } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { mockScanResult } from "@/lib/mock/scan-result";
+import { mockScanResult, mockProfitReport, mockComplianceReportResult } from "@/lib/mock/scan-result";
 import { downloadReportAsPdf, downloadReportAsDocx } from "@/lib/report-export";
-import type { ScanResult, ScanStatus, ComplianceReportResult } from "@/lib/types";
+import { ProfitReportView } from "@/components/result/ProfitReportView";
+import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult } from "@/lib/types";
 
 function isComplianceReport(r: unknown): r is ComplianceReportResult {
   return (
@@ -17,6 +19,15 @@ function isComplianceReport(r: unknown): r is ComplianceReportResult {
     r !== null &&
     "complianceReport" in r &&
     "complianceStatus" in r
+  );
+}
+
+function isProfitReport(r: unknown): r is ProfitReportResult {
+  return (
+    typeof r === "object" &&
+    r !== null &&
+    "barebone" in r &&
+    "compliant" in r
   );
 }
 
@@ -375,7 +386,10 @@ export default function ResultPage() {
   const sessionId = params.sessionId;
   const isDemoSession = sessionId === "demo";
   const [result, setResult] = useState<ScanResult | ComplianceReportResult | null>(
-    isDemoSession ? mockScanResult : null
+    isDemoSession ? (mockComplianceReportResult as unknown as ScanResult | ComplianceReportResult | null) : null
+  );
+  const [profitReport, setProfitReport] = useState<ProfitReportResult | null>(
+    isDemoSession ? mockProfitReport : null
   );
   const [message, setMessage] = useState("正在加载扫描结果…");
 
@@ -406,6 +420,9 @@ export default function ResultPage() {
       if (payload.status === "ready" && payload.result) {
         startTransition(() => {
           setResult(payload.result ?? null);
+          if (payload.profitReport && isProfitReport(payload.profitReport)) {
+            setProfitReport(payload.profitReport);
+          }
           setMessage("结果已从接口载入。");
         });
         return;
@@ -443,7 +460,22 @@ export default function ResultPage() {
 
         {result && isComplianceReport(result) ? (
           <div className="mt-8">
-            <ComplianceReportView result={result} />
+            {profitReport ? (
+              <Tabs defaultValue="compliance">
+                <TabsList>
+                  <TabsTrigger value="compliance">合规分析报告</TabsTrigger>
+                  <TabsTrigger value="profit">成本利润报告</TabsTrigger>
+                </TabsList>
+                <TabsContent value="compliance">
+                  <ComplianceReportView result={result} />
+                </TabsContent>
+                <TabsContent value="profit">
+                  <ProfitReportView result={profitReport} />
+                </TabsContent>
+              </Tabs>
+            ) : (
+              <ComplianceReportView result={result} />
+            )}
           </div>
         ) : result ? (
           <div className="mt-8">

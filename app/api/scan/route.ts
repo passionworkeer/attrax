@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ulid } from "ulid";
-import { createMockScanResult } from "@/lib/mock/scan-result";
+import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import { runScan } from "@/lib/pipeline/scan";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { StartScanRequestSchema } from "@/lib/schemas";
@@ -47,8 +47,9 @@ function runDemoSimulation(sessionId: string) {
     updateSession(sessionId, {
       status: "ready",
       progress: 100,
-      stageText: "✅ 烧毁完成，正在生成报告…",
+      stageText: "✅ 报告生成完成",
       result: createMockScanResult(sessionId),
+      profitReport: createMockProfitReport(sessionId),
     });
   }, 4500);
 }
