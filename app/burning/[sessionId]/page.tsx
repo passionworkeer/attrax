@@ -25,7 +25,8 @@ function StageIcon({ text }: { text: string }) {
 export default function BurningPage() {
   const router = useRouter();
   const params = useParams<{ sessionId: string }>();
-  const sessionId = params.sessionId;
+  // Normalize to string — params can be string | string[] in some Next.js versions
+  const sessionId = Array.isArray(params.sessionId) ? params.sessionId[0] : params.sessionId;
   const { status, displayProgress } = useScanPolling(sessionId);
   const [completing, setCompleting] = useState(false);
 

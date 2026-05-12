@@ -17,9 +17,24 @@ import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResul
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
 const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
 
+// ── Precompiled regex patterns for extractCostSummary (avoid re-compilation per line) ──
+const RE_S4_HEADER = /盈亏平衡/;
+const RE_S5_HEADER = /关键结论/;
+const RE_S6_HEADER = /法规引用/;
+const RE_S456_HEADER = /盈亏平衡|关键结论|法规引用/;
+const RE_CURRENCY = /[,$]/g;
+const RE_NUMERIC = /[\d.]+/;
+const RE_PREMIUM_PCT = /([\d.]+)%/;
+const RE_BREAKEVEN = /盈亏平衡[^：:]*[：:]\s*(.+)/;
+const RE_PRICING = /定价策略[：:]\s*(.+)/;
+const RE_RISKNOTE = /风险敞口说明/;
+const RE_S2 = /### 二/;
+const RE_STAR_WRAP = /^\*\*|\*\*$/g;
+
 /** Parse numeric cost values from markdown table cells. */
 function parseCostValue(raw: string): number {
-  const match = raw.replace(/[,$]/g, "").match(/[\d.]+/);
+  const cleaned = raw.replace(RE_CURRENCY, "");
+  const match = cleaned.match(RE_NUMERIC);
   return match ? parseFloat(match[0]) : 0;
 }
 
@@ -57,37 +72,34 @@ function extractCostSummary(markdown: string): {
   };
 
   let mode: "idle" | "cost" | "revenue" = "idle";
-  let inSection4 = false; // 盈亏平衡分析
-  let inSection5 = false; // 关键结论
-  let inSection6 = false; // 法规引用
+  let inSection4 = false;
+  let inSection5 = false;
+  let inSection6 = false;
 
   for (const line of lines) {
     const trimmed = line.trim();
 
     // ── Section detection ────────────────────────────────────────────────────
-    if (trimmed.startsWith("### 四") || /盈亏平衡/.test(trimmed)) {
+    if (trimmed.startsWith("### 四") || RE_S4_HEADER.test(trimmed)) {
       inSection4 = true; inSection5 = false; inSection6 = false;
-    } else if (trimmed.startsWith("### 五") || /关键结论/.test(trimmed)) {
+    } else if (trimmed.startsWith("### 五") || RE_S5_HEADER.test(trimmed)) {
       inSection4 = false; inSection5 = true; inSection6 = false;
-    } else if (trimmed.startsWith("### 六") || /法规引用/.test(trimmed)) {
+    } else if (trimmed.startsWith("### 六") || RE_S6_HEADER.test(trimmed)) {
       inSection4 = false; inSection5 = false; inSection6 = true;
-    } else if (trimmed.startsWith("#") && !/盈亏平衡|关键结论|法规引用/.test(trimmed)) {
+    } else if (trimmed.startsWith("#") && !RE_S456_HEADER.test(trimmed)) {
       inSection4 = false; inSection5 = false; inSection6 = false;
     }
 
     // ── Section 4: 盈亏平衡分析 ─────────────────────────────────────────────
     if (inSection4 && trimmed) {
       if (/合规溢价/.test(trimmed)) {
-        result.premiumPct = parseCostValue(trimmed).toString() + "%";
-        if (!result.premiumPct.startsWith("0")) {
-          const m = trimmed.match(/([\d.]+)%/);
-          if (m) result.premiumPct = m[1] + "%";
-        }
+        const m = trimmed.match(RE_PREMIUM_PCT);
+        result.premiumPct = m ? `${m[1]}%` : `${parseCostValue(trimmed)}%`;
       } else if (/盈亏平衡/.test(trimmed)) {
-        const m = trimmed.match(/盈亏平衡[^：:]*[：:]\s*(.+)/);
+        const m = trimmed.match(RE_BREAKEVEN);
         result.breakevenUnits = m ? m[1].trim() : trimmed;
       } else if (/定价策略/.test(trimmed)) {
-        const m = trimmed.match(/定价策略[：:]\s*(.+)/);
+        const m = trimmed.match(RE_PRICING);
         result.pricingStrategy = m ? m[1].trim() : trimmed;
       }
       continue;
@@ -126,11 +138,10 @@ function extractCostSummary(markdown: string): {
     } else if (first === "成本项") {
       mode = "cost";
       continue;
-    } else if (first === "收益项" || /### 二/.test(trimmed) || first.includes("收益对比")) {
+    } else if (first === "收益项" || RE_S2.test(trimmed) || first.includes("收益对比")) {
       mode = "revenue";
       continue;
     } else if (first.includes("总直接成本") || first.includes("总成本")) {
-      // Parse total from table
       result.barebone.total = parseCostValue(cells[1] ?? "");
       result.compliant.total = parseCostValue(cells[2] ?? "");
       mode = "idle";
@@ -176,13 +187,13 @@ function extractCostSummary(markdown: string): {
     }
 
     // ── riskNote detection (outside tables) ──────────────────────────────────
-    if (/风险敞口说明/.test(trimmed)) {
+    if (RE_RISKNOTE.test(trimmed)) {
       result.riskNote = trimmed.replace(/^[^：:]*[：:]\s*/, "").trim();
     }
 
     // ── keyConclusion fallback ───────────────────────────────────────────────
     if (mode === "idle" && first.startsWith("**") && !result.keyConclusion && !inSection5) {
-      result.keyConclusion = first.replace(/^\*\*|\*\*$/g, "").trim();
+      result.keyConclusion = first.replace(RE_STAR_WRAP, "").trim();
     }
   }
 
