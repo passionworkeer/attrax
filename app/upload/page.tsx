@@ -82,7 +82,8 @@ function DocumentIcon({ mimeType }: { mimeType: string }) {
   );
 }
 
-function ImagePreview({ file }: { file: File }) {
+function ImagePreview({ file, id }: { file: File; id: string }) {
+  // Create and revoke object URL inside render to avoid memory leaks
   const url = URL.createObjectURL(file);
   return (
     <div className="relative flex items-center gap-3 rounded-xl border border-border bg-muted/40 p-3">
@@ -92,6 +93,7 @@ function ImagePreview({ file }: { file: File }) {
         width={64}
         height={64}
         className="h-16 w-16 shrink-0 rounded-lg object-cover"
+        onLoad={() => URL.revokeObjectURL(url)}
       />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium">{file.name}</p>
@@ -261,8 +263,8 @@ export default function UploadPage() {
 
             {images.length > 0 && (
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-                {images.map((file, i) => (
-                  <ImagePreview key={`${file.name}-${i}`} file={file} />
+                {images.map((file) => (
+                  <ImagePreview key={file.name} file={file} id={file.name} />
                 ))}
                 <button
                   type="button"
@@ -306,8 +308,8 @@ export default function UploadPage() {
 
             {documents.length > 0 && (
               <div className="space-y-2">
-                {documents.map((file, i) => (
-                  <DocumentPreview key={`${file.name}-${i}`} file={file} />
+                {documents.map((file) => (
+                  <DocumentPreview key={file.name} file={file} />
                 ))}
                 <button
                   type="button"
