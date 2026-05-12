@@ -13,8 +13,8 @@ import os
 import re
 import torch
 import logging
+import threading
 import numpy as np
-from functools import lru_cache
 from pathlib import Path
 from typing import Optional
 
@@ -27,56 +27,33 @@ MODEL_PATH = Path(os.path.expanduser("~/.cache/modelscope/hub/models/Qwen/Qwen3-
 # Repeated queries (common in agent loops) hit cache instead of GPU/CPU.
 _LOCAL_EMBED_CACHE_MAX = 512
 
+# Thread-safe dict cache: text → embedding tuple
+_EMBED_CACHE: dict[str, tuple] = {}
+_EMBED_CACHE_LOCK = threading.Lock()
+
 # Module-level model reference shared across cache hits.
 # Set once when the first LocalEmbedder instance loads the model.
 _cached_model = None
 _cached_tokenizer = None
 
 
-@lru_cache(maxsize=_LOCAL_EMBED_CACHE_MAX)
-def _cached_local_embed(text: str, dim: int = DIM) -> tuple:
-    """
-    Cached local embedding. Returns tuple for hashability.
-    Uses the module-level cached model/tokenizer (set by first LocalEmbedder load).
-    """
-    global _cached_model, _cached_tokenizer
-    if _cached_model is None or _cached_tokenizer is None:
-        return ()  # not ready yet; caller falls back to uncached path
-    return _do_embed_uncached(text, _cached_model, _cached_tokenizer)
+def _cache_lookup(text: str) -> Optional[tuple]:
+    with _EMBED_CACHE_LOCK:
+        return _EMBED_CACHE.get(text)
+
+
+def _cache_store(text: str, vec: tuple) -> None:
+    with _EMBED_CACHE_LOCK:
+        if len(_EMBED_CACHE) >= _LOCAL_EMBED_CACHE_MAX:
+            # FIFO eviction when full
+            _EMBED_CACHE.pop(next(iter(_EMBED_CACHE)))
+        _EMBED_CACHE[text] = vec
 
 
 def _normalize_path(path: Path) -> str:
     """Fix Windows mixed separators in paths."""
     return str(Path(path)).replace("/", "\\") if os.name == "nt" else str(path)
 
-
-def _do_embed_uncached(text: str, model, tokenizer) -> list[float]:
-    """Single-text embedding without caching."""
-    inputs = tokenizer(
-        [text],
-        padding=True,
-        truncation=True,
-        max_length=512,
-        return_tensors="pt",
-    )
-    inputs = {k: v.to(model.device) for k, v in inputs.items()}
-    with torch.no_grad():
-        outputs = model(**inputs)
-        emb = _mean_pooling_static(
-            outputs.last_hidden_state, inputs["attention_mask"]
-        )
-        emb = torch.nn.functional.normalize(emb, dim=1)
-    return emb[0].cpu().tolist()
-
-
-def _mean_pooling_static(
-    last_hidden_state: torch.Tensor, attention_mask: torch.Tensor
-) -> torch.Tensor:
-    """Mean pool over non-padding tokens (module-level helper for cache)."""
-    mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
-    sum_embeddings = torch.sum(last_hidden_state * mask_expanded, dim=1)
-    sum_mask = mask_expanded.sum(dim=1).clamp(min=1e-9)
-    return sum_embeddings / sum_mask
 
 
 class LocalEmbedder:
@@ -175,15 +152,15 @@ class LocalEmbedder:
 
     def embed_query(self, text: str) -> list[float]:
         """
-        Embed a single query string with LRU cache.
-        Cache hits avoid a GPU/CPU forward pass entirely.
+        Embed a single query string with in-process cache.
+        Cache hits skip the GPU/CPU forward pass entirely (~0ms vs ~20ms).
         """
-        cached = _cached_local_embed(text)
-        if cached:
+        cached = _cache_lookup(text)
+        if cached is not None:
             return list(cached)
-        # Cache miss: embed, cache, return
+        # Cache miss: embed, store, return
         result = self.embed_texts([text])[0]
-        _cached_local_embed.cache_update({text: tuple(result)})
+        _cache_store(text, tuple(result))
         return result
 
     def embed_batch(self, texts: list[str], batch_size: int = None) -> list[list[float]]:
