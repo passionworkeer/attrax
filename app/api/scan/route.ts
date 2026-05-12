@@ -106,31 +106,49 @@ export async function POST(request: Request) {
 
   if (process.env.DEMO_MODE === "true") {
     runDemoSimulation(sessionId);
-  } else {
-    const images = await Promise.all(
+    return NextResponse.json(
+      { sessionId, status: "processing", pollUrl: `/api/scan/${sessionId}` },
+      { status: 202 }
+    );
+  }
+
+  // Parallelize: read all images + parse all text-based docs at once
+  const [imageData, pdfFiles, docxFiles, rawTextFiles] = await Promise.all([
+    Promise.all(
       imageFiles.map(async (file) => ({
         buffer: Buffer.from(await file.arrayBuffer()),
         originalName: file.name,
         mimeType: file.type || "application/octet-stream",
       }))
-    );
+    ),
+    Promise.resolve(
+      documentFiles.filter(
+        (f) => f.type === "application/pdf" || f.name.endsWith(".pdf")
+      )
+    ),
+    Promise.resolve(
+      documentFiles.filter(
+        (f) =>
+          f.type ===
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+          f.name.endsWith(".docx")
+      )
+    ),
+    Promise.resolve(
+      documentFiles.filter(
+        (f) =>
+          f.type !== "application/pdf" &&
+          !f.name.endsWith(".pdf") &&
+          f.type !==
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
+          !f.name.endsWith(".docx")
+      )
+    ),
+  ]);
 
-    // Separate PDFs (sent as base64 for server-side extraction) from text-based docs
-    const pdfFiles = documentFiles.filter(
-      (f) => f.type === "application/pdf" || f.name.endsWith(".pdf")
-    );
-    const docxFiles = documentFiles.filter(
-      (f) => f.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-             f.name.endsWith(".docx")
-    );
-    const rawTextFiles = documentFiles.filter(
-      (f) => f.type !== "application/pdf" &&
-             !f.name.endsWith(".pdf") &&
-             f.type !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
-             !f.name.endsWith(".docx")
-    );
-
-    const textDocs = await Promise.all(
+  // Parse text docs and DOCX in parallel — mammoth loaded once, shared via cache
+  const [textDocs, docxDocs] = await Promise.all([
+    Promise.all(
       rawTextFiles.map(async (file) => {
         let text = "";
         try {
@@ -142,62 +160,58 @@ export async function POST(request: Request) {
           text: text.slice(0, 5000),
         };
       })
-    );
+    ),
+    (async () => {
+      if (docxFiles.length === 0) return [];
+      const mammoth = await import("mammoth");
+      return Promise.all(
+        docxFiles.map(async (file) => {
+          let text = "";
+          try {
+            const arrayBuffer = await file.arrayBuffer();
+            const buffer = Buffer.from(new Uint8Array(arrayBuffer));
+            const result = await mammoth.extractRawText({ buffer });
+            text = result.value;
+          } catch (e) {
+            console.warn(`mammoth extraction failed for ${file.name}:`, e);
+          }
+          return {
+            name: file.name,
+            mimeType:
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            text: text.slice(0, 5000),
+          };
+        })
+      );
+    })(),
+  ]);
 
-    // DOCX: extract text via mammoth on the browser side
-    // mammoth expects {buffer: Buffer} in Node.js, not {arrayBuffer: ArrayBuffer}
-    const docxDocs = await Promise.all(
-      docxFiles.map(async (file) => {
-        let text = "";
-        try {
-          const mammoth = await import("mammoth");
-          const arrayBuffer = await file.arrayBuffer();
-          // Convert ArrayBuffer to Buffer via Uint8Array copy
-          const buffer = Buffer.from(new Uint8Array(arrayBuffer));
-          const result = await mammoth.extractRawText({ buffer });
-          text = result.value;
-        } catch (e) {
-          console.warn(`mammoth extraction failed for ${file.name}:`, e);
-        }
-        return {
-          name: file.name,
-          mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-          text: text.slice(0, 5000),
-        };
-      })
-    );
+  const documents = [...textDocs, ...docxDocs];
 
-    const documents = [...textDocs, ...docxDocs];
+  // PDFs: send as base64 for backend pdfplumber extraction
+  const pdfs = await Promise.all(
+    pdfFiles.map(async (file) => ({
+      name: file.name,
+      buffer: Buffer.from(await file.arrayBuffer()).toString("base64"),
+      mimeType: "application/pdf",
+    }))
+  );
 
-    // PDFs: send as base64 for backend pdfplumber extraction
-    const pdfs = await Promise.all(
-      pdfFiles.map(async (file) => ({
-        name: file.name,
-        buffer: Buffer.from(await file.arrayBuffer()).toString("base64"),
-        mimeType: "application/pdf",
-      }))
-    );
-
-    runScan(sessionId, {
-      images,
-      documents,
-      pdfs,
-      category: parsed.data.category as ProductCategory,
-      markets: parsed.data.markets,
-    }).catch((error) => {
-      updateSession(sessionId, {
-        status: "failed",
-        error: error instanceof Error ? error.message : "扫描失败",
-      });
+  runScan(sessionId, {
+    images: imageData,
+    documents,
+    pdfs,
+    category: parsed.data.category as ProductCategory,
+    markets: parsed.data.markets,
+  }).catch((error) => {
+    updateSession(sessionId, {
+      status: "failed",
+      error: error instanceof Error ? error.message : "扫描失败",
     });
-  }
+  });
 
   return NextResponse.json(
-    {
-      sessionId,
-      status: "processing",
-      pollUrl: `/api/scan/${sessionId}`,
-    },
+    { sessionId, status: "processing", pollUrl: `/api/scan/${sessionId}` },
     { status: 202 }
   );
 }

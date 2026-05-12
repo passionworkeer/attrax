@@ -41,10 +41,11 @@ function loadSessionFromFile(sessionId: string): ScanStatus | null {
   }
   try {
     const raw = readFileSync(filePath, "utf-8");
-    const session: ScanStatus = JSON.parse(raw);
+    const session = JSON.parse(raw) as ScanStatus & { _timestamp?: number };
     // Auto-expire: skip if older than SESSION_TTL_MS
-    if (Date.now() - (session as { _timestamp?: number })._timestamp! > SESSION_TTL_MS) {
-      unlinkSync(filePath);
+    const ts = session._timestamp;
+    if (!ts || Date.now() - ts > SESSION_TTL_MS) {
+      try { unlinkSync(filePath); } catch { /* ignore */ }
       return null;
     }
     return session;
@@ -119,10 +120,18 @@ export function updateSession(sessionId: string, patch: Partial<ScanStatus>) {
   const store = getStore();
   const current = store.get(sessionId);
   if (!current) {
-    return;
+    console.warn(`[session-store] updateSession: session "${sessionId}" not found in memory, trying file`);
+    // Try to reload from file in case the session exists on disk
+    const fromFile = loadSessionFromFile(sessionId);
+    if (!fromFile) {
+      console.error(`[session-store] updateSession: session "${sessionId}" not found anywhere`);
+      return;
+    }
+    store.set(sessionId, fromFile);
   }
 
-  const updated: ScanStatus = { ...current, ...patch };
+  const base = store.get(sessionId)!;
+  const updated: ScanStatus = { ...base, ...patch };
   store.set(sessionId, updated);
   persistSession(updated);
 }
@@ -141,7 +150,8 @@ export function getSession(sessionId: string): ScanStatus | undefined {
     const existing = timers.get(sessionId);
     if (existing) clearTimeout(existing);
 
-    const remaining = SESSION_TTL_MS - (Date.now() - (fromFile as ScanStatus & { _timestamp?: number })._timestamp!);
+    const ts = (fromFile as ScanStatus & { _timestamp?: number })._timestamp;
+    const remaining = ts ? SESSION_TTL_MS - (Date.now() - ts) : SESSION_TTL_MS;
     if (remaining > 0) {
       const timer = setTimeout(() => {
         store.delete(sessionId);

@@ -11,7 +11,7 @@
  * user still sees a valid report instead of a generic error.
  */
 import { updateSession } from "@/lib/pipeline/session-store";
-import { createMockScanResult } from "@/lib/mock/scan-result";
+import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult, CostSummary } from "@/lib/types";
 
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
@@ -320,17 +320,21 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     }
 
     ragResponse = (await resp.json()) as RagServiceResponse;
-  } catch {
+  } catch (err: unknown) {
     // rag-service unavailable — degrade gracefully to mock
+    const isTimeout = err instanceof Error && err.name === "AbortError";
     updateSession(sessionId, {
       progress: 70,
-      stageText: "⚠️ 后端服务不可用，降级到演示模式…",
+      stageText: isTimeout
+        ? "⚠️ 后端服务响应超时，降级到演示模式…"
+        : "⚠️ 后端服务不可用，降级到演示模式…",
     });
     updateSession(sessionId, {
       status: "ready",
       progress: 100,
-      stageText: "✅ 演示结果已生成",
+      stageText: "✅ 演示结果已生成（离线模式）",
       result: createMockScanResult(sessionId),
+      error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
     });
     return;
   }
@@ -387,6 +391,9 @@ export async function runScan(sessionId: string, input: RunScanInput) {
   let profitReport: ProfitReportResult | undefined;
 
   try {
+    const controller = new AbortController();
+    const profitTimeout = setTimeout(() => controller.abort(), 30_000); // 30s timeout for profit report
+
     const profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -395,7 +402,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         category,
         markets,
       }),
+      signal: controller.signal,
     });
+
+    clearTimeout(profitTimeout);
+
     if (profitResp.ok) {
       const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
       const extracted = extractCostSummary(raw.report);
@@ -410,7 +421,6 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         compliantRiskExposure: extracted.compliant.asp > 0 ? extracted.compliant.asp * 5 : 0,
         keyConclusion: extracted.keyConclusion,
         generatedAt: new Date().toISOString(),
-        // 新增字段
         premiumPct: extracted.premiumPct,
         breakevenUnits: extracted.breakevenUnits,
         pricingStrategy: extracted.pricingStrategy,
@@ -421,10 +431,18 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         compliantGpm: extracted.compliantGpm,
       };
     } else {
-      // profit resp not ok — skip, keep profitReport undefined
+      // profit resp not ok — fall back to mock
+      console.warn(`Profit report endpoint returned ${profitResp.status}, using mock`);
+      profitReport = createMockProfitReport(sessionId);
     }
   } catch {
-    // profit report is best-effort — do not block the main flow
+    // profit report failed — fall back to mock instead of leaving it undefined
+    console.warn("Profit report fetch failed, using mock");
+    try {
+      profitReport = createMockProfitReport(sessionId);
+    } catch {
+      // mock generation also failed — skip, leave profitReport undefined
+    }
   }
 
   updateSession(sessionId, {
@@ -439,5 +457,4 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     result: complianceReport as Parameters<typeof updateSession>[1]["result"],
     profitReport,
   });
-  
-  }
+}

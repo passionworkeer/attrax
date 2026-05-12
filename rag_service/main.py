@@ -134,25 +134,56 @@ class ProfitReportResponse(BaseModel):
 
 @app.get("/health")
 def health():
+    """Liveness probe — returns basic status. Used by /api/health on the frontend."""
     faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
-    return {
+    return JSONResponse({
         "status": "ok",
         "version": app.version,
         "faiss_index": "loaded" if faiss_ok else "not_found",
         "vector_count": len(_retriever.faiss_retriever) if faiss_ok else 0,
+        "demo_mode": settings.demo_mode,
+    })
+
+
+@app.get("/ready")
+def ready():
+    """
+    Readiness probe — checks all critical dependencies.
+    Used by Kubernetes / load-balancer to decide whether to route traffic here.
+    """
+    checks = {
+        "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
+        "bm25": _retriever is not None,
+        "config_loaded": True,
     }
+    all_ok = all(checks.values())
+
+    return JSONResponse(
+        {
+            "ready": all_ok,
+            "checks": checks,
+            "demo_mode": settings.demo_mode,
+            "version": app.version,
+        },
+        status_code=200 if all_ok else 503,
+    )
 
 
 @app.post("/scan", response_model=ScanResponse)
 async def scan(req: ScanRequest):
+    """POST /scan — main compliance scan endpoint."""
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="query is required")
 
     if settings.demo_mode:
         return ScanResponse(
-            status="WARN",
-            report="DEMO MODE: 请配置 MIMOTALK_API_KEY 以启用真实服务。",
-            agent_trace=[{"node": "demo", "message": "demo mode active"}],
+            status="DEMO",
+            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MIMOTALK_API_KEY`。\n\n参考文档：`.env.example` 或 `rag_service/.env`",
+            agent_trace=[{
+                "node": "demo",
+                "status": "DEMO",
+                "message": "demo mode active — configure MIMOTALK_API_KEY for full service",
+            }],
             loop_count=0,
         )
 
@@ -195,18 +226,22 @@ async def scan(req: ScanRequest):
     all_docs = (req.documents or []) + extracted_pdf_docs
 
     loop = asyncio.get_event_loop()
-    result = await loop.run_in_executor(
-        _executor,
-        lambda: run_compliance_graph(
-            query=req.query,
-            product=req.product,
-            category=req.category,
-            markets=req.markets,
-            vision_result=req.vision_result or {},
-            images=decoded_images,
-            documents=all_docs,
+    try:
+        result = await loop.run_in_executor(
+            _executor,
+            lambda: run_compliance_graph(
+                query=req.query,
+                product=req.product,
+                category=req.category,
+                markets=req.markets,
+                vision_result=req.vision_result or {},
+                images=decoded_images,
+                documents=all_docs,
+            )
         )
-    )
+    except Exception as e:
+        logger.exception("run_compliance_graph failed")
+        raise HTTPException(status_code=500, detail=f"Compliance graph error: {e}")
 
     # Cap displayed documents at 15 — enough to be useful without overwhelming the UI
     DISPLAY_DOC_CAP = 15
@@ -235,7 +270,7 @@ async def profit_report(req: ProfitReportRequest):
     if settings.demo_mode:
         return ProfitReportResponse(
             status="DEMO",
-            report="DEMO MODE: 请配置 MIMOTALK_API_KEY 以启用真实服务。",
+            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MIMOTALK_API_KEY`。",
             product=product_type,
             market=market,
         )
@@ -296,3 +331,13 @@ def _normalize_chunks(results: list) -> list[dict]:
                 "score": item.get("score", 0.0),
             })
     return out
+
+
+@app.add_exception_handler(Exception)
+async def global_exception_handler(request, exc):
+    """Catch-all for unhandled exceptions — returns a clean JSON error."""
+    logger.exception("Unhandled exception")
+    return JSONResponse(
+        status_code=500,
+        content={"error": "Internal server error", "detail": str(exc)},
+    )
