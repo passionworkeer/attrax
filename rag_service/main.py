@@ -15,6 +15,10 @@ from typing import Optional
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
 
+# Default timeouts (seconds) — prevents executor thread exhaustion on slow LLM calls
+_SCAN_TIMEOUT_SECS = 180
+_PROFIT_TIMEOUT_SECS = 60
+
 # Load .env so os.environ.get() picks up values
 try:
     from dotenv import load_dotenv
@@ -90,6 +94,31 @@ async def lifespan(app: FastAPI):
     generator.set_generator(ReportGenerator(api_key=settings.mimotalk_api_key or None))
     verifier.set_verifier(CitationVerifier())
     vision_node_module.set_vision_analyzer(vision_node.VisionAnalyzer(settings.mimotalk_api_key or None))
+
+    # ── Pre-warm embedding cache with common compliance queries ─────────────────
+    # Embedding these at startup populates the LRU cache so the first real user
+    # query hits cache immediately (~0.1ms instead of 100-300ms per embed call).
+    if warm_embedder is not None:
+        import time
+        t0 = time.monotonic()
+        common_queries = [
+            "充电宝 合规 EU",
+            "蓝牙耳机 CE RoHS",
+            "锂电池 运输 法规",
+            "玩具 安全 EN71",
+            "电子产品 环保 RoHS",
+            "出口欧盟 合规要求",
+        ]
+        try:
+            warm_embedder.embed_batch(common_queries, batch_size=len(common_queries))
+            logger.info(
+                f"Query pre-warming done: {len(common_queries)} queries "
+                f"embedded in {time.monotonic()-t0:.1f}s (cache populated)"
+            )
+        except Exception as e:
+            logger.warning(f"Query pre-warming skipped: {e}")
+    else:
+        logger.info("Query pre-warming skipped: no embedder available")
 
     logger.info("rag-service ready")
     yield
@@ -227,18 +256,26 @@ async def scan(req: ScanRequest):
 
     loop = asyncio.get_event_loop()
     try:
-        result = await loop.run_in_executor(
-            _executor,
-            lambda: run_compliance_graph(
-                query=req.query,
-                product=req.product,
-                category=req.category,
-                markets=req.markets,
-                vision_result=req.vision_result or {},
-                images=decoded_images,
-                documents=all_docs,
-            )
+        # Enforce a wall-clock timeout to prevent thread pool exhaustion.
+        # The executor continues running but we return a clean 504 to the client.
+        result = await asyncio.wait_for(
+            loop.run_in_executor(
+                _executor,
+                lambda: run_compliance_graph(
+                    query=req.query,
+                    product=req.product,
+                    category=req.category,
+                    markets=req.markets,
+                    vision_result=req.vision_result or {},
+                    images=decoded_images,
+                    documents=all_docs,
+                ),
+            ),
+            timeout=_SCAN_TIMEOUT_SECS,
         )
+    except asyncio.TimeoutError:
+        logger.error(f"/scan timed out after {_SCAN_TIMEOUT_SECS}s")
+        raise HTTPException(status_code=504, detail="Scan request timed out. Please try again.")
     except Exception as e:
         logger.exception("run_compliance_graph failed")
         raise HTTPException(status_code=500, detail=f"Compliance graph error: {e}")
@@ -309,7 +346,14 @@ async def profit_report(req: ProfitReportRequest):
         )
 
     loop = asyncio.get_event_loop()
-    report_text = await loop.run_in_executor(_executor, _generate)
+    try:
+        report_text = await asyncio.wait_for(
+            loop.run_in_executor(_executor, _generate),
+            timeout=_PROFIT_TIMEOUT_SECS,
+        )
+    except asyncio.TimeoutError:
+        logger.error(f"/profit-report timed out after {_PROFIT_TIMEOUT_SECS}s")
+        raise HTTPException(status_code=504, detail="Profit report timed out. Please try again.")
 
     return ProfitReportResponse(
         status="SUCCESS",

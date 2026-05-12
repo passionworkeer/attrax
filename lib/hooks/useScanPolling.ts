@@ -14,6 +14,7 @@ export function useScanPolling(sessionId: string) {
 
   // Easing: animate display toward targetProgress
   useEffect(() => {
+    let rafId: number;
     const tick = () => {
       setDisplayProgress((prev) => {
         const target = targetProgressRef.current;
@@ -22,10 +23,10 @@ export function useScanPolling(sessionId: string) {
         // Ease toward target (small steps = smooth feel)
         return prev + diff * 0.12;
       });
-      rafRef.current = requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     };
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
   // Polling loop
