@@ -17,14 +17,13 @@ import {
   TrendingUp,
   Shield,
   Sparkles,
-  RotateCcw,
   Play,
   Pause,
 } from "lucide-react";
 
 export interface TraceNode {
   id: string;
-  type: "input" | "vision" | "planner" | "fanout" | "market" | "synthesis" | "result" | "reasoning";
+  type: "input" | "vision" | "planner" | "fanout" | "market" | "synthesis" | "result";
   label: string;
   labelEn: string;
   icon: string;
@@ -33,6 +32,7 @@ export interface TraceNode {
   status?: "pending" | "running" | "success" | "error";
   duration?: string;
   reasoning?: string;
+  reasoningEn?: string;
   confidence?: number;
 }
 
@@ -43,7 +43,101 @@ interface DecisionTreeProps {
   animationSpeed?: number;
 }
 
-// Demo trace with comprehensive AI agent workflow
+// Translations
+const t = {
+  zh: {
+    header: "AI Agent 工作流",
+    headerSub: "自主合规分析执行过程",
+    totalTime: "总耗时",
+    steps: "执行步骤",
+    markets: "markets",
+    marketsUnit: "个市场已扫描",
+    regulations: "Regulations",
+    regulationsUnit: "条法规",
+    risks: "unique risks",
+    risksUnit: "项风险点",
+    score: "评分",
+    scoreUnit: "85/100 分",
+    complete: "分析完成",
+    vector: "向量检索",
+    reasoning: "AI 推理过程",
+    found: "找到",
+    regulationsText: "条法规",
+    complianceRate: "合规率",
+    topMatch: "最高匹配",
+    effective: "生效",
+    scoreText: "评分",
+    complianceScore: "合规评分",
+    recommendedActions: "建议行动",
+    estimatedTimeline: "预计时间线",
+    toggleReasoning: "显示推理过程",
+    input: "输入",
+    vision: "视觉识别",
+    planner: "查询规划",
+    fanout: "并行检索",
+    market: "市场检索",
+    synthesis: "综合分析",
+    result: "评估结果",
+    reasoningType: "推理过程",
+  },
+  en: {
+    header: "AI Agent Workflow",
+    headerSub: "Autonomous compliance analysis",
+    totalTime: "Total Time",
+    steps: "Steps",
+    markets: "markets",
+    marketsUnit: "markets scanned",
+    regulations: "Regulations",
+    regulationsUnit: "regulations",
+    risks: "unique risks",
+    risksUnit: "risks",
+    score: "Score",
+    scoreUnit: "85/100",
+    complete: "Complete",
+    vector: "Vector Search",
+    reasoning: "AI REASONING",
+    found: "Found",
+    regulationsText: "regulations",
+    complianceRate: "Compliance Rate",
+    topMatch: "Top Match",
+    effective: "Effective",
+    scoreText: "Score",
+    complianceScore: "Compliance Score",
+    recommendedActions: "Recommended Actions",
+    estimatedTimeline: "ESTIMATED TIMELINE",
+    toggleReasoning: "Toggle reasoning",
+    input: "Input",
+    vision: "Vision",
+    planner: "Planner",
+    fanout: "Fanout",
+    market: "Market",
+    synthesis: "Synthesis",
+    result: "Result",
+    reasoningType: "Reasoning",
+  },
+};
+
+const typeIcons: Record<string, string> = {
+  input: "📷",
+  vision: "🧠",
+  planner: "📋",
+  fanout: "⚡",
+  market: "🌍",
+  synthesis: "📊",
+  result: "✅",
+};
+
+const typeColors: Record<string, { bg: string; border: string; text: string; light: string; dark: string }> = {
+  input: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
+  vision: { bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-600", light: "bg-purple-100", dark: "bg-purple-500" },
+  planner: { bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
+  fanout: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
+  market: { bg: "bg-cyan-50", border: "border-cyan-200", text: "text-cyan-600", light: "bg-cyan-100", dark: "bg-cyan-500" },
+  synthesis: { bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-600", light: "bg-indigo-100", dark: "bg-indigo-500" },
+  result: { bg: "bg-rose-50", border: "border-rose-200", text: "text-rose-600", light: "bg-rose-100", dark: "bg-rose-500" },
+};
+
+// Demo trace - fully bilingual
 const demoTrace: TraceNode = {
   id: "root",
   type: "input",
@@ -52,6 +146,7 @@ const demoTrace: TraceNode = {
   icon: "📷",
   status: "running",
   reasoning: "用户上传产品图片，系统自动接收并验证图片格式（支持 JPG/PNG/WebP，最大 10MB）",
+  reasoningEn: "User uploads product images, system receives and validates format (supports JPG/PNG/WebP, max 10MB)",
   children: [
     {
       id: "vision",
@@ -63,16 +158,16 @@ const demoTrace: TraceNode = {
       duration: "1.2s",
       confidence: 0.97,
       reasoning: "基于 CLIP 模型进行多标签分类：识别产品类型为便携式蓝牙音箱，检测到 3 个关键特征",
+      reasoningEn: "CLIP-based multi-label classification: identifies portable Bluetooth speaker, detects 3 key features",
       data: {
         productType: "便携式蓝牙音箱",
         productTypeEn: "Portable Bluetooth Speaker",
         confidence: 0.97,
         features: [
-          { name: "电池供电", confidence: 0.98, icon: "🔋" },
-          { name: "蓝牙连接", confidence: 0.95, icon: "📡" },
-          { name: "LED显示屏", confidence: 0.92, icon: "💡" },
+          { name: "电池供电", nameEn: "Battery Powered", icon: "🔋" },
+          { name: "蓝牙连接", nameEn: "Bluetooth", icon: "📡" },
+          { name: "LED显示屏", nameEn: "LED Display", icon: "💡" },
         ],
-        tags: ["消费电子", "音频设备", "便携式"],
       },
     },
     {
@@ -85,13 +180,14 @@ const demoTrace: TraceNode = {
       duration: "0.3s",
       confidence: 0.99,
       reasoning: "根据产品特征智能生成多市场合规查询策略，自动排序优先级",
+      reasoningEn: "Intelligently generates multi-market compliance queries based on product features, auto-sorts priorities",
       data: {
         strategies: [
-          { market: "EU", query: "RoHS + 电子产品", priority: 1, risk: "high" },
-          { market: "EU", query: "REACH + SVHC", priority: 1, risk: "medium" },
-          { market: "US", query: "FCC + 无线电设备", priority: 1, risk: "high" },
-          { market: "US", query: "CPSIA + 铅含量", priority: 2, risk: "medium" },
-          { market: "CN", query: "CCC + 音响设备", priority: 1, risk: "medium" },
+          { market: "EU", query: "RoHS + 电子产品", queryEn: "RoHS + Electronics", priority: 1 },
+          { market: "EU", query: "REACH + SVHC", queryEn: "REACH + SVHC", priority: 1 },
+          { market: "US", query: "FCC + 无线电设备", queryEn: "FCC + Radio Equipment", priority: 1 },
+          { market: "US", query: "CPSIA + 铅含量", queryEn: "CPSIA + Lead Content", priority: 2 },
+          { market: "CN", query: "CCC + 音响设备", queryEn: "CCC + Audio Equipment", priority: 1 },
         ],
       },
     },
@@ -105,6 +201,7 @@ const demoTrace: TraceNode = {
       duration: "2.8s",
       confidence: 0.95,
       reasoning: "LangGraph 并行执行 5 个市场检索任务，FAISS 向量数据库快速召回相关法规文档",
+      reasoningEn: "LangGraph executes 5 market queries in parallel, FAISS vector DB quickly retrieves relevant regulations",
       children: [
         {
           id: "eu",
@@ -116,12 +213,13 @@ const demoTrace: TraceNode = {
           duration: "1.1s",
           confidence: 0.98,
           reasoning: "检测到 3 条相关法规：RoHS 3.0 修订（高风险）、REACH SVHC 新增（中风险）、RED 指令（低风险）",
+          reasoningEn: "Found 3 relevant regulations: RoHS 3.0 amendment (high), REACH SVHC update (medium), RED directive (low)",
           data: {
             regulations: 3,
             highRisk: 1,
             mediumRisk: 1,
             lowRisk: 1,
-            topMatch: { title: "RoHS 3.0 限制物质扩展", score: 0.94, effectiveDate: "2026-10-01" },
+            topMatch: { title: "RoHS 3.0 限制物质扩展", titleEn: "RoHS 3.0 Restricted Substances", score: 0.94, effectiveDate: "2026-10-01" },
             complianceRate: 67,
           },
         },
@@ -135,12 +233,13 @@ const demoTrace: TraceNode = {
           duration: "1.3s",
           confidence: 0.96,
           reasoning: "检测到 2 条相关法规：FCC Part 15 无线电合规（高风险需立即处理）、CPSIA 铅含量限值（中风险）",
+          reasoningEn: "Found 2 relevant regulations: FCC Part 15 radio compliance (high - needs immediate action), CPSIA lead limits (medium)",
           data: {
             regulations: 2,
             highRisk: 1,
             mediumRisk: 1,
             lowRisk: 0,
-            topMatch: { title: "FCC Part 15 无线电设备", score: 0.91, effectiveDate: "2026-06-01" },
+            topMatch: { title: "FCC Part 15 无线电设备", titleEn: "FCC Part 15 Radio Equipment", score: 0.91, effectiveDate: "2026-06-01" },
             complianceRate: 50,
           },
         },
@@ -154,12 +253,13 @@ const demoTrace: TraceNode = {
           duration: "0.9s",
           confidence: 0.97,
           reasoning: "检测到 1 条相关法规：CCC 强制性认证，产品在认证目录范围内需提前准备",
+          reasoningEn: "Found 1 relevant regulation: CCC mandatory certification, product is in certification scope",
           data: {
             regulations: 1,
             highRisk: 0,
             mediumRisk: 1,
             lowRisk: 0,
-            topMatch: { title: "CCC 强制性产品认证", score: 0.88, effectiveDate: "2026-07-01" },
+            topMatch: { title: "CCC 强制性产品认证", titleEn: "CCC Mandatory Certification", score: 0.88, effectiveDate: "2026-07-01" },
             complianceRate: 100,
           },
         },
@@ -175,13 +275,10 @@ const demoTrace: TraceNode = {
       duration: "3.5s",
       confidence: 0.93,
       reasoning: "聚合 6 条法规检索结果，LLM 生成结构化合规评估报告，计算综合风险评分",
+      reasoningEn: "Aggregates 6 regulation results, LLM generates structured compliance report, calculates risk score",
       data: {
         reportSections: ["执行摘要", "市场风险评估", "合规清单", "行动计划", "时间线"],
-        processedData: {
-          totalRegulations: 6,
-          uniqueRisks: 5,
-          urgentItems: 2,
-        },
+        reportSectionsEn: ["Executive Summary", "Market Risk Assessment", "Compliance Checklist", "Action Plan", "Timeline"],
       },
     },
     {
@@ -193,6 +290,7 @@ const demoTrace: TraceNode = {
       status: "pending",
       confidence: 0.95,
       reasoning: "综合评分 85/100，等级 B。主要风险来自 RoHS 3.0 和 FCC Part 15，需立即启动合规准备",
+      reasoningEn: "Overall score 85/100, Grade B. Main risks from RoHS 3.0 and FCC Part 15, need to start compliance preparation immediately",
       data: {
         score: 85,
         grade: "B",
@@ -202,57 +300,28 @@ const demoTrace: TraceNode = {
         mediumRisk: 3,
         lowRisk: 0,
         marketSummary: [
-          { market: "EU", status: "warning", score: 72 },
-          { market: "US", status: "warning", score: 68 },
-          { market: "CN", status: "pass", score: 92 },
+          { market: "EU", marketEn: "🇪🇺 EU", status: "warning", score: 72 },
+          { market: "US", marketEn: "🇺🇸 US", status: "warning", score: 68 },
+          { market: "CN", marketEn: "🇨🇳 CN", status: "pass", score: 92 },
         ],
         recommendations: [
-          { priority: 1, action: "申请 RoHS 3.0 豁免或更换材料", deadline: "2026-06-01", cost: "¥5,000-20,000" },
-          { priority: 2, action: "进行 FCC 射频测试认证", deadline: "2026-06-15", cost: "¥15,000-30,000" },
-          { priority: 3, action: "准备 CCC 认证申请材料", deadline: "2026-07-01", cost: "¥8,000-15,000" },
+          { priority: 1, action: "申请 RoHS 3.0 豁免或更换材料", actionEn: "Apply for RoHS 3.0 exemption or replace materials", deadline: "2026-06-01", cost: "¥5,000-20,000" },
+          { priority: 2, action: "进行 FCC 射频测试认证", actionEn: "Conduct FCC RF testing certification", deadline: "2026-06-15", cost: "¥15,000-30,000" },
+          { priority: 3, action: "准备 CCC 认证申请材料", actionEn: "Prepare CCC certification application materials", deadline: "2026-07-01", cost: "¥8,000-15,000" },
         ],
         timeline: {
           preparation: "2-4 周",
+          preparationEn: "2-4 weeks",
           testing: "3-6 周",
+          testingEn: "3-6 weeks",
           certification: "2-4 周",
+          certificationEn: "2-4 weeks",
           total: "7-14 周",
+          totalEn: "7-14 weeks",
         },
       },
     },
   ],
-};
-
-const typeIcons: Record<string, string> = {
-  input: "📷",
-  vision: "🧠",
-  planner: "📋",
-  fanout: "⚡",
-  market: "🌍",
-  synthesis: "📊",
-  result: "✅",
-  reasoning: "💡",
-};
-
-const typeColors: Record<string, { bg: string; border: string; text: string; light: string; dark: string }> = {
-  input: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
-  vision: { bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-600", light: "bg-purple-100", dark: "bg-purple-500" },
-  planner: { bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
-  fanout: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
-  market: { bg: "bg-cyan-50", border: "border-cyan-200", text: "text-cyan-600", light: "bg-cyan-100", dark: "bg-cyan-500" },
-  synthesis: { bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-600", light: "bg-indigo-100", dark: "bg-indigo-500" },
-  result: { bg: "bg-rose-50", border: "border-rose-200", text: "text-rose-600", light: "bg-rose-100", dark: "bg-rose-500" },
-  reasoning: { bg: "bg-yellow-50", border: "border-yellow-200", text: "text-yellow-600", light: "bg-yellow-100", dark: "bg-yellow-500" },
-};
-
-const typeLabels: Record<string, { zh: string; en: string }> = {
-  input: { zh: "输入", en: "Input" },
-  vision: { zh: "视觉识别", en: "Vision" },
-  planner: { zh: "查询规划", en: "Planner" },
-  fanout: { zh: "并行检索", en: "Fanout" },
-  market: { zh: "市场检索", en: "Market" },
-  synthesis: { zh: "综合分析", en: "Synthesis" },
-  result: { zh: "评估结果", en: "Result" },
-  reasoning: { zh: "推理过程", en: "Reasoning" },
 };
 
 // Animation component
@@ -301,12 +370,11 @@ function ProgressBar({ progress, color = "bg-blue-500" }: { progress: number; co
   );
 }
 
-function ConfidenceBadge({ confidence }: { confidence?: number }) {
+function ConfidenceBadge({ confidence, locale }: { confidence?: number; locale: "zh" | "en" }) {
   if (!confidence) return null;
   const percentage = Math.round(confidence * 100);
-  const color = percentage >= 95 ? "text-green-600" : percentage >= 85 ? "text-blue-600" : "text-amber-600";
   return (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100 text-xs font-medium ${color}`}>
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100 text-xs font-medium">
       <Zap className="w-3 h-3" />
       {percentage}%
     </span>
@@ -330,6 +398,7 @@ function RiskBadge({ level, count, locale }: { level: "high" | "medium" | "low";
 
 function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }) {
   if (!text) return null;
+  const labels = t[locale];
   return (
     <AnimatedEntry delay={100}>
       <div className="mt-3 p-4 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 border-l-4 border-yellow-400 shadow-sm">
@@ -338,9 +407,7 @@ function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }
             <Lightbulb className="w-4 h-4 text-yellow-600" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-yellow-700 mb-1">
-              {locale === "en" ? "AI REASONING" : "AI 推理过程"}
-            </div>
+            <div className="text-xs font-semibold text-yellow-700 mb-1">{labels.reasoning}</div>
             <p className="text-sm text-gray-700 leading-relaxed">{text}</p>
           </div>
         </div>
@@ -350,14 +417,16 @@ function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }
 }
 
 function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "zh" | "en" }) {
+  const labels = t[locale];
   const score = typeof data.score === "number" ? data.score : 0;
   const grade = String(data.grade || "");
   const highRisk = typeof data.highRisk === "number" ? data.highRisk : 0;
   const mediumRisk = typeof data.mediumRisk === "number" ? data.mediumRisk : 0;
   const lowRisk = typeof data.lowRisk === "number" ? data.lowRisk : 0;
-  const recommendations = Array.isArray(data.recommendations) ? data.recommendations as Array<{ priority: number; action: string; deadline: string; cost: string }> : [];
+  const recommendations = Array.isArray(data.recommendations) ? data.recommendations as Array<{ priority: number; action: string; actionEn: string; deadline: string; cost: string }> : [];
   const timeline = data.timeline as Record<string, string> | undefined;
-  const marketSummary = Array.isArray(data.marketSummary) ? data.marketSummary as Array<{ market: string; status: string; score: number }> : [];
+  const timelineEn = data.timeline as Record<string, string> | undefined;
+  const marketSummary = Array.isArray(data.marketSummary) ? data.marketSummary as Array<{ market: string; marketEn: string; status: string; score: number }> : [];
 
   const gradeColors: Record<string, { bg: string; text: string; ring: string }> = {
     A: { bg: "bg-green-100", text: "text-green-700", ring: "ring-green-500" },
@@ -377,7 +446,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
               <div className="text-5xl font-black text-blaze-red">{score}</div>
               <span className="absolute -right-4 top-0 text-sm text-gray-400">/100</span>
             </div>
-            <div className="text-xs text-gray-500 mt-1">{locale === "en" ? "Compliance Score" : "合规评分"}</div>
+            <div className="text-xs text-gray-500 mt-1">{labels.complianceScore}</div>
           </div>
           <div className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black ring-4 ${gradeColors[grade]?.ring || "ring-gray-300"} ${gradeColors[grade]?.bg || "bg-gray-100"} ${gradeColors[grade]?.text || "text-gray-700"}`}>
             {grade}
@@ -389,9 +458,9 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
           <div className="grid grid-cols-3 gap-3">
             {marketSummary.map((m, i) => (
               <div key={i} className={`p-3 rounded-xl border ${m.status === "pass" ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}>
-                <div className="text-lg font-bold">{m.market}</div>
+                <div className="text-lg font-bold">{locale === "en" ? m.marketEn : m.market}</div>
                 <div className="text-2xl font-black mt-1">{m.score}</div>
-                <div className="text-xs text-gray-500">{locale === "en" ? "Score" : "评分"}</div>
+                <div className="text-xs text-gray-500">{labels.scoreText}</div>
               </div>
             ))}
           </div>
@@ -407,14 +476,18 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
         {/* Timeline */}
         {timeline && (
           <div className="p-4 bg-gray-50 rounded-xl">
-            <div className="text-xs font-semibold text-gray-500 mb-2">{locale === "en" ? "ESTIMATED TIMELINE" : "预计时间线"}</div>
+            <div className="text-xs font-semibold text-gray-500 mb-2">{labels.estimatedTimeline}</div>
             <div className="grid grid-cols-4 gap-2 text-center">
-              {Object.entries(timeline).map(([key, value]) => (
-                <div key={key} className="p-2 bg-white rounded-lg border">
-                  <div className="text-lg font-bold text-gray-900">{value}</div>
-                  <div className="text-xs text-gray-500 capitalize">{key}</div>
-                </div>
-              ))}
+              {Object.entries(timeline).map(([key, value], idx) => {
+                const enKeys = ["preparation", "testing", "certification", "total"];
+                const displayKey = locale === "en" ? enKeys[idx] : key;
+                return (
+                  <div key={key} className="p-2 bg-white rounded-lg border">
+                    <div className="text-lg font-bold text-gray-900">{value}</div>
+                    <div className="text-xs text-gray-500 capitalize">{displayKey}</div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
@@ -424,7 +497,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
           <div className="border-t pt-4">
             <div className="flex items-center gap-2 mb-3">
               <Target className="w-4 h-4 text-gray-500" />
-              <span className="text-sm font-semibold text-gray-700">{locale === "en" ? "Recommended Actions" : "建议行动"}</span>
+              <span className="text-sm font-semibold text-gray-700">{labels.recommendedActions}</span>
             </div>
             <div className="space-y-2">
               {recommendations.map((rec, i) => (
@@ -435,7 +508,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
                     {rec.priority}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-gray-900 truncate">{rec.action}</div>
+                    <div className="text-sm font-medium text-gray-900 truncate">{locale === "en" ? rec.actionEn : rec.action}</div>
                     <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />
@@ -458,12 +531,13 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
 }
 
 function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) {
+  const labels = t[locale];
   const data = node.data as {
     regulations?: number;
     highRisk?: number;
     mediumRisk?: number;
     lowRisk?: number;
-    topMatch?: { title: string; score: number; effectiveDate: string };
+    topMatch?: { title: string; titleEn: string; score: number; effectiveDate: string };
     complianceRate?: number;
   } | undefined;
 
@@ -473,18 +547,18 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {/* Stats */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">{locale === "en" ? "Found" : "找到"}</span>
+            <span className="text-sm text-gray-600">{labels.found}</span>
             <span className="text-xl font-bold text-gray-900">{data?.regulations || 0}</span>
-            <span className="text-sm text-gray-600">{locale === "en" ? "regulations" : "条法规"}</span>
+            <span className="text-sm text-gray-600">{locale === "en" ? labels.regulationsUnit : labels.regulationsText}</span>
           </div>
-          <ConfidenceBadge confidence={node.confidence} />
+          <ConfidenceBadge confidence={node.confidence} locale={locale} />
         </div>
 
         {/* Compliance Rate */}
         {data?.complianceRate !== undefined && (
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-gray-500">{locale === "en" ? "Compliance Rate" : "合规率"}</span>
+              <span className="text-gray-500">{labels.complianceRate}</span>
               <span className="font-medium text-gray-700">{data.complianceRate}%</span>
             </div>
             <ProgressBar progress={data.complianceRate} color={data.complianceRate >= 80 ? "bg-green-500" : data.complianceRate >= 50 ? "bg-amber-500" : "bg-red-500"} />
@@ -501,12 +575,12 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {/* Top match */}
         {data?.topMatch && (
           <div className="p-3 bg-gray-50 rounded-lg">
-            <div className="text-xs text-gray-500 mb-1">{locale === "en" ? "Top Match" : "最高匹配"}</div>
-            <div className="text-sm font-medium text-gray-900">{data.topMatch.title}</div>
+            <div className="text-xs text-gray-500 mb-1">{labels.topMatch}</div>
+            <div className="text-sm font-medium text-gray-900">{locale === "en" ? data.topMatch.titleEn : data.topMatch.title}</div>
             <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
               <span>{Math.round(data.topMatch.score * 100)}%</span>
               <span>•</span>
-              <span>{locale === "en" ? "Effective" : "生效"}: {data.topMatch.effectiveDate}</span>
+              <span>{labels.effective}: {data.topMatch.effectiveDate}</span>
             </div>
           </div>
         )}
@@ -526,11 +600,13 @@ function TraceNodeComponent({
   depth?: number;
   index?: number;
 }) {
+  const labels = t[locale];
   const [expanded, setExpanded] = useState(depth <= 1);
   const [showReasoning, setShowReasoning] = useState(false);
   const hasChildren = node.children && node.children.length > 0;
   const colors = typeColors[node.type] || typeColors.input;
   const label = locale === "en" ? node.labelEn : node.label;
+  const reasoning = locale === "en" && node.reasoningEn ? node.reasoningEn : node.reasoning;
 
   const handleToggle = () => {
     if (hasChildren) {
@@ -574,7 +650,7 @@ function TraceNodeComponent({
                         {node.duration}
                       </span>
                     )}
-                    <ConfidenceBadge confidence={node.confidence} />
+                    <ConfidenceBadge confidence={node.confidence} locale={locale} />
                   </div>
                 </div>
               </div>
@@ -584,7 +660,7 @@ function TraceNodeComponent({
                   <button
                     onClick={() => setShowReasoning(!showReasoning)}
                     className={`p-2 rounded-xl transition-all ${showReasoning ? `${colors.light} ${colors.text}` : "hover:bg-gray-100 text-gray-500"}`}
-                    title={locale === "en" ? "Toggle reasoning" : "显示推理过程"}
+                    title={labels.toggleReasoning}
                   >
                     <Lightbulb className="w-5 h-5" />
                   </button>
@@ -605,7 +681,7 @@ function TraceNodeComponent({
             </div>
 
             {/* Reasoning panel */}
-            {showReasoning && <ReasoningPanel text={node.reasoning} locale={locale} />}
+            {showReasoning && <ReasoningPanel text={reasoning} locale={locale} />}
 
             {/* Data content */}
             {node.data && !showReasoning && (
@@ -630,12 +706,23 @@ function TraceNodeComponent({
   );
 }
 
+const typeLabels: Record<string, { zh: string; en: string }> = {
+  input: { zh: "输入", en: "Input" },
+  vision: { zh: "视觉识别", en: "Vision" },
+  planner: { zh: "查询规划", en: "Planner" },
+  fanout: { zh: "并行检索", en: "Fanout" },
+  market: { zh: "市场检索", en: "Market" },
+  synthesis: { zh: "综合分析", en: "Synthesis" },
+  result: { zh: "评估结果", en: "Result" },
+};
+
 export default function AgentDecisionTree({
   traceData,
   locale = "zh",
   autoPlay = false,
   animationSpeed = 1,
 }: DecisionTreeProps) {
+  const labels = t[locale];
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [progress, setProgress] = useState(0);
 
@@ -666,12 +753,8 @@ export default function AgentDecisionTree({
               <Sparkles className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h3 className="text-2xl font-black text-gray-900">
-                {locale === "en" ? "AI Agent Workflow" : "AI Agent 工作流"}
-              </h3>
-              <p className="text-sm text-gray-500">
-                {locale === "en" ? "Autonomous compliance analysis" : "自主合规分析执行过程"}
-              </p>
+              <h3 className="text-2xl font-black text-gray-900">{labels.header}</h3>
+              <p className="text-sm text-gray-500">{labels.headerSub}</p>
             </div>
           </div>
         </div>
@@ -681,7 +764,7 @@ export default function AgentDecisionTree({
               <Clock className="w-5 h-5 text-gray-400" />
               {totalTime}s
             </div>
-            <div className="text-xs text-gray-500">{locale === "en" ? "Total Time" : "总耗时"}</div>
+            <div className="text-xs text-gray-500">{labels.totalTime}</div>
           </div>
           <div className="w-px h-10 bg-gray-200" />
           <div className="text-center">
@@ -689,7 +772,7 @@ export default function AgentDecisionTree({
               <Target className="w-5 h-5 text-gray-400" />
               {totalSteps}
             </div>
-            <div className="text-xs text-gray-500">{locale === "en" ? "Steps" : "执行步骤"}</div>
+            <div className="text-xs text-gray-500">{labels.steps}</div>
           </div>
           <button
             onClick={() => setIsPlaying(!isPlaying)}
@@ -733,8 +816,8 @@ export default function AgentDecisionTree({
               <CheckCircle2 className="w-5 h-5 text-green-600" />
             </div>
             <div>
-              <div className="text-lg font-bold text-green-800">{locale === "en" ? "Complete" : "分析完成"}</div>
-              <div className="text-xs text-green-600">4 {locale === "en" ? "markets scanned" : "个市场已扫描"}</div>
+              <div className="text-lg font-bold text-green-800">{labels.complete}</div>
+              <div className="text-xs text-green-600">4 {labels.marketsUnit}</div>
             </div>
           </div>
         </div>
@@ -745,7 +828,7 @@ export default function AgentDecisionTree({
             </div>
             <div>
               <div className="text-lg font-bold text-blue-800">LangGraph</div>
-              <div className="text-xs text-blue-600">FAISS + {locale === "en" ? "Vector" : "向量检索"}</div>
+              <div className="text-xs text-blue-600">FAISS + {labels.vector}</div>
             </div>
           </div>
         </div>
@@ -755,8 +838,8 @@ export default function AgentDecisionTree({
               <FileSearch className="w-5 h-5 text-purple-600" />
             </div>
             <div>
-              <div className="text-lg font-bold text-purple-800">6 {locale === "en" ? "Regulations" : "条法规"}</div>
-              <div className="text-xs text-purple-600">5 {locale === "en" ? "unique risks" : "项风险点"}</div>
+              <div className="text-lg font-bold text-purple-800">6 {labels.regulationsUnit}</div>
+              <div className="text-xs text-purple-600">5 {labels.risksUnit}</div>
             </div>
           </div>
         </div>
@@ -767,7 +850,7 @@ export default function AgentDecisionTree({
             </div>
             <div>
               <div className="text-lg font-bold text-amber-800">Grade B</div>
-              <div className="text-xs text-amber-600">{locale === "en" ? "85/100 Score" : "评分 85/100"}</div>
+              <div className="text-xs text-amber-600">{labels.scoreUnit}</div>
             </div>
           </div>
         </div>

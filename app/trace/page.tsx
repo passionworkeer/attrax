@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import AgentDecisionTree from "@/components/trace/AgentDecisionTree";
-import { Globe, Zap, BarChart3, ChevronRight } from "lucide-react";
+import { Globe, Zap, BarChart3, ChevronRight, Sparkles, Clock, Target, FileSearch } from "lucide-react";
 
 const translations = {
   zh: {
@@ -12,6 +12,12 @@ const translations = {
     steps: "执行步骤",
     markets: "扫描市场",
     regulations: "相关法规",
+    feature1Title: "实时分析",
+    feature1Desc: "观看 AI Agent 实时分析您的产品，从图片上传到合规报告",
+    feature2Title: "多市场覆盖",
+    feature2Desc: "同时扫描欧盟、美国、中国及10+市场的法规",
+    feature3Title: "可执行建议",
+    feature3Desc: "获取带有截止日期、成本和预期结果的就绪行动项目",
   },
   en: {
     title: "AI Decision Process",
@@ -20,6 +26,12 @@ const translations = {
     steps: "Steps",
     markets: "Markets Scanned",
     regulations: "Regulations Found",
+    feature1Title: "Real-time Analysis",
+    feature1Desc: "Watch the AI agent analyze your product in real-time, from image upload to compliance report",
+    feature2Title: "Multi-market Coverage",
+    feature2Desc: "Simultaneously scan regulations from EU, US, China and 10+ other markets",
+    feature3Title: "Actionable Insights",
+    feature3Desc: "Get prioritized action items with deadlines, costs, and expected outcomes",
   },
 };
 
@@ -66,15 +78,24 @@ export default function TracePage() {
             {/* Stats */}
             <div className="flex items-center gap-6">
               <div className="text-center px-6 py-3 bg-white rounded-2xl shadow-md border">
-                <div className="text-3xl font-black text-blaze-red">8.8s</div>
+                <div className="flex items-center gap-2 justify-center text-3xl font-black text-blaze-red">
+                  <Clock className="w-6 h-6" />
+                  8.8s
+                </div>
                 <div className="text-xs text-gray-500">{t.executionTime}</div>
               </div>
               <div className="text-center px-6 py-3 bg-white rounded-2xl shadow-md border">
-                <div className="text-3xl font-black text-purple-600">9</div>
+                <div className="flex items-center gap-2 justify-center text-3xl font-black text-purple-600">
+                  <Target className="w-6 h-6" />
+                  9
+                </div>
                 <div className="text-xs text-gray-500">{t.steps}</div>
               </div>
               <div className="text-center px-6 py-3 bg-white rounded-2xl shadow-md border">
-                <div className="text-3xl font-black text-green-600">4</div>
+                <div className="flex items-center gap-2 justify-center text-3xl font-black text-green-600">
+                  <Sparkles className="w-6 h-6" />
+                  4
+                </div>
                 <div className="text-xs text-gray-500">{t.markets}</div>
               </div>
             </div>
@@ -94,40 +115,22 @@ export default function TracePage() {
             <div className="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center mb-4">
               <BarChart3 className="w-6 h-6 text-purple-600" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">
-              {locale === "en" ? "Real-time Analysis" : "实时分析"}
-            </h3>
-            <p className="text-sm text-gray-600">
-              {locale === "en"
-                ? "Watch the AI agent analyze your product in real-time, from image upload to compliance report"
-                : "观看 AI Agent 实时分析您的产品，从图片上传到合规报告"}
-            </p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{t.feature1Title}</h3>
+            <p className="text-sm text-gray-600">{t.feature1Desc}</p>
           </div>
           <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
             <div className="w-12 h-12 rounded-xl bg-green-100 flex items-center justify-center mb-4">
               <Globe className="w-6 h-6 text-green-600" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">
-              {locale === "en" ? "Multi-market Coverage" : "多市场覆盖"}
-            </h3>
-            <p className="text-sm text-gray-600">
-              {locale === "en"
-                ? "Simultaneously scan regulations from EU, US, China and 10+ other markets"
-                : "同时扫描欧盟、美国、中国及10+市场的法规"}
-            </p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{t.feature2Title}</h3>
+            <p className="text-sm text-gray-600">{t.feature2Desc}</p>
           </div>
           <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
             <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center mb-4">
               <ChevronRight className="w-6 h-6 text-amber-600" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">
-              {locale === "en" ? "Actionable Insights" : "可执行建议"}
-            </h3>
-            <p className="text-sm text-gray-600">
-              {locale === "en"
-                ? "Get prioritized action items with deadlines, costs, and expected outcomes"
-                : "获取带有截止日期、成本和预期结果的就绪行动项目"}
-            </p>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">{t.feature3Title}</h3>
+            <p className="text-sm text-gray-600">{t.feature3Desc}</p>
           </div>
         </div>
       </div>
