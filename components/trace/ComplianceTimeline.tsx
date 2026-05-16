@@ -1,7 +1,23 @@
 "use client";
 
-import { useState } from "react";
-import { Calendar, CheckCircle2, Circle, Clock, AlertTriangle, ChevronRight } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import {
+  Calendar,
+  CheckCircle2,
+  Circle,
+  Clock,
+  AlertTriangle,
+  ChevronRight,
+  ChevronDown,
+  FileText,
+  DollarSign,
+  TrendingUp,
+  Target,
+  Sparkles,
+  Play,
+  Pause,
+  RotateCcw,
+} from "lucide-react";
 
 interface TimelineItem {
   id: string;
@@ -21,12 +37,13 @@ interface TimelineItem {
 interface ComplianceTimelineProps {
   items?: TimelineItem[];
   locale?: "zh" | "en";
+  autoPlay?: boolean;
 }
 
 const translations = {
   zh: {
     title: "合规路线图",
-    subtitle: "从今天到产品上市的时间规划",
+    subtitle: "从评估到产品上市的全流程时间规划",
     today: "今天",
     estimated: "预计",
     days: "天",
@@ -35,24 +52,32 @@ const translations = {
     pending: "待完成",
     documents: "所需材料",
     apply: "申请",
-    test: "测试",
+    test: "检测",
     certify: "认证",
     complete: "完成",
+    totalDays: "总工期",
+    totalCost: "预估总费用",
+    startNow: "立即开始",
+    viewDetails: "查看详情",
   },
   en: {
     title: "Compliance Roadmap",
-    subtitle: "Timeline from today to market launch",
+    subtitle: "Full timeline from assessment to market launch",
     today: "Today",
     estimated: "Est.",
     days: "days",
     completed: "Completed",
     inProgress: "In Progress",
     pending: "Pending",
-    documents: "Required Documents",
+    documents: "Required Docs",
     apply: "Apply",
     test: "Test",
     certify: "Certify",
     complete: "Complete",
+    totalDays: "Total Duration",
+    totalCost: "Est. Total Cost",
+    startNow: "Start Now",
+    viewDetails: "View Details",
   },
 };
 
@@ -78,7 +103,7 @@ const defaultItems: TimelineItem[] = [
     status: "pending",
     estimatedDays: 7,
     documents: ["产品规格书", "电路原理图", "BOM清单", "说明书"],
-    documentsEn: ["Product Specifications", "Circuit Schematics", "BOM", "User Manual"],
+    documentsEn: ["Product Specs", "Circuit Schematics", "BOM", "User Manual"],
   },
   {
     id: "3",
@@ -139,10 +164,10 @@ const defaultItems: TimelineItem[] = [
 ];
 
 const typeColors = {
-  apply: { bg: "bg-blue-50", border: "border-blue-200", icon: "📝", color: "text-blue-600" },
-  test: { bg: "bg-amber-50", border: "border-amber-200", icon: "🔬", color: "text-amber-600" },
-  certify: { bg: "bg-green-50", border: "border-green-200", icon: "📜", color: "text-green-600" },
-  complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "✅", color: "text-emerald-600" },
+  apply: { bg: "bg-blue-50", border: "border-blue-200", icon: "📝", color: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
+  test: { bg: "bg-amber-50", border: "border-amber-200", icon: "🔬", color: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
+  certify: { bg: "bg-green-50", border: "border-green-200", icon: "📜", color: "text-green-600", light: "bg-green-100", dark: "bg-green-500" },
+  complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "✅", color: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
 };
 
 const typeLabels = {
@@ -150,12 +175,46 @@ const typeLabels = {
   en: { apply: "Apply", test: "Test", certify: "Certify", complete: "Complete" },
 };
 
+// Animation component
+function AnimatedEntry({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-500 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${className}`}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ProgressBar({ progress, color = "bg-gradient-to-r from-blaze-red to-amber-400" }: { progress: number; color?: string }) {
+  return (
+    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+      <div
+        className={`h-full ${color} transition-all duration-700 ease-out rounded-full`}
+        style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
+      />
+    </div>
+  );
+}
+
 export default function ComplianceTimeline({
   items = defaultItems,
   locale = "zh",
+  autoPlay = false,
 }: ComplianceTimelineProps) {
   const t = translations[locale];
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [currentStep, setCurrentStep] = useState(0);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -169,29 +228,49 @@ export default function ComplianceTimeline({
   const getDaysFromNow = (dateStr: string) => {
     const date = new Date(dateStr);
     const now = new Date();
-    const diff = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    return diff;
+    return Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  };
+
+  const getTotalDays = () => getDaysFromNow(items[items.length - 1].date);
+
+  const getTotalCost = () => {
+    let min = 0, max = 0;
+    items.forEach((item) => {
+      if (item.cost) {
+        const match = item.cost.match(/¥([\d,]+)-([\d,]+)/);
+        if (match) {
+          min += parseInt(match[1].replace(",", ""));
+          max += parseInt(match[2].replace(",", ""));
+        }
+      }
+    });
+    return min > 0 ? `¥${min.toLocaleString()}-${max.toLocaleString()}` : locale === "en" ? "N/A" : "暂无";
+  };
+
+  const getProgress = () => {
+    const completed = items.filter((item) => item.status === "completed").length;
+    return Math.round((completed / items.length) * 100);
   };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "completed":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
+          <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
             <CheckCircle2 className="w-3 h-3" />
             {t.completed}
           </span>
         );
       case "in-progress":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">
-            <Clock className="w-3 h-3" />
+          <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">
+            <Clock className="w-3 h-3 animate-pulse" />
             {t.inProgress}
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
+          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
             <Circle className="w-3 h-3" />
             {t.pending}
           </span>
@@ -201,26 +280,103 @@ export default function ComplianceTimeline({
 
   const today = new Date().toISOString().split("T")[0];
 
+  useEffect(() => {
+    if (isPlaying) {
+      const interval = setInterval(() => {
+        setCurrentStep((prev) => (prev >= items.length - 1 ? 0 : prev + 1));
+      }, 2000);
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying, items.length]);
+
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900">{t.title}</h3>
-          <p className="text-sm text-gray-500">{t.subtitle}</p>
-        </div>
-        <div className="text-right">
-          <div className="text-sm text-gray-500">{locale === "en" ? "Total Duration" : "总耗时"}</div>
-          <div className="text-2xl font-bold text-blaze-red">
-            {getDaysFromNow(items[items.length - 1].date)} {t.days}
+      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blaze-red to-amber-400 flex items-center justify-center shadow-lg">
+            <Target className="w-7 h-7 text-white" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-black text-gray-900">{t.title}</h3>
+            <p className="text-sm text-gray-500">{t.subtitle}</p>
           </div>
         </div>
+        <button
+          onClick={() => setIsPlaying(!isPlaying)}
+          className={`p-3 rounded-xl transition-all shadow-md ${
+            isPlaying ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"
+          }`}
+        >
+          {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Stats cards */}
+      <div className="grid grid-cols-4 gap-4 mb-6">
+        <AnimatedEntry delay={0}>
+          <div className="bg-gradient-to-br from-blaze-red/10 to-rose-50 rounded-2xl p-4 border border-blaze-red/20">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blaze-red/20 flex items-center justify-center">
+                <Clock className="w-5 h-5 text-blaze-red" />
+              </div>
+              <div>
+                <div className="text-2xl font-black text-gray-900">{getTotalDays()}</div>
+                <div className="text-xs text-gray-500">{t.totalDays}</div>
+              </div>
+            </div>
+          </div>
+        </AnimatedEntry>
+        <AnimatedEntry delay={100}>
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-200">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
+                <DollarSign className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <div className="text-sm font-bold text-gray-900">{getTotalCost()}</div>
+                <div className="text-xs text-gray-500">{t.totalCost}</div>
+              </div>
+            </div>
+          </div>
+        </AnimatedEntry>
+        <AnimatedEntry delay={200}>
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-200">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                <Sparkles className="w-5 h-5 text-blue-600" />
+              </div>
+              <div>
+                <div className="text-2xl font-black text-gray-900">{items.length}</div>
+                <div className="text-xs text-gray-500">{locale === "en" ? "Steps" : "步骤"}</div>
+              </div>
+            </div>
+          </div>
+        </AnimatedEntry>
+        <AnimatedEntry delay={300}>
+          <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-4 border border-purple-200">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
+                <TrendingUp className="w-5 h-5 text-purple-600" />
+              </div>
+              <div>
+                <div className="text-2xl font-black text-gray-900">{getProgress()}%</div>
+                <div className="text-xs text-gray-500">{locale === "en" ? "Progress" : "完成度"}</div>
+              </div>
+            </div>
+          </div>
+        </AnimatedEntry>
+      </div>
+
+      {/* Progress bar */}
+      <div className="mb-8">
+        <ProgressBar progress={getProgress()} />
       </div>
 
       {/* Timeline */}
       <div className="relative">
-        {/* Vertical line */}
-        <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blaze-red via-amber-400 to-green-500" />
+        {/* Gradient line */}
+        <div className="absolute left-7 top-0 bottom-0 w-1 bg-gradient-to-b from-green-400 via-amber-400 to-blaze-red/30 rounded-full" />
 
         {/* Items */}
         <div className="space-y-4">
@@ -229,140 +385,177 @@ export default function ComplianceTimeline({
             const isPast = new Date(item.date) < new Date(today);
             const colors = typeColors[item.type];
             const daysFromNow = getDaysFromNow(item.date);
+            const isActive = index === currentStep && isPlaying;
+            const isHighlighted = isActive || (expandedId === item.id);
 
             return (
-              <div key={item.id} className="relative">
-                {/* Node */}
-                <div
-                  className={`absolute left-4 w-4 h-4 rounded-full border-2 bg-white z-10 ${
-                    item.status === "completed"
-                      ? "border-green-500 bg-green-500"
-                      : item.status === "in-progress"
-                      ? "border-blue-500 bg-blue-500"
-                      : "border-gray-300"
-                  }`}
-                  style={{ top: "1.25rem" }}
-                >
-                  {item.status === "completed" && (
-                    <CheckCircle2 className="absolute -left-0.5 -top-0.5 w-5 h-5 text-green-500 bg-white rounded-full" />
-                  )}
-                </div>
-
-                {/* Card */}
-                <div
-                  className={`ml-12 rounded-xl border ${colors.bg} ${colors.border} p-4 transition-all hover:shadow-md cursor-pointer ${
-                    expandedId === item.id ? "ring-2 ring-blaze-red/30" : ""
-                  }`}
-                  onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
-                >
-                  {/* Header */}
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{colors.icon}</span>
-                      <div>
-                        {isToday && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-blaze-red px-2 py-0.5 text-xs font-medium text-white mb-1">
-                            {t.today}
-                          </span>
-                        )}
-                        <h4 className="font-medium text-gray-900">
-                          {locale === "en" ? item.titleEn : item.title}
-                        </h4>
-                        <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(item.date)}</span>
-                          {item.estimatedDays && (
-                            <span className="text-amber-600">
-                              {t.estimated} {item.estimatedDays} {t.days}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {getStatusBadge(item.status)}
-                      <ChevronRight
-                        className={`w-5 h-5 text-gray-400 transition-transform ${
-                          expandedId === item.id ? "rotate-90" : ""
-                        }`}
-                      />
-                    </div>
+              <AnimatedEntry key={item.id} delay={index * 100}>
+                <div className={`relative transition-all duration-300 ${isHighlighted ? "scale-[1.02]" : ""}`}>
+                  {/* Node */}
+                  <div
+                    className={`absolute left-4 w-6 h-6 rounded-full border-2 z-10 transition-all duration-300 ${
+                      item.status === "completed"
+                        ? "border-green-500 bg-green-500"
+                        : item.status === "in-progress"
+                        ? "border-blue-500 bg-blue-500 animate-pulse"
+                        : isActive
+                        ? "border-blaze-red bg-blaze-red animate-bounce"
+                        : "border-gray-300 bg-white"
+                    }`}
+                    style={{ top: "1.1rem" }}
+                  >
+                    {item.status === "completed" && (
+                      <CheckCircle2 className="absolute -left-0.5 -top-0.5 w-7 h-7 text-green-500 bg-white rounded-full" />
+                    )}
                   </div>
 
-                  {/* Description */}
-                  <p className="mt-2 text-sm text-gray-600">
-                    {locale === "en" ? item.descriptionEn : item.description}
-                  </p>
-
-                  {/* Expanded content */}
-                  {expandedId === item.id && (
-                    <div className="mt-4 pt-4 border-t border-gray-200 space-y-3">
-                      {/* Cost */}
-                      {item.cost && (
-                        <div className="flex items-center gap-2">
-                          <span className="text-sm text-gray-500">{locale === "en" ? "Estimated Cost" : "预估费用"}:</span>
-                          <span className="text-sm font-medium text-gray-900">{item.cost}</span>
+                  {/* Card */}
+                  <div
+                    className={`ml-12 rounded-2xl border-2 p-5 transition-all duration-300 cursor-pointer ${
+                      colors.bg
+                    } ${colors.border} ${
+                      isHighlighted ? "shadow-xl ring-2 ring-blaze-red/30" : "hover:shadow-lg"
+                    } ${item.status === "in-progress" || isActive ? "ring-2 ring-blue-500/30" : ""}`}
+                    onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
+                  >
+                    {/* Header */}
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className={`relative flex items-center justify-center w-12 h-12 rounded-xl ${colors.light}`}>
+                          <span className="text-2xl">{colors.icon}</span>
+                          {isActive && (
+                            <div className="absolute -inset-1 rounded-xl border-2 border-blaze-red/50 animate-pulse" />
+                          )}
                         </div>
-                      )}
-
-                      {/* Documents */}
-                      {item.documents && item.documents.length > 0 && (
                         <div>
-                          <span className="text-sm font-medium text-gray-700 mb-2 block">{t.documents}:</span>
-                          <div className="flex flex-wrap gap-2">
-                            {(item.documents && item.documents.length > 0 ? (locale === "en" ? (item.documentsEn || item.documents) : item.documents) : []).map((doc, i) => (
-                              <span
-                                key={i}
-                                className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-700"
-                              >
-                                📄 {doc}
+                          {isToday && (
+                            <span className="inline-flex items-center gap-1 rounded-full bg-blaze-red px-3 py-1 text-xs font-bold text-white mb-2 shadow-md">
+                              {t.today}
+                            </span>
+                          )}
+                          <h4 className="text-lg font-bold text-gray-900">
+                            {locale === "en" ? item.titleEn : item.title}
+                          </h4>
+                          <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              {formatDate(item.date)}
+                            </span>
+                            {item.estimatedDays && (
+                              <span className="flex items-center gap-1 font-medium text-amber-600">
+                                <Clock className="w-4 h-4" />
+                                {item.estimatedDays} {t.days}
                               </span>
-                            ))}
+                            )}
                           </div>
                         </div>
-                      )}
-
-                      {/* Days indicator */}
-                      {daysFromNow > 0 && (
-                        <div className="flex items-center gap-2 text-sm">
-                          <AlertTriangle className="w-4 h-4 text-amber-500" />
-                          <span className="text-gray-600">
-                            {locale === "en"
-                              ? `${daysFromNow} days until this step`
-                              : `还有 ${daysFromNow} 天`}
-                          </span>
-                        </div>
-                      )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        {getStatusBadge(item.status)}
+                        <ChevronRight
+                          className={`w-5 h-5 text-gray-400 transition-all duration-300 ${
+                            expandedId === item.id ? "rotate-90" : ""
+                          }`}
+                        />
+                      </div>
                     </div>
-                  )}
+
+                    {/* Description */}
+                    <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                      {locale === "en" ? item.descriptionEn : item.description}
+                    </p>
+
+                    {/* Expanded content */}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        expandedId === item.id ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="pt-4 border-t border-gray-200 space-y-4">
+                        {/* Cost */}
+                        {item.cost && (
+                          <div className="flex items-center gap-3 p-3 bg-white rounded-xl border">
+                            <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
+                              <DollarSign className="w-5 h-5 text-green-600" />
+                            </div>
+                            <div>
+                              <div className="text-xs text-gray-500">{locale === "en" ? "Estimated Cost" : "预估费用"}</div>
+                              <div className="text-lg font-bold text-gray-900">{item.cost}</div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Documents */}
+                        {item.documents && item.documents.length > 0 && (
+                          <div className="p-3 bg-white rounded-xl border">
+                            <div className="flex items-center gap-2 mb-3">
+                              <FileText className="w-4 h-4 text-gray-500" />
+                              <span className="text-sm font-semibold text-gray-700">{t.documents}:</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {(item.documents && item.documents.length > 0
+                                ? locale === "en"
+                                  ? item.documentsEn || item.documents
+                                  : item.documents
+                                : []
+                              ).map((doc, i) => (
+                                <span
+                                  key={i}
+                                  className="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700 border"
+                                >
+                                  📄 {doc}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Days indicator */}
+                        {daysFromNow > 0 && (
+                          <div className="flex items-center gap-3 p-3 bg-amber-50 rounded-xl border border-amber-200">
+                            <AlertTriangle className="w-5 h-5 text-amber-500" />
+                            <div>
+                              <div className="text-sm font-medium text-amber-800">
+                                {locale === "en"
+                                  ? `${daysFromNow} days until this step`
+                                  : `还有 ${daysFromNow} 天到达此步骤`}
+                              </div>
+                              <div className="text-xs text-amber-600">
+                                {locale === "en" ? "Start preparing now" : "建议现在就开始准备"}
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              </AnimatedEntry>
             );
           })}
         </div>
       </div>
 
-      {/* Summary */}
-      <div className="mt-6 p-4 bg-gradient-to-r from-blaze-red/10 to-amber-50 rounded-xl border border-blaze-red/20">
-        <div className="flex items-center justify-between">
-          <div>
-            <h4 className="font-semibold text-gray-900">
-              {locale === "en" ? "Total Investment" : "总体投入"}
-            </h4>
-            <p className="text-sm text-gray-600">
-              {locale === "en" ? "Estimated time and cost for full compliance" : "达到完全合规的预计时间和费用"}
-            </p>
-          </div>
-          <div className="text-right">
-            <div className="text-2xl font-bold text-blaze-red">
-              {getDaysFromNow(items[items.length - 1].date)} {t.days}
+      {/* CTA */}
+      <AnimatedEntry delay={800}>
+        <div className="mt-8 p-6 bg-gradient-to-r from-blaze-red/10 via-rose-50 to-amber-50 rounded-2xl border border-blaze-red/20">
+          <div className="flex items-center justify-between">
+            <div>
+              <h4 className="text-lg font-bold text-gray-900">
+                {locale === "en" ? "Ready to Start?" : "准备好开始了吗？"}
+              </h4>
+              <p className="text-sm text-gray-600">
+                {locale === "en"
+                  ? "Upload your product images and get your compliance assessment today"
+                  : "上传您的产品图片，立即获取合规评估报告"}
+              </p>
             </div>
-            <div className="text-sm text-gray-500">
-              {locale === "en" ? "Timeline" : "时间线"}
-            </div>
+            <button className="px-6 py-3 bg-gradient-to-r from-blaze-red to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
+              {t.startNow} →
+            </button>
           </div>
         </div>
-      </div>
+      </AnimatedEntry>
     </div>
   );
 }

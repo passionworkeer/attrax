@@ -1,0 +1,158 @@
+version: 1
+plan:
+  name: '火鹰合规 - 英文界面 + 法规追踪'
+  max_concurrency: 2
+  max_consecutive_failures: 2
+  max_cycles: 12
+tasks:
+  - id: i18n-english-interface
+    title: '英文界面支持（i18n）'
+    prompt: |
+      为火鹰合规项目实现中英双语界面支持。
+
+      ## 工作目录
+      E:\desktop\火鹰合规\attrax
+
+      ## 任务目标
+      1. 安装 next-intl 国际化库
+      2. 创建 messages/en.json 和 messages/zh.json 语言文件
+      3. 在 layout.tsx 中配置国际化
+      4. 翻译以下页面的所有文本：
+         - app/page.tsx（首页）
+         - app/upload/page.tsx（上传页）
+         - app/burning/[sessionId]/page.tsx（扫描页）
+         - app/result/[sessionId]/page.tsx（结果页）
+      5. 添加语言切换器（LanguageSwitcher 组件）
+      6. 添加路由支持 /en/... 路径
+
+      ## 关键技术点
+      - 使用 next-intl 实现国际化
+      - 支持语言切换（zh/en）
+      - 保持 Tailwind CSS 样式
+      - 所有 UI 文本都要翻译，不要遗漏
+
+      ## 测试要求
+      1. Vitest 单元测试覆盖新组件（LanguageSwitcher.test.tsx）
+      2. 确保 build 通过：npm run build
+      3. 确保 lint 通过：npm run lint
+
+      ## Git 分支
+      从 develop 分支创建 i18n-english-support 分支，提交所有更改，测试通过后合并回 develop。
+
+      ## 完成后
+      1. 写 deliverable.md 说明完成的工作
+      2. 确保 build 和 test 都通过
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      验证英文界面功能实现是否完整：
+      1. 运行 npm run build 确认无编译错误
+      2. 运行 npm run test 确认所有测试通过
+      3. 检查 messages/en.json 是否包含所有页面的翻译
+      4. 检查 LanguageSwitcher 组件是否存在且可用
+      5. 检查 layout.tsx 是否正确配置了 next-intl
+      6. 报告发现的问题
+    timeout_ms: 1800000
+
+  - id: regulation-tracker
+    title: '实时法规追踪功能'
+    prompt: |
+      为火鹰合规项目实现实时法规追踪功能。
+
+      ## 工作目录
+      E:\desktop\火鹰合规\attrax
+
+      ## 任务目标
+      实现法规更新追踪功能，让用户能监控目标市场的法规变化。
+
+      1. 创建 API 端点 /api/regulations/updates
+         - 返回最近更新的法规列表
+         - 支持按市场筛选（EU/US/CN 等）
+         - 模拟法规更新数据（包含更新日期、标题、影响范围）
+
+      2. 创建法规追踪页面 /app/regulations/page.tsx
+         - 显示最近更新的法规列表
+         - 按市场分组展示
+         - 每条法规显示：标题、发布日期、影响产品类别、摘要
+         - 支持筛选和搜索
+
+      3. 在首页添加"法规更新"入口
+         - 在 app/page.tsx 添加法规追踪入口
+         - 显示最近更新的法规数量
+
+      4. 创建 RegulationCard 组件
+         - 显示单条法规信息
+         - 支持展开查看详情
+
+      ## 数据结构
+      ```typescript
+      interface RegulationUpdate {
+        id: string;
+        market: string; // EU/US/CN 等
+        title: string;
+        titleEn: string;
+        publishDate: string;
+        effectiveDate: string;
+        affectedCategories: string[];
+        summary: string;
+        summaryEn: string;
+        sourceUrl: string;
+      }
+      ```
+
+      ## 测试要求
+      1. Vitest 单元测试覆盖 API 路由
+      2. Vitest 单元测试覆盖 RegulationCard 组件
+      3. 确保 build 通过：npm run build
+      4. 确保 lint 通过：npm run lint
+
+      ## Git 分支
+      从 develop 分支创建 regulation-tracker 分支，提交所有更改，测试通过后合并回 develop。
+
+      ## 完成后
+      1. 写 deliverable.md 说明完成的工作
+      2. 确保 build 和 test 都通过
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      验证法规追踪功能实现是否完整：
+      1. 运行 npm run build 确认无编译错误
+      2. 运行 npm run test 确认所有测试通过
+      3. 检查 /api/regulations/updates 端点是否存在
+      4. 检查 /app/regulations/page.tsx 页面是否存在
+      5. 检查 RegulationCard 组件是否完整
+      6. 检查首页是否添加了法规追踪入口
+      7. 报告发现的问题
+    timeout_ms: 1800000
+
+  - id: feature-integration
+    title: '功能整合与最终测试'
+    prompt: |
+      将两个功能的分支合并到 develop，进行最终测试。
+
+      ## 工作目录
+      E:\desktop\火鹰合规\attrax
+
+      ## 任务目标
+      1. 确认 i18n-english-support 和 regulation-tracker 分支都已合并到 develop
+      2. 运行完整测试套件：npm run test
+      3. 运行 build：npm run build
+      4. 运行 lint：npm run lint
+      5. 验证两个功能能协同工作
+         - 法规追踪页面支持中英切换
+         - 语言切换不影响法规数据展示
+
+      ## 完成后
+      1. 写 deliverable.md 确认所有功能正常工作
+      2. 列出所有测试结果
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      验证功能整合是否成功：
+      1. npm run build 是否成功
+      2. npm run test 是否全部通过
+      3. npm run lint 是否有警告
+      4. 国际化功能是否正常
+      5. 法规追踪功能是否正常
+      6. 两个功能是否协同工作
+    timeout_ms: 1800000

@@ -377,11 +377,17 @@ def _normalize_chunks(results: list) -> list[dict]:
     return out
 
 
-@app.add_exception_handler(Exception)
-async def global_exception_handler(request, exc):
+# Remove the decorator-style exception handler for FastAPI 0.109 compatibility
+# Use FastAPI's add_exception_handler without decorator
+from fastapi import Request
+from fastapi.responses import JSONResponse
+
+async def global_exception_handler(request: Request, exc: Exception):
     """Catch-all for unhandled exceptions — returns a clean JSON error."""
     logger.exception("Unhandled exception")
     return JSONResponse(
         status_code=500,
         content={"error": "Internal server error", "detail": str(exc)},
     )
+
+app.add_exception_handler(Exception, global_exception_handler)
