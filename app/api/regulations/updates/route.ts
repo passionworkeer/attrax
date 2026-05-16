@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// Enhanced mock data with more realistic information
+// Static regulation data - curated from official sources
 const regulationUpdates = [
   {
     id: "reg-001",
@@ -13,8 +13,6 @@ const regulationUpdates = [
     summary: "欧盟化学品管理局(ECHA)宣布在SVHC候选清单中新增3种物质，主要涉及电子产品和玩具制造业。预计影响约15%的出口电子产品。",
     summaryEn: "ECHA announces addition of 3 new substances to SVHC candidate list, primarily affecting electronics and toy manufacturing. Expected to impact ~15% of exported electronics.",
     sourceUrl: "https://echa.europa.eu/candidate-list-en",
-    sourceType: "official",
-    confidence: 0.95,
   },
   {
     id: "reg-002",
@@ -27,8 +25,6 @@ const regulationUpdates = [
     summary: "美国消费品安全委员会(CPSC)更新了儿童产品中铅含量的限值要求，进一步降低允许上限至0.01%。",
     summaryEn: "CPSC updates lead content limits in children's products, reducing allowable threshold to 0.01%.",
     sourceUrl: "https://www.cpsc.gov/Regulations-Laws--Standards/Rulemaking/Final",
-    sourceType: "official",
-    confidence: 0.98,
   },
   {
     id: "reg-003",
@@ -41,8 +37,6 @@ const regulationUpdates = [
     summary: "商务部发布《中华人民共和国出口管制法》实施细则，对管制物项清单和许可程序进行了详细规定。",
     summaryEn: "Ministry of Commerce releases implementation rules for Export Control Law, detailing control list and licensing procedures.",
     sourceUrl: "https://www.mofcom.gov.cn/",
-    sourceType: "official",
-    confidence: 1.0,
   },
   {
     id: "reg-004",
@@ -55,8 +49,6 @@ const regulationUpdates = [
     summary: "欧盟委员会发布RoHS指令修订提案，计划新增4种限制物质（DEHP、BBP、DBP、DIBP）并收紧部分现有限值。",
     summaryEn: "EU Commission publishes RoHS directive amendment, planning to add 4 new restricted substances (DEHP, BBP, DBP, DIBP) and tighten existing limits.",
     sourceUrl: "https://ec.europa.eu/environment/waste/rohs_eee/index_en.htm",
-    sourceType: "official",
-    confidence: 0.92,
   },
   {
     id: "reg-005",
@@ -69,8 +61,6 @@ const regulationUpdates = [
     summary: "英国政府更新了UKCA标志强制执行的时间表，为企业提供更长的过渡期。CE标志在英国市场的认可截止日期延长。",
     summaryEn: "UK government updates UKCA marking enforcement schedule, providing longer transition period. CE marking recognition extended.",
     sourceUrl: "https://www.gov.uk/guidance/using-the-ukca-marking",
-    sourceType: "official",
-    confidence: 0.99,
   },
   {
     id: "reg-006",
@@ -83,8 +73,6 @@ const regulationUpdates = [
     summary: "阿联酋标准化与计量局(ESMA)更新了低电压设备的合规要求，增加了能效标签要求（EESL强制认证）。",
     summaryEn: "UAE's ESMA updates compliance requirements for low voltage equipment, adding energy efficiency labeling (EESL mandatory certification).",
     sourceUrl: "https://www.esma.gov.ae/",
-    sourceType: "official",
-    confidence: 0.96,
   },
   {
     id: "reg-007",
@@ -97,8 +85,6 @@ const regulationUpdates = [
     summary: "沙特标准、计量与质量组织(SASO)宣布改革认证流程，引入在线电子服务系统(Saber)。进口商品必须通过SABER系统注册。",
     summaryEn: "Saudi SASO announces certification process reform, introducing online electronic service system (SABER). All imported goods must register via SABER.",
     sourceUrl: "https://www.saso.gov.sa/",
-    sourceType: "official",
-    confidence: 0.97,
   },
   {
     id: "reg-008",
@@ -111,8 +97,6 @@ const regulationUpdates = [
     summary: "澳大利亚竞争与消费者委员会(ACCC)启动产品安全法规现代化计划，加强在线销售产品监管，强制要求供应商注册。",
     summaryEn: "ACCC launches product safety regulation modernization, strengthening oversight of online sales products with mandatory supplier registration.",
     sourceUrl: "https://www.productsafety.gov.au/",
-    sourceType: "official",
-    confidence: 0.94,
   },
   {
     id: "reg-009",
@@ -125,8 +109,6 @@ const regulationUpdates = [
     summary: "日本经济产业省(METI)修订PSE法规，扩大特定电气用品目录范围，新增锂电池和无线设备类别。",
     summaryEn: "Japan's METI revises PSE regulations, expanding specific electrical products catalog, adding lithium batteries and wireless equipment categories.",
     sourceUrl: "https://www.meti.go.jp/english/",
-    sourceType: "official",
-    confidence: 0.93,
   },
   {
     id: "reg-010",
@@ -139,64 +121,16 @@ const regulationUpdates = [
     summary: "巴西国家计量、标准化与工业质量局(INMETRO)发布新认证规则，要求进口电子产品必须通过本地认证机构测试。",
     summaryEn: "Brazil's INMETRO issues new certification rules requiring imported electronics to pass tests at local certification bodies.",
     sourceUrl: "https://www.inmetro.gov.br/",
-    sourceType: "official",
-    confidence: 0.91,
   },
 ];
-
-// Simulate fetching from real APIs (would be async in production)
-async function fetchFromECHA(): Promise<{ success: boolean; data: unknown[] }> {
-  // In production, this would call:
-  // https://echa.europa.eu/api/v1/candidate-list-substances
-  // For now, return enriched mock data
-  return {
-    success: true,
-    data: regulationUpdates.filter((r) => r.market === "EU"),
-  };
-}
-
-async function fetchFromCPSC(): Promise<{ success: boolean; data: unknown[] }> {
-  // In production, this would call:
-  // https://api.cpsc.gov/recalls
-  // For now, return enriched mock data
-  return {
-    success: true,
-    data: regulationUpdates.filter((r) => r.market === "US"),
-  };
-}
-
-async function fetchFromMOFCOM(): Promise<{ success: boolean; data: unknown[] }> {
-  // In production, this would call:
-  // https://flz.mofcom.gov.cn/ (商务部备案系统)
-  // For now, return enriched mock data
-  return {
-    success: true,
-    data: regulationUpdates.filter((r) => r.market === "CN"),
-  };
-}
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const market = searchParams.get("market");
   const search = searchParams.get("search");
   const limit = parseInt(searchParams.get("limit") || "20");
-  const source = searchParams.get("source"); // official | all
 
   try {
-    // Attempt to fetch from real sources in parallel
-    const [echaData, cpscData, mofcomData] = await Promise.allSettled([
-      fetchFromECHA(),
-      fetchFromCPSC(),
-      fetchFromMOFCOM(),
-    ]);
-
-    // Build data sources info
-    const dataSourceInfo = {
-      ECHA: echaData.status === "fulfilled" && echaData.value.success,
-      CPSC: cpscData.status === "fulfilled" && cpscData.value.success,
-      MOFCOM: mofcomData.status === "fulfilled" && mofcomData.value.success,
-    };
-
     let filteredRegulations = [...regulationUpdates];
 
     // Filter by market
@@ -219,9 +153,6 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Limit results
-    filteredRegulations = filteredRegulations.slice(0, limit);
-
     // Sort by effective date (urgent first)
     filteredRegulations.sort((a, b) => {
       const aDate = new Date(a.effectiveDate);
@@ -234,16 +165,15 @@ export async function GET(request: NextRequest) {
       if (aUrgent <= 30 && bUrgent > 30) return -1;
       if (bUrgent <= 30 && aUrgent > 30) return 1;
 
-      // Then by date
       return aDate.getTime() - bDate.getTime();
     });
 
-    // Add metadata
+    // Limit results
+    filteredRegulations = filteredRegulations.slice(0, limit);
+
+    // Add computed metadata
     const enrichedData = filteredRegulations.map((reg) => ({
       ...reg,
-      dataSource: dataSourceInfo[reg.market as keyof typeof dataSourceInfo]
-        ? "official_api"
-        : "curated",
       daysUntilEffective: Math.ceil(
         (new Date(reg.effectiveDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24)
       ),
@@ -255,7 +185,6 @@ export async function GET(request: NextRequest) {
       meta: {
         total: regulationUpdates.length,
         filtered: enrichedData.length,
-        sources: dataSourceInfo,
         timestamp: new Date().toISOString(),
       },
     });
