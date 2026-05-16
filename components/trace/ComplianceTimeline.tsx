@@ -8,7 +8,6 @@ import {
   Clock,
   AlertTriangle,
   ChevronRight,
-  ChevronDown,
   FileText,
   DollarSign,
   TrendingUp,
@@ -16,7 +15,6 @@ import {
   Sparkles,
   Play,
   Pause,
-  RotateCcw,
 } from "lucide-react";
 
 interface TimelineItem {
@@ -40,6 +38,7 @@ interface ComplianceTimelineProps {
   autoPlay?: boolean;
 }
 
+// Translations
 const translations = {
   zh: {
     title: "合规路线图",
@@ -51,14 +50,17 @@ const translations = {
     inProgress: "进行中",
     pending: "待完成",
     documents: "所需材料",
-    apply: "申请",
-    test: "检测",
-    certify: "认证",
-    complete: "完成",
     totalDays: "总工期",
     totalCost: "预估总费用",
+    steps: "步骤",
+    progress: "完成度",
     startNow: "立即开始",
-    viewDetails: "查看详情",
+    daysUntil: "还有",
+    startPreparing: "建议现在就开始准备",
+    requiredDocs: "所需文件",
+    estimatedCost: "预估费用",
+    readyToStart: "准备好开始了吗？",
+    readyToStartSub: "上传您的产品图片，立即获取合规评估报告",
   },
   en: {
     title: "Compliance Roadmap",
@@ -70,15 +72,37 @@ const translations = {
     inProgress: "In Progress",
     pending: "Pending",
     documents: "Required Docs",
-    apply: "Apply",
-    test: "Test",
-    certify: "Certify",
-    complete: "Complete",
-    totalDays: "Total Duration",
-    totalCost: "Est. Total Cost",
+    totalDays: "Total Days",
+    totalCost: "Est. Cost",
+    steps: "Steps",
+    progress: "Progress",
     startNow: "Start Now",
-    viewDetails: "View Details",
+    daysUntil: "days until",
+    startPreparing: "Start preparing now",
+    requiredDocs: "Required Documents",
+    estimatedCost: "Estimated Cost",
+    readyToStart: "Ready to Start?",
+    readyToStartSub: "Upload your product images and get your compliance assessment today",
   },
+};
+
+const typeIcons: Record<string, string> = {
+  apply: "📝",
+  test: "🔬",
+  certify: "📜",
+  complete: "✅",
+};
+
+const typeColors = {
+  apply: { bg: "bg-blue-50", border: "border-blue-200", icon: "📝", color: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
+  test: { bg: "bg-amber-50", border: "border-amber-200", icon: "🔬", color: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
+  certify: { bg: "bg-green-50", border: "border-green-200", icon: "📜", color: "text-green-600", light: "bg-green-100", dark: "bg-green-500" },
+  complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "✅", color: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
+};
+
+const typeLabels = {
+  zh: { apply: "申请", test: "检测", certify: "认证", complete: "完成" },
+  en: { apply: "Apply", test: "Test", certify: "Certify", complete: "Complete" },
 };
 
 const defaultItems: TimelineItem[] = [
@@ -162,18 +186,6 @@ const defaultItems: TimelineItem[] = [
     status: "pending",
   },
 ];
-
-const typeColors = {
-  apply: { bg: "bg-blue-50", border: "border-blue-200", icon: "📝", color: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
-  test: { bg: "bg-amber-50", border: "border-amber-200", icon: "🔬", color: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
-  certify: { bg: "bg-green-50", border: "border-green-200", icon: "📜", color: "text-green-600", light: "bg-green-100", dark: "bg-green-500" },
-  complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "✅", color: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
-};
-
-const typeLabels = {
-  zh: { apply: "申请", test: "检测", certify: "认证", complete: "完成" },
-  en: { apply: "Apply", test: "Test", certify: "Certify", complete: "Complete" },
-};
 
 // Animation component
 function AnimatedEntry({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -294,7 +306,7 @@ export default function ComplianceTimeline({
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blaze-red to-amber-400 flex items-center justify-center shadow-lg">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
             <Target className="w-7 h-7 text-white" />
           </div>
           <div>
@@ -348,7 +360,7 @@ export default function ComplianceTimeline({
               </div>
               <div>
                 <div className="text-2xl font-black text-gray-900">{items.length}</div>
-                <div className="text-xs text-gray-500">{locale === "en" ? "Steps" : "步骤"}</div>
+                <div className="text-xs text-gray-500">{t.steps}</div>
               </div>
             </div>
           </div>
@@ -361,7 +373,7 @@ export default function ComplianceTimeline({
               </div>
               <div>
                 <div className="text-2xl font-black text-gray-900">{getProgress()}%</div>
-                <div className="text-xs text-gray-500">{locale === "en" ? "Progress" : "完成度"}</div>
+                <div className="text-xs text-gray-500">{t.progress}</div>
               </div>
             </div>
           </div>
@@ -382,7 +394,6 @@ export default function ComplianceTimeline({
         <div className="space-y-4">
           {items.map((item, index) => {
             const isToday = item.date === today;
-            const isPast = new Date(item.date) < new Date(today);
             const colors = typeColors[item.type];
             const daysFromNow = getDaysFromNow(item.date);
             const isActive = index === currentStep && isPlaying;
@@ -479,7 +490,7 @@ export default function ComplianceTimeline({
                               <DollarSign className="w-5 h-5 text-green-600" />
                             </div>
                             <div>
-                              <div className="text-xs text-gray-500">{locale === "en" ? "Estimated Cost" : "预估费用"}</div>
+                              <div className="text-xs text-gray-500">{t.estimatedCost}</div>
                               <div className="text-lg font-bold text-gray-900">{item.cost}</div>
                             </div>
                           </div>
@@ -490,7 +501,7 @@ export default function ComplianceTimeline({
                           <div className="p-3 bg-white rounded-xl border">
                             <div className="flex items-center gap-2 mb-3">
                               <FileText className="w-4 h-4 text-gray-500" />
-                              <span className="text-sm font-semibold text-gray-700">{t.documents}:</span>
+                              <span className="text-sm font-semibold text-gray-700">{t.requiredDocs}:</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                               {(item.documents && item.documents.length > 0
@@ -517,12 +528,10 @@ export default function ComplianceTimeline({
                             <div>
                               <div className="text-sm font-medium text-amber-800">
                                 {locale === "en"
-                                  ? `${daysFromNow} days until this step`
-                                  : `还有 ${daysFromNow} 天到达此步骤`}
+                                  ? `${daysFromNow} ${t.daysUntil} this step`
+                                  : `${t.daysUntil} ${daysFromNow} ${t.days}到达此步骤`}
                               </div>
-                              <div className="text-xs text-amber-600">
-                                {locale === "en" ? "Start preparing now" : "建议现在就开始准备"}
-                              </div>
+                              <div className="text-xs text-amber-600">{t.startPreparing}</div>
                             </div>
                           </div>
                         )}
@@ -541,14 +550,8 @@ export default function ComplianceTimeline({
         <div className="mt-8 p-6 bg-gradient-to-r from-blaze-red/10 via-rose-50 to-amber-50 rounded-2xl border border-blaze-red/20">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-lg font-bold text-gray-900">
-                {locale === "en" ? "Ready to Start?" : "准备好开始了吗？"}
-              </h4>
-              <p className="text-sm text-gray-600">
-                {locale === "en"
-                  ? "Upload your product images and get your compliance assessment today"
-                  : "上传您的产品图片，立即获取合规评估报告"}
-              </p>
+              <h4 className="text-lg font-bold text-gray-900">{t.readyToStart}</h4>
+              <p className="text-sm text-gray-600">{t.readyToStartSub}</p>
             </div>
             <button className="px-6 py-3 bg-gradient-to-r from-blaze-red to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
               {t.startNow} →

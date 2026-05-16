@@ -64,28 +64,28 @@ export default function RoadmapPage() {
             {/* Stats */}
             <div className="flex items-center gap-4">
               <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-center">
                   <Clock className="w-5 h-5 text-green-500" />
                   <div className="text-2xl font-black text-gray-900">63</div>
                 </div>
                 <div className="text-xs text-gray-500">{t.totalDays}</div>
               </div>
               <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-center">
                   <DollarSign className="w-5 h-5 text-green-500" />
                   <div className="text-lg font-black text-gray-900">¥20K+</div>
                 </div>
                 <div className="text-xs text-gray-500">{t.totalCost}</div>
               </div>
               <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-center">
                   <Sparkles className="w-5 h-5 text-green-500" />
                   <div className="text-2xl font-black text-gray-900">7</div>
                 </div>
                 <div className="text-xs text-gray-500">{t.steps}</div>
               </div>
               <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-center">
                   <TrendingUp className="w-5 h-5 text-green-500" />
                   <div className="text-2xl font-black text-gray-900">14%</div>
                 </div>
