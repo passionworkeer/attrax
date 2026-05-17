@@ -2139,3 +2139,24 @@ https://nextjs.org/docs/messages/module-not-found
 ✓ Compiled in 303ms
  GET /trace 200 in 338ms (next.js: 101ms, application-code: 237ms)
  GET /roadmap 200 in 338ms (next.js: 272ms, application-code: 66ms)
+ GET / 200 in 2.9s (next.js: 1246ms, application-code: 1611ms)
+ GET /regulations 200 in 2.5s (next.js: 2.4s, application-code: 57ms)
+ GET /api/regulations/updates? 200 in 438ms (next.js: 380ms, application-code: 58ms)
+ GET /api/regulations/updates?market=EU 200 in 11ms (next.js: 3ms, application-code: 8ms)
+ GET /api/regulations/updates?market=US 200 in 11ms (next.js: 3ms, application-code: 7ms)
+ GET /api/regulations/updates? 200 in 16ms (next.js: 5ms, application-code: 11ms)
+ GET /regulations 200 in 251ms (next.js: 190ms, application-code: 62ms)
+✓ Compiled in 169ms
+ GET /regulations 200 in 156ms (next.js: 102ms, application-code: 54ms)
+ GET /regulations 200 in 268ms (next.js: 102ms, application-code: 166ms)
+✓ Compiled in 129ms
+ GET /regulations 200 in 187ms (next.js: 120ms, application-code: 67ms)
+ GET /roadmap 200 in 1617ms (next.js: 1428ms, application-code: 189ms)
+ GET /roadmap 200 in 156ms (next.js: 9ms, application-code: 147ms)
+ GET /roadmap 200 in 100ms (next.js: 7ms, application-code: 93ms)
+ GET /roadmap 200 in 100ms (next.js: 50ms, application-code: 50ms)
+Persisting failed: Unable to write SST file 00001835.sst
+
+Caused by:
+    系统找不到指定的路径。 (os error 3)
+Compaction failed: Another write batch or compaction is already active (Only a single write operations is allowed at a time)
