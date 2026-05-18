@@ -1,6 +1,6 @@
 # 火鹰合规 · 项目上线评估报告
 
-> 评估时间：2026-05-05
+> 评估时间：2026-05-18
 > 评估范围：前端 / RAG 后端 / 数据层 / 部署配置
 > 结论：**核心功能骨架完成，上线前需修复 6 项阻塞问题 + 2 项架构对齐**
 
@@ -10,13 +10,13 @@
 
 | 模块 | 状态 | 完成度 |
 |------|------|--------|
-| 前端（Next.js） | ✅ 基本完成 | ~85% |
-| API 路由 | ✅ 基本完成 | ~90% |
-| RAG Service 后端 | ✅ 基本完成 | ~80% |
+| 前端（Next.js） | ✅ 基本完成 | ~92% |
+| API 路由 | ✅ 基本完成 | ~95% |
+| RAG Service 后端 | ✅ 基本完成 | ~85% |
 | LangGraph 编排 | ✅ 已实现 | ~100% |
 | 混合检索管线 | ✅ 已实现 | ~85% |
-| 语料库 + FAISS 索引 | ⚠️ 部分完成 | ~70% |
-| 文档 | ⚠️ 过期/缺失 | ~50% |
+| 语料库 + FAISS 索引 | ✅ 基本完成 | ~75% |
+| 文档 | ✅ 基本完成 | ~80% |
 
 ---
 
@@ -31,28 +31,80 @@
 | 扫描中页 | `app/burning/[sessionId]/page.tsx` | ✅ 完成 |
 | 结果页 | `app/result/[sessionId]/page.tsx` | ✅ 完成（支持 ComplianceReportResult） |
 | Demo 结果 | `/result/demo` | ✅ 完成 |
+| 法规更新页 | `app/regulations/page.tsx` | ✅ 完成 |
+| Agent 轨迹页 | `app/trace/[sessionId]/page.tsx` | ✅ 完成 |
+| 合规路线图页 | `app/roadmap/[sessionId]/page.tsx` | ✅ 完成 |
 
 **组件库（shadcn/ui）：** button, card, progress, badge, tooltip, tabs, sonner, dialog, sheet, separator — 全部完成。
 
 **核心 Hook：** `useScanPolling` ✅ 已实现。
 
-### 2.2 API 路由
+### 2.2 新增模块（2026-05）
+
+#### 2.2.1 法规更新页面
+
+| 功能 | 文件 | 验收标准 |
+|------|------|---------|
+| 法规更新列表页 | `app/regulations/page.tsx` | ✅ 页面可访问，显示法规更新列表 |
+| API 接口 | `GET /api/regulations/updates` | ✅ 返回法规更新数据（时间、内容、市场） |
+| 状态筛选 | - | ✅ 支持按市场/时间筛选法规更新 |
+
+#### 2.2.2 Agent 轨迹页面
+
+| 功能 | 文件 | 验收标准 |
+|------|------|---------|
+| 轨迹页 | `app/trace/[sessionId]/page.tsx` | ✅ 展示完整 Agent 执行轨迹 |
+| 决策树组件 | `components/trace/AgentDecisionTree.tsx` | ✅ 可视化决策节点和时间线 |
+| 合规时间线 | `components/trace/ComplianceTimeline.tsx` | ✅ 展示合规检查时间线 |
+| API 接口 | `GET /api/trace/[sessionId]` | ✅ 返回 sessionId 对应的轨迹数据 |
+
+#### 2.2.3 合规路线图页面
+
+| 功能 | 文件 | 验收标准 |
+|------|------|---------|
+| 路线图页 | `app/roadmap/[sessionId]/page.tsx` | ✅ 展示合规路线图（步骤和进度） |
+| 合规时间线 | `components/trace/ComplianceTimeline.tsx` | ✅ 复用轨迹组件渲染路线图 |
+| API 接口 | `GET /api/roadmap/[sessionId]` | ✅ 返回合规路线图数据 |
+
+#### 2.2.4 利润报告视图
+
+| 功能 | 文件 | 验收标准 |
+|------|------|---------|
+| 报告组件 | `components/result/ProfitReportView.tsx` | ✅ 展示成本利润分析报告 |
+| 成本分析 | - | ✅ 显示各市场成本明细 |
+| 利润分析 | - | ✅ 显示利润率和利润空间 |
+| PDF 导出 | - | ✅ 支持导出 PDF 格式报告 |
+| DOCX 导出 | - | ✅ 支持导出 DOCX 格式报告 |
+
+#### 2.2.5 RAG Service /profit-report API
+
+| 功能 | 文件 | 验收标准 |
+|------|------|---------|
+| 端点 | `POST /profit-report` | ✅ 接受产品信息，返回成本利润报告 |
+| 数据处理 | - | ✅ 调用 RAG 检索相关成本数据 |
+| 报告生成 | - | ✅ 生成结构化成本利润报告 |
+
+### 2.3 API 路由
 
 | 端点 | 文件 | 状态 |
 |------|------|------|
 | `POST /api/scan` | `app/api/scan/route.ts` | ✅ 完成 |
 | `GET /api/scan/[sessionId]` | `app/api/scan/[sessionId]/route.ts` | ✅ 完成 |
+| `GET /api/regulations/updates` | `app/api/regulations/updates/route.ts` | ✅ 完成 |
+| `GET /api/trace/[sessionId]` | `app/api/trace/[sessionId]/route.ts` | ✅ 完成 |
+| `GET /api/roadmap/[sessionId]` | `app/api/roadmap/[sessionId]/route.ts` | ✅ 完成 |
 
 - Demo 模式降级 ✅
 - Zod Schema 验证 ✅
 - 错误码体系（NOT_FOUND / BAD_INPUT）✅
 
-### 2.3 RAG Service
+### 2.4 RAG Service
 
 | 端点 | 状态 |
 |------|------|
 | `POST /scan` | ✅ 已实现 |
 | `GET /health` | ✅ 已实现 |
+| `POST /profit-report` | ✅ 已实现（成本利润报告生成） |
 
 **LangGraph 图（7 个节点）：**
 - `vision` — mimoTalk Vision 分析 ✅
@@ -286,6 +338,10 @@ globalThis.__scanStore = new Map();  // ❌ 仅内存存储
 - [x] **2. FAISS 路径**：改为环境变量（data/faiss/legal_chunks.index）
 - [x] **3. 图片传输**：前端到 RAG Service 的图片流打通
 - [x] **4. Docker 化**：已有 Dockerfile（rag_service/Dockerfile）
+- [x] **11. 法规更新页**：已实现 `/regulations` 页面和 API
+- [x] **12. Agent 轨迹页**：已实现 `/trace/[sessionId]` 页面、组件和 API
+- [x] **13. 合规路线图页**：已实现 `/roadmap/[sessionId]` 页面和 API
+- [x] **14. 成本利润报告**：已实现 ProfitReportView 和 `/profit-report` API
 
 ### 建议修复（提升质量）
 
@@ -307,14 +363,26 @@ attrax/
 │   ├── upload/page.tsx               # 上传页 ✅（硬编码 category）
 │   ├── burning/[sessionId]/page.tsx # 扫描中 ✅
 │   ├── result/[sessionId]/page.tsx # 结果页 ✅
-│   └── api/scan/                    # API 路由 ✅
+│   ├── regulations/page.tsx          # 法规更新页 ✅
+│   ├── trace/[sessionId]/page.tsx    # Agent 轨迹页 ✅
+│   ├── roadmap/[sessionId]/page.tsx # 合规路线图页 ✅
+│   └── api/
+│       ├── scan/                     # API 路由 ✅
+│       │   └── [sessionId]/
+│       ├── regulations/updates/      # 法规更新 API ✅
+│       ├── trace/[sessionId]/        # Agent 轨迹 API ✅
+│       └── roadmap/[sessionId]/      # 合规路线图 API ✅
 │
-├── components/                        # UI 组件
+├── components/
 │   ├── ui/                           # shadcn/ui ✅ 10 个组件
-│   ├── burning/                      # ⚠️ .gitkeep 未实现
-│   ├── flame/                        # ⚠️ .gitkeep 未实现
-│   ├── result/                       # ⚠️ .gitkeep 未实现
-│   └── upload/                       # ⚠️ .gitkeep 未实现
+│   ├── burning/                      # 扫描中动画组件 ✅
+│   ├── flame/                        # 火焰视觉效果组件 ✅
+│   ├── result/                       # 结果展示组件 ✅
+│   │   └── ProfitReportView.tsx      # 成本利润报告视图 ✅
+│   ├── upload/                       # 上传组件 ✅
+│   └── trace/                        # Agent 轨迹组件 ✅
+│       ├── AgentDecisionTree.tsx     # 决策树可视化 ✅
+│       └── ComplianceTimeline.tsx    # 合规时间线 ✅
 │
 ├── lib/                               # 核心库
 │   ├── types.ts                      # ✅ 完整类型定义
@@ -391,6 +459,13 @@ attrax/
 
 **整体评价：** 火鹰合规项目的核心 RAG 架构实现扎实，LangGraph 编排、混合检索管线、NLI 引用验证等关键组件均已落地，前端页面骨架完整。
 
+**2026-05 新增功能：**
+1. **法规更新页面**（/regulations）- 展示法规更新列表，支持按市场/时间筛选
+2. **Agent 轨迹页面**（/trace/[sessionId]）- 可视化展示 Agent 决策树和执行轨迹
+3. **合规路线图页面**（/roadmap/[sessionId]）- 展示合规检查步骤和进度
+4. **成本利润报告**（ProfitReportView）- 支持成本利润分析、PDF/DOCX 导出
+5. **RAG Service /profit-report API** - 成本利润报告生成端点
+
 **主要风险：**
 1. **环境配置缺失**（MIMOTALK_API_KEY 未配置）—— 最易修复，影响最大
 2. **前端到后端图片流未打通**—— Vision 分析形同虚设
@@ -400,4 +475,4 @@ attrax/
 
 ---
 
-*本文档为 2026-05-05 项目评估输出，建议每迭代一次后更新状态。*
+*本文档为 2026-05-18 项目评估输出，建议每迭代一次后更新状态。*

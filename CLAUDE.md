@@ -109,8 +109,6 @@ attrax/
 │   ├── pipeline/
 │   │   ├── scan.ts        # 扫描管线（调用 RAG 8001）
 │   │   └── session-store.ts  # 会话存储（globalThis.__scanStore）
-│   ├── rag/              # RAG 服务调用封装
-│   ├── vision/           # Vision AI 调用封装
 │   ├── mock/
 │   │   └── scan-result.ts # Demo 模式模拟数据
 │   └── hooks/
@@ -127,6 +125,7 @@ attrax/
 │   │   ├── faiss_retriever.py     # FAISS 向量检索
 │   │   ├── bm25_retriever.py      # BM25 稀疏检索
 │   │   ├── local_embedder.py      # 本地 embedder（Ollama nomic-embed-text）
+│   │   ├── ollama_embedder.py      # Ollama Embedding（fallback）
 │   │   ├── modelScope_embedder.py # ModelScope Qwen3-Embedding
 │   │   ├── cohere_embedder.py     # Cohere Embedding
 │   │   ├── cohere_reranker.py     # ⚠️ 已实现但未接入管线
@@ -164,8 +163,7 @@ attrax/
 │   ├── mock-fixtures/    # Mock 静态资源
 │   └── brand/            # 品牌资产
 ├── docs/                 # 文档
-│   ├── RAG-ARCHITECTURE-v3.md  # RAG 架构文档（当前）
-│   └── archived/         # 已归档文档
+│   └── RAG-ARCHITECTURE-v3.md  # RAG 架构文档（当前）
 └── scripts/              # 运维脚本（start_rag.bat 等）
 ```
 
@@ -281,11 +279,10 @@ scripts\start_rag.bat         # 仅启动 RAG 服务
 
 ## 文档索引
 
-- `README.md` — 项目概览和快速开始
 - `docs/RAG-ARCHITECTURE-v3.md` — RAG 技术架构详情
 - `docs/PRD.md` — 产品需求文档
 - `docs/PROJECT-STATUS.md` — 上线评估报告
 
 ---
 
-*最后更新：2026-05-07*
+*最后更新：2026-05-18*
