@@ -5,8 +5,8 @@ import { Globe, ChevronDown } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
 
 const languages = [
-  { code: "zh", name: "中文", flag: "🇨🇳" },
-  { code: "en", name: "English", flag: "🇺🇸" },
+  { code: "zh", nameKey: "language.zh", flag: "🇨🇳" },
+  { code: "en", nameKey: "language.en", flag: "🇺🇸" },
 ];
 
 export default function LanguageSwitcher() {
@@ -24,7 +24,7 @@ export default function LanguageSwitcher() {
       >
         <Globe className="w-4 h-4 text-gray-600" />
         <span className="text-sm font-medium text-gray-700">
-          {currentLang.flag} {currentLang.name}
+          {currentLang.flag} {t(currentLang.nameKey)}
         </span>
         <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
@@ -45,7 +45,7 @@ export default function LanguageSwitcher() {
                 }`}
               >
                 <span className="text-lg">{lang.flag}</span>
-                <span className="font-medium">{lang.name}</span>
+                <span className="font-medium">{t(lang.nameKey)}</span>
                 {locale === lang.code && (
                   <svg className="w-4 h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />

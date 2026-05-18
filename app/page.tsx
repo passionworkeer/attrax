@@ -60,7 +60,7 @@ export default function Home() {
             {t("home.regulations.viewAll")}
           </Link>
         </div>
-      </section>
+              </section>
     </main>
   );
 }
