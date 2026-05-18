@@ -23,9 +23,12 @@ test-results/
 # production
 /build
 
-# misc
-.DS_Store
-*.pem
+# ─── 临时文件 ──────────────────────────────────────────────────
+npm.log
+npm-debug.log*
+test_scan.json
+lib/i18n-server.ts
+docs/competitions/
 
 # debug
 npm-debug.log*
