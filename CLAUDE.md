@@ -279,9 +279,13 @@ scripts\start_rag.bat         # 仅启动 RAG 服务
 
 ## 文档索引
 
-- `docs/RAG-ARCHITECTURE-v3.md` — RAG 技术架构详情
+- `docs/README.md` — 文档索引和快速开始指南
+- `docs/PROJECT.md` — 项目描述和技术栈
 - `docs/PRD.md` — 产品需求文档
+- `docs/RAG-ARCHITECTURE-v3.md` — RAG 技术架构详情（当前）
+- `docs/DOCUMENT-PIPELINE.md` — 语料库构建流程
 - `docs/PROJECT-STATUS.md` — 上线评估报告
+- `docs/archived/` — 历史归档文档
 
 ---
 
