@@ -20,6 +20,7 @@ import {
   Play,
   Pause,
 } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 export interface TraceNode {
   id: string;
@@ -41,81 +42,10 @@ interface DecisionTreeProps {
   locale: "zh" | "en";
   autoPlay?: boolean;
   animationSpeed?: number;
+  score?: number;
+  grade?: string;
+  traceNodes?: unknown[];
 }
-
-// Translations
-const t = {
-  zh: {
-    header: "AI Agent 工作流",
-    headerSub: "自主合规分析执行过程",
-    totalTime: "总耗时",
-    steps: "执行步骤",
-    markets: "markets",
-    marketsUnit: "个市场已扫描",
-    regulations: "Regulations",
-    regulationsUnit: "条法规",
-    risks: "unique risks",
-    risksUnit: "项风险点",
-    score: "评分",
-    scoreUnit: "85/100 分",
-    complete: "分析完成",
-    vector: "向量检索",
-    reasoning: "AI 推理过程",
-    found: "找到",
-    regulationsText: "条法规",
-    complianceRate: "合规率",
-    topMatch: "最高匹配",
-    effective: "生效",
-    scoreText: "评分",
-    complianceScore: "合规评分",
-    recommendedActions: "建议行动",
-    estimatedTimeline: "预计时间线",
-    toggleReasoning: "显示推理过程",
-    input: "输入",
-    vision: "视觉识别",
-    planner: "查询规划",
-    fanout: "并行检索",
-    market: "市场检索",
-    synthesis: "综合分析",
-    result: "评估结果",
-    reasoningType: "推理过程",
-  },
-  en: {
-    header: "AI Agent Workflow",
-    headerSub: "Autonomous compliance analysis",
-    totalTime: "Total Time",
-    steps: "Steps",
-    markets: "markets",
-    marketsUnit: "markets scanned",
-    regulations: "Regulations",
-    regulationsUnit: "regulations",
-    risks: "unique risks",
-    risksUnit: "risks",
-    score: "Score",
-    scoreUnit: "85/100",
-    complete: "Complete",
-    vector: "Vector Search",
-    reasoning: "AI REASONING",
-    found: "Found",
-    regulationsText: "regulations",
-    complianceRate: "Compliance Rate",
-    topMatch: "Top Match",
-    effective: "Effective",
-    scoreText: "Score",
-    complianceScore: "Compliance Score",
-    recommendedActions: "Recommended Actions",
-    estimatedTimeline: "ESTIMATED TIMELINE",
-    toggleReasoning: "Toggle reasoning",
-    input: "Input",
-    vision: "Vision",
-    planner: "Planner",
-    fanout: "Fanout",
-    market: "Market",
-    synthesis: "Synthesis",
-    result: "Result",
-    reasoningType: "Reasoning",
-  },
-};
 
 const typeIcons: Record<string, string> = {
   input: "📷",
@@ -136,6 +66,76 @@ const typeColors: Record<string, { bg: string; border: string; text: string; lig
   synthesis: { bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-600", light: "bg-indigo-100", dark: "bg-indigo-500" },
   result: { bg: "bg-rose-50", border: "border-rose-200", text: "text-rose-600", light: "bg-rose-100", dark: "bg-rose-500" },
 };
+
+// Convert API response to TraceNode format
+function _buildTraceTreeFromApi(nodes: {
+  id?: string;
+  type?: string;
+  label?: string;
+  icon?: string;
+  status?: string;
+  duration?: string;
+  confidence?: number;
+}[]): TraceNode {
+  // Map API node types to TraceNode types
+  const typeMap: Record<string, TraceNode["type"]> = {
+    vision: "vision",
+    query_planner: "planner",
+    retriever: "fanout",
+    synthesis: "synthesis",
+    generate: "result",
+    verify: "synthesis",
+    refine: "synthesis",
+  };
+
+  const labelMap: Record<string, { zh: string; en: string }> = {
+    vision: { zh: "视觉识别", en: "Vision Analysis" },
+    query_planner: { zh: "查询规划", en: "Query Planner" },
+    retriever: { zh: "文档检索", en: "Document Retrieval" },
+    synthesis: { zh: "综合分析", en: "Synthesis" },
+    generate: { zh: "报告生成", en: "Report Generation" },
+    verify: { zh: "验证审核", en: "Verification" },
+    refine: { zh: "优化迭代", en: "Refinement" },
+    fan_out: { zh: "并行检索", en: "Parallel Search" },
+  };
+
+  const iconMap: Record<string, string> = {
+    vision: "🧠",
+    query_planner: "📋",
+    retriever: "⚡",
+    synthesis: "📊",
+    generate: "📝",
+    verify: "✅",
+    refine: "🔄",
+    fan_out: "🌍",
+  };
+
+  // Build a tree structure from the nodes
+  const children: TraceNode[] = nodes.map((node) => {
+    const nodeType = typeMap[node.type || ""] || "synthesis" as TraceNode["type"];
+    const nodeLabel = labelMap[node.type || ""] || { zh: node.label || node.type || "", en: node.label || node.type || "" };
+    return {
+      id: node.id || node.type || "node",
+      type: nodeType,
+      label: nodeLabel.zh,
+      labelEn: nodeLabel.en,
+      icon: iconMap[node.type || ""] || "📊",
+      status: (node.status as TraceNode["status"]) || "pending",
+      duration: node.duration || "0s",
+      confidence: node.confidence || 0,
+    };
+  });
+
+  return {
+    id: "root",
+    type: "input",
+    label: "图片上传",
+    labelEn: "Image Upload",
+    icon: "📷",
+    status: "success",
+    children,
+  };
+}
 
 // Demo trace - fully bilingual
 const demoTrace: TraceNode = {
@@ -397,8 +397,8 @@ function RiskBadge({ level, count, locale }: { level: "high" | "medium" | "low";
 }
 
 function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }) {
+  const { t } = useTranslation();
   if (!text) return null;
-  const labels = t[locale];
   return (
     <AnimatedEntry delay={100}>
       <div className="mt-3 p-4 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 border-l-4 border-yellow-400 shadow-sm">
@@ -407,7 +407,7 @@ function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }
             <Lightbulb className="w-4 h-4 text-yellow-600" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-yellow-700 mb-1">{labels.reasoning}</div>
+            <div className="text-xs font-semibold text-yellow-700 mb-1">{t("trace.aiReasoning")}</div>
             <p className="text-sm text-gray-700 leading-relaxed">{text}</p>
           </div>
         </div>
@@ -417,7 +417,7 @@ function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }
 }
 
 function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "zh" | "en" }) {
-  const labels = t[locale];
+  const { t } = useTranslation();
   const score = typeof data.score === "number" ? data.score : 0;
   const grade = String(data.grade || "");
   const highRisk = typeof data.highRisk === "number" ? data.highRisk : 0;
@@ -446,7 +446,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
               <div className="text-5xl font-black text-blaze-red">{score}</div>
               <span className="absolute -right-4 top-0 text-sm text-gray-400">/100</span>
             </div>
-            <div className="text-xs text-gray-500 mt-1">{labels.complianceScore}</div>
+            <div className="text-xs text-gray-500 mt-1">{t("trace.score")}</div>
           </div>
           <div className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black ring-4 ${gradeColors[grade]?.ring || "ring-gray-300"} ${gradeColors[grade]?.bg || "bg-gray-100"} ${gradeColors[grade]?.text || "text-gray-700"}`}>
             {grade}
@@ -460,7 +460,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
               <div key={i} className={`p-3 rounded-xl border ${m.status === "pass" ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}>
                 <div className="text-lg font-bold">{locale === "en" ? m.marketEn : m.market}</div>
                 <div className="text-2xl font-black mt-1">{m.score}</div>
-                <div className="text-xs text-gray-500">{labels.scoreText}</div>
+                <div className="text-xs text-gray-500">{t("trace.score")}</div>
               </div>
             ))}
           </div>
@@ -476,7 +476,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
         {/* Timeline */}
         {timeline && (
           <div className="p-4 bg-gray-50 rounded-xl">
-            <div className="text-xs font-semibold text-gray-500 mb-2">{labels.estimatedTimeline}</div>
+            <div className="text-xs font-semibold text-gray-500 mb-2">{t("trace.estimatedTimeline")}</div>
             <div className="grid grid-cols-4 gap-2 text-center">
               {Object.entries(timeline).map(([key, value], idx) => {
                 const enKeys = ["preparation", "testing", "certification", "total"];
@@ -497,7 +497,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
           <div className="border-t pt-4">
             <div className="flex items-center gap-2 mb-3">
               <Target className="w-4 h-4 text-gray-500" />
-              <span className="text-sm font-semibold text-gray-700">{labels.recommendedActions}</span>
+              <span className="text-sm font-semibold text-gray-700">{t("trace.suggestedAction")}</span>
             </div>
             <div className="space-y-2">
               {recommendations.map((rec, i) => (
@@ -531,7 +531,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
 }
 
 function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) {
-  const labels = t[locale];
+  const { t } = useTranslation();
   const data = node.data as {
     regulations?: number;
     highRisk?: number;
@@ -547,9 +547,9 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {/* Stats */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">{labels.found}</span>
+            <span className="text-sm text-gray-600">{t("trace.regulations")}</span>
             <span className="text-xl font-bold text-gray-900">{data?.regulations || 0}</span>
-            <span className="text-sm text-gray-600">{locale === "en" ? labels.regulationsUnit : labels.regulationsText}</span>
+            <span className="text-sm text-gray-600">{t("trace.regulations")}</span>
           </div>
           <ConfidenceBadge confidence={node.confidence} locale={locale} />
         </div>
@@ -558,7 +558,7 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {data?.complianceRate !== undefined && (
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-gray-500">{labels.complianceRate}</span>
+              <span className="text-gray-500">{t("result.overallScore")}</span>
               <span className="font-medium text-gray-700">{data.complianceRate}%</span>
             </div>
             <ProgressBar progress={data.complianceRate} color={data.complianceRate >= 80 ? "bg-green-500" : data.complianceRate >= 50 ? "bg-amber-500" : "bg-red-500"} />
@@ -575,12 +575,12 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {/* Top match */}
         {data?.topMatch && (
           <div className="p-3 bg-gray-50 rounded-lg">
-            <div className="text-xs text-gray-500 mb-1">{labels.topMatch}</div>
+            <div className="text-xs text-gray-500 mb-1">{t("trace.maxMatch")}</div>
             <div className="text-sm font-medium text-gray-900">{locale === "en" ? data.topMatch.titleEn : data.topMatch.title}</div>
             <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
               <span>{Math.round(data.topMatch.score * 100)}%</span>
               <span>•</span>
-              <span>{labels.effective}: {data.topMatch.effectiveDate}</span>
+              <span>{t("trace.effective")}: {data.topMatch.effectiveDate}</span>
             </div>
           </div>
         )}
@@ -600,7 +600,7 @@ function TraceNodeComponent({
   depth?: number;
   index?: number;
 }) {
-  const labels = t[locale];
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState(depth <= 1);
   const [showReasoning, setShowReasoning] = useState(false);
   const hasChildren = node.children && node.children.length > 0;
@@ -660,7 +660,7 @@ function TraceNodeComponent({
                   <button
                     onClick={() => setShowReasoning(!showReasoning)}
                     className={`p-2 rounded-xl transition-all ${showReasoning ? `${colors.light} ${colors.text}` : "hover:bg-gray-100 text-gray-500"}`}
-                    title={labels.toggleReasoning}
+                    title={t("trace.aiReasoning")}
                   >
                     <Lightbulb className="w-5 h-5" />
                   </button>
@@ -706,33 +706,46 @@ function TraceNodeComponent({
   );
 }
 
-const typeLabels: Record<string, { zh: string; en: string }> = {
-  input: { zh: "输入", en: "Input" },
-  vision: { zh: "视觉识别", en: "Vision" },
-  planner: { zh: "查询规划", en: "Planner" },
-  fanout: { zh: "并行检索", en: "Fanout" },
-  market: { zh: "市场检索", en: "Market" },
-  synthesis: { zh: "综合分析", en: "Synthesis" },
-  result: { zh: "评估结果", en: "Result" },
-};
-
 export default function AgentDecisionTree({
   traceData,
   locale = "zh",
   autoPlay = false,
   animationSpeed = 1,
+  score,
+  grade,
+  traceNodes,
 }: DecisionTreeProps) {
-  const labels = t[locale];
+  const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [progress, setProgress] = useState(0);
 
-  const data = traceData || demoTrace;
+  // 使用 API 返回的真实数据，否则用 demo 数据
+  const data = (() => {
+    if (traceNodes && Array.isArray(traceNodes) && traceNodes.length > 0) {
+      // 从 API 转换真实数据
+      return _buildTraceTreeFromApi(traceNodes as {
+        id?: string;
+        type?: string;
+        label?: string;
+        icon?: string;
+        status?: string;
+        duration?: string;
+        confidence?: number;
+      }[]);
+    }
+    return traceData || demoTrace;
+  })();
+
   const totalTime = data.children?.reduce((acc, child) => {
     const duration = child.duration?.replace("s", "") || "0";
     return acc + parseFloat(duration);
   }, 0) || 0;
 
   const totalSteps = 1 + (data.children?.length || 0) + (data.children?.reduce((acc, child) => acc + (child.children?.length || 0), 0) || 0);
+
+  // 使用传入的 score 和 grade，或从 data 中提取
+  const displayScore = score ?? (data as TraceNode)?.data?.score as number ?? 85;
+  const displayGrade = grade ?? (data as TraceNode)?.data?.grade as string ?? "B";
 
   useEffect(() => {
     if (isPlaying) {
@@ -750,29 +763,27 @@ export default function AgentDecisionTree({
         <div>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
-              <Sparkles className="w-5 h-5 text-white" />
+              <span className="text-sm font-bold text-white">AI</span>
             </div>
             <div>
-              <h3 className="text-2xl font-black text-gray-900">{labels.header}</h3>
-              <p className="text-sm text-gray-500">{labels.headerSub}</p>
+              <h3 className="text-2xl font-black text-gray-900">{t("trace.title")}</h3>
+              <p className="text-sm text-gray-500">{t("trace.subtitle")}</p>
             </div>
           </div>
         </div>
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <div className="flex items-center gap-1 text-2xl font-black text-gray-900">
-              <Clock className="w-5 h-5 text-gray-400" />
-              {totalTime}s
+            <div className="text-2xl font-black text-gray-900">
+              {totalTime.toFixed(1)}s
             </div>
-            <div className="text-xs text-gray-500">{labels.totalTime}</div>
+            <div className="text-xs text-gray-500">{t("trace.executionTime")}</div>
           </div>
           <div className="w-px h-10 bg-gray-200" />
           <div className="text-center">
-            <div className="flex items-center gap-1 text-2xl font-black text-gray-900">
-              <Target className="w-5 h-5 text-gray-400" />
+            <div className="text-2xl font-black text-gray-900">
               {totalSteps}
             </div>
-            <div className="text-xs text-gray-500">{labels.steps}</div>
+            <div className="text-xs text-gray-500">{t("trace.executionSteps")}</div>
           </div>
           <button
             onClick={() => setIsPlaying(!isPlaying)}
@@ -797,7 +808,7 @@ export default function AgentDecisionTree({
           >
             <span className="text-lg">{typeIcons[type]}</span>
             <span className="text-xs font-semibold text-gray-700">
-              {locale === "en" ? typeLabels[type].en : typeLabels[type].zh}
+              {t("trace." + type)}
             </span>
           </div>
         ))}
@@ -816,8 +827,8 @@ export default function AgentDecisionTree({
               <CheckCircle2 className="w-5 h-5 text-green-600" />
             </div>
             <div>
-              <div className="text-lg font-bold text-green-800">{labels.complete}</div>
-              <div className="text-xs text-green-600">4 {labels.marketsUnit}</div>
+              <div className="text-lg font-bold text-green-800">{t("trace.analysisComplete")}</div>
+              <div className="text-xs text-green-600">4 {t("trace.targetMarkets")}</div>
             </div>
           </div>
         </div>
@@ -828,7 +839,7 @@ export default function AgentDecisionTree({
             </div>
             <div>
               <div className="text-lg font-bold text-blue-800">LangGraph</div>
-              <div className="text-xs text-blue-600">FAISS + {labels.vector}</div>
+              <div className="text-xs text-blue-600">FAISS + {t("trace.vectorSearch")}</div>
             </div>
           </div>
         </div>
@@ -838,8 +849,8 @@ export default function AgentDecisionTree({
               <FileSearch className="w-5 h-5 text-purple-600" />
             </div>
             <div>
-              <div className="text-lg font-bold text-purple-800">6 {labels.regulationsUnit}</div>
-              <div className="text-xs text-purple-600">5 {labels.risksUnit}</div>
+              <div className="text-lg font-bold text-purple-800">6 {t("trace.regulations")}</div>
+              <div className="text-xs text-purple-600">5 {t("trace.riskPoints")}</div>
             </div>
           </div>
         </div>
@@ -850,7 +861,7 @@ export default function AgentDecisionTree({
             </div>
             <div>
               <div className="text-lg font-bold text-amber-800">Grade B</div>
-              <div className="text-xs text-amber-600">{labels.scoreUnit}</div>
+              <div className="text-xs text-amber-600">{t("trace.score")}</div>
             </div>
           </div>
         </div>

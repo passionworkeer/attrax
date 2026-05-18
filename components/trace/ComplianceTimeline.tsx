@@ -16,6 +16,7 @@ import {
   Play,
   Pause,
 } from "lucide-react";
+import { useTranslation } from "@/lib/i18n";
 
 interface TimelineItem {
   id: string;
@@ -34,57 +35,9 @@ interface TimelineItem {
 
 interface ComplianceTimelineProps {
   items?: TimelineItem[];
-  locale?: "zh" | "en";
   autoPlay?: boolean;
+  locale?: "zh" | "en";
 }
-
-// Translations
-const translations = {
-  zh: {
-    title: "合规路线图",
-    subtitle: "从评估到产品上市的全流程时间规划",
-    today: "今天",
-    estimated: "预计",
-    days: "天",
-    completed: "已完成",
-    inProgress: "进行中",
-    pending: "待完成",
-    documents: "所需材料",
-    totalDays: "总工期",
-    totalCost: "预估总费用",
-    steps: "步骤",
-    progress: "完成度",
-    startNow: "立即开始",
-    daysUntil: "还有",
-    startPreparing: "建议现在就开始准备",
-    requiredDocs: "所需文件",
-    estimatedCost: "预估费用",
-    readyToStart: "准备好开始了吗？",
-    readyToStartSub: "上传您的产品图片，立即获取合规评估报告",
-  },
-  en: {
-    title: "Compliance Roadmap",
-    subtitle: "Full timeline from assessment to market launch",
-    today: "Today",
-    estimated: "Est.",
-    days: "days",
-    completed: "Completed",
-    inProgress: "In Progress",
-    pending: "Pending",
-    documents: "Required Docs",
-    totalDays: "Total Days",
-    totalCost: "Est. Cost",
-    steps: "Steps",
-    progress: "Progress",
-    startNow: "Start Now",
-    daysUntil: "days until",
-    startPreparing: "Start preparing now",
-    requiredDocs: "Required Documents",
-    estimatedCost: "Estimated Cost",
-    readyToStart: "Ready to Start?",
-    readyToStartSub: "Upload your product images and get your compliance assessment today",
-  },
-};
 
 const typeIcons: Record<string, string> = {
   apply: "📝",
@@ -98,11 +51,6 @@ const typeColors = {
   test: { bg: "bg-amber-50", border: "border-amber-200", icon: "🔬", color: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
   certify: { bg: "bg-green-50", border: "border-green-200", icon: "📜", color: "text-green-600", light: "bg-green-100", dark: "bg-green-500" },
   complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "✅", color: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
-};
-
-const typeLabels = {
-  zh: { apply: "申请", test: "检测", certify: "认证", complete: "完成" },
-  en: { apply: "Apply", test: "Test", certify: "Certify", complete: "Complete" },
 };
 
 const defaultItems: TimelineItem[] = [
@@ -220,10 +168,12 @@ function ProgressBar({ progress, color = "bg-gradient-to-r from-blaze-red to-amb
 
 export default function ComplianceTimeline({
   items = defaultItems,
-  locale = "zh",
   autoPlay = false,
+  locale: localeProp,
 }: ComplianceTimelineProps) {
-  const t = translations[locale];
+  const { t: hookT, locale: hookLocale } = useTranslation();
+  const locale = localeProp ?? hookLocale ?? "zh";
+  const t = hookT;
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [currentStep, setCurrentStep] = useState(0);
@@ -270,21 +220,21 @@ export default function ComplianceTimeline({
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
             <CheckCircle2 className="w-3 h-3" />
-            {t.completed}
+            {t("roadmap.completed")}
           </span>
         );
       case "in-progress":
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">
             <Clock className="w-3 h-3 animate-pulse" />
-            {t.inProgress}
+            {t("roadmap.inProgress")}
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
             <Circle className="w-3 h-3" />
-            {t.pending}
+            {t("roadmap.pending")}
           </span>
         );
     }
@@ -310,8 +260,8 @@ export default function ComplianceTimeline({
             <Target className="w-7 h-7 text-white" />
           </div>
           <div>
-            <h3 className="text-2xl font-black text-gray-900">{t.title}</h3>
-            <p className="text-sm text-gray-500">{t.subtitle}</p>
+            <h3 className="text-2xl font-black text-gray-900">{t("roadmap.title")}</h3>
+            <p className="text-sm text-gray-500">{t("roadmap.subtitle")}</p>
           </div>
         </div>
         <button
@@ -334,7 +284,7 @@ export default function ComplianceTimeline({
               </div>
               <div>
                 <div className="text-2xl font-black text-gray-900">{getTotalDays()}</div>
-                <div className="text-xs text-gray-500">{t.totalDays}</div>
+                <div className="text-xs text-gray-500">{t("roadmap.totalDuration")}</div>
               </div>
             </div>
           </div>
@@ -347,7 +297,7 @@ export default function ComplianceTimeline({
               </div>
               <div>
                 <div className="text-sm font-bold text-gray-900">{getTotalCost()}</div>
-                <div className="text-xs text-gray-500">{t.totalCost}</div>
+                <div className="text-xs text-gray-500">{t("roadmap.estimatedCost")}</div>
               </div>
             </div>
           </div>
@@ -360,7 +310,7 @@ export default function ComplianceTimeline({
               </div>
               <div>
                 <div className="text-2xl font-black text-gray-900">{items.length}</div>
-                <div className="text-xs text-gray-500">{t.steps}</div>
+                <div className="text-xs text-gray-500">{t("roadmap.stepsCount")}</div>
               </div>
             </div>
           </div>
@@ -373,7 +323,7 @@ export default function ComplianceTimeline({
               </div>
               <div>
                 <div className="text-2xl font-black text-gray-900">{getProgress()}%</div>
-                <div className="text-xs text-gray-500">{t.progress}</div>
+                <div className="text-xs text-gray-500">{t("roadmap.completed")}</div>
               </div>
             </div>
           </div>
@@ -441,7 +391,7 @@ export default function ComplianceTimeline({
                         <div>
                           {isToday && (
                             <span className="inline-flex items-center gap-1 rounded-full bg-blaze-red px-3 py-1 text-xs font-bold text-white mb-2 shadow-md">
-                              {t.today}
+                              {t("roadmap.startToday")}
                             </span>
                           )}
                           <h4 className="text-lg font-bold text-gray-900">
@@ -455,7 +405,7 @@ export default function ComplianceTimeline({
                             {item.estimatedDays && (
                               <span className="flex items-center gap-1 font-medium text-amber-600">
                                 <Clock className="w-4 h-4" />
-                                {item.estimatedDays} {t.days}
+                                {item.estimatedDays} {t("roadmap.days")}
                               </span>
                             )}
                           </div>
@@ -490,7 +440,7 @@ export default function ComplianceTimeline({
                               <DollarSign className="w-5 h-5 text-green-600" />
                             </div>
                             <div>
-                              <div className="text-xs text-gray-500">{t.estimatedCost}</div>
+                              <div className="text-xs text-gray-500">{t("roadmap.cost")}</div>
                               <div className="text-lg font-bold text-gray-900">{item.cost}</div>
                             </div>
                           </div>
@@ -501,7 +451,7 @@ export default function ComplianceTimeline({
                           <div className="p-3 bg-white rounded-xl border">
                             <div className="flex items-center gap-2 mb-3">
                               <FileText className="w-4 h-4 text-gray-500" />
-                              <span className="text-sm font-semibold text-gray-700">{t.requiredDocs}:</span>
+                              <span className="text-sm font-semibold text-gray-700">{t("roadmap.requiredDocs")}:</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                               {(item.documents && item.documents.length > 0
@@ -528,10 +478,10 @@ export default function ComplianceTimeline({
                             <div>
                               <div className="text-sm font-medium text-amber-800">
                                 {locale === "en"
-                                  ? `${daysFromNow} ${t.daysUntil} this step`
-                                  : `${t.daysUntil} ${daysFromNow} ${t.days}到达此步骤`}
+                                  ? `${daysFromNow} ${t("roadmap.remaining")} this step`
+                                  : `${t("roadmap.remaining")} ${daysFromNow} ${t("roadmap.days")}到达此步骤`}
                               </div>
-                              <div className="text-xs text-amber-600">{t.startPreparing}</div>
+                              <div className="text-xs text-amber-600">{t("roadmap.suggestStartNow")}</div>
                             </div>
                           </div>
                         )}
@@ -550,11 +500,11 @@ export default function ComplianceTimeline({
         <div className="mt-8 p-6 bg-gradient-to-r from-blaze-red/10 via-rose-50 to-amber-50 rounded-2xl border border-blaze-red/20">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-lg font-bold text-gray-900">{t.readyToStart}</h4>
-              <p className="text-sm text-gray-600">{t.readyToStartSub}</p>
+              <h4 className="text-lg font-bold text-gray-900">{t("roadmap.readyToStart")}</h4>
+              <p className="text-sm text-gray-600">{t("roadmap.suggestStartNow")}</p>
             </div>
             <button className="px-6 py-3 bg-gradient-to-r from-blaze-red to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
-              {t.startNow} →
+              {t("roadmap.startNow")} →
             </button>
           </div>
         </div>

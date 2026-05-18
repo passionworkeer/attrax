@@ -22,6 +22,7 @@ os.environ.setdefault("NO_PROXY", "*")
 import json
 import base64
 import logging
+import time
 import urllib.request
 import urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -333,6 +334,7 @@ def vision_analysis_node(state: dict) -> dict:
     Runs only when images are provided; otherwise passes through.
     When vision_result is pre-computed (e.g. via API), preserve it.
     """
+    start_time = time.time()
     images = state.get("images", [])
     query = state.get("query", "")
 
@@ -351,7 +353,7 @@ def vision_analysis_node(state: dict) -> dict:
         logger.info("Vision node: no images provided, skipping")
         return {
             "vision_result": _empty_vision_result(),
-            "agent_trace": state.get("agent_trace", []) + [{"node": "vision", "status": "skipped"}],
+            "agent_trace": state.get("agent_trace", []) + [{"node": "vision", "status": "skipped", "duration_ms": 0}],
         }
 
     analyzer = _get_analyzer()
@@ -371,7 +373,7 @@ def vision_analysis_node(state: dict) -> dict:
             "node": "vision",
             "images_count": len(images),
             "certifications_found": len(vision_data.get("certifications", [])),
-            "description_length": len(vision_data.get("combined_description", "")),
+            "description_length": len(vision_data.get("combined_description", "")), "duration_ms": int((time.time() - start_time) * 1000),
         }
 
         logger.info(f"Vision node: analyzed {len(images)} images, found {len(vision_data.get('certifications', []))} certs")

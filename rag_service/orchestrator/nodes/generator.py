@@ -35,6 +35,9 @@ def _get_generator():
 
 def generator_node(state: GraphState) -> dict:
     """Generate compliance report from retrieved documents."""
+    import time
+    start_time = time.time()
+
     query = state.get("query", "")
     product = state.get("product", "产品")
     markets = state.get("markets", ["EU"])
@@ -79,11 +82,14 @@ def generator_node(state: GraphState) -> dict:
         except Exception as e:
             generation = f"报告生成失败: {e}"
 
+    duration_ms = int((time.time() - start_time) * 1000)
+
     trace_entry = {
         "node": "generate",
         "provider": generator.provider if hasattr(generator, "provider") else "unknown",
         "chunks_count": len(documents),
         "generation_length": len(generation),
+        "duration_ms": duration_ms,
     }
 
     return {

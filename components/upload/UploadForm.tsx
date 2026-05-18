@@ -4,27 +4,28 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 
-export type Market = "EU" | "US" | "UK" | "CN" | "AU" | "SA" | "AE";
-export type Category = "electronics" | "appliance" | "3c" | "toy" | "home" | "other";
+export type Market = "EU" | "US" | "UK" | "CN" | "AU" | "SA" | "UAE";
+export type Category = "electronics" | "appliances" | "digital" | "toys" | "home" | "other";
 
-const CATEGORIES: { value: Category; label: string }[] = [
-  { value: "electronics", label: "电子产品" },
-  { value: "appliance", label: "家电" },
-  { value: "3c", label: "3C 数码" },
-  { value: "toy", label: "玩具" },
-  { value: "home", label: "家居" },
-  { value: "other", label: "其他" },
+const CATEGORIES: { value: Category; labelKey: string }[] = [
+  { value: "electronics", labelKey: "categories.electronics" },
+  { value: "appliances", labelKey: "categories.appliances" },
+  { value: "digital", labelKey: "categories.digital" },
+  { value: "toys", labelKey: "categories.toys" },
+  { value: "home", labelKey: "categories.home" },
+  { value: "other", labelKey: "categories.other" },
 ];
 
-const MARKETS: { value: Market; label: string }[] = [
-  { value: "EU", label: "欧盟" },
-  { value: "US", label: "美国" },
-  { value: "UK", label: "英国" },
-  { value: "CN", label: "中国" },
-  { value: "AU", label: "澳大利亚" },
-  { value: "SA", label: "沙特" },
-  { value: "AE", label: "阿联酋" },
+const MARKETS: { value: Market; labelKey: string }[] = [
+  { value: "EU", labelKey: "markets.EU" },
+  { value: "US", labelKey: "markets.US" },
+  { value: "UK", labelKey: "markets.UK" },
+  { value: "CN", labelKey: "markets.CN" },
+  { value: "AU", labelKey: "markets.AU" },
+  { value: "SA", labelKey: "markets.SA" },
+  { value: "UAE", labelKey: "markets.UAE" },
 ];
 
 const ACCEPTED_IMAGE_TYPES = [
@@ -123,6 +124,7 @@ export interface UploadFormProps {
 }
 
 export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
+  const { t } = useTranslation();
   const imageInputRef = useRef<HTMLInputElement>(null);
   const docInputRef = useRef<HTMLInputElement>(null);
 
@@ -137,7 +139,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
     const valid = raw.filter((f) => ACCEPTED_IMAGE_TYPES.includes(f.type));
 
     if (raw.length > valid.length) {
-      setLocalError(`部分文件不是支持的图片格式，已跳过 ${raw.length - valid.length} 个。`);
+      setLocalError(t("upload.notSupportedImageFormat", { count: raw.length - valid.length }));
     } else {
       setLocalError(null);
     }
@@ -150,7 +152,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
     const valid = raw.filter((f) => ACCEPTED_DOCUMENT_TYPES.includes(f.type));
 
     if (raw.length > valid.length) {
-      setLocalError(`部分文件不是支持的文档格式（PDF / DOCX / HTML），已跳过 ${raw.length - valid.length} 个。`);
+      setLocalError(t("upload.notSupportedDocFormat", { count: raw.length - valid.length }));
     } else {
       setLocalError(null);
     }
@@ -161,7 +163,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
   async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!images.length) {
-      setLocalError("请先选择至少 1 张图片。");
+      setLocalError(t("upload.selectAtLeastOneImageError"));
       return;
     }
     await onSubmit({ images, documents, category: selectedCategory, markets: selectedMarkets });
@@ -185,9 +187,9 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
       {/* Images section */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium">产品图片</label>
+          <label className="text-sm font-medium">{t("upload.productImages")}</label>
           <span className="text-xs text-muted-foreground">
-            {images.length}/8 张
+            {t("upload.productImagesCount", { count: images.length })}
           </span>
         </div>
 
@@ -211,7 +213,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
               onClick={clearImages}
               className="text-xs text-muted-foreground underline hover:text-red-500"
             >
-              清除全部图片
+              {t("upload.clearAllImages")}
             </button>
           </div>
         )}
@@ -220,16 +222,16 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
       {/* Divider */}
       <div className="flex items-center gap-3">
         <div className="h-px flex-1 border-t border-border" />
-        <span className="text-xs text-muted-foreground">可选 · 支持文档</span>
+        <span className="text-xs text-muted-foreground">{t("upload.optional")} · {t("upload.supportedFormats")}</span>
         <div className="h-px flex-1 border-t border-border" />
       </div>
 
       {/* Documents section */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-medium">产品文档</label>
+          <label className="text-sm font-medium">{t("upload.productDocs")}</label>
           <span className="text-xs text-muted-foreground">
-            {documents.length}/5 份
+            {t("upload.productDocsCount", { count: documents.length })}
           </span>
         </div>
 
@@ -253,7 +255,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
               onClick={clearDocuments}
               className="text-xs text-muted-foreground underline hover:text-red-500"
             >
-              清除全部文档
+              {t("upload.clearAllDocs")}
             </button>
           </div>
         )}
@@ -267,14 +269,14 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
         )}
       >
         {totalFiles === 0
-          ? "请上传至少 1 张图片"
-          : `已选择 ${images.length} 张图片${documents.length > 0 ? `，${documents.length} 份文档` : ""}`}
+          ? t("upload.selectAtLeastOneImage")
+          : t("upload.selectedFiles", { imageCount: images.length, docCount: documents.length })}
       </div>
 
       {/* Category & Markets selectors */}
       <div className="space-y-4">
         <div>
-          <label className="mb-2 block text-sm font-medium">目标市场</label>
+          <label className="mb-2 block text-sm font-medium">{t("upload.targetMarket")}</label>
           <div className="flex flex-wrap gap-2">
             {MARKETS.map((m) => (
               <button
@@ -294,13 +296,13 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
                     : "border-border bg-blaze-surface text-muted-foreground hover:border-blaze-red/40"
                 )}
               >
-                {m.label}
+                {t(m.labelKey)}
               </button>
             ))}
           </div>
         </div>
         <div>
-          <label className="mb-2 block text-sm font-medium">产品分类</label>
+          <label className="mb-2 block text-sm font-medium">{t("upload.productCategory")}</label>
           <div className="flex flex-wrap gap-2">
             {CATEGORIES.map((c) => (
               <button
@@ -314,7 +316,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
                     : "border-border bg-blaze-surface text-muted-foreground hover:border-blaze-red/40"
                 )}
               >
-                {c.label}
+                {t(c.labelKey)}
               </button>
             ))}
           </div>
@@ -335,7 +337,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
         className="w-full bg-blaze-red text-white hover:bg-blaze-red/90"
         disabled={isSubmitting || images.length === 0}
       >
-        {isSubmitting ? "提交中…" : "提交并开始扫描"}
+        {isSubmitting ? t("common.loading") : t("upload.submitAndScan")}
       </Button>
     </form>
   );

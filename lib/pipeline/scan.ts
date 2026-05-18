@@ -13,6 +13,7 @@
 import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult, CostSummary } from "@/lib/types";
+import { getTranslations } from "@/lib/i18n-server";
 
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
 const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
@@ -256,15 +257,16 @@ function buildQuery(
   category: ProductCategory,
   markets: Market[]
 ): string {
+  const tx = getTranslations("zh");
   const productMap: Record<ProductCategory, string> = {
-    electronics: "电子产品",
-    appliance: "家用电器",
-    "3c": "3C电子产品",
-    toy: "玩具产品",
-    home: "家居用品",
-    other: "商品",
+    electronics: tx.categories.electronics,
+    appliance: tx.categories.appliances,
+    "3c": tx.categories.digital,
+    toy: tx.categories.toys,
+    home: tx.categories.home,
+    other: tx.categories.other,
   };
-  const product = productMap[category] ?? "商品";
+  const product = productMap[category] ?? tx.categories.other;
   const marketStr = markets.join("+");
   return `${product}出口${marketStr}合规要求和认证`;
 }
@@ -279,23 +281,25 @@ function buildQuery(
 export async function runScan(sessionId: string, input: RunScanInput) {
   const { images, documents, pdfs, category, markets } = input;
   const query = input.query ?? buildQuery(images, category, markets);
+  const tx = getTranslations("zh");
+  const stages = tx.scanStages;
 
   // ── Stage 1: Vision analysis ──────────────────────────────────────────────
   updateSession(sessionId, {
     progress: 10,
-    stageText: "🔍 分析上传图片…",
+    stageText: `🔍 ${stages.analyzingImages}…`,
   });
 
   // ── Stage 2: Query planning + retrieval ──────────────────────────────────
   updateSession(sessionId, {
     progress: 30,
-    stageText: "🧠 规划检索策略…",
+    stageText: `🧠 ${stages.planningStrategy}…`,
   });
 
   // ── Stage 3: RAG service call ────────────────────────────────────────────
   updateSession(sessionId, {
     progress: 45,
-    stageText: "📚 检索合规法规库…",
+    stageText: `📚 ${stages.retrievingRegulations}…`,
   });
 
   let ragResponse: RagServiceResponse | null = null;
@@ -336,14 +340,12 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     const isTimeout = err instanceof Error && err.name === "AbortError";
     updateSession(sessionId, {
       progress: 70,
-      stageText: isTimeout
-        ? "⚠️ 后端服务响应超时，降级到演示模式…"
-        : "⚠️ 后端服务不可用，降级到演示模式…",
+      stageText: isTimeout ? stages.backendTimeout : stages.backendUnavailable,
     });
     updateSession(sessionId, {
       status: "ready",
       progress: 100,
-      stageText: "✅ 演示结果已生成（离线模式）",
+      stageText: stages.demoResultGenerated,
       result: createMockScanResult(sessionId),
       error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
     });
@@ -353,13 +355,13 @@ export async function runScan(sessionId: string, input: RunScanInput) {
   // ── Stage 4: Report generation + verification ────────────────────────────
   updateSession(sessionId, {
     progress: 75,
-    stageText: "✍️ 生成合规报告…",
+    stageText: `✍️ ${stages.generatingReport}…`,
   });
 
   // ── Stage 5: Done — format and store result ─────────────────────────────
   updateSession(sessionId, {
     progress: 90,
-    stageText: "✅ 报告生成完成",
+    stageText: `✅ ${stages.reportComplete}`,
   });
 
   const statusMap: Record<string, "ready" | "failed"> = {
@@ -461,10 +463,10 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     progress: 100,
     stageText:
       ragResponse.status === "PASS"
-        ? "✅ 合规扫描通过"
+        ? stages.scanPassed
         : ragResponse.status === "WARN"
-        ? "⚠️ 合规警告，请查看报告"
-        : "🔴 合规风险，需关注",
+        ? stages.scanWarning
+        : stages.scanRisk,
     result: complianceReport as Parameters<typeof updateSession>[1]["result"],
     profitReport,
   });

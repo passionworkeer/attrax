@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 import type { ComplianceReportResult } from "@/lib/types";
 
 const MAX_VISIBLE_CHUNKS = 10;
@@ -40,6 +41,7 @@ function groupRounds(trace: TraceEntry[]): Array<{ round: number; steps: TraceEn
 }
 
 export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["agentTrace"] }) {
+  const { t } = useTranslation();
   if (!trace.length) return null;
 
   const rounds = groupRounds(trace);
@@ -47,7 +49,7 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
 
   return (
     <div className="mt-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">执行链路</h3>
+      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{t("trace.executionSteps")}</h3>
 
       <div className="mt-3 relative">
         {/* Vertical timeline line */}
@@ -62,7 +64,7 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
                 ri === 0 ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
                         : "border-amber-500/30 bg-amber-500/10 text-amber-400"
               )}>
-                {ri === 0 ? "初检" : "复检"}
+                {ri === 0 ? t("trace.firstInspection") : t("trace.reInspection")}
                 <span className="opacity-60">Round {ri + 1}</span>
               </div>
             </div>
@@ -119,14 +121,14 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
                       {/* Docs retrieved */}
                       {step.docs_retrieved !== undefined && (
                         <div className="mt-1 text-[11px] text-white/50">
-                          命中 {String(step.docs_retrieved)} 条法规
+                          {t("trace.regulationHit", { count: Number(step.docs_retrieved ?? 0) })}
                         </div>
                       )}
 
                       {/* Score */}
                       {step.score !== undefined && (
                         <div className="mt-0.5 text-[11px] text-white/50">
-                          置信度 {Number(step.score).toFixed(3)}
+                          {t("trace.confidence", { score: Number(step.score).toFixed(3) })}
                         </div>
                       )}
                     </div>
@@ -142,6 +144,7 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
 }
 
 export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrievedChunks"] }) {
+  const { t } = useTranslation();
   const [expanded] = useState(false);
 
   if (!chunks.length) return null;
@@ -154,7 +157,7 @@ export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["re
   return (
     <div className="mt-4">
       <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-        命中法规
+        {t("trace.regulationsHit")}
         <span className="ml-2 font-mono text-white/40">({chunks.length})</span>
       </h3>
       <div className="mt-2 flex flex-wrap gap-2">
@@ -184,7 +187,7 @@ export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["re
         ))}
         {overflow > 0 && (
           <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-blaze-surface px-3 py-1 text-xs text-white/70">
-            还有 {overflow} 项…
+            {t("trace.remaining", { count: overflow })}
           </span>
         )}
       </div>
