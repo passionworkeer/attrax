@@ -20,6 +20,10 @@ const translations = {
       language: "语言",
       home: "首页",
     },
+    language: {
+      zh: "中文",
+      en: "English",
+    },
     home: {
       title: "火鹰合规",
       subtitle: "想出海？先烧毁！",
@@ -135,6 +139,7 @@ const translations = {
 
     // 结果页面
     result: {
+      scanResult: "扫描结果",
       complianceReport: "合规分析报告",
       costProfitReport: "成本利润分析报告",
       overallScore: "综合评分",
@@ -394,6 +399,10 @@ const translations = {
       language: "Language",
       home: "Home",
     },
+    language: {
+      zh: "中文",
+      en: "English",
+    },
     home: {
       title: "Blaze Hawks",
       subtitle: "Think Before You Expand",
@@ -520,6 +529,7 @@ const translations = {
 
     // Result page
     result: {
+      scanResult: "Scan Result",
       complianceReport: "Compliance Analysis Report",
       costProfitReport: "Cost & Profit Report",
       overallScore: "Overall Score",

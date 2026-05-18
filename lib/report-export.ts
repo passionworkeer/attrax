@@ -1,5 +1,10 @@
 /**
  * report-export.ts — Export compliance report as PDF or Word (.docx)
+ *
+ * Locale detection:
+ *   Each export function accepts an optional `locale` parameter.
+ *   If omitted, the client's locale is auto-detected from localStorage
+ *   (set by the i18n provider) or falls back to "zh".
  */
 import { jsPDF } from "jspdf";
 import {
@@ -16,23 +21,45 @@ import {
   WidthType,
 } from "docx";
 import type { ComplianceReportResult, ProfitReportResult } from "@/lib/types";
+import { getTranslations } from "@/lib/i18n-server";
 
-const STATUS_LABELS: Record<string, string> = {
-  PASS: "通过",
-  WARN: "警告",
-  REJECTED: "拒绝",
-  UNKNOWN: "未知",
-};
+export type Locale = "zh" | "en";
 
-const MARKET_LABELS: Record<string, string> = {
-  EU: "欧盟",
-  US: "美国",
-  UK: "英国",
-  CN: "中国",
-  AU: "澳大利亚",
-  SA: "沙特",
-  AE: "阿联酋",
-};
+/** Detect locale from localStorage (set by i18n provider), falling back to "zh". */
+function detectLocale(): Locale {
+  if (typeof window === "undefined") return "zh";
+  const stored = localStorage.getItem("locale") as Locale | null;
+  if (stored === "zh" || stored === "en") return stored;
+  const browserLang = navigator.language.toLowerCase();
+  return browserLang.startsWith("en") ? "en" : "zh";
+}
+
+/** Resolve locale parameter with auto-detection fallback. */
+function resolveLocale(locale: Locale | undefined): Locale {
+  return locale ?? detectLocale();
+}
+
+/** Shortcut to look up a nested translation key. */
+function tx(key: string, locale: Locale = "zh"): string {
+  const keys = key.split(".");
+  let value: unknown = getTranslations(locale);
+  for (const k of keys) {
+    if (value && typeof value === "object" && k in value) {
+      value = (value as Record<string, unknown>)[k];
+    } else {
+      return key;
+    }
+  }
+  return typeof value === "string" ? value : key;
+}
+
+function complianceStatusLabel(status: string, locale: Locale): string {
+  return tx(`complianceStatus.${status === "PASS" ? "passed" : status === "WARN" ? "warning" : status === "REJECTED" ? "rejected" : "unknown"}`, locale);
+}
+
+function marketLabel(market: string, locale: Locale): string {
+  return tx(`markets.${market}`, locale);
+}
 
 export function parseMarkdownToDocx(text: string): Paragraph[] {
   const lines = text.split("\n");
@@ -124,7 +151,8 @@ export function parseMarkdownToPdfText(text: string): string {
     .trim();
 }
 
-export async function downloadReportAsPdf(result: ComplianceReportResult): Promise<void> {
+export async function downloadReportAsPdf(result: ComplianceReportResult, locale?: Locale): Promise<void> {
+  const L = resolveLocale(locale);
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
   // Embed Noto Sans SC (supports Chinese) before any text is written.
@@ -144,16 +172,18 @@ export async function downloadReportAsPdf(result: ComplianceReportResult): Promi
   const contentWidth = pageWidth - margin * 2;
   let y = margin;
 
-  const MARKET_LABELS_PDF: Record<string, string> = {
-    EU: "欧盟", US: "美国", UK: "英国", CN: "中国",
-    AU: "澳大利亚", SA: "沙特", AE: "阿联酋",
-  };
-  const markets = result.targetMarkets.map((m) => MARKET_LABELS_PDF[m] ?? m).join("、");
+  const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
+  const reportTitle = tx("report.title", L);
+  const reportFooter = tx("report.footer", L);
+  const lblGrade = tx("report.labels.productGrade", L);
+  const lblCategory = tx("report.labels.productCategory", L);
+  const lblMarket = tx("report.labels.productMarket", L);
+  const statusText = complianceStatusLabel(result.complianceStatus, L);
 
   // ── Header ────────────────────────────────────────────
   doc.setFontSize(10);
   doc.setTextColor(180);
-  doc.text("火鹰合规 · Blaze Hawks 合规扫描报告", margin, y);
+  doc.text(reportTitle, margin, y);
   y += 6;
   doc.setDrawColor(220);
   doc.line(margin, y, pageWidth - margin, y);
@@ -170,9 +200,9 @@ export async function downloadReportAsPdf(result: ComplianceReportResult): Promi
   doc.text(String(result.complianceScore), margin, y + 14);
   doc.setFontSize(12);
   doc.setTextColor(100);
-  doc.text(`等级：${result.scoreGrade}`, margin + 28, y + 8);
-  doc.text(`品类：${result.productCategory}`, margin + 28, y + 16);
-  doc.text(`市场：${markets}`, margin + 28, y + 24);
+  doc.text(`${lblGrade}：${result.scoreGrade}`, margin + 28, y + 8);
+  doc.text(`${lblCategory}：${result.productCategory}`, margin + 28, y + 16);
+  doc.text(`${lblMarket}：${markets}`, margin + 28, y + 24);
   y += 36;
 
   // ── Status badge ─────────────────────────────────────
@@ -182,7 +212,6 @@ export async function downloadReportAsPdf(result: ComplianceReportResult): Promi
   doc.setFillColor(fillR, fillG, fillB);
   doc.setDrawColor(scoreColor[0], scoreColor[1], scoreColor[2]);
   doc.setLineWidth(0.4);
-  const statusText = STATUS_LABELS[result.complianceStatus] ?? result.complianceStatus;
   const statusW = doc.getTextWidth(` ${statusText} `) + 4;
   doc.roundedRect(margin, y, statusW, 7, 1.5, 1.5, "FD");
   doc.setFontSize(9);
@@ -220,20 +249,33 @@ export async function downloadReportAsPdf(result: ComplianceReportResult): Promi
     doc.setFontSize(8);
     doc.setTextColor(180, 180, 180);
     doc.text(
-      `火鹰合规报告 · ${result.sessionId} · 第 ${i} / ${pageCount} 页`,
+      `${reportFooter} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i} / ${pageCount} ${L === "zh" ? "页" : ""}`,
       pageWidth / 2,
       pageHeight - 8,
       { align: "center" }
     );
   }
 
-  const filename = `合规报告_${result.sessionId}_${result.complianceStatus}.pdf`;
-  doc.save(filename);
+  const filenameBase = L === "zh"
+    ? `合规报告_${result.sessionId}_${result.complianceStatus}.pdf`
+    : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.pdf`;
+  doc.save(filenameBase);
 }
 
-export async function downloadReportAsDocx(result: ComplianceReportResult): Promise<void> {
-  const markets = result.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join("、");
-  const statusText = STATUS_LABELS[result.complianceStatus] ?? result.complianceStatus;
+export async function downloadReportAsDocx(result: ComplianceReportResult, locale?: Locale): Promise<void> {
+  const L = resolveLocale(locale);
+  const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
+  const statusText = complianceStatusLabel(result.complianceStatus, L);
+  const title = tx("report.title", L);
+  const lblScore = tx("report.comprehensiveScore", L);
+  const lblGrade = tx("report.labels.productGrade", L);
+  const lblCategory = tx("report.labels.productCategory", L);
+  const lblMarket = tx("report.labels.productMarket", L);
+  const lblStatus = tx("report.labels.complianceStatus", L);
+  const lblSessionId = tx("report.sessionId", L);
+  const lblGeneratedAt = tx("report.generatedAt", L);
+  const brand = tx("report.brand", L);
+  const dateFmt = L === "zh" ? "zh-CN" : "en-US";
 
   const doc = new Document({
     styles: {
@@ -258,7 +300,7 @@ export async function downloadReportAsDocx(result: ComplianceReportResult): Prom
             heading: HeadingLevel.HEADING_1,
             children: [
               new TextRun({
-                text: "火鹰合规 · 合规扫描报告",
+                text: title,
                 bold: true,
                 size: 36,
                 color: "C41E3A",
@@ -280,7 +322,7 @@ export async function downloadReportAsDocx(result: ComplianceReportResult): Prom
                         alignment: AlignmentType.CENTER,
                       }),
                       new Paragraph({
-                        children: [new TextRun({ text: "综合评分", size: 18, color: "888888" })],
+                        children: [new TextRun({ text: lblScore, size: 18, color: "888888" })],
                         alignment: AlignmentType.CENTER,
                       }),
                     ],
@@ -288,10 +330,10 @@ export async function downloadReportAsDocx(result: ComplianceReportResult): Prom
                   }),
                   new TableCell({
                     children: [
-                      new Paragraph({ children: [new TextRun({ text: `等级：${result.scoreGrade}`, size: 22 })], spacing: { after: 80 } }),
-                      new Paragraph({ children: [new TextRun({ text: `品类：${result.productCategory}`, size: 22 })], spacing: { after: 80 } }),
-                      new Paragraph({ children: [new TextRun({ text: `市场：${markets}`, size: 22 })], spacing: { after: 80 } }),
-                      new Paragraph({ children: [new TextRun({ text: `合规状态：${statusText}`, size: 22, bold: true })] }),
+                      new Paragraph({ children: [new TextRun({ text: `${lblGrade}：${result.scoreGrade}`, size: 22 })], spacing: { after: 80 } }),
+                      new Paragraph({ children: [new TextRun({ text: `${lblCategory}：${result.productCategory}`, size: 22 })], spacing: { after: 80 } }),
+                      new Paragraph({ children: [new TextRun({ text: `${lblMarket}：${markets}`, size: 22 })], spacing: { after: 80 } }),
+                      new Paragraph({ children: [new TextRun({ text: `${lblStatus}：${statusText}`, size: 22, bold: true })] }),
                     ],
                     width: { size: 75, type: WidthType.PERCENTAGE },
                   }),
@@ -317,7 +359,7 @@ export async function downloadReportAsDocx(result: ComplianceReportResult): Prom
           new Paragraph({ text: "" }),
           new Paragraph({
             children: [
-              new TextRun({ text: `会话 ID：${result.sessionId}  |  生成时间：${new Date(result.generatedAt).toLocaleString("zh-CN")}  |  火鹰合规 Blaze Hawks`, size: 18, color: "888888" }),
+              new TextRun({ text: `${lblSessionId}：${result.sessionId}  |  ${lblGeneratedAt}：${new Date(result.generatedAt).toLocaleString(dateFmt)}  |  ${brand}`, size: 18, color: "888888" }),
             ],
           }),
         ],
@@ -329,7 +371,9 @@ export async function downloadReportAsDocx(result: ComplianceReportResult): Prom
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `合规报告_${result.sessionId}_${result.complianceStatus}.docx`;
+  a.download = L === "zh"
+    ? `合规报告_${result.sessionId}_${result.complianceStatus}.docx`
+    : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.docx`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -442,7 +486,8 @@ function pdfBullet(doc: jsPDF, y: { cur: number }, margin: number, pageWidth: nu
   y.cur += 6;
 }
 
-export async function downloadProfitReportAsPdf(result: ProfitReportResult): Promise<void> {
+export async function downloadProfitReportAsPdf(result: ProfitReportResult, locale?: Locale): Promise<void> {
+  const L = resolveLocale(locale);
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   await embedFont(doc);
 
@@ -452,31 +497,71 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult): Pro
   const contentWidth = pageWidth - margin * 2;
   const y = { cur: margin };
 
+  // Translation shortcuts
+  const rp = (k: string) => tx(`report.${k}`, L);
+  const lblNoCompliance = rp("labels.noCompliance");
+  const lblWithCompliance = rp("labels.withCompliance");
+  const colCostItem = rp("columns.costItem");
+  const colBomCost = rp("columns.bomCost");
+  const colPackaging = rp("columns.packaging");
+  const colCertAmort = rp("columns.certAmortization");
+  const colEprFee = rp("columns.eprFee");
+  const colAfterSales = rp("columns.afterSales");
+  const colWarranty = rp("columns.warranty");
+  const colLogistics = rp("columns.logistics");
+  const colTotalCost = rp("columns.totalDirectCost");
+  const colRevenue = rp("columns.revenue");
+  const colAvgPrice = rp("columns.avgPrice");
+  const colGrossProfit = rp("columns.grossProfit");
+  const colGrossMargin = rp("columns.grossMargin");
+  const lblGrossProfit = rp("cards.grossProfit");
+  const lblRiskExposure = rp("cards.riskExposure");
+  const lblBreakevenUnits = rp("cards.breakevenUnits");
+  const lblPricingAdvice = rp("cards.pricingAdvice");
+  const lblMode = L === "zh" ? "模式" : "Mode";
+  const lblAnalysis = L === "zh" ? "分析项" : "Analysis Item";
+  const lblDiff = L === "zh" ? "差值" : "Diff.";
+  const lblExplanation = L === "zh" ? "说明" : "Notes";
+  const lblCompliancePremium = L === "zh" ? "合规溢价" : "Compliance Premium";
+  const lblBreakeven = L === "zh" ? "盈亏平衡台数" : "Break-even Units";
+  const lblSuggestedPrice = L === "zh" ? "建议定价" : "Suggested Price";
+  const lblRiskAdjNet = L === "zh" ? "经风险调整净收益" : "Risk-Adjusted Net";
+  const lblZeroRisk = L === "zh" ? "零风险敞口" : "Zero risk exposure";
+  const lblSeizureRisk = L === "zh" ? "35-50% 扣押概率" : "35-50% seizure probability";
+  const lblPricingStrategy = L === "zh" ? "定价策略" : "Pricing Strategy";
+  const lblFullReport = L === "zh" ? "完整分析报告" : "Full Analysis Report";
+
+  // Currency symbol based on locale (reports are CNY)
+  const ccy = "¥";
+  const dateFmt = L === "zh" ? "zh-CN" : "en-US";
+
   // ── Header ────────────────────────────────────────────────────────────────
   doc.setFontSize(9);
   doc.setTextColor(180);
   doc.setFont("NotoSansSC", "normal");
-  doc.text("火鹰合规 · 合规成本与利润分析报告", margin, y.cur);
+  doc.text(rp("profitTitle"), margin, y.cur);
   y.cur += 5;
   doc.setDrawColor(220);
   doc.line(margin, y.cur, pageWidth - margin, y.cur);
   y.cur += 7;
 
   // ── Title ────────────────────────────────────────────────────────────────
+  const title = rp("title");
   doc.setFontSize(20);
   doc.setTextColor(40, 40, 40);
   doc.setFont("NotoSansSC", "bold");
-  doc.text("合规成本与利润分析报告", margin, y.cur);
+  doc.text(title, margin, y.cur);
   y.cur += 7;
   doc.setFontSize(9);
   doc.setTextColor(140);
   doc.setFont("NotoSansSC", "normal");
-  doc.text(`${result.productType} · ${result.market} 市场  |  ${new Date(result.generatedAt).toLocaleDateString("zh-CN")}`, margin, y.cur);
+  const lblProduct = tx("report.labels.product", L);
+  const lblMkt = tx("report.labels.market", L);
+  doc.text(`${lblProduct}：${result.productType}　　${lblMkt}：${result.market}　　${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, margin, y.cur);
   y.cur += 10;
 
   // ── Summary Cards ────────────────────────────────────────────────────────
   const halfW = (contentWidth - 4) / 2;
-
   const renderCard = (
     x: number, label: string, gp: number, risk: number,
     bg: number[], border: number[], fg: number[],
@@ -489,43 +574,44 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult): Pro
     doc.setTextColor(fg[0], fg[1], fg[2]);
     doc.text(label, x + 4, y.cur + 5);
     doc.setFontSize(17);
-    doc.text(`¥${gp.toFixed(0)}`, x + 4, y.cur + 13);
+    doc.text(`${ccy}${gp.toFixed(0)}`, x + 4, y.cur + 13);
     doc.setFontSize(7.5);
-    doc.text(`风险敞口 ¥${risk.toFixed(0)}`, x + 4, y.cur + 20);
+    doc.text(`${lblRiskExposure} ${ccy}${risk.toFixed(0)}`, x + 4, y.cur + 20);
   };
 
-  renderCard(margin, "裸奔模式", result.barebone.gp, result.bareboneRiskExposure, [255, 238, 238], [200, 60, 60], [180, 50, 50]);
-  renderCard(margin + halfW + 4, "合规模式", result.compliant.gp, result.compliantRiskExposure, [238, 255, 244], [50, 180, 100], [30, 150, 70]);
+  renderCard(margin, lblNoCompliance, result.barebone.gp, result.bareboneRiskExposure, [255, 238, 238], [200, 60, 60], [180, 50, 50]);
+  renderCard(margin + halfW + 4, lblWithCompliance, result.compliant.gp, result.compliantRiskExposure, [238, 255, 244], [50, 180, 100], [30, 150, 70]);
   y.cur += 30;
 
   // ── Section 1: Cost Comparison ──────────────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "一、成本对比明细（合规模式 vs 裸奔模式）");
+  const s1Title = `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`;
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, s1Title);
   pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    ["成本项", "裸奔模式", "合规模式", "差值"],
-    ["BOM 材料成本", `¥${result.barebone.bom.toFixed(2)}`, `¥${result.compliant.bom.toFixed(2)}`, `¥${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
-    ["包装与印刷", `¥${result.barebone.packaging.toFixed(2)}`, `¥${result.compliant.packaging.toFixed(2)}`, `¥${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
-    ["认证费摊销", `¥${result.barebone.cert.toFixed(2)}`, `¥${result.compliant.cert.toFixed(2)}`, `¥${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
-    ["EPR 运营费", `¥${result.barebone.epr.toFixed(2)}`, `¥${result.compliant.epr.toFixed(2)}`, `¥${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
-    ["售后/保修预留", `¥${result.barebone.warranty.toFixed(2)}`, `¥${result.compliant.warranty.toFixed(2)}`, `¥${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
-    ["物流与渠道", `¥${result.barebone.logistics.toFixed(2)}`, `¥${result.compliant.logistics.toFixed(2)}`, `¥${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
-    ["总直接成本", `¥${result.barebone.total.toFixed(2)}`, `¥${result.compliant.total.toFixed(2)}`, `¥${(result.compliant.total - result.barebone.total).toFixed(2)}`],
+    [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
+    [colBomCost, `${ccy}${result.barebone.bom.toFixed(2)}`, `${ccy}${result.compliant.bom.toFixed(2)}`, `${ccy}${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
+    [colPackaging, `${ccy}${result.barebone.packaging.toFixed(2)}`, `${ccy}${result.compliant.packaging.toFixed(2)}`, `${ccy}${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
+    [colCertAmort, `${ccy}${result.barebone.cert.toFixed(2)}`, `${ccy}${result.compliant.cert.toFixed(2)}`, `${ccy}${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
+    [colEprFee, `${ccy}${result.barebone.epr.toFixed(2)}`, `${ccy}${result.compliant.epr.toFixed(2)}`, `${ccy}${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
+    [`${colAfterSales}/${colWarranty}`, `${ccy}${result.barebone.warranty.toFixed(2)}`, `${ccy}${result.compliant.warranty.toFixed(2)}`, `${ccy}${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
+    [colLogistics, `${ccy}${result.barebone.logistics.toFixed(2)}`, `${ccy}${result.compliant.logistics.toFixed(2)}`, `${ccy}${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
+    [colTotalCost, `${ccy}${result.barebone.total.toFixed(2)}`, `${ccy}${result.compliant.total.toFixed(2)}`, `${ccy}${(result.compliant.total - result.barebone.total).toFixed(2)}`],
   ], [58, 28, 28, 28]);
 
   // ── Section 2: Revenue Comparison ─────────────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "二、收益对比");
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("revenueComparison"));
   pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    ["收益项", "裸奔模式", "合规模式", "差值"],
-    ["平均售价（ASP）", `¥${result.barebone.asp.toFixed(2)}`, `¥${result.compliant.asp.toFixed(2)}`, `¥${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
-    ["毛利润（单台）", `¥${result.barebone.gp.toFixed(2)}`, `¥${result.compliant.gp.toFixed(2)}`, `¥${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
-    ["毛利率", `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
+    [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
+    [`${colAvgPrice}（ASP）`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
+    [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
+    [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
   ], [58, 28, 28, 28]);
 
   // ── Section 3: Risk-Adjusted Net Income ──────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "三、风险调整后净收益对比");
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("riskAdjustedRevenue"));
   pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    ["模式", "毛利润", "风险敞口", "经风险调整净收益"],
-    ["合规模式", `¥${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? "零风险敞口" : `¥${result.compliantRiskExposure.toFixed(0)}`, `¥${(result.compliant.gp - result.compliantRiskExposure / 100).toFixed(2)}`],
-    ["裸奔模式", `¥${result.barebone.gp.toFixed(2)}`, "35-50% 扣押概率", `¥${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
+    [lblMode, colGrossProfit, lblRiskExposure, lblRiskAdjNet],
+    [lblWithCompliance, `${ccy}${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? lblZeroRisk : `${ccy}${result.compliantRiskExposure.toFixed(0)}`, `${ccy}${(result.compliant.gp - result.compliantRiskExposure / 100).toFixed(2)}`],
+    [lblNoCompliance, `${ccy}${result.barebone.gp.toFixed(2)}`, lblSeizureRisk, `${ccy}${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
   ], [40, 26, 40, 36]);
 
   if (result.riskNote) {
@@ -533,22 +619,22 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult): Pro
   }
 
   // ── Section 4: Breakeven Analysis ───────────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "四、盈亏平衡分析");
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("breakEvenAnalysis"));
   pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    ["分析项", "裸奔模式", "合规模式", "说明"],
-    ["合规溢价", "—", result.premiumPct || "—", result.premiumPct ? `成本增加 ${result.premiumPct}` : "—"],
-    ["盈亏平衡台数", "—", result.breakevenUnits || "—", result.breakevenUnits ? `约 ${result.breakevenUnits}` : "—"],
-    ["建议定价", "—", `¥${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
+    [lblAnalysis, lblNoCompliance, lblWithCompliance, lblExplanation],
+    [lblCompliancePremium, "—", result.premiumPct || "—", result.premiumPct ? `${L === "zh" ? "成本增加" : "Cost increase"} ${result.premiumPct}` : "—"],
+    [lblBreakevenUnits, "—", result.breakevenUnits || "—", result.breakevenUnits ? `${L === "zh" ? "约" : "Approx."} ${result.breakevenUnits}` : "—"],
+    [lblSuggestedPrice, "—", `${ccy}${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
   ], [40, 26, 36, 40]);
 
   if (result.pricingStrategy) {
-    pdfBullet(doc, y, margin, pageWidth, pageHeight, `定价策略：${result.pricingStrategy}`);
+    pdfBullet(doc, y, margin, pageWidth, pageHeight, `${lblPricingStrategy}：${result.pricingStrategy}`);
   }
 
   // ── Section 5: Conclusions ──────────────────────────────────────────────
   const conclusionText = result.conclusions || result.keyConclusion || "";
   if (conclusionText) {
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "五、关键结论");
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("keyConclusions"));
     for (const line of conclusionText.split("\n").filter(Boolean)) {
       pdfBullet(doc, y, margin, pageWidth, pageHeight, line);
     }
@@ -556,7 +642,7 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult): Pro
 
   // ── Section 6: References ──────────────────────────────────────────────
   if (result.references) {
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "六、法规引用");
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("regulationCitations"));
     for (const line of result.references.split("\n").filter(Boolean)) {
       const clean = line.replace(/^[-*]\s*/, "• ");
       pdfBullet(doc, y, margin, pageWidth, pageHeight, clean);
@@ -565,7 +651,7 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult): Pro
 
   // ── Fallback: Full markdown report ─────────────────────────────────────
   if (!result.references && !result.conclusions && result.report) {
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "完整分析报告");
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, lblFullReport);
     pdfBody(doc, y, margin, pageWidth, pageHeight, parseMarkdownToPdfText(result.report), 8.5);
   }
 
@@ -576,14 +662,14 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult): Pro
     doc.setFontSize(8);
     doc.setTextColor(200, 200, 200);
     doc.text(
-      `火鹰合规 · 合规成本与利润分析报告 · ${result.sessionId} · 第 ${i}/${pageCount} 页`,
+      `${rp("profitTitle")} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i}/${pageCount}`,
       pageWidth / 2,
       pageHeight - 6,
       { align: "center" }
     );
   }
 
-  doc.save(`成本利润分析报告_${result.sessionId}.pdf`);
+  doc.save(L === "zh" ? `成本利润分析报告_${result.sessionId}.pdf` : `CostProfitAnalysisReport_${result.sessionId}.pdf`);
 }
 
 // ── DOCX Profit Export ────────────────────────────────────────────────────────
@@ -631,36 +717,72 @@ function docxTable(rows: string[][], colColors: string[]): Table {
   });
 }
 
-export async function downloadProfitReportAsDocx(result: ProfitReportResult): Promise<void> {
+export async function downloadProfitReportAsDocx(result: ProfitReportResult, locale?: Locale): Promise<void> {
+  const L = resolveLocale(locale);
+  const ccy = "¥";
+  const dateFmt = L === "zh" ? "zh-CN" : "en-US";
+
+  // Translation shortcuts
+  const rp = (k: string) => tx(`report.${k}`, L);
+  const lblNoCompliance = rp("labels.noCompliance");
+  const lblWithCompliance = rp("labels.withCompliance");
+  const colCostItem = rp("columns.costItem");
+  const colBomCost = rp("columns.bomCost");
+  const colPackaging = rp("columns.packaging");
+  const colCertAmort = rp("columns.certAmortization");
+  const colEprFee = rp("columns.eprFee");
+  const colAfterSales = rp("columns.afterSales");
+  const colWarranty = rp("columns.warranty");
+  const colLogistics = rp("columns.logistics");
+  const colTotalCost = rp("columns.totalDirectCost");
+  const colRevenue = rp("columns.revenue");
+  const colAvgPrice = rp("columns.avgPrice");
+  const colGrossProfit = rp("columns.grossProfit");
+  const colGrossMargin = rp("columns.grossMargin");
+  const lblGrossProfit = rp("cards.grossProfit");
+  const lblRiskExposure = rp("cards.riskExposure");
+  const lblMode = L === "zh" ? "模式" : "Mode";
+  const lblAnalysis = L === "zh" ? "分析项" : "Analysis Item";
+  const lblDiff = L === "zh" ? "差值" : "Diff.";
+  const lblExplanation = L === "zh" ? "说明" : "Notes";
+  const lblCompliancePremium = L === "zh" ? "合规溢价" : "Compliance Premium";
+  const lblBreakeven = L === "zh" ? "盈亏平衡台数" : "Break-even Units";
+  const lblSuggestedPrice = L === "zh" ? "建议定价" : "Suggested Price";
+  const lblRiskAdjNet = L === "zh" ? "经风险调整净收益" : "Risk-Adjusted Net";
+  const lblZeroRisk = L === "zh" ? "零风险敞口" : "Zero risk exposure";
+  const lblSeizureRisk = L === "zh" ? "35-50% 扣押概率" : "35-50% seizure probability";
+  const lblPricingStrategy = L === "zh" ? "定价策略" : "Pricing Strategy";
+  const lblFullReport = L === "zh" ? "完整分析报告" : "Full Analysis Report";
+
   const costRows: string[][] = [
-    ["成本项", "裸奔模式", "合规模式", "差值"],
-    ["BOM 材料成本", `¥${result.barebone.bom.toFixed(2)}`, `¥${result.compliant.bom.toFixed(2)}`, `¥${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
-    ["包装与印刷", `¥${result.barebone.packaging.toFixed(2)}`, `¥${result.compliant.packaging.toFixed(2)}`, `¥${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
-    ["认证费摊销", `¥${result.barebone.cert.toFixed(2)}`, `¥${result.compliant.cert.toFixed(2)}`, `¥${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
-    ["EPR 运营费", `¥${result.barebone.epr.toFixed(2)}`, `¥${result.compliant.epr.toFixed(2)}`, `¥${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
-    ["售后/保修预留", `¥${result.barebone.warranty.toFixed(2)}`, `¥${result.compliant.warranty.toFixed(2)}`, `¥${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
-    ["物流与渠道", `¥${result.barebone.logistics.toFixed(2)}`, `¥${result.compliant.logistics.toFixed(2)}`, `¥${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
-    ["总直接成本", `¥${result.barebone.total.toFixed(2)}`, `¥${result.compliant.total.toFixed(2)}`, `¥${(result.compliant.total - result.barebone.total).toFixed(2)}`],
+    [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
+    [colBomCost, `${ccy}${result.barebone.bom.toFixed(2)}`, `${ccy}${result.compliant.bom.toFixed(2)}`, `${ccy}${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
+    [colPackaging, `${ccy}${result.barebone.packaging.toFixed(2)}`, `${ccy}${result.compliant.packaging.toFixed(2)}`, `${ccy}${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
+    [colCertAmort, `${ccy}${result.barebone.cert.toFixed(2)}`, `${ccy}${result.compliant.cert.toFixed(2)}`, `${ccy}${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
+    [colEprFee, `${ccy}${result.barebone.epr.toFixed(2)}`, `${ccy}${result.compliant.epr.toFixed(2)}`, `${ccy}${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
+    [`${colAfterSales}/${colWarranty}`, `${ccy}${result.barebone.warranty.toFixed(2)}`, `${ccy}${result.compliant.warranty.toFixed(2)}`, `${ccy}${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
+    [colLogistics, `${ccy}${result.barebone.logistics.toFixed(2)}`, `${ccy}${result.compliant.logistics.toFixed(2)}`, `${ccy}${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
+    [colTotalCost, `${ccy}${result.barebone.total.toFixed(2)}`, `${ccy}${result.compliant.total.toFixed(2)}`, `${ccy}${(result.compliant.total - result.barebone.total).toFixed(2)}`],
   ];
 
   const revenueRows: string[][] = [
-    ["收益项", "裸奔模式", "合规模式", "差值"],
-    ["平均售价（ASP）", `¥${result.barebone.asp.toFixed(2)}`, `¥${result.compliant.asp.toFixed(2)}`, `¥${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
-    ["毛利润（单台）", `¥${result.barebone.gp.toFixed(2)}`, `¥${result.compliant.gp.toFixed(2)}`, `¥${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
-    ["毛利率", `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
+    [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
+    [`${colAvgPrice}（ASP）`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
+    [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
+    [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
   ];
 
   const riskRows: string[][] = [
-    ["模式", "毛利润", "风险敞口", "经风险调整净收益"],
-    ["合规模式", `¥${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? "零风险敞口" : `¥${result.compliantRiskExposure.toFixed(0)}`, `¥${result.compliant.gp.toFixed(2)}`],
-    ["裸奔模式", `¥${result.barebone.gp.toFixed(2)}`, "35-50% 扣押概率", `¥${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
+    [lblMode, colGrossProfit, lblRiskExposure, lblRiskAdjNet],
+    [lblWithCompliance, `${ccy}${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? lblZeroRisk : `${ccy}${result.compliantRiskExposure.toFixed(0)}`, `${ccy}${result.compliant.gp.toFixed(2)}`],
+    [lblNoCompliance, `${ccy}${result.barebone.gp.toFixed(2)}`, lblSeizureRisk, `${ccy}${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
   ];
 
   const breakevenRows: string[][] = [
-    ["分析项", "裸奔模式", "合规模式", "说明"],
-    ["合规溢价", "—", result.premiumPct || "—", result.premiumPct ? `成本增加 ${result.premiumPct}` : "—"],
-    ["盈亏平衡台数", "—", result.breakevenUnits || "—", result.breakevenUnits ? `约 ${result.breakevenUnits}` : "—"],
-    ["建议定价", "—", `¥${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
+    [lblAnalysis, lblNoCompliance, lblWithCompliance, lblExplanation],
+    [lblCompliancePremium, "—", result.premiumPct || "—", result.premiumPct ? `${L === "zh" ? "成本增加" : "Cost increase"} ${result.premiumPct}` : "—"],
+    [lblBreakeven, "—", result.breakevenUnits || "—", result.breakevenUnits ? `${L === "zh" ? "约" : "Approx."} ${result.breakevenUnits}` : "—"],
+    [lblSuggestedPrice, "—", `${ccy}${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
   ];
 
   const conclusionParas: Paragraph[] = [];
@@ -679,6 +801,10 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult): Pr
     }
   }
 
+  const lblSessionId = rp("sessionId");
+  const lblGeneratedAt = rp("generatedAt");
+  const brand = rp("brand");
+
   const doc = new Document({
     styles: {
       paragraphStyles: [{ id: "Normal", name: "Normal", run: { font: "Arial", size: 22 } }],
@@ -690,11 +816,11 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult): Pr
           // Title
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            children: [new TextRun({ text: "火鹰合规 · 合规成本与利润分析报告", bold: true, size: 36, color: "C41E3A" })],
+            children: [new TextRun({ text: rp("profitTitle"), bold: true, size: 36, color: "C41E3A" })],
             spacing: { after: 200 },
           }),
           new Paragraph({
-            children: [new TextRun({ text: `产品：${result.productType}　　市场：${result.market}　　日期：${new Date(result.generatedAt).toLocaleDateString("zh-CN")}`, size: 22, color: "666666" })],
+            children: [new TextRun({ text: `${tx("report.labels.product", L)}：${result.productType}　　${tx("report.labels.market", L)}：${result.market}　　${tx("report.labels.date", L)}：${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, size: 22, color: "666666" })],
             spacing: { after: 240 },
           }),
 
@@ -704,14 +830,14 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult): Pr
             rows: [new TableRow({
               children: [
                 new TableCell({ children: [
-                  new Paragraph({ children: [new TextRun({ text: "裸奔模式", bold: true, size: 20, color: "CC4444" })], spacing: { after: 80 } }),
-                  new Paragraph({ children: [new TextRun({ text: `毛利润：¥${result.barebone.gp.toFixed(0)}`, size: 24, bold: true, color: "CC4444" })], spacing: { after: 60 } }),
-                  new Paragraph({ children: [new TextRun({ text: `风险敞口：¥${result.bareboneRiskExposure.toFixed(0)}`, size: 20, color: "994444" })], spacing: { after: 0 } }),
+                  new Paragraph({ children: [new TextRun({ text: lblNoCompliance, bold: true, size: 20, color: "CC4444" })], spacing: { after: 80 } }),
+                  new Paragraph({ children: [new TextRun({ text: `${lblGrossProfit}：${ccy}${result.barebone.gp.toFixed(0)}`, size: 24, bold: true, color: "CC4444" })], spacing: { after: 60 } }),
+                  new Paragraph({ children: [new TextRun({ text: `${lblRiskExposure}：${ccy}${result.bareboneRiskExposure.toFixed(0)}`, size: 20, color: "994444" })], spacing: { after: 0 } }),
                 ], width: { size: 50, type: WidthType.PERCENTAGE }, shading: { fill: "FFF0F0", type: "solid" } }),
                 new TableCell({ children: [
-                  new Paragraph({ children: [new TextRun({ text: "合规模式", bold: true, size: 20, color: "1E8A46" })], spacing: { after: 80 } }),
-                  new Paragraph({ children: [new TextRun({ text: `毛利润：¥${result.compliant.gp.toFixed(0)}`, size: 24, bold: true, color: "1E8A46" })], spacing: { after: 60 } }),
-                  new Paragraph({ children: [new TextRun({ text: `风险敞口：¥${result.compliantRiskExposure.toFixed(0)}`, size: 20, color: "1A6636" })], spacing: { after: 0 } }),
+                  new Paragraph({ children: [new TextRun({ text: lblWithCompliance, bold: true, size: 20, color: "1E8A46" })], spacing: { after: 80 } }),
+                  new Paragraph({ children: [new TextRun({ text: `${lblGrossProfit}：${ccy}${result.compliant.gp.toFixed(0)}`, size: 24, bold: true, color: "1E8A46" })], spacing: { after: 60 } }),
+                  new Paragraph({ children: [new TextRun({ text: `${lblRiskExposure}：${ccy}${result.compliantRiskExposure.toFixed(0)}`, size: 20, color: "1A6636" })], spacing: { after: 0 } }),
                 ], width: { size: 50, type: WidthType.PERCENTAGE }, shading: { fill: "F0FFF5", type: "solid" } }),
               ],
             })],
@@ -726,45 +852,45 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult): Pr
           new Paragraph({ text: "" }),
 
           // Section 1
-          mkSectionH("一、成本对比明细（合规模式 vs 裸奔模式）"),
+          mkSectionH(`${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`),
           docxTable(costRows, ["BB3333", "1A7A40", "333333"]),
           new Paragraph({ text: "" }),
 
           // Section 2
-          mkSectionH("二、收益对比"),
+          mkSectionH(rp("revenueComparison")),
           docxTable(revenueRows, ["BB3333", "1A7A40", "333333"]),
           new Paragraph({ text: "" }),
 
           // Section 3
-          mkSectionH("三、风险调整后净收益对比"),
+          mkSectionH(rp("riskAdjustedRevenue")),
           docxTable(riskRows, ["BB3333", "1A7A40", "333333"]),
           ...(result.riskNote ? [mkBullet(result.riskNote)] : []),
           new Paragraph({ text: "" }),
 
           // Section 4
-          mkSectionH("四、盈亏平衡分析"),
+          mkSectionH(rp("breakEvenAnalysis")),
           docxTable(breakevenRows, ["BB3333", "1A7A40", "333333"]),
-          ...(result.pricingStrategy ? [mkBullet(`定价策略：${result.pricingStrategy}`)] : []),
+          ...(result.pricingStrategy ? [mkBullet(`${lblPricingStrategy}：${result.pricingStrategy}`)] : []),
           new Paragraph({ text: "" }),
 
           // Section 5
           ...(conclusionParas.length > 0
-            ? [mkSectionH("五、关键结论"), ...conclusionParas, new Paragraph({ text: "" })]
+            ? [mkSectionH(rp("keyConclusions")), ...conclusionParas, new Paragraph({ text: "" })]
             : []),
 
           // Section 6
           ...(refParas.length > 0
-            ? [mkSectionH("六、法规引用"), ...refParas, new Paragraph({ text: "" })]
+            ? [mkSectionH(rp("regulationCitations")), ...refParas, new Paragraph({ text: "" })]
             : []),
 
           // Fallback full report
           ...(!result.references && !result.conclusions && result.report
-            ? [mkSectionH("完整分析报告"), ...parseMarkdownToDocx(result.report), new Paragraph({ text: "" })]
+            ? [mkSectionH(lblFullReport), ...parseMarkdownToDocx(result.report), new Paragraph({ text: "" })]
             : []),
 
           // Footer
           new Paragraph({
-            children: [new TextRun({ text: `会话 ID：${result.sessionId}  |  生成时间：${new Date(result.generatedAt).toLocaleString("zh-CN")}  |  火鹰合规 Blaze Hawks`, size: 18, color: "888888" })],
+            children: [new TextRun({ text: `${lblSessionId}：${result.sessionId}  |  ${lblGeneratedAt}：${new Date(result.generatedAt).toLocaleString(dateFmt)}  |  ${brand}`, size: 18, color: "888888" })],
           }),
         ],
       },
@@ -775,7 +901,7 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult): Pr
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `成本利润分析报告_${result.sessionId}.docx`;
+  a.download = L === "zh" ? `成本利润分析报告_${result.sessionId}.docx` : `CostProfitAnalysisReport_${result.sessionId}.docx`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
