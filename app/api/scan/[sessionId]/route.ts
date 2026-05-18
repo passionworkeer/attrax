@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { createMockScanResult } from "@/lib/mock/scan-result";
 import { getSession } from "@/lib/pipeline/session-store";
+import { t as serverT } from "@/lib/i18n-server";
 
 export const runtime = "nodejs";
 
@@ -26,7 +27,7 @@ export async function GET(
       {
         error: {
           code: "NOT_FOUND",
-          message: "未找到对应扫描会话。",
+          message: serverT("errors.sessionNotFound", "zh"),
         },
       },
       { status: 404 }

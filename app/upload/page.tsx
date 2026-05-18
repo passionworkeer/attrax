@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UploadForm } from "@/components/upload/UploadForm";
+import { useTranslation } from "@/lib/i18n";
 import type { Category, Market } from "@/components/upload/UploadForm";
 
 type ScanStartResponse = {
@@ -12,6 +13,7 @@ type ScanStartResponse = {
 };
 
 export default function UploadPage() {
+  const { t } = useTranslation();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -47,17 +49,17 @@ export default function UploadPage() {
 
       if (!response.ok) {
         const errorPayload = payload as { error?: { message?: string } };
-        throw new Error(errorPayload.error?.message ?? "提交失败，请稍后重试。");
+        throw new Error(errorPayload.error?.message ?? t("errors.uploadFailed"));
       }
 
       if (!("sessionId" in payload)) {
-        throw new Error("接口未返回有效的 sessionId。");
+        throw new Error(t("errors.invalidSessionId"));
       }
 
       router.push(`/burning/${payload.sessionId}`);
     } catch (caughtError) {
       setError(
-        caughtError instanceof Error ? caughtError.message : "提交失败，请稍后重试。"
+        caughtError instanceof Error ? caughtError.message : t("errors.uploadFailed")
       );
     } finally {
       setSubmitting(false);
@@ -71,10 +73,10 @@ export default function UploadPage() {
           Upload
         </p>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight text-foreground">
-          上传产品资料
+          {t("upload.title")}
         </h1>
         <p className="mt-3 text-sm leading-6 text-muted-foreground">
-          支持上传图片（最多 8 张）和产品文档（PDF / DOCX / HTML，最多 5 份）。
+          {t("upload.description")}
         </p>
 
         <UploadForm

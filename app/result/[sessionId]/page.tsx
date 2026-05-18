@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { buttonVariants } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n";
 import { mockScanResult, mockProfitReport, mockComplianceReportResult } from "@/lib/mock/scan-result";
 import { downloadReportAsPdf, downloadReportAsDocx } from "@/lib/report-export";
 import { ProfitReportView } from "@/components/result/ProfitReportView";
@@ -39,10 +40,10 @@ function formatBytes(bytes: number): string {
 }
 
 const STATUS_META = {
-  PASS: { label: "通过", color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/30" },
-  WARN: { label: "警告", color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/30" },
-  REJECTED: { label: "拒绝", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30" },
-  UNKNOWN: { label: "未知", color: "text-gray-400", bg: "bg-gray-500/10", border: "border-gray-500/30" },
+  PASS: { labelKey: "complianceStatus.passed", color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/30" },
+  WARN: { labelKey: "complianceStatus.warning", color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/30" },
+  REJECTED: { labelKey: "complianceStatus.rejected", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30" },
+  UNKNOWN: { labelKey: "complianceStatus.unknown", color: "text-gray-400", bg: "bg-gray-500/10", border: "border-gray-500/30" },
 } as const;
 
 const GRADE_COLORS = {
@@ -53,11 +54,12 @@ const GRADE_COLORS = {
 } as const;
 
 const MARKET_LABELS: Record<string, string> = {
-  EU: "欧盟", US: "美国", UK: "英国",
+  EU: "markets.EU", US: "markets.US", UK: "markets.UK",
 };
 
 // ── Compliance Report View ───────────────────────────────────────────────────
 function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
+  const { t } = useTranslation();
   const meta = STATUS_META[result.complianceStatus] ?? STATUS_META.UNKNOWN;
   const gradeColor = GRADE_COLORS[result.scoreGrade] ?? "text-gray-400";
   const markets = result.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
@@ -70,20 +72,20 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
           <span className={cn("text-4xl font-bold tabular-nums sm:text-5xl", gradeColor)}>
             {result.complianceScore}
           </span>
-          <span className="text-xs text-muted-foreground">综合评分</span>
+          <span className="text-xs text-muted-foreground">{t("result.overallScore")}</span>
         </div>
         <div className="flex flex-col gap-2">
           <div className={cn("inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium", meta.color, meta.bg, meta.border)}>
-            <span>{meta.label}</span>
+            <span>{t(meta.labelKey)}</span>
           </div>
           <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-            <span>等级：<span className={cn("font-semibold", gradeColor)}>{result.scoreGrade}</span></span>
+            <span>{t("result.grade")}：<span className={cn("font-semibold", gradeColor)}>{result.scoreGrade}</span></span>
             <span>·</span>
-            <span>品类：{result.productCategory}</span>
+            <span>{t("result.category")}：{result.productCategory}</span>
             <span>·</span>
-            <span>市场：{markets}</span>
+            <span>{t("result.market")}：{markets.split(" · ").map((m) => t(m)).join(" · ")}</span>
             <span>·</span>
-            <span>检索轮次：{result.loopCount}</span>
+            <span>{t("result.retrievalRounds")}：{result.loopCount}</span>
           </div>
         </div>
       </div>
@@ -100,7 +102,7 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
       <div className="rounded-2xl border border-border bg-card">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
           <div className="flex items-center gap-3">
-            <h3 className="text-sm font-semibold">合规报告</h3>
+            <h3 className="text-sm font-semibold">{t("result.complianceReport")}</h3>
             {result.modelInfo && (
               <span className="text-xs text-muted-foreground">
                 {result.modelInfo.ragProvider} · {(result.modelInfo.latencyMs / 1000).toFixed(1)}s
@@ -140,6 +142,7 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
 
 // ── Legacy Result View ─────────────────────────────────────────────────────────
 function LegacyResultView({ result }: { result: ScanResult }) {
+  const { t } = useTranslation();
   return (
     <>
       <div className="overflow-hidden rounded-3xl border border-border bg-blaze-dark/95">
@@ -150,9 +153,9 @@ function LegacyResultView({ result }: { result: ScanResult }) {
 
       {result.documents.length > 0 && (
         <section className="mt-8">
-          <h2 className="text-lg font-semibold">已上传文档</h2>
+          <h2 className="text-lg font-semibold">{t("result.uploadedDocs")}</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            共 {result.documents.length} 份文档
+            {t("result.documentCount", { count: result.documents.length })}
           </p>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {result.documents.map((doc) => {
@@ -195,6 +198,7 @@ function LegacyResultView({ result }: { result: ScanResult }) {
 }
 
 export default function ResultPage() {
+  const { t } = useTranslation();
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const isDemoSession = sessionId === "demo";
@@ -204,7 +208,7 @@ export default function ResultPage() {
   const [profitReport, setProfitReport] = useState<ProfitReportResult | null>(
     isDemoSession ? mockProfitReport : null
   );
-  const [message, setMessage] = useState("正在加载扫描结果…");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!sessionId || isDemoSession) return;
@@ -215,7 +219,7 @@ export default function ResultPage() {
         const cachedResult = JSON.parse(cached);
         startTransition(() => {
           setResult(cachedResult);
-          setMessage("已从会话缓存恢复结果。");
+          setMessage(t("result.restored"));
         });
         fetch(`/api/scan/${sessionId}`, { cache: "no-store" })
           .then((r) => r.ok ? r.json() : null)
@@ -234,7 +238,7 @@ export default function ResultPage() {
     async function loadResult() {
       const response = await fetch(`/api/scan/${sessionId}`, { cache: "no-store" });
       if (!response.ok) {
-        startTransition(() => setMessage("未找到对应扫描结果。"));
+        startTransition(() => setMessage(t("result.notFound")));
         return;
       }
       const payload: ScanStatus = await response.json();
@@ -244,19 +248,19 @@ export default function ResultPage() {
           if (payload.profitReport && isProfitReport(payload.profitReport)) {
             setProfitReport(payload.profitReport);
           }
-          setMessage("结果已从接口载入。");
+          setMessage(t("result.loaded"));
         });
         return;
       }
       if (payload.status === "failed") {
-        startTransition(() => setMessage(payload.error ?? "扫描失败。"));
+        startTransition(() => setMessage(payload.error ?? t("result.failed")));
         return;
       }
-      startTransition(() => setMessage("扫描仍在处理中，请稍后刷新或返回加载页。"));
+      startTransition(() => setMessage(t("result.processing")));
     }
 
     loadResult();
-  }, [isDemoSession, sessionId]);
+  }, [isDemoSession, sessionId, t]);
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-16">
@@ -265,18 +269,32 @@ export default function ResultPage() {
           <div>
             <p className="text-sm uppercase tracking-[0.24em] text-blaze-red/80">Result</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight">
-              {isDemoSession ? "Demo 扫描结果" : `扫描结果 · ${sessionId}`}
+              {isDemoSession ? t("result.demoResult") : `${t("result.scanResult")} · ${sessionId}`}
             </h1>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              {isDemoSession ? "已载入 Demo 数据。" : message}
+              {isDemoSession ? t("result.demoLoaded") : message}
             </p>
           </div>
-          <Link
-            href="/upload"
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "shrink-0")}
-          >
-            重新上传
-          </Link>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Link
+              href={`/trace?sessionId=${sessionId}`}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-purple-200 text-purple-600 hover:bg-purple-50")}
+            >
+              {t("result.aiDecision")}
+            </Link>
+            <Link
+              href={`/roadmap?sessionId=${sessionId}`}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-green-200 text-green-600 hover:bg-green-50")}
+            >
+              {t("result.complianceRoadmap")}
+            </Link>
+            <Link
+              href="/upload"
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0")}
+            >
+              {t("result.reupload")}
+            </Link>
+          </div>
         </div>
 
         {result && isComplianceReport(result) ? (
@@ -284,8 +302,8 @@ export default function ResultPage() {
             {profitReport ? (
               <Tabs defaultValue="compliance">
                 <TabsList>
-                  <TabsTrigger value="compliance">合规分析报告</TabsTrigger>
-                  <TabsTrigger value="profit">成本利润报告</TabsTrigger>
+                  <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
+                  <TabsTrigger value="profit">{t("result.costProfitReport")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="compliance">
                   <ComplianceReportView result={result} />

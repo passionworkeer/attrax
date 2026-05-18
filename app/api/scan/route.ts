@@ -4,6 +4,7 @@ import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-re
 import { runScan } from "@/lib/pipeline/scan";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { StartScanRequestSchema } from "@/lib/schemas";
+import { getTranslations } from "@/lib/i18n-server";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -29,17 +30,20 @@ function parseMarkets(input: FormDataEntryValue | null): Market[] {
 }
 
 function runDemoSimulation(sessionId: string) {
+  const tx = getTranslations("zh");
+  const stages = tx.scanStages;
+
   setTimeout(() => {
     updateSession(sessionId, {
       progress: 30,
-      stageText: "🔍 识别铭牌与认证标识…",
+      stageText: `🔍 ${stages.identifyingLabels}…`,
     });
   }, 1000);
 
   setTimeout(() => {
     updateSession(sessionId, {
       progress: 65,
-      stageText: "📚 匹配欧美法规库…",
+      stageText: `📚 ${stages.matchingRegulations}…`,
     });
   }, 2500);
 
@@ -47,7 +51,7 @@ function runDemoSimulation(sessionId: string) {
     updateSession(sessionId, {
       status: "ready",
       progress: 100,
-      stageText: "✅ 报告生成完成",
+      stageText: `✅ ${stages.reportComplete}`,
       result: createMockScanResult(sessionId),
       profitReport: createMockProfitReport(sessionId),
     });

@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { BurningAnimation } from "@/components/burning/BurningAnimation";
 import { useScanPolling } from "@/lib/hooks/useScanPolling";
+import { useTranslation } from "@/lib/i18n";
 
 export default function BurningPage() {
   const router = useRouter();
@@ -12,6 +13,7 @@ export default function BurningPage() {
   const sessionId = Array.isArray(params.sessionId) ? params.sessionId[0] : params.sessionId;
   const { status, displayProgress } = useScanPolling(sessionId);
   const [completing, setCompleting] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (status?.status === "ready" && status.result) {
@@ -46,7 +48,7 @@ export default function BurningPage() {
               className="flex flex-col items-center gap-3"
             >
               <div className="text-5xl">&#128293;</div>
-              <p className="text-lg font-semibold text-white">扫描完成！</p>
+              <p className="text-lg font-semibold text-white">{t("burning.scanComplete")}</p>
             </motion.div>
           </motion.div>
         )}
