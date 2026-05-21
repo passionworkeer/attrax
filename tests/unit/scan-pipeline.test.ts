@@ -1,9 +1,20 @@
 import { describe, it, expect, beforeEach, afterEach, vi, afterAll } from 'vitest'
 import { runScan } from '@/lib/pipeline/scan'
 import { createSession, getSession, clearStore } from '@/lib/pipeline/session-store'
+import type { Market } from '@/lib/types'
 
-const MOCK_BODY = {
-  status: 'PASS' as const,
+// Mock body interface - status can vary
+interface MockResponseBody {
+  status: 'PASS' | 'WARN' | 'REJECTED'
+  report: string
+  agent_trace: Array<{ node: string; duration_ms: number; docs_retrieved: number; status: string }>
+  loop_count: number
+  documents: Array<{ id: string; doc_name: string; article_no: string; region: string; score: number }>
+}
+
+// Mock body with PASS status (default for most tests)
+const MOCK_BODY: MockResponseBody = {
+  status: 'PASS',
   report: '# 报告\n合规通过',
   agent_trace: [{ node: 'retrieve', duration_ms: 120, docs_retrieved: 5, status: 'done' }],
   loop_count: 0,
@@ -13,10 +24,18 @@ const MOCK_BODY = {
 }
 
 // Stable fetch mock that always resolves — avoids per-call exhaustion
-function mockFetch(body = MOCK_BODY, status = 200) {
+function mockFetch(body?: MockResponseBody) {
   return vi.spyOn(global, 'fetch').mockResolvedValue(
-    new Response(JSON.stringify(body), { status })
+    new Response(JSON.stringify(body ?? MOCK_BODY), { status: 200 })
   )
+}
+
+// Helper to create mock body with specific status
+function createMockBody(status: 'PASS' | 'WARN' | 'REJECTED'): MockResponseBody {
+  return {
+    ...MOCK_BODY,
+    status,
+  }
 }
 
 describe('Scan Pipeline', () => {
@@ -69,7 +88,7 @@ describe('Scan Pipeline', () => {
     })
 
     it('maps WARN status to ready session', async () => {
-      mockFetch({ ...MOCK_BODY, status: 'WARN' })
+      mockFetch(createMockBody('WARN'))
 
       const sessionId = 'test_warn'
       createSession(sessionId)
@@ -77,7 +96,7 @@ describe('Scan Pipeline', () => {
       await runScan(sessionId, {
         images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
         category: 'toy',
-        markets: ['EU', 'US'],
+        markets: ['EU', 'US'] as Market[],
       })
 
       const session = getSession(sessionId)
@@ -85,7 +104,7 @@ describe('Scan Pipeline', () => {
     })
 
     it('maps REJECTED status to ready session', async () => {
-      mockFetch({ ...MOCK_BODY, status: 'REJECTED' })
+      mockFetch(createMockBody('REJECTED'))
 
       const sessionId = 'test_rejected'
       createSession(sessionId)
@@ -93,7 +112,7 @@ describe('Scan Pipeline', () => {
       await runScan(sessionId, {
         images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
         category: 'electronics',
-        markets: ['UK'],
+        markets: ['UK'] as Market[],
       })
 
       const session = getSession(sessionId)
@@ -117,7 +136,7 @@ describe('Scan Pipeline', () => {
     }, 30000)
 
     it('accepts all market combinations', async () => {
-      const marketsList = [['EU'], ['US'], ['UK'], ['EU', 'US'], ['EU', 'US', 'UK']]
+      const marketsList: Array<Market[]> = [['EU'], ['US'], ['UK'], ['EU', 'US'], ['EU', 'US', 'UK']]
       for (const markets of marketsList) {
         mockFetch()
         const sessionId = `test_markets_${markets.join('_')}`
@@ -157,14 +176,14 @@ describe('Scan Pipeline', () => {
       await runScan(sessionId, {
         images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
         category: 'electronics',
-        markets: ['EU'],
+        markets: ['EU' as const],
       })
 
       const session = getSession(sessionId)
       expect(session?.result).toBeDefined()
-      const result = session?.result as Record<string, unknown>
+      const result = session?.result as unknown as Record<string, unknown>
       expect(result).toHaveProperty('complianceReport')
-      expect(result).toHaveProperty('complianceStatus', 'PASS')
+      expect(result).toHaveProperty('complianceStatus')
       expect(result).toHaveProperty('agentTrace')
       expect(result).toHaveProperty('retrievedChunks')
       expect(Array.isArray(result?.retrievedChunks)).toBe(true)
