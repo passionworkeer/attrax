@@ -23,6 +23,11 @@ export interface RunScanInput {
     originalName: string;
     mimeType: string;
   }>;
+  documents?: Array<{
+    buffer: Buffer;
+    originalName: string;
+    mimeType: string;
+  }>;
   category: ProductCategory;
   markets: Market[];
   query?: string;

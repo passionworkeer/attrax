@@ -37,7 +37,7 @@ async function runE2ETests() {
 
   await test('Upload page displays description', async () => {
     await page.goto(`${BASE_URL}/upload`);
-    const desc = await page.locator('text=这是 P1 的占位上传页').first();
+    const desc = await page.locator('text=支持上传图片').first();
     if (!await desc.isVisible()) throw new Error('Description not found');
   });
 

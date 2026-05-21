@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest'
 import { createSession, updateSession, getSession, clearStore } from '@/lib/pipeline/session-store'
+import type { Market, ScanResult, ImageAsset, DocumentAsset, RiskPoint, ChecklistItem } from '@/lib/types'
 
 describe('Session Store', () => {
   beforeEach(() => {
@@ -77,14 +78,15 @@ describe('Session Store', () => {
 
     it('attaches result when ready', () => {
       createSession('test_session_8')
-      const mockResult = {
+      const mockResult: ScanResult = {
         sessionId: 'test_session_8',
         scanTime: '2026-04-27T10:00:00.000Z',
-        productCategory: 'electronics' as const,
-        targetMarkets: ['EU' as const] as const,
+        productCategory: 'electronics',
+        targetMarkets: ['EU'],
         complianceScore: 75,
-        scoreGrade: 'B' as const,
+        scoreGrade: 'B',
         images: [],
+        documents: [],
         riskPoints: [],
         checklist: [],
         generatedAt: '2026-04-27T10:00:05.000Z',

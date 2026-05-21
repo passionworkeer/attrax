@@ -18,7 +18,7 @@ def set_retriever(retriever):
     _retriever_instance = retriever
 
 
-def _retrieve_single_market(query: str, market: str) -> list[dict]:
+def _retrieve_single_market(query: str, market: str, category: str = "") -> list[dict]:
     """Retrieve for one market using the shared HybridRetriever."""
     if _retriever_instance is None:
         return []
@@ -26,7 +26,7 @@ def _retrieve_single_market(query: str, market: str) -> list[dict]:
     try:
         results = _retriever_instance.retrieve(
             query=query,
-            product_category="",  # Will be applied at graph level
+            product_category=category,
             region=market,
             top_k=10,
         )
@@ -41,12 +41,13 @@ def _retrieve_single_market(query: str, market: str) -> list[dict]:
 def retriever_node(state: GraphState) -> dict:
     """Single-market retrieval (called per market via Send())."""
     sub_queries = state.get("sub_queries", [])
+    category = state.get("category", "")
     if not sub_queries:
         return {"documents": []}
 
     # Use first sub-query for this node instance
     sq = sub_queries[0]
-    results = _retrieve_single_market(sq["query"], sq["market"])
+    results = _retrieve_single_market(sq["query"], sq["market"], category)
 
     return {"documents": results}
 
