@@ -73,5 +73,5 @@ def should_regenerate(state: GraphState) -> str:
     if loop_count < max_attempts and missing:
         return "refine"
 
-    # Max attempts reached or no missing → force output with WARN
-    return "force_generate"
+    # Max attempts reached → end (no force_generate in current implementation)
+    return "end"

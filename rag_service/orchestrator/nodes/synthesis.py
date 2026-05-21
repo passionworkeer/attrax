@@ -16,10 +16,13 @@ def synthesis_node(state: GraphState) -> dict:
     if not docs:
         return {"documents": []}
 
-    # Deduplicate by id
+    # Sort by score first (highest first)
+    sorted_docs = sorted(docs, key=lambda d: d.get("rerank_score", d.get("score", 0)), reverse=True)
+
+    # Deduplicate by id (keeping highest score first)
     seen = set()
     unique_docs = []
-    for doc in docs:
+    for doc in sorted_docs:
         doc_id = doc.get("id", "")
         if doc_id and doc_id not in seen:
             seen.add(doc_id)
@@ -27,9 +30,6 @@ def synthesis_node(state: GraphState) -> dict:
         elif not doc_id:
             # Must-check items have synthetic IDs
             unique_docs.append(doc)
-
-    # Sort by score
-    unique_docs.sort(key=lambda d: d.get("rerank_score", d.get("score", 0)), reverse=True)
 
     # Track synthesis stats
     markets_seen = set(d.get("market", "") for d in unique_docs)

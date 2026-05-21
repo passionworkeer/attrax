@@ -114,8 +114,17 @@ export async function POST(request: Request) {
       }))
     );
 
+    const documents = await Promise.all(
+      documentFiles.map(async (file) => ({
+        buffer: Buffer.from(await file.arrayBuffer()),
+        originalName: file.name,
+        mimeType: file.type || "application/octet-stream",
+      }))
+    );
+
     runScan(sessionId, {
       images,
+      documents,
       category: parsed.data.category as ProductCategory,
       markets: parsed.data.markets,
     }).catch((error) => {

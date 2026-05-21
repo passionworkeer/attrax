@@ -11,7 +11,6 @@ Uses downloaded ModelScope Qwen3-Embedding-0.6B weights directly.
 import gc
 import os
 import re
-import torch
 import logging
 import numpy as np
 from pathlib import Path
@@ -38,6 +37,8 @@ class LocalEmbedder:
     MODEL = "Qwen/Qwen3-Embedding-0.6B"
 
     def __init__(self, device: Optional[str] = None, max_batch: int = 16):
+        import torch  # Lazy import to avoid top-level GPU check
+        self._torch = torch
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         self.max_batch = max_batch
         self._tokenizer = None
@@ -50,6 +51,7 @@ class LocalEmbedder:
         model_path = _normalize_path(MODEL_PATH)
         logger.info(f"Loading model from {model_path} ...")
 
+        import torch
         from transformers import AutoTokenizer, AutoModel
 
         self._tokenizer = AutoTokenizer.from_pretrained(
@@ -73,8 +75,9 @@ class LocalEmbedder:
         self._load()
         return self._tokenizer
 
-    def _mean_pooling(self, last_hidden_state: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
+    def _mean_pooling(self, last_hidden_state, attention_mask) -> "np.ndarray":
         """Mean pool over non-padding tokens."""
+        torch = self._torch
         mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
         sum_embeddings = torch.sum(last_hidden_state * mask_expanded, dim=1)
         sum_mask = mask_expanded.sum(dim=1).clamp(min=1e-9)
@@ -112,7 +115,7 @@ class LocalEmbedder:
             # Free memory
             del outputs, embeddings, inputs
             if device == "cuda":
-                torch.cuda.empty_cache()
+                self._torch.cuda.empty_cache()
             gc.collect()
 
         return results

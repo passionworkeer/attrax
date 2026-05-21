@@ -42,7 +42,8 @@ class ReportGenerator:
     """Claude Sonnet report generator with citation enforcement."""
 
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or os.environ.get("ANTHROPIC_API_KEY", "")
+        self.api_key = api_key or os.environ.get("MIMOTALK_API_KEY", "")
+        self.provider = "mimotalk"
         self._client = None
 
     @property
@@ -74,7 +75,12 @@ class ReportGenerator:
             Generated report text
         """
         if not chunks:
-            return "错误：未找到足够的合规信息。请确保语料库已正确加载。"
+            return (
+                f"⚠️ 警告：未找到合规信息\n\n"
+                f"产品：{product}\n"
+                f"目标市场：{market}\n\n"
+                f"请确保语料库已正确加载后再试。\n"
+            )
 
         # Build source context
         source_chunks = []
