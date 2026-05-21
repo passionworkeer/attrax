@@ -13,7 +13,7 @@
 import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult, CostSummary } from "@/lib/types";
-import { getTranslations } from "@/lib/i18n-server";
+import { getTranslations } from "@/lib/i18n";
 
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
 const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
@@ -33,14 +33,14 @@ const RE_S2 = /### 二/;
 const RE_STAR_WRAP = /^\*\*|\*\*$/g;
 
 /** Parse numeric cost values from markdown table cells. */
-function parseCostValue(raw: string): number {
+export function parseCostValue(raw: string): number {
   const cleaned = raw.replace(RE_CURRENCY, "");
   const match = cleaned.match(RE_NUMERIC);
   return match ? parseFloat(match[0]) : 0;
 }
 
 /** Extract CostSummary and extended fields from markdown profit report. */
-function extractCostSummary(markdown: string): {
+export function extractCostSummary(markdown: string): {
   barebone: CostSummary;
   compliant: CostSummary;
   keyConclusion: string;

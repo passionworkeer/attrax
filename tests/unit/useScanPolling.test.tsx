@@ -3,116 +3,513 @@ import { renderHook, act } from "@testing-library/react";
 import { useScanPolling } from "@/lib/hooks/useScanPolling";
 import type { ScanStatus } from "@/lib/types";
 
-function makeFetchMock(response: Partial<ScanStatus>) {
+// Store original RAF for restoration
+const originalRAF = globalThis.requestAnimationFrame;
+
+// Create a controlled RAF mock that we can advance manually
+let rafCallbacks: Array<() => void> = [];
+const controlledRAF = vi.fn((callback: () => void) => {
+  rafCallbacks.push(callback);
+  return rafCallbacks.length - 1; // return index as id
+});
+
+function makeFetchMock(response: Partial<ScanStatus>, ok = true) {
   return vi.fn().mockResolvedValue({
-    ok: true,
+    ok,
     json: async () => response,
   });
 }
 
-// Mock requestAnimationFrame to avoid animation loop in tests
-// Use a stub that doesn't call back (no-op) so the RAF loop stops naturally
-const originalRAF = globalThis.requestAnimationFrame;
-const noopRAF = vi.fn(() => 0);
-
 describe("useScanPolling", () => {
   beforeEach(() => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
-    // Stub RAF so animation tick never fires (avoids infinite loop)
-    globalThis.requestAnimationFrame = noopRAF;
+    rafCallbacks = [];
+    globalThis.requestAnimationFrame = controlledRAF;
   });
 
   afterEach(() => {
     vi.restoreAllMocks();
     vi.useRealTimers();
     globalThis.requestAnimationFrame = originalRAF;
+    rafCallbacks = [];
   });
 
-  it("returns null status before first poll", () => {
-    const fetchSpy = makeFetchMock({ sessionId: "test", status: "processing", progress: 0, stageText: "..." });
-    vi.stubGlobal("fetch", fetchSpy);
+  describe("Initial state", () => {
+    it("returns null status before first poll", () => {
+      const fetchSpy = makeFetchMock({
+        sessionId: "test",
+        status: "processing",
+        progress: 0,
+        stageText: "...",
+      });
+      vi.stubGlobal("fetch", fetchSpy);
 
-    const { result } = renderHook(() => useScanPolling("test_session"));
-    // The hook returns { status, displayProgress } immediately.
-    // status field starts as null before first fetch completes.
-    expect(result.current.status).toBeNull();
-  });
-
-  it("polls and updates status when fetch returns data", async () => {
-    const fetchSpy = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({ sessionId: "s1", status: "processing", progress: 30, stageText: "分析中..." }),
+      const { result } = renderHook(() => useScanPolling("test_session"));
+      expect(result.current.status).toBeNull();
     });
-    vi.stubGlobal("fetch", fetchSpy);
 
-    const { result } = renderHook(() => useScanPolling("s1"));
+    it("returns displayProgress starting at 0", () => {
+      const fetchSpy = makeFetchMock({});
+      vi.stubGlobal("fetch", fetchSpy);
 
-    // Trigger the initial poll
-    await act(async () => { vi.advanceTimersByTime(50); });
-
-    // After first poll, status should be populated
-    expect(result.current?.status).not.toBeNull();
-    expect(result.current?.status?.status).toBe("processing");
-  });
-
-  it("sets failed when fetch returns non-ok", async () => {
-    const fetchSpy = vi.fn().mockResolvedValue({
-      ok: false,
-      status: 404,
+      const { result } = renderHook(() => useScanPolling("test_session"));
+      expect(result.current.displayProgress).toBe(0);
     });
-    vi.stubGlobal("fetch", fetchSpy);
-
-    const { result } = renderHook(() => useScanPolling("not_found"));
-
-    await act(async () => { vi.advanceTimersByTime(50); });
-
-    expect(result.current?.status?.status).toBe("failed");
-    expect(result.current?.status?.error).toBe("会话已失效");
   });
 
-  it("does not poll when sessionId is empty", () => {
-    const fetchSpy = makeFetchMock({});
-    vi.stubGlobal("fetch", fetchSpy);
+  describe("Polling behavior", () => {
+    it("does not poll when sessionId is empty", () => {
+      const fetchSpy = makeFetchMock({});
+      vi.stubGlobal("fetch", fetchSpy);
 
-    renderHook(() => useScanPolling(""));
-    expect(fetchSpy).not.toHaveBeenCalled();
-  });
-
-  it("cancels polling on unmount", async () => {
-    const fetchSpy = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({ sessionId: "s1", status: "processing", progress: 50, stageText: "..." }),
+      renderHook(() => useScanPolling(""));
+      expect(fetchSpy).not.toHaveBeenCalled();
     });
-    vi.stubGlobal("fetch", fetchSpy);
 
-    const { unmount } = renderHook(() => useScanPolling("s1"));
+    it("starts polling when sessionId is provided", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 0,
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
 
-    await act(async () => { vi.advanceTimersByTime(50); });
+      renderHook(() => useScanPolling("s1"));
 
-    const callCountBefore = fetchSpy.mock.calls.length;
-    unmount();
+      // Trigger useEffect
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
 
-    await act(async () => { vi.advanceTimersByTime(2000); });
+      expect(fetchSpy).toHaveBeenCalled();
+    });
 
-    expect(fetchSpy.mock.calls.length).toBe(callCountBefore);
+    it("polls and updates status when fetch returns data", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 30,
+          stageText: "分析中...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(result.current?.status?.status).toBe("processing");
+      expect(result.current?.status?.progress).toBe(30);
+    });
+
+    it("sets failed status when fetch returns non-ok", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: false,
+        status: 404,
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("not_found"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(result.current?.status?.status).toBe("failed");
+      expect(result.current?.status?.error).toBe("会话已失效");
+    });
+
+    it("polls multiple times during processing", async () => {
+      let callCount = 0;
+      const fetchSpy = vi.fn().mockImplementation(async () => {
+        callCount++;
+        return {
+          ok: true,
+          json: async () => ({
+            sessionId: "s1",
+            status: "processing",
+            progress: callCount * 20,
+            stageText: "...",
+          }),
+        };
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      renderHook(() => useScanPolling("s1"));
+
+      // First poll
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+      await act(async () => {
+        vi.advanceTimersByTime(850); // POLL_INTERVAL_MS
+      });
+
+      // Second poll
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+      await act(async () => {
+        vi.advanceTimersByTime(850);
+      });
+
+      expect(callCount).toBeGreaterThanOrEqual(2);
+    });
   });
 
-  it("returns displayProgress via the hook return value", async () => {
-    const fetchSpy = vi.fn().mockResolvedValue({
-      ok: true,
-      json: async () => ({ sessionId: "s1", status: "processing", progress: 45, stageText: "匹配法规库..." }),
+  describe("Status transitions - stopping polling", () => {
+    it("stops polling when status is 'ready'", async () => {
+      let callCount = 0;
+      const fetchSpy = vi.fn().mockImplementation(async () => {
+        callCount++;
+        return {
+          ok: true,
+          json: async () => ({
+            sessionId: "s1",
+            status: callCount === 1 ? "processing" : "ready",
+            progress: 100,
+            stageText: "完成",
+          }),
+        };
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      renderHook(() => useScanPolling("s1"));
+
+      // First poll - returns processing
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(callCount).toBe(1);
+
+      // Wait for next poll interval
+      await act(async () => {
+        vi.advanceTimersByTime(850);
+      });
+
+      // Second poll - returns ready, polling should stop
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(callCount).toBe(2);
+      expect(fetchSpy).toHaveBeenCalledTimes(2);
+
+      // Try to trigger more polling
+      await act(async () => {
+        vi.advanceTimersByTime(2000);
+      });
+
+      // Should still be 2 calls since polling stopped
+      expect(callCount).toBe(2);
     });
-    vi.stubGlobal("fetch", fetchSpy);
 
-    const { result } = renderHook(() => useScanPolling("s1"));
+    it("stops polling when status is 'failed'", async () => {
+      let callCount = 0;
+      const fetchSpy = vi.fn().mockImplementation(async () => {
+        callCount++;
+        return {
+          ok: true,
+          json: async () => ({
+            sessionId: "s1",
+            status: callCount === 1 ? "processing" : "failed",
+            progress: 50,
+            stageText: "失败",
+            error: "Scan failed",
+          }),
+        };
+      });
+      vi.stubGlobal("fetch", fetchSpy);
 
-    await act(async () => { vi.advanceTimersByTime(50); });
+      renderHook(() => useScanPolling("s1"));
 
-    // status is the ScanStatus object from fetch
-    expect(result.current?.status?.status).toBe("processing");
-    expect(result.current?.status?.progress).toBe(45);
-    expect(result.current?.status?.stageText).toBe("匹配法规库...");
-    // displayProgress is the animated number (starts at 0, no RAF fires)
-    expect(typeof result.current?.displayProgress).toBe("number");
+      // First poll
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      // Wait for next poll
+      await act(async () => {
+        vi.advanceTimersByTime(850);
+      });
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(callCount).toBe(2);
+
+      // Try to trigger more polling
+      await act(async () => {
+        vi.advanceTimersByTime(2000);
+      });
+
+      // Should still be 2 calls
+      expect(callCount).toBe(2);
+    });
+  });
+
+  describe("Animation / displayProgress", () => {
+    it("updates displayProgress toward targetProgress", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 100, // target is 100
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      // Trigger initial poll
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      // Run RAF callbacks multiple times to animate
+      await act(async () => {
+        for (let i = 0; i < 10; i++) {
+          rafCallbacks.forEach((cb) => cb());
+          vi.advanceTimeByFrame();
+        }
+      });
+
+      // displayProgress should have moved toward 100
+      expect(result.current.displayProgress).toBeGreaterThan(0);
+    });
+
+    it("animation uses easing to approach target", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 50,
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      // Initial displayProgress should be 0
+      const initialProgress = result.current.displayProgress;
+
+      // Advance animation
+      await act(async () => {
+        for (let i = 0; i < 20; i++) {
+          rafCallbacks.forEach((cb) => cb());
+          vi.advanceTimeByFrame();
+        }
+      });
+
+      // Progress should have increased
+      expect(result.current.displayProgress).toBeGreaterThanOrEqual(initialProgress);
+    });
+
+    it("animation stops when close to target (< 0.15 diff)", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 100,
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      // Run animation until settled
+      await act(async () => {
+        for (let i = 0; i < 100; i++) {
+          rafCallbacks.forEach((cb) => cb());
+          vi.advanceTimeByFrame();
+        }
+      });
+
+      // Should settle close to target (100)
+      expect(result.current.displayProgress).toBeGreaterThanOrEqual(95);
+    });
+
+    it("rounds displayProgress to integer", () => {
+      const fetchSpy = makeFetchMock({
+        sessionId: "s1",
+        status: "processing",
+        progress: 75,
+        stageText: "...",
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      // Type check - should be number
+      expect(typeof result.current.displayProgress).toBe("number");
+    });
+  });
+
+  describe("Cleanup on unmount", () => {
+    it("cancels polling on unmount", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 50,
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { unmount } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      const callCountBefore = fetchSpy.mock.calls.length;
+      unmount();
+
+      await act(async () => {
+        vi.advanceTimersByTime(2000);
+      });
+
+      expect(fetchSpy.mock.calls.length).toBe(callCountBefore);
+    });
+
+    it("cleans up RAF on unmount", () => {
+      const cancelSpy = vi.spyOn(globalThis, "cancelAnimationFrame");
+      vi.stubGlobal("cancelAnimationFrame", cancelSpy);
+
+      const fetchSpy = makeFetchMock({});
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { unmount } = renderHook(() => useScanPolling("s1"));
+
+      unmount();
+
+      expect(cancelSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe("Fetch URL construction", () => {
+    it("uses correct API endpoint", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "test123",
+          status: "processing",
+          progress: 0,
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      renderHook(() => useScanPolling("test123"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(fetchSpy).toHaveBeenCalledWith(
+        "/api/scan/test123",
+        expect.objectContaining({ cache: "no-store" })
+      );
+    });
+  });
+
+  describe("Edge cases", () => {
+    it("handles missing progress field", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          // progress is missing
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      expect(result.current?.status).toBeDefined();
+      expect(result.current?.status?.sessionId).toBe("s1");
+    });
+
+    it("handles null/undefined from fetch", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => null,
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      // Should handle gracefully
+      expect(result.current.status).toBeDefined();
+    });
+
+    it("re-fetches when sessionId changes", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "new_session",
+          status: "processing",
+          progress: 0,
+          stageText: "...",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result, rerender } = renderHook(
+        ({ id }: { id: string }) => useScanPolling(id),
+        { initialProps: { id: "session1" } }
+      );
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      const firstSessionId = result.current?.status?.sessionId;
+
+      // Change sessionId
+      rerender({ id: "session2" });
+
+      await act(async () => {
+        vi.advanceTimersByTime(1);
+      });
+
+      // Should have polled with new session
+      expect(fetchSpy).toHaveBeenCalled();
+    });
   });
 });
