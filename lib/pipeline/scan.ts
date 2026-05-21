@@ -397,7 +397,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     riskPoints: undefined,
     checklist: undefined,
     generatedAt: new Date().toISOString(),
-    modelInfo: { ragProvider: "mimotalk", latencyMs: 0 },
+    modelInfo: { ragProvider: "cohere-anthropic", latencyMs: 0 },
   };
 
   // ── Stage 5: Fetch profit report (best-effort, does not block main flow) ──

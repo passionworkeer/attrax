@@ -8,11 +8,6 @@ Uses ModelScope inference API with:
 - Chunk-level error isolation (zero-fill on permanent failure)
 """
 import os
-# Disable system proxy for ModelScope API calls
-os.environ.setdefault("HTTP_PROXY", "")
-os.environ.setdefault("HTTPS_PROXY", "")
-os.environ.setdefault("NO_PROXY", "*")
-
 import re
 import time
 import logging
@@ -24,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 DIM = 1024
 MAX_TEXT_LEN = 8000
-MIN_TEXT_LEN = 1  # Accept even single characters for short queries
+MIN_TEXT_LEN = 5  # Queries can be short; lower threshold for Chinese
 
 # ─── LRU cache for embed_query ─────────────────────────────────────────────────
 # Caches repeated query embeddings at the API level, bypassing both the network
@@ -102,7 +97,6 @@ class ModelScopeEmbedder:
                     model=self.MODEL,
                     input=cleaned,
                     encoding_format="float",
-                    timeout=30.0,  # 30s timeout per call
                 )
                 return resp.data[0].embedding
             except Exception as e:
