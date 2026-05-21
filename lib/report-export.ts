@@ -21,7 +21,7 @@ import {
   WidthType,
 } from "docx";
 import type { ComplianceReportResult, ProfitReportResult } from "@/lib/types";
-import { getTranslations } from "@/lib/i18n-server";
+import { t as i18nT, getTranslations } from "@/lib/i18n";
 
 export type Locale = "zh" | "en";
 
@@ -41,16 +41,7 @@ function resolveLocale(locale: Locale | undefined): Locale {
 
 /** Shortcut to look up a nested translation key. */
 function tx(key: string, locale: Locale = "zh"): string {
-  const keys = key.split(".");
-  let value: unknown = getTranslations(locale);
-  for (const k of keys) {
-    if (value && typeof value === "object" && k in value) {
-      value = (value as Record<string, unknown>)[k];
-    } else {
-      return key;
-    }
-  }
-  return typeof value === "string" ? value : key;
+  return i18nT(key, locale);
 }
 
 function complianceStatusLabel(status: string, locale: Locale): string {

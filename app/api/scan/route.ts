@@ -4,7 +4,7 @@ import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-re
 import { runScan } from "@/lib/pipeline/scan";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { StartScanRequestSchema } from "@/lib/schemas";
-import { getTranslations } from "@/lib/i18n-server";
+import { getTranslations } from "@/lib/i18n";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";

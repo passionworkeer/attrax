@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { createMockScanResult } from "@/lib/mock/scan-result";
 import { getSession } from "@/lib/pipeline/session-store";
-import { t as serverT } from "@/lib/i18n-server";
+import { t as serverT } from "@/lib/i18n";
 
 export const runtime = "nodejs";
 
