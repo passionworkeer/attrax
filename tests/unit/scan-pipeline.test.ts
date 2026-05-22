@@ -68,6 +68,7 @@ describe('Scan Pipeline', () => {
       const session = getSession(sessionId)
       expect(session?.status).toBe('ready')
       expect(session?.result).toBeDefined()
+      expect(session?.profitReport).toBeDefined()
     })
 
     it('maps PASS status to ready session', async () => {
