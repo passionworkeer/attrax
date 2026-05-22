@@ -75,7 +75,7 @@ export default function RegulationsPage() {
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
-    return date.toLocaleDateString("en-US", {
+    return date.toLocaleDateString(locale === "en" ? "en-US" : "zh-CN", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -157,6 +157,7 @@ export default function RegulationsPage() {
               const isUrgent = daysUntil > 0 && daysUntil <= 30;
               const marketInfo = marketLabelKeys[regulation.market] || regulation.market;
               const marketLabel = t(marketInfo);
+              const title = locale === "en" ? regulation.titleEn : regulation.title;
 
               return (
                 <div
@@ -177,7 +178,7 @@ export default function RegulationsPage() {
                         )}
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                        {regulation.title}
+                        {title}
                       </h3>
                       <div className="flex items-center gap-4 text-sm text-gray-500">
                         <div className="flex items-center gap-1">
@@ -257,7 +258,7 @@ export default function RegulationsPage() {
           <div className="mt-8 rounded-xl bg-white p-6 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-500">{t("regulations.showing", { from: 1, to: regulations.length })}</p>
+                <p className="text-sm text-gray-500">{t("regulations.showing", { from: 1, to: regulations.length, total: regulations.length })}</p>
                 <p className="text-2xl font-bold text-gray-900">{regulations.length}</p>
               </div>
               <div className="text-right">

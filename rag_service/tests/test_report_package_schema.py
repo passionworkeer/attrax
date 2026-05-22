@@ -1,5 +1,7 @@
 import os
 import sys
+import json
+from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -59,3 +61,15 @@ def test_normalize_report_package_records_invalid_empty_report():
     assert normalized["complianceReport"]
     assert normalized["auditMetadata"]["validationStatus"] == "invalid"
     assert normalized["auditMetadata"]["validationErrors"]
+
+
+def test_contract_fixture_matches_python_schema():
+    fixture_path = Path(__file__).resolve().parents[2] / "tests" / "fixtures" / "report-package.contract.json"
+    payload = json.loads(fixture_path.read_text(encoding="utf-8"))
+
+    validated = ReportPackage.model_validate(payload)
+
+    assert validated.productDossier.product == "USB-C power adapter"
+    assert validated.roadmap.items[0].titleEn == "Complete nameplate and warning labels"
+    assert validated.decisionView.nodes[0].reasoningEn.endswith("one pass.")
+    assert validated.evidenceBundles.retrieval[0].source == "RoHS Guide"

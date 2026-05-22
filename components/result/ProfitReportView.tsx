@@ -88,12 +88,12 @@ function RiskBar({
         <div
           className="h-full bg-blaze-red/70 transition-all"
           style={{ width: `${bw}%` }}
-          title={`裸奔: ${fmt(barebone)}`}
+          title={`${t("report.labels.noCompliance")}: ${fmt(barebone)}`}
         />
         <div
           className="h-full bg-emerald-500/70 transition-all"
           style={{ width: `${cw}%` }}
-          title={`合规: ${fmt(compliant)}`}
+          title={`${t("report.labels.withCompliance")}: ${fmt(compliant)}`}
         />
       </div>
     </div>

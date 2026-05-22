@@ -85,7 +85,7 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
     }
   };
 
-  if (!mounted || loading) {
+  if (!mounted || (sessionId && loading)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 flex items-center justify-center">
         <div className="animate-pulse text-gray-400">{t("roadmap.loading")}</div>

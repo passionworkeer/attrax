@@ -1,0 +1,134 @@
+{
+  "productDossier": {
+    "product": "USB-C power adapter",
+    "category": "electronics",
+    "markets": ["EU", "US"],
+    "query": "USB-C power adapter export compliance",
+    "sourceCounts": {
+      "retrievedChunks": 2,
+      "userDocuments": 1,
+      "visualItems": 1
+    }
+  },
+  "complianceReport": "## USB-C Power Adapter Compliance\n\nUse CE, RoHS, REACH, and FCC evidence before listing.",
+  "profitReport": {
+    "markdown": "## Cost & Profit\n\nCompliance investment improves risk-adjusted margin.",
+    "keyConclusion": "Compliance mode is more stable for mainstream channels.",
+    "premiumPct": "18%",
+    "breakevenUnits": "860",
+    "pricingStrategy": "Position as a certified adapter for premium channels.",
+    "riskNote": "Risk exposure is estimated from retrieval evidence.",
+    "conclusions": "Launch after label, test report, and DoC checks.",
+    "references": "CE, RoHS, REACH, FCC"
+  },
+  "roadmap": {
+    "totalDays": 35,
+    "totalCost": "¥18K+",
+    "progress": 48,
+    "items": [
+      {
+        "id": "contract-roadmap-1",
+        "date": "2026-05-22",
+        "title": "补齐铭牌与警示语",
+        "titleEn": "Complete nameplate and warning labels",
+        "description": "补齐 CE、RoHS 与输入输出参数标识。",
+        "descriptionEn": "Complete CE, RoHS, and input/output rating labels.",
+        "type": "apply",
+        "status": "in-progress",
+        "estimatedDays": 5,
+        "cost": "¥3,000-6,000",
+        "documents": ["铭牌图稿", "BOM 清单"],
+        "documentsEn": ["Nameplate artwork", "BOM"]
+      }
+    ]
+  },
+  "decisionView": {
+    "summary": "The package was generated from one shared evidence set.",
+    "keyFindings": [
+      "Label evidence is incomplete.",
+      "Testing and DoC evidence should be added before launch."
+    ],
+    "recommendedAction": "Complete labels first, then start target-market testing.",
+    "nodes": [
+      {
+        "id": "contract-generate",
+        "type": "generate",
+        "label": "四场景生成",
+        "labelEn": "Four-scene generation",
+        "status": "success",
+        "duration": "1.2s",
+        "confidence": 0.92,
+        "reasoning": "一次性生成合规、利润、路线图和决策视图。",
+        "reasoningEn": "Generate compliance, profit, roadmap, and decision views in one pass."
+      }
+    ]
+  },
+  "evidenceBundles": {
+    "visual": [
+      {
+        "id": "visual:result",
+        "layer": "visual",
+        "source": "vision_result",
+        "title": "USB-C adapter",
+        "content": "Visible USB-C charger with electrical rating label.",
+        "metadata": {
+          "confidence": 0.88
+        }
+      }
+    ],
+    "retrieval": [
+      {
+        "id": "retrieval:1",
+        "layer": "retrieval",
+        "source": "RoHS Guide",
+        "title": "Article 4",
+        "content": "Electrical and electronic equipment must restrict hazardous substances.",
+        "metadata": {
+          "market": "EU",
+          "score": 0.93
+        }
+      },
+      {
+        "id": "user_doc:1",
+        "layer": "retrieval",
+        "source": "user_document",
+        "title": "adapter-spec.pdf",
+        "content": "Input/output rating and material declaration excerpt.",
+        "metadata": {
+          "mime_type": "application/pdf"
+        }
+      }
+    ],
+    "generation": [
+      {
+        "id": "generation:package_keys",
+        "layer": "generation",
+        "source": "report_package",
+        "title": "Generated package keys",
+        "content": "complianceReport, profitReport, roadmap, decisionView",
+        "metadata": {
+          "sceneCount": 4
+        }
+      },
+      {
+        "id": "audit:trace:1",
+        "layer": "audit",
+        "source": "generate",
+        "title": "success",
+        "content": "Generator completed one-pass report package.",
+        "metadata": {
+          "node": "generate",
+          "status": "success"
+        }
+      }
+    ]
+  },
+  "auditMetadata": {
+    "schemaVersion": "report-package/v1",
+    "generatedAt": "2026-05-22T00:00:00+00:00",
+    "validationStatus": "normalized",
+    "validationErrors": [],
+    "provider": "mimotalk",
+    "traceNodeCount": 1
+  }
+}

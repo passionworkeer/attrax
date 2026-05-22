@@ -200,8 +200,10 @@ describe("POST /api/scan", () => {
       expect(body).toHaveProperty("error");
       expect(body.error).toHaveProperty("code");
       expect(body.error.code).toBe("BAD_INPUT");
+      expect(body.error.reason).toBe("UPLOAD_AT_LEAST_ONE_IMAGE");
       expect(body.error).toHaveProperty("message");
       expect(body.error.message).toContain("图片");
+      expect(body.error.messageEn).toContain("image");
     });
 
     it("does not create session when validation fails", async () => {
@@ -267,6 +269,7 @@ describe("POST /api/scan", () => {
       expect(res.status).toBe(400);
       const body = await res.json();
       expect(body.error.code).toBe("BAD_INPUT");
+      expect(body.error.reason).toBe("TOO_MANY_DOCUMENTS");
     });
 
     it("uses default markets when not provided", async () => {
@@ -298,6 +301,7 @@ describe("POST /api/scan", () => {
       expect(res.status).toBe(400);
       const body = await res.json();
       expect(body.error.code).toBe("BAD_INPUT");
+      expect(body.error.reason).toBe("INVALID_REQUEST");
     });
   });
 });

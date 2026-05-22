@@ -4,10 +4,36 @@ import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-re
 import { runScan } from "@/lib/pipeline/scan";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { StartScanRequestSchema } from "@/lib/schemas";
-import { getTranslations } from "@/lib/i18n";
+import { getTranslations, t as serverT } from "@/lib/i18n";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
+
+type ScanErrorReason =
+  | "INVALID_REQUEST"
+  | "UPLOAD_AT_LEAST_ONE_IMAGE"
+  | "TOO_MANY_DOCUMENTS";
+
+const SCAN_ERROR_KEYS: Record<ScanErrorReason, string> = {
+  INVALID_REQUEST: "errors.invalidRequest",
+  UPLOAD_AT_LEAST_ONE_IMAGE: "errors.uploadAtLeastOne",
+  TOO_MANY_DOCUMENTS: "errors.tooManyDocuments",
+};
+
+function scanBadInput(reason: ScanErrorReason) {
+  const key = SCAN_ERROR_KEYS[reason];
+  return NextResponse.json(
+    {
+      error: {
+        code: "BAD_INPUT",
+        reason,
+        message: serverT(key, "zh"),
+        messageEn: serverT(key, "en"),
+      },
+    },
+    { status: 400 }
+  );
+}
 
 function isFile(value: FormDataEntryValue): value is File {
   return (
@@ -63,14 +89,19 @@ export async function POST(request: Request) {
   try {
     formData = await request.formData();
   } catch {
-    return NextResponse.json(
-      { error: { code: "BAD_INPUT", message: "无效的请求格式" } },
-      { status: 400 }
-    );
+    return scanBadInput("INVALID_REQUEST");
   }
 
   const imageFiles = formData.getAll("images").filter(isFile);
   const documentFiles = formData.getAll("documents").filter(isFile);
+
+  if (imageFiles.length === 0) {
+    return scanBadInput("UPLOAD_AT_LEAST_ONE_IMAGE");
+  }
+
+  if (documentFiles.length > 5) {
+    return scanBadInput("TOO_MANY_DOCUMENTS");
+  }
 
   const parsed = StartScanRequestSchema.safeParse({
     category: formData.get("category") ?? "electronics",
@@ -80,29 +111,7 @@ export async function POST(request: Request) {
   });
 
   if (!parsed.success) {
-    return NextResponse.json(
-      {
-        error: {
-          code: "BAD_INPUT",
-          message: "请至少上传 1 张图片，并确认 category / markets 合法。",
-        },
-      },
-      { status: 400 }
-    );
-  }
-
-  if (imageFiles.length === 0) {
-    return NextResponse.json(
-      { error: { code: "BAD_INPUT", message: "请至少上传 1 张图片。" } },
-      { status: 400 }
-    );
-  }
-
-  if (documentFiles.length > 5) {
-    return NextResponse.json(
-      { error: { code: "BAD_INPUT", message: "文档数量不能超过 5 个。" } },
-      { status: 400 }
-    );
+    return scanBadInput("INVALID_REQUEST");
   }
 
   const sessionId = `scan_${ulid()}`;
@@ -210,7 +219,7 @@ export async function POST(request: Request) {
   }).catch((error) => {
     updateSession(sessionId, {
       status: "failed",
-      error: error instanceof Error ? error.message : "扫描失败",
+      error: error instanceof Error ? error.message : "SCAN_FAILED",
     });
   });
 

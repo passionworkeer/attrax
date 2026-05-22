@@ -14,16 +14,28 @@ const STAGE_ICONS: { id: string; icon: string }[] = [
   { id: "retrievingRegulations", icon: "📚" },
   { id: "generatingReport", icon: "✍️" },
   { id: "reportComplete", icon: "✅" },
+  { id: "backendTimeout", icon: "⚠️" },
+  { id: "backendUnavailable", icon: "⚠️" },
+  { id: "demoResultGenerated", icon: "✅" },
+  { id: "scanPassed", icon: "✅" },
+  { id: "scanWarning", icon: "⚠️" },
+  { id: "scanRisk", icon: "🔴" },
 ];
 
 // Backend stageText may be in zh or en — match by emoji prefix or distinct keyword.
 const STAGE_TEXT_TO_ID: [RegExp, string][] = [
-  [/\u{1F550}/u, "preparing"],               // 🕐 preparing
+  [/\u{1F550}|准备中|Preparing/u, "preparing"],
   [/分析上传图片|Analyzing uploaded images/u, "analyzingImages"],
   [/规划检索策略|Planning retrieval strategy/u, "planningStrategy"],
   [/检索合规法规库|Retrieving compliance regulation database/u, "retrievingRegulations"],
   [/生成合规报告|Generating compliance report/u, "generatingReport"],
   [/报告生成完成|Report generation complete/u, "reportComplete"],
+  [/后端服务响应超时|Backend service timed out|RAG_SERVICE_TIMEOUT/u, "backendTimeout"],
+  [/后端服务不可用|Backend service unavailable|RAG_SERVICE_UNAVAILABLE/u, "backendUnavailable"],
+  [/演示结果已生成|Demo result generated/u, "demoResultGenerated"],
+  [/合规扫描通过|Compliance scan passed/u, "scanPassed"],
+  [/合规警告|Compliance warning/u, "scanWarning"],
+  [/合规风险|Compliance risk/u, "scanRisk"],
 ];
 
 export interface BurningAnimationProps {
@@ -35,13 +47,21 @@ export interface BurningAnimationProps {
   onRetry: () => void;
 }
 
-function StageIcon({ stageText }: { stageText: string }) {
+const FAILURE_ERROR_KEYS: Record<string, string> = {
+  SCAN_FAILED: "errors.scanFailed",
+  RAG_SERVICE_TIMEOUT: "errors.backendTimeout",
+  RAG_SERVICE_UNAVAILABLE: "errors.backendUnavailable",
+};
+
+function getStageId(stageText: string | undefined): string | undefined {
   const matched = stageText
     ? STAGE_TEXT_TO_ID.find(([pattern]) => pattern.test(stageText))
     : undefined;
-  const entry = matched
-    ? STAGE_ICONS.find((s) => s.id === matched[1])
-    : undefined;
+  return matched?.[1];
+}
+
+function StageIcon({ stageId }: { stageId: string | undefined }) {
+  const entry = stageId ? STAGE_ICONS.find((s) => s.id === stageId) : undefined;
   const icon = entry?.icon ?? "⚙️";
   return <span className="mr-1.5 text-base">{icon}</span>;
 }
@@ -56,6 +76,15 @@ export function BurningAnimation({
 }: BurningAnimationProps) {
   const { t } = useTranslation();
   const isFailed = status?.status === "failed";
+  const stageId = completing ? "reportComplete" : getStageId(stageText);
+  const stageLabel = completing
+    ? t("scanStages.reportComplete")
+    : stageId
+    ? t(`scanStages.${stageId}`)
+    : stageText ?? t("animation.waitingForTask");
+  const failureMessage = status?.error && FAILURE_ERROR_KEYS[status.error]
+    ? t(FAILURE_ERROR_KEYS[status.error])
+    : status?.error ?? t("errors.scanFailed");
 
   return (
     <section className="mx-4 w-full max-w-2xl rounded-4xl border border-white/10 bg-white/6 p-8 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur sm:mx-auto">
@@ -91,11 +120,9 @@ export function BurningAnimation({
         {/* Stage + percentage */}
         <div className="flex items-center justify-between text-sm text-white/80">
           <span className="flex items-center gap-1 min-w-0">
-            <StageIcon stageText={completing ? t("scanStages.reportComplete") : stageText ?? ""} />
+            <StageIcon stageId={stageId} />
             <span className="truncate">
-              {completing
-                ? t("scanStages.reportComplete")
-                : stageText ?? t("animation.waitingForTask")}
+              {stageLabel}
             </span>
           </span>
           <span className="ml-2 shrink-0 tabular-nums font-medium text-white/90">
@@ -124,7 +151,7 @@ export function BurningAnimation({
       {/* Failed state */}
       {isFailed ? (
         <div className="mt-6 space-y-4 rounded-3xl border border-red-400/30 bg-red-500/10 p-5">
-          <p className="text-sm text-red-100">{status.error ?? t("errors.scanFailed")}</p>
+          <p className="text-sm text-red-100">{failureMessage}</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="button"

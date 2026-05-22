@@ -66,10 +66,10 @@ export async function GET(
         score?: number;
         docs_retrieved?: number;
       }>).map((entry) => ({
+        ..._getNodeLabels(entry.node),
         id: entry.node,
         type: entry.node,
-        label: _getNodeLabel(entry.node),
-    icon: "📊",
+        icon: "📊",
         status: entry.status?.toLowerCase() || "pending",
         duration: `${((entry.duration_ms || entry.duration) || 0) / 1000}s`,
         confidence: entry.score || 0,
@@ -89,39 +89,63 @@ export async function GET(
   });
 }
 
-// Agent node labels - kept as technical identifiers in the default locale
-function _getNodeLabel(node: string): string {
-  const labels: Record<string, string> = {
-    vision: "视觉识别",
-    query_planner: "查询规划",
-    retriever: "文档检索",
-    synthesis: "综合分析",
-    generate: "报告生成",
-    verify: "验证审核",
-    refine: "优化迭代",
-    fan_out: "并行检索",
+// Agent node labels - API returns both locales so clients do not infer labels.
+function _getNodeLabels(node: string): { label: string; labelEn: string } {
+  const labels: Record<string, { label: string; labelEn: string }> = {
+    vision: { label: "视觉识别", labelEn: "Vision Analysis" },
+    query_planner: { label: "查询规划", labelEn: "Query Planning" },
+    retriever: { label: "文档检索", labelEn: "Document Retrieval" },
+    synthesis: { label: "综合分析", labelEn: "Synthesis" },
+    generate: { label: "报告生成", labelEn: "Report Generation" },
+    verify: { label: "验证审核", labelEn: "Verification" },
+    refine: { label: "优化迭代", labelEn: "Refinement" },
+    fan_out: { label: "并行检索", labelEn: "Parallel Retrieval" },
   };
-  return labels[node] || node;
+  return labels[node] || { label: node, labelEn: node };
+}
+
+const HAN_TEXT_RE = /\p{Script=Han}/u;
+
+function _englishFallback(value: string | undefined, fallback: string): string {
+  if (!value || HAN_TEXT_RE.test(value)) return fallback;
+  return value;
+}
+
+function _englishOptional(value: string | undefined): string | undefined {
+  return value && !HAN_TEXT_RE.test(value) ? value : undefined;
 }
 
 function _normalizeDecisionNodes(nodes: unknown[]) {
-  return nodes.filter((node): node is Record<string, unknown> => typeof node === "object" && node !== null).map((node, index) => ({
-    id: String(node.id ?? node.type ?? `node_${index + 1}`),
-    type: String(node.type ?? "synthesis"),
-    label: String(node.label ?? node.type ?? `Step ${index + 1}`),
-    labelEn: typeof node.labelEn === "string" ? node.labelEn : typeof node.label_en === "string" ? node.label_en : undefined,
-    icon: typeof node.icon === "string" ? node.icon : "馃搳",
-    status: typeof node.status === "string" ? node.status.toLowerCase() : "success",
-    duration: typeof node.duration === "string" ? node.duration : "0s",
-    confidence: typeof node.confidence === "number" ? node.confidence : 0,
-    reasoning: typeof node.reasoning === "string" ? node.reasoning : undefined,
-    reasoningEn:
+  return nodes.filter((node): node is Record<string, unknown> => typeof node === "object" && node !== null).map((node, index) => {
+    const type = String(node.type ?? "synthesis");
+    const label = String(node.label ?? type ?? `Step ${index + 1}`);
+    const explicitLabelEn =
+      typeof node.labelEn === "string"
+        ? node.labelEn
+        : typeof node.label_en === "string"
+        ? node.label_en
+        : undefined;
+    const reasoning = typeof node.reasoning === "string" ? node.reasoning : undefined;
+    const explicitReasoningEn =
       typeof node.reasoningEn === "string"
         ? node.reasoningEn
         : typeof node.reasoning_en === "string"
         ? node.reasoning_en
-        : undefined,
-  }));
+        : undefined;
+
+    return {
+      id: String(node.id ?? type ?? `node_${index + 1}`),
+      type,
+      label,
+      labelEn: _englishFallback(explicitLabelEn ?? label, type),
+      icon: typeof node.icon === "string" ? node.icon : "📊",
+      status: typeof node.status === "string" ? node.status.toLowerCase() : "success",
+      duration: typeof node.duration === "string" ? node.duration : "0s",
+      confidence: typeof node.confidence === "number" ? node.confidence : 0,
+      reasoning,
+      reasoningEn: explicitReasoningEn ?? _englishOptional(reasoning),
+    };
+  });
 }
 
 function _getReportPackage(result: unknown): ReportPackage | undefined {

@@ -38,9 +38,18 @@ vi.mock('@/lib/i18n', () => ({
         'animation.eagleAnalyzing': 'The eagle is analyzing your product',
         'animation.currentSession': 'Current session:',
         'animation.waitingForTask': 'Waiting for task to start...',
+        'scanStages.analyzingImages': 'Analyzing uploaded images',
+        'scanStages.backendTimeout': 'Backend service timed out, falling back to demo mode...',
+        'scanStages.backendUnavailable': 'Backend service unavailable, falling back to demo mode...',
+        'scanStages.demoResultGenerated': 'Demo result generated (offline mode)',
         'scanStages.reportComplete': 'Report generation complete',
+        'scanStages.scanPassed': 'Compliance scan passed',
+        'scanStages.scanWarning': 'Compliance warning, please review the report',
+        'scanStages.scanRisk': 'Compliance risk, attention required',
         'result.reupload': 'Re-upload',
         'result.viewDemo': 'View Demo',
+        'errors.backendTimeout': 'Backend service timed out, falling back to demo mode...',
+        'errors.backendUnavailable': 'Backend service unavailable, falling back to demo mode...',
         'errors.scanFailed': 'Scan failed.',
       }
       return translations[key] || key
@@ -117,12 +126,13 @@ describe('BurningAnimation component', () => {
   })
 
   describe('Stage text display', () => {
-    it('displays stage text in Chinese', () => {
+    it('localizes known Chinese backend stage text through i18n', () => {
       render(<BurningAnimation {...defaultProps} stageText="分析上传图片" />)
-      expect(screen.getByText('分析上传图片')).toBeInTheDocument()
+      expect(screen.getByText('Analyzing uploaded images')).toBeInTheDocument()
+      expect(screen.queryByText('分析上传图片')).not.toBeInTheDocument()
     })
 
-    it('displays stage text in English', () => {
+    it('localizes known English backend stage text through i18n', () => {
       render(<BurningAnimation {...defaultProps} stageText="Analyzing uploaded images" />)
       expect(screen.getByText('Analyzing uploaded images')).toBeInTheDocument()
     })
@@ -178,6 +188,16 @@ describe('BurningAnimation component', () => {
         <BurningAnimation
           {...defaultProps}
           status={{ status: 'failed' }}
+        />
+      )
+      expect(screen.getByText('Scan failed.')).toBeInTheDocument()
+    })
+
+    it('localizes known failure codes', () => {
+      render(
+        <BurningAnimation
+          {...defaultProps}
+          status={{ status: 'failed', error: 'SCAN_FAILED' }}
         />
       )
       expect(screen.getByText('Scan failed.')).toBeInTheDocument()

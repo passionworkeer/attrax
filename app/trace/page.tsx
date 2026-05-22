@@ -66,7 +66,7 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
     }
   };
 
-  if (!mounted || loading) {
+  if (!mounted || (sessionId && loading)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50 flex items-center justify-center">
         <div className="animate-pulse text-gray-400">{t("trace.loading")}</div>

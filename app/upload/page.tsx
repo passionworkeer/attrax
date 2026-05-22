@@ -12,11 +12,34 @@ type ScanStartResponse = {
   pollUrl: string;
 };
 
+type ScanStartError = {
+  error?: {
+    code?: string;
+    reason?: string;
+    message?: string;
+    messageEn?: string;
+  };
+};
+
+const SCAN_ERROR_REASON_KEYS: Record<string, string> = {
+  INVALID_REQUEST: "errors.invalidRequest",
+  UPLOAD_AT_LEAST_ONE_IMAGE: "errors.uploadAtLeastOne",
+  TOO_MANY_DOCUMENTS: "errors.tooManyDocuments",
+};
+
 export default function UploadPage() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  function getUploadErrorMessage(payload: ScanStartError): string {
+    const reason = payload.error?.reason;
+    const key = reason ? SCAN_ERROR_REASON_KEYS[reason] : undefined;
+    if (key) return t(key);
+    if (locale === "en") return payload.error?.messageEn ?? t("errors.uploadFailed");
+    return payload.error?.message ?? t("errors.uploadFailed");
+  }
 
   async function handleSubmit(data: {
     images: File[];
@@ -45,11 +68,10 @@ export default function UploadPage() {
 
       const payload = (await response.json()) as
         | ScanStartResponse
-        | { error?: { message?: string } };
+        | ScanStartError;
 
       if (!response.ok) {
-        const errorPayload = payload as { error?: { message?: string } };
-        throw new Error(errorPayload.error?.message ?? t("errors.uploadFailed"));
+        throw new Error(getUploadErrorMessage(payload as ScanStartError));
       }
 
       if (!("sessionId" in payload)) {
