@@ -28,6 +28,16 @@ export async function GET(
 
   // Build trace data from agent_trace
   const agentTrace = (result as { agentTrace?: unknown[] }).agentTrace || [];
+  const decisionView = (result as {
+    reportPackage?: {
+      decisionView?: {
+        summary?: string;
+        keyFindings?: string[];
+        recommendedAction?: string;
+        nodes?: Array<Record<string, unknown>>;
+      };
+    };
+  }).reportPackage?.decisionView;
 
   // Extract execution stats
   const totalTime = (agentTrace as Array<{ duration_ms?: number; duration?: number }>).reduce((acc, entry) => {
@@ -52,23 +62,26 @@ export async function GET(
     markets.add(m);
   }
 
-  // Build trace nodes from agent_trace
-  const traceNodes = (agentTrace as Array<{
-    node: string;
-    status?: string;
-    duration_ms?: number;
-    duration?: number;
-    score?: number;
-    docs_retrieved?: number;
-  }>).map((entry) => ({
-    id: entry.node,
-    type: entry.node,
-    label: _getNodeLabel(entry.node),
+  // Build trace nodes from generated decision content when present,
+  // otherwise fall back to raw runtime agent_trace.
+  const traceNodes = decisionView?.nodes?.length
+    ? _normalizeDecisionNodes(decisionView.nodes)
+    : (agentTrace as Array<{
+        node: string;
+        status?: string;
+        duration_ms?: number;
+        duration?: number;
+        score?: number;
+        docs_retrieved?: number;
+      }>).map((entry) => ({
+        id: entry.node,
+        type: entry.node,
+        label: _getNodeLabel(entry.node),
     icon: "📊",
-    status: entry.status?.toLowerCase() || "pending",
-    duration: `${((entry.duration_ms || entry.duration) || 0) / 1000}s`,
-    confidence: entry.score || 0,
-  }));
+        status: entry.status?.toLowerCase() || "pending",
+        duration: `${((entry.duration_ms || entry.duration) || 0) / 1000}s`,
+        confidence: entry.score || 0,
+      }));
 
   return NextResponse.json({
     sessionId,
@@ -78,6 +91,7 @@ export async function GET(
     regulations: regulations.size || 6,
     score: (result as { complianceScore?: number }).complianceScore || 85,
     grade: (result as { scoreGrade?: string }).scoreGrade || "B",
+    decisionView,
     traceNodes,
     retrievedChunks,
   });
@@ -96,4 +110,16 @@ function _getNodeLabel(node: string): string {
     fan_out: "并行检索",
   };
   return labels[node] || node;
+}
+
+function _normalizeDecisionNodes(nodes: Array<Record<string, unknown>>) {
+  return nodes.map((node, index) => ({
+    id: String(node.id ?? node.type ?? `node_${index + 1}`),
+    type: String(node.type ?? "synthesis"),
+    label: String(node.label ?? node.type ?? `Step ${index + 1}`),
+    icon: typeof node.icon === "string" ? node.icon : "馃搳",
+    status: typeof node.status === "string" ? node.status.toLowerCase() : "success",
+    duration: typeof node.duration === "string" ? node.duration : "0s",
+    confidence: typeof node.confidence === "number" ? node.confidence : 0,
+  }));
 }

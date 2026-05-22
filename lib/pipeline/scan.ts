@@ -12,7 +12,14 @@
  */
 import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
-import type { Market, ProductCategory, ProfitReportResult, ComplianceReportResult, CostSummary } from "@/lib/types";
+import type {
+  Market,
+  ProductCategory,
+  ProfitReportResult,
+  ComplianceReportResult,
+  CostSummary,
+  GeneratedReportPackage,
+} from "@/lib/types";
 import { getTranslations } from "@/lib/i18n";
 
 const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
@@ -249,6 +256,8 @@ interface RagServiceResponse {
     region: string;
     score: number;
   }>;
+  report_package?: GeneratedReportPackage;
+  reportPackage?: GeneratedReportPackage;
 }
 
 /** Build a query string from images + category + markets. */
@@ -269,6 +278,36 @@ function buildQuery(
   const product = productMap[category] ?? tx.categories.other;
   const marketStr = markets.join("+");
   return `${product}出口${marketStr}合规要求和认证`;
+}
+
+function buildProfitReportFromMarkdown(
+  sessionId: string,
+  markdown: string,
+  productType: string,
+  market: string,
+  overrides?: GeneratedReportPackage["profitReport"]
+): ProfitReportResult {
+  const extracted = extractCostSummary(markdown);
+  return {
+    sessionId,
+    productType,
+    market,
+    report: markdown,
+    barebone: extracted.barebone,
+    compliant: extracted.compliant,
+    bareboneRiskExposure: extracted.barebone.asp > 0 ? extracted.barebone.asp * 100 : 0,
+    compliantRiskExposure: extracted.compliant.asp > 0 ? extracted.compliant.asp * 5 : 0,
+    keyConclusion: overrides?.keyConclusion || extracted.keyConclusion,
+    generatedAt: new Date().toISOString(),
+    premiumPct: overrides?.premiumPct || extracted.premiumPct,
+    breakevenUnits: overrides?.breakevenUnits || extracted.breakevenUnits,
+    pricingStrategy: overrides?.pricingStrategy || extracted.pricingStrategy,
+    riskNote: overrides?.riskNote || extracted.riskNote,
+    conclusions: overrides?.conclusions || extracted.conclusions,
+    references: overrides?.references || extracted.references,
+    bareboneGpm: extracted.bareboneGpm,
+    compliantGpm: extracted.compliantGpm,
+  };
 }
 
 /**
@@ -370,6 +409,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     REJECTED: "ready",
     UNKNOWN: "ready",
   };
+  const reportPackage = ragResponse.report_package ?? ragResponse.reportPackage;
+  const packageComplianceReport =
+    typeof reportPackage?.complianceReport === "string" && reportPackage.complianceReport.trim()
+      ? reportPackage.complianceReport
+      : undefined;
 
   const complianceReport: ComplianceReportResult = {
     sessionId,
@@ -381,7 +425,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       ragResponse.status === "PASS" ? 85 : ragResponse.status === "WARN" ? 55 : 25,
     scoreGrade:
       ragResponse.status === "PASS" ? "B" : ragResponse.status === "WARN" ? "C" : "D",
-    complianceReport: ragResponse.report,
+    complianceReport: packageComplianceReport ?? ragResponse.report,
     complianceStatus: ragResponse.status,
     agentTrace: ragResponse.agent_trace,
     loopCount: ragResponse.loop_count,
@@ -398,63 +442,60 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     checklist: undefined,
     generatedAt: new Date().toISOString(),
     modelInfo: { ragProvider: "cohere-anthropic", latencyMs: 0 },
+    reportPackage,
   };
 
-  // ── Stage 5: Fetch profit report (best-effort, does not block main flow) ──
+  // ── Stage 5: Profit report (included in new report package, legacy fallback otherwise) ──
   let profitReport: ProfitReportResult | undefined;
+  const packageProfitMarkdown = reportPackage?.profitReport?.markdown;
 
-  try {
-    const controller = new AbortController();
-    const profitTimeout = setTimeout(() => controller.abort(), 30_000); // 30s timeout for profit report
-
-    const profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        product: category,
-        category,
-        markets,
-      }),
-      signal: controller.signal,
-    });
-
-    clearTimeout(profitTimeout);
-
-    if (profitResp.ok) {
-      const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
-      const extracted = extractCostSummary(raw.report);
-      profitReport = {
-        sessionId,
-        productType: raw.product || category,
-        market: raw.market || markets[0] || "EU",
-        report: raw.report,
-        barebone: extracted.barebone,
-        compliant: extracted.compliant,
-        bareboneRiskExposure: extracted.barebone.asp > 0 ? extracted.barebone.asp * 100 : 0,
-        compliantRiskExposure: extracted.compliant.asp > 0 ? extracted.compliant.asp * 5 : 0,
-        keyConclusion: extracted.keyConclusion,
-        generatedAt: new Date().toISOString(),
-        premiumPct: extracted.premiumPct,
-        breakevenUnits: extracted.breakevenUnits,
-        pricingStrategy: extracted.pricingStrategy,
-        riskNote: extracted.riskNote,
-        conclusions: extracted.conclusions,
-        references: extracted.references,
-        bareboneGpm: extracted.bareboneGpm,
-        compliantGpm: extracted.compliantGpm,
-      };
-    } else {
-      // profit resp not ok — fall back to mock
-      console.warn(`Profit report endpoint returned ${profitResp.status}, using mock`);
-      profitReport = createMockProfitReport(sessionId);
-    }
-  } catch {
-    // profit report failed — fall back to mock instead of leaving it undefined
-    console.warn("Profit report fetch failed, using mock");
+  if (typeof packageProfitMarkdown === "string" && packageProfitMarkdown.trim()) {
+    profitReport = buildProfitReportFromMarkdown(
+      sessionId,
+      packageProfitMarkdown,
+      category,
+      markets[0] || "EU",
+      reportPackage?.profitReport
+    );
+  } else {
     try {
-      profitReport = createMockProfitReport(sessionId);
+      const controller = new AbortController();
+      const profitTimeout = setTimeout(() => controller.abort(), 30_000); // 30s timeout for profit report
+
+      const profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          product: category,
+          category,
+          markets,
+        }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(profitTimeout);
+
+      if (profitResp.ok) {
+        const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
+        profitReport = buildProfitReportFromMarkdown(
+          sessionId,
+          raw.report,
+          raw.product || category,
+          raw.market || markets[0] || "EU"
+        );
+      } else {
+        // profit resp not ok — fall back to mock
+        console.warn(`Profit report endpoint returned ${profitResp.status}, using mock`);
+        profitReport = createMockProfitReport(sessionId);
+      }
     } catch {
-      // mock generation also failed — skip, leave profitReport undefined
+      // profit report failed — fall back to mock instead of leaving it undefined
+      console.warn("Profit report fetch failed, using mock");
+      try {
+        profitReport = createMockProfitReport(sessionId);
+      } catch {
+        // mock generation also failed — skip, leave profitReport undefined
+      }
     }
   }
 

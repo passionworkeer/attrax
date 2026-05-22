@@ -188,5 +188,48 @@ describe('Scan Pipeline', () => {
       expect(result).toHaveProperty('retrievedChunks')
       expect(Array.isArray(result?.retrievedChunks)).toBe(true)
     })
+
+    it('uses report_package for all generated scenes without legacy profit call', async () => {
+      const fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValue(
+        new Response(JSON.stringify({
+          ...MOCK_BODY,
+          report: '# Legacy Compliance',
+          report_package: {
+            complianceReport: '# Packaged Compliance',
+            profitReport: {
+              markdown: '## Packaged Profit\n\n### 五、关键结论\n合规模式更稳健。',
+              keyConclusion: '合规模式更稳健',
+            },
+            roadmap: {
+              totalDays: 35,
+              totalCost: '¥18K+',
+              progress: 40,
+              items: [{ id: '1', title: '补齐标签', type: 'apply', status: 'in-progress' }],
+            },
+            decisionView: {
+              summary: '一次生成四个场景',
+              nodes: [{ id: 'generate', type: 'generate', label: '四场景生成', status: 'success' }],
+            },
+          },
+        }), { status: 200 })
+      )
+
+      const sessionId = 'test_report_package'
+      createSession(sessionId)
+
+      await runScan(sessionId, {
+        images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      const session = getSession(sessionId)
+      const result = session?.result as unknown as Record<string, any>
+      expect(fetchSpy).toHaveBeenCalledTimes(1)
+      expect(result.complianceReport).toBe('# Packaged Compliance')
+      expect(result.reportPackage.roadmap.totalDays).toBe(35)
+      expect(session?.profitReport?.report).toContain('Packaged Profit')
+      expect(session?.profitReport?.keyConclusion).toBe('合规模式更稳健')
+    })
   })
 })

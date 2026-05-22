@@ -89,19 +89,32 @@ def generator_node(state: GraphState) -> dict:
     if not documents:
         generation = "错误：未找到合规信息。请确保语料库已加载。"
         status = "no_documents"
+        report_package = {}
     else:
         try:
-            generation = generator.generate(
-                query=query,
-                product=product,
-                market=", ".join(markets),
-                chunks=documents,
-                doc_context=doc_context,
-            )
+            if getattr(generator, "supports_report_package", False) is True:
+                report_package = generator.generate_report_package(
+                    query=query,
+                    product=product,
+                    market=", ".join(markets),
+                    chunks=documents,
+                    doc_context=doc_context,
+                )
+                generation = report_package.get("complianceReport", "") or "错误：报告内容为空"
+            else:
+                report_package = {}
+                generation = generator.generate(
+                    query=query,
+                    product=product,
+                    market=", ".join(markets),
+                    chunks=documents,
+                    doc_context=doc_context,
+                )
             status = "success"
         except Exception as e:
             generation = f"报告生成失败: {e}"
             status = "error"
+            report_package = {}
 
     duration_ms = int((time.time() - start_time) * 1000)
 
@@ -109,12 +122,16 @@ def generator_node(state: GraphState) -> dict:
         "node": "generate",
         "provider": provider,
         "status": status,
+        "package_scenes": len(report_package) if report_package else 0,
         "chunks_count": len(documents),
         "generation_length": len(generation),
         "duration_ms": duration_ms,
     }
 
-    return {
+    result = {
         "generation": generation,
         "agent_trace": state.get("agent_trace", []) + [trace_entry],
     }
+    if report_package:
+        result["report_package"] = report_package
+    return result
