@@ -1,5 +1,10 @@
 # Document Processing Pipeline - Design Document
 
+> 文档版本：1.1
+> 创建时间：2026-04-28
+> 更新时间：2026-05-07
+> 状态：部分实现（Python 侧已集成，前端 docparser 模块待实现）
+
 ## 1. Overview
 
 **Goal**: Allow users to upload product images AND regulatory documents (PDF/HTML/DOCX), then receive a structured compliance report that combines visual analysis of products with authoritative regulatory text.
@@ -7,6 +12,94 @@
 **Current state**: The existing pipeline (`lib/pipeline/scan.ts`) processes product images through Vision AI and matches against a static mock regulation set. Regulatory documents are not yet supported.
 
 **New capability**: The Document Pipeline extracts text/tables from uploaded regulatory files, stores them as structured JSON, and injects that content as context into the LLM — without requiring a vector database.
+
+---
+
+## 0.1 当前状态
+
+| 模块 | 状态 | 说明 |
+|------|------|------|
+| PDF 解析（pdfplumber） | ✅ 已实现 | `rag_service/parser/` 集成 pdfplumber |
+| DOCX 解析（python-docx） | ✅ 已实现 | `rag_service/parser/` 集成 python-docx |
+| HTML 解析 | ✅ 已实现 | `rag_service/parser/` 集成 BeautifulSoup |
+| 前端 docparser 模块 | ❌ 待实现 | `lib/docparser/` 下 TypeScript 模块尚未创建 |
+| `POST /api/documents` | ❌ 待实现 | `app/api/documents/route.ts` 尚未创建 |
+| `lib/docparser/context.ts` | ❌ 待实现 | LLM markdown 上下文组装器 |
+| `lib/docparser/doc-store.ts` | ❌ 待实现 | 服务端 doc JSON 存储（TTL 1h） |
+| `lib/pipeline/reporter.ts` | ❌ 待实现 | Vision + regulatory doc LLM 报告生成器 |
+| `lib/pipeline/scan.ts` 集成 | ⚠️ 需修改 | 接受 `docSessionId` 并调用 Reporter |
+
+**Python 侧已集成文件（`rag_service/parser/`）：**
+- `pdfplumber` — PDF 文本 + 表格提取
+- `mammoth` — DOCX 解析
+- `BeautifulSoup4` — HTML 解析
+- `python-docx` — DOCX 段落和表格提取
+
+**前端待实现文件（`lib/docparser/`）：**
+- `parser.ts` — 统一入口，按 MIME 类型路由
+- `pdf-parser.ts` — PDF 解析（可调用 Python 后端或纯 TS 实现）
+- `html-parser.ts` — HTML 清理与结构化
+- `docx-parser.ts` — DOCX 解析
+- `merger.ts` — 多文档合并
+- `context.ts` — LLM markdown 组装
+- `doc-store.ts` — 服务端 doc 存储（TTL 1h）
+- `keywords.ts` — 市场/法规关键词检测
+- `index.ts` — 公共 API 导出
+
+---
+
+## 0.2 与现有 scan.ts 的集成说明
+
+当前 `lib/pipeline/scan.ts` 的调用链路：
+
+```
+POST /api/scan
+    │
+    ▼
+lib/pipeline/scan.ts
+    │
+    ├─ Vision 分析（mimoTalk 多模态）
+    │
+    ├─ POST http://localhost:8001/scan  （调用 RAG 服务）
+    │         │
+    │         ▼
+    │   LangGraph 8 节点管线
+    │         │
+    └─◄── 返回 ScanResponse
+              │
+              ▼
+         返回前端结果
+```
+
+**集成 docparser 后的链路：**
+
+```
+POST /api/documents（上传文件）
+    │
+    ▼
+lib/docparser/parser.ts → Python 解析（pdfplumber/mammoth/BS4）
+    │
+    ▼
+doc-store.ts（存储 parsed JSON，TTL 1h，返回 docSessionId）
+    │
+    ▼
+POST /api/scan（带上 docSessionId）
+    │
+    ▼
+lib/pipeline/scan.ts
+    │
+    ├─ Vision 分析（不变）
+    ├─ docSessionId → doc-store 获取 RegulatoryDocSet
+    ├─ context.ts 组装 markdown 上下文
+    ├─ reporter.ts 生成报告（Vision + regulatory doc context）
+    └─ 返回结果
+```
+
+关键变更点：
+- `scan.ts` 新增参数 `docSessionId?: string`
+- 新增 `lib/docparser/context.ts` → 将 `RegulatoryDocSet` 组装为 markdown
+- 新增 `lib/pipeline/reporter.ts` → 接收 `VisionOutput + regulatoryContext` 调用 LLM
+- RAG 管线不变，复用现有 FAISS + BM25 检索（regulatory doc 作为补充上下文）
 
 ---
 
@@ -448,5 +541,6 @@ export interface ReporterInput {
 
 ---
 
-*Document version: 1.0*
+*Document version: 1.1*
 *Created: 2026-04-28*
+*Updated: 2026-05-07*

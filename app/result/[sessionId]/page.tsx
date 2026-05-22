@@ -6,9 +6,14 @@ import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { buttonVariants } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { mockScanResult } from "@/lib/mock/scan-result";
-import type { ScanResult, ScanStatus, ComplianceReportResult } from "@/lib/types";
+import { useTranslation } from "@/lib/i18n";
+import { mockScanResult, mockProfitReport, mockComplianceReportResult } from "@/lib/mock/scan-result";
+import { downloadReportAsPdf, downloadReportAsDocx } from "@/lib/report-export";
+import { ProfitReportView } from "@/components/result/ProfitReportView";
+import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
+import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult } from "@/lib/types";
 
 function isComplianceReport(r: unknown): r is ComplianceReportResult {
   return (
@@ -19,6 +24,15 @@ function isComplianceReport(r: unknown): r is ComplianceReportResult {
   );
 }
 
+function isProfitReport(r: unknown): r is ProfitReportResult {
+  return (
+    typeof r === "object" &&
+    r !== null &&
+    "barebone" in r &&
+    "compliant" in r
+  );
+}
+
 function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
@@ -26,10 +40,10 @@ function formatBytes(bytes: number): string {
 }
 
 const STATUS_META = {
-  PASS: { label: "通过", color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/30" },
-  WARN: { label: "警告", color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/30" },
-  REJECTED: { label: "拒绝", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30" },
-  UNKNOWN: { label: "未知", color: "text-gray-400", bg: "bg-gray-500/10", border: "border-gray-500/30" },
+  PASS: { labelKey: "complianceStatus.passed", color: "text-emerald-500", bg: "bg-emerald-500/10", border: "border-emerald-500/30" },
+  WARN: { labelKey: "complianceStatus.warning", color: "text-amber-500", bg: "bg-amber-500/10", border: "border-amber-500/30" },
+  REJECTED: { labelKey: "complianceStatus.rejected", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30" },
+  UNKNOWN: { labelKey: "complianceStatus.unknown", color: "text-gray-400", bg: "bg-gray-500/10", border: "border-gray-500/30" },
 } as const;
 
 const GRADE_COLORS = {
@@ -40,83 +54,12 @@ const GRADE_COLORS = {
 } as const;
 
 const MARKET_LABELS: Record<string, string> = {
-  EU: "欧盟", US: "美国", UK: "英国",
+  EU: "markets.EU", US: "markets.US", UK: "markets.UK",
 };
 
-function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["agentTrace"] }) {
-  return (
-    <div className="mt-4 space-y-2">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">执行链路</h3>
-      <div className="relative space-y-0">
-        {trace.map((step, i) => {
-          const duration = typeof step.duration_ms === "number" ? `${(step.duration_ms / 1000).toFixed(1)}s` : null;
-          return (
-            <div key={i} className="flex items-start gap-3">
-              <div className="flex flex-col items-center">
-                <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border bg-muted text-xs font-mono">
-                  {i + 1}
-                </div>
-                {i < trace.length - 1 && <div className="mt-1 w-px flex-1 bg-border" style={{ minHeight: "1.5rem" }} />}
-              </div>
-              <div className="flex-1 pb-4">
-                <div className="flex items-center gap-2">
-                  <span className="rounded bg-blaze-surface px-2 py-0.5 text-xs font-mono font-medium text-white">
-                    {step.node}
-                  </span>
-                  {duration && (
-                    <span className="text-xs text-muted-foreground">{duration}</span>
-                  )}
-                </div>
-                {step.status !== undefined && (
-                  <p className="mt-0.5 text-xs text-muted-foreground">status: {String(step.status)}</p>
-                )}
-                {step.docs_retrieved !== undefined && (
-                  <p className="mt-0.5 text-xs text-muted-foreground">
-                    docs retrieved: {String(step.docs_retrieved)}
-                  </p>
-                )}
-                {step.score !== undefined && (
-                  <p className="mt-0.5 text-xs text-muted-foreground">score: {String(step.score)}</p>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrievedChunks"] }) {
-  if (!chunks.length) return null;
-  return (
-    <div className="mt-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-        命中法规 ({chunks.length})
-      </h3>
-      <div className="mt-2 flex flex-wrap gap-2">
-        {chunks.map((c, i) => (
-          <span
-            key={i}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1 text-xs"
-          >
-            <span className="font-medium">{c.region}</span>
-            <span className="text-muted-foreground">·</span>
-            <span className="text-muted-foreground">{c.docName}</span>
-            {c.articleNo && (
-              <>
-                <span className="text-muted-foreground">·</span>
-                <span className="font-mono text-muted-foreground">{c.articleNo}</span>
-              </>
-            )}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
+// ── Compliance Report View ───────────────────────────────────────────────────
 function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
+  const { t } = useTranslation();
   const meta = STATUS_META[result.complianceStatus] ?? STATUS_META.UNKNOWN;
   const gradeColor = GRADE_COLORS[result.scoreGrade] ?? "text-gray-400";
   const markets = result.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
@@ -129,20 +72,20 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
           <span className={cn("text-4xl font-bold tabular-nums sm:text-5xl", gradeColor)}>
             {result.complianceScore}
           </span>
-          <span className="text-xs text-muted-foreground">综合评分</span>
+          <span className="text-xs text-muted-foreground">{t("result.overallScore")}</span>
         </div>
         <div className="flex flex-col gap-2">
           <div className={cn("inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium", meta.color, meta.bg, meta.border)}>
-            <span>{meta.label}</span>
+            <span>{t(meta.labelKey)}</span>
           </div>
           <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-            <span>等级：<span className={cn("font-semibold", gradeColor)}>{result.scoreGrade}</span></span>
+            <span>{t("result.grade")}：<span className={cn("font-semibold", gradeColor)}>{result.scoreGrade}</span></span>
             <span>·</span>
-            <span>品类：{result.productCategory}</span>
+            <span>{t("result.category")}：{result.productCategory}</span>
             <span>·</span>
-            <span>市场：{markets}</span>
+            <span>{t("result.market")}：{markets.split(" · ").map((m) => t(m)).join(" · ")}</span>
             <span>·</span>
-            <span>检索轮次：{result.loopCount}</span>
+            <span>{t("result.retrievalRounds")}：{result.loopCount}</span>
           </div>
         </div>
       </div>
@@ -157,13 +100,35 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
 
       {/* Full Report */}
       <div className="rounded-2xl border border-border bg-card">
-        <div className="flex items-center justify-between border-b border-border px-5 py-3">
-          <h3 className="text-sm font-semibold">合规报告</h3>
-          {result.modelInfo && (
-            <span className="text-xs text-muted-foreground">
-              {result.modelInfo.ragProvider} · {(result.modelInfo.latencyMs / 1000).toFixed(1)}s
-            </span>
-          )}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
+          <div className="flex items-center gap-3">
+            <h3 className="text-sm font-semibold">{t("result.complianceReport")}</h3>
+            {result.modelInfo && (
+              <span className="text-xs text-muted-foreground">
+                {result.modelInfo.ragProvider} · {(result.modelInfo.latencyMs / 1000).toFixed(1)}s
+              </span>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => downloadReportAsPdf(result)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-red-400/50 hover:text-red-500"
+            >
+              <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
+                <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
+              </svg>
+              PDF
+            </button>
+            <button
+              onClick={() => downloadReportAsDocx(result)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-blue-400/50 hover:text-blue-500"
+            >
+              <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
+                <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
+              </svg>
+              Word
+            </button>
+          </div>
         </div>
         <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
@@ -175,7 +140,9 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
   );
 }
 
+// ── Legacy Result View ─────────────────────────────────────────────────────────
 function LegacyResultView({ result }: { result: ScanResult }) {
+  const { t } = useTranslation();
   return (
     <>
       <div className="overflow-hidden rounded-3xl border border-border bg-blaze-dark/95">
@@ -186,9 +153,9 @@ function LegacyResultView({ result }: { result: ScanResult }) {
 
       {result.documents.length > 0 && (
         <section className="mt-8">
-          <h2 className="text-lg font-semibold">已上传文档</h2>
+          <h2 className="text-lg font-semibold">{t("result.uploadedDocs")}</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            共 {result.documents.length} 份文档
+            {t("result.documentCount", { count: result.documents.length })}
           </p>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {result.documents.map((doc) => {
@@ -231,13 +198,17 @@ function LegacyResultView({ result }: { result: ScanResult }) {
 }
 
 export default function ResultPage() {
+  const { t } = useTranslation();
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const isDemoSession = sessionId === "demo";
   const [result, setResult] = useState<ScanResult | ComplianceReportResult | null>(
-    isDemoSession ? mockScanResult : null
+    isDemoSession ? (mockComplianceReportResult as unknown as ScanResult | ComplianceReportResult | null) : null
   );
-  const [message, setMessage] = useState("正在加载扫描结果…");
+  const [profitReport, setProfitReport] = useState<ProfitReportResult | null>(
+    isDemoSession ? mockProfitReport : null
+  );
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!sessionId || isDemoSession) return;
@@ -248,8 +219,16 @@ export default function ResultPage() {
         const cachedResult = JSON.parse(cached);
         startTransition(() => {
           setResult(cachedResult);
-          setMessage("已从会话缓存恢复结果。");
+          setMessage(t("result.restored"));
         });
+        fetch(`/api/scan/${sessionId}`, { cache: "no-store" })
+          .then((r) => r.ok ? r.json() : null)
+          .then((payload) => {
+            if (payload?.profitReport && isProfitReport(payload.profitReport)) {
+              setProfitReport(payload.profitReport);
+            }
+          })
+          .catch(() => {});
         return;
       } catch {
         sessionStorage.removeItem(`scan:${sessionId}`);
@@ -259,26 +238,29 @@ export default function ResultPage() {
     async function loadResult() {
       const response = await fetch(`/api/scan/${sessionId}`, { cache: "no-store" });
       if (!response.ok) {
-        startTransition(() => setMessage("未找到对应扫描结果。"));
+        startTransition(() => setMessage(t("result.notFound")));
         return;
       }
       const payload: ScanStatus = await response.json();
       if (payload.status === "ready" && payload.result) {
         startTransition(() => {
           setResult(payload.result ?? null);
-          setMessage("结果已从接口载入。");
+          if (payload.profitReport && isProfitReport(payload.profitReport)) {
+            setProfitReport(payload.profitReport);
+          }
+          setMessage(t("result.loaded"));
         });
         return;
       }
       if (payload.status === "failed") {
-        startTransition(() => setMessage(payload.error ?? "扫描失败。"));
+        startTransition(() => setMessage(payload.error ?? t("result.failed")));
         return;
       }
-      startTransition(() => setMessage("扫描仍在处理中，请稍后刷新或返回加载页。"));
+      startTransition(() => setMessage(t("result.processing")));
     }
 
     loadResult();
-  }, [isDemoSession, sessionId]);
+  }, [isDemoSession, sessionId, t]);
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-16">
@@ -287,23 +269,52 @@ export default function ResultPage() {
           <div>
             <p className="text-sm uppercase tracking-[0.24em] text-blaze-red/80">Result</p>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight">
-              {isDemoSession ? "Demo 扫描结果" : `扫描结果 · ${sessionId}`}
+              {isDemoSession ? t("result.demoResult") : `${t("result.scanResult")} · ${sessionId}`}
             </h1>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              {isDemoSession ? "已载入 Demo 数据。" : message}
+              {isDemoSession ? t("result.demoLoaded") : message}
             </p>
           </div>
-          <Link
-            href="/upload"
-            className={cn(buttonVariants({ variant: "outline", size: "lg" }), "shrink-0")}
-          >
-            重新上传
-          </Link>
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <Link
+              href={`/trace?sessionId=${sessionId}`}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-purple-200 text-purple-600 hover:bg-purple-50")}
+            >
+              {t("result.aiDecision")}
+            </Link>
+            <Link
+              href={`/roadmap?sessionId=${sessionId}`}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-green-200 text-green-600 hover:bg-green-50")}
+            >
+              {t("result.complianceRoadmap")}
+            </Link>
+            <Link
+              href="/upload"
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0")}
+            >
+              {t("result.reupload")}
+            </Link>
+          </div>
         </div>
 
         {result && isComplianceReport(result) ? (
           <div className="mt-8">
-            <ComplianceReportView result={result} />
+            {profitReport ? (
+              <Tabs defaultValue="compliance">
+                <TabsList>
+                  <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
+                  <TabsTrigger value="profit">{t("result.costProfitReport")}</TabsTrigger>
+                </TabsList>
+                <TabsContent value="compliance">
+                  <ComplianceReportView result={result} />
+                </TabsContent>
+                <TabsContent value="profit">
+                  <ProfitReportView result={profitReport} />
+                </TabsContent>
+              </Tabs>
+            ) : (
+              <ComplianceReportView result={result} />
+            )}
           </div>
         ) : result ? (
           <div className="mt-8">

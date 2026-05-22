@@ -11,6 +11,8 @@ import os
 import re
 import time
 import logging
+import hashlib
+import threading
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -18,6 +20,17 @@ logger = logging.getLogger(__name__)
 DIM = 1024
 MAX_TEXT_LEN = 8000
 MIN_TEXT_LEN = 5  # Queries can be short; lower threshold for Chinese
+
+# ─── LRU cache for embed_query ─────────────────────────────────────────────────
+# Caches repeated query embeddings at the API level, bypassing both the network
+# round-trip and the 2s rate-limit delay entirely on cache hits.
+_CACHE_MAX = 512
+_QUERY_CACHE: dict[str, tuple] = {}
+_QUERY_CACHE_LOCK = threading.Lock()
+
+
+def _qcache_key(text: str) -> str:
+    return hashlib.md5(text.encode()).hexdigest()
 
 
 def clean_text(text: str) -> str:
@@ -97,8 +110,26 @@ class ModelScopeEmbedder:
         raise RuntimeError(f"Max retries exceeded for: {text[:50]}")
 
     def embed_query(self, text: str) -> list[float]:
+        """
+        Embed a single query string with in-process cache.
+        Cache hits skip both the 2s rate-limit delay and the HTTP round-trip.
+        """
+        key = _qcache_key(text)
+        with _QUERY_CACHE_LOCK:
+            if key in _QUERY_CACHE:
+                return list(_QUERY_CACHE[key])
+
         self._rate_limit(2.0)
-        return self._call_api(text)
+        result = self._call_api(text)
+
+        with _QUERY_CACHE_LOCK:
+            if len(_QUERY_CACHE) >= _CACHE_MAX:
+                # Simple eviction: remove the first (oldest) entry
+                first_key = next(iter(_QUERY_CACHE))
+                del _QUERY_CACHE[first_key]
+            _QUERY_CACHE[key] = tuple(result)
+
+        return result
 
     def embed_batch(self, texts: list[str], batch_size: int = 1) -> list[list[float]]:
         """

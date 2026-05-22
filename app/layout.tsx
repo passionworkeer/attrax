@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import PageTransition from "@/components/PageTransition";
+import { TranslationProvider } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import "./globals.css";
 
 const inter = Inter({
@@ -10,8 +13,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Blaze Hawks · 想出海？先烧毁！",
-  description: "AI 合规风险智能扫描",
+  title: "Blaze Hawks · Think Before You Expand",
+  description: "AI-powered compliance risk scanning for cross-border e-commerce",
 };
 
 export default function RootLayout({
@@ -20,9 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={`${inter.variable} h-full antialiased`}>
+    <html lang="zh" className={`${inter.variable} h-full antialiased`} data-scroll-behavior="smooth">
       <body className="min-h-full">
-        <TooltipProvider>{children}</TooltipProvider>
+        <TranslationProvider>
+          <TooltipProvider>
+            <div className="fixed top-4 right-4 z-50">
+              <LanguageSwitcher />
+            </div>
+            <PageTransition>{children}</PageTransition>
+          </TooltipProvider>
+        </TranslationProvider>
       </body>
     </html>
   );

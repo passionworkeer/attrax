@@ -6,9 +6,13 @@
 |------|------|
 | [PROJECT.md](./PROJECT.md) | 项目描述 — 技术栈、架构、目录结构 |
 | [PRD.md](./PRD.md) | 产品需求文档 — 功能范围、验收标准 |
-| [RAG-ARCHITECTURE-v2.md](./RAG-ARCHITECTURE-v2.md) | RAG 架构文档 — 详细技术架构说明 |
-| [IMPLEMENTATION-PLAN-v3.md](./IMPLEMENTATION-PLAN-v3.md) | 实施计划 — 开发路线图 |
+| [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md) | RAG 架构文档（当前实现） |
+| [RAG-ARCHITECTURE-v2-LEGACY.md](./RAG-ARCHITECTURE-v2-LEGACY.md) | RAG 架构文档 — 旧版（已归档） |
+| [IMPLEMENTATION-PLAN-v3.md](./IMPLEMENTATION-PLAN-v3.md) | 实施计划（⚠️ 历史文档，实际路线已变更） |
 | [DOCUMENT-PIPELINE.md](./DOCUMENT-PIPELINE.md) | 文档处理管线 — 语料库构建流程 |
+| [PROJECT-STATUS.md](./PROJECT-STATUS.md) | 项目上线评估报告 — 完成度 + 阻塞问题 |
+| [RAG-ARCHITECTURE.md](./archived/RAG-ARCHITECTURE.md) | RAG 架构文档 — 初始版（已归档） |
+| [archived/](./archived/) | 已归档文档（历史版本） |
 
 ---
 
@@ -56,12 +60,18 @@ npm run test:e2e
 
 ```
 docs/
-├── README.md                 # 本文件
-├── PROJECT.md               # 项目描述
-├── PRD.md                   # 产品需求文档
-├── RAG-ARCHITECTURE-v2.md  # RAG 架构文档
-├── IMPLEMENTATION-PLAN-v3.md # 实施计划
-└── DOCUMENT-PIPELINE.md     # 文档处理管线
+├── README.md                          # 本文件
+├── PROJECT.md                        # 项目描述
+├── PRD.md                            # 产品需求文档
+├── RAG-ARCHITECTURE-v3.md            # RAG 架构文档（当前）
+├── archived/                         # 已归档文档
+│   ├── RAG-ARCHITECTURE.md           # ARCHIVED
+│   ├── RAG-ARCHITECTURE-v2-LEGACY.md  # ARCHIVED（原 RAG-ARCHITECTURE-v2.md）
+│   ├── IMPLEMENTATION-PLAN-v2.1.md   # ARCHIVED
+│   └── IMPLEMENTATION-PLAN-v3-ARCHIVED.md
+├── IMPLEMENTATION-PLAN-v3.md         # 实施计划（历史文档）
+├── PROJECT-STATUS.md                 # 项目上线评估报告
+└── DOCUMENT-PIPELINE.md              # 文档处理管线
 ```
 
 ---
@@ -71,8 +81,8 @@ docs/
 - **首页**: http://localhost:3000
 - **上传页**: http://localhost:3000/upload
 - **Demo 结果**: http://localhost:3000/result/demo
-- **RAG Service**: http://localhost:8000 (需单独启动后端)
-- **RAG Service 健康检查**: http://localhost:8000/health
+- **RAG Service**: http://localhost:8001 (需单独启动后端)
+- **RAG Service 健康检查**: http://localhost:8001/health
 
 ---
 
@@ -88,7 +98,7 @@ docs/
 | Vision AI | ✅ 完成 | mimoTalk vision |
 | 混合检索 | ✅ 完成 | FAISS + BM25 + RRF |
 | 多市场并行 | ✅ 完成 | LangGraph Send fan-out |
-| 引用验证 | ✅ 完成 | NLI 硬门 |
+| 引用验证 | ✅ 完成 | NLI 软门（attribution_score 0.9/0.5/0） |
 | 持久化存储 | ⏳ 计划中 | P2 |
 | 用户系统 | ⏳ 计划中 | P3-P4 |
 

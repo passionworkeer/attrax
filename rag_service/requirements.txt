@@ -1,6 +1,5 @@
 about-time==4.2.1
 absl-py==2.3.1
-agent-reach @ https://github.com/Panniantong/Agent-Reach/archive/main.zip#sha256=809170b0eae0876671fc676de4f0cc89716da3911483e2735e3f375240348598
 aiodns==4.0.0
 aiofiles==23.2.1
 aiohappyeyeballs==2.6.1
@@ -15,7 +14,6 @@ altair==5.5.0
 altgraph==0.17.5
 aniso8601==10.0.1
 annotated-types==0.7.0
--e git+https://github.com/anthropics/anthropic-sdk-python.git@97074788ac2c4381f4262de5116eac9fd9b4f192#egg=anthropic
 anyio==4.10.0
 apify_fingerprint_datapoints==0.11.0
 appdirs==1.4.4
@@ -97,8 +95,6 @@ dnspython==2.8.0
 dockerfile-parse==2.0.1
 docstring_parser==0.17.0
 durationpy==0.10
-# Editable install with no version control (e2b==2.20.0)
--e d:\openclaw-work\e2b-dev_e2b\packages\python-sdk
 ecdsa==0.19.1
 edge-tts==7.2.8
 email-validator==2.1.0
@@ -288,8 +284,6 @@ nltk==3.9.2
 nodeenv==1.9.1
 notebook==7.4.5
 notebook_shim==0.2.4
-# Editable install with no version control (notebooklm-py==0.3.4)
--e e:\desktop\notebooklm-py
 numba==0.60.0
 numpy==1.26.4
 oauth2client==4.1.3

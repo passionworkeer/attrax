@@ -160,12 +160,21 @@ class CitationVerifier:
         return best_result
 
     def _verify_by_embedding(self, claim: str, chunks: list[dict]) -> ClaimResult:
-        """Fallback verification using simple text overlap when no NLI model."""
-        claim_lower = claim.lower()
+        """
+        Fallback verification using simple text overlap when no NLI model.
+
+        Pre-tokenizes chunk words once per call batch to avoid O(n*m*len) regex overhead.
+        """
+        claim_words = set(re.findall(r'\w+', claim.lower()))
+        if not claim_words:
+            return ClaimResult(
+                claim=claim, status="UNVERIFIED", evidence=None, citation_marker=None,
+            )
+
         for chunk in chunks:
-            content = chunk.get("content", "").lower()
-            claim_words = set(re.findall(r'\w+', claim_lower))
-            content_words = set(re.findall(r'\w+', content))
+            content_lower = chunk.get("content", "").lower()
+            # Split once; avoid re.findall inside the loop
+            content_words = set(re.findall(r'\w+', content_lower))
             overlap = len(claim_words & content_words) / max(len(claim_words), 1)
 
             if overlap > 0.5:
@@ -194,6 +203,7 @@ class CitationVerifier:
         Returns:
             VerificationResult with status and attribution score
         """
+        # Fast path: no chunks → skip expensive verification
         if not chunks:
             return VerificationResult(
                 total_claims=0,
@@ -242,10 +252,13 @@ class CitationVerifier:
             all_results.append(result)
 
         # Verify remaining claims via NLI / embedding fallback
+        # Use a set for O(1) claim dedup instead of O(n^2) list scan
+        seen_claims: set[str] = {str(r.claim) for r in all_results}
         for claim in claims:
-            if not any(str(r.claim) in claim for r in all_results):
+            if claim not in seen_claims:
                 result = self.verify_claim_nli(claim, chunks)
                 all_results.append(result)
+                seen_claims.add(claim)
 
         # Compute metrics
         entailed = sum(1 for r in all_results if r.status == "ENTAILED")

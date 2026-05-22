@@ -10,7 +10,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "node tests/e2e/smoke-tests.mjs && node tests/e2e/e2e-tests.mjs"
+    "test:e2e": "npx playwright test",
+    "test:e2e:ui": "npx playwright test --ui",
+    "test:e2e:headed": "npx playwright test --headed",
+    "test:pressure": "node tests/pressure/improved-load-test.js smoke",
+    "test:pressure:load": "node tests/pressure/improved-load-test.js load",
+    "test:all": "npm run test && npm run test:e2e"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.0",
@@ -19,8 +24,11 @@
     "@google/generative-ai": "^0.24.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "docx": "^9.6.1",
     "framer-motion": "^12.38.0",
+    "jspdf": "^4.2.1",
     "lucide-react": "^1.9.0",
+    "mammoth": "^1.12.0",
     "next": "16.2.4",
     "next-themes": "^0.4.6",
     "openai": "^6.34.0",
@@ -45,6 +53,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "^4.1.6",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "jsdom": "^29.1.0",
