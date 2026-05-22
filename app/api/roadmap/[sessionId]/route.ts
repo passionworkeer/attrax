@@ -35,6 +35,30 @@ export async function GET(
 
   // Determine compliance status and generate roadmap items
   const complianceStatus = (result as { complianceStatus?: string }).complianceStatus || "UNKNOWN";
+  const packagedRoadmap = (result as {
+    reportPackage?: {
+      roadmap?: {
+        totalDays?: number;
+        totalCost?: string;
+        progress?: number;
+        items?: Array<Record<string, unknown>>;
+      };
+    };
+  }).reportPackage?.roadmap;
+
+  if (packagedRoadmap?.items?.length) {
+    return NextResponse.json({
+      sessionId,
+      product,
+      markets: targetMarkets,
+      complianceScore,
+      complianceStatus,
+      totalDays: packagedRoadmap.totalDays ?? (complianceScore >= 80 ? 42 : complianceScore >= 60 ? 56 : 70),
+      progress: packagedRoadmap.progress ?? Math.round((complianceScore / 100) * 100),
+      totalCost: packagedRoadmap.totalCost ?? _estimateTotalCost(complianceScore, targetMarkets),
+      items: _normalizeRoadmapItems(packagedRoadmap.items),
+    });
+  }
 
   // Generate timeline based on compliance score
   const totalDays = complianceScore >= 80 ? 42 : complianceScore >= 60 ? 56 : 70;
@@ -159,4 +183,24 @@ function _estimateTotalCost(score: number, markets: string[]): string {
   if (markets.includes("CN")) baseCost += 3000;
 
   return `¥${(baseCost / 1000).toFixed(0)}K+`;
+}
+
+function _normalizeRoadmapItems(items: Array<Record<string, unknown>>) {
+  const validTypes = new Set(["apply", "test", "certify", "complete"]);
+  const validStatuses = new Set(["pending", "in-progress", "completed"]);
+
+  return items.map((item, index) => ({
+    id: String(item.id ?? index + 1),
+    date: typeof item.date === "string" ? item.date : new Date().toISOString().split("T")[0],
+    title: typeof item.title === "string" ? item.title : `Step ${index + 1}`,
+    titleEn: typeof item.titleEn === "string" ? item.titleEn : `Step ${index + 1}`,
+    description: typeof item.description === "string" ? item.description : "",
+    descriptionEn: typeof item.descriptionEn === "string" ? item.descriptionEn : "",
+    type: validTypes.has(String(item.type)) ? item.type : "apply",
+    status: validStatuses.has(String(item.status)) ? item.status : "pending",
+    estimatedDays: typeof item.estimatedDays === "number" ? item.estimatedDays : undefined,
+    cost: typeof item.cost === "string" ? item.cost : undefined,
+    documents: Array.isArray(item.documents) ? item.documents.map(String) : undefined,
+    documentsEn: Array.isArray(item.documentsEn) ? item.documentsEn.map(String) : undefined,
+  }));
 }

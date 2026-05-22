@@ -124,6 +124,8 @@ export interface ComplianceReportResult {
     region: string;
     score: number;
   }>;
+  /** Optional one-pass generated package for the four result scenes. */
+  reportPackage?: GeneratedReportPackage;
   images: undefined;
   documents: Array<{
     documentId: string;
@@ -147,6 +149,64 @@ export interface ScanStatus {
   result?: ScanResult | ComplianceReportResult;
   profitReport?: ProfitReportResult;
   error?: string;
+}
+
+export interface GeneratedReportPackage {
+  complianceReport?: string;
+  profitReport?: {
+    markdown?: string;
+    keyConclusion?: string;
+    premiumPct?: string;
+    breakevenUnits?: string;
+    pricingStrategy?: string;
+    riskNote?: string;
+    conclusions?: string;
+    references?: string;
+  };
+  roadmap?: GeneratedRoadmap;
+  decisionView?: GeneratedDecisionView;
+}
+
+export interface GeneratedRoadmap {
+  totalDays?: number;
+  totalCost?: string;
+  progress?: number;
+  items?: GeneratedRoadmapItem[];
+}
+
+export interface GeneratedRoadmapItem {
+  id?: string;
+  date?: string;
+  title?: string;
+  titleEn?: string;
+  description?: string;
+  descriptionEn?: string;
+  type?: "apply" | "test" | "certify" | "complete";
+  status?: "pending" | "in-progress" | "completed";
+  estimatedDays?: number;
+  cost?: string;
+  documents?: string[];
+  documentsEn?: string[];
+}
+
+export interface GeneratedDecisionView {
+  summary?: string;
+  keyFindings?: string[];
+  recommendedAction?: string;
+  nodes?: GeneratedDecisionNode[];
+}
+
+export interface GeneratedDecisionNode {
+  id?: string;
+  type?: string;
+  label?: string;
+  labelEn?: string;
+  icon?: string;
+  status?: string;
+  duration?: string;
+  confidence?: number;
+  reasoning?: string;
+  reasoningEn?: string;
 }
 
 export interface CostSummary {

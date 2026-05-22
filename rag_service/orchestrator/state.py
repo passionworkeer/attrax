@@ -24,6 +24,7 @@ class GraphState(TypedDict, total=False):
     sub_queries: list[dict]                            # QueryPlanner output
     documents: Annotated[list[dict], operator.add]    # Accumulated across rounds
     generation: str                                   # Current draft report
+    report_package: dict                              # Four-scene generated content package
     relevance_score: str                               # "relevant" | "not_relevant"
     generation_score: str                               # "supported" | "not_supported"
     missing_citations: list[str]                       # Unverified citations
@@ -55,6 +56,7 @@ def initial_state(query: str, product: str, category: str,
         sub_queries=[],
         documents=[],
         generation="",
+        report_package={},
         relevance_score="",
         generation_score="",
         missing_citations=[],

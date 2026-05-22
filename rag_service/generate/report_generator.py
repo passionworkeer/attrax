@@ -47,6 +47,72 @@ SYSTEM_PROMPT = """你是跨境电商合规专家。根据用户上传的产品�
 来源文档（已按产品相关性过滤，通用条款已标注）：
 {source_chunks}"""
 
+REPORT_PACKAGE_SYSTEM_PROMPT = """你是跨境电商合规与商业化专家。你会基于检索到的法规/成本语料，一次性生成四个前端场景需要的内容。
+
+核心原则：
+1. 只使用给定来源文档和用户上传文档中的事实，不要编造法规条款或确定性数字。
+2. 信息不足时必须写明“暂无充分依据”，可以给出保守估算但要标注“估算”。
+3. 合规报告、成本利润、排期路线图、AI 决策视图必须互相一致。
+4. 合规报告中的事实需要标注来源，格式为 [法规名称/条款]。
+5. 直接输出 JSON，不要输出 Markdown 代码围栏，不要附加解释。
+
+JSON 结构必须是：
+{
+  "complianceReport": "markdown string",
+  "profitReport": {
+    "markdown": "markdown string",
+    "keyConclusion": "string",
+    "premiumPct": "string",
+    "breakevenUnits": "string",
+    "pricingStrategy": "string",
+    "riskNote": "string",
+    "conclusions": "string",
+    "references": "string"
+  },
+  "roadmap": {
+    "totalDays": 56,
+    "totalCost": "¥25K+",
+    "progress": 35,
+    "items": [
+      {
+        "id": "1",
+        "date": "YYYY-MM-DD",
+        "title": "中文标题",
+        "titleEn": "English title",
+        "description": "中文描述",
+        "descriptionEn": "English description",
+        "type": "apply|test|certify|complete",
+        "status": "completed|in-progress|pending",
+        "estimatedDays": 7,
+        "cost": "¥5,000-15,000",
+        "documents": ["材料1"],
+        "documentsEn": ["Document 1"]
+      }
+    ]
+  },
+  "decisionView": {
+    "summary": "string",
+    "keyFindings": ["string"],
+    "recommendedAction": "string",
+    "nodes": [
+      {
+        "id": "vision",
+        "type": "vision|query_planner|retriever|synthesis|generate|verify",
+        "label": "中文节点名",
+        "labelEn": "English node label",
+        "status": "success|pending|running|error",
+        "duration": "1.2s",
+        "confidence": 0.86,
+        "reasoning": "中文解释",
+        "reasoningEn": "English reasoning"
+      }
+    ]
+  }
+}
+
+来源文档：
+{source_chunks}"""
+
 
 def _build_source_context(chunks: list[dict], max_chunks: int = 20, max_chars: int = 600) -> str:
     """Build a compact source context string from chunks."""
@@ -57,6 +123,35 @@ def _build_source_context(chunks: list[dict], max_chunks: int = 20, max_chars: i
         content = chunk.get("content", "")[:max_chars].replace("\n", " ")
         parts.append(f"[{i+1}] {doc} {article}\n{content}")
     return "\n---\n".join(parts)
+
+
+def _parse_json_object(text: str) -> dict | None:
+    """Parse a JSON object from raw LLM text, accepting fenced output."""
+    raw = (text or "").strip()
+    if raw.startswith("```"):
+        lines = raw.splitlines()
+        if lines and lines[0].startswith("```"):
+            lines = lines[1:]
+        if lines and lines[-1].strip().startswith("```"):
+            lines = lines[:-1]
+        raw = "\n".join(lines).strip()
+
+    try:
+        data = json.loads(raw)
+        return data if isinstance(data, dict) else None
+    except Exception:
+        pass
+
+    start = raw.find("{")
+    end = raw.rfind("}")
+    if start >= 0 and end > start:
+        try:
+            data = json.loads(raw[start:end + 1])
+            return data if isinstance(data, dict) else None
+        except Exception:
+            return None
+
+    return None
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -384,6 +479,7 @@ class ReportGenerator:
     Compliance report generator using mimoTalk only.
     超时/网络错误 → 返回 mock 报告，不调用其他 LLM。
     """
+    supports_report_package = True
 
     def __init__(self, api_key: str | None = None):
         self.api_key = api_key or os.environ.get("MIMOTALK_API_KEY", "")
@@ -395,6 +491,256 @@ class ReportGenerator:
     @property
     def provider(self) -> str:
         return "mimotalk"
+
+    def generate_report_package(
+        self,
+        query: str,
+        product: str,
+        market: str,
+        chunks: list[dict],
+        max_tokens: int = 8192,
+        doc_context: str = "",
+    ) -> dict:
+        """
+        Generate the four result scenes in one LLM call:
+        compliance report, profit report, roadmap, and decision view.
+        """
+        if not chunks:
+            return self._fallback_report_package(
+                product=product,
+                market=market,
+                query=query,
+                chunks=chunks,
+                error="未找到合规信息，请确保语料库已正确加载。",
+            )
+
+        source_context = _build_source_context(chunks, max_chunks=24, max_chars=700)
+        doc_section = (
+            f"\n\n用户上传文档内容：\n{doc_context}\n"
+            if doc_context
+            else ""
+        )
+
+        system = REPORT_PACKAGE_SYSTEM_PROMPT.format(source_chunks=source_context)
+        user_prompt = (
+            f"产品类型：{product}\n"
+            f"目标市场：{market}\n"
+            f"用户问题：{query}\n"
+            f"{doc_section}\n"
+            "请基于上述证据一次性生成四个场景内容：合规报告、成本利润报告、合规排期路线图、AI 决策视图。"
+            "输出必须是可解析 JSON。"
+        )
+
+        try:
+            raw = self._generate_mimotalk(system, user_prompt, max_tokens)
+        except Exception as e:
+            logger.error(f"mimoTalk package generation failed: {e}")
+            return self._fallback_report_package(
+                product=product,
+                market=market,
+                query=query,
+                chunks=chunks,
+                error=f"LLM 调用失败：{e}",
+            )
+
+        parsed = _parse_json_object(raw)
+        if parsed is None:
+            logger.warning("mimoTalk package generation returned non-JSON output")
+            return self._fallback_report_package(
+                product=product,
+                market=market,
+                query=query,
+                chunks=chunks,
+                compliance_report=raw,
+            )
+
+        return self._normalize_report_package(parsed, product, market, query, chunks)
+
+    def _normalize_report_package(
+        self,
+        package: dict,
+        product: str,
+        market: str,
+        query: str,
+        chunks: list[dict],
+    ) -> dict:
+        """Normalize model JSON keys and fill missing scenes conservatively."""
+        compliance = (
+            package.get("complianceReport")
+            or package.get("compliance_report")
+            or package.get("report")
+            or ""
+        )
+        if not isinstance(compliance, str) or not compliance.strip():
+            compliance = self._mock_report(product, market, query, error="合规报告为空，已使用保守模板。")
+
+        profit = package.get("profitReport") or package.get("profit_report") or {}
+        if isinstance(profit, str):
+            profit = {"markdown": profit}
+        if not isinstance(profit, dict):
+            profit = {}
+        if not isinstance(profit.get("markdown"), str) or not profit.get("markdown", "").strip():
+            profit["markdown"] = self._fallback_profit_markdown(product, market, chunks)
+
+        roadmap = package.get("roadmap") if isinstance(package.get("roadmap"), dict) else {}
+        decision = package.get("decisionView") or package.get("decision_view") or {}
+        if not isinstance(decision, dict):
+            decision = {}
+
+        fallback = self._fallback_report_package(product, market, query, chunks, compliance_report=compliance)
+        return {
+            "complianceReport": compliance,
+            "profitReport": {**fallback["profitReport"], **profit},
+            "roadmap": {**fallback["roadmap"], **roadmap},
+            "decisionView": {**fallback["decisionView"], **decision},
+        }
+
+    def _fallback_report_package(
+        self,
+        product: str,
+        market: str,
+        query: str,
+        chunks: list[dict],
+        error: str | None = None,
+        compliance_report: str | None = None,
+    ) -> dict:
+        """Return a complete package without making another LLM call."""
+        from datetime import date, timedelta
+
+        today = date.today()
+        markets = [m.strip() for m in str(market or "EU").split(",") if m.strip()]
+        market_label = ", ".join(markets) or "EU"
+        compliance = compliance_report or self._mock_report(product, market_label, query, error=error)
+        profit_markdown = self._fallback_profit_markdown(product, market_label, chunks)
+
+        def day(offset: int) -> str:
+            return (today + timedelta(days=offset)).isoformat()
+
+        return {
+            "complianceReport": compliance,
+            "profitReport": {
+                "markdown": profit_markdown,
+                "keyConclusion": "合规模式可降低平台下架、清关扣押与召回风险，建议优先补齐关键认证。",
+                "premiumPct": "估算",
+                "breakevenUnits": "估算",
+                "pricingStrategy": "以合规认证和低风险交付作为溢价依据，优先进入主流渠道。",
+                "riskNote": "成本与风险敞口基于当前语料保守估算，落地前需结合真实 BOM 与检测报价复核。",
+                "conclusions": "完成认证、标签和技术文档后再规模化销售，整体风险收益更稳定。",
+                "references": "参考本次检索到的法规语料与用户上传文档。",
+            },
+            "roadmap": {
+                "totalDays": 56,
+                "totalCost": "¥25K+",
+                "progress": 25,
+                "items": [
+                    {
+                        "id": "1",
+                        "date": day(0),
+                        "title": "完成产品识别与风险初筛",
+                        "titleEn": "Complete product identification and risk screening",
+                        "description": f"确认 {product or '产品'} 在 {market_label} 的主要合规风险与证据缺口。",
+                        "descriptionEn": "Confirm core compliance risks and evidence gaps for the target markets.",
+                        "type": "complete",
+                        "status": "completed",
+                        "estimatedDays": 0,
+                    },
+                    {
+                        "id": "2",
+                        "date": day(7),
+                        "title": "补齐技术资料与标签信息",
+                        "titleEn": "Prepare technical files and labeling",
+                        "description": "整理说明书、BOM、铭牌、警示标签、测试样品和已有证书。",
+                        "descriptionEn": "Prepare manuals, BOM, nameplates, warnings, samples, and existing certificates.",
+                        "type": "apply",
+                        "status": "in-progress",
+                        "estimatedDays": 7,
+                        "documents": ["说明书", "BOM 清单", "铭牌/标签", "已有测试报告"],
+                        "documentsEn": ["Manual", "BOM", "Nameplate/Label", "Existing test reports"],
+                    },
+                    {
+                        "id": "3",
+                        "date": day(21),
+                        "title": "送检并完成关键认证",
+                        "titleEn": "Run testing and obtain key certifications",
+                        "description": "按目标市场安排安全、EMC、化学限制、包装/EPR 等检测或注册。",
+                        "descriptionEn": "Run safety, EMC, chemical restriction, packaging/EPR tests or registrations.",
+                        "type": "test",
+                        "status": "pending",
+                        "estimatedDays": 21,
+                        "cost": "¥15,000-40,000",
+                    },
+                    {
+                        "id": "4",
+                        "date": day(56),
+                        "title": "合规上市复核",
+                        "titleEn": "Final compliant launch review",
+                        "description": "复核证书、DoC、标签、包装和平台上架材料后再进入目标市场。",
+                        "descriptionEn": "Review certificates, DoC, labels, packaging, and listing materials before launch.",
+                        "type": "complete",
+                        "status": "pending",
+                        "estimatedDays": 7,
+                    },
+                ],
+            },
+            "decisionView": {
+                "summary": "系统先识别产品，再检索目标市场法规，最后生成合规、利润和执行路线图。",
+                "keyFindings": [
+                    "产品识别结果决定检索关键词和适用法规范围。",
+                    "检索证据不足的部分以保守风险提示呈现。",
+                    "路线图优先覆盖认证、标签、技术文档和上市复核。",
+                ],
+                "recommendedAction": "先补齐技术资料和可见标签，再启动目标市场检测/认证。",
+                "nodes": [
+                    {
+                        "id": "vision",
+                        "type": "vision",
+                        "label": "产品视觉识别",
+                        "labelEn": "Product vision analysis",
+                        "status": "success",
+                        "duration": "0s",
+                        "confidence": 0.8,
+                        "reasoning": "从图片中提取产品类型、核心特征和可见认证标志。",
+                        "reasoningEn": "Extract product type, key features, and visible marks from images.",
+                    },
+                    {
+                        "id": "retriever",
+                        "type": "retriever",
+                        "label": "法规与成本语料检索",
+                        "labelEn": "Regulation and cost retrieval",
+                        "status": "success",
+                        "duration": "0s",
+                        "confidence": 0.75,
+                        "reasoning": "使用目标市场和产品特征召回相关法规、认证和成本片段。",
+                        "reasoningEn": "Retrieve relevant regulation, certification, and cost evidence.",
+                    },
+                    {
+                        "id": "generate",
+                        "type": "generate",
+                        "label": "四场景内容生成",
+                        "labelEn": "Four-scene content generation",
+                        "status": "success",
+                        "duration": "0s",
+                        "confidence": 0.78,
+                        "reasoning": "一次生成合规报告、成本利润、排期路线图和决策解释。",
+                        "reasoningEn": "Generate compliance, profit, roadmap, and decision content in one pass.",
+                    },
+                ],
+            },
+        }
+
+    def _fallback_profit_markdown(self, product: str, market: str, chunks: list[dict]) -> str:
+        """Render profit markdown from prebuilt or conservative fallback data."""
+        from datetime import date
+
+        resolved_type = product or _identify_product_type(chunks) or "通用产品"
+        data = _PREBUILT_DATA.get(resolved_type, _get_fallback_data(resolved_type, market)).copy()
+        data["market"] = market
+        data["report_date"] = date.today().isoformat()
+        try:
+            return PROFIT_REPORT_TEMPLATE.format(**data)
+        except Exception as e:
+            logger.warning(f"Fallback profit template failed: {e}")
+            return self._mock_profit_report(resolved_type, market)
 
     def generate(
         self,

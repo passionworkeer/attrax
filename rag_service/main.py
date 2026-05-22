@@ -146,6 +146,7 @@ class ScanResponse(BaseModel):
     agent_trace: list[dict]
     loop_count: int
     documents: Optional[list[dict]] = None
+    report_package: Optional[dict] = None
 
 
 class ProfitReportRequest(BaseModel):
@@ -282,12 +283,14 @@ async def scan(req: ScanRequest):
 
     # Cap displayed documents at 15 — enough to be useful without overwhelming the UI
     DISPLAY_DOC_CAP = 15
+    display_docs = result.get("documents") or result.get("retrieved_chunks", [])
     return ScanResponse(
         status=result["status"],
         report=result["final_report"],
         agent_trace=result["agent_trace"],
         loop_count=result["loop_count"],
-        documents=result.get("documents", [])[:DISPLAY_DOC_CAP],
+        documents=display_docs[:DISPLAY_DOC_CAP],
+        report_package=result.get("report_package") or None,
     )
 
 

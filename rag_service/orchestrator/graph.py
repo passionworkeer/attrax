@@ -151,5 +151,6 @@ def run_compliance_graph(
         "status": final_status,
         "agent_trace": result.get("agent_trace", []),
         "retrieved_chunks": result.get("documents", []),
+        "report_package": result.get("report_package", {}),
         "loop_count": result.get("loop_count", 0),
     }
