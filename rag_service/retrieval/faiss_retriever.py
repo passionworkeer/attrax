@@ -3,14 +3,15 @@
 faiss_retriever.py - Pure Python Faiss vector store, no Docker required.
 
 Uses IndexFlatIP (inner product) + L2-normalize = equivalent to cosine.
-5000 chunks x 1024dim x 4bytes = ~20MB, search < 1ms.
+Dimension is auto-detected from loaded index or input vectors (not hardcoded).
 """
 from __future__ import annotations
 
 import json
 import logging
 import os
-import pickle
+import shutil
+import tempfile
 from pathlib import Path
 from typing import Optional
 
@@ -19,13 +20,15 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-DIM = 1024  # ModelScope Qwen3-Embedding-0.6B
+# Default dimension (Qwen3-Embedding-0.6B); will be overridden on load
+DEFAULT_DIM = 1024
 
 
 class FaissRetriever:
     """
     Simple Faiss-based vector store.
     Supports build/search/save/load with JSON metadata.
+    Dimension is detected automatically from the index or input vectors.
     """
 
     def __init__(self, index_path: Optional[str] = None, meta_path: Optional[str] = None):
@@ -33,36 +36,44 @@ class FaissRetriever:
         self.chunks: list[dict] = []
         self.index_path = index_path
         self.meta_path = meta_path
+        self.dim: int = DEFAULT_DIM  # runtime dimension
+
+    @property
+    def is_loaded(self) -> bool:
+        return self.index is not None
 
     def build_index(self, chunks: list[dict], vectors: list[list[float]]) -> None:
         """
         Build Faiss index from chunks + pre-computed vectors.
+        Dimension is inferred from the first vector.
 
         Args:
             chunks: list of chunk dicts (must have 'id' field)
-            vectors: list of 1024-dim float vectors, aligned with chunks
+            vectors: list of float vectors (any supported dimension)
         """
         if not chunks or not vectors:
             raise ValueError("chunks and vectors must be non-empty")
 
         mat = np.array(vectors, dtype=np.float32)
-        assert mat.shape == (len(chunks), DIM), f"Expected ({len(chunks)}, {DIM}), got {mat.shape}"
+        if mat.ndim == 1:
+            mat = mat.reshape(1, -1)
 
-        # Normalize for cosine similarity via inner product
+        self.dim = mat.shape[1]
+        logger.info(f"FaissRetriever building index: dim={self.dim}, count={mat.shape[0]}")
+
         faiss.normalize_L2(mat)
-
-        self.index = faiss.IndexFlatIP(DIM)
+        self.index = faiss.IndexFlatIP(self.dim)
         self.index.add(mat)
         self.chunks = list(chunks)
 
-        logger.info(f"Faiss index built: {self.index.ntotal} vectors, dim={DIM}")
+        logger.info(f"Faiss index built: {self.index.ntotal} vectors, dim={self.dim}")
 
     def search(self, query_vec: list[float], top_k: int = 50) -> list[dict]:
         """
         Search index for top_k nearest chunks.
 
         Args:
-            query_vec: 1024-dim query vector
+            query_vec: query vector (dimension must match index)
             top_k: number of results
 
         Returns:
@@ -73,8 +84,15 @@ class FaissRetriever:
             return []
 
         q = np.array([query_vec], dtype=np.float32)
-        faiss.normalize_L2(q)
 
+        if q.shape[1] != self.dim:
+            logger.warning(
+                f"Query vector dim={q.shape[1]} != index dim={self.dim}, "
+                "skipping Faiss search (fallback to BM25)"
+            )
+            return []
+
+        faiss.normalize_L2(q)
         scores, indices = self.index.search(q, min(top_k, int(self.index.ntotal)))
 
         results = []
@@ -96,20 +114,59 @@ class FaissRetriever:
         faiss.write_index(self.index, index_path)
 
         with open(meta_path, "w", encoding="utf-8") as f:
-            json.dump(self.chunks, f, ensure_ascii=False)
+            json.dump({
+                "dim": self.dim,
+                "chunks": self.chunks,
+            }, f, ensure_ascii=False)
 
-        logger.info(f"Saved index to {index_path} ({self.index.ntotal} vectors)")
+        logger.info(f"Saved index to {index_path} ({self.index.ntotal} vectors, dim={self.dim})")
 
     @classmethod
     def load(cls, index_path: str, meta_path: str) -> "FaissRetriever":
-        """Load index + metadata from disk."""
+        """Load index + metadata from disk; detects dimension automatically.
+
+        Handles non-ASCII paths (e.g. Chinese characters in Windows paths) by
+        copying files to a temp location that the faiss C extension can open.
+        """
         inst = cls(index_path=index_path, meta_path=meta_path)
-        inst.index = faiss.read_index(index_path)
 
-        with open(meta_path, "r", encoding="utf-8") as f:
-            inst.chunks = json.load(f)
+        _index_path = index_path
+        _meta_path = meta_path
 
-        logger.info(f"Loaded index from {index_path} ({inst.index.ntotal} vectors)")
+        # Detect non-ASCII paths (faiss C extension can't open them on Windows)
+        def has_non_ascii(s: str) -> bool:
+            return any(ord(c) > 127 for c in s)
+
+        if has_non_ascii(index_path) or has_non_ascii(meta_path):
+            tmp_dir = tempfile.mkdtemp(prefix="faiss_")
+            logger.warning(
+                f"Non-ASCII path detected ({index_path}), "
+                f"copying index to temp dir {tmp_dir} for faiss C extension compatibility"
+            )
+            _index_path = os.path.join(tmp_dir, os.path.basename(index_path))
+            _meta_path = os.path.join(tmp_dir, os.path.basename(meta_path))
+            shutil.copy2(index_path, _index_path)
+            shutil.copy2(meta_path, _meta_path)
+            logger.info(f"Copied index files to temp location: {_index_path}")
+
+        try:
+            inst.index = faiss.read_index(_index_path)
+        except Exception as e:
+            raise RuntimeError(
+                f"Failed to load faiss index from {_index_path}. "
+                f"Original path was {index_path}. Error: {e}"
+            ) from e
+
+        with open(_meta_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            # Support both old format (list) and new format (dict with dim)
+            inst.chunks = data.get("chunks", data) if isinstance(data, dict) else data
+            inst.dim = data.get("dim", DEFAULT_DIM) if isinstance(data, dict) else DEFAULT_DIM
+
+        logger.info(
+            f"Loaded index from {index_path} "
+            f"({inst.index.ntotal} vectors, dim={inst.dim})"
+        )
         return inst
 
     def __len__(self) -> int:

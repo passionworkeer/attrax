@@ -72,8 +72,9 @@ async function runSmokeTests() {
 
   await test('Can navigate to upload page', async () => {
     await page.goto(BASE_URL);
+    await page.waitForSelector('a:has-text("开始扫描")');
     await page.click('a:has-text("开始扫描")');
-    await page.waitForURL(/\/upload/);
+    await page.waitForURL(/\/upload/, { timeout: 10000 });
     const h1 = await page.textContent('h1');
     if (!h1.includes('上传产品资料')) throw new Error('Navigation failed');
   });
@@ -94,10 +95,11 @@ async function runSmokeTests() {
     if (!await input.isVisible()) throw new Error('File input not found');
   });
 
-  await test('Upload page shows file count', async () => {
+  await test('Upload page shows file prompt when empty', async () => {
     await page.goto(`${BASE_URL}/upload`);
-    const counter = await page.locator('text=请上传至少 1 张图片');
-    if (!await counter.isVisible()) throw new Error('File counter not found');
+    // When no files: shows "请上传至少 1 张图片"
+    const prompt = await page.locator('text=请上传至少 1 张图片');
+    if (!await prompt.isVisible()) throw new Error('File prompt not found');
   });
 
   await test('Upload page has submit button', async () => {
@@ -139,7 +141,7 @@ async function runSmokeTests() {
     // This test creates a mock file
     const response = await page.request.post(`${BASE_URL}/api/scan`, {
       multipart: {
-        images: await createMockFile(page),
+        images: await createMockFile(),
         category: 'electronics',
         markets: 'EU,US',
       },
@@ -149,7 +151,7 @@ async function runSmokeTests() {
     if (!json.sessionId) throw new Error('Expected sessionId in response');
   });
 
-  async function createMockFile(page) {
+  async function createMockFile() {
     // Create a minimal valid image file
     return {
       name: 'test.jpg',

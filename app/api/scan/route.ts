@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { ulid } from "ulid";
-import { createMockScanResult } from "@/lib/mock/scan-result";
+import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import { runScan } from "@/lib/pipeline/scan";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { StartScanRequestSchema } from "@/lib/schemas";
+import { getTranslations } from "@/lib/i18n";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -29,17 +30,20 @@ function parseMarkets(input: FormDataEntryValue | null): Market[] {
 }
 
 function runDemoSimulation(sessionId: string) {
+  const tx = getTranslations("zh");
+  const stages = tx.scanStages;
+
   setTimeout(() => {
     updateSession(sessionId, {
       progress: 30,
-      stageText: "🔍 识别铭牌与认证标识…",
+      stageText: `🔍 ${stages.identifyingLabels}…`,
     });
   }, 1000);
 
   setTimeout(() => {
     updateSession(sessionId, {
       progress: 65,
-      stageText: "📚 匹配欧美法规库…",
+      stageText: `📚 ${stages.matchingRegulations}…`,
     });
   }, 2500);
 
@@ -47,8 +51,9 @@ function runDemoSimulation(sessionId: string) {
     updateSession(sessionId, {
       status: "ready",
       progress: 100,
-      stageText: "✅ 烧毁完成，正在生成报告…",
+      stageText: `✅ ${stages.reportComplete}`,
       result: createMockScanResult(sessionId),
+      profitReport: createMockProfitReport(sessionId),
     });
   }, 4500);
 }
@@ -105,42 +110,112 @@ export async function POST(request: Request) {
 
   if (process.env.DEMO_MODE === "true") {
     runDemoSimulation(sessionId);
-  } else {
-    const images = await Promise.all(
+    return NextResponse.json(
+      { sessionId, status: "processing", pollUrl: `/api/scan/${sessionId}` },
+      { status: 202 }
+    );
+  }
+
+  // Parallelize: read all images + parse all text-based docs at once
+  const [imageData, pdfFiles, docxFiles, rawTextFiles] = await Promise.all([
+    Promise.all(
       imageFiles.map(async (file) => ({
         buffer: Buffer.from(await file.arrayBuffer()),
         originalName: file.name,
         mimeType: file.type || "application/octet-stream",
       }))
-    );
+    ),
+    Promise.resolve(
+      documentFiles.filter(
+        (f) => f.type === "application/pdf" || f.name.endsWith(".pdf")
+      )
+    ),
+    Promise.resolve(
+      documentFiles.filter(
+        (f) =>
+          f.type ===
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+          f.name.endsWith(".docx")
+      )
+    ),
+    Promise.resolve(
+      documentFiles.filter(
+        (f) =>
+          f.type !== "application/pdf" &&
+          !f.name.endsWith(".pdf") &&
+          f.type !==
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document" &&
+          !f.name.endsWith(".docx")
+      )
+    ),
+  ]);
 
-    const documents = await Promise.all(
-      documentFiles.map(async (file) => ({
-        buffer: Buffer.from(await file.arrayBuffer()),
-        originalName: file.name,
-        mimeType: file.type || "application/octet-stream",
-      }))
-    );
+  // Parse text docs and DOCX in parallel — mammoth loaded once, shared via cache
+  const [textDocs, docxDocs] = await Promise.all([
+    Promise.all(
+      rawTextFiles.map(async (file) => {
+        let text = "";
+        try {
+          text = await file.text();
+        } catch { /* ignore */ }
+        return {
+          name: file.name,
+          mimeType: file.type || "application/octet-stream",
+          text: text.slice(0, 5000),
+        };
+      })
+    ),
+    (async () => {
+      if (docxFiles.length === 0) return [];
+      const mammoth = await import("mammoth");
+      return Promise.all(
+        docxFiles.map(async (file) => {
+          let text = "";
+          try {
+            const arrayBuffer = await file.arrayBuffer();
+            const buffer = Buffer.from(new Uint8Array(arrayBuffer));
+            const result = await mammoth.extractRawText({ buffer });
+            text = result.value;
+          } catch (e) {
+            console.warn(`mammoth extraction failed for ${file.name}:`, e);
+          }
+          return {
+            name: file.name,
+            mimeType:
+              "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            text: text.slice(0, 5000),
+          };
+        })
+      );
+    })(),
+  ]);
 
-    runScan(sessionId, {
-      images,
-      documents,
-      category: parsed.data.category as ProductCategory,
-      markets: parsed.data.markets,
-    }).catch((error) => {
-      updateSession(sessionId, {
-        status: "failed",
-        error: error instanceof Error ? error.message : "扫描失败",
-      });
+  const documents = [...textDocs, ...docxDocs];
+
+  // PDFs: send as base64 for backend pdfplumber extraction
+  const pdfs = await Promise.all(
+    pdfFiles.map(async (file) => ({
+      name: file.name,
+      buffer: Buffer.from(await file.arrayBuffer()).toString("base64"),
+      mimeType: "application/pdf",
+    }))
+  );
+
+  runScan(sessionId, {
+    images: imageData,
+    documents,
+    pdfs,
+    category: parsed.data.category as ProductCategory,
+    markets: parsed.data.markets,
+  }).catch((error) => {
+    updateSession(sessionId, {
+      status: "failed",
+      error: error instanceof Error ? error.message : "扫描失败",
     });
-  }
+  });
 
   return NextResponse.json(
-    {
-      sessionId,
-      status: "processing",
-      pollUrl: `/api/scan/${sessionId}`,
-    },
+    { sessionId, status: "processing", pollUrl: `/api/scan/${sessionId}` },
     { status: 202 }
   );
 }

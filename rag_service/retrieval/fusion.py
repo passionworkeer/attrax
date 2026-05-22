@@ -78,6 +78,9 @@ def rrf_fuse(
             "rrf_score": rrf_scores[doc_id],
             "dense_score": dense_map.get(doc_id, 0.0),
             "bm25_score": bm.get("score_norm", 0.0),
+            # User-visible score: avg of dense (0-1) + normalized BM25 (0-1)
+            # This is the score displayed in the frontend; rrf_score is rank-based (max 0.08)
+            "score": (dense_map.get(doc_id, 0.0) + bm.get("score_norm", 0.0)) / 2,
             "content": bm.get("content", ""),
             "doc_name": bm.get("doc_name", ""),
             "article_no": bm.get("article_no", ""),

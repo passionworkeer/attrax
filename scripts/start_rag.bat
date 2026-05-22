@@ -13,21 +13,21 @@ if not exist ".venv\Scripts\python.exe" (
 )
 
 REM Check .env
-if not exist "rag-service\.env" (
-    echo WARNING: rag-service\.env not found.
-    echo Copy rag-service\.env.example to rag-service\.env and add your API keys.
+if not exist "rag_service\.env" (
+    echo WARNING: rag_service\.env not found.
+    echo Copy rag_service\.env.example to rag_service\.env and add your API keys.
 )
 
-REM Check Qdrant
-curl -s http://localhost:6333/healthz > nul 2>&1
-if errorlevel 1 (
-    echo WARNING: Qdrant is not running.
-    echo To start Qdrant:
-    echo   docker run -d --name qdrant -p 6333:6333 -p 6334:6334 qdrant/qdrant
+REM FAISS index path (auto-detected by service from FAISS_INDEX_DIR env or default)
+set FAISS_INDEX_DIR=%cd%\data\faiss
+if not exist "%FAISS_INDEX_DIR%\legal_chunks.index" (
+    echo WARNING: FAISS index not found at %FAISS_INDEX_DIR%
+    echo Run scripts\build_faiss.py to build the index first.
     echo.
 )
 
-echo Starting rag-service on http://localhost:8000
+echo FAISS_INDEX_DIR=%FAISS_INDEX_DIR%
+echo Starting rag-service on http://localhost:8001
 echo Press Ctrl+C to stop.
 
-.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --host 0.0.0.0 --port 8000
+.venv\Scripts\python.exe -m uvicorn rag_service.main:app --reload --host 0.0.0.0 --port 8001

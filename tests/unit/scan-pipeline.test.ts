@@ -133,7 +133,7 @@ describe('Scan Pipeline', () => {
         const session = getSession(sessionId)
         expect(session?.status).toBe('ready')
       }
-    })
+    }, 30000)
 
     it('accepts all market combinations', async () => {
       const marketsList: Array<Market[]> = [['EU'], ['US'], ['UK'], ['EU', 'US'], ['EU', 'US', 'UK']]

@@ -17,7 +17,7 @@ def test_graph_state_initialization():
     )
     assert state["query"] == "CE marking for power bank"
     assert state["loop_count"] == 0
-    assert state["max_attempts"] == 2
+    assert state["max_attempts"] == 1
 
 
 def test_expand_synonyms_charging():

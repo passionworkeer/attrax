@@ -8,7 +8,6 @@ Complete agentic RAG graph with:
 - NLI verification + conditional routing
 - HyDE query refinement
 """
-from typing import Optional
 from langgraph.graph import StateGraph, END
 from langgraph.types import Send
 from rag_service.orchestrator.state import GraphState, initial_state
@@ -26,6 +25,7 @@ def build_compliance_graph() -> StateGraph:
     g = StateGraph(GraphState)
 
     # ── Nodes ────────────────────────────────────────────────
+    g.add_node("vision",        vision_node.vision_analysis_node)
     g.add_node("query_planner", query_planner_node)
     g.add_node("vision",        vision_node.vision_analysis_node)
     g.add_node("fan_out",       lambda state: None)  # Pure Send dispatcher
@@ -36,7 +36,10 @@ def build_compliance_graph() -> StateGraph:
     g.add_node("refine",         refiner_node)
 
     # ── Entry ─────────────────────────────────────────────────
-    g.set_entry_point("query_planner")
+    g.set_entry_point("vision")
+
+    # ── Vision → Query Planner ──────────────────────────────────
+    g.add_edge("vision", "query_planner")
 
     # ── Fixed edges ──────────────────────────────────────────
     g.add_edge("query_planner", "vision")
@@ -64,28 +67,27 @@ def build_compliance_graph() -> StateGraph:
         },
     )
 
-    # ── Refine → query_planner (HyDE-style loop) ──────────────
+    # ── Refine → back to query_planner (HyDE-style loop) ───────
     g.add_edge("refine", "query_planner")
 
     return g
 
 
-def compile_graph() -> "CompiledStateGraph":
-    """Compile the compliance graph."""
-    graph = build_compliance_graph()
-    return graph.compile(debug=False)
-
-
-# Pre-compiled singleton (reused across all requests for performance)
-_compiled_graph: Optional["CompiledStateGraph"] = None
+_compiled_graph: "CompiledStateGraph | None" = None
 
 
 def get_compiled_graph() -> "CompiledStateGraph":
-    """Get or create the singleton compiled graph."""
+    """Singleton compiled graph — avoids recompiling on every invoke."""
     global _compiled_graph
     if _compiled_graph is None:
         _compiled_graph = compile_graph()
     return _compiled_graph
+
+
+def compile_graph() -> "CompiledStateGraph":
+    """Compile (no recursion_limit — not supported in this LangGraph version)."""
+    graph = build_compliance_graph()
+    return graph.compile(debug=False)
 
 
 def run_compliance_graph(
@@ -94,9 +96,19 @@ def run_compliance_graph(
     category: str = "",
     markets: list[str] = None,
     vision_result: dict = None,
+    images: list[dict] = None,
+    documents: list[dict] = None,
 ) -> dict:
     """
     Run the full compliance graph.
+
+    Args:
+        query: user query
+        product: product name
+        category: product category (electronics/toy/etc.)
+        markets: target markets (EU/US/UK/CN)
+        vision_result: pre-computed vision analysis result
+        images: list of {"buffer": bytes, "mime_type": str} for vision analysis
 
     Returns:
         dict with final_report, status, agent_trace, documents
@@ -105,6 +117,10 @@ def run_compliance_graph(
         markets = ["EU"]
     if vision_result is None:
         vision_result = {}
+    if images is None:
+        images = []
+    if documents is None:
+        documents = []
 
     compiled = get_compiled_graph()
 
@@ -114,6 +130,8 @@ def run_compliance_graph(
         category=category,
         markets=markets,
         vision_result=vision_result,
+        images=images,
+        documents=documents,
     )
 
     result = compiled.invoke(initial)
@@ -123,9 +141,9 @@ def run_compliance_graph(
     status = result.get("generation_score", "UNKNOWN")
 
     # Map to final status
-    if status in ("PASS", "ENTAILED", "supported"):
+    if status in ("supported", "PASS", "ENTAILED"):
         final_status = "PASS"
-    elif status in ("WARN", "force_generate"):
+    elif status in ("warn", "WARN", "force_generate"):
         final_status = "WARN"
     else:
         final_status = "REJECTED"

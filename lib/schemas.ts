@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const MarketSchema = z.enum(["EU", "US", "UK"]);
+export const MarketSchema = z.enum(["EU", "US", "UK", "CN", "AU", "SA", "AE"]);
 export const ProductCategorySchema = z.enum([
   "electronics",
   "appliance",

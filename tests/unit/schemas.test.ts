@@ -20,10 +20,16 @@ describe('MarketSchema', () => {
     expect(MarketSchema.parse('EU')).toBe('EU')
     expect(MarketSchema.parse('US')).toBe('US')
     expect(MarketSchema.parse('UK')).toBe('UK')
+    expect(MarketSchema.parse('CN')).toBe('CN')
+    expect(MarketSchema.parse('AU')).toBe('AU')
+    expect(MarketSchema.parse('SA')).toBe('SA')
+    expect(MarketSchema.parse('AE')).toBe('AE')
   })
 
   it('rejects invalid markets', () => {
-    expect(() => MarketSchema.parse('CN')).toThrow()
+    expect(() => MarketSchema.parse('XX')).toThrow()
+    expect(() => MarketSchema.parse('JP')).toThrow()
+    expect(() => MarketSchema.parse('BR')).toThrow()
     expect(() => MarketSchema.parse('')).toThrow()
   })
 })

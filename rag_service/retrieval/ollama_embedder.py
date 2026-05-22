@@ -18,12 +18,25 @@ import logging
 import urllib.request
 import urllib.error
 import numpy as np
+from functools import lru_cache
 
 logger = logging.getLogger(__name__)
 
 DIM = 768  # Ollama nomic-embed-text 输出 768 维
 OLLAMA_MODEL = os.environ.get("OLLAMA_EMBED_MODEL", "nomic-embed-text")
 OLLAMA_BASE = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+
+# ─── LRU cache for embedding queries ─────────────────────────────────────────
+# RAG queries are often repeated or similar; caching query embeddings cuts
+# the first-hop latency from ~200ms (HTTP round-trip) to ~0.1ms (dict lookup).
+_MAX_EMBED_CACHE = 1024  # entries; adjust based on memory budget
+
+
+@lru_cache(maxsize=_MAX_EMBED_CACHE)
+def _cached_embed_query(text: str, model: str, dim: int) -> tuple:
+    """Cached single-query embedding. Returns tuple so it's hashable."""
+    vec = _ollama_embed_single_uncached(text, model)
+    return tuple(vec)  # convert to hashable tuple
 
 
 def _is_ollama_available() -> bool:
@@ -39,10 +52,26 @@ def _is_ollama_available() -> bool:
         return False
 
 
-def _ollama_embed_single(text: str, model: str) -> list[float]:
+# Persistent HTTP session for connection reuse (avoids TCP handshake per call)
+_http_session = None
+
+
+def _get_http_session():
+    """Return a urllib.request.OpenerDirector that reuses connections."""
+    global _http_session
+    if _http_session is None:
+        _http_session = urllib.request.build_opener(
+            urllib.request.HTTPRedirectHandler(),
+        )
+        _http_session.addheaders = [("Content-Type", "application/json")]
+    return _http_session
+
+
+def _ollama_embed_single_uncached(text: str, model: str) -> list[float]:
     """
     Call Ollama /api/embeddings endpoint (single text).
     Raises urllib.error.HTTPError if model not found (→ caught by HybridRetriever).
+    Uses persistent HTTP session for connection reuse.
     """
     body = json.dumps({
         "model": model,
@@ -55,7 +84,8 @@ def _ollama_embed_single(text: str, model: str) -> list[float]:
         headers={"Content-Type": "application/json"},
     )
 
-    with urllib.request.urlopen(req, timeout=60) as r:
+    opener = _get_http_session()
+    with opener.open(req, timeout=60) as r:
         data = json.loads(r.read())
 
     embedding = data.get("embedding", [])
@@ -69,6 +99,54 @@ def _ollama_embed_single(text: str, model: str) -> list[float]:
         vec = vec / norm
 
     return vec.tolist()
+
+
+def _ollama_embed_single(text: str, model: str) -> list[float]:
+    """Cached wrapper — avoids redundant HTTP round-trips for repeated queries."""
+    return list(_cached_embed_query(text, model, DIM))
+
+
+def _ollama_embed_batch(texts: list[str], model: str, batch_size: int = 32) -> list[list[float]]:
+    """
+    Call Ollama /api/embed endpoint with batch prompts (single HTTP call for all texts).
+    Falls back to serial _ollama_embed_single on failure.
+    Uses persistent HTTP session for connection reuse.
+    """
+    if not texts:
+        return []
+
+    opener = _get_http_session()
+    results = []
+    for i in range(0, len(texts), batch_size):
+        batch = texts[i : i + batch_size]
+        body = json.dumps({
+            "model": model,
+            "input": batch,
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            f"{OLLAMA_BASE}/api/embed",
+            data=body,
+            headers={"Content-Type": "application/json"},
+        )
+
+        try:
+            with opener.open(req, timeout=120) as r:
+                data = json.loads(r.read())
+
+            embeddings = data.get("embeddings", [])
+            for emb in embeddings:
+                vec = np.array(emb, dtype=np.float32)
+                norm = np.linalg.norm(vec)
+                if norm > 0:
+                    vec = vec / norm
+                results.append(vec.tolist())
+        except Exception:
+            # Fallback to serial on API error (e.g. older Ollama version without /api/embed)
+            for text in batch:
+                results.append(_ollama_embed_single(text, model))
+
+    return results
 
 
 class OllamaEmbedder:
@@ -100,14 +178,15 @@ class OllamaEmbedder:
         logger.info(f"OllamaEmbedder ready: model={self.model}, dim={self.DIM}")
 
     def embed_texts(self, texts: list[str]) -> list[list[float]]:
-        """Embed a list of texts (one API call per text)."""
+        """Embed a list of texts using batch API (one HTTP call per batch)."""
         if not texts:
             return []
-        return [_ollama_embed_single(t, self.model) for t in texts]
+        return _ollama_embed_batch(texts, self.model)
 
     def embed_query(self, text: str) -> list[float]:
         """Embed a single query string."""
         return _ollama_embed_single(text, self.model)
 
     def embed_batch(self, texts: list[str], batch_size: int = 32) -> list[list[float]]:
-        return self.embed_texts(texts)
+        """Embed a batch of texts using Ollama /api/embed (single call per batch)."""
+        return _ollama_embed_batch(texts, self.model, batch_size)
