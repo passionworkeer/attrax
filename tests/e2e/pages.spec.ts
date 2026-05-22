@@ -38,7 +38,8 @@ test.describe('Upload Page E2E', () => {
 test.describe('Result Page E2E', () => {
   test('demo result page loads', async ({ page }) => {
     await page.goto('/result/demo')
-    await expect(page).toBeLoaded()
+    await page.waitForLoadState('domcontentloaded')
+    await expect(page.locator('body')).toBeVisible()
   })
 
   test('demo result shows scan data', async ({ page }) => {
@@ -57,7 +58,8 @@ test.describe('Result Page E2E', () => {
 test.describe('Regulations Page E2E', () => {
   test('regulations page loads', async ({ page }) => {
     await page.goto('/regulations')
-    await expect(page).toBeLoaded()
+    await page.waitForLoadState('domcontentloaded')
+    await expect(page.locator('body')).toBeVisible()
   })
 
   test('displays regulation updates title', async ({ page }) => {
@@ -70,13 +72,15 @@ test.describe('Regulations Page E2E', () => {
 test.describe('Trace Page E2E', () => {
   test('trace page loads', async ({ page }) => {
     await page.goto('/trace')
-    await expect(page).toBeLoaded()
+    await page.waitForLoadState('domcontentloaded')
+    await expect(page.locator('body')).toBeVisible()
   })
 })
 
 test.describe('Roadmap Page E2E', () => {
   test('roadmap page loads', async ({ page }) => {
     await page.goto('/roadmap')
-    await expect(page).toBeLoaded()
+    await page.waitForLoadState('domcontentloaded')
+    await expect(page.locator('body')).toBeVisible()
   })
 })

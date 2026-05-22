@@ -493,9 +493,10 @@ toml==0.10.2
 tomli==2.2.1
 tomli_w==1.2.0
 tomlkit==0.13.3
-torch==2.1.0+cu118
-torchaudio==2.1.0+cu118
-torchvision==0.16.0+cu118
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.1.0+cpu
+torchaudio==2.1.0+cpu
+torchvision==0.16.0+cpu
 tornado==6.4.2
 tqdm==4.67.1
 traitlets==5.14.3

@@ -7,6 +7,7 @@ Builds BM25 index from chunk content and supports Chinese+English mixed queries.
 import os
 import json
 import logging
+import re
 from typing import Optional
 
 import jieba
@@ -26,6 +27,35 @@ for term in LEGAL_TERMS:
     jieba.add_word(term, freq=100000, tag="nz")
 
 
+_CJK_RE = re.compile(r"[\u4e00-\u9fff]+")
+_TOKEN_RE = re.compile(r"[a-z0-9\u4e00-\u9fff]+", re.IGNORECASE)
+_STOP_TOKENS = {"the", "and", "or", "of", "in", "to", "for", "a", "an"}
+_CJK_STOP_CHARS = set("\u7684\u4e86\u548c\u4e0e\u53ca\u6216\u5728\u5bf9\u4e2d")
+
+
+def _tokenize(text: str) -> list[str]:
+    """Tokenize mixed Chinese/English text with stable CJK fallback tokens."""
+    text = text or ""
+    tokens: list[str] = []
+
+    for raw in jieba.lcut(text):
+        token = raw.strip().lower()
+        if not token or token in _STOP_TOKENS:
+            continue
+        if not _TOKEN_RE.search(token):
+            continue
+        tokens.append(token)
+
+    # Jieba can segment Chinese query/doc text differently. Add CJK unigrams
+    # and bigrams so exact character overlaps still rank relevant docs first.
+    for match in _CJK_RE.finditer(text):
+        run = match.group(0)
+        tokens.extend(ch for ch in run if ch not in _CJK_STOP_CHARS)
+        tokens.extend(run[i:i + 2] for i in range(len(run) - 1))
+
+    return tokens
+
+
 class BM25Retriever:
     """
     BM25 sparse retriever with jieba tokenization.
@@ -38,6 +68,7 @@ class BM25Retriever:
         self.chunks: list[dict] = []
         self.bm25: Optional[BM25Okapi] = None
         self.chunk_id_to_doc: dict[str, dict] = {}
+        self._tokenized_chunks: list[list[str]] = []
 
     def build_index(self, chunks: list[dict]):
         """Build BM25 index from chunks. Each chunk needs 'content' and 'id'."""
@@ -46,7 +77,8 @@ class BM25Retriever:
 
         # Tokenize corpus ONCE and cache — avoids re-tokenizing thousands of
         # chunks on every search call (was ~50ms overhead per search before).
-        tokenized = [jieba.lcut(chunk.get("content", "")) for chunk in chunks]
+        tokenized = [_tokenize(chunk.get("content", "")) for chunk in chunks]
+        self._tokenized_chunks = tokenized
 
         self.bm25 = BM25Okapi(tokenized)
         logger.info(f"BM25 index built with {len(chunks)} chunks")
@@ -57,13 +89,22 @@ class BM25Retriever:
             logger.warning("BM25 index not built")
             return []
 
-        query_tokens = jieba.lcut(query)
-        scores = self.bm25.get_scores(query_tokens)
+        query_tokens = _tokenize(query)
+        if not query_tokens:
+            return []
 
-        # Use numpy for faster top-k selection instead of Python sort
-        import numpy as np
-        scores_arr = np.array(scores, dtype=np.float32)
-        top_indices = np.argsort(scores_arr)[::-1][:top_k].tolist()
+        scores = self.bm25.get_scores(query_tokens)
+        query_terms = set(query_tokens)
+
+        ranked = []
+        for idx, score in enumerate(scores):
+            overlap = len(query_terms & set(self._tokenized_chunks[idx]))
+            if score <= 0 and overlap == 0:
+                continue
+            ranked.append((idx, float(score), overlap))
+
+        ranked.sort(key=lambda item: (-item[1], -item[2], item[0]))
+        top_indices = [idx for idx, _, _ in ranked[:top_k]]
 
         results = []
         for idx in top_indices:
@@ -85,7 +126,7 @@ class BM25Retriever:
             json.dump({
                 "chunk_ids": [c["id"] for c in self.chunks],
                 "scores_sum": float(sum(
-                    max(self.bm25.get_scores(jieba.lcut(c.get("content", ""))))
+                    max(self.bm25.get_scores(_tokenize(c.get("content", ""))))
                     for c in self.chunks
                 )) if self.bm25 else 0,
             }, f)

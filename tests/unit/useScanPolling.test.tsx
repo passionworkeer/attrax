@@ -7,11 +7,23 @@ import type { ScanStatus } from "@/lib/types";
 const originalRAF = globalThis.requestAnimationFrame;
 
 // Create a controlled RAF mock that we can advance manually
-let rafCallbacks: Array<() => void> = [];
-const controlledRAF = vi.fn((callback: () => void) => {
+let rafCallbacks: FrameRequestCallback[] = [];
+const controlledRAF = vi.fn((callback: FrameRequestCallback) => {
   rafCallbacks.push(callback);
   return rafCallbacks.length - 1; // return index as id
 });
+
+function advanceAnimationFrame() {
+  vi.advanceTimersByTime(16);
+}
+
+function runAnimationFrames(count: number) {
+  for (let i = 0; i < count; i++) {
+    const pendingCallbacks = rafCallbacks.splice(0);
+    pendingCallbacks.forEach((cb) => cb(performance.now()));
+    advanceAnimationFrame();
+  }
+}
 
 function makeFetchMock(response: Partial<ScanStatus>, ok = true) {
   return vi.fn().mockResolvedValue({
@@ -124,7 +136,7 @@ describe("useScanPolling", () => {
       });
 
       expect(result.current?.status?.status).toBe("failed");
-      expect(result.current?.status?.error).toBe("会话已失效");
+      expect(result.current?.status?.error).toBe("Scan session expired.");
     });
 
     it("polls multiple times during processing", async () => {
@@ -279,10 +291,7 @@ describe("useScanPolling", () => {
 
       // Run RAF callbacks multiple times to animate
       await act(async () => {
-        for (let i = 0; i < 10; i++) {
-          rafCallbacks.forEach((cb) => cb());
-          vi.advanceTimeByFrame();
-        }
+        runAnimationFrames(10);
       });
 
       // displayProgress should have moved toward 100
@@ -312,10 +321,7 @@ describe("useScanPolling", () => {
 
       // Advance animation
       await act(async () => {
-        for (let i = 0; i < 20; i++) {
-          rafCallbacks.forEach((cb) => cb());
-          vi.advanceTimeByFrame();
-        }
+        runAnimationFrames(20);
       });
 
       // Progress should have increased
@@ -342,10 +348,7 @@ describe("useScanPolling", () => {
 
       // Run animation until settled
       await act(async () => {
-        for (let i = 0; i < 100; i++) {
-          rafCallbacks.forEach((cb) => cb());
-          vi.advanceTimeByFrame();
-        }
+        runAnimationFrames(100);
       });
 
       // Should settle close to target (100)

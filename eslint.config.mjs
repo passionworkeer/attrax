@@ -12,10 +12,20 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "rag_service/.venv/**",
+    ".runvenv/**",
     // Manual test scripts (CommonJS, not part of npm test):
     "test-doc-upload/**",
     "tests/pressure/**",
+    "tests/e2e/*.js",
+    "tests/e2e/*.mjs",
   ]),
+  {
+    files: ["tests/**/*.ts", "tests/**/*.tsx"],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;

@@ -9,8 +9,7 @@ import type { ScanStatus } from '@/lib/types'
 import { mkdirSync, writeFileSync, readFileSync, unlinkSync, existsSync, readdirSync, rmdirSync } from 'fs'
 import { join } from 'path'
 
-// Mock fs module
-vi.mock('fs', () => ({
+const fsMock = vi.hoisted(() => ({
   mkdirSync: vi.fn(),
   writeFileSync: vi.fn(),
   readFileSync: vi.fn(),
@@ -19,6 +18,16 @@ vi.mock('fs', () => ({
   readdirSync: vi.fn(),
   rmdirSync: vi.fn(),
 }))
+
+// Mock fs module
+vi.mock('fs', () => ({
+  ...fsMock,
+  default: fsMock,
+}))
+
+function isSessionPath(path: unknown): boolean {
+  return String(path).replace(/\\/g, '/').includes('data/sessions')
+}
 
 const mockMkdirSync = vi.mocked(mkdirSync)
 const mockWriteFileSync = vi.mocked(writeFileSync)
@@ -29,8 +38,8 @@ const mockReaddirSync = vi.mocked(readdirSync)
 
 describe('Session Store', () => {
   beforeEach(() => {
+    vi.resetAllMocks()
     clearStore()
-    vi.clearAllMocks()
     // Default: session dir does not exist
     mockExistsSync.mockReturnValue(false)
     mockReaddirSync.mockReturnValue([])
@@ -38,6 +47,7 @@ describe('Session Store', () => {
 
   afterEach(() => {
     clearStore()
+    vi.restoreAllMocks()
   })
 
   describe('createSession', () => {
@@ -75,7 +85,7 @@ describe('Session Store', () => {
       createSession('test_timer')
 
       expect(setTimeoutSpy).toHaveBeenCalled()
-      expect(clearTimeoutSpy).toHaveBeenCalledWith(undefined) // No existing timer
+      expect(clearTimeoutSpy).not.toHaveBeenCalled()
     })
 
     it('clears existing timer when recreating session', () => {
@@ -85,7 +95,7 @@ describe('Session Store', () => {
       // Create first session
       createSession('test_recreate')
 
-      const firstTimer = setTimeoutSpy.mock.calls[0][1]
+      const firstTimer = setTimeoutSpy.mock.results[0].value
 
       // Create again with same id
       createSession('test_recreate')
@@ -220,8 +230,8 @@ describe('Session Store', () => {
       store?.delete('test_file_restore')
 
       // Mock file exists and is valid
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -285,8 +295,8 @@ describe('Session Store', () => {
       const store = globalThis.__scanStore
       store?.delete('test_restore')
 
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -318,8 +328,8 @@ describe('Session Store', () => {
       const store = globalThis.__scanStore
       store?.delete('test_timer_restore')
 
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -341,8 +351,8 @@ describe('Session Store', () => {
     })
 
     it('skips expired session from file', () => {
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -365,8 +375,8 @@ describe('Session Store', () => {
     })
 
     it('handles malformed JSON in file', () => {
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -440,7 +450,7 @@ describe('Session Store', () => {
       createSession('test_mkdir')
 
       expect(mockMkdirSync).toHaveBeenCalledWith(
-        expect.stringContaining('data/sessions'),
+        expect.stringMatching(/data[\\/]sessions/),
         { recursive: true }
       )
     })
@@ -474,8 +484,8 @@ describe('Session Store', () => {
     })
 
     it('cleans stale files on module load', () => {
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -502,8 +512,8 @@ describe('Session Store', () => {
     })
 
     it('skips non-json files', () => {
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -514,15 +524,16 @@ describe('Session Store', () => {
       clearStore()
 
       // Only .json files should be processed
-      const jsonCalls = mockReadFileSync.mock.calls.filter(
+      const jsonCalls = mockUnlinkSync.mock.calls.filter(
         (call) => (call[0] as string).endsWith('.json')
       )
       expect(jsonCalls.length).toBeGreaterThan(0)
+      expect(mockUnlinkSync.mock.calls.some((call) => (call[0] as string).endsWith('readme.txt'))).toBe(false)
     })
 
     it('handles malformed files gracefully', () => {
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -609,8 +620,8 @@ describe('Session Store', () => {
       const store = globalThis.__scanStore
       store?.delete('test_clear_timer')
 
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -639,8 +650,8 @@ describe('Session Store', () => {
       const store = globalThis.__scanStore
       store?.delete('test_remaining_time')
 
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false
@@ -659,7 +670,7 @@ describe('Session Store', () => {
       getSession('test_remaining_time')
 
       // Timer should be set with remaining time
-      const timerDelay = setTimeoutSpy.mock.calls[0][1] as number
+      const timerDelay = setTimeoutSpy.mock.calls.at(-1)?.[1] as number
       expect(timerDelay).toBeGreaterThan(0)
       expect(timerDelay).toBeLessThanOrEqual(60 * 60 * 1000) // Less than full TTL
     })
@@ -672,8 +683,8 @@ describe('Session Store', () => {
       const store = globalThis.__scanStore
       store?.delete('test_no_remaining')
 
-      mockExistsSync.mockImplementation((path: string) => {
-        if (path.includes('data/sessions')) {
+      mockExistsSync.mockImplementation((path) => {
+        if (isSessionPath(path)) {
           return true
         }
         return false

@@ -55,12 +55,19 @@ function loadSessionFromFile(sessionId: string): ScanStatus | null {
 }
 
 function persistSession(session: ScanStatus): void {
-  ensureSessionDir();
-  const withTimestamp: ScanStatus & { _timestamp: number } = {
-    ...session,
-    _timestamp: Date.now(),
-  };
-  writeFileSync(sessionFilePath(session.sessionId), JSON.stringify(withTimestamp), "utf-8");
+  try {
+    ensureSessionDir();
+    const withTimestamp: ScanStatus & { _timestamp: number } = {
+      ...session,
+      _timestamp: Date.now(),
+    };
+    writeFileSync(sessionFilePath(session.sessionId), JSON.stringify(withTimestamp), "utf-8");
+  } catch (error) {
+    console.warn(
+      `[session-store] persistSession: failed to persist "${session.sessionId}"`,
+      error
+    );
+  }
 }
 
 function cleanStaleFiles(): void {

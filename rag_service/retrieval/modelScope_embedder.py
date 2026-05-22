@@ -61,9 +61,11 @@ class ModelScopeEmbedder:
     MODEL = "Qwen/Qwen3-Embedding-0.6B"
 
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or os.environ.get(
-            "MODELSCOPE_API_KEY", "ms-22434146-80f6-4669-8473-9aa69b26c218"
-        )
+        self.api_key = api_key or os.environ.get("MODELSCOPE_API_KEY", "")
+        if not self.api_key:
+            raise ValueError(
+                "MODELSCOPE_API_KEY is not configured; ModelScope embedding is unavailable"
+            )
         self._client = None
         self._last_call = 0.0
 
@@ -136,6 +138,9 @@ class ModelScopeEmbedder:
         Embed a batch of texts with retry/backoff.
         Returns zero vectors for chunks that permanently fail.
         """
+        if not texts:
+            return []
+
         results = []
         failed = 0
         t0 = time.monotonic()

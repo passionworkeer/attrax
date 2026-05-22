@@ -1,3 +1,5 @@
+// @vitest-environment node
+
 /**
  * Additional unit tests for POST /api/scan to cover remaining code paths.
  * Tests document processing, PDF handling, DOCX handling, and error scenarios.
@@ -6,10 +8,19 @@
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
+type RunScanOptions = {
+  images: Array<Record<string, unknown>>;
+  documents: Array<Record<string, unknown> & { mimeType: string; text: string }>;
+  pdfs: Array<Record<string, unknown> & { mimeType: string }>;
+  category: string;
+  markets: string[];
+};
+type RunScanMock = (sessionId: string, opts: RunScanOptions) => Promise<void>;
+
 // Hoisted mocks
 const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions } = vi.hoisted(
   () => ({
-    mockRunScan: vi.fn(() => Promise.resolve()),
+    mockRunScan: vi.fn<RunScanMock>(() => Promise.resolve()),
     mockSessions: new Map<string, Record<string, unknown>>(),
     mockCreateSession: vi.fn((id: string) => {
       mockSessions.set(id, {
@@ -100,8 +111,14 @@ function minimalText(content: string): Uint8Array {
   return new TextEncoder().encode(content);
 }
 
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  const buffer = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(buffer).set(bytes);
+  return buffer;
+}
+
 function makeFile(name: string, type = "image/jpeg", data?: Uint8Array): File {
-  return new File([data ?? minimalJpeg()], name, { type });
+  return new File([toArrayBuffer(data ?? minimalJpeg())], name, { type });
 }
 
 function buildFormData(
@@ -400,7 +417,7 @@ describe("POST /api/scan - Document Processing Coverage", () => {
     });
 
     it("handles images without mime type", async () => {
-      const image = new File([minimalJpeg()], "photo.noext", { type: "" });
+      const image = new File([toArrayBuffer(minimalJpeg())], "photo.noext", { type: "" });
 
       const { POST } = await import("@/app/api/scan/route");
       const req = new Request("http://localhost/api/scan", {

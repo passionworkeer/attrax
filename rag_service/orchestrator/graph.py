@@ -27,7 +27,6 @@ def build_compliance_graph() -> StateGraph:
     # ── Nodes ────────────────────────────────────────────────
     g.add_node("vision",        vision_node.vision_analysis_node)
     g.add_node("query_planner", query_planner_node)
-    g.add_node("vision",        vision_node.vision_analysis_node)
     g.add_node("fan_out",       lambda state: None)  # Pure Send dispatcher
     g.add_node("retrieve",       retriever_node)
     g.add_node("synthesis",      synthesis_node)
@@ -42,8 +41,7 @@ def build_compliance_graph() -> StateGraph:
     g.add_edge("vision", "query_planner")
 
     # ── Fixed edges ──────────────────────────────────────────
-    g.add_edge("query_planner", "vision")
-    g.add_edge("vision", "fan_out")
+    g.add_edge("query_planner", "fan_out")
 
     # ── Conditional fan-out to retrieve per market ───────────
     g.add_conditional_edges(
