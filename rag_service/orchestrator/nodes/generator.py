@@ -7,6 +7,7 @@ Wraps ReportGenerator and updates state with generation text.
 import logging
 
 from rag_service.orchestrator.state import GraphState
+from rag_service.schemas.report_package import normalize_report_package
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,9 @@ def generator_node(state: GraphState) -> dict:
 
     query = state.get("query", "")
     product = state.get("product", "产品")
+    category = state.get("category", "")
     markets = state.get("markets", ["EU"])
+    market_label = ", ".join(markets)
     documents = state.get("documents", [])
     user_docs = state.get("user_documents", [])
 
@@ -96,7 +99,7 @@ def generator_node(state: GraphState) -> dict:
                 report_package = generator.generate_report_package(
                     query=query,
                     product=product,
-                    market=", ".join(markets),
+                    market=market_label,
                     chunks=documents,
                     doc_context=doc_context,
                 )
@@ -106,7 +109,7 @@ def generator_node(state: GraphState) -> dict:
                 generation = generator.generate(
                     query=query,
                     product=product,
-                    market=", ".join(markets),
+                    market=market_label,
                     chunks=documents,
                     doc_context=doc_context,
                 )
@@ -127,10 +130,25 @@ def generator_node(state: GraphState) -> dict:
         "generation_length": len(generation),
         "duration_ms": duration_ms,
     }
+    agent_trace = state.get("agent_trace", []) + [trace_entry]
+
+    if report_package:
+        report_package = normalize_report_package(
+            report_package,
+            product=product,
+            category=category,
+            market=market_label,
+            query=query,
+            chunks=documents,
+            vision_result=state.get("vision_result", {}),
+            agent_trace=agent_trace,
+            user_documents=user_docs,
+            provider=provider or "",
+        )
 
     result = {
         "generation": generation,
-        "agent_trace": state.get("agent_trace", []) + [trace_entry],
+        "agent_trace": agent_trace,
     }
     if report_package:
         result["report_package"] = report_package

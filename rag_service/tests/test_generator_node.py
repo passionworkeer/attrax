@@ -39,6 +39,15 @@ def make_chunk(doc_name: str = "REACH法规", content: str = "REACH第22条限�
     return {"doc_name": doc_name, "content": content, "id": "c1"}
 
 
+def make_report_package() -> dict:
+    return {
+        "complianceReport": "## Compliance\nEvidence-backed report.",
+        "profitReport": {"markdown": "## Profit\nFallback estimate."},
+        "roadmap": {"totalDays": 14, "progress": 50, "items": []},
+        "decisionView": {"summary": "Proceed after evidence review.", "keyFindings": [], "nodes": []},
+    }
+
+
 # ── Fixtures ─────────────────────────────────────────────────────────────────
 
 @pytest.fixture(autouse=True)
@@ -220,6 +229,32 @@ class TestGeneratorNodeNormal:
         assert "empty.txt" not in kwargs["doc_context"]
         assert "blank.txt" not in kwargs["doc_context"]
         assert "valid.txt" in kwargs["doc_context"]
+
+    def test_report_package_path_adds_layered_evidence(self):
+        gen = MagicMock()
+        gen.provider = "mimotalk"
+        gen.supports_report_package = True
+        gen.generate_report_package.return_value = make_report_package()
+        generator_module.set_generator(gen)
+        state = make_state(
+            category="electronics",
+            documents=[make_chunk()],
+            vision_result={"product": "Power bank", "summary": "Visible charging ports"},
+            user_documents=[{"name": "manual.pdf", "mime_type": "application/pdf", "text": "Manual text"}],
+        )
+
+        result = generator_module.generator_node(state)
+
+        package = result["report_package"]
+        assert package["productDossier"]["category"] == "electronics"
+        assert package["evidenceBundles"]["visual"]
+        assert len(package["evidenceBundles"]["retrieval"]) == 2
+        assert any(
+            item["layer"] == "audit"
+            for item in package["evidenceBundles"]["generation"]
+        )
+        assert package["auditMetadata"]["traceNodeCount"] == 1
+        gen.generate.assert_not_called()
 
 
 # ── Test: generator_node — no generator / failure handling ───────────────────

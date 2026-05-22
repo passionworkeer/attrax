@@ -11,6 +11,8 @@ import json
 import urllib.request
 import urllib.error
 
+from rag_service.schemas.report_package import normalize_report_package
+
 # Disable system proxy for all urllib calls (prevents WinError 10060 on Windows)
 os.environ.pop("HTTP_PROXY", None)
 os.environ.pop("HTTPS_PROXY", None)
@@ -588,12 +590,20 @@ class ReportGenerator:
             decision = {}
 
         fallback = self._fallback_report_package(product, market, query, chunks, compliance_report=compliance)
-        return {
+        normalized = {
             "complianceReport": compliance,
             "profitReport": {**fallback["profitReport"], **profit},
             "roadmap": {**fallback["roadmap"], **roadmap},
             "decisionView": {**fallback["decisionView"], **decision},
         }
+        return normalize_report_package(
+            normalized,
+            product=product,
+            market=market,
+            query=query,
+            chunks=chunks,
+            provider=self.provider,
+        )
 
     def _fallback_report_package(
         self,
@@ -616,7 +626,7 @@ class ReportGenerator:
         def day(offset: int) -> str:
             return (today + timedelta(days=offset)).isoformat()
 
-        return {
+        package = {
             "complianceReport": compliance,
             "profitReport": {
                 "markdown": profit_markdown,
@@ -726,7 +736,19 @@ class ReportGenerator:
                     },
                 ],
             },
+            "auditMetadata": {
+                "validationStatus": "fallback",
+                "validationErrors": [error] if error else [],
+            },
         }
+        return normalize_report_package(
+            package,
+            product=product,
+            market=market_label,
+            query=query,
+            chunks=chunks,
+            provider=self.provider,
+        )
 
     def _fallback_profit_markdown(self, product: str, market: str, chunks: list[dict]) -> str:
         """Render profit markdown from prebuilt or conservative fallback data."""

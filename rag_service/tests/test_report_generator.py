@@ -3,6 +3,7 @@ import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from rag_service.generate.report_generator import ReportGenerator
+from rag_service.schemas.report_package import ReportPackage
 
 
 def test_import():
@@ -69,3 +70,22 @@ def test_generate_with_metadata(monkeypatch):
     assert result["chunks_used"] == 2
     assert "REACH" in result["doc_names"]
     assert "GDPR" in result["doc_names"]
+
+
+def test_generate_report_package_fallback_is_validated(monkeypatch):
+    """Unified package fallback includes the strong schema extension fields."""
+    monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
+    gen = ReportGenerator(api_key="")
+
+    package = gen.generate_report_package(
+        query="What certifications are needed?",
+        product="Power bank",
+        market="EU",
+        chunks=[],
+    )
+
+    validated = ReportPackage.model_validate(package)
+    assert validated.complianceReport
+    assert validated.productDossier.product == "Power bank"
+    assert validated.evidenceBundles.generation
+    assert validated.auditMetadata.schemaVersion == "report-package/v1"

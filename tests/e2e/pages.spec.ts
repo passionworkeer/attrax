@@ -15,7 +15,7 @@ test.describe('Upload Page E2E', () => {
   })
 
   test('displays product documents section', async ({ page }) => {
-    const docsSection = page.getByText(/产品文档|Product Documents/)
+    const docsSection = page.locator('label').filter({ hasText: /产品文档|Product Documents/ })
     await expect(docsSection).toBeVisible()
   })
 
@@ -44,14 +44,12 @@ test.describe('Result Page E2E', () => {
 
   test('demo result shows scan data', async ({ page }) => {
     await page.goto('/result/demo')
-    const preElement = page.locator('pre')
-    await expect(preElement).toBeVisible()
+    await expect(page.getByText(/综合评分|Overall Score/).first()).toBeVisible()
   })
 
   test('result page shows compliance score', async ({ page }) => {
     await page.goto('/result/demo')
-    const content = await page.content()
-    expect(content).toContain('complianceScore')
+    await expect(page.getByText('45', { exact: true }).first()).toBeVisible()
   })
 })
 

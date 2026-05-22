@@ -213,6 +213,8 @@ export default function ResultPage() {
   useEffect(() => {
     if (!sessionId || isDemoSession) return;
 
+    sessionStorage.setItem("lastSessionId", sessionId);
+
     const cached = sessionStorage.getItem(`scan:${sessionId}`);
     if (cached) {
       try {

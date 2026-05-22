@@ -1,0 +1,397 @@
+"""Pydantic schemas and normalization helpers for unified report packages."""
+from __future__ import annotations
+
+from datetime import datetime, timezone
+from typing import Any, Literal
+
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
+
+
+SCHEMA_VERSION = "report-package/v1"
+
+
+class FlexibleModel(BaseModel):
+    """Allow frontend-owned fields while validating the core contract."""
+
+    model_config = ConfigDict(extra="allow")
+
+
+class ProductDossier(FlexibleModel):
+    product: str = ""
+    category: str = ""
+    markets: list[str] = Field(default_factory=list)
+    query: str = ""
+    sourceCounts: dict[str, int] = Field(default_factory=dict)
+
+    @field_validator("markets", mode="before")
+    @classmethod
+    def coerce_markets(cls, value: Any) -> list[str]:
+        if isinstance(value, str):
+            return [m.strip() for m in value.split(",") if m.strip()]
+        if isinstance(value, list):
+            return [str(m).strip() for m in value if str(m).strip()]
+        return []
+
+
+class ProfitReport(FlexibleModel):
+    markdown: str
+    keyConclusion: str = ""
+    premiumPct: str = ""
+    breakevenUnits: str = ""
+    pricingStrategy: str = ""
+    riskNote: str = ""
+    conclusions: str = ""
+    references: str = ""
+
+
+class RoadmapItem(FlexibleModel):
+    id: str
+    date: str = ""
+    title: str = ""
+    titleEn: str = ""
+    description: str = ""
+    descriptionEn: str = ""
+    type: str = "complete"
+    status: str = "pending"
+    estimatedDays: int = 0
+    cost: str = ""
+    documents: list[str] = Field(default_factory=list)
+    documentsEn: list[str] = Field(default_factory=list)
+
+    @field_validator("id", mode="before")
+    @classmethod
+    def coerce_id(cls, value: Any) -> str:
+        return str(value or "")
+
+
+class Roadmap(FlexibleModel):
+    totalDays: int = 0
+    totalCost: str = ""
+    progress: int = 0
+    items: list[RoadmapItem] = Field(default_factory=list)
+
+    @field_validator("progress")
+    @classmethod
+    def clamp_progress(cls, value: int) -> int:
+        return max(0, min(100, value))
+
+
+class DecisionNode(FlexibleModel):
+    id: str
+    type: str = ""
+    label: str = ""
+    labelEn: str = ""
+    status: str = "pending"
+    duration: str = ""
+    confidence: float | None = None
+    reasoning: str = ""
+    reasoningEn: str = ""
+
+    @field_validator("id", mode="before")
+    @classmethod
+    def coerce_id(cls, value: Any) -> str:
+        return str(value or "")
+
+
+class DecisionView(FlexibleModel):
+    summary: str = ""
+    keyFindings: list[str] = Field(default_factory=list)
+    recommendedAction: str = ""
+    nodes: list[DecisionNode] = Field(default_factory=list)
+
+
+class EvidenceItem(FlexibleModel):
+    id: str
+    layer: Literal["visual", "retrieval", "generation", "audit"]
+    source: str = ""
+    title: str = ""
+    content: str = ""
+    metadata: dict[str, Any] = Field(default_factory=dict)
+
+
+class EvidenceBundles(FlexibleModel):
+    visual: list[EvidenceItem] = Field(default_factory=list)
+    retrieval: list[EvidenceItem] = Field(default_factory=list)
+    generation: list[EvidenceItem] = Field(default_factory=list)
+
+
+class AuditMetadata(FlexibleModel):
+    schemaVersion: str = SCHEMA_VERSION
+    generatedAt: str
+    validationStatus: Literal["normalized", "fallback", "invalid"] = "normalized"
+    validationErrors: list[str] = Field(default_factory=list)
+    provider: str = ""
+    traceNodeCount: int = 0
+
+
+class ReportPackage(FlexibleModel):
+    productDossier: ProductDossier
+    complianceReport: str
+    profitReport: ProfitReport
+    roadmap: Roadmap
+    decisionView: DecisionView
+    evidenceBundles: EvidenceBundles
+    auditMetadata: AuditMetadata
+
+    @field_validator("complianceReport")
+    @classmethod
+    def require_report_text(cls, value: str) -> str:
+        text = str(value or "").strip()
+        if not text:
+            raise ValueError("complianceReport must not be empty")
+        return text
+
+
+def _utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def _as_dict(value: Any) -> dict:
+    return value if isinstance(value, dict) else {}
+
+
+def _as_list(value: Any) -> list:
+    return value if isinstance(value, list) else []
+
+
+def _market_list(market: str | list[str]) -> list[str]:
+    if isinstance(market, list):
+        return [str(m).strip() for m in market if str(m).strip()]
+    return [m.strip() for m in str(market or "").split(",") if m.strip()]
+
+
+def _short_text(value: Any, limit: int = 700) -> str:
+    text = str(value or "").strip().replace("\x00", "")
+    return text[:limit]
+
+
+def _coerce_int(value: Any, default: int = 0) -> int:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return default
+
+
+def _normalize_roadmap(value: Any) -> dict:
+    roadmap = _as_dict(value).copy()
+    roadmap["totalDays"] = _coerce_int(roadmap.get("totalDays"))
+    roadmap["progress"] = _coerce_int(roadmap.get("progress"))
+    if not isinstance(roadmap.get("items"), list):
+        roadmap["items"] = []
+    for item in roadmap["items"]:
+        if isinstance(item, dict):
+            item["estimatedDays"] = _coerce_int(item.get("estimatedDays"))
+    return roadmap
+
+
+def _normalize_decision(value: Any) -> dict:
+    decision = _as_dict(value).copy()
+    if not isinstance(decision.get("keyFindings"), list):
+        decision["keyFindings"] = []
+    if not isinstance(decision.get("nodes"), list):
+        decision["nodes"] = []
+    return decision
+
+
+def _build_evidence_bundles(
+    chunks: list[dict],
+    vision_result: dict | None = None,
+    agent_trace: list[dict] | None = None,
+    user_documents: list[dict] | None = None,
+    compliance_report: str = "",
+    generated_package: dict | None = None,
+) -> EvidenceBundles:
+    visual: list[EvidenceItem] = []
+    retrieval: list[EvidenceItem] = []
+    generation: list[EvidenceItem] = []
+
+    vision = _as_dict(vision_result)
+    if vision:
+        visual.append(
+            EvidenceItem(
+                id="visual:result",
+                layer="visual",
+                source="vision_result",
+                title=str(vision.get("product") or vision.get("label") or "Vision analysis"),
+                content=_short_text(vision.get("summary") or vision.get("description") or vision),
+                metadata={k: v for k, v in vision.items() if k not in {"summary", "description"}},
+            )
+        )
+
+    for idx, chunk in enumerate(chunks[:24]):
+        if not isinstance(chunk, dict):
+            continue
+        retrieval.append(
+            EvidenceItem(
+                id=str(chunk.get("id") or f"retrieval:{idx + 1}"),
+                layer="retrieval",
+                source=str(chunk.get("doc_name") or chunk.get("source") or "retrieved_chunk"),
+                title=str(chunk.get("article_no") or chunk.get("title") or chunk.get("doc_name") or ""),
+                content=_short_text(chunk.get("content")),
+                metadata={
+                    key: chunk.get(key)
+                    for key in ("market", "product", "score", "rank", "url")
+                    if key in chunk
+                },
+            )
+        )
+
+    for idx, doc in enumerate(_as_list(user_documents)[:12]):
+        if not isinstance(doc, dict):
+            continue
+        retrieval.append(
+            EvidenceItem(
+                id=f"user_doc:{idx + 1}",
+                layer="retrieval",
+                source="user_document",
+                title=str(doc.get("name") or "uploaded document"),
+                content=_short_text(doc.get("text")),
+                metadata={"mime_type": doc.get("mime_type", "")},
+            )
+        )
+
+    generation.append(
+        EvidenceItem(
+            id="generation:compliance_report",
+            layer="generation",
+            source="report_generator",
+            title="Compliance report draft",
+            content=_short_text(compliance_report, limit=1200),
+            metadata={"characterCount": len(compliance_report or "")},
+        )
+    )
+    package = _as_dict(generated_package)
+    if package:
+        generation.append(
+            EvidenceItem(
+                id="generation:package_keys",
+                layer="generation",
+                source="report_package",
+                title="Generated package keys",
+                content=", ".join(sorted(str(k) for k in package.keys())),
+                metadata={"sceneCount": len(package)},
+            )
+        )
+
+    for idx, trace in enumerate(_as_list(agent_trace)[-12:]):
+        if not isinstance(trace, dict):
+            continue
+        generation.append(
+            EvidenceItem(
+                id=f"audit:trace:{idx + 1}",
+                layer="audit",
+                source=str(trace.get("node") or "agent_trace"),
+                title=str(trace.get("status") or trace.get("node") or "trace"),
+                content=_short_text(trace.get("error") or trace.get("message") or trace),
+                metadata=trace,
+            )
+        )
+
+    return EvidenceBundles(visual=visual, retrieval=retrieval, generation=generation)
+
+
+def normalize_report_package(
+    package: dict,
+    *,
+    product: str = "",
+    category: str = "",
+    market: str | list[str] = "",
+    query: str = "",
+    chunks: list[dict] | None = None,
+    vision_result: dict | None = None,
+    agent_trace: list[dict] | None = None,
+    user_documents: list[dict] | None = None,
+    provider: str = "",
+) -> dict:
+    """Validate and normalize a report package while preserving legacy scene keys."""
+    source = _as_dict(package).copy()
+    chunks = chunks or []
+    markets = _market_list(market)
+
+    compliance = (
+        source.get("complianceReport")
+        or source.get("compliance_report")
+        or source.get("report")
+        or ""
+    )
+    profit = source.get("profitReport") or source.get("profit_report") or {}
+    if isinstance(profit, str):
+        profit = {"markdown": profit}
+    profit = _as_dict(profit)
+    if not str(profit.get("markdown") or "").strip():
+        profit["markdown"] = "Profit analysis unavailable; fallback content was not provided."
+
+    roadmap = _normalize_roadmap(source.get("roadmap"))
+    decision = _normalize_decision(source.get("decisionView") or source.get("decision_view"))
+
+    product_dossier = _as_dict(source.get("productDossier") or source.get("product_dossier"))
+    product_dossier = {
+        **product_dossier,
+        "product": product_dossier.get("product") or product,
+        "category": product_dossier.get("category") or category,
+        "markets": product_dossier.get("markets") or markets,
+        "query": product_dossier.get("query") or query,
+        "sourceCounts": {
+            "retrievedChunks": len(chunks),
+            "userDocuments": len(_as_list(user_documents)),
+            "visualItems": 1 if vision_result else 0,
+            **_as_dict(product_dossier.get("sourceCounts")),
+        },
+    }
+
+    evidence = source.get("evidenceBundles") or source.get("evidence_bundles")
+    if isinstance(evidence, dict):
+        try:
+            evidence_bundles = EvidenceBundles.model_validate(evidence)
+        except ValidationError:
+            evidence_bundles = _build_evidence_bundles(
+                chunks,
+                vision_result=vision_result,
+                agent_trace=agent_trace,
+                user_documents=user_documents,
+                compliance_report=str(compliance or ""),
+                generated_package=source,
+            )
+    else:
+        evidence_bundles = _build_evidence_bundles(
+            chunks,
+            vision_result=vision_result,
+            agent_trace=agent_trace,
+            user_documents=user_documents,
+            compliance_report=str(compliance or ""),
+            generated_package=source,
+        )
+
+    audit = _as_dict(source.get("auditMetadata") or source.get("audit_metadata"))
+    audit = {
+        "schemaVersion": audit.get("schemaVersion") or SCHEMA_VERSION,
+        "generatedAt": audit.get("generatedAt") or _utc_now_iso(),
+        "validationStatus": audit.get("validationStatus") or "normalized",
+        "validationErrors": list(audit.get("validationErrors") or []),
+        "provider": audit.get("provider") or provider,
+        "traceNodeCount": audit.get("traceNodeCount") or len(_as_list(agent_trace)),
+    }
+
+    normalized = {
+        **source,
+        "productDossier": product_dossier,
+        "complianceReport": str(compliance or "").strip(),
+        "profitReport": profit,
+        "roadmap": roadmap,
+        "decisionView": decision,
+        "evidenceBundles": evidence_bundles.model_dump(),
+        "auditMetadata": audit,
+    }
+
+    try:
+        return ReportPackage.model_validate(normalized).model_dump()
+    except ValidationError as exc:
+        normalized["complianceReport"] = normalized["complianceReport"] or (
+            "Report package validation failed; no compliance report text was available."
+        )
+        normalized["auditMetadata"] = {
+            **audit,
+            "validationStatus": "invalid",
+            "validationErrors": [err["msg"] for err in exc.errors()],
+        }
+        return ReportPackage.model_validate(normalized).model_dump()

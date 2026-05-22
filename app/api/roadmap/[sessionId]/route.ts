@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/pipeline/session-store";
 import { t as serverT } from "@/lib/i18n";
+import type { ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
 
@@ -35,16 +36,7 @@ export async function GET(
 
   // Determine compliance status and generate roadmap items
   const complianceStatus = (result as { complianceStatus?: string }).complianceStatus || "UNKNOWN";
-  const packagedRoadmap = (result as {
-    reportPackage?: {
-      roadmap?: {
-        totalDays?: number;
-        totalCost?: string;
-        progress?: number;
-        items?: Array<Record<string, unknown>>;
-      };
-    };
-  }).reportPackage?.roadmap;
+  const packagedRoadmap = _getReportPackage(result)?.roadmap;
 
   if (packagedRoadmap?.items?.length) {
     return NextResponse.json({
@@ -53,9 +45,9 @@ export async function GET(
       markets: targetMarkets,
       complianceScore,
       complianceStatus,
-      totalDays: packagedRoadmap.totalDays ?? (complianceScore >= 80 ? 42 : complianceScore >= 60 ? 56 : 70),
+      totalDays: packagedRoadmap.totalDays ?? packagedRoadmap.total_days ?? (complianceScore >= 80 ? 42 : complianceScore >= 60 ? 56 : 70),
       progress: packagedRoadmap.progress ?? Math.round((complianceScore / 100) * 100),
-      totalCost: packagedRoadmap.totalCost ?? _estimateTotalCost(complianceScore, targetMarkets),
+      totalCost: packagedRoadmap.totalCost ?? packagedRoadmap.total_cost ?? _estimateTotalCost(complianceScore, targetMarkets),
       items: _normalizeRoadmapItems(packagedRoadmap.items),
     });
   }
@@ -87,7 +79,7 @@ function _generateRoadmapItems(
   product: string,
   markets: string[],
   score: number,
-  status: string
+  _status: string
 ) {
   const now = new Date();
 
@@ -185,22 +177,32 @@ function _estimateTotalCost(score: number, markets: string[]): string {
   return `¥${(baseCost / 1000).toFixed(0)}K+`;
 }
 
-function _normalizeRoadmapItems(items: Array<Record<string, unknown>>) {
+function _normalizeRoadmapItems(items: unknown[]) {
   const validTypes = new Set(["apply", "test", "certify", "complete"]);
   const validStatuses = new Set(["pending", "in-progress", "completed"]);
 
-  return items.map((item, index) => ({
+  return items.filter((item): item is Record<string, unknown> => typeof item === "object" && item !== null).map((item, index) => ({
     id: String(item.id ?? index + 1),
     date: typeof item.date === "string" ? item.date : new Date().toISOString().split("T")[0],
     title: typeof item.title === "string" ? item.title : `Step ${index + 1}`,
-    titleEn: typeof item.titleEn === "string" ? item.titleEn : `Step ${index + 1}`,
+    titleEn: typeof item.titleEn === "string" ? item.titleEn : typeof item.title_en === "string" ? item.title_en : `Step ${index + 1}`,
     description: typeof item.description === "string" ? item.description : "",
-    descriptionEn: typeof item.descriptionEn === "string" ? item.descriptionEn : "",
+    descriptionEn: typeof item.descriptionEn === "string" ? item.descriptionEn : typeof item.description_en === "string" ? item.description_en : "",
     type: validTypes.has(String(item.type)) ? item.type : "apply",
     status: validStatuses.has(String(item.status)) ? item.status : "pending",
-    estimatedDays: typeof item.estimatedDays === "number" ? item.estimatedDays : undefined,
+    estimatedDays: typeof item.estimatedDays === "number" ? item.estimatedDays : typeof item.estimated_days === "number" ? item.estimated_days : undefined,
     cost: typeof item.cost === "string" ? item.cost : undefined,
     documents: Array.isArray(item.documents) ? item.documents.map(String) : undefined,
-    documentsEn: Array.isArray(item.documentsEn) ? item.documentsEn.map(String) : undefined,
+    documentsEn: Array.isArray(item.documentsEn)
+      ? item.documentsEn.map(String)
+      : Array.isArray(item.documents_en)
+      ? item.documents_en.map(String)
+      : undefined,
   }));
+}
+
+function _getReportPackage(result: unknown): ReportPackage | undefined {
+  if (!result || typeof result !== "object") return undefined;
+  const record = result as { reportPackage?: ReportPackage; report_package?: ReportPackage };
+  return record.reportPackage ?? record.report_package;
 }

@@ -1,5 +1,14 @@
 import { describe, it, expect } from 'vitest'
-import type { ScanResult, ScanStatus, RiskPoint, ImageAsset } from '@/lib/types'
+import type {
+  AuditMetadata,
+  EvidenceBundle,
+  ProductDossier,
+  ReportPackage,
+  ScanResult,
+  ScanStatus,
+  RiskPoint,
+  ImageAsset,
+} from '@/lib/types'
 
 describe('Type definitions', () => {
   describe('ScanResult', () => {
@@ -186,6 +195,49 @@ describe('Type definitions', () => {
       }
 
       expect(asset.angleHint).toBeUndefined()
+    })
+  })
+
+  describe('ReportPackage', () => {
+    it('should support strong structured package metadata and snake_case aliases', () => {
+      const dossier: ProductDossier = {
+        product_name: 'Adapter',
+        target_markets: ['EU'],
+      }
+      const evidence: EvidenceBundle = {
+        source_chunks: [{ doc_name: 'RoHS', article_no: 'Art.4', region: 'EU' }],
+      }
+      const audit: AuditMetadata = {
+        generated_at: '2026-05-22T00:00:00.000Z',
+        loop_count: 1,
+      }
+      const reportPackage: ReportPackage = {
+        product_dossier: dossier,
+        evidence_bundle: evidence,
+        audit_metadata: audit,
+        compliance_report: '# Compliance',
+        profit_report: {
+          markdown: '## Profit',
+          premium_pct: '12%',
+          breakeven_units: '1200',
+        },
+        roadmap: {
+          total_days: 21,
+          total_cost: '¥12K+',
+          items: [{ title_en: 'Complete labeling', estimated_days: 3 }],
+        },
+        decision_view: {
+          key_findings: ['Missing label'],
+          recommended_action: 'Fix labels',
+          nodes: [{ label_en: 'Generate', reasoning_en: 'One-pass package' }],
+        },
+      }
+
+      expect(reportPackage.product_dossier?.product_name).toBe('Adapter')
+      expect(reportPackage.evidence_bundle?.source_chunks?.[0]?.doc_name).toBe('RoHS')
+      expect(reportPackage.audit_metadata?.loop_count).toBe(1)
+      expect(reportPackage.roadmap?.total_days).toBe(21)
+      expect(reportPackage.decision_view?.recommended_action).toBe('Fix labels')
     })
   })
 })
