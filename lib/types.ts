@@ -125,7 +125,7 @@ export interface ComplianceReportResult {
     score: number;
   }>;
   /** Optional one-pass generated package for the four result scenes. */
-  reportPackage?: GeneratedReportPackage;
+  reportPackage?: ReportPackage;
   images: undefined;
   documents: Array<{
     documentId: string;
@@ -151,25 +151,132 @@ export interface ScanStatus {
   error?: string;
 }
 
-export interface GeneratedReportPackage {
+export interface ProductDossier {
+  product?: string;
+  category?: string;
+  markets?: string[];
+  productName?: string;
+  product_name?: string;
+  productCategory?: string;
+  product_category?: string;
+  targetMarkets?: string[];
+  target_markets?: string[];
+  query?: string;
+  summary?: string;
+  uploadedDocuments?: string[];
+  uploaded_documents?: string[];
+  imageCount?: number;
+  image_count?: number;
+  documentCount?: number;
+  document_count?: number;
+  sourceCounts?: Record<string, number>;
+  source_counts?: Record<string, number>;
+  [key: string]: unknown;
+}
+
+export interface EvidenceItem {
+  id?: string;
+  layer?: "visual" | "retrieval" | "generation" | "audit" | string;
+  source?: string;
+  title?: string;
+  content?: string;
+  metadata?: Record<string, unknown>;
+  [key: string]: unknown;
+}
+
+export interface EvidenceBundle {
+  visual?: EvidenceItem[];
+  retrieval?: EvidenceItem[];
+  generation?: EvidenceItem[];
+  sourceChunks?: Array<{
+    regId?: string;
+    reg_id?: string;
+    docName?: string;
+    doc_name?: string;
+    articleNo?: string;
+    article_no?: string;
+    region?: string;
+    score?: number;
+    content?: string;
+    [key: string]: unknown;
+  }>;
+  source_chunks?: EvidenceBundle["sourceChunks"];
+  retrievedChunks?: EvidenceBundle["sourceChunks"];
+  retrieved_chunks?: EvidenceBundle["sourceChunks"];
+  uploadedDocuments?: Array<{
+    name?: string;
+    mimeType?: string;
+    mime_type?: string;
+    text?: string;
+    [key: string]: unknown;
+  }>;
+  uploaded_documents?: EvidenceBundle["uploadedDocuments"];
+  [key: string]: unknown;
+}
+
+export interface AuditMetadata {
+  schemaVersion?: string;
+  schema_version?: string;
+  generatedAt?: string;
+  generated_at?: string;
+  validationStatus?: string;
+  validation_status?: string;
+  validationErrors?: string[];
+  validation_errors?: string[];
+  generator?: string;
+  model?: string;
+  provider?: string;
+  latencyMs?: number;
+  latency_ms?: number;
+  loopCount?: number;
+  loop_count?: number;
+  traceNodeCount?: number;
+  trace_node_count?: number;
+  packageVersion?: string;
+  package_version?: string;
+  warnings?: string[];
+  [key: string]: unknown;
+}
+
+export interface ReportPackage {
+  productDossier?: ProductDossier;
+  product_dossier?: ProductDossier;
+  evidenceBundles?: EvidenceBundle;
+  evidence_bundles?: EvidenceBundle;
+  evidenceBundle?: EvidenceBundle;
+  evidence_bundle?: EvidenceBundle;
+  auditMetadata?: AuditMetadata;
+  audit_metadata?: AuditMetadata;
   complianceReport?: string;
+  compliance_report?: string;
   profitReport?: {
     markdown?: string;
     keyConclusion?: string;
+    key_conclusion?: string;
     premiumPct?: string;
+    premium_pct?: string;
     breakevenUnits?: string;
+    breakeven_units?: string;
     pricingStrategy?: string;
+    pricing_strategy?: string;
     riskNote?: string;
+    risk_note?: string;
     conclusions?: string;
     references?: string;
   };
+  profit_report?: ReportPackage["profitReport"] | string;
   roadmap?: GeneratedRoadmap;
   decisionView?: GeneratedDecisionView;
+  decision_view?: GeneratedDecisionView;
 }
+
+export type GeneratedReportPackage = ReportPackage;
 
 export interface GeneratedRoadmap {
   totalDays?: number;
+  total_days?: number;
   totalCost?: string;
+  total_cost?: string;
   progress?: number;
   items?: GeneratedRoadmapItem[];
 }
@@ -179,20 +286,26 @@ export interface GeneratedRoadmapItem {
   date?: string;
   title?: string;
   titleEn?: string;
+  title_en?: string;
   description?: string;
   descriptionEn?: string;
+  description_en?: string;
   type?: "apply" | "test" | "certify" | "complete";
   status?: "pending" | "in-progress" | "completed";
   estimatedDays?: number;
+  estimated_days?: number;
   cost?: string;
   documents?: string[];
   documentsEn?: string[];
+  documents_en?: string[];
 }
 
 export interface GeneratedDecisionView {
   summary?: string;
   keyFindings?: string[];
+  key_findings?: string[];
   recommendedAction?: string;
+  recommended_action?: string;
   nodes?: GeneratedDecisionNode[];
 }
 
@@ -201,12 +314,14 @@ export interface GeneratedDecisionNode {
   type?: string;
   label?: string;
   labelEn?: string;
+  label_en?: string;
   icon?: string;
   status?: string;
   duration?: string;
   confidence?: number;
   reasoning?: string;
   reasoningEn?: string;
+  reasoning_en?: string;
 }
 
 export interface CostSummary {

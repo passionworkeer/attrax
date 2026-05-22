@@ -375,5 +375,49 @@ describe("GET /api/trace/[sessionId]", () => {
       // When retrievedChunks is missing, it defaults to 6
       expect(body.regulations).toBe(6);
     });
+
+    it("uses snake_case report_package decision_view before raw trace fallback", async () => {
+      const result = {
+        sessionId: "scan_snake_package_trace",
+        complianceScore: 77,
+        scoreGrade: "C",
+        targetMarkets: ["EU"],
+        agentTrace: [
+          { node: "retriever", status: "PASS", duration_ms: 5000 },
+        ],
+        retrievedChunks: [],
+        report_package: {
+          decision_view: {
+            summary: "Packaged decision view",
+            recommended_action: "Proceed with fixes",
+            nodes: [{
+              id: "pkg-node",
+              type: "generate",
+              label: "四场景生成",
+              label_en: "Four-scene generation",
+              status: "success",
+              duration: "1.4s",
+              confidence: 0.91,
+            }],
+          },
+        },
+      };
+
+      mockSessions.set("scan_snake_package_trace", createSessionWithResult("scan_snake_package_trace", result));
+
+      const { GET } = await import("@/app/api/trace/[sessionId]/route");
+      const req = new Request("http://localhost/api/trace/scan_snake_package_trace");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_snake_package_trace" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      expect(body.totalTime).toBe("5.0");
+      expect(body.decisionView.summary).toBe("Packaged decision view");
+      expect(body.traceNodes).toHaveLength(1);
+      expect(body.traceNodes[0].id).toBe("pkg-node");
+      expect(body.traceNodes[0].label).toBe("四场景生成");
+    });
   });
 });

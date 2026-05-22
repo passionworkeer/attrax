@@ -72,10 +72,13 @@ function _buildTraceTreeFromApi(nodes: {
   id?: string;
   type?: string;
   label?: string;
+  labelEn?: string;
   icon?: string;
   status?: string;
   duration?: string;
   confidence?: number;
+  reasoning?: string;
+  reasoningEn?: string;
 }[]): TraceNode {
   // Map API node types to TraceNode types
   const typeMap: Record<string, TraceNode["type"]> = {
@@ -113,16 +116,18 @@ function _buildTraceTreeFromApi(nodes: {
   // Build a tree structure from the nodes
   const children: TraceNode[] = nodes.map((node) => {
     const nodeType = typeMap[node.type || ""] || "synthesis" as TraceNode["type"];
-    const nodeLabel = labelMap[node.type || ""] || { zh: node.label || node.type || "", en: node.label || node.type || "" };
+    const nodeLabel = labelMap[node.type || ""];
     return {
       id: node.id || node.type || "node",
       type: nodeType,
-      label: nodeLabel.zh,
-      labelEn: nodeLabel.en,
+      label: node.label || nodeLabel?.zh || node.type || "",
+      labelEn: node.labelEn || nodeLabel?.en || node.label || node.type || "",
       icon: iconMap[node.type || ""] || "📊",
       status: (node.status as TraceNode["status"]) || "pending",
       duration: node.duration || "0s",
       confidence: node.confidence || 0,
+      reasoning: node.reasoning,
+      reasoningEn: node.reasoningEn,
     };
   });
 

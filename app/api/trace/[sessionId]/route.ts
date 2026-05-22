@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/pipeline/session-store";
 import { t as serverT } from "@/lib/i18n";
+import type { ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
 
@@ -28,16 +29,7 @@ export async function GET(
 
   // Build trace data from agent_trace
   const agentTrace = (result as { agentTrace?: unknown[] }).agentTrace || [];
-  const decisionView = (result as {
-    reportPackage?: {
-      decisionView?: {
-        summary?: string;
-        keyFindings?: string[];
-        recommendedAction?: string;
-        nodes?: Array<Record<string, unknown>>;
-      };
-    };
-  }).reportPackage?.decisionView;
+  const decisionView = _getDecisionView(_getReportPackage(result));
 
   // Extract execution stats
   const totalTime = (agentTrace as Array<{ duration_ms?: number; duration?: number }>).reduce((acc, entry) => {
@@ -112,14 +104,32 @@ function _getNodeLabel(node: string): string {
   return labels[node] || node;
 }
 
-function _normalizeDecisionNodes(nodes: Array<Record<string, unknown>>) {
-  return nodes.map((node, index) => ({
+function _normalizeDecisionNodes(nodes: unknown[]) {
+  return nodes.filter((node): node is Record<string, unknown> => typeof node === "object" && node !== null).map((node, index) => ({
     id: String(node.id ?? node.type ?? `node_${index + 1}`),
     type: String(node.type ?? "synthesis"),
     label: String(node.label ?? node.type ?? `Step ${index + 1}`),
+    labelEn: typeof node.labelEn === "string" ? node.labelEn : typeof node.label_en === "string" ? node.label_en : undefined,
     icon: typeof node.icon === "string" ? node.icon : "馃搳",
     status: typeof node.status === "string" ? node.status.toLowerCase() : "success",
     duration: typeof node.duration === "string" ? node.duration : "0s",
     confidence: typeof node.confidence === "number" ? node.confidence : 0,
+    reasoning: typeof node.reasoning === "string" ? node.reasoning : undefined,
+    reasoningEn:
+      typeof node.reasoningEn === "string"
+        ? node.reasoningEn
+        : typeof node.reasoning_en === "string"
+        ? node.reasoning_en
+        : undefined,
   }));
+}
+
+function _getReportPackage(result: unknown): ReportPackage | undefined {
+  if (!result || typeof result !== "object") return undefined;
+  const record = result as { reportPackage?: ReportPackage; report_package?: ReportPackage };
+  return record.reportPackage ?? record.report_package;
+}
+
+function _getDecisionView(reportPackage: ReportPackage | undefined) {
+  return reportPackage?.decisionView ?? reportPackage?.decision_view;
 }

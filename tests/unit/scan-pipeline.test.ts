@@ -231,5 +231,78 @@ describe('Scan Pipeline', () => {
       expect(session?.profitReport?.report).toContain('Packaged Profit')
       expect(session?.profitReport?.keyConclusion).toBe('合规模式更稳健')
     })
+
+    it('normalizes snake_case report_package fields before storing the session result', async () => {
+      const fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValue(
+        new Response(JSON.stringify({
+          ...MOCK_BODY,
+          report: '# Legacy Compliance',
+          report_package: {
+            compliance_report: '# Snake Compliance',
+            profit_report: {
+              markdown: '## Snake Profit',
+              key_conclusion: 'Snake conclusion',
+              premium_pct: '12%',
+              breakeven_units: '1200',
+              pricing_strategy: 'Premium channel',
+              risk_note: 'Risk note',
+            },
+            roadmap: {
+              total_days: 28,
+              total_cost: '¥20K+',
+              progress: 60,
+              items: [{
+                id: 'snake-step',
+                title: '补标签',
+                title_en: 'Fix labels',
+                description: '补齐标签信息',
+                description_en: 'Complete label information',
+                type: 'apply',
+                status: 'pending',
+                estimated_days: 5,
+                documents_en: ['Label artwork'],
+              }],
+            },
+            decision_view: {
+              summary: 'Snake decision view',
+              recommended_action: 'Proceed',
+              nodes: [{
+                id: 'snake-node',
+                type: 'generate',
+                label: '生成',
+                label_en: 'Generate',
+                status: 'success',
+                reasoning_en: 'Generated once',
+              }],
+            },
+            product_dossier: { product_name: 'Adapter' },
+            evidence_bundle: { source_chunks: [{ doc_name: 'RoHS', region: 'EU' }] },
+            audit_metadata: { generated_at: '2026-05-22T00:00:00.000Z' },
+          },
+        }), { status: 200 })
+      )
+
+      const sessionId = 'test_report_package_snake_case'
+      createSession(sessionId)
+
+      await runScan(sessionId, {
+        images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      const session = getSession(sessionId)
+      const result = session?.result as unknown as Record<string, any>
+      expect(fetchSpy).toHaveBeenCalledTimes(1)
+      expect(result.complianceReport).toBe('# Snake Compliance')
+      expect(result.reportPackage.productDossier.product_name).toBe('Adapter')
+      expect(result.reportPackage.roadmap.totalDays).toBe(28)
+      expect(result.reportPackage.roadmap.totalCost).toBe('¥20K+')
+      expect(result.reportPackage.roadmap.items[0].titleEn).toBe('Fix labels')
+      expect(result.reportPackage.decisionView.recommendedAction).toBe('Proceed')
+      expect(result.reportPackage.decisionView.nodes[0].labelEn).toBe('Generate')
+      expect(session?.profitReport?.report).toBe('## Snake Profit')
+      expect(session?.profitReport?.premiumPct).toBe('12%')
+    })
   })
 })

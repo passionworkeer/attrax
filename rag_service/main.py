@@ -33,6 +33,7 @@ from pydantic import BaseModel
 from rag_service.config import settings
 from rag_service.orchestrator.graph import run_compliance_graph
 from rag_service.retrieval.faiss_retriever import FaissRetriever
+from rag_service.schemas.report_package import ReportPackage
 from rag_service.retrieval.hybrid_retriever import HybridRetriever
 from rag_service.retrieval.bm25_retriever import BM25Retriever
 from rag_service.generate.report_generator import ReportGenerator
@@ -146,7 +147,7 @@ class ScanResponse(BaseModel):
     agent_trace: list[dict]
     loop_count: int
     documents: Optional[list[dict]] = None
-    report_package: Optional[dict] = None
+    report_package: Optional[ReportPackage] = None
 
 
 class ProfitReportRequest(BaseModel):

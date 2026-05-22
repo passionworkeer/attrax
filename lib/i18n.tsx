@@ -801,7 +801,14 @@ function detectInitialLocale(): Locale {
 }
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>(detectInitialLocale);
+  const [locale, setLocale] = useState<Locale>("zh");
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setLocale(detectInitialLocale());
+    }, 0);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = locale;

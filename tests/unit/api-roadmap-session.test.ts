@@ -468,5 +468,51 @@ describe("GET /api/roadmap/[sessionId]", () => {
       expect(res.status).toBe(200);
       expect(body.complianceStatus).toBe("UNKNOWN");
     });
+
+    it("uses snake_case report_package roadmap before generated fallback", async () => {
+      const result = {
+        sessionId: "scan_snake_package_roadmap",
+        productName: "Adapter",
+        targetMarkets: ["EU"],
+        complianceScore: 91,
+        complianceStatus: "PASS",
+        report_package: {
+          roadmap: {
+            total_days: 21,
+            total_cost: "¥12K+",
+            progress: 72,
+            items: [{
+              id: "pkg-1",
+              date: "2026-05-22",
+              title: "补齐标签",
+              title_en: "Complete labeling",
+              description: "补齐铭牌和警示语",
+              description_en: "Complete nameplate and warnings",
+              type: "apply",
+              status: "in-progress",
+              estimated_days: 3,
+              documents_en: ["Label artwork"],
+            }],
+          },
+        },
+      };
+
+      mockSessions.set("scan_snake_package_roadmap", createSessionWithResult("scan_snake_package_roadmap", result));
+
+      const { GET } = await import("@/app/api/roadmap/[sessionId]/route");
+      const req = new Request("http://localhost/api/roadmap/scan_snake_package_roadmap");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_snake_package_roadmap" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      expect(body.totalDays).toBe(21);
+      expect(body.totalCost).toBe("¥12K+");
+      expect(body.items).toHaveLength(1);
+      expect(body.items[0].titleEn).toBe("Complete labeling");
+      expect(body.items[0].estimatedDays).toBe(3);
+      expect(body.items[0].documentsEn).toEqual(["Label artwork"]);
+    });
   });
 });

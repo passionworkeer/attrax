@@ -23,9 +23,10 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
     const timer = window.setTimeout(() => {
       setIsClient(true);
       setMounted(true);
+      const querySessionId = new URLSearchParams(window.location.search).get("sessionId");
       const urlSessionId = resolvedParams?.sessionId;
       const storageSessionId = sessionStorage.getItem("lastSessionId");
-      setSessionId(urlSessionId || storageSessionId || "");
+      setSessionId(querySessionId || urlSessionId || storageSessionId || "");
     }, 0);
 
     return () => window.clearTimeout(timer);
