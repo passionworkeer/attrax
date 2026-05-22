@@ -121,6 +121,8 @@ export default function RegulationsPage() {
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const fetchRegulations = async () => {
       setLoading(true);
       try {
@@ -128,7 +130,9 @@ export default function RegulationsPage() {
         if (search) params.set("search", search);
         if (selectedMarket !== "all") params.set("market", selectedMarket);
 
-        const response = await fetch(`/api/regulations/updates?${params.toString()}`);
+        const response = await fetch(`/api/regulations/updates?${params.toString()}`, {
+          signal: controller.signal,
+        });
         const data = await response.json();
 
         if (data.success) {
@@ -136,14 +140,20 @@ export default function RegulationsPage() {
           setMeta(data.meta ?? fallbackMeta);
         }
       } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") return;
         console.error("Failed to fetch regulations:", error);
       } finally {
-        setLoading(false);
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
       }
     };
 
     const timer = setTimeout(fetchRegulations, 300);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
   }, [search, selectedMarket]);
 
   const formatDate = (dateStr: string) => {

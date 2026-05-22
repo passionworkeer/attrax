@@ -18,10 +18,15 @@ type RunScanOptions = {
 type RunScanMock = (sessionId: string, opts: RunScanOptions) => Promise<void>;
 
 // Hoisted mocks
-const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions } = vi.hoisted(
+const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions, mockExtractRawText } = vi.hoisted(
   () => ({
     mockRunScan: vi.fn<RunScanMock>(() => Promise.resolve()),
     mockSessions: new Map<string, Record<string, unknown>>(),
+    mockExtractRawText: vi.fn(() =>
+      Promise.resolve({
+        value: "",
+      })
+    ),
     mockCreateSession: vi.fn((id: string) => {
       mockSessions.set(id, {
         sessionId: id,
@@ -67,6 +72,10 @@ vi.mock("@/lib/mock/scan-result", () => ({
     keyConclusion: "合规模式净利润显著高于裸奔模式",
     generatedAt: new Date().toISOString(),
   })),
+}));
+
+vi.mock("mammoth", () => ({
+  extractRawText: mockExtractRawText,
 }));
 
 // Helper: create a minimal JPEG buffer
@@ -147,6 +156,8 @@ describe("POST /api/scan - Document Processing Coverage", () => {
     mockRunScan.mockClear();
     mockCreateSession.mockClear();
     mockUpdateSession.mockClear();
+    mockExtractRawText.mockReset();
+    mockExtractRawText.mockResolvedValue({ value: "" });
     vi.useFakeTimers();
     process.env.DEMO_MODE = "false";
   });
@@ -267,12 +278,9 @@ describe("POST /api/scan - Document Processing Coverage", () => {
     });
 
     it("processes DOCX with mammoth successful extraction", async () => {
-      // Mock mammoth to simulate successful extraction
-      vi.mock("mammoth", () => ({
-        extractRawText: vi.fn().mockResolvedValue({
-          value: "This is extracted DOCX content about compliance requirements.",
-        }),
-      }));
+      mockExtractRawText.mockResolvedValue({
+        value: "This is extracted DOCX content about compliance requirements.",
+      });
 
       const docxFile = makeFile(
         "compliance.docx",

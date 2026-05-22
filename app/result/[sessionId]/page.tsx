@@ -54,7 +54,13 @@ const GRADE_COLORS = {
 } as const;
 
 const MARKET_LABELS: Record<string, string> = {
-  EU: "markets.EU", US: "markets.US", UK: "markets.UK",
+  EU: "markets.EU",
+  US: "markets.US",
+  UK: "markets.UK",
+  CN: "markets.CN",
+  AU: "markets.AU",
+  SA: "markets.SA",
+  AE: "markets.UAE",
 };
 
 // ── Compliance Report View ───────────────────────────────────────────────────
