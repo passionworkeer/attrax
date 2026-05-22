@@ -4,6 +4,21 @@
 import { describe, it, expect } from 'vitest'
 import { getTranslations, t } from '@/lib/i18n'
 
+function flattenStrings(value: unknown, prefix = ''): Array<[string, string]> {
+  if (typeof value === 'string') return [[prefix, value]]
+  if (!value || typeof value !== 'object') return []
+  return Object.entries(value as Record<string, unknown>).flatMap(([key, child]) =>
+    flattenStrings(child, prefix ? `${prefix}.${key}` : key)
+  )
+}
+
+function flattenKeys(value: unknown, prefix = ''): string[] {
+  if (!value || typeof value !== 'object') return [prefix]
+  return Object.entries(value as Record<string, unknown>).flatMap(([key, child]) =>
+    flattenKeys(child, prefix ? `${prefix}.${key}` : key)
+  )
+}
+
 describe('i18n getTranslations', () => {
   it('returns zh translations by default', () => {
     const translations = getTranslations()
@@ -90,6 +105,29 @@ describe('i18n t function', () => {
 })
 
 describe('i18n translations completeness', () => {
+  it('zh and en locale trees expose the same translation keys', () => {
+    const zhKeys = new Set(flattenKeys(getTranslations('zh')))
+    const enKeys = new Set(flattenKeys(getTranslations('en')))
+
+    expect([...zhKeys].filter((key) => !enKeys.has(key))).toEqual([])
+    expect([...enKeys].filter((key) => !zhKeys.has(key))).toEqual([])
+  })
+
+  it('english translation values do not contain untranslated Chinese text', () => {
+    const offenders = flattenStrings(getTranslations('en')).filter(([key, value]) =>
+      key !== 'language.zh' && /\p{Script=Han}/u.test(value)
+    )
+
+    expect(offenders).toEqual([])
+  })
+
+  it('contains keys used by roadmap and async scan status views', () => {
+    expect(t('roadmap.totalDuration', 'en')).toBe('Total Duration')
+    expect(t('roadmap.untilThisStep', 'en', { days: 3 })).toBe('3 days until this step')
+    expect(t('trace.fanout', 'en')).toBe('Parallel Search')
+    expect(t('errors.tooManyDocuments', 'en')).toBe('Document count cannot exceed 5.')
+  })
+
   it('home object has all required fields', () => {
     const translations = getTranslations()
     const home = translations.home

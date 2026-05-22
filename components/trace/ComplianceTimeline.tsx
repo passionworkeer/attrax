@@ -477,9 +477,7 @@ export default function ComplianceTimeline({
                             <AlertTriangle className="w-5 h-5 text-amber-500" />
                             <div>
                               <div className="text-sm font-medium text-amber-800">
-                                {locale === "en"
-                                  ? `${daysFromNow} ${t("roadmap.remaining")} this step`
-                                  : `${t("roadmap.remaining")} ${daysFromNow} ${t("roadmap.days")}到达此步骤`}
+                                {t("roadmap.untilThisStep", { days: daysFromNow })}
                               </div>
                               <div className="text-xs text-amber-600">{t("roadmap.suggestStartNow")}</div>
                             </div>

@@ -67,6 +67,17 @@ const typeColors: Record<string, { bg: string; border: string; text: string; lig
   result: { bg: "bg-rose-50", border: "border-rose-200", text: "text-rose-600", light: "bg-rose-100", dark: "bg-rose-500" },
 };
 
+const HAN_TEXT_RE = /\p{Script=Han}/u;
+
+function englishFallback(value: string | undefined, fallback: string): string {
+  if (!value || HAN_TEXT_RE.test(value)) return fallback;
+  return value;
+}
+
+function englishOptional(value: string | undefined): string | undefined {
+  return value && !HAN_TEXT_RE.test(value) ? value : undefined;
+}
+
 // Convert API response to TraceNode format
 function _buildTraceTreeFromApi(nodes: {
   id?: string;
@@ -117,17 +128,19 @@ function _buildTraceTreeFromApi(nodes: {
   const children: TraceNode[] = nodes.map((node) => {
     const nodeType = typeMap[node.type || ""] || "synthesis" as TraceNode["type"];
     const nodeLabel = labelMap[node.type || ""];
+    const rawLabel = node.label || nodeLabel?.zh || node.type || "";
+    const rawReasoning = node.reasoning;
     return {
       id: node.id || node.type || "node",
       type: nodeType,
-      label: node.label || nodeLabel?.zh || node.type || "",
-      labelEn: node.labelEn || nodeLabel?.en || node.label || node.type || "",
+      label: rawLabel,
+      labelEn: englishFallback(node.labelEn || nodeLabel?.en || node.label, node.type || "Step"),
       icon: iconMap[node.type || ""] || "📊",
       status: (node.status as TraceNode["status"]) || "pending",
       duration: node.duration || "0s",
       confidence: node.confidence || 0,
-      reasoning: node.reasoning,
-      reasoningEn: node.reasoningEn,
+      reasoning: rawReasoning,
+      reasoningEn: node.reasoningEn || englishOptional(rawReasoning),
     };
   });
 
@@ -430,8 +443,14 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
   const lowRisk = typeof data.lowRisk === "number" ? data.lowRisk : 0;
   const recommendations = Array.isArray(data.recommendations) ? data.recommendations as Array<{ priority: number; action: string; actionEn: string; deadline: string; cost: string }> : [];
   const timeline = data.timeline as Record<string, string> | undefined;
-  const timelineEn = data.timeline as Record<string, string> | undefined;
   const marketSummary = Array.isArray(data.marketSummary) ? data.marketSummary as Array<{ market: string; marketEn: string; status: string; score: number }> : [];
+  const timelineLabels: Record<string, { zh: string; en: string }> = {
+    preparation: { zh: "准备", en: "Preparation" },
+    testing: { zh: "检测", en: "Testing" },
+    certification: { zh: "认证", en: "Certification" },
+    total: { zh: "总计", en: "Total" },
+  };
+  const timelineKeys = Object.keys(timelineLabels);
 
   const gradeColors: Record<string, { bg: string; text: string; ring: string }> = {
     A: { bg: "bg-green-100", text: "text-green-700", ring: "ring-green-500" },
@@ -483,13 +502,16 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
           <div className="p-4 bg-gray-50 rounded-xl">
             <div className="text-xs font-semibold text-gray-500 mb-2">{t("trace.estimatedTimeline")}</div>
             <div className="grid grid-cols-4 gap-2 text-center">
-              {Object.entries(timeline).map(([key, value], idx) => {
-                const enKeys = ["preparation", "testing", "certification", "total"];
-                const displayKey = locale === "en" ? enKeys[idx] : key;
+              {timelineKeys.map((key) => {
+                const value =
+                  locale === "en"
+                    ? englishFallback(timeline[`${key}En`] ?? timeline[key], "—")
+                    : timeline[key] ?? timeline[`${key}En`] ?? "—";
+                const displayKey = locale === "en" ? timelineLabels[key].en : timelineLabels[key].zh;
                 return (
                   <div key={key} className="p-2 bg-white rounded-lg border">
                     <div className="text-lg font-bold text-gray-900">{value}</div>
-                    <div className="text-xs text-gray-500 capitalize">{displayKey}</div>
+                    <div className="text-xs text-gray-500">{displayKey}</div>
                   </div>
                 );
               })}
@@ -610,8 +632,10 @@ function TraceNodeComponent({
   const [showReasoning, setShowReasoning] = useState(false);
   const hasChildren = node.children && node.children.length > 0;
   const colors = typeColors[node.type] || typeColors.input;
-  const label = locale === "en" ? node.labelEn : node.label;
-  const reasoning = locale === "en" && node.reasoningEn ? node.reasoningEn : node.reasoning;
+  const label = locale === "en" ? englishFallback(node.labelEn || node.label, node.type) : node.label;
+  const reasoning = locale === "en"
+    ? node.reasoningEn || englishOptional(node.reasoning)
+    : node.reasoning;
 
   const handleToggle = () => {
     if (hasChildren) {

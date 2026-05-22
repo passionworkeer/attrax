@@ -475,7 +475,7 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       await vi.advanceTimersByTimeAsync(100);
 
       const lastCall = mockUpdateSession.mock.calls[mockUpdateSession.mock.calls.length - 1];
-      expect(lastCall[1].error).toBe("扫描失败"); // Default message
+      expect(lastCall[1].error).toBe("SCAN_FAILED"); // Localized by the client
     });
   });
 

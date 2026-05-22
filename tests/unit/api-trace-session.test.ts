@@ -281,7 +281,9 @@ describe("GET /api/trace/[sessionId]", () => {
       const body = await res.json();
 
       expect(body.traceNodes[0].label).toBe("视觉识别");
+      expect(body.traceNodes[0].labelEn).toBe("Vision Analysis");
       expect(body.traceNodes[1].label).toBe("unknown_custom_node"); // Falls back to node name
+      expect(body.traceNodes[1].labelEn).toBe("unknown_custom_node");
     });
 
     it("handles trace entries with missing optional fields", async () => {

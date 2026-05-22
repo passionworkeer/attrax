@@ -318,7 +318,7 @@ function normalizeStringArray(value: unknown): string[] | undefined {
   return Array.isArray(value) ? value.map(String) : undefined;
 }
 
-function normalizeReportPackage(raw: unknown): GeneratedReportPackage | undefined {
+export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | undefined {
   if (!isRecord(raw)) return undefined;
 
   const rawProfit = raw.profitReport ?? raw.profit_report;
