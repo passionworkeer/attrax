@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { BurningAnimation } from "@/components/burning/BurningAnimation";
@@ -12,12 +12,11 @@ export default function BurningPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = Array.isArray(params.sessionId) ? params.sessionId[0] : params.sessionId;
   const { status, displayProgress } = useScanPolling(sessionId);
-  const [completing, setCompleting] = useState(false);
+  const completing = status?.status === "ready" && Boolean(status.result);
   const { t } = useTranslation();
 
   useEffect(() => {
     if (status?.status === "ready" && status.result) {
-      setCompleting(true);
       sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
       setTimeout(() => router.push(`/result/${sessionId}`), 700);
     }

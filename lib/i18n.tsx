@@ -83,6 +83,7 @@ const translations = {
       CN: "中国",
       AU: "澳大利亚",
       SA: "沙特",
+      AE: "阿联酋",
       UAE: "阿联酋",
       all: "全部市场",
     },
@@ -90,8 +91,11 @@ const translations = {
     // 产品分类
     categories: {
       electronics: "电子产品",
+      appliance: "家电",
       appliances: "家电",
+      "3c": "3C 数码",
       digital: "3C 数码",
+      toy: "玩具",
       toys: "玩具",
       home: "家居",
       other: "其他",
@@ -462,6 +466,7 @@ const translations = {
       CN: "China",
       AU: "Australia",
       SA: "Saudi Arabia",
+      AE: "UAE",
       UAE: "UAE",
       all: "All Markets",
     },
@@ -469,8 +474,11 @@ const translations = {
     // Product categories
     categories: {
       electronics: "Electronics",
+      appliance: "Home Appliances",
       appliances: "Home Appliances",
+      "3c": "3C Digital",
       digital: "3C Digital",
+      toy: "Toys",
       toys: "Toys",
       home: "Home & Living",
       other: "Other",
@@ -783,25 +791,25 @@ interface TranslationContextType {
 
 const TranslationContext = createContext<TranslationContextType | null>(null);
 
+function detectInitialLocale(): Locale {
+  if (typeof window === "undefined") return "zh";
+
+  const stored = localStorage.getItem("locale") as Locale | null;
+  if (stored && ["zh", "en"].includes(stored)) return stored;
+
+  return navigator.language.toLowerCase().startsWith("en") ? "en" : "zh";
+}
+
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("zh");
+  const [locale, setLocale] = useState<Locale>(detectInitialLocale);
 
   useEffect(() => {
-    const stored = localStorage.getItem("locale") as Locale;
-    if (stored && ["zh", "en"].includes(stored)) {
-      setLocale(stored);
-    } else {
-      const browserLang = navigator.language.toLowerCase();
-      if (browserLang.startsWith("en")) {
-        setLocale("en");
-      }
-    }
-  }, []);
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const handleSetLocale = (newLocale: Locale) => {
     setLocale(newLocale);
     localStorage.setItem("locale", newLocale);
-    document.documentElement.lang = newLocale;
   };
 
   const t = (key: string, params?: Record<string, string | number>): string => {

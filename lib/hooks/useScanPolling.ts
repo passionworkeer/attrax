@@ -5,14 +5,28 @@ import type { ScanStatus } from "@/lib/types";
 
 const POLL_INTERVAL_MS = 800;
 
+function failedStatus(sessionId: string, error: string): ScanStatus {
+  return {
+    sessionId,
+    status: "failed",
+    progress: 0,
+    stageText: "",
+    error,
+  };
+}
+
+function isScanStatusLike(value: unknown): value is ScanStatus {
+  if (!value || typeof value !== "object") return false;
+
+  const status = (value as { status?: unknown }).status;
+  return status === "processing" || status === "ready" || status === "failed";
+}
+
 export function useScanPolling(sessionId: string) {
   const [status, setStatus] = useState<ScanStatus | null>(null);
-  // Smoothly animated progress — interpolates toward the server's target value
   const [displayProgress, setDisplayProgress] = useState(0);
   const targetProgressRef = useRef(0);
-  const rafRef = useRef<number>(0);
 
-  // Easing: animate display toward targetProgress
   useEffect(() => {
     let rafId: number;
     const tick = () => {
@@ -20,16 +34,15 @@ export function useScanPolling(sessionId: string) {
         const target = targetProgressRef.current;
         const diff = target - prev;
         if (Math.abs(diff) < 0.15) return target;
-        // Ease toward target (small steps = smooth feel)
         return prev + diff * 0.12;
       });
       rafId = requestAnimationFrame(tick);
     };
+
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
   }, []);
 
-  // Polling loop
   useEffect(() => {
     if (!sessionId) return;
 
@@ -37,24 +50,48 @@ export function useScanPolling(sessionId: string) {
 
     async function poll() {
       while (!cancelled) {
-        const response = await fetch(`/api/scan/${sessionId}`, {
-          cache: "no-store",
-        });
-
-        if (!response.ok) {
-          setStatus({
-            sessionId,
-            status: "failed",
-            progress: 0,
-            stageText: "",
-            error: "会话已失效",
+        let response: Response;
+        try {
+          response = await fetch(`/api/scan/${sessionId}`, {
+            cache: "no-store",
           });
+        } catch (error) {
+          if (!cancelled) {
+            setStatus(
+              failedStatus(
+                sessionId,
+                error instanceof Error ? error.message : "Scan request failed."
+              )
+            );
+          }
           return;
         }
 
-        const data: ScanStatus = await response.json();
+        if (!response.ok) {
+          if (!cancelled) {
+            setStatus(failedStatus(sessionId, "Scan session expired."));
+          }
+          return;
+        }
+
+        let data: unknown;
+        try {
+          data = await response.json();
+        } catch {
+          data = null;
+        }
+
+        if (!isScanStatusLike(data)) {
+          if (!cancelled) {
+            setStatus(failedStatus(sessionId, "Invalid scan response."));
+          }
+          return;
+        }
+
         targetProgressRef.current = data.progress ?? 0;
-        setStatus(data);
+        if (!cancelled) {
+          setStatus(data);
+        }
 
         if (data.status !== "processing") {
           return;

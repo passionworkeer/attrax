@@ -5,15 +5,16 @@ import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
+import type { Market as ScanMarket, ProductCategory } from "@/lib/types";
 
-export type Market = "EU" | "US" | "UK" | "CN" | "AU" | "SA" | "UAE";
-export type Category = "electronics" | "appliances" | "digital" | "toys" | "home" | "other";
+export type Market = ScanMarket;
+export type Category = ProductCategory;
 
 const CATEGORIES: { value: Category; labelKey: string }[] = [
   { value: "electronics", labelKey: "categories.electronics" },
-  { value: "appliances", labelKey: "categories.appliances" },
-  { value: "digital", labelKey: "categories.digital" },
-  { value: "toys", labelKey: "categories.toys" },
+  { value: "appliance", labelKey: "categories.appliance" },
+  { value: "3c", labelKey: "categories.3c" },
+  { value: "toy", labelKey: "categories.toy" },
   { value: "home", labelKey: "categories.home" },
   { value: "other", labelKey: "categories.other" },
 ];
@@ -25,7 +26,7 @@ const MARKETS: { value: Market; labelKey: string }[] = [
   { value: "CN", labelKey: "markets.CN" },
   { value: "AU", labelKey: "markets.AU" },
   { value: "SA", labelKey: "markets.SA" },
-  { value: "UAE", labelKey: "markets.UAE" },
+  { value: "AE", labelKey: "markets.AE" },
 ];
 
 const ACCEPTED_IMAGE_TYPES = [
@@ -285,7 +286,9 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
                 onClick={() =>
                   setSelectedMarkets((prev) =>
                     prev.includes(m.value)
-                      ? prev.filter((x) => x !== m.value)
+                      ? prev.length > 1
+                        ? prev.filter((x) => x !== m.value)
+                        : prev
                       : [...prev, m.value]
                   )
                 }

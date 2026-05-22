@@ -1,21 +1,29 @@
+"use client";
+
+import React from "react";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 import { buttonVariants } from "@/components/ui/button";
+import { t as translate } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
 
+type Locale = "zh" | "en";
+
+function normalizeLocale(locale: string): Locale {
+  return locale === "en" ? "en" : "zh";
+}
+
 export default function Home({ params }: PageProps) {
-  const { locale } = React.use(params);
+  const { locale: rawLocale } = React.use(params);
+  const locale = normalizeLocale(rawLocale);
   return <HomeContent locale={locale} />;
 }
 
-function HomeContent({ locale }: { locale: string }) {
-  // Import useTranslations at the top level
-  const t = useTranslations("home");
-  const tCommon = useTranslations("common");
+function HomeContent({ locale }: { locale: Locale }) {
+  const t = (key: string) => translate(`home.${key}`, locale);
 
   return (
     <main className="flex min-h-screen items-center justify-center px-6 py-16">
@@ -49,7 +57,7 @@ function HomeContent({ locale }: { locale: string }) {
           </div>
           <div className="rounded-xl bg-gray-50 p-4 text-center">
             <div className="text-2xl font-bold text-blaze-red">5min</div>
-            <div className="text-sm text-gray-500">{t("fastAnalysis")}</div>
+            <div className="text-sm text-gray-500">{t("features.fastAnalysis")}</div>
           </div>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
@@ -73,5 +81,3 @@ function HomeContent({ locale }: { locale: string }) {
     </main>
   );
 }
-
-import React from "react";

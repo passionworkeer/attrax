@@ -44,6 +44,53 @@ _CITATION_CONTENT_PATTERN = re.compile(
     re.IGNORECASE,
 )
 _SOURCE_PATTERN = re.compile(r'\(source:\s*([^)]+)\)', re.IGNORECASE)
+_CLAIM_BOUNDARY_CHARS = ".!?\n\r\u3002\uff01\uff1f"
+_SENTENCE_END_CHARS = ".!?\u3002\uff01\uff1f"
+
+
+def _is_decimal_period(text: str, pos: int) -> bool:
+    return (
+        text[pos] == "."
+        and pos > 0
+        and pos + 1 < len(text)
+        and text[pos - 1].isdigit()
+        and text[pos + 1].isdigit()
+    )
+
+
+def _split_claim_sentences(report: str) -> list[str]:
+    sentences: list[str] = []
+    start = 0
+    for pos, ch in enumerate(report):
+        if ch not in _SENTENCE_END_CHARS:
+            continue
+        if _is_decimal_period(report, pos):
+            continue
+        sentence = report[start:pos + 1].strip()
+        if sentence:
+            sentences.append(sentence)
+        start = pos + 1
+
+    tail = report[start:].strip()
+    if tail:
+        sentences.append(tail)
+    return sentences
+
+
+def _claim_text_for_span(report: str, start: int, end: int) -> str:
+    """Return the sentence-like claim containing a citation span."""
+    left = max(report.rfind(ch, 0, start) for ch in _CLAIM_BOUNDARY_CHARS)
+    right = len(report)
+    for pos in range(end, len(report)):
+        ch = report[pos]
+        if ch not in _CLAIM_BOUNDARY_CHARS:
+            continue
+        if _is_decimal_period(report, pos):
+            continue
+        right = pos + 1
+        break
+    claim = report[left + 1:right].strip()
+    return claim or report[start:end].strip()
 
 
 def _parse_citation_marker(marker: str) -> tuple[Optional[str], Optional[str]]:
@@ -95,18 +142,20 @@ class CitationVerifier:
 
         for match in _CITATION_CONTENT_PATTERN.finditer(report):
             cited_text = match.group(0)
-            citations.append((cited_text, cited_text))
+            claim_text = _claim_text_for_span(report, match.start(), match.end())
+            citations.append((claim_text, cited_text))
 
         for match in _SOURCE_PATTERN.finditer(report):
             cited_text = match.group(0)
-            citations.append((cited_text, cited_text))
+            claim_text = _claim_text_for_span(report, match.start(), match.end())
+            citations.append((claim_text, cited_text))
 
         return citations
 
     def extract_claims(self, report: str) -> list[str]:
         """Split report into individual claims (one per sentence)."""
-        # Handles Chinese with no trailing space after punctuation
-        sentences = re.split(r'(?<=[。！？.!?])\s*', report)
+        # Handles Chinese and English punctuation without splitting decimals.
+        sentences = _split_claim_sentences(report)
         claims = [s.strip() for s in sentences if len(s.strip()) > 10]
         return claims
 
@@ -220,7 +269,7 @@ class CitationVerifier:
         citations = self.extract_citations(report)
         claims = self.extract_claims(report)
 
-        all_results = []
+        citation_results = []
 
         # Verify cited passages using parsed doc_name + article_no with word-boundary matching
         for claim_text, marker in citations:
@@ -249,11 +298,28 @@ class CitationVerifier:
                     result.status = "ENTAILED"
                     result.evidence = chunk_content[:300]
                     break
-            all_results.append(result)
+            citation_results.append(result)
+
+        # Count each claim once in claim-level metrics. Citation coverage is
+        # still computed from every marker, so failed duplicate citations are
+        # not hidden.
+        status_priority = {
+            "CONTRADICTED": 4,
+            "ENTAILED": 3,
+            "UNVERIFIED": 2,
+            "NEUTRAL": 1,
+        }
+        best_by_claim: dict[str, ClaimResult] = {}
+        for result in citation_results:
+            existing = best_by_claim.get(result.claim)
+            if existing is None or status_priority.get(result.status, 0) > status_priority.get(existing.status, 0):
+                best_by_claim[result.claim] = result
+
+        all_results = list(best_by_claim.values())
 
         # Verify remaining claims via NLI / embedding fallback
         # Use a set for O(1) claim dedup instead of O(n^2) list scan
-        seen_claims: set[str] = {str(r.claim) for r in all_results}
+        seen_claims: set[str] = set(best_by_claim)
         for claim in claims:
             if claim not in seen_claims:
                 result = self.verify_claim_nli(claim, chunks)
@@ -268,10 +334,10 @@ class CitationVerifier:
         total = len(all_results) or 1
 
         # Attribution score: (entailed / total) * citation_coverage
-        citation_count = len(citations)
+        citation_count = len(citation_results)
         if citation_count > 0:
             cited_entailed = sum(
-                1 for r in all_results if r.citation_marker and r.status == "ENTAILED"
+                1 for r in citation_results if r.citation_marker and r.status == "ENTAILED"
             )
             citation_coverage = cited_entailed / citation_count
         else:

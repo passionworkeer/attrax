@@ -1,3 +1,5 @@
+// @vitest-environment node
+
 /**
  * Unit tests for POST /api/scan route.
  * Tests specified scenarios per requirements.
@@ -6,10 +8,19 @@
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
+type RunScanOptions = {
+  images: Array<Record<string, unknown>>;
+  documents: Array<Record<string, unknown> & { mimeType: string; text: string }>;
+  pdfs: Array<Record<string, unknown> & { mimeType: string }>;
+  category: string;
+  markets: string[];
+};
+type RunScanMock = (sessionId: string, opts: RunScanOptions) => Promise<void>;
+
 // Hoisted mocks
 const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions } = vi.hoisted(
   () => ({
-    mockRunScan: vi.fn(() => Promise.resolve()),
+    mockRunScan: vi.fn<RunScanMock>(() => Promise.resolve()),
     mockSessions: new Map<string, Record<string, unknown>>(),
     mockCreateSession: vi.fn((id: string) => {
       mockSessions.set(id, {
@@ -66,8 +77,14 @@ function minimalJpeg(): Uint8Array {
   ]);
 }
 
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  const buffer = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(buffer).set(bytes);
+  return buffer;
+}
+
 function makeFile(name: string, type = "image/jpeg"): File {
-  return new File([minimalJpeg()], name, { type });
+  return new File([toArrayBuffer(minimalJpeg())], name, { type });
 }
 
 function buildFormData(

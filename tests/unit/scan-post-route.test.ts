@@ -1,13 +1,24 @@
+// @vitest-environment node
+
 /**
  * Unit tests for POST /api/scan route.
  * Run with: npx vitest run tests/unit/scan-post-route.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
+type RunScanOptions = {
+  images: Array<Record<string, unknown>>;
+  documents: Array<Record<string, unknown> & { mimeType: string; text: string }>;
+  pdfs: Array<Record<string, unknown> & { mimeType: string }>;
+  category: string;
+  markets: string[];
+};
+type RunScanMock = (sessionId: string, opts: RunScanOptions) => Promise<void>;
+
 // Hoisted mocks — must be declared before vi.mock calls
 const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions } = vi.hoisted(
   () => ({
-    mockRunScan: vi.fn(() => Promise.resolve()),
+    mockRunScan: vi.fn<RunScanMock>(() => Promise.resolve()),
     mockSessions: new Map<string, Record<string, unknown>>(),
     mockCreateSession: vi.fn((id: string) => {
       mockSessions.set(id, { sessionId: id, status: "processing", progress: 0, stageText: "准备中…" });
@@ -58,8 +69,14 @@ function minimalJpeg(): Uint8Array {
   ]);
 }
 
+function toArrayBuffer(bytes: Uint8Array): ArrayBuffer {
+  const buffer = new ArrayBuffer(bytes.byteLength);
+  new Uint8Array(buffer).set(bytes);
+  return buffer;
+}
+
 function makeFile(name: string, type = "image/jpeg"): File {
-  return new File([minimalJpeg()], name, { type });
+  return new File([toArrayBuffer(minimalJpeg())], name, { type });
 }
 
 function buildFormData(

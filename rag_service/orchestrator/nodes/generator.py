@@ -4,14 +4,43 @@ generator.py - Report generation node
 
 Wraps ReportGenerator and updates state with generation text.
 """
+import logging
+
 from rag_service.orchestrator.state import GraphState
 
+logger = logging.getLogger(__name__)
+
 _generator_instance = None
+_is_injected = False
 
 
 def set_generator(generator):
-    global _generator_instance
+    global _generator_instance, _is_injected
     _generator_instance = generator
+    _is_injected = True
+
+
+def _get_generator():
+    """Get the report generator, preferring injected instances over lazy init."""
+    global _generator_instance, _is_injected
+    if _generator_instance is not None:
+        return _generator_instance
+    if _is_injected:
+        return None
+
+    try:
+        from rag_service.config import settings
+        from rag_service.generate.report_generator import ReportGenerator
+
+        api_key = settings.mimotalk_api_key or None
+        if not api_key:
+            return None
+        _generator_instance = ReportGenerator(api_key=api_key)
+    except Exception as e:
+        logger.warning("Report generator lazy init failed: %s", e)
+        return None
+
+    return _generator_instance
 
 
 def generator_node(state: GraphState) -> dict:
@@ -25,10 +54,20 @@ def generator_node(state: GraphState) -> dict:
     documents = state.get("documents", [])
     user_docs = state.get("user_documents", [])
 
-    if not _generator_instance:
+    generator = _get_generator()
+    provider = getattr(generator, "provider", None) if generator else None
+
+    if not generator:
+        duration_ms = int((time.time() - start_time) * 1000)
         return {
             "generation": "错误：报告生成器未初始化",
-            "agent_trace": state.get("agent_trace", []) + [{"node": "generator", "error": "no_generator"}],
+            "agent_trace": state.get("agent_trace", []) + [{
+                "node": "generate",
+                "provider": provider,
+                "status": "error",
+                "error": "no_generator",
+                "duration_ms": duration_ms,
+            }],
         }
 
     # Build document context from user-uploaded documents
@@ -49,22 +88,27 @@ def generator_node(state: GraphState) -> dict:
 
     if not documents:
         generation = "错误：未找到合规信息。请确保语料库已加载。"
+        status = "no_documents"
     else:
         try:
-            generation = _generator_instance.generate(
+            generation = generator.generate(
                 query=query,
                 product=product,
                 market=", ".join(markets),
                 chunks=documents,
                 doc_context=doc_context,
             )
+            status = "success"
         except Exception as e:
             generation = f"报告生成失败: {e}"
+            status = "error"
 
     duration_ms = int((time.time() - start_time) * 1000)
 
     trace_entry = {
         "node": "generate",
+        "provider": provider,
+        "status": status,
         "chunks_count": len(documents),
         "generation_length": len(generation),
         "duration_ms": duration_ms,

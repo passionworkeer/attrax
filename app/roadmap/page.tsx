@@ -40,12 +40,15 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
   const locale = i18nLocale;
 
   useEffect(() => {
-    setIsClient(true);
-    setMounted(true);
-    // 获取 sessionId
-    const urlSessionId = resolvedParams?.sessionId;
-    const storageSessionId = typeof window !== "undefined" ? sessionStorage.getItem("lastSessionId") : null;
-    setSessionId(urlSessionId || storageSessionId || "");
+    const timer = window.setTimeout(() => {
+      setIsClient(true);
+      setMounted(true);
+      const urlSessionId = resolvedParams?.sessionId;
+      const storageSessionId = sessionStorage.getItem("lastSessionId");
+      setSessionId(urlSessionId || storageSessionId || "");
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, [resolvedParams?.sessionId]);
 
   useEffect(() => {
