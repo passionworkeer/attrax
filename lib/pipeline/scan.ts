@@ -527,27 +527,30 @@ export async function runScan(sessionId: string, input: RunScanInput) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), RAG_SERVICE_TIMEOUT_MS);
+    let resp: Response;
 
-    const resp = await fetch(`${RAG_SERVICE_URL}/scan`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query,
-        product: category,
-        category,
-        markets,
-        images: images.map((img) => ({
-          buffer: img.buffer.toString("base64"),
-          mime_type: img.mimeType,
-          name: img.originalName,
-        })),
-        documents: documents ?? [],
-        pdfs: pdfs ?? [],
-      }),
-      signal: controller.signal,
-    });
-
-    clearTimeout(timeout);
+    try {
+      resp = await fetch(`${RAG_SERVICE_URL}/scan`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          query,
+          product: category,
+          category,
+          markets,
+          images: images.map((img) => ({
+            buffer: img.buffer.toString("base64"),
+            mime_type: img.mimeType,
+            name: img.originalName,
+          })),
+          documents: documents ?? [],
+          pdfs: pdfs ?? [],
+        }),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
 
     if (!resp.ok) {
       const errorText = await resp.text().catch(() => "Unknown error");
@@ -567,6 +570,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       progress: 100,
       stageText: stages.demoResultGenerated,
       result: createMockScanResult(sessionId),
+      profitReport: createMockProfitReport(sessionId),
       error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
     });
     return;
@@ -642,19 +646,22 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     try {
       const controller = new AbortController();
       const profitTimeout = setTimeout(() => controller.abort(), 30_000); // 30s timeout for profit report
+      let profitResp: Response;
 
-      const profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          product: category,
-          category,
-          markets,
-        }),
-        signal: controller.signal,
-      });
-
-      clearTimeout(profitTimeout);
+      try {
+        profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            product: category,
+            category,
+            markets,
+          }),
+          signal: controller.signal,
+        });
+      } finally {
+        clearTimeout(profitTimeout);
+      }
 
       if (profitResp.ok) {
         const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
