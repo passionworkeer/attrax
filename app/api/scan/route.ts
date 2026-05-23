@@ -3,6 +3,12 @@ import { ulid } from "ulid";
 import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import { runScan } from "@/lib/pipeline/scan";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
+import {
+  MAX_DOCUMENT_FILES,
+  MAX_DOCUMENT_SIZE_BYTES,
+  MAX_IMAGE_FILES,
+  MAX_IMAGE_SIZE_BYTES,
+} from "@/lib/constants";
 import { StartScanRequestSchema } from "@/lib/schemas";
 import { getTranslations, t as serverT } from "@/lib/i18n";
 import type { Market, ProductCategory } from "@/lib/types";
@@ -12,12 +18,18 @@ export const runtime = "nodejs";
 type ScanErrorReason =
   | "INVALID_REQUEST"
   | "UPLOAD_AT_LEAST_ONE_IMAGE"
-  | "TOO_MANY_DOCUMENTS";
+  | "TOO_MANY_DOCUMENTS"
+  | "TOO_MANY_IMAGES"
+  | "IMAGE_TOO_LARGE"
+  | "DOCUMENT_TOO_LARGE";
 
 const SCAN_ERROR_KEYS: Record<ScanErrorReason, string> = {
   INVALID_REQUEST: "errors.invalidRequest",
   UPLOAD_AT_LEAST_ONE_IMAGE: "errors.uploadAtLeastOne",
   TOO_MANY_DOCUMENTS: "errors.tooManyDocuments",
+  TOO_MANY_IMAGES: "errors.invalidRequest",
+  IMAGE_TOO_LARGE: "errors.invalidRequest",
+  DOCUMENT_TOO_LARGE: "errors.invalidRequest",
 };
 
 function scanBadInput(reason: ScanErrorReason) {
@@ -99,8 +111,20 @@ export async function POST(request: Request) {
     return scanBadInput("UPLOAD_AT_LEAST_ONE_IMAGE");
   }
 
-  if (documentFiles.length > 5) {
+  if (imageFiles.length > MAX_IMAGE_FILES) {
+    return scanBadInput("TOO_MANY_IMAGES");
+  }
+
+  if (documentFiles.length > MAX_DOCUMENT_FILES) {
     return scanBadInput("TOO_MANY_DOCUMENTS");
+  }
+
+  if (imageFiles.some((file) => file.size > MAX_IMAGE_SIZE_BYTES)) {
+    return scanBadInput("IMAGE_TOO_LARGE");
+  }
+
+  if (documentFiles.some((file) => file.size > MAX_DOCUMENT_SIZE_BYTES)) {
+    return scanBadInput("DOCUMENT_TOO_LARGE");
   }
 
   const parsed = StartScanRequestSchema.safeParse({
@@ -202,15 +226,13 @@ export async function POST(request: Request) {
   const documents = [...textDocs, ...docxDocs];
 
   // PDFs: send as base64 for backend pdfplumber extraction
-  const pdfs = await Promise.all(
-    pdfFiles.map(async (file) => ({
-      name: file.name,
-      buffer: Buffer.from(await file.arrayBuffer()).toString("base64"),
-      mimeType: "application/pdf",
-    }))
-  );
+  const pdfs = pdfFiles.map((file) => ({
+    name: file.name,
+    file,
+    mimeType: "application/pdf",
+  }));
 
-  runScan(sessionId, {
+  void runScan(sessionId, {
     images: imageData,
     documents,
     pdfs,

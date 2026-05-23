@@ -17,6 +17,7 @@ import json
 import logging
 import urllib.request
 import urllib.error
+import urllib.parse
 import numpy as np
 from functools import lru_cache
 
@@ -56,6 +57,12 @@ def _is_ollama_available() -> bool:
 _http_session = None
 
 
+def _open_url(req: urllib.request.Request, timeout: int):
+    if urllib.parse.urlparse(req.full_url).hostname in {"localhost", "127.0.0.1", "::1"}:
+        return urllib.request.urlopen(req, timeout=timeout)
+    return _get_http_session().open(req, timeout=timeout)
+
+
 def _get_http_session():
     """Return a urllib.request.OpenerDirector that reuses connections."""
     global _http_session
@@ -84,8 +91,7 @@ def _ollama_embed_single_uncached(text: str, model: str) -> list[float]:
         headers={"Content-Type": "application/json"},
     )
 
-    opener = _get_http_session()
-    with opener.open(req, timeout=60) as r:
+    with _open_url(req, timeout=60) as r:
         data = json.loads(r.read())
 
     embedding = data.get("embedding", [])
@@ -115,7 +121,6 @@ def _ollama_embed_batch(texts: list[str], model: str, batch_size: int = 32) -> l
     if not texts:
         return []
 
-    opener = _get_http_session()
     results = []
     for i in range(0, len(texts), batch_size):
         batch = texts[i : i + batch_size]
@@ -131,7 +136,7 @@ def _ollama_embed_batch(texts: list[str], model: str, batch_size: int = 32) -> l
         )
 
         try:
-            with opener.open(req, timeout=120) as r:
+            with _open_url(req, timeout=120) as r:
                 data = json.loads(r.read())
 
             embeddings = data.get("embeddings", [])

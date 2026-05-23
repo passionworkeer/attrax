@@ -138,10 +138,10 @@ class LocalEmbedder:
             )
             inputs = {k: v.to(device) for k, v in inputs.items()}
 
-            with torch.no_grad():
+            with self._torch.no_grad():
                 outputs = model(**inputs)
                 embeddings = self._mean_pooling(outputs.last_hidden_state, inputs["attention_mask"])
-                embeddings = torch.nn.functional.normalize(embeddings, dim=1)
+                embeddings = self._torch.nn.functional.normalize(embeddings, dim=1)
 
             results.extend(embeddings.cpu().tolist())
 

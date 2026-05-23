@@ -147,7 +147,7 @@ describe("useScanPolling", () => {
           ok: true,
           json: async () => ({
             sessionId: "s1",
-            status: "processing",
+            status: callCount === 1 ? "processing" : "ready",
             progress: callCount * 20,
             stageText: "...",
           }),

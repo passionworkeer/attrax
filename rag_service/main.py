@@ -13,11 +13,24 @@ from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
 import asyncio
+import time
 from concurrent.futures import ThreadPoolExecutor
 
 # Default timeouts (seconds) — prevents executor thread exhaustion on slow LLM calls
 _SCAN_TIMEOUT_SECS = 180
 _PROFIT_TIMEOUT_SECS = 60
+_MAX_BODY_SIZE_BYTES = 50 * 1024 * 1024
+_RATE_LIMIT_WINDOW_SECS = 60
+_RATE_LIMIT_MAX_REQUESTS = 30
+_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get(
+        "RAG_ALLOWED_ORIGINS",
+        "http://localhost:3000,http://127.0.0.1:3000",
+    ).split(",")
+    if origin.strip()
+]
+_rate_limit_hits: dict[str, list[float]] = {}
 
 # Load .env so os.environ.get() picks up values
 try:
@@ -26,7 +39,8 @@ try:
 except Exception:
     pass
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
@@ -128,6 +142,41 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="火鹰合规 RAG Service", version="0.3.0", lifespan=lifespan)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=_ALLOWED_ORIGINS,
+    allow_credentials=False,
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type"],
+)
+
+
+def _client_ip(request: Request) -> str:
+    forwarded = request.headers.get("x-forwarded-for", "")
+    return forwarded.split(",", 1)[0].strip() or (request.client.host if request.client else "unknown")
+
+
+@app.middleware("http")
+async def protect_requests(request: Request, call_next):
+    content_length = request.headers.get("content-length")
+    if content_length and int(content_length) > _MAX_BODY_SIZE_BYTES:
+        return JSONResponse(
+            status_code=413,
+            content={"error": "Request too large"},
+        )
+
+    if request.url.path in {"/scan", "/profit-report"}:
+        now = time.monotonic()
+        ip = _client_ip(request)
+        hits = [hit for hit in _rate_limit_hits.get(ip, []) if now - hit < _RATE_LIMIT_WINDOW_SECS]
+        if len(hits) >= _RATE_LIMIT_MAX_REQUESTS:
+            return JSONResponse(
+                status_code=429,
+                content={"error": "Too many requests"},
+            )
+        _rate_limit_hits[ip] = [*hits, now]
+
+    return await call_next(request)
 
 
 class ScanRequest(BaseModel):
@@ -170,8 +219,6 @@ def health():
     return JSONResponse({
         "status": "ok",
         "version": app.version,
-        "faiss_index": "loaded" if faiss_ok else "not_found",
-        "vector_count": len(_retriever.faiss_retriever) if faiss_ok else 0,
         "demo_mode": settings.demo_mode,
     })
 
@@ -200,9 +247,61 @@ def ready():
     )
 
 
-@app.post("/scan", response_model=ScanResponse)
-async def scan(req: ScanRequest):
-    """POST /scan — main compliance scan endpoint."""
+def _parse_markets(value: str) -> list[str]:
+    try:
+        parsed = json.loads(value)
+        if isinstance(parsed, list):
+            return [str(item) for item in parsed if str(item).strip()]
+    except Exception:
+        pass
+    return [item.strip() for item in value.split(",") if item.strip()] or ["EU"]
+
+
+async def _build_scan_request_from_multipart(
+    query: str,
+    product: str,
+    category: str,
+    markets: str,
+    documents: str,
+    images: list[UploadFile],
+    pdfs: list[UploadFile],
+) -> ScanRequest:
+    image_items = []
+    for image in images:
+        image_items.append({
+            "buffer": base64.b64encode(await image.read()).decode("ascii"),
+            "mime_type": image.content_type or "image/jpeg",
+            "name": image.filename or "image",
+        })
+
+    parsed_documents = []
+    try:
+        value = json.loads(documents) if documents else []
+        if isinstance(value, list):
+            parsed_documents = [item for item in value if isinstance(item, dict)]
+    except Exception:
+        parsed_documents = []
+
+    pdf_items = []
+    for pdf in pdfs:
+        pdf_items.append({
+            "name": pdf.filename or "document.pdf",
+            "buffer": base64.b64encode(await pdf.read()).decode("ascii"),
+        })
+
+    return ScanRequest(
+        query=query,
+        product=product,
+        category=category,
+        markets=_parse_markets(markets),
+        images=image_items,
+        documents=parsed_documents,
+        pdfs=pdf_items,
+    )
+
+
+async def _run_scan_request(req: ScanRequest) -> ScanResponse:
+    """Run the main compliance scan endpoint."""
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="query is required")
 
@@ -295,6 +394,33 @@ async def scan(req: ScanRequest):
     )
 
 
+@app.post("/scan", response_model=ScanResponse)
+async def scan(req: ScanRequest):
+    return await _run_scan_request(req)
+
+
+@app.post("/scan-multipart", response_model=ScanResponse)
+async def scan_multipart(
+    query: str = Form(""),
+    product: str = Form(""),
+    category: str = Form(""),
+    markets: str = Form("[\"EU\"]"),
+    documents: str = Form("[]"),
+    images: list[UploadFile] = File(default=[]),
+    pdfs: list[UploadFile] = File(default=[]),
+):
+    req = await _build_scan_request_from_multipart(
+        query=query,
+        product=product,
+        category=category,
+        markets=markets,
+        documents=documents,
+        images=images,
+        pdfs=pdfs,
+    )
+    return await _run_scan_request(req)
+
+
 # ─── Profit Report ────────────────────────────────────────────────────────────
 
 @app.post("/profit-report", response_model=ProfitReportResponse)
@@ -381,17 +507,13 @@ def _normalize_chunks(results: list) -> list[dict]:
     return out
 
 
-# Remove the decorator-style exception handler for FastAPI 0.109 compatibility
-# Use FastAPI's add_exception_handler without decorator
-from fastapi import Request
-from fastapi.responses import JSONResponse
 
 async def global_exception_handler(request: Request, exc: Exception):
-    """Catch-all for unhandled exceptions — returns a clean JSON error."""
+    """Catch-all for unhandled exceptions without leaking internals."""
     logger.exception("Unhandled exception")
     return JSONResponse(
         status_code=500,
-        content={"error": "Internal server error", "detail": str(exc)},
+        content={"error": "Internal server error"},
     )
 
 app.add_exception_handler(Exception, global_exception_handler)

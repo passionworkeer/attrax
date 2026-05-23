@@ -163,7 +163,7 @@ describe("POST /api/scan - Document Processing Coverage", () => {
   });
 
   describe("PDF file processing", () => {
-    it("processes PDF files and encodes as base64", async () => {
+    it("processes PDF files for multipart forwarding", async () => {
       const pdfFile = makeFile("test.pdf", "application/pdf", minimalPdf());
 
       const { POST } = await import("@/app/api/scan/route");
@@ -181,7 +181,7 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       expect(opts.pdfs).toHaveLength(1);
       // In Node.js test environment, File.name may be "blob" - just verify PDF is processed
       expect(opts.pdfs[0].mimeType).toBe("application/pdf");
-      expect(typeof opts.pdfs[0].buffer).toBe("string"); // base64 encoded
+      expect(opts.pdfs[0].file).toBeInstanceOf(File);
     });
 
     it("processes PDF files by extension", async () => {
