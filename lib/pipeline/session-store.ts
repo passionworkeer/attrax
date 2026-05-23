@@ -24,7 +24,14 @@ function getTimers(): Map<string, NodeJS.Timeout> {
   return globalThis.__sessionTimers;
 }
 
+function validateSessionId(sessionId: string): void {
+  if (!/^[a-zA-Z0-9_-]+$/.test(sessionId)) {
+    throw new Error("Invalid sessionId");
+  }
+}
+
 function sessionFilePath(sessionId: string): string {
+  validateSessionId(sessionId);
   return join(SESSION_DIR, `${sessionId}.json`);
 }
 
