@@ -24,6 +24,7 @@ import hashlib
 import logging
 import threading
 import time
+from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
@@ -40,9 +41,10 @@ _embedder_name = "none"
 # ─── Retrieval Result Cache ───────────────────────────────────────────────────
 # Caches (query, region, top_k) → results for 5 minutes.
 # Thread-safe. Typical hit rate: 30-60% in multi-round agent loops.
-_RETRIEVAL_CACHE: dict[str, tuple[list, float]] = {}
+_RETRIEVAL_CACHE: OrderedDict[str, tuple[list, float]] = OrderedDict()
 _CACHE_LOCK = threading.Lock()
 _CACHE_TTL_SECS = 300  # 5 minutes
+_CACHE_MAX_SIZE = 500
 
 
 def _cache_key(query: str, region: str, product_category: str, top_k: int) -> str:
@@ -61,6 +63,7 @@ def _cache_get(key: str) -> Optional[list]:
         if time.monotonic() - timestamp > _CACHE_TTL_SECS:
             del _RETRIEVAL_CACHE[key]
             return None
+        _RETRIEVAL_CACHE.move_to_end(key)
         return results
 
 
@@ -68,6 +71,9 @@ def _cache_set(key: str, results: list) -> None:
     """Store result in cache."""
     with _CACHE_LOCK:
         _RETRIEVAL_CACHE[key] = (results, time.monotonic())
+        _RETRIEVAL_CACHE.move_to_end(key)
+        while len(_RETRIEVAL_CACHE) > _CACHE_MAX_SIZE:
+            _RETRIEVAL_CACHE.popitem(last=False)
 
 
 def _probe_embedders():

@@ -12,213 +12,34 @@
  */
 import { updateSession } from "@/lib/pipeline/session-store";
 import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
+import { RAG_SERVICE_TIMEOUT_MS, PROFIT_REPORT_TIMEOUT_MS } from "@/lib/constants";
+import { buildProfitReportFromMarkdown } from "@/lib/pipeline/profit-report";
+import { normalizeReportPackage } from "@/lib/pipeline/report-package";
 import type {
   Market,
   ProductCategory,
-  ProfitReportResult,
   ComplianceReportResult,
-  CostSummary,
   GeneratedReportPackage,
+  ProfitReportResult,
 } from "@/lib/types";
 import { getTranslations } from "@/lib/i18n";
 
-const RAG_SERVICE_URL = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
-const RAG_SERVICE_TIMEOUT_MS = 120_000; // 2 min max for full scan
-
-// ── Precompiled regex patterns for extractCostSummary (avoid re-compilation per line) ──
-const RE_S4_HEADER = /盈亏平衡/;
-const RE_S5_HEADER = /关键结论/;
-const RE_S6_HEADER = /法规引用/;
-const RE_S456_HEADER = /盈亏平衡|关键结论|法规引用/;
-const RE_CURRENCY = /[,$]/g;
-const RE_NUMERIC = /[\d.]+/;
-const RE_PREMIUM_PCT = /([\d.]+)%/;
-const RE_BREAKEVEN = /盈亏平衡[^：:]*[：:]\s*(.+)/;
-const RE_PRICING = /定价策略[：:]\s*(.+)/;
-const RE_RISKNOTE = /风险敞口说明/;
-const RE_S2 = /### 二/;
-const RE_STAR_WRAP = /^\*\*|\*\*$/g;
-
-/** Parse numeric cost values from markdown table cells. */
-export function parseCostValue(raw: string): number {
-  const cleaned = raw.replace(RE_CURRENCY, "");
-  const match = cleaned.match(RE_NUMERIC);
-  return match ? parseFloat(match[0]) : 0;
+function getRagServiceUrl(): string {
+  const value = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
+  const url = new URL(value);
+  if (!["http:", "https:"].includes(url.protocol)) {
+    throw new Error("RAG_SERVICE_URL must use http or https");
+  }
+  if (!["localhost", "127.0.0.1", "::1"].includes(url.hostname)) {
+    throw new Error("RAG_SERVICE_URL must point to localhost");
+  }
+  return url.origin;
 }
 
-/** Extract CostSummary and extended fields from markdown profit report. */
-export function extractCostSummary(markdown: string): {
-  barebone: CostSummary;
-  compliant: CostSummary;
-  keyConclusion: string;
-  premiumPct: string;
-  breakevenUnits: string;
-  pricingStrategy: string;
-  riskNote: string;
-  conclusions: string;
-  references: string;
-  bareboneGpm: number;
-  compliantGpm: number;
-} {
-  const lines = markdown.split("\n");
+const RAG_SERVICE_URL = getRagServiceUrl();
 
-  const bareboneInit = { bom: 0, packaging: 0, cert: 0, epr: 0, logistics: 0, asp: 0, gp: 0, warranty: 0, total: 0 };
-  const compliantInit = { ...bareboneInit };
-
-  const result = {
-    barebone: bareboneInit as CostSummary,
-    compliant: compliantInit as CostSummary,
-    keyConclusion: "",
-    premiumPct: "",
-    breakevenUnits: "",
-    pricingStrategy: "",
-    riskNote: "",
-    conclusions: "",
-    references: "",
-    bareboneGpm: 0,
-    compliantGpm: 0,
-  };
-
-  let mode: "idle" | "cost" | "revenue" = "idle";
-  let inSection4 = false;
-  let inSection5 = false;
-  let inSection6 = false;
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-
-    // ── Section detection ────────────────────────────────────────────────────
-    if (trimmed.startsWith("### 四") || RE_S4_HEADER.test(trimmed)) {
-      inSection4 = true; inSection5 = false; inSection6 = false;
-    } else if (trimmed.startsWith("### 五") || RE_S5_HEADER.test(trimmed)) {
-      inSection4 = false; inSection5 = true; inSection6 = false;
-    } else if (trimmed.startsWith("### 六") || RE_S6_HEADER.test(trimmed)) {
-      inSection4 = false; inSection5 = false; inSection6 = true;
-    } else if (trimmed.startsWith("#") && !RE_S456_HEADER.test(trimmed)) {
-      inSection4 = false; inSection5 = false; inSection6 = false;
-    }
-
-    // ── Section 4: 盈亏平衡分析 ─────────────────────────────────────────────
-    if (inSection4 && trimmed) {
-      if (/合规溢价/.test(trimmed)) {
-        const m = trimmed.match(RE_PREMIUM_PCT);
-        result.premiumPct = m ? `${m[1]}%` : `${parseCostValue(trimmed)}%`;
-      } else if (/盈亏平衡/.test(trimmed)) {
-        const m = trimmed.match(RE_BREAKEVEN);
-        result.breakevenUnits = m ? m[1].trim() : trimmed;
-      } else if (/定价策略/.test(trimmed)) {
-        const m = trimmed.match(RE_PRICING);
-        result.pricingStrategy = m ? m[1].trim() : trimmed;
-      }
-      continue;
-    }
-
-    // ── Section 5: 关键结论 ─────────────────────────────────────────────────
-    if (inSection5 && trimmed) {
-      if (result.conclusions) result.conclusions += "\n" + trimmed;
-      else result.conclusions = trimmed;
-      continue;
-    }
-
-    // ── Section 6: 法规引用 ────────────────────────────────────────────────
-    if (inSection6 && trimmed) {
-      if (result.references) result.references += "\n" + trimmed;
-      else result.references = trimmed;
-      continue;
-    }
-
-    // ── Markdown tables (cost & revenue) ───────────────────────────────────
-    if (!trimmed.startsWith("|")) {
-      mode = "idle";
-      continue;
-    }
-
-    const cells = trimmed.split("|").map((c) => c.trim()).filter(Boolean);
-    if (!cells.length) continue;
-
-    const first = cells[0] ?? "";
-
-    if (first.includes("---") || first === "") continue;
-
-    if (first.includes("BOM")) {
-      result.barebone.bom = parseCostValue(cells[1] ?? "");
-      result.compliant.bom = parseCostValue(cells[2] ?? "");
-    } else if (first === "成本项") {
-      mode = "cost";
-      continue;
-    } else if (first === "收益项" || RE_S2.test(trimmed) || first.includes("收益对比")) {
-      mode = "revenue";
-      continue;
-    } else if (first.includes("总直接成本") || first.includes("总成本")) {
-      result.barebone.total = parseCostValue(cells[1] ?? "");
-      result.compliant.total = parseCostValue(cells[2] ?? "");
-      mode = "idle";
-      continue;
-    }
-
-    if (mode === "revenue") {
-      const b = cells[1] ?? "";
-      const c = cells[2] ?? "";
-      if (first.includes("平均售价") || first.includes("ASP")) {
-        result.barebone.asp = parseCostValue(b);
-        result.compliant.asp = parseCostValue(c);
-      } else if (first.includes("毛利润") && first.includes("单台")) {
-        result.barebone.gp = parseCostValue(b);
-        result.compliant.gp = parseCostValue(c);
-      } else if (first.includes("毛利率")) {
-        result.bareboneGpm = parseCostValue(b);
-        result.compliantGpm = parseCostValue(c);
-      }
-      continue;
-    }
-
-    if (mode === "cost") {
-      const b = cells[1] ?? "";
-      const c = cells[2] ?? "";
-      if (first.includes("包装")) {
-        result.barebone.packaging = parseCostValue(b);
-        result.compliant.packaging = parseCostValue(c);
-      } else if (first.includes("认证")) {
-        result.barebone.cert = parseCostValue(b);
-        result.compliant.cert = parseCostValue(c);
-      } else if (first.includes("EPR")) {
-        result.barebone.epr = parseCostValue(b);
-        result.compliant.epr = parseCostValue(c);
-      } else if (first.includes("售后") || first.includes("保修") || first.includes("预留")) {
-        result.barebone.warranty = parseCostValue(b);
-        result.compliant.warranty = parseCostValue(c);
-      } else if (first.includes("物流")) {
-        result.barebone.logistics = parseCostValue(b);
-        result.compliant.logistics = parseCostValue(c);
-      }
-      continue;
-    }
-
-    // ── riskNote detection (outside tables) ──────────────────────────────────
-    if (RE_RISKNOTE.test(trimmed)) {
-      result.riskNote = trimmed.replace(/^[^：:]*[：:]\s*/, "").trim();
-    }
-
-    // ── keyConclusion fallback ───────────────────────────────────────────────
-    if (mode === "idle" && first.startsWith("**") && !result.keyConclusion && !inSection5) {
-      result.keyConclusion = first.replace(RE_STAR_WRAP, "").trim();
-    }
-  }
-
-  // ── Fallback total if not found in table ─────────────────────────────────
-  const computeTotal = (c: CostSummary) =>
-    c.total || (c.bom + c.packaging + c.cert + c.epr + c.warranty + c.logistics);
-  result.barebone.total = computeTotal(result.barebone);
-  result.compliant.total = computeTotal(result.compliant);
-
-  // ── Fallback GPM from ASP & GP ───────────────────────────────────────────
-  if (result.barebone.asp > 0) {
-    result.bareboneGpm = result.bareboneGpm || (result.barebone.gp / result.barebone.asp) * 100;
-    result.compliantGpm = result.compliantGpm || (result.compliant.gp / result.compliant.asp) * 100;
-  }
-
-  return result;
-}
+export { extractCostSummary, parseCostValue } from "@/lib/pipeline/profit-report";
+export { normalizeReportPackage } from "@/lib/pipeline/report-package";
 
 export interface RunScanInput {
   images: Array<{
@@ -233,7 +54,7 @@ export interface RunScanInput {
   }>;
   pdfs?: Array<{
     name: string;
-    buffer: string; // base64
+    file: File;
     mimeType: string;
   }>;
   category: ProductCategory;
@@ -280,217 +101,6 @@ function buildQuery(
   return `${product}出口${marketStr}合规要求和认证`;
 }
 
-function buildProfitReportFromMarkdown(
-  sessionId: string,
-  markdown: string,
-  productType: string,
-  market: string,
-  overrides?: GeneratedReportPackage["profitReport"]
-): ProfitReportResult {
-  const extracted = extractCostSummary(markdown);
-  return {
-    sessionId,
-    productType,
-    market,
-    report: markdown,
-    barebone: extracted.barebone,
-    compliant: extracted.compliant,
-    bareboneRiskExposure: extracted.barebone.asp > 0 ? extracted.barebone.asp * 100 : 0,
-    compliantRiskExposure: extracted.compliant.asp > 0 ? extracted.compliant.asp * 5 : 0,
-    keyConclusion: overrides?.keyConclusion || extracted.keyConclusion,
-    generatedAt: new Date().toISOString(),
-    premiumPct: overrides?.premiumPct || extracted.premiumPct,
-    breakevenUnits: overrides?.breakevenUnits || extracted.breakevenUnits,
-    pricingStrategy: overrides?.pricingStrategy || extracted.pricingStrategy,
-    riskNote: overrides?.riskNote || extracted.riskNote,
-    conclusions: overrides?.conclusions || extracted.conclusions,
-    references: overrides?.references || extracted.references,
-    bareboneGpm: extracted.bareboneGpm,
-    compliantGpm: extracted.compliantGpm,
-  };
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
-
-function normalizeStringArray(value: unknown): string[] | undefined {
-  return Array.isArray(value) ? value.map(String) : undefined;
-}
-
-export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | undefined {
-  if (!isRecord(raw)) return undefined;
-
-  const rawProfit = raw.profitReport ?? raw.profit_report;
-  const profitRecord =
-    typeof rawProfit === "string"
-      ? { markdown: rawProfit }
-      : isRecord(rawProfit)
-      ? rawProfit
-      : undefined;
-
-  const rawRoadmap = isRecord(raw.roadmap) ? raw.roadmap : undefined;
-  const rawRoadmapItems = Array.isArray(rawRoadmap?.items) ? rawRoadmap.items : undefined;
-
-  const rawDecision = raw.decisionView ?? raw.decision_view;
-  const decisionRecord = isRecord(rawDecision) ? rawDecision : undefined;
-  const rawDecisionNodes = Array.isArray(decisionRecord?.nodes) ? decisionRecord.nodes : undefined;
-  const rawEvidenceBundles = raw.evidenceBundles ?? raw.evidence_bundles;
-  const rawEvidenceBundle = raw.evidenceBundle ?? raw.evidence_bundle;
-
-  const reportPackage: GeneratedReportPackage = {
-    productDossier: isRecord(raw.productDossier)
-      ? raw.productDossier
-      : isRecord(raw.product_dossier)
-      ? raw.product_dossier
-      : undefined,
-    evidenceBundles: isRecord(rawEvidenceBundles)
-      ? rawEvidenceBundles
-      : isRecord(rawEvidenceBundle)
-      ? rawEvidenceBundle
-      : undefined,
-    evidenceBundle: isRecord(raw.evidenceBundle)
-      ? raw.evidenceBundle
-      : isRecord(raw.evidence_bundle)
-      ? raw.evidence_bundle
-      : undefined,
-    auditMetadata: isRecord(raw.auditMetadata)
-      ? raw.auditMetadata
-      : isRecord(raw.audit_metadata)
-      ? raw.audit_metadata
-      : undefined,
-    complianceReport:
-      typeof raw.complianceReport === "string"
-        ? raw.complianceReport
-        : typeof raw.compliance_report === "string"
-        ? raw.compliance_report
-        : undefined,
-    profitReport: profitRecord
-      ? {
-          markdown: typeof profitRecord.markdown === "string" ? profitRecord.markdown : undefined,
-          keyConclusion:
-            typeof profitRecord.keyConclusion === "string"
-              ? profitRecord.keyConclusion
-              : typeof profitRecord.key_conclusion === "string"
-              ? profitRecord.key_conclusion
-              : undefined,
-          premiumPct:
-            typeof profitRecord.premiumPct === "string"
-              ? profitRecord.premiumPct
-              : typeof profitRecord.premium_pct === "string"
-              ? profitRecord.premium_pct
-              : undefined,
-          breakevenUnits:
-            typeof profitRecord.breakevenUnits === "string"
-              ? profitRecord.breakevenUnits
-              : typeof profitRecord.breakeven_units === "string"
-              ? profitRecord.breakeven_units
-              : undefined,
-          pricingStrategy:
-            typeof profitRecord.pricingStrategy === "string"
-              ? profitRecord.pricingStrategy
-              : typeof profitRecord.pricing_strategy === "string"
-              ? profitRecord.pricing_strategy
-              : undefined,
-          riskNote:
-            typeof profitRecord.riskNote === "string"
-              ? profitRecord.riskNote
-              : typeof profitRecord.risk_note === "string"
-              ? profitRecord.risk_note
-              : undefined,
-          conclusions: typeof profitRecord.conclusions === "string" ? profitRecord.conclusions : undefined,
-          references: typeof profitRecord.references === "string" ? profitRecord.references : undefined,
-        }
-      : undefined,
-    roadmap: rawRoadmap
-      ? {
-          totalDays:
-            typeof rawRoadmap.totalDays === "number"
-              ? rawRoadmap.totalDays
-              : typeof rawRoadmap.total_days === "number"
-              ? rawRoadmap.total_days
-              : undefined,
-          totalCost:
-            typeof rawRoadmap.totalCost === "string"
-              ? rawRoadmap.totalCost
-              : typeof rawRoadmap.total_cost === "string"
-              ? rawRoadmap.total_cost
-              : undefined,
-          progress: typeof rawRoadmap.progress === "number" ? rawRoadmap.progress : undefined,
-          items: rawRoadmapItems
-            ?.filter(isRecord)
-            .map((item) => ({
-              id: typeof item.id === "string" || typeof item.id === "number" ? String(item.id) : undefined,
-              date: typeof item.date === "string" ? item.date : undefined,
-              title: typeof item.title === "string" ? item.title : undefined,
-              titleEn:
-                typeof item.titleEn === "string"
-                  ? item.titleEn
-                  : typeof item.title_en === "string"
-                  ? item.title_en
-                  : undefined,
-              description: typeof item.description === "string" ? item.description : undefined,
-              descriptionEn:
-                typeof item.descriptionEn === "string"
-                  ? item.descriptionEn
-                  : typeof item.description_en === "string"
-                  ? item.description_en
-                  : undefined,
-              type: item.type as "apply" | "test" | "certify" | "complete" | undefined,
-              status: item.status as "pending" | "in-progress" | "completed" | undefined,
-              estimatedDays:
-                typeof item.estimatedDays === "number"
-                  ? item.estimatedDays
-                  : typeof item.estimated_days === "number"
-                  ? item.estimated_days
-                  : undefined,
-              cost: typeof item.cost === "string" ? item.cost : undefined,
-              documents: normalizeStringArray(item.documents),
-              documentsEn: normalizeStringArray(item.documentsEn ?? item.documents_en),
-            })),
-        }
-      : undefined,
-    decisionView: decisionRecord
-      ? {
-          summary: typeof decisionRecord.summary === "string" ? decisionRecord.summary : undefined,
-          keyFindings: normalizeStringArray(decisionRecord.keyFindings ?? decisionRecord.key_findings),
-          recommendedAction:
-            typeof decisionRecord.recommendedAction === "string"
-              ? decisionRecord.recommendedAction
-              : typeof decisionRecord.recommended_action === "string"
-              ? decisionRecord.recommended_action
-              : undefined,
-          nodes: rawDecisionNodes
-            ?.filter(isRecord)
-            .map((node) => ({
-              id: typeof node.id === "string" || typeof node.id === "number" ? String(node.id) : undefined,
-              type: typeof node.type === "string" ? node.type : undefined,
-              label: typeof node.label === "string" ? node.label : undefined,
-              labelEn:
-                typeof node.labelEn === "string"
-                  ? node.labelEn
-                  : typeof node.label_en === "string"
-                  ? node.label_en
-                  : undefined,
-              icon: typeof node.icon === "string" ? node.icon : undefined,
-              status: typeof node.status === "string" ? node.status : undefined,
-              duration: typeof node.duration === "string" ? node.duration : undefined,
-              confidence: typeof node.confidence === "number" ? node.confidence : undefined,
-              reasoning: typeof node.reasoning === "string" ? node.reasoning : undefined,
-              reasoningEn:
-                typeof node.reasoningEn === "string"
-                  ? node.reasoningEn
-                  : typeof node.reasoning_en === "string"
-                  ? node.reasoning_en
-                  : undefined,
-            })),
-        }
-      : undefined,
-  };
-
-  return reportPackage;
-}
-
 /**
  * Main scan function — runs the full Agentic RAG pipeline via HTTP.
  * Updates session store incrementally so the burning page shows progress.
@@ -530,22 +140,26 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     let resp: Response;
 
     try {
-      resp = await fetch(`${RAG_SERVICE_URL}/scan`, {
+      const formData = new FormData();
+      formData.set("query", query);
+      formData.set("product", category);
+      formData.set("category", category);
+      formData.set("markets", JSON.stringify(markets));
+      formData.set("documents", JSON.stringify(documents ?? []));
+      images.forEach((img) => {
+        formData.append(
+          "images",
+          new Blob([new Uint8Array(img.buffer)], { type: img.mimeType }),
+          img.originalName
+        );
+      });
+      (pdfs ?? []).forEach((pdf) => {
+        formData.append("pdfs", pdf.file, pdf.name);
+      });
+
+      resp = await fetch(`${RAG_SERVICE_URL}/scan-multipart`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          query,
-          product: category,
-          category,
-          markets,
-          images: images.map((img) => ({
-            buffer: img.buffer.toString("base64"),
-            mime_type: img.mimeType,
-            name: img.originalName,
-          })),
-          documents: documents ?? [],
-          pdfs: pdfs ?? [],
-        }),
+        body: formData,
         signal: controller.signal,
       });
     } finally {
@@ -645,7 +259,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
   } else {
     try {
       const controller = new AbortController();
-      const profitTimeout = setTimeout(() => controller.abort(), 30_000); // 30s timeout for profit report
+      const profitTimeout = setTimeout(() => controller.abort(), PROFIT_REPORT_TIMEOUT_MS);
       let profitResp: Response;
 
       try {

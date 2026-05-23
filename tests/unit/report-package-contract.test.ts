@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import contractPackage from "../fixtures/report-package.contract.json";
-import { normalizeReportPackage } from "@/lib/pipeline/scan";
+import { normalizeReportPackage } from "@/lib/pipeline/report-package";
 
 describe("ReportPackage cross-language contract", () => {
   it("preserves Python schema fields through the TS normalizer", () => {

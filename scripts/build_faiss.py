@@ -17,6 +17,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 import os
 import json
 import logging
+import re
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -24,7 +25,7 @@ os.chdir(Path(__file__).parent.parent)
 
 from rag_service.config import settings
 from rag_service.chunker.legal_chunker import chunk_document
-from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
+from rag_service.retrieval.hybrid_retriever import _probe_embedders
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -87,9 +88,37 @@ def chunk_documents(docs: list[dict]) -> list[dict]:
     return all_chunks
 
 
-def embed_chunks(chunks: list[dict]) -> list[dict]:
-    """Embed chunks with local ModelScope Qwen3-Embedding-0.6B."""
-    embedder = ModelScopeEmbedder()
+def _hash_embed(text: str, dim: int = 384) -> list[float]:
+    import hashlib
+    import numpy as np
+
+    vec = np.zeros(dim, dtype=np.float32)
+    tokens = [tok for tok in re.split(r"\s+", text) if tok]
+    if not tokens:
+        tokens = [text[:128] or "empty"]
+    for token in tokens:
+        digest = hashlib.sha256(token.encode("utf-8", errors="ignore")).digest()
+        for i, b in enumerate(digest):
+            idx = (b + i * 131) % dim
+            vec[idx] += 1.0 if b % 2 else -1.0
+    norm = np.linalg.norm(vec)
+    if norm > 0:
+        vec = vec / norm
+    return vec.tolist()
+
+
+def embed_chunks(chunks: list[dict]) -> tuple[list[dict], int]:
+    """Embed chunks with the same fallback chain used by the RAG service."""
+    embedder, name = _probe_embedders()
+    if embedder is None:
+        if os.environ.get("ALLOW_HASH_EMBED_FALLBACK", "true").lower() != "true":
+            raise RuntimeError("No embedding provider available. Start Ollama, install local Qwen, or set MODELSCOPE_API_KEY.")
+        logger.warning("No embedding provider available; using deterministic hash fallback index")
+        for chunk in chunks:
+            text = f"{chunk.get('prepend_en', '')}\n{chunk.get('content', '')}"
+            chunk["vector"] = _hash_embed(text)
+        return chunks, 384
+    logger.info(f"Using embedder: {name} ({getattr(embedder, 'DIM', 'unknown')}-dim)")
     texts = []
     for chunk in chunks:
         prepend = chunk.get("prepend_en", chunk.get("prepend_zh", ""))
@@ -100,10 +129,10 @@ def embed_chunks(chunks: list[dict]) -> list[dict]:
     for chunk, vec in zip(chunks, vectors):
         chunk["vector"] = vec
 
-    return chunks
+    return chunks, getattr(embedder, "DIM", len(vectors[0]) if vectors else 0)
 
 
-def save_faiss(chunks: list[dict]):
+def save_faiss(chunks: list[dict], dim: int):
     """Save chunks to Faiss index + JSON metadata."""
     import faiss
     import numpy as np
@@ -120,7 +149,7 @@ def save_faiss(chunks: list[dict]):
     mat = np.array(vectors, dtype=np.float32)
     faiss.normalize_L2(mat)
 
-    index = faiss.IndexFlatIP(1024)
+    index = faiss.IndexFlatIP(dim)
     index.add(mat)
 
     index_path = str(FAISS_DIR / "legal_chunks.index")
@@ -128,7 +157,7 @@ def save_faiss(chunks: list[dict]):
 
     faiss.write_index(index, index_path)
     with open(meta_path, "w", encoding="utf-8") as f:
-        json.dump(chunks_with_vec, f, ensure_ascii=False)
+        json.dump({"dim": dim, "chunks": chunks_with_vec}, f, ensure_ascii=False)
 
     logger.info(f"Saved Faiss index: {index.ntotal} vectors -> {index_path}")
     logger.info(f"Saved metadata: {len(chunks_with_vec)} chunks -> {meta_path}")
@@ -152,12 +181,12 @@ def main():
     chunks = chunk_documents(docs)
 
     if not args.skip_embed:
-        chunks = embed_chunks(chunks)
+        chunks, dim = embed_chunks(chunks)
     else:
         logger.info("Skipping embedding (--skip-embed)")
         return
 
-    save_faiss(chunks)
+    save_faiss(chunks, dim)
 
     from collections import Counter
     regions = Counter(c.get("region", "unknown") for c in chunks)

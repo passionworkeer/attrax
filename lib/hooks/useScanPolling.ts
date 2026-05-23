@@ -2,8 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { ScanStatus } from "@/lib/types";
-
-const POLL_INTERVAL_MS = 800;
+import {
+  POLL_INITIAL_INTERVAL_MS,
+  POLL_MAX_DURATION_MS,
+  POLL_MAX_INTERVAL_MS,
+} from "@/lib/constants";
 
 function failedStatus(sessionId: string, error: string): ScanStatus {
   return {
@@ -49,6 +52,9 @@ export function useScanPolling(sessionId: string) {
     let cancelled = false;
 
     async function poll() {
+      let intervalMs = POLL_INITIAL_INTERVAL_MS;
+      const startedAt = Date.now();
+
       while (!cancelled) {
         let response: Response;
         try {
@@ -97,7 +103,15 @@ export function useScanPolling(sessionId: string) {
           return;
         }
 
-        await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
+        if (Date.now() - startedAt > POLL_MAX_DURATION_MS) {
+          if (!cancelled) {
+            setStatus(failedStatus(sessionId, "Scan timed out."));
+          }
+          return;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, intervalMs));
+        intervalMs = Math.min(intervalMs * 1.5, POLL_MAX_INTERVAL_MS);
       }
     }
 

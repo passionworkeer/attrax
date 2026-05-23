@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync, existsSync, unlinkSync, readdirSync } from "fs";
 import { join } from "path";
+import { SESSION_CLEANUP_INTERVAL_MS, SESSION_TTL_MS } from "@/lib/constants";
 import type { ScanStatus } from "@/lib/types";
 
 declare global {
@@ -8,7 +9,7 @@ declare global {
 }
 
 const SESSION_DIR = join(process.cwd(), "data", "sessions");
-const SESSION_TTL_MS = 60 * 60 * 1000; // 1 hour
+let lastCleanupAt = 0;
 
 function getStore(): Map<string, ScanStatus> {
   if (!globalThis.__scanStore) {
@@ -79,6 +80,7 @@ function persistSession(session: ScanStatus): void {
 
 function cleanStaleFiles(): void {
   if (!existsSync(SESSION_DIR)) return;
+  lastCleanupAt = Date.now();
   try {
     for (const file of readdirSync(SESSION_DIR)) {
       if (!file.endsWith(".json")) continue;
@@ -98,7 +100,14 @@ function cleanStaleFiles(): void {
   }
 }
 
+function cleanStaleFilesIfDue(): void {
+  if (Date.now() - lastCleanupAt >= SESSION_CLEANUP_INTERVAL_MS) {
+    cleanStaleFiles();
+  }
+}
+
 export function createSession(sessionId: string): ScanStatus {
+  cleanStaleFilesIfDue();
   const store = getStore();
   const timers = getTimers();
   const session: ScanStatus = {

@@ -4,7 +4,7 @@
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createSession, getSession, clearStore, updateSession } from '@/lib/pipeline/session-store'
-import { extractCostSummary } from '@/lib/pipeline/scan'
+import { extractCostSummary } from '@/lib/pipeline/profit-report'
 
 // Mock modules
 vi.mock('@/lib/mock/scan-result', () => ({
