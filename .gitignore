@@ -117,3 +117,9 @@ qdrant_storage/
 # ─── Embedding cache ─────────────────────────────────────────
 *.cache/
 embedding_cache/
+
+# ─── Local Claude/worktree artifacts ─────────────────────────
+.claude/
+
+# ─── Nested local repository copy ────────────────────────────
+attrax/
