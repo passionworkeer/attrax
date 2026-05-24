@@ -110,8 +110,8 @@ describe('ProfitReportView component', () => {
         </TranslationProvider>
       )
       // Use getAllByText since values appear multiple times
-      expect(screen.getAllByText('¥74').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('¥109').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('$74').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('$109').length).toBeGreaterThan(0)
     })
   })
 
@@ -212,7 +212,7 @@ describe('ProfitReportView component', () => {
         </TranslationProvider>
       )
       // Values are split, check for presence of any matching text
-      const allText = screen.getAllByText(/¥/)
+      const allText = screen.getAllByText(/\$/)
       expect(allText.length).toBeGreaterThan(0)
     })
   })
@@ -244,8 +244,8 @@ describe('ProfitReportView component', () => {
         </TranslationProvider>
       )
       // Use getAllByText since values appear multiple times
-      expect(screen.getAllByText('¥-20').length).toBeGreaterThan(0)
-      expect(screen.getAllByText('¥-10').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('$-20').length).toBeGreaterThan(0)
+      expect(screen.getAllByText('$-10').length).toBeGreaterThan(0)
     })
   })
 })

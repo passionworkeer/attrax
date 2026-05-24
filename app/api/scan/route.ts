@@ -3,6 +3,7 @@ import { createMockComplianceReportResult, createMockProfitReport } from "@/lib/
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { enqueueScan } from "@/lib/pipeline/scan-queue";
 import { ok, fail } from "@/lib/api-response";
+import type { ComplianceReportResult } from "@/lib/types";
 import { createAccessToken, hashAccessToken } from "@/lib/pipeline/session-auth";
 import { checkRateLimit, clientIp } from "@/lib/rate-limit";
 import {
@@ -98,7 +99,7 @@ function runDemoSimulation(sessionId: string) {
       status: "ready",
       progress: 100,
       stageText: `✅ ${stages.reportComplete}`,
-      result: { ...createMockComplianceReportResult(sessionId), source: "demo" },
+      result: { ...createMockComplianceReportResult(sessionId) as unknown as ComplianceReportResult, source: "demo" as const },
       profitReport: createMockProfitReport(sessionId),
     });
   }, 4500);

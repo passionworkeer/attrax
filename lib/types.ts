@@ -303,6 +303,8 @@ export interface GeneratedRoadmapItem {
 }
 
 export interface GeneratedDecisionView {
+  verdict?: string;
+  riskLevel?: string;
   summary?: string;
   keyFindings?: string[];
   key_findings?: string[];
@@ -342,6 +344,7 @@ export interface ProfitReportResult {
   sessionId: string;
   productType: string;
   market: string;
+  currency?: string; // "USD" | "CNY" | "EUR" | "GBP"
   report: string;               // markdown（含完整6章节）
   barebone: CostSummary;
   compliant: CostSummary;

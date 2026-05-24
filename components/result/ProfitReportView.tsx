@@ -32,7 +32,17 @@ function DownloadButtons({
   );
 }
 
-const CURRENCY = "¥";
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  CNY: "¥",
+  EUR: "€",
+  GBP: "£",
+  USD: "$",
+  JPY: "¥",
+};
+
+function getCurrencySymbol(currency?: string): string {
+  return currency ? (CURRENCY_SYMBOLS[currency.toUpperCase()] ?? "$") : "$";
+}
 
 interface MetricRow {
   label: string;
@@ -41,18 +51,19 @@ interface MetricRow {
   unit?: string;
 }
 
-function fmt(n: number, unit?: string): string {
+function fmt(n: number, unit?: string, currency?: string): string {
+  const sym = getCurrencySymbol(currency);
   if (unit === "%") return `${n.toFixed(1)}%`;
-  return `${CURRENCY}${n.toFixed(0)}${unit ? ` ${unit}` : ""}`;
+  return `${sym}${n.toFixed(0)}${unit ? ` ${unit}` : ""}`;
 }
 
-function profitDelta(a: number, b: number): string {
+function profitDelta(a: number, b: number, currency?: string): string {
   const diff = b - a;
   const sign = diff >= 0 ? "+" : "";
-  return `${sign}${CURRENCY}${diff.toFixed(0)}`;
+  return `${sign}${getCurrencySymbol(currency)}${diff.toFixed(0)}`;
 }
 
-function MetricTable({ rows }: { rows: MetricRow[] }) {
+function MetricTable({ rows, currency }: { rows: MetricRow[]; currency?: string }) {
   const { t } = useTranslation();
   return (
     <table className="w-full text-sm">
@@ -69,13 +80,13 @@ function MetricTable({ rows }: { rows: MetricRow[] }) {
           <tr key={r.label} className="hover:bg-muted/40 transition-colors">
             <td className="py-2.5 pr-4 font-medium">{r.label}</td>
             <td className="py-2.5 text-right tabular-nums text-blaze-red/80">
-              {fmt(r.barebone, r.unit)}
+              {fmt(r.barebone, r.unit, currency)}
             </td>
             <td className="py-2.5 text-right tabular-nums text-emerald-500">
-              {fmt(r.compliant, r.unit)}
+              {fmt(r.compliant, r.unit, currency)}
             </td>
             <td className="py-2.5 text-right tabular-nums text-muted-foreground">
-              {profitDelta(r.barebone, r.compliant)}
+              {profitDelta(r.barebone, r.compliant, currency)}
             </td>
           </tr>
         ))}
@@ -89,11 +100,13 @@ function RiskBar({
   barebone,
   compliant,
   max,
+  currency,
 }: {
   label: string;
   barebone: number;
   compliant: number;
   max: number;
+  currency?: string;
 }) {
   const { t } = useTranslation();
   const bw = max > 0 ? Math.round((barebone / max) * 100) : 0;
@@ -104,21 +117,21 @@ function RiskBar({
       <div className="flex justify-between text-xs text-muted-foreground">
         <span>{label}</span>
         <span>
-          <span className="text-blaze-red/70">{t("report.labels.noCompliance")} {fmt(barebone)}</span>
+          <span className="text-blaze-red/70">{t("report.labels.noCompliance")} {fmt(barebone, undefined, currency)}</span>
           <span className="mx-1.5">/</span>
-          <span className="text-emerald-500">{t("report.labels.withCompliance")} {fmt(compliant)}</span>
+          <span className="text-emerald-500">{t("report.labels.withCompliance")} {fmt(compliant, undefined, currency)}</span>
         </span>
       </div>
       <div className="flex h-3 overflow-hidden rounded-full bg-muted">
         <div
           className="h-full bg-blaze-red/70 transition-all"
           style={{ width: `${bw}%` }}
-          title={`${t("report.labels.noCompliance")}: ${fmt(barebone)}`}
+          title={`${t("report.labels.noCompliance")}: ${fmt(barebone, undefined, currency)}`}
         />
         <div
           className="h-full bg-emerald-500/70 transition-all"
           style={{ width: `${cw}%` }}
-          title={`${t("report.labels.withCompliance")}: ${fmt(compliant)}`}
+          title={`${t("report.labels.withCompliance")}: ${fmt(compliant, undefined, currency)}`}
         />
       </div>
     </div>
@@ -148,6 +161,8 @@ function ConclusionCard({ text }: { text: string }) {
 
 export function ProfitReportView({ result }: { result: ProfitReportResult }) {
   const { t, locale } = useTranslation();
+  const currency = result.currency;
+  const sym = getCurrencySymbol(currency);
   const rows: MetricRow[] = [
     { label: t("report.columns.bomCost"), barebone: result.barebone.bom, compliant: result.compliant.bom },
     { label: t("report.columns.packaging"), barebone: result.barebone.packaging, compliant: result.compliant.packaging },
@@ -188,15 +203,15 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold tabular-nums text-blaze-red">
-                {fmt(result.barebone.gp)}
+                {fmt(result.barebone.gp, undefined, currency)}
               </p>
               <p className="text-xs text-blaze-red/60">{t("report.cards.grossProfit")}</p>
             </div>
           </div>
           <div className="space-y-1 text-xs text-muted-foreground">
-            <p>{t("report.cards.salePrice")}：{fmt(result.barebone.asp)}</p>
-            <p>{t("report.cards.totalCost")}：{fmt(result.barebone.bom + result.barebone.packaging + result.barebone.cert + result.barebone.epr + result.barebone.logistics)}</p>
-            <p>{t("report.cards.riskExposure")}：{fmt(result.bareboneRiskExposure)}</p>
+            <p>{t("report.cards.salePrice")}：{fmt(result.barebone.asp, undefined, currency)}</p>
+            <p>{t("report.cards.totalCost")}：{fmt(result.barebone.bom + result.barebone.packaging + result.barebone.cert + result.barebone.epr + result.barebone.logistics, undefined, currency)}</p>
+            <p>{t("report.cards.riskExposure")}：{fmt(result.bareboneRiskExposure, undefined, currency)}</p>
           </div>
         </div>
 
@@ -209,15 +224,15 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold tabular-nums text-emerald-500">
-                {fmt(result.compliant.gp)}
+                {fmt(result.compliant.gp, undefined, currency)}
               </p>
               <p className="text-xs text-emerald-500/60">{t("report.cards.grossProfit")}</p>
             </div>
           </div>
           <div className="space-y-1 text-xs text-muted-foreground">
-            <p>{t("report.cards.salePrice")}：{fmt(result.compliant.asp)}</p>
-            <p>{t("report.cards.totalCost")}：{fmt(result.compliant.bom + result.compliant.packaging + result.compliant.cert + result.compliant.epr + result.compliant.logistics)}</p>
-            <p>{t("report.cards.riskExposure")}：{fmt(result.compliantRiskExposure)}</p>
+            <p>{t("report.cards.salePrice")}：{fmt(result.compliant.asp, undefined, currency)}</p>
+            <p>{t("report.cards.totalCost")}：{fmt(result.compliant.bom + result.compliant.packaging + result.compliant.cert + result.compliant.epr + result.compliant.logistics, undefined, currency)}</p>
+            <p>{t("report.cards.riskExposure")}：{fmt(result.compliantRiskExposure, undefined, currency)}</p>
           </div>
         </div>
       </div>
@@ -228,7 +243,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
           <h3 className="text-sm font-semibold">{t("report.cards.costComparison")}</h3>
         </div>
         <div className="p-5">
-          <MetricTable rows={rows} />
+          <MetricTable rows={rows} currency={currency} />
         </div>
       </div>
 
@@ -241,12 +256,14 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             barebone={result.barebone.gp}
             compliant={result.compliant.gp}
             max={Math.max(result.barebone.gp, result.compliant.gp, 1)}
+            currency={currency}
           />
           <RiskBar
             label={t("report.cards.riskExposure")}
             barebone={result.bareboneRiskExposure}
             compliant={result.compliantRiskExposure}
             max={riskMax}
+            currency={currency}
           />
         </div>
         <div className="flex items-center gap-4 text-xs text-muted-foreground">

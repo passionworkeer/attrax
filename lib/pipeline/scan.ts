@@ -22,7 +22,7 @@ import type {
   GeneratedReportPackage,
   ProfitReportResult,
 } from "@/lib/types";
-import { getTranslations } from "@/lib/i18n";
+import { serverT } from "@/lib/server-i18n";
 
 function getRagServiceUrl(): string {
   const value = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
@@ -87,16 +87,15 @@ function buildQuery(
   category: ProductCategory,
   markets: Market[]
 ): string {
-  const tx = getTranslations("zh");
   const productMap: Record<ProductCategory, string> = {
-    electronics: tx.categories.electronics,
-    appliance: tx.categories.appliances,
-    "3c": tx.categories.digital,
-    toy: tx.categories.toys,
-    home: tx.categories.home,
-    other: tx.categories.other,
+    electronics: serverT("categories.electronics", "zh"),
+    appliance: serverT("categories.appliance", "zh"),
+    "3c": serverT("categories.digital", "zh"),
+    toy: serverT("categories.toy", "zh"),
+    home: serverT("categories.home", "zh"),
+    other: serverT("categories.other", "zh"),
   };
-  const product = productMap[category] ?? tx.categories.other;
+  const product = productMap[category] ?? serverT("categories.other", "zh");
   const marketStr = markets.join("+");
   return `${product}出口${marketStr}合规要求和认证`;
 }
@@ -111,8 +110,19 @@ function buildQuery(
 export async function runScan(sessionId: string, input: RunScanInput) {
   const { images, documents, pdfs, category, markets } = input;
   const query = input.query ?? buildQuery(images, category, markets);
-  const tx = getTranslations("zh");
-  const stages = tx.scanStages;
+  const stages = {
+    analyzingImages: serverT("scanStages.analyzingImages", "zh"),
+    planningStrategy: serverT("scanStages.planningStrategy", "zh"),
+    retrievingRegulations: serverT("scanStages.retrievingRegulations", "zh"),
+    generatingReport: serverT("scanStages.generatingReport", "zh"),
+    reportComplete: serverT("scanStages.reportComplete", "zh"),
+    backendTimeout: serverT("scanStages.backendTimeout", "zh"),
+    backendUnavailable: serverT("scanStages.backendUnavailable", "zh"),
+    demoResultGenerated: serverT("scanStages.demoResultGenerated", "zh"),
+    scanPassed: serverT("scanStages.scanPassed", "zh"),
+    scanWarning: serverT("scanStages.scanWarning", "zh"),
+    scanRisk: serverT("scanStages.scanRisk", "zh"),
+  };
 
   // ── Stage 1: Vision analysis ──────────────────────────────────────────────
   updateSession(sessionId, {

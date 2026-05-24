@@ -1,6 +1,7 @@
 "use client";
 
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
@@ -10,8 +11,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
-import { mockScanResult, mockProfitReport, mockComplianceReportResult } from "@/lib/mock/scan-result";
-import { downloadReportAsPdf, downloadReportAsDocx, downloadGenericReportAsPdf, downloadGenericReportAsDocx } from "@/lib/report-export";
+import { mockComplianceReportResult, mockProfitReport } from "@/lib/mock/scan-result";
+import { downloadReportAsPdf, downloadReportAsDocx, downloadDecisionReportAsPdf, downloadDecisionReportAsDocx, downloadRoadmapReportAsPdf, downloadRoadmapReportAsDocx } from "@/lib/report-export";
 import { ProfitReportView } from "@/components/result/ProfitReportView";
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
 import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult, ReportPackage } from "@/lib/types";
@@ -94,24 +95,43 @@ function buildRoadmapMarkdown(result: ComplianceReportResult, locale: ReportLoca
   ].filter(Boolean).join("\n\n");
 }
 
+function SourceNotice({ source }: { source?: "real" | "fallback" | "demo" }) {
+  const { t } = useTranslation();
+  if (source === "fallback") {
+    return (
+      <div className="mt-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm text-amber-800">
+        {t("result.fallbackNotice")}
+      </div>
+    );
+  }
+  if (source === "demo") {
+    return (
+      <div className="mt-6 rounded-2xl border border-blue-500/30 bg-blue-500/10 px-5 py-4 text-sm text-blue-800">
+        {t("result.demoNotice")}
+      </div>
+    );
+  }
+  return null;
+}
+
 function DownloadButtons({
   onPdf,
   onDocx,
   label,
 }: {
-  onPdf: (locale: ReportLocale) => void;
-  onDocx: (locale: ReportLocale) => void;
+  onPdf: (dlLocale: ReportLocale) => void;
+  onDocx: (dlLocale: ReportLocale) => void;
   label: string;
 }) {
   return (
     <div className="flex flex-wrap gap-2">
-      {(["zh", "en"] as const).map((locale) => (
-        <div key={locale} className="flex overflow-hidden rounded-lg border border-border bg-muted">
-          <button onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-red-500">
-            {label} PDF {locale.toUpperCase()}
+      {(["zh", "en"] as const).map((dlLocale) => (
+        <div key={dlLocale} className="flex overflow-hidden rounded-lg border border-border bg-muted">
+          <button onClick={() => onPdf(dlLocale)} className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-red-500">
+            {label} PDF {dlLocale.toUpperCase()}
           </button>
-          <button onClick={() => onDocx(locale)} className="border-l border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-blue-500">
-            Word {locale.toUpperCase()}
+          <button onClick={() => onDocx(dlLocale)} className="border-l border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-blue-500">
+            Word {dlLocale.toUpperCase()}
           </button>
         </div>
       ))}
@@ -149,12 +169,150 @@ const MARKET_LABELS: Record<string, string> = {
   AE: "markets.UAE",
 };
 
+// ── Product Image Carousel ──────────────────────────────────────────────────
+interface ProductImage {
+  imageId: string;
+  url: string;
+  thumbnail: string;
+  width: number;
+  height: number;
+  angleHint?: string;
+  bbox?: { x: number; y: number; w: number; h: number };
+  matchedRegulations?: string[];
+}
+
+function ImageCarousel({ images }: { images: ProductImage[] }) {
+  const [current, setCurrent] = useState(0);
+  const prev = useCallback(() => setCurrent((c) => (c > 0 ? c - 1 : images.length - 1)), [images.length]);
+  const next = useCallback(() => setCurrent((c) => (c < images.length - 1 ? c + 1 : 0)), [images.length]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [prev, next]);
+
+  const img = images[current];
+  const regList = img.matchedRegulations?.join(", ");
+
+  return (
+    <div className="space-y-3">
+      {/* Main carousel */}
+      <div className="relative rounded-2xl border border-border bg-muted/30 overflow-hidden">
+        <div className="relative aspect-[4/3] w-full">
+          <Image src={img.url} alt={img.angleHint ?? img.imageId} fill className="object-contain" />
+          {/* Risk region highlight */}
+          {img.bbox && (
+            <div
+              className="absolute border-2 border-blaze-red bg-blaze-red/10 rounded-sm"
+              style={{
+                left: `${img.bbox.x * 100}%`,
+                top: `${img.bbox.y * 100}%`,
+                width: `${img.bbox.w * 100}%`,
+                height: `${img.bbox.h * 100}%`,
+              }}
+            />
+          )}
+        </div>
+        {/* Navigation arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 text-white hover:bg-black/80 transition-colors"
+              aria-label="Previous image"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 text-white hover:bg-black/80 transition-colors"
+              aria-label="Next image"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </>
+        )}
+        {/* Index badge */}
+        <div className="absolute bottom-3 right-3 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white">
+          {current + 1} / {images.length}
+        </div>
+      </div>
+
+      {/* Thumbnail strip */}
+      {images.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {images.map((im, i) => (
+            <button
+              key={im.imageId}
+              type="button"
+              onClick={() => setCurrent(i)}
+              className={cn(
+                "relative shrink-0 overflow-hidden rounded-lg border-2 transition-colors",
+                i === current ? "border-blaze-red" : "border-transparent opacity-60 hover:opacity-80"
+              )}
+            >
+              <Image src={im.thumbnail} alt={im.angleHint ?? im.imageId} width={64} height={64} className="h-16 w-16 object-cover" />
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Image metadata + matched regulations */}
+      {img.angleHint && (
+        <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+          <span className="rounded-full bg-muted px-2.5 py-1 capitalize">{img.angleHint.replace("_", " ")}</span>
+          {regList && (
+            <>
+              <span>·</span>
+              <span className="text-blaze-red/70">匹配法规: {regList}</span>
+            </>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Compliance Report View ───────────────────────────────────────────────────
+type RichRiskPoint = {
+  riskId: string;
+  title: string;
+  description: string;
+  severity: "critical" | "warning" | "info";
+  confidence: number;
+  imageId: string;
+  bbox: { x: number; y: number; w: number; h: number };
+  matched_regulations: Array<{ name: string; article: string }>;
+  suggestions: string;
+};
+type RichChecklistItem = {
+  question: string;
+  answer: string;
+  status: "pass" | "fail" | "warn";
+};
+
 function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
   const { t } = useTranslation();
   const meta = STATUS_META[result.complianceStatus] ?? STATUS_META.UNKNOWN;
   const gradeColor = GRADE_COLORS[result.scoreGrade] ?? "text-gray-400";
   const markets = result.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
+  const raw = result as unknown as Record<string, unknown>;
+  const richImages = Array.isArray(raw.images) && raw.images.length > 0
+    ? (raw.images as ProductImage[])
+    : null;
+  const richRiskPoints = richImages ? ((raw as { riskPoints?: RichRiskPoint[] }).riskPoints ?? null) : null;
+  const richChecklist = richImages ? ((raw as { checklist?: RichChecklistItem[] }).checklist ?? null) : null;
+  const richStats = richImages ? ((raw as { totalRisks?: number; passItems?: number; warnItems?: number }) ?? null) : null;
 
   return (
     <div className="space-y-6">
@@ -190,6 +348,99 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
       {/* Retrieved Chunks */}
       <RetrievedChunks chunks={result.retrievedChunks} />
 
+      {/* Product Image Carousel */}
+      {richImages && richImages.length > 0 && (
+        <div className="rounded-2xl border border-border bg-card p-5">
+          <h3 className="mb-4 text-sm font-semibold">产品图片分析</h3>
+          <ImageCarousel images={richImages} />
+        </div>
+      )}
+
+      {/* Risk Points Section */}
+      {richRiskPoints && richRiskPoints.length > 0 && (
+        <div className="rounded-2xl border border-border bg-card p-5">
+          <h3 className="mb-4 text-sm font-semibold">风险点详情</h3>
+          <div className="space-y-4">
+            {richRiskPoints.map((risk) => (
+              <div key={risk.riskId} className={cn(
+                "rounded-xl border p-4",
+                risk.severity === "critical" ? "border-blaze-red/40 bg-blaze-red/5" :
+                risk.severity === "warning" ? "border-amber-500/40 bg-amber-500/5" :
+                "border-blue-500/40 bg-blue-500/5"
+              )}>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h4 className={cn("font-semibold", risk.severity === "critical" ? "text-blaze-red" : "text-amber-500")}>
+                      {risk.title}
+                    </h4>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{risk.description}</p>
+                  </div>
+                  <span className={cn(
+                    "shrink-0 rounded-full px-2.5 py-1 text-xs font-medium",
+                    risk.severity === "critical" ? "bg-blaze-red/10 text-blaze-red" :
+                    risk.severity === "warning" ? "bg-amber-500/10 text-amber-500" :
+                    "bg-blue-500/10 text-blue-500"
+                  )}>
+                    {(risk.confidence * 100).toFixed(0)}%
+                  </span>
+                </div>
+                {risk.matched_regulations.length > 0 && (
+                  <div className="mt-3 space-y-1">
+                    <p className="text-xs font-medium text-muted-foreground">涉及法规:</p>
+                    {risk.matched_regulations.map((reg, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="text-blaze-red/60">{reg.name}</span>
+                        <span className="text-muted-foreground/50">·</span>
+                        <span>{reg.article}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {risk.suggestions && (
+                  <p className="mt-3 border-t border-border/50 pt-3 text-xs text-emerald-600">
+                    建议: {risk.suggestions}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Compliance Checklist */}
+      {richChecklist && richChecklist.length > 0 && (
+        <div className="rounded-2xl border border-border bg-card p-5">
+          <h3 className="mb-4 text-sm font-semibold">合规检查清单</h3>
+          <div className="space-y-2">
+            {richChecklist.map((item, i) => (
+              <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-3">
+                <span className={cn(
+                  "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs",
+                  item.status === "pass" ? "bg-emerald-500 text-white" :
+                  item.status === "fail" ? "bg-blaze-red text-white" :
+                  "bg-amber-500 text-white"
+                )}>
+                  {item.status === "pass" ? "✓" : item.status === "fail" ? "✗" : "!"}
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium">{item.question}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{item.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {richStats && (
+            <div className="mt-4 flex flex-wrap gap-3 rounded-xl bg-muted/50 px-4 py-3 text-xs text-muted-foreground">
+              <span>通过: {richStats.passItems ?? 0}</span>
+              <span>·</span>
+              <span>警告: {richStats.warnItems ?? 0}</span>
+              <span>·</span>
+              <span>失败: {richStats.totalRisks ?? 0}</span>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Full Report */}
       <div className="rounded-2xl border border-border bg-card">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
@@ -203,8 +454,8 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
           </div>
           <DownloadButtons
             label="合规"
-            onPdf={(locale) => downloadReportAsPdf(result, locale)}
-            onDocx={(locale) => downloadReportAsDocx(result, locale)}
+            onPdf={(dlLocale) => downloadReportAsPdf(result, dlLocale)}
+            onDocx={(dlLocale) => downloadReportAsDocx(result, dlLocale)}
           />
         </div>
         <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
@@ -218,6 +469,8 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
 }
 
 function DecisionReportPanel({ result }: { result: ComplianceReportResult }) {
+  const { t, locale } = useTranslation();
+  const decision = reportPackageOf(result)?.decisionView ?? reportPackageOf(result)?.decision_view;
   const zh = buildDecisionMarkdown(result, "zh");
   const en = buildDecisionMarkdown(result, "en");
   return (
@@ -226,18 +479,60 @@ function DecisionReportPanel({ result }: { result: ComplianceReportResult }) {
         <h3 className="text-sm font-semibold">AI 决策报告</h3>
         <DownloadButtons
           label="决策"
-          onPdf={(locale) => downloadGenericReportAsPdf({ sessionId: result.sessionId, title: "AI 决策报告", titleEn: "AI Decision Report", markdown: zh, markdownEn: en, filename: `AI决策报告_${result.sessionId}`, filenameEn: `AIDecisionReport_${result.sessionId}` }, locale)}
-          onDocx={(locale) => downloadGenericReportAsDocx({ sessionId: result.sessionId, title: "AI 决策报告", titleEn: "AI Decision Report", markdown: zh, markdownEn: en, filename: `AI决策报告_${result.sessionId}`, filenameEn: `AIDecisionReport_${result.sessionId}` }, locale)}
+          onPdf={(dlLocale) => {
+            if (decision) {
+              downloadDecisionReportAsPdf({
+                sessionId: result.sessionId,
+                verdict: decision.verdict,
+                riskLevel: decision.riskLevel,
+                summary: decision.summary,
+                keyFindings: decision.keyFindings ?? decision.key_findings,
+                recommendedAction: decision.recommendedAction ?? decision.recommended_action,
+                nodesEvidence: decision.nodes,
+              }, dlLocale);
+            } else {
+              downloadDecisionReportAsPdf({
+                sessionId: result.sessionId,
+                verdict: result.complianceStatus,
+                riskLevel: result.complianceScore < 50 ? "HIGH" : result.complianceScore < 75 ? "MEDIUM" : "LOW",
+                summary: `${t("result.overallScore")}: ${result.complianceScore}`,
+                keyFindings: result.retrievedChunks.map((c) => `${c.region} · ${c.docName} · ${c.articleNo}`),
+              }, dlLocale);
+            }
+          }}
+          onDocx={(dlLocale) => {
+            if (decision) {
+              downloadDecisionReportAsDocx({
+                sessionId: result.sessionId,
+                verdict: decision.verdict,
+                riskLevel: decision.riskLevel,
+                summary: decision.summary,
+                keyFindings: decision.keyFindings ?? decision.key_findings,
+                recommendedAction: decision.recommendedAction ?? decision.recommended_action,
+                nodesEvidence: decision.nodes,
+              }, dlLocale);
+            } else {
+              downloadDecisionReportAsDocx({
+                sessionId: result.sessionId,
+                verdict: result.complianceStatus,
+                riskLevel: result.complianceScore < 50 ? "HIGH" : result.complianceScore < 75 ? "MEDIUM" : "LOW",
+                summary: `${t("result.overallScore")}: ${result.complianceScore}`,
+                keyFindings: result.retrievedChunks.map((c) => `${c.region} · ${c.docName} · ${c.articleNo}`),
+              }, dlLocale);
+            }
+          }}
         />
       </div>
       <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{zh}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{locale === "en" ? en : zh}</ReactMarkdown>
       </div>
     </div>
   );
 }
 
 function RoadmapReportPanel({ result }: { result: ComplianceReportResult }) {
+  const { t, locale } = useTranslation();
+  const roadmap = reportPackageOf(result)?.roadmap;
   const zh = buildRoadmapMarkdown(result, "zh");
   const en = buildRoadmapMarkdown(result, "en");
   return (
@@ -246,12 +541,58 @@ function RoadmapReportPanel({ result }: { result: ComplianceReportResult }) {
         <h3 className="text-sm font-semibold">合规路线图报告</h3>
         <DownloadButtons
           label="路线图"
-          onPdf={(locale) => downloadGenericReportAsPdf({ sessionId: result.sessionId, title: "合规路线图报告", titleEn: "Compliance Roadmap Report", markdown: zh, markdownEn: en, filename: `合规路线图_${result.sessionId}`, filenameEn: `ComplianceRoadmap_${result.sessionId}` }, locale)}
-          onDocx={(locale) => downloadGenericReportAsDocx({ sessionId: result.sessionId, title: "合规路线图报告", titleEn: "Compliance Roadmap Report", markdown: zh, markdownEn: en, filename: `合规路线图_${result.sessionId}`, filenameEn: `ComplianceRoadmap_${result.sessionId}` }, locale)}
+          onPdf={(dlLocale) => {
+            downloadRoadmapReportAsPdf({
+              sessionId: result.sessionId,
+              currentStatus: result.complianceStatus,
+              totalDays: roadmap?.totalDays,
+              totalCost: roadmap?.totalCost,
+              items: roadmap?.items?.length
+                ? roadmap.items.map((item) => ({
+                    title: item.title ?? item.titleEn ?? "",
+                    titleEn: item.titleEn,
+                    description: item.description ?? item.descriptionEn ?? "",
+                    descriptionEn: item.descriptionEn,
+                    cost: item.cost,
+                    days: item.estimatedDays,
+                    status: item.status,
+                  }))
+                : [{
+                    title: `${t("result.overallScore")}: ${result.complianceScore}`,
+                    titleEn: `Overall Score: ${result.complianceScore}`,
+                    description: result.complianceStatus,
+                    descriptionEn: result.complianceStatus,
+                  }],
+            }, dlLocale);
+          }}
+          onDocx={(dlLocale) => {
+            downloadRoadmapReportAsDocx({
+              sessionId: result.sessionId,
+              currentStatus: result.complianceStatus,
+              totalDays: roadmap?.totalDays,
+              totalCost: roadmap?.totalCost,
+              items: roadmap?.items?.length
+                ? roadmap.items.map((item) => ({
+                    title: item.title ?? item.titleEn ?? "",
+                    titleEn: item.titleEn,
+                    description: item.description ?? item.descriptionEn ?? "",
+                    descriptionEn: item.descriptionEn,
+                    cost: item.cost,
+                    days: item.estimatedDays,
+                    status: item.status,
+                  }))
+                : [{
+                    title: `${t("result.overallScore")}: ${result.complianceScore}`,
+                    titleEn: `Overall Score: ${result.complianceScore}`,
+                    description: result.complianceStatus,
+                    descriptionEn: result.complianceStatus,
+                  }],
+            }, dlLocale);
+          }}
         />
       </div>
       <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{zh}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{locale === "en" ? en : zh}</ReactMarkdown>
       </div>
     </div>
   );
@@ -424,6 +765,8 @@ export default function ResultPage() {
             </Link>
           </div>
         </div>
+
+        {result ? <SourceNotice source={result.source} /> : null}
 
         {result && isComplianceReport(result) ? (
           <div className="mt-8">

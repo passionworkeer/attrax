@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
@@ -29,14 +29,7 @@ const MARKETS: { value: Market; labelKey: string }[] = [
   { value: "AE", labelKey: "markets.AE" },
 ];
 
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/png",
-  "image/gif",
-  "image/webp",
-  "image/bmp",
-  "image/tiff",
-];
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 const ACCEPTED_DOCUMENT_TYPES = [
   "application/pdf",
@@ -102,6 +95,115 @@ function ImagePreview({ file }: { file: File }) {
         <p className="truncate text-sm font-medium">{file.name}</p>
         <p className="mt-0.5 text-xs text-muted-foreground">{formatBytes(file.size)}</p>
       </div>
+    </div>
+  );
+}
+
+interface ImageCarouselProps {
+  files: File[];
+}
+
+function ImageCarousel({ files }: ImageCarouselProps) {
+  const [current, setCurrent] = useState(0);
+  const [urls, setUrls] = useState<Record<number, string>>({});
+
+  useEffect(() => {
+    const cleanup: (() => void)[] = [];
+    const newUrls: Record<number, string> = { ...urls };
+    files.forEach((file, i) => {
+      if (!newUrls[i]) {
+        const u = URL.createObjectURL(file);
+        newUrls[i] = u;
+        cleanup.push(() => URL.revokeObjectURL(u));
+      }
+    });
+    setUrls(newUrls);
+    return () => cleanup.forEach((fn) => fn());
+  }, [files]);
+
+  const prev = useCallback(() => setCurrent((c) => (c > 0 ? c - 1 : files.length - 1)), [files.length]);
+  const next = useCallback(() => setCurrent((c) => (c < files.length - 1 ? c + 1 : 0)), [files.length]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [prev, next]);
+
+  if (files.length === 0 || !urls[current]) return null;
+  const currentFile = files[current];
+
+  return (
+    <div className="space-y-3">
+      {/* Main view */}
+      <div className="relative rounded-2xl border border-border bg-muted/30 overflow-hidden">
+        <div className="relative aspect-[4/3] w-full">
+          <Image
+            src={urls[current]}
+            alt={currentFile.name}
+            fill
+            className="object-contain"
+          />
+          {/* Risk region placeholder overlay */}
+          <div className="absolute inset-0 pointer-events-none" />
+        </div>
+        <div className="border-t border-border bg-blaze-surface px-4 py-3">
+          <p className="truncate text-sm font-medium">{currentFile.name}</p>
+          <p className="mt-0.5 text-xs text-muted-foreground">{formatBytes(currentFile.size)}</p>
+        </div>
+        {/* Prev / Next */}
+        {files.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={prev}
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 text-white hover:bg-black/80 transition-colors"
+              aria-label="Previous"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={next}
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/60 p-2 text-white hover:bg-black/80 transition-colors"
+              aria-label="Next"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+              </svg>
+            </button>
+          </>
+        )}
+        {/* Index badge */}
+        <div className="absolute bottom-3 right-3 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white">
+          {current + 1} / {files.length}
+        </div>
+      </div>
+
+      {/* Thumbnail strip */}
+      {files.length > 1 && (
+        <div className="flex gap-2 overflow-x-auto pb-1">
+          {files.map((file, i) => (
+            <button
+              key={file.name}
+              type="button"
+              onClick={() => setCurrent(i)}
+              className={cn(
+                "relative shrink-0 overflow-hidden rounded-lg border-2 transition-colors",
+                i === current ? "border-blaze-red" : "border-transparent opacity-60 hover:opacity-80"
+              )}
+            >
+              <Image src={urls[i]} alt={file.name} title={file.name} width={64} height={64} className="h-16 w-16 object-cover" />
+              {i !== current ? <span className="sr-only">{file.name}</span> : null}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -213,10 +315,8 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
         />
 
         {images.length > 0 && (
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {images.map((file) => (
-              <ImagePreview key={file.name} file={file} />
-            ))}
+          <div className="space-y-3">
+            <ImageCarousel files={images} />
             <button
               type="button"
               onClick={clearImages}
