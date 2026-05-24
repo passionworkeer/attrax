@@ -1,17 +1,32 @@
-import { mkdirSync, readFileSync, writeFileSync, existsSync, unlinkSync, readdirSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, unlinkSync, writeFileSync } from "fs";
 import { join } from "path";
 import { SESSION_CLEANUP_INTERVAL_MS, SESSION_TTL_MS } from "@/lib/constants";
 import type { ScanStatus } from "@/lib/types";
 
+export type StoredScanStatus = ScanStatus & {
+  accessTokenHash?: string;
+  createdAt: number;
+  updatedAt: number;
+  expiresAt: number;
+};
+
 declare global {
-  var __scanStore: Map<string, ScanStatus> | undefined;
+  var __scanStore: Map<string, StoredScanStatus> | undefined;
   var __sessionTimers: Map<string, NodeJS.Timeout> | undefined;
+  var __clearedSessionIds: Set<string> | undefined;
 }
 
 const SESSION_DIR = join(process.cwd(), "data", "sessions");
 let lastCleanupAt = 0;
 
-function getStore(): Map<string, ScanStatus> {
+function getClearedSessionIds(): Set<string> {
+  if (!globalThis.__clearedSessionIds) {
+    globalThis.__clearedSessionIds = new Set();
+  }
+  return globalThis.__clearedSessionIds;
+}
+
+function getStore(): Map<string, StoredScanStatus> {
   if (!globalThis.__scanStore) {
     globalThis.__scanStore = new Map();
   }
@@ -42,61 +57,103 @@ function ensureSessionDir() {
   }
 }
 
-function loadSessionFromFile(sessionId: string): ScanStatus | null {
+function toStoredSession(session: ScanStatus, accessTokenHash?: string): StoredScanStatus {
+  const now = Date.now();
+  return {
+    ...session,
+    accessTokenHash,
+    createdAt: now,
+    updatedAt: now,
+    expiresAt: now + SESSION_TTL_MS,
+  };
+}
+
+function isExpired(session: StoredScanStatus): boolean {
+  return Date.now() > session.expiresAt;
+}
+
+function loadSessionFromFile(sessionId: string): StoredScanStatus | null {
+  if (getClearedSessionIds().has(sessionId)) return null;
   const filePath = sessionFilePath(sessionId);
   if (!existsSync(filePath)) {
     return null;
   }
   try {
     const raw = readFileSync(filePath, "utf-8");
-    const session = JSON.parse(raw) as ScanStatus & { _timestamp?: number };
-    // Auto-expire: skip if older than SESSION_TTL_MS
-    const ts = session._timestamp;
-    if (!ts || Date.now() - ts > SESSION_TTL_MS) {
-      try { unlinkSync(filePath); } catch { /* ignore */ }
+    const parsed = JSON.parse(raw) as Partial<StoredScanStatus> & ScanStatus & { _timestamp?: number };
+    const timestamp = parsed.updatedAt ?? parsed._timestamp ?? Date.now();
+    const stored: StoredScanStatus = {
+      ...parsed,
+      createdAt: parsed.createdAt ?? timestamp,
+      updatedAt: timestamp,
+      expiresAt: parsed.expiresAt ?? timestamp + SESSION_TTL_MS,
+    };
+    if (isExpired(stored)) {
+      removeSessionFile(sessionId);
       return null;
     }
-    return session;
-  } catch {
+    return stored;
+  } catch (error) {
+    console.warn(`[session-store] failed to load session "${sessionId}"`, error);
     return null;
   }
 }
 
-function persistSession(session: ScanStatus): void {
-  try {
-    ensureSessionDir();
-    const withTimestamp: ScanStatus & { _timestamp: number } = {
-      ...session,
-      _timestamp: Date.now(),
-    };
-    writeFileSync(sessionFilePath(session.sessionId), JSON.stringify(withTimestamp), "utf-8");
-  } catch (error) {
-    console.warn(
-      `[session-store] persistSession: failed to persist "${session.sessionId}"`,
-      error
-    );
+function writeJsonAtomic(filePath: string, value: unknown): void {
+  const serialized = JSON.stringify(value);
+  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  writeFileSync(tmpPath, serialized, "utf-8");
+  if (typeof renameSync === "function") {
+    renameSync(tmpPath, filePath);
+  } else {
+    writeFileSync(filePath, serialized, "utf-8");
   }
 }
 
+function persistSession(session: StoredScanStatus): void {
+  try {
+    ensureSessionDir();
+    writeJsonAtomic(sessionFilePath(session.sessionId), session);
+  } catch (error) {
+    console.warn(`[session-store] failed to persist "${session.sessionId}"`, error);
+  }
+}
+
+function removeSessionFile(sessionId: string): void {
+  try {
+    const filePath = sessionFilePath(sessionId);
+    if (existsSync(filePath)) unlinkSync(filePath);
+  } catch (error) {
+    console.warn(`[session-store] failed to remove "${sessionId}"`, error);
+  }
+}
+
+function scheduleExpiry(session: StoredScanStatus): void {
+  const timers = getTimers();
+  const existing = timers.get(session.sessionId);
+  if (existing) clearTimeout(existing);
+
+  const remaining = Math.max(0, session.expiresAt - Date.now());
+  const timer = setTimeout(() => {
+    getStore().delete(session.sessionId);
+    timers.delete(session.sessionId);
+    removeSessionFile(session.sessionId);
+  }, remaining);
+  timers.set(session.sessionId, timer);
+}
+
 function cleanStaleFiles(): void {
-  if (!existsSync(SESSION_DIR)) return;
   lastCleanupAt = Date.now();
+  if (!existsSync(SESSION_DIR)) return;
   try {
     for (const file of readdirSync(SESSION_DIR)) {
       if (!file.endsWith(".json")) continue;
-      const filePath = join(SESSION_DIR, file);
-      try {
-        const raw = readFileSync(filePath, "utf-8");
-        const session = JSON.parse(raw) as ScanStatus & { _timestamp?: number };
-        if (session._timestamp && Date.now() - session._timestamp > SESSION_TTL_MS) {
-          unlinkSync(filePath);
-        }
-      } catch {
-        // skip malformed files
-      }
+      const sessionId = file.slice(0, -5);
+      const session = loadSessionFromFile(sessionId);
+      if (!session) getStore().delete(sessionId);
     }
-  } catch {
-    // skip on directory read error
+  } catch (error) {
+    console.warn("[session-store] failed to clean stale sessions", error);
   }
 }
 
@@ -106,120 +163,83 @@ function cleanStaleFilesIfDue(): void {
   }
 }
 
-export function createSession(sessionId: string): ScanStatus {
+export function createSession(sessionId: string, accessTokenHash?: string): StoredScanStatus {
+  getClearedSessionIds().delete(sessionId);
   cleanStaleFilesIfDue();
-  const store = getStore();
-  const timers = getTimers();
-  const session: ScanStatus = {
-    sessionId,
-    status: "processing",
-    progress: 0,
-    stageText: "准备中…",
-  };
+  const session = toStoredSession(
+    {
+      sessionId,
+      status: "processing",
+      progress: 0,
+      stageText: "准备中…",
+    },
+    accessTokenHash
+  );
 
-  store.set(sessionId, session);
+  getStore().set(sessionId, session);
   persistSession(session);
-
-  // Clear any existing timer
-  const existing = timers.get(sessionId);
-  if (existing) clearTimeout(existing);
-
-  const timer = setTimeout(() => {
-    store.delete(sessionId);
-    timers.delete(sessionId);
-    try {
-      const filePath = sessionFilePath(sessionId);
-      if (existsSync(filePath)) unlinkSync(filePath);
-    } catch {
-      // ignore cleanup errors
-    }
-  }, SESSION_TTL_MS);
-
-  timers.set(sessionId, timer);
+  scheduleExpiry(session);
   return session;
 }
 
-export function updateSession(sessionId: string, patch: Partial<ScanStatus>) {
+export function updateSession(sessionId: string, patch: Partial<ScanStatus> & { accessTokenHash?: string }) {
   const store = getStore();
-  const current = store.get(sessionId);
+  const current = store.get(sessionId) ?? loadSessionFromFile(sessionId);
   if (!current) {
-    console.warn(`[session-store] updateSession: session "${sessionId}" not found in memory, trying file`);
-    // Try to reload from file in case the session exists on disk
-    const fromFile = loadSessionFromFile(sessionId);
-    if (!fromFile) {
-      console.error(`[session-store] updateSession: session "${sessionId}" not found anywhere`);
-      return;
-    }
-    store.set(sessionId, fromFile);
+    console.warn(`[session-store] updateSession: session "${sessionId}" not found`);
+    return;
   }
 
-  const base = store.get(sessionId)!;
-  const updated: ScanStatus = { ...base, ...patch };
+  const updated: StoredScanStatus = {
+    ...current,
+    ...patch,
+    error: typeof patch.error === "string" ? patch.error : current.error,
+    updatedAt: Date.now(),
+  };
   store.set(sessionId, updated);
   persistSession(updated);
+  scheduleExpiry(updated);
 }
 
-export function getSession(sessionId: string): ScanStatus | undefined {
+export function getSession(sessionId: string): StoredScanStatus | undefined {
+  cleanStaleFilesIfDue();
   const store = getStore();
   const cached = store.get(sessionId);
-  if (cached) return cached;
+  if (cached && !isExpired(cached)) return cached;
+  if (cached) store.delete(sessionId);
 
-  // Not in memory — try loading from file
   const fromFile = loadSessionFromFile(sessionId);
-  if (fromFile) {
-    store.set(sessionId, fromFile);
-    // Restore the expiry timer
-    const timers = getTimers();
-    const existing = timers.get(sessionId);
-    if (existing) clearTimeout(existing);
+  if (!fromFile) return undefined;
 
-    const ts = (fromFile as ScanStatus & { _timestamp?: number })._timestamp;
-    const remaining = ts ? SESSION_TTL_MS - (Date.now() - ts) : SESSION_TTL_MS;
-    if (remaining > 0) {
-      const timer = setTimeout(() => {
-        store.delete(sessionId);
-        timers.delete(sessionId);
-        try {
-          const filePath = sessionFilePath(sessionId);
-          if (existsSync(filePath)) unlinkSync(filePath);
-        } catch {
-          // ignore cleanup errors
-        }
-      }, remaining);
-      timers.set(sessionId, timer);
-    }
+  store.set(sessionId, fromFile);
+  scheduleExpiry(fromFile);
+  return fromFile;
+}
 
-    return fromFile;
-  }
-
-  return undefined;
+export function publicSession(session: ScanStatus): ScanStatus {
+  const { sessionId, status, progress, stageText, result, profitReport, error } = session;
+  return { sessionId, status, progress, stageText, result, profitReport, error };
 }
 
 export function clearStore() {
+  const cleared = getClearedSessionIds();
+  for (const sessionId of getStore().keys()) {
+    cleared.add(sessionId);
+  }
   globalThis.__scanStore = new Map();
-  // Clean up timers
   const timers = getTimers();
   for (const timer of timers.values()) {
     clearTimeout(timer);
   }
   globalThis.__sessionTimers = new Map();
-  // Clean up session files
-  if (existsSync(SESSION_DIR)) {
-    try {
-      for (const file of readdirSync(SESSION_DIR)) {
-        if (file.endsWith(".json")) {
-          try {
-            unlinkSync(join(SESSION_DIR, file));
-          } catch {
-            // skip
-          }
-        }
-      }
-    } catch {
-      // skip
+  if (!existsSync(SESSION_DIR)) return;
+  try {
+    for (const file of readdirSync(SESSION_DIR)) {
+      if (file.endsWith(".json")) unlinkSync(join(SESSION_DIR, file));
     }
+  } catch (error) {
+    console.warn("[session-store] failed to clear store", error);
   }
 }
 
-// Clean stale session files on module load
 cleanStaleFiles();

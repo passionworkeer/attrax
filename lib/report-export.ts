@@ -6,3 +6,4 @@ export { parseMarkdownToDocx, parseMarkdownToPdfText } from "./report-export-mod
 export { downloadReportAsDocx, downloadReportAsPdf } from "./report-export-modules/compliance";
 export { downloadProfitReportAsPdf } from "./report-export-modules/profit-pdf";
 export { downloadProfitReportAsDocx } from "./report-export-modules/profit-docx";
+export { downloadGenericReportAsDocx, downloadGenericReportAsPdf } from "./report-export-modules/generic";

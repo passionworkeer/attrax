@@ -7,6 +7,31 @@ import { useTranslation } from "@/lib/i18n";
 import { downloadProfitReportAsPdf, downloadProfitReportAsDocx } from "@/lib/report-export";
 import type { ProfitReportResult } from "@/lib/types";
 
+type ReportLocale = "zh" | "en";
+
+function DownloadButtons({
+  onPdf,
+  onDocx,
+}: {
+  onPdf: (locale: ReportLocale) => void;
+  onDocx: (locale: ReportLocale) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {(["zh", "en"] as const).map((locale) => (
+        <div key={locale} className="flex overflow-hidden rounded-lg border border-border bg-muted">
+          <button onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-red-500">
+            PDF {locale.toUpperCase()}
+          </button>
+          <button onClick={() => onDocx(locale)} className="border-l border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-blue-500">
+            Word {locale.toUpperCase()}
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const CURRENCY = "¥";
 
 interface MetricRow {
@@ -146,26 +171,10 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             {result.productType} · {result.market} {t("result.market")}
           </p>
         </div>
-        <div className="flex gap-2">
-          <button
-            onClick={() => downloadProfitReportAsPdf(result)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-red-400/50 hover:text-red-500"
-          >
-            <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
-              <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
-            </svg>
-            PDF
-          </button>
-          <button
-            onClick={() => downloadProfitReportAsDocx(result)}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-blue-400/50 hover:text-blue-500"
-          >
-            <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
-              <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
-            </svg>
-            Word
-          </button>
-        </div>
+        <DownloadButtons
+          onPdf={(downloadLocale) => downloadProfitReportAsPdf(result, downloadLocale)}
+          onDocx={(downloadLocale) => downloadProfitReportAsDocx(result, downloadLocale)}
+        />
       </div>
 
       {/* Two-column comparison cards */}

@@ -4,15 +4,18 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { UploadForm } from "@/components/upload/UploadForm";
 import { useTranslation } from "@/lib/i18n";
+import { unwrapApiData } from "@/lib/api-response";
 import type { Category, Market } from "@/components/upload/UploadForm";
 
 type ScanStartResponse = {
   sessionId: string;
+  accessToken: string;
   status: "processing";
   pollUrl: string;
 };
 
 type ScanStartError = {
+  success?: false;
   error?: {
     code?: string;
     reason?: string;
@@ -34,11 +37,12 @@ export default function UploadPage() {
   const [error, setError] = useState<string | null>(null);
 
   function getUploadErrorMessage(payload: ScanStartError): string {
-    const reason = payload.error?.reason;
+    const error = "error" in payload && payload.error ? payload.error : undefined;
+    const reason = error?.reason;
     const key = reason ? SCAN_ERROR_REASON_KEYS[reason] : undefined;
     if (key) return t(key);
-    if (locale === "en") return payload.error?.messageEn ?? t("errors.uploadFailed");
-    return payload.error?.message ?? t("errors.uploadFailed");
+    if (locale === "en") return error?.messageEn ?? t("errors.uploadFailed");
+    return error?.message ?? t("errors.uploadFailed");
   }
 
   async function handleSubmit(data: {
@@ -67,18 +71,21 @@ export default function UploadPage() {
       });
 
       const payload = (await response.json()) as
+        | { success: true; data: ScanStartResponse }
         | ScanStartResponse
         | ScanStartError;
+      const startData = unwrapApiData<ScanStartResponse>(payload);
 
       if (!response.ok) {
         throw new Error(getUploadErrorMessage(payload as ScanStartError));
       }
 
-      if (!("sessionId" in payload)) {
+      if (!startData?.sessionId || !startData.accessToken) {
         throw new Error(t("errors.invalidSessionId"));
       }
 
-      router.push(`/burning/${payload.sessionId}`);
+      sessionStorage.setItem(`scan-token:${startData.sessionId}`, startData.accessToken);
+      router.push(`/burning/${startData.sessionId}`);
     } catch (caughtError) {
       setError(
         caughtError instanceof Error ? caughtError.message : t("errors.uploadFailed")

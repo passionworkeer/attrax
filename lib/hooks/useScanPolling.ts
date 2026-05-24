@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { unwrapApiData } from "@/lib/api-response";
 import type { ScanStatus } from "@/lib/types";
 import {
   POLL_INITIAL_INTERVAL_MS,
@@ -58,8 +59,10 @@ export function useScanPolling(sessionId: string) {
       while (!cancelled) {
         let response: Response;
         try {
+          const token = sessionStorage.getItem(`scan-token:${sessionId}`);
           response = await fetch(`/api/scan/${sessionId}`, {
             cache: "no-store",
+            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
           });
         } catch (error) {
           if (!cancelled) {
@@ -80,12 +83,14 @@ export function useScanPolling(sessionId: string) {
           return;
         }
 
-        let data: unknown;
+        let rawData: unknown;
         try {
-          data = await response.json();
+          rawData = await response.json();
         } catch {
-          data = null;
+          rawData = null;
         }
+
+        const data = unwrapApiData<ScanStatus>(rawData);
 
         if (!isScanStatusLike(data)) {
           if (!cancelled) {

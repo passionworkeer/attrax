@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AgentDecisionTree from "@/components/trace/AgentDecisionTree";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
 
 export default function TracePage({ params }: { params: Promise<{ sessionId?: string }> }) {
@@ -35,10 +36,14 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
   useEffect(() => {
     if (!sessionId || !isClient) return;
 
+    const token = sessionStorage.getItem(`scan-token:${sessionId}`);
+    const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
+
     // 从 API 获取真实 trace 数据
-    fetch(`/api/trace/${sessionId}`, { cache: "no-store" })
+    fetch(`/api/trace/${sessionId}`, { cache: "no-store", headers: authHeaders })
       .then(r => r.ok ? r.json() : null)
-      .then(data => {
+      .then(rawData => {
+        const data = unwrapApiData<{ traceNodes?: unknown[] }>(rawData);
         if (data?.traceNodes) {
           setTraceData(data);
         }
@@ -47,9 +52,10 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
       .catch(() => setLoading(false));
 
     // 同时获取完整扫描结果
-    fetch(`/api/scan/${sessionId}`, { cache: "no-store" })
+    fetch(`/api/scan/${sessionId}`, { cache: "no-store", headers: authHeaders })
       .then(r => r.ok ? r.json() : null)
-      .then(payload => {
+      .then(rawPayload => {
+        const payload = unwrapApiData<{ result?: unknown }>(rawPayload);
         if (payload?.result) {
           setScanResult(payload.result);
           sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(payload.result));

@@ -4,6 +4,7 @@ retriever.py - Parallel retrieval node with Send() fan-out
 
 Uses LangGraph Send() to fan out per-market retrieval.
 """
+import logging
 import os
 from pathlib import Path
 from typing import Optional
@@ -11,6 +12,7 @@ from langgraph.types import Send
 from rag_service.orchestrator.state import GraphState
 
 _APP_ROOT = Path(__file__).parent.parent.parent
+logger = logging.getLogger(__name__)
 
 # Global retriever instance (initialized once, shared across calls)
 _retriever_instance = None
@@ -47,8 +49,8 @@ def _get_retriever():
             chunks = faiss.chunks if faiss else []
             if chunks:
                 _retriever_instance.load_chunks(chunks)
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("Lazy retriever initialization failed", exc_info=exc)
 
     return _retriever_instance
 
@@ -69,7 +71,8 @@ def _retrieve_single_market(query: str, market: str) -> list[dict]:
         for r in results:
             r["market"] = market
         return results
-    except Exception:
+    except Exception as exc:
+        logger.warning("Retrieval failed for market %s", market, exc_info=exc)
         return []
 
 

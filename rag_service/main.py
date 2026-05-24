@@ -30,6 +30,10 @@ _ALLOWED_ORIGINS = [
     ).split(",")
     if origin.strip()
 ]
+_MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024
+_MAX_PDF_SIZE_BYTES = 15 * 1024 * 1024
+_ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp"}
+_RATE_LIMITED_PATHS = {"/scan", "/scan-multipart", "/profit-report"}
 _rate_limit_hits: dict[str, list[float]] = {}
 
 # Load .env so os.environ.get() picks up values
@@ -165,7 +169,7 @@ async def protect_requests(request: Request, call_next):
             content={"error": "Request too large"},
         )
 
-    if request.url.path in {"/scan", "/profit-report"}:
+    if request.url.path in _RATE_LIMITED_PATHS:
         now = time.monotonic()
         ip = _client_ip(request)
         hits = [hit for hit in _rate_limit_hits.get(ip, []) if now - hit < _RATE_LIMIT_WINDOW_SECS]
@@ -257,6 +261,32 @@ def _parse_markets(value: str) -> list[str]:
     return [item.strip() for item in value.split(",") if item.strip()] or ["EU"]
 
 
+def _has_magic(value: bytes, signature: bytes) -> bool:
+    return value.startswith(signature)
+
+
+def _validate_image_upload(upload: UploadFile, content: bytes) -> None:
+    if len(content) > _MAX_IMAGE_SIZE_BYTES:
+        raise HTTPException(status_code=413, detail="Image too large")
+    if upload.content_type not in _ALLOWED_IMAGE_TYPES:
+        raise HTTPException(status_code=400, detail="Unsupported image type")
+    if upload.content_type == "image/jpeg" and not _has_magic(content, b"\xff\xd8\xff"):
+        raise HTTPException(status_code=400, detail="Invalid image content")
+    if upload.content_type == "image/png" and not _has_magic(content, b"\x89PNG"):
+        raise HTTPException(status_code=400, detail="Invalid image content")
+    if upload.content_type == "image/webp" and not (content.startswith(b"RIFF") and content[8:12] == b"WEBP"):
+        raise HTTPException(status_code=400, detail="Invalid image content")
+
+
+def _validate_pdf_upload(upload: UploadFile, content: bytes) -> None:
+    if len(content) > _MAX_PDF_SIZE_BYTES:
+        raise HTTPException(status_code=413, detail="PDF too large")
+    if upload.content_type != "application/pdf" and not (upload.filename or "").lower().endswith(".pdf"):
+        raise HTTPException(status_code=400, detail="Unsupported PDF type")
+    if not _has_magic(content, b"%PDF"):
+        raise HTTPException(status_code=400, detail="Invalid PDF content")
+
+
 async def _build_scan_request_from_multipart(
     query: str,
     product: str,
@@ -268,8 +298,10 @@ async def _build_scan_request_from_multipart(
 ) -> ScanRequest:
     image_items = []
     for image in images:
+        content = await image.read()
+        _validate_image_upload(image, content)
         image_items.append({
-            "buffer": base64.b64encode(await image.read()).decode("ascii"),
+            "buffer": base64.b64encode(content).decode("ascii"),
             "mime_type": image.content_type or "image/jpeg",
             "name": image.filename or "image",
         })
@@ -284,9 +316,11 @@ async def _build_scan_request_from_multipart(
 
     pdf_items = []
     for pdf in pdfs:
+        content = await pdf.read()
+        _validate_pdf_upload(pdf, content)
         pdf_items.append({
             "name": pdf.filename or "document.pdf",
-            "buffer": base64.b64encode(await pdf.read()).decode("ascii"),
+            "buffer": base64.b64encode(content).decode("ascii"),
         })
 
     return ScanRequest(
@@ -379,7 +413,7 @@ async def _run_scan_request(req: ScanRequest) -> ScanResponse:
         raise HTTPException(status_code=504, detail="Scan request timed out. Please try again.")
     except Exception as e:
         logger.exception("run_compliance_graph failed")
-        raise HTTPException(status_code=500, detail=f"Compliance graph error: {e}")
+        raise HTTPException(status_code=500, detail="Compliance graph error")
 
     # Cap displayed documents at 15 — enough to be useful without overwhelming the UI
     DISPLAY_DOC_CAP = 15

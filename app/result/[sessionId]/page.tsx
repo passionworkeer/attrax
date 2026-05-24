@@ -8,12 +8,15 @@ import remarkGfm from "remark-gfm";
 import { buttonVariants } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
 import { mockScanResult, mockProfitReport, mockComplianceReportResult } from "@/lib/mock/scan-result";
-import { downloadReportAsPdf, downloadReportAsDocx } from "@/lib/report-export";
+import { downloadReportAsPdf, downloadReportAsDocx, downloadGenericReportAsPdf, downloadGenericReportAsDocx } from "@/lib/report-export";
 import { ProfitReportView } from "@/components/result/ProfitReportView";
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
-import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult } from "@/lib/types";
+import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult, ReportPackage } from "@/lib/types";
+
+type ReportLocale = "zh" | "en";
 
 function isComplianceReport(r: unknown): r is ComplianceReportResult {
   return (
@@ -30,6 +33,89 @@ function isProfitReport(r: unknown): r is ProfitReportResult {
     r !== null &&
     "barebone" in r &&
     "compliant" in r
+  );
+}
+
+function reportPackageOf(result: ComplianceReportResult): ReportPackage | undefined {
+  const record = result as ComplianceReportResult & { report_package?: ReportPackage };
+  return result.reportPackage ?? record.report_package;
+}
+
+function toMarkdownList(items: string[] | undefined): string {
+  return items?.length ? items.map((item) => `- ${item}`).join("\n") : "- 无";
+}
+
+function buildDecisionMarkdown(result: ComplianceReportResult, locale: ReportLocale): string {
+  const decision = reportPackageOf(result)?.decisionView ?? reportPackageOf(result)?.decision_view;
+  if (decision) {
+    const findings = locale === "en" ? decision.keyFindings ?? decision.key_findings : decision.keyFindings ?? decision.key_findings;
+    return [
+      `## ${locale === "en" ? "AI Decision Report" : "AI 决策报告"}`,
+      "",
+      decision.summary ? `### ${locale === "en" ? "Summary" : "决策摘要"}\n\n${decision.summary}` : "",
+      `### ${locale === "en" ? "Key Findings" : "关键发现"}`,
+      toMarkdownList(findings),
+      decision.recommendedAction || decision.recommended_action
+        ? `### ${locale === "en" ? "Recommended Action" : "建议行动"}\n\n${decision.recommendedAction ?? decision.recommended_action}`
+        : "",
+      `### ${locale === "en" ? "Node Evidence" : "节点证据"}`,
+      toMarkdownList(decision.nodes?.map((node) => `${locale === "en" ? node.labelEn ?? node.label : node.label ?? node.labelEn ?? node.type}: ${locale === "en" ? node.reasoningEn ?? node.reasoning ?? "" : node.reasoning ?? node.reasoningEn ?? ""}`) ?? []),
+    ].filter(Boolean).join("\n\n");
+  }
+
+  return [
+    `## ${locale === "en" ? "AI Decision Report" : "AI 决策报告"}`,
+    "",
+    `### ${locale === "en" ? "Execution Trace" : "执行链路"}`,
+    toMarkdownList(result.agentTrace.map((entry) => `${entry.node}: ${entry.status ?? "UNKNOWN"} ${entry.duration_ms ? `(${Number(entry.duration_ms) / 1000}s)` : ""}`)),
+    `### ${locale === "en" ? "Retrieved Evidence" : "检索证据"}`,
+    toMarkdownList(result.retrievedChunks.map((chunk) => `${chunk.region} · ${chunk.docName} · ${chunk.articleNo} · score ${chunk.score.toFixed(2)}`)),
+  ].join("\n\n");
+}
+
+function buildRoadmapMarkdown(result: ComplianceReportResult, locale: ReportLocale): string {
+  const roadmap = reportPackageOf(result)?.roadmap;
+  const items = roadmap?.items ?? [];
+  const fallback = [
+    `${locale === "en" ? "Compliance score" : "合规评分"}: ${result.complianceScore}`,
+    `${locale === "en" ? "Status" : "状态"}: ${result.complianceStatus}`,
+    `${locale === "en" ? "Markets" : "市场"}: ${result.targetMarkets.join(", ")}`,
+  ];
+
+  return [
+    `## ${locale === "en" ? "Compliance Roadmap" : "合规路线图"}`,
+    "",
+    roadmap?.totalDays ? `${locale === "en" ? "Total days" : "总工期"}: ${roadmap.totalDays}` : "",
+    roadmap?.totalCost ? `${locale === "en" ? "Estimated cost" : "预估成本"}: ${roadmap.totalCost}` : "",
+    `### ${locale === "en" ? "Steps" : "执行步骤"}`,
+    items.length
+      ? toMarkdownList(items.map((item) => `${locale === "en" ? item.titleEn ?? item.title : item.title ?? item.titleEn}: ${locale === "en" ? item.descriptionEn ?? item.description ?? "" : item.description ?? item.descriptionEn ?? ""} ${item.cost ? `(${item.cost})` : ""}`))
+      : toMarkdownList(fallback),
+  ].filter(Boolean).join("\n\n");
+}
+
+function DownloadButtons({
+  onPdf,
+  onDocx,
+  label,
+}: {
+  onPdf: (locale: ReportLocale) => void;
+  onDocx: (locale: ReportLocale) => void;
+  label: string;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {(["zh", "en"] as const).map((locale) => (
+        <div key={locale} className="flex overflow-hidden rounded-lg border border-border bg-muted">
+          <button onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-red-500">
+            {label} PDF {locale.toUpperCase()}
+          </button>
+          <button onClick={() => onDocx(locale)} className="border-l border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-blue-500">
+            Word {locale.toUpperCase()}
+          </button>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -115,32 +201,57 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
               </span>
             )}
           </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => downloadReportAsPdf(result)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-red-400/50 hover:text-red-500"
-            >
-              <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
-                <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
-              </svg>
-              PDF
-            </button>
-            <button
-              onClick={() => downloadReportAsDocx(result)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-muted px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-blue-400/50 hover:text-blue-500"
-            >
-              <svg viewBox="0 0 16 16" fill="currentColor" className="size-3.5">
-                <path d="M8 0a.75.75 0 0 1 .75.75v6.5h5.5a.75.75 0 0 1 0 1.5H8.75A.75.75 0 0 1 8 8.75v6.5A.75.75 0 0 1 7.25 16h-4a.75.75 0 0 1-.75-.75v-6.5H1.75a.75.75 0 0 1 0-1.5H7.25V.75A.75.75 0 0 1 8 0Z"/>
-              </svg>
-              Word
-            </button>
-          </div>
+          <DownloadButtons
+            label="合规"
+            onPdf={(locale) => downloadReportAsPdf(result, locale)}
+            onDocx={(locale) => downloadReportAsDocx(result, locale)}
+          />
         </div>
         <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {result.complianceReport}
           </ReactMarkdown>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function DecisionReportPanel({ result }: { result: ComplianceReportResult }) {
+  const zh = buildDecisionMarkdown(result, "zh");
+  const en = buildDecisionMarkdown(result, "en");
+  return (
+    <div className="rounded-2xl border border-border bg-card">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
+        <h3 className="text-sm font-semibold">AI 决策报告</h3>
+        <DownloadButtons
+          label="决策"
+          onPdf={(locale) => downloadGenericReportAsPdf({ sessionId: result.sessionId, title: "AI 决策报告", titleEn: "AI Decision Report", markdown: zh, markdownEn: en, filename: `AI决策报告_${result.sessionId}`, filenameEn: `AIDecisionReport_${result.sessionId}` }, locale)}
+          onDocx={(locale) => downloadGenericReportAsDocx({ sessionId: result.sessionId, title: "AI 决策报告", titleEn: "AI Decision Report", markdown: zh, markdownEn: en, filename: `AI决策报告_${result.sessionId}`, filenameEn: `AIDecisionReport_${result.sessionId}` }, locale)}
+        />
+      </div>
+      <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{zh}</ReactMarkdown>
+      </div>
+    </div>
+  );
+}
+
+function RoadmapReportPanel({ result }: { result: ComplianceReportResult }) {
+  const zh = buildRoadmapMarkdown(result, "zh");
+  const en = buildRoadmapMarkdown(result, "en");
+  return (
+    <div className="rounded-2xl border border-border bg-card">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
+        <h3 className="text-sm font-semibold">合规路线图报告</h3>
+        <DownloadButtons
+          label="路线图"
+          onPdf={(locale) => downloadGenericReportAsPdf({ sessionId: result.sessionId, title: "合规路线图报告", titleEn: "Compliance Roadmap Report", markdown: zh, markdownEn: en, filename: `合规路线图_${result.sessionId}`, filenameEn: `ComplianceRoadmap_${result.sessionId}` }, locale)}
+          onDocx={(locale) => downloadGenericReportAsDocx({ sessionId: result.sessionId, title: "合规路线图报告", titleEn: "Compliance Roadmap Report", markdown: zh, markdownEn: en, filename: `合规路线图_${result.sessionId}`, filenameEn: `ComplianceRoadmap_${result.sessionId}` }, locale)}
+        />
+      </div>
+      <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{zh}</ReactMarkdown>
       </div>
     </div>
   );
@@ -221,6 +332,9 @@ export default function ResultPage() {
 
     sessionStorage.setItem("lastSessionId", sessionId);
 
+    const token = sessionStorage.getItem(`scan-token:${sessionId}`);
+    const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
+
     const cached = sessionStorage.getItem(`scan:${sessionId}`);
     if (cached) {
       try {
@@ -229,9 +343,10 @@ export default function ResultPage() {
           setResult(cachedResult);
           setMessage(t("result.restored"));
         });
-        fetch(`/api/scan/${sessionId}`, { cache: "no-store" })
+        fetch(`/api/scan/${sessionId}`, { cache: "no-store", headers: authHeaders })
           .then((r) => r.ok ? r.json() : null)
-          .then((payload) => {
+          .then((rawPayload) => {
+            const payload = unwrapApiData<ScanStatus>(rawPayload);
             if (payload?.profitReport && isProfitReport(payload.profitReport)) {
               setProfitReport(payload.profitReport);
             }
@@ -244,12 +359,17 @@ export default function ResultPage() {
     }
 
     async function loadResult() {
-      const response = await fetch(`/api/scan/${sessionId}`, { cache: "no-store" });
+      const response = await fetch(`/api/scan/${sessionId}`, { cache: "no-store", headers: authHeaders });
       if (!response.ok) {
         startTransition(() => setMessage(t("result.notFound")));
         return;
       }
-      const payload: ScanStatus = await response.json();
+      const rawPayload: unknown = await response.json();
+      const payload = unwrapApiData<ScanStatus>(rawPayload);
+      if (!payload) {
+        startTransition(() => setMessage(t("result.notFound")));
+        return;
+      }
       if (payload.status === "ready" && payload.result) {
         startTransition(() => {
           setResult(payload.result ?? null);
@@ -312,6 +432,8 @@ export default function ResultPage() {
                 <TabsList>
                   <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
                   <TabsTrigger value="profit">{t("result.costProfitReport")}</TabsTrigger>
+                  <TabsTrigger value="decision">AI 决策报告</TabsTrigger>
+                  <TabsTrigger value="roadmap">{t("result.complianceRoadmap")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="compliance">
                   <ComplianceReportView result={result} />
@@ -319,9 +441,30 @@ export default function ResultPage() {
                 <TabsContent value="profit">
                   <ProfitReportView result={profitReport} />
                 </TabsContent>
+                <TabsContent value="decision">
+                  <DecisionReportPanel result={result} />
+                </TabsContent>
+                <TabsContent value="roadmap">
+                  <RoadmapReportPanel result={result} />
+                </TabsContent>
               </Tabs>
             ) : (
-              <ComplianceReportView result={result} />
+              <Tabs defaultValue="compliance">
+                <TabsList>
+                  <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
+                  <TabsTrigger value="decision">AI 决策报告</TabsTrigger>
+                  <TabsTrigger value="roadmap">{t("result.complianceRoadmap")}</TabsTrigger>
+                </TabsList>
+                <TabsContent value="compliance">
+                  <ComplianceReportView result={result} />
+                </TabsContent>
+                <TabsContent value="decision">
+                  <DecisionReportPanel result={result} />
+                </TabsContent>
+                <TabsContent value="roadmap">
+                  <RoadmapReportPanel result={result} />
+                </TabsContent>
+              </Tabs>
             )}
           </div>
         ) : result ? (

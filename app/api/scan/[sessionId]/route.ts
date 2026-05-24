@@ -1,38 +1,40 @@
-import { NextResponse } from "next/server";
 import { createMockScanResult } from "@/lib/mock/scan-result";
 import { getSession } from "@/lib/pipeline/session-store";
-import { t as serverT } from "@/lib/i18n";
+import { serverT } from "@/lib/server-i18n";
+import { ok, fail } from "@/lib/api-response";
+import { requireSessionAccess, sessionPayload } from "@/app/api/session-access";
 
 export const runtime = "nodejs";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ sessionId: string }> }
 ) {
   const { sessionId } = await context.params;
 
   if (sessionId === "demo") {
-    return NextResponse.json({
+    return ok({
       sessionId: "demo",
-      status: "ready",
+      status: "ready" as const,
       progress: 100,
       stageText: "完成",
-      result: createMockScanResult("demo"),
+      result: { ...createMockScanResult("demo"), source: "demo" as const },
     });
   }
 
   const session = getSession(sessionId);
   if (!session) {
-    return NextResponse.json(
+    return fail(
       {
-        error: {
-          code: "NOT_FOUND",
-          message: serverT("errors.sessionNotFound", "zh"),
-        },
+        code: "NOT_FOUND",
+        message: serverT("errors.sessionNotFound", "zh"),
       },
       { status: 404 }
     );
   }
 
-  return NextResponse.json(session);
+  const denied = requireSessionAccess(request, session);
+  if (denied) return denied;
+
+  return ok(sessionPayload(session));
 }
