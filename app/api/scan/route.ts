@@ -1,16 +1,19 @@
-import { NextResponse } from "next/server";
 import { ulid } from "ulid";
-import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
-import { runScan } from "@/lib/pipeline/scan";
+import { createMockComplianceReportResult, createMockProfitReport } from "@/lib/mock/scan-result";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
+import { enqueueScan } from "@/lib/pipeline/scan-queue";
+import { ok, fail } from "@/lib/api-response";
+import { createAccessToken, hashAccessToken } from "@/lib/pipeline/session-auth";
+import { checkRateLimit, clientIp } from "@/lib/rate-limit";
 import {
+  API_RATE_LIMIT_WINDOW_MS,
+  API_SCAN_RATE_LIMIT,
   MAX_DOCUMENT_FILES,
-  MAX_DOCUMENT_SIZE_BYTES,
   MAX_IMAGE_FILES,
-  MAX_IMAGE_SIZE_BYTES,
 } from "@/lib/constants";
+import { validateUploadFile } from "@/lib/upload-validation";
 import { StartScanRequestSchema } from "@/lib/schemas";
-import { getTranslations, t as serverT } from "@/lib/i18n";
+import { SCAN_STAGE_TEXT, serverT } from "@/lib/server-i18n";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -21,7 +24,11 @@ type ScanErrorReason =
   | "TOO_MANY_DOCUMENTS"
   | "TOO_MANY_IMAGES"
   | "IMAGE_TOO_LARGE"
-  | "DOCUMENT_TOO_LARGE";
+  | "DOCUMENT_TOO_LARGE"
+  | "UNSUPPORTED_IMAGE_TYPE"
+  | "UNSUPPORTED_DOCUMENT_TYPE"
+  | "INVALID_FILE_SIGNATURE"
+  | "RATE_LIMITED";
 
 const SCAN_ERROR_KEYS: Record<ScanErrorReason, string> = {
   INVALID_REQUEST: "errors.invalidRequest",
@@ -30,20 +37,22 @@ const SCAN_ERROR_KEYS: Record<ScanErrorReason, string> = {
   TOO_MANY_IMAGES: "errors.invalidRequest",
   IMAGE_TOO_LARGE: "errors.invalidRequest",
   DOCUMENT_TOO_LARGE: "errors.invalidRequest",
+  UNSUPPORTED_IMAGE_TYPE: "errors.invalidRequest",
+  UNSUPPORTED_DOCUMENT_TYPE: "errors.invalidRequest",
+  INVALID_FILE_SIGNATURE: "errors.invalidRequest",
+  RATE_LIMITED: "errors.invalidRequest",
 };
 
-function scanBadInput(reason: ScanErrorReason) {
+function scanBadInput(reason: ScanErrorReason, status = 400) {
   const key = SCAN_ERROR_KEYS[reason];
-  return NextResponse.json(
+  return fail(
     {
-      error: {
-        code: "BAD_INPUT",
-        reason,
-        message: serverT(key, "zh"),
-        messageEn: serverT(key, "en"),
-      },
+      code: status === 429 ? "RATE_LIMITED" : "BAD_INPUT",
+      reason,
+      message: serverT(key, "zh"),
+      messageEn: serverT(key, "en"),
     },
-    { status: 400 }
+    { status }
   );
 }
 
@@ -68,8 +77,7 @@ function parseMarkets(input: FormDataEntryValue | null): Market[] {
 }
 
 function runDemoSimulation(sessionId: string) {
-  const tx = getTranslations("zh");
-  const stages = tx.scanStages;
+  const stages = SCAN_STAGE_TEXT.zh;
 
   setTimeout(() => {
     updateSession(sessionId, {
@@ -90,13 +98,17 @@ function runDemoSimulation(sessionId: string) {
       status: "ready",
       progress: 100,
       stageText: `✅ ${stages.reportComplete}`,
-      result: createMockScanResult(sessionId),
+      result: { ...createMockComplianceReportResult(sessionId), source: "demo" },
       profitReport: createMockProfitReport(sessionId),
     });
   }, 4500);
 }
 
 export async function POST(request: Request) {
+  if (!checkRateLimit(`scan:${clientIp(request)}`, API_SCAN_RATE_LIMIT, API_RATE_LIMIT_WINDOW_MS)) {
+    return scanBadInput("RATE_LIMITED", 429);
+  }
+
   let formData: FormData;
   try {
     formData = await request.formData();
@@ -119,12 +131,14 @@ export async function POST(request: Request) {
     return scanBadInput("TOO_MANY_DOCUMENTS");
   }
 
-  if (imageFiles.some((file) => file.size > MAX_IMAGE_SIZE_BYTES)) {
-    return scanBadInput("IMAGE_TOO_LARGE");
+  for (const file of imageFiles) {
+    const error = await validateUploadFile(file, "image");
+    if (error) return scanBadInput(error);
   }
 
-  if (documentFiles.some((file) => file.size > MAX_DOCUMENT_SIZE_BYTES)) {
-    return scanBadInput("DOCUMENT_TOO_LARGE");
+  for (const file of documentFiles) {
+    const error = await validateUploadFile(file, "document");
+    if (error) return scanBadInput(error);
   }
 
   const parsed = StartScanRequestSchema.safeParse({
@@ -139,12 +153,14 @@ export async function POST(request: Request) {
   }
 
   const sessionId = `scan_${ulid()}`;
+  const accessToken = createAccessToken();
   createSession(sessionId);
+  updateSession(sessionId, { accessTokenHash: hashAccessToken(accessToken) });
 
   if (process.env.DEMO_MODE === "true") {
     runDemoSimulation(sessionId);
-    return NextResponse.json(
-      { sessionId, status: "processing", pollUrl: `/api/scan/${sessionId}` },
+    return ok(
+      { sessionId, accessToken, status: "processing", pollUrl: `/api/scan/${sessionId}` },
       { status: 202 }
     );
   }
@@ -226,27 +242,24 @@ export async function POST(request: Request) {
   const documents = [...textDocs, ...docxDocs];
 
   // PDFs: send as base64 for backend pdfplumber extraction
-  const pdfs = pdfFiles.map((file) => ({
-    name: file.name,
-    file,
-    mimeType: "application/pdf",
-  }));
+  const pdfs = await Promise.all(
+    pdfFiles.map(async (file) => ({
+      name: file.name,
+      buffer: Buffer.from(await file.arrayBuffer()),
+      mimeType: "application/pdf",
+    }))
+  );
 
-  void runScan(sessionId, {
+  enqueueScan(sessionId, {
     images: imageData,
     documents,
     pdfs,
     category: parsed.data.category as ProductCategory,
     markets: parsed.data.markets,
-  }).catch((error) => {
-    updateSession(sessionId, {
-      status: "failed",
-      error: error instanceof Error ? error.message : "SCAN_FAILED",
-    });
   });
 
-  return NextResponse.json(
-    { sessionId, status: "processing", pollUrl: `/api/scan/${sessionId}` },
+  return ok(
+    { sessionId, accessToken, status: "processing", pollUrl: `/api/scan/${sessionId}` },
     { status: 202 }
   );
 }

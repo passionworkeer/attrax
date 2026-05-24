@@ -43,6 +43,19 @@ const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions, mockExt
   })
 );
 
+vi.mock("@/lib/pipeline/scan-queue", () => ({
+  enqueueScan: (sessionId: string, opts: RunScanOptions) => {
+    void mockRunScan(sessionId, opts).catch((error: unknown) => {
+      mockUpdateSession(sessionId, {
+        status: "failed",
+        progress: 100,
+        stageText: "扫描失败，请稍后重试。",
+        error: error instanceof Error ? error.message : "SCAN_FAILED",
+      });
+    });
+  },
+}));
+
 vi.mock("@/lib/pipeline/scan", () => ({
   runScan: mockRunScan,
 }));
@@ -59,6 +72,16 @@ vi.mock("@/lib/mock/scan-result", () => ({
     complianceScore: 85,
     scoreGrade: "B",
     complianceStatus: "PASS",
+  })),
+  createMockComplianceReportResult: vi.fn((id: string) => ({
+    sessionId: id,
+    complianceScore: 85,
+    scoreGrade: "B",
+    complianceStatus: "PASS",
+    report: "## 合规报告",
+    agentTrace: [],
+    retrievedChunks: [],
+    targetMarkets: ["EU"],
   })),
   createMockProfitReport: vi.fn((id: string) => ({
     sessionId: id,
@@ -181,7 +204,7 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       expect(opts.pdfs).toHaveLength(1);
       // In Node.js test environment, File.name may be "blob" - just verify PDF is processed
       expect(opts.pdfs[0].mimeType).toBe("application/pdf");
-      expect(opts.pdfs[0].file).toBeInstanceOf(File);
+      expect(opts.pdfs[0].buffer).toBeInstanceOf(Buffer);
     });
 
     it("processes PDF files by extension", async () => {
@@ -424,7 +447,7 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       expect(opts.images[0].mimeType).toBe("image/jpeg");
     });
 
-    it("handles images without mime type", async () => {
+    it("rejects images without mime type", async () => {
       const image = new File([toArrayBuffer(minimalJpeg())], "photo.noext", { type: "" });
 
       const { POST } = await import("@/app/api/scan/route");
@@ -434,9 +457,8 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       });
       const res = await POST(req);
 
-      expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.images[0].mimeType).toBe("application/octet-stream");
+      expect(res.status).toBe(400);
+      expect(mockRunScan).not.toHaveBeenCalled();
     });
   });
 

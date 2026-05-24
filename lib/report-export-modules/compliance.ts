@@ -16,6 +16,7 @@ import type { ComplianceReportResult } from "@/lib/types";
 import type { Locale } from "./shared";
 import {
   complianceStatusLabel,
+  embedFont,
   marketLabel,
   parseMarkdownToDocx,
   parseMarkdownToPdfText,
@@ -28,15 +29,7 @@ export async function downloadReportAsPdf(result: ComplianceReportResult, locale
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
   // Embed Noto Sans SC (supports Chinese) before any text is written.
-  const fontBuffer = await fetch("/fonts/NotoSansSC-Regular.ttf").then((r) => r.arrayBuffer());
-  const fontBlob = new Blob([fontBuffer], { type: "font/truetype" });
-  const fontUrl = URL.createObjectURL(fontBlob);
-  try {
-    doc.addFont(fontUrl, "NotoSansSC", "normal");
-    doc.setFont("NotoSansSC", "normal");
-  } finally {
-    URL.revokeObjectURL(fontUrl);
-  }
+  await embedFont(doc);
 
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();

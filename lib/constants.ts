@@ -12,3 +12,6 @@ export const MAX_DOCUMENT_SIZE_BYTES = 15 * 1024 * 1024;
 export const POLL_INITIAL_INTERVAL_MS = 800;
 export const POLL_MAX_INTERVAL_MS = 4_000;
 export const POLL_MAX_DURATION_MS = 3 * 60 * 1000;
+
+export const API_RATE_LIMIT_WINDOW_MS = 60 * 1000;
+export const API_SCAN_RATE_LIMIT = 10;

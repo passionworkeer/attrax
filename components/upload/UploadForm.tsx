@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
@@ -79,7 +79,16 @@ function DocumentIcon({ mimeType }: { mimeType: string }) {
 }
 
 function ImagePreview({ file }: { file: File }) {
-  const url = URL.createObjectURL(file);
+  const [url, setUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    const nextUrl = URL.createObjectURL(file);
+    setUrl(nextUrl);
+    return () => URL.revokeObjectURL(nextUrl);
+  }, [file]);
+
+  if (!url) return null;
+
   return (
     <div className="relative flex items-center gap-3 rounded-xl border border-border bg-muted/40 p-3">
       <Image
@@ -88,7 +97,6 @@ function ImagePreview({ file }: { file: File }) {
         width={64}
         height={64}
         className="h-16 w-16 shrink-0 rounded-lg object-cover"
-        onLoad={() => URL.revokeObjectURL(url)}
       />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm font-medium">{file.name}</p>

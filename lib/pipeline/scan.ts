@@ -54,7 +54,7 @@ export interface RunScanInput {
   }>;
   pdfs?: Array<{
     name: string;
-    file: File;
+    buffer: Buffer;
     mimeType: string;
   }>;
   category: ProductCategory;
@@ -154,7 +154,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         );
       });
       (pdfs ?? []).forEach((pdf) => {
-        formData.append("pdfs", pdf.file, pdf.name);
+        formData.append(
+          "pdfs",
+          new Blob([new Uint8Array(pdf.buffer)], { type: pdf.mimeType }),
+          pdf.name
+        );
       });
 
       resp = await fetch(`${RAG_SERVICE_URL}/scan-multipart`, {
@@ -167,8 +171,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     }
 
     if (!resp.ok) {
-      const errorText = await resp.text().catch(() => "Unknown error");
-      throw new Error(`RAG service returned ${resp.status}: ${errorText}`);
+      throw new Error(`RAG_SERVICE_HTTP_${resp.status}`);
     }
 
     ragResponse = (await resp.json()) as RagServiceResponse;
@@ -183,7 +186,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       status: "ready",
       progress: 100,
       stageText: stages.demoResultGenerated,
-      result: createMockScanResult(sessionId),
+      result: { ...createMockScanResult(sessionId), source: "fallback" },
       profitReport: createMockProfitReport(sessionId),
       error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
     });
@@ -241,6 +244,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     checklist: undefined,
     generatedAt: new Date().toISOString(),
     modelInfo: { ragProvider: "cohere-anthropic", latencyMs: 0 },
+    source: "real",
     reportPackage,
   };
 

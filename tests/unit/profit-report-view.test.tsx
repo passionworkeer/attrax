@@ -171,7 +171,7 @@ describe('ProfitReportView component', () => {
           <ProfitReportView result={baseResult} />
         </TranslationProvider>
       )
-      expect(screen.getByText('PDF')).toBeInTheDocument()
+      expect(screen.getByText('PDF ZH')).toBeInTheDocument()
     })
 
     it('renders DOCX export button', () => {
@@ -180,7 +180,7 @@ describe('ProfitReportView component', () => {
           <ProfitReportView result={baseResult} />
         </TranslationProvider>
       )
-      expect(screen.getByText('Word')).toBeInTheDocument()
+      expect(screen.getByText('Word ZH')).toBeInTheDocument()
     })
 
     it('calls downloadProfitReportAsPdf when PDF button is clicked', () => {
@@ -189,8 +189,8 @@ describe('ProfitReportView component', () => {
           <ProfitReportView result={baseResult} />
         </TranslationProvider>
       )
-      fireEvent.click(screen.getByText('PDF'))
-      expect(reportExport.downloadProfitReportAsPdf).toHaveBeenCalledWith(baseResult)
+      fireEvent.click(screen.getByText('PDF ZH'))
+      expect(reportExport.downloadProfitReportAsPdf).toHaveBeenCalledWith(baseResult, 'zh')
     })
 
     it('calls downloadProfitReportAsDocx when Word button is clicked', () => {
@@ -199,8 +199,8 @@ describe('ProfitReportView component', () => {
           <ProfitReportView result={baseResult} />
         </TranslationProvider>
       )
-      fireEvent.click(screen.getByText('Word'))
-      expect(reportExport.downloadProfitReportAsDocx).toHaveBeenCalledWith(baseResult)
+      fireEvent.click(screen.getByText('Word ZH'))
+      expect(reportExport.downloadProfitReportAsDocx).toHaveBeenCalledWith(baseResult, 'zh')
     })
   })
 

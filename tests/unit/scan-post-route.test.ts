@@ -31,6 +31,12 @@ const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions } = vi.h
   })
 );
 
+vi.mock("@/lib/pipeline/scan-queue", () => ({
+  enqueueScan: (sessionId: string, opts: RunScanOptions) => {
+    void mockRunScan(sessionId, opts);
+  },
+}));
+
 vi.mock("@/lib/pipeline/scan", () => ({
   runScan: mockRunScan,
 }));
@@ -46,6 +52,16 @@ vi.mock("@/lib/mock/scan-result", () => ({
     sessionId: id,
     complianceScore: 72,
     scoreGrade: "B",
+  })),
+  createMockComplianceReportResult: vi.fn((id: string) => ({
+    sessionId: id,
+    complianceScore: 72,
+    scoreGrade: "B",
+    complianceStatus: "WARN",
+    report: "## 合规报告",
+    agentTrace: [],
+    retrievedChunks: [],
+    targetMarkets: ["EU"],
   })),
   createMockProfitReport: vi.fn((id: string) => ({
     sessionId: id,

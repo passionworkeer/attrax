@@ -15,7 +15,7 @@
     "test:e2e:headed": "npx playwright test --headed",
     "test:pressure": "node tests/pressure/improved-load-test.js smoke",
     "test:pressure:load": "node tests/pressure/improved-load-test.js load",
-    "test:all": "npm run test && npm run test:e2e"
+    "test:all": "npm run test && npm run test:e2e && D:\\python\\python.exe -m pytest rag_service/tests/ -v"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",

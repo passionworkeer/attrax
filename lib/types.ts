@@ -98,6 +98,7 @@ export interface ScanResult {
     visionProvider: "claude" | "openai" | "gemini" | "mock";
     latencyMs: number;
   };
+  source?: "real" | "fallback" | "demo";
 }
 
 export interface ComplianceReportResult {
@@ -139,6 +140,7 @@ export interface ComplianceReportResult {
   checklist: undefined;
   generatedAt: string;
   modelInfo: { ragProvider: string; latencyMs: number };
+  source?: "real" | "fallback" | "demo";
 }
 
 export interface ScanStatus {

@@ -1,4 +1,4 @@
-import type { ScanResult, ProfitReportResult } from "@/lib/types";
+import type { ScanResult, ProfitReportResult, ComplianceReportResult } from "@/lib/types";
 
 export function createMockScanResult(sessionId = "demo"): ScanResult {
   const now = new Date().toISOString();
@@ -124,7 +124,7 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
 }
 
 /** Mock ComplianceReportResult — used for demo Tab view */
-export function createMockComplianceReportResult(sessionId = "demo") {
+export function createMockComplianceReportResult(sessionId = "demo"): ComplianceReportResult {
   const now = new Date().toISOString();
   return {
     sessionId,

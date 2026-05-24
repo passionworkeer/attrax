@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import ComplianceTimeline from "@/components/trace/ComplianceTimeline";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
 
 interface RoadmapItem {
@@ -55,10 +56,14 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
   useEffect(() => {
     if (!sessionId || !isClient) return;
 
+    const token = sessionStorage.getItem(`scan-token:${sessionId}`);
+    const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
+
     // 从 API 获取真实路线图数据
-    fetch(`/api/roadmap/${sessionId}`, { cache: "no-store" })
+    fetch(`/api/roadmap/${sessionId}`, { cache: "no-store", headers: authHeaders })
       .then(r => r.ok ? r.json() : null)
-      .then(data => {
+      .then(rawData => {
+        const data = unwrapApiData<{ items?: RoadmapItem[] }>(rawData);
         if (data?.items) {
           setRoadmapData(data);
         }
@@ -67,9 +72,10 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
       .catch(() => setLoading(false));
 
     // 同时获取完整扫描结果
-    fetch(`/api/scan/${sessionId}`, { cache: "no-store" })
+    fetch(`/api/scan/${sessionId}`, { cache: "no-store", headers: authHeaders })
       .then(r => r.ok ? r.json() : null)
-      .then(payload => {
+      .then(rawPayload => {
+        const payload = unwrapApiData<{ result?: unknown }>(rawPayload);
         if (payload?.result) {
           sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(payload.result));
         }

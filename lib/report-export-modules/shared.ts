@@ -132,14 +132,15 @@ export function parseMarkdownToPdfText(text: string): string {
 
 export async function embedFont(doc: jsPDF): Promise<void> {
   const fontBuffer = await fetch("/fonts/NotoSansSC-Regular.ttf").then((r) => r.arrayBuffer());
-  const fontBlob = new Blob([fontBuffer], { type: "font/truetype" });
-  const fontUrl = URL.createObjectURL(fontBlob);
-  try {
-    doc.addFont(fontUrl, "NotoSansSC", "normal");
-    doc.setFont("NotoSansSC", "normal");
-  } finally {
-    URL.revokeObjectURL(fontUrl);
+  const binary = Array.from(new Uint8Array(fontBuffer), (byte) => String.fromCharCode(byte)).join("");
+  const base64 = btoa(binary);
+  if ("addFileToVFS" in doc && typeof doc.addFileToVFS === "function") {
+    doc.addFileToVFS("NotoSansSC-Regular.ttf", base64);
+    doc.addFont("NotoSansSC-Regular.ttf", "NotoSansSC", "normal");
+  } else {
+    doc.addFont(base64, "NotoSansSC", "normal");
   }
+  doc.setFont("NotoSansSC", "normal");
 }
 
 export function pdfCheckBreak(doc: jsPDF, y: number, margin: number, pageHeight: number, needed = 14): { y: number; newPage: boolean } {

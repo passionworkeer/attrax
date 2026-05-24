@@ -1,28 +1,32 @@
-import { NextResponse } from "next/server";
 import { getSession } from "@/lib/pipeline/session-store";
-import { t as serverT } from "@/lib/i18n";
+import { serverT } from "@/lib/server-i18n";
+import { ok, fail } from "@/lib/api-response";
+import { requireSessionAccess } from "@/app/api/session-access";
 import type { ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ sessionId: string }> }
 ) {
   const { sessionId } = await context.params;
 
   const session = getSession(sessionId);
   if (!session) {
-    return NextResponse.json(
-      { error: { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") } },
+    return fail(
+      { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") },
       { status: 404 }
     );
   }
 
+  const denied = requireSessionAccess(request, session);
+  if (denied) return denied;
+
   const result = session.result;
   if (!result) {
-    return NextResponse.json(
-      { error: { code: "NOT_READY", message: serverT("errors.resultNotReady", "zh") } },
+    return fail(
+      { code: "NOT_READY", message: serverT("errors.resultNotReady", "zh") },
       { status: 404 }
     );
   }
@@ -75,7 +79,7 @@ export async function GET(
         confidence: entry.score || 0,
       }));
 
-  return NextResponse.json({
+  return ok({
     sessionId,
     totalTime: totalTime.toFixed(1),
     steps,

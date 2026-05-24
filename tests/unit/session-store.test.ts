@@ -145,7 +145,7 @@ describe('Session Store', () => {
       createSession('test_persist_update')
       updateSession('test_persist_update', { progress: 75 })
 
-      expect(mockWriteFileSync).toHaveBeenCalledTimes(2) // create + update
+      expect(mockWriteFileSync).toHaveBeenCalledTimes(4) // temp + final writes for create + update
     })
 
     it('updates stage text', () => {
@@ -252,12 +252,12 @@ describe('Session Store', () => {
       expect(mockReadFileSync).toHaveBeenCalled()
     })
 
-    it('logs error when session not found anywhere', () => {
-      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    it('logs warning when session not found anywhere', () => {
+      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
       updateSession('completely_missing', { progress: 50 })
 
-      expect(consoleErrorSpy).toHaveBeenCalled()
+      expect(consoleWarnSpy).toHaveBeenCalled()
     })
   })
 

@@ -28,7 +28,7 @@ import '@testing-library/jest-dom'
 // Pass a plain function to vi.fn so the result is constructible with `new`.
 const jsPDFMethods = vi.hoisted(() => {
   const inst = {
-    addFont: vi.fn(), setFont: vi.fn(), addPage: vi.fn(),
+    addFont: vi.fn(), addFileToVFS: vi.fn(), setFont: vi.fn(), addPage: vi.fn(),
     getNumberOfPages: vi.fn(() => 1), setPage: vi.fn(),
     getTextWidth: vi.fn(() => 20), roundedRect: vi.fn(), line: vi.fn(),
     setFontSize: vi.fn(), setTextColor: vi.fn(), setDrawColor: vi.fn(),
