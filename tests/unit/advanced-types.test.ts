@@ -3,7 +3,6 @@ import type {
   ComplianceReportResult, 
   ProfitReportResult, 
   CostSummary,
-  DocumentType,
   DocumentAsset,
   RegulationRef
 } from '@/lib/types'

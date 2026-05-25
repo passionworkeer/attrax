@@ -14,6 +14,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "rag_service/.venv/**",
     ".runvenv/**",
+    "coverage/**",
     // Manual test scripts (CommonJS, not part of npm test):
     "test-doc-upload/**",
     "tests/pressure/**",

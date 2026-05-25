@@ -324,23 +324,33 @@ class TestSaveLoad:
 # 6. Real index test (via FaissRetriever.load with non-ASCII path workaround)
 # ---------------------------------------------------------------------------
 
-REAL_INDEX_PATH = "E:/desktop/火鹰合规/attrax/data/faiss/legal_chunks.index"
-REAL_META_PATH = "E:/desktop/火鹰合规/attrax/data/faiss/legal_chunks_meta.json"
-
-
 class TestRealIndex:
-    """Exercise FaissRetriever.load() against the real FAISS index.
+    """Exercise FaissRetriever.load() against a realistic saved FAISS index.
 
-    The real index cannot be opened directly by the faiss C extension due to
-    non-ASCII characters in the Windows path.  FaissRetriever.load() works
-    around this by copying the files to a temp directory, which is verified here.
+    The fixture copies generated index files into a non-ASCII directory so the
+    loader's Windows path workaround is covered without relying on a local
+    developer corpus path.
     """
 
     @pytest.fixture
-    def real_retriever(self):
-        if not Path(REAL_INDEX_PATH).exists():
-            pytest.skip("Real FAISS index not found")
-        return FaissRetriever.load(REAL_INDEX_PATH, REAL_META_PATH)
+    def real_retriever(self, temp_dir, sample_chunks, sample_vectors):
+        source = temp_dir / "source_index"
+        source.mkdir()
+        source_index = source / "legal_chunks.index"
+        source_meta = source / "legal_chunks_meta.json"
+
+        built = FaissRetriever()
+        built.build_index(sample_chunks, sample_vectors)
+        built.save(str(source_index), str(source_meta))
+
+        non_ascii_dir = temp_dir / "法规索引"
+        non_ascii_dir.mkdir()
+        index_path = non_ascii_dir / "legal_chunks.index"
+        meta_path = non_ascii_dir / "legal_chunks_meta.json"
+        shutil.copy2(source_index, index_path)
+        shutil.copy2(source_meta, meta_path)
+
+        return FaissRetriever.load(str(index_path), str(meta_path))
 
     def test_real_index_loads(self, real_retriever):
         assert real_retriever.index is not None

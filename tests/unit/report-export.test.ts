@@ -45,11 +45,13 @@ const jsPDFMethods = vi.hoisted(() => {
 })
 
 // vi.fn(function() { return inst }) creates a constructible mock (NOT arrow fn).
-function MockJsPDF(_opts: any) { return jsPDFMethods }
+function MockJsPDF(opts: any) {
+  void opts
+  return jsPDFMethods
+}
 const mockJsPDFCtor = vi.hoisted(() => vi.fn(MockJsPDF) as any)
 
 // ─── Mock docx (hoisted so factory can reference them at transform time) ────
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // Plain constructor functions — vi.fn(function) stays constructible for `new X()`.
 // Object.assign copies opts directly so test assertions can read .text, .heading, etc.
 function MockParagraph(opts: any) { Object.assign(this, opts) }
@@ -235,6 +237,14 @@ describe('parseMarkdownToPdfText', () => {
     expect(result).toContain('• 中风险：标签缺失')
     expect(result).toContain('[REF-1]')
   })
+
+  it('normalizes markdown tables without raw pipe syntax', () => {
+    const result = parseMarkdownToPdfText('| Requirement | Status |\n| --- | --- |\n| CE mark | Missing |')
+    expect(result).toContain('Requirement')
+    expect(result).toContain('CE mark')
+    expect(result).not.toContain('|')
+    expect(result).not.toContain('---')
+  })
 })
 
 // ─── parseMarkdownToDocx ─────────────────────────────────────────────────────
@@ -242,6 +252,7 @@ describe('parseMarkdownToDocx', () => {
   beforeEach(() => {
     mockParagraph.mockClear()
     mockTextRun.mockClear()
+    mockTable.mockClear()
   })
 
   it('returns an array of Paragraph objects', () => {
@@ -315,6 +326,11 @@ describe('parseMarkdownToDocx', () => {
       (args) => args[0]?.children?.[0]?.text?.startsWith('• ')
     )
     expect(bulletCall?.[0]?.indent?.left).toBe(360)
+  })
+
+  it('creates a real table for markdown table syntax', () => {
+    parseMarkdownToDocx('| Requirement | Status |\n| --- | --- |\n| CE mark | Missing |')
+    expect(mockTable).toHaveBeenCalled()
   })
 })
 

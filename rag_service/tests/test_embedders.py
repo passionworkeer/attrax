@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import json
 import time
+import types
 import urllib.error
 from unittest.mock import patch, MagicMock
 
@@ -19,6 +20,90 @@ try:
     import torch
 except ModuleNotFoundError:
     torch = None
+
+
+if torch is None:
+    class _FakeTensor:
+        def __init__(self, value):
+            self._array = np.asarray(value, dtype=np.float32)
+
+        def unsqueeze(self, dim):
+            return _FakeTensor(np.expand_dims(self._array, axis=dim))
+
+        def expand(self, *shape):
+            if len(shape) == 1 and isinstance(shape[0], tuple):
+                shape = shape[0]
+            return _FakeTensor(np.broadcast_to(self._array, shape))
+
+        def size(self):
+            return self._array.shape
+
+        def float(self):
+            return _FakeTensor(self._array.astype(np.float32))
+
+        def sum(self, dim=None):
+            return _FakeTensor(np.sum(self._array, axis=dim))
+
+        def clamp(self, min=None):
+            return _FakeTensor(np.maximum(self._array, min))
+
+        def to(self, _device):
+            return self
+
+        def cpu(self):
+            return self
+
+        def numpy(self):
+            return self._array
+
+        def tolist(self):
+            return self._array.tolist()
+
+        def __mul__(self, other):
+            other_array = other._array if isinstance(other, _FakeTensor) else other
+            return _FakeTensor(self._array * other_array)
+
+        def __truediv__(self, other):
+            other_array = other._array if isinstance(other, _FakeTensor) else other
+            return _FakeTensor(self._array / other_array)
+
+    class _NoGrad:
+        def __enter__(self):
+            return None
+
+        def __exit__(self, *_args):
+            return False
+
+    def _fake_normalize(tensor, dim=1):
+        arr = tensor._array
+        norm = np.linalg.norm(arr, axis=dim, keepdims=True)
+        norm = np.clip(norm, 1e-12, None)
+        return _FakeTensor(arr / norm)
+
+    torch = types.ModuleType("torch")
+    torch_cuda = types.ModuleType("torch.cuda")
+    torch_cuda.is_available = lambda: False
+    torch_cuda.empty_cache = lambda: None
+
+    torch_functional = types.ModuleType("torch.nn.functional")
+    torch_functional.normalize = _fake_normalize
+    torch_nn = types.ModuleType("torch.nn")
+    torch_nn.functional = torch_functional
+
+    torch.cuda = torch_cuda
+    torch.nn = torch_nn
+    torch.long = np.int64
+    torch.from_numpy = lambda arr: _FakeTensor(arr)
+    torch.zeros = lambda *shape, dtype=None: _FakeTensor(np.zeros(shape, dtype=np.float32))
+    torch.ones = lambda *shape: _FakeTensor(np.ones(shape, dtype=np.float32))
+    torch.tensor = lambda value: _FakeTensor(value)
+    torch.sum = lambda tensor, dim=None: tensor.sum(dim=dim)
+    torch.no_grad = lambda: _NoGrad()
+
+    sys.modules["torch"] = torch
+    sys.modules["torch.cuda"] = torch_cuda
+    sys.modules["torch.nn"] = torch_nn
+    sys.modules["torch.nn.functional"] = torch_functional
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -283,7 +368,6 @@ class TestOllamaEmbedderClass:
 # LocalEmbedder tests
 # ---------------------------------------------------------------------------
 
-@pytest.mark.skipif(torch is None, reason="LocalEmbedder tests require optional torch dependency")
 class TestLocalEmbedder:
     """Test LocalEmbedder with mocked transformers."""
 

@@ -3,20 +3,23 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
+import { englishText } from "@/lib/report-localization";
 import type { ComplianceReportResult } from "@/lib/types";
 
-const MAX_VISIBLE_CHUNKS = 10;
-
 const NODE_COLORS: Record<string, { bg: string; dot: string; label: string }> = {
-  vision:          { bg: "bg-blue-500/10",   dot: "bg-blue-400",   label: "text-blue-400"   },
-  query_planner:   { bg: "bg-violet-500/10", dot: "bg-violet-400", label: "text-violet-400"  },
-  retriever:      { bg: "bg-cyan-500/10",   dot: "bg-cyan-400",    label: "text-cyan-400"    },
-  synthesizer:    { bg: "bg-purple-500/10", dot: "bg-purple-400", label: "text-purple-400"  },
-  generator:      { bg: "bg-emerald-500/10", dot: "bg-emerald-400", label: "text-emerald-400" },
-  verifier:       { bg: "bg-amber-500/10",   dot: "bg-amber-400",   label: "text-amber-400"   },
+  vision: { bg: "bg-blue-50", dot: "bg-blue-600", label: "text-blue-700" },
+  query_planner: { bg: "bg-violet-50", dot: "bg-violet-600", label: "text-violet-700" },
+  retriever: { bg: "bg-cyan-50", dot: "bg-cyan-600", label: "text-cyan-700" },
+  synthesizer: { bg: "bg-purple-50", dot: "bg-purple-600", label: "text-purple-700" },
+  generator: { bg: "bg-emerald-50", dot: "bg-emerald-600", label: "text-emerald-700" },
+  verifier: { bg: "bg-amber-50", dot: "bg-amber-600", label: "text-amber-700" },
 };
 
-const DEFAULT_NODE_COLOR = { bg: "bg-white/5", dot: "bg-white/30", label: "text-white/70" };
+const DEFAULT_NODE_COLOR = {
+  bg: "bg-slate-50",
+  dot: "bg-slate-500",
+  label: "text-slate-700",
+};
 
 function nodeStyle(node: string) {
   return NODE_COLORS[node.toLowerCase()] ?? DEFAULT_NODE_COLOR;
@@ -49,85 +52,99 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
 
   return (
     <div className="mt-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{t("trace.executionSteps")}</h3>
+      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+        {t("trace.executionSteps")}
+      </h3>
 
-      <div className="mt-3 relative">
-        {/* Vertical timeline line */}
-        <div className="absolute left-4 top-0 bottom-0 w-px bg-border" />
+      <div className="relative mt-3">
+        <div className="absolute bottom-0 left-4 top-0 w-px bg-border" />
 
         {rounds.map((round, ri) => (
           <div key={ri} className="mb-6">
-            {/* Round label */}
             <div className="mb-2 flex items-center gap-2">
-              <div className={cn(
-                "flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-xs font-medium",
-                ri === 0 ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
-                        : "border-amber-500/30 bg-amber-500/10 text-amber-400"
-              )}>
+              <div
+                className={cn(
+                  "flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-xs font-medium",
+                  ri === 0
+                    ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                    : "border-amber-200 bg-amber-50 text-amber-700"
+                )}
+              >
                 {ri === 0 ? t("trace.firstInspection") : t("trace.reInspection")}
                 <span className="opacity-60">Round {ri + 1}</span>
               </div>
             </div>
 
-            <div className="ml-0 space-y-1">
+            <div className="space-y-1">
               {round.steps.map((step) => {
                 const idx = stepIndex++;
                 const style = nodeStyle(step.node);
-                const duration = typeof step.duration_ms === "number"
-                  ? `${(step.duration_ms / 1000).toFixed(1)}s`
-                  : null;
+                const duration =
+                  typeof step.duration_ms === "number"
+                    ? `${(step.duration_ms / 1000).toFixed(1)}s`
+                    : null;
 
                 return (
                   <div key={idx} className="relative flex items-start gap-3 py-1.5 pl-9">
-                    {/* Timeline dot + connector */}
-                    <div className={cn("absolute left-3 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center", style.dot)}>
-                      <div className={cn("size-2.5 rounded-full border-2 border-blaze-dark", style.dot.replace("bg-", "bg-blaze-dark/"))} />
+                    <div className="absolute left-3 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center">
+                      <div
+                        className={cn(
+                          "size-2.5 rounded-full border-2 border-white shadow-sm",
+                          style.dot
+                        )}
+                      />
                     </div>
-                    {/* Vertical connector lines */}
+
                     {idx < trace.length - 1 && (
                       <div className="absolute left-[15px] top-full h-4 w-px bg-border" />
                     )}
 
-                    {/* Node card */}
-                    <div className={cn("flex-1 rounded-xl border px-3 py-2 text-xs transition-colors", style.bg, "border-white/10")}>
+                    <div
+                      className={cn(
+                        "flex-1 rounded-xl border border-border px-3 py-2 text-xs transition-colors",
+                        style.bg
+                      )}
+                    >
                       <div className="flex flex-wrap items-center gap-2">
-                        {/* Node badge */}
-                        <span className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] font-semibold", style.label, "border-current/20")}>
+                        <span
+                          className={cn(
+                            "inline-flex items-center gap-1 rounded-full border border-current/20 px-2 py-0.5 text-[11px] font-semibold",
+                            style.label
+                          )}
+                        >
                           {step.node}
                         </span>
 
-                        {/* Duration */}
                         {duration && (
-                          <span className="text-[11px] text-white/40 tabular-nums">{duration}</span>
+                          <span className="text-[11px] tabular-nums text-muted-foreground">
+                            {duration}
+                          </span>
                         )}
 
-                        {/* Warn badge */}
                         {step.status === "WARN" && (
-                          <span className="inline-flex items-center gap-0.5 rounded-full bg-amber-500/20 px-2 py-0.5 text-[11px] font-medium text-amber-400 border border-amber-500/30">
+                          <span className="inline-flex items-center gap-0.5 rounded-full border border-amber-200 bg-amber-100 px-2 py-0.5 text-[11px] font-medium text-amber-700">
                             <svg viewBox="0 0 12 12" fill="currentColor" className="size-3">
-                              <path d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm-.75 3h1.5v4H5.25V3zm0 5.25h1.5v1.5H5.25V8.25z"/>
+                              <path d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm-.75 3h1.5v4H5.25V3zm0 5.25h1.5v1.5H5.25V8.25z" />
                             </svg>
                             WARN
                           </span>
                         )}
 
                         {step.status === "PASS" && (
-                          <span className="inline-flex items-center gap-0.5 rounded-full bg-emerald-500/20 px-2 py-0.5 text-[11px] font-medium text-emerald-400 border border-emerald-500/30">
+                          <span className="inline-flex items-center gap-0.5 rounded-full border border-emerald-200 bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
                             PASS
                           </span>
                         )}
                       </div>
 
-                      {/* Docs retrieved */}
                       {step.docs_retrieved !== undefined && (
-                        <div className="mt-1 text-[11px] text-white/50">
+                        <div className="mt-1 text-[11px] text-muted-foreground">
                           {t("trace.regulationHit", { count: Number(step.docs_retrieved ?? 0) })}
                         </div>
                       )}
 
-                      {/* Score */}
                       {step.score !== undefined && (
-                        <div className="mt-0.5 text-[11px] text-white/50">
+                        <div className="mt-0.5 text-[11px] text-muted-foreground">
                           {t("trace.confidence", { score: Number(step.score).toFixed(3) })}
                         </div>
                       )}
@@ -144,7 +161,7 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
 }
 
 export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["retrievedChunks"] }) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const [expanded] = useState(false);
 
   if (!chunks.length) return null;
@@ -152,13 +169,13 @@ export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["re
   const visible = chunks.slice(0, DISPLAY_CAP);
   const overflow = chunks.length - DISPLAY_CAP;
 
-  void expanded; // reserved for future expand/collapse feature
+  void expanded;
 
   return (
     <div className="mt-4">
       <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
         {t("trace.regulationsHit")}
-        <span className="ml-2 font-mono text-white/40">({chunks.length})</span>
+        <span className="ml-2 font-mono text-muted-foreground">({chunks.length})</span>
       </h3>
       <div className="mt-2 flex flex-wrap gap-2">
         {visible.map((c, i) => (
@@ -167,26 +184,30 @@ export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["re
             className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs transition-colors hover:border-blaze-red/40"
           >
             <span className="font-medium text-blaze-red">{c.region}</span>
-            <span className="text-muted-foreground">·</span>
-            <span className="text-muted-foreground">{c.docName}</span>
+            <span className="text-muted-foreground">/</span>
+            <span className="text-muted-foreground">{locale === "en" ? englishText(c.docNameEn, englishText(c.docName, c.regId || "Regulation document")) : c.docName}</span>
             {c.articleNo && (
               <>
-                <span className="text-muted-foreground">·</span>
+                <span className="text-muted-foreground">/</span>
                 <span className="font-mono text-muted-foreground">{c.articleNo}</span>
               </>
             )}
-            <span className={cn(
-              "ml-0.5 rounded px-1 py-0.5 text-[10px] tabular-nums",
-              (c.score ?? 0) >= 0.9 ? "bg-emerald-500/20 text-emerald-400"
-              : (c.score ?? 0) >= 0.7 ? "bg-blue-500/20 text-blue-400"
-              : "bg-white/10 text-white/40"
-            )}>
+            <span
+              className={cn(
+                "ml-0.5 rounded px-1 py-0.5 text-[10px] tabular-nums",
+                (c.score ?? 0) >= 0.9
+                  ? "bg-emerald-500/20 text-emerald-700"
+                  : (c.score ?? 0) >= 0.7
+                    ? "bg-blue-500/20 text-blue-700"
+                    : "bg-muted text-muted-foreground"
+              )}
+            >
               {(c.score ?? 0).toFixed(2)}
             </span>
           </span>
         ))}
         {overflow > 0 && (
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-blaze-surface px-3 py-1 text-xs text-white/70">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1 text-xs text-muted-foreground">
             {t("trace.remaining", { count: overflow })}
           </span>
         )}

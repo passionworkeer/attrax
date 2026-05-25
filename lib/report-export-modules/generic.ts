@@ -1,7 +1,7 @@
 import { Document, HeadingLevel, Packer, Paragraph, TextRun } from "docx";
 import { jsPDF } from "jspdf";
 import type { Locale } from "./shared";
-import { embedFont, parseMarkdownToDocx, parseMarkdownToPdfText, pdfBody, resolveLocale } from "./shared";
+import { embedFont, parseMarkdownToDocx, renderMarkdownPdf, resolveLocale } from "./shared";
 
 type GenericReport = {
   sessionId: string;
@@ -45,7 +45,7 @@ export async function downloadGenericReportAsPdf(report: GenericReport, locale?:
   doc.line(margin, y.cur, pageWidth - margin, y.cur);
   y.cur += 8;
 
-  pdfBody(doc, y, margin, pageWidth, pageHeight, parseMarkdownToPdfText(reportText(report, L)), 9);
+  renderMarkdownPdf(doc, y, margin, pageWidth, pageHeight, reportText(report, L));
 
   const pageCount = doc.getNumberOfPages();
   for (let i = 1; i <= pageCount; i++) {

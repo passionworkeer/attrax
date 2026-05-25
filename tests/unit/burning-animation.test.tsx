@@ -16,16 +16,20 @@ vi.mock('framer-motion', () => ({
       style?: React.CSSProperties
       className?: string
       [key: string]: unknown
-    }) => (
-      <div
-        data-testid="motion-div"
-        className={className as string}
-        style={style}
-        {...props}
-      >
-        {children}
-      </div>
-    ),
+    }) => {
+      void animate
+      void transition
+      return (
+        <div
+          data-testid="motion-div"
+          className={className as string}
+          style={style}
+          {...props}
+        >
+          {children}
+        </div>
+      )
+    },
   },
 }))
 

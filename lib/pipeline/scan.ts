@@ -231,6 +231,12 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     typeof reportPackage?.complianceReport === "string" && reportPackage.complianceReport.trim()
       ? reportPackage.complianceReport
       : undefined;
+  const packageComplianceReportEn =
+    typeof reportPackage?.complianceReportEn === "string" && reportPackage.complianceReportEn.trim()
+      ? reportPackage.complianceReportEn
+      : typeof reportPackage?.compliance_report_en === "string" && reportPackage.compliance_report_en.trim()
+      ? reportPackage.compliance_report_en
+      : undefined;
 
   const complianceReport: ComplianceReportResult = {
     sessionId,
@@ -243,6 +249,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     scoreGrade:
       ragResponse.status === "PASS" ? "B" : ragResponse.status === "WARN" ? "C" : "D",
     complianceReport: packageComplianceReport ?? ragResponse.report,
+    complianceReportEn: packageComplianceReportEn,
     complianceStatus: ragResponse.status,
     agentTrace: ragResponse.agent_trace,
     loopCount: ragResponse.loop_count,

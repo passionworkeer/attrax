@@ -7,8 +7,7 @@ import {
   clearStore,
 } from '@/lib/pipeline/session-store'
 import type { ScanStatus } from '@/lib/types'
-import { mkdirSync, writeFileSync, readFileSync, unlinkSync, existsSync, readdirSync, rmdirSync } from 'fs'
-import { join } from 'path'
+import { mkdirSync, writeFileSync, readFileSync, unlinkSync, existsSync, readdirSync } from 'fs'
 
 const fsMock = vi.hoisted(() => ({
   mkdirSync: vi.fn(),
@@ -83,7 +82,6 @@ describe('Session Store', () => {
     })
 
     it('sets TTL timer', () => {
-      const originalSetTimeout = globalThis.setTimeout
       const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout')
       const setTimeoutSpy = vi.spyOn(globalThis, 'setTimeout')
 
@@ -342,7 +340,6 @@ describe('Session Store', () => {
 
     it('restores TTL timer when loading from file', () => {
       const setTimeoutSpy = vi.spyOn(globalThis, 'setTimeout')
-      const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout')
 
       createSession('test_timer_restore')
 
@@ -634,7 +631,6 @@ describe('Session Store', () => {
   describe('getSession from file - timer restoration', () => {
     it('clears existing timer before setting new one', () => {
       const clearTimeoutSpy = vi.spyOn(globalThis, 'clearTimeout')
-      const setTimeoutSpy = vi.spyOn(globalThis, 'setTimeout')
 
       createSession('test_clear_timer')
 

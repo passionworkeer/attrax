@@ -39,6 +39,7 @@ export type DocumentType = "pdf" | "docx" | "html";
 export interface DocumentAsset {
   documentId: string;
   name: string;
+  nameEn?: string;
   size: number;
   type: DocumentType;
   mimeType: string;
@@ -52,6 +53,7 @@ export interface RegulationRef {
   nameEn?: string;
   market: Market;
   summary: string;
+  summaryEn?: string;
   sourceUrl: string;
   severity: Severity;
 }
@@ -59,7 +61,9 @@ export interface RegulationRef {
 export interface RiskPoint {
   riskId: string;
   title: string;
+  titleEn?: string;
   description: string;
+  descriptionEn?: string;
   severity: Severity;
   flameLevel: FlameLevel;
   confidence: number;
@@ -67,17 +71,23 @@ export interface RiskPoint {
   bbox: BoundingBox;
   regulations: RegulationRef[];
   recommendedAction: string;
+  recommendedActionEn?: string;
   estimatedFixCost?: string;
 }
 
 export interface ChecklistItem {
   itemId: string;
   category: string;
+  categoryEn?: string;
   title: string;
+  titleEn?: string;
   requiredMaterials: string[];
+  requiredMaterialsEn?: string[];
   recommendedLab?: string;
+  recommendedLabEn?: string;
   estimatedCost?: string;
   estimatedTime?: string;
+  estimatedTimeEn?: string;
   isFree: boolean;
 }
 
@@ -86,6 +96,7 @@ export interface ScanResult {
   scanTime: string;
   productCategory: ProductCategory;
   productName?: string;
+  productNameEn?: string;
   targetMarkets: Market[];
   complianceScore: number;
   scoreGrade: ScoreGrade;
@@ -106,11 +117,13 @@ export interface ComplianceReportResult {
   scanTime: string;
   productCategory: ProductCategory;
   productName?: string;
+  productNameEn?: string;
   targetMarkets: Market[];
   complianceScore: number;
   scoreGrade: ScoreGrade;
   /** Full markdown compliance report from Claude Sonnet */
   complianceReport: string;
+  complianceReportEn?: string;
   /** PASS | WARN | REJECTED */
   complianceStatus: "PASS" | "WARN" | "REJECTED" | "UNKNOWN";
   /** Agent execution trace (node name + timing per step) */
@@ -121,6 +134,7 @@ export interface ComplianceReportResult {
   retrievedChunks: Array<{
     regId: string;
     docName: string;
+    docNameEn?: string;
     articleNo: string;
     region: string;
     score: number;
@@ -131,6 +145,7 @@ export interface ComplianceReportResult {
   documents: Array<{
     documentId: string;
     name: string;
+    nameEn?: string;
     size: number;
     type: "pdf" | "docx" | "html";
     mimeType: string;
@@ -251,21 +266,37 @@ export interface ReportPackage {
   auditMetadata?: AuditMetadata;
   audit_metadata?: AuditMetadata;
   complianceReport?: string;
+  complianceReportEn?: string;
+  compliance_report_en?: string;
   compliance_report?: string;
   profitReport?: {
     markdown?: string;
+    markdownEn?: string;
+    markdown_en?: string;
     keyConclusion?: string;
     key_conclusion?: string;
+    keyConclusionEn?: string;
+    key_conclusion_en?: string;
     premiumPct?: string;
     premium_pct?: string;
     breakevenUnits?: string;
     breakeven_units?: string;
+    breakevenUnitsEn?: string;
+    breakeven_units_en?: string;
     pricingStrategy?: string;
     pricing_strategy?: string;
+    pricingStrategyEn?: string;
+    pricing_strategy_en?: string;
     riskNote?: string;
     risk_note?: string;
+    riskNoteEn?: string;
+    risk_note_en?: string;
     conclusions?: string;
+    conclusionsEn?: string;
+    conclusions_en?: string;
     references?: string;
+    referencesEn?: string;
+    references_en?: string;
   };
   profit_report?: ReportPackage["profitReport"] | string;
   roadmap?: GeneratedRoadmap;
@@ -307,10 +338,16 @@ export interface GeneratedDecisionView {
   verdict?: string;
   riskLevel?: string;
   summary?: string;
+  summaryEn?: string;
+  summary_en?: string;
   keyFindings?: string[];
   key_findings?: string[];
+  keyFindingsEn?: string[];
+  key_findings_en?: string[];
   recommendedAction?: string;
   recommended_action?: string;
+  recommendedActionEn?: string;
+  recommended_action_en?: string;
   nodes?: GeneratedDecisionNode[];
 }
 
@@ -344,22 +381,31 @@ export interface CostSummary {
 export interface ProfitReportResult {
   sessionId: string;
   productType: string;
+  productTypeEn?: string;
   market: string;
+  marketEn?: string;
   currency?: string; // "USD" | "CNY" | "EUR" | "GBP"
   report: string;               // markdown（含完整6章节）
+  reportEn?: string;
   barebone: CostSummary;
   compliant: CostSummary;
   bareboneRiskExposure: number;  // 风险敞口（暴露金额）
   compliantRiskExposure: number; // 风险敞口（暴露金额）
   keyConclusion: string;
+  keyConclusionEn?: string;
   generatedAt: string;
   // 新增字段
   premiumPct: string;            // 合规溢价，如 "37%"
   breakevenUnits: string;        // 盈亏平衡台数
+  breakevenUnitsEn?: string;
   pricingStrategy: string;       // 定价策略建议
+  pricingStrategyEn?: string;
   riskNote: string;              // 风险敞口说明
+  riskNoteEn?: string;
   conclusions: string;           // 关键结论章节全文
+  conclusionsEn?: string;
   references: string;           // 法规引用章节全文
+  referencesEn?: string;
   bareboneGpm: number;         // 裸奔毛利率（0-100 数值）
   compliantGpm: number;        // 合规毛利率（0-100 数值）
 }

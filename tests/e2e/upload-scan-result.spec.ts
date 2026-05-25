@@ -17,6 +17,10 @@ test.describe("upload scan result flow", () => {
     test.setTimeout(180_000);
 
     await page.goto("/upload");
+    await page.waitForFunction(() => {
+      const input = document.querySelector('input[type="file"]');
+      return Boolean(input && Object.keys(input).some((key) => key.startsWith("__reactProps")));
+    });
 
     await page.locator('input[type="file"]').first().setInputFiles({
       name: "product.png",

@@ -13,19 +13,58 @@ import {
   WidthType,
 } from "docx";
 import type { ComplianceReportResult } from "@/lib/types";
+import { localizeComplianceReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
   complianceStatusLabel,
+  docxTable,
   embedFont,
   marketLabel,
+  mkSectionH,
   parseMarkdownToDocx,
-  parseMarkdownToPdfText,
+  pdfDrawTable,
+  pdfSectionTitle,
+  renderMarkdownPdf,
   resolveLocale,
   tx,
 } from "./shared";
 
-export async function downloadReportAsPdf(result: ComplianceReportResult, locale?: Locale): Promise<void> {
+function formatFileSize(size: number, locale: Locale): string {
+  if (!Number.isFinite(size) || size <= 0) return locale === "zh" ? "未知" : "Unknown";
+  if (size < 1024 * 1024) return `${Math.round(size / 1024)} KB`;
+  return `${(size / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function evidenceRows(result: ComplianceReportResult, locale: Locale): string[][] {
+  return [
+    locale === "zh"
+      ? ["#", "市场", "法规/文件", "条款", "匹配度"]
+      : ["#", "Market", "Regulation / Document", "Article", "Score"],
+    ...result.retrievedChunks.map((chunk, index) => [
+      String(index + 1),
+      chunk.region,
+      locale === "en" ? chunk.docNameEn ?? chunk.docName : chunk.docName,
+      chunk.articleNo,
+      chunk.score.toFixed(2),
+    ]),
+  ];
+}
+
+function documentRows(result: ComplianceReportResult, locale: Locale): string[][] {
+  return [
+    locale === "zh" ? ["#", "原始文件", "类型", "大小"] : ["#", "Source File", "Type", "Size"],
+    ...result.documents.map((document, index) => [
+      String(index + 1),
+      locale === "en" ? document.nameEn ?? document.name : document.name,
+      document.type.toUpperCase(),
+      formatFileSize(document.size, locale),
+    ]),
+  ];
+}
+
+export async function downloadReportAsPdf(input: ComplianceReportResult, locale?: Locale): Promise<void> {
   const L = resolveLocale(locale);
+  const result = localizeComplianceReportResult(input, L);
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
   // Embed Noto Sans SC (supports Chinese) before any text is written.
@@ -34,7 +73,6 @@ export async function downloadReportAsPdf(result: ComplianceReportResult, locale
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 20;
-  const contentWidth = pageWidth - margin * 2;
   let y = margin;
 
   const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
@@ -71,10 +109,12 @@ export async function downloadReportAsPdf(result: ComplianceReportResult, locale
   y += 36;
 
   // ── Status badge ─────────────────────────────────────
-  const fillR = Math.round(scoreColor[0] * 0.1);
-  const fillG = Math.round(scoreColor[1] * 0.1);
-  const fillB = Math.round(scoreColor[2] * 0.1);
-  doc.setFillColor(fillR, fillG, fillB);
+  const badgeFill = result.complianceStatus === "PASS"
+    ? [236, 253, 245]
+    : result.complianceStatus === "WARN"
+      ? [255, 251, 235]
+      : [254, 242, 242];
+  doc.setFillColor(badgeFill[0], badgeFill[1], badgeFill[2]);
   doc.setDrawColor(scoreColor[0], scoreColor[1], scoreColor[2]);
   doc.setLineWidth(0.4);
   const statusW = doc.getTextWidth(` ${statusText} `) + 4;
@@ -89,23 +129,19 @@ export async function downloadReportAsPdf(result: ComplianceReportResult, locale
   y += 8;
 
   // ── Report Content ────────────────────────────────────
-  doc.setTextColor(30, 30, 30);
-  const reportText = parseMarkdownToPdfText(result.complianceReport);
-  const lines = doc.splitTextToSize(reportText, contentWidth);
+  const yRef = { cur: y };
+  renderMarkdownPdf(doc, yRef, margin, pageWidth, pageHeight, result.complianceReport);
 
-  for (const line of lines) {
-    if (y + 6 > pageHeight - margin) {
-      doc.addPage();
-      y = margin;
-    }
-    if (line === "") {
-      y += 4;
-      continue;
-    }
-    doc.setFontSize(9);
-    doc.text(String(line), margin, y);
-    y += 5;
+  if (result.retrievedChunks.length > 0) {
+    pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "法规证据命中明细" : "Retrieved Evidence Details");
+    pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, evidenceRows(result, L), [10, 24, 74, 32, 16]);
   }
+
+  if (result.documents.length > 0) {
+    pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "上传原始资料清单" : "Uploaded Source Files");
+    pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, documentRows(result, L), [10, 88, 24, 22]);
+  }
+  y = yRef.cur;
 
   // ── Footer on each page ────────────────────────────────
   const pageCount = doc.getNumberOfPages();
@@ -127,8 +163,9 @@ export async function downloadReportAsPdf(result: ComplianceReportResult, locale
   doc.save(filenameBase);
 }
 
-export async function downloadReportAsDocx(result: ComplianceReportResult, locale?: Locale): Promise<void> {
+export async function downloadReportAsDocx(input: ComplianceReportResult, locale?: Locale): Promise<void> {
   const L = resolveLocale(locale);
+  const result = localizeComplianceReportResult(input, L);
   const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
   const statusText = complianceStatusLabel(result.complianceStatus, L);
   const title = tx("report.title", L);
@@ -219,6 +256,22 @@ export async function downloadReportAsDocx(result: ComplianceReportResult, local
 
           // ── Report sections ─────────────────────
           ...parseMarkdownToDocx(result.complianceReport),
+
+          ...(result.retrievedChunks.length > 0
+            ? [
+                mkSectionH(L === "zh" ? "法规证据命中明细" : "Retrieved Evidence Details"),
+                docxTable(evidenceRows(result, L), ["475569", "475569", "475569", "475569", "475569"]),
+                new Paragraph({ text: "" }),
+              ]
+            : []),
+
+          ...(result.documents.length > 0
+            ? [
+                mkSectionH(L === "zh" ? "上传原始资料清单" : "Uploaded Source Files"),
+                docxTable(documentRows(result, L), ["475569", "475569", "475569", "475569"]),
+                new Paragraph({ text: "" }),
+              ]
+            : []),
 
           // ── Footer ─────────────────────────────
           new Paragraph({ text: "" }),

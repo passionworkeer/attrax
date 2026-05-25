@@ -2,8 +2,8 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
+import { localizeProfitReportResult } from "@/lib/report-localization";
 import { downloadProfitReportAsPdf, downloadProfitReportAsDocx } from "@/lib/report-export";
 import type { ProfitReportResult } from "@/lib/types";
 
@@ -66,7 +66,7 @@ function profitDelta(a: number, b: number, currency?: string): string {
 function MetricTable({ rows, currency }: { rows: MetricRow[]; currency?: string }) {
   const { t } = useTranslation();
   return (
-    <table className="w-full text-sm">
+    <table className="min-w-[560px] w-full text-sm">
       <thead>
         <tr className="border-b border-border">
           <th className="py-2 pr-4 text-left font-medium text-muted-foreground">{t("report.columns.costItem")}</th>
@@ -161,19 +161,19 @@ function ConclusionCard({ text }: { text: string }) {
 
 export function ProfitReportView({ result }: { result: ProfitReportResult }) {
   const { t, locale } = useTranslation();
-  const currency = result.currency;
-  const sym = getCurrencySymbol(currency);
+  const viewResult = localizeProfitReportResult(result, locale);
+  const currency = viewResult.currency;
   const rows: MetricRow[] = [
-    { label: t("report.columns.bomCost"), barebone: result.barebone.bom, compliant: result.compliant.bom },
-    { label: t("report.columns.packaging"), barebone: result.barebone.packaging, compliant: result.compliant.packaging },
-    { label: t("report.columns.certAmortization"), barebone: result.barebone.cert, compliant: result.compliant.cert },
-    { label: t("report.columns.eprFee"), barebone: result.barebone.epr, compliant: result.compliant.epr },
-    { label: t("report.columns.logistics"), barebone: result.barebone.logistics, compliant: result.compliant.logistics },
-    { label: t("report.columns.avgPriceAsp"), barebone: result.barebone.asp, compliant: result.compliant.asp },
-    { label: t("report.columns.grossProfitGp"), barebone: result.barebone.gp, compliant: result.compliant.gp },
+    { label: t("report.columns.bomCost"), barebone: viewResult.barebone.bom, compliant: viewResult.compliant.bom },
+    { label: t("report.columns.packaging"), barebone: viewResult.barebone.packaging, compliant: viewResult.compliant.packaging },
+    { label: t("report.columns.certAmortization"), barebone: viewResult.barebone.cert, compliant: viewResult.compliant.cert },
+    { label: t("report.columns.eprFee"), barebone: viewResult.barebone.epr, compliant: viewResult.compliant.epr },
+    { label: t("report.columns.logistics"), barebone: viewResult.barebone.logistics, compliant: viewResult.compliant.logistics },
+    { label: t("report.columns.avgPriceAsp"), barebone: viewResult.barebone.asp, compliant: viewResult.compliant.asp },
+    { label: t("report.columns.grossProfitGp"), barebone: viewResult.barebone.gp, compliant: viewResult.compliant.gp },
   ];
 
-  const riskMax = Math.max(result.bareboneRiskExposure, result.compliantRiskExposure);
+  const riskMax = Math.max(viewResult.bareboneRiskExposure, viewResult.compliantRiskExposure);
 
   return (
     <div className="space-y-6">
@@ -183,7 +183,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
           <p className="text-sm uppercase tracking-[0.2em] text-blaze-red/70">Cost &amp; Profit</p>
           <h2 className="mt-1 text-2xl font-semibold">{t("report.costProfitReport")}</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            {result.productType} · {result.market} {t("result.market")}
+            {viewResult.productType} · {viewResult.market} {t("result.market")}
           </p>
         </div>
         <DownloadButtons
@@ -203,15 +203,15 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold tabular-nums text-blaze-red">
-                {fmt(result.barebone.gp, undefined, currency)}
+                {fmt(viewResult.barebone.gp, undefined, currency)}
               </p>
               <p className="text-xs text-blaze-red/60">{t("report.cards.grossProfit")}</p>
             </div>
           </div>
           <div className="space-y-1 text-xs text-muted-foreground">
-            <p>{t("report.cards.salePrice")}：{fmt(result.barebone.asp, undefined, currency)}</p>
-            <p>{t("report.cards.totalCost")}：{fmt(result.barebone.bom + result.barebone.packaging + result.barebone.cert + result.barebone.epr + result.barebone.logistics, undefined, currency)}</p>
-            <p>{t("report.cards.riskExposure")}：{fmt(result.bareboneRiskExposure, undefined, currency)}</p>
+            <p>{t("report.cards.salePrice")}：{fmt(viewResult.barebone.asp, undefined, currency)}</p>
+            <p>{t("report.cards.totalCost")}：{fmt(viewResult.barebone.bom + viewResult.barebone.packaging + viewResult.barebone.cert + viewResult.barebone.epr + viewResult.barebone.logistics, undefined, currency)}</p>
+            <p>{t("report.cards.riskExposure")}：{fmt(viewResult.bareboneRiskExposure, undefined, currency)}</p>
           </div>
         </div>
 
@@ -224,15 +224,15 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             </div>
             <div className="text-right">
               <p className="text-2xl font-bold tabular-nums text-emerald-500">
-                {fmt(result.compliant.gp, undefined, currency)}
+                {fmt(viewResult.compliant.gp, undefined, currency)}
               </p>
               <p className="text-xs text-emerald-500/60">{t("report.cards.grossProfit")}</p>
             </div>
           </div>
           <div className="space-y-1 text-xs text-muted-foreground">
-            <p>{t("report.cards.salePrice")}：{fmt(result.compliant.asp, undefined, currency)}</p>
-            <p>{t("report.cards.totalCost")}：{fmt(result.compliant.bom + result.compliant.packaging + result.compliant.cert + result.compliant.epr + result.compliant.logistics, undefined, currency)}</p>
-            <p>{t("report.cards.riskExposure")}：{fmt(result.compliantRiskExposure, undefined, currency)}</p>
+            <p>{t("report.cards.salePrice")}：{fmt(viewResult.compliant.asp, undefined, currency)}</p>
+            <p>{t("report.cards.totalCost")}：{fmt(viewResult.compliant.bom + viewResult.compliant.packaging + viewResult.compliant.cert + viewResult.compliant.epr + viewResult.compliant.logistics, undefined, currency)}</p>
+            <p>{t("report.cards.riskExposure")}：{fmt(viewResult.compliantRiskExposure, undefined, currency)}</p>
           </div>
         </div>
       </div>
@@ -242,7 +242,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
         <div className="border-b border-border px-5 py-3">
           <h3 className="text-sm font-semibold">{t("report.cards.costComparison")}</h3>
         </div>
-        <div className="p-5">
+        <div className="overflow-x-auto p-5">
           <MetricTable rows={rows} currency={currency} />
         </div>
       </div>
@@ -253,15 +253,15 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
         <div className="mb-3 space-y-3">
           <RiskBar
             label={t("report.cards.grossProfit")}
-            barebone={result.barebone.gp}
-            compliant={result.compliant.gp}
-            max={Math.max(result.barebone.gp, result.compliant.gp, 1)}
+            barebone={viewResult.barebone.gp}
+            compliant={viewResult.compliant.gp}
+            max={Math.max(viewResult.barebone.gp, viewResult.compliant.gp, 1)}
             currency={currency}
           />
           <RiskBar
             label={t("report.cards.riskExposure")}
-            barebone={result.bareboneRiskExposure}
-            compliant={result.compliantRiskExposure}
+            barebone={viewResult.bareboneRiskExposure}
+            compliant={viewResult.compliantRiskExposure}
             max={riskMax}
             currency={currency}
           />
@@ -279,19 +279,19 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
       </div>
 
       {/* Key conclusion */}
-      {result.keyConclusion && (
-        <ConclusionCard text={result.keyConclusion} />
+      {viewResult.keyConclusion && (
+        <ConclusionCard text={viewResult.keyConclusion} />
       )}
 
       {/* Markdown report body */}
-      {result.report && (
+      {viewResult.report && (
         <div className="rounded-2xl border border-border bg-card">
           <div className="border-b border-border px-5 py-3">
             <h3 className="text-sm font-semibold">{t("report.cards.analysisReport")}</h3>
           </div>
-          <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
+          <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {result.report}
+              {viewResult.report}
             </ReactMarkdown>
           </div>
         </div>
@@ -299,7 +299,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
 
       {/* Footer meta */}
       <p className="text-xs text-muted-foreground">
-        {t("report.generatedAt")} {new Date(result.generatedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN")}
+        {t("report.generatedAt")} {new Date(viewResult.generatedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN")}
       </p>
     </div>
   );

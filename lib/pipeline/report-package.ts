@@ -55,14 +55,32 @@ export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | u
         : typeof raw.compliance_report === "string"
         ? raw.compliance_report
         : undefined,
+    complianceReportEn:
+      typeof raw.complianceReportEn === "string"
+        ? raw.complianceReportEn
+        : typeof raw.compliance_report_en === "string"
+        ? raw.compliance_report_en
+        : undefined,
     profitReport: profitRecord
       ? {
           markdown: typeof profitRecord.markdown === "string" ? profitRecord.markdown : undefined,
+          markdownEn:
+            typeof profitRecord.markdownEn === "string"
+              ? profitRecord.markdownEn
+              : typeof profitRecord.markdown_en === "string"
+              ? profitRecord.markdown_en
+              : undefined,
           keyConclusion:
             typeof profitRecord.keyConclusion === "string"
               ? profitRecord.keyConclusion
               : typeof profitRecord.key_conclusion === "string"
               ? profitRecord.key_conclusion
+              : undefined,
+          keyConclusionEn:
+            typeof profitRecord.keyConclusionEn === "string"
+              ? profitRecord.keyConclusionEn
+              : typeof profitRecord.key_conclusion_en === "string"
+              ? profitRecord.key_conclusion_en
               : undefined,
           premiumPct:
             typeof profitRecord.premiumPct === "string"
@@ -76,11 +94,23 @@ export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | u
               : typeof profitRecord.breakeven_units === "string"
               ? profitRecord.breakeven_units
               : undefined,
+          breakevenUnitsEn:
+            typeof profitRecord.breakevenUnitsEn === "string"
+              ? profitRecord.breakevenUnitsEn
+              : typeof profitRecord.breakeven_units_en === "string"
+              ? profitRecord.breakeven_units_en
+              : undefined,
           pricingStrategy:
             typeof profitRecord.pricingStrategy === "string"
               ? profitRecord.pricingStrategy
               : typeof profitRecord.pricing_strategy === "string"
               ? profitRecord.pricing_strategy
+              : undefined,
+          pricingStrategyEn:
+            typeof profitRecord.pricingStrategyEn === "string"
+              ? profitRecord.pricingStrategyEn
+              : typeof profitRecord.pricing_strategy_en === "string"
+              ? profitRecord.pricing_strategy_en
               : undefined,
           riskNote:
             typeof profitRecord.riskNote === "string"
@@ -88,8 +118,26 @@ export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | u
               : typeof profitRecord.risk_note === "string"
               ? profitRecord.risk_note
               : undefined,
+          riskNoteEn:
+            typeof profitRecord.riskNoteEn === "string"
+              ? profitRecord.riskNoteEn
+              : typeof profitRecord.risk_note_en === "string"
+              ? profitRecord.risk_note_en
+              : undefined,
           conclusions: typeof profitRecord.conclusions === "string" ? profitRecord.conclusions : undefined,
+          conclusionsEn:
+            typeof profitRecord.conclusionsEn === "string"
+              ? profitRecord.conclusionsEn
+              : typeof profitRecord.conclusions_en === "string"
+              ? profitRecord.conclusions_en
+              : undefined,
           references: typeof profitRecord.references === "string" ? profitRecord.references : undefined,
+          referencesEn:
+            typeof profitRecord.referencesEn === "string"
+              ? profitRecord.referencesEn
+              : typeof profitRecord.references_en === "string"
+              ? profitRecord.references_en
+              : undefined,
         }
       : undefined,
     roadmap: rawRoadmap
@@ -143,12 +191,25 @@ export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | u
     decisionView: decisionRecord
       ? {
           summary: typeof decisionRecord.summary === "string" ? decisionRecord.summary : undefined,
+          summaryEn:
+            typeof decisionRecord.summaryEn === "string"
+              ? decisionRecord.summaryEn
+              : typeof decisionRecord.summary_en === "string"
+              ? decisionRecord.summary_en
+              : undefined,
           keyFindings: normalizeStringArray(decisionRecord.keyFindings ?? decisionRecord.key_findings),
+          keyFindingsEn: normalizeStringArray(decisionRecord.keyFindingsEn ?? decisionRecord.key_findings_en),
           recommendedAction:
             typeof decisionRecord.recommendedAction === "string"
               ? decisionRecord.recommendedAction
               : typeof decisionRecord.recommended_action === "string"
               ? decisionRecord.recommended_action
+              : undefined,
+          recommendedActionEn:
+            typeof decisionRecord.recommendedActionEn === "string"
+              ? decisionRecord.recommendedActionEn
+              : typeof decisionRecord.recommended_action_en === "string"
+              ? decisionRecord.recommended_action_en
               : undefined,
           nodes: rawDecisionNodes
             ?.filter(isRecord)
