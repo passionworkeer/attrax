@@ -76,6 +76,21 @@ vi.mock("@/lib/mock/scan-result", () => ({
     keyConclusion: "合规模式期望利润显著高于裸奔模式",
     generatedAt: new Date().toISOString(),
   })),
+  createMockProfitReports: vi.fn((id: string) => [
+    {
+      sessionId: id,
+      reportType: "profit" as const,
+      productType: "充电宝",
+      market: "EU",
+      report: "## 利润报告\n\n成本对比...",
+      barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6, asp: 19.99, gp: 0.71 },
+      compliant: { bom: 13.5, packaging: 0.65, cert: 0.45, epr: 0.35, logistics: 6, asp: 39.99, gp: 11.48 },
+      bareboneRiskExposure: 25,
+      compliantRiskExposure: 0,
+      keyConclusion: "合规模式期望利润显著高于裸奔模式",
+      generatedAt: new Date().toISOString(),
+    },
+  ]),
 }));
 
 // Helper: create a minimal JPEG buffer

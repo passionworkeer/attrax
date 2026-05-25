@@ -114,6 +114,7 @@ export const ScanStatusSchema = z.object({
   progress: z.number().min(0).max(100),
   stageText: z.string(),
   result: ScanResultSchema.optional(),
+  profitReports: z.array(z.unknown()).optional(),
   error: z.string().optional(),
 });
 

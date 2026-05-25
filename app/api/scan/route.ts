@@ -1,5 +1,5 @@
 import { ulid } from "ulid";
-import { createMockComplianceReportResult, createMockProfitReport } from "@/lib/mock/scan-result";
+import { createMockComplianceReportResult, createMockProfitReport, createMockProfitReports } from "@/lib/mock/scan-result";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { enqueueScan } from "@/lib/pipeline/scan-queue";
 import { ok, fail } from "@/lib/api-response";
@@ -101,6 +101,7 @@ function runDemoSimulation(sessionId: string) {
       stageText: `✅ ${stages.reportComplete}`,
       result: { ...createMockComplianceReportResult(sessionId) as unknown as ComplianceReportResult, source: "demo" as const },
       profitReport: createMockProfitReport(sessionId),
+      profitReports: createMockProfitReports(sessionId),
     });
   }, 4500);
 }
