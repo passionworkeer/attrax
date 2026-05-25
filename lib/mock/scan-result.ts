@@ -1,14 +1,21 @@
-import type { ScanResult, ProfitReportResult, ComplianceReportResult } from "@/lib/types";
+import type { ComplianceReportResult, ProfitReportResult, ScanResult } from "@/lib/types";
+
+const PRODUCT_NAME = "USB 智能加湿器";
+const DEFAULT_MARKETS = ["EU", "US"] as const;
+
+function nowIso() {
+  return new Date().toISOString();
+}
 
 export function createMockScanResult(sessionId = "demo"): ScanResult {
-  const now = new Date().toISOString();
+  const now = nowIso();
 
   return {
     sessionId,
     scanTime: now,
     productCategory: "electronics",
-    productName: "USB 智能加湿器",
-    targetMarkets: ["EU", "US"],
+    productName: PRODUCT_NAME,
+    targetMarkets: [...DEFAULT_MARKETS],
     complianceScore: 45,
     scoreGrade: "D",
     images: [
@@ -40,7 +47,7 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
       },
       {
         documentId: "doc_02",
-        name: "CE认证证书.docx",
+        name: "CE 证书草稿.docx",
         size: 262144,
         type: "docx",
         mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -50,8 +57,9 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
     riskPoints: [
       {
         riskId: "risk_01",
-        title: "缺少 CE 标识",
-        description: "铭牌区域没有清晰看到 CE 标识，欧盟市场销售前需要先补齐认证与标识信息。",
+        title: "铭牌缺少 CE / UKCA 等合规标识",
+        description:
+          "图片中的铭牌区域未看到 CE 标识、欧盟责任人信息或完整型号信息。若直接进入欧盟/英国市场，平台审核、海关抽检和售后追溯都会存在较高风险。",
         severity: "critical",
         flameLevel: 1,
         confidence: 0.91,
@@ -61,58 +69,96 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
           {
             regId: "EU-CE-GENERAL",
             code: "CE",
-            name: "CE 标识通用要求",
+            name: "CE 标识与技术文件通用要求",
             market: "EU",
-            summary: "欧盟市场销售前，产品需要具备适用指令下的合规标识和技术文件。",
+            summary: "进入欧盟市场的电子电器产品需要满足适用指令下的合格评定、技术文件、DoC 与可追溯标识要求。",
             sourceUrl: "https://eur-lex.europa.eu/",
             severity: "critical",
           },
         ],
-        recommendedAction: "补齐铭牌信息并准备欧盟适用指令下的合规资料。",
-        estimatedFixCost: "¥3,000-8,000",
+        recommendedAction:
+          "先冻结欧盟/英国新上架，补齐铭牌、欧盟责任人、DoC、LVD/EMC/RoHS 技术文件后再恢复销售。",
+        estimatedFixCost: "¥8,000-22,000",
       },
       {
         riskId: "risk_02",
-        title: "警示标签可疑",
-        description: "包装区未看到明确的多语言警示或回收提示，可能影响欧美市场上架与抽检表现。",
+        title: "包装与说明书缺少多语言安全警示",
+        description:
+          "包装和说明书未体现欧盟多语言安全警示、回收标识、WEEE 垃圾桶标志、批次号和进口商联系方式。该问题容易触发平台资料补交或客户投诉。",
         severity: "warning",
         flameLevel: 2,
-        confidence: 0.62,
+        confidence: 0.74,
         imageId: "img_01",
         bbox: { x: 0.6, y: 0.12, w: 0.2, h: 0.16 },
         regulations: [
           {
-            regId: "EU-PACKAGING-94-62",
-            code: "94/62/EC",
-            name: "欧盟包装指令",
+            regId: "EU-GPSR-2023/988",
+            code: "GPSR",
+            name: "通用产品安全法规",
             market: "EU",
-            summary: "包装信息需要满足回收和必要提示要求，避免因标识缺失引发合规风险。",
+            summary: "产品页面、包装和说明书应提供制造商/责任人、产品识别、安全警示和可追溯信息。",
             sourceUrl: "https://eur-lex.europa.eu/",
             severity: "warning",
           },
         ],
-        recommendedAction: "补充包装标签与警示说明，并准备对应的包材合规记录。",
+        recommendedAction:
+          "重做欧盟包装和说明书模板，至少覆盖 EN/DE/FR/ES/IT 五语安全警示，并把批次追溯码写入包装版式。",
+        estimatedFixCost: "¥1,500-5,000",
+      },
+      {
+        riskId: "risk_03",
+        title: "电源和水箱结构需要补充安全测试",
+        description:
+          "该产品同时涉及 USB 供电、雾化片、水箱和塑料外壳。若电源保护、阻燃等级或防水结构证据不足，可能影响 CE LVD/EMC、UL/ETL 以及平台电气安全审核。",
+        severity: "critical",
+        flameLevel: 1,
+        confidence: 0.83,
+        imageId: "img_01",
+        bbox: { x: 0.18, y: 0.28, w: 0.38, h: 0.32 },
+        regulations: [
+          {
+            regId: "EU-LVD-2014/35/EU",
+            code: "LVD",
+            name: "低电压指令",
+            market: "EU",
+            summary: "电气产品应证明结构、电源、温升、绝缘和用户可接触部件满足基本安全要求。",
+            sourceUrl: "https://eur-lex.europa.eu/",
+            severity: "critical",
+          },
+        ],
+        recommendedAction:
+          "补充温升、异常工作、跌落、阻燃、EMC 预扫和电源保护测试；若使用第三方适配器，需锁定型号和证书。",
+        estimatedFixCost: "¥12,000-35,000",
       },
     ],
     checklist: [
       {
         itemId: "check_01",
-        category: "CE 认证 / 欧盟市场",
-        title: "整理产品规格书与铭牌信息",
-        requiredMaterials: ["产品规格书", "铭牌版式", "供应商信息"],
-        recommendedLab: "SGS / TÜV / 华测",
-        estimatedCost: "¥0-2,000",
-        estimatedTime: "1-2 天",
-        isFree: true,
+        category: "CE / 欧盟市场",
+        title: "建立技术文件包和 DoC",
+        requiredMaterials: ["产品规格书", "BOM", "电路图", "风险评估", "测试报告", "欧盟责任人信息"],
+        recommendedLab: "SGS / TUV / Intertek / 华测",
+        estimatedCost: "¥8,000-20,000",
+        estimatedTime: "2-4 周",
+        isFree: false,
       },
       {
         itemId: "check_02",
-        category: "标签整改",
-        title: "补充多语言警示与包装标识",
-        requiredMaterials: ["包装图稿", "警示语清单"],
-        estimatedCost: "¥500-1,500",
-        estimatedTime: "1 周",
+        category: "标签与包装",
+        title: "补齐铭牌、警示语和追溯信息",
+        requiredMaterials: ["铭牌版式", "包装刀模", "多语言警示语", "批次编码规则"],
+        estimatedCost: "¥1,500-5,000",
+        estimatedTime: "3-7 天",
         isFree: true,
+      },
+      {
+        itemId: "check_03",
+        category: "EPR / WEEE",
+        title: "确认德国/法国 EPR 注册路径",
+        requiredMaterials: ["品牌主体", "包装重量", "电子电器分类", "年度销量预测"],
+        estimatedCost: "¥3,000-10,000",
+        estimatedTime: "1-3 周",
+        isFree: false,
       },
     ],
     generatedAt: now,
@@ -123,303 +169,237 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
   };
 }
 
-/** Demo compliance report result with rich image/risk/checklist data */
-export function createMockComplianceReportResult(sessionId = "demo") {
-  const now = new Date().toISOString();
+export function createMockComplianceReportResult(sessionId = "demo"): ComplianceReportResult {
+  const now = nowIso();
   return {
     sessionId,
     scanTime: now,
     productCategory: "electronics",
-    productName: "USB 智能加湿器",
-    targetMarkets: ["EU", "US"] as const,
-    complianceScore: 78,
-    scoreGrade: "C" as const,
-    complianceStatus: "WARN",
-    complianceReport: `## 合规分析报告\n\n### 1. 总体评估\n\n**综合评分：78 / 100（等级 C）**\n\n该产品出口欧盟及美国市场，整体合规性基本达标，但存在 **3 项风险点** 需要关注。\n\n### 2. 产品图片分析\n\n通过视觉 AI 识别，从 3 张产品图片中提取了关键合规信息：\n\n| 图片 | 角度 | 检测区域 | 匹配法规 |\n|------|------|---------|---------|\n| humidifier-main.jpg | 正面 | 铭牌区域 | EU-CE-2014/35/EU |\n| humidifier-label.jpg | 铭牌特写 | CE 标识区域 | EU-CE-MDR |\n| humidifier-package.jpg | 包装 | 包装标识 | EU-Packaging-94/62/EC |\n\n### 3. 关键风险点\n\n#### 3.1 锂电池未做 UN 38.3 测试（严重）\n\n- **置信度**：94%\n- **涉及市场**：EU · US\n- **相关法规**：UN 38.3 · (EU) 2023/1542 · US 49 CFR\n\n加湿器内置 2000mAh 锂电池，跨境运输前必须完成 UN 38.3 认证。\n\n**建议行动**：\n- 联系有资质的实验室完成 UN 38.3 测试（约 5–8 工作日）\n- 预估整改成本：¥8,000–15,000\n\n#### 3.2 包装材料缺少 EPR 注册（警告）\n\n- **置信度**：81%\n- **涉及市场**：EU\n- **相关法规**：EU-Packaging-94/62/EC · 德国 VerpackG\n\n包装材质为普通瓦楞纸，未在德国包装注册系统（LUCID）完成注册。\n\n**建议行动**：\n- 在 LUCID 网站完成包装商注册（免费基础注册）\n- 预估整改成本：¥500–2,000\n\n#### 3.3 USB-C 充电接口不符合欧盟统一充电指令（警告）\n\n- **置信度**：67%\n- **涉及市场**：EU\n- **相关法规**：EU-2022/2380 (USB-C 统一充电指令)\n\n加湿器使用 USB-C 接口，但未在说明书或包装上注明支持 USB-PD 协议。\n\n**建议行动**：\n- 补充 USB-PD 兼容性说明，审核现有 USB-C 线缆合规性\n- 预估整改成本：¥0–1,000\n\n### 4. 合规检查清单\n\n| 检查项 | 结果 | 说明 |\n|--------|------|------|\n| CE 标识 | PASS | 铭牌清晰可见 |\n| RoHS 检测 | PASS | 已提供符合性声明 |\n| 锂电池运输认证 | FAIL | 缺 UN 38.3 报告 |\n| 包装 EPR 注册 | WARN | 德国未注册 |\n| USB-PD 说明 | WARN | 说明书缺失 |\n\n### 5. 总结\n\n该产品基础合规性较好，CE 标识和 RoHS 已达标。建议优先完成锂电池 UN 38.3 测试和德国包装 EPR 注册后再上架销售。</p>`,
+    productName: PRODUCT_NAME,
+    targetMarkets: [...DEFAULT_MARKETS],
+    complianceScore: 45,
+    scoreGrade: "D",
+    complianceReport: `## 降级合规分析报告：${PRODUCT_NAME}
+
+> 当前为离线降级报告：后端 RAG/LLM 服务不可用时生成，用于保障演示和业务流不中断。结论偏保守，正式出货前仍需要以实验室报告和官方法规为准。
+
+### 1. 总体判断
+
+该产品属于小型电子电器/家居加湿类产品，目标市场为欧盟和美国。基于图片可见信息，当前状态建议判定为 **REJECTED / 暂不建议上架**。
+
+主要原因：
+
+1. 铭牌未看到完整 CE 标识、型号、制造商/责任人和批次追溯信息。
+2. 包装与说明书缺少多语言安全警示、WEEE/EPR、回收和儿童误用提示。
+3. 产品涉及 USB 供电、雾化片、水箱和塑料外壳，需要补充电气安全、EMC、阻燃和异常工作测试。
+
+### 2. 关键风险
+
+| 风险项 | 严重度 | 影响市场 | 业务影响 | 建议动作 |
+| --- | --- | --- | --- | --- |
+| CE/DoC/技术文件缺失 | 严重 | EU/UK | 平台审核失败、海关扣留、召回风险 | 先完成 LVD/EMC/RoHS 技术文件包 |
+| 标签和责任人信息不足 | 严重 | EU | GPSR 下架、售后追溯失败 | 补齐欧盟责任人、制造商、批次号 |
+| 多语言警示不足 | 中高 | EU/US | 客诉、差评、平台资料补交 | 更新包装和说明书 |
+| 电气和水箱结构证据不足 | 严重 | EU/US | 安全事故、退货、保险拒赔 | 做温升、跌落、异常工作、防水结构评估 |
+| EPR/WEEE 未登记 | 中高 | DE/FR | 平台限制销售、罚款 | 建立包装、电器、可能的电池 EPR 台账 |
+
+### 3. 推荐整改排期
+
+| 阶段 | 时间 | 负责人 | 产出 |
+| --- | --- | --- | --- |
+| 资料冻结 | 第 1-2 天 | 产品/采购 | 锁定 BOM、供应商、适配器型号、外壳材料 |
+| 标签包装整改 | 第 3-7 天 | 设计/合规 | 铭牌、包装、说明书、多语言警示 |
+| 预扫测试 | 第 1-2 周 | 实验室 | EMC 预扫、电气安全、温升和异常工作结果 |
+| 正式认证 | 第 3-5 周 | 实验室/合规 | CE 技术文件、DoC、RoHS/REACH 报告 |
+| 上架复核 | 第 5 周 | 运营/法务 | listing 文案、证书归档、EPR 编号 |
+
+### 4. 上线建议
+
+短期可以先用于内部选品和成本测算，不建议直接进入欧盟/美国销售。若必须赶上架，建议只开放低风险测试渠道，并把页面库存、广告预算和仓储入库控制在小批量范围内。`,
+    complianceStatus: "REJECTED",
     agentTrace: [
-      { node: "vision", status: "PASS", duration_ms: 3200, score: 0.95 },
-      { node: "query_planner", status: "PASS", duration_ms: 210, docs_retrieved: 0 },
-      { node: "retriever", status: "PASS", duration_ms: 1800, docs_retrieved: 12 },
-      { node: "synthesizer", status: "PASS", duration_ms: 950, score: 0.87 },
-      { node: "generator", status: "PASS", duration_ms: 2100, score: 0.88 },
-      { node: "verifier", status: "WARN", duration_ms: 600, score: 0.72 },
+      { node: "vision", status: "MOCK", duration_ms: 0, score: 0.7 },
+      { node: "retriever", status: "FALLBACK", duration_ms: 0, docs_retrieved: 6 },
+      { node: "generator", status: "MOCK", duration_ms: 0, score: 0.68 },
+      { node: "verifier", status: "WARN", duration_ms: 0, score: 0.62 },
     ],
-    loopCount: 1,
+    loopCount: 0,
     retrievedChunks: [
-      { regId: "EU-CE-2014/35/EU", docName: "低压指令", articleNo: "Art. 4", region: "EU", score: 0.93 },
-      { regId: "EU-ROHS-2011/65/EU", docName: "RoHS 指令", articleNo: "Art. 4", region: "EU", score: 0.91 },
-      { regId: "EU-REACH-1907/2006", docName: "REACH 法规", articleNo: "Art. 33", region: "EU", score: 0.88 },
-      { regId: "EU-WEEE-2012/19/EU", docName: "WEEE 指令", articleNo: "Art. 8", region: "EU", score: 0.82 },
-      { regId: "EU-PACKAGING-94/62/EC", docName: "包装指令", articleNo: "Art. 9", region: "EU", score: 0.76 },
-      { regId: "EU-USB-C-2022/2380", docName: "统一充电指令", articleNo: "Art. 3", region: "EU", score: 0.71 },
-      { regId: "US-FCC-15", docName: "FCC 第15部分", articleNo: "15.101", region: "US", score: 0.68 },
-      { regId: "UN38.3", docName: "锂电池运输测试", articleNo: "ST/SG/AC.10/11", region: "INTL", score: 0.95 },
+      { regId: "EU-GPSR-2023/988", docName: "EU GPSR 通用产品安全法规", articleNo: "Art. 9", region: "EU", score: 0.86 },
+      { regId: "EU-LVD-2014/35/EU", docName: "低电压指令", articleNo: "Annex I", region: "EU", score: 0.83 },
+      { regId: "EU-EMC-2014/30/EU", docName: "EMC 指令", articleNo: "Art. 6", region: "EU", score: 0.8 },
+      { regId: "EU-ROHS-2011/65/EU", docName: "RoHS 指令", articleNo: "Art. 4", region: "EU", score: 0.78 },
+      { regId: "US-FCC-15", docName: "FCC Part 15", articleNo: "15.101", region: "US", score: 0.72 },
+      { regId: "US-CPSA", docName: "Consumer Product Safety Act", articleNo: "General Duty", region: "US", score: 0.68 },
     ],
-    images: [
-      {
-        imageId: "img_01",
-        url: "/mock-fixtures/humidifier-main.jpg",
-        thumbnail: "/mock-fixtures/humidifier-main.jpg",
-        width: 1200,
-        height: 900,
-        angleHint: "front",
-        bbox: { x: 0.30, y: 0.40, w: 0.25, h: 0.20 },
-        matchedRegulations: ["EU-CE-2014/35/EU"],
-      },
-      {
-        imageId: "img_02",
-        url: "/mock-fixtures/humidifier-label.jpg",
-        thumbnail: "/mock-fixtures/humidifier-label.jpg",
-        width: 1200,
-        height: 900,
-        angleHint: "nameplate",
-        bbox: { x: 0.34, y: 0.46, w: 0.24, h: 0.18 },
-        matchedRegulations: ["EU-CE-MDR", "EU-2022/2380"],
-      },
-      {
-        imageId: "img_03",
-        url: "/mock-fixtures/humidifier-package.jpg",
-        thumbnail: "/mock-fixtures/humidifier-package.jpg",
-        width: 1200,
-        height: 900,
-        angleHint: "package",
-        bbox: { x: 0.05, y: 0.10, w: 0.90, h: 0.80 },
-        matchedRegulations: ["EU-PACKAGING-94/62/EC"],
-      },
-    ],
+    images: undefined,
     documents: [],
-    riskPoints: [
-      {
-        riskId: "risk_01",
-        title: "锂电池未做 UN 38.3 测试",
-        description: "内置 2000mAh 锂电池未完成 UN 38.3 运输测试，存在跨境运输合规风险。",
-        severity: "critical",
-        flameLevel: 1,
-        confidence: 0.94,
-        imageId: "img_01",
-        bbox: { x: 0.48, y: 0.55, w: 0.12, h: 0.15 },
-        matched_regulations: [
-          { name: "UN 38.3 锂电池运输测试", article: "ST/SG/AC.10/11 Rev.5" },
-          { name: "(EU) 2023/1542 欧盟电池法规", article: "Art. 7" },
-          { name: "US 49 CFR 锂电池规定", article: "49 CFR 173.185" },
-        ],
-        suggestions: "联系有资质的实验室完成 UN 38.3 测试，准备测试报告和危包证。",
-      },
-      {
-        riskId: "risk_02",
-        title: "包装材料缺少 EPR 注册",
-        description: "包装材质未在德国 LUCID 系统完成 EPR 注册，存在被罚款风险。",
-        severity: "warning",
-        flameLevel: 2,
-        confidence: 0.81,
-        imageId: "img_03",
-        bbox: { x: 0.05, y: 0.10, w: 0.90, h: 0.80 },
-        matched_regulations: [
-          { name: "EU 包装指令", article: "94/62/EC Art. 9" },
-          { name: "德国包装法", article: "VerpackG §9" },
-        ],
-        suggestions: "在 LUCID 网站（lucid.verpackungsregister.de）完成免费基础注册。",
-      },
-      {
-        riskId: "risk_03",
-        title: "USB-C 接口说明不完整",
-        description: "产品使用 USB-C 接口但未标注支持 USB-PD 协议，不符合 EU 2022/2380 指令。",
-        severity: "warning",
-        flameLevel: 2,
-        confidence: 0.67,
-        imageId: "img_02",
-        bbox: { x: 0.60, y: 0.35, w: 0.10, h: 0.12 },
-        matched_regulations: [
-          { name: "EU 统一充电指令", article: "(EU) 2022/2380 Art. 3" },
-        ],
-        suggestions: "在说明书和外包装补充 USB-PD 兼容性说明。",
-      },
-      {
-        riskId: "risk_04",
-        title: "铭牌缺少多语言警告",
-        description: "铭牌仅含英文，欧盟市场需要至少英语和德语双语警告标识。",
-        severity: "warning",
-        flameLevel: 3,
-        confidence: 0.59,
-        imageId: "img_02",
-        bbox: { x: 0.34, y: 0.46, w: 0.24, h: 0.18 },
-        matched_regulations: [
-          { name: "EU 低压指令", article: "2014/35/EU Art. 5" },
-        ],
-        suggestions: "补充德语警告标识，与 CE 标识一起印刷在铭牌背面。",
-      },
-    ],
-    checklist: [
-      { question: "产品是否带有清晰的 CE 标识？", answer: "铭牌清晰可见 CE 标识，符合要求。", status: "pass" },
-      { question: "锂电池是否已完成 UN 38.3 测试？", answer: "未完成，需要补充测试报告。", status: "fail" },
-      { question: "包装材料是否已在 EPR 系统注册？", answer: "德国 LUCID 未注册，需尽快完成。", status: "fail" },
-      { question: "RoHS 合规声明是否有效？", answer: "已提供第三方检测报告，符合要求。", status: "pass" },
-      { question: "USB-C 接口是否有 PD 协议说明？", answer: "说明书缺失相关说明，需补充。", status: "warn" },
-      { question: "铭牌是否有多语言警告标识？", answer: "仅英文，欧盟市场需要至少双语。", status: "warn" },
-      { question: "是否已在欧代注册（EU Rep）？", answer: "已注册，代理信息标注在包装上。", status: "pass" },
-    ],
-    status: "WARN",
-    score: 78,
-    summary: "产品整体合规性基本达标，存在 1 项严重风险（锂电池认证）和 3 项警告。建议优先完成 UN 38.3 测试和包装 EPR 注册后再上架欧盟市场。",
-    totalRisks: 3,
-    passItems: 4,
-    warnItems: 3,
+    riskPoints: undefined,
+    checklist: undefined,
     generatedAt: now,
-    modelInfo: { ragProvider: "mimotalk", latencyMs: 8500 },
+    modelInfo: { ragProvider: "fallback-mock", latencyMs: 0 },
   };
 }
 
-export const mockComplianceReportResult = createMockComplianceReportResult("demo");
+type ProfitScenario = "lean" | "standard" | "premium";
 
-export const mockScanResult = createMockScanResult("demo");
+const profitScenarioConfig: Record<
+  ProfitScenario,
+  {
+    title: string;
+    market: string;
+    barebone: ProfitReportResult["barebone"];
+    compliant: ProfitReportResult["compliant"];
+    bareboneRiskExposure: number;
+    compliantRiskExposure: number;
+    premiumPct: string;
+    breakevenUnits: string;
+    pricingStrategy: string;
+    riskNote: string;
+    keyConclusion: string;
+  }
+> = {
+  lean: {
+    title: "方案 A：保守修复版",
+    market: "EU",
+    barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6, asp: 19.99, gp: 0.71, warranty: 0.45, total: 15.95 },
+    compliant: { bom: 11.8, packaging: 0.55, cert: 0.35, epr: 0.28, logistics: 6.1, asp: 29.99, gp: 7.46, warranty: 0.75, total: 19.63 },
+    bareboneRiskExposure: 6800,
+    compliantRiskExposure: 600,
+    premiumPct: "23%",
+    breakevenUnits: "545 台",
+    pricingStrategy: "以 $29.99 作为合规入门价，优先保住转化率和评价数量。",
+    riskNote: "裸奔模式在欧盟平台审核中容易被要求补证；小批量也可能触发仓储冻结。",
+    keyConclusion: "保守修复版适合赶首批上架：单台成本增加约 $3.68，但风险敞口下降约 91%。",
+  },
+  standard: {
+    title: "方案 B：标准合规版",
+    market: "EU",
+    barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6, asp: 19.99, gp: 0.71, warranty: 0.45, total: 15.95 },
+    compliant: { bom: 13.5, packaging: 0.65, cert: 0.45, epr: 0.35, logistics: 6, asp: 39.99, gp: 11.48, warranty: 0.9, total: 21.85 },
+    bareboneRiskExposure: 9200,
+    compliantRiskExposure: 480,
+    premiumPct: "37%",
+    breakevenUnits: "295 台",
+    pricingStrategy: "建议 $39.99-49.99，主打安全认证、低噪音和可持续包装。",
+    riskNote: "裸奔模式在 EU/US 双市场会叠加平台下架、召回和赔付风险。",
+    keyConclusion: "标准合规版是推荐路径：单台毛利从 $0.71 提升到 $11.48，约 295 台即可覆盖合规投入。",
+  },
+  premium: {
+    title: "方案 C：品牌溢价版",
+    market: "EU + US + UK",
+    barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6.2, asp: 19.99, gp: 0.51, warranty: 0.65, total: 16.15 },
+    compliant: { bom: 15.8, packaging: 1.15, cert: 0.65, epr: 0.42, logistics: 6.4, asp: 54.99, gp: 24.77, warranty: 1.8, total: 30.22 },
+    bareboneRiskExposure: 12800,
+    compliantRiskExposure: 900,
+    premiumPct: "87%",
+    breakevenUnits: "182 台",
+    pricingStrategy: "建议 $49.99-59.99，搭配品牌包装、延保、低噪音测试和礼品场景营销。",
+    riskNote: "品牌溢价依赖更完整的测试证据和售后承诺；成本更高，但能明显提升渠道议价能力。",
+    keyConclusion: "品牌溢价版适合做长期款：合规成本更高，但单台风险调整后利润最高。",
+  },
+};
 
-export function createMockProfitReport(sessionId = "demo"): ProfitReportResult {
-  const now = new Date().toISOString();
+function buildProfitReport(sessionId: string, scenario: ProfitScenario): ProfitReportResult {
+  const now = nowIso();
+  const config = profitScenarioConfig[scenario];
+  const compliantDelta = config.compliant.total - config.barebone.total;
+  const conclusions = [
+    `1. ${config.keyConclusion}`,
+    `2. 合规方案直接成本增加约 $${compliantDelta.toFixed(2)}/台，但显著降低平台下架、扣仓和召回风险。`,
+    `3. 建议把证书、标签、EPR 和测试报告做成 SKU 级台账，避免后续扩市场时重复补资料。`,
+    `4. 若预算有限，优先完成铭牌/说明书/RoHS/EMC 预扫；若做长期款，应同步布局品牌包装和延保。`,
+  ].join("\n");
+  const references = [
+    "- EU GPSR (EU) 2023/988 通用产品安全法规",
+    "- LVD 2014/35/EU / EMC 2014/30/EU",
+    "- RoHS 2011/65/EU / REACH (EC) No 1907/2006",
+    "- WEEE 2012/19/EU / 德国 VerpackG、ElektroG",
+    "- FCC Part 15 / 美国消费品安全通用义务",
+  ].join("\n");
+
   return {
     sessionId,
-    productType: "USB 智能加湿器",
-    market: "EU",
+    productType: PRODUCT_NAME,
+    market: config.market,
     currency: "USD",
-    report: `## [USB 智能加湿器] 合规成本与利润分析报告
+    report: `## ${config.title}：${PRODUCT_NAME} 合规成本与利润分析
 
-> 目标市场：EU | 产品类型：electronics | 报告日期：${now.slice(0, 10)}
+> 当前为离线降级利润报告。金额为演示估算，用于展示成本结构和决策逻辑；正式报价前应替换为真实 BOM、物流、认证报价和平台费率。
 
----
+### 一、成本对比
 
-### 一、成本对比表（合规模式 vs 裸奔模式）
-
-| 成本项 | 裸奔模式 | 合规模式 | 差异 |
-|--------|---------|---------|------|
-| 材料成本(BOM) | $9.20 | $13.50 | +$4.30 |
-| 包装与印刷 | $0.25 | $0.65 | +$0.40 |
-| 认证费(单台摊销) | $0.05 | $0.45 | +$0.40 |
-| EPR运营费 | $0.00 | $0.35 | +$0.35 |
-| 售后/保修预留 | $0.45 | $0.90 | +$0.45 |
-| 物流与渠道 | $6.00 | $6.00 | 持平 |
-| **总直接成本** | **$15.95** | **$21.85** | **+$5.90 (+37%)** |
+| 成本项 | 裸奔模式 | 合规模式 | 说明 |
+| --- | ---: | ---: | --- |
+| BOM | $${config.barebone.bom.toFixed(2)} | $${config.compliant.bom.toFixed(2)} | 外壳、电源、雾化片、阻燃材料 |
+| 包装与印刷 | $${config.barebone.packaging.toFixed(2)} | $${config.compliant.packaging.toFixed(2)} | 多语言警示、追溯码、回收标识 |
+| 认证摊销 | $${config.barebone.cert.toFixed(2)} | $${config.compliant.cert.toFixed(2)} | CE/FCC/RoHS/EMC 等按销量摊销 |
+| EPR/WEEE | $${config.barebone.epr.toFixed(2)} | $${config.compliant.epr.toFixed(2)} | 包装、电器、可能的电池责任 |
+| 售后预留 | $${config.barebone.warranty.toFixed(2)} | $${config.compliant.warranty.toFixed(2)} | 合规模式含更清晰保修承诺 |
+| 物流渠道 | $${config.barebone.logistics.toFixed(2)} | $${config.compliant.logistics.toFixed(2)} | 海外仓/平台仓基础成本 |
+| **总直接成本** | **$${config.barebone.total.toFixed(2)}** | **$${config.compliant.total.toFixed(2)}** | 合规溢价 ${config.premiumPct} |
 
 ### 二、收益对比
 
-| 收益项 | 裸奔模式 | 合规模式 | 差异 |
-|--------|---------|---------|------|
-| 平均售价(ASP) | $19.99 | $39.99 | +$20.00 |
-| 毛利润(单台) | $0.71 | $11.48 | +$10.77 |
-| 毛利率 | 3.6% | 28.7% | — |
+| 收益项 | 裸奔模式 | 合规模式 |
+| --- | ---: | ---: |
+| 平均售价 ASP | $${config.barebone.asp.toFixed(2)} | $${config.compliant.asp.toFixed(2)} |
+| 单台毛利 GP | $${config.barebone.gp.toFixed(2)} | $${config.compliant.gp.toFixed(2)} |
+| 毛利率 | ${((config.barebone.gp / config.barebone.asp) * 100).toFixed(1)}% | ${((config.compliant.gp / config.compliant.asp) * 100).toFixed(1)}% |
 
-### 三、风险调整后净收益
+### 三、风险调整后收益
 
-| 模式 | 毛利润 | 风险敞口 | 经风险调整净收益 |
-|------|--------|---------|----------------|
-| 合规模式 | $11.48 | $0.00 | **$11.48** |
-| 裸奔模式 | $0.71 | 35–50% 扣押/召回概率 | **-$4.00（期望值亏损）** |
+裸奔模式看似成本低，但一旦遇到平台补证、扣仓、批量退货或召回，单次损失可能覆盖数百台利润。合规模式虽然增加前置成本，但能换取更稳定的上架、广告投放和渠道合作。
 
-> 风险敞口说明：裸奔模式在2025年后欧盟监管环境下被查处概率约35%–50%，一旦扣押单次损失约$15.95–$31.90/台；合规模式零风险敞口。
+### 四、盈亏平衡
 
-### 四、盈亏平衡分析
-
-- 合规溢价约 **37%**
-- 盈亏平衡点：约 **295** 台
-- 合规模式定价策略：建议定价 $39.99–$49.99，进入亚马逊/MediaMarkt 等主流渠道
+- 合规溢价：${config.premiumPct}
+- 预估盈亏平衡点：${config.breakevenUnits}
+- 定价策略：${config.pricingStrategy}
 
 ### 五、关键结论
 
-1. **合规溢价约 37%**：单台成本增加约 $5.90，但可支撑 2 倍以上定价。
-2. **合规模式净利润 $11.48/台**，裸奔模式经风险调整后期望利润为 **负数**（约 -$4/台）。
-3. **盈亏平衡点仅 295 台**，规模出货后合规成本可忽略不计。
-4. **关键合规节点**：V-0 阻燃外壳、A 级电芯、USB-C/PD 芯片、CE/WEEE/EPR 注册。
-5. **2027 年结构性风险**：电池可拆卸性要求（+~$1.62/台），裸奔产品届时将无法通关。
+${conclusions}
 
-### 六、法规引用
+### 六、法规与运营依据
 
-- (EU) 2023/1542《欧盟电池法规》
-- EN 62368-1 电气安全标准（外壳阻燃 V-0 级）
-- Directive (EU) 2022/2380 统一充电器指令（USB-C/PD）
-- RoHS 2011/65/EU / REACH (EC) No 1907/2006
-- 德国 BattG / VerpackG / ElektroG EPR 体系`,
-    barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6.0, asp: 19.99, gp: 0.71, warranty: 0.45, total: 15.95 },
-    compliant: { bom: 13.5, packaging: 0.65, cert: 0.45, epr: 0.35, logistics: 6.0, asp: 39.99, gp: 11.48, warranty: 0.9, total: 21.85 },
-    bareboneRiskExposure: 6800,
-    compliantRiskExposure: 320,
-    keyConclusion: "合规溢价约 37%：单台成本增加约 $5.90，但可支撑 2 倍以上定价。",
+${references}`,
+    barebone: config.barebone,
+    compliant: config.compliant,
+    bareboneRiskExposure: config.bareboneRiskExposure,
+    compliantRiskExposure: config.compliantRiskExposure,
+    keyConclusion: config.keyConclusion,
     generatedAt: now,
-    premiumPct: "37%",
-    breakevenUnits: "295 台",
-    pricingStrategy: "建议定价 $39.99–$49.99，进入亚马逊/MediaMarkt 等主流渠道",
-    riskNote: "裸奔模式在2025年后欧盟监管环境下被查处概率约35%–50%，一旦扣押单次损失约$15.95–$31.90/台；合规模式零风险敞口。",
-    conclusions: "1. 合规溢价约 37%：单台成本增加约 $5.90，但可支撑 2 倍以上定价。\n2. 合规模式净利润 $11.48/台，裸奔模式经风险调整后期望利润为负数（约 -$4/台）。\n3. 盈亏平衡点仅 295 台，规模出货后合规成本可忽略不计。\n4. 关键合规节点：V-0 阻燃外壳、A 级电芯、USB-C/PD 芯片、CE/WEEE/EPR 注册。\n5. 2027 年结构性风险：电池可拆卸性要求（+~$1.62/台），裸奔产品届时将无法通关。",
-    references: "- (EU) 2023/1542《欧盟电池法规》\n- EN 62368-1 电气安全标准（外壳阻燃 V-0 级）\n- Directive (EU) 2022/2380 统一充电器指令（USB-C/PD）\n- RoHS 2011/65/EU / REACH (EC) No 1907/2006\n- 德国 BattG / VerpackG / ElektroG EPR 体系",
-    bareboneGpm: 3.6,
-    compliantGpm: 28.7,
+    premiumPct: config.premiumPct,
+    breakevenUnits: config.breakevenUnits,
+    pricingStrategy: config.pricingStrategy,
+    riskNote: config.riskNote,
+    conclusions,
+    references,
+    bareboneGpm: (config.barebone.gp / config.barebone.asp) * 100,
+    compliantGpm: (config.compliant.gp / config.compliant.asp) * 100,
   };
 }
 
-export const mockProfitReport = createMockProfitReport("demo");
-
-/** EU market profit report for demo */
-export function createMockProfitReportEU(): ProfitReportResult {
-  return createMockProfitReport("demo");
+export function createMockProfitReports(sessionId = "demo"): ProfitReportResult[] {
+  return [buildProfitReport(sessionId, "lean"), buildProfitReport(sessionId, "standard"), buildProfitReport(sessionId, "premium")];
 }
-export function createMockProfitReportUS(): ProfitReportResult {
-  const now = new Date().toISOString();
-  return {
-    sessionId: "demo",
-    productType: "USB 智能加湿器",
-    market: "US",
-    currency: "USD",
-    report: `## [USB 智能加湿器] 合规成本与利润分析报告 · 美国市场
 
-> 目标市场：US | 产品类型：electronics | 报告日期：${now.slice(0, 10)}
-
----
-
-### 一、成本对比表
-
-| 成本项 | 裸奔模式 | 合规模式 | 差异 |
-|--------|---------|---------|------|
-| 材料成本(BOM) | $9.20 | $12.80 | +$3.60 |
-| 包装与印刷 | $0.25 | $0.55 | +$0.30 |
-| FCC/UL 认证摊销 | $0.05 | $0.60 | +$0.55 |
-| EPA 注册费 | $0.00 | $0.25 | +$0.25 |
-| 售后/保修预留 | $0.45 | $0.85 | +$0.40 |
-| 物流与渠道 | $7.50 | $7.50 | 持平 |
-| **总直接成本** | **$17.45** | **$22.55** | **+$5.10 (+29%)** |
-
-### 二、收益对比
-
-| 收益项 | 裸奔模式 | 合规模式 | 差异 |
-|--------|---------|---------|------|
-| 平均售价(ASP) | $24.99 | $44.99 | +$20.00 |
-| 毛利润(单台) | $1.04 | $13.89 | +$12.85 |
-| 毛利率 | 4.2% | 30.9% | — |
-
-### 三、风险调整后净收益
-
-| 模式 | 毛利润 | 风险敞口 | 经风险调整净收益 |
-|------|--------|---------|----------------|
-| 合规模式 | $13.89 | $0.00 | **$13.89** |
-| 裸奔模式 | $1.04 | 25–40% 扣押/召回概率 | **-$2.50（期望值亏损）** |
-
-### 四、关键结论
-
-1. 美国市场合规溢价约 29%，低于欧盟市场。
-2. FCC + UL 认证是主要成本增量，但合规后可进入 Target/Home Depot 等主流渠道。
-3. 合规模式净利润 $13.89/台，裸奔模式期望利润为负数。
-4. 建议同时完成 FCC SDoC 和 UL 认证，覆盖线上线下全渠道。`,
-    barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 7.5, asp: 24.99, gp: 1.04, warranty: 0.45, total: 17.45 },
-    compliant: { bom: 12.8, packaging: 0.55, cert: 0.6, epr: 0.25, logistics: 7.5, asp: 44.99, gp: 13.89, warranty: 0.85, total: 22.55 },
-    bareboneRiskExposure: 5500,
-    compliantRiskExposure: 280,
-    keyConclusion: "美国市场合规溢价约 29%，合规模式净利润 $13.89/台，裸奔模式期望利润为负数。",
-    generatedAt: now,
-    premiumPct: "29%",
-    breakevenUnits: "240 台",
-    pricingStrategy: "建议定价 $44.99–$54.99，覆盖亚马逊自营、Target、Home Depot 等渠道。",
-    riskNote: "裸奔模式在美国监管环境下被查处概率约 25%–40%，一旦扣押单次损失约 $17.45–$34.90/台；合规模式零风险敞口。",
-    conclusions: "1. 美国市场合规溢价约 29%。\n2. 合规模式净利润 $13.89/台，裸奔模式期望利润为负数。\n3. FCC + UL 认证是主要成本增量，完成后可进入主流渠道。",
-    references: "- FCC 47 CFR Part 15\n- UL 60335-1 家用电器安全标准\n- EPA TSCA 法规\n- US 49 CFR 锂电池运输",
-    bareboneGpm: 4.2,
-    compliantGpm: 30.9,
-  };
+export function createMockProfitReport(sessionId = "demo"): ProfitReportResult {
+  return createMockProfitReports(sessionId)[1];
 }
+
+export function createMockProfitReportEU(sessionId = "demo"): ProfitReportResult {
+  return createMockProfitReports(sessionId)[1];
+}
+
+export function createMockProfitReportUS(sessionId = "demo"): ProfitReportResult {
+  return createMockProfitReports(sessionId)[2];
+}
+
+export const mockComplianceReportResult = createMockComplianceReportResult("demo");
+export const mockScanResult = createMockScanResult("demo");
+export const mockProfitReports = createMockProfitReports("demo");
+export const mockProfitReport = mockProfitReports[1];
 export const demoProfitReportEU = createMockProfitReportEU();
 export const demoProfitReportUS = createMockProfitReportUS();

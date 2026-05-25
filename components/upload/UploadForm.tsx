@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
@@ -71,55 +71,17 @@ function DocumentIcon({ mimeType }: { mimeType: string }) {
   );
 }
 
-function ImagePreview({ file }: { file: File }) {
-  const [url, setUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    const nextUrl = URL.createObjectURL(file);
-    setUrl(nextUrl);
-    return () => URL.revokeObjectURL(nextUrl);
-  }, [file]);
-
-  if (!url) return null;
-
-  return (
-    <div className="relative flex items-center gap-3 rounded-xl border border-border bg-muted/40 p-3">
-      <Image
-        src={url}
-        alt={file.name}
-        width={64}
-        height={64}
-        className="h-16 w-16 shrink-0 rounded-lg object-cover"
-      />
-      <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium">{file.name}</p>
-        <p className="mt-0.5 text-xs text-muted-foreground">{formatBytes(file.size)}</p>
-      </div>
-    </div>
-  );
-}
-
 interface ImageCarouselProps {
   files: File[];
 }
 
 function ImageCarousel({ files }: ImageCarouselProps) {
   const [current, setCurrent] = useState(0);
-  const [urls, setUrls] = useState<Record<number, string>>({});
+  const urls = useMemo(() => files.map((file) => URL.createObjectURL(file)), [files]);
 
   useEffect(() => {
-    const cleanup: (() => void)[] = [];
-    const newUrls: Record<number, string> = { ...urls };
-    files.forEach((file, i) => {
-      if (!newUrls[i]) {
-        const u = URL.createObjectURL(file);
-        newUrls[i] = u;
-        cleanup.push(() => URL.revokeObjectURL(u));
-      }
-    });
-    setUrls(newUrls);
-    return () => cleanup.forEach((fn) => fn());
-  }, [files]);
+    return () => urls.forEach((url) => URL.revokeObjectURL(url));
+  }, [urls]);
 
   const prev = useCallback(() => setCurrent((c) => (c > 0 ? c - 1 : files.length - 1)), [files.length]);
   const next = useCallback(() => setCurrent((c) => (c < files.length - 1 ? c + 1 : 0)), [files.length]);
@@ -133,8 +95,11 @@ function ImageCarousel({ files }: ImageCarouselProps) {
     return () => window.removeEventListener("keydown", handler);
   }, [prev, next]);
 
-  if (files.length === 0 || !urls[current]) return null;
-  const currentFile = files[current];
+  if (files.length === 0) return null;
+  const currentIndex = Math.min(current, files.length - 1);
+  const currentFile = files[currentIndex];
+  const currentUrl = urls[currentIndex];
+  if (!currentFile || !currentUrl) return null;
 
   return (
     <div className="space-y-3">
@@ -142,7 +107,7 @@ function ImageCarousel({ files }: ImageCarouselProps) {
       <div className="relative rounded-2xl border border-border bg-muted/30 overflow-hidden">
         <div className="relative aspect-[4/3] w-full">
           <Image
-            src={urls[current]}
+            src={currentUrl}
             alt={currentFile.name}
             fill
             className="object-contain"
@@ -181,7 +146,7 @@ function ImageCarousel({ files }: ImageCarouselProps) {
         )}
         {/* Index badge */}
         <div className="absolute bottom-3 right-3 rounded-full bg-black/60 px-3 py-1 text-xs font-medium text-white">
-          {current + 1} / {files.length}
+          {currentIndex + 1} / {files.length}
         </div>
       </div>
 
@@ -195,11 +160,11 @@ function ImageCarousel({ files }: ImageCarouselProps) {
               onClick={() => setCurrent(i)}
               className={cn(
                 "relative shrink-0 overflow-hidden rounded-lg border-2 transition-colors",
-                i === current ? "border-blaze-red" : "border-transparent opacity-60 hover:opacity-80"
+                i === currentIndex ? "border-blaze-red" : "border-transparent opacity-60 hover:opacity-80"
               )}
             >
               <Image src={urls[i]} alt={file.name} title={file.name} width={64} height={64} className="h-16 w-16 object-cover" />
-              {i !== current ? <span className="sr-only">{file.name}</span> : null}
+              {i !== currentIndex ? <span className="sr-only">{file.name}</span> : null}
             </button>
           ))}
         </div>

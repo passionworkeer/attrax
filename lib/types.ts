@@ -150,6 +150,7 @@ export interface ScanStatus {
   stageText: string;
   result?: ScanResult | ComplianceReportResult;
   profitReport?: ProfitReportResult;
+  profitReports?: ProfitReportResult[];
   error?: string;
 }
 

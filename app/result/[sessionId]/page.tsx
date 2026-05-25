@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useEffect, useState, useCallback } from "react";
+import { startTransition, useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -11,7 +11,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
-import { mockComplianceReportResult, mockProfitReport } from "@/lib/mock/scan-result";
+import { mockComplianceReportResult, mockProfitReport, mockProfitReports } from "@/lib/mock/scan-result";
 import { downloadReportAsPdf, downloadReportAsDocx, downloadDecisionReportAsPdf, downloadDecisionReportAsDocx, downloadRoadmapReportAsPdf, downloadRoadmapReportAsDocx } from "@/lib/report-export";
 import { ProfitReportView } from "@/components/result/ProfitReportView";
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
@@ -137,6 +137,10 @@ function DownloadButtons({
       ))}
     </div>
   );
+}
+
+function isProfitReportArray(value: unknown): value is ProfitReportResult[] {
+  return Array.isArray(value) && value.every(isProfitReport);
 }
 
 function formatBytes(bytes: number): string {
@@ -666,7 +670,30 @@ export default function ResultPage() {
   const [profitReport, setProfitReport] = useState<ProfitReportResult | null>(
     isDemoSession ? mockProfitReport : null
   );
+  const [profitReports, setProfitReports] = useState<ProfitReportResult[]>(
+    isDemoSession ? mockProfitReports : []
+  );
+  const [selectedProfitIndex, setSelectedProfitIndex] = useState(0);
   const [message, setMessage] = useState("");
+  const visibleProfitReport = useMemo(
+    () => profitReports[selectedProfitIndex] ?? profitReport,
+    [profitReport, profitReports, selectedProfitIndex]
+  );
+
+  const applyProfitReports = useCallback((payload: ScanStatus) => {
+    if (isProfitReportArray(payload.profitReports) && payload.profitReports.length > 0) {
+      setProfitReports(payload.profitReports);
+      setProfitReport(payload.profitReport && isProfitReport(payload.profitReport) ? payload.profitReport : payload.profitReports[0]);
+      setSelectedProfitIndex(0);
+      return;
+    }
+
+    if (payload.profitReport && isProfitReport(payload.profitReport)) {
+      setProfitReport(payload.profitReport);
+      setProfitReports([payload.profitReport]);
+      setSelectedProfitIndex(0);
+    }
+  }, []);
 
   useEffect(() => {
     if (!sessionId || isDemoSession) return;
@@ -688,8 +715,8 @@ export default function ResultPage() {
           .then((r) => r.ok ? r.json() : null)
           .then((rawPayload) => {
             const payload = unwrapApiData<ScanStatus>(rawPayload);
-            if (payload?.profitReport && isProfitReport(payload.profitReport)) {
-              setProfitReport(payload.profitReport);
+            if (payload) {
+              applyProfitReports(payload);
             }
           })
           .catch(() => {});
@@ -714,9 +741,7 @@ export default function ResultPage() {
       if (payload.status === "ready" && payload.result) {
         startTransition(() => {
           setResult(payload.result ?? null);
-          if (payload.profitReport && isProfitReport(payload.profitReport)) {
-            setProfitReport(payload.profitReport);
-          }
+          applyProfitReports(payload);
           setMessage(t("result.loaded"));
         });
         return;
@@ -729,7 +754,7 @@ export default function ResultPage() {
     }
 
     loadResult();
-  }, [isDemoSession, sessionId, t]);
+  }, [applyProfitReports, isDemoSession, sessionId, t]);
 
   return (
     <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-16">
@@ -770,7 +795,7 @@ export default function ResultPage() {
 
         {result && isComplianceReport(result) ? (
           <div className="mt-8">
-            {profitReport ? (
+            {visibleProfitReport ? (
               <Tabs defaultValue="compliance">
                 <TabsList>
                   <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
@@ -782,7 +807,28 @@ export default function ResultPage() {
                   <ComplianceReportView result={result} />
                 </TabsContent>
                 <TabsContent value="profit">
-                  <ProfitReportView result={profitReport} />
+                  {profitReports.length > 1 && (
+                    <div className="mb-4 flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-card p-3">
+                      <span className="mr-1 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
+                        Scenarios
+                      </span>
+                      {profitReports.map((report, index) => (
+                        <button
+                          key={`${report.market}-${report.premiumPct}-${index}`}
+                          onClick={() => setSelectedProfitIndex(index)}
+                          className={cn(
+                            "rounded-lg px-3 py-1.5 text-xs font-medium transition-colors",
+                            selectedProfitIndex === index
+                              ? "bg-blaze-red text-white"
+                              : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                          )}
+                        >
+                          {index + 1}. {report.premiumPct} / {report.breakevenUnits}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  <ProfitReportView result={visibleProfitReport} />
                 </TabsContent>
                 <TabsContent value="decision">
                   <DecisionReportPanel result={result} />

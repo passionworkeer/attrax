@@ -11,7 +11,7 @@
  * user still sees a valid report instead of a generic error.
  */
 import { updateSession } from "@/lib/pipeline/session-store";
-import { createMockScanResult, createMockProfitReport } from "@/lib/mock/scan-result";
+import { createMockProfitReport, createMockProfitReports, createMockScanResult } from "@/lib/mock/scan-result";
 import { RAG_SERVICE_TIMEOUT_MS, PROFIT_REPORT_TIMEOUT_MS } from "@/lib/constants";
 import { buildProfitReportFromMarkdown } from "@/lib/pipeline/profit-report";
 import { normalizeReportPackage } from "@/lib/pipeline/report-package";
@@ -198,6 +198,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       stageText: stages.demoResultGenerated,
       result: { ...createMockScanResult(sessionId), source: "fallback" },
       profitReport: createMockProfitReport(sessionId),
+      profitReports: createMockProfitReports(sessionId),
       error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
     });
     return;
@@ -260,6 +261,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
 
   // ── Stage 5: Profit report (included in new report package, legacy fallback otherwise) ──
   let profitReport: ProfitReportResult | undefined;
+  let profitReports: ProfitReportResult[] | undefined;
   const packageProfitMarkdown = reportPackage?.profitReport?.markdown;
 
   if (typeof packageProfitMarkdown === "string" && packageProfitMarkdown.trim()) {
@@ -270,6 +272,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       markets[0] || "EU",
       reportPackage?.profitReport
     );
+    profitReports = [profitReport];
   } else {
     try {
       const controller = new AbortController();
@@ -299,16 +302,19 @@ export async function runScan(sessionId: string, input: RunScanInput) {
           raw.product || category,
           raw.market || markets[0] || "EU"
         );
+        profitReports = [profitReport];
       } else {
         // profit resp not ok — fall back to mock
         console.warn(`Profit report endpoint returned ${profitResp.status}, using mock`);
         profitReport = createMockProfitReport(sessionId);
+        profitReports = createMockProfitReports(sessionId);
       }
     } catch {
       // profit report failed — fall back to mock instead of leaving it undefined
       console.warn("Profit report fetch failed, using mock");
       try {
         profitReport = createMockProfitReport(sessionId);
+        profitReports = createMockProfitReports(sessionId);
       } catch {
         // mock generation also failed — skip, leave profitReport undefined
       }
@@ -326,5 +332,6 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         : stages.scanRisk,
     result: complianceReport as Parameters<typeof updateSession>[1]["result"],
     profitReport,
+    profitReports,
   });
 }
