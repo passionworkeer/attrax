@@ -344,7 +344,7 @@ describe('ScanStatusSchema', () => {
   it('rejects invalid status value', () => {
     const status = {
       sessionId: 'scan_01JXXXXX',
-      status: 'unknown' as any, // eslint-disable-line @typescript-eslint/no-explicit-any
+      status: 'unknown' as any,
       progress: 50,
       stageText: '测试',
     }

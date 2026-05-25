@@ -56,6 +56,8 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
   useEffect(() => {
     if (!sessionId || !isClient) return;
 
+    if (sessionId === "demo") return;
+
     const token = sessionStorage.getItem(`scan-token:${sessionId}`);
     const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
 
@@ -91,7 +93,7 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
     }
   };
 
-  if (!mounted || (sessionId && loading)) {
+  if (!mounted || (sessionId && sessionId !== "demo" && loading)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50 flex items-center justify-center">
         <div className="animate-pulse text-gray-400">{t("roadmap.loading")}</div>
@@ -126,32 +128,32 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
       {/* Hero Header */}
       <div className="bg-gradient-to-r from-green-50 via-emerald-50 to-teal-50 border-b border-green-200/50">
         <div className="max-w-6xl mx-auto px-6 py-12">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
-                <span className="text-2xl font-bold text-white">{t("roadmap.roadmap")}</span>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="flex min-w-0 items-center gap-4">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 shadow-lg">
+                <span className="text-lg font-bold text-white">RM</span>
               </div>
-              <div>
-                <h1 className="text-4xl font-black text-gray-900">{t("roadmap.title")}</h1>
+              <div className="min-w-0">
+                <h1 className="text-4xl font-black text-gray-900 max-sm:text-3xl">{t("roadmap.title")}</h1>
                 <p className="text-gray-500">{t("roadmap.subtitle")}</p>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="flex items-center gap-4">
-              <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
+            <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 lg:w-auto lg:flex lg:items-center lg:gap-4">
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border border-green-100 sm:px-5">
                 <div className="text-2xl font-black text-gray-900">{totalDays}</div>
                 <div className="text-xs text-gray-500">{t("roadmap.totalDays")}</div>
               </div>
-              <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border border-green-100 sm:px-5">
                 <div className="text-lg font-black text-gray-900">{totalCost}</div>
                 <div className="text-xs text-gray-500">{t("roadmap.estimatedCost")}</div>
               </div>
-              <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border border-green-100 sm:px-5">
                 <div className="text-2xl font-black text-gray-900">{steps}</div>
                 <div className="text-xs text-gray-500">{t("roadmap.stepsCount")}</div>
               </div>
-              <div className="text-center px-5 py-3 bg-white rounded-2xl shadow-md border border-green-100">
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border border-green-100 sm:px-5">
                 <div className="text-2xl font-black text-gray-900">{progress}%</div>
                 <div className="text-xs text-gray-500">{t("roadmap.progress")}</div>
               </div>

@@ -23,6 +23,7 @@ vi.mock('next/image', () => ({
     if (onLoad) {
       setTimeout(onLoad, 0)
     }
+    // eslint-disable-next-line @next/next/no-img-element
     return <img src={src} alt={alt} {...props} />
   },
 }))

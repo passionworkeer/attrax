@@ -14,7 +14,6 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
   const { t, locale: i18nLocale } = useTranslation();
   const [mounted, setMounted] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const [scanResult, setScanResult] = useState<unknown>(null);
   const [sessionId, setSessionId] = useState("");
   const [loading, setLoading] = useState(true);
   const [traceData, setTraceData] = useState<unknown>(null);
@@ -35,6 +34,8 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
 
   useEffect(() => {
     if (!sessionId || !isClient) return;
+
+    if (sessionId === "demo") return;
 
     const token = sessionStorage.getItem(`scan-token:${sessionId}`);
     const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
@@ -57,7 +58,6 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
       .then(rawPayload => {
         const payload = unwrapApiData<{ result?: unknown }>(rawPayload);
         if (payload?.result) {
-          setScanResult(payload.result);
           sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(payload.result));
         }
       })
@@ -72,7 +72,7 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
     }
   };
 
-  if (!mounted || (sessionId && loading)) {
+  if (!mounted || (sessionId && sessionId !== "demo" && loading)) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50 flex items-center justify-center">
         <div className="animate-pulse text-gray-400">{t("trace.loading")}</div>
@@ -106,31 +106,31 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
       {/* Hero Header */}
       <div className="bg-gradient-to-r from-blaze-red/5 via-rose-50 to-amber-50 border-b border-blaze-red/10">
         <div className="max-w-6xl mx-auto px-6 py-12">
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div className="min-w-0">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center shadow-lg">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-500 shadow-lg">
                   <span className="text-2xl font-bold text-white">AI</span>
                 </div>
-                <div>
-                  <h1 className="text-4xl font-black text-gray-900">{t("trace.title")}</h1>
+                <div className="min-w-0">
+                  <h1 className="text-4xl font-black text-gray-900 max-sm:text-3xl">{t("trace.title")}</h1>
                   <p className="text-gray-500">{t("trace.subtitle")}</p>
                 </div>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="flex items-center gap-6">
-              <div className="text-center px-6 py-3 bg-white rounded-2xl shadow-md border">
-                <div className="text-3xl font-black text-blaze-red">{totalTime}s</div>
+            <div className="grid w-full grid-cols-3 gap-3 lg:w-auto lg:flex lg:items-center lg:gap-6">
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border sm:px-6">
+                <div className="text-2xl font-black text-blaze-red sm:text-3xl">{totalTime}s</div>
                 <div className="text-xs text-gray-500">{t("trace.executionTime")}</div>
               </div>
-              <div className="text-center px-6 py-3 bg-white rounded-2xl shadow-md border">
-                <div className="text-3xl font-black text-purple-600">{steps}</div>
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border sm:px-6">
+                <div className="text-2xl font-black text-purple-600 sm:text-3xl">{steps}</div>
                 <div className="text-xs text-gray-500">{t("trace.executionSteps")}</div>
               </div>
-              <div className="text-center px-6 py-3 bg-white rounded-2xl shadow-md border">
-                <div className="text-3xl font-black text-green-600">{markets}</div>
+              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border sm:px-6">
+                <div className="text-2xl font-black text-green-600 sm:text-3xl">{markets}</div>
                 <div className="text-xs text-gray-500">{t("trace.targetMarkets")}</div>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
 
       {/* Features */}
       <div className="max-w-6xl mx-auto px-6 py-12 border-t border-gray-200">
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
             <h3 className="text-lg font-bold text-gray-900 mb-2">{t("trace.realtime")}</h3>
             <p className="text-sm text-gray-600">{t("trace.realtimeDesc")}</p>

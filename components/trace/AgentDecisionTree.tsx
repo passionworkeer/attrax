@@ -6,7 +6,6 @@ import {
   ChevronDown,
   CheckCircle2,
   XCircle,
-  AlertTriangle,
   Loader2,
   Zap,
   Brain,
@@ -16,7 +15,6 @@ import {
   Target,
   TrendingUp,
   Shield,
-  Sparkles,
   Play,
   Pause,
 } from "lucide-react";
@@ -388,7 +386,7 @@ function ProgressBar({ progress, color = "bg-blue-500" }: { progress: number; co
   );
 }
 
-function ConfidenceBadge({ confidence, locale }: { confidence?: number; locale: "zh" | "en" }) {
+function ConfidenceBadge({ confidence }: { confidence?: number }) {
   if (!confidence) return null;
   const percentage = Math.round(confidence * 100);
   return (
@@ -414,7 +412,7 @@ function RiskBadge({ level, count, locale }: { level: "high" | "medium" | "low";
   );
 }
 
-function ReasoningPanel({ text, locale }: { text?: string; locale: "zh" | "en" }) {
+function ReasoningPanel({ text }: { text?: string }) {
   const { t } = useTranslation();
   if (!text) return null;
   return (
@@ -578,7 +576,7 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
             <span className="text-xl font-bold text-gray-900">{data?.regulations || 0}</span>
             <span className="text-sm text-gray-600">{t("trace.regulations")}</span>
           </div>
-          <ConfidenceBadge confidence={node.confidence} locale={locale} />
+          <ConfidenceBadge confidence={node.confidence} />
         </div>
 
         {/* Compliance Rate */}
@@ -679,7 +677,7 @@ function TraceNodeComponent({
                         {node.duration}
                       </span>
                     )}
-                    <ConfidenceBadge confidence={node.confidence} locale={locale} />
+                    <ConfidenceBadge confidence={node.confidence} />
                   </div>
                 </div>
               </div>
@@ -710,7 +708,7 @@ function TraceNodeComponent({
             </div>
 
             {/* Reasoning panel */}
-            {showReasoning && <ReasoningPanel text={reasoning} locale={locale} />}
+            {showReasoning && <ReasoningPanel text={reasoning} />}
 
             {/* Data content */}
             {node.data && !showReasoning && (
@@ -773,8 +771,8 @@ export default function AgentDecisionTree({
   const totalSteps = 1 + (data.children?.length || 0) + (data.children?.reduce((acc, child) => acc + (child.children?.length || 0), 0) || 0);
 
   // 使用传入的 score 和 grade，或从 data 中提取
-  const displayScore = score ?? (data as TraceNode)?.data?.score as number ?? 85;
-  const displayGrade = grade ?? (data as TraceNode)?.data?.grade as string ?? "B";
+  const displayScore = score ?? ((data as TraceNode).data?.score as number | undefined) ?? 85;
+  const displayGrade = grade ?? ((data as TraceNode).data?.grade as string | undefined) ?? "B";
 
   useEffect(() => {
     if (isPlaying) {
@@ -788,19 +786,19 @@ export default function AgentDecisionTree({
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500 to-indigo-500">
               <span className="text-sm font-bold text-white">AI</span>
             </div>
-            <div>
-              <h3 className="text-2xl font-black text-gray-900">{t("trace.title")}</h3>
+            <div className="min-w-0">
+              <h3 className="text-2xl font-black text-gray-900 max-sm:text-xl">{t("trace.title")}</h3>
               <p className="text-sm text-gray-500">{t("trace.subtitle")}</p>
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-6">
           <div className="text-center">
             <div className="text-2xl font-black text-gray-900">
               {totalTime.toFixed(1)}s
@@ -844,12 +842,12 @@ export default function AgentDecisionTree({
       </div>
 
       {/* Tree */}
-      <div className="bg-gradient-to-br from-gray-50 via-white to-purple-50 rounded-3xl border border-gray-200 p-8 shadow-inner">
+      <div className="bg-gradient-to-br from-gray-50 via-white to-purple-50 rounded-3xl border border-gray-200 p-4 shadow-inner sm:p-8">
         <TraceNodeComponent node={data} locale={locale} />
       </div>
 
       {/* Footer stats */}
-      <div className="mt-6 grid grid-cols-4 gap-4">
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-200">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
@@ -889,8 +887,8 @@ export default function AgentDecisionTree({
               <Shield className="w-5 h-5 text-amber-600" />
             </div>
             <div>
-              <div className="text-lg font-bold text-amber-800">Grade B</div>
-              <div className="text-xs text-amber-600">{t("trace.score")}</div>
+              <div className="text-lg font-bold text-amber-800">Grade {displayGrade}</div>
+              <div className="text-xs text-amber-600">{t("trace.score")}: {displayScore}/100</div>
             </div>
           </div>
         </div>

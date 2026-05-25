@@ -1,5 +1,4 @@
 import {
-  AlignmentType,
   BorderStyle,
   Document,
   HeadingLevel,
@@ -12,6 +11,7 @@ import {
   WidthType,
 } from "docx";
 import type { ProfitReportResult } from "@/lib/types";
+import { localizeProfitReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
   docxTable,
@@ -22,10 +22,26 @@ import {
   tx,
 } from "./shared";
 
-export async function downloadProfitReportAsDocx(result: ProfitReportResult, locale?: Locale): Promise<void> {
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  CNY: "¥",
+  EUR: "€",
+  GBP: "£",
+  USD: "$",
+  JPY: "¥",
+};
+
+function currencySymbol(currency?: string): string {
+  return currency ? (CURRENCY_SYMBOLS[currency.toUpperCase()] ?? "$") : "$";
+}
+
+export async function downloadProfitReportAsDocx(input: ProfitReportResult, locale?: Locale): Promise<void> {
   const L = resolveLocale(locale);
-  const ccy = "¥";
+  const result = localizeProfitReportResult(input, L);
+  const ccy = currencySymbol(result.currency);
   const dateFmt = L === "zh" ? "zh-CN" : "en-US";
+  const colon = L === "zh" ? "：" : ": ";
+  const metaGap = L === "zh" ? "　　" : "    ";
+  const aspSuffix = L === "zh" ? "（ASP）" : " (ASP)";
 
   // Translation shortcuts
   const rp = (k: string) => tx(`report.${k}`, L);
@@ -72,7 +88,7 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult, loc
 
   const revenueRows: string[][] = [
     [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
-    [`${colAvgPrice}（ASP）`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
+    [`${colAvgPrice}${aspSuffix}`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
     [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
     [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
   ];
@@ -125,7 +141,7 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult, loc
             spacing: { after: 200 },
           }),
           new Paragraph({
-            children: [new TextRun({ text: `${tx("report.labels.product", L)}：${result.productType}　　${tx("report.labels.market", L)}：${result.market}　　${tx("report.labels.date", L)}：${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, size: 22, color: "666666" })],
+            children: [new TextRun({ text: `${tx("report.labels.product", L)}${colon}${result.productType}${metaGap}${tx("report.labels.market", L)}${colon}${result.market}${metaGap}${tx("report.labels.date", L)}${colon}${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, size: 22, color: "666666" })],
             spacing: { after: 240 },
           }),
 
@@ -157,7 +173,7 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult, loc
           new Paragraph({ text: "" }),
 
           // Section 1
-          mkSectionH(`${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`),
+          mkSectionH(L === "zh" ? `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）` : `${rp("costComparison")} (${lblWithCompliance} vs ${lblNoCompliance})`),
           docxTable(costRows, ["BB3333", "1A7A40", "333333"]),
           new Paragraph({ text: "" }),
 
@@ -175,7 +191,7 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult, loc
           // Section 4
           mkSectionH(rp("breakEvenAnalysis")),
           docxTable(breakevenRows, ["BB3333", "1A7A40", "333333"]),
-          ...(result.pricingStrategy ? [mkBullet(`${lblPricingStrategy}：${result.pricingStrategy}`)] : []),
+          ...(result.pricingStrategy ? [mkBullet(`${lblPricingStrategy}${colon}${result.pricingStrategy}`)] : []),
           new Paragraph({ text: "" }),
 
           // Section 5
@@ -188,8 +204,8 @@ export async function downloadProfitReportAsDocx(result: ProfitReportResult, loc
             ? [mkSectionH(rp("regulationCitations")), ...refParas, new Paragraph({ text: "" })]
             : []),
 
-          // Fallback full report
-          ...(!result.references && !result.conclusions && result.report
+          // Full report appendix
+          ...(result.report
             ? [mkSectionH(lblFullReport), ...parseMarkdownToDocx(result.report), new Paragraph({ text: "" })]
             : []),
 

@@ -55,6 +55,7 @@
 }
 
 :root {
+  --font-inter: "Inter", "Segoe UI", Arial, "Helvetica Neue", sans-serif;
   --font-mono-stack: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   --blaze-red: #d93a1a;
   --blaze-orange: #ff8a1f;

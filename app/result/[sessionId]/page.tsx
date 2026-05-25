@@ -12,10 +12,13 @@ import { cn } from "@/lib/utils";
 import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
 import { mockComplianceReportResult, mockProfitReport, mockProfitReports } from "@/lib/mock/scan-result";
+import { englishArray, englishText, localizeComplianceReportResult, localizeProfitReportResult, localizeScanResult } from "@/lib/report-localization";
 import { downloadReportAsPdf, downloadReportAsDocx, downloadDecisionReportAsPdf, downloadDecisionReportAsDocx, downloadRoadmapReportAsPdf, downloadRoadmapReportAsDocx } from "@/lib/report-export";
 import { ProfitReportView } from "@/components/result/ProfitReportView";
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
 import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult, ReportPackage } from "@/lib/types";
+import type { DecisionContent } from "@/lib/report-export-modules/decision";
+import type { RoadmapContent } from "@/lib/report-export-modules/roadmap";
 
 type ReportLocale = "zh" | "en";
 
@@ -42,35 +45,135 @@ function reportPackageOf(result: ComplianceReportResult): ReportPackage | undefi
   return result.reportPackage ?? record.report_package;
 }
 
-function toMarkdownList(items: string[] | undefined): string {
-  return items?.length ? items.map((item) => `- ${item}`).join("\n") : "- 无";
+function toMarkdownList(items: string[] | undefined, locale: ReportLocale = "zh"): string {
+  const safeItems = locale === "en" ? englishArray(items, ["None"]) : items ?? [];
+  return safeItems.length ? safeItems.map((item) => `- ${item}`).join("\n") : locale === "en" ? "- None" : "- 无";
+}
+
+function escapeTableCell(value: unknown): string {
+  return String(value ?? "")
+    .replace(/\n/g, " ")
+    .replace(/\|/g, "\\|")
+    .trim() || "—";
+}
+
+function toMarkdownTable(headers: string[], rows: unknown[][]): string {
+  return [
+    `| ${headers.map(escapeTableCell).join(" | ")} |`,
+    `| ${headers.map(() => "---").join(" | ")} |`,
+    ...rows.map((row) => `| ${row.map(escapeTableCell).join(" | ")} |`),
+  ].join("\n");
+}
+
+function localizedDecisionSummary(
+  decision: NonNullable<ReturnType<typeof reportPackageOf>>["decisionView"] | NonNullable<ReturnType<typeof reportPackageOf>>["decision_view"],
+  locale: ReportLocale,
+): string | undefined {
+  if (!decision) return undefined;
+  if (locale !== "en") return decision.summary;
+  return englishText(
+    decision.summaryEn ?? decision.summary_en,
+    englishText(decision.summary, "Decision summary pending"),
+  );
+}
+
+function localizedDecisionFindings(
+  decision: NonNullable<ReturnType<typeof reportPackageOf>>["decisionView"] | NonNullable<ReturnType<typeof reportPackageOf>>["decision_view"],
+  locale: ReportLocale,
+): string[] | undefined {
+  if (!decision) return undefined;
+  if (locale !== "en") return decision.keyFindings ?? decision.key_findings;
+  return englishArray(
+    decision.keyFindingsEn ?? decision.key_findings_en ?? decision.keyFindings ?? decision.key_findings,
+    ["Evidence review pending"],
+  );
+}
+
+function localizedDecisionAction(
+  decision: NonNullable<ReturnType<typeof reportPackageOf>>["decisionView"] | NonNullable<ReturnType<typeof reportPackageOf>>["decision_view"],
+  locale: ReportLocale,
+): string | undefined {
+  if (!decision) return undefined;
+  if (locale !== "en") return decision.recommendedAction ?? decision.recommended_action;
+  return englishText(
+    decision.recommendedActionEn ?? decision.recommended_action_en,
+    englishText(decision.recommendedAction ?? decision.recommended_action, "Recommended action pending"),
+  );
+}
+
+function buildDecisionContent(result: ComplianceReportResult, locale: ReportLocale): DecisionContent {
+  const localizedResult = localizeComplianceReportResult(result, locale);
+  const decision = reportPackageOf(result)?.decisionView ?? reportPackageOf(result)?.decision_view;
+  if (decision) {
+    return {
+      sessionId: result.sessionId,
+      verdict: decision.verdict,
+      riskLevel: decision.riskLevel,
+      summary: localizedDecisionSummary(decision, locale),
+      keyFindings: localizedDecisionFindings(decision, locale),
+      recommendedAction: localizedDecisionAction(decision, locale),
+      nodesEvidence: decision.nodes,
+    };
+  }
+
+  return {
+    sessionId: result.sessionId,
+    verdict: result.complianceStatus,
+    riskLevel: result.complianceScore < 50 ? "HIGH" : result.complianceScore < 75 ? "MEDIUM" : "LOW",
+    summary: locale === "en" ? `Overall Score: ${result.complianceScore}` : `总体评分：${result.complianceScore}`,
+    keyFindings: localizedResult.retrievedChunks.map((c) => `${c.region} · ${c.docName} · ${c.articleNo}`),
+  };
 }
 
 function buildDecisionMarkdown(result: ComplianceReportResult, locale: ReportLocale): string {
   const decision = reportPackageOf(result)?.decisionView ?? reportPackageOf(result)?.decision_view;
   if (decision) {
-    const findings = locale === "en" ? decision.keyFindings ?? decision.key_findings : decision.keyFindings ?? decision.key_findings;
+    const summary = localizedDecisionSummary(decision, locale);
+    const findings = localizedDecisionFindings(decision, locale);
+    const recommendedAction = localizedDecisionAction(decision, locale);
+    const nodeRows = decision.nodes?.map((node) => [
+      locale === "en"
+        ? englishText(node.labelEn ?? node.label_en, englishText(node.label ?? node.type, node.type ?? "Decision node"))
+        : node.label ?? node.labelEn ?? node.label_en ?? node.type,
+      node.status ?? node.type ?? (locale === "en" ? "Reviewed" : "已复核"),
+      typeof node.confidence === "number" ? `${Math.round(node.confidence * 100)}%` : "—",
+      locale === "en"
+        ? englishText(node.reasoningEn ?? node.reasoning_en, englishText(node.reasoning, "Node evidence pending"))
+        : node.reasoning ?? node.reasoningEn ?? node.reasoning_en ?? "",
+    ]) ?? [];
     return [
       `## ${locale === "en" ? "AI Decision Report" : "AI 决策报告"}`,
       "",
-      decision.summary ? `### ${locale === "en" ? "Summary" : "决策摘要"}\n\n${decision.summary}` : "",
+      toMarkdownTable(
+        locale === "en" ? ["Decision", "Risk Level", "Review Gate"] : ["决策结果", "风险等级", "复核门槛"],
+        [[decision.verdict ?? "UNKNOWN", decision.riskLevel ?? "UNKNOWN", locale === "en" ? "Evidence completion before launch" : "资料补齐后再上架"]]
+      ),
+      summary ? `### ${locale === "en" ? "Summary" : "决策摘要"}\n\n${summary}` : "",
       `### ${locale === "en" ? "Key Findings" : "关键发现"}`,
-      toMarkdownList(findings),
-      decision.recommendedAction || decision.recommended_action
-        ? `### ${locale === "en" ? "Recommended Action" : "建议行动"}\n\n${decision.recommendedAction ?? decision.recommended_action}`
+      toMarkdownList(findings, locale),
+      recommendedAction
+        ? `### ${locale === "en" ? "Recommended Action" : "建议行动"}\n\n${recommendedAction}`
         : "",
-      `### ${locale === "en" ? "Node Evidence" : "节点证据"}`,
-      toMarkdownList(decision.nodes?.map((node) => `${locale === "en" ? node.labelEn ?? node.label : node.label ?? node.labelEn ?? node.type}: ${locale === "en" ? node.reasoningEn ?? node.reasoning ?? "" : node.reasoning ?? node.reasoningEn ?? ""}`) ?? []),
+      `### ${locale === "en" ? "Node Evidence Matrix" : "节点证据矩阵"}`,
+      toMarkdownTable(
+        locale === "en" ? ["Node", "Status", "Confidence", "Reasoning"] : ["节点", "状态", "置信度", "推理依据"],
+        nodeRows.length ? nodeRows : [[locale === "en" ? "Overall decision" : "综合判断", locale === "en" ? "Pending" : "待补充", "—", locale === "en" ? "No node-level evidence provided." : "暂无节点级证据。"]]
+      ),
+      `### ${locale === "en" ? "Assumptions and Limits" : "假设与限制"}`,
+      toMarkdownList(locale === "en"
+        ? ["This AI report supports pre-review and dossier preparation; it is not a certificate or legal opinion.", "If product structure, supplier, or market scope changes, rerun the assessment."]
+        : ["AI 决策报告用于业务预审和资料准备，不等同于认证证书或法律意见。", "若产品结构、供应商或目标市场变化，需要重新评估。"], locale),
     ].filter(Boolean).join("\n\n");
   }
 
+  const localizedResult = localizeComplianceReportResult(result, locale);
   return [
     `## ${locale === "en" ? "AI Decision Report" : "AI 决策报告"}`,
     "",
     `### ${locale === "en" ? "Execution Trace" : "执行链路"}`,
-    toMarkdownList(result.agentTrace.map((entry) => `${entry.node}: ${entry.status ?? "UNKNOWN"} ${entry.duration_ms ? `(${Number(entry.duration_ms) / 1000}s)` : ""}`)),
+    toMarkdownList(result.agentTrace.map((entry) => `${entry.node}: ${entry.status ?? "UNKNOWN"} ${entry.duration_ms ? `(${Number(entry.duration_ms) / 1000}s)` : ""}`), locale),
     `### ${locale === "en" ? "Retrieved Evidence" : "检索证据"}`,
-    toMarkdownList(result.retrievedChunks.map((chunk) => `${chunk.region} · ${chunk.docName} · ${chunk.articleNo} · score ${chunk.score.toFixed(2)}`)),
+    toMarkdownList(localizedResult.retrievedChunks.map((chunk) => `${chunk.region} · ${chunk.docName} · ${chunk.articleNo} · score ${chunk.score.toFixed(2)}`), locale),
   ].join("\n\n");
 }
 
@@ -86,13 +189,67 @@ function buildRoadmapMarkdown(result: ComplianceReportResult, locale: ReportLoca
   return [
     `## ${locale === "en" ? "Compliance Roadmap" : "合规路线图"}`,
     "",
-    roadmap?.totalDays ? `${locale === "en" ? "Total days" : "总工期"}: ${roadmap.totalDays}` : "",
-    roadmap?.totalCost ? `${locale === "en" ? "Estimated cost" : "预估成本"}: ${roadmap.totalCost}` : "",
-    `### ${locale === "en" ? "Steps" : "执行步骤"}`,
+    toMarkdownTable(
+      locale === "en" ? ["Current Status", "Total Days", "Estimated Cost", "Milestones"] : ["当前状态", "总工期", "预估成本", "里程碑"],
+      [[
+        result.complianceStatus,
+        roadmap?.totalDays ? `${roadmap.totalDays}` : locale === "en" ? "TBD" : "待确认",
+        roadmap?.totalCost ?? (locale === "en" ? "TBD" : "待确认"),
+        items.length || 1,
+      ]]
+    ),
+    `### ${locale === "en" ? "Milestone Timeline" : "里程碑时间表"}`,
     items.length
-      ? toMarkdownList(items.map((item) => `${locale === "en" ? item.titleEn ?? item.title : item.title ?? item.titleEn}: ${locale === "en" ? item.descriptionEn ?? item.description ?? "" : item.description ?? item.descriptionEn ?? ""} ${item.cost ? `(${item.cost})` : ""}`))
-      : toMarkdownList(fallback),
+      ? toMarkdownTable(
+          locale === "en" ? ["#", "Task", "Status", "Duration", "Cost", "Key Documents"] : ["#", "任务", "状态", "工期", "成本", "关键资料"],
+          items.map((item, index) => [
+            index + 1,
+            locale === "en" ? englishText(item.titleEn ?? item.title_en, englishText(item.title, "Roadmap task")) : item.title ?? item.titleEn ?? item.title_en,
+            item.status ?? (locale === "en" ? "Pending" : "待处理"),
+            item.estimatedDays ?? item.estimated_days ? `${item.estimatedDays ?? item.estimated_days} ${locale === "en" ? "days" : "天"}` : locale === "en" ? "TBD" : "待确认",
+            item.cost ?? (locale === "en" ? "TBD" : "待确认"),
+            (locale === "en"
+              ? englishArray(item.documentsEn ?? item.documents_en ?? item.documents, ["Checklist TBD"])
+              : item.documents ?? item.documentsEn ?? item.documents_en
+            )?.join(locale === "en" ? ", " : "、") ?? (locale === "en" ? "Checklist TBD" : "资料清单待确认"),
+          ])
+        )
+      : toMarkdownList(fallback, locale),
+    `### ${locale === "en" ? "Execution Notes" : "执行建议"}`,
+    toMarkdownList(locale === "en"
+      ? ["Prioritize launch-blocking rejection items and marketplace-required fields.", "Keep owner, date, file version, and evidence status for each milestone.", "After closure, re-export compliance, decision, and profit reports so risk and cost stay aligned."]
+      : ["优先处理阻断上架的拒绝项和平台强制字段。", "每个里程碑保留负责人、日期、文件版本和证据状态。", "路线图完成后重新导出合规、决策和利润报告，确保风险与成本口径一致。"], locale),
   ].filter(Boolean).join("\n\n");
+}
+
+function buildRoadmapContent(result: ComplianceReportResult): RoadmapContent {
+  const roadmap = reportPackageOf(result)?.roadmap;
+  return {
+    sessionId: result.sessionId,
+    currentStatus: result.complianceStatus,
+    currentStatusEn: result.complianceStatus,
+    totalDays: roadmap?.totalDays,
+    totalCost: roadmap?.totalCost,
+    progress: roadmap?.progress,
+    items: roadmap?.items?.length
+      ? roadmap.items.map((item) => ({
+          title: item.title ?? item.titleEn ?? "",
+          titleEn: item.titleEn ?? item.title_en,
+          description: item.description ?? item.descriptionEn ?? "",
+          descriptionEn: item.descriptionEn ?? item.description_en,
+          cost: item.cost,
+          days: item.estimatedDays ?? item.estimated_days,
+          status: item.status,
+          documents: item.documents,
+          documentsEn: item.documentsEn ?? item.documents_en,
+        }))
+      : [{
+          title: `总体评分：${result.complianceScore}`,
+          titleEn: `Overall Score: ${result.complianceScore}`,
+          description: result.complianceStatus,
+          descriptionEn: result.complianceStatus,
+        }],
+  };
 }
 
 function SourceNotice({ source }: { source?: "real" | "fallback" | "demo" }) {
@@ -186,6 +343,7 @@ interface ProductImage {
 }
 
 function ImageCarousel({ images }: { images: ProductImage[] }) {
+  const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
   const prev = useCallback(() => setCurrent((c) => (c > 0 ? c - 1 : images.length - 1)), [images.length]);
   const next = useCallback(() => setCurrent((c) => (c < images.length - 1 ? c + 1 : 0)), [images.length]);
@@ -278,7 +436,7 @@ function ImageCarousel({ images }: { images: ProductImage[] }) {
           {regList && (
             <>
               <span>·</span>
-              <span className="text-blaze-red/70">匹配法规: {regList}</span>
+              <span className="text-blaze-red/70">{t("result.matchedRegulations")}: {regList}</span>
             </>
           )}
         </div>
@@ -291,25 +449,31 @@ function ImageCarousel({ images }: { images: ProductImage[] }) {
 type RichRiskPoint = {
   riskId: string;
   title: string;
+  titleEn?: string;
   description: string;
+  descriptionEn?: string;
   severity: "critical" | "warning" | "info";
   confidence: number;
   imageId: string;
   bbox: { x: number; y: number; w: number; h: number };
-  matched_regulations: Array<{ name: string; article: string }>;
+  matched_regulations: Array<{ name: string; nameEn?: string; article: string }>;
   suggestions: string;
+  suggestionsEn?: string;
 };
 type RichChecklistItem = {
   question: string;
+  questionEn?: string;
   answer: string;
+  answerEn?: string;
   status: "pass" | "fail" | "warn";
 };
 
 function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
-  const { t } = useTranslation();
-  const meta = STATUS_META[result.complianceStatus] ?? STATUS_META.UNKNOWN;
-  const gradeColor = GRADE_COLORS[result.scoreGrade] ?? "text-gray-400";
-  const markets = result.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
+  const { t, locale } = useTranslation();
+  const viewResult = localizeComplianceReportResult(result, locale);
+  const meta = STATUS_META[viewResult.complianceStatus] ?? STATUS_META.UNKNOWN;
+  const gradeColor = GRADE_COLORS[viewResult.scoreGrade] ?? "text-gray-400";
+  const markets = viewResult.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
   const raw = result as unknown as Record<string, unknown>;
   const richImages = Array.isArray(raw.images) && raw.images.length > 0
     ? (raw.images as ProductImage[])
@@ -324,7 +488,7 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
       <div className="flex flex-wrap items-start gap-4">
         <div className="flex flex-col items-center">
           <span className={cn("text-4xl font-bold tabular-nums sm:text-5xl", gradeColor)}>
-            {result.complianceScore}
+            {viewResult.complianceScore}
           </span>
           <span className="text-xs text-muted-foreground">{t("result.overallScore")}</span>
         </div>
@@ -333,29 +497,29 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
             <span>{t(meta.labelKey)}</span>
           </div>
           <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
-            <span>{t("result.grade")}：<span className={cn("font-semibold", gradeColor)}>{result.scoreGrade}</span></span>
+            <span>{t("result.grade")}：<span className={cn("font-semibold", gradeColor)}>{viewResult.scoreGrade}</span></span>
             <span>·</span>
-            <span>{t("result.category")}：{result.productCategory}</span>
+            <span>{t("result.category")}：{viewResult.productCategory}</span>
             <span>·</span>
             <span>{t("result.market")}：{markets.split(" · ").map((m) => t(m)).join(" · ")}</span>
             <span>·</span>
-            <span>{t("result.retrievalRounds")}：{result.loopCount}</span>
+            <span>{t("result.retrievalRounds")}：{viewResult.loopCount}</span>
           </div>
         </div>
       </div>
 
       {/* Agent Trace */}
-      {result.agentTrace.length > 0 && (
-        <AgentTraceTimeline trace={result.agentTrace} />
+      {viewResult.agentTrace.length > 0 && (
+        <AgentTraceTimeline trace={viewResult.agentTrace} />
       )}
 
       {/* Retrieved Chunks */}
-      <RetrievedChunks chunks={result.retrievedChunks} />
+      <RetrievedChunks chunks={viewResult.retrievedChunks} />
 
       {/* Product Image Carousel */}
       {richImages && richImages.length > 0 && (
         <div className="rounded-2xl border border-border bg-card p-5">
-          <h3 className="mb-4 text-sm font-semibold">产品图片分析</h3>
+          <h3 className="mb-4 text-sm font-semibold">{t("result.productImageAnalysis")}</h3>
           <ImageCarousel images={richImages} />
         </div>
       )}
@@ -363,9 +527,13 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
       {/* Risk Points Section */}
       {richRiskPoints && richRiskPoints.length > 0 && (
         <div className="rounded-2xl border border-border bg-card p-5">
-          <h3 className="mb-4 text-sm font-semibold">风险点详情</h3>
+          <h3 className="mb-4 text-sm font-semibold">{t("result.riskPointDetails")}</h3>
           <div className="space-y-4">
-            {richRiskPoints.map((risk) => (
+            {richRiskPoints.map((risk) => {
+              const riskTitle = locale === "en" ? englishText(risk.titleEn, englishText(risk.title, "Risk item")) : risk.title;
+              const riskDescription = locale === "en" ? englishText(risk.descriptionEn, englishText(risk.description, "Risk description pending")) : risk.description;
+              const riskSuggestions = locale === "en" ? englishText(risk.suggestionsEn, englishText(risk.suggestions, "")) : risk.suggestions;
+              return (
               <div key={risk.riskId} className={cn(
                 "rounded-xl border p-4",
                 risk.severity === "critical" ? "border-blaze-red/40 bg-blaze-red/5" :
@@ -375,9 +543,9 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h4 className={cn("font-semibold", risk.severity === "critical" ? "text-blaze-red" : "text-amber-500")}>
-                      {risk.title}
+                      {riskTitle}
                     </h4>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{risk.description}</p>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{riskDescription}</p>
                   </div>
                   <span className={cn(
                     "shrink-0 rounded-full px-2.5 py-1 text-xs font-medium",
@@ -390,23 +558,24 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
                 </div>
                 {risk.matched_regulations.length > 0 && (
                   <div className="mt-3 space-y-1">
-                    <p className="text-xs font-medium text-muted-foreground">涉及法规:</p>
+                    <p className="text-xs font-medium text-muted-foreground">{t("result.relatedRegulations")}:</p>
                     {risk.matched_regulations.map((reg, i) => (
                       <div key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <span className="text-blaze-red/60">{reg.name}</span>
+                        <span className="text-blaze-red/60">{locale === "en" ? englishText(reg.nameEn, englishText(reg.name, "Regulation document")) : reg.name}</span>
                         <span className="text-muted-foreground/50">·</span>
                         <span>{reg.article}</span>
                       </div>
                     ))}
                   </div>
                 )}
-                {risk.suggestions && (
+                {riskSuggestions && (
                   <p className="mt-3 border-t border-border/50 pt-3 text-xs text-emerald-600">
-                    建议: {risk.suggestions}
+                    {t("result.suggestion")}: {riskSuggestions}
                   </p>
                 )}
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       )}
@@ -414,9 +583,12 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
       {/* Compliance Checklist */}
       {richChecklist && richChecklist.length > 0 && (
         <div className="rounded-2xl border border-border bg-card p-5">
-          <h3 className="mb-4 text-sm font-semibold">合规检查清单</h3>
+          <h3 className="mb-4 text-sm font-semibold">{t("result.complianceChecklist")}</h3>
           <div className="space-y-2">
-            {richChecklist.map((item, i) => (
+            {richChecklist.map((item, i) => {
+              const question = locale === "en" ? englishText(item.questionEn, englishText(item.question, "Checklist question")) : item.question;
+              const answer = locale === "en" ? englishText(item.answerEn, englishText(item.answer, "Checklist answer pending")) : item.answer;
+              return (
               <div key={i} className="flex items-start gap-3 rounded-lg border border-border bg-muted/30 p-3">
                 <span className={cn(
                   "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs",
@@ -427,19 +599,20 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
                   {item.status === "pass" ? "✓" : item.status === "fail" ? "✗" : "!"}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium">{item.question}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{item.answer}</p>
+                  <p className="text-sm font-medium">{question}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{answer}</p>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
           {richStats && (
             <div className="mt-4 flex flex-wrap gap-3 rounded-xl bg-muted/50 px-4 py-3 text-xs text-muted-foreground">
-              <span>通过: {richStats.passItems ?? 0}</span>
+              <span>{t("result.passed")}: {richStats.passItems ?? 0}</span>
               <span>·</span>
-              <span>警告: {richStats.warnItems ?? 0}</span>
+              <span>{t("result.warnings")}: {richStats.warnItems ?? 0}</span>
               <span>·</span>
-              <span>失败: {richStats.totalRisks ?? 0}</span>
+              <span>{t("result.failedCount")}: {richStats.totalRisks ?? 0}</span>
             </div>
           )}
         </div>
@@ -452,19 +625,19 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
             <h3 className="text-sm font-semibold">{t("result.complianceReport")}</h3>
             {result.modelInfo && (
               <span className="text-xs text-muted-foreground">
-                {result.modelInfo.ragProvider} · {(result.modelInfo.latencyMs / 1000).toFixed(1)}s
+                {viewResult.modelInfo.ragProvider} · {(viewResult.modelInfo.latencyMs / 1000).toFixed(1)}s
               </span>
             )}
           </div>
           <DownloadButtons
-            label="合规"
+            label={t("result.complianceShort")}
             onPdf={(dlLocale) => downloadReportAsPdf(result, dlLocale)}
             onDocx={(dlLocale) => downloadReportAsDocx(result, dlLocale)}
           />
         </div>
-        <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:w-full [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
+        <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
-            {result.complianceReport}
+            {viewResult.complianceReport}
           </ReactMarkdown>
         </div>
       </div>
@@ -474,60 +647,19 @@ function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
 
 function DecisionReportPanel({ result }: { result: ComplianceReportResult }) {
   const { t, locale } = useTranslation();
-  const decision = reportPackageOf(result)?.decisionView ?? reportPackageOf(result)?.decision_view;
   const zh = buildDecisionMarkdown(result, "zh");
   const en = buildDecisionMarkdown(result, "en");
   return (
     <div className="rounded-2xl border border-border bg-card">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
-        <h3 className="text-sm font-semibold">AI 决策报告</h3>
+        <h3 className="text-sm font-semibold">{t("result.aiDecisionReport")}</h3>
         <DownloadButtons
-          label="决策"
-          onPdf={(dlLocale) => {
-            if (decision) {
-              downloadDecisionReportAsPdf({
-                sessionId: result.sessionId,
-                verdict: decision.verdict,
-                riskLevel: decision.riskLevel,
-                summary: decision.summary,
-                keyFindings: decision.keyFindings ?? decision.key_findings,
-                recommendedAction: decision.recommendedAction ?? decision.recommended_action,
-                nodesEvidence: decision.nodes,
-              }, dlLocale);
-            } else {
-              downloadDecisionReportAsPdf({
-                sessionId: result.sessionId,
-                verdict: result.complianceStatus,
-                riskLevel: result.complianceScore < 50 ? "HIGH" : result.complianceScore < 75 ? "MEDIUM" : "LOW",
-                summary: `${t("result.overallScore")}: ${result.complianceScore}`,
-                keyFindings: result.retrievedChunks.map((c) => `${c.region} · ${c.docName} · ${c.articleNo}`),
-              }, dlLocale);
-            }
-          }}
-          onDocx={(dlLocale) => {
-            if (decision) {
-              downloadDecisionReportAsDocx({
-                sessionId: result.sessionId,
-                verdict: decision.verdict,
-                riskLevel: decision.riskLevel,
-                summary: decision.summary,
-                keyFindings: decision.keyFindings ?? decision.key_findings,
-                recommendedAction: decision.recommendedAction ?? decision.recommended_action,
-                nodesEvidence: decision.nodes,
-              }, dlLocale);
-            } else {
-              downloadDecisionReportAsDocx({
-                sessionId: result.sessionId,
-                verdict: result.complianceStatus,
-                riskLevel: result.complianceScore < 50 ? "HIGH" : result.complianceScore < 75 ? "MEDIUM" : "LOW",
-                summary: `${t("result.overallScore")}: ${result.complianceScore}`,
-                keyFindings: result.retrievedChunks.map((c) => `${c.region} · ${c.docName} · ${c.articleNo}`),
-              }, dlLocale);
-            }
-          }}
+          label={t("result.decisionShort")}
+          onPdf={(dlLocale) => downloadDecisionReportAsPdf(buildDecisionContent(result, dlLocale), dlLocale)}
+          onDocx={(dlLocale) => downloadDecisionReportAsDocx(buildDecisionContent(result, dlLocale), dlLocale)}
         />
       </div>
-      <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
+      <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{locale === "en" ? en : zh}</ReactMarkdown>
       </div>
     </div>
@@ -536,66 +668,19 @@ function DecisionReportPanel({ result }: { result: ComplianceReportResult }) {
 
 function RoadmapReportPanel({ result }: { result: ComplianceReportResult }) {
   const { t, locale } = useTranslation();
-  const roadmap = reportPackageOf(result)?.roadmap;
   const zh = buildRoadmapMarkdown(result, "zh");
   const en = buildRoadmapMarkdown(result, "en");
   return (
     <div className="rounded-2xl border border-border bg-card">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border px-5 py-3">
-        <h3 className="text-sm font-semibold">合规路线图报告</h3>
+        <h3 className="text-sm font-semibold">{t("result.roadmapReport")}</h3>
         <DownloadButtons
-          label="路线图"
-          onPdf={(dlLocale) => {
-            downloadRoadmapReportAsPdf({
-              sessionId: result.sessionId,
-              currentStatus: result.complianceStatus,
-              totalDays: roadmap?.totalDays,
-              totalCost: roadmap?.totalCost,
-              items: roadmap?.items?.length
-                ? roadmap.items.map((item) => ({
-                    title: item.title ?? item.titleEn ?? "",
-                    titleEn: item.titleEn,
-                    description: item.description ?? item.descriptionEn ?? "",
-                    descriptionEn: item.descriptionEn,
-                    cost: item.cost,
-                    days: item.estimatedDays,
-                    status: item.status,
-                  }))
-                : [{
-                    title: `${t("result.overallScore")}: ${result.complianceScore}`,
-                    titleEn: `Overall Score: ${result.complianceScore}`,
-                    description: result.complianceStatus,
-                    descriptionEn: result.complianceStatus,
-                  }],
-            }, dlLocale);
-          }}
-          onDocx={(dlLocale) => {
-            downloadRoadmapReportAsDocx({
-              sessionId: result.sessionId,
-              currentStatus: result.complianceStatus,
-              totalDays: roadmap?.totalDays,
-              totalCost: roadmap?.totalCost,
-              items: roadmap?.items?.length
-                ? roadmap.items.map((item) => ({
-                    title: item.title ?? item.titleEn ?? "",
-                    titleEn: item.titleEn,
-                    description: item.description ?? item.descriptionEn ?? "",
-                    descriptionEn: item.descriptionEn,
-                    cost: item.cost,
-                    days: item.estimatedDays,
-                    status: item.status,
-                  }))
-                : [{
-                    title: `${t("result.overallScore")}: ${result.complianceScore}`,
-                    titleEn: `Overall Score: ${result.complianceScore}`,
-                    description: result.complianceStatus,
-                    descriptionEn: result.complianceStatus,
-                  }],
-            }, dlLocale);
-          }}
+          label={t("result.roadmapShort")}
+          onPdf={(dlLocale) => downloadRoadmapReportAsPdf(buildRoadmapContent(result), dlLocale)}
+          onDocx={(dlLocale) => downloadRoadmapReportAsDocx(buildRoadmapContent(result), dlLocale)}
         />
       </div>
-      <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5">
+      <div className="p-5 text-sm leading-relaxed [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{locale === "en" ? en : zh}</ReactMarkdown>
       </div>
     </div>
@@ -604,23 +689,24 @@ function RoadmapReportPanel({ result }: { result: ComplianceReportResult }) {
 
 // ── Legacy Result View ─────────────────────────────────────────────────────────
 function LegacyResultView({ result }: { result: ScanResult }) {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const viewResult = localizeScanResult(result, locale);
   return (
     <>
       <div className="overflow-hidden rounded-3xl border border-border bg-blaze-dark/95">
         <pre className="max-h-[70vh] overflow-auto p-6 text-xs leading-6 text-white/90 sm:text-sm">
-          {JSON.stringify(result, null, 2)}
+          {JSON.stringify(viewResult, null, 2)}
         </pre>
       </div>
 
-      {result.documents.length > 0 && (
+      {viewResult.documents.length > 0 && (
         <section className="mt-8">
           <h2 className="text-lg font-semibold">{t("result.uploadedDocs")}</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            {t("result.documentCount", { count: result.documents.length })}
+            {t("result.documentCount", { count: viewResult.documents.length })}
           </p>
           <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {result.documents.map((doc) => {
+            {viewResult.documents.map((doc) => {
               const typeLabel = doc.type.toUpperCase();
               const isPdf = doc.type === "pdf";
               const isDocx = doc.type === "docx";
@@ -660,7 +746,7 @@ function LegacyResultView({ result }: { result: ScanResult }) {
 }
 
 export default function ResultPage() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const isDemoSession = sessionId === "demo";
@@ -797,10 +883,10 @@ export default function ResultPage() {
           <div className="mt-8">
             {visibleProfitReport ? (
               <Tabs defaultValue="compliance">
-                <TabsList>
+                <TabsList className="w-full max-w-full justify-start overflow-x-auto sm:w-fit">
                   <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
                   <TabsTrigger value="profit">{t("result.costProfitReport")}</TabsTrigger>
-                  <TabsTrigger value="decision">AI 决策报告</TabsTrigger>
+                  <TabsTrigger value="decision">{t("result.aiDecisionReport")}</TabsTrigger>
                   <TabsTrigger value="roadmap">{t("result.complianceRoadmap")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="compliance">
@@ -810,9 +896,11 @@ export default function ResultPage() {
                   {profitReports.length > 1 && (
                     <div className="mb-4 flex flex-wrap items-center gap-2 rounded-2xl border border-border bg-card p-3">
                       <span className="mr-1 text-xs font-medium uppercase tracking-[0.16em] text-muted-foreground">
-                        Scenarios
+                        {t("result.scenarios")}
                       </span>
-                      {profitReports.map((report, index) => (
+                      {profitReports.map((report, index) => {
+                        const scenarioReport = localizeProfitReportResult(report, locale);
+                        return (
                         <button
                           key={`${report.market}-${report.premiumPct}-${index}`}
                           onClick={() => setSelectedProfitIndex(index)}
@@ -823,9 +911,10 @@ export default function ResultPage() {
                               : "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                           )}
                         >
-                          {index + 1}. {report.premiumPct} / {report.breakevenUnits}
+                          {index + 1}. {scenarioReport.premiumPct} / {scenarioReport.breakevenUnits}
                         </button>
-                      ))}
+                        );
+                      })}
                     </div>
                   )}
                   <ProfitReportView result={visibleProfitReport} />
@@ -839,9 +928,9 @@ export default function ResultPage() {
               </Tabs>
             ) : (
               <Tabs defaultValue="compliance">
-                <TabsList>
+                <TabsList className="w-full max-w-full justify-start overflow-x-auto sm:w-fit">
                   <TabsTrigger value="compliance">{t("result.complianceReport")}</TabsTrigger>
-                  <TabsTrigger value="decision">AI 决策报告</TabsTrigger>
+                  <TabsTrigger value="decision">{t("result.aiDecisionReport")}</TabsTrigger>
                   <TabsTrigger value="roadmap">{t("result.complianceRoadmap")}</TabsTrigger>
                 </TabsList>
                 <TabsContent value="compliance">

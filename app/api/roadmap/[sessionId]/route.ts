@@ -2,6 +2,7 @@ import { getSession } from "@/lib/pipeline/session-store";
 import { serverT } from "@/lib/server-i18n";
 import { ok, fail } from "@/lib/api-response";
 import { requireSessionAccess } from "@/app/api/session-access";
+import { englishText } from "@/lib/report-localization";
 import type { ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -35,6 +36,12 @@ export async function GET(
   const product = (result as { productName?: string; product?: string }).productName
     || (result as { product?: string }).product
     || "产品";
+  const productEn = englishText(
+    (result as { productNameEn?: string; product_name_en?: string; product?: string }).productNameEn
+      || (result as { product_name_en?: string }).product_name_en
+      || product,
+    "this product"
+  );
   const targetMarkets = (result as { targetMarkets?: string[] }).targetMarkets || ["EU"];
   const complianceScore = (result as { complianceScore?: number }).complianceScore || 85;
 
@@ -46,6 +53,7 @@ export async function GET(
     return ok({
       sessionId,
       product,
+      productEn,
       markets: targetMarkets,
       complianceScore,
       complianceStatus,
@@ -61,7 +69,7 @@ export async function GET(
   const progress = Math.round((complianceScore / 100) * 100);
 
   // Generate roadmap steps based on product and markets
-  const roadmapItems = _generateRoadmapItems(product, targetMarkets, complianceScore, complianceStatus);
+  const roadmapItems = _generateRoadmapItems(product, productEn, targetMarkets, complianceScore);
 
   // Calculate total cost based on compliance needs
   const totalCost = _estimateTotalCost(complianceScore, targetMarkets);
@@ -69,6 +77,7 @@ export async function GET(
   return ok({
     sessionId,
     product,
+    productEn,
     markets: targetMarkets,
     complianceScore,
     complianceStatus,
@@ -81,9 +90,9 @@ export async function GET(
 
 function _generateRoadmapItems(
   product: string,
+  productEn: string,
   markets: string[],
-  score: number,
-  _status: string
+  score: number
 ) {
   const now = new Date();
 
@@ -105,7 +114,7 @@ function _generateRoadmapItems(
       title: "准备申请材料",
       titleEn: "Prepare Application Materials",
       description: `收集 ${product} 的产品规格、技术文档、测试报告等申请所需材料`,
-      descriptionEn: `Gather product specifications and technical documents for ${product}`,
+      descriptionEn: `Gather product specifications and technical documents for ${productEn}`,
       type: "apply" as const,
       status: score >= 70 ? "pending" : "in-progress" as const,
       estimatedDays: 7,

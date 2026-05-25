@@ -17,6 +17,7 @@ import {
   Pause,
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import { englishArray, englishText } from "@/lib/report-localization";
 
 interface TimelineItem {
   id: string;
@@ -38,13 +39,6 @@ interface ComplianceTimelineProps {
   autoPlay?: boolean;
   locale?: "zh" | "en";
 }
-
-const typeIcons: Record<string, string> = {
-  apply: "📝",
-  test: "🔬",
-  certify: "📜",
-  complete: "✅",
-};
 
 const typeColors = {
   apply: { bg: "bg-blue-50", border: "border-blue-200", icon: "📝", color: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
@@ -254,13 +248,13 @@ export default function ComplianceTimeline({
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shadow-lg">
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex min-w-0 items-center gap-4">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 shadow-lg">
             <Target className="w-7 h-7 text-white" />
           </div>
-          <div>
-            <h3 className="text-2xl font-black text-gray-900">{t("roadmap.title")}</h3>
+          <div className="min-w-0">
+            <h3 className="text-2xl font-black text-gray-900 max-sm:text-xl">{t("roadmap.title")}</h3>
             <p className="text-sm text-gray-500">{t("roadmap.subtitle")}</p>
           </div>
         </div>
@@ -275,7 +269,7 @@ export default function ComplianceTimeline({
       </div>
 
       {/* Stats cards */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <AnimatedEntry delay={0}>
           <div className="bg-gradient-to-br from-blaze-red/10 to-rose-50 rounded-2xl p-4 border border-blaze-red/20">
             <div className="flex items-center gap-3">
@@ -380,24 +374,24 @@ export default function ComplianceTimeline({
                     onClick={() => setExpandedId(expandedId === item.id ? null : item.id)}
                   >
                     {/* Header */}
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className={`relative flex items-center justify-center w-12 h-12 rounded-xl ${colors.light}`}>
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div className="flex min-w-0 items-center gap-4">
+                        <div className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl ${colors.light}`}>
                           <span className="text-2xl">{colors.icon}</span>
                           {isActive && (
                             <div className="absolute -inset-1 rounded-xl border-2 border-blaze-red/50 animate-pulse" />
                           )}
                         </div>
-                        <div>
+                        <div className="min-w-0">
                           {isToday && (
                             <span className="inline-flex items-center gap-1 rounded-full bg-blaze-red px-3 py-1 text-xs font-bold text-white mb-2 shadow-md">
                               {t("roadmap.startToday")}
                             </span>
                           )}
                           <h4 className="text-lg font-bold text-gray-900">
-                            {locale === "en" ? item.titleEn : item.title}
+                            {locale === "en" ? englishText(item.titleEn, englishText(item.title, "Roadmap task")) : item.title}
                           </h4>
-                          <div className="flex items-center gap-3 mt-1 text-sm text-gray-500">
+                          <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-gray-500">
                             <span className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
                               {formatDate(item.date)}
@@ -411,7 +405,7 @@ export default function ComplianceTimeline({
                           </div>
                         </div>
                       </div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-3 sm:justify-end">
                         {getStatusBadge(item.status)}
                         <ChevronRight
                           className={`w-5 h-5 text-gray-400 transition-all duration-300 ${
@@ -423,7 +417,7 @@ export default function ComplianceTimeline({
 
                     {/* Description */}
                     <p className="mt-3 text-sm text-gray-600 leading-relaxed">
-                      {locale === "en" ? item.descriptionEn : item.description}
+                      {locale === "en" ? englishText(item.descriptionEn, englishText(item.description, "Add detailed execution notes before starting this step.")) : item.description}
                     </p>
 
                     {/* Expanded content */}
@@ -456,7 +450,7 @@ export default function ComplianceTimeline({
                             <div className="flex flex-wrap gap-2">
                               {(item.documents && item.documents.length > 0
                                 ? locale === "en"
-                                  ? item.documentsEn || item.documents
+                                  ? englishArray(item.documentsEn || item.documents, ["Source document checklist TBD"])
                                   : item.documents
                                 : []
                               ).map((doc, i) => (

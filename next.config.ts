@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   turbopack: {
-    root: "./",
+    root: process.cwd(),
   },
 
   // Image optimization

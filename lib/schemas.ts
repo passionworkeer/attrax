@@ -45,6 +45,7 @@ export const DocumentTypeSchema = z.enum(["pdf", "docx", "html"]);
 export const DocumentAssetSchema = z.object({
   documentId: z.string().min(1),
   name: z.string().min(1),
+  nameEn: z.string().optional(),
   size: z.number().nonnegative(),
   type: DocumentTypeSchema,
   mimeType: z.string().min(1),
@@ -58,6 +59,7 @@ export const RegulationRefSchema = z.object({
   nameEn: z.string().optional(),
   market: MarketSchema,
   summary: z.string().min(1),
+  summaryEn: z.string().optional(),
   sourceUrl: z.string().url(),
   severity: SeveritySchema,
 });
@@ -65,7 +67,9 @@ export const RegulationRefSchema = z.object({
 export const RiskPointSchema = z.object({
   riskId: z.string().min(1),
   title: z.string().min(1),
+  titleEn: z.string().optional(),
   description: z.string().min(1),
+  descriptionEn: z.string().optional(),
   severity: SeveritySchema,
   flameLevel: FlameLevelSchema,
   confidence: z.number().min(0).max(1),
@@ -73,17 +77,23 @@ export const RiskPointSchema = z.object({
   bbox: BoundingBoxSchema,
   regulations: z.array(RegulationRefSchema),
   recommendedAction: z.string().min(1),
+  recommendedActionEn: z.string().optional(),
   estimatedFixCost: z.string().optional(),
 });
 
 export const ChecklistItemSchema = z.object({
   itemId: z.string().min(1),
   category: z.string().min(1),
+  categoryEn: z.string().optional(),
   title: z.string().min(1),
+  titleEn: z.string().optional(),
   requiredMaterials: z.array(z.string()),
+  requiredMaterialsEn: z.array(z.string()).optional(),
   recommendedLab: z.string().optional(),
+  recommendedLabEn: z.string().optional(),
   estimatedCost: z.string().optional(),
   estimatedTime: z.string().optional(),
+  estimatedTimeEn: z.string().optional(),
   isFree: z.boolean(),
 });
 
@@ -92,6 +102,7 @@ export const ScanResultSchema = z.object({
   scanTime: z.string().datetime(),
   productCategory: ProductCategorySchema,
   productName: z.string().optional(),
+  productNameEn: z.string().optional(),
   targetMarkets: z.array(MarketSchema).min(1),
   complianceScore: z.number().min(0).max(100),
   scoreGrade: ScoreGradeSchema,
@@ -114,10 +125,12 @@ export const ComplianceReportResultSchema = z.object({
   scanTime: z.string().datetime().optional(),
   productCategory: ProductCategorySchema.optional(),
   productName: z.string().optional(),
+  productNameEn: z.string().optional(),
   targetMarkets: z.array(MarketSchema).optional(),
   complianceScore: z.number().min(0).max(100),
   scoreGrade: ScoreGradeSchema,
   complianceReport: z.string().min(1),
+  complianceReportEn: z.string().optional(),
   complianceStatus: z.enum(["PASS", "WARN", "REJECTED", "UNKNOWN"]),
   agentTrace: z.array(z.record(z.string(), z.unknown())),
   loopCount: z.number().int().nonnegative().optional(),
@@ -125,6 +138,7 @@ export const ComplianceReportResultSchema = z.object({
     z.object({
       regId: z.string().min(1),
       docName: z.string().min(1),
+      docNameEn: z.string().optional(),
       articleNo: z.string().min(1),
       region: z.string().min(1),
       score: z.number(),

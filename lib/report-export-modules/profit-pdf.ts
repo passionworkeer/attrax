@@ -1,19 +1,32 @@
 import { jsPDF } from "jspdf";
 import type { ProfitReportResult } from "@/lib/types";
+import { localizeProfitReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
   embedFont,
-  parseMarkdownToPdfText,
-  pdfBody,
   pdfBullet,
   pdfDrawTable,
   pdfSectionTitle,
+  renderMarkdownPdf,
   resolveLocale,
   tx,
 } from "./shared";
 
-export async function downloadProfitReportAsPdf(result: ProfitReportResult, locale?: Locale): Promise<void> {
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  CNY: "¥",
+  EUR: "€",
+  GBP: "£",
+  USD: "$",
+  JPY: "¥",
+};
+
+function currencySymbol(currency?: string): string {
+  return currency ? (CURRENCY_SYMBOLS[currency.toUpperCase()] ?? "$") : "$";
+}
+
+export async function downloadProfitReportAsPdf(input: ProfitReportResult, locale?: Locale): Promise<void> {
   const L = resolveLocale(locale);
+  const result = localizeProfitReportResult(input, L);
   const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
   await embedFont(doc);
 
@@ -40,16 +53,13 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
   const colAvgPrice = rp("columns.avgPrice");
   const colGrossProfit = rp("columns.grossProfit");
   const colGrossMargin = rp("columns.grossMargin");
-  const lblGrossProfit = rp("cards.grossProfit");
   const lblRiskExposure = rp("cards.riskExposure");
   const lblBreakevenUnits = rp("cards.breakevenUnits");
-  const lblPricingAdvice = rp("cards.pricingAdvice");
   const lblMode = L === "zh" ? "模式" : "Mode";
   const lblAnalysis = L === "zh" ? "分析项" : "Analysis Item";
   const lblDiff = L === "zh" ? "差值" : "Diff.";
   const lblExplanation = L === "zh" ? "说明" : "Notes";
   const lblCompliancePremium = L === "zh" ? "合规溢价" : "Compliance Premium";
-  const lblBreakeven = L === "zh" ? "盈亏平衡台数" : "Break-even Units";
   const lblSuggestedPrice = L === "zh" ? "建议定价" : "Suggested Price";
   const lblRiskAdjNet = L === "zh" ? "经风险调整净收益" : "Risk-Adjusted Net";
   const lblZeroRisk = L === "zh" ? "零风险敞口" : "Zero risk exposure";
@@ -58,8 +68,11 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
   const lblFullReport = L === "zh" ? "完整分析报告" : "Full Analysis Report";
 
   // Currency symbol based on locale (reports are CNY)
-  const ccy = "¥";
+  const ccy = currencySymbol(result.currency);
   const dateFmt = L === "zh" ? "zh-CN" : "en-US";
+  const colon = L === "zh" ? "：" : ": ";
+  const metaGap = L === "zh" ? "　　" : "    ";
+  const aspSuffix = L === "zh" ? "（ASP）" : " (ASP)";
 
   // ── Header ────────────────────────────────────────────────────────────────
   doc.setFontSize(9);
@@ -83,7 +96,7 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
   doc.setFont("NotoSansSC", "normal");
   const lblProduct = tx("report.labels.product", L);
   const lblMkt = tx("report.labels.market", L);
-  doc.text(`${lblProduct}：${result.productType}　　${lblMkt}：${result.market}　　${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, margin, y.cur);
+  doc.text(`${lblProduct}${colon}${result.productType}${metaGap}${lblMkt}${colon}${result.market}${metaGap}${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, margin, y.cur);
   y.cur += 10;
 
   // ── Summary Cards ────────────────────────────────────────────────────────
@@ -110,7 +123,9 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
   y.cur += 30;
 
   // ── Section 1: Cost Comparison ──────────────────────────────────────────
-  const s1Title = `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`;
+  const s1Title = L === "zh"
+    ? `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`
+    : `${rp("costComparison")} (${lblWithCompliance} vs ${lblNoCompliance})`;
   pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, s1Title);
   pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
     [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
@@ -127,7 +142,7 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
   pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("revenueComparison"));
   pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
     [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
-    [`${colAvgPrice}（ASP）`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
+    [`${colAvgPrice}${aspSuffix}`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
     [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
     [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
   ], [58, 28, 28, 28]);
@@ -154,7 +169,7 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
   ], [40, 26, 36, 40]);
 
   if (result.pricingStrategy) {
-    pdfBullet(doc, y, margin, pageWidth, pageHeight, `${lblPricingStrategy}：${result.pricingStrategy}`);
+    pdfBullet(doc, y, margin, pageWidth, pageHeight, `${lblPricingStrategy}${colon}${result.pricingStrategy}`);
   }
 
   // ── Section 5: Conclusions ──────────────────────────────────────────────
@@ -175,10 +190,10 @@ export async function downloadProfitReportAsPdf(result: ProfitReportResult, loca
     }
   }
 
-  // ── Fallback: Full markdown report ─────────────────────────────────────
-  if (!result.references && !result.conclusions && result.report) {
+  // ── Full markdown report appendix ─────────────────────────────────────
+  if (result.report) {
     pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, lblFullReport);
-    pdfBody(doc, y, margin, pageWidth, pageHeight, parseMarkdownToPdfText(result.report), 8.5);
+    renderMarkdownPdf(doc, y, margin, pageWidth, pageHeight, result.report);
   }
 
   // ── Footer on each page ──────────────────────────────────────────────────

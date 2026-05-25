@@ -72,7 +72,7 @@ describe('Button component', () => {
 
   it('handles onMouseDown event', () => {
     const handleMouseDown = vi.fn()
-    const { container } = render(<Button onMouseDown={handleMouseDown}>Button</Button>)
+    render(<Button onMouseDown={handleMouseDown}>Button</Button>)
     fireEvent.mouseDown(screen.getByRole('button'))
     expect(handleMouseDown).toHaveBeenCalledTimes(1)
   })

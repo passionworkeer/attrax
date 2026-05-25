@@ -655,7 +655,7 @@ describe("useScanPolling", () => {
       });
       vi.stubGlobal("fetch", fetchSpy);
 
-      const { result, rerender } = renderHook(
+      const { rerender } = renderHook(
         ({ id }: { id: string }) => useScanPolling(id),
         { initialProps: { id: "session1" } }
       );
@@ -664,7 +664,10 @@ describe("useScanPolling", () => {
         vi.advanceTimersByTime(1);
       });
 
-      const firstSessionId = result.current?.status?.sessionId;
+      expect(fetchSpy).toHaveBeenCalledWith(
+        "/api/scan/session1",
+        expect.objectContaining({ cache: "no-store" })
+      );
 
       // Change sessionId
       rerender({ id: "session2" });
@@ -674,7 +677,10 @@ describe("useScanPolling", () => {
       });
 
       // Should have polled with new session
-      expect(fetchSpy).toHaveBeenCalled();
+      expect(fetchSpy).toHaveBeenCalledWith(
+        "/api/scan/session2",
+        expect.objectContaining({ cache: "no-store" })
+      );
     });
   });
 });
