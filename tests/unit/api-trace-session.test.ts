@@ -5,6 +5,7 @@
  * Run with: npm run test -- tests/unit/api-trace-session.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { hashAccessToken } from "@/lib/pipeline/session-auth";
 
 // Mock the session store before importing
 const mockSessions = new Map<string, Record<string, unknown>>();
@@ -49,6 +50,28 @@ describe("GET /api/trace/[sessionId]", () => {
   });
 
   describe("Scenario 2: Session found but no result", () => {
+    it("returns 401 when a protected session is requested without its access token", async () => {
+      mockSessions.set("scan_protected", {
+        sessionId: "scan_protected",
+        status: "ready",
+        progress: 100,
+        stageText: "complete",
+        accessTokenHash: hashAccessToken("secret-token"),
+        result: { agentTrace: [] },
+      });
+
+      const { GET } = await import("@/app/api/trace/[sessionId]/route");
+      const req = new Request("http://localhost/api/trace/scan_protected");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_protected" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(401);
+      await expect(res.json()).resolves.toMatchObject({
+        error: { code: "UNAUTHORIZED" },
+      });
+    });
+
     it("returns 404 with NOT_READY error code when result is missing", async () => {
       mockSessions.set("scan_processing", {
         sessionId: "scan_processing",
@@ -420,6 +443,35 @@ describe("GET /api/trace/[sessionId]", () => {
       expect(body.traceNodes).toHaveLength(1);
       expect(body.traceNodes[0].id).toBe("pkg-node");
       expect(body.traceNodes[0].label).toBe("四场景生成");
+    });
+    it("falls back to node type when packaged English labels are missing or Chinese", async () => {
+      const result = {
+        sessionId: "scan_decision_label_fallback",
+        agentTrace: [],
+        retrievedChunks: [],
+        reportPackage: {
+          decisionView: {
+            nodes: [
+              { type: "verify", label: "验证节点", reasoning: "中文推理" },
+              { id: "missing-label" },
+            ],
+          },
+        },
+      };
+
+      mockSessions.set("scan_decision_label_fallback", createSessionWithResult("scan_decision_label_fallback", result));
+
+      const { GET } = await import("@/app/api/trace/[sessionId]/route");
+      const req = new Request("http://localhost/api/trace/scan_decision_label_fallback");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_decision_label_fallback" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      expect(body.traceNodes[0].labelEn).toBe("verify");
+      expect(body.traceNodes[0].reasoningEn).toBeUndefined();
+      expect(body.traceNodes[1].labelEn).toBe("synthesis");
     });
   });
 });

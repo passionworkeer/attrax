@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import { useScanPolling } from "@/lib/hooks/useScanPolling";
 import type { ScanStatus } from "@/lib/types";
+import { POLL_MAX_DURATION_MS } from "@/lib/constants";
 
 // Store original RAF for restoration
 const originalRAF = globalThis.requestAnimationFrame;
@@ -25,6 +26,12 @@ function runAnimationFrames(count: number) {
   }
 }
 
+async function flushInitialPoll() {
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(1);
+  });
+}
+
 function makeFetchMock(response: Partial<ScanStatus>, ok = true) {
   return vi.fn().mockResolvedValue({
     ok,
@@ -44,6 +51,7 @@ describe("useScanPolling", () => {
     vi.useRealTimers();
     globalThis.requestAnimationFrame = originalRAF;
     rafCallbacks = [];
+    sessionStorage.clear();
   });
 
   describe("Initial state", () => {
@@ -137,6 +145,62 @@ describe("useScanPolling", () => {
 
       expect(result.current?.status?.status).toBe("failed");
       expect(result.current?.status?.error).toBe("Scan session expired.");
+    });
+
+    it("sets failed status when fetch rejects with an Error", async () => {
+      const fetchSpy = vi.fn().mockRejectedValue(new Error("Network unavailable"));
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await flushInitialPoll();
+
+      expect(result.current.status).toMatchObject({
+        sessionId: "s1",
+        status: "failed",
+        error: "Network unavailable",
+      });
+    });
+
+    it("sets a generic failed status when fetch rejects with a non-Error", async () => {
+      const fetchSpy = vi.fn().mockRejectedValue("offline");
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await flushInitialPoll();
+
+      expect(result.current.status).toMatchObject({
+        sessionId: "s1",
+        status: "failed",
+        error: "Scan request failed.",
+      });
+    });
+
+    it("uses the session access token from sessionStorage", async () => {
+      sessionStorage.setItem("scan-token:s1", "token-123");
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "ready",
+          progress: 100,
+          stageText: "done",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      renderHook(() => useScanPolling("s1"));
+
+      await flushInitialPoll();
+
+      expect(fetchSpy).toHaveBeenCalledWith(
+        "/api/scan/s1",
+        expect.objectContaining({
+          cache: "no-store",
+          headers: { Authorization: "Bearer token-123" },
+        })
+      );
     });
 
     it("polls multiple times during processing", async () => {
@@ -442,6 +506,104 @@ describe("useScanPolling", () => {
   });
 
   describe("Edge cases", () => {
+    it("unwraps successful API response envelopes", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          success: true,
+          data: {
+            sessionId: "s1",
+            status: "ready",
+            progress: 100,
+            stageText: "done",
+          },
+          error: null,
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await flushInitialPoll();
+
+      expect(result.current.status).toMatchObject({
+        sessionId: "s1",
+        status: "ready",
+        progress: 100,
+      });
+    });
+
+    it("fails gracefully when the scan response body is invalid JSON", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => {
+          throw new Error("invalid json");
+        },
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await flushInitialPoll();
+
+      expect(result.current.status).toMatchObject({
+        sessionId: "s1",
+        status: "failed",
+        error: "Invalid scan response.",
+      });
+    });
+
+    it("times out long-running processing scans", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 50,
+          stageText: "working",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        await vi.advanceTimersByTimeAsync(POLL_MAX_DURATION_MS + 5000);
+      });
+
+      expect(fetchSpy.mock.calls.length).toBeGreaterThan(1);
+      expect(result.current.status).toMatchObject({
+        sessionId: "s1",
+        status: "failed",
+        error: "Scan timed out.",
+      });
+    });
+
+    it("does not update status when a pending fetch rejects after unmount", async () => {
+      let rejectFetch: (reason?: unknown) => void = () => {};
+      const fetchSpy = vi.fn(
+        () =>
+          new Promise<Response>((_resolve, reject) => {
+            rejectFetch = reject;
+          })
+      );
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result, unmount } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        await Promise.resolve();
+      });
+      unmount();
+      await act(async () => {
+        rejectFetch(new Error("late failure"));
+        await Promise.resolve();
+        await Promise.resolve();
+      });
+
+      expect(result.current.status).toBeNull();
+    });
+
     it("handles missing progress field", async () => {
       const fetchSpy = vi.fn().mockResolvedValue({
         ok: true,

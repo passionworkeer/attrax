@@ -52,6 +52,10 @@ describe('Session Store', () => {
   })
 
   describe('createSession', () => {
+    it('rejects invalid session ids during file lookup', () => {
+      expect(() => getSession('../bad')).toThrow('Invalid sessionId')
+    })
+
     it('creates a new session with initial state', () => {
       const session = createSession('test_session_1')
 
