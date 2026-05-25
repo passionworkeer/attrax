@@ -26,10 +26,10 @@ echo Starting rag-service on http://localhost:8001
 echo Press Ctrl+C to stop.
 echo.
 
-REM Use system Python (configured in PATH or via full path)
-set PYTHON=D:\python\python.exe
-if exist "%PYTHON%" (
-    "%PYTHON%" -m uvicorn rag_service.main:app --host 0.0.0.0 --port 8001
-) else (
-    python -m uvicorn rag_service.main:app --host 0.0.0.0 --port 8001
-)
+REM Prefer local virtual environments, then fall back to Python on PATH.
+set "PYTHON=%~dp0.runvenv\Scripts\python.exe"
+if not exist "%PYTHON%" set "PYTHON=%~dp0.venv\Scripts\python.exe"
+if not exist "%PYTHON%" set "PYTHON=%~dp0rag_service\.venv\Scripts\python.exe"
+if not exist "%PYTHON%" set "PYTHON=python"
+
+"%PYTHON%" -m uvicorn rag_service.main:app --host 0.0.0.0 --port 8001

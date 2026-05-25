@@ -1,4 +1,8 @@
-import { createMockProfitReport, createMockProfitReports, createMockScanResult } from "@/lib/mock/scan-result";
+import {
+  createMockComplianceReportResult,
+  createMockProfitReport,
+  createMockProfitReports,
+} from "@/lib/mock/scan-result";
 import { getSession } from "@/lib/pipeline/session-store";
 import { serverT } from "@/lib/server-i18n";
 import { ok, fail } from "@/lib/api-response";
@@ -18,7 +22,7 @@ export async function GET(
       status: "ready" as const,
       progress: 100,
       stageText: "完成",
-      result: { ...createMockScanResult("demo"), source: "demo" as const },
+      result: { ...createMockComplianceReportResult("demo"), source: "demo" as const },
       profitReport: createMockProfitReport("demo"),
       profitReports: createMockProfitReports("demo"),
     });

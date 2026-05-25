@@ -106,6 +106,43 @@ export const ScanResultSchema = z.object({
       latencyMs: z.number().nonnegative(),
     })
     .optional(),
+  source: z.enum(["real", "fallback", "demo"]).optional(),
+});
+
+export const ComplianceReportResultSchema = z.object({
+  sessionId: z.string().min(1),
+  scanTime: z.string().datetime().optional(),
+  productCategory: ProductCategorySchema.optional(),
+  productName: z.string().optional(),
+  targetMarkets: z.array(MarketSchema).optional(),
+  complianceScore: z.number().min(0).max(100),
+  scoreGrade: ScoreGradeSchema,
+  complianceReport: z.string().min(1),
+  complianceStatus: z.enum(["PASS", "WARN", "REJECTED", "UNKNOWN"]),
+  agentTrace: z.array(z.record(z.string(), z.unknown())),
+  loopCount: z.number().int().nonnegative().optional(),
+  retrievedChunks: z.array(
+    z.object({
+      regId: z.string().min(1),
+      docName: z.string().min(1),
+      articleNo: z.string().min(1),
+      region: z.string().min(1),
+      score: z.number(),
+    })
+  ),
+  reportPackage: z.unknown().optional(),
+  images: z.undefined().optional(),
+  documents: z.array(DocumentAssetSchema).optional(),
+  riskPoints: z.undefined().optional(),
+  checklist: z.undefined().optional(),
+  generatedAt: z.string().datetime().optional(),
+  modelInfo: z
+    .object({
+      ragProvider: z.string().min(1),
+      latencyMs: z.number().nonnegative(),
+    })
+    .optional(),
+  source: z.enum(["real", "fallback", "demo"]).optional(),
 });
 
 export const ScanStatusSchema = z.object({
@@ -113,7 +150,8 @@ export const ScanStatusSchema = z.object({
   status: z.enum(["processing", "ready", "failed"]),
   progress: z.number().min(0).max(100),
   stageText: z.string(),
-  result: ScanResultSchema.optional(),
+  result: z.union([ScanResultSchema, ComplianceReportResultSchema]).optional(),
+  profitReport: z.unknown().optional(),
   profitReports: z.array(z.unknown()).optional(),
   error: z.string().optional(),
 });

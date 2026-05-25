@@ -14,8 +14,11 @@ from unittest.mock import patch, MagicMock
 
 import numpy as np
 import pytest
-import torch
-import transformers  # pre-import so patch("transformers.AutoTokenizer.from_pretrained") works
+
+try:
+    import torch
+except ModuleNotFoundError:
+    torch = None
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -280,6 +283,7 @@ class TestOllamaEmbedderClass:
 # LocalEmbedder tests
 # ---------------------------------------------------------------------------
 
+@pytest.mark.skipif(torch is None, reason="LocalEmbedder tests require optional torch dependency")
 class TestLocalEmbedder:
     """Test LocalEmbedder with mocked transformers."""
 

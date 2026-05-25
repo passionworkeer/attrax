@@ -28,6 +28,16 @@ vi.mock("@/lib/mock/scan-result", () => ({
     generatedAt: "2026-04-27T10:00:00.000Z",
     modelInfo: { ragProvider: "mimotalk", latencyMs: 500 },
   })),
+  createMockComplianceReportResult: vi.fn((id: string) => ({
+    sessionId: id,
+    complianceScore: 72,
+    scoreGrade: "B",
+    complianceReport: "## 鍚堣鎶ュ憡\n娴嬭瘯鎶ュ憡鍐呭",
+    complianceStatus: "PASS",
+    agentTrace: [],
+    retrievedChunks: [],
+    targetMarkets: ["EU", "US"],
+  })),
   createMockProfitReport: vi.fn((id: string) => ({
     sessionId: id,
     productType: "测试产品",

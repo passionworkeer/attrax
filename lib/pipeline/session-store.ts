@@ -217,8 +217,8 @@ export function getSession(sessionId: string): StoredScanStatus | undefined {
 }
 
 export function publicSession(session: ScanStatus): ScanStatus {
-  const { sessionId, status, progress, stageText, result, profitReport, error } = session;
-  return { sessionId, status, progress, stageText, result, profitReport, error };
+  const { sessionId, status, progress, stageText, result, profitReport, profitReports, error } = session;
+  return { sessionId, status, progress, stageText, result, profitReport, profitReports, error };
 }
 
 export function clearStore() {

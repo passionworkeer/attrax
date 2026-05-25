@@ -82,7 +82,7 @@ vi.mock('docx', () => ({
     HEADING_1: 'Heading1', HEADING_2: 'Heading2', HEADING_3: 'Heading3',
   },
   AlignmentType: { CENTER: 'center' },
-  BorderStyle: { NONE: 'none' },
+  BorderStyle: { NONE: 'none', SINGLE: 'single' },
   Table: mockTable,
   TableRow: mockTableRow,
   TableCell: mockTableCell,
@@ -133,6 +133,10 @@ import {
   downloadReportAsDocx,
   downloadProfitReportAsPdf,
   downloadProfitReportAsDocx,
+  downloadDecisionReportAsPdf,
+  downloadDecisionReportAsDocx,
+  downloadRoadmapReportAsPdf,
+  downloadRoadmapReportAsDocx,
 } from '@/lib/report-export'
 
 // ─── Fixture factory ──────────────────────────────────────────────────────────
@@ -498,6 +502,171 @@ function containsText(obj: any, text: string): boolean {
   }
   return false
 }
+
+function makeDecisionContent(overrides: Partial<import('@/lib/report-export-modules/decision').DecisionContent> = {}) {
+  return {
+    sessionId: 'decision_001',
+    verdict: 'WARN',
+    riskLevel: 'MEDIUM',
+    summary: 'A controlled launch is possible after label remediation.',
+    keyFindings: ['Missing EU responsible person', 'DoC package needs refresh'],
+    recommendedAction: 'Complete labeling and technical file before EU launch.',
+    nodesEvidence: [
+      {
+        type: 'retrieve',
+        label: '法规检索',
+        labelEn: 'Regulation retrieval',
+        reasoning: '命中 GPSR 和 LVD',
+        reasoningEn: 'Matched GPSR and LVD',
+      },
+    ],
+    ...overrides,
+  }
+}
+
+function makeRoadmapContent(overrides: Partial<import('@/lib/report-export-modules/roadmap').RoadmapContent> = {}) {
+  return {
+    sessionId: 'roadmap_001',
+    currentStatus: 'WARN',
+    totalDays: 42,
+    totalCost: '$18K',
+    items: [
+      {
+        title: '补齐标签',
+        titleEn: 'Complete labels',
+        description: '增加欧盟责任人和批次追溯信息',
+        descriptionEn: 'Add EU responsible person and batch traceability.',
+        cost: '$800',
+        days: 5,
+        status: 'COMPLETED',
+      },
+      {
+        title: '技术文件',
+        titleEn: 'Technical file',
+        description: '整理 DoC、BOM 和测试报告',
+        descriptionEn: 'Prepare DoC, BOM, and test reports.',
+        cost: '$12K',
+        days: 21,
+        status: 'IN_PROGRESS',
+      },
+      {
+        title: '平台复核',
+        titleEn: 'Marketplace review',
+        description: '提交合规资料包',
+        descriptionEn: 'Submit compliance package.',
+        cost: '$500',
+        days: 3,
+        status: 'PENDING',
+      },
+      {
+        title: '风险复盘',
+        titleEn: 'Risk review',
+        description: '确认剩余风险',
+        descriptionEn: 'Review residual risk.',
+        status: 'REJECTED',
+      },
+    ],
+    ...overrides,
+  }
+}
+
+// ─── Structured Decision Exports ─────────────────────────────────────────────
+describe('downloadDecisionReport exports', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockPackerToBlob.mockResolvedValue(new Blob())
+    vi.stubGlobal('fetch', vi.fn(() =>
+      Promise.resolve({ arrayBuffer: () => Promise.resolve(new ArrayBuffer(0)) })
+    ))
+  })
+
+  it.each([
+    ['PASS', 'LOW'],
+    ['WARN', 'MEDIUM'],
+    ['REJECTED', 'HIGH'],
+    ['UNKNOWN', undefined],
+  ])('renders decision PDF status %s with risk %s', async (verdict, riskLevel) => {
+    await downloadDecisionReportAsPdf(makeDecisionContent({ verdict, riskLevel }), 'en')
+
+    expect(jsPDFMethods.roundedRect).toHaveBeenCalled()
+    expect(jsPDFMethods.splitTextToSize).toHaveBeenCalled()
+    expect(jsPDFMethods.save).toHaveBeenCalledWith('AIDecisionReport_decision_001.pdf')
+  })
+
+  it('creates decision docx with summary, findings, action, and node evidence', async () => {
+    await downloadDecisionReportAsDocx(makeDecisionContent(), 'en')
+    const docOpts = mockPackerToBlob.mock.calls[0]?.[0]
+
+    expect(mockDocument).toHaveBeenCalled()
+    expect(containsText(docOpts, 'AI Decision Report')).toBe(true)
+    expect(containsText(docOpts, 'A controlled launch is possible')).toBe(true)
+    expect(containsText(docOpts, 'Regulation retrieval')).toBe(true)
+    expect(mockAnchorRef.current.download).toBe('AIDecisionReport_decision_001.docx')
+  })
+
+  it('handles minimal decision docx content', async () => {
+    await downloadDecisionReportAsDocx({ sessionId: 'decision_minimal' }, 'en')
+    const docOpts = mockPackerToBlob.mock.calls[0]?.[0]
+
+    expect(containsText(docOpts, 'Unknown')).toBe(true)
+    expect(mockAnchorRef.current.download).toBe('AIDecisionReport_decision_minimal.docx')
+  })
+})
+
+// ─── Structured Roadmap Exports ──────────────────────────────────────────────
+describe('downloadRoadmapReport exports', () => {
+  beforeEach(() => {
+    vi.clearAllMocks()
+    mockPackerToBlob.mockResolvedValue(new Blob())
+    vi.stubGlobal('fetch', vi.fn(() =>
+      Promise.resolve({ arrayBuffer: () => Promise.resolve(new ArrayBuffer(0)) })
+    ))
+  })
+
+  it('renders roadmap PDF with status, totals, and step table', async () => {
+    await downloadRoadmapReportAsPdf(makeRoadmapContent(), 'en')
+
+    expect(jsPDFMethods.rect).toHaveBeenCalled()
+    expect(jsPDFMethods.roundedRect).toHaveBeenCalled()
+    expect(jsPDFMethods.save).toHaveBeenCalledWith('ComplianceRoadmap_roadmap_001.pdf')
+  })
+
+  it('adds pages for long roadmap PDF step lists', async () => {
+    const manyItems = Array.from({ length: 50 }, (_, index) => ({
+      title: `步骤 ${index + 1}`,
+      titleEn: `Step ${index + 1}`,
+      description: '批量整改任务',
+      descriptionEn: 'Batch remediation task.',
+      status: index % 2 === 0 ? 'COMPLETED' : 'IN_PROGRESS',
+      days: index + 1,
+    }))
+
+    await downloadRoadmapReportAsPdf(makeRoadmapContent({ items: manyItems }), 'en')
+    expect(jsPDFMethods.addPage).toHaveBeenCalled()
+  })
+
+  it('creates roadmap docx with summary, steps, and current status', async () => {
+    await downloadRoadmapReportAsDocx(makeRoadmapContent(), 'en')
+    const docOpts = mockPackerToBlob.mock.calls[0]?.[0]
+
+    expect(mockDocument).toHaveBeenCalled()
+    expect(containsText(docOpts, 'Compliance Roadmap Report')).toBe(true)
+    expect(containsText(docOpts, 'Complete labels')).toBe(true)
+    expect(containsText(docOpts, 'Current Status')).toBe(true)
+    expect(mockAnchorRef.current.download).toBe('ComplianceRoadmap_roadmap_001.docx')
+  })
+
+  it('handles roadmap docx without totals or steps', async () => {
+    await downloadRoadmapReportAsDocx(
+      makeRoadmapContent({ totalDays: undefined, totalCost: undefined, items: [] }),
+      'en'
+    )
+    const docOpts = mockPackerToBlob.mock.calls[0]?.[0]
+
+    expect(containsText(docOpts, 'Compliance Roadmap Report')).toBe(true)
+    expect(containsText(docOpts, 'Current Status')).toBe(true)
+  })
+})
 
 // ─── Profit Report Fixture ────────────────────────────────────────────────────
 function makeProfitResult(

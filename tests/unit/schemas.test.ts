@@ -11,6 +11,7 @@ import {
   RiskPointSchema,
   ChecklistItemSchema,
   ScanResultSchema,
+  ComplianceReportResultSchema,
   ScanStatusSchema,
   StartScanRequestSchema,
 } from '@/lib/schemas'
@@ -294,6 +295,38 @@ describe('ScanStatusSchema', () => {
         generatedAt: '2026-04-27T10:00:05.000Z',
       },
     }
+    expect(ScanStatusSchema.parse(status)).toEqual(status)
+  })
+
+  it('accepts ready status with compliance report result and profit scenarios', () => {
+    const status = {
+      sessionId: 'scan_01JXXXXX',
+      status: 'ready' as const,
+      progress: 100,
+      stageText: '瀹屾垚',
+      result: {
+        sessionId: 'scan_01JXXXXX',
+        scanTime: '2026-04-27T10:00:00.000Z',
+        productCategory: 'electronics' as const,
+        targetMarkets: ['EU' as const],
+        complianceScore: 82,
+        scoreGrade: 'B' as const,
+        complianceReport: '## Report',
+        complianceStatus: 'PASS' as const,
+        agentTrace: [{ node: 'retrieve' }],
+        loopCount: 1,
+        retrievedChunks: [
+          { regId: 'EU-LVD', docName: 'LVD', articleNo: 'Art. 4', region: 'EU', score: 0.91 },
+        ],
+        documents: [],
+        generatedAt: '2026-04-27T10:00:05.000Z',
+        modelInfo: { ragProvider: 'mimotalk', latencyMs: 3000 },
+        source: 'fallback' as const,
+      },
+      profitReport: { sessionId: 'scan_01JXXXXX' },
+      profitReports: [{ sessionId: 'scan_01JXXXXX', scenario: 'standard' }],
+    }
+    expect(ComplianceReportResultSchema.parse(status.result)).toEqual(status.result)
     expect(ScanStatusSchema.parse(status)).toEqual(status)
   })
 
