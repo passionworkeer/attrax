@@ -8,7 +8,7 @@ echo ====================================
 
 REM Start RAG service in background (FAISS_INDEX_DIR defaults to %cd%\data\faiss)
 echo [1/2] Starting RAG service on port 8001...
-start "火鹰合规 RAG" cmd /c "cd /d %~dp0 && D:\python\python.exe -m uvicorn rag_service.main:app --host 0.0.0.0 --port 8001"
+start "火鹰合规 RAG" cmd /c ""%~dp0start-rag.bat""
 
 REM Wait a moment for RAG to start
 timeout /t 3 /nobreak >nul

@@ -3,6 +3,7 @@ import {
   createSession,
   updateSession,
   getSession,
+  publicSession,
   clearStore,
 } from '@/lib/pipeline/session-store'
 import type { ScanStatus } from '@/lib/types'
@@ -221,6 +222,23 @@ describe('Session Store', () => {
       const session = getSession('test_session_9')
       expect(session?.progress).toBe(60)
       expect(session?.stageText).toBe('阶段2')
+    })
+
+    it('preserves profit report scenarios in public session payloads', () => {
+      createSession('test_profit_reports')
+      const profitReports = [{ sessionId: 'test_profit_reports', scenario: 'standard' }]
+
+      updateSession('test_profit_reports', {
+        profitReport: profitReports[0] as ScanStatus['profitReport'],
+        profitReports: profitReports as ScanStatus['profitReports'],
+      })
+
+      const session = getSession('test_profit_reports')
+      expect(session).toBeDefined()
+
+      const payload = publicSession(session as ScanStatus)
+      expect(payload.profitReport).toEqual(profitReports[0])
+      expect(payload.profitReports).toEqual(profitReports)
     })
 
     it('restores session from file if not in memory', () => {

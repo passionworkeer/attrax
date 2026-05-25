@@ -11,7 +11,11 @@
  * user still sees a valid report instead of a generic error.
  */
 import { updateSession } from "@/lib/pipeline/session-store";
-import { createMockProfitReport, createMockProfitReports, createMockScanResult } from "@/lib/mock/scan-result";
+import {
+  createMockComplianceReportResult,
+  createMockProfitReport,
+  createMockProfitReports,
+} from "@/lib/mock/scan-result";
 import { RAG_SERVICE_TIMEOUT_MS, PROFIT_REPORT_TIMEOUT_MS } from "@/lib/constants";
 import { buildProfitReportFromMarkdown } from "@/lib/pipeline/profit-report";
 import { normalizeReportPackage } from "@/lib/pipeline/report-package";
@@ -196,7 +200,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       status: "ready",
       progress: 100,
       stageText: stages.demoResultGenerated,
-      result: { ...createMockScanResult(sessionId), source: "fallback" },
+      result: { ...createMockComplianceReportResult(sessionId), source: "fallback" },
       profitReport: createMockProfitReport(sessionId),
       profitReports: createMockProfitReports(sessionId),
       error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",

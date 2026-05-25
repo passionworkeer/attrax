@@ -66,7 +66,9 @@ test.describe('API Integration Tests', () => {
     const response = await request.get(`${API_BASE}/regulations/updates`)
     if (response.ok()) {
       const data = await response.json()
-      expect(Array.isArray(data.updates) || Array.isArray(data)).toBeTruthy()
+      expect(data.success).toBe(true)
+      expect(Array.isArray(data.data)).toBeTruthy()
+      expect(typeof data.meta?.returned).toBe('number')
     }
   })
 

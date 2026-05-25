@@ -17,6 +17,6 @@ export function requireSessionAccess(request: Request, session: StoredScanStatus
 }
 
 export function sessionPayload(session: ScanStatus): ScanStatus {
-  const { sessionId, status, progress, stageText, result, profitReport, error } = session;
-  return { sessionId, status, progress, stageText, result, profitReport, error };
+  const { sessionId, status, progress, stageText, result, profitReport, profitReports, error } = session;
+  return { sessionId, status, progress, stageText, result, profitReport, profitReports, error };
 }

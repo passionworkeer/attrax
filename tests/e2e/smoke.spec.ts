@@ -28,8 +28,8 @@ test.describe("Smoke Tests", () => {
     await page.goto("/result/demo");
 
     await expect(page.getByRole("heading", { name: /结果|result/i })).toBeVisible();
-    // Demo page shows raw JSON pre block
-    await expect(page.locator("pre")).toBeVisible();
+    await expect(page.getByRole("tab", { name: /合规分析报告|Compliance Analysis Report/i })).toBeVisible();
+    await expect(page.getByText(/综合评分|Overall Score/).first()).toBeVisible();
     expect(errors.filter((e) => !e.includes("Warning"))).toHaveLength(0);
   });
 
