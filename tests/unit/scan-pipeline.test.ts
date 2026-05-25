@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach, vi, afterAll } from 'vitest'
 import { runScan } from '@/lib/pipeline/scan'
 import { createSession, getSession, clearStore } from '@/lib/pipeline/session-store'
+import { PROFIT_REPORT_TIMEOUT_MS, RAG_SERVICE_TIMEOUT_MS } from '@/lib/constants'
 import type { Market } from '@/lib/types'
 
 // Mock body interface - status can vary
@@ -69,6 +70,54 @@ describe('Scan Pipeline', () => {
       expect(session?.status).toBe('ready')
       expect(session?.result).toBeDefined()
       expect(session?.profitReport).toBeDefined()
+    })
+
+    it('degrades to mock when rag-service returns a non-ok response', async () => {
+      vi.spyOn(global, 'fetch').mockResolvedValueOnce(new Response('unavailable', { status: 503 }))
+
+      const sessionId = 'test_rag_http_error'
+      createSession(sessionId)
+
+      await runScan(sessionId, {
+        images: [{ buffer: Buffer.from('fake'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      const session = getSession(sessionId)
+      expect(session?.status).toBe('ready')
+      expect(session?.error).toBe('RAG_SERVICE_UNAVAILABLE')
+      expect(session?.result).toBeDefined()
+    })
+
+    it('marks the session as a timeout when the rag request is aborted', async () => {
+      vi.useFakeTimers()
+      vi.spyOn(global, 'fetch').mockImplementation(
+        (_input: RequestInfo | URL, init?: RequestInit) =>
+          new Promise<Response>((_resolve, reject) => {
+            init?.signal?.addEventListener('abort', () => {
+              const error = new Error('aborted')
+              error.name = 'AbortError'
+              reject(error)
+            })
+          })
+      )
+
+      const sessionId = 'test_rag_timeout'
+      createSession(sessionId)
+
+      const scanPromise = runScan(sessionId, {
+        images: [{ buffer: Buffer.from('fake'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      await vi.advanceTimersByTimeAsync(RAG_SERVICE_TIMEOUT_MS)
+      await scanPromise
+
+      const session = getSession(sessionId)
+      expect(session?.status).toBe('ready')
+      expect(session?.error).toBe('RAG_SERVICE_TIMEOUT')
     })
 
     it('maps PASS status to ready session', async () => {
@@ -190,6 +239,110 @@ describe('Scan Pipeline', () => {
       expect(Array.isArray(result?.retrievedChunks)).toBe(true)
     })
 
+    it('uploads PDFs and stores a legacy profit report when the profit endpoint succeeds', async () => {
+      const fetchSpy = vi.spyOn(global, 'fetch').mockImplementation(async (input) => {
+        const url = String(input)
+        if (url.endsWith('/scan-multipart')) {
+          return new Response(JSON.stringify(MOCK_BODY), { status: 200 })
+        }
+        if (url.endsWith('/profit-report')) {
+          return new Response(JSON.stringify({
+            status: 'ok',
+            report: '# Profit report\n\n**Legacy profit conclusion**',
+            product: 'Adapter',
+            market: 'US',
+          }), { status: 200 })
+        }
+        throw new Error(`Unexpected fetch ${url}`)
+      })
+
+      const sessionId = 'test_legacy_profit_success'
+      createSession(sessionId)
+
+      await runScan(sessionId, {
+        images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        pdfs: [{ name: 'manual.pdf', buffer: Buffer.from('%PDF'), mimeType: 'application/pdf' }],
+        category: 'electronics',
+        markets: ['US'],
+      })
+
+      const [, scanInit] = fetchSpy.mock.calls[0] as [unknown, RequestInit]
+      expect((scanInit.body as FormData).getAll('pdfs')).toHaveLength(1)
+
+      const session = getSession(sessionId)
+      expect(fetchSpy).toHaveBeenCalledTimes(2)
+      expect(session?.profitReport?.productType).toBe('Adapter')
+      expect(session?.profitReport?.market).toBe('US')
+      expect(session?.profitReports).toHaveLength(1)
+    })
+
+    it('falls back to mock profit reports when the profit endpoint is non-ok', async () => {
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      vi.spyOn(global, 'fetch').mockImplementation(async (input) => {
+        const url = String(input)
+        if (url.endsWith('/scan-multipart')) {
+          return new Response(JSON.stringify(MOCK_BODY), { status: 200 })
+        }
+        if (url.endsWith('/profit-report')) {
+          return new Response('service unavailable', { status: 503 })
+        }
+        throw new Error(`Unexpected fetch ${url}`)
+      })
+
+      const sessionId = 'test_legacy_profit_fallback'
+      createSession(sessionId)
+
+      await runScan(sessionId, {
+        images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      const session = getSession(sessionId)
+      expect(warnSpy).toHaveBeenCalledWith('Profit report endpoint returned 503, using mock')
+      expect(session?.profitReport).toBeDefined()
+      expect(session?.profitReports?.length).toBeGreaterThan(0)
+      warnSpy.mockRestore()
+    })
+
+    it('falls back to mock profit reports when the profit endpoint times out', async () => {
+      vi.useFakeTimers()
+      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      vi.spyOn(global, 'fetch').mockImplementation((input, init) => {
+        const url = String(input)
+        if (url.endsWith('/scan-multipart')) {
+          return Promise.resolve(new Response(JSON.stringify(MOCK_BODY), { status: 200 }))
+        }
+        if (url.endsWith('/profit-report')) {
+          return new Promise<Response>((_resolve, reject) => {
+            init?.signal?.addEventListener('abort', () => {
+              const error = new Error('profit aborted')
+              error.name = 'AbortError'
+              reject(error)
+            })
+          })
+        }
+        return Promise.reject(new Error(`Unexpected fetch ${url}`))
+      })
+
+      const sessionId = 'test_profit_timeout_fallback'
+      createSession(sessionId)
+
+      const scanPromise = runScan(sessionId, {
+        images: [{ buffer: Buffer.from('test'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      await vi.advanceTimersByTimeAsync(PROFIT_REPORT_TIMEOUT_MS)
+      await scanPromise
+
+      const session = getSession(sessionId)
+      expect(warnSpy).toHaveBeenCalledWith('Profit report fetch failed, using mock')
+      expect(session?.profitReport).toBeDefined()
+      warnSpy.mockRestore()
+    })
+
     it('uses report_package for all generated scenes without legacy profit call', async () => {
       const fetchSpy = vi.spyOn(global, 'fetch').mockResolvedValue(
         new Response(JSON.stringify({
@@ -304,6 +457,27 @@ describe('Scan Pipeline', () => {
       expect(result.reportPackage.decisionView.nodes[0].labelEn).toBe('Generate')
       expect(session?.profitReport?.report).toBe('## Snake Profit')
       expect(session?.profitReport?.premiumPct).toBe('12%')
+    })
+  })
+
+  describe('RAG service URL validation', () => {
+    afterEach(() => {
+      vi.unstubAllEnvs()
+      vi.resetModules()
+    })
+
+    it('rejects non-http service URLs during module initialization', async () => {
+      vi.resetModules()
+      vi.stubEnv('RAG_SERVICE_URL', 'file:///tmp/rag')
+
+      await expect(import('@/lib/pipeline/scan')).rejects.toThrow('RAG_SERVICE_URL must use http or https')
+    })
+
+    it('rejects non-local service hosts during module initialization', async () => {
+      vi.resetModules()
+      vi.stubEnv('RAG_SERVICE_URL', 'https://example.com')
+
+      await expect(import('@/lib/pipeline/scan')).rejects.toThrow('RAG_SERVICE_URL must point to localhost')
     })
   })
 })

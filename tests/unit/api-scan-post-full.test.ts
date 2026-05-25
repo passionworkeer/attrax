@@ -6,7 +6,7 @@
  *
  * Run with: npm run test -- tests/unit/api-scan-post-full.test.ts
  */
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
 type RunScanOptions = {
   images: Array<Record<string, unknown>>;
@@ -185,6 +185,13 @@ describe("POST /api/scan - Document Processing Coverage", () => {
     process.env.DEMO_MODE = "false";
   });
 
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllEnvs();
+    globalThis.__rateLimitBuckets = undefined;
+    process.env.DEMO_MODE = "false";
+  });
+
   describe("PDF file processing", () => {
     it("processes PDF files for multipart forwarding", async () => {
       const pdfFile = makeFile("test.pdf", "application/pdf", minimalPdf());
@@ -282,7 +289,9 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       expect(opts.documents).toBeDefined();
     });
 
-    it("handles DOCX mammoth extraction gracefully", async () => {
+    it("handles DOCX mammoth extraction failures gracefully", async () => {
+      mockExtractRawText.mockRejectedValueOnce(new Error("broken docx"));
+      const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
       const docxFile = makeFile(
         "doc.docx",
         "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -298,6 +307,13 @@ describe("POST /api/scan - Document Processing Coverage", () => {
 
       // Should succeed even if mammoth extraction fails
       expect(res.status).toBe(202);
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining("mammoth extraction failed for"),
+        expect.any(Error)
+      );
+      const [, opts] = mockRunScan.mock.calls[0];
+      expect(opts.documents[0].text).toBe("");
+      warnSpy.mockRestore();
     });
 
     it("processes DOCX with mammoth successful extraction", async () => {
@@ -510,6 +526,85 @@ describe("POST /api/scan - Document Processing Coverage", () => {
   });
 
   describe("Input validation edge cases", () => {
+    it("returns 429 when the scan endpoint rate limit is exceeded", async () => {
+      vi.stubEnv("NODE_ENV", "production");
+      globalThis.__rateLimitBuckets = new Map();
+      const { POST } = await import("@/app/api/scan/route");
+      const { API_SCAN_RATE_LIMIT } = await import("@/lib/constants");
+
+      let res: Response | undefined;
+      for (let i = 0; i <= API_SCAN_RATE_LIMIT; i++) {
+        res = await POST(
+          new Request("http://localhost/api/scan", {
+            method: "POST",
+            body: buildFormData(),
+            headers: { "x-forwarded-for": "203.0.113.9" },
+          })
+        );
+      }
+
+      expect(res?.status).toBe(429);
+      await expect(res?.json()).resolves.toMatchObject({
+        success: false,
+        error: { code: "RATE_LIMITED", reason: "RATE_LIMITED" },
+      });
+    });
+
+    it("returns 400 when FormData parsing throws", async () => {
+      const { POST } = await import("@/app/api/scan/route");
+      const req = {
+        headers: new Headers(),
+        formData: vi.fn().mockRejectedValue(new Error("bad multipart body")),
+      } as unknown as Request;
+
+      const res = await POST(req);
+
+      expect(res.status).toBe(400);
+      await expect(res.json()).resolves.toMatchObject({
+        success: false,
+        error: { code: "BAD_INPUT", reason: "INVALID_REQUEST" },
+      });
+    });
+
+    it("rejects image uploads over the file-count limit", async () => {
+      const { POST } = await import("@/app/api/scan/route");
+      const { MAX_IMAGE_FILES } = await import("@/lib/constants");
+      const images = Array.from({ length: MAX_IMAGE_FILES + 1 }, (_, index) =>
+        makeFile(`photo-${index}.jpg`)
+      );
+
+      const res = await POST(
+        new Request("http://localhost/api/scan", {
+          method: "POST",
+          body: buildFormData({ images }),
+        })
+      );
+
+      expect(res.status).toBe(400);
+      await expect(res.json()).resolves.toMatchObject({
+        error: { code: "BAD_INPUT", reason: "TOO_MANY_IMAGES" },
+      });
+      expect(mockRunScan).not.toHaveBeenCalled();
+    });
+
+    it("rejects documents with invalid file signatures", async () => {
+      const { POST } = await import("@/app/api/scan/route");
+      const invalidPdf = makeFile("manual.pdf", "application/pdf", minimalJpeg());
+
+      const res = await POST(
+        new Request("http://localhost/api/scan", {
+          method: "POST",
+          body: buildFormData({ documents: [invalidPdf] }),
+        })
+      );
+
+      expect(res.status).toBe(400);
+      await expect(res.json()).resolves.toMatchObject({
+        error: { code: "BAD_INPUT", reason: "INVALID_FILE_SIGNATURE" },
+      });
+      expect(mockRunScan).not.toHaveBeenCalled();
+    });
+
     it("rejects invalid category", async () => {
       const { POST } = await import("@/app/api/scan/route");
       const req = new Request("http://localhost/api/scan", {

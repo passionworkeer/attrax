@@ -1,8 +1,10 @@
 /**
  * Comprehensive i18n tests - covers getTranslations and t function
  */
-import { describe, it, expect } from 'vitest'
-import { getTranslations, t } from '@/lib/i18n'
+import { createElement } from 'react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { afterEach, describe, it, expect, vi } from 'vitest'
+import { getTranslations, t, TranslationProvider, useTranslation } from '@/lib/i18n'
 
 function flattenStrings(value: unknown, prefix = ''): Array<[string, string]> {
   if (typeof value === 'string') return [[prefix, value]]
@@ -207,5 +209,53 @@ describe('i18n locale switching', () => {
   it('t function respects locale parameter', () => {
     expect(t('common.submit', 'zh')).toBe('提交')
     expect(t('common.submit', 'en')).toBe('Submit')
+  })
+})
+
+describe('TranslationProvider and useTranslation', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+    localStorage.clear()
+  })
+
+  function LocaleButton() {
+    const { locale, setLocale, t: translate } = useTranslation()
+    return createElement(
+      'button',
+      { type: 'button', onClick: () => setLocale('en') },
+      `${locale}:${translate('common.submit')}:${translate('missing.key')}`
+    )
+  }
+
+  it('detects a stored locale after mount', async () => {
+    localStorage.setItem('locale', 'en')
+
+    render(createElement(TranslationProvider, null, createElement(LocaleButton)))
+
+    expect(screen.getByRole('button').textContent).toContain('zh:')
+
+    await waitFor(() => {
+      expect(screen.getByRole('button').textContent).toContain('en:Submit')
+    })
+  })
+
+  it('persists explicit locale changes from consumers', () => {
+    render(createElement(TranslationProvider, null, createElement(LocaleButton)))
+
+    fireEvent.click(screen.getByRole('button'))
+
+    expect(localStorage.setItem).toHaveBeenCalledWith('locale', 'en')
+    expect(screen.getByRole('button').textContent).toContain('en:Submit:missing.key')
+  })
+
+  it('throws when useTranslation is rendered outside a provider', () => {
+    function MissingProvider() {
+      useTranslation()
+      return null
+    }
+
+    expect(() => render(createElement(MissingProvider))).toThrow(
+      'useTranslation must be used within a TranslationProvider'
+    )
   })
 })

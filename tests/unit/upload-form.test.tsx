@@ -386,6 +386,38 @@ describe('UploadForm component', () => {
         })
       }
     })
+
+    it('navigates the image carousel with buttons, keyboard, and thumbnails', async () => {
+      const { container } = render(
+        <TranslationProvider>
+          <UploadForm {...defaultProps} />
+        </TranslationProvider>
+      )
+
+      const imageInput = container.querySelectorAll('input[type="file"]')[0]
+      const first = createMockFile('carousel-a.jpg', 2 * 1024 * 1024, 'image/jpeg')
+      const second = createMockFile('carousel-b.jpg', 1024, 'image/jpeg')
+
+      expect(imageInput).toBeTruthy()
+      fireEvent.change(imageInput!, {
+        target: { files: [first, second] },
+      })
+
+      await waitFor(() => {
+        expect(screen.getByLabelText('Next')).toBeInTheDocument()
+      })
+
+      expect(screen.getByText('2.0 MB')).toBeInTheDocument()
+
+      fireEvent.click(screen.getByLabelText('Next'))
+      fireEvent.keyDown(window, { key: 'ArrowRight' })
+      fireEvent.keyDown(window, { key: 'ArrowLeft' })
+      fireEvent.click(screen.getByLabelText('Previous'))
+
+      const secondThumbnail = container.querySelector('img[title="carousel-b.jpg"]')?.closest('button')
+      expect(secondThumbnail).toBeTruthy()
+      fireEvent.click(secondThumbnail!)
+    })
   })
 
   describe('Document file handling', () => {

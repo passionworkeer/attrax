@@ -5,6 +5,7 @@
  * Run with: npm run test -- tests/unit/api-roadmap-session.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { hashAccessToken } from "@/lib/pipeline/session-auth";
 
 // Mock the session store before importing
 const mockSessions = new Map<string, Record<string, unknown>>();
@@ -49,6 +50,28 @@ describe("GET /api/roadmap/[sessionId]", () => {
   });
 
   describe("Scenario 2: Session found but no result", () => {
+    it("returns 401 when a protected session is requested without its access token", async () => {
+      mockSessions.set("scan_protected", {
+        sessionId: "scan_protected",
+        status: "ready",
+        progress: 100,
+        stageText: "complete",
+        accessTokenHash: hashAccessToken("secret-token"),
+        result: { complianceScore: 90 },
+      });
+
+      const { GET } = await import("@/app/api/roadmap/[sessionId]/route");
+      const req = new Request("http://localhost/api/roadmap/scan_protected");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_protected" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(401);
+      await expect(res.json()).resolves.toMatchObject({
+        error: { code: "UNAUTHORIZED" },
+      });
+    });
+
     it("returns 404 with NOT_READY error code when result is missing", async () => {
       mockSessions.set("scan_processing", {
         sessionId: "scan_processing",

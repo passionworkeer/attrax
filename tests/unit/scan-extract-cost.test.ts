@@ -290,6 +290,23 @@ describe('extractCostSummary', () => {
       const result = extractCostSummary(markdown)
       expect(result.barebone.bom).toBe(0)
     })
+
+    it('skips table rows that contain only delimiters', () => {
+      const result = extractCostSummary('|')
+      expect(result.barebone.total).toBe(0)
+      expect(result.compliant.total).toBe(0)
+    })
+
+    it('extracts risk notes and standalone bold conclusions from table rows', () => {
+      const markdown = `
+| 风险敞口说明：Risk buffer needed
+| **Legacy conclusion**
+`
+      const result = extractCostSummary(markdown)
+
+      expect(result.riskNote).toBe('Risk buffer needed')
+      expect(result.keyConclusion).toBe('Legacy conclusion')
+    })
   })
 })
 

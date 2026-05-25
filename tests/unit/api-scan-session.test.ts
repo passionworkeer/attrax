@@ -5,6 +5,7 @@
  * Run with: npm run test -- tests/unit/api-scan-session.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
+import { hashAccessToken } from "@/lib/pipeline/session-auth";
 
 // Mock the session store before importing
 const mockSessions = new Map<string, Record<string, unknown>>();
@@ -95,6 +96,25 @@ describe("GET /api/scan/[sessionId]", () => {
   });
 
   describe("Scenario 1: Normal sessionId returns current state", () => {
+    it("returns 401 when a protected session is requested without its access token", async () => {
+      mockSessions.set("scan_protected", createMockSession("scan_protected", {
+        status: "ready",
+        progress: 100,
+        accessTokenHash: hashAccessToken("secret-token"),
+      }));
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_protected");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_protected" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(401);
+      await expect(res.json()).resolves.toMatchObject({
+        error: { code: "UNAUTHORIZED" },
+      });
+    });
+
     it("returns complete session state with all fields", async () => {
       mockSessions.set("scan_normal123", {
         sessionId: "scan_normal123",
