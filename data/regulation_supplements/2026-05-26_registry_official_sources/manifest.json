@@ -1110,7 +1110,8 @@
     "faiss_version_label": "2026-05-26_metadata_routing",
     "faiss_index_dir": "data/faiss_versions/2026-05-26_metadata_routing",
     "active_faiss_dir": "data/faiss",
-    "faiss_index_manifest": "data/faiss_versions/2026-05-26_metadata_routing/index_manifest.json"
+    "faiss_index_manifest": "data/faiss_versions/2026-05-26_metadata_routing/index_manifest.json",
+    "coverage_report": "data/regulation_reports/2026-05-26_metadata_routing_coverage.json"
   },
   "incremental_diff": {
     "summary": {
