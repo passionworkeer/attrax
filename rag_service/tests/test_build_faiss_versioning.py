@@ -75,3 +75,31 @@ def test_save_faiss_writes_index_manifest(tmp_path):
     assert manifest["processed_dir"] == "data/corpus/processed"
     assert manifest["chunks_by_region"] == {"EU": 1, "US": 1}
     assert manifest["source_files"] == ["EU_Official_test.json", "US_Official_test.json"]
+
+
+def test_chunk_documents_preserves_source_metadata():
+    docs = [
+        {
+            "file_path": "data/corpus/processed/EU_Official_test.json",
+            "file_name": "EU_Official_test.json",
+            "raw_text": "Article 1 product safety. " * 40,
+            "title": "EU Product Safety",
+            "doc_id": "eu-product-safety",
+            "region": "EU",
+            "metadata": {
+                "source_url": "https://example.test/eu",
+                "official_channel": "Official Journal",
+                "product_categories": ["general_consumer_products"],
+                "regulatory_types": ["product_safety"],
+            },
+        }
+    ]
+
+    chunks = build_faiss.chunk_documents(docs)
+
+    assert chunks
+    assert chunks[0]["source_id"] == "eu-product-safety"
+    assert chunks[0]["source_url"] == "https://example.test/eu"
+    assert chunks[0]["official_channel"] == "Official Journal"
+    assert chunks[0]["product_categories"] == ["general_consumer_products"]
+    assert chunks[0]["regulatory_types"] == ["product_safety"]

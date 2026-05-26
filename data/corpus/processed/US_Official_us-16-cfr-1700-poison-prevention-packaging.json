@@ -25,14 +25,14 @@
       "US"
     ],
     "regulatoryTypes": [
+      "packaging",
       "product_safety",
-      "battery",
-      "chemical"
+      "testing"
     ],
     "productCategories": [
-      "battery",
-      "toys",
-      "painted_goods"
+      "packaging",
+      "children_products",
+      "chemicals"
     ],
     "charCount": 70812,
     "region": "US",
@@ -45,6 +45,16 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml",
+    "product_categories": [
+      "packaging",
+      "children_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "packaging",
+      "product_safety",
+      "testing"
+    ]
   }
 }

@@ -24,8 +24,16 @@
     "detectedMarkets": [
       "EU"
     ],
-    "regulatoryTypes": [],
-    "productCategories": [],
+    "regulatoryTypes": [
+      "product_safety",
+      "chemical",
+      "mechanical",
+      "testing"
+    ],
+    "productCategories": [
+      "toys",
+      "children_products"
+    ],
     "charCount": 312,
     "region": "EU",
     "supplement_id": "eu-2009-48-toy-safety",
@@ -38,6 +46,16 @@
       "raw/eu/eu-2009-48-toy-safety.rdf",
       "raw/eu/eu-2009-48-toy-safety.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2009-48-toy-safety.xhtml"
+    "primary_file": "raw/eu/eu-2009-48-toy-safety.xhtml",
+    "product_categories": [
+      "toys",
+      "children_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "chemical",
+      "mechanical",
+      "testing"
+    ]
   }
 }

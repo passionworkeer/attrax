@@ -25,12 +25,13 @@
       "CA"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "chemical"
+      "chemical",
+      "product_safety"
     ],
     "productCategories": [
+      "children_products",
       "toys",
-      "painted_goods"
+      "chemicals"
     ],
     "charCount": 6010,
     "region": "CA",
@@ -43,6 +44,15 @@
     "raw_files": [
       "raw/ca/CA_surface_coating_materials_regulations.xml"
     ],
-    "primary_file": "raw/ca/CA_surface_coating_materials_regulations.xml"
+    "primary_file": "raw/ca/CA_surface_coating_materials_regulations.xml",
+    "product_categories": [
+      "children_products",
+      "toys",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ]
   }
 }

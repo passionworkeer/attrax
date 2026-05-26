@@ -30,6 +30,7 @@
       "chemical"
     ],
     "productCategories": [
+      "electronics",
       "battery",
       "toys"
     ],
@@ -44,6 +45,16 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1263_button_coin_batteries.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1263_button_coin_batteries.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1263_button_coin_batteries.xml",
+    "product_categories": [
+      "electronics",
+      "battery",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "battery",
+      "chemical"
+    ]
   }
 }

@@ -25,10 +25,13 @@
       "NZ"
     ],
     "regulatoryTypes": [
-      "product_safety"
+      "product_safety",
+      "mechanical",
+      "testing"
     ],
     "productCategories": [
-      "toys"
+      "children_products",
+      "home_goods"
     ],
     "charCount": 851,
     "region": "NZ",
@@ -41,6 +44,15 @@
     "raw_files": [
       "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
     ],
-    "primary_file": "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+    "primary_file": "raw/nz/NZ_product_safety_standards_household_cots_2016.html",
+    "product_categories": [
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical",
+      "testing"
+    ]
   }
 }

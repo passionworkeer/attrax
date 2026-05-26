@@ -25,12 +25,13 @@
       "UK"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "battery"
+      "waste",
+      "sustainability",
+      "documentation"
     ],
     "productCategories": [
       "electronics",
-      "battery"
+      "waste_electrical"
     ],
     "charCount": 7773,
     "region": "UK",
@@ -43,6 +44,15 @@
     "raw_files": [
       "raw/uk/UK_weee_regulations_guidance.html"
     ],
-    "primary_file": "raw/uk/UK_weee_regulations_guidance.html"
+    "primary_file": "raw/uk/UK_weee_regulations_guidance.html",
+    "product_categories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "waste",
+      "sustainability",
+      "documentation"
+    ]
   }
 }

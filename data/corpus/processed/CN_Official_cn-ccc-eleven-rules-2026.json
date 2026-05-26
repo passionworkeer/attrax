@@ -102,6 +102,10 @@
     "raw_files": [
       "raw/cn/CN_CCC_11_rules_2026.html"
     ],
-    "primary_file": "raw/cn/CN_CCC_11_rules_2026.html"
+    "primary_file": "raw/cn/CN_CCC_11_rules_2026.html",
+    "product_categories": [],
+    "regulatory_types": [
+      "conformity"
+    ]
   }
 }

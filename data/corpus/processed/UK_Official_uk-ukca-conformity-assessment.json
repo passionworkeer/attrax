@@ -115,6 +115,15 @@
     "raw_files": [
       "raw/uk/UK_UKCA_CE_marking_conformity_assessment_guidance.html"
     ],
-    "primary_file": "raw/uk/UK_UKCA_CE_marking_conformity_assessment_guidance.html"
+    "primary_file": "raw/uk/UK_UKCA_CE_marking_conformity_assessment_guidance.html",
+    "product_categories": [
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "conformity",
+      "sustainability"
+    ]
   }
 }

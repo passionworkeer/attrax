@@ -1297,8 +1297,15 @@
     "detectedMarkets": [
       "EU"
     ],
-    "regulatoryTypes": [],
-    "productCategories": [],
+    "regulatoryTypes": [
+      "emc",
+      "conformity",
+      "testing"
+    ],
+    "productCategories": [
+      "electronics",
+      "electrical_equipment"
+    ],
     "charCount": 96896,
     "region": "EU",
     "supplement_id": "eu-2014-30-emc",
@@ -1311,6 +1318,15 @@
       "raw/eu/eu-2014-30-emc.rdf",
       "raw/eu/eu-2014-30-emc.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2014-30-emc.xhtml"
+    "primary_file": "raw/eu/eu-2014-30-emc.xhtml",
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "emc",
+      "conformity",
+      "testing"
+    ]
   }
 }

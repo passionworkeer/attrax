@@ -25,11 +25,15 @@
       "CA"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "chemical"
+      "chemical",
+      "labelling",
+      "packaging",
+      "product_safety"
     ],
     "productCategories": [
-      "toys"
+      "chemicals",
+      "packaging",
+      "general_consumer_products"
     ],
     "charCount": 103162,
     "region": "CA",
@@ -42,6 +46,17 @@
     "raw_files": [
       "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
     ],
-    "primary_file": "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
+    "primary_file": "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml",
+    "product_categories": [
+      "chemicals",
+      "packaging",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "labelling",
+      "packaging",
+      "product_safety"
+    ]
   }
 }

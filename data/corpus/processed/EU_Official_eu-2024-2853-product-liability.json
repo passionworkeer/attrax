@@ -1261,6 +1261,16 @@
       "raw/eu/EU_2024-2853_product_liability_directive.rdf",
       "raw/eu/EU_2024-2853_product_liability_directive.xhtml"
     ],
-    "primary_file": "raw/eu/EU_2024-2853_product_liability_directive.xhtml"
+    "primary_file": "raw/eu/EU_2024-2853_product_liability_directive.xhtml",
+    "product_categories": [
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "cybersecurity",
+      "liability",
+      "chemical"
+    ]
   }
 }

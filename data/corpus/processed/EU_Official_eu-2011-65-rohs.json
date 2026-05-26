@@ -1536,9 +1536,14 @@
       "EU"
     ],
     "regulatoryTypes": [
-      "chemical"
+      "chemical",
+      "conformity",
+      "documentation"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "electronics",
+      "electrical_equipment"
+    ],
     "charCount": 79089,
     "region": "EU",
     "supplement_id": "eu-2011-65-rohs",
@@ -1551,6 +1556,15 @@
       "raw/eu/eu-2011-65-rohs.rdf",
       "raw/eu/eu-2011-65-rohs.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2011-65-rohs.xhtml"
+    "primary_file": "raw/eu/eu-2011-65-rohs.xhtml",
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "conformity",
+      "documentation"
+    ]
   }
 }

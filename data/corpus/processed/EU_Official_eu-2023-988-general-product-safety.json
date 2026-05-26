@@ -2069,8 +2069,17 @@
     "detectedMarkets": [
       "EU"
     ],
-    "regulatoryTypes": [],
-    "productCategories": [],
+    "regulatoryTypes": [
+      "product_safety",
+      "market_surveillance",
+      "documentation"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "children_products",
+      "electronics",
+      "toys"
+    ],
     "charCount": 100000,
     "region": "EU",
     "supplement_id": "eu-2023-988-general-product-safety",
@@ -2083,6 +2092,17 @@
       "raw/eu/eu-2023-988-general-product-safety.rdf",
       "raw/eu/eu-2023-988-general-product-safety.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2023-988-general-product-safety.xhtml"
+    "primary_file": "raw/eu/eu-2023-988-general-product-safety.xhtml",
+    "product_categories": [
+      "general_consumer_products",
+      "children_products",
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "market_surveillance",
+      "documentation"
+    ]
   }
 }

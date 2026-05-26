@@ -43,6 +43,14 @@
     "raw_files": [
       "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html"
     ],
-    "primary_file": "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html"
+    "primary_file": "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html",
+    "product_categories": [
+      "electronics",
+      "battery"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "battery"
+    ]
   }
 }

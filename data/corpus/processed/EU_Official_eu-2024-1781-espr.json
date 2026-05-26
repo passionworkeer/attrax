@@ -4271,6 +4271,18 @@
       "raw/eu/EU_2024-1781_ecodesign_sustainable_products.rdf",
       "raw/eu/EU_2024-1781_ecodesign_sustainable_products.xhtml"
     ],
-    "primary_file": "raw/eu/EU_2024-1781_ecodesign_sustainable_products.xhtml"
+    "primary_file": "raw/eu/EU_2024-1781_ecodesign_sustainable_products.xhtml",
+    "product_categories": [
+      "electronics",
+      "painted_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "cybersecurity",
+      "conformity",
+      "sustainability",
+      "liability",
+      "chemical"
+    ]
   }
 }

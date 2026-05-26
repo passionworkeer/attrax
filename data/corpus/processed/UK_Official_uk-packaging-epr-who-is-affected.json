@@ -25,9 +25,14 @@
       "UK"
     ],
     "regulatoryTypes": [
-      "sustainability"
+      "packaging",
+      "sustainability",
+      "waste"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "packaging",
+      "general_consumer_products"
+    ],
     "charCount": 22711,
     "region": "UK",
     "supplement_id": "uk-packaging-epr-who-is-affected",
@@ -39,6 +44,15 @@
     "raw_files": [
       "raw/uk/UK_packaging_epr_who_is_affected.html"
     ],
-    "primary_file": "raw/uk/UK_packaging_epr_who_is_affected.html"
+    "primary_file": "raw/uk/UK_packaging_epr_who_is_affected.html",
+    "product_categories": [
+      "packaging",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "packaging",
+      "sustainability",
+      "waste"
+    ]
   }
 }

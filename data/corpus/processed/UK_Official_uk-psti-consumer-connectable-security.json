@@ -44,6 +44,15 @@
     "raw_files": [
       "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html"
     ],
-    "primary_file": "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html"
+    "primary_file": "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html",
+    "product_categories": [
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "cybersecurity",
+      "chemical"
+    ]
   }
 }

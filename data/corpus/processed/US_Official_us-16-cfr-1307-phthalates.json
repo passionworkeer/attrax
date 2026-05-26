@@ -25,10 +25,13 @@
       "US"
     ],
     "regulatoryTypes": [
+      "chemical",
       "product_safety"
     ],
     "productCategories": [
-      "toys"
+      "toys",
+      "children_products",
+      "chemicals"
     ],
     "charCount": 2457,
     "region": "US",
@@ -41,6 +44,15 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1307_phthalates.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1307_phthalates.xml",
+    "product_categories": [
+      "toys",
+      "children_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ]
   }
 }
