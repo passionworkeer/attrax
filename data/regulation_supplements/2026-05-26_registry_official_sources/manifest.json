@@ -1,855 +1,1904 @@
 {
-    "version":  "1.0",
-    "created_at":  "2026-05-26T17:45:15+08:00",
-    "isolation":  {
-                      "status":  "isolated",
-                      "not_mixed_with":  [
-                                             "data/corpus",
-                                             "data/corpus/processed",
-                                             "data/faiss"
-                                         ],
-                      "raw_root":  "data/regulation_supplements/2026-05-26_registry_official_sources/raw"
-                  },
-    "summary":  {
-                    "regulation_entries":  25,
-                    "raw_files":  33,
-                    "markets":  [
-                                    "CA",
-                                    "EU",
-                                    "NZ",
-                                    "UK",
-                                    "US"
-                                ],
-                    "product_categories":  [
-                                               "apparel",
-                                               "chemicals",
-                                               "children_products",
-                                               "electrical_equipment",
-                                               "electronics",
-                                               "furniture",
-                                               "general_consumer_products",
-                                               "home_goods",
-                                               "packaging",
-                                               "radio",
-                                               "textiles",
-                                               "toys",
-                                               "waste_electrical"
-                                           ],
-                    "regulatory_types":  [
-                                             "chemical",
-                                             "conformity",
-                                             "documentation",
-                                             "emc",
-                                             "flammability",
-                                             "labelling",
-                                             "market_surveillance",
-                                             "mechanical",
-                                             "packaging",
-                                             "product_safety",
-                                             "radio",
-                                             "sustainability",
-                                             "testing",
-                                             "waste"
-                                         ],
-                    "channels":  [
-                                     "GOV.UK",
-                                     "Health and Safety Executive",
-                                     "Justice Laws Website, Government of Canada",
-                                     "Product Safety New Zealand",
-                                     "Publications Office of the European Union",
-                                     "eCFR API (2026-05-21)"
-                                 ],
-                    "ecfr_date":  "2026-05-21",
-                    "failed_downloads":  0
-                },
-    "entries":  [
-                    {
-                        "id":  "eu-2023-988-general-product-safety",
-                        "market":  "EU",
-                        "title":  "Regulation (EU) 2023/988 on general product safety",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32023R0988",
-                        "files":  [
-                                      "raw/eu/eu-2023-988-general-product-safety.rdf",
-                                      "raw/eu/eu-2023-988-general-product-safety.xhtml"
-                                  ],
-                        "why_added":  "Core EU general product-safety framework for online and offline consumer products.",
-                        "product_categories":  [
-                                                   "general_consumer_products",
-                                                   "children_products",
-                                                   "electronics",
-                                                   "toys"
-                                               ],
-                        "regulatory_types":  [
-                                                 "product_safety",
-                                                 "market_surveillance",
-                                                 "documentation"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/b5f5fb53-f906-11ed-a05c-01aa75ed71a1.0001.03/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2023-988-general-product-safety.rdf",
-                                               "bytes":  2214299,
-                                               "sha256":  "67b5dcc19aec2da17e2db7006d611c8b0f2180d0c58c1b89b29771e48508ec81"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2023-988-general-product-safety.xhtml",
-                                               "bytes":  620501,
-                                               "sha256":  "f2e57bb35157b2fd54fe3d51f67a71ccbd4c862ebcb5a7459535e3548eb163b9"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2009-48-toy-safety",
-                        "market":  "EU",
-                        "title":  "Directive 2009/48/EC on the safety of toys",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32009L0048",
-                        "files":  [
-                                      "raw/eu/eu-2009-48-toy-safety.rdf",
-                                      "raw/eu/eu-2009-48-toy-safety.xhtml"
-                                  ],
-                        "why_added":  "Primary EU toy safety directive for mechanical, chemical, warning, and conformity obligations.",
-                        "product_categories":  [
-                                                   "toys",
-                                                   "children_products"
-                                               ],
-                        "regulatory_types":  [
-                                                 "product_safety",
-                                                 "chemical",
-                                                 "mechanical",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/ab7917e6-0d8a-42e4-b4df-0bbd7d927cc1.0001.04/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2009-48-toy-safety.rdf",
-                                               "bytes":  7834400,
-                                               "sha256":  "4e5232b16e34ccb9be5c8d83eabc66f0e6a45568339131f8c34cbed872011f39"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2009-48-toy-safety.xhtml",
-                                               "bytes":  3558,
-                                               "sha256":  "03fed725f1b8512a893907ae9fdc892f59c424c8536b26bca8855565c3ce0b82"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2011-65-rohs",
-                        "market":  "EU",
-                        "title":  "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32011L0065",
-                        "files":  [
-                                      "raw/eu/eu-2011-65-rohs.rdf",
-                                      "raw/eu/eu-2011-65-rohs.xhtml"
-                                  ],
-                        "why_added":  "Core EU hazardous-substance restriction for electrical and electronic products.",
-                        "product_categories":  [
-                                                   "electronics",
-                                                   "electrical_equipment"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "conformity",
-                                                 "documentation"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/6be9a15c-0644-4f7d-9911-462a649b5c0c.0001.03/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2011-65-rohs.rdf",
-                                               "bytes":  7222074,
-                                               "sha256":  "e0e548481547db0d0279836059a2e8c4a16c00c03a4784defc0bae596396f280"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2011-65-rohs.xhtml",
-                                               "bytes":  260898,
-                                               "sha256":  "20b1eb46458cd29fd17c6443a070cd9a6a513f6e941adee9189a5878b89668fc"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2012-19-weee",
-                        "market":  "EU",
-                        "title":  "Directive 2012/19/EU on waste electrical and electronic equipment",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32012L0019",
-                        "files":  [
-                                      "raw/eu/eu-2012-19-weee.rdf",
-                                      "raw/eu/eu-2012-19-weee.xhtml"
-                                  ],
-                        "why_added":  "EU WEEE producer responsibility and waste electrical-equipment obligations.",
-                        "product_categories":  [
-                                                   "electronics",
-                                                   "waste_electrical"
-                                               ],
-                        "regulatory_types":  [
-                                                 "waste",
-                                                 "sustainability",
-                                                 "labelling"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/eeb081ca-d4cb-11e1-905c-01aa75ed71a1.0001.04/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2012-19-weee.rdf",
-                                               "bytes":  9404375,
-                                               "sha256":  "4d539204006ca8987239d232a6708fd50bc7172031815ee7b9ab29c1df657b81"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2012-19-weee.xhtml",
-                                               "bytes":  464569,
-                                               "sha256":  "031b80d659cc5b1b560ea52cb2e08ce617437878e271c6dffdc2a265d56df75a"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2014-53-radio-equipment",
-                        "market":  "EU",
-                        "title":  "Directive 2014/53/EU on radio equipment",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32014L0053",
-                        "files":  [
-                                      "raw/eu/eu-2014-53-radio-equipment.rdf",
-                                      "raw/eu/eu-2014-53-radio-equipment.xhtml"
-                                  ],
-                        "why_added":  "EU RED coverage for Wi-Fi, Bluetooth, connected, and radio-enabled products.",
-                        "product_categories":  [
-                                                   "electronics",
-                                                   "radio"
-                                               ],
-                        "regulatory_types":  [
-                                                 "radio",
-                                                 "emc",
-                                                 "conformity"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/1b79e176-e181-11e3-8cd4-01aa75ed71a1.0001.03/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2014-53-radio-equipment.rdf",
-                                               "bytes":  7279704,
-                                               "sha256":  "1101deb1446392b89213f689d125113ed149ffd2992302ce8bf07eb28cbc4a85"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2014-53-radio-equipment.xhtml",
-                                               "bytes":  581714,
-                                               "sha256":  "cebf09d9772ce133d45a74e4759a74be63feff11325b5f294c74e7ff8eba8887"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2014-30-emc",
-                        "market":  "EU",
-                        "title":  "Directive 2014/30/EU on electromagnetic compatibility",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32014L0030",
-                        "files":  [
-                                      "raw/eu/eu-2014-30-emc.rdf",
-                                      "raw/eu/eu-2014-30-emc.xhtml"
-                                  ],
-                        "why_added":  "EU EMC conformity baseline for electronic and electrical equipment.",
-                        "product_categories":  [
-                                                   "electronics",
-                                                   "electrical_equipment"
-                                               ],
-                        "regulatory_types":  [
-                                                 "emc",
-                                                 "conformity",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/a0c91ade-b71f-11e3-86f9-01aa75ed71a1.0001.03/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2014-30-emc.rdf",
-                                               "bytes":  4926977,
-                                               "sha256":  "8a5c83654864d75e8de2e9e23125d0ec2fa86de984f2e9f0c4cb13b59edb04cd"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2014-30-emc.xhtml",
-                                               "bytes":  333343,
-                                               "sha256":  "af0019c2e12bc4240c39619c9efa70c9b032a600d30b736e8558874a002a9f9c"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2014-35-low-voltage",
-                        "market":  "EU",
-                        "title":  "Directive 2014/35/EU on low voltage electrical equipment",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32014L0035",
-                        "files":  [
-                                      "raw/eu/eu-2014-35-low-voltage.rdf",
-                                      "raw/eu/eu-2014-35-low-voltage.xhtml"
-                                  ],
-                        "why_added":  "EU electrical safety baseline for low-voltage equipment.",
-                        "product_categories":  [
-                                                   "electronics",
-                                                   "electrical_equipment"
-                                               ],
-                        "regulatory_types":  [
-                                                 "product_safety",
-                                                 "conformity",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/13ab8bf5-b721-11e3-86f9-01aa75ed71a1.0001.03/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2014-35-low-voltage.rdf",
-                                               "bytes":  4944100,
-                                               "sha256":  "dbb8e50f9819355ebee5fa1e4d5d68dbe54ca7e2619b7ff12419b5ae63cdeb33"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2014-35-low-voltage.xhtml",
-                                               "bytes":  202970,
-                                               "sha256":  "f4ee2ffc7602453c02a11ab28bbacb4a71c14e54f22c24158e2ca90b98f46623"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "eu-2019-1020-market-surveillance",
-                        "market":  "EU",
-                        "title":  "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
-                        "channel":  "Publications Office of the European Union",
-                        "source_url":  "https://publications.europa.eu/resource/celex/32019R1020",
-                        "files":  [
-                                      "raw/eu/eu-2019-1020-market-surveillance.rdf",
-                                      "raw/eu/eu-2019-1020-market-surveillance.xhtml"
-                                  ],
-                        "why_added":  "EU market surveillance and economic-operator compliance context.",
-                        "product_categories":  [
-                                                   "general_consumer_products",
-                                                   "electronics",
-                                                   "toys"
-                                               ],
-                        "regulatory_types":  [
-                                                 "market_surveillance",
-                                                 "documentation",
-                                                 "conformity"
-                                             ],
-                        "content_url":  "https://publications.europa.eu/resource/cellar/903d90ee-9712-11e9-9369-01aa75ed71a1.0001.03/DOC_1",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/eu/eu-2019-1020-market-surveillance.rdf",
-                                               "bytes":  5499103,
-                                               "sha256":  "50b2c1576e97641b7e5ae2cc7ef8302c315b44d31171b7577f58e599fc056891"
-                                           },
-                                           {
-                                               "file":  "raw/eu/eu-2019-1020-market-surveillance.xhtml",
-                                               "bytes":  597906,
-                                               "sha256":  "197bd59b25010800cc3f6feb8076bfbaf46d7985a907837eb8471c85c840a780"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "us-16-cfr-1307-phthalates",
-                        "market":  "US",
-                        "title":  "16 CFR Part 1307, Prohibition of Children\u0027s Toys and Child Care Articles Containing Specified Phthalates",
-                        "channel":  "eCFR API (2026-05-21)",
-                        "source_url":  "https://www.ecfr.gov/current/title-16/part-1307",
-                        "files":  [
-                                      "raw/us/US_16_CFR_Part_1307_phthalates.xml"
-                                  ],
-                        "why_added":  "US CPSC phthalate restrictions for toys and child-care articles.",
-                        "product_categories":  [
-                                                   "toys",
-                                                   "children_products",
-                                                   "chemicals"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "product_safety"
-                                             ],
-                        "content_url":  "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1307",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/us/US_16_CFR_Part_1307_phthalates.xml",
-                                               "bytes":  3527,
-                                               "sha256":  "b76fa297e283c181d3508107536f5e7579a048b1e3d46cce15b2e699ce909188"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "us-16-cfr-1630-carpets-rugs",
-                        "market":  "US",
-                        "title":  "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
-                        "channel":  "eCFR API (2026-05-21)",
-                        "source_url":  "https://www.ecfr.gov/current/title-16/part-1630",
-                        "files":  [
-                                      "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml"
-                                  ],
-                        "why_added":  "US flammability standard for carpets and rugs.",
-                        "product_categories":  [
-                                                   "textiles",
-                                                   "home_goods",
-                                                   "furniture"
-                                               ],
-                        "regulatory_types":  [
-                                                 "flammability",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1630",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml",
-                                               "bytes":  45610,
-                                               "sha256":  "0769fd169a3dfd0a68191eda67dff10b058e887ec93c27d95c3368c73d0e6330"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "us-16-cfr-1631-small-carpets-rugs",
-                        "market":  "US",
-                        "title":  "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
-                        "channel":  "eCFR API (2026-05-21)",
-                        "source_url":  "https://www.ecfr.gov/current/title-16/part-1631",
-                        "files":  [
-                                      "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
-                                  ],
-                        "why_added":  "US flammability standard for small carpets and rugs.",
-                        "product_categories":  [
-                                                   "textiles",
-                                                   "home_goods",
-                                                   "furniture"
-                                               ],
-                        "regulatory_types":  [
-                                                 "flammability",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1631",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml",
-                                               "bytes":  44314,
-                                               "sha256":  "b0f5f5e06f61e45f3f31a0b29e5d5d5af02ddfbbc6475c7659858730a144d96e"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "us-16-cfr-1633-mattresses-open-flame",
-                        "market":  "US",
-                        "title":  "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
-                        "channel":  "eCFR API (2026-05-21)",
-                        "source_url":  "https://www.ecfr.gov/current/title-16/part-1633",
-                        "files":  [
-                                      "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
-                                  ],
-                        "why_added":  "US open-flame flammability standard for mattress sets.",
-                        "product_categories":  [
-                                                   "furniture",
-                                                   "home_goods",
-                                                   "textiles"
-                                               ],
-                        "regulatory_types":  [
-                                                 "flammability",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1633",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml",
-                                               "bytes":  86490,
-                                               "sha256":  "87d2cb293d7c592de7179c88b876ba569b5e36d07bfd03c82191ab5dd12e83e8"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "us-16-cfr-1700-poison-prevention-packaging",
-                        "market":  "US",
-                        "title":  "16 CFR Part 1700, Poison Prevention Packaging",
-                        "channel":  "eCFR API (2026-05-21)",
-                        "source_url":  "https://www.ecfr.gov/current/title-16/part-1700",
-                        "files":  [
-                                      "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
-                                  ],
-                        "why_added":  "US child-resistant packaging requirements for hazardous household substances.",
-                        "product_categories":  [
-                                                   "packaging",
-                                                   "children_products",
-                                                   "chemicals"
-                                               ],
-                        "regulatory_types":  [
-                                                 "packaging",
-                                                 "product_safety",
-                                                 "testing"
-                                             ],
-                        "content_url":  "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1700",
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml",
-                                               "bytes":  80177,
-                                               "sha256":  "f5d0339f00b0af23321a4928240582ce20b35d5aa92593963f3cb27edf652d95"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "ca-consumer-chemicals-containers-regulations-2001",
-                        "market":  "CA",
-                        "title":  "Consumer Chemicals and Containers Regulations, 2001",
-                        "channel":  "Justice Laws Website, Government of Canada",
-                        "source_url":  "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml",
-                        "files":  [
-                                      "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
-                                  ],
-                        "why_added":  "Canada consumer chemical hazard classification, container, and labelling obligations.",
-                        "product_categories":  [
-                                                   "chemicals",
-                                                   "packaging",
-                                                   "general_consumer_products"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "labelling",
-                                                 "packaging",
-                                                 "product_safety"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml",
-                                               "bytes":  320278,
-                                               "sha256":  "1c3913c81beccf96847b3e35d309977030eee4d123e1a7e292278de35344c98f"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "ca-surface-coating-materials-regulations",
-                        "market":  "CA",
-                        "title":  "Surface Coating Materials Regulations",
-                        "channel":  "Justice Laws Website, Government of Canada",
-                        "source_url":  "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml",
-                        "files":  [
-                                      "raw/ca/CA_surface_coating_materials_regulations.xml"
-                                  ],
-                        "why_added":  "Canada coating-material heavy-metal and applied coating safety coverage.",
-                        "product_categories":  [
-                                                   "children_products",
-                                                   "toys",
-                                                   "chemicals"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "product_safety"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/ca/CA_surface_coating_materials_regulations.xml",
-                                               "bytes":  20924,
-                                               "sha256":  "0d617c918c3d8c95d7d1c256e85af1df54b16336f4ef9c0537163ec39a422982"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "ca-phthalates-regulations",
-                        "market":  "CA",
-                        "title":  "Phthalates Regulations",
-                        "channel":  "Justice Laws Website, Government of Canada",
-                        "source_url":  "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml",
-                        "files":  [
-                                      "raw/ca/CA_phthalates_regulations.xml"
-                                  ],
-                        "why_added":  "Canada phthalate restrictions for toys and child-care articles.",
-                        "product_categories":  [
-                                                   "toys",
-                                                   "children_products",
-                                                   "chemicals"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "product_safety"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/ca/CA_phthalates_regulations.xml",
-                                               "bytes":  7404,
-                                               "sha256":  "60d205ac032d85e9fcc3a1615cdcb7c3173ebf09b90c52a548cf97cd1b7a8e60"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "ca-childrens-sleepwear-regulations",
-                        "market":  "CA",
-                        "title":  "Children\u0027s Sleepwear Regulations",
-                        "channel":  "Justice Laws Website, Government of Canada",
-                        "source_url":  "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml",
-                        "files":  [
-                                      "raw/ca/CA_childrens_sleepwear_regulations.xml"
-                                  ],
-                        "why_added":  "Canada children\u0027s sleepwear flammability and labelling coverage.",
-                        "product_categories":  [
-                                                   "children_products",
-                                                   "apparel",
-                                                   "textiles"
-                                               ],
-                        "regulatory_types":  [
-                                                 "flammability",
-                                                 "labelling",
-                                                 "testing"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/ca/CA_childrens_sleepwear_regulations.xml",
-                                               "bytes":  25736,
-                                               "sha256":  "70c693b774610ccbdf0d1f4f0ca426166116e9ed81e0dda5b5c5c4ff742b29cd"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "ca-consumer-products-containing-lead-regulations",
-                        "market":  "CA",
-                        "title":  "Consumer Products Containing Lead Regulations",
-                        "channel":  "Justice Laws Website, Government of Canada",
-                        "source_url":  "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml",
-                        "files":  [
-                                      "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
-                                  ],
-                        "why_added":  "Canada lead restrictions for affected consumer products.",
-                        "product_categories":  [
-                                                   "children_products",
-                                                   "toys",
-                                                   "general_consumer_products",
-                                                   "chemicals"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "product_safety"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/ca/CA_consumer_products_containing_lead_regulations.xml",
-                                               "bytes":  9442,
-                                               "sha256":  "fa60c10a6fdb96bd39cbd381a635d3ff0fa44235559471f804563da18e212977"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "ca-corded-window-coverings-regulations",
-                        "market":  "CA",
-                        "title":  "Corded Window Coverings Regulations",
-                        "channel":  "Justice Laws Website, Government of Canada",
-                        "source_url":  "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml",
-                        "files":  [
-                                      "raw/ca/CA_corded_window_coverings_regulations.xml"
-                                  ],
-                        "why_added":  "Canada strangulation-risk and product-information requirements for corded window coverings.",
-                        "product_categories":  [
-                                                   "children_products",
-                                                   "home_goods"
-                                               ],
-                        "regulatory_types":  [
-                                                 "product_safety",
-                                                 "mechanical",
-                                                 "labelling"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/ca/CA_corded_window_coverings_regulations.xml",
-                                               "bytes":  23042,
-                                               "sha256":  "3e23a1dbdcf0f29e77afb83314503f5456304d17d16ec305296434b5a4f74b7b"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "uk-weee-regulations-guidance",
-                        "market":  "UK",
-                        "title":  "Regulations: waste electrical and electronic equipment",
-                        "channel":  "GOV.UK",
-                        "source_url":  "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment",
-                        "files":  [
-                                      "raw/uk/UK_weee_regulations_guidance.html"
-                                  ],
-                        "why_added":  "UK WEEE obligations for producers, distributors, and sellers of electrical goods.",
-                        "product_categories":  [
-                                                   "electronics",
-                                                   "waste_electrical"
-                                               ],
-                        "regulatory_types":  [
-                                                 "waste",
-                                                 "sustainability",
-                                                 "documentation"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/uk/UK_weee_regulations_guidance.html",
-                                               "bytes":  106285,
-                                               "sha256":  "1ca2e714e6577de4acf1e5280ed0d1e46645c6a2abc223aa0a614b35fd90ab88"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "uk-packaging-epr-who-is-affected",
-                        "market":  "UK",
-                        "title":  "Extended producer responsibility for packaging: who is affected and what to do",
-                        "channel":  "GOV.UK",
-                        "source_url":  "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do",
-                        "files":  [
-                                      "raw/uk/UK_packaging_epr_who_is_affected.html"
-                                  ],
-                        "why_added":  "UK packaging EPR scope and action obligations for importers and sellers.",
-                        "product_categories":  [
-                                                   "packaging",
-                                                   "general_consumer_products"
-                                               ],
-                        "regulatory_types":  [
-                                                 "packaging",
-                                                 "sustainability",
-                                                 "waste"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/uk/UK_packaging_epr_who_is_affected.html",
-                                               "bytes":  147204,
-                                               "sha256":  "23ca74055458fc0a2a4f104d0c54cdc27895d475c81c6cd84d1a7f7a96e2af89"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "uk-reach-compliance-guidance",
-                        "market":  "UK",
-                        "title":  "How to comply with REACH chemical regulations",
-                        "channel":  "GOV.UK",
-                        "source_url":  "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations",
-                        "files":  [
-                                      "raw/uk/UK_reach_compliance_guidance.html"
-                                  ],
-                        "why_added":  "UK REACH compliance guidance for chemical duties after EU exit.",
-                        "product_categories":  [
-                                                   "chemicals",
-                                                   "general_consumer_products",
-                                                   "electronics",
-                                                   "toys"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "documentation"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/uk/UK_reach_compliance_guidance.html",
-                                               "bytes":  87719,
-                                               "sha256":  "7fd1d182f610c198e3a9ee05e00eeb8a8244534a7502ec2fa82dd5f023ed96d9"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "uk-hse-svhc-overview",
-                        "market":  "UK",
-                        "title":  "Substances of very high concern overview",
-                        "channel":  "Health and Safety Executive",
-                        "source_url":  "https://www.hse.gov.uk/REACH/svhc-overview.htm",
-                        "files":  [
-                                      "raw/uk/UK_hse_svhc_overview.html"
-                                  ],
-                        "why_added":  "UK SVHC context for chemical communication and article obligations.",
-                        "product_categories":  [
-                                                   "chemicals",
-                                                   "general_consumer_products"
-                                               ],
-                        "regulatory_types":  [
-                                                 "chemical",
-                                                 "documentation"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/uk/UK_hse_svhc_overview.html",
-                                               "bytes":  42428,
-                                               "sha256":  "c8020cbb5fd5751c473fa0cebdcc06245cd21b9db71f425c6e1d27066cb339b8"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "nz-product-safety-standards-2005",
-                        "market":  "NZ",
-                        "title":  "Children\u0027s toy standard",
-                        "channel":  "Product Safety New Zealand",
-                        "source_url":  "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/",
-                        "files":  [
-                                      "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
-                                  ],
-                        "why_added":  "New Zealand toy product-safety standard coverage.",
-                        "product_categories":  [
-                                                   "toys",
-                                                   "children_products"
-                                               ],
-                        "regulatory_types":  [
-                                                 "product_safety",
-                                                 "mechanical",
-                                                 "testing"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html",
-                                               "bytes":  188513,
-                                               "sha256":  "798ff3f0aaabb653454efd3f54869939fdb461228fa44bd725d328dea8912b1b"
-                                           }
-                                       ]
-                    },
-                    {
-                        "id":  "nz-product-safety-standards-household-cots-2016",
-                        "market":  "NZ",
-                        "title":  "Household cot standard",
-                        "channel":  "Product Safety New Zealand",
-                        "source_url":  "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard",
-                        "files":  [
-                                      "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
-                                  ],
-                        "why_added":  "New Zealand household cot safety coverage for baby and nursery products.",
-                        "product_categories":  [
-                                                   "children_products",
-                                                   "home_goods"
-                                               ],
-                        "regulatory_types":  [
-                                                 "product_safety",
-                                                 "mechanical",
-                                                 "testing"
-                                             ],
-                        "file_stats":  [
-                                           {
-                                               "file":  "raw/nz/NZ_product_safety_standards_household_cots_2016.html",
-                                               "bytes":  189326,
-                                               "sha256":  "e2d2503e946c00aafe0704f2bd3427c285cbdcddeaed6609f10743e6540a0b3a"
-                                           }
-                                       ]
-                    }
-                ],
-    "notes":  [
-                  "This supplement was generated from data/regulation_sources/official_sources.json.",
-                  "Raw files remain isolated until reviewed and explicitly ingested.",
-                  "US eCFR entries use official API XML with a pinned date.",
-                  "EU entries include Publications Office RDF metadata and resolved English Cellar XHTML text when available."
-              ],
-    "ingestion_status":  {
-                             "processed_into_current_corpus":  true,
-                             "faiss_rebuilt":  true,
-                             "processed_at":  "2026-05-26T18:49:32+08:00",
-                             "processed_files":  [
-                                                     "data/corpus/processed/EU_Official_eu-2023-988-general-product-safety.json",
-                                                     "data/corpus/processed/EU_Official_eu-2009-48-toy-safety.json",
-                                                     "data/corpus/processed/EU_Official_eu-2011-65-rohs.json",
-                                                     "data/corpus/processed/EU_Official_eu-2012-19-weee.json",
-                                                     "data/corpus/processed/EU_Official_eu-2014-53-radio-equipment.json",
-                                                     "data/corpus/processed/EU_Official_eu-2014-30-emc.json",
-                                                     "data/corpus/processed/EU_Official_eu-2014-35-low-voltage.json",
-                                                     "data/corpus/processed/EU_Official_eu-2019-1020-market-surveillance.json",
-                                                     "data/corpus/processed/US_Official_us-16-cfr-1307-phthalates.json",
-                                                     "data/corpus/processed/US_Official_us-16-cfr-1630-carpets-rugs.json",
-                                                     "data/corpus/processed/US_Official_us-16-cfr-1631-small-carpets-rugs.json",
-                                                     "data/corpus/processed/US_Official_us-16-cfr-1633-mattresses-open-flame.json",
-                                                     "data/corpus/processed/US_Official_us-16-cfr-1700-poison-prevention-packaging.json",
-                                                     "data/corpus/processed/CA_Official_ca-consumer-chemicals-containers-regulations-2001.json",
-                                                     "data/corpus/processed/CA_Official_ca-surface-coating-materials-regulations.json",
-                                                     "data/corpus/processed/CA_Official_ca-phthalates-regulations.json",
-                                                     "data/corpus/processed/CA_Official_ca-childrens-sleepwear-regulations.json",
-                                                     "data/corpus/processed/CA_Official_ca-consumer-products-containing-lead-regulations.json",
-                                                     "data/corpus/processed/CA_Official_ca-corded-window-coverings-regulations.json",
-                                                     "data/corpus/processed/UK_Official_uk-weee-regulations-guidance.json",
-                                                     "data/corpus/processed/UK_Official_uk-packaging-epr-who-is-affected.json",
-                                                     "data/corpus/processed/UK_Official_uk-reach-compliance-guidance.json",
-                                                     "data/corpus/processed/UK_Official_uk-hse-svhc-overview.json",
-                                                     "data/corpus/processed/NZ_Official_nz-product-safety-standards-2005.json",
-                                                     "data/corpus/processed/NZ_Official_nz-product-safety-standards-household-cots-2016.json"
-                                                 ],
-                             "report":  "data/regulation_supplements/2026-05-26_registry_official_sources/ingestion_report.json",
-                             "faiss_version_label":  "2026-05-26_metadata_routing",
-                             "faiss_index_dir":  "data/faiss_versions/2026-05-26_metadata_routing",
-                             "active_faiss_dir":  "data/faiss",
-                             "faiss_index_manifest":  "data/faiss_versions/2026-05-26_metadata_routing/index_manifest.json"
-                         }
+  "version": "1.0",
+  "created_at": "2026-05-26T17:45:15+08:00",
+  "isolation": {
+    "status": "isolated",
+    "not_mixed_with": [
+      "data/corpus",
+      "data/corpus/processed",
+      "data/faiss"
+    ],
+    "raw_root": "data/regulation_supplements/2026-05-26_registry_official_sources/raw"
+  },
+  "summary": {
+    "regulation_entries": 25,
+    "raw_files": 33,
+    "markets": [
+      "CA",
+      "EU",
+      "NZ",
+      "UK",
+      "US"
+    ],
+    "product_categories": [
+      "apparel",
+      "chemicals",
+      "children_products",
+      "electrical_equipment",
+      "electronics",
+      "furniture",
+      "general_consumer_products",
+      "home_goods",
+      "packaging",
+      "radio",
+      "textiles",
+      "toys",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "conformity",
+      "documentation",
+      "emc",
+      "flammability",
+      "labelling",
+      "market_surveillance",
+      "mechanical",
+      "packaging",
+      "product_safety",
+      "radio",
+      "sustainability",
+      "testing",
+      "waste"
+    ],
+    "channels": [
+      "GOV.UK",
+      "Health and Safety Executive",
+      "Justice Laws Website, Government of Canada",
+      "Product Safety New Zealand",
+      "Publications Office of the European Union",
+      "eCFR API (2026-05-21)"
+    ],
+    "ecfr_date": "2026-05-21",
+    "failed_downloads": 0
+  },
+  "entries": [
+    {
+      "id": "eu-2023-988-general-product-safety",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/988 on general product safety",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32023R0988",
+      "files": [
+        "raw/eu/eu-2023-988-general-product-safety.rdf",
+        "raw/eu/eu-2023-988-general-product-safety.xhtml"
+      ],
+      "why_added": "Core EU general product-safety framework for online and offline consumer products.",
+      "product_categories": [
+        "general_consumer_products",
+        "children_products",
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance",
+        "documentation"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/b5f5fb53-f906-11ed-a05c-01aa75ed71a1.0001.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2023-988-general-product-safety.rdf",
+          "bytes": 2214299,
+          "sha256": "67b5dcc19aec2da17e2db7006d611c8b0f2180d0c58c1b89b29771e48508ec81"
+        },
+        {
+          "file": "raw/eu/eu-2023-988-general-product-safety.xhtml",
+          "bytes": 620501,
+          "sha256": "f2e57bb35157b2fd54fe3d51f67a71ccbd4c862ebcb5a7459535e3548eb163b9"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32023R0988"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2009-48-toy-safety",
+      "market": "EU",
+      "title": "Directive 2009/48/EC on the safety of toys",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32009L0048",
+      "files": [
+        "raw/eu/eu-2009-48-toy-safety.rdf",
+        "raw/eu/eu-2009-48-toy-safety.xhtml"
+      ],
+      "why_added": "Primary EU toy safety directive for mechanical, chemical, warning, and conformity obligations.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical",
+        "mechanical",
+        "testing"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/ab7917e6-0d8a-42e4-b4df-0bbd7d927cc1.0001.04/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2009-48-toy-safety.rdf",
+          "bytes": 7834400,
+          "sha256": "4e5232b16e34ccb9be5c8d83eabc66f0e6a45568339131f8c34cbed872011f39"
+        },
+        {
+          "file": "raw/eu/eu-2009-48-toy-safety.xhtml",
+          "bytes": 3558,
+          "sha256": "03fed725f1b8512a893907ae9fdc892f59c424c8536b26bca8855565c3ce0b82"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32009L0048"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2011-65-rohs",
+      "market": "EU",
+      "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32011L0065",
+      "files": [
+        "raw/eu/eu-2011-65-rohs.rdf",
+        "raw/eu/eu-2011-65-rohs.xhtml"
+      ],
+      "why_added": "Core EU hazardous-substance restriction for electrical and electronic products.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "conformity",
+        "documentation"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/6be9a15c-0644-4f7d-9911-462a649b5c0c.0001.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2011-65-rohs.rdf",
+          "bytes": 7222074,
+          "sha256": "e0e548481547db0d0279836059a2e8c4a16c00c03a4784defc0bae596396f280"
+        },
+        {
+          "file": "raw/eu/eu-2011-65-rohs.xhtml",
+          "bytes": 260898,
+          "sha256": "20b1eb46458cd29fd17c6443a070cd9a6a513f6e941adee9189a5878b89668fc"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32011L0065"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2012-19-weee",
+      "market": "EU",
+      "title": "Directive 2012/19/EU on waste electrical and electronic equipment",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32012L0019",
+      "files": [
+        "raw/eu/eu-2012-19-weee.rdf",
+        "raw/eu/eu-2012-19-weee.xhtml"
+      ],
+      "why_added": "EU WEEE producer responsibility and waste electrical-equipment obligations.",
+      "product_categories": [
+        "electronics",
+        "waste_electrical"
+      ],
+      "regulatory_types": [
+        "waste",
+        "sustainability",
+        "labelling"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/eeb081ca-d4cb-11e1-905c-01aa75ed71a1.0001.04/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2012-19-weee.rdf",
+          "bytes": 9404375,
+          "sha256": "4d539204006ca8987239d232a6708fd50bc7172031815ee7b9ab29c1df657b81"
+        },
+        {
+          "file": "raw/eu/eu-2012-19-weee.xhtml",
+          "bytes": 464569,
+          "sha256": "031b80d659cc5b1b560ea52cb2e08ce617437878e271c6dffdc2a265d56df75a"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32012L0019"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2014-53-radio-equipment",
+      "market": "EU",
+      "title": "Directive 2014/53/EU on radio equipment",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32014L0053",
+      "files": [
+        "raw/eu/eu-2014-53-radio-equipment.rdf",
+        "raw/eu/eu-2014-53-radio-equipment.xhtml"
+      ],
+      "why_added": "EU RED coverage for Wi-Fi, Bluetooth, connected, and radio-enabled products.",
+      "product_categories": [
+        "electronics",
+        "radio"
+      ],
+      "regulatory_types": [
+        "radio",
+        "emc",
+        "conformity"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/1b79e176-e181-11e3-8cd4-01aa75ed71a1.0001.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2014-53-radio-equipment.rdf",
+          "bytes": 7279704,
+          "sha256": "1101deb1446392b89213f689d125113ed149ffd2992302ce8bf07eb28cbc4a85"
+        },
+        {
+          "file": "raw/eu/eu-2014-53-radio-equipment.xhtml",
+          "bytes": 581714,
+          "sha256": "cebf09d9772ce133d45a74e4759a74be63feff11325b5f294c74e7ff8eba8887"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32014L0053"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2014-30-emc",
+      "market": "EU",
+      "title": "Directive 2014/30/EU on electromagnetic compatibility",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32014L0030",
+      "files": [
+        "raw/eu/eu-2014-30-emc.rdf",
+        "raw/eu/eu-2014-30-emc.xhtml"
+      ],
+      "why_added": "EU EMC conformity baseline for electronic and electrical equipment.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "emc",
+        "conformity",
+        "testing"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/a0c91ade-b71f-11e3-86f9-01aa75ed71a1.0001.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2014-30-emc.rdf",
+          "bytes": 4926977,
+          "sha256": "8a5c83654864d75e8de2e9e23125d0ec2fa86de984f2e9f0c4cb13b59edb04cd"
+        },
+        {
+          "file": "raw/eu/eu-2014-30-emc.xhtml",
+          "bytes": 333343,
+          "sha256": "af0019c2e12bc4240c39619c9efa70c9b032a600d30b736e8558874a002a9f9c"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32014L0030"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2014-35-low-voltage",
+      "market": "EU",
+      "title": "Directive 2014/35/EU on low voltage electrical equipment",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32014L0035",
+      "files": [
+        "raw/eu/eu-2014-35-low-voltage.rdf",
+        "raw/eu/eu-2014-35-low-voltage.xhtml"
+      ],
+      "why_added": "EU electrical safety baseline for low-voltage equipment.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "testing"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/13ab8bf5-b721-11e3-86f9-01aa75ed71a1.0001.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2014-35-low-voltage.rdf",
+          "bytes": 4944100,
+          "sha256": "dbb8e50f9819355ebee5fa1e4d5d68dbe54ca7e2619b7ff12419b5ae63cdeb33"
+        },
+        {
+          "file": "raw/eu/eu-2014-35-low-voltage.xhtml",
+          "bytes": 202970,
+          "sha256": "f4ee2ffc7602453c02a11ab28bbacb4a71c14e54f22c24158e2ca90b98f46623"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32014L0035"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "eu-2019-1020-market-surveillance",
+      "market": "EU",
+      "title": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32019R1020",
+      "files": [
+        "raw/eu/eu-2019-1020-market-surveillance.rdf",
+        "raw/eu/eu-2019-1020-market-surveillance.xhtml"
+      ],
+      "why_added": "EU market surveillance and economic-operator compliance context.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "market_surveillance",
+        "documentation",
+        "conformity"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/903d90ee-9712-11e9-9369-01aa75ed71a1.0001.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2019-1020-market-surveillance.rdf",
+          "bytes": 5499103,
+          "sha256": "50b2c1576e97641b7e5ae2cc7ef8302c315b44d31171b7577f58e599fc056891"
+        },
+        {
+          "file": "raw/eu/eu-2019-1020-market-surveillance.xhtml",
+          "bytes": 597906,
+          "sha256": "197bd59b25010800cc3f6feb8076bfbaf46d7985a907837eb8471c85c840a780"
+        }
+      ],
+      "source_version": {
+        "kind": "eu_celex",
+        "celex": "32019R1020"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "us-16-cfr-1307-phthalates",
+      "market": "US",
+      "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/current/title-16/part-1307",
+      "files": [
+        "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+      ],
+      "why_added": "US CPSC phthalate restrictions for toys and child-care articles.",
+      "product_categories": [
+        "toys",
+        "children_products",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "content_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1307",
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1307_phthalates.xml",
+          "bytes": 3527,
+          "sha256": "b76fa297e283c181d3508107536f5e7579a048b1e3d46cce15b2e699ce909188"
+        }
+      ],
+      "source_version": {
+        "kind": "ecfr_part",
+        "ecfr_date": "2026-05-21",
+        "ecfr_title": 16,
+        "ecfr_part": "1307"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "us-16-cfr-1630-carpets-rugs",
+      "market": "US",
+      "title": "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/current/title-16/part-1630",
+      "files": [
+        "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml"
+      ],
+      "why_added": "US flammability standard for carpets and rugs.",
+      "product_categories": [
+        "textiles",
+        "home_goods",
+        "furniture"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "content_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1630",
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml",
+          "bytes": 45610,
+          "sha256": "0769fd169a3dfd0a68191eda67dff10b058e887ec93c27d95c3368c73d0e6330"
+        }
+      ],
+      "source_version": {
+        "kind": "ecfr_part",
+        "ecfr_date": "2026-05-21",
+        "ecfr_title": 16,
+        "ecfr_part": "1630"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "us-16-cfr-1631-small-carpets-rugs",
+      "market": "US",
+      "title": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/current/title-16/part-1631",
+      "files": [
+        "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
+      ],
+      "why_added": "US flammability standard for small carpets and rugs.",
+      "product_categories": [
+        "textiles",
+        "home_goods",
+        "furniture"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "content_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1631",
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml",
+          "bytes": 44314,
+          "sha256": "b0f5f5e06f61e45f3f31a0b29e5d5d5af02ddfbbc6475c7659858730a144d96e"
+        }
+      ],
+      "source_version": {
+        "kind": "ecfr_part",
+        "ecfr_date": "2026-05-21",
+        "ecfr_title": 16,
+        "ecfr_part": "1631"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "us-16-cfr-1633-mattresses-open-flame",
+      "market": "US",
+      "title": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/current/title-16/part-1633",
+      "files": [
+        "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
+      ],
+      "why_added": "US open-flame flammability standard for mattress sets.",
+      "product_categories": [
+        "furniture",
+        "home_goods",
+        "textiles"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "content_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1633",
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml",
+          "bytes": 86490,
+          "sha256": "87d2cb293d7c592de7179c88b876ba569b5e36d07bfd03c82191ab5dd12e83e8"
+        }
+      ],
+      "source_version": {
+        "kind": "ecfr_part",
+        "ecfr_date": "2026-05-21",
+        "ecfr_title": 16,
+        "ecfr_part": "1633"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "us-16-cfr-1700-poison-prevention-packaging",
+      "market": "US",
+      "title": "16 CFR Part 1700, Poison Prevention Packaging",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/current/title-16/part-1700",
+      "files": [
+        "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
+      ],
+      "why_added": "US child-resistant packaging requirements for hazardous household substances.",
+      "product_categories": [
+        "packaging",
+        "children_products",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "packaging",
+        "product_safety",
+        "testing"
+      ],
+      "content_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1700",
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml",
+          "bytes": 80177,
+          "sha256": "f5d0339f00b0af23321a4928240582ce20b35d5aa92593963f3cb27edf652d95"
+        }
+      ],
+      "source_version": {
+        "kind": "ecfr_part",
+        "ecfr_date": "2026-05-21",
+        "ecfr_title": 16,
+        "ecfr_part": "1700"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "ca-consumer-chemicals-containers-regulations-2001",
+      "market": "CA",
+      "title": "Consumer Chemicals and Containers Regulations, 2001",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml",
+      "files": [
+        "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
+      ],
+      "why_added": "Canada consumer chemical hazard classification, container, and labelling obligations.",
+      "product_categories": [
+        "chemicals",
+        "packaging",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "labelling",
+        "packaging",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml",
+          "bytes": 320278,
+          "sha256": "1c3913c81beccf96847b3e35d309977030eee4d123e1a7e292278de35344c98f"
+        }
+      ],
+      "source_version": {
+        "kind": "canada_justice_xml",
+        "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "ca-surface-coating-materials-regulations",
+      "market": "CA",
+      "title": "Surface Coating Materials Regulations",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml",
+      "files": [
+        "raw/ca/CA_surface_coating_materials_regulations.xml"
+      ],
+      "why_added": "Canada coating-material heavy-metal and applied coating safety coverage.",
+      "product_categories": [
+        "children_products",
+        "toys",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_surface_coating_materials_regulations.xml",
+          "bytes": 20924,
+          "sha256": "0d617c918c3d8c95d7d1c256e85af1df54b16336f4ef9c0537163ec39a422982"
+        }
+      ],
+      "source_version": {
+        "kind": "canada_justice_xml",
+        "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "ca-phthalates-regulations",
+      "market": "CA",
+      "title": "Phthalates Regulations",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml",
+      "files": [
+        "raw/ca/CA_phthalates_regulations.xml"
+      ],
+      "why_added": "Canada phthalate restrictions for toys and child-care articles.",
+      "product_categories": [
+        "toys",
+        "children_products",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_phthalates_regulations.xml",
+          "bytes": 7404,
+          "sha256": "60d205ac032d85e9fcc3a1615cdcb7c3173ebf09b90c52a548cf97cd1b7a8e60"
+        }
+      ],
+      "source_version": {
+        "kind": "canada_justice_xml",
+        "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "ca-childrens-sleepwear-regulations",
+      "market": "CA",
+      "title": "Children's Sleepwear Regulations",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml",
+      "files": [
+        "raw/ca/CA_childrens_sleepwear_regulations.xml"
+      ],
+      "why_added": "Canada children's sleepwear flammability and labelling coverage.",
+      "product_categories": [
+        "children_products",
+        "apparel",
+        "textiles"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "labelling",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_childrens_sleepwear_regulations.xml",
+          "bytes": 25736,
+          "sha256": "70c693b774610ccbdf0d1f4f0ca426166116e9ed81e0dda5b5c5c4ff742b29cd"
+        }
+      ],
+      "source_version": {
+        "kind": "canada_justice_xml",
+        "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "ca-consumer-products-containing-lead-regulations",
+      "market": "CA",
+      "title": "Consumer Products Containing Lead Regulations",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml",
+      "files": [
+        "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+      ],
+      "why_added": "Canada lead restrictions for affected consumer products.",
+      "product_categories": [
+        "children_products",
+        "toys",
+        "general_consumer_products",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_consumer_products_containing_lead_regulations.xml",
+          "bytes": 9442,
+          "sha256": "fa60c10a6fdb96bd39cbd381a635d3ff0fa44235559471f804563da18e212977"
+        }
+      ],
+      "source_version": {
+        "kind": "canada_justice_xml",
+        "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "ca-corded-window-coverings-regulations",
+      "market": "CA",
+      "title": "Corded Window Coverings Regulations",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml",
+      "files": [
+        "raw/ca/CA_corded_window_coverings_regulations.xml"
+      ],
+      "why_added": "Canada strangulation-risk and product-information requirements for corded window coverings.",
+      "product_categories": [
+        "children_products",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_corded_window_coverings_regulations.xml",
+          "bytes": 23042,
+          "sha256": "3e23a1dbdcf0f29e77afb83314503f5456304d17d16ec305296434b5a4f74b7b"
+        }
+      ],
+      "source_version": {
+        "kind": "canada_justice_xml",
+        "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "uk-weee-regulations-guidance",
+      "market": "UK",
+      "title": "Regulations: waste electrical and electronic equipment",
+      "channel": "GOV.UK",
+      "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment",
+      "files": [
+        "raw/uk/UK_weee_regulations_guidance.html"
+      ],
+      "why_added": "UK WEEE obligations for producers, distributors, and sellers of electrical goods.",
+      "product_categories": [
+        "electronics",
+        "waste_electrical"
+      ],
+      "regulatory_types": [
+        "waste",
+        "sustainability",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_weee_regulations_guidance.html",
+          "bytes": 106285,
+          "sha256": "1ca2e714e6577de4acf1e5280ed0d1e46645c6a2abc223aa0a614b35fd90ab88"
+        }
+      ],
+      "source_version": {
+        "kind": "gov_html",
+        "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "uk-packaging-epr-who-is-affected",
+      "market": "UK",
+      "title": "Extended producer responsibility for packaging: who is affected and what to do",
+      "channel": "GOV.UK",
+      "source_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do",
+      "files": [
+        "raw/uk/UK_packaging_epr_who_is_affected.html"
+      ],
+      "why_added": "UK packaging EPR scope and action obligations for importers and sellers.",
+      "product_categories": [
+        "packaging",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "packaging",
+        "sustainability",
+        "waste"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_packaging_epr_who_is_affected.html",
+          "bytes": 147204,
+          "sha256": "23ca74055458fc0a2a4f104d0c54cdc27895d475c81c6cd84d1a7f7a96e2af89"
+        }
+      ],
+      "source_version": {
+        "kind": "gov_html",
+        "source_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "uk-reach-compliance-guidance",
+      "market": "UK",
+      "title": "How to comply with REACH chemical regulations",
+      "channel": "GOV.UK",
+      "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations",
+      "files": [
+        "raw/uk/UK_reach_compliance_guidance.html"
+      ],
+      "why_added": "UK REACH compliance guidance for chemical duties after EU exit.",
+      "product_categories": [
+        "chemicals",
+        "general_consumer_products",
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_reach_compliance_guidance.html",
+          "bytes": 87719,
+          "sha256": "7fd1d182f610c198e3a9ee05e00eeb8a8244534a7502ec2fa82dd5f023ed96d9"
+        }
+      ],
+      "source_version": {
+        "kind": "gov_html",
+        "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "uk-hse-svhc-overview",
+      "market": "UK",
+      "title": "Substances of very high concern overview",
+      "channel": "Health and Safety Executive",
+      "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm",
+      "files": [
+        "raw/uk/UK_hse_svhc_overview.html"
+      ],
+      "why_added": "UK SVHC context for chemical communication and article obligations.",
+      "product_categories": [
+        "chemicals",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_hse_svhc_overview.html",
+          "bytes": 42428,
+          "sha256": "c8020cbb5fd5751c473fa0cebdcc06245cd21b9db71f425c6e1d27066cb339b8"
+        }
+      ],
+      "source_version": {
+        "kind": "gov_html",
+        "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "nz-product-safety-standards-2005",
+      "market": "NZ",
+      "title": "Children's toy standard",
+      "channel": "Product Safety New Zealand",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/",
+      "files": [
+        "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
+      ],
+      "why_added": "New Zealand toy product-safety standard coverage.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html",
+          "bytes": 188513,
+          "sha256": "798ff3f0aaabb653454efd3f54869939fdb461228fa44bd725d328dea8912b1b"
+        }
+      ],
+      "source_version": {
+        "kind": "direct_url",
+        "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    },
+    {
+      "id": "nz-product-safety-standards-household-cots-2016",
+      "market": "NZ",
+      "title": "Household cot standard",
+      "channel": "Product Safety New Zealand",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard",
+      "files": [
+        "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+      ],
+      "why_added": "New Zealand household cot safety coverage for baby and nursery products.",
+      "product_categories": [
+        "children_products",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_product_safety_standards_household_cots_2016.html",
+          "bytes": 189326,
+          "sha256": "e2d2503e946c00aafe0704f2bd3427c285cbdcddeaed6609f10743e6540a0b3a"
+        }
+      ],
+      "source_version": {
+        "kind": "direct_url",
+        "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard"
+      },
+      "lifecycle": {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": []
+      }
+    }
+  ],
+  "notes": [
+    "This supplement was generated from data/regulation_sources/official_sources.json.",
+    "Raw files remain isolated until reviewed and explicitly ingested.",
+    "US eCFR entries use official API XML with a pinned date.",
+    "EU entries include Publications Office RDF metadata and resolved English Cellar XHTML text when available."
+  ],
+  "ingestion_status": {
+    "processed_into_current_corpus": true,
+    "faiss_rebuilt": true,
+    "processed_at": "2026-05-26T18:49:32+08:00",
+    "processed_files": [
+      "data/corpus/processed/EU_Official_eu-2023-988-general-product-safety.json",
+      "data/corpus/processed/EU_Official_eu-2009-48-toy-safety.json",
+      "data/corpus/processed/EU_Official_eu-2011-65-rohs.json",
+      "data/corpus/processed/EU_Official_eu-2012-19-weee.json",
+      "data/corpus/processed/EU_Official_eu-2014-53-radio-equipment.json",
+      "data/corpus/processed/EU_Official_eu-2014-30-emc.json",
+      "data/corpus/processed/EU_Official_eu-2014-35-low-voltage.json",
+      "data/corpus/processed/EU_Official_eu-2019-1020-market-surveillance.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1307-phthalates.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1630-carpets-rugs.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1631-small-carpets-rugs.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1633-mattresses-open-flame.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1700-poison-prevention-packaging.json",
+      "data/corpus/processed/CA_Official_ca-consumer-chemicals-containers-regulations-2001.json",
+      "data/corpus/processed/CA_Official_ca-surface-coating-materials-regulations.json",
+      "data/corpus/processed/CA_Official_ca-phthalates-regulations.json",
+      "data/corpus/processed/CA_Official_ca-childrens-sleepwear-regulations.json",
+      "data/corpus/processed/CA_Official_ca-consumer-products-containing-lead-regulations.json",
+      "data/corpus/processed/CA_Official_ca-corded-window-coverings-regulations.json",
+      "data/corpus/processed/UK_Official_uk-weee-regulations-guidance.json",
+      "data/corpus/processed/UK_Official_uk-packaging-epr-who-is-affected.json",
+      "data/corpus/processed/UK_Official_uk-reach-compliance-guidance.json",
+      "data/corpus/processed/UK_Official_uk-hse-svhc-overview.json",
+      "data/corpus/processed/NZ_Official_nz-product-safety-standards-2005.json",
+      "data/corpus/processed/NZ_Official_nz-product-safety-standards-household-cots-2016.json"
+    ],
+    "report": "data/regulation_supplements/2026-05-26_registry_official_sources/ingestion_report.json",
+    "faiss_version_label": "2026-05-26_metadata_routing",
+    "faiss_index_dir": "data/faiss_versions/2026-05-26_metadata_routing",
+    "active_faiss_dir": "data/faiss",
+    "faiss_index_manifest": "data/faiss_versions/2026-05-26_metadata_routing/index_manifest.json"
+  },
+  "incremental_diff": {
+    "summary": {
+      "previous_entries": 25,
+      "current_entries": 25,
+      "added": 0,
+      "removed": 0,
+      "changed": 0,
+      "unchanged": 25,
+      "version_changed": 25
+    },
+    "added_entries": [],
+    "removed_entries": [],
+    "changed_entries": [],
+    "unchanged_entries": [
+      {
+        "id": "ca-childrens-sleepwear-regulations",
+        "market": "CA",
+        "title": "Children's Sleepwear Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml"
+        },
+        "files": [
+          "raw/ca/CA_childrens_sleepwear_regulations.xml"
+        ]
+      },
+      {
+        "id": "ca-consumer-chemicals-containers-regulations-2001",
+        "market": "CA",
+        "title": "Consumer Chemicals and Containers Regulations, 2001",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml"
+        },
+        "files": [
+          "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
+        ]
+      },
+      {
+        "id": "ca-consumer-products-containing-lead-regulations",
+        "market": "CA",
+        "title": "Consumer Products Containing Lead Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml"
+        },
+        "files": [
+          "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+        ]
+      },
+      {
+        "id": "ca-corded-window-coverings-regulations",
+        "market": "CA",
+        "title": "Corded Window Coverings Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml"
+        },
+        "files": [
+          "raw/ca/CA_corded_window_coverings_regulations.xml"
+        ]
+      },
+      {
+        "id": "ca-phthalates-regulations",
+        "market": "CA",
+        "title": "Phthalates Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml"
+        },
+        "files": [
+          "raw/ca/CA_phthalates_regulations.xml"
+        ]
+      },
+      {
+        "id": "ca-surface-coating-materials-regulations",
+        "market": "CA",
+        "title": "Surface Coating Materials Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml"
+        },
+        "files": [
+          "raw/ca/CA_surface_coating_materials_regulations.xml"
+        ]
+      },
+      {
+        "id": "eu-2009-48-toy-safety",
+        "market": "EU",
+        "title": "Directive 2009/48/EC on the safety of toys",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32009L0048"
+        },
+        "files": [
+          "raw/eu/eu-2009-48-toy-safety.rdf",
+          "raw/eu/eu-2009-48-toy-safety.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2011-65-rohs",
+        "market": "EU",
+        "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32011L0065"
+        },
+        "files": [
+          "raw/eu/eu-2011-65-rohs.rdf",
+          "raw/eu/eu-2011-65-rohs.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2012-19-weee",
+        "market": "EU",
+        "title": "Directive 2012/19/EU on waste electrical and electronic equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32012L0019"
+        },
+        "files": [
+          "raw/eu/eu-2012-19-weee.rdf",
+          "raw/eu/eu-2012-19-weee.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2014-30-emc",
+        "market": "EU",
+        "title": "Directive 2014/30/EU on electromagnetic compatibility",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0030"
+        },
+        "files": [
+          "raw/eu/eu-2014-30-emc.rdf",
+          "raw/eu/eu-2014-30-emc.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2014-35-low-voltage",
+        "market": "EU",
+        "title": "Directive 2014/35/EU on low voltage electrical equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0035"
+        },
+        "files": [
+          "raw/eu/eu-2014-35-low-voltage.rdf",
+          "raw/eu/eu-2014-35-low-voltage.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2014-53-radio-equipment",
+        "market": "EU",
+        "title": "Directive 2014/53/EU on radio equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0053"
+        },
+        "files": [
+          "raw/eu/eu-2014-53-radio-equipment.rdf",
+          "raw/eu/eu-2014-53-radio-equipment.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2019-1020-market-surveillance",
+        "market": "EU",
+        "title": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32019R1020"
+        },
+        "files": [
+          "raw/eu/eu-2019-1020-market-surveillance.rdf",
+          "raw/eu/eu-2019-1020-market-surveillance.xhtml"
+        ]
+      },
+      {
+        "id": "eu-2023-988-general-product-safety",
+        "market": "EU",
+        "title": "Regulation (EU) 2023/988 on general product safety",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32023R0988"
+        },
+        "files": [
+          "raw/eu/eu-2023-988-general-product-safety.rdf",
+          "raw/eu/eu-2023-988-general-product-safety.xhtml"
+        ]
+      },
+      {
+        "id": "nz-product-safety-standards-2005",
+        "market": "NZ",
+        "title": "Children's toy standard",
+        "source_version": {
+          "kind": "direct_url",
+          "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/"
+        },
+        "files": [
+          "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
+        ]
+      },
+      {
+        "id": "nz-product-safety-standards-household-cots-2016",
+        "market": "NZ",
+        "title": "Household cot standard",
+        "source_version": {
+          "kind": "direct_url",
+          "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard"
+        },
+        "files": [
+          "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+        ]
+      },
+      {
+        "id": "uk-hse-svhc-overview",
+        "market": "UK",
+        "title": "Substances of very high concern overview",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm"
+        },
+        "files": [
+          "raw/uk/UK_hse_svhc_overview.html"
+        ]
+      },
+      {
+        "id": "uk-packaging-epr-who-is-affected",
+        "market": "UK",
+        "title": "Extended producer responsibility for packaging: who is affected and what to do",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do"
+        },
+        "files": [
+          "raw/uk/UK_packaging_epr_who_is_affected.html"
+        ]
+      },
+      {
+        "id": "uk-reach-compliance-guidance",
+        "market": "UK",
+        "title": "How to comply with REACH chemical regulations",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations"
+        },
+        "files": [
+          "raw/uk/UK_reach_compliance_guidance.html"
+        ]
+      },
+      {
+        "id": "uk-weee-regulations-guidance",
+        "market": "UK",
+        "title": "Regulations: waste electrical and electronic equipment",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment"
+        },
+        "files": [
+          "raw/uk/UK_weee_regulations_guidance.html"
+        ]
+      },
+      {
+        "id": "us-16-cfr-1307-phthalates",
+        "market": "US",
+        "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1307"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+        ]
+      },
+      {
+        "id": "us-16-cfr-1630-carpets-rugs",
+        "market": "US",
+        "title": "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1630"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml"
+        ]
+      },
+      {
+        "id": "us-16-cfr-1631-small-carpets-rugs",
+        "market": "US",
+        "title": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1631"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
+        ]
+      },
+      {
+        "id": "us-16-cfr-1633-mattresses-open-flame",
+        "market": "US",
+        "title": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1633"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
+        ]
+      },
+      {
+        "id": "us-16-cfr-1700-poison-prevention-packaging",
+        "market": "US",
+        "title": "16 CFR Part 1700, Poison Prevention Packaging",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1700"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
+        ]
+      }
+    ],
+    "version_changed_entries": [
+      {
+        "id": "ca-childrens-sleepwear-regulations",
+        "market": "CA",
+        "title": "Children's Sleepwear Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml"
+        },
+        "files": [
+          "raw/ca/CA_childrens_sleepwear_regulations.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml"
+        }
+      },
+      {
+        "id": "ca-consumer-chemicals-containers-regulations-2001",
+        "market": "CA",
+        "title": "Consumer Chemicals and Containers Regulations, 2001",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml"
+        },
+        "files": [
+          "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml"
+        }
+      },
+      {
+        "id": "ca-consumer-products-containing-lead-regulations",
+        "market": "CA",
+        "title": "Consumer Products Containing Lead Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml"
+        },
+        "files": [
+          "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml"
+        }
+      },
+      {
+        "id": "ca-corded-window-coverings-regulations",
+        "market": "CA",
+        "title": "Corded Window Coverings Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml"
+        },
+        "files": [
+          "raw/ca/CA_corded_window_coverings_regulations.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml"
+        }
+      },
+      {
+        "id": "ca-phthalates-regulations",
+        "market": "CA",
+        "title": "Phthalates Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml"
+        },
+        "files": [
+          "raw/ca/CA_phthalates_regulations.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml"
+        }
+      },
+      {
+        "id": "ca-surface-coating-materials-regulations",
+        "market": "CA",
+        "title": "Surface Coating Materials Regulations",
+        "source_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml"
+        },
+        "files": [
+          "raw/ca/CA_surface_coating_materials_regulations.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "canada_justice_xml",
+          "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml"
+        }
+      },
+      {
+        "id": "eu-2009-48-toy-safety",
+        "market": "EU",
+        "title": "Directive 2009/48/EC on the safety of toys",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32009L0048"
+        },
+        "files": [
+          "raw/eu/eu-2009-48-toy-safety.rdf",
+          "raw/eu/eu-2009-48-toy-safety.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32009L0048"
+        }
+      },
+      {
+        "id": "eu-2011-65-rohs",
+        "market": "EU",
+        "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32011L0065"
+        },
+        "files": [
+          "raw/eu/eu-2011-65-rohs.rdf",
+          "raw/eu/eu-2011-65-rohs.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32011L0065"
+        }
+      },
+      {
+        "id": "eu-2012-19-weee",
+        "market": "EU",
+        "title": "Directive 2012/19/EU on waste electrical and electronic equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32012L0019"
+        },
+        "files": [
+          "raw/eu/eu-2012-19-weee.rdf",
+          "raw/eu/eu-2012-19-weee.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32012L0019"
+        }
+      },
+      {
+        "id": "eu-2014-30-emc",
+        "market": "EU",
+        "title": "Directive 2014/30/EU on electromagnetic compatibility",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0030"
+        },
+        "files": [
+          "raw/eu/eu-2014-30-emc.rdf",
+          "raw/eu/eu-2014-30-emc.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0030"
+        }
+      },
+      {
+        "id": "eu-2014-35-low-voltage",
+        "market": "EU",
+        "title": "Directive 2014/35/EU on low voltage electrical equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0035"
+        },
+        "files": [
+          "raw/eu/eu-2014-35-low-voltage.rdf",
+          "raw/eu/eu-2014-35-low-voltage.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0035"
+        }
+      },
+      {
+        "id": "eu-2014-53-radio-equipment",
+        "market": "EU",
+        "title": "Directive 2014/53/EU on radio equipment",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0053"
+        },
+        "files": [
+          "raw/eu/eu-2014-53-radio-equipment.rdf",
+          "raw/eu/eu-2014-53-radio-equipment.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32014L0053"
+        }
+      },
+      {
+        "id": "eu-2019-1020-market-surveillance",
+        "market": "EU",
+        "title": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32019R1020"
+        },
+        "files": [
+          "raw/eu/eu-2019-1020-market-surveillance.rdf",
+          "raw/eu/eu-2019-1020-market-surveillance.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32019R1020"
+        }
+      },
+      {
+        "id": "eu-2023-988-general-product-safety",
+        "market": "EU",
+        "title": "Regulation (EU) 2023/988 on general product safety",
+        "source_version": {
+          "kind": "eu_celex",
+          "celex": "32023R0988"
+        },
+        "files": [
+          "raw/eu/eu-2023-988-general-product-safety.rdf",
+          "raw/eu/eu-2023-988-general-product-safety.xhtml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "eu_celex",
+          "celex": "32023R0988"
+        }
+      },
+      {
+        "id": "nz-product-safety-standards-2005",
+        "market": "NZ",
+        "title": "Children's toy standard",
+        "source_version": {
+          "kind": "direct_url",
+          "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/"
+        },
+        "files": [
+          "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "direct_url",
+          "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/"
+        }
+      },
+      {
+        "id": "nz-product-safety-standards-household-cots-2016",
+        "market": "NZ",
+        "title": "Household cot standard",
+        "source_version": {
+          "kind": "direct_url",
+          "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard"
+        },
+        "files": [
+          "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "direct_url",
+          "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard"
+        }
+      },
+      {
+        "id": "uk-hse-svhc-overview",
+        "market": "UK",
+        "title": "Substances of very high concern overview",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm"
+        },
+        "files": [
+          "raw/uk/UK_hse_svhc_overview.html"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm"
+        }
+      },
+      {
+        "id": "uk-packaging-epr-who-is-affected",
+        "market": "UK",
+        "title": "Extended producer responsibility for packaging: who is affected and what to do",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do"
+        },
+        "files": [
+          "raw/uk/UK_packaging_epr_who_is_affected.html"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do"
+        }
+      },
+      {
+        "id": "uk-reach-compliance-guidance",
+        "market": "UK",
+        "title": "How to comply with REACH chemical regulations",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations"
+        },
+        "files": [
+          "raw/uk/UK_reach_compliance_guidance.html"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations"
+        }
+      },
+      {
+        "id": "uk-weee-regulations-guidance",
+        "market": "UK",
+        "title": "Regulations: waste electrical and electronic equipment",
+        "source_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment"
+        },
+        "files": [
+          "raw/uk/UK_weee_regulations_guidance.html"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "gov_html",
+          "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment"
+        }
+      },
+      {
+        "id": "us-16-cfr-1307-phthalates",
+        "market": "US",
+        "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1307"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1307"
+        }
+      },
+      {
+        "id": "us-16-cfr-1630-carpets-rugs",
+        "market": "US",
+        "title": "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1630"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1630"
+        }
+      },
+      {
+        "id": "us-16-cfr-1631-small-carpets-rugs",
+        "market": "US",
+        "title": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1631"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1631"
+        }
+      },
+      {
+        "id": "us-16-cfr-1633-mattresses-open-flame",
+        "market": "US",
+        "title": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1633"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1633"
+        }
+      },
+      {
+        "id": "us-16-cfr-1700-poison-prevention-packaging",
+        "market": "US",
+        "title": "16 CFR Part 1700, Poison Prevention Packaging",
+        "source_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1700"
+        },
+        "files": [
+          "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
+        ],
+        "previous_version": {},
+        "current_version": {
+          "kind": "ecfr_part",
+          "ecfr_date": "2026-05-21",
+          "ecfr_title": 16,
+          "ecfr_part": "1700"
+        }
+      }
+    ]
+  }
 }

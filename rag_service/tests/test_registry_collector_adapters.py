@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from scripts.collect_official_sources_from_registry import (  # noqa: E402
     build_download_url,
     build_manifest_entry,
+    build_source_version,
     eu_cellar_content_variants,
     eu_registry_files,
 )
@@ -86,4 +87,42 @@ def test_manifest_entry_preserves_registry_metadata_without_mutating_input():
     assert manifest_entry["files"] == ["raw/uk/UK_weee_regulations_guidance.html"]
     assert manifest_entry["product_categories"] == ["electronics", "waste_electrical"]
     assert manifest_entry["regulatory_types"] == ["waste", "sustainability", "documentation"]
+    assert manifest_entry["source_version"] == {
+        "kind": "gov_html",
+        "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment",
+    }
+    assert manifest_entry["lifecycle"] == {
+        "publication_date": "",
+        "effective_date": "",
+        "supersedes": [],
+        "replaces": [],
+    }
     assert entry["files"] == ["raw/uk/UK_weee_regulations_guidance.html"]
+
+
+def test_build_source_version_prefers_ecfr_and_celex_fields():
+    assert build_source_version(
+        {
+            "source_type": "ecfr_part",
+            "ecfr_date": "2026-05-21",
+            "ecfr_title": 16,
+            "ecfr_part": "1307",
+            "source_url": "https://www.ecfr.gov/current/title-16/part-1307",
+        }
+    ) == {
+        "kind": "ecfr_part",
+        "ecfr_date": "2026-05-21",
+        "ecfr_title": 16,
+        "ecfr_part": "1307",
+    }
+
+    assert build_source_version(
+        {
+            "source_type": "eu_celex",
+            "celex": "32023R0988",
+            "source_url": "https://publications.europa.eu/resource/celex/32023R0988",
+        }
+    ) == {
+        "kind": "eu_celex",
+        "celex": "32023R0988",
+    }
