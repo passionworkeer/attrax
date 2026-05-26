@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""
+r"""
 build_faiss.py - Build Faiss index from corpus
 
 Pipeline:
@@ -18,6 +18,8 @@ import os
 import json
 import logging
 import re
+from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -35,9 +37,10 @@ FAISS_DIR = Path(os.environ.get("FAISS_INDEX_DIR", "data/faiss"))
 BATCH_SIZE = 1
 
 
-def load_processed_files() -> list[dict]:
+def load_processed_files(processed_dir: Path = PROCESSED_DIR) -> list[dict]:
     """Load all processed JSON files with sufficient rawText."""
-    files = sorted(PROCESSED_DIR.glob("*.json"))
+    processed_dir = Path(processed_dir)
+    files = sorted(processed_dir.glob("*.json"))
     logger.info(f"Found {len(files)} processed JSON files")
 
     docs = []
@@ -132,12 +135,18 @@ def embed_chunks(chunks: list[dict]) -> tuple[list[dict], int]:
     return chunks, getattr(embedder, "DIM", len(vectors[0]) if vectors else 0)
 
 
-def save_faiss(chunks: list[dict], dim: int):
+def save_faiss(
+    chunks: list[dict],
+    dim: int,
+    faiss_dir: Path = FAISS_DIR,
+    build_info: dict | None = None,
+):
     """Save chunks to Faiss index + JSON metadata."""
     import faiss
     import numpy as np
 
-    FAISS_DIR.mkdir(exist_ok=True)
+    faiss_dir = Path(faiss_dir)
+    faiss_dir.mkdir(parents=True, exist_ok=True)
 
     vectors = [c["vector"] for c in chunks if c.get("vector")]
     chunks_with_vec = [c for c in chunks if c.get("vector")]
@@ -152,15 +161,44 @@ def save_faiss(chunks: list[dict], dim: int):
     index = faiss.IndexFlatIP(dim)
     index.add(mat)
 
-    index_path = str(FAISS_DIR / "legal_chunks.index")
-    meta_path = str(FAISS_DIR / "legal_chunks_meta.json")
+    index_path = str(faiss_dir / "legal_chunks.index")
+    meta_path = str(faiss_dir / "legal_chunks_meta.json")
+    manifest_path = faiss_dir / "index_manifest.json"
 
     faiss.write_index(index, index_path)
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump({"dim": dim, "chunks": chunks_with_vec}, f, ensure_ascii=False)
 
+    manifest = build_index_manifest(chunks_with_vec, dim, build_info or {}, int(index.ntotal))
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     logger.info(f"Saved Faiss index: {index.ntotal} vectors -> {index_path}")
     logger.info(f"Saved metadata: {len(chunks_with_vec)} chunks -> {meta_path}")
+    logger.info(f"Saved index manifest -> {manifest_path}")
+
+
+def build_index_manifest(
+    chunks: list[dict],
+    dim: int,
+    build_info: dict,
+    vector_count: int,
+) -> dict:
+    """Build an auditable manifest for a generated FAISS index."""
+    regions = Counter(c.get("region", "unknown") or "unknown" for c in chunks)
+    source_files = sorted({c.get("source_file", "") for c in chunks if c.get("source_file")})
+    source_ids = sorted({c.get("source_id", "") for c in chunks if c.get("source_id")})
+    return {
+        "version_label": build_info.get("version_label", ""),
+        "generated_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
+        "processed_dir": build_info.get("processed_dir", str(PROCESSED_DIR)),
+        "documents_count": int(build_info.get("documents_count", 0)),
+        "dim": dim,
+        "vector_count": vector_count,
+        "chunk_count": len(chunks),
+        "chunks_by_region": dict(sorted(regions.items())),
+        "source_files": source_files,
+        "source_ids": source_ids,
+    }
 
 
 def main():
@@ -168,13 +206,16 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--skip-embed", action="store_true", help="Skip embedding")
+    parser.add_argument("--processed-dir", type=Path, default=PROCESSED_DIR)
+    parser.add_argument("--output-dir", type=Path, default=FAISS_DIR)
+    parser.add_argument("--version-label", default="")
     args = parser.parse_args()
 
     logger.info("=" * 60)
     logger.info("  Build Faiss Index Pipeline")
     logger.info("=" * 60)
 
-    docs = load_processed_files()
+    docs = load_processed_files(processed_dir=args.processed_dir)
     if args.limit:
         docs = docs[:args.limit]
 
@@ -186,9 +227,17 @@ def main():
         logger.info("Skipping embedding (--skip-embed)")
         return
 
-    save_faiss(chunks, dim)
+    save_faiss(
+        chunks,
+        dim,
+        faiss_dir=args.output_dir,
+        build_info={
+            "version_label": args.version_label,
+            "processed_dir": str(args.processed_dir),
+            "documents_count": len(docs),
+        },
+    )
 
-    from collections import Counter
     regions = Counter(c.get("region", "unknown") for c in chunks)
     logger.info(f"  Chunks by region: {dict(regions)}")
     logger.info("  Done!")
