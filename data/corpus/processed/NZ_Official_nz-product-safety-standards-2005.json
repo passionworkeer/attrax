@@ -1,0 +1,46 @@
+{
+  "id": "nz-product-safety-standards-2005",
+  "title": "Children's toy standard",
+  "fileName": "NZ_product_safety_standards_childrens_toys_2005.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/nz/NZ_product_safety_standards_childrens_toys_2005.html",
+  "sourceType": "html",
+  "region": "NZ",
+  "pageCount": 1,
+  "totalChars": 564,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 564,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "About the standard The children's toy standard: requires that all toys that are intended or suitable for use by children 3 years and under do not have small parts that can be pulled apart from or brea"
+    }
+  ],
+  "tables": [],
+  "rawText": "About the standard The children's toy standard: requires that all toys that are intended or suitable for use by children 3 years and under do not have small parts that can be pulled apart from or break off the toy establishes an acceptable size — approximately the size of a ping pong ball — for toys for children 3 years and under, and sets up a range of tests that the product must be able to pass (such as a bite test and drop test) without small parts breaking off. More information Children's toys – Commerce Commission Te Komihana Tauhokohoko (external link)",
+  "metadata": {
+    "detectedMarkets": [
+      "NZ"
+    ],
+    "regulatoryTypes": [
+      "product_safety"
+    ],
+    "productCategories": [
+      "toys"
+    ],
+    "charCount": 564,
+    "region": "NZ",
+    "supplement_id": "nz-product-safety-standards-2005",
+    "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/",
+    "content_url": "",
+    "official_channel": "Product Safety New Zealand",
+    "why_added": "New Zealand toy product-safety standard coverage.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
+    ],
+    "primary_file": "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
+  }
+}

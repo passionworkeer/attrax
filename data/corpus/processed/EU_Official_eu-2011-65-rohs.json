@@ -1,0 +1,1556 @@
+{
+  "id": "eu-2011-65-rohs",
+  "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+  "fileName": "eu-2011-65-rohs.xhtml",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/eu/eu-2011-65-rohs.xhtml",
+  "sourceType": "xhtml",
+  "region": "EU",
+  "pageCount": 1,
+  "totalChars": 79089,
+  "hasTables": true,
+  "tableCount": 158,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 79089,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "2011.7.1. HU Az Európai Unió Hivatalos Lapja L 174/88 AZ EURÓPAI PARLAMENT ÉS A TANÁCS 2011/65/EU IRÁNYELVE (2011. június 8.) egyes veszélyes anyagok elektromos és elektronikus berendezésekben való al"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "2011.7.1.",
+        "HU",
+        "Az Európai Unió Hivatalos Lapja",
+        "L 174/88"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Az egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásáról szóló, 2003. január 27-i 2002/95/EK európai parlamenti és tanácsi irányelven ( 4 ) több lényeges módosítást kell végezni. Az áttekinthetőség érdekében szükség van az irányelv átdolgozására."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Az egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásával kapcsolatos, a tagállamok által elfogadott jogszabályok vagy közigazgatási intézkedések közötti különbségek akadályozhatják a kereskedelmet, és torzíthatják a versenyt az Unióban, és ezáltal közvetlenül befolyásolhatják a belső piac létrehozását és működését. Szükségesnek tűnik ezért e területen szabályokat meghatározni, és hozzájárulni az emberi egészség védelméhez, valamint az elektromos és elektronikus berendezések hulladékainak környezetvédelmi szempontból megfelelő hasznosításához és ártalmatlanításához."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "A 2002/95/EK irányelv előírja, hogy a Bizottság vizsgálja felül a szóban forgó irányelvet, különösen azzal a céllal, hogy hatályát kiterjessze a bizonyos kategóriákba sorolt berendezésekre, és a 2000. december 4-i tanácsi állásfoglalással jóváhagyott elővigyázatossági elv figyelembevételével megvizsgálja, hogy a tudomány fejlődése alapján kiigazításra szorul-e a korlátozott anyagok jegyzéke."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "A hulladékokról szóló, 2008. november 19-i 2008/98/EK európai parlamenti és tanácsi irányelv ( 5 ) a hulladékjogban a megelőzés elsőbbségét állapítja meg. Meghatározása szerint a megelőzés – többek között – olyan intézkedéseket jelent, amelyek csökkentik az anyagok és termékek károsanyag-tartalmát."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "A kadmium okozta környezetszennyezés elleni küzdelemre vonatkozó közösségi cselekvési programról szóló, 1988. január 25-i tanácsi állásfoglalás ( 6 ) felszólítja a Bizottságot, hogy haladéktalanul dolgozzon ki különleges intézkedéseket egy ilyen programra vonatkozóan. Előírja továbbá az emberi egészség védelmét is, és egy olyan átfogó stratégia megvalósítását, amely különösen a kadmium használatát korlátozza, és ösztönzi a kadmiumot helyettesítő anyagokra irányuló kutatást. Az állásfoglalás hangsúlyozza, hogy a kadmiumot kizárólag azokban az esetekben lehet alkalmazni, amikor nem léteznek helyettesítő megoldások."
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "Az Európai Parlament és a Tanács 2004. április 29-i, a környezetben tartósan megmaradó szerves szennyező anyagokról szóló 850/2004/EK rendelete ( 7 ) emlékeztet arra, hogy a környezetnek és az emberi egészségnek a környezetben tartósan megmaradó szerves szennyező anyagokkal szembeni védelmét a tagállamok nem tudják kielégítően megvalósítani, mivel e szennyező anyagok hatása átterjed a határokon, és ezért uniós szintű megoldásra van szükség. Az említett rendelet alapján a környezetben tartósan megmaradó szerves szennyező anyagok – pl. dioxinok, furánok – maradványait, amelyek az ipari gyártási folyamatok nem szándékos melléktermékei, a lehető leghamarabb azonosítani kell, mennyiségüket pedig csökkenteni, végső célként kiküszöbölésük – amennyiben ez lehetséges – szem előtt tartásával."
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "A rendelkezésre álló adatok rámutatnak, hogy az érintett nehézfémekkel és égésgátlókkal kapcsolatos hulladékgazdálkodási problémák enyhítése érdekében szükségesek az elektromos és elektronikus berendezések hulladékairól szóló, 2003. január 27-i 2002/96/EK európai parlamenti és tanácsi irányelv ( 8 ) által az elektromos és elektronikus berendezések hulladékainak begyűjtésére, kezelésére, újrafeldolgozására és ártalmatlanítására vonatkozóan meghatározott intézkedések. Az intézkedések ellenére azonban továbbra is az elektromos és elektronikus berendezések hulladékainak egy jelentős hányada marad meg az ártalmatlanítás jelenlegi folyamatában az Unión belül vagy kívül. Még ha az elektromos és elektronikus berendezések hulladékait szelektíven gyűjtik is össze, és adják át újrafeldolgozásra, azok higany-, kadmium-, ólom-, króm VI, valamint polibrómozott bifenil (PBB)- és polibrómozott difenil éter (PBDE) tartalma valószínűleg egészségügyi vagy környezeti kockázatot jelentene, különösen, ha az optimálisnál rosszabb feltételekkel kezelik."
+      ]
+    ],
+    [
+      [
+        "(8)",
+        "Az egészség és környezet uniós szinten kitűzött védelmének elérése érdekében az ezekkel az anyagokkal kapcsolatos egészségügyi és környezeti kockázatok jelentős csökkentésének leghatékonyabb módja a kis- és középvállalkozások (kkv-k) számára is az, ha ezeket az anyagokat – a műszaki és gazdasági megvalósíthatóság figyelembevételével – biztonságos vagy biztonságosabb anyagokkal helyettesítik az elektromos és elektronikus berendezésekben. E veszélyes anyagok felhasználásának korlátozása valószínűleg javítja az elektromos és elektronikus berendezések hulladékai újrafeldolgozásának lehetőségét és gazdasági jövedelmezőségét, továbbá csökkenti az újrafeldolgozó üzemekben dolgozók egészségére gyakorolt káros hatásokat."
+      ]
+    ],
+    [
+      [
+        "(9)",
+        "Az ezen irányelvvel szabályozott anyagokat alapos tudományos kutatásnak és értékelésnek vetették alá, és különböző intézkedéseket fogadtak el rájuk vonatkozóan mind uniós, mind pedig nemzeti szinten."
+      ]
+    ],
+    [
+      [
+        "(10)",
+        "Az ezen irányelvben előírt intézkedések figyelembe veszik a meglévő nemzetközi iránymutatásokat és ajánlásokat, és a rendelkezésre álló tudományos és műszaki adatok értékelésén alapulnak. Az intézkedésekre az elővigyázatosság elvének kellő tiszteletben tartása mellett az emberi és állati egészség, valamint a környezet védelme megfelelő szintjének elérése érdekében van szükség, tekintettel azokra a kockázatokra, amelyeket az intézkedések hiánya okozhatna az Unióban. Az intézkedéseket folyamatosan felül kell vizsgálni, szükség esetén pedig ki kell igazítani a rendelkezésre álló műszaki és tudományos információk figyelembevétele érdekében. Ezen irányelv mellékleteit rendszeresen felül kell vizsgálni többek között a vegyi anyagok regisztrálásáról, értékeléséről, engedélyezéséről és korlátozásáról (REACH) és az Európai Vegyianyag-ügynökség létrehozásáról szóló, 2006. december 18-i 1907/2006/EK európai parlamenti és tanácsi rendelet ( 9 ) XIV. és XVII. mellékletének figyelembevétele érdekében. Különösen a hexabróm-ciklododekán (HBCDD), a Bisz(2-etilhexil)-ftalát, a benzil-butil-ftalát (BBP) és a dibutil-ftalát (DBP) használatából származó, az emberi egészségre és a környezetre nézve veszélyt jelentő kockázatokat kell kiemelt fontosságúnak tekinteni. Az anyagok további korlátozása érdekében a Bizottságnak ezen irányelv új kritériumaival összhangban az első felülvizsgálat részeként újra meg kell vizsgálnia azokat az anyagokat, amelyek korábbi értékelések tárgyát képezték."
+      ]
+    ],
+    [
+      [
+        "(11)",
+        "Ez az irányelv kiegészíti az uniós hulladékgazdálkodás szabályozását, így a 2008/98/EK irányelvet és az 1907/2006/EK rendeletet."
+      ]
+    ],
+    [
+      [
+        "(12)",
+        "Hatályának pontos meghatározása céljából számos fogalommeghatározást be kell építeni ezen irányelvbe. Emellett az „elektromos és elektronikus berendezések” fogalommeghatározását ki kell egészíteni a „függő” definíciójával, egyes olyan termékek többcélú jellegének lefedésére, amelyek esetében az elektromos és elektronikus berendezések szándékolt funkcióit objektív jellemzők alapján kell meghatározni, mint például a termék kialakítása és marketingje."
+      ]
+    ],
+    [
+      [
+        "(13)",
+        "Az energiával kapcsolatos termékek környezetbarát tervezésére vonatkozó követelmények megállapítási kereteinek létrehozásáról szóló, 2009. október 21-i 2009/125/EK európai parlamenti és tanácsi irányelv ( 10 ) környezetbarát tervezésre vonatkozó követelmények felállítására ad módot olyan energiával kapcsolatos termékek esetében, amelyekre ezen irányelv hatálya is kiterjedhet. A 2009/125/EK irányelv és az annak értelmében elfogadott végrehajtási intézkedések nem ütköznek az Unió hulladékgazdálkodást szabályozó rendelkezéseibe."
+      ]
+    ],
+    [
+      [
+        "(14)",
+        "Ezt az irányelvet a biztonsági és egészségügyi követelményekről szóló uniós jogszabályok és a megfelelő uniós hulladékgazdálkodási jogszabályok, különösen az elemekről és akkumulátorokról, valamint a hulladékelemekről és -akkumulátorokról szóló, 2006. szeptember 6-i 2006/66/EK európai parlamenti és tanácsi irányelv ( 11 ) , valamint a 850/2004/EK rendelet sérelme nélkül kell alkalmazni."
+      ]
+    ],
+    [
+      [
+        "(15)",
+        "Figyelembe kell venni a nehézfémeket, PBDE-eket és PBB-eket nem tartalmazó elektromos és elektronikus berendezésekkel kapcsolatos műszaki fejlődést is."
+      ]
+    ],
+    [
+      [
+        "(16)",
+        "Amint rendelkezésre állnak tudományos bizonyítékok, az elővigyázatosság elvének figyelembevételével meg kell vizsgálni további veszélyes anyagok, többek között a rendkívül kis méretű vagy rendkívül kis belső, illetve felszíni szerkezettel rendelkező, a méretükből vagy szerkezetükből fakadóan magukban veszélyt hordozó anyagok (nanoanyagok) korlátozását, ezek olyan környezetbarátabb anyagokkal történő helyettesítésének lehetőségét, amelyek a fogyasztók számára legalább azonos szintű védelmet nyújtanak. A II. mellékletben szereplő, korlátozott anyagok jegyzékével kapcsolatos felülvizsgálatnak és módosításnak ezért következetesnek kell lennie, maximalizálnia kell a kapcsolódó szinergiákat és tükröznie kell az egyéb uniós jogszabályok, különösen az 1907/2006/EK rendelet alapján elvégzett munka kiegészítő jellegét, ezen irányelv és az említett rendelet kölcsönösen független működésének biztosítása mellett. Konzultációt kell folytatni az érintett felekkel és figyelembe kell venni különösen a kkv-kre esetlegesen gyakorolt hatást."
+      ]
+    ],
+    [
+      [
+        "(17)",
+        "A megújuló energiák fejlesztése az Európai Unió egyik kulcsfontosságú célkitűzése, és a megújuló energiaforrások hozzájárulása a környezetvédelmi és éghajlati célkitűzésekhez nagyon lényeges. A megújuló energiaforrásokból előállított energia támogatásáról szóló, 2009. április 23-i 2009/28/EK európai parlamenti és tanácsi irányelv ( 12 ) emlékeztet arra, hogy biztosítani kell a koherenciát e célkitűzések és az Unió többi környezetvédelmi jogszabálya között. Ezért ennek az irányelvnek nem szabad akadályoznia az olyan megújuló energiák technológiáinak a fejlődését, amelyek nem jelentenek veszélyt az egészségre és a környezetre, fenntarthatóak és gazdaságilag működőképesek."
+      ]
+    ],
+    [
+      [
+        "(18)",
+        "A helyettesítés követelménye alól akkor engedélyezhető mentesség, ha tudományos és műszaki szempontból a helyettesítés nem lehetséges – különös figyelemmel a kkv-k helyzetére –, vagy ha a helyettesítés által okozott káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatások várhatóan felülmúlják a helyettesítésből származó környezeti, egészségügyi és fogyasztók biztonságát érintő előnyöket, vagy nincs biztosítva a helyettesítő anyagok megbízhatósága. A mentességekről és a lehetséges mentességek időtartamáról szóló határozatoknak figyelembe kell venniük a helyettesítő anyagok rendelkezésre állását és a helyettesítés társadalmi-gazdasági hatását. A mentesség átfogó hatásaira vonatkozó életciklus szemléletet adott esetben figyelembe kell venni. Továbbá az elektromos és elektronikus berendezésekben a veszélyes anyagok helyettesítését úgy kell elvégezni, hogy az összeegyeztethető legyen az elektromos és elektronikus berendezések felhasználóinak egészségével és biztonságával. Az orvostechnikai eszközök forgalomba hozatalához – az orvostechnikai eszközökről szóló, 1993. június 14-i 93/42/EGK tanácsi irányelv ( 13 ) és az in vitro diagnosztikai orvostechnikai eszközökről szóló, 1998. október 27-i 98/79/EK európai parlamenti és tanácsi irányelv ( 14 ) értelmében – megfelelőségértékelési eljárás szükséges, s ez a tagállam hatáskörrel rendelkező hatóságai által kijelölt bejelentett szervezetek valamelyikének közreműködését igényelheti. Ha egy ilyen bejelentett szervezet igazolja, hogy a lehetséges helyettesítő anyag orvostechnikai eszközökben vagy in vitro diagnosztikai orvostechnikai eszközökben való szándékolt felhasználásának biztonságos volta nincs bizonyítva, e lehetséges helyettesítő anyag használatát úgy kell tekinteni, hogy egyértelműen kedvezőtlen társadalmi-gazdasági, egészségügyi és fogyasztók biztonságát érintő hatása van. Indokolt, hogy ezen irányelv hatálybalépésétől kezdve kérelmezni lehessen a berendezések mentesítését, még az érintett berendezésnek ezen irányelv tényleges hatálya alá kerülése előtt."
+      ]
+    ],
+    [
+      [
+        "(19)",
+        "Egyes meghatározott anyagok és alkatrészek korlátozása esetében indokolt a mentesítések alkalmazási körét és időtartamát korlátozni, hogy ezáltal a veszélyes anyagok az elektromos és az elektronikus berendezésekből fokozatosan kiszoruljanak, mivel várhatóan elkerülhetővé válik ezen anyagok felhasználása a szóban forgó berendezésekben."
+      ]
+    ],
+    [
+      [
+        "(20)",
+        "Mivel egy termék újrafelhasználása, felújítása és élettartamának meghosszabbítása előnyökkel jár, pótalkatrészeknek kell rendelkezésre állniuk."
+      ]
+    ],
+    [
+      [
+        "(21)",
+        "Az ezen irányelv hatálya alá tartozó elektromos és elektronikus berendezések megfelelőségértékelési eljárásának összhangban kell lennie a vonatkozó uniós szabályozással, különösen a termékek forgalomba hozatalának közös keretrendszeréről szóló, 2008. július 9-i 768/2008/EK európai parlamenti és tanácsi határozattal ( 15 ) . A megfelelőségértékelési eljárások harmonizálásának jogbiztonságot kell teremtenie a gyártók számára abban a tekintetben, hogy miként kell igazolniuk a megfelelőséget az Unióban működő hatóságok felé."
+      ]
+    ],
+    [
+      [
+        "(22)",
+        "A termékekre uniós szinten alkalmazandó megfelelőségi jelölést, vagyis a CE jelölést az ezen irányelv hatálya alá tartozó elektromos és elektronikus berendezésekre is alkalmazni kell."
+      ]
+    ],
+    [
+      [
+        "(23)",
+        "A termékek forgalmazása tekintetében az akkreditálás és piacfelügyelet előírásainak megállapításáról szóló, 2008. július 9-i 765/2008/EK európai parlamenti és tanácsi rendeletben ( 16 ) megállapított piacfelügyeleti mechanizmusok látják el az ezen irányelv betartásának ellenőrzésére szolgáló biztosítéki mechanizmusok szerepét."
+      ]
+    ],
+    [
+      [
+        "(24)",
+        "Ezen irányelv végrehajtása egységes feltételeinek biztosítása érdekében, különösen a mentességekre vonatkozó iránymutatásokra és az alkalmazások formátumára tekintettel, a Bizottságra végrehajtási hatásköröket kell ruházni. Ezeket a Bizottság végrehajtási hatásköreinek gyakorlására vonatkozó tagállami ellenőrzési mechanizmusok szabályainak és általános elveinek megállapításáról szóló, 2011. február 16-i 182/2011/EU európai parlameni és tanácsi rendeletnek ( 17 ) megfelelően kell gyakorolnia."
+      ]
+    ],
+    [
+      [
+        "(25)",
+        "Ezen irányelv célkitűzéseinek elérésének céljából a Bizottságnak indokolt felhatalmazást kapnia arra, hogy az Európai Unió működéséről szóló szerződés 290. cikkének megfelelően felhatalmazáson alapuló jogi aktusokat fogadjon el a II. melléklet módosításai, a maximális koncentráció betartására vonatkozó részletes szabályok, valamint a III. és IV. melléklet műszaki és tudományos fejlődéshez való hozzáigazítása tekintetében. Különösen fontos, hogy a Bizottság az előkészítő munkája során – többek között szakértői szinten – megfelelő konzultációkat folytasson."
+      ]
+    ],
+    [
+      [
+        "(26)",
+        "Indokolt, hogy az irányelv nemzeti jogba történő átültetésére vonatkozó kötelezettség csak azokat a rendelkezéseket érintse, amelyek tartalma a korábbi irányelvhez képest jelentősen módosult. A változatlan rendelkezések átültetésének kötelezettsége a korábbi irányelvből következik."
+      ]
+    ],
+    [
+      [
+        "(27)",
+        "Indokolt, hogy ez az irányelv ne érintse a VII. melléklet B. részében meghatározott irányelveknek a nemzeti jogba történő átültetésére és alkalmazására vonatkozó határidőkkel kapcsolatos tagállami kötelezettségeket."
+      ]
+    ],
+    [
+      [
+        "(28)",
+        "A Bizottságnak ezen irányelv felülvizsgálata során alaposan elemeznie kell az 1907/2006/EK rendelettel való koherenciát."
+      ]
+    ],
+    [
+      [
+        "(29)",
+        "A jogalkotás minőségének javításáról szóló intézményközi megállapodás ( 18 ) 34. pontjával összhangban a tagállamokat ösztönzik arra, hogy a maguk számára és az Unió érdekében készítsék el az ezen irányelv és az átültető intézkedések közötti megfelelést a lehető legjobban bemutató saját táblázataikat, és azokat tegyék közzé."
+      ]
+    ],
+    [
+      [
+        "(30)",
+        "Mivel ezen irányelv célkitűzéseit – nevezetesen a veszélyes anyagok elektromos és elektronikus berendezésekben való felhasználásának korlátozását – a tagállamok nem tudják kellően megvalósítani, és azok – a probléma terjedelme és más, a hulladék újrafeldolgozását és ártalmatlanítását, valamint közérdekű területeket, köztük az emberi egészség védelmét érintő uniós szabályozásra gyakorolt hatása miatt – uniós szinten jobban megvalósíthatók, az Unió intézkedéseket fogadhat el a Szerződés 5. cikke szerinti szubszidiaritás elvének megfelelően. Az említett cikkben foglalt arányosság elvének megfelelően ez az irányelv nem lépi túl az említett cél eléréséhez szükséges mértéket,"
+      ]
+    ],
+    [
+      [
+        "a)",
+        "a tagállamok biztonságának alapvető érdekei védelméhez szükséges berendezések, beleértve a kifejezetten katonai célokra szánt fegyvereket, lőszereket és hadi felszerelést is;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "a világűrbe történő felbocsátásra szánt berendezések;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "minden olyan berendezés, amelyet kifejezetten egy másik fajta, ezen irányelv hatálya alá nem tartozó vagy annak hatálya alól kizárt berendezés részének szánnak vagy akként szerelnének be, amely csak ez utóbbi berendezés részeként alkalmas rendeltetésének betöltésére, és amelyet csak ugyanazon, külön megtervezett berendezés válthat fel;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "nagyméretű, rögzített ipari szerszámok;"
+      ]
+    ],
+    [
+      [
+        "e)",
+        "nagyméretű, helyhez kötött ipari létesítmények;"
+      ]
+    ],
+    [
+      [
+        "f)",
+        "személy- és áruszállítási eszközök, kivéve a típusjóváhagyással nem rendelkező elektromos kétkerekű járműveket;"
+      ]
+    ],
+    [
+      [
+        "g)",
+        "kizárólag szakmai használatra rendelkezésre bocsátott, nem közúti mozgó gépek;"
+      ]
+    ],
+    [
+      [
+        "h)",
+        "aktív beültethető orvostechnikai eszközök;"
+      ]
+    ],
+    [
+      [
+        "i)",
+        "fotoelektromos elemek, amelyeket olyan rendszerben szándékoznak alkalmazni, amelyet egy meghatározott helyen való tartós használatra terveztek, szereltek össze és üzemeltek be szakemberek révén közüzemi, kereskedelmi, ipari és lakossági felhasználás céljából történő, napfényből származó energiatermeléshez;"
+      ]
+    ],
+    [
+      [
+        "j)",
+        "kifejezetten kutatás és fejlesztés céljából tervezett, kizárólag vállalkozások által egymás rendelkezésére bocsátott berendezések."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "2006. július 1. előtt forgalomba hozott elektromos vagy elektronikus eszközök;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "2014. július 22. előtt forgalomba hozott orvostechnikai eszközök;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "2016. július 22. előtt forgalomba hozott in vitro diagnosztikai orvostechnikai eszközök;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "2014. július 22. előtt forgalomba hozott felügyeleti és vezérlő eszközök;"
+      ]
+    ],
+    [
+      [
+        "e)",
+        "2017. július 22. előtt forgalomba hozott ipari felügyeleti és vezérlő eszközök;"
+      ]
+    ],
+    [
+      [
+        "f)",
+        "korábban mentességet élvező és még a mentesség hatályvesztése előtt forgalomba hozott elektromos vagy elektronikus eszközök, az adott mentesség vonatkozásában."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "az adott alkalmazású elektromos és elektronikus berendezések anyagainak és alkatrészeinek felvétele a III. és IV. mellékletben található listákba, ha az ilyen felvétel nem gyengíti az 1907/2006/EK rendelet által a környezet és az egészség tekintetében biztosított védelmet, és ha az alábbi feltételek bármelyike teljesül: — kivonásuk vagy helyettesítésük a tervezés módosításával olyan anyagok vagy alkatrészek használatával, amelyekhez nem szükségesek a II. mellékletben felsorolt anyagok, műszakilag vagy tudományosan nem kivitelezhető, — nincs biztosítva a helyettesítő anyagok megbízhatósága, — a helyettesítés által okozott összes káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatás várhatóan meghaladja az így elért összes környezeti, egészségügyi és fogyasztók biztonságát érintő előnyt. Az elektromos és elektronikus berendezések anyagainak és alkatrészeinek a III. és IV. mellékletben található listákba történő felvételéről szóló határozatnak és a mentességek időtartamának figyelembe kell vennie a helyettesítő anyagok rendelkezésre állását és a helyettesítés társadalmi-gazdasági hatását. A mentességek időtartamáról szóló határozatoknak figyelembe kell venniük az innovációra gyakorolt minden lehetséges kedvezőtlen hatást. A mentesség átfogó hatásaira vonatkozó életciklus szemléletet adott esetben figyelembe kell venni;",
+        "—",
+        "kivonásuk vagy helyettesítésük a tervezés módosításával olyan anyagok vagy alkatrészek használatával, amelyekhez nem szükségesek a II. mellékletben felsorolt anyagok, műszakilag vagy tudományosan nem kivitelezhető,",
+        "—",
+        "nincs biztosítva a helyettesítő anyagok megbízhatósága,",
+        "—",
+        "a helyettesítés által okozott összes káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatás várhatóan meghaladja az így elért összes környezeti, egészségügyi és fogyasztók biztonságát érintő előnyt."
+      ],
+      [
+        "—",
+        "kivonásuk vagy helyettesítésük a tervezés módosításával olyan anyagok vagy alkatrészek használatával, amelyekhez nem szükségesek a II. mellékletben felsorolt anyagok, műszakilag vagy tudományosan nem kivitelezhető,"
+      ],
+      [
+        "—",
+        "nincs biztosítva a helyettesítő anyagok megbízhatósága,"
+      ],
+      [
+        "—",
+        "a helyettesítés által okozott összes káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatás várhatóan meghaladja az így elért összes környezeti, egészségügyi és fogyasztók biztonságát érintő előnyt."
+      ]
+    ],
+    [
+      [
+        "—",
+        "kivonásuk vagy helyettesítésük a tervezés módosításával olyan anyagok vagy alkatrészek használatával, amelyekhez nem szükségesek a II. mellékletben felsorolt anyagok, műszakilag vagy tudományosan nem kivitelezhető,"
+      ]
+    ],
+    [
+      [
+        "—",
+        "nincs biztosítva a helyettesítő anyagok megbízhatósága,"
+      ]
+    ],
+    [
+      [
+        "—",
+        "a helyettesítés által okozott összes káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatás várhatóan meghaladja az így elért összes környezeti, egészségügyi és fogyasztók biztonságát érintő előnyt."
+      ]
+    ],
+    [
+      [
+        "b)",
+        "az elektromos vagy elektronikus berendezésekben előforduló anyagok és alkatrészek törlése a III. és a IV. mellékletben található listákból, ha az a) pontban felsorolt feltételek már nem teljesülnek."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "a kérelem kézhezvételétől számított 15 napon belül írásban visszaigazolja a kézhezvételt. A visszaigazolásnak tartalmaznia kell a kérelem kézhezvételének napját;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "haladéktalanul tájékoztatja a tagállamokat a kérelemről, valamint rendelkezésükre bocsátja a kérelmező által benyújtott kérelmet és kiegészítő információkat;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "a kérelemről készült összefoglalót hozzáférhetővé teszi a nyilvánosság számára;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "értékeli a kérelmet és indokolását."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "kedvezőtlenül befolyásolhatja-e az elektromos és elektronikus berendezésekkel kapcsolatos hulladékgazdálkodási műveleteket, beleértve az elektromos és elektronikus berendezésekből származó hulladékok újrahasznosításra való előkészítésének lehetőségét vagy az elektromos és elektronikus berendezések hulladékaiból származó anyagok újrafeldolgozását;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "felhasználásukra való tekintettel az elektromos és elektronikus berendezések hulladékaiból származó anyagok újrafelhasználásra vagy újrafeldolgozásra való előkészítése, illetve egyéb kezelése során az anyagnak a környezetbe történő ellenőrizetlen vagy diffúz kibocsátását, vagy veszélyes maradékanyagok, átalakulási vagy bomlástermékek keletkezését eredményezheti-e a jelenlegi működési körülmények között;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "az elektromos és elektronikus berendezések hulladékainak összegyűjtését vagy kezelését végző személyek elfogadhatatlan mértékű expozícióját eredményezheti-e;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "felváltható-e kevésbé káros hatású helyettesítő anyagokkal vagy alternatív technológiákkal."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "a javasolt korlátozás pontos és világos megfogalmazása;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "a korlátozásra vonatkozó hivatkozások és tudományos bizonyítékok;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "az anyagnak vagy hasonló anyagok csoportjának elektromos és elektronikus berendezésekben való felhasználására vonatkozó információ;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "a különösen az elektromos és elektronikus berendezések hulladékainak kezelésével kapcsolatos műveletek során észlelhető káros hatásokkal és expozícióval kapcsolatos információ;"
+      ]
+    ],
+    [
+      [
+        "e)",
+        "az esetleges helyettesítő anyagokkal és egyéb alternatívákkal, azok rendelkezésre állásával és megbízhatóságával kapcsolatos információ;"
+      ]
+    ],
+    [
+      [
+        "f)",
+        "azon megfontolás igazolása, hogy az uniós szintű korlátozás a legmegfelelőbb intézkedés;"
+      ]
+    ],
+    [
+      [
+        "g)",
+        "társadalmi-gazdasági értékelés."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "a gyártók elektromos és elektronikus berendezések forgalomba hozatalakor biztosítják, hogy azok tervezése és gyártása a 4. cikkben meghatározott követelményekkel összhangban történt;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "a gyártók a 768/2008/EK határozat II. mellékletének A. moduljában leírtak szerint összeállítják a műszaki dokumentációt és végrehajtják vagy végrehajtatják a belső gyártásellenőrzési eljárást;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "ha a b) pontban említett eljárás során egy elektromos vagy elektronikus berendezésről azt állapítják meg, hogy megfelel az alkalmazandó követelményeknek, a gyártó EU-megfelelőségi nyilatkozatot állít ki, és CE jelölést helyez el a készterméken. Ha egyéb alkalmazandó uniós jogszabály legalább ilyen szigorú megfelelőségértékelési eljárás alkalmazását követeli meg, az ezen irányelv 4. cikke (1) bekezdése követelményeinek való megfelelést az említett eljárás keretében is lehet bizonyítani. Egy egységes műszaki dokumentáció készíthető;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "a gyártók az elektromos vagy elektronikus berendezés forgalomba hozatalától számítva tíz évig megőrzik a műszaki dokumentációt és az EU-megfelelőségi nyilatkozatot;"
+      ]
+    ],
+    [
+      [
+        "e)",
+        "a gyártó gondoskodik olyan eljárások meglétéről, amelyekkel elérhető, hogy a sorozatgyártás megfelelő maradjon. Kellőképpen figyelembe kell venni a termék tervezésének és jellemzőinek változásait, valamint azon harmonizált szabványok vagy műszaki specifikációk módosulásait, amelyek alapján az elektromos vagy elektronikus berendezés megfelelőségét megállapították;"
+      ]
+    ],
+    [
+      [
+        "f)",
+        "a gyártók nyilvántartják a nem megfelelő elektromos vagy elektronikus berendezéseket és a termékvisszahívásokat, továbbá erről tájékoztatják a forgalmazókat;"
+      ]
+    ],
+    [
+      [
+        "g)",
+        "a gyártók biztosítják, hogy elektromos vagy elektronikus berendezéseiken típus-, tétel- vagy sorozatszám vagy egyéb, azonosításukra alkalmas elem szerepeljen, illetőleg – ha a berendezés mérete vagy jellege ezt nem teszi lehetővé – hogy a megkövetelt információk a csomagoláson vagy a berendezést kísérő dokumentumban szerepeljenek;"
+      ]
+    ],
+    [
+      [
+        "h)",
+        "a gyártók feltüntetik az elektromos vagy elektronikus berendezésen, vagy ha ez nem lehetséges, a csomagoláson vagy a berendezés kísérő dokumentációján a nevüket, bejegyzett kereskedelmi nevüket vagy bejegyzett védjegyüket és azt a címüket, amelyen kapcsolatba lehet lépni velük. A címnek egyetlen olyan pontot kell megjelölnie, ahol a gyártóval kapcsolatba lehet lépni. Ha egyéb alkalmazandó uniós jogszabály legalább ilyen szigorú rendelkezéseket tartalmaz a gyártó nevének és címének feltüntetésére vonatkozóan, az említett rendelkezések alkalmazandók;"
+      ]
+    ],
+    [
+      [
+        "i)",
+        "azok a gyártók, amelyek úgy ítélik meg vagy okkal feltételezhetik, hogy egy általuk forgalomba hozott elektromos vagy elektronikus berendezés nem felel meg ennek az irányelvnek, azonnal megteszik a berendezés megfelelővé tételéhez, illetőleg – adott esetben – forgalomból való kivonásához vagy visszahívásához szükséges kiigazító intézkedéseket és erről – és különösen a meg nem felelés és a meghozott kiigazító intézkedések részleteiről – haladéktalanul tájékoztatják azon tagállamok hatáskörrel rendelkező nemzeti hatóságait, amelyekben hozzáférhetővé tették a szóban forgó elektromos vagy elektronikus berendezést;"
+      ]
+    ],
+    [
+      [
+        "j)",
+        "a gyártók egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére átadják az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges összes információt és dokumentációt, a szóban forgó hatóság számára könnyen érthető nyelven, és az említett hatósággal, annak felkérésére együttműködnek az általuk forgalomba hozott elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló minden intézkedésben."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "minden gyártónak lehetősége legyen írásbeli megbízással meghatalmazott képviselőt kinevezni. A 7. cikk a) pontjában meghatározott kötelezettségek teljesítése és a műszaki dokumentáció elkészítése nem képezheti a meghatalmazott képviselő megbízásának részét;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "a meghatalmazott képviselő ellássa a gyártótól kapott megbízásban meghatározott feladatokat. A megbízásnak lehetővé kell tennie, hogy a meghatalmazott képviselő legalább az alábbiakat megtegye: — az EU-megfelelőségi nyilatkozat és a műszaki dokumentáció megőrzése a nemzeti felügyelő hatóságok számára az elektromos és elektronikus berendezések forgalomba hozatalától számított tíz éven keresztül, — egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére minden olyan információ és dokumentáció átadása, amely egy adott elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges, — együttműködés a hatáskörrel rendelkező nemzeti hatóságokkal, azok felkérésére, a megbízás körébe tartozó elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló intézkedésekben.",
+        "—",
+        "az EU-megfelelőségi nyilatkozat és a műszaki dokumentáció megőrzése a nemzeti felügyelő hatóságok számára az elektromos és elektronikus berendezések forgalomba hozatalától számított tíz éven keresztül,",
+        "—",
+        "egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére minden olyan információ és dokumentáció átadása, amely egy adott elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges,",
+        "—",
+        "együttműködés a hatáskörrel rendelkező nemzeti hatóságokkal, azok felkérésére, a megbízás körébe tartozó elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló intézkedésekben."
+      ],
+      [
+        "—",
+        "az EU-megfelelőségi nyilatkozat és a műszaki dokumentáció megőrzése a nemzeti felügyelő hatóságok számára az elektromos és elektronikus berendezések forgalomba hozatalától számított tíz éven keresztül,"
+      ],
+      [
+        "—",
+        "egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére minden olyan információ és dokumentáció átadása, amely egy adott elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges,"
+      ],
+      [
+        "—",
+        "együttműködés a hatáskörrel rendelkező nemzeti hatóságokkal, azok felkérésére, a megbízás körébe tartozó elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló intézkedésekben."
+      ]
+    ],
+    [
+      [
+        "—",
+        "az EU-megfelelőségi nyilatkozat és a műszaki dokumentáció megőrzése a nemzeti felügyelő hatóságok számára az elektromos és elektronikus berendezések forgalomba hozatalától számított tíz éven keresztül,"
+      ]
+    ],
+    [
+      [
+        "—",
+        "egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére minden olyan információ és dokumentáció átadása, amely egy adott elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges,"
+      ]
+    ],
+    [
+      [
+        "—",
+        "együttműködés a hatáskörrel rendelkező nemzeti hatóságokkal, azok felkérésére, a megbízás körébe tartozó elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló intézkedésekben."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "az importőrök kizárólag az ezen irányelv előírásainak megfelelő elektromos vagy elektronikus berendezést hozzanak forgalomba az uniós piacon;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "egy elektromos vagy elektronikus berendezés forgalomba hozatala előtt az importőrök biztosítsák, hogy a gyártó elvégezze a vonatkozó megfelelőségértékelési eljárást, továbbá biztosítsák, hogy a gyártó elkészítse a műszaki dokumentációt, hogy az elektromos vagy elektronikus berendezésen szerepel a CE jelölés és mellékelve legyenek hozzá a kötelező dokumentumok, valamint hogy a gyártó teljesítse a 7. cikk f) és g) pontjában előírt követelményeket;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "ha egy importőr úgy ítéli meg vagy okkal feltételezheti, hogy egy elektromos vagy elektronikus berendezés nem felel meg a 4. cikk előírásainak, a szóban forgó berendezést mindaddig nem hozza forgalomba, amíg azt nem hozták összhangba az előírásokkal, és erről tájékoztatja a gyártót, valamint a piacfelügyeleti hatóságokat;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "az importőrök feltüntetik az elektromos vagy elektronikus berendezésen, vagy ha ez nem lehetséges, a csomagoláson vagy a berendezés kísérő dokumentációján a nevüket, bejegyzett kereskedelmi nevüket vagy bejegyzett védjegyüket és azt a címüket, amelyen kapcsolatba lehet lépni velük. Ha egyéb alkalmazandó uniós jogszabály legalább ilyen szigorú rendelkezéseket tartalmaz az importőr nevének és címének feltüntetésére vonatkozóan, az említett rendelkezések alkalmazandók;"
+      ]
+    ],
+    [
+      [
+        "e)",
+        "az ennek az irányelvnek való megfelelés biztosítása érdekében az importőrök nyilvántartják a nem megfelelő elektromos vagy elektronikus berendezéseket és a termékvisszahívásokat, továbbá erről tájékoztassák a forgalmazókat;"
+      ]
+    ],
+    [
+      [
+        "f)",
+        "azok az importőrök, amelyek úgy ítélik meg vagy okkal feltételezhetik, hogy egy általuk forgalomba hozott elektromos vagy elektronikus berendezés nem felel meg ezen irányelv rendelkezéseinek, azonnal megtegyék a berendezés megfelelővé tételéhez, illetőleg – adott esetben – forgalomból való kivonásához vagy visszahívásához szükséges kiigazító intézkedéseket, és erről – és különösen a meg nem felelés és a meghozott kiigazító intézkedések részleteiről – haladéktalanul tájékoztassák azon tagállamok hatáskörrel rendelkező nemzeti hatóságait, amelyekben hozzáférhetővé tették a szóban forgó elektromos vagy elektronikus berendezést;"
+      ]
+    ],
+    [
+      [
+        "g)",
+        "az importőrök az elektromos vagy elektronikus berendezés forgalomba hozatalától számított tíz évig a nemzeti piacfelügyeleti hatóságok számára megőrzi az EU-megfelelőségi nyilatkozat egy példányát, és biztosítják, hogy e hatóságok kérésre hozzáférhessenek a műszaki dokumentációhoz;"
+      ]
+    ],
+    [
+      [
+        "h)",
+        "az importőrök egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére átadják az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelésének igazolásához szükséges összes információt és dokumentációt, a szóban forgó hatóság számára könnyen érthető nyelven, és az említett hatósággal, annak felkérésére együttműködnek az általuk forgalomba hozott elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló minden intézkedésben."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "egy elektromos vagy elektronikus berendezésnek a piacon való hozzáférhetővé tételekor a forgalmazók kellő gondossággal járjanak el az alkalmazandó követelményekhez mérten, különösen annak ellenőrzésével, hogy az elektromos vagy elektronikus berendezésen szerepel-e a CE jelölés, hogy mellékelve vannak-e hozzá a szükséges dokumentumok, mégpedig olyan nyelven, amelyet a fogyasztók és az egyéb végfelhasználók könnyen megértenek a berendezés forgalomba hozatala szerinti tagállamban, valamint hogy a gyártó és az importőr teljesíti-e a 7. cikk g) és h) pontjában és a 9. cikk d) pontjában előírt követelményeket;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "ha egy forgalmazó úgy ítéli meg vagy okkal feltételezheti, hogy egy elektromos vagy elektronikus berendezés nem felel meg a 4. cikk előírásainak, a szóban forgó berendezést mindaddig nem hozza forgalomba, amíg azt nem hozták összhangba az előírásokkal, és tájékoztatja erről a gyártót vagy az importőrt, valamint a piacfelügyeleti hatóságokat;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "azok a forgalmazók, amelyek úgy ítélik meg vagy okkal feltételezhetik, hogy a piacon általuk hozzáférhetővé tett elektromos vagy elektronikus berendezés nem felel meg ezen irányelv rendelkezéseinek, gondoskodnak a berendezés megfelelővé tételéhez, illetőleg – adott esetben – forgalomból való kivonásához vagy visszahívásához szükséges kiigazító intézkedések megtételéről, és erről – és különösen a meg nem felelés és a meghozott kiigazító intézkedések részleteiről – haladéktalanul tájékoztatják azon tagállamok hatáskörrel rendelkező nemzeti hatóságait, amelyekben hozzáférhetővé tették a szóban forgó elektromos vagy elektronikus berendezést;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "a forgalmazók egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére átadják az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelésének igazolásához szükséges összes információt és dokumentációt, és az említett hatósággal, annak felkérésére együttműködnek a piacon általuk hozzáférhetővé tett elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló minden intézkedésben."
+      ]
+    ],
+    [
+      [
+        "a)",
+        "minden olyan gazdasági szereplő, amelytől elektromos vagy elektronikus berendezést szerzett be;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "minden olyan gazdasági szereplő, amelyet elektromos vagy elektronikus berendezéssel látott el."
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Háztartási nagygépek"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Háztartási kisgépek"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Információs technológiai és távközlési berendezések"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Szórakoztatóelektronikai berendezések"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Világítótestek"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Elektromos és elektronikus szerszámok"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Játékok, szabadidő- és sportfelszerelések"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Orvostechnikai eszközök"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Felügyeleti és vezérlő eszközök, beleértve az ipari felügyeleti és vezérlő eszközöket is"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Adagoló automaták"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "A fenti kategóriák egyikébe sem tartozó egyéb elektromos és elektronikus berendezések."
+      ]
+    ],
+    [
+      [
+        "Ólom (0,1 %)"
+      ]
+    ],
+    [
+      [
+        "Higany (0,1 %)"
+      ]
+    ],
+    [
+      [
+        "Kadmium (0,01 %)"
+      ]
+    ],
+    [
+      [
+        "Hat vegyértékű króm (0,1 %)"
+      ]
+    ],
+    [
+      [
+        "Polibrómozott bifenilek (PBB) (0,1 %)"
+      ]
+    ],
+    [
+      [
+        "Polibrómozott difenil-éterek (PBDE) (0,1 %)"
+      ]
+    ],
+    [
+      [
+        "Mentesség",
+        "Az alkalmazás köre és határnapja"
+      ],
+      [
+        "1.",
+        "Egy végükön fejelt (kompakt) fénycsövekben használt higany, amelynek megengedett mennyisége (égőnként):"
+      ],
+      [
+        "1. a)",
+        "Általános világítási célra szolgáló, 30 W alatti teljesítményű fénycső esetén: 5 mg",
+        "2011. december 31-én lejár; 2011. december 31. után 2012. december 31-ig égőnként 3,5 mg használható; 2012. december 31. után 2,5 mg használható."
+      ],
+      [
+        "1. b)",
+        "Általános világítási célra szolgáló, legalább 30 W, de 50 W alatti teljesítményű fénycső esetén: 5 mg",
+        "2011. december 31-én lejár; 2011. december 31. után égőnként 3,5 mg használható"
+      ],
+      [
+        "1. c)",
+        "Általános világítási célra szolgáló, legalább 50 W, de 150 W alatti teljesítményű fénycső esetén: 5 mg"
+      ],
+      [
+        "1. d)",
+        "Általános világítási célra szolgáló, legalább 150 W teljesítményű fénycső esetén: 15 mg"
+      ],
+      [
+        "1. e)",
+        "Általános világítási célra szolgáló, kör alakú vagy szögletes strukturális formájú, legfeljebb 17 mm csőátmérőjű fénycső esetén",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 7 mg használható"
+      ],
+      [
+        "1. f)",
+        "Különleges rendeltetésű fénycső esetén: 5 mg"
+      ],
+      [
+        "2. a)",
+        "Két végén fejelt, általános világítási célra szolgáló lineáris fénycsövekben használt higany, amelynek megengedett mennyisége (fénycsövenként):"
+      ],
+      [
+        "2. a) (1)",
+        "Normál élettartamú háromsávos foszfor fénycső 9 mm alatti csőátmérővel (pl. T2): 5 mg",
+        "2011. december 31-én lejár; 2011. december 31. után fénycsövenként 4 mg használható"
+      ],
+      [
+        "2. a) (2)",
+        "Normál élettartamú háromsávos foszfor fénycső legalább 9 mm-es, legfeljebb 17 mm-es csőátmérővel (pl. T5): 5 mg",
+        "2011. december 31-én lejár; 2011. december 31. után fénycsövenként 3 mg használható"
+      ],
+      [
+        "2. a) (3)",
+        "Normál élettartamú háromsávos foszfor fénycső 17 mm-nél nagyobb, de legfeljebb 28 mm-es csőátmérővel (pl. T8): 5 mg",
+        "2011. december 31-én lejár; 2011. december 31. után fénycsövenként 3,5 mg használható"
+      ],
+      [
+        "2. a) (4)",
+        "Normál élettartamú háromsávos foszfor fénycső 28 mm-t meghaladó csőátmérővel (pl. T12): 5 mg",
+        "2012. december 31-én lejár; 2012. december 31. után fénycsövenként 3,5 mg használható"
+      ],
+      [
+        "2. a) (5)",
+        "Hosszú (legalább 25 000  óra) élettartamú háromsávos foszfor fénycső: 8 mg",
+        "2011. december 31-én lejár; 2011. december 31. után fénycsövenként 5 mg használható"
+      ],
+      [
+        "2. b)",
+        "Egyéb kompakt fénycsövekben használt higany, amelynek megengedett mennyisége (fénycsövenként):"
+      ],
+      [
+        "2. b) (1)",
+        "Egyenes halofoszfát fénycsövek 28 mm feletti csőátmérővel (pl. T10 és T12): 10 mg",
+        "2012. április 13-án lejár"
+      ],
+      [
+        "2. b) (2)",
+        "Nem egyenes halofoszfát fénycsövek (bármely csőátmérő esetén): 15 mg",
+        "2016. április 13-án lejár"
+      ],
+      [
+        "2. b) (3)",
+        "Nem egyenes háromsávos foszfor fénycsövek 17 mm feletti csőátmérővel (pl. T9)",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után fénycsövenként 15 mg használható"
+      ],
+      [
+        "2. b) (4)",
+        "Egyéb általános világítási célra szolgáló, vagy különleges rendeltetésű lámpák (pl. indukciós lámpák)",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 15 mg használható"
+      ],
+      [
+        "3.",
+        "Különleges rendeltetésű hidegkatódos fénycsövekben és külső elektródás fénycsövekben (CCFL és EEFL) használt higany, amelynek megengedett mennyisége (fénycsövenként):"
+      ],
+      [
+        "3. a)",
+        "Rövid (≤ 500 mm)",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 3,5 mg használható"
+      ],
+      [
+        "3. b)",
+        "Közepes hosszúságú (> 500 mm és ≤ 1 500  mm)",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 5 mg használható"
+      ],
+      [
+        "3. c)",
+        "Hosszú (> 1 500  mm)",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 13 mg használható"
+      ],
+      [
+        "4. a)",
+        "Egyéb kisnyomású kisülőlámpákban használt higany (lámpánként)",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 15 mg használható"
+      ],
+      [
+        "4. b)",
+        "Általános világítási célra szolgáló, javított színvisszaadási mutatójú (Ra > 60), nagynyomású nátrium(gőz)lámpákban használt higany, amelynek megengedett mennyisége (égőnként):"
+      ],
+      [
+        "4. b) I.",
+        "P ≤ 155 W",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 30 mg használható"
+      ],
+      [
+        "4. b) II.",
+        "155 W < P ≤ 405 W",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 40 mg használható"
+      ],
+      [
+        "4. b) III.",
+        "P > 405 W",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 40 mg használható"
+      ],
+      [
+        "4. c)",
+        "Egyéb általános világítási célra szolgáló nagynyomású nátrium(gőz)lámpákban használt higany, amelynek megengedett mennyisége (égőnként):"
+      ],
+      [
+        "4. c) I.",
+        "P ≤ 155 W",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 25 mg használható"
+      ],
+      [
+        "4. c) II.",
+        "155 W < P ≤ 405 W",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 30 mg használható"
+      ],
+      [
+        "4. c) III.",
+        "P > 405 W",
+        "2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 40 mg használható"
+      ],
+      [
+        "4. d)",
+        "Nagynyomású higany(gőz)lámpákban (HPMV) használt higany",
+        "2015. április 13-án lejár"
+      ],
+      [
+        "4. e)",
+        "Fémhalogén (MH) lámpákban használt higany"
+      ],
+      [
+        "4. f)",
+        "Az e mellékletben külön nem említett, különleges rendeltetésű egyéb kisülőlámpákban használt higany"
+      ],
+      [
+        "5. a)",
+        "Katódsugárcsövek üvegében használt ólom"
+      ],
+      [
+        "5. b)",
+        "Fénycsövek üvegében használt, 0,2 tömegszázalékot meg nem haladó ólom"
+      ],
+      [
+        "6. a)",
+        "Ólom a megmunkálásra szánt acél ötvözőelemeként, illetve galvanizált acélban, legfeljebb 0,35 tömegszázalék ólomtartalomig"
+      ],
+      [
+        "6. b)",
+        "Ólom az alumínium ötvözőelemeként a legfeljebb 0,4 tömegszázalék ólomtartalmú alumíniumban"
+      ],
+      [
+        "6. c)",
+        "Rézötvözet legfeljebb 4 tömegszázalék ólomtartalommal"
+      ],
+      [
+        "7. a)",
+        "Magas olvadáspontú, ólomtartalmú forraszanyagok (azaz olyan ólomötvözetek, amelyek legalább 85 tömegszázalékban tartalmaznak ólmot)"
+      ],
+      [
+        "7. b)",
+        "A szerverekben, az adattároló rendszerekben, a tárolási és elrendezési rendszerekben, a hálózati infrastruktúra kapcsoló, jelző és adatátviteli berendezéseiben, és a távközlési hálózatok hálózatkezelése során használt forrasztóanyagokban lévő ólom"
+      ],
+      [
+        "7. c) I.",
+        "Elektronikus és elektromos alkatrészek, amelyek üvegben vagy kerámiában, de nem a kondenzátorokban, például piezoelektronikus berendezésekben lévő dielektromos kerámiákban, továbbá nem üveg vagy kerámia mátrix anyagokban tartalmaznak ólmot"
+      ],
+      [
+        "7. c) II.",
+        "125 V AC vagy 250 V DC vagy ennél magasabb névleges feszültségű kondenzátorokban használt dielektromos kerámiában lévő ólom"
+      ],
+      [
+        "7. c) III.",
+        "125 V AC vagy 250 V DC alatti névleges feszültségű kondenzátorokban használt dielektromos kerámiában lévő ólom",
+        "2013. január 1-jén lejár, ezt követően a 2013. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "8. a)",
+        "Egyszerhasználatos, szemcsés töltetű hőkioldókban lévő kadmium és vegyülékei",
+        "2012. január 1-jén lejár, ezt követően a 2012. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "8. b)",
+        "A villamos érintkezőkben lévő kadmium és vegyülékei"
+      ],
+      [
+        "9.",
+        "Abszorpciós hűtőgépek szénacél hűtőrendszerében korróziógátló szerként használt, a hűtőközeg legfeljebb 0,75 tömegszázalékát kitevő hat vegyértékű króm"
+      ],
+      [
+        "9. b)",
+        "Ólom a fűtő, szellőztető, légkondicionáló és hűtő alkalmazásokban használt, hűtőközeget tartalmazó kompresszorok csapágycsészéiben és -béléseiben"
+      ],
+      [
+        "11. a)",
+        "C-press rugalmas tűs csatlakozórendszerekben használt ólom",
+        "A 2010. szeptember 24. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "11. b)",
+        "Nem C-press rugalmas tűs csatlakozórendszerekben használt ólom",
+        "2013. január 1-jén lejár, ezt követően a 2013. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "12.",
+        "A hővezető modulok tömítőgyűrűjén bevonóanyagként használt ólom",
+        "A 2010. szeptember 24. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "13. a)",
+        "Optikai alkalmazásokban használt fehér üvegekben lévő ólom"
+      ],
+      [
+        "13. b)",
+        "Reflexiós tényezőre vonatkozó követelmények céljára használt üveg filterekben és üvegekben használt kadmium és ólom"
+      ],
+      [
+        "14.",
+        "Kettőnél több elemből álló, a mikroprocesszor kivezetései és tokja között kapcsolatot biztosító forrasztóanyagban lévő ólom, ha az ólomtartalom 80 és 85 tömegszázalék között van",
+        "2011. január 1-jén lejárt, ezt követően a 2011. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "15.",
+        "Flip Chip integrált áramkörökben a félvezető süllyesztéke és hordozója között működőképes elektronikus kapcsolatot lehetővé tevő ólomtartalmú forraszanyag"
+      ],
+      [
+        "16.",
+        "Az olyan vonalizzókban található ólom, amelyek csöve szilikát bevonatú",
+        "2013. szeptember 1-jén lejár"
+      ],
+      [
+        "17.",
+        "Ólom-halogenid a nagynyomású kisülő lámpák (HID) sugárzó anyagaként professzionális reprográfiai alkalmazásokra"
+      ],
+      [
+        "18. a)",
+        "Ólom a fluoreszkáló porban aktivátorként (1 tömegszázaléknyi vagy kevesebb ólom) a kisülőlámpákban, SMS ((Sr,Ba) 2 MgSi 2 O 7 :Pb) foszforokat tartalmazó speciális lámpaként történő felhasználás esetén, diazo-nyomtatásos reprográfiás, illetve litográfiai felhasználásra, valamint rovarcsapda lámpában, fotokémiai és gyógyászati alkalmazás esetén",
+        "2011. január 1-jén lejárt"
+      ],
+      [
+        "18. b)",
+        "Ólom a fluoreszkáló porban aktivátorként (1 tömegszázaléknyi vagy kevesebb ólom) a kisülő lámpákban a BSP (BaSi 2 O 5 :Pb) foszforokat tartalmazó szoláriumcsövekként való felhasználás esetén"
+      ],
+      [
+        "19.",
+        "Ólom és PbBiSn-Hg, valamint PbInSn-Hg kombinációja speciális összetételű anyagokban fő foncsorozóként, illetve ólom és PbSn-Hg kombinációja kompakt energiatakarékos lámpákban (ESL) kiegészítő foncsorozóként",
+        "2011. június 1-jén lejár"
+      ],
+      [
+        "20.",
+        "Ólom-oxid a folyadékkristály-kijelzőkben (LCD) használt lapos fluoreszkáló lámpák felső és alsó rétegének kötéséhez használt üvegben",
+        "2011. június 1-jén lejár"
+      ],
+      [
+        "21.",
+        "Ólom és kadmium a zománc üvegre, például boroszilikát üvegre vagy nátronüvegre való felviteléhez használt nyomdafestékekben"
+      ],
+      [
+        "23.",
+        "Ólom a csatlakozók kivételével a 0,65 mm vagy kisebb osztóközű, finom osztású (fine-pitch) komponensek felületén",
+        "A 2010. szeptember 24. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható"
+      ],
+      [
+        "24.",
+        "Korong- és síkmátrix alakú többrétegű kerámiakondenzátorok géppel készített átmenőfuratokba történő forrasztásához használt forrasztóanyagokban lévő ólom"
+      ],
+      [
+        "25.",
+        "Ólom-oxid a felületvezető elektronkibocsátó kijelzőkben (SED) használt szerkezeti elemekben, nevezetesen a lezáró frittben és a frittgyűrűben"
+      ],
+      [
+        "26.",
+        "Ólom-oxid a „black light blue” (BLB) lámpák üveg védőburkolatában",
+        "2011. június 1-jén lejár"
+      ],
+      [
+        "27.",
+        "Nagyteljesítményű (több órán keresztül 125 dB SPL és a feletti hangteljesítményszinten működő) hangszórókban használt átalakítóknál forrasztóanyagként alkalmazott ólomötvözetek",
+        "2010. szeptember 24-én lejárt"
+      ],
+      [
+        "29.",
+        "A 69/493/EGK tanácsi irányelv ( 1 ) I. mellékletében (1., 2., 3. és 4. kategória) meghatározott, kristályüvegben található ólom"
+      ],
+      [
+        "30.",
+        "A 100 dB (A) és annál nagyobb hangnyomású, nagy teljesítményű hangszórókban használt transzduktorokban, közvetlenül a tekercsen található áramvezető anyagok elektromos, illetve mechanikus forrasztóanyagaként használt, kadmium alapú ötvözetek"
+      ],
+      [
+        "31.",
+        "A (pl. folyadékkristályos kijelzőkben, illetőleg dísz- vagy ipari világításként használt) higanymentes lapos fluoreszkáló lámpák forrasztóanyagában levő ólom"
+      ],
+      [
+        "32.",
+        "Az argon- és kripton-lézercsövek tokjának összeállításánál használatos lezáró frittben levő ólom-oxid."
+      ],
+      [
+        "33.",
+        "A transzformátorokban alkalmazott, 100 μm- es vagy annál kisebb átmérőjű vékony vörösréz vezetékek forrasztásához használt forrasztóanyagban lévő ólom"
+      ],
+      [
+        "34.",
+        "A cermet-alapú beállító potenciométer egyes alkatrészeiben lévő ólom"
+      ],
+      [
+        "36.",
+        "A legfeljebb 30 mg higanyt tartalmazó egyenáramú plazmakijelzőkben lévő, a katódporlasztásnál inhibitorként használt higany",
+        "2010. július 1-jén lejárt"
+      ],
+      [
+        "37.",
+        "A cink-borát üvegből készült burkolatban elhelyezett nagyfeszültségű diódák bevonatában lévő ólom"
+      ],
+      [
+        "38.",
+        "Az alumíniummal ötvözött berillium-oxid hordozókon használt vastag filmpasztában lévő kadmium és kadmium-oxid"
+      ],
+      [
+        "39.",
+        "A szilárdtest-világítási vagy -kijelző rendszerekben használt színátalakító LED-ekben lévő kadmium (a fénykibocsátó terület egy négyzetmilliméterére eső kadmiummennyiség < 10 μg)",
+        "2014. július 1-jén lejár"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Ionizáló sugárzást észlelő berendezésekben lévő ólom, kadmium és higany"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Röntgencsövek ólomcsapágyai"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Elektromágneses sugárzás erősítésére szolgáló eszközökben – mikrocsatornás lemezekben és kapilláris lemezeken – lévő ólom"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Röntgencsövek és képerősítők üvegfrittjében lévő ólom, valamint a gázlézer összeállításához és az elektromágneses sugárzást elektronokká átalakító vákuumcsövekhez való üvegfritt kötőanyagokban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Ionizáló sugárzás elleni védőeszközökben lévő ólom"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Röntgenezési próbatárgyban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Röntgensugár-diffrakcióhoz való ólom-sztearát kristály"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Hordozható röntgenfluoreszcenciás spektrométerek sugárforrásául szolgáló kadmiumizotóp"
+      ]
+    ],
+    [
+      [
+        "1a.",
+        "Ionszelektív elektródokban lévő ólom és kadmium, beleértve a pH-elektródok üvegében lévőt is"
+      ]
+    ],
+    [
+      [
+        "1b.",
+        "Elektrokémiás oxigénérzékelők ólomanódja"
+      ]
+    ],
+    [
+      [
+        "1c.",
+        "Infravörösfény-detektorokban lévő ólom, kadmium és higany"
+      ]
+    ],
+    [
+      [
+        "1d.",
+        "Referenciaelektródokban – alacsony kloridtartalmú higany-klorid, valamint higany-szulfát és higany-oxid elektródokban – lévő higany"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Hélium-kadmium lézerekben lévő kadmium"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Atomadszorpciós spektroszkópiás lámpákban lévő ólom és kadmium"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "Mágneses rezonanciás képalkotó berendezésekben szupravezetőként és hővezetőként használt fémötvözetekben lévő ólom"
+      ]
+    ],
+    [
+      [
+        "12.",
+        "Mágneses rezonanciás képalkotó berendezések és szupravezető kvantum-interferométerek (SQUID) szupravezető anyagainak fém kapcsolódási felületeiben lévő ólom és kadmium"
+      ]
+    ],
+    [
+      [
+        "13.",
+        "Ellensúlyokban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "14.",
+        "Ultrahangos jelátalakítókhoz való egykristályos piezoelektromos anyagokban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "15.",
+        "Ultrahangos jelátalakítókhoz való forraszanyagban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "16.",
+        "Igen nagyfokú pontossággal rendelkező kapacitás- és veszteségmérő hidakban lévő higany, valamint felügyeleti és vezérlő eszközök nagyfrekvenciás RF kapcsolóiban és reléiben lévő higany, kapcsolónként, illetve relénként legfeljebb 20 mg mennyiségben"
+      ]
+    ],
+    [
+      [
+        "17.",
+        "Hordozható sürgősségi defibrillátorokhoz való forraszanyagban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "18.",
+        "A 8–14 μm-es tartományban működő, nagy teljesítményű infravörös képalkotó modulok forraszanyagaiban lévő ólom"
+      ]
+    ],
+    [
+      [
+        "19.",
+        "„Folyadékkristály szilíciumon” (LCoS) technológiájú kijelzőkben lévő ólom"
+      ]
+    ],
+    [
+      [
+        "20.",
+        "Röntgensugárzás mérésére szolgáló szűrőkben lévő kadmium"
+      ]
+    ],
+    [
+      [
+        "a)",
+        "a kérelmező neve, címe és kapcsolattartási adatai;"
+      ]
+    ],
+    [
+      [
+        "b)",
+        "az anyagra vagy az alkotóelemre vonatkozó információk, valamint a mentesség vagy annak visszavonása tárgyát képező anyagban vagy alkotóelemben előforduló összetevők egyedi felhasználása és különleges jellemzői;"
+      ]
+    ],
+    [
+      [
+        "c)",
+        "a mentesség vagy annak visszavonása ellenőrizhető és átfogó hivatkozással ellátott indokolása az 5. cikkben megállapított feltételekkel összhangban;"
+      ]
+    ],
+    [
+      [
+        "d)",
+        "az esetleges alternatív anyagok, alkotóelemek vagy tervezések életciklus alapján történő elemzése, beleértve adott esetben a független kutatásokról szóló információkat és szakértők által felülvizsgált tanulmányokat, valamint a kérelmező fejlesztési tevékenységeit, és az ilyen alternatív anyagok rendelkezésre állásának elemzése;"
+      ]
+    ],
+    [
+      [
+        "e)",
+        "információ az elektromos és elektronikus berendezések hulladékaiból származó anyagok újrafelhasználásra vagy újrafeldolgozásra való esetleges előkészítéséről szóló 2002/96/EK irányelv II. melléklete szerinti, a hulladék megfelelő kezelésére vonatkozó előírásokról;"
+      ]
+    ],
+    [
+      [
+        "f)",
+        "egyéb lényeges információ;"
+      ]
+    ],
+    [
+      [
+        "g)",
+        "a kérelmező által a lehetséges alternatívák kidolgozására, kidolgozásuk kérelmezésére és/vagy ezen alternatívák alkalmazására javasolt intézkedések, beleértve ezek ütemtervét;"
+      ]
+    ],
+    [
+      [
+        "h)",
+        "adott esetben hivatkozás a védettnek tekintendő információra, ellenőrzésre alkalmas igazolással együtt;"
+      ]
+    ],
+    [
+      [
+        "i)",
+        "mentesség kérelmezésekor a mentesség pontos és világos megfogalmazására vonatkozó javaslat;"
+      ]
+    ],
+    [
+      [
+        "j)",
+        "a kérelem összegzése."
+      ]
+    ],
+    [
+      [
+        "1.",
+        "… sz. (az elektromos vagy elektronikus berendezés egyedi azonosítója):"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A gyártónak vagy meghatalmazott képviselőjének neve és címe:"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "E megfelelőségi nyilatkozat a gyártó (vagy a telepítést végző) kizárólagos felelősségére kerül kibocsátásra:"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "A nyilatkozat tárgya (az elektromos vagy elektronikus berendezés nyomon követésére alkalmas azonosítás, szükség esetén fénykép is):"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "E nyilatkozat fent leírt tárgya összhangban van az egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásáról szóló, 2011. június 8-i 2011/65/EU európai parlamenti és tanácsi irányelvvel ( *1 ) ."
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Adott esetben hivatkozás az alkalmazásra került vonatkozó harmonizált szabványokra, illetőleg azokra a műszaki leírásokra, amelyekre nézve a megfelelésről nyilatkoznak:"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Kiegészítő információk:"
+      ]
+    ],
+    [
+      [
+        "2002/95/EK európai parlamenti és tanácsi irányelv",
+        "( HL L 37., 2003.2.13., 19. o. )"
+      ],
+      [
+        "2005/618/EK bizottsági határozat",
+        "( HL L 214., 2005.8.19., 65. o. )"
+      ],
+      [
+        "2005/717/EK bizottsági határozat",
+        "( HL L 271., 2005.10.15., 48. o. )"
+      ],
+      [
+        "2005/747/EK bizottsági határozat",
+        "( HL L 280., 2005.10.25., 18. o. )"
+      ],
+      [
+        "2006/310/EK bizottsági határozat",
+        "( HL L 115., 2006.4.28., 38. o. )"
+      ],
+      [
+        "2006/690/EK bizottsági határozat",
+        "( HL L 283., 2006.10.14., 47. o. )"
+      ],
+      [
+        "2006/691/EK bizottsági határozat",
+        "( HL L 283., 2006.10.14., 48. o. )"
+      ],
+      [
+        "2006/692/EK bizottsági határozat",
+        "( HL L 283., 2006.10.14., 50. o. )"
+      ],
+      [
+        "2008/35/EK európai parlamenti és tanácsi irányelv",
+        "( HL L 81., 2008.3.20., 67. o. )"
+      ],
+      [
+        "2008/385/EK bizottsági határozat",
+        "( HL L 136., 2008.5.24., 9. o. )"
+      ],
+      [
+        "2009/428/EK bizottsági határozat",
+        "( HL L 139., 2009.6.5., 32. o. )"
+      ],
+      [
+        "2009/443/EK bizottsági határozat",
+        "( HL L 148., 2009.6.11., 27. o. )"
+      ],
+      [
+        "2010/122/EU bizottsági határozat",
+        "( HL L 49., 2010.2.26., 32. o. )"
+      ],
+      [
+        "2010/571/EU bizottsági határozat",
+        "( HL L 251., 2010.9.25., 28. o. )"
+      ]
+    ],
+    [
+      [
+        "Irányelv",
+        "A nemzeti jogba való átültetés határideje"
+      ],
+      [
+        "2002/95/EK",
+        "2004. augusztus 12."
+      ],
+      [
+        "2008/35/EK",
+        "—"
+      ]
+    ],
+    [
+      [
+        "2002/95/EK irányelv",
+        "Ezen irányelv"
+      ],
+      [
+        "1. cikk,",
+        "1. cikk,"
+      ],
+      [
+        "2. cikk, (1) bekezdés",
+        "2. cikk, (1) bekezdés, 2. cikk, (2) bekezdés, I. melléklet"
+      ],
+      [
+        "2. cikk, (2) bekezdés",
+        "2. cikk, (3) bekezdés"
+      ],
+      [
+        "2. cikk, (3) bekezdés",
+        "2. cikk, (4) bekezdés, bevezető szöveg"
+      ],
+      [
+        "—",
+        "2. cikk, (4) bekezdés"
+      ],
+      [
+        "3. cikk, a) pont",
+        "3. cikk, (1), (2) bekezdés"
+      ],
+      [
+        "3. cikk, b) pont",
+        "—"
+      ],
+      [
+        "—",
+        "3. cikk, (6)–(28) bekezdés"
+      ],
+      [
+        "4. cikk, (1) bekezdés",
+        "4. cikk, (1) bekezdés, II. melléklet"
+      ],
+      [
+        "—",
+        "4. cikk, (3), (4) bekezdés"
+      ],
+      [
+        "4. cikk, (2) bekezdés",
+        "4. cikk, (6) bekezdés"
+      ],
+      [
+        "4. cikk, (3) bekezdés",
+        "—"
+      ],
+      [
+        "5. cikk, (1) bekezdés, bevezető szöveg",
+        "5. cikk, (1) bekezdés, bevezető szöveg"
+      ],
+      [
+        "5. cikk, (1) bekezdés, a) pont",
+        "4. cikk, (2) bekezdés"
+      ],
+      [
+        "5. cikk, (1) bekezdés, b) pont",
+        "5. cikk, (1) bekezdés, a) pont, első és harmadik francia bekezdés"
+      ],
+      [
+        "—",
+        "5. cikk, (1) bekezdés, a) pont, második francia bekezdés 5. cikk, (1) bekezdés, a) pont, utolsó bekezdés"
+      ],
+      [
+        "5. cikk, (1) bekezdés, c) pont",
+        "5. cikk, (1) bekezdés, b) pont"
+      ],
+      [
+        "—",
+        "5. cikk, (2) bekezdés 5. cikk, (3)–(6) bekezdés"
+      ],
+      [
+        "5. cikk, (2) bekezdés",
+        "5. cikk, (7) bekezdés"
+      ],
+      [
+        "—",
+        "5. cikk, (8) bekezdés"
+      ],
+      [
+        "6. cikk",
+        "6. cikk"
+      ],
+      [
+        "—",
+        "7–18. cikk"
+      ],
+      [
+        "7. cikk",
+        "19–22. cikk"
+      ],
+      [
+        "8. cikk",
+        "23. cikk"
+      ],
+      [
+        "9. cikk",
+        "25. cikk"
+      ],
+      [
+        "—",
+        "26. cikk"
+      ],
+      [
+        "10. cikk",
+        "27. cikk"
+      ],
+      [
+        "11. cikk",
+        "28. cikk"
+      ],
+      [
+        "—",
+        "I–II. melléklet"
+      ],
+      [
+        "Melléklet, 1–39. pont",
+        "III. melléklet, 1–39. pont"
+      ],
+      [
+        "—",
+        "IV., V., VI–VIII. melléklet"
+      ]
+    ]
+  ],
+  "rawText": "2011.7.1. HU Az Európai Unió Hivatalos Lapja L 174/88 AZ EURÓPAI PARLAMENT ÉS A TANÁCS 2011/65/EU IRÁNYELVE (2011. június 8.) egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásáról (átdolgozás) (EGT-vonatkozású szöveg) AZ EURÓPAI PARLAMENT ÉS AZ EURÓPAI UNIÓ TANÁCSA, tekintettel az Európai Unió működéséről szóló szerződésre és különösen annak 114. cikkére, tekintettel az Európai Bizottság javaslatára, tekintettel az Európai Gazdasági és Szociális Bizottság véleményére ( 1 ) , tekintettel a Régiók Bizottságának véleményére ( 2 ) , rendes jogalkotási eljárás keretében ( 3 ) , mivel: (1) Az egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásáról szóló, 2003. január 27-i 2002/95/EK európai parlamenti és tanácsi irányelven ( 4 ) több lényeges módosítást kell végezni. Az áttekinthetőség érdekében szükség van az irányelv átdolgozására. (2) Az egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásával kapcsolatos, a tagállamok által elfogadott jogszabályok vagy közigazgatási intézkedések közötti különbségek akadályozhatják a kereskedelmet, és torzíthatják a versenyt az Unióban, és ezáltal közvetlenül befolyásolhatják a belső piac létrehozását és működését. Szükségesnek tűnik ezért e területen szabályokat meghatározni, és hozzájárulni az emberi egészség védelméhez, valamint az elektromos és elektronikus berendezések hulladékainak környezetvédelmi szempontból megfelelő hasznosításához és ártalmatlanításához. (3) A 2002/95/EK irányelv előírja, hogy a Bizottság vizsgálja felül a szóban forgó irányelvet, különösen azzal a céllal, hogy hatályát kiterjessze a bizonyos kategóriákba sorolt berendezésekre, és a 2000. december 4-i tanácsi állásfoglalással jóváhagyott elővigyázatossági elv figyelembevételével megvizsgálja, hogy a tudomány fejlődése alapján kiigazításra szorul-e a korlátozott anyagok jegyzéke. (4) A hulladékokról szóló, 2008. november 19-i 2008/98/EK európai parlamenti és tanácsi irányelv ( 5 ) a hulladékjogban a megelőzés elsőbbségét állapítja meg. Meghatározása szerint a megelőzés – többek között – olyan intézkedéseket jelent, amelyek csökkentik az anyagok és termékek károsanyag-tartalmát. (5) A kadmium okozta környezetszennyezés elleni küzdelemre vonatkozó közösségi cselekvési programról szóló, 1988. január 25-i tanácsi állásfoglalás ( 6 ) felszólítja a Bizottságot, hogy haladéktalanul dolgozzon ki különleges intézkedéseket egy ilyen programra vonatkozóan. Előírja továbbá az emberi egészség védelmét is, és egy olyan átfogó stratégia megvalósítását, amely különösen a kadmium használatát korlátozza, és ösztönzi a kadmiumot helyettesítő anyagokra irányuló kutatást. Az állásfoglalás hangsúlyozza, hogy a kadmiumot kizárólag azokban az esetekben lehet alkalmazni, amikor nem léteznek helyettesítő megoldások. (6) Az Európai Parlament és a Tanács 2004. április 29-i, a környezetben tartósan megmaradó szerves szennyező anyagokról szóló 850/2004/EK rendelete ( 7 ) emlékeztet arra, hogy a környezetnek és az emberi egészségnek a környezetben tartósan megmaradó szerves szennyező anyagokkal szembeni védelmét a tagállamok nem tudják kielégítően megvalósítani, mivel e szennyező anyagok hatása átterjed a határokon, és ezért uniós szintű megoldásra van szükség. Az említett rendelet alapján a környezetben tartósan megmaradó szerves szennyező anyagok – pl. dioxinok, furánok – maradványait, amelyek az ipari gyártási folyamatok nem szándékos melléktermékei, a lehető leghamarabb azonosítani kell, mennyiségüket pedig csökkenteni, végső célként kiküszöbölésük – amennyiben ez lehetséges – szem előtt tartásával. (7) A rendelkezésre álló adatok rámutatnak, hogy az érintett nehézfémekkel és égésgátlókkal kapcsolatos hulladékgazdálkodási problémák enyhítése érdekében szükségesek az elektromos és elektronikus berendezések hulladékairól szóló, 2003. január 27-i 2002/96/EK európai parlamenti és tanácsi irányelv ( 8 ) által az elektromos és elektronikus berendezések hulladékainak begyűjtésére, kezelésére, újrafeldolgozására és ártalmatlanítására vonatkozóan meghatározott intézkedések. Az intézkedések ellenére azonban továbbra is az elektromos és elektronikus berendezések hulladékainak egy jelentős hányada marad meg az ártalmatlanítás jelenlegi folyamatában az Unión belül vagy kívül. Még ha az elektromos és elektronikus berendezések hulladékait szelektíven gyűjtik is össze, és adják át újrafeldolgozásra, azok higany-, kadmium-, ólom-, króm VI, valamint polibrómozott bifenil (PBB)- és polibrómozott difenil éter (PBDE) tartalma valószínűleg egészségügyi vagy környezeti kockázatot jelentene, különösen, ha az optimálisnál rosszabb feltételekkel kezelik. (8) Az egészség és környezet uniós szinten kitűzött védelmének elérése érdekében az ezekkel az anyagokkal kapcsolatos egészségügyi és környezeti kockázatok jelentős csökkentésének leghatékonyabb módja a kis- és középvállalkozások (kkv-k) számára is az, ha ezeket az anyagokat – a műszaki és gazdasági megvalósíthatóság figyelembevételével – biztonságos vagy biztonságosabb anyagokkal helyettesítik az elektromos és elektronikus berendezésekben. E veszélyes anyagok felhasználásának korlátozása valószínűleg javítja az elektromos és elektronikus berendezések hulladékai újrafeldolgozásának lehetőségét és gazdasági jövedelmezőségét, továbbá csökkenti az újrafeldolgozó üzemekben dolgozók egészségére gyakorolt káros hatásokat. (9) Az ezen irányelvvel szabályozott anyagokat alapos tudományos kutatásnak és értékelésnek vetették alá, és különböző intézkedéseket fogadtak el rájuk vonatkozóan mind uniós, mind pedig nemzeti szinten. (10) Az ezen irányelvben előírt intézkedések figyelembe veszik a meglévő nemzetközi iránymutatásokat és ajánlásokat, és a rendelkezésre álló tudományos és műszaki adatok értékelésén alapulnak. Az intézkedésekre az elővigyázatosság elvének kellő tiszteletben tartása mellett az emberi és állati egészség, valamint a környezet védelme megfelelő szintjének elérése érdekében van szükség, tekintettel azokra a kockázatokra, amelyeket az intézkedések hiánya okozhatna az Unióban. Az intézkedéseket folyamatosan felül kell vizsgálni, szükség esetén pedig ki kell igazítani a rendelkezésre álló műszaki és tudományos információk figyelembevétele érdekében. Ezen irányelv mellékleteit rendszeresen felül kell vizsgálni többek között a vegyi anyagok regisztrálásáról, értékeléséről, engedélyezéséről és korlátozásáról (REACH) és az Európai Vegyianyag-ügynökség létrehozásáról szóló, 2006. december 18-i 1907/2006/EK európai parlamenti és tanácsi rendelet ( 9 ) XIV. és XVII. mellékletének figyelembevétele érdekében. Különösen a hexabróm-ciklododekán (HBCDD), a Bisz(2-etilhexil)-ftalát, a benzil-butil-ftalát (BBP) és a dibutil-ftalát (DBP) használatából származó, az emberi egészségre és a környezetre nézve veszélyt jelentő kockázatokat kell kiemelt fontosságúnak tekinteni. Az anyagok további korlátozása érdekében a Bizottságnak ezen irányelv új kritériumaival összhangban az első felülvizsgálat részeként újra meg kell vizsgálnia azokat az anyagokat, amelyek korábbi értékelések tárgyát képezték. (11) Ez az irányelv kiegészíti az uniós hulladékgazdálkodás szabályozását, így a 2008/98/EK irányelvet és az 1907/2006/EK rendeletet. (12) Hatályának pontos meghatározása céljából számos fogalommeghatározást be kell építeni ezen irányelvbe. Emellett az „elektromos és elektronikus berendezések” fogalommeghatározását ki kell egészíteni a „függő” definíciójával, egyes olyan termékek többcélú jellegének lefedésére, amelyek esetében az elektromos és elektronikus berendezések szándékolt funkcióit objektív jellemzők alapján kell meghatározni, mint például a termék kialakítása és marketingje. (13) Az energiával kapcsolatos termékek környezetbarát tervezésére vonatkozó követelmények megállapítási kereteinek létrehozásáról szóló, 2009. október 21-i 2009/125/EK európai parlamenti és tanácsi irányelv ( 10 ) környezetbarát tervezésre vonatkozó követelmények felállítására ad módot olyan energiával kapcsolatos termékek esetében, amelyekre ezen irányelv hatálya is kiterjedhet. A 2009/125/EK irányelv és az annak értelmében elfogadott végrehajtási intézkedések nem ütköznek az Unió hulladékgazdálkodást szabályozó rendelkezéseibe. (14) Ezt az irányelvet a biztonsági és egészségügyi követelményekről szóló uniós jogszabályok és a megfelelő uniós hulladékgazdálkodási jogszabályok, különösen az elemekről és akkumulátorokról, valamint a hulladékelemekről és -akkumulátorokról szóló, 2006. szeptember 6-i 2006/66/EK európai parlamenti és tanácsi irányelv ( 11 ) , valamint a 850/2004/EK rendelet sérelme nélkül kell alkalmazni. (15) Figyelembe kell venni a nehézfémeket, PBDE-eket és PBB-eket nem tartalmazó elektromos és elektronikus berendezésekkel kapcsolatos műszaki fejlődést is. (16) Amint rendelkezésre állnak tudományos bizonyítékok, az elővigyázatosság elvének figyelembevételével meg kell vizsgálni további veszélyes anyagok, többek között a rendkívül kis méretű vagy rendkívül kis belső, illetve felszíni szerkezettel rendelkező, a méretükből vagy szerkezetükből fakadóan magukban veszélyt hordozó anyagok (nanoanyagok) korlátozását, ezek olyan környezetbarátabb anyagokkal történő helyettesítésének lehetőségét, amelyek a fogyasztók számára legalább azonos szintű védelmet nyújtanak. A II. mellékletben szereplő, korlátozott anyagok jegyzékével kapcsolatos felülvizsgálatnak és módosításnak ezért következetesnek kell lennie, maximalizálnia kell a kapcsolódó szinergiákat és tükröznie kell az egyéb uniós jogszabályok, különösen az 1907/2006/EK rendelet alapján elvégzett munka kiegészítő jellegét, ezen irányelv és az említett rendelet kölcsönösen független működésének biztosítása mellett. Konzultációt kell folytatni az érintett felekkel és figyelembe kell venni különösen a kkv-kre esetlegesen gyakorolt hatást. (17) A megújuló energiák fejlesztése az Európai Unió egyik kulcsfontosságú célkitűzése, és a megújuló energiaforrások hozzájárulása a környezetvédelmi és éghajlati célkitűzésekhez nagyon lényeges. A megújuló energiaforrásokból előállított energia támogatásáról szóló, 2009. április 23-i 2009/28/EK európai parlamenti és tanácsi irányelv ( 12 ) emlékeztet arra, hogy biztosítani kell a koherenciát e célkitűzések és az Unió többi környezetvédelmi jogszabálya között. Ezért ennek az irányelvnek nem szabad akadályoznia az olyan megújuló energiák technológiáinak a fejlődését, amelyek nem jelentenek veszélyt az egészségre és a környezetre, fenntarthatóak és gazdaságilag működőképesek. (18) A helyettesítés követelménye alól akkor engedélyezhető mentesség, ha tudományos és műszaki szempontból a helyettesítés nem lehetséges – különös figyelemmel a kkv-k helyzetére –, vagy ha a helyettesítés által okozott káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatások várhatóan felülmúlják a helyettesítésből származó környezeti, egészségügyi és fogyasztók biztonságát érintő előnyöket, vagy nincs biztosítva a helyettesítő anyagok megbízhatósága. A mentességekről és a lehetséges mentességek időtartamáról szóló határozatoknak figyelembe kell venniük a helyettesítő anyagok rendelkezésre állását és a helyettesítés társadalmi-gazdasági hatását. A mentesség átfogó hatásaira vonatkozó életciklus szemléletet adott esetben figyelembe kell venni. Továbbá az elektromos és elektronikus berendezésekben a veszélyes anyagok helyettesítését úgy kell elvégezni, hogy az összeegyeztethető legyen az elektromos és elektronikus berendezések felhasználóinak egészségével és biztonságával. Az orvostechnikai eszközök forgalomba hozatalához – az orvostechnikai eszközökről szóló, 1993. június 14-i 93/42/EGK tanácsi irányelv ( 13 ) és az in vitro diagnosztikai orvostechnikai eszközökről szóló, 1998. október 27-i 98/79/EK európai parlamenti és tanácsi irányelv ( 14 ) értelmében – megfelelőségértékelési eljárás szükséges, s ez a tagállam hatáskörrel rendelkező hatóságai által kijelölt bejelentett szervezetek valamelyikének közreműködését igényelheti. Ha egy ilyen bejelentett szervezet igazolja, hogy a lehetséges helyettesítő anyag orvostechnikai eszközökben vagy in vitro diagnosztikai orvostechnikai eszközökben való szándékolt felhasználásának biztonságos volta nincs bizonyítva, e lehetséges helyettesítő anyag használatát úgy kell tekinteni, hogy egyértelműen kedvezőtlen társadalmi-gazdasági, egészségügyi és fogyasztók biztonságát érintő hatása van. Indokolt, hogy ezen irányelv hatálybalépésétől kezdve kérelmezni lehessen a berendezések mentesítését, még az érintett berendezésnek ezen irányelv tényleges hatálya alá kerülése előtt. (19) Egyes meghatározott anyagok és alkatrészek korlátozása esetében indokolt a mentesítések alkalmazási körét és időtartamát korlátozni, hogy ezáltal a veszélyes anyagok az elektromos és az elektronikus berendezésekből fokozatosan kiszoruljanak, mivel várhatóan elkerülhetővé válik ezen anyagok felhasználása a szóban forgó berendezésekben. (20) Mivel egy termék újrafelhasználása, felújítása és élettartamának meghosszabbítása előnyökkel jár, pótalkatrészeknek kell rendelkezésre állniuk. (21) Az ezen irányelv hatálya alá tartozó elektromos és elektronikus berendezések megfelelőségértékelési eljárásának összhangban kell lennie a vonatkozó uniós szabályozással, különösen a termékek forgalomba hozatalának közös keretrendszeréről szóló, 2008. július 9-i 768/2008/EK európai parlamenti és tanácsi határozattal ( 15 ) . A megfelelőségértékelési eljárások harmonizálásának jogbiztonságot kell teremtenie a gyártók számára abban a tekintetben, hogy miként kell igazolniuk a megfelelőséget az Unióban működő hatóságok felé. (22) A termékekre uniós szinten alkalmazandó megfelelőségi jelölést, vagyis a CE jelölést az ezen irányelv hatálya alá tartozó elektromos és elektronikus berendezésekre is alkalmazni kell. (23) A termékek forgalmazása tekintetében az akkreditálás és piacfelügyelet előírásainak megállapításáról szóló, 2008. július 9-i 765/2008/EK európai parlamenti és tanácsi rendeletben ( 16 ) megállapított piacfelügyeleti mechanizmusok látják el az ezen irányelv betartásának ellenőrzésére szolgáló biztosítéki mechanizmusok szerepét. (24) Ezen irányelv végrehajtása egységes feltételeinek biztosítása érdekében, különösen a mentességekre vonatkozó iránymutatásokra és az alkalmazások formátumára tekintettel, a Bizottságra végrehajtási hatásköröket kell ruházni. Ezeket a Bizottság végrehajtási hatásköreinek gyakorlására vonatkozó tagállami ellenőrzési mechanizmusok szabályainak és általános elveinek megállapításáról szóló, 2011. február 16-i 182/2011/EU európai parlameni és tanácsi rendeletnek ( 17 ) megfelelően kell gyakorolnia. (25) Ezen irányelv célkitűzéseinek elérésének céljából a Bizottságnak indokolt felhatalmazást kapnia arra, hogy az Európai Unió működéséről szóló szerződés 290. cikkének megfelelően felhatalmazáson alapuló jogi aktusokat fogadjon el a II. melléklet módosításai, a maximális koncentráció betartására vonatkozó részletes szabályok, valamint a III. és IV. melléklet műszaki és tudományos fejlődéshez való hozzáigazítása tekintetében. Különösen fontos, hogy a Bizottság az előkészítő munkája során – többek között szakértői szinten – megfelelő konzultációkat folytasson. (26) Indokolt, hogy az irányelv nemzeti jogba történő átültetésére vonatkozó kötelezettség csak azokat a rendelkezéseket érintse, amelyek tartalma a korábbi irányelvhez képest jelentősen módosult. A változatlan rendelkezések átültetésének kötelezettsége a korábbi irányelvből következik. (27) Indokolt, hogy ez az irányelv ne érintse a VII. melléklet B. részében meghatározott irányelveknek a nemzeti jogba történő átültetésére és alkalmazására vonatkozó határidőkkel kapcsolatos tagállami kötelezettségeket. (28) A Bizottságnak ezen irányelv felülvizsgálata során alaposan elemeznie kell az 1907/2006/EK rendelettel való koherenciát. (29) A jogalkotás minőségének javításáról szóló intézményközi megállapodás ( 18 ) 34. pontjával összhangban a tagállamokat ösztönzik arra, hogy a maguk számára és az Unió érdekében készítsék el az ezen irányelv és az átültető intézkedések közötti megfelelést a lehető legjobban bemutató saját táblázataikat, és azokat tegyék közzé. (30) Mivel ezen irányelv célkitűzéseit – nevezetesen a veszélyes anyagok elektromos és elektronikus berendezésekben való felhasználásának korlátozását – a tagállamok nem tudják kellően megvalósítani, és azok – a probléma terjedelme és más, a hulladék újrafeldolgozását és ártalmatlanítását, valamint közérdekű területeket, köztük az emberi egészség védelmét érintő uniós szabályozásra gyakorolt hatása miatt – uniós szinten jobban megvalósíthatók, az Unió intézkedéseket fogadhat el a Szerződés 5. cikke szerinti szubszidiaritás elvének megfelelően. Az említett cikkben foglalt arányosság elvének megfelelően ez az irányelv nem lépi túl az említett cél eléréséhez szükséges mértéket, ELFOGADTA EZT AZ IRÁNYELVET: 1. cikk Tárgy Ez az irányelv a veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazását korlátozó szabályokat határoz meg az emberi egészség és a környezet védelméhez – beleértve az elektromos és elektronikus berendezések hulladékainak környezetvédelmi szempontból megfelelő hasznosítását és ártalmatlanítását – történő hozzájárulás érdekében. 2. cikk Hatály (1) Ezt az irányelvet, a (2) bekezdés függvényében, az I. mellékletben meghatározott kategóriákba sorolt elektromos és elektronikus berendezésekre kell alkalmazni. (2) A 4. cikk (3) bekezdésének és a 4. cikk (4) bekezdésének sérelme nélkül a tagállamok gondoskodnak arról, hogy azon elektromos és elektronikus berendezések, amelyek nem tartoztak a 2002/95/EK irányelv hatálya alá, de amelyek nem felelnének meg ezen irányelvnek, 2019. július 22-ig továbbra is forgalmazhatók legyenek. (3) Ezt az irányelvet a biztonságra és az egészségre, valamint a vegyi anyagokra vonatkozó uniós szabályozásban – különösen az 1907/2006/EK rendeletben –, valamint a vonatkozó uniós hulladékgazdálkodási szabályozásban foglalt követelmények sérelme nélkül kell alkalmazni. (4) Ezt az irányelvet nem kell alkalmazni a következőkre: a) a tagállamok biztonságának alapvető érdekei védelméhez szükséges berendezések, beleértve a kifejezetten katonai célokra szánt fegyvereket, lőszereket és hadi felszerelést is; b) a világűrbe történő felbocsátásra szánt berendezések; c) minden olyan berendezés, amelyet kifejezetten egy másik fajta, ezen irányelv hatálya alá nem tartozó vagy annak hatálya alól kizárt berendezés részének szánnak vagy akként szerelnének be, amely csak ez utóbbi berendezés részeként alkalmas rendeltetésének betöltésére, és amelyet csak ugyanazon, külön megtervezett berendezés válthat fel; d) nagyméretű, rögzített ipari szerszámok; e) nagyméretű, helyhez kötött ipari létesítmények; f) személy- és áruszállítási eszközök, kivéve a típusjóváhagyással nem rendelkező elektromos kétkerekű járműveket; g) kizárólag szakmai használatra rendelkezésre bocsátott, nem közúti mozgó gépek; h) aktív beültethető orvostechnikai eszközök; i) fotoelektromos elemek, amelyeket olyan rendszerben szándékoznak alkalmazni, amelyet egy meghatározott helyen való tartós használatra terveztek, szereltek össze és üzemeltek be szakemberek révén közüzemi, kereskedelmi, ipari és lakossági felhasználás céljából történő, napfényből származó energiatermeléshez; j) kifejezetten kutatás és fejlesztés céljából tervezett, kizárólag vállalkozások által egymás rendelkezésére bocsátott berendezések. 3. cikk Fogalommeghatározások Ennek az irányelvnek az alkalmazásában: 1. „elektromos és elektronikus berendezések” : olyan berendezések, amelyek megfelelő működése elektromos áram vagy elektromágneses mezőtől függ, valamint az elektromos áram vagy elektromágneses mező generálására, átalakítására és mérésére szolgáló olyan berendezések, amelyeket váltóáram mellett legfeljebb 1 000 volt, egyenáram mellett pedig legfeljebb 1 500 volt feszültségre terveztek; 2. az (1) pont alkalmazásában „függő” : az elektromos és elektronikus berendezések legalább egy szándékolt funkciójuk ellátása elektromos áramtól vagy elektromágneses mezőtől függ; 3. „nagyméretű, rögzített ipari szerszámok” : gépek, berendezések, és/vagy alkatrészek nagyméretű összessége, amelyek együtt egy adott alkalmazás céljából működnek, és amelyeket szakemberek állandó jelleggel egy adott helyen üzemelnek be és szerelnek le, illetve szakemberek vesznek igénybe és tartanak karban valamely ipari gyártó létesítményben vagy kutatási és fejlesztési létesítményben; 4. „nagyméretű, helyhez kötött létesítmény” : különböző típusú készülékek, illetve adott esetben egyéb eszközök nagyméretű kombinációja, amelyeket szakemberek állandó, előre meghatározott, ennek a célnak megfelelő helyen való használat céljából szerelnek össze és üzemelnek be, illetve szerelnek le; 5. „kábelek” : minden olyan, 250 voltnál kisebb feszültségű kábel, amely elektromos és elektronikus berendezések elektromos kimenethez való csatlakoztatásához, vagy két vagy több elektromos és elektronikus berendezés egymáshoz való csatlakoztatásához összeköttetésként vagy hosszabbítóként szolgál; 6. „gyártó” : minden olyan természetes vagy jogi személy, amely elektromos vagy elektronikus berendezést gyárt, illetőleg saját neve vagy védjegye alatt ilyen berendezést terveztet vagy gyártat és forgalmaz; 7. „meghatalmazott képviselő” : az Unióban letelepedett természetes vagy jogi személy, amely a gyártótól írásbeli meghatalmazást kapott, hogy meghatározott feladatok céljából a gyártó nevében eljárjon; 8. „forgalmazó” : a gyártón, illetve az importőrön kívül bármely olyan természetes vagy jogi személy az ellátási láncban, amely elektromos vagy elektronikus berendezést a piacon hozzáférhetővé tesz; 9. „importőr” : az Unióban letelepedett olyan természetes vagy jogi személy, amely harmadik országból származó elektromos vagy elektronikus berendezést hoz forgalomba az uniós piacon; 10. „gazdasági szereplő” : a gyártó, a meghatalmazott képviselő, az importőr és a forgalmazó; 11. „piacon való hozzáférhetővé tétel” : olyan kereskedelmi tevékenység, amelynek során elektromos vagy elektronikus berendezést bocsátanak rendelkezésre – térítés ellenében vagy ingyenesen – az uniós piacon való forgalmazás, fogyasztás vagy felhasználás céljára; 12. „forgalomba hozatal” : egy elektromos vagy elektronikus berendezés első alkalommal történő hozzáférhetővé tétele az uniós piacon; 13. „harmonizált szabvány” : olyan szabvány, amelyet a műszaki szabványok és szabályok terén történő információszolgáltatási eljárás megállapításáról szóló, 1998. június 22-i 98/34/EK európai parlamenti és tanácsi irányelv I. mellékletében felsorolt európai szabványügyi testületek valamelyike fogadott el, a Bizottságnak a 98/34/EK irányelv ( 19 ) 6. cikkével összhangban megfogalmazott felkérése alapján; 14. „műszaki leírás” : a termék, a folyamat vagy a szolgáltatás által teljesítendő műszaki követelményeket ismertető dokumentum; 15. „CE jelölés” : olyan jelölés, amellyel a gyártó azt jelzi, hogy a termék megfelel a jelölés alkalmazását előíró uniós harmonizációs szabályozásban rögzített vonatkozó követelményeknek; 16. „megfelelőségértékelés” : azon eljárás, amellyel kimutatják, hogy egy elektromos vagy elektronikus berendezés tekintetében teljesülnek-e ezen irányelv követelményei; 17. „piacfelügyelet” : a hatóságok azon tevékenységei és intézkedései, amelyek azt hivatottak biztosítani, hogy az elektromos vagy elektronikus berendezések megfeleljenek az ebben az irányelvben foglalt követelményeknek, és ne veszélyeztessék az egészséget, a biztonságot vagy egyéb közérdek érvényesülését; 18. „visszahívás” : minden olyan intézkedés, amelynek célja a végfelhasználó számára már elérhető termék visszajuttatása; 19. „forgalomból történő kivonás” : minden olyan intézkedés, amelynek célja egy termék forgalmazásának megakadályozása az ellátási láncban; 20. „homogén anyag” : vagy olyan anyag, amelynek összetétele mindenütt egységes, vagy pedig olyan anyag, amely anyagok keveréke, és amely nem bontható vagy választható szét több anyagra mechanikus úton, úgy, mint szétcsavarozással, vágással, zúzással, őrléssel vagy csiszolással; 21. „orvostechnikai eszköz” : a 93/42/EGK irányelv 1. cikke (2) bekezdésének a) pontja szerinti orvostechnikai eszköz, amely elektromos vagy elektronikus berendezés is egyben; 22. „ in vitro diagnosztikai orvostechnikai eszköz” : a 98/79/EK irányelv 1. cikke (2) bekezdésének b) pontja szerinti in vitro diagnosztikai orvostechnikai eszköz; 23. „aktív beültethető orvostechnikai eszköz” : az aktív beültethető orvostechnikai eszközökre vonatkozó tagállami jogszabályok közelítéséről szóló, 1990. június 20-i 90/385/EGK tanácsi irányelv ( 20 ) 1. cikke (2) bekezdése c) pontjának értelmében minden aktív beültethető orvostechnikai eszköz; 24. „ipari felügyeleti és vezérlő eszközök” : kizárólag ipari vagy szakmai célú használatra kialakított felügyeleti és vezérlő eszközök; 25. „helyettesítő anyag rendelkezésre állása” : a helyettesítő anyag a II. mellékletben felsorolt anyagok gyártásához és szállításához szükséges időhöz képest ésszerű határidőn belül gyártható és szállítható; 26. „helyettesítő anyag megbízhatósága” : annak valószínűsége, hogy a helyettesítő anyagot használó elektromos és elektronikus berendezés hiba nélkül fogja a megkövetelt funkciót ellátni adott körülmények között adott időtartamig; 27. „cserealkatrész” : az elektromos és elektronikus berendezés külön része, amely az elektromos és elektronikus berendezés egy részét helyettesítheti. Az elektromos és elektronikus berendezés nem működhet a tervezettnek megfelelően az elektromos és elektronikus berendezés e része nélkül. Az elektromos és elektronikus berendezés működőképessége helyreáll, illetve javul az alkatrész cserealkatrésszel történő helyettesítése révén; 28. „kizárólag szakmai használatra szánt nem közúti mozgó gép” : fedélzeti energiaforrással rendelkező gép, amelynek működtetése mobilitást, vagy folyamatos vagy részben folyamatos mozgást követel meg meghatározott munkavégzési helyek között és kizárólag szakmai célra használható. 4. cikk Megelőzés (1) A tagállamok biztosítják, hogy a forgalomba hozott elektromos és elektronikus berendezések – beleértve a javításukhoz, újrahasználatukhoz, funkcionális frissítésükhöz vagy kapacitásuk javításához felhasznált kábeleket és cserealkatrészeket is – ne tartalmazzák a II. mellékletben felsorolt anyagokat. (2) Ezen irányelv alkalmazásában a II. mellékletben meghatározott maximumot meg nem haladó tömegszázalékos koncentráció minősül elfogadhatónak homogén anyagokban. A Bizottság a 20. cikkel összhangban és a 21. és 22. cikkben megállapított feltételek mellett felhatalmazáson alapuló jogi aktusok révén részletes szabályokat fogad el e maximális koncentrációnak való megfelelés tekintetében, figyelembe véve többek között a felületi bevonatot. (3) Az (1) bekezdést alkalmazni kell a 2014. július 22-én vagy azután forgalomba hozott orvostechnikai eszközökre és felügyeleti és vezérlő eszközökre, a 2016. július 22-én vagy azután forgalomba hozott in vitro diagnosztikai orvostechnikai eszközökre, továbbá a 2017. július 22-én vagy azután forgalomba hozott ipari felügyeleti és vezérlő eszközökre. (4) Az (1) bekezdés nem alkalmazandó a következők javításához vagy újrahasználatához, funkcionális frissítéséhez vagy kapacitásuk javításához felhasznált kábelekre vagy cserealkatrészekre: a) 2006. július 1. előtt forgalomba hozott elektromos vagy elektronikus eszközök; b) 2014. július 22. előtt forgalomba hozott orvostechnikai eszközök; c) 2016. július 22. előtt forgalomba hozott in vitro diagnosztikai orvostechnikai eszközök; d) 2014. július 22. előtt forgalomba hozott felügyeleti és vezérlő eszközök; e) 2017. július 22. előtt forgalomba hozott ipari felügyeleti és vezérlő eszközök; f) korábban mentességet élvező és még a mentesség hatályvesztése előtt forgalomba hozott elektromos vagy elektronikus eszközök, az adott mentesség vonatkozásában. (5) Az (1) bekezdés nem alkalmazandó azon újrahasznált cserealkatrészekre, amelyeket 2006. július 1-jét megelőzően forgalomba hozott elektromos és elektronikus berendezésekből nyertek és 2016. július 1. előtt forgalomba hozott berendezésekben használnak, amennyiben az újrafelhasználásra vállalatok közötti, ellenőrizhető zárt csererendszereken belül kerül sor, valamint az alkatrészek újrafelhasználásáról értesítik a fogyasztót. (6) Az (1) bekezdést nem kell alkalmazni a III. és a IV. mellékletben felsorolt alkalmazásokra. 5. cikk A mellékletek hozzáigazítása a tudományos és műszaki fejlődéshez (1) A III. és IV. mellékletnek a tudományos és technikai fejlődéshez történő hozzáigazítása érdekében, illetve az 1. cikkben meghatározott célkitűzések elérése céljából a Bizottság a 20. cikkel összhangban, a 21. és a 22. cikkekben meghatározott feltételek mellett felhatalmazáson alapuló egyedi jogi aktusok révén elfogadja a következő intézkedéseket: a) az adott alkalmazású elektromos és elektronikus berendezések anyagainak és alkatrészeinek felvétele a III. és IV. mellékletben található listákba, ha az ilyen felvétel nem gyengíti az 1907/2006/EK rendelet által a környezet és az egészség tekintetében biztosított védelmet, és ha az alábbi feltételek bármelyike teljesül: — kivonásuk vagy helyettesítésük a tervezés módosításával olyan anyagok vagy alkatrészek használatával, amelyekhez nem szükségesek a II. mellékletben felsorolt anyagok, műszakilag vagy tudományosan nem kivitelezhető, — nincs biztosítva a helyettesítő anyagok megbízhatósága, — a helyettesítés által okozott összes káros környezeti, egészségügyi és fogyasztók biztonságát érintő hatás várhatóan meghaladja az így elért összes környezeti, egészségügyi és fogyasztók biztonságát érintő előnyt. Az elektromos és elektronikus berendezések anyagainak és alkatrészeinek a III. és IV. mellékletben található listákba történő felvételéről szóló határozatnak és a mentességek időtartamának figyelembe kell vennie a helyettesítő anyagok rendelkezésre állását és a helyettesítés társadalmi-gazdasági hatását. A mentességek időtartamáról szóló határozatoknak figyelembe kell venniük az innovációra gyakorolt minden lehetséges kedvezőtlen hatást. A mentesség átfogó hatásaira vonatkozó életciklus szemléletet adott esetben figyelembe kell venni; b) az elektromos vagy elektronikus berendezésekben előforduló anyagok és alkatrészek törlése a III. és a IV. mellékletben található listákból, ha az a) pontban felsorolt feltételek már nem teljesülnek. (2) Az (1) bekezdés a) pontjával összhangban elfogadott intézkedések legfeljebb öt évig érvényesek az I. melléklet 1–7., 10. és 11. kategóriája esetén, míg legfeljebb hét évig a 8. és 9. kategória esetén. Az érvényesség időtartamáról eseti alapon döntenek, és megújíthatók. A III. mellékletben 2011. július 21-ig felsorolt kivételek esetében a maximális érvényességi időtartam az I. melléklet 1–7. és 10. kategóriája esetén a 2011. július 21-ét követő öt év, amely megújítható, míg az I. melléklet 8. és 9. kategóriája esetén a 4. cikk (3) bekezdésében meghatározott megfelelő időpontoktól számított hét év, amennyiben nem határoznak meg rövidebb időtartamot. A IV. mellékletben 2011. július 21-ig felsorolt kivételek esetében a maximális érvényességi időtartam, amely megújítható, a 4. cikk (3) bekezdésében meghatározott megfelelő időpontoktól számított hét év, amennyiben nem kerül meghatározásra rövidebb időtartam. (3) A mentesség megadására, megújítására vagy visszavonására irányuló kérelmeket a V. melléklettel összhangban a Bizottság részére kell benyújtani. (4) A Bizottság: a) a kérelem kézhezvételétől számított 15 napon belül írásban visszaigazolja a kézhezvételt. A visszaigazolásnak tartalmaznia kell a kérelem kézhezvételének napját; b) haladéktalanul tájékoztatja a tagállamokat a kérelemről, valamint rendelkezésükre bocsátja a kérelmező által benyújtott kérelmet és kiegészítő információkat; c) a kérelemről készült összefoglalót hozzáférhetővé teszi a nyilvánosság számára; d) értékeli a kérelmet és indokolását. (5) A mentesség megújítására vonatkozó kérelmet legalább 18 hónappal a mentesség lejárta előtt kell benyújtani. A Bizottság legalább 6 hónappal az érvényben lévő mentesség lejárati határideje előtt dönt a mentesség megújítására vonatkozó kérelemről, kivéve, ha adott körülmények más határidőket indokolnak. Az érvényben lévő mentesség mindenképpen érvényben marad mindaddig, amíg a Bizottság nem hoz döntést a megújítási kérelemről. (6) Ha a mentesség megújítására vonatkozó kérelem elutasításra vagy a mentesség visszavonásra kerül, a mentesség legkorábban a hozott döntés időpontjától számítva legalább 12 hónap és legfeljebb 18 hónap múlva jár le. (7) A mellékletek módosítása előtt a Bizottság többek között konzultál a gazdasági szereplőkkel, az újrafeldolgozó és a hulladékkezelő üzemek képviselőivel, a környezetvédelmi szervezetekkel, valamint a munkavállalók és fogyasztók szövetségeivel, és nyilvánosan hozzáférhetővé teszi a kapott megjegyzéseket. (8) A Bizottság ezen cikk (3) bekezdésében említett kérelmekre egy harmonizált formátumot és átfogó iránymutatásokat fogad el a kkv-k helyzetének figyelembevételével. Ezen végrehajtási jogi aktusokat a 19. cikk (2) bekezdésében említett vizsgálóbizottsági eljárásnak megfelelően kell elfogadni. 6. cikk A korlátozott anyagok II. mellékletben található listájának felülvizsgálata és módosítása (1) Az 1. cikkben kitűzött célok elérése céljából és az elővigyázatosság elvének figyelembevételével a Bizottság 2014. július 22. előtt, majd ezt követően rendszeresen saját kezdeményezésére vagy egy tagállamnak a (2) bekezdésben említett információkat tartalmazó javaslatára alapos értékelés alapján felülvizsgálja és módosítja a korlátozott anyagok II. mellékletben szereplő jegyzékét. A korlátozott anyagok II. mellékletben szereplő jegyzéke felülvizsgálatának és módosításának összhangban kell lennie a vegyi anyagokra vonatkozó egyéb jogszabályokkal, különösen az 1907/2006/EK rendelettel, és figyelembe kell vennie többek között az említett rendelet XIV. és XVII. mellékletét. A felülvizsgálat során fel kell használni az e jogszabályok alkalmazásával kapcsolatban nyilvánosan hozzáférhető ismereteket. A II. melléklet felülvizsgálata és módosítása céljából a Bizottság különösen figyelembe veszi, hogy az anyag, beleértve a nagyon kis méretű vagy nagyon kis belső vagy felületi szerkezetű anyagokat, vagy hasonló anyagok csoportját, hogy az: a) kedvezőtlenül befolyásolhatja-e az elektromos és elektronikus berendezésekkel kapcsolatos hulladékgazdálkodási műveleteket, beleértve az elektromos és elektronikus berendezésekből származó hulladékok újrahasznosításra való előkészítésének lehetőségét vagy az elektromos és elektronikus berendezések hulladékaiból származó anyagok újrafeldolgozását; b) felhasználásukra való tekintettel az elektromos és elektronikus berendezések hulladékaiból származó anyagok újrafelhasználásra vagy újrafeldolgozásra való előkészítése, illetve egyéb kezelése során az anyagnak a környezetbe történő ellenőrizetlen vagy diffúz kibocsátását, vagy veszélyes maradékanyagok, átalakulási vagy bomlástermékek keletkezését eredményezheti-e a jelenlegi működési körülmények között; c) az elektromos és elektronikus berendezések hulladékainak összegyűjtését vagy kezelését végző személyek elfogadhatatlan mértékű expozícióját eredményezheti-e; d) felváltható-e kevésbé káros hatású helyettesítő anyagokkal vagy alternatív technológiákkal. A felülvizsgálat során a Bizottság konzultál az érdekelt felekkel, köztük a gazdasági szereplőkkel, az újrafeldolgozó és hulladékkezelő üzemekkel, a környezetvédelmi szervezetekkel, valamint a munkavállalók és fogyasztók szövetségeivel. (2) A korlátozott anyagok vagy hasonló anyagok csoportja II. mellékletben található jegyzékének felülvizsgálatára és módosítására irányuló javaslatoknak tartalmazniuk kell legalább a következő információt: a) a javasolt korlátozás pontos és világos megfogalmazása; b) a korlátozásra vonatkozó hivatkozások és tudományos bizonyítékok; c) az anyagnak vagy hasonló anyagok csoportjának elektromos és elektronikus berendezésekben való felhasználására vonatkozó információ; d) a különösen az elektromos és elektronikus berendezések hulladékainak kezelésével kapcsolatos műveletek során észlelhető káros hatásokkal és expozícióval kapcsolatos információ; e) az esetleges helyettesítő anyagokkal és egyéb alternatívákkal, azok rendelkezésre állásával és megbízhatóságával kapcsolatos információ; f) azon megfontolás igazolása, hogy az uniós szintű korlátozás a legmegfelelőbb intézkedés; g) társadalmi-gazdasági értékelés. (3) A Bizottság az e cikkben említett intézkedéseket a 20. cikkel összhangban és a 21. és 22. cikkben foglalt feltételek mellett, felhatalmazáson alapuló jogi aktusokkal fogadja el. 7. cikk A gyártók kötelezettségei A tagállamok biztosítják, hogy: a) a gyártók elektromos és elektronikus berendezések forgalomba hozatalakor biztosítják, hogy azok tervezése és gyártása a 4. cikkben meghatározott követelményekkel összhangban történt; b) a gyártók a 768/2008/EK határozat II. mellékletének A. moduljában leírtak szerint összeállítják a műszaki dokumentációt és végrehajtják vagy végrehajtatják a belső gyártásellenőrzési eljárást; c) ha a b) pontban említett eljárás során egy elektromos vagy elektronikus berendezésről azt állapítják meg, hogy megfelel az alkalmazandó követelményeknek, a gyártó EU-megfelelőségi nyilatkozatot állít ki, és CE jelölést helyez el a készterméken. Ha egyéb alkalmazandó uniós jogszabály legalább ilyen szigorú megfelelőségértékelési eljárás alkalmazását követeli meg, az ezen irányelv 4. cikke (1) bekezdése követelményeinek való megfelelést az említett eljárás keretében is lehet bizonyítani. Egy egységes műszaki dokumentáció készíthető; d) a gyártók az elektromos vagy elektronikus berendezés forgalomba hozatalától számítva tíz évig megőrzik a műszaki dokumentációt és az EU-megfelelőségi nyilatkozatot; e) a gyártó gondoskodik olyan eljárások meglétéről, amelyekkel elérhető, hogy a sorozatgyártás megfelelő maradjon. Kellőképpen figyelembe kell venni a termék tervezésének és jellemzőinek változásait, valamint azon harmonizált szabványok vagy műszaki specifikációk módosulásait, amelyek alapján az elektromos vagy elektronikus berendezés megfelelőségét megállapították; f) a gyártók nyilvántartják a nem megfelelő elektromos vagy elektronikus berendezéseket és a termékvisszahívásokat, továbbá erről tájékoztatják a forgalmazókat; g) a gyártók biztosítják, hogy elektromos vagy elektronikus berendezéseiken típus-, tétel- vagy sorozatszám vagy egyéb, azonosításukra alkalmas elem szerepeljen, illetőleg – ha a berendezés mérete vagy jellege ezt nem teszi lehetővé – hogy a megkövetelt információk a csomagoláson vagy a berendezést kísérő dokumentumban szerepeljenek; h) a gyártók feltüntetik az elektromos vagy elektronikus berendezésen, vagy ha ez nem lehetséges, a csomagoláson vagy a berendezés kísérő dokumentációján a nevüket, bejegyzett kereskedelmi nevüket vagy bejegyzett védjegyüket és azt a címüket, amelyen kapcsolatba lehet lépni velük. A címnek egyetlen olyan pontot kell megjelölnie, ahol a gyártóval kapcsolatba lehet lépni. Ha egyéb alkalmazandó uniós jogszabály legalább ilyen szigorú rendelkezéseket tartalmaz a gyártó nevének és címének feltüntetésére vonatkozóan, az említett rendelkezések alkalmazandók; i) azok a gyártók, amelyek úgy ítélik meg vagy okkal feltételezhetik, hogy egy általuk forgalomba hozott elektromos vagy elektronikus berendezés nem felel meg ennek az irányelvnek, azonnal megteszik a berendezés megfelelővé tételéhez, illetőleg – adott esetben – forgalomból való kivonásához vagy visszahívásához szükséges kiigazító intézkedéseket és erről – és különösen a meg nem felelés és a meghozott kiigazító intézkedések részleteiről – haladéktalanul tájékoztatják azon tagállamok hatáskörrel rendelkező nemzeti hatóságait, amelyekben hozzáférhetővé tették a szóban forgó elektromos vagy elektronikus berendezést; j) a gyártók egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére átadják az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges összes információt és dokumentációt, a szóban forgó hatóság számára könnyen érthető nyelven, és az említett hatósággal, annak felkérésére együttműködnek az általuk forgalomba hozott elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló minden intézkedésben. 8. cikk A meghatalmazott képviselők kötelezettségei A tagállamok biztosítják, hogy: a) minden gyártónak lehetősége legyen írásbeli megbízással meghatalmazott képviselőt kinevezni. A 7. cikk a) pontjában meghatározott kötelezettségek teljesítése és a műszaki dokumentáció elkészítése nem képezheti a meghatalmazott képviselő megbízásának részét; b) a meghatalmazott képviselő ellássa a gyártótól kapott megbízásban meghatározott feladatokat. A megbízásnak lehetővé kell tennie, hogy a meghatalmazott képviselő legalább az alábbiakat megtegye: — az EU-megfelelőségi nyilatkozat és a műszaki dokumentáció megőrzése a nemzeti felügyelő hatóságok számára az elektromos és elektronikus berendezések forgalomba hozatalától számított tíz éven keresztül, — egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére minden olyan információ és dokumentáció átadása, amely egy adott elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségének igazolásához szükséges, — együttműködés a hatáskörrel rendelkező nemzeti hatóságokkal, azok felkérésére, a megbízás körébe tartozó elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló intézkedésekben. 9. cikk Az importőrök kötelezettségei A tagállamok biztosítják, hogy: a) az importőrök kizárólag az ezen irányelv előírásainak megfelelő elektromos vagy elektronikus berendezést hozzanak forgalomba az uniós piacon; b) egy elektromos vagy elektronikus berendezés forgalomba hozatala előtt az importőrök biztosítsák, hogy a gyártó elvégezze a vonatkozó megfelelőségértékelési eljárást, továbbá biztosítsák, hogy a gyártó elkészítse a műszaki dokumentációt, hogy az elektromos vagy elektronikus berendezésen szerepel a CE jelölés és mellékelve legyenek hozzá a kötelező dokumentumok, valamint hogy a gyártó teljesítse a 7. cikk f) és g) pontjában előírt követelményeket; c) ha egy importőr úgy ítéli meg vagy okkal feltételezheti, hogy egy elektromos vagy elektronikus berendezés nem felel meg a 4. cikk előírásainak, a szóban forgó berendezést mindaddig nem hozza forgalomba, amíg azt nem hozták összhangba az előírásokkal, és erről tájékoztatja a gyártót, valamint a piacfelügyeleti hatóságokat; d) az importőrök feltüntetik az elektromos vagy elektronikus berendezésen, vagy ha ez nem lehetséges, a csomagoláson vagy a berendezés kísérő dokumentációján a nevüket, bejegyzett kereskedelmi nevüket vagy bejegyzett védjegyüket és azt a címüket, amelyen kapcsolatba lehet lépni velük. Ha egyéb alkalmazandó uniós jogszabály legalább ilyen szigorú rendelkezéseket tartalmaz az importőr nevének és címének feltüntetésére vonatkozóan, az említett rendelkezések alkalmazandók; e) az ennek az irányelvnek való megfelelés biztosítása érdekében az importőrök nyilvántartják a nem megfelelő elektromos vagy elektronikus berendezéseket és a termékvisszahívásokat, továbbá erről tájékoztassák a forgalmazókat; f) azok az importőrök, amelyek úgy ítélik meg vagy okkal feltételezhetik, hogy egy általuk forgalomba hozott elektromos vagy elektronikus berendezés nem felel meg ezen irányelv rendelkezéseinek, azonnal megtegyék a berendezés megfelelővé tételéhez, illetőleg – adott esetben – forgalomból való kivonásához vagy visszahívásához szükséges kiigazító intézkedéseket, és erről – és különösen a meg nem felelés és a meghozott kiigazító intézkedések részleteiről – haladéktalanul tájékoztassák azon tagállamok hatáskörrel rendelkező nemzeti hatóságait, amelyekben hozzáférhetővé tették a szóban forgó elektromos vagy elektronikus berendezést; g) az importőrök az elektromos vagy elektronikus berendezés forgalomba hozatalától számított tíz évig a nemzeti piacfelügyeleti hatóságok számára megőrzi az EU-megfelelőségi nyilatkozat egy példányát, és biztosítják, hogy e hatóságok kérésre hozzáférhessenek a műszaki dokumentációhoz; h) az importőrök egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére átadják az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelésének igazolásához szükséges összes információt és dokumentációt, a szóban forgó hatóság számára könnyen érthető nyelven, és az említett hatósággal, annak felkérésére együttműködnek az általuk forgalomba hozott elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló minden intézkedésben. 10. cikk A forgalmazók kötelezettségei A tagállamok biztosítják, hogy: a) egy elektromos vagy elektronikus berendezésnek a piacon való hozzáférhetővé tételekor a forgalmazók kellő gondossággal járjanak el az alkalmazandó követelményekhez mérten, különösen annak ellenőrzésével, hogy az elektromos vagy elektronikus berendezésen szerepel-e a CE jelölés, hogy mellékelve vannak-e hozzá a szükséges dokumentumok, mégpedig olyan nyelven, amelyet a fogyasztók és az egyéb végfelhasználók könnyen megértenek a berendezés forgalomba hozatala szerinti tagállamban, valamint hogy a gyártó és az importőr teljesíti-e a 7. cikk g) és h) pontjában és a 9. cikk d) pontjában előírt követelményeket; b) ha egy forgalmazó úgy ítéli meg vagy okkal feltételezheti, hogy egy elektromos vagy elektronikus berendezés nem felel meg a 4. cikk előírásainak, a szóban forgó berendezést mindaddig nem hozza forgalomba, amíg azt nem hozták összhangba az előírásokkal, és tájékoztatja erről a gyártót vagy az importőrt, valamint a piacfelügyeleti hatóságokat; c) azok a forgalmazók, amelyek úgy ítélik meg vagy okkal feltételezhetik, hogy a piacon általuk hozzáférhetővé tett elektromos vagy elektronikus berendezés nem felel meg ezen irányelv rendelkezéseinek, gondoskodnak a berendezés megfelelővé tételéhez, illetőleg – adott esetben – forgalomból való kivonásához vagy visszahívásához szükséges kiigazító intézkedések megtételéről, és erről – és különösen a meg nem felelés és a meghozott kiigazító intézkedések részleteiről – haladéktalanul tájékoztatják azon tagállamok hatáskörrel rendelkező nemzeti hatóságait, amelyekben hozzáférhetővé tették a szóban forgó elektromos vagy elektronikus berendezést; d) a forgalmazók egy hatáskörrel rendelkező nemzeti hatóság indokolt kérésére átadják az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelésének igazolásához szükséges összes információt és dokumentációt, és az említett hatósággal, annak felkérésére együttműködnek a piacon általuk hozzáférhetővé tett elektromos vagy elektronikus berendezések ezen irányelvnek való megfelelésének biztosítását szolgáló minden intézkedésben. 11. cikk A gyártói kötelezettségek importőrökre és forgalmazókra való alkalmazásának esetei A tagállamok biztosítják, hogy minden olyan importőr vagy forgalmazó, amely saját nevében vagy védjegye alatt hoz forgalomba elektromos vagy elektronikus berendezést, vagy egy már forgalomba hozott elektromos vagy elektronikus berendezésen olyan módosítást végez, amely hatással lehet arra, hogy az megfelel-e a vonatkozó követelményeknek, ezen irányelv alkalmazásában gyártónak legyen tekintendő, és azt, hogy a gyártónak a 7. cikkben rögzített kötelezettségei terheljék. 12. cikk A gazdasági szereplők azonosítása A tagállamok biztosítják, hogy minden gazdasági szereplő az elektromos vagy elektronikus berendezés forgalomba hozatalától számított tíz évig köteles legyen kérésre átadni a piacfelügyeleti hatóságoknak a következők azonosító adatait: a) minden olyan gazdasági szereplő, amelytől elektromos vagy elektronikus berendezést szerzett be; b) minden olyan gazdasági szereplő, amelyet elektromos vagy elektronikus berendezéssel látott el. 13. cikk EU-megfelelőségi nyilatkozat (1) Az EU-megfelelőségi nyilatkozat igazolja, hogy a 4. cikkben meghatározott követelmények teljesülése bizonyítást nyert. (2) Az EU-megfelelőségi nyilatkozat a VI. mellékletben rögzített szerkezetmintát követi, az ott felsorolt elemekből áll, és aktualizálandó. Le kell fordítani azon tagállam által megkívánt nyelvre vagy nyelvekre, amelynek piacán a terméket forgalomba hozzák vagy hozzáférhetővé teszik. Ha egyéb alkalmazandó uniós jogszabály legalább ugyanennyire szigorú megfelelőségértékelési eljárás alkalmazását követeli meg, az ezen irányelv 4. cikke (1) bekezdése követelményeinek való megfelelést az említett eljárás keretében is lehet bizonyítani. Egységes műszaki dokumentáció készíthető. (3) Az EU-megfelelőségi nyilatkozat kiállításával a gyártó felelősséget vállal az elektromos vagy elektronikus berendezés ezen irányelvnek való megfelelőségéért. 14. cikk A CE jelölés általános elvei A CE jelölésre a 765/2008/EK rendelet 30. cikkében meghatározott általános elvek vonatkoznak. 15. cikk A CE jelölés elhelyezésére vonatkozó szabályok és feltételek (1) A CE jelölést a készterméken vagy annak adattábláján jól láthatóan, olvashatóan és letörölhetetlenül kell elhelyezni. Ha az elektromos vagy elektronikus berendezés jellege miatt ez lehetetlen vagy indokolatlan volna, akkor a jelölést a csomagoláson, valamint a kísérő dokumentumokban kell feltüntetni. (2) A CE jelölést még az elektromos vagy elektronikus berendezés forgalomba hozatala előtt fel kell helyezni. (3) A tagállamok már meglévő mechanizmusokra támaszkodva biztosítják a CE jelölést szabályozó rendszer helyes végrehajtását, és a jelölés helytelen használata esetén megfelelő lépéseket tesznek. A tagállamok rendelkeznek továbbá a jogsértés esetén alkalmazandó szankciókról, amelyek súlyos jogsértés esetén akár büntetőjogi szankciók is lehetnek. Ezeknek a szankcióknak arányosnak kell lenniük a jogsértés súlyosságával, és a helytelen használattól való elrettentés hatásos eszközének kell lenniük. 16. cikk A megfelelőség vélelmezése (1) Az ellenkező bizonyításig a tagállamok vélelmezik, hogy a CE jelöléssel ellátott elektromos vagy elektronikus berendezések megfelelnek ezen irányelv rendelkezéseinek. (2) Azokról az anyagokról, alkotóelemekről, illetve elektromos és elektronikus berendezésekről, amelyeken a 4. cikk követelményeinek való megfelelés bizonyítására végeztek teszteket és méréseket, vagy amelyeket olyan harmonizált szabványokkal összhangban értékeltek, amelyek hivatkozását közzétették az Európai Unió Hivatalos Lapjában , vélelmezni kell, hogy megfelelnek az irányelvben előírt követelményeknek. 17. cikk A harmonizált szabványokkal szembeni formai kifogás (1) Amennyiben egy tagállam vagy a Bizottság úgy ítéli meg, hogy egy harmonizált szabvány nem felel meg teljesen azoknak a követelményeknek, amelyekre vonatkozik, és amelyek a 4. cikkben vannak meghatározva, a Bizottság vagy az érintett tagállam a 98/34/EK irányelv 5. cikke alapján létrehozott állandó bizottság elé terjeszti az ügyet, indoklással ellátva azt. A bizottság, miután konzultált a megfelelő európai szabványügyi testületekkel, haladéktalanul véleményt nyilvánít. (2) Figyelemmel a bizottság véleményére, a Bizottság dönt arról, hogy a harmonizált szabvány hivatkozásait az Európai Unió Hivatalos Lapjában közzéteszi-e vagy sem, korlátozással teszi-e közzé, fenntartja-e, korlátozással tartja-e fenn vagy visszavonja-e. (3) A Bizottság tájékoztatja az érintett európai szabványügyi testületet, és szükség esetén a szóban forgó harmonizált szabványok felülvizsgálatát kéri. 18. cikk Piacfelügyelet és az uniós piacra belépő elektromos és elektronikus berendezések ellenőrzése A tagállamok piacfelügyeletet folytatnak le összhangban a 765/2008/EK rendelet 15–29. cikkével. 19. cikk A bizottsági eljárás (1) A Bizottságot a 2008/98/EK irányelv 39. cikkének megfelelően létrejött bizottság segíti. Ez a bizottság a 182/2011/EU rendelet értelmében vett bizottság. (2) Az e bekezdésre történő hivatkozáskor a 182/2011/EU rendelet 5. cikkét kell alkalmazni. 20. cikk A felhatalmazás gyakorlása (1) A Bizottság a 2011. július 21-ét követő 5 éves időtartamra szóló felhatalmazást kap a 4. cikk (2) bekezdésében, az 5. cikk (1) bekezdésében és a 6. cikkben említett felhatalmazáson alapuló jogi aktusok elfogadására. A Bizottság legkésőbb 6 hónappal az 5 éves időtartam vége előtt jelentést készít a felhatalmazásról. Amennyiben az Európai Parlament vagy a Tanács nem vonja vissza a felhatalmazást a 21. cikknek megfelelően, akkor az automatikusan meghosszabbodik a korábbival megegyező időtartamra. (2) A Bizottság a felhatalmazáson alapuló jogi aktus elfogadását követően haladéktalanul és egyidejűleg értesíti arról az Európai Parlamentet és a Tanácsot. (3) A felhatalmazáson alapuló jogi aktusok elfogadására vonatkozóan a Bizottság részére adott felhatalmazás gyakorlásának feltételeit a 21. és 22. cikk határozza meg. 21. cikk A felhatalmazás visszavonása (1) Az Európai Parlament vagy a Tanács bármikor visszavonhatja a 4. cikk (2) bekezdésében, az 5. cikk (1) bekezdésében és a 6. cikkben említett felhatalmazást. (2) A felhatalmazás visszavonásával kapcsolatos döntés meghozatala érdekében belső eljárást indító intézménynek a végleges határozat meghozatala előtt ésszerű határidőn belül törekednie kell rá, hogy erről tájékoztassa a másik intézményt és a Bizottságot, megjelölve, hogy mely felhatalmazás visszavonásáról és milyen lehetséges indokok alapján kíván határozni. (3) A visszavonásról szóló határozat megszünteti az abban meghatározott felhatalmazást. A határozat haladéktalanul vagy a benne megjelölt későbbi időpontban lép hatályba. A határozat nem érinti a már hatályban lévő, felhatalmazáson alapuló jogi aktusok érvényességét. A határozatot az Európai Unió Hivatalos Lapjában ki kell hirdetni. 22. cikk A felhatalmazáson alapuló jogi aktusok elleni kifogások (1) Az Európai Parlament és a Tanács az értesítés napját követő két hónapos időtartamon belül kifogást emelhet a felhatalmazáson alapuló jogi aktus ellen. Az Európai Parlament vagy a Tanács kezdeményezésére ezen időtartam két hónappal meghosszabbodik. (2) Ha az (1) bekezdésben említett időtartam leteltéig sem az Európai Parlament, sem a Tanács nem emelt kifogást a felhatalmazáson alapuló jogi aktus ellen, azt ki kell hirdetni az Európai Unió Hivatalos Lapjában , és az a benne megállapított időpontban hatályba lép. Ha az Európai Parlament és a Tanács egyaránt arról tájékoztatta a Bizottságot, hogy nem kíván kifogást emelni, a felhatalmazáson alapuló jogi aktust az időtartam letelte előtt ki lehet hirdetni az Európai Unió Hivatalos Lapjában , és ez az időtartam letelte előtt hatályba léphet. (3) Ha az Európai Parlament vagy a Tanács kifogást emel a felhatalmazáson alapuló jogi aktus ellen az (1) bekezdésben említett időpontig, az nem lép hatályba. A felhatalmazáson alapuló jogi aktus ellen kifogást emelő intézmény a kifogást megindokolja. 23. cikk Szankciók A tagállamok megállapítják az ezen irányelv alapján elfogadott nemzeti rendelkezések megsértése esetén alkalmazandó szankciókra vonatkozó szabályokat, és minden szükséges intézkedést megtesznek azok végrehajtásának biztosítása érdekében. A szankcióknak hatékonyaknak, arányosaknak és visszatartó erejűeknek kell lenniük. A tagállamok ezekről a rendelkezésekről 2013. január 2-ig, a szóban forgó rendelkezések minden későbbi módosításáról pedig haladéktalanul értesítik a Bizottságot. 24. cikk Felülvizsgálat (1) A Bizottság legkésőbb 2014. július 22-ig megvizsgálja, hogy kell-e módosítani ezen irányelv hatályát a 2. cikkben említett elektromos és elektronikus berendezések tekintetében, és erről jelentést terjeszt az Európai Parlament és a Tanács elé, amelyet adott esetben az elektromos és elektronikus berendezésekkel kapcsolatos további kizárásokra vonatkozó jogalkotási javaslat kísér. (2) A Bizottság legkésőbb 2021. július 22-ig elvégzi ezen irányelv általános felülvizsgálatát, és erről jelentést terjeszt az Európai Parlament és a Tanács elé, amelyet adott esetben jogalkotási javaslat kísér. 25. cikk Átültetés a nemzeti jogba (1) A tagállamok 2013. január 2-ig elfogadják és kihirdetik azokat a törvényi, rendeleti és közigazgatási rendelkezéseket, amelyek szükségesek ahhoz, hogy ennek az irányelvnek megfeleljenek. E rendelkezések szövegét haladéktalanul megküldik a Bizottságnak. A tagállamok által elfogadott rendelkezéseknek hivatkozniuk kell erre az irányelvre, vagy hivatalos kihirdetésük alkalmával ilyen hivatkozással együtt kell megjelenniük. A hivatkozás módját a tagállamok határozzák meg. (2) A tagállamok megküldik a Bizottságnak nemzeti joguk azon főbb rendelkezéseinek szövegét, amelyeket az irányelv tárgykörében fogadnak el. 26. cikk Hatályon kívül helyezés A VII. melléklet A. részében felsorolt jogszabályokkal módosított 2002/95/EK irányelv 2013. január 3-tól hatályát veszti, a VII. melléklet B. részében felsorolt irányelveknek a nemzeti jogba történő átültetésére és alkalmazására vonatkozó határidőkkel kapcsolatos tagállami kötelezettségek sérelme nélkül. A hatályon kívül helyezett jogi aktusokra való hivatkozásokat erre az irányelvre való hivatkozásként kell értelmezni, a VIII. mellékletben szereplő megfeleltető táblázattal összhangban. 27. cikk Hatálybalépés Ez az irányelv az Európai Unió Hivatalos Lapjában való kihirdetését követő huszadik napon lép hatályba. 28. cikk Címzettek Ennek az irányelvnek a tagállamok a címzettjei. Kelt Strasbourgban, 2011. június 8-án. az Európai Parlament részéről az elnök J. BUZEK a Tanács részéről az elnök GYŐRI E. ( 1 ) HL C 306., 2009.12.16., 36. o . ( 2 ) HL C 141., 2010.5.29., 55. o . ( 3 ) Az Európai Parlament 2010. november 24-i álláspontja (a Hivatalos Lapban még nem tették közzé) és a Tanács 2011. május 27-i határozata. ( 4 ) HL L 37., 2003.2.13., 19. o . ( 5 ) HL L 312., 2008.11.22., 3. o . ( 6 ) HL C 30., 1988.2.4., 1. o . ( 7 ) HL L 158., 2004.4.30., 7. o . ( 8 ) HL L 37., 2003.2.13., 24. o . ( 9 ) HL L 396., 2006.12.30., 1. o . ( 10 ) HL L 285., 2009.10.31., 10. o . ( 11 ) HL L 266., 2006.9.26., 1. o . ( 12 ) HL L 140., 2009.6.5., 16. o . ( 13 ) HL L 169., 1993.7.12., 1. o . ( 14 ) HL L 331., 1998.12.7., 1. o . ( 15 ) HL L 218., 2008.8.13., 82. o . ( 16 ) HL L 218., 2008.8.13., 30. o . ( 17 ) HL L 55., 2011.2.28., 13. o . ( 18 ) HL C 321., 2003.12.31., 1. o . ( 19 ) HL L 204., 1998.7.21., 37. o . ( 20 ) HL L 189., 1990.7.20., 17. o . I. MELLÉKLET Ezen irányelv hatálya alá tartozó elektromos és elektronikus berendezések kategóriái 1. Háztartási nagygépek 2. Háztartási kisgépek 3. Információs technológiai és távközlési berendezések 4. Szórakoztatóelektronikai berendezések 5. Világítótestek 6. Elektromos és elektronikus szerszámok 7. Játékok, szabadidő- és sportfelszerelések 8. Orvostechnikai eszközök 9. Felügyeleti és vezérlő eszközök, beleértve az ipari felügyeleti és vezérlő eszközöket is 10. Adagoló automaták 11. A fenti kategóriák egyikébe sem tartozó egyéb elektromos és elektronikus berendezések. II. MELLÉKLET A 4. cikk (1) bekezdésében említett korlátozott anyagok és homogén anyagokban még elfogadható maximális tömegszázalékos koncentrációjuk Ólom (0,1 %) Higany (0,1 %) Kadmium (0,01 %) Hat vegyértékű króm (0,1 %) Polibrómozott bifenilek (PBB) (0,1 %) Polibrómozott difenil-éterek (PBDE) (0,1 %) III. MELLÉKLET A 4. cikk (1) bekezdése szerinti korlátozás alól mentesülő alkalmazások Mentesség Az alkalmazás köre és határnapja 1. Egy végükön fejelt (kompakt) fénycsövekben használt higany, amelynek megengedett mennyisége (égőnként): 1. a) Általános világítási célra szolgáló, 30 W alatti teljesítményű fénycső esetén: 5 mg 2011. december 31-én lejár; 2011. december 31. után 2012. december 31-ig égőnként 3,5 mg használható; 2012. december 31. után 2,5 mg használható. 1. b) Általános világítási célra szolgáló, legalább 30 W, de 50 W alatti teljesítményű fénycső esetén: 5 mg 2011. december 31-én lejár; 2011. december 31. után égőnként 3,5 mg használható 1. c) Általános világítási célra szolgáló, legalább 50 W, de 150 W alatti teljesítményű fénycső esetén: 5 mg 1. d) Általános világítási célra szolgáló, legalább 150 W teljesítményű fénycső esetén: 15 mg 1. e) Általános világítási célra szolgáló, kör alakú vagy szögletes strukturális formájú, legfeljebb 17 mm csőátmérőjű fénycső esetén 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 7 mg használható 1. f) Különleges rendeltetésű fénycső esetén: 5 mg 2. a) Két végén fejelt, általános világítási célra szolgáló lineáris fénycsövekben használt higany, amelynek megengedett mennyisége (fénycsövenként): 2. a) (1) Normál élettartamú háromsávos foszfor fénycső 9 mm alatti csőátmérővel (pl. T2): 5 mg 2011. december 31-én lejár; 2011. december 31. után fénycsövenként 4 mg használható 2. a) (2) Normál élettartamú háromsávos foszfor fénycső legalább 9 mm-es, legfeljebb 17 mm-es csőátmérővel (pl. T5): 5 mg 2011. december 31-én lejár; 2011. december 31. után fénycsövenként 3 mg használható 2. a) (3) Normál élettartamú háromsávos foszfor fénycső 17 mm-nél nagyobb, de legfeljebb 28 mm-es csőátmérővel (pl. T8): 5 mg 2011. december 31-én lejár; 2011. december 31. után fénycsövenként 3,5 mg használható 2. a) (4) Normál élettartamú háromsávos foszfor fénycső 28 mm-t meghaladó csőátmérővel (pl. T12): 5 mg 2012. december 31-én lejár; 2012. december 31. után fénycsövenként 3,5 mg használható 2. a) (5) Hosszú (legalább 25 000 óra) élettartamú háromsávos foszfor fénycső: 8 mg 2011. december 31-én lejár; 2011. december 31. után fénycsövenként 5 mg használható 2. b) Egyéb kompakt fénycsövekben használt higany, amelynek megengedett mennyisége (fénycsövenként): 2. b) (1) Egyenes halofoszfát fénycsövek 28 mm feletti csőátmérővel (pl. T10 és T12): 10 mg 2012. április 13-án lejár 2. b) (2) Nem egyenes halofoszfát fénycsövek (bármely csőátmérő esetén): 15 mg 2016. április 13-án lejár 2. b) (3) Nem egyenes háromsávos foszfor fénycsövek 17 mm feletti csőátmérővel (pl. T9) 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után fénycsövenként 15 mg használható 2. b) (4) Egyéb általános világítási célra szolgáló, vagy különleges rendeltetésű lámpák (pl. indukciós lámpák) 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 15 mg használható 3. Különleges rendeltetésű hidegkatódos fénycsövekben és külső elektródás fénycsövekben (CCFL és EEFL) használt higany, amelynek megengedett mennyisége (fénycsövenként): 3. a) Rövid (≤ 500 mm) 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 3,5 mg használható 3. b) Közepes hosszúságú (> 500 mm és ≤ 1 500 mm) 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 5 mg használható 3. c) Hosszú (> 1 500 mm) 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 13 mg használható 4. a) Egyéb kisnyomású kisülőlámpákban használt higany (lámpánként) 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után lámpánként 15 mg használható 4. b) Általános világítási célra szolgáló, javított színvisszaadási mutatójú (Ra > 60), nagynyomású nátrium(gőz)lámpákban használt higany, amelynek megengedett mennyisége (égőnként): 4. b) I. P ≤ 155 W 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 30 mg használható 4. b) II. 155 W < P ≤ 405 W 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 40 mg használható 4. b) III. P > 405 W 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 40 mg használható 4. c) Egyéb általános világítási célra szolgáló nagynyomású nátrium(gőz)lámpákban használt higany, amelynek megengedett mennyisége (égőnként): 4. c) I. P ≤ 155 W 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 25 mg használható 4. c) II. 155 W < P ≤ 405 W 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 30 mg használható 4. c) III. P > 405 W 2011. december 31-ig a felhasználás nem korlátozott; 2011. december 31. után égőnként 40 mg használható 4. d) Nagynyomású higany(gőz)lámpákban (HPMV) használt higany 2015. április 13-án lejár 4. e) Fémhalogén (MH) lámpákban használt higany 4. f) Az e mellékletben külön nem említett, különleges rendeltetésű egyéb kisülőlámpákban használt higany 5. a) Katódsugárcsövek üvegében használt ólom 5. b) Fénycsövek üvegében használt, 0,2 tömegszázalékot meg nem haladó ólom 6. a) Ólom a megmunkálásra szánt acél ötvözőelemeként, illetve galvanizált acélban, legfeljebb 0,35 tömegszázalék ólomtartalomig 6. b) Ólom az alumínium ötvözőelemeként a legfeljebb 0,4 tömegszázalék ólomtartalmú alumíniumban 6. c) Rézötvözet legfeljebb 4 tömegszázalék ólomtartalommal 7. a) Magas olvadáspontú, ólomtartalmú forraszanyagok (azaz olyan ólomötvözetek, amelyek legalább 85 tömegszázalékban tartalmaznak ólmot) 7. b) A szerverekben, az adattároló rendszerekben, a tárolási és elrendezési rendszerekben, a hálózati infrastruktúra kapcsoló, jelző és adatátviteli berendezéseiben, és a távközlési hálózatok hálózatkezelése során használt forrasztóanyagokban lévő ólom 7. c) I. Elektronikus és elektromos alkatrészek, amelyek üvegben vagy kerámiában, de nem a kondenzátorokban, például piezoelektronikus berendezésekben lévő dielektromos kerámiákban, továbbá nem üveg vagy kerámia mátrix anyagokban tartalmaznak ólmot 7. c) II. 125 V AC vagy 250 V DC vagy ennél magasabb névleges feszültségű kondenzátorokban használt dielektromos kerámiában lévő ólom 7. c) III. 125 V AC vagy 250 V DC alatti névleges feszültségű kondenzátorokban használt dielektromos kerámiában lévő ólom 2013. január 1-jén lejár, ezt követően a 2013. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 8. a) Egyszerhasználatos, szemcsés töltetű hőkioldókban lévő kadmium és vegyülékei 2012. január 1-jén lejár, ezt követően a 2012. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 8. b) A villamos érintkezőkben lévő kadmium és vegyülékei 9. Abszorpciós hűtőgépek szénacél hűtőrendszerében korróziógátló szerként használt, a hűtőközeg legfeljebb 0,75 tömegszázalékát kitevő hat vegyértékű króm 9. b) Ólom a fűtő, szellőztető, légkondicionáló és hűtő alkalmazásokban használt, hűtőközeget tartalmazó kompresszorok csapágycsészéiben és -béléseiben 11. a) C-press rugalmas tűs csatlakozórendszerekben használt ólom A 2010. szeptember 24. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 11. b) Nem C-press rugalmas tűs csatlakozórendszerekben használt ólom 2013. január 1-jén lejár, ezt követően a 2013. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 12. A hővezető modulok tömítőgyűrűjén bevonóanyagként használt ólom A 2010. szeptember 24. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 13. a) Optikai alkalmazásokban használt fehér üvegekben lévő ólom 13. b) Reflexiós tényezőre vonatkozó követelmények céljára használt üveg filterekben és üvegekben használt kadmium és ólom 14. Kettőnél több elemből álló, a mikroprocesszor kivezetései és tokja között kapcsolatot biztosító forrasztóanyagban lévő ólom, ha az ólomtartalom 80 és 85 tömegszázalék között van 2011. január 1-jén lejárt, ezt követően a 2011. január 1. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 15. Flip Chip integrált áramkörökben a félvezető süllyesztéke és hordozója között működőképes elektronikus kapcsolatot lehetővé tevő ólomtartalmú forraszanyag 16. Az olyan vonalizzókban található ólom, amelyek csöve szilikát bevonatú 2013. szeptember 1-jén lejár 17. Ólom-halogenid a nagynyomású kisülő lámpák (HID) sugárzó anyagaként professzionális reprográfiai alkalmazásokra 18. a) Ólom a fluoreszkáló porban aktivátorként (1 tömegszázaléknyi vagy kevesebb ólom) a kisülőlámpákban, SMS ((Sr,Ba) 2 MgSi 2 O 7 :Pb) foszforokat tartalmazó speciális lámpaként történő felhasználás esetén, diazo-nyomtatásos reprográfiás, illetve litográfiai felhasználásra, valamint rovarcsapda lámpában, fotokémiai és gyógyászati alkalmazás esetén 2011. január 1-jén lejárt 18. b) Ólom a fluoreszkáló porban aktivátorként (1 tömegszázaléknyi vagy kevesebb ólom) a kisülő lámpákban a BSP (BaSi 2 O 5 :Pb) foszforokat tartalmazó szoláriumcsövekként való felhasználás esetén 19. Ólom és PbBiSn-Hg, valamint PbInSn-Hg kombinációja speciális összetételű anyagokban fő foncsorozóként, illetve ólom és PbSn-Hg kombinációja kompakt energiatakarékos lámpákban (ESL) kiegészítő foncsorozóként 2011. június 1-jén lejár 20. Ólom-oxid a folyadékkristály-kijelzőkben (LCD) használt lapos fluoreszkáló lámpák felső és alsó rétegének kötéséhez használt üvegben 2011. június 1-jén lejár 21. Ólom és kadmium a zománc üvegre, például boroszilikát üvegre vagy nátronüvegre való felviteléhez használt nyomdafestékekben 23. Ólom a csatlakozók kivételével a 0,65 mm vagy kisebb osztóközű, finom osztású (fine-pitch) komponensek felületén A 2010. szeptember 24. előtt forgalomba hozott elektronikus és elektromos berendezések pótalkatrészeiben használható 24. Korong- és síkmátrix alakú többrétegű kerámiakondenzátorok géppel készített átmenőfuratokba történő forrasztásához használt forrasztóanyagokban lévő ólom 25. Ólom-oxid a felületvezető elektronkibocsátó kijelzőkben (SED) használt szerkezeti elemekben, nevezetesen a lezáró frittben és a frittgyűrűben 26. Ólom-oxid a „black light blue” (BLB) lámpák üveg védőburkolatában 2011. június 1-jén lejár 27. Nagyteljesítményű (több órán keresztül 125 dB SPL és a feletti hangteljesítményszinten működő) hangszórókban használt átalakítóknál forrasztóanyagként alkalmazott ólomötvözetek 2010. szeptember 24-én lejárt 29. A 69/493/EGK tanácsi irányelv ( 1 ) I. mellékletében (1., 2., 3. és 4. kategória) meghatározott, kristályüvegben található ólom 30. A 100 dB (A) és annál nagyobb hangnyomású, nagy teljesítményű hangszórókban használt transzduktorokban, közvetlenül a tekercsen található áramvezető anyagok elektromos, illetve mechanikus forrasztóanyagaként használt, kadmium alapú ötvözetek 31. A (pl. folyadékkristályos kijelzőkben, illetőleg dísz- vagy ipari világításként használt) higanymentes lapos fluoreszkáló lámpák forrasztóanyagában levő ólom 32. Az argon- és kripton-lézercsövek tokjának összeállításánál használatos lezáró frittben levő ólom-oxid. 33. A transzformátorokban alkalmazott, 100 μm- es vagy annál kisebb átmérőjű vékony vörösréz vezetékek forrasztásához használt forrasztóanyagban lévő ólom 34. A cermet-alapú beállító potenciométer egyes alkatrészeiben lévő ólom 36. A legfeljebb 30 mg higanyt tartalmazó egyenáramú plazmakijelzőkben lévő, a katódporlasztásnál inhibitorként használt higany 2010. július 1-jén lejárt 37. A cink-borát üvegből készült burkolatban elhelyezett nagyfeszültségű diódák bevonatában lévő ólom 38. Az alumíniummal ötvözött berillium-oxid hordozókon használt vastag filmpasztában lévő kadmium és kadmium-oxid 39. A szilárdtest-világítási vagy -kijelző rendszerekben használt színátalakító LED-ekben lévő kadmium (a fénykibocsátó terület egy négyzetmilliméterére eső kadmiummennyiség < 10 μg) 2014. július 1-jén lejár ( 1 ) HL L 326., 1969.12.29., 36. o . IV. MELLÉKLET A 4. cikk (1) bekezdése szerinti korlátozás alól az orvostechnikai eszközök és a felügyeleti és vezérlő eszközök vonatkozásában mentesülő alkalmazások Ionizáló sugárzást felhasználó vagy észlelő berendezések 1. Ionizáló sugárzást észlelő berendezésekben lévő ólom, kadmium és higany 2. Röntgencsövek ólomcsapágyai 3. Elektromágneses sugárzás erősítésére szolgáló eszközökben – mikrocsatornás lemezekben és kapilláris lemezeken – lévő ólom 4. Röntgencsövek és képerősítők üvegfrittjében lévő ólom, valamint a gázlézer összeállításához és az elektromágneses sugárzást elektronokká átalakító vákuumcsövekhez való üvegfritt kötőanyagokban lévő ólom 5. Ionizáló sugárzás elleni védőeszközökben lévő ólom 6. Röntgenezési próbatárgyban lévő ólom 7. Röntgensugár-diffrakcióhoz való ólom-sztearát kristály 8. Hordozható röntgenfluoreszcenciás spektrométerek sugárforrásául szolgáló kadmiumizotóp Érzékelőelemek, jelzőkészülékek és elektródok 1a. Ionszelektív elektródokban lévő ólom és kadmium, beleértve a pH-elektródok üvegében lévőt is 1b. Elektrokémiás oxigénérzékelők ólomanódja 1c. Infravörösfény-detektorokban lévő ólom, kadmium és higany 1d. Referenciaelektródokban – alacsony kloridtartalmú higany-klorid, valamint higany-szulfát és higany-oxid elektródokban – lévő higany Egyéb 9. Hélium-kadmium lézerekben lévő kadmium 10. Atomadszorpciós spektroszkópiás lámpákban lévő ólom és kadmium 11. Mágneses rezonanciás képalkotó berendezésekben szupravezetőként és hővezetőként használt fémötvözetekben lévő ólom 12. Mágneses rezonanciás képalkotó berendezések és szupravezető kvantum-interferométerek (SQUID) szupravezető anyagainak fém kapcsolódási felületeiben lévő ólom és kadmium 13. Ellensúlyokban lévő ólom 14. Ultrahangos jelátalakítókhoz való egykristályos piezoelektromos anyagokban lévő ólom 15. Ultrahangos jelátalakítókhoz való forraszanyagban lévő ólom 16. Igen nagyfokú pontossággal rendelkező kapacitás- és veszteségmérő hidakban lévő higany, valamint felügyeleti és vezérlő eszközök nagyfrekvenciás RF kapcsolóiban és reléiben lévő higany, kapcsolónként, illetve relénként legfeljebb 20 mg mennyiségben 17. Hordozható sürgősségi defibrillátorokhoz való forraszanyagban lévő ólom 18. A 8–14 μm-es tartományban működő, nagy teljesítményű infravörös képalkotó modulok forraszanyagaiban lévő ólom 19. „Folyadékkristály szilíciumon” (LCoS) technológiájú kijelzőkben lévő ólom 20. Röntgensugárzás mérésére szolgáló szűrőkben lévő kadmium V. MELLÉKLET Az 5. cikkben említett mentesség megadására, annak megújítására és visszavonására irányuló kérelmek Mentességi, a mentesség megújítására vagy értelemszerűen visszavonására irányuló kérelmet nyújthat be a gyártó, a gyártó meghatalmazott képviselője vagy az ellátási láncban részt vevő bármely gazdasági szereplő. A kérelemnek legalább a következőket tartalmaznia kell: a) a kérelmező neve, címe és kapcsolattartási adatai; b) az anyagra vagy az alkotóelemre vonatkozó információk, valamint a mentesség vagy annak visszavonása tárgyát képező anyagban vagy alkotóelemben előforduló összetevők egyedi felhasználása és különleges jellemzői; c) a mentesség vagy annak visszavonása ellenőrizhető és átfogó hivatkozással ellátott indokolása az 5. cikkben megállapított feltételekkel összhangban; d) az esetleges alternatív anyagok, alkotóelemek vagy tervezések életciklus alapján történő elemzése, beleértve adott esetben a független kutatásokról szóló információkat és szakértők által felülvizsgált tanulmányokat, valamint a kérelmező fejlesztési tevékenységeit, és az ilyen alternatív anyagok rendelkezésre állásának elemzése; e) információ az elektromos és elektronikus berendezések hulladékaiból származó anyagok újrafelhasználásra vagy újrafeldolgozásra való esetleges előkészítéséről szóló 2002/96/EK irányelv II. melléklete szerinti, a hulladék megfelelő kezelésére vonatkozó előírásokról; f) egyéb lényeges információ; g) a kérelmező által a lehetséges alternatívák kidolgozására, kidolgozásuk kérelmezésére és/vagy ezen alternatívák alkalmazására javasolt intézkedések, beleértve ezek ütemtervét; h) adott esetben hivatkozás a védettnek tekintendő információra, ellenőrzésre alkalmas igazolással együtt; i) mentesség kérelmezésekor a mentesség pontos és világos megfogalmazására vonatkozó javaslat; j) a kérelem összegzése. VI. MELLÉKLET EU–MEGFELELŐSÉGI NYILATKOZAT 1. … sz. (az elektromos vagy elektronikus berendezés egyedi azonosítója): 2. A gyártónak vagy meghatalmazott képviselőjének neve és címe: 3. E megfelelőségi nyilatkozat a gyártó (vagy a telepítést végző) kizárólagos felelősségére kerül kibocsátásra: 4. A nyilatkozat tárgya (az elektromos vagy elektronikus berendezés nyomon követésére alkalmas azonosítás, szükség esetén fénykép is): 5. E nyilatkozat fent leírt tárgya összhangban van az egyes veszélyes anyagok elektromos és elektronikus berendezésekben való alkalmazásának korlátozásáról szóló, 2011. június 8-i 2011/65/EU európai parlamenti és tanácsi irányelvvel ( *1 ) . 6. Adott esetben hivatkozás az alkalmazásra került vonatkozó harmonizált szabványokra, illetőleg azokra a műszaki leírásokra, amelyekre nézve a megfelelésről nyilatkoznak: 7. Kiegészítő információk: … nevében aláírva (kibocsátás helye és kelte): (név, beosztás) (aláírás): ( *1 ) HL L 174., 2011.7.1., 88. o . VII. MELLÉKLET A. RÉSZ A hatályon kívül helyezett irányelv és annak módosításai (utalás a 26. cikkben) 2002/95/EK európai parlamenti és tanácsi irányelv ( HL L 37., 2003.2.13., 19. o. ) 2005/618/EK bizottsági határozat ( HL L 214., 2005.8.19., 65. o. ) 2005/717/EK bizottsági határozat ( HL L 271., 2005.10.15., 48. o. ) 2005/747/EK bizottsági határozat ( HL L 280., 2005.10.25., 18. o. ) 2006/310/EK bizottsági határozat ( HL L 115., 2006.4.28., 38. o. ) 2006/690/EK bizottsági határozat ( HL L 283., 2006.10.14., 47. o. ) 2006/691/EK bizottsági határozat ( HL L 283., 2006.10.14., 48. o. ) 2006/692/EK bizottsági határozat ( HL L 283., 2006.10.14., 50. o. ) 2008/35/EK európai parlamenti és tanácsi irányelv ( HL L 81., 2008.3.20., 67. o. ) 2008/385/EK bizottsági határozat ( HL L 136., 2008.5.24., 9. o. ) 2009/428/EK bizottsági határozat ( HL L 139., 2009.6.5., 32. o. ) 2009/443/EK bizottsági határozat ( HL L 148., 2009.6.11., 27. o. ) 2010/122/EU bizottsági határozat ( HL L 49., 2010.2.26., 32. o. ) 2010/571/EU bizottsági határozat ( HL L 251., 2010.9.25., 28. o. ) B. RÉSZ A nemzeti jogba való átültetésre előírt határidők jegyzéke (utalás a 26. cikkben) Irányelv A nemzeti jogba való átültetés határideje 2002/95/EK 2004. augusztus 12. 2008/35/EK — VIII. MELLÉKLET Megfelelési táblázat 2002/95/EK irányelv Ezen irányelv 1. cikk, 1. cikk, 2. cikk, (1) bekezdés 2. cikk, (1) bekezdés, 2. cikk, (2) bekezdés, I. melléklet 2. cikk, (2) bekezdés 2. cikk, (3) bekezdés 2. cikk, (3) bekezdés 2. cikk, (4) bekezdés, bevezető szöveg — 2. cikk, (4) bekezdés 3. cikk, a) pont 3. cikk, (1), (2) bekezdés 3. cikk, b) pont — — 3. cikk, (6)–(28) bekezdés 4. cikk, (1) bekezdés 4. cikk, (1) bekezdés, II. melléklet — 4. cikk, (3), (4) bekezdés 4. cikk, (2) bekezdés 4. cikk, (6) bekezdés 4. cikk, (3) bekezdés — 5. cikk, (1) bekezdés, bevezető szöveg 5. cikk, (1) bekezdés, bevezető szöveg 5. cikk, (1) bekezdés, a) pont 4. cikk, (2) bekezdés 5. cikk, (1) bekezdés, b) pont 5. cikk, (1) bekezdés, a) pont, első és harmadik francia bekezdés — 5. cikk, (1) bekezdés, a) pont, második francia bekezdés 5. cikk, (1) bekezdés, a) pont, utolsó bekezdés 5. cikk, (1) bekezdés, c) pont 5. cikk, (1) bekezdés, b) pont — 5. cikk, (2) bekezdés 5. cikk, (3)–(6) bekezdés 5. cikk, (2) bekezdés 5. cikk, (7) bekezdés — 5. cikk, (8) bekezdés 6. cikk 6. cikk — 7–18. cikk 7. cikk 19–22. cikk 8. cikk 23. cikk 9. cikk 25. cikk — 26. cikk 10. cikk 27. cikk 11. cikk 28. cikk — I–II. melléklet Melléklet, 1–39. pont III. melléklet, 1–39. pont — IV., V., VI–VIII. melléklet",
+  "metadata": {
+    "detectedMarkets": [
+      "EU"
+    ],
+    "regulatoryTypes": [
+      "chemical"
+    ],
+    "productCategories": [],
+    "charCount": 79089,
+    "region": "EU",
+    "supplement_id": "eu-2011-65-rohs",
+    "source_url": "https://publications.europa.eu/resource/celex/32011L0065",
+    "content_url": "https://publications.europa.eu/resource/cellar/6be9a15c-0644-4f7d-9911-462a649b5c0c.0001.03/DOC_1",
+    "official_channel": "Publications Office of the European Union",
+    "why_added": "Core EU hazardous-substance restriction for electrical and electronic products.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/eu/eu-2011-65-rohs.rdf",
+      "raw/eu/eu-2011-65-rohs.xhtml"
+    ],
+    "primary_file": "raw/eu/eu-2011-65-rohs.xhtml"
+  }
+}

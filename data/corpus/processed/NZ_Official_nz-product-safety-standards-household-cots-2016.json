@@ -1,0 +1,46 @@
+{
+  "id": "nz-product-safety-standards-household-cots-2016",
+  "title": "Household cot standard",
+  "fileName": "NZ_product_safety_standards_household_cots_2016.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/nz/NZ_product_safety_standards_household_cots_2016.html",
+  "sourceType": "html",
+  "region": "NZ",
+  "pageCount": 1,
+  "totalChars": 851,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 851,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "About the standard Children may be left unattended in a cot for long periods of time, so it's important the cot is safe. Regulatory measures were introduced to mitigate the risks associated with: new"
+    }
+  ],
+  "tables": [],
+  "rawText": "About the standard Children may be left unattended in a cot for long periods of time, so it's important the cot is safe. Regulatory measures were introduced to mitigate the risks associated with: new cots entering the market, and second-hand cots, to prevent the risks associated with older design cots from being passed on to others. We recommend that any time an infant or young child need to sleep that they be put in a safe sleep environment. Sleep safety – cots, bunk beds and baby slings More information Household cots — Commerce Commission Te Komihana Tauhokohoko (external link) Product Safety Standards (Household Cots) Regulations 2005 — New Zealand Legislation Te Tari Tohutohu Pāremata (external link) NOTE The standard, AS/NZS 2172:2003, should to be read in conjunction with the regulations, because the regulations modify the standard.",
+  "metadata": {
+    "detectedMarkets": [
+      "NZ"
+    ],
+    "regulatoryTypes": [
+      "product_safety"
+    ],
+    "productCategories": [
+      "toys"
+    ],
+    "charCount": 851,
+    "region": "NZ",
+    "supplement_id": "nz-product-safety-standards-household-cots-2016",
+    "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard",
+    "content_url": "",
+    "official_channel": "Product Safety New Zealand",
+    "why_added": "New Zealand household cot safety coverage for baby and nursery products.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+    ],
+    "primary_file": "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+  }
+}

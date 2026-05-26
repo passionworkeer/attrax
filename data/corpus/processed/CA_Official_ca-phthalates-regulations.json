@@ -1,0 +1,46 @@
+{
+  "id": "ca-phthalates-regulations",
+  "title": "Phthalates Regulations",
+  "fileName": "CA_phthalates_regulations.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/ca/CA_phthalates_regulations.xml",
+  "sourceType": "xml",
+  "region": "CA",
+  "pageCount": 1,
+  "totalChars": 2504,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 2504,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "SOR/2016-188 2016 6 22 2019 6 22 CANADA CONSUMER PRODUCT SAFETY ACT Phthalates Regulations P.C. 2016-615 2016 6 21 His Excellency the Governor General in Council, on the recommendation of the Minister"
+    }
+  ],
+  "tables": [],
+  "rawText": "SOR/2016-188 2016 6 22 2019 6 22 CANADA CONSUMER PRODUCT SAFETY ACT Phthalates Regulations P.C. 2016-615 2016 6 21 His Excellency the Governor General in Council, on the recommendation of the Minister of Health, pursuant to section 37 of the Canada Consumer Product Safety Act a , makes the annexed Phthalates Regulations . a S.C. 2010, c. 21 Interpretation Definitions 1 The following definitions apply in these Regulations. child care article means a product that is intended to facilitate the relaxation, sleep, hygiene, feeding, sucking or teething of a child under four years of age. ( article de puériculture ) good laboratory practices means practices that are in accordance with the principles set out in the Organisation for Economic Co-operation and Development document entitled OECD Principles of Good Laboratory Practice , Number 1 of the OECD Series on Principles of Good Laboratory Practice and Compliance Monitoring , ENV/MC/CHEM(98)17, the English version of which is dated January 21, 1998 and the French version of which is dated March 6, 1998. ( bonnes pratiques de laboratoire ) toy means a product that is intended for use by a child under 14 years of age in learning or play. ( jouet ) Requirements DEHP, DBP and BBP 2 The vinyl in a toy or child care article must not contain more than 1 000 mg/kg of di(2-ethylhexyl) phthalate (DEHP), dibutyl phthalate (DBP) or benzyl butyl phthalate (BBP) when tested in accordance with a method that conforms to good laboratory practices. DINP, DIDP and DNOP 3 (1) The vinyl in any part of a toy or child care article that can, in a reasonably foreseeable manner, be placed in the mouth of a child under four years of age must not contain more than 1 000 mg/kg of diisononyl phthalate (DINP), diisodecyl phthalate (DIDP) or di-n-octyl phthalate (DNOP) when tested in accordance with a method that conforms to good laboratory practices. Interpretation (2) For the purpose of subsection (1), a part of a toy or child care article can be placed in the mouth of a child under four years of age if (a) it can be brought to the child’s mouth and kept there so that it can be sucked or chewed; and (b) one of its dimensions is less than 5 cm. Dimensions — deflated state (3) For the purpose of paragraph (2)(b), if a part of a toy or child care article is inflatable, its dimensions must be determined in its deflated state. Repeal 4 [Repeal] Coming into Force Registration 5 These Regulations come into force on the day on which they are registered.",
+  "metadata": {
+    "detectedMarkets": [
+      "CA"
+    ],
+    "regulatoryTypes": [
+      "product_safety"
+    ],
+    "productCategories": [
+      "toys"
+    ],
+    "charCount": 2504,
+    "region": "CA",
+    "supplement_id": "ca-phthalates-regulations",
+    "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml",
+    "content_url": "",
+    "official_channel": "Justice Laws Website, Government of Canada",
+    "why_added": "Canada phthalate restrictions for toys and child-care articles.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/ca/CA_phthalates_regulations.xml"
+    ],
+    "primary_file": "raw/ca/CA_phthalates_regulations.xml"
+  }
+}

@@ -185,8 +185,25 @@
     }
   ],
   "ingestion_status": {
-    "processed_into_current_corpus": false,
+    "processed_into_current_corpus": true,
     "faiss_rebuilt": false,
-    "reason": "User requested isolated storage; files are staged for review before ingestion."
+    "processed_at": "2026-05-26T15:38:57+08:00",
+    "processed_files": [
+      "data/corpus/processed/EU_Official_eu-2024-2847-cra.json",
+      "data/corpus/processed/EU_Official_eu-2024-1781-espr.json",
+      "data/corpus/processed/EU_Official_eu-2024-2853-product-liability.json",
+      "data/corpus/processed/EU_Official_eu-2022-2380-common-charger.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1263-button-coin-batteries.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1250-toy-safety.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1262-magnets.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1303-lead-paint.json",
+      "data/corpus/processed/UK_Official_uk-psti-consumer-connectable-security.json",
+      "data/corpus/processed/UK_Official_uk-ukca-conformity-assessment.json",
+      "data/corpus/processed/CN_Official_cn-ccc-catalogue-scope-2023.json",
+      "data/corpus/processed/CN_Official_cn-ccc-electronics-safety-accessories-2023.json",
+      "data/corpus/processed/CN_Official_cn-ccc-power-bank-marking-pilot-2025.json",
+      "data/corpus/processed/CN_Official_cn-ccc-eleven-rules-2026.json"
+    ],
+    "report": "data/regulation_supplements/2026-05-25_official_sources/ingestion_report.json"
   }
 }

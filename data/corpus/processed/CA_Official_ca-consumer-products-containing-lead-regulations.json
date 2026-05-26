@@ -1,0 +1,45 @@
+{
+  "id": "ca-consumer-products-containing-lead-regulations",
+  "title": "Consumer Products Containing Lead Regulations",
+  "fileName": "CA_consumer_products_containing_lead_regulations.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/ca/CA_consumer_products_containing_lead_regulations.xml",
+  "sourceType": "xml",
+  "region": "CA",
+  "pageCount": 1,
+  "totalChars": 3133,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 3133,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "SOR/2018-83 2018 4 23 2019 6 22 CANADA CONSUMER PRODUCT SAFETY ACT Consumer Products Containing Lead Regulations P.C. 2018-437 2018 4 20 His Excellency the Governor General in Council, on the recommen"
+    }
+  ],
+  "tables": [],
+  "rawText": "SOR/2018-83 2018 4 23 2019 6 22 CANADA CONSUMER PRODUCT SAFETY ACT Consumer Products Containing Lead Regulations P.C. 2018-437 2018 4 20 His Excellency the Governor General in Council, on the recommendation of the Minister of Health, pursuant to section 37 a of the Canada Consumer Product Safety Act b , makes the annexed Consumer Products Containing Lead Regulations . a S.C. 2016, c. 9, s. 67 b S.C. 2010, c. 21 Interpretation Definitions 1 The following definitions apply in these Regulations. accessible part means any part of a product that may be touched, licked, mouthed or swallowed during the reasonably foreseeable use of the product. ( partie accessible ) consumer product containing lead means any of the following products that contains lead: (a) a product that is brought into contact with the user’s mouth during normal use, except for (i) a kitchen utensil, or (ii) a product that is subject to the Glazed Ceramics and Glassware Regulations ; (b) any clothing or clothing accessory that is intended for use by a child under 14 years of age; (c) a product that is intended for use in learning or play by a child under 14 years of age; (d) a book or similar printed product that is intended for a child under 14 years of age, except if it is (i) printed on paper or cardboard, and (ii) printed and bound in a conventional manner using conventional materials; (e) a product whose primary purpose is to facilitate the relaxation, sleep, hygiene, carrying or transportation of a child under four years of age. ( produit de consommation contenant du plomb ) good laboratory practices means practices that are in accordance with the principles set out in the Organisation for Economic Co-operation and Development document entitled OECD Principles of Good Laboratory Practice , Number 1 of the OECD Series on Principles of Good Laboratory Practice and Compliance Monitoring , ENV/MC/CHEM(98)17, the English version of which is dated January 21, 1998 and the French version of which is dated March 6, 1998. ( bonnes pratiques de laboratoire ) Requirements Lead content — accessible part 2 (1) Subject to subsection (2), each accessible part of a consumer product containing lead must not contain more than 90 mg/kg of lead when tested in accordance with good laboratory practices. Exception (2) Each accessible part may contain more than 90 mg/kg of lead if (a) lead is necessary to produce an essential characteristic of the part; (b) no alternative part containing less lead is available; and (c) the part, when tested in accordance with good laboratory practices, does not release more than 90 mg/kg of lead. Repeal 3 The Consumer Products Containing Lead (Contact with Mouth) Regulations 1 are repealed. 1 SOR/2010-273 Coming into Force Six months after publication * 4 These Regulations come into force on the day that, in the sixth month after the month in which they are published in the Canada Gazette , Part II, has the same calendar number as the day on which they are published or, if that sixth month has no day with that number, the last day of that sixth month. * [Note: Regulations in force November 2, 2018.]",
+  "metadata": {
+    "detectedMarkets": [
+      "CA"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "chemical"
+    ],
+    "productCategories": [],
+    "charCount": 3133,
+    "region": "CA",
+    "supplement_id": "ca-consumer-products-containing-lead-regulations",
+    "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml",
+    "content_url": "",
+    "official_channel": "Justice Laws Website, Government of Canada",
+    "why_added": "Canada lead restrictions for affected consumer products.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+    ],
+    "primary_file": "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+  }
+}

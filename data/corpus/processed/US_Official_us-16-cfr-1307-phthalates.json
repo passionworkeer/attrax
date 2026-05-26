@@ -1,0 +1,46 @@
+{
+  "id": "us-16-cfr-1307-phthalates",
+  "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+  "fileName": "US_16_CFR_Part_1307_phthalates.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/us/US_16_CFR_Part_1307_phthalates.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 2457,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 2457,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1307—PROHIBITION OF CHILDREN'S TOYS AND CHILD CARE ARTICLES CONTAINING SPECIFIED PHTHALATES Authority: Sec. 108, Pub. L. 110-314, 122 Stat. 3016 (August 14, 2008); Pub. L. 112-28, 125 Stat. 273 ("
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1307—PROHIBITION OF CHILDREN'S TOYS AND CHILD CARE ARTICLES CONTAINING SPECIFIED PHTHALATES Authority: Sec. 108, Pub. L. 110-314, 122 Stat. 3016 (August 14, 2008); Pub. L. 112-28, 125 Stat. 273 (August 12, 2011). Source: 82 FR 49982, Oct. 27, 2017, unless otherwise noted. § 1307.1 Scope and application. This part prohibits the manufacture for sale, offer for sale, distribution in commerce or importation into the United States of any children's toy or child care article containing any of the phthalates specified in § 1307.3. § 1307.2 Definitions. The definitions of the Consumer Product Safety Act (CPSA) (15 U.S.C. 2052(a)) and the Consumer Product Safety Improvement Act of 2008 (CPSIA) (Pub. L. 110-314, sec. 108(g)) apply to this part. Specifically, as defined in the CPSIA: (a) Children's toy means a consumer product designed or intended by the manufacturer for a child 12 years of age or younger for use by the child when the child plays. (b) Child care article means a consumer product designed or intended by the manufacturer to facilitate sleep or the feeding of children age 3 and younger, or to help such children with sucking or teething. § 1307.3 Prohibition of children's toys and child care articles containing specified phthalates. (a) As provided in section 108(a) of the CPSIA, the manufacture for sale, offer for sale, distribution in commerce, or importation into the United States of any children's toy or child care article that contains concentrations of more than 0.1 percent of di-(2-ethylhexyl) phthalate (DEHP) , dibutyl phthalate (DBP), or benzyl butyl phthalate (BBP) is prohibited. (b) In accordance with section 108(b)(3) of the CPSIA, the manufacture for sale, offer for sale, distribution in commerce, or importation into the United States of any children's toy or child care article that contains concentrations of more than 0.1 percent of diisononyl phthalate (DINP), diisobutyl phthalate (DIBP), di- n -pentyl phthalate (DPENP), di- n -hexyl phthalate (DHEXP), or dicyclohexyl phthalate (DCHP) is prohibited. (c) In accordance with section 108(c) of the CPSIA, the restrictions stated in paragraphs (a) and (b) of this section apply to any plasticized component part of a children's toy or child care article or any other component part of a children's toy or child care article that is made of other materials that may contain phthalates. [82 FR 49982, Oct. 27, 2017, as amended at 83 FR 34764, July 23, 2018]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety"
+    ],
+    "productCategories": [
+      "toys"
+    ],
+    "charCount": 2457,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1307-phthalates",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1307",
+    "content_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1307",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US CPSC phthalate restrictions for toys and child-care articles.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+  }
+}

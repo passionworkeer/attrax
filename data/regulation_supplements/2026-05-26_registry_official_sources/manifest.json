@@ -814,5 +814,38 @@
     "Raw files remain isolated until reviewed and explicitly ingested.",
     "US eCFR entries use official API XML with a pinned date.",
     "EU entries include Publications Office RDF metadata and resolved English Cellar XHTML text when available."
-  ]
+  ],
+  "ingestion_status": {
+    "processed_into_current_corpus": true,
+    "faiss_rebuilt": false,
+    "processed_at": "2026-05-26T18:05:35+08:00",
+    "processed_files": [
+      "data/corpus/processed/EU_Official_eu-2023-988-general-product-safety.json",
+      "data/corpus/processed/EU_Official_eu-2009-48-toy-safety.json",
+      "data/corpus/processed/EU_Official_eu-2011-65-rohs.json",
+      "data/corpus/processed/EU_Official_eu-2012-19-weee.json",
+      "data/corpus/processed/EU_Official_eu-2014-53-radio-equipment.json",
+      "data/corpus/processed/EU_Official_eu-2014-30-emc.json",
+      "data/corpus/processed/EU_Official_eu-2014-35-low-voltage.json",
+      "data/corpus/processed/EU_Official_eu-2019-1020-market-surveillance.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1307-phthalates.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1630-carpets-rugs.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1631-small-carpets-rugs.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1633-mattresses-open-flame.json",
+      "data/corpus/processed/US_Official_us-16-cfr-1700-poison-prevention-packaging.json",
+      "data/corpus/processed/CA_Official_ca-consumer-chemicals-containers-regulations-2001.json",
+      "data/corpus/processed/CA_Official_ca-surface-coating-materials-regulations.json",
+      "data/corpus/processed/CA_Official_ca-phthalates-regulations.json",
+      "data/corpus/processed/CA_Official_ca-childrens-sleepwear-regulations.json",
+      "data/corpus/processed/CA_Official_ca-consumer-products-containing-lead-regulations.json",
+      "data/corpus/processed/CA_Official_ca-corded-window-coverings-regulations.json",
+      "data/corpus/processed/UK_Official_uk-weee-regulations-guidance.json",
+      "data/corpus/processed/UK_Official_uk-packaging-epr-who-is-affected.json",
+      "data/corpus/processed/UK_Official_uk-reach-compliance-guidance.json",
+      "data/corpus/processed/UK_Official_uk-hse-svhc-overview.json",
+      "data/corpus/processed/NZ_Official_nz-product-safety-standards-2005.json",
+      "data/corpus/processed/NZ_Official_nz-product-safety-standards-household-cots-2016.json"
+    ],
+    "report": "data/regulation_supplements/2026-05-26_registry_official_sources/ingestion_report.json"
+  }
 }
