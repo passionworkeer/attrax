@@ -1,0 +1,927 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="pt-br" dir="ltr"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang="pt-br" dir="ltr"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="pt-br" dir="ltr"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+
+<html class="no-js" lang="pt-br" dir="ltr"> <!--<![endif]-->
+	<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61388073-6" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+    <script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-61388073-6');
+    </script>
+
+    <!-- Compilar normas -->
+    <script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+      // Função que ativa ou desativa a remoção dos elementos tachados
+      window.compila = function() {
+        var elems = document.body.getElementsByTagName('*');
+        var active = document.body.classList.toggle('compiled'); // Alterna o estado
+
+        for (var i = 0; i < elems.length; i++) {
+          var elemStyle = window.getComputedStyle(elems[i]);
+
+          // Verifica se o elemento tem 'line-through' e aplica/remova conforme o estado
+          if (elemStyle.getPropertyValue('text-decoration').startsWith('line-through')) {
+            elems[i].style.display = active ? 'none' : ''; // Oculta ou restaura o elemento
+          }
+        }
+
+        // Atualiza o título do botão conforme o estado atual
+        var botaoCompila = document.querySelector('.botao-compila');
+        botaoCompila.title = active ? 'Desativar Texto Compilado' : 'Ativar Texto Compilado';
+
+        // Adiciona ou remove o hash #compilado na URL
+        if (active) {
+          window.location.hash = 'compilado'; // Adiciona #compilado na URL
+          botaoCompila.classList.add('active'); // Adiciona a classe 'active' ao botão
+        } else {
+          history.pushState("", document.title, window.location.pathname + window.location.search); // Remove o hash
+          botaoCompila.classList.remove('active'); // Remove a classe 'active' do botão
+        }
+      }
+
+      // Verifica se a URL contém #compilado ao carregar a página
+      document.addEventListener("DOMContentLoaded", function() {
+        if (window.location.hash === '#compilado') {
+          window.compila(); // Ativa a compilação automaticamente
+        }
+      });
+    </script>
+
+	  <title>Anatel - Portaria nº 221, de 4 de março de 2015 (REVOGADA)</title>
+      <title>Agência Nacional de Telecomunicações</title>
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <meta name="Description" content="Informações sobre a Agência Nacional de Telecomunicações"/>
+<meta name="keywords" content="Setor regulado, Consumidor, Anatel, Telecomunicações, Legislação, Telefonia Fixa, Telefonia Móvel, Celular, Banda Larga, Internet, Operadoras, Serviços de Telecomunicações, Infraestrutura de Telecomunicações, Radioamador, Radiofrequência"/>
+      <meta name="author" content="ANATEL"/>
+      <meta name="robots" content="index, follow"/>
+<!-- Telecomunicações, ANATEL, Regulação -->
+
+        <!--[if lt IE 9]>
+        <script src="/legislacao/templates/padraogoverno01/js/html5shiv.js"></script>
+        <![endif]-->
+		
+		
+        <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/bootstrap/css/bootstrap.min.css" type='text/css'/>
+        <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/css/template-legislacao.css" type='text/css'/>
+                    <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/css/icones-bmp-institucional.css" type='text/css'/>
+                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" crossorigin="anonymous">
+        <!--[if lt IE 10]>
+        <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/css/ie.css" />
+        <![endif]-->
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/css/ie8.css" />
+        <![endif]-->
+        <!--[if lt IE 8]>
+        <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/css/ie7.css" />
+        <link rel="stylesheet" href="/legislacao/font-awesome/css/font-awesome-ie7.min.css" />
+        <![endif]-->
+            <base href="https://informacoes.anatel.gov.br/legislacao/resolucoes/2023/1852-resolucao-780" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Instituição, Comissão de Segurança, Segurança da Informação, CSIC, PortariaRevogada" />
+	<meta name="rights" content="Direitos reservados à Anatel. As normas podem ser utilizadas desde que informada a fonte." />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Dispõe sobre a instituição da Comissão de Segurança da Informação e Comunicações da Anatel (CSIC/Anatel) e da Equipe de Tratamento de Incidentes em Redes Computacionais (ETIR/Anatel)." />
+	<title>Anatel - Portaria nº 221, de 4 de março de 2015 (REVOGADA)</title>
+	<link href="/legislacao/templates/padraogoverno01/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<link href="/legislacao/media/com_attachments/css/attachments_hide.css" rel="stylesheet" type="text/css" />
+	<link href="/legislacao/media/com_attachments/css/attachments_list.css" rel="stylesheet" type="text/css" />
+	<link href="https://informacoes.anatel.gov.br/legislacao/modules/mod_ebstickycookienotice/tmpl/assets/css/cookie.css?v=868454742" rel="stylesheet" type="text/css" />
+	<link href="https://informacoes.anatel.gov.br/legislacao/modules/mod_ebstickycookienotice/tmpl/assets/css/responsive.css?v=2132324566" rel="stylesheet" type="text/css" />
+	<link href="/legislacao/media/mod_languages/css/template.css?7acd2053edfb97467c7bf73ffe8ac30f" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+#scrollToTop {
+	cursor: pointer;
+	font-size: 0.9em;
+	position: fixed;
+	text-align: center;
+	z-index: 9999;
+	-webkit-transition: background-color 0.2s ease-in-out;
+	-moz-transition: background-color 0.2s ease-in-out;
+	-ms-transition: background-color 0.2s ease-in-out;
+	-o-transition: background-color 0.2s ease-in-out;
+	transition: background-color 0.2s ease-in-out;
+
+	background: #3e67b1;
+	color: #ffffff;
+	border-radius: 5px;
+	padding-left: 12px;
+	padding-right: 12px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	right: 20px; bottom: 20px;
+}
+
+#scrollToTop:hover {
+	background: #3a72bc;
+	color: #ffffff;
+}
+
+#scrollToTop > img {
+	display: block;
+	margin: 0 auto;
+}
+	</style>
+	<script type="application/json" class="joomla-script-options new">{"csrf.token":"d6c5f2b5c82cb14118c1022a727ca70f","system.paths":{"root":"\/legislacao","base":"\/legislacao"}}</script>
+	<script src="/legislacao/media/jui/js/jquery.min.js?7acd2053edfb97467c7bf73ffe8ac30f" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	<script src="/legislacao/media/jui/js/jquery-noconflict.js?7acd2053edfb97467c7bf73ffe8ac30f" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	<script src="/legislacao/media/jui/js/jquery-migrate.min.js?7acd2053edfb97467c7bf73ffe8ac30f" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	<script src="/legislacao/media/plg_system_sl_scrolltotop/js/scrolltotop_jq.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	<script src="/legislacao/media/com_attachments/js/attachments_refresh.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	<script src="https://informacoes.anatel.gov.br/legislacao/modules/mod_ebstickycookienotice/tmpl/assets/js/cookie_script.js?v=1320741849" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	<script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+jQuery(document).ready(function() {
+	jQuery(document.body).SLScrollToTop({
+		'image':		'',
+		'text':			'Voltar ao topo',
+		'title':		'scroll top',
+		'className':	'scrollToTop',
+		'duration':		500
+	});
+});
+
+/*===  EASY GOOGLE ANALYTICS : START TRACKING CODE  ===*/
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-37108821-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+/*===  EASY GOOGLE ANALYTICS : END TRACKING CODE  ===*/
+
+	</script>
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+	
+                    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,800,700" rel='stylesheet' type='text/css'>
+            	
+	<!--CHAMADA CUSTOMIZACAO -->
+	<script src="/legislacao/templates/padraogoverno01/js/custom-portal.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>
+	 <link rel="stylesheet" href="/legislacao/templates/padraogoverno01/css/customizacao-legislacao.css?26052026060014" type='text/css'/>
+	<style type="text/css">@font-face {font-family:Raleway;font-style:normal;font-weight:400;src:url(/cf-fonts/s/raleway/5.0.16/cyrillic/400/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Raleway;font-style:normal;font-weight:400;src:url(/cf-fonts/s/raleway/5.0.16/latin/400/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Raleway;font-style:normal;font-weight:400;src:url(/cf-fonts/s/raleway/5.0.16/cyrillic-ext/400/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Raleway;font-style:normal;font-weight:400;src:url(/cf-fonts/s/raleway/5.0.16/vietnamese/400/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Raleway;font-style:normal;font-weight:400;src:url(/cf-fonts/s/raleway/5.0.16/latin-ext/400/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+</head>
+<body  id="main-navigation">
+
+<a href="#conteudo" accesskey="1">
+<a href="#main-navigation" accesskey="2">
+<a href="#search" accesskey="3">  
+<a href="#portal-footer" accesskey="4">     
+
+    <a class="hide" id="topo" href="#accessibility">Ir direto para menu de acessibilidade.</a>
+    <noscript>
+    <div class="error minor-font">
+        Seu navegador de internet está sem suporte à JavaScript. Por esse motivo algumas funcionalidades do site podem não estar acessíveis.
+    </div>
+    </noscript>
+    <!--[if lt IE 7]><center><strong>Atenção, a versão de seu navegador não é compatível com este sítio. Atualize seu navegador.</strong></center><![endif]-->
+		
+<div class="layout">
+   
+    <header class="super-destaque">
+         <div class="noticia-destaque">
+        <div class="container tmpl-custom">
+            
+            <!-- fim .row-fluid -->
+            <div class="row-fluid">
+                <div id="logo" class="span4">
+				
+                    <a href="https://www.gov.br/mcom" title="Ministério das Comunicações">
+                        
+												
+						<span class="portal-title-1"></span>
+
+                                                        <span class="portal-description">Ministério das Comunicações</span>
+                                
+                        									
+                    </a>
+					
+                </div>
+                  
+                <!-- fim .span4 -->
+                <div id="menulateral" class="span8">
+                    	<nav id="" class="row">
+    	<p class="hidden">Opções de acessibilidade</p>
+    	
+<ul class="pull-right" id="portal-siteactions">
+<li class="item-478 siteaction-outros"><a class="siteaction-outros" href="https://www.gov.br/pt-br/orgaos-do-governo"  accesskey="0" >Órgãos do Governo</a></li><li class="item-479 siteaction-outros"><a class="siteaction-outros" href="http://www.acessoainformacao.gov.br"  accesskey="1" >Acesso à Informação</a></li><li class="item-480 siteaction-outros"><a class="siteaction-outros" href="http://www4.planalto.gov.br/legislacao"  accesskey="2" >Legislação</a></li><li class="item-481 siteaction-outros"><a class="siteaction-outros" href="https://www.gov.br/governodigital/pt-br/acessibilidade-digital"  accesskey="3" >Acessibilidade</a></li><li class="item-260 toggle-contraste"><a class="toggle-contraste" href="#"  accesskey="4" >⠀</a></li><li class="item-263 siteaction-vlibras"><a class="siteaction-vlibras" href="https://acesso.gov.br/"  accesskey="5" >⠀</a></li></ul>
+    </nav>
+		<nav id="" class="row">
+    	<p class="hidden">Seleção de Idioma</p>
+    	<div class="mod-languages">
+
+	<ul class="lang-inline">
+						<li class="lang-active" dir="ltr">
+			<a href="/legislacao/resolucoes/2023/1852-resolucao-780">
+							PT						</a>
+			</li>
+								<li dir="ltr">
+			<a href="/legislacao/en/">
+							EN						</a>
+			</li>
+								<li dir="ltr">
+			<a href="/legislacao/es/">
+							ES						</a>
+			</li>
+				</ul>
+
+</div>
+    </nav>
+	
+                </div>
+                <!-- fim .span8 -->
+            </div>
+            <!-- fim .row-fluid -->
+        </div>
+        <!-- fim div.container -->  
+        <div class="sobre" id="search">
+            <div class="container tmpl-custom">
+                <div class="menu-servicos">
+                    <div class="header-icons">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <a href="https://www.gov.br/anatel/pt-br" title="Agência Nacional de Telecomunicações - Anatel">
+                                            
+                             <h1 class="portal-title corto">Agência Nacional de Telecomunicações</h1>
+                        
+                                            </a>
+                    	<nav >
+        <p class="hide">Pesquisar</p>
+        <nav id="portal-searchbox">
+<form action="/legislacao/resolucoes/2023" method="post" class="pull-right">
+    <fieldset>
+        <legend class="hide">Busca</legend>
+        <h2 class="hidden">Buscar no portal</h2>
+        <div class="input-append">
+            <label for="portal-searchbox-field" class="hide">Busca: </label>
+            <input type="text" id="portal-searchbox-field" class="searchField" placeholder="O que você procura?" title="O que você procura?" name="searchword">       
+            <button type="submit" class="btn searchButton"><span class="hide">Buscar</span><i class="fas fa-search"></i></button>
+        </div>
+        <input type="hidden" name="task" value="search" />
+        <input type="hidden" name="option" value="com_search" />
+        <input type="hidden" name="Itemid" value="254" />
+    </fieldset>
+</form>    </nav>
+	
+                    <div class="header-search">
+                        <a href="/legislacao/component/pesquisa/view-results/module-188"><i class="fas fa-search"></i></a>
+                    </div>
+            </div>
+            <!-- .container -->
+        </div>  
+    </div>
+        <!-- fim .sobre -->
+        <div id="conteudo"></div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container tmpl-custom">
+            	<div class="row-fluid">
+		<section>
+						
+<div class="rastro-navegacao row-flutuante">
+<a title="Voltar para a Página Inicial" href="https://www.gov.br/anatel/pt-br"><i class='fas fa-home'></i></a><span class="separator">&gt;</span><a href="/legislacao/" class="pathway">Legislação</a> <span class="separator">&gt;</span> <a href="/legislacao/resolucoes" class="pathway">Resoluções</a> <span class="separator">&gt;</span> <a href="/legislacao/resolucoes/2023" class="pathway">2023</a> <span class="separator">&gt;</span> <a href="/legislacao/portarias-normativas" class="pathway">Portarias Normativas</a> <span class="separator">&gt;</span> <a href="/legislacao/portarias-normativas/2015" class="pathway">2015</a> <span class="separator">&gt;</span> <span>Portaria nº 221, de 4 de março de 2015 (REVOGADA)</span></div>
+		</section>
+	</div>
+	
+            <div class="row-fluid" >
+                                    <!-- Menus Principal -->
+                    <div class="navigation-wrapper">
+                        <div class="container tmpl-custom tmpl-before">
+                            <div id="navigation">
+                                <section id="navigation-section">
+        				
+                                    <!-- <span class="hide">Início do menu principal</span> -->
+        							
+                                    	<nav class="  super-menus">
+		<!-- <h2 >Legislação da Anatel <i class="icon-chevron-down visible-phone visible-tablet pull-right"></i></h2>-->
+		<h2  class="Legislação-da-Anatel"><span>Legislação da Anatel </span><i class="icon-chevron-up pull-right"></i></h2>
+		
+
+<ul>
+<li class="item-105 active deeper parent"><a href="/legislacao/resolucoes" >Resoluções</a><ul><li class="item-545"><a href="/legislacao/resolucoes/2026" >2026</a></li><li class="item-516"><a href="/legislacao/resolucoes/2025" >2025</a></li><li class="item-501"><a href="/legislacao/resolucoes/2024" >2024</a></li><li class="item-493 current active"><a href="/legislacao/resolucoes/2023" >2023</a></li><li class="item-488"><a href="/legislacao/resolucoes/2022" >2022</a></li><li class="item-438"><a href="/legislacao/resolucoes/2021" >2021</a></li><li class="item-430"><a href="/legislacao/resolucoes/2020" >2020</a></li><li class="item-367"><a href="/legislacao/resolucoes/2019" >2019</a></li><li class="item-312"><a href="/legislacao/resolucoes/2018" >2018</a></li><li class="item-299"><a href="/legislacao/resolucoes/2017" >2017</a></li><li class="item-294"><a href="/legislacao/resolucoes/2016" >2016</a></li><li class="item-255"><a href="/legislacao/resolucoes/2015" >2015</a></li><li class="item-226"><a href="/legislacao/resolucoes/2014" >2014</a></li><li class="item-164"><a href="/legislacao/resolucoes/2013" >2013</a></li><li class="item-165"><a href="/legislacao/resolucoes/2012" >2012</a></li><li class="item-166"><a href="/legislacao/resolucoes/2011" >2011</a></li><li class="item-167"><a href="/legislacao/resolucoes/2010" >2010</a></li><li class="item-168"><a href="/legislacao/resolucoes/2009" >2009</a></li><li class="item-169"><a href="/legislacao/resolucoes/2008" >2008</a></li><li class="item-170"><a href="/legislacao/resolucoes/2007" >2007</a></li><li class="item-171"><a href="/legislacao/resolucoes/2006" >2006</a></li><li class="item-172"><a href="/legislacao/resolucoes/2005" >2005</a></li><li class="item-173"><a href="/legislacao/resolucoes/2004" >2004</a></li><li class="item-174"><a href="/legislacao/resolucoes/2003" >2003</a></li><li class="item-175"><a href="/legislacao/resolucoes/2002" >2002</a></li><li class="item-176"><a href="/legislacao/resolucoes/2001" >2001</a></li><li class="item-177"><a href="/legislacao/resolucoes/2000" >2000</a></li><li class="item-178"><a href="/legislacao/resolucoes/1999" >1999</a></li><li class="item-179"><a href="/legislacao/resolucoes/1998" >1998</a></li><li class="item-180"><a href="/legislacao/resolucoes/1997" >1997</a></li><li class="item-181"><a href="/legislacao/resolucoes/resolucoes-conjuntas" >Resoluções Conjuntas</a></li></ul></li><li class="item-118"><a href="/legislacao/sumulas" >Súmulas</a></li><li class="item-182"><a href="/legislacao/portarias-de-delegacao" >Portarias de Delegação</a></li><li class="item-319 parent"><a href="/legislacao/portarias-normativas" >Portarias Normativas</a></li><li class="item-435"><a href="/legislacao/resolucoes-internas" >Resoluções Internas</a></li><li class="item-264"><a href="/legislacao/metodologias-de-calculo-de-multa" >Metodologias de Cálculo de Multa</a></li></ul>
+	</nav>
+		<nav class="  super-menus">
+		<!-- <h2 >Atos da Anatel <i class="icon-chevron-down visible-phone visible-tablet pull-right"></i></h2>-->
+		<h2  class=""><span>Atos da Anatel </span><i class="icon-chevron-up pull-right"></i></h2>
+		
+
+<ul>
+<li class="item-342 parent"><a href="/legislacao/atos-de-certificacao-de-produtos" >Atos de Certificação de Produtos</a></li><li class="item-369 parent"><a class="menu-normas" href="/legislacao/atos-de-requisitos-tecnicos-de-gestao-do-espectro" >Atos de Requisitos Técnicos de Gestão do Espectro</a></li><li class="item-483"><a href="/legislacao/atos-de-numeracao" >Atos de Numeração</a></li><li class="item-543"><a href="/legislacao/atos-complementares-de-regulacao" >Atos Complementares de Regulação</a></li><li class="item-547"><a href="/legislacao/atos-de-requisitos-operacionais-de-outorga-e-licenciamento" >Atos de Requisitos Operacionais de Outorga e Licenciamento</a></li></ul>
+	</nav>
+		<nav class="  super-menus">
+		<!-- <h2 >Demais Normas <i class="icon-chevron-down visible-phone visible-tablet pull-right"></i></h2>-->
+		<h2  class=""><span>Demais Normas </span><i class="icon-chevron-up pull-right"></i></h2>
+		
+
+<ul>
+<li class="item-106"><a href="/legislacao/leis" >Leis</a></li><li class="item-107"><a href="/legislacao/decretos" >Decretos</a></li><li class="item-108"><a href="/legislacao/normas-do-mc" >Normas do MC</a></li><li class="item-293"><a href="/legislacao/instruções-do-dentel" >Instruções do Dentel</a></li></ul>
+	</nav>
+		<nav class="  super-menus">
+		<!-- <h2 >Fiscalização <i class="icon-chevron-down visible-phone visible-tablet pull-right"></i></h2>-->
+		<h2  class=""><span>Fiscalização </span><i class="icon-chevron-up pull-right"></i></h2>
+		
+
+<ul>
+<li class="item-203"><a href="/legislacao/procedimentos-de-fiscalizacao" >Procedimentos de Fiscalização</a></li><li class="item-202"><a href="/legislacao/instrucoes-de-fiscalizacao" >Instruções de Fiscalização</a></li></ul>
+	</nav>
+		<nav class="  super-menus">
+		<!-- <h2 >Glossário <i class="icon-chevron-down visible-phone visible-tablet pull-right"></i></h2>-->
+		<h2  class=""><span>Glossário </span><i class="icon-chevron-up pull-right"></i></h2>
+		
+
+<ul>
+<li class="item-256"><a href="/legislacao/glossario-anatel" >Termos de Telecomunicações</a></li></ul>
+	</nav>
+	
+                                    <span class="hide">Fim do menu principal</span>
+                                </section>
+                            </div>
+                        </div>    
+                    </div>   
+                    <!-- fim Menus Principal -->
+                
+                <div id="content" class="span9  internas">
+                    <section id="content-section">
+                    
+                    <div class="banner-destaque">
+                        
+                    </div>    
+                        <!-- <span class="hide">Início do conteúdo da página</span> -->
+
+                                    
+                    <!-- Chamada da posição paginas de Serviços -->
+                     
+
+                    <!--Fim da chamada de paginas de Serviços -->    
+
+                                                
+                        <!-- INÍCIO - Menu de tradução ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                         <!-- Local: template - html - mod_menu (menutraducao.php) -->
+                        <!-- FINAL - Menu de Tradução +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                        
+                        <!-- INÍCIO - Chapéu do artigo ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                        <!-- <div class="row-fluid">
+                            <p class="section" property="rnews:articleSection">Ciência e Tecnologia</p>
+                        </div> -->
+                        <!-- FINAL - Chapéu do artigo +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+                        <!-- INÍCIO - Menu de contexto ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+                        <!-- Local: template - html - mod_menu (default.php) -->
+                        <!--jdoc:include type="modules" name="modulo-contexto" />
+                        <!-- FINAL - Menu de contexto +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+                        
+                                                                                        
+                                <div class="row-fluid module">
+                                                                                    <!-- Escreve conteúdo das páginas internas -->
+                                                
+                                                ﻿﻿﻿<div class="content-header-options-1 row-fluid redes-sociais">
+
+		<div class="btns-social-like span5 hide">
+															<style>
+    @media print {
+      footer, #scrollToTop, #scrollToTop:hover, .icon-chevron-up:before, .icon-list:before, main .container #navigation .mainmenu-toggle, footer .footer-ferramenta, footer .footer-logos, #content.internas .below-content .line, main div.rastro-navegacao, #barra-brasil, header, #content.internas .content-header-options-1 .btns-social-like {
+        display: none !important;
+      }
+      img.access-button {
+      display: none;
+      }
+      img.pop-up {
+      display: none;
+      }
+      a:after, a[href^="javascript:"]:after, a[href^="#"]:after { 
+        display: none;
+      }
+    }
+
+    /* Estilos para os botões fixos */
+    .fixed-buttons {
+      position: fixed;
+      top: 36%;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000; /* Garante que os botões fiquem no topo */
+    }
+
+    .fixed-buttons div, .fixed-buttons p {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Cor de botão ativa para o botão de compilação */
+    .botao-compila.active {
+      background-color: #4CAF50; /* Verde indica ativo */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Contêiner dos botões fixos -->
+  <div class="fixed-buttons">
+    <div class="facebook" title="Compartilhar no Facebook">
+      <span class="facebook-share" data-js="facebook-share"><i class="fab fa-facebook-f"></i></span>
+    </div>
+
+    <div class="twitter" title="Compartilhar no Twitter">
+      <span class="twitter-share-button" data-lang="pt" data-js="twitter-share"><i class="fab fa-twitter"></i></span>
+    </div>
+
+    <p class="botao-imprime" title="Imprimir">
+      <a href="#" onclick="if (!window.__cfRLUnblockHandlers) return false; window.print();" data-cf-modified-9625bfd2ce209be2e8c3bb39-=""><i class="fas fa-print"></i></a>
+    </p>
+
+    <p class="botao-compila" title="Ativar Texto Compilado">
+      <a href="#" onclick="if (!window.__cfRLUnblockHandlers) return false; window.compila(); return false;" data-cf-modified-9625bfd2ce209be2e8c3bb39-=""><i class="fas fa-file-alt"></i></a>
+    </p>
+  </div>
+
+  <script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+    // Função de compartilhamento no Facebook
+    var facebookShare = document.querySelector('[data-js="facebook-share"]');
+    facebookShare.onclick = function(e) {
+      e.preventDefault();
+      var facebookWindow = window.open('https://www.facebook.com/sharer/sharer.php?u=' + document.URL, 'facebook-popup','height=350, width=600, left='+(window.innerWidth-600)/2+', top='+(window.innerHeight-600)/2);
+      if(facebookWindow.focus) { facebookWindow.focus(); }
+      return false;
+    }
+
+    // Função de compartilhamento no Twitter
+    var twitterShare = document.querySelector('[data-js="twitter-share"]');
+    twitterShare.onclick = function(e) {
+      e.preventDefault();
+      var twitterWindow = window.open('https://twitter.com/share?url=' + document.URL, 'twitter-popup','height=350, width=600, left='+(window.innerWidth-600)/2+', top='+(window.innerHeight-600)/2);
+      if(twitterWindow.focus) { twitterWindow.focus(); }
+      return false;
+    }
+
+    // Função que ativa ou desativa a remoção dos elementos tachados
+    window.compila = function() {
+      var elems = document.body.getElementsByTagName('*');
+      var active = document.body.classList.toggle('compiled'); // Alterna o estado
+
+      for (var i = 0; i < elems.length; i++) {
+        var elemStyle = window.getComputedStyle(elems[i]);
+        if (elemStyle.getPropertyValue('text-decoration').startsWith('line-through')) {
+          elems[i].style.display = active ? 'none' : ''; // Oculta ou restaura o elemento
+        }
+      }
+
+      // Atualiza o título e a cor do botão conforme o estado atual
+      var botaoCompila = document.querySelector('.botao-compila');
+      botaoCompila.title = active ? 'Desativar Texto Compilado' : 'Ativar Texto Compilado';
+      botaoCompila.classList.toggle('active', active);
+
+      // Adiciona ou remove o hash #compilado na URL
+      if (active) {
+        window.location.hash = 'compilado';
+      } else {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+      }
+    }
+
+    // Verifica se a URL contém #compilado ao carregar a página
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.location.hash === '#compilado') {
+        window.compila(); // Ativa a compilação automaticamente
+      }
+    });
+  </script>					<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="9625bfd2ce209be2e8c3bb39-|49" defer></script></div>		
+		
+
+</div>
+
+<div class="item-page">
+
+
+
+	
+
+
+	<h1 class="documentFirstHeading">
+			Portaria nº 221, de 4 de março de 2015 (REVOGADA)		</h1>
+
+	<ul class="actions">
+					</ul>
+
+
+
+<div class="content-header-options-1 row-fluid">
+	<div class="documentByLine span7">
+				
+			
+
+					<span class="documentPublished">
+				Publicado: Quarta, 04 Março 2015 10:05			</span>
+			<span class="separator">|</span>			
+
+					<span class="documentModified">
+				Última atualização: Domingo, 20 Julho 2025 11:07			</span>
+			<span class="separator">|</span>			
+		
+					<span class="documentHits">
+				Acessos: 955			</span>
+					
+		
+	</div>
+</div>
+<!-- fim .content-header-options-1 -->
+
+
+
+	
+		<table style="width: 98%;" border="0" cellspacing="2" cellpadding="20" align="center">
+<tbody>
+<tr>
+<td style="padding-right: 25px; width: 50%; text-align: left;" valign="middle">Revogada pela <a title="Acesse a Resolução Interna" href="https://informacoes.anatel.gov.br/legislacao/resolucoes-internas/1890-resolucao-interna-206">Resolução Interna Anatel nº 206, de 16 de maio de 2023</a></td>
+<td style="width: 50%; text-align: justify;" valign="middle">
+<p style="text-align: justify;">Dispõe sobre a instituição da Comissão de Segurança da Informação e Comunicações da Anatel (CSIC/Anatel) e da Equipe de Tratamento de Incidentes em Redes Computacionais (ETIR/Anatel).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: justify;"> </p>
+<p style="text-align: justify;"><span style="color: #ff0000;"><strong>Observação</strong></span>: Este texto não substitui o publicado no Boletim de Serviço Eletrônico em <a title="Acesse o boletim " href="https://sistemas.anatel.gov.br/anexar-api/publico/anexos/download/37238cbf3845db8e278d801f7714fcf1">4/3/2015</a>.</p>
+<p style="text-align: justify;"> </p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;"><strong>O CONSELHO DIRETOR DA AGÊNCIA NACIONAL DE TELECOMUNICAÇÕES</strong>, no uso das competências que lhe conferem o <a title="Acesse o artigo" href="https://informacoes.anatel.gov.br/legislacao/resolucoes/2013/450-resolucao-612#art133">art. 133</a> do Regimento Interno da Agência Nacional de Telecomunicações, aprovado pela Resolução nº 612, de 29 de abril de 2013,</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">CONSIDERANDO que a metodologia de Gestão da Segurança da Informação e Comunicações da Anatel baseia-se no processo de melhoria contínua, denominado ciclo “PDCA” (Plan-Do-Check-Act), conforme disposto na <a title="Acesse a norma complementar" href="https://datasus.saude.gov.br/wp-content/uploads/2019/08/Norma-Complementar-n%C2%BA-02IN01DSICGSIPR.pdf">Norma Complementar nº 2/DSIC/GSIPR, de 13 de outubro de 2008</a>;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">CONSIDERANDO o disposto nos arts. 5º, 6º e 7º da<a title="Acesse a instrução" href="https://www.gov.br/governodigital/pt-br/legislacao/14_IN_01_gsidsic.pdf"> Instrução Normativa GSI/PR nº 1, de 13 de junho de 2008</a>, o item 5 da <a title="Acesse a norma complementar " href="https://datasus.saude.gov.br/wp-content/uploads/2019/08/Norma-Complementar-n%C2%BA-03IN01DSICGSIPR.pdf">Norma Complementar nº 3/DSIC/GSIPR de 30 de junho de 2009</a>, e a Portaria nº 559, de 13 de julho de 2013, que aprova a Política de Segurança da Informação e Comunicações da Agência Nacional de Telecomunicações (POSIC/Anatel);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">CONSIDERANDO que a instituição de uma Comissão de Segurança da Informação e Comunicações (CSIC), a ser coordenada pelo Gestor de Segurança da Informação e Comunicações, é condição necessária para promover a Gestão de Segurança da Informação e Comunicações no âmbito da Anatel;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">CONSIDERANDO que a instituição de uma Equipe de Tratamento e Resposta a Incidentes em Redes Computacionais (ETIR) é condição primordial para receber, analisar e responder às notificações e atividades relacionadas a incidentes de segurança em redes de computadores;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">CONSIDERANDO a <a title="Acesse a norma complementar " href="https://datasus.saude.gov.br/wp-content/uploads/2019/08/Norma-Complementar-n%C2%BA-08IN01DSICGSIPR.pdf">Norma Complementar nº 08/IN01/DSIC/GSIPR</a>, de 19 de agosto de 2010, que disciplina o gerenciamento de Incidentes de Segurança em Redes de Computadores realizado pelas Equipes de Tratamento e Resposta a Incidentes de Segurança em Redes Computacionais - ETIR dos órgãos e entidades da APF;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">CONSIDERANDO deliberação tomada por meio do <a title="Acesse o Circuito Deliberativo" href="https://sistemas.anatel.gov.br/anexar-api/publico/anexos/download/792a645a6e42c1b137c357631c59d073">Circuito Deliberativo nº 2.250, de 26 de fevereiro de 2015;</a></span></p>
+<p class="resolve" style="text-align: justify;"><span style="text-decoration: line-through;">RESOLVE:</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art1"></a><span style="text-decoration: line-through;">Art. 1º Instituir a Comissão de Segurança da Informação e Comunicações no âmbito da Agência Nacional de Telecomunicações (CSIC/Anatel).</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">Parágrafo único. A CSIC/Anatel, órgão colegiado, de natureza consultiva e de caráter permamente, atuará na proposição e condução das diretrizes da POSIC/Anatel, bem como no assessoramento do Conselho Diretor em matérias correlatas, de forma a promover a gestão e fomentar aspectos de segurança da informação e comunicações na Agência.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art2"></a><span style="text-decoration: line-through;">Art. 2º Instituir a Equipe de Tratamento e Resposta a Incidentes em Redes Computacionais no âmbito da Agência Nacional de Telecomunicações (ETIR/Anatel).</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><span style="text-decoration: line-through;">Parágrafo único. A ETIR/Anatel atuará como facilitadora e coordenadora das atividades de tratamento e resposta a indicentes na rede computacional da Anatel, receberá e notificará qualquer evento adverso ou sob suspeita, relacionado à segurança dos sistemas de computação ou das redes de computadores, a fim de contribuir para a adequada prestação dos serviços da Agência.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art3"></a><span style="text-decoration: line-through;">Art. 3º O Gestor de Segurança da Informação e Comunicações é responsável pelas ações de segurança da informação e comunicações no âmbito da Agência, a ele cabendo:</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">I - promover cultura de segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">II - acompanhar as investigações e as avaliações dos danos decorrentes de quebras de segurança;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">III - propor recursos necessários às ações de segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">IV - coordenar a Comissão de Segurança da Informação e Comunicações da Anatel (CSIC/Anatel) e a Equipe de Tratamento e Resposta a Incidentes em Redes Computacionais da Anatel (ETIR/Anatel);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">V - realizar e acompanhar estudos de novas tecnologias, quanto a possíveis impactos na segurança da informação e comunicações; e,</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VI - manter contato permanente e estreito com o Departamento de Segurança da Informação e Comunicações do Gabinete de Segurança Institucional da Presidência da República (DSIC/GSIPR) para o trato de assuntos relativos à segurança da informação e comunicações.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art4"></a><span style="text-decoration: line-through;">Art. 4º A CSIC/Anatel é o grupo de pessoas com a responsabilidade de assessorar a implementação das ações de segurança da informação e comunicações no âmbito da Anatel, a ele cabendo:</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">I - propor ao Conselho Diretor, para aprovação, a Política de Segurança da Informação e Comunicações da Anatel (POSIC/Anatel);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">II - definir o modelo de gestão corporativa da segurança da informação e comunicações e fomentar sua aplicação;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">III - propor a elaboração e a revisão de normas e procedimentos inerentes à segurança da informação;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">IV - propor metas e ações corporativas em segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">V - coordenar as ações de segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VI - propor as ações corretivas cabíveis nos casos de quebra de segurança;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VII - analisar incidentes de segurança da informação e encaminhar à Corregedoria aqueles passíveis de correição;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VIII - propor ajustes no modelo de gestão corporativa da segurança da informação e comunicações, e nas ações necessárias à sua implementação, com subsídio no monitoramento e avaliação periódica das práticas de segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">IX - elaborar proposta e promover atualização periódica de plano com medidas que garantam a continuidade das atividades da Anatel e o retorno à situação de normalidade em caso de desastre ou falha nos recursos que suportam os processos vitais de negócio da Agência;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">X - manifestar-se sobre ações corporativas em segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XI - requerer, às unidades administrativas da Anatel, informações que considerar necessárias ao acompanhamento das ações de gestão de segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XII - promover a divulgação de boas práticas em segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XIII - submeter à aprovação minutas de normativos e propostas de natureza estratégica ou que necessitem de cooperação intersetorial que versem sobre segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XIV - instituir grupos de trabalho para tratar de temas específicos para as ações de segurança da informação e comunicações;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XV - interagir com as unidades administrativas da Agência ou entidades externas, objetivando o pleno atendimento ao objeto da POSIC/Anatel; e,</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XVI - a edição das demais normas referentes ao seu funcionamento.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art5"></a><span style="text-decoration: line-through;">Art. 5º A ETIR/Anatel é o grupo de pessoas com a responsabilidade de receber e analisar notificações e atividades relacionadas aos incidentes de segurança em redes computacionais no âmbito da Anatel, a ela cabendo:</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">I - tomar as providências de emergência pertinentes à segurança da informação e comunicações, imediatamente após detecção ou conhecimento de incidentes de segurança em redes computacionais no âmbito da Anatel; e,</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">II - analisar os incidentes de segurança em redes computacionais e encaminhar mensalmente relatório dos incidentes à Comissão de Segurança da Informação.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art6"></a><span style="text-decoration: line-through;">Art. 6º Integram a CSIC/Anatel:</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">I - o Gestor de Segurança da Informação e Comunicações da Anatel, que a presidirá;</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">II - 1 (um) representante do Gabinete do Presidente (GPR);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">III - 1 (um) representante da Superintendência Executiva (SUE);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">IV - 3 (três) representantes da Superintendência de Gestão Interna da Informação (SGI), sendo 1 (um) da Gerência Gerência de Planejamento, Operação e Manutenção de Redes (GIMR) e 2 (dois) da Gerência de Planejamento, Desenvolvimento e Segurança de Sistemas (GIDS);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">V - 2 (dois) representantes da Superintendência de Administração e Finanças (SAF), sendo 1 (um) da Gerência de Infraestrutura e Segurança Institucional (AFIS) e 1 (um) da Gerência de Administração e Desenvolvimento de Pessoas (AFPE);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VI - 1 (um) representante da Superintendência de Planejamento e Regulamentação (SPR);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VII - 1 (um) representante da Superintendência de Outorga e Recursos à Prestação (SOR);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">VIII - 1 (um) representante da Superintendência de Fiscalização (SFI);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">IX - 1 (um) representante da Superintendência de Controle de Obrigações (SCO);</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">X - 1 (um) representante da Superintendência de Competição (SCP); e,</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">XI - 1 (um) representante da Superintendência de Relações com Consumidores (SRC).</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art7"></a><span style="text-decoration: line-through;">Art. 7º A ETIR/Anatel será composta por integrantes da equipe da SGI, que além de suas funções regulares, passarão a desempenhar as atividades relacionadas ao tratamento e resposta a incidentes em redes computacionais, desta forma, não existirá um grupo dedicado exclusivamente às funções de tratamento e resposta a incidentes.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art8"></a><span style="text-decoration: line-through;">Art. 8º A ETIR/Anatel ficará subordinada à SGI na estrutura organizacional da Agência e será composta por:</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">I - 5 (cinco) representantes da Gerência de Planejamento, Operação e Manutenção de Redes (GIMR); e,</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify; padding-left: 30px;"><span style="text-decoration: line-through;">II - 1 (um) representante da Gerência de Planejamento, Desenvolvimento e Segurança de Sistemas (GIDS).</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art9"></a><span style="text-decoration: line-through;">Art. 9º Para cada um dos integrantes da CSIC/Anatel e da ETIR/Anatel, será designado um suplente que deverá ter condições de substituir o titular e executar todas as suas atribuições como se o mesmo fosse.</span></p>
+<p class="texto-recuo-1a-linha" style="text-align: justify;"><a name="art10"></a><span style="text-decoration: line-through;">Art. 10. Esta Portaria entra em vigor na data de sua publicação no Boletim de Serviço da Anatel, ficando revogadas a Portaria nº 24, de 7 de janeiro de 2010, e a Portaria nº 698, de 28 de agosto de 2013.</span></p>
+<p style="text-align: center; padding-left: 30px;"><span style="text-decoration: line-through;">JOÃO BATISTA DE REZENDE</span><br /><span style="text-decoration: line-through;">Presidente do Conselho</span></p> <div class="attachmentsContainer">
+
+<div class="attachmentsList" id="attachmentsList_com_content_default_1852"></div>
+
+</div>
+	
+</div>
+<div class="below-content">
+		<div class="line">
+		registrado em:
+			<span><a class="link-categoria" rel="tag" href="/legislacao/portarias-normativas">Portarias Normativas</a></span><span class="separator">,</span><span><a class="link-categoria" rel="tag" href="/legislacao/portarias-normativas/2015">2015</a></span>	</div>
+		
+		<div class="line">
+		Assunto(s):
+					<span>
+				<a href="/legislacao/component/search/?ordering=newest&amp;searchphrase=all&amp;limit=20&amp;areas[0]=contenttags&amp;Itemid=181&amp;searchword=Instituição" class="link-categoria">Instituição</a>
+				<span class="separator">,</span>			</span>
+						<span>
+				<a href="/legislacao/component/search/?ordering=newest&amp;searchphrase=all&amp;limit=20&amp;areas[0]=contenttags&amp;Itemid=181&amp;searchword=Comissão%20de%20Segurança" class="link-categoria">Comissão de Segurança</a>
+				<span class="separator">,</span>			</span>
+						<span>
+				<a href="/legislacao/component/search/?ordering=newest&amp;searchphrase=all&amp;limit=20&amp;areas[0]=contenttags&amp;Itemid=181&amp;searchword=Segurança%20da%20Informação" class="link-categoria">Segurança da Informação</a>
+				<span class="separator">,</span>			</span>
+						<span>
+				<a href="/legislacao/component/search/?ordering=newest&amp;searchphrase=all&amp;limit=20&amp;areas[0]=contenttags&amp;Itemid=181&amp;searchword=CSIC" class="link-categoria">CSIC</a>
+				<span class="separator">,</span>			</span>
+						<span>
+				<a href="/legislacao/component/search/?ordering=newest&amp;searchphrase=all&amp;limit=20&amp;areas[0]=contenttags&amp;Itemid=181&amp;searchword=PortariaRevogada" class="link-categoria">PortariaRevogada</a>
+							</span>
+					
+	</div>
+	
+	
+</div>
+                                                                                    
+                                    
+                                    
+                                
+                                <!--<span class="hide">Fim do conteúdo da página</span> -->
+								
+                                </section>
+                            </div>
+                            <!-- fim #content.span9 -->
+                        </div>
+                        <!-- fim .row-fluid -->
+                </div>
+                <!-- fim .container -->
+
+
+                <!-- Chamada da posição paginas de Serviços -->
+                 
+               <!--Fim da chamada de chamada-segundaria-destaque -->
+
+                <!-- Chamada da posição chamada de chamada segundaria destaque -->
+                 
+               <!--Fim da chamada de chamada de chamada segundaria destaque -->
+
+                </main>
+                <footer id="portal-footer">
+                    <div class="footer-atalhos">
+                        <div class="container tmpl-custom">
+                            <div class="pull-right voltar-ao-topo"><a href="#main-navigation">Voltar ao topo</a></div>
+                        </div>
+                    </div>
+                    <div class="container tmpl-custom container-menus">
+                        <div class="govbr-logo"></div>
+                        <div id="footer" class="row footer-menus">
+                            <span class="hide">Início da navegação de rodapé</span>
+                            	
+		<div class="spanfooter">		
+			<nav class="row  nav">
+				 			
+				<h2>Assuntos </h2>
+								
+
+<!-- INÍCIO - Menu de contexto ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div id="menu-contexto" class="row-fluid">
+	<ul class="menuspanfooter">
+	<li class="item-443"><a href="https://www.gov.br/anatel/pt-br/assuntos/5G" > 5G</a></li><li class="item-502"><a href="https://www.gov.br/anatel/pt-br/assuntos/acessibilidade" >Acessibilidade</a></li><li class="item-540"><a href="https://www.gov.br/anatel/pt-br/assuntos/adaptacao" >Adaptação</a></li><li class="item-541"><a href="https://www.gov.br/anatel/pt-br/assuntos/agenda-2030" >Agenda 2030</a></li><li class="item-441"><a href="https://www.gov.br/anatel/pt-br/assuntos/atuacao-internacional" >Atuação Internacional</a></li><li class="item-442"><a href="https://www.gov.br/anatel/pt-br/assuntos/celular-legal" >Celular Legal</a></li><li class="item-503"><a href="https://www.gov.br/anatel/pt-br/assuntos/noticias/acoes-do-setor-de-telecomunicacoes-no-combate-ao-coronavirus" >Coronavírus</a></li><li class="item-504"><a href="https://www.gov.br/anatel/pt-br/assuntos/dicas-contra-fraudes" >Dicas contra Fraudes</a></li><li class="item-440"><a href="https://www.gov.br/anatel/pt-br/assuntos/noticias" > Notícias</a></li><li class="item-505"><a href="https://www.gov.br/anatel/pt-br/regulado/acompanhamento-e-controle/processo-sancionador" >Processo Sancionador</a></li><li class="item-444"><a href="https://www.gov.br/anatel/pt-br/assuntos/seguranca-cibernetica" > Segurança Cibernética</a></li><li class="item-445"><a href="https://www.gov.br/anatel/pt-br/assuntos/seguranca-publica" > Segurança Pública</a></li></ul>
+</div>
+<!-- FIM - Menu de contexto +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter ">		
+			<nav class="row  nav">
+				 			
+				<h2>Acesso à Informação</h2>
+								
+
+<!-- INÍCIO - Menu de contexto ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div id="menu-contexto" class="row-fluid">
+	<ul class="menuspanfooter ">
+	<li class="item-446"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/institucional" > Institucional</a></li><li class="item-447"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/acoes-e-programas" > Ações e Programas</a></li><li class="item-448"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/participacao-social" > Participação Social</a></li><li class="item-449"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/auditorias" >Auditorias</a></li><li class="item-450"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/convenios-e-transferencias" >Convênios e Transferências</a></li><li class="item-451"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/receitas-e-despesas" > Receitas e Despesas</a></li><li class="item-452"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/licitacoes-e-contratos" >Licitações e Contratos</a></li><li class="item-454"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/servidores" >Servidores</a></li><li class="item-455"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/informacoes-classificadas" > Informações Classificadas</a></li><li class="item-456"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/servico-de-informacao-ao-cidadao-sic" >Serviço de Informação ao Cidadão (SIC)</a></li><li class="item-458"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/perguntas-frequentes" > Perguntas Frequentes</a></li><li class="item-457"><a href="https://www.gov.br/anatel/pt-br/dados/dados-abertos" >Dados Abertos</a></li><li class="item-506"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/governanca" >Governança</a></li><li class="item-453"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/tratamento-de-dados-pessoais" > Tratamento de Dados Pessoais</a></li><li class="item-459"><a href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/transparencia-e-prestacao-de-contas" >Transparência e Prestação de Contas</a></li><li class="item-507"><a href="https://sei.anatel.gov.br/sei/modulos/pesquisa/md_pesq_processo_pesquisar.php?acao_externa=protocolo_pesquisar&amp;acao_origem_externa=protocolo_pesquisar&amp;id_orgao_acesso_externo=0" >Pesquisa Pública do SEI</a></li></ul>
+</div>
+<!-- FIM - Menu de contexto +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter ">		
+			<nav class="row  nav">
+				 			
+				<h2>Canais de Atendimento </h2>
+								
+
+<!-- INÍCIO - Menu de contexto ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div id="menu-contexto" class="row-fluid">
+	<ul class="menuspanfooter ">
+	<li class="item-471"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/aplicativo" >Aplicativo</a></li><li class="item-472"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/internet" >Internet</a></li><li class="item-473"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/presencial" >Presencial</a></li><li class="item-474"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/telefone" > Telefone</a></li><li class="item-475"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/ouvidoria" >Ouvidoria</a></li><li class="item-476"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/imprensa" >Imprensa</a></li><li class="item-477"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/sistemas" >Sistemas</a></li><li class="item-542"><a href="https://www.gov.br/anatel/pt-br/canais_atendimento/apoio-institucional" >Apoio Institucional</a></li></ul>
+</div>
+<!-- FIM - Menu de contexto +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter ">		
+			<nav class="row  nav">
+				 			
+				<h2> Centrais de Conteúdo</h2>
+								
+
+<!-- INÍCIO - Menu de contexto ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div id="menu-contexto" class="row-fluid">
+	<ul class="menuspanfooter ">
+	<li class="item-464"><a href="https://www.gov.br/anatel/pt-br/centrais-de-conteudo/publicacoes" > Publicações</a></li><li class="item-465"><a href="https://www.flickr.com/photos/anatel_informa/albums" >Imagens</a></li><li class="item-466"><a href="https://www.youtube.com/user/Anatel" >Vídeos </a></li><li class="item-468"><a href="https://www.gov.br/anatel/pt-br/centrais-de-conteudo/processo-eletronico" >Processo Eletrônico (SEI)</a></li><li class="item-470"><a href="https://www.gov.br/anatel/pt-br/centrais-de-conteudo/jurisprudencia" > Repositório de Jurisprudência</a></li><li class="item-469"><a href="https://www.gov.br/anatel/pt-br/centrais-de-conteudo/solicitacao-de-vistas" > Solicitação de Vistas de Processo e Documento</a></li><li class="item-467"><a href="https://informacoes.anatel.gov.br/legislacao/" >Legislação</a></li></ul>
+</div>
+<!-- FIM - Menu de contexto +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter ">		
+			<nav class="row  nav">
+				 			
+				<h2>Composição</h2>
+								
+
+<!-- INÍCIO - Menu de contexto ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<div id="menu-contexto" class="row-fluid">
+	<ul class="menuspanfooter ">
+	<li class="item-460"><a href="https://www.gov.br/anatel/pt-br/composicao/estrutura-organizacional" >Estrutura Organizacional</a></li><li class="item-461"><a href="https://www.gov.br/anatel/pt-br/composicao/conselho-diretor" > Conselho Diretor</a></li><li class="item-462"><a href="https://www.gov.br/anatel/pt-br/composicao/conselho-consultivo" > Conselho Consultivo</a></li><li class="item-508"><a href="https://www.gov.br/anatel/pt-br/composicao/ceadi" >Ceadi</a></li><li class="item-463"><a href="https://www.gov.br/anatel/pt-br/composicao/comissao-de-etica" >Comissão de Ética</a></li><li class="item-509"><a href="https://www.gov.br/anatel/pt-br/composicao/comites" >Comitês</a></li><li class="item-510"><a href="https://www.gov.br/anatel/pt-br/composicao/grupos-de-trabalho" >Grupos de Trabalho</a></li></ul>
+</div>
+<!-- FIM - Menu de contexto +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter">		
+			<nav class="row  nav">
+				 			
+				<h2>Consumidor</h2>
+								
+<ul>
+<li class="item-410"><a href="https://www.gov.br/anatel/pt-br/consumidor/quer-reclamar" >Quer Reclamar?</a></li><li class="item-411"><a href="https://www.gov.br/anatel/pt-br/consumidor/conheca-seus-direitos" >Conheça Seus Direitos</a></li><li class="item-412"><a href="https://www.gov.br/anatel/pt-br/consumidor/participe-dos-debates" > Participe dos Debates</a></li><li class="item-413"><a href="https://www.gov.br/anatel/pt-br/consumidor/compare-as-prestadoras" >Compare as Prestadoras</a></li><li class="item-511"><a href="https://www.gov.br/anatel/pt-br/consumidor/habilidades-digitais" >Habilidades Digitais</a></li><li class="item-512"><a href="https://www.gov.br/anatel/pt-br/consumidor/oi-movel" >Oi Móvel </a></li><li class="item-513"><a href="https://www.gov.br/anatel/pt-br/consumidor/projetosproconsumidor" >Projetos pró Consumidor</a></li><li class="item-514"><a href="https://www.gov.br/anatel/pt-br/consumidor/telemarketing" >Telemarketing</a></li><li class="item-482"><a href="https://www.gov.br/anatel/pt-br/consumidor/perguntas-frequentes" >Perguntas Frequentes</a></li></ul>
+			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter break width">		
+			<nav class="row  nav">
+				 			
+				<h2>Dados</h2>
+								
+<ul>
+<li class="item-519"><a href="https://www.gov.br/anatel/pt-br/dados/paineis" >Painéis</a></li><li class="item-520"><a href="https://www.gov.br/anatel/pt-br/dados/coleta-de-dados-setoriais" >Coleta de Dados Setoriais</a></li><li class="item-417"><a href="https://www.gov.br/anatel/pt-br/dados/infraestrutura" >Infraestrutura</a></li><li class="item-414"><a href="https://www.gov.br/anatel/pt-br/dados/qualidade" >Qualidade</a></li><li class="item-415"><a href="https://www.gov.br/anatel/pt-br/dados/relatorios-de-acompanhamento" >Relatórios de Acompanhamento</a></li><li class="item-416"><a href="https://www.gov.br/anatel/pt-br/dados/utilidade-publica" >Utilidade Pública</a></li><li class="item-521"><a href="https://www.gov.br/anatel/pt-br/dados/dados-abertos" >Dados Abertos</a></li></ul>
+			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter width">		
+			<nav class="row  nav">
+				 			
+				<h2>Legislação</h2>
+								
+<ul>
+<li class="item-183"><a href="https://informacoes.anatel.gov.br/legislacao/resolucoes" >Resoluções</a></li><li class="item-196"><a href="https://informacoes.anatel.gov.br/legislacao/sumulas" >Súmulas</a></li><li class="item-522"><a href="https://informacoes.anatel.gov.br/legislacao/portarias-de-delegacao" >Portarias de Delegação</a></li><li class="item-523"><a href="https://informacoes.anatel.gov.br/legislacao/portarias-normativas" >Portarias Normativas</a></li><li class="item-524"><a href="https://informacoes.anatel.gov.br/legislacao/resolucoes-internas" >Resoluções Internas</a></li><li class="item-525"><a href="https://informacoes.anatel.gov.br/legislacao/metodologias-de-calculo-de-multa" >Metodologias de Cálculo de Multa</a></li><li class="item-526"><a href="https://informacoes.anatel.gov.br/legislacao/glossario-anatel" >Glossário</a></li><li class="item-527"><a href="https://www.gov.br/anatel/pt-br/legislacao/atos" >Atos</a></li><li class="item-528"><a href="https://www.gov.br/anatel/pt-br/legislacao/fiscalizacao" >Fiscalização</a></li><li class="item-529"><a href="https://www.gov.br/anatel/pt-br/legislacao/demais-normas" >Demais Normas</a></li></ul>
+			</nav>					
+		</div>
+	
+		
+		<div class="spanfooter width">		
+			<nav class="row  nav">
+				 			
+				<h2>Regulado</h2>
+								
+<ul>
+<li class="item-530"><a href="https://www.gov.br/anatel/pt-br/regulado/acompanhamento-e-controle" >Acompanhamento e Controle</a></li><li class="item-531"><a href="https://www.gov.br/anatel/pt-br/regulado/agenda-regulatoria" >Agenda Regulatória</a></li><li class="item-418"><a href="https://www.gov.br/anatel/pt-br/regulado/arrecadacao" >Arrecadação</a></li><li class="item-422"><a href="https://www.gov.br/anatel/pt-br/regulado/certificacao-de-produtos" >Certificação de Produtos</a></li><li class="item-532"><a href="https://www.gov.br/anatel/pt-br/regulado/competicao" >Competição</a></li><li class="item-533"><a href="https://www.gov.br/anatel/pt-br/regulado/espectro" >Espectro</a></li><li class="item-534"><a href="https://www.gov.br/anatel/pt-br/regulado/fiscalizacao" >Fiscalização</a></li><li class="item-421"><a href="https://www.gov.br/anatel/pt-br/regulado/numeracao" >Numeração</a></li><li class="item-420"><a href="https://www.gov.br/anatel/pt-br/regulado/outorga" >Outorga</a></li><li class="item-535"><a href="https://www.gov.br/anatel/pt-br/regulado/prestadoras-de-pequeno-porte" >Prestadoras de Pequeno Porte</a></li><li class="item-419"><a href="https://www.gov.br/anatel/pt-br/regulado/radiodifusao" >Radiodifusão</a></li><li class="item-536"><a href="https://www.gov.br/anatel/pt-br/regulado/radiofrequencia" >Radiofrequência</a></li><li class="item-537"><a href="https://www.gov.br/anatel/pt-br/regulado/satelite" >Satélite</a></li><li class="item-538"><a href="https://www.gov.br/anatel/pt-br/regulado/universalizacao" >Universalização e Ampliação do Acesso</a></li><li class="item-539"><a href="https://www.gov.br/anatel/pt-br/regulado/perguntas-frequentes" >Perguntas Frequentes</a></li></ul>
+			</nav>					
+		</div>
+	
+	
+                            <span class="hide">Fim da navegação de rodapé</span>
+                        </div>
+                        <!-- fim .row -->
+
+                        <!-- Redes Sociais Agência Nacional de Telecomunicações -->
+                        <div class="container-redes-anatel">
+                            <div class="redes-sociais">
+                                <h3>Redes Sociais</h3>
+                                <ul class="portal-redes">
+                                    <li class="portalredes-twitter portalredes-item">
+                                        <a href="https://twitter.com/anatel_oficial">Twitter</a>
+                                    </li>
+                                    <li class="portalredes-youtube portalredes-item">
+                                        <a href="https://www.youtube.com/anatel">YouTube</a>
+                                    </li>
+                                    <li class="portalredes-facebook portalredes-item">
+                                       <a href="https://www.facebook.com/anatel.oficial">Facebook</a>
+                                    </li>
+                                    <li class="portalredes-flickr portalredes-item">
+                                        <a href="https://www.flickr.com/photos/anatel_informa/albums">Flickr</a>
+                                    </li>
+                                    <li class="portalredes-instagram portalredes-item">
+                                        <a href="https://www.instagram.com/anatel.oficial">Instagram</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Final do container redes sociais -->
+
+                    </div>
+                    <!-- fim .container -->
+                    <div class="footer-logos">
+                        <div class="container tmpl-custom">
+                            
+                            
+                                 <!-- separador para fins de acessibilidade -->
+                                 <span class="hide">&nbsp;</span><!-- fim separador para fins de acessibilidade -->
+                                    <a href="http://www.brasil.gov.br/" class="brasil pull-right">
+                                        <img src="/legislacao/arquivos_e_imagens/imagens/logogoverno.jpg" alt="Brasil - Governo Federal">
+                                    </a>
+
+                                                                                        <a href="http://www.acessoainformacao.gov.br/" class="logo-acesso pull-right"><img src="/legislacao/templates/padraogoverno01/images/acesso-a-informacao.png" alt="Acesso a Informação"></a>
+                            
+                        </div>
+                    </div>
+                    <div class="footer-ferramenta">
+                        <div class="container tmpl-custom">
+                            Todo o conteúdo deste site está publicado sob a licença <a href=https://creativecommons.org/licenses/by-nd/3.0/deed.pt_BR>Creative Commons Atribuição-SemDerivações 3.0 Não Adaptada</a>.                        </div>
+                    </div>
+                </footer>
+            </div>
+            <!-- fim div#wrapper -->
+            <!-- scripts principais do template -->
+                    <script src="/legislacao/templates/padraogoverno01/bootstrap/js/bootstrap.min.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+        <script src="/legislacao/templates/padraogoverno01/js/jquery.cookie.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+        <script src="/legislacao/templates/padraogoverno01/js/template.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+                                                <script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+                    var _gaq = _gaq || [];
+                    _gaq.push(['_setAccount', 'UA-61388073-6']);
+                    _gaq.push(['_trackPageview']);
+                            (function () {
+                        var ga = document.createElement('script');
+                        ga.type = 'text/javascript';
+                        ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(ga, s);
+                    })();
+                </script><noscript>&nbsp;<!-- item para fins de acessibilidade --></noscript>
+                        <!-- debug -->
+            
+<!--****************************** COOKIES HTML CODE START HERE ******************************-->
+<div class="notice_div_ribbin ebsticky_bottom" id="eu_cookies">
+  <div class="inner1">
+    <div class="inner3 eb_contentwrap">
+      <div class="heading_title">Nós protegemos seus dados</div>      <p>Para melhorar a sua experiência na plataforma e prover serviços personalizados, utilizamos cookies. Saiba como usamos seus dados em nosso <a style ="color: #ffffff;" href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/tratamento-de-dados-pessoais/aviso-de-privacidade">Aviso de Privacidade</a>. Ao clicar em “Aceitar cookies”, você concorda com os Termos de Serviço e a Política de Privacidade da Anatel e terá acesso a todas as funcionalidades do site.</p>      
+    </div>
+<div class="button_message eb_privacypolicy"> 
+			<a  href="https://www.gov.br/anatel/pt-br/acesso-a-informacao/tratamento-de-dados-pessoais" class="button_cookie eb_papbtn" aria-label="Cookie Policy">Saiba mais</a>
+        <a class="button_cookie" href="javascript:void(0);" onclick="if (!window.__cfRLUnblockHandlers) return false; calltohide()" id="hideme" data-cf-modified-9625bfd2ce209be2e8c3bb39-="">Aceitar cookies</a>
+	</div>
+  </div>
+</div>
+<!--****************************** COOKIES HTML CODE END HERE ******************************-->
+
+<!--****************************** COOKIES JAVSCRIPT CODE START HERE -- FOR ACCEPT ******************************-->
+<script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+	check_cookie(getBaseURL());
+</script>
+<!--****************************** COOKIES JAVSCRIPT CODE END HERE ******************************-->
+
+<!--****************************** COOKIES CSS START HERE ******************************-->
+<style>
+.notice_div_simplebar,.notice_div_ribbin{background:rgba(12,30,63,0.85)!important;}
+.inner3 .heading_title{color:#ffffff!important; font-size: 16px;}
+.inner3 p{color:#ffffff!important; font-size: 14px;}
+.button_cookie{background:transparent!important; color:#ffffff!important;}
+.eb_papbtn{background:transparent!important; color:#ffffff!important;}
+</style>
+<!--****************************** COOKIES CSS END HERE ******************************-->
+            
+    <script defer="defer" src="//barra.brasil.gov.br/barra_2.0.js" type="9625bfd2ce209be2e8c3bb39-text/javascript"></script>        
+
+<!-- Piwik -->
+<script type="9625bfd2ce209be2e8c3bb39-text/javascript">
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://sistemas.anatel.gov.br/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', 3]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
+    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img src="http://sistemas.anatel.gov.br/piwik/piwik.php?idsite=3" style="border:0;" alt="" /></p></noscript>
+<!-- End Piwik Code -->
+</body>
+ </html>
