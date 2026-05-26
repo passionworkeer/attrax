@@ -1,0 +1,49 @@
+{
+  "id": "uk-psti-consumer-connectable-security",
+  "title": "Regulations: consumer connectable product security",
+  "fileName": "UK_PSTI_consumer_connectable_product_security_guidance.html",
+  "sourcePath": "data/regulation_supplements/2026-05-25_official_sources/raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html",
+  "sourceType": "html",
+  "region": "UK",
+  "pageCount": 1,
+  "totalChars": 7903,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 7903,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "From: Office for Product Safety and Standards and Department for Science, Innovation and Technology Published 8 January 2024 Last updated 17 March 2025 — See all updates Get emails about this page Pri"
+    }
+  ],
+  "tables": [],
+  "rawText": "From: Office for Product Safety and Standards and Department for Science, Innovation and Technology Published 8 January 2024 Last updated 17 March 2025 — See all updates Get emails about this page Print this page Key announcements The UK’s consumer connectable product security regime came into effect on 29 April 2024. Businesses involved in the supply chains of these products need to be compliant with the new legislation from that date. Read full details of the legislative framework. Overview The use and ownership of consumer products that can connect to the internet or a network is growing rapidly. UK consumers should be able to trust that these products are designed and built with security in mind. The Product Security and Telecommunications Infrastructure Act 2022 (PSTI) and the Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023 mandate that manufacturers of consumer connectable products who sell to UK consumers comply with baseline security requirements. These are based on the top three principles in the Code of Practice for Consumer Internet of Things (IoT) Security , and align with key provisions of the leading global standard for cyber security for consumer IoT, ETSI EN 303 645 (ETSI website). Consumers who purchase new connectable products will benefit from world-leading security protections from the threat of cyber-crime. What is covered The regulations apply to relevant consumer products that can connect to the internet or a network. The regulations do not cover: products made available for supply in Northern Ireland to which relevant legislation applies (legislation listed in Annex 2 of the Windsor Framework, and contains a free movement article) charge points for electric vehicles medical devices smart meter products desktop computers, laptop computers and tablet computers which do not have the capability to connect to cellular networks (unless according to the manufacturer’s intended purpose they are designed exclusively for children under 14 years) Extent of the obligations The regulations came into effect on the 29 April 2024. The regulations apply to: any person who manufactures a product or has a product designed or manufactured and markets that product under that person’s name or trademark any person who markets a product manufactured by another person under that person’s name or trademark any person who imports the product from a country outside the UK to the UK and is not a manufacturer of the product any person who distributes (makes the product available) in the UK and is not the manufacturer or importer of the product How to comply Manufacturers, importers, and distributors (i.e. retailers) have a duty to comply with the obligations in the Act and the security requirements stated in the Regulations 2023, including duties concerning the statement of compliance. The security requirements relate to: banning universal default and easily guessable passwords publishing information on how to report security issues publishing information on minimum security update periods There are additional duties for manufacturers, importers and distributors which include, but are not limited to, investigating potential compliance failures, duties to maintain records and duties to take action in relation to compliance failures. There is also a duty on authorised representatives to take action in relation to a manufacturer’s compliance failure. These duties are laid out in Chapter two of the PSTI Act 2022 . Role of the Office for Product Safety and Standards (OPSS) OPSS is the enforcement authority responsible for ensuring compliance with the legislation on behalf of the Department for Science, Innovation and Technology . Our approach to carrying out our regulatory activities will be risk-based, as explained in our Service Standards. Our approach to addressing non-compliance by those we regulate will be pragmatic and proportionate, and will take account of the maturity of the legislation, as set out in our Enforcement Policy, which should be read alongside guidance on the specific enforcement actions available to us under the legislation, and associated rights to make representations or appeal. Read our Service Standards. Read our Enforcement Policy. Read our guidance on enforcement actions and associated rights. Where to find more information Secure by Design Legislation Product Security and Telecommunications Infrastructure Act 2022 The Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023 Explanatory Memorandum – PSTI Act 2022 Explanatory Memorandum – PSTI (SRRCP) Regulations 2023 ETSI Standards and Implementation Guide ETSI EN 303 645 – Cyber Security for Consumer Internet of Things: Baseline Requirements ETSI Technical Specification 103 701 – Cyber Security for Consumer Internet of Things: Conformance Assessment of Baseline Requirements (ETSI website) ETSI Implementation Guide 103 621 – Guide to Cyber Security for Consumer Internet of Things (ETSI website) Supporting guides and resources Code of Practice for Consumer IoT (Internet of Things) Security loTSF Consumer IoT Security Quick Guides and Webinars (IOT website) Code of Practice for Consumer IoT Security – international versions Additional guidance Statement of Compliance The Product Security and Telecommunications Infrastructure Act 2022 states that a Statement of Compliance (SoC) must ‘accompany’ the product and defines the SoC as a ‘document’. The Act does not define the terms ‘document’ or ‘accompany’ and therefore each business in scope of the regime must determine how it will comply with the requirements in relation to its own individual products. The Act does not specify that the document must be physical; therefore it could be digital. However, the manufacturer, importer and distributor must ultimately ensure that the SoC accompanies the product and meets the necessary legal requirements in the PSTI Act 2022 and PSTI Regulations 2023. Automotive vehicles On 25 February 2025, the Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) (Amendment) Regulations 2025 (“2025 Regulations”) came into effect and excluded certain categories of vehicles from the PSTI regime. The exemption applies to vehicles that are already covered by sector-specific legislation that contain equivalent or superior cybersecurity requirements to those mandated by the PSTI regime, or where regulation would otherwise be considered inappropriate. Pursuant to regulation 4 of the 2025 Regulations, the following categories of vehicles are now exempt from the PSTI regime: motor vehicles and their trailers, as well as the systems, components and separate technical units which are intended for such motor vehicles , to which Regulation (EU) 2018/858 applies two or three wheel vehicles and quadricycles to which Regulation (EU) No 168/2013 applies agricultural and forestry vehicles to which Regulation (EU) No 167/2013 applies Contact us If you have a specific enquiry about compliance or wish to contact us regarding suspected non-compliance, please email OPSS.enquiries@businessandtrade.gov.uk . Alternatively, you can contact our helpdesk on 0121 345 1201. Or in writing to: Office for Product Safety and Standards 4th Floor Multistory 18 The Priory Queensway Birmingham B4 6BS United Kingdom Updates to this page Published 8 January 2024 Last updated 17 March 2025 + show all updates 17 March 2025 Additional guidance updated to clarify that certain categories of vehicles are now exempt from the PSTI regime. 23 April 2024 Additional guidance provided on the Statement of Compliance and automotive vehicles. 8 January 2024 First published. Sign up for emails or print this page Get emails about this page Print this page Contents",
+  "metadata": {
+    "detectedMarkets": [
+      "UK"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "cybersecurity",
+      "chemical"
+    ],
+    "productCategories": [
+      "electronics",
+      "toys"
+    ],
+    "charCount": 7903,
+    "region": "UK",
+    "supplement_id": "uk-psti-consumer-connectable-security",
+    "source_url": "https://www.gov.uk/guidance/regulations-consumer-connectable-product-security",
+    "content_url": "",
+    "official_channel": "GOV.UK",
+    "why_added": "Adds UK connected-product security requirements, statement-of-compliance duties, and OPSS enforcement context.",
+    "collected_at": "2026-05-25T19:14:21+08:00",
+    "raw_files": [
+      "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html"
+    ],
+    "primary_file": "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html"
+  }
+}

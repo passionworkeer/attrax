@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-05-26T15:38:57+08:00",
+  "supplement_dir": "data/regulation_supplements/2026-05-25_official_sources",
+  "processed_dir": "data/corpus/processed",
+  "entries_total": 14,
+  "entries_processed": 14,
+  "entries_failed": 0,
+  "files_written": [
+    {
+      "id": "eu-2024-2847-cra",
+      "market": "EU",
+      "title": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+      "primary_file": "raw/eu/EU_2024-2847_cyber_resilience_act.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2024-2847-cra.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2024-1781-espr",
+      "market": "EU",
+      "title": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+      "primary_file": "raw/eu/EU_2024-1781_ecodesign_sustainable_products.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2024-1781-espr.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2024-2853-product-liability",
+      "market": "EU",
+      "title": "Directive (EU) 2024/2853 on liability for defective products",
+      "primary_file": "raw/eu/EU_2024-2853_product_liability_directive.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2024-2853-product-liability.json",
+      "source_type": "xhtml",
+      "total_chars": 87478
+    },
+    {
+      "id": "eu-2022-2380-common-charger",
+      "market": "EU",
+      "title": "Directive (EU) 2022/2380, common charger amendment to RED",
+      "primary_file": "raw/eu/EU_2022-2380_common_charger_directive.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2022-2380-common-charger.json",
+      "source_type": "xhtml",
+      "total_chars": 44253
+    },
+    {
+      "id": "us-16-cfr-1263-button-coin-batteries",
+      "market": "US",
+      "title": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+      "primary_file": "raw/us/US_16_CFR_Part_1263_button_coin_batteries.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1263-button-coin-batteries.json",
+      "source_type": "xml",
+      "total_chars": 8657
+    },
+    {
+      "id": "us-16-cfr-1250-toy-safety",
+      "market": "US",
+      "title": "16 CFR Part 1250, Safety Standard Mandating ASTM F963 for Toys",
+      "primary_file": "raw/us/US_16_CFR_Part_1250_toy_safety.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1250-toy-safety.json",
+      "source_type": "xml",
+      "total_chars": 12814
+    },
+    {
+      "id": "us-16-cfr-1262-magnets",
+      "market": "US",
+      "title": "16 CFR Part 1262, Safety Standard for Magnets",
+      "primary_file": "raw/us/US_16_CFR_Part_1262_magnets.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1262-magnets.json",
+      "source_type": "xml",
+      "total_chars": 21360
+    },
+    {
+      "id": "us-16-cfr-1303-lead-paint",
+      "market": "US",
+      "title": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+      "primary_file": "raw/us/US_16_CFR_Part_1303_lead_paint.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1303-lead-paint.json",
+      "source_type": "xml",
+      "total_chars": 17841
+    },
+    {
+      "id": "uk-psti-consumer-connectable-security",
+      "market": "UK",
+      "title": "Regulations: consumer connectable product security",
+      "primary_file": "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-psti-consumer-connectable-security.json",
+      "source_type": "html",
+      "total_chars": 7903
+    },
+    {
+      "id": "uk-ukca-conformity-assessment",
+      "market": "UK",
+      "title": "UKCA marking: conformity assessment and documentation",
+      "primary_file": "raw/uk/UK_UKCA_CE_marking_conformity_assessment_guidance.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-ukca-conformity-assessment.json",
+      "source_type": "html",
+      "total_chars": 24641
+    },
+    {
+      "id": "cn-ccc-catalogue-scope-2023",
+      "market": "CN",
+      "title": "CNCA 2023 CCC catalogue description and scope table",
+      "primary_file": "raw/cn/CN_CCC_catalogue_scope_2023.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-ccc-catalogue-scope-2023.json",
+      "source_type": "html",
+      "total_chars": 2860
+    },
+    {
+      "id": "cn-ccc-electronics-safety-accessories-2023",
+      "market": "CN",
+      "title": "CNCA 2023 CCC implementation rule for electronic products and safety accessories",
+      "primary_file": "raw/cn/CN_CCC_electronics_safety_accessories_rule_2023.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-ccc-electronics-safety-accessories-2023.json",
+      "source_type": "html",
+      "total_chars": 774
+    },
+    {
+      "id": "cn-ccc-power-bank-marking-pilot-2025",
+      "market": "CN",
+      "title": "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products",
+      "primary_file": "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-ccc-power-bank-marking-pilot-2025.json",
+      "source_type": "html",
+      "total_chars": 1208
+    },
+    {
+      "id": "cn-ccc-eleven-rules-2026",
+      "market": "CN",
+      "title": "CNCA 2026 announcement on eleven compulsory product certification implementation rules",
+      "primary_file": "raw/cn/CN_CCC_11_rules_2026.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-ccc-eleven-rules-2026.json",
+      "source_type": "html",
+      "total_chars": 697
+    }
+  ],
+  "failures": [],
+  "dry_run": false
+}

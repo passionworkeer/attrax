@@ -74,8 +74,10 @@ data/corpus/intl/
 data/corpus/reference/
 data/corpus/screenshot_pending/
 
-# processed JSON 由 build_corpus.py 生成，不纳入版本控制
-data/corpus/processed/
+# processed JSON 由 build_corpus.py 生成，不纳入版本控制；
+# Official supplement ingestions are curated corpus additions and may be reviewed.
+data/corpus/processed/*
+!data/corpus/processed/*_Official_*.json
 data/corpus/manifest.json
 data/corpus/corpus_index.json
 data/corpus/quality_report.json

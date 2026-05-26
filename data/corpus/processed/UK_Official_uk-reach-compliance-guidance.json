@@ -1,0 +1,44 @@
+{
+  "id": "uk-reach-compliance-guidance",
+  "title": "How to comply with REACH chemical regulations",
+  "fileName": "UK_reach_compliance_guidance.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/uk/UK_reach_compliance_guidance.html",
+  "sourceType": "html",
+  "region": "UK",
+  "pageCount": 1,
+  "totalChars": 4436,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 4436,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "From: Department for Environment, Food & Rural Affairs Published 23 September 2015 Last updated 10 October 2025 — See all updates Get emails about this page Print this page If you’re based in Great Br"
+    }
+  ],
+  "tables": [],
+  "rawText": "From: Department for Environment, Food & Rural Affairs Published 23 September 2015 Last updated 10 October 2025 — See all updates Get emails about this page Print this page If you’re based in Great Britain (England, Scotland and Wales) use this service to: submit a new registration for a substance notify that you’re going to continue importing EU REACH registered substances by submitting a Downstream User Import Notification ( DUIN ) transfer your assets, such as registrations, to another legal entity submit your Northern Ireland notification manage joint registrations - claim the lead registrant role , submit a lead dossier and approve joint registration group members manage your Product and Process Orientated Research and Development (PPORD) notification Start now Before you start You’ll need a Government Gateway account and a Defra account to sign into this service. If you don’t have a Government Gateway account, you can set one up when you use this service for the first time. You must log in to your Government Gateway account at least once every 3 years. If you don’t, you’ll lose access to your account and its data. Follow guidance on how to create a Government Gateway account and a Defra account to access the Comply with UK REACH service. Make sure your substance information is in the correct format as i6z dossier files. You can use IUCLID 6 (or later) to create the files. Read the UK REACH guidance on the Health and Safety Executive ( HSE ) website. Get help with UK REACH ​ Contact the IT support mailbox by email ​ ukreachitsupport@defra.gov.uk ​ We aim to respond within 24 hours. ​ Updates to this page Published 23 September 2015 Last updated 10 October 2025 + show all updates 10 October 2025 Under the 'Get help with UK REACH' section - 'Call the IT support helpline' details removed. 1 April 2025 Contact details for the UK REACH IT support mailbox have been added. 20 July 2023 Added that users will need a Defra account to be able to use the Comply with UK REACH service and it can be set up when they first use the service. Added note that you must log in to your Government Gateway account every 3 years to retain access. 22 June 2022 Have removed previous sections: - Tonnage band deadlines - UK REACH for businesses in Northern Ireland 25 March 2022 We have removed guidance for grandfathering, downstream users, authorisation and restrictions as this information can be found on the Health and Safety Executive website. Joint registrations, substance groups and data sharing is now in a separate guide on gov.uk. 17 January 2022 Removed the 'Register a business or organisation for the Comply with UK REACH service (ODT, 13.5 KB)' and replaced with an accessible version. 28 October 2021 Information on DUIN added to ‘EU held registrations: GB downstream users’ section. 30 July 2021 Updated the Manage your chemicals on UK REACH section. 22 July 2021 You can now use the Comply with REACH service to manage joint registrations, including claiming the lead registrant role. 1 May 2021 The deadline for businesses based in Great Britain using EU REACH, to register with UK REACH (known as grandfathering) was 30 April 2021. 26 April 2021 Changes have been made to the attachment Register a business to comply with UK REACH services to reflect changes to the administration of child accounts. 27 January 2021 Updated the attached document for how to register a business or organisation on the Comply with UK REACH service. Including instructions on how to name 'child' accounts. 1 January 2021 Added the start button for the Comply with UK REACH service. 27 October 2020 Added new guidance on grandfathering, tonnage deadlines and how UK downstream users can notify the HSE, with links to complete guidance on the HSE. 1 September 2020 Updated to provide businesses more information on what they'll need to do to prepare for the 1 January 2021 18 September 2019 Added link to the process maps collection 23 January 2019 Added information on how to make, sell or import chemicals if the UK leaves the EU with no deal, and how to register on REACH after no deal. 4 December 2018 Added link to Health and Safety Executive (HSE) guidance on chemical regulations and preparing for Brexit. See 'Prepare for Brexit'. 1 February 2018 Amended link to registration support page. 23 September 2015 First published. Sign up for emails or print this page Get emails about this page Print this page Contents",
+  "metadata": {
+    "detectedMarkets": [
+      "UK"
+    ],
+    "regulatoryTypes": [
+      "chemical"
+    ],
+    "productCategories": [],
+    "charCount": 4436,
+    "region": "UK",
+    "supplement_id": "uk-reach-compliance-guidance",
+    "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations",
+    "content_url": "",
+    "official_channel": "GOV.UK",
+    "why_added": "UK REACH compliance guidance for chemical duties after EU exit.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/uk/UK_reach_compliance_guidance.html"
+    ],
+    "primary_file": "raw/uk/UK_reach_compliance_guidance.html"
+  }
+}

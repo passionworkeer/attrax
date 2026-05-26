@@ -1,0 +1,48 @@
+{
+  "id": "cn-ccc-power-bank-marking-pilot-2025",
+  "title": "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products",
+  "fileName": "CN_CCC_power_bank_marking_pilot_2025.html",
+  "sourcePath": "data/regulation_supplements/2026-05-25_official_sources/raw/cn/CN_CCC_power_bank_marking_pilot_2025.html",
+  "sourceType": "html",
+  "region": "CN",
+  "pageCount": 1,
+  "totalChars": 1208,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1208,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "当前位置： 首页 > 政务信息 > 公告 > 2025 国家认证认可监督管理委员会公告 发布时间：2025-12-23 2025年第27号 国家认监委关于充电宝等产品 强制性产品认证标志试点改革事项的公告 为进一步完善强制性产品认证制度，落实产品质量安全主体责任，防范假冒认证标志、虚假认证等违法行为，便利社会公众和监管部门通过强制性产品认证标志（以下称CCC标志）查询获证产品及生产者相关信息，国家"
+    }
+  ],
+  "tables": [],
+  "rawText": "当前位置： 首页 > 政务信息 > 公告 > 2025 国家认证认可监督管理委员会公告 发布时间：2025-12-23 2025年第27号 国家认监委关于充电宝等产品 强制性产品认证标志试点改革事项的公告 为进一步完善强制性产品认证制度，落实产品质量安全主体责任，防范假冒认证标志、虚假认证等违法行为，便利社会公众和监管部门通过强制性产品认证标志（以下称CCC标志）查询获证产品及生产者相关信息，国家认监委决定对充电宝等产品CCC标志式样和加施要求实施试点改革，现将有关事项公告如下。 一、试点产品 强制性产品认证目录内移动电源（充电宝）、电动自行车及安全附件、燃气燃烧器具及安全附件。 二、试点工作事项 （一）试点产品CCC标志式样和管理要求 指定认证机构和获证企业应在执行《强制性产品认证标志管理要求》基础上，在试点产品CCC标志图案的右侧标注追溯二维码，两者紧邻且不可分割，图案应清晰、完整。试点产品CCC标志式样见附件中的图例说明。 追溯二维码应符合《强制性产品认证证书管理要求》中认证证书二维码规则或《标准规格CCC标志追溯编码规则》（认秘函〔2023〕36号）。印刷/模压CCC标志追溯二维码由指定认证机构在签发CCC认证证书时向获证企业提供。标准规格CCC标志追溯二维码由指定认证机构在组织印制标志时加施。 社会公众、监管部门等相关方可通过扫描追溯二维码获取相应获证产品信息，包括认证证书编号、生产者名称、产品规格型号、证书状态、发证机构等。 （二）试点工作安排 2026年3月1日起，试点产品领域新获CCC认证证书的产品，应根据本公告要求标注CCC追溯二维码后，方可出厂、销售、进口或者在其他经营活动中使用。 2027年3月1日起，试点产品领域对应的全部获证产品，应根据本公告要求标注CCC追溯二维码后，方可出厂、销售、进口或者在其他经营活动中使用。 2027年3月1日前已按现行要求加施CCC标志并出厂、销售、进口或者在其他经营活动中使用的试点领域获证产品，不做标志变更要求。 三、有关工作要求 各指定认证机构应进一步加强和完善CCC标志的管理工作，建立满足试点工作要求的认证管理信息化平台，确保CCC标志追溯二维码信息的有效查验。在试点工作期间，各指定认证机构应及时向试点产品获证企业提供追溯二维码电子文件或带有追溯二维码的标准规格CCC标志，指导获证企业正确使用CCC标志；将获证企业CCC标志的使用情况作为证后监督工作中的重点检查内容，了解并掌握获证产品的生产情况，强化对获证产品的风险控制能力，确保试点工作的有效实施。 试点产品获证企业在加施CCC标志时，应严格按照《强制性产品认证证书管理要求》和本公告的要求，建立本单位的标志使用和管理制度，确保二维码信息与获证产品信息的一致，并对标志使用情况进行记录和存档。 附件： 试点产品CCC标志式样及管理要求 国家认监委 2025年12月17日",
+  "metadata": {
+    "detectedMarkets": [
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "conformity",
+      "battery"
+    ],
+    "productCategories": [
+      "electronics",
+      "battery"
+    ],
+    "charCount": 1208,
+    "region": "CN",
+    "supplement_id": "cn-ccc-power-bank-marking-pilot-2025",
+    "source_url": "https://www.cnca.gov.cn/zwxx/gg/2025/art/2025/art_99a5ffc8a7864bd99d14b7ac6e9013d1.html",
+    "content_url": "",
+    "official_channel": "CNCA",
+    "why_added": "Highly relevant to power banks; includes CCC traceability QR-code marking timing and pilot scope.",
+    "collected_at": "2026-05-25T19:14:21+08:00",
+    "raw_files": [
+      "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html"
+    ],
+    "primary_file": "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html"
+  }
+}

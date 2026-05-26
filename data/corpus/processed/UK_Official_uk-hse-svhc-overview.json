@@ -1,0 +1,44 @@
+{
+  "id": "uk-hse-svhc-overview",
+  "title": "Substances of very high concern overview",
+  "fileName": "UK_hse_svhc_overview.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_registry_official_sources/raw/uk/UK_hse_svhc_overview.html",
+  "sourceType": "html",
+  "region": "UK",
+  "pageCount": 1,
+  "totalChars": 5464,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 5464,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "This page explains the requirements under UK REACH for substances of very high concern (SVHCs) and how their regulation under UK REACH might impact your obligations for the chemicals you supply. SVHCs"
+    }
+  ],
+  "tables": [],
+  "rawText": "This page explains the requirements under UK REACH for substances of very high concern (SVHCs) and how their regulation under UK REACH might impact your obligations for the chemicals you supply. SVHCs are substances that may have serious effects on human health or the environment. For example, they have potential to cause cancer or remain in the environment for a long time, with the amounts in animals gradually increasing. In accordance with Article 57 of UK REACH, substances with the following properties may be identified as SVHCs: substances meeting the criteria for classification as carcinogenic, mutagenic or toxic for reproduction (CMR) category 1A or 1B in accordance with the GB CLP regulation substances that are persistent, bio-accumulative and toxic (PBT) in accordance with the criteria in Annex 13 of UK REACH substances that are very persistent and very bio-accumulative (vPvB) in accordance with the criteria in Annex 13 of UK REACH substances giving rise to an equivalent level of concern to substances meeting the above criteria. Such substances may have endocrine disrupting properties or there may be scientific evidence of probable serious effects to human health or the environment, although not meeting the criteria for being CMR, PBT or vPvB. Such substances will be identified on a case-by-case basis Substances meeting these criteria may be added to the UK REACH Candidate List . Once on this list, HSE may add priority substances to the UK REACH Authorisation List (Annex 14) and they will then be subject to the authorisation provisions of UK REACH. This process is outlined below . The UK REACH Candidate List The Candidate List is the list of identified SVHCs under UK REACH. Once on the Candidate List, a substance may be considered for potential inclusion on the Authorisation List (Annex 14) of UK REACH. Inclusion of a substance on the Candidate List also places some additional duties on suppliers of those substances. When UK REACH came into force, all substances on the EU REACH Candidate List were carried over onto the UK REACH Candidate List. Process for including substances on the UK REACH Candidate List When the SVHC criteria are believed to be met for a substance, a dossier (Annex 15 dossier) is prepared and the substance is added to the Registry of SVHC Intentions until Outcome . HSE, with the Environment Agency, will prepare such dossiers in accordance with the requirements of Annex 15 to UK REACH and this initiates the SVHC proposal process. Information about the preparation and progress of SVHC proposals will be published in the Registry. Publication of the dossier starts a 6 week consultation where interested parties are invited to comment and submit information on the identity or hazard properties of the substance. Consultations will be published on the HSE Consultations Hub and announced via our e-bulletin service . If no comments are received, the substance will be added to the Candidate List. Where comments are submitted, HSE will have 45 days from the end of the consultation to make a decision regarding the inclusion of the substance on the Candidate List. Any decisions will be published in the Registry of SVHC Intentions until Outcome . Supplier responsibilities Inclusion of a substance on the UK REACH Candidate List brings obligations for suppliers of the substance. Duty to communicate information on substances in articles If you supply an article ( article definition ) containing a substance that appears on the Candidate List in a concentration above 0.1% weight by weight (w/w) you must provide the recipient of the article with sufficient information to allow safe use of the article. This includes as a minimum, the name of the substance. This applies when the article is supplied to recipients who use or handle it as part of their work. You must also supply the equivalent information to consumers (the general public) if requested. You must provide this information within 45 days of receipt of the request. Notification of substances in articles If you produce, import or supply articles containing substances that appear on the UK REACH Candidate List you may need to submit a notification to HSE. Read our guidance on notifying substances in articles. Duty to communicate information on substances in mixtures If you supply a mixture that is not classified as hazardous according to GB CLP, you must provide an safety data sheet upon request if the mixture contains any substance listed on the UK REACH Candidate List at a concentration of 0.1% (w/w) or higher in non-gaseous mixtures. Introduction to classification and labelling . Duty to communicate information on substances If you supply a substance that appears on the UK REACH Candidate List you must provide a safety data sheet for the substance to your customers. Authorisation List (Annex 14) Periodically, HSE will recommend priority substances from the UK Candidate List for inclusion on the Authorisation List (Annex 14) of UK REACH. Substances added to the Authorisation List will be subject to the authorisation provisions of UK REACH. If a substance is added to the authorisation list, it cannot be used after the specified ‘sunset date’ unless the use is exempt from authorisation, or a use-specific authorisation has been granted. Substances recommended for inclusion in UK REACH Authorisation List (Annex 14) UK REACH Authorisation List (Annex 14) Applying for a UK REACH authorisation Back to top",
+  "metadata": {
+    "detectedMarkets": [
+      "UK"
+    ],
+    "regulatoryTypes": [
+      "chemical"
+    ],
+    "productCategories": [],
+    "charCount": 5464,
+    "region": "UK",
+    "supplement_id": "uk-hse-svhc-overview",
+    "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm",
+    "content_url": "",
+    "official_channel": "Health and Safety Executive",
+    "why_added": "UK SVHC context for chemical communication and article obligations.",
+    "collected_at": "2026-05-26T17:45:15+08:00",
+    "raw_files": [
+      "raw/uk/UK_hse_svhc_overview.html"
+    ],
+    "primary_file": "raw/uk/UK_hse_svhc_overview.html"
+  }
+}
