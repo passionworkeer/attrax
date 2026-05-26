@@ -17,6 +17,7 @@ try:
         make_entry,
         sha256_file,
     )
+    from scripts.diff_regulation_manifests import compare_manifests, load_manifest, write_diff_report
 except ImportError:  # pragma: no cover - direct script execution path
     from collect_global_regulation_sources import (
         Collector,
@@ -25,6 +26,7 @@ except ImportError:  # pragma: no cover - direct script execution path
         make_entry,
         sha256_file,
     )
+    from diff_regulation_manifests import compare_manifests, load_manifest, write_diff_report
 
 
 DEFAULT_REGISTRY = Path("data/regulation_sources/official_sources.json")
@@ -125,7 +127,7 @@ def ensure_eu_text(collector: Collector, entry: dict[str, Any], celex: str, rdf_
 
 
 def build_manifest_entry(entry: dict[str, Any], files: list[str]) -> dict[str, Any]:
-    return make_entry(
+    manifest_entry = make_entry(
         entry["id"],
         entry["market"],
         entry["title"],
@@ -136,6 +138,40 @@ def build_manifest_entry(entry: dict[str, Any], files: list[str]) -> dict[str, A
         list(entry["product_categories"]),
         list(entry["regulatory_types"]),
     )
+    manifest_entry["source_version"] = build_source_version(entry)
+    manifest_entry["lifecycle"] = build_lifecycle_metadata(entry)
+    return manifest_entry
+
+
+def build_source_version(entry: dict[str, Any]) -> dict[str, Any]:
+    """Build source-version metadata from registry-specific stable identifiers."""
+    source_type = entry.get("source_type", "")
+    if source_type == "ecfr_part":
+        return {
+            "kind": "ecfr_part",
+            "ecfr_date": entry.get("ecfr_date", ""),
+            "ecfr_title": entry.get("ecfr_title", ""),
+            "ecfr_part": entry.get("ecfr_part", ""),
+        }
+    if source_type == "eu_celex":
+        return {
+            "kind": "eu_celex",
+            "celex": entry.get("celex", ""),
+        }
+    return {
+        "kind": source_type,
+        "source_url": entry.get("source_url", ""),
+    }
+
+
+def build_lifecycle_metadata(entry: dict[str, Any]) -> dict[str, Any]:
+    """Preserve optional source lifecycle metadata when registry entries define it."""
+    return {
+        "publication_date": entry.get("publication_date", ""),
+        "effective_date": entry.get("effective_date", ""),
+        "supersedes": list(entry.get("supersedes", [])),
+        "replaces": list(entry.get("replaces", [])),
+    }
 
 
 def collect_entry(collector: Collector, entry: dict[str, Any]) -> dict[str, Any]:
@@ -247,11 +283,18 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Collect official regulation sources from registry.")
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY)
     parser.add_argument("--supplement-dir", type=Path, default=DEFAULT_SUPPLEMENT_DIR)
+    parser.add_argument("--previous-manifest", type=Path, default=None)
+    parser.add_argument("--diff-output", type=Path, default=None)
     args = parser.parse_args()
 
     registry = load_registry(args.registry)
     collector = Collector(args.supplement_dir)
     manifest = build_registry_manifest(registry, collector)
+    if args.previous_manifest:
+        diff = compare_manifests(load_manifest(args.previous_manifest), manifest)
+        manifest["incremental_diff"] = diff
+        if args.diff_output:
+            write_diff_report(diff, args.diff_output)
     write_outputs(collector, manifest)
     print(
         json.dumps(
