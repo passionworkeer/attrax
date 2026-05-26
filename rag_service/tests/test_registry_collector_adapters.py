@@ -7,6 +7,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from scripts.collect_official_sources_from_registry import (  # noqa: E402
     build_download_url,
     build_manifest_entry,
+    eu_cellar_content_variants,
     eu_registry_files,
 )
 
@@ -52,6 +53,14 @@ def test_eu_registry_files_returns_rdf_and_xhtml_in_order():
         "raw/eu/eu-2023-988-general-product-safety.rdf",
         "raw/eu/eu-2023-988-general-product-safety.xhtml",
     )
+
+
+def test_eu_cellar_content_variants_include_older_xhtml_slots():
+    variants = eu_cellar_content_variants()
+
+    assert "0001.04" in variants
+    assert "0003.04" in variants
+    assert variants.index("0001.04") < variants.index("0001.01")
 
 
 def test_manifest_entry_preserves_registry_metadata_without_mutating_input():
