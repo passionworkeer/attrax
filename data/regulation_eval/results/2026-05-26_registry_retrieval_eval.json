@@ -1,0 +1,1000 @@
+{
+  "summary": {
+    "generated_at": "2026-05-26T18:56:45+08:00",
+    "total_cases": 12,
+    "hits": 12,
+    "misses": [],
+    "hit_rate": 1.0,
+    "mrr": 0.9166666666666666,
+    "by_market": {
+      "CA": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "CN": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 0.5
+      },
+      "EU": {
+        "total": 3,
+        "hits": 3,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "NZ": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 0.75
+      },
+      "UK": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "US": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "by_category": {
+      "children_products": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 0.75
+      },
+      "electronics": {
+        "total": 5,
+        "hits": 5,
+        "hit_rate": 1.0,
+        "mrr": 0.9
+      },
+      "packaging": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "toys": {
+        "total": 3,
+        "hits": 3,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "by_risk": {
+      "chemical": {
+        "total": 4,
+        "hits": 4,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "conformity": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 0.75
+      },
+      "product_safety": {
+        "total": 4,
+        "hits": 4,
+        "hit_rate": 1.0,
+        "mrr": 0.875
+      },
+      "waste": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "eu-electronics-rohs-chemical",
+      "query": "EU electronics hazardous substances RoHS restricted lead mercury cadmium",
+      "market": "EU",
+      "category": "electronics",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "eu-2011-65-rohs"
+      ],
+      "returned_source_ids": [
+        "eu-2011-65-rohs",
+        "eu-2024-2847-cra"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.4093158230845333
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.3563358872143501
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.3543516494716784
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.3437848091720547
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.33866128708498555
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.3319524306152971
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.32840262314017094
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.3207991510909946
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.3181436298122757
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-toys-safety",
+      "query": "EU toy safety chemical mechanical warnings conformity directive",
+      "market": "EU",
+      "category": "toys",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "chemical",
+        "testing"
+      ],
+      "expected_source_ids": [
+        "eu-2009-48-toy-safety"
+      ],
+      "returned_source_ids": [
+        "eu-2009-48-toy-safety",
+        "eu-2024-2853-product-liability",
+        "eu-2024-2847-cra"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2009-48-toy-safety",
+          "doc_name": "Directive 2009/48/EC on the safety of toys",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2024-2853-product-liability",
+          "doc_name": "Directive (EU) 2024/2853 on liability for defective products",
+          "region": "EU",
+          "score": 0.2120239190427447
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.1317803326846482
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.12748831788261655
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.12715377577267417
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.1266751979510631
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.12652946768169893
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.12268185210800757
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.12103497676421211
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.12058405927181277
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-radio-red",
+      "query": "radio equipment directive 2014 53 EU bluetooth wifi",
+      "market": "EU",
+      "category": "electronics",
+      "risk": "conformity",
+      "regulatory_types": [
+        "radio",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "eu-2014-53-radio-equipment"
+      ],
+      "returned_source_ids": [
+        "eu-2014-53-radio-equipment",
+        "eu-2022-2380-common-charger"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2014-53-radio-equipment",
+          "doc_name": "Directive 2014/53/EU on radio equipment",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2014-53-radio-equipment",
+          "doc_name": "Directive 2014/53/EU on radio equipment",
+          "region": "EU",
+          "score": 0.4822723533799968
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.4749459453560768
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.47403408819611487
+        },
+        {
+          "source_id": "eu-2014-53-radio-equipment",
+          "doc_name": "Directive 2014/53/EU on radio equipment",
+          "region": "EU",
+          "score": 0.46936460933095175
+        },
+        {
+          "source_id": "eu-2014-53-radio-equipment",
+          "doc_name": "Directive 2014/53/EU on radio equipment",
+          "region": "EU",
+          "score": 0.46542727975984227
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.460171139225721
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.4410416770823076
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.43615046024319803
+        },
+        {
+          "source_id": "eu-2014-53-radio-equipment",
+          "doc_name": "Directive 2014/53/EU on radio equipment",
+          "region": "EU",
+          "score": 0.41432445958905606
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-toys-cpsc-phthalates",
+      "query": "US children's toys phthalates CPSC prohibition child care articles",
+      "market": "US",
+      "category": "toys",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1307-phthalates"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1307-phthalates",
+        "us-16-cfr-1250-toy-safety",
+        "us-16-cfr-1303-lead-paint",
+        "us-16-cfr-1262-magnets",
+        "us-16-cfr-1263-button-coin-batteries"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1307-phthalates",
+          "doc_name": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1250-toy-safety",
+          "doc_name": "16 CFR Part 1250, Safety Standard Mandating ASTM F963 for Toys",
+          "region": "US",
+          "score": 0.13855725891224965
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.13119324308550206
+        },
+        {
+          "source_id": "us-16-cfr-1262-magnets",
+          "doc_name": "16 CFR Part 1262, Safety Standard for Magnets",
+          "region": "US",
+          "score": 0.11005975527210898
+        },
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.10820016253127303
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.10533909225875572
+        },
+        {
+          "source_id": "us-16-cfr-1250-toy-safety",
+          "doc_name": "16 CFR Part 1250, Safety Standard Mandating ASTM F963 for Toys",
+          "region": "US",
+          "score": 0.10474772241086795
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.1034008370255086
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.10079905145561059
+        },
+        {
+          "source_id": "us-16-cfr-1262-magnets",
+          "doc_name": "16 CFR Part 1262, Safety Standard for Magnets",
+          "region": "US",
+          "score": 0.09578824935506053
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-button-coin-batteries",
+      "query": "US consumer products button cell coin batteries Reese law safety",
+      "market": "US",
+      "category": "electronics",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1263-button-coin-batteries"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1263-button-coin-batteries",
+        "us-16-cfr-1303-lead-paint"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.311337793073116
+        },
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.24776458330378923
+        },
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.23035433370151684
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.14166934434653186
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.11238181773195567
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.09201831221308475
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.0842936872681259
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.08265029834121804
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.08116210119940528
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "cn-ccc-electronics",
+      "query": "China CCC compulsory certification electronic products catalogue scope",
+      "market": "CN",
+      "category": "electronics",
+      "risk": "conformity",
+      "regulatory_types": [
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "cn-ccc-catalogue-scope-2023",
+        "cn-ccc-eleven-rules-2026"
+      ],
+      "returned_source_ids": [
+        "cn-ccc-electronics-safety-accessories-2023",
+        "cn-ccc-catalogue-scope-2023",
+        "cn-ccc-power-bank-marking-pilot-2025"
+      ],
+      "top_documents": [
+        {
+          "source_id": "cn-ccc-electronics-safety-accessories-2023",
+          "doc_name": "CNCA 2023 CCC implementation rule for electronic products and safety accessories",
+          "region": "CN",
+          "score": 0.5
+        },
+        {
+          "source_id": "cn-ccc-electronics-safety-accessories-2023",
+          "doc_name": "CNCA 2023 CCC implementation rule for electronic products and safety accessories",
+          "region": "CN",
+          "score": 0.3446406292035911
+        },
+        {
+          "source_id": "cn-ccc-catalogue-scope-2023",
+          "doc_name": "CNCA 2023 CCC catalogue description and scope table",
+          "region": "CN",
+          "score": 0.28007616133637764
+        },
+        {
+          "source_id": "cn-ccc-catalogue-scope-2023",
+          "doc_name": "CNCA 2023 CCC catalogue description and scope table",
+          "region": "CN",
+          "score": 0.22785648325199087
+        },
+        {
+          "source_id": "cn-ccc-catalogue-scope-2023",
+          "doc_name": "CNCA 2023 CCC catalogue description and scope table",
+          "region": "CN",
+          "score": 0.22423070894607594
+        },
+        {
+          "source_id": "cn-ccc-catalogue-scope-2023",
+          "doc_name": "CNCA 2023 CCC catalogue description and scope table",
+          "region": "CN",
+          "score": 0.21813850981927646
+        },
+        {
+          "source_id": "cn-ccc-power-bank-marking-pilot-2025",
+          "doc_name": "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products",
+          "region": "CN",
+          "score": 0.20765466088694876
+        },
+        {
+          "source_id": "cn-ccc-power-bank-marking-pilot-2025",
+          "doc_name": "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products",
+          "region": "CN",
+          "score": 0.205192550249509
+        },
+        {
+          "source_id": "cn-ccc-power-bank-marking-pilot-2025",
+          "doc_name": "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products",
+          "region": "CN",
+          "score": 0.19892903985096066
+        }
+      ],
+      "hit": true,
+      "rank": 2,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "ca-children-lead",
+      "query": "Canada consumer products containing lead children's products surface coating",
+      "market": "CA",
+      "category": "children_products",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "ca-consumer-products-containing-lead-regulations",
+        "ca-surface-coating-materials-regulations"
+      ],
+      "returned_source_ids": [
+        "ca-surface-coating-materials-regulations",
+        "ca-consumer-products-containing-lead-regulations",
+        "ca-corded-window-coverings-regulations",
+        "ca-phthalates-regulations"
+      ],
+      "top_documents": [
+        {
+          "source_id": "ca-surface-coating-materials-regulations",
+          "doc_name": "Surface Coating Materials Regulations",
+          "region": "CA",
+          "score": 0.5
+        },
+        {
+          "source_id": "ca-consumer-products-containing-lead-regulations",
+          "doc_name": "Consumer Products Containing Lead Regulations",
+          "region": "CA",
+          "score": 0.4983118259493077
+        },
+        {
+          "source_id": "ca-consumer-products-containing-lead-regulations",
+          "doc_name": "Consumer Products Containing Lead Regulations",
+          "region": "CA",
+          "score": 0.48005872639966357
+        },
+        {
+          "source_id": "ca-surface-coating-materials-regulations",
+          "doc_name": "Surface Coating Materials Regulations",
+          "region": "CA",
+          "score": 0.4483481204432881
+        },
+        {
+          "source_id": "ca-surface-coating-materials-regulations",
+          "doc_name": "Surface Coating Materials Regulations",
+          "region": "CA",
+          "score": 0.42068988149389663
+        },
+        {
+          "source_id": "ca-corded-window-coverings-regulations",
+          "doc_name": "Corded Window Coverings Regulations",
+          "region": "CA",
+          "score": 0.19940601470919964
+        },
+        {
+          "source_id": "ca-phthalates-regulations",
+          "doc_name": "Phthalates Regulations",
+          "region": "CA",
+          "score": 0.19083112169852173
+        },
+        {
+          "source_id": "ca-corded-window-coverings-regulations",
+          "doc_name": "Corded Window Coverings Regulations",
+          "region": "CA",
+          "score": 0.18886102603634122
+        },
+        {
+          "source_id": "ca-phthalates-regulations",
+          "doc_name": "Phthalates Regulations",
+          "region": "CA",
+          "score": 0.17053671836650738
+        },
+        {
+          "source_id": "ca-corded-window-coverings-regulations",
+          "doc_name": "Corded Window Coverings Regulations",
+          "region": "CA",
+          "score": 0.16353058023097772
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "ca-chemicals-packaging",
+      "query": "Canada consumer chemicals containers hazard labelling packaging requirements",
+      "market": "CA",
+      "category": "packaging",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "labelling",
+        "packaging"
+      ],
+      "expected_source_ids": [
+        "ca-consumer-chemicals-containers-regulations-2001"
+      ],
+      "returned_source_ids": [
+        "ca-consumer-chemicals-containers-regulations-2001"
+      ],
+      "top_documents": [
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.5
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.45390059277777484
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.43783844921321124
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.42593844427044697
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.401427028149337
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.40032485321078415
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.370217950283353
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.34544365658773124
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.33450354536060295
+        },
+        {
+          "source_id": "ca-consumer-chemicals-containers-regulations-2001",
+          "doc_name": "Consumer Chemicals and Containers Regulations, 2001",
+          "region": "CA",
+          "score": 0.3330631411624356
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "uk-packaging-epr",
+      "query": "UK packaging extended producer responsibility who is affected obligations",
+      "market": "UK",
+      "category": "packaging",
+      "risk": "waste",
+      "regulatory_types": [
+        "packaging",
+        "sustainability",
+        "waste"
+      ],
+      "expected_source_ids": [
+        "uk-packaging-epr-who-is-affected"
+      ],
+      "returned_source_ids": [
+        "uk-packaging-epr-who-is-affected"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.4533843932096201
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.4472342552357952
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.43415359495522
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.4190446730229573
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.4157096212586678
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.41484641878041767
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.41188202925982514
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.4017310697493409
+        },
+        {
+          "source_id": "uk-packaging-epr-who-is-affected",
+          "doc_name": "Extended producer responsibility for packaging: who is affected and what to do",
+          "region": "UK",
+          "score": 0.3902334856013653
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "uk-electronics-weee",
+      "query": "UK waste electrical electronic equipment WEEE producer distributor obligations",
+      "market": "UK",
+      "category": "electronics",
+      "risk": "waste",
+      "regulatory_types": [
+        "waste",
+        "sustainability",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "uk-weee-regulations-guidance"
+      ],
+      "returned_source_ids": [
+        "uk-weee-regulations-guidance",
+        "uk-ukca-conformity-assessment"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-weee-regulations-guidance",
+          "doc_name": "Regulations: waste electrical and electronic equipment",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-weee-regulations-guidance",
+          "doc_name": "Regulations: waste electrical and electronic equipment",
+          "region": "UK",
+          "score": 0.42161946766682645
+        },
+        {
+          "source_id": "uk-weee-regulations-guidance",
+          "doc_name": "Regulations: waste electrical and electronic equipment",
+          "region": "UK",
+          "score": 0.3629467405283708
+        },
+        {
+          "source_id": "uk-weee-regulations-guidance",
+          "doc_name": "Regulations: waste electrical and electronic equipment",
+          "region": "UK",
+          "score": 0.32381015347308545
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.10954310121082511
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.09969458284200024
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.0960121491235044
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.09350980119778517
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.08978236025474502
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.05473850117494837
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "nz-toys-small-parts",
+      "query": "New Zealand children's toy mandatory product safety standard small parts",
+      "market": "NZ",
+      "category": "toys",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "mechanical",
+        "testing"
+      ],
+      "expected_source_ids": [
+        "nz-product-safety-standards-2005"
+      ],
+      "returned_source_ids": [
+        "nz-product-safety-standards-2005"
+      ],
+      "top_documents": [
+        {
+          "source_id": "nz-product-safety-standards-2005",
+          "doc_name": "Children's toy standard",
+          "region": "NZ",
+          "score": 0.0
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "nz-household-cots",
+      "query": "New Zealand household cot standard baby nursery safety requirements",
+      "market": "NZ",
+      "category": "children_products",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "mechanical",
+        "testing"
+      ],
+      "expected_source_ids": [
+        "nz-product-safety-standards-household-cots-2016"
+      ],
+      "returned_source_ids": [
+        "nz-product-safety-standards-2005",
+        "nz-product-safety-standards-household-cots-2016"
+      ],
+      "top_documents": [
+        {
+          "source_id": "nz-product-safety-standards-2005",
+          "doc_name": "Children's toy standard",
+          "region": "NZ",
+          "score": 0.0
+        },
+        {
+          "source_id": "nz-product-safety-standards-household-cots-2016",
+          "doc_name": "Household cot standard",
+          "region": "NZ",
+          "score": 0.0
+        }
+      ],
+      "hit": true,
+      "rank": 2,
+      "reciprocal_rank": 0.5
+    }
+  ]
+}
