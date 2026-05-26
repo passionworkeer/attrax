@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -61,6 +62,68 @@ def eu_registry_files(entry: dict[str, Any]) -> tuple[str, str]:
     return rdf_rel, xhtml_rel
 
 
+def eu_cellar_content_variants() -> list[str]:
+    variants: list[str] = []
+    for i in range(1, 21):
+        for suffix in ("04", "03", "02", "01"):
+            variants.append(f"{i:04d}.{suffix}")
+    return variants
+
+
+def ensure_eu_text(collector: Collector, entry: dict[str, Any], celex: str, rdf_rel: str, xhtml_rel: str) -> None:
+    rdf_path = collector.supplement_dir / rdf_rel
+    if not rdf_path.exists() or rdf_path.stat().st_size < 128:
+        collector.download(f"https://publications.europa.eu/resource/celex/{celex}", rdf_rel, min_bytes=500)
+
+    rdf_text = rdf_path.read_text(encoding="utf-8", errors="ignore")
+    cellar_uuid = None
+    descriptions = re.finditer(
+        r'<rdf:Description rdf:about="http://publications\.europa\.eu/resource/cellar/([^"]+)">(.*?)</rdf:Description>',
+        rdf_text,
+        flags=re.S,
+    )
+    for match in descriptions:
+        body = match.group(2)
+        same_as = f'owl:sameAs rdf:resource="http://publications.europa.eu/resource/celex/{celex}"'
+        if same_as in body:
+            cellar_uuid = match.group(1)
+            break
+
+    if not cellar_uuid:
+        collector.failures.append(
+            {
+                "url": entry["source_url"],
+                "file": xhtml_rel,
+                "error": f"could not resolve Cellar UUID for {celex}",
+            }
+        )
+        return
+
+    for variant in eu_cellar_content_variants():
+        content_url = f"https://publications.europa.eu/resource/cellar/{cellar_uuid}.{variant}/DOC_1"
+        result = collector.download(
+            content_url,
+            xhtml_rel,
+            force=not (collector.supplement_dir / xhtml_rel).exists(),
+            min_bytes=1000,
+            fallback_curl=False,
+            record_failure=False,
+        )
+        if result["status"] in {"downloaded", "existing"}:
+            entry["content_url"] = content_url
+            if xhtml_rel not in entry["files"]:
+                entry["files"].append(xhtml_rel)
+            return
+
+    collector.failures.append(
+        {
+            "url": entry["source_url"],
+            "file": xhtml_rel,
+            "error": f"could not download XHTML for {celex} cellar {cellar_uuid}",
+        }
+    )
+
+
 def build_manifest_entry(entry: dict[str, Any], files: list[str]) -> dict[str, Any]:
     return make_entry(
         entry["id"],
@@ -80,7 +143,7 @@ def collect_entry(collector: Collector, entry: dict[str, Any]) -> dict[str, Any]
     if source_type == "eu_celex":
         rdf_rel, xhtml_rel = eu_registry_files(entry)
         manifest_entry = build_manifest_entry(entry, [rdf_rel])
-        collector.ensure_eu_text(manifest_entry, entry["celex"], rdf_rel, xhtml_rel)
+        ensure_eu_text(collector, manifest_entry, entry["celex"], rdf_rel, xhtml_rel)
         return manifest_entry
 
     file_rel = entry["files"][0]
