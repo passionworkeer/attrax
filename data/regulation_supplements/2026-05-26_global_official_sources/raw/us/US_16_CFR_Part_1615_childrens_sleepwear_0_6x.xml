@@ -1,0 +1,773 @@
+<?xml version="1.0"?>
+<DIV5 N="1615" TYPE="PART" VOLUME="2" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-16/part-1615&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;16 CFR Part 1615&amp;quot;}">
+<HEAD>PART 1615&#x2014;STANDARD FOR THE FLAMMABILITY OF CHILDREN'S SLEEPWEAR: SIZES 0 THROUGH 6X (FF 3-71)
+</HEAD>
+<SOURCE>
+<HED>Source:</HED><PSPACE>40 FR 59903, Dec. 30, 1975, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV6 N="A" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-16/part-1615/subpart-A&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;16 CFR Part 1615 Subpart A&amp;quot;}">
+<HEAD>Subpart A&#x2014;The Standard</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>Sec. 429, Pub. L. 105-276; Sec. 4, 67 Stat. 112, as amended, 81 Stat. 569-570; 15 U.S.C. 1193.
+</PSPACE></AUTH>
+<DIV8 N="1615.1" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.1&quot;,&quot;citation&quot;:&quot;16 CFR 1615.1&quot;}">
+<HEAD>&#xA7; 1615.1 Definitions.</HEAD>
+<P>In addition to the definitions given in section 2 of the Flammable Fabrics Act, as amended (15 U.S.C. 1191), the following definitions apply for purposes of this Standard:</P>
+<P>(a) <I>Children's Sleepwear</I> means any product of wearing apparel up to and including size 6X, such as nightgowns, pajamas, or similar or related items, such as robes, intended to be worn primarily for sleeping or activities related to sleeping, except:</P>
+<P>(1) Diapers and underwear;</P>
+<P>(2) &#x201C;Infant garments,&#x201D; as defined by section 1615.1(c), below; and</P>
+<P>(3) &#x201C;Tight-fitting garments,&#x201D; as defined by section 1615.1(o), below.</P>
+<P>(b) <I>Size 6X</I> means the size defined as 6X in Department of Commerce Voluntary Product Standard, previously identified as Commercial Standard, CS 151-50 &#x201C;Body Measurements for the Sizing of Apparel for Infants, Babies, Toddlers, and Children.&#x201D;
+<SU>1</SU>
+<FTREF/></P>
+<FTNT>
+<P><SU>1</SU> Copies available from the National Technical Information Service, 5285 Port Royal Street, Springfield, VA 22151, and should be ordered as CS 15150.</P></FTNT>
+<P>(c) <I>Infant garment</I> means a garment which:</P>
+<P>(1) Is sized nine months or smaller;</P>
+<P>(2) If a one-piece garment, does not exceed 64.8 centimeters (25.75 inches) in length; if a two-piece garment, has no piece exceeding 40 centimeters (15.75 inches) in length;</P>
+<P>(3) Complies with all applicable requirements of the Standard for the Flammability of Clothing Textiles (16 CFR part 1610) and the Standard for the Flammability of Vinyl Plastic Film (16 CFR part 1611); and</P>
+<P>(4) Bears a label stating the size of the garment, expressed in terms of months of age. For example, &#x201C;0 to 3 mos.&#x201D; or &#x201C;9 mos.&#x201D; If the label is not visible to the consumer when the garment is offered for sale at retail, the same information must appear legibly on the package of the garment.</P>
+<P>(d) <I>Item</I> means any product of children's sleepwear, or any fabric or related material intended or promoted for use in children's sleepwear.</P>
+<P>(e) <I>Trim</I> means decorative materials, such as ribbons, laces, embroidery, or ornaments. This definition does not include (1) individual pieces less than 2 inches in their longest dimension, provided that such pieces do not constitute or cover in aggregate a total of more than 20 square inches of the item, or (2) functional materials (findings), such as zippers, buttons, or elastic bands, used in the construction of garments.</P>
+<P>(f) <I>Test Criteria</I> means the maximum char length which a sample or specimen may exhibit in order to pass an individual test.</P>
+<P>(g) <I>Char Length</I> means the distance from the original lower edge of the specimen exposed to the flame in accordance with the procedure specified in &#xA7; 1615.4 <I>Test procedure</I> to the end of the tear or void in the charred, burned, or damaged area, the tear being made in accordance with the procedure specified in &#xA7; 1615.4(g)(2).</P>
+<P>(h) [Reserved]</P>
+<P>(i) <I>Afterglow</I> means the continuation of glowing of parts of a specimen after flaming has ceased.</P>
+<P>(j) <I>Fabric Piece</I> (Piece) means a continuous, unseamed length of fabric, one or more of which make up a unit.</P>
+<P>(k) <I>Fabric Production Unit</I> (Unit) means any quantity of finished fabric up to 5,000 linear yards for normal sampling or 10,000 linear yards for reduced sampling which has a specific identity that remains unchanged throughout the Unit except for color or print pattern as specified in &#xA7; 1615.4(b). For purposes of this definition, finished fabric means fabric in its final form after completing its last processing steps as a fabric except for slitting.</P>
+<P>(l) <I>Garment Production Unit</I> (Unit) means any quantity of finished garments up to 500 dozen which have a specific identity that remains unchanged throughout the Unit except for size, trim, findings, color, and print patterns as specified in &#xA7; 1615.4(b).</P>
+<P>(m) <I>Sample</I> means five test specimens.</P>
+<P>(n) <I>Specimen</I> means an 8.9 &#xD7; 25.4 cm. (3.5 &#xD7; 10 in.) section of fabric. For garment testing the specimen will include a seam or trim.</P>
+<P>(o) Tight-fitting garment means a garment which:</P>
+<P>(1)(i) In each of the sizes listed below does not exceed the maximum dimension specified below for the chest, waist, seat, upper arm, thigh, wrist, or ankle:</P>
+<DIV width="100%"><DIV class="gpotbl_div">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<THEAD>
+<TR>
+<TH class="center border-top-single border-bottom-single border-right-single"> </TH>
+<TH class="center border-top-single border-bottom-single border-right-single">Chest</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">Waist</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">Seat</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">Upper arm</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">Thigh</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">Wrist</TH>
+<TH class="center border-top-single border-bottom-single">Ankle</TH>
+</TR>
+</THEAD>
+<TBODY>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 9-12 mos</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">48.3</TD>
+<TD class="right border-right-single">48.3</TD>
+<TD class="right border-right-single">48.3</TD>
+<TD class="right border-right-single">14.3</TD>
+<TD class="right border-right-single">26.7</TD>
+<TD class="right border-right-single">10.5</TD>
+<TD class="right">13</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(19)</TD>
+<TD class="right border-bottom-single border-right-single">(19)</TD>
+<TD class="right border-bottom-single border-right-single">(19)</TD>
+<TD class="right border-bottom-single border-right-single">(5<sup>5</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(10<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single">(5<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 12-18 mos</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">49.5</TD>
+<TD class="right border-right-single">49.5</TD>
+<TD class="right border-right-single">50.8</TD>
+<TD class="right border-right-single">14.9</TD>
+<TD class="right border-right-single">28.3</TD>
+<TD class="right border-right-single">10.5</TD>
+<TD class="right">13.1</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(19<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(19<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(20)</TD>
+<TD class="right border-bottom-single border-right-single">(5<sup>7</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(11<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single">(5<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 18-24 mos</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">52.1</TD>
+<TD class="right border-right-single">50.8</TD>
+<TD class="right border-right-single">53.3</TD>
+<TD class="right border-right-single">15.6</TD>
+<TD class="right border-right-single">29.5</TD>
+<TD class="right border-right-single">11</TD>
+<TD class="right">13.6</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(20<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(20)</TD>
+<TD class="right border-bottom-single border-right-single">(21)</TD>
+<TD class="right border-bottom-single border-right-single">(6<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(11<sup>5</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>1</sup>&#x2044;<sub>4</sub>)</TD>
+<TD class="right border-bottom-single">(5<sup>3</sup>&#x2044;<sub>8</sub>)</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 2</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">52.1</TD>
+<TD class="right border-right-single">50.8</TD>
+<TD class="right border-right-single">53.3</TD>
+<TD class="right border-right-single">15.6</TD>
+<TD class="right border-right-single">29.8</TD>
+<TD class="right border-right-single">11.4</TD>
+<TD class="right">14</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(20<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(20)</TD>
+<TD class="right border-bottom-single border-right-single">(21)</TD>
+<TD class="right border-bottom-single border-right-single">(6<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(11<sup>3</sup>&#x2044;<sub>4</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single">(5<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 3</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">53.3</TD>
+<TD class="right border-right-single">52.1</TD>
+<TD class="right border-right-single">56</TD>
+<TD class="right border-right-single">16.2</TD>
+<TD class="right border-right-single">31.4</TD>
+<TD class="right border-right-single">11.7</TD>
+<TD class="right">14.9</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(21)</TD>
+<TD class="right border-bottom-single border-right-single">(20<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(22)</TD>
+<TD class="right border-bottom-single border-right-single">(6<sup>3</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(12<sup>3</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>5</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single">(5<sup>7</sup>&#x2044;<sub>8</sub>)
+</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 4</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">56</TD>
+<TD class="right border-right-single">53.3</TD>
+<TD class="right border-right-single">58.4</TD>
+<TD class="right border-right-single">16.8</TD>
+<TD class="right border-right-single">33.0</TD>
+<TD class="right border-right-single">12.1</TD>
+<TD class="right">15.9</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(22)</TD>
+<TD class="right border-bottom-single border-right-single">(21)</TD>
+<TD class="right border-bottom-single border-right-single">(23)</TD>
+<TD class="right border-bottom-single border-right-single">(6<sup>5</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(13)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>3</sup>&#x2044;<sub>4</sub>)</TD>
+<TD class="right border-bottom-single">(6<sup>1</sup>&#x2044;<sub>4</sub>)
+</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 5</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">58.4</TD>
+<TD class="right border-right-single">54.6</TD>
+<TD class="right border-right-single">61.0</TD>
+<TD class="right border-right-single">17.5</TD>
+<TD class="right border-right-single">34.6</TD>
+<TD class="right border-right-single">12.4</TD>
+<TD class="right">16.8</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(23)</TD>
+<TD class="right border-bottom-single border-right-single">(21<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(24)</TD>
+<TD class="right border-bottom-single border-right-single">(6<sup>7</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(13<sup>5</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(4<sup>7</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single">(6<sup>5</sup>&#x2044;<sub>8</sub>)</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 6</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">61.0</TD>
+<TD class="right border-right-single">55.9</TD>
+<TD class="right border-right-single">63.5</TD>
+<TD class="right border-right-single">18.1</TD>
+<TD class="right border-right-single">36.2</TD>
+<TD class="right border-right-single">12.7</TD>
+<TD class="right">17.8</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(24)</TD>
+<TD class="right border-bottom-single border-right-single">(22)</TD>
+<TD class="right border-bottom-single border-right-single">(25)</TD>
+<TD class="right border-bottom-single border-right-single">(7<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(14<sup>1</sup>&#x2044;<sub>4</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(5)</TD>
+<TD class="right border-bottom-single">(7)</TD>
+</TR>
+<TR>
+<TD colspan="8" class="center border-bottom-single"><strong class="minor-caps">Size 6X</strong></TD>
+</TR>
+<TR>
+<TD class="left border-right-single">Maximum dimension:</TD>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right border-right-single"/>
+<TD class="right"/>
+</TR>
+<TR>
+<TD class="left border-right-single primary-indent-hanging-2">Centimeters</TD>
+<TD class="right border-right-single">62.9</TD>
+<TD class="right border-right-single">57.2</TD>
+<TD class="right border-right-single">65.4</TD>
+<TD class="right border-right-single">18.7</TD>
+<TD class="right border-right-single">37.8</TD>
+<TD class="right border-right-single">13.0</TD>
+<TD class="right">18.7</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single primary-indent-hanging-2">(inches)</TD>
+<TD class="right border-bottom-single border-right-single">(24<sup>3</sup>&#x2044;<sub>4</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(22<sup>1</sup>&#x2044;<sub>2</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(25<sup>3</sup>&#x2044;<sub>4</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(7<sup>3</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(14<sup>7</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single border-right-single">(5<sup>1</sup>&#x2044;<sub>8</sub>)</TD>
+<TD class="right border-bottom-single">(7<sup>3</sup>&#x2044;<sub>8</sub>)</TD>
+</TR>
+</TBODY>
+</TABLE>
+</DIV></DIV>
+<P>(ii) Note: Measure the dimensions on the front of the garment. Lay garment, right side out, on a flat, horizontal surface. Smooth out wrinkles. Measure distances as specified below and multiply them by two. Measurements should be equal to or less than the maximum dimensions given in the standards.</P>
+<P>(A) Chest&#x2014;measure distance from arm pit to arm pit (A to B) as in Diagram 1.</P>
+<P>(B) Waist&#x2014;See Diagram 1. <I>One-piece garment,</I> measure at the narrowest location between arm pits and crotch (C to D). <I>Two-piece garment,</I> measure width at both the bottom/ sweep of the upper piece (C to D) and, as in Diagram 3, the top of the lower piece (C to D).</P>
+<P>(C) Wrist&#x2014;measure the width of the end of the sleeve (E to F), if intended to extend to the wrist, as in Diagram 1.</P>
+<P>(D) Upper arm&#x2014;draw a straight line from waist/sweep D through arm pit B to G. Measure down the sleeve fold from G to H. Refer to table below for G to H distances for each size. Measure the upper arm of the garment (perpendicular to the fold) from H to I as shown in Diagram 1.</P>
+<img src="/graphics/er19ja99.015.gif"/>
+<DIV width="100%"><DIV class="gpotbl_div">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<CAPTION><P class="title">Distance From Shoulder (G) to (H) for Upper Arm Measurement for Sizes 9 Months through 6x</P></CAPTION>
+<THEAD>
+<TR>
+<TH class="center border-top-single border-bottom-single border-right-single">9-12 mo</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">12-18 mo</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">18-24 mo</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">2</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">3</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">4</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">5</TH>
+<TH class="center border-top-single border-bottom-single border-right-single">6</TH>
+<TH class="center border-top-single border-bottom-single">6x</TH>
+</TR>
+</THEAD>
+<TBODY>
+<TR>
+<TD class="center border-bottom-single border-right-single">5.8 cm 2<sup>1</sup>&#x2044;<sub>8</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">6.6 cm 2<sup>5</sup>&#x2044;<sub>8</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">7.4 cm 2<sup>7</sup>&#x2044;<sub>8</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">7.4 cm 2<sup>7</sup>&#x2044;<sub>8</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">8.1 cm 3<sup>1</sup>&#x2044;<sub>4</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">8.8 cm 3<sup>1</sup>&#x2044;<sub>2</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">9.5 cm 3<sup>3</sup>&#x2044;<sub>4</sub>&#x2033;</TD>
+<TD class="center border-bottom-single border-right-single">10.3cm 4&#x2033;</TD>
+<TD class="center border-bottom-single">11 cm 4<sup>3</sup>&#x2044;<sub>8</sub>&#x2033;</TD>
+</TR>
+</TBODY>
+</TABLE>
+</DIV></DIV>
+<P>(E) Seat&#x2014;Fold the front of the pant in half to find the bottom of thecrotch at J as in Diagram 2. The crotch seam and inseam intersect at J. Mark point K on the crotch seam at 4 inches above and perpendicular to the bottom of the crotch. Unfold the garment as in Diagram 3. Measure the seat from L to M through K as shown.</P>
+<P>(F) Thigh&#x2014;measure from the bottom of the crotch (J) 1 inch down the inseam to N as in Diagram 2. Unfold the garment and measure the thigh from the inseam at N to O as shown in Diagram 3.</P>
+<P>(G) Ankle&#x2014;measure the width of the end of the leg (P to Q), if intended to extend to the ankle, as in Diagram 3.</P>
+<img src="/graphics/er19ja99.016.gif"/>
+<P>(2) Has no item of fabric, ornamentation or trim, such as lace, appliques, or ribbon, which extends more than 6 millimeters (
+<FR>1/4</FR> inch) from the point of attachment to the outer surface of the garment;</P>
+<P>(3) Has sleeves which do not exceed the maximum dimension for the upper arm at any point between the upper arm and the wrist, and which diminish in width gradually from the top of the shoulder (point G in Diagram 1) to the wrist;</P>
+<P>(4) Has legs which do not exceed the maximum dimension for the thigh at any point between the thigh and the ankle, and which diminish in width gradually from the thigh to the ankle;</P>
+<P>(5) In the case of a one-piece garment, has a width which does not exceed the maximum dimension for the chest at any point between the chest and the waist and which diminishes gradually from the chest to the waist; and has a width which does not exceed the maximum dimension for the seat at any point between the seat and the waist and which diminishes gradually from the seat to the waist;</P>
+<P>(6) In the case of a two-piece garment has an upper piece with a width which does not exceed the maximum dimension for the chest at any point between the chest and the bottom of that piece and which diminishes gradually from the chest to the bottom of that piece; in the case of an upper piece with fastenings, has the lowest fastening within 15 centimeters (6 inches) of the bottom of that piece;</P>
+<P>(7) In the case of a two-piece garment, has a lower piece with a width which does not exceed the maximum dimension for the seat at any point between the seat and the top of the lower piece and which diminishes gradually from the seat to the top of that piece;</P>
+<P>(8) Complies with all applicable requirements of the Standard for the Flammability of Clothing Textiles (16 CFR part 1610) and the Standard for the Flammability of Vinyl Plastic Film (16 CFR part 1611); and</P>
+<P>(9) Bears a label stating the size of the garment in terms of age in months, or by child's size; for example: &#x201C;Size 9 to 12 mos.&#x201D; or &#x201C;Size 2.&#x201D; If the label is not visible to the consumer when the garment is offered for sale at retail, the same information must appear legibly on the package of the garment.</P>
+<P>(10)(i) <I>Hangtags.</I> Bears a hangtag as shown following this paragraph stating &#x201C;For child's safety, garment should fit snugly. This garment is not flame resistant. Loose-fitting garment is more likely to catch fire.&#x201D; The hangtag must measure 1
+<FR>1/2</FR>&#x2033; &#xD7; 6
+<FR>1/4</FR>&#x2033;. The text must be enclosed in a text box that measures 1&#x2033; &#xD7; 5
+<FR>3/4</FR>&#x2033; and must be in 18 point Arial/Helvetica font. The hangtag must have a yellow background and black lettering. The color yellow must meet the specifications for Standard Safety Yellow (Hue 5.OY; Value/Chroma 8.0/12) as described in American National Standard ANSI Z535.1-1998, Safety Color Code, p.6, under Munsell Notation.
+<SU>2</SU>
+<FTREF/> One side of the hangtag must display only this message. The reverse side of the hangtag may display sizing information, but otherwise must be blank. The text must not be obscured by the hole provided for attaching the hangtag to the garment. The hangtag must be prominently displayed on the garment.</P>
+<FTNT>
+<P><SU>2</SU> ANSI Z535.1-1998, Standard for Safety Color Code, p.6, published by National Electrical Manufacturers Association is incorporated by reference. Copies of this document are available from the National Electrical Manufacturers Association, 1300 N. 17th Street, Suite 1847, Rossylyn, Virginia 22209. This document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to: <I>http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.</I> The incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51.</P></FTNT>
+<img src="/graphics/er08se99.000.gif"/>
+<P>(ii) <I>Packages.</I> If the garments are sold in packages, the package must have a label as shown following this paragraph with the same language that would appear on the hangtag. The label must have a text box that measures
+<FR>3/4</FR>&#x2033; &#xD7; 3
+<FR>3/4</FR>&#x2033;. The text must be 11 point Arial/Helvetica in black lettering against a yellow background. The packages must be prominently, conspicuously, and legibly labeled with the required message. The package label may be adhesive.</P>
+<img src="/graphics/er08se99.001.gif"/>
+<P>(11) Bears a label as shown following this paragraph stating &#x201C;Wear Snug-fitting, Not Flame Resistant.&#x201D; The text must be printed on the front of the sizing label located on the center back of the garment and must be immediately below the size designation. The text must be a minimum of 5 point sans serif font in all capital letters and must be set apart from other label text by a line border. The text must contrast with the background color of the label. The label must not be covered by any other label or tag.</P>
+<img src="/graphics/er08se99.002.gif"/>
+<CITA TYPE="N">[40 FR 59903, Dec. 30, 1975, as amended at 43 FR 4853, Feb. 6, 1978; 50 FR 53307, Dec. 31, 1985; 61 FR 47644, Sept. 9, 1996; 64 FR 2838, Jan. 19, 1999; 64 FR 34533, 34535, June 28, 1999; 65 FR 1435, Jan. 10, 2000; 72 FR 13689, Mar. 23, 2007]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.2" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.2&quot;,&quot;citation&quot;:&quot;16 CFR 1615.2&quot;}">
+<HEAD>&#xA7; 1615.2 Scope and application.</HEAD>
+<P>(a) This Standard provides a test method to determine the flammability of items as defined in &#xA7; 1615.1(d).</P>
+<P>(b) All items as defined in &#xA7; 1615.1(d) are subject to requirements of this standard.</P>
+<P>(c) The flammability standards for clothing textiles and vinyl plastic film, parts 1610 and 1611 of this chapter, are superseded by this part insofar as they apply to items defined in &#xA7; 1615.1(d).</P>
+<CITA TYPE="N">[40 FR 59903, Dec. 30, 1975, as amended at 64 FR 34533, June 28, 1999]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.3&quot;,&quot;citation&quot;:&quot;16 CFR 1615.3&quot;}">
+<HEAD>&#xA7; 1615.3 General requirements.</HEAD>
+<P>(a) <I>Summary of test method.</I> Five conditioned specimens, 8.9 &#xD7; 25.4 cm. (3.5 &#xD7; 10 in.), are suspended one at a time vertically in holders in a prescribed cabinet and subjected to a standard flame along their bottom edge for a specified time under controlled conditions. The char length is measured.</P>
+<P>(b) <I>Test criteria.</I> The test criteria when the testing is done in accordance with &#xA7; 1615.4 <I>Test procedure</I> are:</P>
+<P>(1) <I>Average char length.</I> The average char length of five specimens shall not exceed 17.8 cm. (7.0 in.).</P>
+<P>(2) <I>Full specimen burn.</I> No individual specimen shall have a char length of 25.4 cm. (10 in.).</P>
+<CITA TYPE="N">[40 FR 59903, Dec. 30, 1975, as amended at 43 FR 4853, Feb. 6, 1978]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.4" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.4&quot;,&quot;citation&quot;:&quot;16 CFR 1615.4&quot;}">
+<HEAD>&#xA7; 1615.4 Test procedure.</HEAD>
+<P>(a) <I>Apparatus</I>&#x2014;(1) <I>Test chamber.</I> The test chamber shall be a steel cabinet with inside dimensions of 32.9 cm. (12
+<FR>15/16</FR> in.) wide, 32.9 cm. (12
+<FR>15/16</FR> in.) deep, and 76.2 cm. (30 in.) high. It shall have a frame which permits the suspension of the specimen holder over the center of the base of the cabinet at such a height that the bottom of the specimen holder is 1.7 cm. (
+<FR>3/4</FR> in.) above the highest point of the barrel of the gas burner specified in paragraph (c) of this section and perpendicular to the front of the cabinet. The front of the cabinet shall be a close fitting door with a glass insert to permit observation of the entire test. The cabinet floor may be covered with a piece of asbestos paper, whose length and width are approximately 2.5 cm. (1 in.) less than the cabinet floor dimensions. The cabinet to be used in this test method is illustrated in Figure 1 and detailed in Engineering Drawings, Nos. 1 to 7.</P>
+<P>(2) <I>Specimen holder.</I> The specimen holder is designed to permit suspension of the specimen in a fixed vertical position and to prevent curling of the specimen when the flame is applied. It shall consist of two U-shaped 0.20 cm. (14 ga. USS) thick steel plates, 42.2 cm. (16
+<FR>5/8</FR> in.) long, and 8.9 cm. (3.5 in.) wide, with aligning pins. The openings in the plates shall be 35.6 cm. (14 in.) long and 5.1 cm. (2 in.) wide. The specimen shall be fixed between the plates, which shall be held together with side clamps. The holder to be used in this test method is illustrated in Figure 2 and detailed in Engineering Drawing No. 7.</P>
+<P>(3) <I>Burner.</I> The burner shall be substantially the same as that illustrated in Figure 1 and detailed in Engineering Drawing No. 6. It shall have a tube of 1.1 cm. (0.43 in.) inside diameter. The input line to the burner shall be equipped with a needle valve. It shall have a variable orifice to adjust the height of the flame. The barrel of the burner shall be at an angle of 25&#xB0; from the vertical. The burner shall be equipped with an adjustable stop collar so that it may be positioned quickly under the test specimen. The burner shall be connected to the gas source by rubber or other flexible tubing.</P>
+<P>(4) <I>Gas supply system.</I> There shall be a pressure regulator to furnish gas to the burner under a pressure of 129&#xB1;13mm. Hg (2
+<FR>1/2</FR>&#xB1;
+<FR>1/4</FR> lbs. per sq. in.) at the burner inlet.</P>
+<P>(5) <I>Gas.</I> The gas shall be at least 97 percent pure methane.</P>
+<P>(6) <I>Hooks and weights.</I> Metal hooks and weights shall be used to produce a series of loads for char length determinations. Suitable metal hooks consist of No. 19 gauge steel wire, or equivalent, made from 7.6 cm. (3 in.) lengths of the wire, bent 1.3 cm. (0.5 in.) from one end to a 45&#xB0; angle hook. The longer end of the wire is fastened around the neck of the weight to be used and the other in the lower end of each burned specimen to one side of the burned area. The requisite loads are given in table 1.</P>
+<img src="/graphics/ec03oc91.081.gif"/>
+<img src="/graphics/ec03oc91.082.gif"/>
+<img src="/graphics/ec03oc91.083.gif"/>
+<img src="/graphics/ec03oc91.084.gif"/>
+<img src="/graphics/ec03oc91.085.gif"/>
+<img src="/graphics/ec03oc91.086.gif"/>
+<img src="/graphics/ec03oc91.087.gif"/>
+<img src="/graphics/ec03oc91.088.gif"/>
+<DIV width="100%"><DIV class="gpotbl_div">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<CAPTION><P class="title">Table 1&#x2014;Original Fabric Weight <sup>1</sup></P></CAPTION>
+<THEAD>
+<TR>
+<TH rowspan="2" class="center border-top-single border-bottom-single border-right-single">Grams per square meter</TH>
+<TH rowspan="2" class="center border-top-single border-bottom-single border-right-single">Ounces per square yard</TH>
+<TH colspan="2" class="center border-top-single border-bottom-single">Loads</TH>
+</TR>
+<TR>
+<TH class="center border-bottom-single border-right-single">Grams</TH>
+<TH class="center border-bottom-single">Pounds</TH>
+</TR>
+</THEAD>
+<TBODY>
+<TR>
+<TD class="left border-right-single">Less than 101</TD>
+<TD class="left border-right-single">Less than 3</TD>
+<TD class="right border-right-single">54.4</TD>
+<TD class="right">0.12</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">101 to 207</TD>
+<TD class="left border-right-single">3 to 6</TD>
+<TD class="right border-right-single">113.4</TD>
+<TD class="right">.25</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">207 to 338</TD>
+<TD class="left border-right-single">6 to 10</TD>
+<TD class="right border-right-single">226.8</TD>
+<TD class="right">.50</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single">Greater than 338</TD>
+<TD class="left border-bottom-single border-right-single">Greater than 10</TD>
+<TD class="right border-bottom-single border-right-single">340.2</TD>
+<TD class="right border-bottom-single">.75
+</TD>
+</TR>
+</TBODY>
+<TFOOT><TR><TD colspan="4"><sup>1</sup> Weight of the original fabric, containing no seams or trim, is calculated from the weight of a specimen which has been conditioned for at least 8 h at 21&#xB1;1.1 &#xB0;C (70&#xB1;2 &#xB0;F) and 65&#xB1;2 pct relative humidity. Shorter conditioning times may be used if the change in weight of a specimen in successive weighings made at intervals of not less than 2 h does not exceed 0.2 pct of the weight of the specimen.</TD></TR></TFOOT></TABLE>
+</DIV></DIV>
+<P>(7) <I>Stopwatch.</I> A stopwatch or similar timing device shall be used to measure time to 0.1 second.</P>
+<P>(8) <I>Scale.</I> A linear scale graduated in millimeters or 0.1 inch divisions shall be used to measure char length.</P>
+<P>(9) <I>Circulating Air Oven.</I> A forced circulation drying oven capable of maintaining the specimens at 105&#xB1;2.8 &#xB0;C. (221&#xB1;5 &#xB0;F.), shall be used to dry the specimen while mounted in the specimen holders.
+<SU>3</SU>
+<FTREF/></P>
+<FTNT>
+<P><SU>3</SU> Option 1 of ASTM, D2654-67T, &#x201C;Method of Test for Amount of Moisture in Textile Materials,&#x201D; describes a satisfactory oven (1970 Book of ASTM Standards, part 24, published by the American Society for Testing and Materials, 1916 Race Street, Philadelphia, Pa. 19103).</P></FTNT>
+<P>(10) <I>Desiccator.</I> An air-tight and moisture-tight desiccating chamber shall be used for cooling mounted specimens after drying. Anhydrous silica gel shall be used as the desiccant in the desicating chamber.</P>
+<P>(11) <I>Hood.</I> A hood or other suitable enclosure shall be used to provide a draft-free environment surrounding the test chamber. This enclosure shall have a fan or other suitable means for exhausting smoke and/or toxic gases produced by testing.</P>
+<P>(b) <I>Specimens and sampling&#x2014;General.</I> (1) The test criteria of &#xA7; 1615.3(b) shall be used in conjunction with the following fabric and garment sampling plan, or any other approved by the Consumer Product Safety Commission that provides at least the equivalent level of fire safety to the consumer. Alternate sampling plans submitted for approval shall have operating characteristics such that the probability of Unit acceptance at any percentage defective does not exceed the corresponding probability of Unit acceptance of the following sampling plan in the region of the latter's operating characteristic curves that lies between 5 and 95 percent acceptance probability.</P>
+<P>(2) Different colors or different print patterns of the same fabric may be included in a single Fabric or Garment Production Unit, provided such colors or print patterns demonstrate char lengths that are not significantly different from each other as determined by previous testing of at least three samples from each color or print pattern to be included in the Unit.</P>
+<P>(3) Garments with different trim and findings may be included in a single Garment Production Unit providing the other garment characteristics are identical except for size, color, and print pattern.</P>
+<P>(4) For fabrics whose flammability characteristics are not dependent on chemical additives or chemical reactants to fiber, yarns, or fabrics, the laundering requirement of paragraph (g)(4) of this section is met on subsequent Fabric Production Units if results of testing an initial Fabric Production Unit demonstrate acceptability according to the requirements of paragraph (c) of this section, Normal Sampling, both before and after the appropriate laundering.</P>
+<P>(5) If the fabric has been shown to meet the laundering requirement, paragraph (g)(4) of this section, the garments produced from that fabric are not required to be laundered.</P>
+<P>(6) Each Sample (five specimens) for all Fabric Sampling shall be selected so that two specimens are in one fabric direction (machine or cross-machine) and three specimens are in the other fabric direction except for the additional Sample selected after a failure, in which case, all five specimens shall be selected in the same fabric direction in which the specimen failure occurred.</P>
+<P>(7) Fabric Samples may be selected from fabric as outlined in paragraph (c) of this section entitled Fabric Sampling, or, for verification purposes, from randomly selected garments.</P>
+<P>(8) Multilayer fabrics shall be tested with a hem of approximately 2.5 cm. (1 in.) sewn at the bottom edge of the specimen with a suitable thread and stitch. The specimen shall include each of the components over its entire length. Garments manufactured from multilayer fabrics shall be tested with the edge finish at the bottom edge of the specimen which is used in the garment.</P>
+<P>(c) <I>Specimens and Sampling&#x2014;Fabric Sampling.</I> A Fabric Production Unit (Unit) is either accepted or rejected in accordance with the following plan:</P>
+<P>(1) <I>Normal Sampling.</I> Select one Sample from the beginning of the first Fabric Piece (Piece) in the Unit and one Sample from the end of the last Piece in the Unit, or select a sample from each end of the Piece if the Unit is made up of only one Piece. Test the two selected Samples. If both Samples meet all the Test Criteria of &#xA7; 1615.3(b), accept the unit. If either or both of the Samples fail the 17.8 cm. (7.0 in.) average char length criterion, &#xA7; 1615.3(b)(1), reject the Unit. If two or more of the individual specimens, from the 10 selected specimens fail, the 25.4 cm. (10 in.) char length, .3(b)(2), reject the Unit. If only one individual specimen, from the 10 selected specimens, fails the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), select five additional specimens from the same end of the Piece in which the failure occurred, all five to be taken in the fabric direction in which the specimen failure occurred. If this additional Sample passes all the test criteria, accept the Unit. If this additional Sample fails any part of the test criteria, reject the Unit.</P>
+<P>(2) <I>Reduced Sampling.</I> (i) The level of sampling required for fabric acceptance may be reduced provided the preceding 15 Units of the fabric have all been accepted using the Normal Sampling plan.</P>
+<P>(ii) The Reduced Sampling plan shall be the same as for Normal Sampling except that the quantity of fabric in the Unit may be increased to 10,000 linear yards.</P>
+<P>(iii) Select and test two Samples in the same manner as in Normal Sampling. Accept or reject the Unit on the same basis as with Normal Sampling.</P>
+<P>(iv) Reduced Sampling shall be discontinued and Normal Sampling resumed if a Unit is rejected.</P>
+<P>(3) <I>Tightened Sampling.</I> The level of sampling required for acceptance shall be increased when a Unit is rejected under the Normal Sampling plan. The Tightened Sampling shall be the same as Normal Sampling except that one additional Sample shall be selected and cut from a middle Piece in the Unit. If the Unit is made up of less than two pieces, the Unit shall be divided into at least two Pieces. The division shall be such that the Pieces produced by the division shall not be smaller than 100 linear yards or greater than 2,500 linear yards. If the unit is made up of two Pieces, the additional Sample shall be selected from the interior end of one of the Pieces. Test the three selected Samples. If all three selected Samples meet all the test criteria of &#xA7; 1615.3(b), accept the unit. If one or more of the three selected Samples fail the 17.8 cm. (7.0 in.) average char length criterion, &#xA7; 1615.3(b)(1), reject the Unit. If two or more of the individual specimens from the 15 selected specimens fail the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), reject the unit. If only one individual specimen, of the 15 selected Specimens fails the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), select five additional specimens from the same end of the same piece in which the failure occurred, all five to be taken in the fabric direction in which the Specimen failure occurred. If this additional Sample passes all the test criteria, accept the Unit. If this additional Sample fails any part of the test criteria, reject the Unit. Tightened Sampling may be discontinued and Normal Sampling resumed after five consecutive Units have all been accepted using Tightened Sampling. If Tightened Sampling remains in effect for 15 consecutive units, production of the specific fabric in Tightened Sampling must be discontinued until that part of the process or component which is causing failure has been identified and the quality of the end product has been improved.</P>
+<P>(4) <I>Disposition of rejected Units.</I> (i) The Piece or Pieces which have failed and resulted in the initial rejection of the Unit may not be retested, used, or promoted for use in children's sleepwear as defined in &#xA7; 1615.1(a) except after reworking to improve the flammability characteristics and subsequent retesting in accordance with the procedures in Tightened Sampling.</P>
+<P>(ii) The remainder of a rejected Unit, after removing the Piece or Pieces the failure of which resulted in Unit rejection, may be accepted if the following test plan is successfully concluded at all required locations. The required locations are those adjacent to each such failed Piece. (Required locations exist on both sides of the &#x201C;Middle Piece&#x201D; tested in Tightened Sampling if failure of that Piece resulted in Unit rejection.) Failure of a Piece shall be deemed to have resulted in Unit rejection if Unit rejection occurred and a Sample or specimen from the Piece failed any test criterion of &#xA7; 1615.3(b).</P>
+<P>(iii) The Unit should contain at least 15 Pieces for disposition testing after removing the failing Pieces. If necessary for this purpose, the Unit shall be demarcated into at least 15 approximately equal length Pieces unless such division results in Pieces shorter than 100 linear yards. In this latter case, the Unit shall be demarcated into roughly equal length Pieces of approximately 100 linear yards each. If such a division results in five Pieces or less in the Unit for each failing Piece after removing the failing Pieces, only the individual Piece retest procedure (described subsequently) may be used.</P>
+<P>(iv) Select and cut a Sample from each end of each adjoining Piece beginning adjacent to the Piece which failed. Test the two Samples from the Piece. If both Samples meet all the test criteria of &#xA7; 1615.3(b), the Piece is acceptable. If one or both of the two selected Samples fail the 17.8 cm. (7.0 in.) average char length criterion, &#xA7; 1615.3(b)(1), the Piece is unacceptable. If two or more of the individual Specimens, from the 10 selected specimens, fail the 25.4 cm. (10 in.) char length &#xA7; 1615.3(b)(2), the Piece is unacceptable. If only one individual specimen, from the 10 selected specimens, fails the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), select five additional specimens from the same end of the Piece in which the failure occurred, all five to be taken in the fabric direction in which the specimen failure occurred. If this additional Sample passes all the test criteria, the Piece is acceptable. If this additional Sample fails any part of the test criteria, the Piece is unacceptable.</P>
+<P>(v) Continue testing adjoining Pieces until a Piece has been found acceptable. Then continue testing adjoining Pieces until three successive adjoining Pieces, not including the first acceptable Piece, have been found acceptable or until five such Pieces not including the first acceptable Piece, have been tested, whichever occurs sooner. Unless three successive adjoining Pieces have been found acceptable among five such Pieces, testing shall be stopped and the entire Unit rejected without further testing. If three successive Pieces have been found acceptable among five such Pieces, accept the three successive acceptable Pieces and the remaining Pieces in the Unit.</P>
+<P>(vi) Alternatively, individual Pieces from a rejected Unit containing three or more Pieces may be tested and accepted or rejected on a Piece-by-Piece basis according to the following plan, after removing the Piece or Pieces, the failure of which resulted in Unit rejection. Select four Samples (two from each end) from the Piece. Test the four selected Samples. If all four Samples meet all the Test Criteria of &#xA7; 1615.3(b), accept the Piece. If one or more of the Samples fail the 17.8 cm. (7 in.) average char length criterion, &#xA7; 1615.3(b)(1), reject the Piece. If two or more of the individual Specimens from the 20 selected specimens, fail the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(1), reject the Piece. If only one individual specimen, from the 20 selected specimens, fails the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), select two additional Samples from the same end of the Piece in which the failure occurred. If these additional two Samples meet all the Test Criteria of &#xA7; 1615.3(b), accept the Piece. If one or both of the two additional Samples fail any part of the Test Criteria, reject the Piece.</P>
+<P>(vii) The Pieces of a Unit rejected after retesting may not be retested, used, or promoted for use in children's sleepwear as defined in &#xA7; 1615.1(a) except after reworking to improve the flammability characteristics, and subsequent retesting in accordance with the procedures set forth in Tightened Sampling.</P>
+<P>(5) <I>Records.</I> Records of all Unit sizes, test results, and the disposition of rejected Pieces and Units must be maintained by the manufacturer upon the effective date of this Standard. Rules and regulations may be established by the Consumer Product Safety Commission.</P>
+<P>(d) <I>Specimens and Sampling&#x2014;Garment Sampling.</I> (1)(i) The garment sampling plan is made up of two parts: (A) Prototype Testing and (B) Production Testing. Prior to production, prototypes must be tested to assure that the design characteristics of the garments are acceptable. Garment Production Units (Units) are then accepted or rejected on an individual Unit basis.</P>
+<P>(ii) Edge finishes such as hems and binding are excluded from testing except that when trim is used on an edge the trim must be subjected to prototype testing. Seams attaching findings are excluded from testing.</P>
+<P>(2) <I>Prototype Testing.</I> Preproduction prototypes of a garment style or type shall be tested to assure that satisfactory garment specifications in terms of flammability are set up prior to production.</P>
+<P>(i) <I>Seams.</I> Make three Samples (15 specimens) using the longest seam type and three Samples using each other seam type 10 inches or longer that is to be included in the garment. Prior to testing, assign each specimen to one of the three Samples. Test each set of three Samples and accept or reject each seam design in accordance with the following plan:</P>
+<P>(A) If all three Samples meet all the test criteria of &#xA7; 1615.3(b), accept the seam design. If one or more of the three Samples fail the 17.8 cm. (7 in.) average char length criterion, &#xA7; 1615.3(b)(1), reject the seam design. If three or more of the individual Specimens from the 15 selected specimens fail the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), reject the seam design. If only one of the individual specimens from the 15 selected specimens fails the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), accept the seam design.</P>
+<P>(B) If two of the individual specimens from the 15 selected specimens, fail the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), select three more Samples (15 specimens) and retest. If all three additional Samples meet all the test criteria of &#xA7; 1615.3(b) accept the seam design. If one or more of the three additional Samples fail the 17.8 cm. (7 in.) average char length criterion, &#xA7; 1615.3(b)(1), reject the seam design. If two or more of the individual specimens from the 15 selected specimens, fail the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2) reject the seam design. If only one of the individual specimens from the 15 selected specimens, fails the 25.4 cm. (10 in.) char length &#xA7; 1615.3(b)(2) accept the seam design.</P>
+<P>(ii) <I>Trim.</I> (A)(<I>1</I>) Make three samples (15 specimens) from each type of trim to be included in the garment. For trim used only in a horizontal configuration on the garment, specimens shall be prepared by sewing or attaching the trim horizontally to the bottom edge of an appropriate section of untrimmed fabric. Sleeve and neckline trim may not be tested in this manner. Where more than one row of trim is used on the garment, specimens shall be prepared with the same configuration (same number of rows and spacing between rows up to the limit of the specimen size) as the garment.</P>
+<P>(<I>2</I>) For trim used in other than a horizontal configuration, specimens shall be prepared by sewing or attaching the trim to the center of the vertical axis of an appropriate section of untrimmed fabric, beginning the sewing or attachment at the lower edge of each specimen.</P>
+<P>(<I>3</I>) For either configuration, the sewing or attachment shall be made in the manner in which the trim is attached in the garment.</P>
+<P>(B)(<I>1</I>) Sewing or otherwise attaching the trim shall be done with thread or fastening material of the same composition and size to be used for this purpose in the garment and using the same stitching or seamtype. Trim used in the horizontal configuration shall be sewn or fastened the entire width (smaller dimension) of the specimen. Trim used in other than the horizontal configuration shall be sewn or fastened the entire length (longer dimension) of the specimen.</P>
+<P>(<I>2</I>) Prior to testing, assign each specimen to one of the three samples. Test the sets of three samples and accept or reject the type of trim and design on the same basis as seam design. A type of trim and design accepted when tested in a vertical configuration may be used in a horizontal configuration without further testing.</P>
+<P>(3) <I>Production Testing.</I> A Unit is either accepted or rejected according to the following plan:</P>
+<P>(i)(A) From each Unit select at random sufficient garments and cut three Samples (15 specimens) from the longest seam type. No more than five specimens may be cut from a single garment. Prior to testing, assign each specimen to one of the three Samples. All specimens cut from a single garment must be included in the same Sample. Test the three selected Samples. If all three Samples meet all the test criteria of &#xA7; 1615.3(b), accept the Unit. If one or more of the three Samples fail the 17.8 cm. (7 in.) average char length criterion, &#xA7; 1615.3(b)(1), reject the Unit. If four or more of the individual specimens, from the 15 selected specimens, fail the 25.4 cm (10 in.) char length, &#xA7; 1615.3(b)(2), reject the Unit. If three or less of the individual specimens, from the 15 selected specimens, fail the 25.4 cm. (10 in.) char length, &#xA7; 1615.3(b)(2), accept the Unit.</P>
+<P>(B)(<I>1</I>) If the garment under test does not have a 10-inch seam in the largest size in which it is produced, the following selection and testing procedure shall be followed.</P>
+<P>(<I>2</I>) Select and cut specimens 8.9 cm. (3.5 in.) wide by the maximum available seam length, with the seam in the center of the specimen and extending the entire specimen length. Cut three Samples (15 specimens). These specimens shall be placed in specimen holders so that the bottom edge is even with the bottom of the specimen holder and the seam begins in the center of the bottom edge. Prior to testing, assign each specimen to one of the three Samples. All specimens cut from a single garment must be included in the same Sample.</P>
+<P>(<I>3</I>) Test the three Samples. If all three Samples pass the 17.8 cm. (7 in.) average char length criterion, &#xA7; 1615.3(b)(1), and if three or less individual specimens fail by charring the entire specimen length, accept the Unit. If the Unit is not accepted in the above test, three Samples (15 specimens) of the longest seam type shall be made using fabric and thread from production inventory and sewn on production machines by production operators. The individual fabric sections prior to sewing must be no larger than 20.3 &#xD7; 63.3 cm. (8 in. &#xD7; 25 in.) and must be selected from more than one area of the base fabric. Test the three prepared Samples. Accept or reject the Unit as described previously in this subsection.</P>
+<P>(<I>4</I>) <I>Disposition of Rejected Units.</I> Rejected Units shall not be retested, used, or promoted for use in children's sleepwear as defined in &#xA7; 1615.1(a), except after reworking to improve the flammability characteristics and subsequent retesting in accordance with the procedures set forth in garment production testing.</P>
+<P>(<I>5</I>) <I>Records.</I> Records of all Unit sizes, test results, and the disposition of rejected Units must be maintained by the manufacturer upon the effective date of this standard. Rules and regulations may be established by the Consumer Product Safety Commission.</P>
+<P>(e) <I>Specimens and Sampling&#x2014;Compliance Market Sampling Plan.</I> Sampling plans for use in market testing of items covered by this Standard may be issued by the Consumer Product Safety Commission. Such plans shall define noncompliance of a production Unit to exist only when it is shown, with a high level of statistical confidence, those production Units represented by tested items which fail such plans will, in fact, fail this standard. Production units found to be non-complying under the provisions of paragraph (e) of this section shall be deemed not to conform to this Standard. The Consumer Product Safety Commission may publish such plans in the <E T="04">Federal Register.</E></P>
+<P>(f) <I>Mounting and conditioning of specimens.</I> (1) The specimens shall be placed in specimen holders so that the bottom edge of each specimen is even with the bottom of the specimen holder. Mount the specimen in as close to a flat configuration as possible. The sides of the specimen holder shall cover 1.9 cm. (
+<FR>3/4</FR> in.) of the specimen width along each long edge of the specimen, and thus shall expose 5.1 cm. (2 in.) of the specimen width. The sides of the specimen holder shall be clamped with a sufficient number of clamps or shall be taped to prevent the specimen from being displaced during handling and testing. The specimens may be taped in the holders if the clamps fail to hold them. Place the mounted specimens in the drying oven in a manner that will permit free circulation of air at 105 &#xB0;C. (221 &#xB0;F.) around them for 30 minutes.
+<SU>4</SU>
+<FTREF/></P>
+<FTNT>
+<P><SU>4</SU> If the specimens are moist when received, permit them to air dry at laboratory conditions prior to placement in the oven. A satisfactory preconditioning procedure may be found in ASTM D 1776-67, &#x201C;Conditioning Textiles and Textile Products for Testing.&#x201D; (&#x201C;1970 Book of ASTM Standards,&#x201D; part 24, published by the American Society for Testing and Materials, 1916 Race Street, Philadelphia, PA 19103.)</P></FTNT>
+<P>(2) Remove the mounted specimens from the oven and place them in the desiccator for 30 minutes to cool. No more than five specimens shall be placed in a desiccator at one time. Specimens shall remain in the desiccator no more than 60 minutes.</P>
+<P>(g) <I>Testing</I>&#x2014;(1) <I>Burner adjustment.</I> With the hood fan turned off, use the needle valve to adjust the flame height of the burner to 3.8 cm. (1
+<FR>1/2</FR> in.) above the highest point of the barrel of the burner. A suitable height indicator is shown in Engineering Drawing No. 6 and Figure 1.</P>
+<P>(2) Specimen Burning and Evaluation. (i) One at a time, the mounted specimens shall be removed from the desiccator and suspended in the cabinet for testing. The cabinet door shall be closed and the burner flame impinged on the bottom edge of the specimen for 3.0&#xB1;0.2 seconds. Flame impingement is accomplished by moving the burner under the specimen for this length of time, and then removing it.</P>
+<P>(ii) When afterglow has ceased, remove the specimen from the cabinet and holder, and place it on a clean flat surface. Fold the specimen lengthwise along a line through the highest peak of the charred or melted area; crease the specimen firmly by hand. Unfold the specimen and insert the hook with the correct weight as shown in table 1 in the specimen on one side of the charred area 6.4 mm. (
+<FR>1/4</FR> in.) from the lower edge.</P>
+<P>(iii) Tear the specimen by grasping the other lower corner of the fabric and gently raising the specimen and weight clear of the supporting surface.
+<SU>5</SU>
+<FTREF/> Measure the char length as the distance from the end of the tear to the edge of the specimen exposed to the flame. After testing each specimen, vent the hood and cabinet to remove the smoke and/or toxic gases.</P>
+<FTNT>
+<P><SU>5</SU> A figure showing how this is done is given in AATCC 34-1969, Technical Manual of the American Association of Textile Chemists and Colorists, vol. 46, 1970, published by AATCC, Post Office Box 12215, Research Triangle Park, N.C. 27709.</P></FTNT>
+<P>(3) <I>Report.</I> Report the value of char length, in centimeters (inches), for each specimen, as well as the average char length for each set of five specimens.</P>
+<P>(4) <I>Laundering.</I> (i) The procedures described in sections 1615.4(b) through (g) shall be carried out on finished items (as produced or after one washing and drying) and after they have been washed and dried 50 times in accordance with sections 8.2.2, 8.2.3, and 8.3.1(A) of AATCC Test Method 124-1996 &#x201C;Appearance of Fabrics after Repeated Home Laundering,&#x201D; Technical Manual of the American Association of Textile Chemists and Colorists, vol. 73, 1997, which is incorporated by reference. Copies of this document are available from the American Association of Textile Chemists and Colorists, P.O. Box 12215, Research Triangle Park, North Carolina 27709. This document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to: <I>http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.</I> This incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. Items which do not withstand 50 launderings shall be tested at the end of their useful service life.</P>
+<P>(ii) Washing shall be performed in accordance with sections 8.2.2 and 8.2.3 of AATCC Test Method 124-1996, using wash temperature V (60&#xB0; &#xB1;3 &#xB0;C, 140&#xB0; &#xB1;5 &#xB0;F) specified in Table II of that method, and the water level, agitator speed, washing time, spin speed and final spin cycle specified for &#x201C;Normal/Cotton Sturdy&#x201D; in Table III. A maximum washer load shall be 3.64 Kg (8 pounds) and may consist of any combination of test samples and dummy pieces. Drying shall be performed in accordance with section 8.3.1(A) of that test method, Tumble Dry, using the exhaust temperature (66&#xB0; &#xB1;5 &#xB0;C, 150&#xB0; &#xB1;10 &#xB0;F) and cool down time of 10 minutes specified in the &#x201C;Durable Press&#x201D; conditions of Table IV. Alternatively, a different number of times under another washing and drying procedure may be specified and used, if that procedure has previously been found to be equivalent by the Consumer Product Safety Commission. Such laundering is not required of items which are not intended to be laundered, as determined by the Consumer Product Safety Commission.</P>
+<P>(iii) Items which are not susceptible to being laundered and are labeled &#x201C;dry-clean only&#x201D; shall be drycleaned by a procedure which has previously been found to be acceptable by the Consumer Product Safety Commission.</P>
+<P>(iv) For the purpose of the issuance of a guarantee under section 8 of the act, finished sleepwear garments to be tested according to paragraphs (b) through (e) of this section need not be laundered or drycleaned provided all fabrics used in making the garments (except trim) have been guaranteed by the fabric producer to be acceptable when tested according to paragraphs (b) through (e) of this section.</P>
+<CITA TYPE="N">[40 FR 59903, Dec. 30, 1975; 41 FR 1061, Jan. 6, 1976; 41 FR 8032, Feb. 24, 1976, as amended at 43 FR 4853, Feb. 6, 1978; 46 FR 63251, Dec. 31, 1981; 64 FR 24526, June 28, 1999; 65 FR 12927, Mar. 10, 2000; 72 FR 13689, Mar. 23, 2007]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.5" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.5&quot;,&quot;citation&quot;:&quot;16 CFR 1615.5&quot;}">
+<HEAD>&#xA7; 1615.5 Labeling requirements.</HEAD>
+<P>(a) <I>Care labels.</I> All items of children's sleepwear shall be labeled with precautionary instructions to protect the items from agents or treatments which are known to cause deterioration of their flame resistance. If the item has been initially tested under &#xA7; 1615.4(g)(4) after one washing and drying, it shall be labeled with instructions to wash before wearing. Such labels shall be permanent and otherwise in accordance with rules and regulations established by the Consumer Product Safety Commission.</P>
+<P>(b) [Reserved]</P>
+<CITA TYPE="N">[40 FR 59903, Dec. 30, 1975, as amended at 61 FR 1116, Jan. 16, 1996]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="B" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-16/part-1615/subpart-B&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;16 CFR Part 1615 Subpart B&amp;quot;}">
+<HEAD>Subpart B&#x2014;Rules and Regulations</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>Sec. 5, 67 Stat. 112-113, as amended, 81 Stat. 570, 15 U.S.C. 1194.
+</PSPACE></AUTH>
+<DIV8 N="1615.31" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.31&quot;,&quot;citation&quot;:&quot;16 CFR 1615.31&quot;}">
+<HEAD>&#xA7; 1615.31 Labeling, recordkeeping, advertising, retail display and guaranties.</HEAD>
+<P>(a) <I>Definitions.</I> For the purposes of this section, the following definitions apply:</P>
+<P>(1) <I>Standard</I> means the Standard for the Flammability of Children's Sleepwear: Sizes 0 through 6X (FF 3-71) (subpart A of this part) promulgated by the Secretary of Commerce in the <E T="04">Federal Register</E> of July 29, 1971 (36 FR 14062), and amended by him in the <E T="04">Federal Register</E> of July 21, 1972 (37 FR 14624).</P>
+<P>(2) <I>Children's sleepwear</I> means &#x201C;children's sleepwear&#x201D; as defined in &#xA7; 1615.1(a) of the Standard; that is, &#x201C;any product of wearing apparel up to and including size 6X, such as nightgowns, pajamas, or similar or related items, such as robes, intended to be worn primarily for sleeping or activities related to sleeping. Diapers and underwear are excluded from this definition.&#x201D;</P>
+<P>(3) <I>Item</I> means &#x201C;item&#x201D; as defined in &#xA7; 1615.1(c) of the Standard; that is, &#x201C;any product of children's sleepwear, or any fabric or related material intended or promoted for use in children's sleepwear.&#x201D;</P>
+<P>(4) <I>Marketing or handling</I> or <I>marketed or handled</I> means any one or more of the transactions set forth in section 3 of the Flammable Fabrics Act (15 U.S.C. 1192).</P>
+<P>(5) The definitions of terms set forth in &#xA7; 1615.1 of the Standard shall also apply to this section.</P>
+<P>(b) <I>Labeling.</I> (1) Where any agent or treatment is known to cause deterioration of flame resistance or otherwise enhances the flammability characteristics of an item, such item shall be prominently, permanently, conspicuously, and legibly labeled with precautionary care and treatment instructions to protect the item from such agent or treatment: Provided:</P>
+<P>(i) Where items required to be labeled in accordance with this paragraph are marketed at retail in packages, and the required label is not readily visible to the prospective purchaser, the packages must also be prominently, conspicuously, and legibly labeled with the required information, and</P>
+<P>(ii) Where items are required to be labeled in accordance with this paragraph, the precautionary care and treatment instructions may appear on the reverse side of the permanent label if</P>
+<P>(A) The precautionary care and treatment instructions are legible, prominent and conspicuous, and</P>
+<P>(B) The phrase &#x201C;CARE INSTRUCTIONS ON REVERSE&#x201D; or the equivalent appears permanently, prominently, conspicuously, and legibly on the side of the permanent label that is visible to the prospective purchaser when the item is marketed at retail, and</P>
+<P>(C) The item which is so labeled is marketed at retail in such a manner that the prospective purchaser is able to manipulate the label so the entire text of the precautionary care and treatment instructions is visible and legible; however, where the label cannot be manipulated so the instructions are visible to the prospective purchaser and legible, the packages must also be prominently, conspicuously and legibly labeled with the required precautionary care and treatment information or such information must appear prominently, conspicuously and legibly on a hang tag attached to the item.</P>
+<P>(2) If the item has been initially tested under &#xA7; 1615.4(g)(4) of the Standard after one washing and drying, it shall be prominently, permanently, conspicuously, and legibly labeled with instructions to wash before wearing.</P>
+<P>(3) [Reserved]</P>
+<P>(4) Where any fabric or related material intended or promoted for use in children's sleepwear is sold or intended for sale to the ultimate consumer for the purpose of conversion into children's sleepwear, each bolt, roll, or other unit shall be labeled with the information required by this section. Each item of fabric or related material sold to an ultimate consumer must be accompanied by a label, as prescribed by this section, that can by normal household methods be permanently affixed by the ultimate consumer to any item of children's sleepwear made from such fabric or related material.</P>
+<P>(5) Where items required to be labeled in accordance with paragraphs (b) (2), (3), and (4) of this section are marketed at retail in packages, and the required label is not readily visible to prospective purchasers, the packages must also be prominently, conspicuously, and legibly labeled with the required information.</P>
+<P>(6) Samples, swatches, or specimens used to promote or effect the sale of items subject to the Standard shall be labeled in accordance with this section with the information required by this section, except that such information may appear on accompanying promotional materials attached to fabric samples, swatches, or specimens used to promote the sale of fabrics to garment manufacturers. This paragraph (b)(6) of this section shall not apply, however, to samples, swatches, or specimens prominently, permanently, conspicuously, truthfully, and legibly labeled with the statement &#x201C;Flammable. Sample only. Not for use or resale. Does not meet Standard for the Flammability of Children's Sleepwear, DOC FF 3-71.&#x201D;</P>
+<P>(7) The information required on labels by this section shall be set forth separately from any other information appearing on the same label. Other information, representations, or disclosures not required by this action but placed on the same label with information required by this section, or placed on other labels elsewhere on the item, shall not interfere with the information required by this section. No person, other than the ultimate consumer, shall remove or mutilate, or cause or participate in the removal or mutilation of, any label required by this section to be affixed to any item.</P>
+<P>(8) Every manufacturer, importer, or other person (such as a converter) initially introducing items subject to the Standard into commerce shall assign to each item a unit identification (number, letter or date, or combination, thereof) sufficient to identify and relate to the fabric production unit or garment production unit of which the item is a part. Such unit identification shall be designated in such a way as to indicate that it is a production unit identification under the Standard. The letters &#x201C;GPU&#x201D; and &#x201C;FPU&#x201D; may be used to designate a garment production unit identification and fabric production unit identification respectively, at the option of the labeler.</P>
+<P>(i) Where fabrics required to be labeled or stamped in accordance with this section are marketed at retail in packages and the required label or stamp is not readily visible to the prospective purchaser, the packages must also be prominently, conspicuously, and legibly labeled with the information required by this section.</P>
+<P>(ii) Where garments required to be labeled or stamped in accordance with paragraph (b)(8) of this section are marketed at retail in packages and the required label or stamp is not readily visible to the prospective purchasers:</P>
+<P>(A) The packages must also be prominently, conspicuously, and legibly labeled with the information required by this section; or</P>
+<P>(B) There must be a garment style identification that is prominent, conspicuous, and legible and readily visible to the prospective purchaser, either on a label or hang tag attached to the garments or on the garment packages. A style is a garment design or grouping, preselected by the manufacturer. A style may be composed of garments that form all or part of one or more GPU's and the style may include any number of garments the manufacturer chooses. Style identification means any numbers, letters, or combination thereof that are sufficient to identify the garments of the style and may include information such as color, season or size. If this option B is selected, in any recall of noncomplying items from a particular GPU:</P>
+<P>(<I>1</I>) The garment manufacturer must recall the entire style(s) from all customers who purchased garments of the style(s) of which the GPU is part. However, retailers may elect to return only garments from the particular GPU necessitating the recall rather than the entire style(s) being recalled; and</P>
+<P>(<I>2</I>) Within 48 hours of a written request, the garment manufacturer must supply to the Commission any samples in its possession of garments from the GPU, as requested. As required of all persons subject to this section, the garment manufacturer must also, within the time requested, supply to the Commission the names of any customers who purchased during a specified period of time, garments from the GPU (or the style(s) of which the GPU is a part) and supply access to all records required under the Standard and this section.</P>
+<P>(iii) Each garment subject to the Standard shall bear a label with minimum dimensions of 1.3 centimeters (0.5 inch) by 1.9 centimeters (0.75 inch) containing the appropriate garment production unit identification for that garment in letters which are clear, conspicuous, and legible and in a color which contrasts with the background of the label, or shall have such information stamped on the garment itself in letters which are clear, conspicuous, and legible and in a color which contrasts with the background, and at least 2.54 centimeters (1 inch) in every direction from any other information. The stamp or label containing the garment production unit identification must be of such construction, and affixed to the garment in such a manner as to remain on or attached to the garment and legible and visible throughout its intended period of use.</P>
+<P>(iv) The fabric production unit identification shall appear in letters at least 0.4 centimeters (one-sixth of an inch) in height against a contrasting background on each label that relates to such fabric and is required by the Textile Fiber Products Identification Act (15 U.S.C. 70-70k) and the regulations thereunder (16 CFR 303.1 through 303.45), or by the Wool Products Labeling Act of 1939 (15 U.S.C. 68-68j) and the regulations thereunder (16 CFR 300.1 through 300.35). When the information required by the Textile Fiber Product Identification Act or by the Wool Products Labeling Act of 1939 appears on an invoice used in lieu of labeling, the fabric production unit identification required by this section may be placed clearly, conspicuously, and legibly on the same invoice in lieu of labeling.</P>
+<P>(c)-(d) [Reserved]</P>
+<P>(e) <I>Records&#x2014;manufacturers, importers, or other persons initially introducing items into commerce</I>&#x2014;(1) <I>General.</I> Every manufacturer, importer, or other person (such as a converter) initially introducing into commerce items subject to the Standard, irrespective of whether guaranties are issued under paragraph (f) of this section, shall maintain written and physical records as hereinafter specified. The records required must establish a line of continuity through the process of manufacture of each production unit of articles of children's sleepwear, or fabrics or related materials intended or promoted for use in children's sleepwear, to the sale and delivery of the finished items and from the specific finished item to the manufacturing records. Such records shall show with respect to such items:</P>
+<P>(i) Details, description, and identification of any and all sampling plans engaged in pursuant to the requirements of the Standard. Such records must be sufficient to demonstrate compliance with such sampling plan(s) and must relate the sampling plan(s) to the actual items produced, marketed, or handled. This requirement is not limited by other provisions of paragraph (e) of this section.</P>
+<P>(ii) Garment production units or fabric production units of all garments or fabrics marketed or handled. The records must relate to an appropriate production unit identification on or affixed to the item itself in accordance with paragraph (b)(8) of this section, and the production unit identification must relate to the garment production unit or fabric production unit.</P>
+<P>(iii) Test results and details of all tests performed, both prototype and production, including char lengths of each specimen tested, average char length of the samples required to be tested, details of the sampling procedure employed, name and signature of persons conducting tests, date of tests, and all other records necessary to demonstrate compliance with the test procedures and sampling plan specified by the standard or authorized alternate sampling plan.</P>
+<P>(iv) Disposition of all failing or rejected items. Such records must demonstrate that the items were retested or reworked and retested in accordance with the Standard prior to sale or distribution and that such retested or reworked and retested items comply with the Standard, or otherwise show the disposition of such items.</P>
+<P>(v) Fiber content and manufacturing specifications relating the same to prototype and production testing and to the production units to which applicable.</P>
+<P>(vi) Data and test results relied on as a basis for inclusion of different colors or different print patterns of the same fabric as a single fabric or garment production unit under &#xA7; 1615.4(b) of the Standard.</P>
+<P>(vii) Data and test results relied on as a basis for reduced laundering of fabric or garments during test procedures under &#xA7; 1615.4(g)(4) of the Standard and any guaranties issued or received relating to laundering as well as details of the laundering procedure utilized.</P>
+<P>(viii) Identification, composition, and details of application of any flame retardant treatments employed. All prototype and production records shall relate to such information.</P>
+<P>(ix) Date and quantity of each sale or delivery of items subject to the Standard (except the date of sale to an ultimate consumer) and the name and address of the purchaser or recipient (except an ultimate consumer). The items involved in each such sale or delivery shall be identified by production unit or by style. A style is a garment design or grouping, preselected by the manufacturer. A style may be composed of garments that form all or part of one or more garment production units and the style may include any number of garments that form all or part of one or more garment production units and the style may include any number of garments the manufacturer chooses. If a person subject to the requirements of &#xA7; 1615.31(e) maintains sales records which identify the items sold or delivered by style, and if recall of one or more production units subject to the Standard is required, that person in recalling such production units shall notify all purchasers of items of the style in which such production unit or units were manufactured. Retailers may elect to return all items of the style involved, or all items of the production unit or units subject to recall.</P>
+<P>(2) <I>Fabrics.</I> In addition to the information specified in paragraph (e)(1) of this section the written and physical records maintained with respect to each fabric production unit shall include (i) finished fabric samples sufficient to repeat the fabric sampling procedure required by &#xA7; 1615.4 (b) through (e) of the Standard for each production unit marketed or handled; and (ii) records to relate the samples to the actual fabric production unit. Upon written request of any duly authorized employee or agent of the Commission, samples sufficient for the sampling and testing of any production unit in accordance with &#xA7; 1615.4 (b) through (e) of the Standard shall be furnished from these records within the time specified in that written request.</P>
+<P>(3) <I>Garments&#x2014;prototype testing.</I> In addition to the records specified in paragraph (e)(1) of this section, the following written and physical records shall be maintained with respect to the garment prototype testing required by the Standard:</P>
+<P>(i) Specification, fiber content, and details of construction on all seams, fabrics, threads, stitches, and trims used in each garment style or type upon which prototype testing was performed, relating the same to such garment style or type and to all production units to which such prototype testing is applicable.</P>
+<P>(ii) Samples sufficient to repeat the prototype tests required by &#xA7; 1615.4 (b) through (e) of the Standard for all fabrics, seams, threads, stitches, and trims used in such prototype testing, relating such samples to the records required by paragraph (e) of this section including the information required by paragraph (e)(3)(i) of this section. Upon written request of any duly authorized employee or agent of the Commission, samples sufficient for the testing of any prototype specimens identical to those specimens that were actually tested pursuant to the Standard shall be furnished from these records within the time specified in that written request.</P>
+<P>(iii) A complete untested garment from each style or type of garment marketed or handled.</P>
+<P>(iv) Remains of all physical specimens tested in accordance with the prototype testing required by &#xA7; 1615.4 (b) through (e) of the Standard, relating such samples to the records required by paragraph (c) of this section including information required by paragraph (e)(3)(i) of this section.</P>
+<P>(4) <I>Garments&#x2014;Production testing.</I> In addition to the records required by paragraph (e)(1) of this section, written and physical records shall be maintained and shall show with respect to each garment production unit:</P>
+<P>(i) Source and fabric production unit identification of all fabrics subject to testing used in each garment production unit.</P>
+<P>(ii) Identification and appropriate reference to all prototype records and prototype tests applicable to each production unit.</P>
+<P>(iii) Any guaranty relied upon to demonstrate that the fabric utilized in such garments meets the laundering requirements of the Standard.</P>
+<P>(iv) Data sufficient to show that tested samples were selected from the production unit at random from regular production.</P>
+<P>(v) Written data that will enable the Commission to obtain and test garments under any applicable compliance market sampling plan.</P>
+<P>(5) <I>Record retention requirements.</I> The records required by paragraph (e) of this section shall be maintained for 3 years, except that records relating to prototype testing shall be maintained for as long as they are relied upon as demonstrating compliance with the prototype testing requirements of the Standard and shall be retained for 3 years thereafter.</P>
+<P>(f) <I>Tests for guaranty purposes.</I> Reasonable and representative tests for the purpose of issuing a guaranty under section 8 of the Flammable Fabrics Act (15 U.S.C. 1197) for items subject to the Standard shall be those tests performed pursuant to any sampling plan or authorized alternative sampling plan engaged in pursuant to the requirements of the Standard.</P>
+<P>(g) <I>Compliance with this section.</I> No person subject to the Flammable Fabrics Act shall manufacture, import, distribute, or otherwise market or handle any item subject to the Standard, including samples, swatches, or specimens used to promote or effect the sale thereof, which is not in compliance with this section.</P>
+<CITA TYPE="N">[40 FR 59903, Dec. 30, 1975, as amended at 43 FR 4855 Feb. 6, 1978; 49 FR 3064, Jan. 24, 1984; 61 FR 1116, Jan. 16, 1996]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.32" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.32&quot;,&quot;citation&quot;:&quot;16 CFR 1615.32&quot;}">
+<HEAD>&#xA7; 1615.32 Method for establishment and use of alternate laundering procedures under section 4(g)(4)(ii) of the standard.</HEAD>
+<P>(a) <I>Scope.</I> (1) Section 1615.4(g)(4)(ii) of the Standard for the Flammability of Children's Sleepwear in sizes 0-6X (16 CFR 1615.4(g)(4)(ii)) requires that all fabrics and certain garments subject to the standard be tested for flammability as produced (or after one washing and drying) and after the items have been washed and dried 50 times in machines, using the procedure specified in AATCC Test Method 124-1996.
+<SU>6</SU>
+<FTREF/> This section also provides that items may be laundered a different number of times under another washing and drying procedure if the Commission finds that such an alternate laundering procedure is equivalent to the procedure specified in the standard.</P>
+<FTNT>
+<P><SU>6</SU> AATCC Test Method 124-1996 &#x201C;Appearance of Fabrics after Repeated Home Laundering,&#x201D; Technical Manual of the American Association of Textile Chemists and Colorists, vol. 73, 1997, which is incorporated by reference. Copies of this document are available from the American Association of Textile Chemists and Colorists, P.O. Box 12215, Research Triangle Park, North Carolina 27709. This document is also available for inspection at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to: <I>http://www.archives.gov/federal_register/code_of_federal_regulations/ibr_locations.html.</I> This incorporation by reference was approved by the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51.</P></FTNT>
+<P>(2) This rule provides the procedures to be followed by persons seeking Commission approval for alternate laundering procedures. It also provides the criteria the Commission will use in evaluating the applications.</P>
+<P>(3) The alternate laundering procedures provided for in this section apply only to procedures under section 4(g)(4)(ii) of the standard and shall not be used for determining whether different colors or different print patterns of the same fabric may be included in a single fabric or garment production unit.</P>
+<P>(4) As used in this section, fabric means fabric or related material promoted or intended for use in children's sleepwear made to identical specifications and containing the same identity while in production.</P>
+<P>(b) <I>Application procedure.</I> (1) Applicants seeking approval for use of an alternate laundering procedure under &#xA7; 1615.4(g)(4)(ii) of the standard must submit the following information in writing to the Assistant Executive Director for Compliance, Consumer Product Safety Commission, Washington, DC 20207:</P>
+<P>(i) A detailed description of the proposed alternate laundering procedure, and a 6 in. by 6 in. swatch of the fabric or garment for which the procedure is proposed.</P>
+<P>(ii) Upon request of the Commission staff, any other information concerning the procedure and/or any machine used in connection with it.</P>
+<P>(iii) With regard to each fabric or garment for which an alternate laundering procedure is sought, test data comparing twenty test specimens washed and dried by the proposed alternate laundering procedure and twenty specimens tested in accordance with the 50-wash and dry cycle procedure required in section 4(g)(4)(ii) of the standard. (For purposes of applications, similar fabrics or garments of different finishes shall be considered as different fabrics or garments and therefore separate test results must be submitted). Each group of twenty specimens upon which these data are based must be cut for testing, half in the machine direction and half in the cross machine direction. Where the applicant manufactures the fabric or garments in more than one plant, the data described in this paragraph must be submitted separately for the fabric or garments of each plant for which the proposed alternate laundering procedure is intended to be used. Subsequent applications for use of the same procedure for additional fabrics and garments may incorporate portions of the original application by reference, as appropriate.</P>
+<P>(2) Applications shall be certified by the chief executive officer of the applicant or the official to whom the duty to certify has been delegated in writing. The Commission's Assistant Executive Director for Compliance must be notified in writing of any such delegation.</P>
+<P>(c) <I>Use of alternate laundering procedure.</I> (1) The applicant may begin to use the alternate laundering procedure 30 days after the application is received by the Assistant Executive Director for Compliance unless notified to the contrary. The Assistant Executive Director for Compliance will normally furnish an applicant with written notice of approval within 30 days. The applicant may be notified that a longer time is needed for evaluation of the application, and in the discretion of the Assistant Executive Director for Compliance, may be authorized to use the alternate laundering procedure pending the final decision. The notice of approval shall be kept by the applicant with other written records required to be maintained in connection with the use of an alternate laundering procedure. So the applicants may ascertain that the application has been received and when the 30-day period has elapsed, it is suggested that applications be sent by certified mail, return receipt requested.</P>
+<P>(2) As provided in detail in &#xA7; 1615.32(e), applicants must immediately discontinue use of an alternate procedure, and must immediately notify the Assistant Executive Director for Compliance if there are test failures during revalidation testing.</P>
+<P>(d) <I>Revalidation testing.</I> (1) In order to assure a continued satisfactory correlation between the alternate laundering procedure and the laundering procedure of the standard, applicants shall perform all the testing described in paragraph (b)(1)(iii) of this section for fabrics or garments from current production at least once for every three-month period during which any of the fabric or garments are produced.</P>
+<P>(2) If following initial approval, four successive comparisons of the alternate and the 50-cycle methods as described in paragraph (d)(1) of this section, consistently show acceptable results under the criteria specified by paragraph (f) of this section, the Commission will deem such comparisons to be sufficient demonstration of the equivalence of the alternate laundering procedure with the 50 launderings required in the standard and further revalidation testing will not be required.</P>
+<P>(3) Records of revalidation testing need not be submitted to the Assistant Executive Director for Compliance. However such records must be maintained in accordance with paragraph (h) of this section.</P>
+<P>(e) <I>Revalidation testing failures.</I> (1) If revalidation testing for any fabric or garment does not meet the criteria of &#xA7; 1615.32(f), the applicant must immediately discontinue use of the alternate laundering procedure for the fabric or garment and must immediately notify the Assistant Executive Director for Compliance in writing of the failure to meet the criteria. Also, the testing from the production unit from which the non-correlating samples were taken and the testing from subsequent production units (if any) must be repeated immediately using the laundering procedure prescribed in the standard. These repeat tests shall then be the tests applicable to such production unit(s) and the tests previously performed on the production unit(s) shall be considered invalid.</P>
+<P>(2) When use of an alternate laundering procedure for a particular fabric or garment has been discontinued because of a failure to meet the criteria of &#xA7; 1615.32(f), the alternate laundering procedure shall not be used again unless a new application for approval is submitted to the Assistant Executive Director for Compliance and that officer approves the application in writing. In addition to the other information required for applications, the additional application should give facts or reasons showing why the applicant believes the procedure should be considered reliable with the fabric or garments involved, in view of previous failure.</P>
+<P>(f) <I>Commission criteria for evaluating applications.</I> (1) The Assistant Executive Director for Compliance will approve the alternate laundering procedure as equivalent to the laundering procedure specified in &#xA7; 1615.4(g)(4)(ii) of the standard if testing from 20 specimens laundered by the proposed alternate procedure yields as many or more char lengths in excess of five inches as does testing from the twenty specimens laundered by the 50-laundering cycle method prescribed in the standard.</P>
+<P>(2) If the alternate laundering procedure yields fewer char lengths in excess of five inches than does the 50-wash and dry cycle, then the Assistant Executive Director for Compliance will not consider the alternate procedure to be equivalent, with the following exception: If the number of five-inch chars from the alternate procedure is within one of the number of five-inch chars obtained from the 50-cycle procedure, the applicant may repeat the original test with new specimens and if the combined results of both tests show the count of chars exceeding five inches from the alternate is equal to, or greater than, the count from the 50-wash cycle procedure, the Assistant Executive Director for Compliance will approve the alternate laundering procedure.</P>
+<P>(g) <I>Commission testing for compliance.</I> (1) For the purpose of determining compliance with the standard, the Commission will rely on testing employing the laundering procedure now prescribed in section 4(g)(4)(ii) of the standard.</P>
+<P>(2) The Commission may verify equivalency of any procedure submitted by independent testing and evaluation, by or on behalf of the Commission.</P>
+<P>(h) <I>Recordkeeping.</I> The applicant must maintain a record of all applications filed with the Commission and of all equivalency tests for as long as the procedures to which they relate are in use and for three years thereafter.</P>
+<CITA TYPE="N">[42 FR 55891, Oct. 20, 1977, as amended at 65 FR 12927, Mar. 10, 2000; 65 FR 19818, Apr. 12, 2000]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.35" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.35&quot;,&quot;citation&quot;:&quot;16 CFR 1615.35&quot;}">
+<HEAD>&#xA7; 1615.35 Use of alternate apparatus, procedures, or criteria for testing under the standard.</HEAD>
+<P>(a) The Standard for the Flammability of Children's Sleepwear: Sizes 0 through 6X (the Standard) requires every manufacturer, importer, and other person (such as a converter) initially introducing items subject to the Standard into commerce to group items into production units, and to test samples from each production unit. See 16 CFR 1615.4 (b), (c) and (d). The Standard prescribes an apparatus and procedure for performing tests of fabric and garments subject to its provisions. See 16 CFR 1615.4 (a), (f), and (g). The Standard prescribes pass/fail criteria at 16 CFR 1615.3(b).</P>
+<P>(b)(1) By issuance of this &#xA7; 1615.35, the Commission gives its approval to any person or firm desiring to use test apparatus or procedures other than those prescribed by the Standard for purposes of compliance with the Standard, if that person or firm has data or other information to demonstrate that a test utilizing such alternate apparatus or procedures is as stringent as, or more stringent than, a test utilizing the apparatus and procedures specified in the Standard. The Commission considers a test utilizing alternate apparatus or procedures to be &#x201C;as stringent as, or more stringent than&#x201D; a test utilizing the apparatus and procedures specified in the standard if, when testing identical specimens, a test utilizing alternate apparatus or procedures yields failing results as often as, or more often than, a test utilizing the apparatus and procedures specified in the Standard.</P>
+<P>(2) The data or information required by this paragraph (b) of this section as a condition to the Commission's approval of the use of alternate test apparatus or procedures must be in the possession of the person or firm desiring to use such alternate apparatus or procedures before the alternate apparatus or procedures may be used for purposes of compliance with the Standard.</P>
+<P>(3) The information required by this paragraph (b) of this section must be retained by the person or firm using the alternate test apparatus or procedure for as long as that apparatus or procedure is used for purposes of compliance with the Standard, and for a period of one year thereafter.</P>
+<P>(c) Written application to the Commission is not required for approval of alternate test apparatus or procedure, and the Commission will not act on any individual written application for approval of alternate test apparatus or procedure.</P>
+<P>(d) Use of any alternate test apparatus or procedure without the data or information required by paragraph (b), of this section, may result in violation of the Standard and section 3 of the Flammable Fabrics Act (15 U.S.C. 1192).</P>
+<P>(e) The Commission will test fabrics and garments subject to the Standard for compliance with the requirements of the Standard using the apparatus and procedures set forth in the Standard. The Commission will consider any failing results from compliance testing as evidence of a violation of the Standard and section 3 of the Flammable Fabrics Act (15 U.S.C 1192).</P>
+<APPRO TYPE="N">(Reporting requirements contained in paragraph (d) were approved by the Office of Management and Budget under control number 3041-0027)
+</APPRO>
+<CITA TYPE="N">[48 FR 21315, May 12, 1983]
+</CITA>
+</DIV8>
+
+<DIV8 N="1615.36" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.36&quot;,&quot;citation&quot;:&quot;16 CFR 1615.36&quot;}">
+<HEAD>&#xA7; 1615.36 Use of alternate apparatus or procedures for tests for guaranty purposes.</HEAD>
+<P>(a) Section 8(a) of the Flammable Fabrics Act (FFA, 15 U.S.C. 1197(a)) provides that no person shall be subject to criminal prosecution under section 7 of the FFA (15 U.S.C. 1196) for a violation of section 3 of the FFA (15 U.S.C. 1192) if that person establishes a guaranty received in good faith which meets all requirements set forth in section 8 of the FFA. One of those requirements is that the guaranty must be based upon &#x201C;reasonable and representative tests&#x201D; in accordance with the applicable standard.</P>
+<P>(b) Section 1615.31(f) of the regulations implementing the Standard for the Flammability of Children's Sleepwear: Sizes 0 through 6X (the Standard) provides that for purposes of supporting guaranties issued in accordance with section 8 of the FFA for items subject to the Standard, &#x201C;reasonable and representative tests&#x201D; are tests &#x201C;performed pursuant to any sampling plan or authorized alternative sampling plan engaged in pursuant to the requirements of the Standard.&#x201D;</P>
+<P>(c) At &#xA7; 1615.35, the Commission has set forth conditions under which the Commission will approve the use of test apparatus or procedures other than those prescribed in the Standard for purposes of demonstrating compliance with the requirements of the Standard. Any person or firm meeting the requirements of &#xA7; 1615.35 for use of alternate test apparatus or procedure for compliance with the Standard may also use such alternate test apparatus or procedures under the same conditions for purposes of conducting &#x201C;reasonable and representative tests&#x201D; to support guaranties of items subject to the Standard, following any sampling plan prescribed by the Standard or any approved alternate sampling plan.</P>
+<P>(d) The Commission will test fabrics and garments subject to the Standard for compliance with the Standard using the apparatus and procedures set forth in the Standard. The Commission will consider any failing results from compliance testing as evidence that the person or firm using alternate test apparatus or procedures has furnished a false guaranty in violation of section 8(b) of the FFA (15 U.S.C. 1197(b)).</P>
+<CITA TYPE="N">[48 FR 21316, May 12, 1983]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="C" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-16/part-1615/subpart-C&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;16 CFR Part 1615 Subpart C&amp;quot;}">
+<HEAD>Subpart C&#x2014;Interpretations and Policies</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>Secs. 1-17, 67 Stat. 111-115, as amended, 81 Stat. 568-74; 15 U.S.C. 1191-1204.
+</PSPACE></AUTH>
+<DIV8 N="1615.61" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.61&quot;,&quot;citation&quot;:&quot;16 CFR 1615.61&quot;}">
+<HEAD>&#xA7; 1615.61 [Reserved]</HEAD>
+</DIV8>
+
+<DIV8 N="1615.62" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.62&quot;,&quot;citation&quot;:&quot;16 CFR 1615.62&quot;}">
+<HEAD>&#xA7; 1615.62 Policy and interpretation relative to items in inventory or as to recordkeeping requirements.</HEAD>
+<P>(a) The Standard for the Flammability of Children's Sleepwear: Sizes 0 through 6X (FF 3-71) (subpart A of this part) was published in the <E T="04">Federal Register</E> on July 29, 1971, at 36 FR 14062 <I>et seq.,</I> and amended in the <E T="04">Federal Register</E> of July 21, 1972 (37 FR 14624). The Notice of Standard provided at 36 FR 14063 that &#x201C;Items in inventory or with the trade on the effective date of the Standard are exempt. All concerned parties shall be required to maintain records that these items offered for sale after the effective date of the Standard are eligible for the exemption.&#x201D;</P>
+<P>(b) The Children's Sleepwear Standard was amended on July 21, 1972, at 37 FR 14624 <I>et seq.</I> to incorporate a sleepwear sampling plan therein and to make certain nonsubstantive technical corrections as to the test equipment. The effective date remained the same. In issuance of such amendment the Notice of Amendment specified at 37 FR 14625 that &#x201C;It is emphasized that the only substantive change made to the standard involves the amendment necessary to include the sampling plan.&#x201D;</P>
+<P>(c) The Notice of Amendment did not repeat the language in the original 1971 Notice of Standard relative to items in inventory or as to recordkeeping requirements.</P>
+<P>(d) Questions have arisen under this standard as to the application of the standard to goods manufactured outside the United States prior to the effective date of the standard on July 29, 1972, as to whether a person claiming the exemption specified in the standard must maintain records showing eligibility for exemption from the standard.</P>
+<P>(e) In the Commission's view, the provisions of the July 29, 1971, Notice of Standard as to exemption of items of children's sleepwear in inventory or with the trade on the effective date of the standard and as to the necessity of maintenance of records to show eligibility for such exemption are in full force and effect.</P>
+<NOTE>
+<HED>Note:</HED>
+<P>This policy was published by the Federal Trade Commission on January 31, 1973 (38 FR 3014). It continues in effect.</P></NOTE>
+</DIV8>
+
+<DIV8 N="1615.63" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.63&quot;,&quot;citation&quot;:&quot;16 CFR 1615.63&quot;}">
+<HEAD>&#xA7; 1615.63 Policy regarding garment production unit identification.</HEAD>
+<P>No provision of &#xA7; 1615.31(b)(8) prohibits placement of a garment production unit identification on a label containing other information. Provided, however, that when the garment production unit identification appears on a label containing other information, provisions of &#xA7; 1615.31(b)(7) require that the garment production unit identification must be set forth separately from any other information appearing on the same label, and that information not required by the applicable enforcement regulation &#xA7; 1615.31, but placed on the same label with the garment production unit identification, shall not interfere with the garment production unit identification.</P>
+</DIV8>
+
+<DIV8 N="1615.64" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-16/section-1615.64&quot;,&quot;citation&quot;:&quot;16 CFR 1615.64&quot;}">
+<HEAD>&#xA7; 1615.64 Policy to clarify scope of the standard.</HEAD>
+<P>(a) The Standard for Flammability of Children's Sleepwear: Size 0 Through 6X (16 CFR part 1615) is applicable to any item of children's sleepwear in sizes 0 through 6X.</P>
+<P>(1) The term <I>item</I> is defined in the Standard at &#xA7; 1615.1(d) to mean &#x201C;any product of children's sleepwear, or any fabric or related material intended or promoted for use in children's sleepwear.&#x201D;</P>
+<P>(2) The term <I>children's sleepwear</I> is defined in the Standard at &#xA7; 1615.1(a) to mean &#x201C;any product of wearing apparel up to and including size 6X, such as nightgowns, pajamas, or similar or related items, such as robes, intended to be worn primarily for sleeping or activities relating to sleeping. Diapers and underwear are excluded from the definition.&#x201D;</P>
+<P>(b) The Commission makes the following statement of policy regarding (1) the phrase &#x201C;intended or promoted&#x201D; as used in the definition of &#x201C;item&#x201D; in &#xA7; 1615.1(d), and (2) the phrase &#x201C;intended to be worn primarily for sleeping or activities related to sleeping&#x201D; as used in the definition of &#x201C;children's sleepwear&#x201D; in &#xA7; 1615.1(a).</P>
+<P>(c) For enforcement purposes, the meaning of these phrases will be interpreted by the Commission in accordance with the following principles:</P>
+<P>(1) <I>Sleepwear fabrics and related materials.</I> Whether fabric or related material is &#x201C;intended or promoted&#x201D; for use in children's sleepwear depends on the facts and circumstances in each case. Relevant factors include:</P>
+<P>(i) The nature of the fabric and its suitability for use in children's sleepwear;</P>
+<P>(ii) The extent to which the fabric or a comparable fabric has been sold to manufacturers of children's sleepwear for use in the manufacture of children's sleepwear garments; and</P>
+<P>(iii) The likelihood that the fabric will be used primarily for children's sleepwear in a substantial number of cases.</P>
+<P>(2) <I>Sleepwear garments.</I> Whether a product of wearing apparel is &#x201C;intended to be worn primarily for sleeping or activities related to sleeping&#x201D; depends on the facts and circumstances present in each case. Relevant factors include:</P>
+<P>(i) The nature of the product and its suitability for use by children for sleeping or activities related to sleeping;</P>
+<P>(ii) The manner in which the product is distributed and promoted; and</P>
+<P>(iii) The likelihood that the product will be used by children primarily for sleeping or activities related to sleeping in a substantial number of cases.</P>
+<P>(3) The factors set forth in this policy statement are guidelines only, and are not elements of the definition of the term &#x201C;children's sleepwear&#x201D; in &#xA7; 1615.1(a) of the Standard. For this reason, a particular fabric or garment may meet the definition of &#x201C;children's sleepwear&#x201D; set forth in the Standard, even though all factors listed in this policy statement are not present.</P>
+<P>(d) Retailers, distributors, and wholesalers, as well as manufacturers, importers, and other persons (such as converters) introducing a fabric or garment into commerce which does not meet the requirements of the flammability standards for children's sleepwear, have an obligation not to promote or sell such fabric or garment for use as an item of children's sleepwear. Also, retailers, distributors, and wholesalers are advised not to advertise, promote, or sell as an item of children's sleepwear any item which a manufacturer, importer, or other person (such as a converter) introducing the item into commerce has indicated by label, invoice, or, otherwise, does not meet the requirements of the children's sleepwear flammability standards and is not intended or suitable for use as sleepwear. &#x201C;Infant garments&#x201D; as defined by &#xA7; 1615.1(c) and &#x201C;tight-fitting&#x201D; garments as defined by &#xA7; 1615.1(o) are exempt from the standard which requires flame resistance. They may be marketed as sleepwear for purposes of this section. Additionally, retailers are advised:</P>
+<P>(1) To segregate, by placement in different parts of a department or store, fabrics and garments covered by the children's sleepwear standards from all fabrics and garments that are beyond the scope of the children's sleepwear standards but which resemble items of children's sleepwear;</P>
+<P>(2) To utilize store display signs indicating the distinction between types of fabrics and garments, for example by indicating which are sleepwear items and which are not; and</P>
+<P>(3) To avoid the advertisement or promotion of a fabric or garment that does not comply with the children's sleepwear flammability standard in a manner that may cause the item to be viewed by the consumer as an item of children's sleepwear.</P>
+<SECAUTH TYPE="N">(Sec. 5, Pub.L. 90-189, 81 Stat. 569, 15 U.S.C. 1194; sec. 30(b), Pub.L. 92-573, 86 Stat. 1231, 15 U.S.C. 2079(b); 5 U.S.C. 553)
+</SECAUTH>
+<CITA TYPE="N">[49 FR 10250, Mar. 20, 1984, as amended at 64 FR 2832, Jan. 19, 1999; 64 FR 34533, June 28, 1999]
+</CITA>
+</DIV8>
+
+</DIV6>
+</DIV5>

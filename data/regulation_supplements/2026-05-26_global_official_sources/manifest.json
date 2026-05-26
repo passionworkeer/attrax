@@ -1,0 +1,1591 @@
+{
+  "version": "1.0",
+  "created_at": "2026-05-26T17:02:25+08:00",
+  "isolation": {
+    "status": "isolated",
+    "not_mixed_with": [
+      "data/corpus",
+      "data/corpus/processed",
+      "data/faiss"
+    ],
+    "raw_root": "data/regulation_supplements/2026-05-26_global_official_sources/raw"
+  },
+  "summary": {
+    "regulation_entries": 55,
+    "raw_files": 63,
+    "markets": [
+      "AU",
+      "BR",
+      "CA",
+      "EU",
+      "GCC",
+      "IN",
+      "JP",
+      "KR",
+      "MX",
+      "SG",
+      "UK",
+      "US"
+    ],
+    "product_categories": [
+      "apparel",
+      "batteries",
+      "chemicals",
+      "children_products",
+      "controlled_goods",
+      "cosmetics",
+      "electrical_equipment",
+      "electronics",
+      "food_contact",
+      "furniture",
+      "general_consumer_products",
+      "home_appliances",
+      "home_goods",
+      "industrial_products",
+      "kitchenware",
+      "machinery",
+      "packaging",
+      "plastics",
+      "radio",
+      "raw_materials",
+      "telecommunications",
+      "textiles",
+      "toys"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "conformity",
+      "documentation",
+      "due_diligence",
+      "emc",
+      "flammability",
+      "food_contact",
+      "labelling",
+      "market_surveillance",
+      "mechanical",
+      "packaging",
+      "product_safety",
+      "radio",
+      "scope_classification",
+      "sustainability",
+      "technical_standard",
+      "testing",
+      "waste"
+    ],
+    "channels": [
+      "Anatel Legislation Portal",
+      "Competition and Consumer Commission of Singapore",
+      "Consumer Product Safety Office Singapore",
+      "Federal Register of Legislation",
+      "GCC Standardization Organization (GSO)",
+      "GOV.UK / OPSS",
+      "Government of India official source",
+      "Japanese Law Translation",
+      "Justice Laws Website, Government of Canada",
+      "Korean Law Translation Center / KLRI",
+      "Publications Office of the European Union",
+      "Secretaria de Economia, Gobierno de Mexico",
+      "Singapore Statutes Online",
+      "eCFR API (2026-05-21)"
+    ],
+    "ecfr_date": "2026-05-21",
+    "failed_downloads": 0
+  },
+  "entries": [
+    {
+      "id": "eu-2023-1230-machinery",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/1230 on machinery",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32023R1230",
+      "files": [
+        "raw/eu/eu-2023-1230-machinery.rdf",
+        "raw/eu/eu-2023-1230-machinery.xhtml"
+      ],
+      "why_added": "Machinery and partly completed machinery; core EU machinery safety baseline.",
+      "product_categories": [
+        "machinery",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/51ed7804-1617-11ee-806b-01aa75ed71a1.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2023-1230-machinery.rdf",
+          "bytes": 1104995,
+          "sha256": "09145166586b43997a1a8c7eaa401b945c91d893e1c9cf89f54b4ec5de60ed57"
+        },
+        {
+          "file": "raw/eu/eu-2023-1230-machinery.xhtml",
+          "bytes": 860932,
+          "sha256": "45172093d5547c21c9f7d5da2628e5c630b5e7e586e163aff6b7c936ded17b48"
+        }
+      ]
+    },
+    {
+      "id": "eu-2025-40-packaging-waste",
+      "market": "EU",
+      "title": "Regulation (EU) 2025/40 on packaging and packaging waste",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32025R0040",
+      "files": [
+        "raw/eu/eu-2025-40-packaging-waste.rdf",
+        "raw/eu/eu-2025-40-packaging-waste.xhtml"
+      ],
+      "why_added": "Packaging, recyclability, reuse, labelling, and sustainability obligations.",
+      "product_categories": [
+        "packaging"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "labelling"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/d34251c8-d865-11ef-be2a-01aa75ed71a1.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2025-40-packaging-waste.rdf",
+          "bytes": 991063,
+          "sha256": "5eaf54286b61e9c32f6aaf6d0a670bd6d338099437d127a58c33a849fd9d8404"
+        },
+        {
+          "file": "raw/eu/eu-2025-40-packaging-waste.xhtml",
+          "bytes": 1199763,
+          "sha256": "f3174f0ac946db202bfa2e5c284216d87e9178ec1fde147a90f9b275124dd060"
+        }
+      ]
+    },
+    {
+      "id": "eu-2023-1115-deforestation",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/1115 on deforestation-free products",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32023R1115",
+      "files": [
+        "raw/eu/eu-2023-1115-deforestation.rdf",
+        "raw/eu/eu-2023-1115-deforestation.xhtml"
+      ],
+      "why_added": "Supply-chain due diligence for commodities used in consumer goods and packaging.",
+      "product_categories": [
+        "raw_materials",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "due_diligence"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/d80446fe-0660-11ee-b12e-01aa75ed71a1.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2023-1115-deforestation.rdf",
+          "bytes": 2726213,
+          "sha256": "e4aa8068f06ea5e8f99a3e0eeb66313c1d52eebce7ded927a83db568d861b2dc"
+        },
+        {
+          "file": "raw/eu/eu-2023-1115-deforestation.xhtml",
+          "bytes": 387997,
+          "sha256": "fc30a30a1b6701800ad8abeb63e1d606769a4128bc97ddb2e481ee4bf6057259"
+        }
+      ]
+    },
+    {
+      "id": "eu-2011-1007-textile-labelling",
+      "market": "EU",
+      "title": "Regulation (EU) No 1007/2011 on textile fibre names and labelling",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32011R1007",
+      "files": [
+        "raw/eu/eu-2011-1007-textile-labelling.rdf",
+        "raw/eu/eu-2011-1007-textile-labelling.xhtml"
+      ],
+      "why_added": "Textile and apparel fibre composition, labelling, and marking checks.",
+      "product_categories": [
+        "textiles",
+        "apparel"
+      ],
+      "regulatory_types": [
+        "labelling"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/85f446fd-05a5-47d7-b0d3-96418710a1e0.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2011-1007-textile-labelling.rdf",
+          "bytes": 1402675,
+          "sha256": "5e0e9917587cdbeba26c7261f8babf0d4cfc0481e68d6af3337a038afc4cd8a5"
+        },
+        {
+          "file": "raw/eu/eu-2011-1007-textile-labelling.xhtml",
+          "bytes": 994742,
+          "sha256": "4232e9cc93adb0857300b7708025934bda6acfa2064faa9c5fb7348dc65c8353"
+        }
+      ]
+    },
+    {
+      "id": "eu-2009-1223-cosmetics",
+      "market": "EU",
+      "title": "Regulation (EC) No 1223/2009 on cosmetic products",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32009R1223",
+      "files": [
+        "raw/eu/eu-2009-1223-cosmetics.rdf",
+        "raw/eu/eu-2009-1223-cosmetics.xhtml"
+      ],
+      "why_added": "Cosmetics safety assessment, responsible person, ingredient and notification rules.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/4100396c-575c-4150-8d92-e7c23ab1ce97.0006.02/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2009-1223-cosmetics.rdf",
+          "bytes": 9073467,
+          "sha256": "79ecca6de10a0d32a3950e4420481d58546993deaea26e9043f7471dbdedeabe"
+        },
+        {
+          "file": "raw/eu/eu-2009-1223-cosmetics.xhtml",
+          "bytes": 2154972,
+          "sha256": "858298b0649bd04c96565e92c5db593d8c88ed9b67f96f91189c2b194a1efec8"
+        }
+      ]
+    },
+    {
+      "id": "eu-2004-1935-food-contact-materials",
+      "market": "EU",
+      "title": "Regulation (EC) No 1935/2004 on materials and articles intended to contact food",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32004R1935",
+      "files": [
+        "raw/eu/eu-2004-1935-food-contact-materials.rdf",
+        "raw/eu/eu-2004-1935-food-contact-materials.xhtml"
+      ],
+      "why_added": "General EU food-contact material safety and declaration obligations.",
+      "product_categories": [
+        "food_contact",
+        "kitchenware"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/08a6f2ca-ddae-4630-801b-debd699a5af2.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2004-1935-food-contact-materials.rdf",
+          "bytes": 6698626,
+          "sha256": "6f306c207342cd766d287b4bf159d17c1534b3c7fb8d2953ae4056d4d92d8254"
+        },
+        {
+          "file": "raw/eu/eu-2004-1935-food-contact-materials.xhtml",
+          "bytes": 92866,
+          "sha256": "260e9ee86ac218e78bfdd55ce7faf6f82737ead055b906e46747bca9cc0a33a6"
+        }
+      ]
+    },
+    {
+      "id": "eu-2011-10-plastic-food-contact",
+      "market": "EU",
+      "title": "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32011R0010",
+      "files": [
+        "raw/eu/eu-2011-10-plastic-food-contact.rdf",
+        "raw/eu/eu-2011-10-plastic-food-contact.xhtml"
+      ],
+      "why_added": "Plastic food-contact migration and material-specific compliance coverage.",
+      "product_categories": [
+        "food_contact",
+        "plastics",
+        "kitchenware"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "testing"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/84665a0a-f9e5-4eae-aac5-af4fd4c8ac94.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2011-10-plastic-food-contact.rdf",
+          "bytes": 2163856,
+          "sha256": "ce6be02fc65f854023a6dc3933a3c2d86ae9dabc0aeef9f6689789f18647187f"
+        },
+        {
+          "file": "raw/eu/eu-2011-10-plastic-food-contact.xhtml",
+          "bytes": 2083080,
+          "sha256": "05371d7cb1aecdd4c048708865d0c18707a4fa08f6bfd09692c9abdcb5a29624"
+        }
+      ]
+    },
+    {
+      "id": "eu-2023-1542-batteries",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/1542 concerning batteries and waste batteries",
+      "channel": "Publications Office of the European Union",
+      "source_url": "https://publications.europa.eu/resource/celex/32023R1542",
+      "files": [
+        "raw/eu/eu-2023-1542-batteries.rdf",
+        "raw/eu/eu-2023-1542-batteries.xhtml"
+      ],
+      "why_added": "Battery safety, sustainability, labelling, due diligence, and waste obligations.",
+      "product_categories": [
+        "batteries",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "sustainability",
+        "labelling"
+      ],
+      "content_url": "https://publications.europa.eu/resource/cellar/d0065c31-2ce3-11ee-95a2-01aa75ed71a1.0006.03/DOC_1",
+      "file_stats": [
+        {
+          "file": "raw/eu/eu-2023-1542-batteries.rdf",
+          "bytes": 2474992,
+          "sha256": "8e52d649f49913d331a46db806af4abfc6cc87e96383ad402b9fbe7557b8d689"
+        },
+        {
+          "file": "raw/eu/eu-2023-1542-batteries.xhtml",
+          "bytes": 1132664,
+          "sha256": "20083c87cc6e7c0e84cd30a52cff44e135d3cb35397b2daa86f58cf050689f60"
+        }
+      ]
+    },
+    {
+      "id": "us-47-cfr-15-radio-frequency-devices",
+      "market": "US",
+      "title": "47 CFR Part 15, Radio Frequency Devices",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-47.xml?part=15",
+      "files": [
+        "raw/us/US_47_CFR_Part_15_radio_frequency_devices.xml"
+      ],
+      "why_added": "Radio-frequency, Wi-Fi, Bluetooth, unintentional radiator, and electronics EMC checks.",
+      "product_categories": [
+        "electronics",
+        "radio"
+      ],
+      "regulatory_types": [
+        "radio",
+        "emc"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_47_CFR_Part_15_radio_frequency_devices.xml",
+          "bytes": 570313,
+          "sha256": "38da96bf1179a9cc10e35e8c2c970725f222883dfcbeb9c986b0fc3d397a5c1d"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1107-testing-certification",
+      "market": "US",
+      "title": "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1107",
+      "files": [
+        "raw/us/US_16_CFR_Part_1107_testing_certification.xml"
+      ],
+      "why_added": "Children-product testing, certification, and conformity evidence.",
+      "product_categories": [
+        "children_products",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "testing",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1107_testing_certification.xml",
+          "bytes": 28560,
+          "sha256": "bfb7bf3e3f716f84c9ed353b745fa0abd5bde877a9df192e1359a8295cbb4478"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1110-certificates-compliance",
+      "market": "US",
+      "title": "16 CFR Part 1110, Certificates of Compliance",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1110",
+      "files": [
+        "raw/us/US_16_CFR_Part_1110_certificates_compliance.xml"
+      ],
+      "why_added": "Certificate data requirements for consumer products subject to CPSC rules.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1110_certificates_compliance.xml",
+          "bytes": 9561,
+          "sha256": "0693b508f2ee4f76d2ff859d1f240e2a35763a1a3d2226a61d0c93a5a7e76d34"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1500-hazardous-substances",
+      "market": "US",
+      "title": "16 CFR Part 1500, Hazardous Substances and Articles",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1500",
+      "files": [
+        "raw/us/US_16_CFR_Part_1500_hazardous_substances.xml"
+      ],
+      "why_added": "Hazardous-substance, labelling, and children-product hazard coverage.",
+      "product_categories": [
+        "children_products",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "labelling",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1500_hazardous_substances.xml",
+          "bytes": 480856,
+          "sha256": "16411b04b1b03158c078bdeb81e47474cc9c3674d35b7afba98358b4c0633bfa"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1501-small-parts",
+      "market": "US",
+      "title": "16 CFR Part 1501, Small Parts",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1501",
+      "files": [
+        "raw/us/US_16_CFR_Part_1501_small_parts.xml"
+      ],
+      "why_added": "Small-parts mechanical choking hazard checks for toys and child-use articles.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1501_small_parts.xml",
+          "bytes": 8023,
+          "sha256": "9c32ae9c546c9f39cfa9910e26d9d638229c2795e9f5b8ff01a3343464a935c1"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1610-textile-flammability",
+      "market": "US",
+      "title": "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1610",
+      "files": [
+        "raw/us/US_16_CFR_Part_1610_textile_flammability.xml"
+      ],
+      "why_added": "Apparel and textile flammability classification and test-method coverage.",
+      "product_categories": [
+        "textiles",
+        "apparel"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1610_textile_flammability.xml",
+          "bytes": 97209,
+          "sha256": "11cbb6e33dc13d01e95ae341811068ee371128ca4175a5dc322dd60c956beb66"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
+      "market": "US",
+      "title": "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1615",
+      "files": [
+        "raw/us/US_16_CFR_Part_1615_childrens_sleepwear_0_6x.xml"
+      ],
+      "why_added": "Children's sleepwear flammability requirements for smaller sizes.",
+      "product_categories": [
+        "textiles",
+        "children_products",
+        "apparel"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1615_childrens_sleepwear_0_6x.xml",
+          "bytes": 112947,
+          "sha256": "68a213ef034aee2b46dabe0ac1ff5c1097e5c101fc924719c5cbcc020db322f9"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1616-childrens-sleepwear-7-14",
+      "market": "US",
+      "title": "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1616",
+      "files": [
+        "raw/us/US_16_CFR_Part_1616_childrens_sleepwear_7_14.xml"
+      ],
+      "why_added": "Children's sleepwear flammability requirements for larger sizes.",
+      "product_categories": [
+        "textiles",
+        "children_products",
+        "apparel"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1616_childrens_sleepwear_7_14.xml",
+          "bytes": 131669,
+          "sha256": "70465105f17a30bc58b496ca337da3b64e28aba27539f987ec80df4478ca1936"
+        }
+      ]
+    },
+    {
+      "id": "us-16-cfr-1632-mattresses",
+      "market": "US",
+      "title": "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1632",
+      "files": [
+        "raw/us/US_16_CFR_Part_1632_mattresses.xml"
+      ],
+      "why_added": "Household soft goods and mattress flammability baseline.",
+      "product_categories": [
+        "furniture",
+        "home_goods",
+        "textiles"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1632_mattresses.xml",
+          "bytes": 67482,
+          "sha256": "3711d28c9c19ec33c307f7452460320ce36ecea6f462d4e10dd94218c7b2700d"
+        }
+      ]
+    },
+    {
+      "id": "us-21-cfr-177-food-contact-polymers",
+      "market": "US",
+      "title": "21 CFR Part 177, Indirect Food Additives: Polymers",
+      "channel": "eCFR API (2026-05-21)",
+      "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-21.xml?part=177",
+      "files": [
+        "raw/us/US_21_CFR_Part_177_food_contact_polymers.xml"
+      ],
+      "why_added": "Food-contact plastics and polymers for kitchenware, packaging, and utensils.",
+      "product_categories": [
+        "food_contact",
+        "plastics",
+        "packaging",
+        "kitchenware"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "food_contact"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_21_CFR_Part_177_food_contact_polymers.xml",
+          "bytes": 595722,
+          "sha256": "c19b5ad6e09e34b42014782e8e848cc525f0972963998449afc0cdcd63337e16"
+        }
+      ]
+    },
+    {
+      "id": "uk-product-safety-advice-businesses",
+      "market": "UK",
+      "title": "Product safety advice for businesses",
+      "channel": "GOV.UK / OPSS",
+      "source_url": "https://www.gov.uk/guidance/product-safety-advice-for-businesses",
+      "files": [
+        "raw/uk/UK_product_safety_advice_for_businesses.html"
+      ],
+      "why_added": "General UK consumer-product safety obligations, recalls, reporting, enforcement, and labelling context.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_product_safety_advice_for_businesses.html",
+          "bytes": 87345,
+          "sha256": "af8d4cd6666bb4fa71088afa472bb3ca40e0081c6436037a62f848573c430466"
+        }
+      ]
+    },
+    {
+      "id": "uk-toys-safety-regulations-2011-gb",
+      "market": "UK",
+      "title": "Toys (Safety) Regulations 2011: Great Britain",
+      "channel": "GOV.UK / OPSS",
+      "source_url": "https://www.gov.uk/government/publications/toys-safety-regulations-2011/toys-safety-regulations-2011-great-britain",
+      "files": [
+        "raw/uk/UK_toys_safety_regulations_2011_gb.html"
+      ],
+      "why_added": "UK/GB toy safety duties, conformity assessment, labelling, and importer obligations.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_toys_safety_regulations_2011_gb.html",
+          "bytes": 179214,
+          "sha256": "6ab5f8ccafb59bedaa810932e21503657d0be216322d42b766bbae2f0d4011d8"
+        }
+      ]
+    },
+    {
+      "id": "uk-electrical-equipment-safety-regulations-2016-gb",
+      "market": "UK",
+      "title": "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+      "channel": "GOV.UK / OPSS",
+      "source_url": "https://www.gov.uk/government/publications/electrical-equipment-safety-regulations-2016/electrical-equipment-safety-regulations-2016-great-britain",
+      "files": [
+        "raw/uk/UK_electrical_equipment_safety_regulations_2016_gb.html"
+      ],
+      "why_added": "Electrical product safety, CE/UKCA, documentation, and supply-chain duties.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_electrical_equipment_safety_regulations_2016_gb.html",
+          "bytes": 157762,
+          "sha256": "aef40c35757f0a11a4a3c64543ddf08b14e85f7ce8a80d05b0847a1d2ba335a0"
+        }
+      ]
+    },
+    {
+      "id": "uk-emc-regulations-2016-gb",
+      "market": "UK",
+      "title": "Electromagnetic Compatibility Regulations 2016: Great Britain",
+      "channel": "GOV.UK / OPSS",
+      "source_url": "https://www.gov.uk/government/publications/electromagnetic-compatibility-regulations-2016/electromagnetic-compatibility-regulations-2016-great-britain",
+      "files": [
+        "raw/uk/UK_emc_regulations_2016_gb.html"
+      ],
+      "why_added": "EMC duties for electrical/electronic apparatus and fixed installations.",
+      "product_categories": [
+        "electronics"
+      ],
+      "regulatory_types": [
+        "emc",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_emc_regulations_2016_gb.html",
+          "bytes": 179856,
+          "sha256": "a39943fdd1ca35eba13fda336e1ae4ceabeba954c8ba408629a79e733e46c8a4"
+        }
+      ]
+    },
+    {
+      "id": "uk-radio-equipment-regulations-2017-gb",
+      "market": "UK",
+      "title": "Radio Equipment Regulations 2017: Great Britain",
+      "channel": "GOV.UK / OPSS",
+      "source_url": "https://www.gov.uk/government/publications/radio-equipment-regulations-2017/radio-equipment-regulations-2017-great-britain",
+      "files": [
+        "raw/uk/UK_radio_equipment_regulations_2017_gb.html"
+      ],
+      "why_added": "Radio and wireless-product conformity, spectrum, and importer obligations.",
+      "product_categories": [
+        "electronics",
+        "radio"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_radio_equipment_regulations_2017_gb.html",
+          "bytes": 186519,
+          "sha256": "038f5d4a27dae3da94830713311c35f7bc629637c6f42f4a87e22cc493b9b671"
+        }
+      ]
+    },
+    {
+      "id": "uk-cosmetic-products-enforcement-regulations-2013-gb",
+      "market": "UK",
+      "title": "Regulation 2009/1223 and the Cosmetic Products Enforcement Regulations 2013: Great Britain",
+      "channel": "GOV.UK / OPSS",
+      "source_url": "https://www.gov.uk/government/publications/cosmetic-products-enforcement-regulations-2013/regulation-20091223-and-the-cosmetic-products-enforcement-regulations-2013-great-britain",
+      "files": [
+        "raw/uk/UK_cosmetic_products_enforcement_regulations_2013_gb.html"
+      ],
+      "why_added": "UK/GB cosmetics responsible-person, safety report, PIF, notification, and labelling coverage.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_cosmetic_products_enforcement_regulations_2013_gb.html",
+          "bytes": 263246,
+          "sha256": "d48d7e80a23b23b73258d6c25b1289510b2472f330a692ac80fa2335bed70b71"
+        }
+      ]
+    },
+    {
+      "id": "ca-consumer-product-safety-act",
+      "market": "CA",
+      "title": "Canada Consumer Product Safety Act",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/C-1.68.xml",
+      "files": [
+        "raw/ca/CA_consumer_product_safety_act.xml"
+      ],
+      "why_added": "Core Canada consumer-product prohibition, incident, document-retention, and enforcement framework.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_consumer_product_safety_act.xml",
+          "bytes": 161851,
+          "sha256": "08484c7d630af8161844244dff5701b86ede5eb7e36fec4611547f81f9be87cc"
+        }
+      ]
+    },
+    {
+      "id": "ca-toys-regulations-sor-2011-17",
+      "market": "CA",
+      "title": "Toys Regulations (SOR/2011-17)",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2011-17.xml",
+      "files": [
+        "raw/ca/CA_toys_regulations_SOR-2011-17.xml"
+      ],
+      "why_added": "Canada toy mechanical, chemical, electrical, and hazard requirements.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical",
+        "mechanical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_toys_regulations_SOR-2011-17.xml",
+          "bytes": 134330,
+          "sha256": "66de647909acf995d9f090ccd9c6e16a7c79688fc8fafdc5171d4aa0fc34b465"
+        }
+      ]
+    },
+    {
+      "id": "ca-cosmetics-regulations-crc-c-869",
+      "market": "CA",
+      "title": "Cosmetic Regulations (C.R.C., c. 869)",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/C.R.C.,_c._869.xml",
+      "files": [
+        "raw/ca/CA_cosmetics_regulations_CRC_c_869.xml"
+      ],
+      "why_added": "Canada cosmetics safety, labelling, notification, and ingredient controls.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_cosmetics_regulations_CRC_c_869.xml",
+          "bytes": 98072,
+          "sha256": "f9027ef73c758556759d4d8b3f57d06f4ffb887a6cff8a754aa3dc83cd6e60ad"
+        }
+      ]
+    },
+    {
+      "id": "ca-textile-labelling-advertising-regulations-crc-c-1551",
+      "market": "CA",
+      "title": "Textile Labelling and Advertising Regulations (C.R.C., c. 1551)",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/C.R.C.,_c._1551.xml",
+      "files": [
+        "raw/ca/CA_textile_labelling_advertising_regulations_CRC_c_1551.xml"
+      ],
+      "why_added": "Canada textile fibre-content and labelling coverage.",
+      "product_categories": [
+        "textiles",
+        "apparel"
+      ],
+      "regulatory_types": [
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_textile_labelling_advertising_regulations_CRC_c_1551.xml",
+          "bytes": 133870,
+          "sha256": "ff916b597546d865a6afcc0c667a38511d551ecf72a774750969f8790ae90294"
+        }
+      ]
+    },
+    {
+      "id": "ca-consumer-packaging-labelling-regulations-crc-c-417",
+      "market": "CA",
+      "title": "Consumer Packaging and Labelling Regulations (C.R.C., c. 417)",
+      "channel": "Justice Laws Website, Government of Canada",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/XML/C.R.C.,_c._417.xml",
+      "files": [
+        "raw/ca/CA_consumer_packaging_labelling_regulations_CRC_c_417.xml"
+      ],
+      "why_added": "Canada packaging, label declaration, identity, quantity, and dealer information coverage.",
+      "product_categories": [
+        "packaging",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "packaging"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ca/CA_consumer_packaging_labelling_regulations_CRC_c_417.xml",
+          "bytes": 138343,
+          "sha256": "9c610c13b089b731e36f3e560ee7cdc85d6d76da7802448f4401fc2aa26800fe"
+        }
+      ]
+    },
+    {
+      "id": "au-button-coin-batteries-safety-standard-2020",
+      "market": "AU",
+      "title": "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020",
+      "channel": "Federal Register of Legislation",
+      "source_url": "https://www.legislation.gov.au/F2020L01658/asmade/2020-12-21/text/original/pdf",
+      "files": [
+        "raw/au/AU_button_coin_batteries_safety_standard_2020.pdf"
+      ],
+      "why_added": "Button/coin-battery secure compartment, warning, and safety coverage for consumer products.",
+      "product_categories": [
+        "batteries",
+        "electronics",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/au/AU_button_coin_batteries_safety_standard_2020.pdf",
+          "bytes": 561357,
+          "sha256": "0b1afb9abe031f80fbc43fe5139df65e213804286516991d6d5dfd18e27a5c67"
+        }
+      ]
+    },
+    {
+      "id": "au-toys-children-36-months-safety-standard-2023",
+      "market": "AU",
+      "title": "Consumer Goods (Toys for Children up to and including 36 Months of Age) Safety Standard 2023",
+      "channel": "Federal Register of Legislation",
+      "source_url": "https://www.legislation.gov.au/F2023L01185/asmade/2023-09-04/text/original/pdf",
+      "files": [
+        "raw/au/AU_toys_children_36_months_safety_standard_2023.pdf"
+      ],
+      "why_added": "Australia toy small-parts and young-child safety coverage.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/au/AU_toys_children_36_months_safety_standard_2023.pdf",
+          "bytes": 765222,
+          "sha256": "4e8079238a1e5feaf2f4bb7d10ebed4a758361cc3b080adec6fedcf5f1a8952f"
+        }
+      ]
+    },
+    {
+      "id": "au-childrens-nightwear-safety-standard-2017",
+      "market": "AU",
+      "title": "Consumer Goods (Children's Nightwear and Limited Daywear and Paper Patterns for Children's Nightwear) Safety Standard 2017",
+      "channel": "Federal Register of Legislation",
+      "source_url": "https://www.legislation.gov.au/F2017L00452/2019-02-13/2019-02-13/text/original/pdf",
+      "files": [
+        "raw/au/AU_childrens_nightwear_safety_standard_2017.pdf"
+      ],
+      "why_added": "Australia children's apparel flammability and labelling coverage.",
+      "product_categories": [
+        "textiles",
+        "children_products",
+        "apparel"
+      ],
+      "regulatory_types": [
+        "flammability",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/au/AU_childrens_nightwear_safety_standard_2017.pdf",
+          "bytes": 656797,
+          "sha256": "f615531fb81c8adee9c4dff3c2e65f44950b4cb17d131d28a76456f2d1d6f513"
+        }
+      ]
+    },
+    {
+      "id": "au-cosmetics-ingredients-information-standard-2020",
+      "market": "AU",
+      "title": "Consumer Goods (Cosmetics) Information Standard 2020",
+      "channel": "Federal Register of Legislation",
+      "source_url": "https://www.legislation.gov.au/F2020L01469/asmade/2020-11-24/text/original/pdf",
+      "files": [
+        "raw/au/AU_cosmetics_ingredients_information_standard_2020.pdf"
+      ],
+      "why_added": "Australia cosmetics ingredient labelling and consumer information coverage.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/au/AU_cosmetics_ingredients_information_standard_2020.pdf",
+          "bytes": 669472,
+          "sha256": "6e8149f12682054628ba8ad4b107f492b06f74fbee8209da9052cebfb3ee8e9a"
+        }
+      ]
+    },
+    {
+      "id": "jp-electrical-appliance-material-safety-act",
+      "market": "JP",
+      "title": "Electrical Appliance and Material Safety Act",
+      "channel": "Japanese Law Translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/47/en",
+      "files": [
+        "raw/jp/JP_electrical_appliances_materials_safety_act.pdf"
+      ],
+      "why_added": "Japan PSE electrical appliance safety law coverage.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/jp/JP_electrical_appliances_materials_safety_act.pdf",
+          "bytes": 242643,
+          "sha256": "b83813515c06628f9b4654ee1ebf07d325e16a34e8b5d8963e8ea67c413a650c"
+        }
+      ]
+    },
+    {
+      "id": "jp-consumer-product-safety-act",
+      "market": "JP",
+      "title": "Consumer Product Safety Act",
+      "channel": "Japanese Law Translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/82/en",
+      "files": [
+        "raw/jp/JP_consumer_product_safety_act.pdf"
+      ],
+      "why_added": "Japan general consumer-product safety, specified products, reporting, and enforcement framework.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/jp/JP_consumer_product_safety_act.pdf",
+          "bytes": 305729,
+          "sha256": "2391ce88fd152fa3823dc867fd972b27b9031c524a60da28e49705d72f51d04b"
+        }
+      ]
+    },
+    {
+      "id": "jp-food-sanitation-act",
+      "market": "JP",
+      "title": "Food Sanitation Act",
+      "channel": "Japanese Law Translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/5024/en",
+      "files": [
+        "raw/jp/JP_food_sanitation_act.pdf"
+      ],
+      "why_added": "Japan food, utensils, containers, and packaging sanitary baseline.",
+      "product_categories": [
+        "food_contact",
+        "kitchenware",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "food_contact",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/jp/JP_food_sanitation_act.pdf",
+          "bytes": 331368,
+          "sha256": "344946061473ddb5df2c7643a2865b4cf1f893a998c804543d81a4fb09571f48"
+        }
+      ]
+    },
+    {
+      "id": "jp-technical-standards-electrical-appliances-materials",
+      "market": "JP",
+      "title": "Ministerial Order to Provide Technical Standards for Electrical Appliances and Materials",
+      "channel": "Japanese Law Translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/2961/en",
+      "files": [
+        "raw/jp/JP_technical_standards_electrical_appliances.html"
+      ],
+      "why_added": "Detailed technical standards for Japan electrical appliance/material safety checks.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "technical_standard"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/jp/JP_technical_standards_electrical_appliances.html",
+          "bytes": 44868,
+          "sha256": "fba666fd1e855fc076efad997f201c06755e26d22fa4d753217a012528fa8ee3"
+        }
+      ]
+    },
+    {
+      "id": "sg-cpsr-overview",
+      "market": "SG",
+      "title": "Consumer Protection (Safety Requirements) Regulations overview",
+      "channel": "Consumer Product Safety Office Singapore",
+      "source_url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/",
+      "files": [
+        "raw/sg/SG_cpsr_overview.html"
+      ],
+      "why_added": "Singapore controlled-goods safety mark and supplier obligations overview.",
+      "product_categories": [
+        "controlled_goods",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_cpsr_overview.html",
+          "bytes": 36509,
+          "sha256": "c0672e85dfaaf955634b521c4d4d8ab96b92dec2ed8a809f2fb348750cf0ec18"
+        }
+      ]
+    },
+    {
+      "id": "sg-cpsr-controlled-goods-list",
+      "market": "SG",
+      "title": "List of controlled goods under CPSR",
+      "channel": "Consumer Product Safety Office Singapore",
+      "source_url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/list-of-controlled-goods/",
+      "files": [
+        "raw/sg/SG_cpsr_controlled_goods_list.html"
+      ],
+      "why_added": "Singapore controlled-goods category list for scope classification.",
+      "product_categories": [
+        "controlled_goods",
+        "electronics",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "scope_classification",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_cpsr_controlled_goods_list.html",
+          "bytes": 61348,
+          "sha256": "6ea3a27790e232fc1f972f9f0eea500b8f31663537722acbd1fce05277b509e1"
+        }
+      ]
+    },
+    {
+      "id": "sg-consumer-protection-safety-requirements-regulations-2002",
+      "market": "SG",
+      "title": "Consumer Protection (Safety Requirements) Regulations 2002",
+      "channel": "Singapore Statutes Online",
+      "source_url": "https://sso.agc.gov.sg/SL-Supp/S23-2002/Published?DocDate=20020110&ProvIds=Sc1-",
+      "files": [
+        "raw/sg/SG_consumer_protection_safety_requirements_regulations_2002.html"
+      ],
+      "why_added": "Original Singapore subsidiary legislation for safety requirements controlled goods.",
+      "product_categories": [
+        "controlled_goods",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_consumer_protection_safety_requirements_regulations_2002.html",
+          "bytes": 109658,
+          "sha256": "87827d074ab19f27808b998872bc2ad4618140a07ccf9393ca7cec51f3d5fc56"
+        }
+      ]
+    },
+    {
+      "id": "sg-consumer-product-safety-regulations-ccs",
+      "market": "SG",
+      "title": "Consumer Product Safety Regulations",
+      "channel": "Competition and Consumer Commission of Singapore",
+      "source_url": "https://www.ccs.gov.sg/consumer-protection/legislation-and-guidelines/consumer-product-safety-regulations/",
+      "files": [
+        "raw/sg/SG_consumer_product_safety_regulations_ccs.html"
+      ],
+      "why_added": "Singapore consumer product safety regulatory overview for broader product coverage.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_consumer_product_safety_regulations_ccs.html",
+          "bytes": 410805,
+          "sha256": "bf3d2e605a36d3f75a3bc7d166bab872968ade8f951dd270363108e362fdb5e1"
+        }
+      ]
+    },
+    {
+      "id": "kr-electrical-appliances-consumer-products-safety-control-act",
+      "market": "KR",
+      "title": "Electrical Appliances and Consumer Products Safety Control Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawTwoView.do?hseq=45624",
+      "files": [
+        "raw/kr/KR_electrical_appliances_consumer_products_safety_control_act.html"
+      ],
+      "why_added": "Korea KC electrical appliance and consumer product safety-control coverage.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/kr/KR_electrical_appliances_consumer_products_safety_control_act.html",
+          "bytes": 350713,
+          "sha256": "7898819e1970d7bb62a0f9542a60029f0b7ea83b24975b76b7a4f67eb2b6ca4a"
+        }
+      ]
+    },
+    {
+      "id": "kr-radio-waves-act",
+      "market": "KR",
+      "title": "Radio Waves Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawTwoView.do?hseq=61445",
+      "files": [
+        "raw/kr/KR_radio_waves_act.html"
+      ],
+      "why_added": "Korea radio equipment, spectrum, certification, and wireless-device context.",
+      "product_categories": [
+        "electronics",
+        "radio"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/kr/KR_radio_waves_act.html",
+          "bytes": 1202009,
+          "sha256": "1e0b67d5776efe5214d613095cc9f957f9c30a16236636aa88e679c8c0ca129e"
+        }
+      ]
+    },
+    {
+      "id": "kr-cosmetics-act",
+      "market": "KR",
+      "title": "Cosmetics Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawTwoView.do?hseq=68854",
+      "files": [
+        "raw/kr/KR_cosmetics_act.html"
+      ],
+      "why_added": "Korea cosmetics safety, labelling, importer/manufacturer, and advertising controls.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/kr/KR_cosmetics_act.html",
+          "bytes": 252587,
+          "sha256": "964580cd10270670ce99ec88dc1c95dcc43ba8fb06c2d34d7a4db4ab14276862"
+        }
+      ]
+    },
+    {
+      "id": "kr-food-sanitation-act",
+      "market": "KR",
+      "title": "Food Sanitation Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawTwoView.do?hseq=46429",
+      "files": [
+        "raw/kr/KR_food_sanitation_act.html"
+      ],
+      "why_added": "Korea food-contact utensils, containers, packaging, and sanitary product baseline.",
+      "product_categories": [
+        "food_contact",
+        "kitchenware",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "food_contact",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/kr/KR_food_sanitation_act.html",
+          "bytes": 833009,
+          "sha256": "4a5d471ac716f7eaafdbf782cbb825bb7ab61ca477cadad405477cb5925b604f"
+        }
+      ]
+    },
+    {
+      "id": "in-toys-quality-control-order-2020",
+      "market": "IN",
+      "title": "Toys (Quality Control) Order, 2020",
+      "channel": "Government of India official source",
+      "source_url": "https://www.bis.gov.in/wp-content/uploads/2020/03/Toy_QC_order.pdf",
+      "files": [
+        "raw/in/IN_toys_quality_control_order_2020.pdf"
+      ],
+      "why_added": "India BIS toy conformity and quality-control order coverage.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/in/IN_toys_quality_control_order_2020.pdf",
+          "bytes": 753487,
+          "sha256": "96eefa64ed07b2b5a4c70c0562fc4e8635a7e38377e0d33e62458511df0c4ccb"
+        }
+      ]
+    },
+    {
+      "id": "in-battery-waste-management-rules-2022",
+      "market": "IN",
+      "title": "Battery Waste Management Rules, 2022",
+      "channel": "Government of India official source",
+      "source_url": "https://cpcb.nic.in/uploads/hwmd/Battery-WasteManagementRules-2022.pdf",
+      "files": [
+        "raw/in/IN_battery_waste_management_rules_2022.pdf"
+      ],
+      "why_added": "India battery producer responsibility, labelling, collection, and recycling framework.",
+      "product_categories": [
+        "batteries"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "waste",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/in/IN_battery_waste_management_rules_2022.pdf",
+          "bytes": 1571686,
+          "sha256": "50966a351d4a86c2b8d5cfb5218543bbdbe714acc6b23bd48a65645d217ef237"
+        }
+      ]
+    },
+    {
+      "id": "in-e-waste-management-rules-2022",
+      "market": "IN",
+      "title": "E-Waste (Management) Rules, 2022",
+      "channel": "Government of India official source",
+      "source_url": "https://moef.gov.in/uploads/2022/11/E-Waste-Management-Rules-2022.pdf",
+      "files": [
+        "raw/in/IN_e_waste_management_rules_2022.pdf"
+      ],
+      "why_added": "India electronics/e-waste extended producer responsibility and channelization rules.",
+      "product_categories": [
+        "electronics"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "waste"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/in/IN_e_waste_management_rules_2022.pdf",
+          "bytes": 1609623,
+          "sha256": "d03f8744bc79d67a94b06e1020537e93d15572b0cf1d575cb32b76c89f30a5fb"
+        }
+      ]
+    },
+    {
+      "id": "br-anatel-resolution-715-2019-telecom-products",
+      "market": "BR",
+      "title": "Anatel Resolution No. 715/2019, conformity assessment and approval of telecommunications products",
+      "channel": "Anatel Legislation Portal",
+      "source_url": "https://informacoes.anatel.gov.br/legislacao/resolucoes/2019/1350-resolucao-715",
+      "files": [
+        "raw/br/BR_anatel_resolution_715_2019_telecom_products.html"
+      ],
+      "why_added": "Brazil telecom/radio product approval framework for connected devices.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/br/BR_anatel_resolution_715_2019_telecom_products.html",
+          "bytes": 169902,
+          "sha256": "eccd34e201a5818770099e4c9f83f83292fff3e4b9ed6b1db0846cabb81cb67d"
+        }
+      ]
+    },
+    {
+      "id": "br-anatel-resolution-780-2023-telecom-products",
+      "market": "BR",
+      "title": "Anatel Resolution No. 780/2023",
+      "channel": "Anatel Legislation Portal",
+      "source_url": "https://informacoes.anatel.gov.br/legislacao/resolucoes/2023/1852-resolucao-780",
+      "files": [
+        "raw/br/BR_anatel_resolution_780_2023.html"
+      ],
+      "why_added": "Brazil Anatel update coverage for telecom-product regulatory checks.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/br/BR_anatel_resolution_780_2023.html",
+          "bytes": 75786,
+          "sha256": "3671cde19b42e655e3451dd5959a36bd3beeea121c1b37461639fbb80ea22ea5"
+        }
+      ]
+    },
+    {
+      "id": "mx-nom-001-scfi-2018-electronic-apparatus",
+      "market": "MX",
+      "title": "NOM-001-SCFI-2018, Electronic apparatus - safety requirements and test methods",
+      "channel": "Secretaria de Economia, Gobierno de Mexico",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-001-scfi-2018/",
+      "files": [
+        "raw/mx/MX_NOM_001_SCFI_2018_electronic_apparatus.html"
+      ],
+      "why_added": "Mexico electronic apparatus safety NOM coverage.",
+      "product_categories": [
+        "electronics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/MX_NOM_001_SCFI_2018_electronic_apparatus.html",
+          "bytes": 97735,
+          "sha256": "86ed0bd294e72f21aff2eb00899362f68bca88387b625b9d30d820d6353ccd60"
+        }
+      ]
+    },
+    {
+      "id": "mx-nom-024-scfi-2013-commercial-information-electrical-electronic-appliances",
+      "market": "MX",
+      "title": "NOM-024-SCFI-2013, commercial information for electrical, electronic and household appliances",
+      "channel": "Secretaria de Economia, Gobierno de Mexico",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-024-scfi-2013/",
+      "files": [
+        "raw/mx/MX_NOM_024_SCFI_2013_commercial_information_electrical_electronic_appliances.html"
+      ],
+      "why_added": "Mexico commercial-information/labelling requirements for electrical and electronic products.",
+      "product_categories": [
+        "electronics",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/MX_NOM_024_SCFI_2013_commercial_information_electrical_electronic_appliances.html",
+          "bytes": 92837,
+          "sha256": "5a20bf5155ef10bec2ac80f7dea7f2c65b10a60e97c3426975607a322a304a72"
+        }
+      ]
+    },
+    {
+      "id": "mx-nom-252-ssa1-2011-toys",
+      "market": "MX",
+      "title": "NOM-252-SSA1-2011, toys and school articles: health and safety",
+      "channel": "Secretaria de Economia, Gobierno de Mexico",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-252-ssa1-2011/",
+      "files": [
+        "raw/mx/MX_NOM_252_SSA1_2011_toys_health_safety.html"
+      ],
+      "why_added": "Mexico toy and school-article health and safety NOM coverage.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/MX_NOM_252_SSA1_2011_toys_health_safety.html",
+          "bytes": 94459,
+          "sha256": "4087677b01c7c3487691e6346a08d82c52ffde6462290d1521f7d7656ea134ce"
+        }
+      ]
+    },
+    {
+      "id": "gcc-gso-low-voltage-electrical-equipment-technical-regulation",
+      "market": "GCC",
+      "title": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances",
+      "channel": "GCC Standardization Organization (GSO)",
+      "source_url": "https://www.gso.org.sa/wp-content/uploads/2017/11/Gulf-Technical-Regulation-for-Low-Voltage-Electrical-Equipment-and-Appliances-BD-142004-01.pdf",
+      "files": [
+        "raw/gcc/GCC_GSO_low_voltage_electrical_equipment_technical_regulation.pdf"
+      ],
+      "why_added": "GCC/GSO low-voltage electrical equipment technical-regulation and G-mark coverage.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/gcc/GCC_GSO_low_voltage_electrical_equipment_technical_regulation.pdf",
+          "bytes": 661711,
+          "sha256": "ef5182a88ef603d5eeef59da933af831f6d20429ffca7bfd4d98377cbdead1f6"
+        }
+      ]
+    },
+    {
+      "id": "gcc-gso-gmark-toys-guidance",
+      "market": "GCC",
+      "title": "G-Mark HS Toys Guidance, English",
+      "channel": "GCC Standardization Organization (GSO)",
+      "source_url": "https://static.gso.org.sa/gso-public-docs/conformity/g-mark/G-Mark_HS_Toys_Guidance_V1_English.pdf",
+      "files": [
+        "raw/gcc/GCC_GSO_GMark_HS_toys_guidance_english.pdf"
+      ],
+      "why_added": "GCC/GSO toy G-mark category and conformity guidance coverage.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/gcc/GCC_GSO_GMark_HS_toys_guidance_english.pdf",
+          "bytes": 6745991,
+          "sha256": "2f25c4d2721c8d7fcd78c2ae8cf99e28fd3197056705a8c6d14cbb90e0302f86"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This supplement is a raw official-source collection only; it has not been ingested into data/corpus/processed or data/faiss.",
+    "US eCFR files use official API XML because browser eCFR pages may trigger an access-check page.",
+    "EU entries include Publications Office RDF metadata and resolved English Cellar XHTML text files when available.",
+    "Some government domains reject automated browser/TLS clients; only successfully retrieved non-empty official files are referenced."
+  ]
+}
