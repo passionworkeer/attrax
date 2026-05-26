@@ -1,0 +1,110 @@
+[
+  {
+    "id": "eu-electronics-rohs-chemical",
+    "query": "EU electronics hazardous substances RoHS restricted lead mercury cadmium",
+    "market": "EU",
+    "category": "electronics",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "conformity"],
+    "expected_source_ids": ["eu-2011-65-rohs"]
+  },
+  {
+    "id": "eu-toys-safety",
+    "query": "EU toy safety chemical mechanical warnings conformity directive",
+    "market": "EU",
+    "category": "toys",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "chemical", "testing"],
+    "expected_source_ids": ["eu-2009-48-toy-safety"]
+  },
+  {
+    "id": "eu-radio-red",
+    "query": "EU bluetooth wifi radio equipment CE conformity RED directive",
+    "market": "EU",
+    "category": "electronics",
+    "risk": "conformity",
+    "regulatory_types": ["radio", "conformity"],
+    "expected_source_ids": ["eu-2014-53-radio-equipment"]
+  },
+  {
+    "id": "us-toys-cpsc-phthalates",
+    "query": "US children's toys phthalates CPSC prohibition child care articles",
+    "market": "US",
+    "category": "toys",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "product_safety"],
+    "expected_source_ids": ["us-16-cfr-1307-phthalates"]
+  },
+  {
+    "id": "us-button-coin-batteries",
+    "query": "US consumer products button cell coin batteries Reese law safety",
+    "market": "US",
+    "category": "children_products",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety"],
+    "expected_source_ids": ["us-16-cfr-1263-button-coin-batteries"]
+  },
+  {
+    "id": "cn-ccc-electronics",
+    "query": "China CCC compulsory certification electronic products catalogue scope",
+    "market": "CN",
+    "category": "electronics",
+    "risk": "conformity",
+    "regulatory_types": ["conformity"],
+    "expected_source_ids": ["cn-ccc-catalogue-scope-2023", "cn-ccc-eleven-rules-2026"]
+  },
+  {
+    "id": "ca-children-lead",
+    "query": "Canada consumer products containing lead children's products surface coating",
+    "market": "CA",
+    "category": "children_products",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "product_safety"],
+    "expected_source_ids": ["ca-consumer-products-containing-lead-regulations", "ca-surface-coating-materials-regulations"]
+  },
+  {
+    "id": "ca-chemicals-packaging",
+    "query": "Canada consumer chemicals containers hazard labelling packaging requirements",
+    "market": "CA",
+    "category": "packaging",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "labelling", "packaging"],
+    "expected_source_ids": ["ca-consumer-chemicals-containers-regulations-2001"]
+  },
+  {
+    "id": "uk-packaging-epr",
+    "query": "UK packaging extended producer responsibility who is affected obligations",
+    "market": "UK",
+    "category": "packaging",
+    "risk": "waste",
+    "regulatory_types": ["packaging", "sustainability", "waste"],
+    "expected_source_ids": ["uk-packaging-epr-who-is-affected"]
+  },
+  {
+    "id": "uk-electronics-weee",
+    "query": "UK waste electrical electronic equipment WEEE producer distributor obligations",
+    "market": "UK",
+    "category": "electronics",
+    "risk": "waste",
+    "regulatory_types": ["waste", "sustainability", "documentation"],
+    "expected_source_ids": ["uk-weee-regulations-guidance"]
+  },
+  {
+    "id": "nz-toys-small-parts",
+    "query": "New Zealand children's toy mandatory product safety standard small parts",
+    "market": "NZ",
+    "category": "toys",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "mechanical", "testing"],
+    "expected_source_ids": ["nz-product-safety-standards-2005"]
+  },
+  {
+    "id": "nz-household-cots",
+    "query": "New Zealand household cot standard baby nursery safety requirements",
+    "market": "NZ",
+    "category": "children_products",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "mechanical", "testing"],
+    "expected_source_ids": ["nz-product-safety-standards-household-cots-2016"]
+  }
+]
