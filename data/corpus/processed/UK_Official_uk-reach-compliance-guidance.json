@@ -25,9 +25,15 @@
       "UK"
     ],
     "regulatoryTypes": [
-      "chemical"
+      "chemical",
+      "documentation"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "chemicals",
+      "general_consumer_products",
+      "electronics",
+      "toys"
+    ],
     "charCount": 4436,
     "region": "UK",
     "supplement_id": "uk-reach-compliance-guidance",
@@ -39,6 +45,16 @@
     "raw_files": [
       "raw/uk/UK_reach_compliance_guidance.html"
     ],
-    "primary_file": "raw/uk/UK_reach_compliance_guidance.html"
+    "primary_file": "raw/uk/UK_reach_compliance_guidance.html",
+    "product_categories": [
+      "chemicals",
+      "general_consumer_products",
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "documentation"
+    ]
   }
 }

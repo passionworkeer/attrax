@@ -41,6 +41,12 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1250_toy_safety.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1250_toy_safety.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1250_toy_safety.xml",
+    "product_categories": [
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety"
+    ]
   }
 }

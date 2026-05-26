@@ -19,7 +19,7 @@
   },
   {
     "id": "eu-radio-red",
-    "query": "EU bluetooth wifi radio equipment CE conformity RED directive",
+    "query": "radio equipment directive 2014 53 EU bluetooth wifi",
     "market": "EU",
     "category": "electronics",
     "risk": "conformity",
@@ -39,7 +39,7 @@
     "id": "us-button-coin-batteries",
     "query": "US consumer products button cell coin batteries Reese law safety",
     "market": "US",
-    "category": "children_products",
+    "category": "electronics",
     "risk": "product_safety",
     "regulatory_types": ["product_safety"],
     "expected_source_ids": ["us-16-cfr-1263-button-coin-batteries"]

@@ -83,6 +83,21 @@ def chunk_documents(docs: list[dict]) -> list[dict]:
             for child in result.get("child_chunks", []):
                 child["source_file"] = doc["file_name"]
                 child["source_id"] = doc["doc_id"]
+                child["metadata"] = dict(doc.get("metadata", {}))
+                child["source_url"] = doc.get("metadata", {}).get("source_url", "")
+                child["content_url"] = doc.get("metadata", {}).get("content_url", "")
+                child["official_channel"] = doc.get("metadata", {}).get("official_channel", "")
+                child["product_categories"] = (
+                    doc.get("metadata", {}).get("product_categories")
+                    or doc.get("metadata", {}).get("productCategories")
+                    or []
+                )
+                child["regulatory_types"] = (
+                    doc.get("metadata", {}).get("regulatory_types")
+                    or doc.get("metadata", {}).get("regulatoryTypes")
+                    or []
+                )
+                child["raw_files"] = doc.get("metadata", {}).get("raw_files", [])
                 all_chunks.append(child)
         except Exception as e:
             logger.warning(f"Failed to chunk {doc['file_name']}: {e}")

@@ -981,6 +981,16 @@
       "raw/eu/EU_2022-2380_common_charger_directive.rdf",
       "raw/eu/EU_2022-2380_common_charger_directive.xhtml"
     ],
-    "primary_file": "raw/eu/EU_2022-2380_common_charger_directive.xhtml"
+    "primary_file": "raw/eu/EU_2022-2380_common_charger_directive.xhtml",
+    "product_categories": [
+      "electronics",
+      "battery"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "sustainability",
+      "battery",
+      "chemical"
+    ]
   }
 }

@@ -24,8 +24,15 @@
     "detectedMarkets": [
       "EU"
     ],
-    "regulatoryTypes": [],
-    "productCategories": [],
+    "regulatoryTypes": [
+      "radio",
+      "emc",
+      "conformity"
+    ],
+    "productCategories": [
+      "electronics",
+      "radio"
+    ],
     "charCount": 100000,
     "region": "EU",
     "supplement_id": "eu-2014-53-radio-equipment",
@@ -38,6 +45,15 @@
       "raw/eu/eu-2014-53-radio-equipment.rdf",
       "raw/eu/eu-2014-53-radio-equipment.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2014-53-radio-equipment.xhtml"
+    "primary_file": "raw/eu/eu-2014-53-radio-equipment.xhtml",
+    "product_categories": [
+      "electronics",
+      "radio"
+    ],
+    "regulatory_types": [
+      "radio",
+      "emc",
+      "conformity"
+    ]
   }
 }

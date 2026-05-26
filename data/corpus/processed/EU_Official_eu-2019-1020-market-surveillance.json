@@ -2313,8 +2313,16 @@
     "detectedMarkets": [
       "EU"
     ],
-    "regulatoryTypes": [],
-    "productCategories": [],
+    "regulatoryTypes": [
+      "market_surveillance",
+      "documentation",
+      "conformity"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "electronics",
+      "toys"
+    ],
     "charCount": 100000,
     "region": "EU",
     "supplement_id": "eu-2019-1020-market-surveillance",
@@ -2327,6 +2335,16 @@
       "raw/eu/eu-2019-1020-market-surveillance.rdf",
       "raw/eu/eu-2019-1020-market-surveillance.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2019-1020-market-surveillance.xhtml"
+    "primary_file": "raw/eu/eu-2019-1020-market-surveillance.xhtml",
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "market_surveillance",
+      "documentation",
+      "conformity"
+    ]
   }
 }

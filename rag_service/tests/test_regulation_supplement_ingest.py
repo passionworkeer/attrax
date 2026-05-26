@@ -63,6 +63,8 @@ def test_ingest_supplement_writes_processed_json_and_report(tmp_path):
                 "content_url": "https://publications.europa.eu/resource/cellar/test/DOC_1",
                 "files": ["raw/eu/test.rdf", "raw/eu/test.xhtml"],
                 "why_added": "Connected products",
+                "product_categories": ["electronics", "general_consumer_products"],
+                "regulatory_types": ["cybersecurity", "conformity"],
             },
             {
                 "id": "us-test-1263",
@@ -72,6 +74,8 @@ def test_ingest_supplement_writes_processed_json_and_report(tmp_path):
                 "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-14/title-16.xml?part=1263",
                 "files": ["raw/us/test.xml"],
                 "why_added": "Button batteries",
+                "product_categories": ["children_products", "electronics"],
+                "regulatory_types": ["product_safety", "labelling"],
             },
         ],
     }
@@ -98,11 +102,17 @@ def test_ingest_supplement_writes_processed_json_and_report(tmp_path):
     assert eu_doc["sourceType"] == "xhtml"
     assert "Article 1 Subject matter" in eu_doc["rawText"]
     assert eu_doc["metadata"]["source_url"] == "https://publications.europa.eu/resource/celex/32024R2847"
+    assert eu_doc["metadata"]["product_categories"] == ["electronics", "general_consumer_products"]
+    assert eu_doc["metadata"]["regulatory_types"] == ["cybersecurity", "conformity"]
+    assert eu_doc["metadata"]["productCategories"] == ["electronics", "general_consumer_products"]
+    assert eu_doc["metadata"]["regulatoryTypes"] == ["cybersecurity", "conformity"]
 
     us_doc = json.loads(processed_files[1].read_text(encoding="utf-8"))
     assert us_doc["sourceType"] == "xml"
     assert "warning labels" in us_doc["rawText"]
     assert us_doc["metadata"]["official_channel"] == "eCFR API"
+    assert us_doc["metadata"]["product_categories"] == ["children_products", "electronics"]
+    assert us_doc["metadata"]["regulatory_types"] == ["product_safety", "labelling"]
 
 
 def test_parse_xhtml_source_does_not_emit_xml_html_warning(tmp_path):
@@ -124,6 +134,74 @@ def test_parse_xhtml_source_does_not_emit_xml_html_warning(tmp_path):
     assert parsed["sourceType"] == "xhtml"
     assert "cybersecurity requirements" in parsed["rawText"]
     assert not [warning for warning in caught if issubclass(warning.category, XMLParsedAsHTMLWarning)]
+
+
+def test_ingest_supplement_keeps_inferred_metadata_when_manifest_lacks_taxonomy(tmp_path):
+    supplement_dir = tmp_path / "supplement"
+    processed_dir = tmp_path / "processed"
+    (supplement_dir / "raw/us").mkdir(parents=True)
+    (supplement_dir / "raw/us/test.xml").write_text(
+        """
+        <DIV8>
+          <HEAD>PART 1263 - SAFETY STANDARD FOR BUTTON CELL OR COIN BATTERIES</HEAD>
+          <P>Consumer products containing button cell or coin batteries require warning labels.</P>
+        </DIV8>
+        """,
+        encoding="utf-8",
+    )
+    manifest = {
+        "created_at": "2026-05-25T19:14:21+08:00",
+        "entries": [
+            {
+                "id": "us-test-1263",
+                "market": "US",
+                "title": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+                "channel": "eCFR API",
+                "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-14/title-16.xml?part=1263",
+                "files": ["raw/us/test.xml"],
+                "why_added": "Important for electronics, toys, remote controls, and consumer products containing button or coin batteries.",
+            }
+        ],
+    }
+    (supplement_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False), encoding="utf-8")
+
+    ingest_supplement(supplement_dir=supplement_dir, processed_dir=processed_dir)
+
+    doc = json.loads((processed_dir / "US_Official_us-test-1263.json").read_text(encoding="utf-8"))
+    assert doc["metadata"]["productCategories"]
+    assert doc["metadata"]["regulatoryTypes"]
+
+
+def test_ingest_supplement_accepts_utf8_bom_manifest(tmp_path):
+    supplement_dir = tmp_path / "supplement"
+    processed_dir = tmp_path / "processed"
+    (supplement_dir / "raw/us").mkdir(parents=True)
+    (supplement_dir / "raw/us/test.xml").write_text(
+        "<DIV8><HEAD>PART 1307 - PHTHALATES</HEAD><P>Children's toys and child care articles.</P></DIV8>",
+        encoding="utf-8",
+    )
+    manifest = {
+        "created_at": "2026-05-25T19:14:21+08:00",
+        "entries": [
+            {
+                "id": "us-test-1307",
+                "market": "US",
+                "title": "16 CFR Part 1307, Phthalates",
+                "channel": "eCFR API",
+                "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-14/title-16.xml?part=1307",
+                "files": ["raw/us/test.xml"],
+                "why_added": "Children's toys chemical safety.",
+            }
+        ],
+    }
+    (supplement_dir / "manifest.json").write_text(
+        "\ufeff" + json.dumps(manifest, ensure_ascii=False),
+        encoding="utf-8",
+    )
+
+    report = ingest_supplement(supplement_dir=supplement_dir, processed_dir=processed_dir)
+
+    assert report["entries_processed"] == 1
 
 
 def test_parse_real_official_xhtml_source_does_not_emit_xml_html_warning():

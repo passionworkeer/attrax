@@ -696,8 +696,15 @@
     "detectedMarkets": [
       "EU"
     ],
-    "regulatoryTypes": [],
-    "productCategories": [],
+    "regulatoryTypes": [
+      "product_safety",
+      "conformity",
+      "testing"
+    ],
+    "productCategories": [
+      "electronics",
+      "electrical_equipment"
+    ],
     "charCount": 60639,
     "region": "EU",
     "supplement_id": "eu-2014-35-low-voltage",
@@ -710,6 +717,15 @@
       "raw/eu/eu-2014-35-low-voltage.rdf",
       "raw/eu/eu-2014-35-low-voltage.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2014-35-low-voltage.xhtml"
+    "primary_file": "raw/eu/eu-2014-35-low-voltage.xhtml",
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "conformity",
+      "testing"
+    ]
   }
 }

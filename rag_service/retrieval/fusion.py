@@ -7,6 +7,8 @@ RRF score = sum(1 / (k + rank)) where k=25 is the standard fusion parameter.
 from typing import TypedDict
 import logging
 
+from rag_service.retrieval.metadata_filter import attach_metadata_fields
+
 logger = logging.getLogger(__name__)
 
 DEFAULT_K = 25
@@ -73,7 +75,8 @@ def rrf_fuse(
     results = []
     for doc_id in sorted_ids:
         bm = bm25_map.get(doc_id, {})
-        results.append({
+        base = bm or {}
+        results.append(attach_metadata_fields({
             "id": doc_id,
             "rrf_score": rrf_scores[doc_id],
             "dense_score": dense_map.get(doc_id, 0.0),
@@ -81,11 +84,20 @@ def rrf_fuse(
             # User-visible score: avg of dense (0-1) + normalized BM25 (0-1)
             # This is the score displayed in the frontend; rrf_score is rank-based (max 0.08)
             "score": (dense_map.get(doc_id, 0.0) + bm.get("score_norm", 0.0)) / 2,
-            "content": bm.get("content", ""),
-            "doc_name": bm.get("doc_name", ""),
-            "article_no": bm.get("article_no", ""),
-            "region": bm.get("region", ""),
-        })
+            "content": base.get("content", ""),
+            "doc_name": base.get("doc_name", ""),
+            "article_no": base.get("article_no", ""),
+            "region": base.get("region", ""),
+            "source_id": base.get("source_id", ""),
+            "source_file": base.get("source_file", ""),
+            "source_url": base.get("source_url", ""),
+            "content_url": base.get("content_url", ""),
+            "official_channel": base.get("official_channel", ""),
+            "product_categories": base.get("product_categories", []),
+            "regulatory_types": base.get("regulatory_types", []),
+            "raw_files": base.get("raw_files", []),
+            "metadata": base.get("metadata", {}),
+        }))
 
     return results
 

@@ -31,6 +31,7 @@ from typing import Optional
 from rag_service.retrieval.bm25_retriever import BM25Retriever
 from rag_service.retrieval.faiss_retriever import FaissRetriever
 from rag_service.retrieval.fusion import rrf_fuse
+from rag_service.retrieval.metadata_filter import attach_metadata_fields, filter_chunks
 from rag_service.retrieval.must_check import apply_must_check
 
 logger = logging.getLogger(__name__)
@@ -51,6 +52,32 @@ def _cache_key(query: str, region: str, product_category: str, top_k: int) -> st
     """Stable cache key from query parameters."""
     raw = f"{query}|{region}|{product_category}|{top_k}"
     return hashlib.md5(raw.encode()).hexdigest()
+
+
+def _cache_key_v2(
+    query: str,
+    region: str,
+    product_category: str,
+    regulatory_types: list[str],
+    source_ids: list[str],
+    official_only: bool,
+    top_k: int,
+) -> str:
+    """Stable cache key including metadata filters."""
+    raw = jsonish_key(
+        query,
+        region,
+        product_category,
+        sorted(regulatory_types),
+        sorted(source_ids),
+        official_only,
+        top_k,
+    )
+    return hashlib.md5(raw.encode()).hexdigest()
+
+
+def jsonish_key(*parts) -> str:
+    return "|".join(str(part) for part in parts)
 
 
 def _cache_get(key: str) -> Optional[list]:
@@ -206,6 +233,9 @@ class HybridRetriever:
         query: str,
         product_category: str = "",
         region: str = "",
+        regulatory_types: list[str] | None = None,
+        source_ids: list[str] | None = None,
+        official_only: bool = False,
         top_k: int = 20,
     ) -> list[dict]:
         """
@@ -224,17 +254,41 @@ class HybridRetriever:
             logger.warning("Chunks not loaded, returning empty")
             return []
 
+        regulatory_types = regulatory_types or []
+        source_ids = source_ids or []
+
         # Fast path: check retrieval result cache (5-min TTL)
-        cache_k = _cache_key(query, region or "", product_category, top_k)
+        cache_k = _cache_key_v2(
+            query,
+            region or "",
+            product_category,
+            regulatory_types,
+            source_ids,
+            official_only,
+            top_k,
+        )
         cached = _cache_get(cache_k)
         if cached is not None:
             logger.debug(f"Retrieval cache HIT for query: {query[:40]}")
             return cached[:top_k]
 
+        candidate_chunks = filter_chunks(
+            self._chunks,
+            region=region,
+            product_category=product_category,
+            regulatory_types=regulatory_types,
+            source_ids=source_ids,
+            official_only=official_only,
+        )
+        use_metadata_candidates = bool(region or product_category or regulatory_types or source_ids or official_only)
+        if use_metadata_candidates and not candidate_chunks:
+            _cache_set(cache_k, [])
+            return []
+
         # Run dense + BM25 in parallel
         with ThreadPoolExecutor(max_workers=2) as pool:
             dense_future = pool.submit(self._dense_search, query, 50)
-            bm25_future = pool.submit(self._bm25_search, query, 50)
+            bm25_future = pool.submit(self._bm25_search, query, 50, candidate_chunks if use_metadata_candidates else None)
             dense_results = dense_future.result()
             bm25_results = bm25_future.result()
 
@@ -246,18 +300,32 @@ class HybridRetriever:
 
         # Must-Check injection
         if product_category and self._chunks:
-            fused = apply_must_check(fused, product_category, self._chunks)
+            fused = apply_must_check(fused, product_category, candidate_chunks or self._chunks)
 
-        # Region filter
-        if region:
-            fused = [r for r in fused if r.get("region", "").lower() == region.lower()]
+        if use_metadata_candidates:
+            fused = [
+                attach_metadata_fields(r)
+                for r in fused
+                if filter_chunks(
+                    [r],
+                    region=region,
+                    product_category=product_category,
+                    regulatory_types=regulatory_types,
+                    source_ids=source_ids,
+                    official_only=official_only,
+                )
+            ]
 
         result = fused[:top_k]
         _cache_set(cache_k, result)
         return result
 
-    def _bm25_search(self, query: str, top_k: int) -> list[dict]:
+    def _bm25_search(self, query: str, top_k: int, chunks: list[dict] | None = None) -> list[dict]:
         """BM25 search helper (called in thread pool)."""
+        if chunks is not None:
+            bm25 = BM25Retriever()
+            bm25.build_index(chunks)
+            return bm25.search(query, top_k=top_k)
         if self.bm25:
             return self.bm25.search(query, top_k=top_k)
         return []

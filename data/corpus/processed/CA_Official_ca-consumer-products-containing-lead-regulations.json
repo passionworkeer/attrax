@@ -25,10 +25,15 @@
       "CA"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "chemical"
+      "chemical",
+      "product_safety"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "children_products",
+      "toys",
+      "general_consumer_products",
+      "chemicals"
+    ],
     "charCount": 3133,
     "region": "CA",
     "supplement_id": "ca-consumer-products-containing-lead-regulations",
@@ -40,6 +45,16 @@
     "raw_files": [
       "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
     ],
-    "primary_file": "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+    "primary_file": "raw/ca/CA_consumer_products_containing_lead_regulations.xml",
+    "product_categories": [
+      "children_products",
+      "toys",
+      "general_consumer_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ]
   }
 }

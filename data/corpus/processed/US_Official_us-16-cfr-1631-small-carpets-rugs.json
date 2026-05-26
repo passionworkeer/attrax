@@ -25,11 +25,13 @@
       "US"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "chemical"
+      "flammability",
+      "testing"
     ],
     "productCategories": [
-      "painted_goods"
+      "textiles",
+      "home_goods",
+      "furniture"
     ],
     "charCount": 38466,
     "region": "US",
@@ -42,6 +44,15 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml",
+    "product_categories": [
+      "textiles",
+      "home_goods",
+      "furniture"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "testing"
+    ]
   }
 }

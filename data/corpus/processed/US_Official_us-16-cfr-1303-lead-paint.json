@@ -44,6 +44,15 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1303_lead_paint.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1303_lead_paint.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1303_lead_paint.xml",
+    "product_categories": [
+      "electronics",
+      "toys",
+      "painted_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "chemical"
+    ]
   }
 }

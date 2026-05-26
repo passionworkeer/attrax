@@ -25,11 +25,14 @@
       "CA"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "chemical"
+      "flammability",
+      "labelling",
+      "testing"
     ],
     "productCategories": [
-      "toys"
+      "children_products",
+      "apparel",
+      "textiles"
     ],
     "charCount": 11842,
     "region": "CA",
@@ -42,6 +45,16 @@
     "raw_files": [
       "raw/ca/CA_childrens_sleepwear_regulations.xml"
     ],
-    "primary_file": "raw/ca/CA_childrens_sleepwear_regulations.xml"
+    "primary_file": "raw/ca/CA_childrens_sleepwear_regulations.xml",
+    "product_categories": [
+      "children_products",
+      "apparel",
+      "textiles"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "labelling",
+      "testing"
+    ]
   }
 }

@@ -25,10 +25,14 @@
       "US"
     ],
     "regulatoryTypes": [
-      "product_safety",
-      "chemical"
+      "flammability",
+      "testing"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "furniture",
+      "home_goods",
+      "textiles"
+    ],
     "charCount": 74109,
     "region": "US",
     "supplement_id": "us-16-cfr-1633-mattresses-open-flame",
@@ -40,6 +44,15 @@
     "raw_files": [
       "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
     ],
-    "primary_file": "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
+    "primary_file": "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml",
+    "product_categories": [
+      "furniture",
+      "home_goods",
+      "textiles"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "testing"
+    ]
   }
 }

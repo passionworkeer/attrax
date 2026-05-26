@@ -105,6 +105,28 @@ def build_processed_document(
     raw_text = parsed["rawText"]
     market = entry.get("market", "")
     metadata = _infer_metadata(raw_text, market)
+    context_metadata = _infer_metadata(
+        " ".join(
+            [
+                entry.get("title", ""),
+                entry.get("why_added", ""),
+                raw_text,
+            ]
+        ),
+        market,
+    )
+    product_categories = list(
+        entry.get("product_categories")
+        or context_metadata.get("productCategories")
+        or metadata.get("productCategories")
+        or []
+    )
+    regulatory_types = list(
+        entry.get("regulatory_types")
+        or context_metadata.get("regulatoryTypes")
+        or metadata.get("regulatoryTypes")
+        or []
+    )
     metadata.update(
         {
             "region": market,
@@ -116,6 +138,10 @@ def build_processed_document(
             "collected_at": collected_at or "",
             "raw_files": entry.get("files", []),
             "primary_file": _as_posix(source_path.relative_to(supplement_dir)),
+            "product_categories": product_categories,
+            "regulatory_types": regulatory_types,
+            "productCategories": product_categories,
+            "regulatoryTypes": regulatory_types,
         }
     )
 
@@ -155,7 +181,7 @@ def ingest_supplement(
     supplement_dir = Path(supplement_dir)
     processed_dir = Path(processed_dir)
     manifest_path = supplement_dir / "manifest.json"
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8-sig"))
 
     generated_at = datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds")
     report: dict[str, Any] = {

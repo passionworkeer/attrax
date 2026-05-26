@@ -3355,6 +3355,17 @@
       "raw/eu/EU_2024-2847_cyber_resilience_act.rdf",
       "raw/eu/EU_2024-2847_cyber_resilience_act.xhtml"
     ],
-    "primary_file": "raw/eu/EU_2024-2847_cyber_resilience_act.xhtml"
+    "primary_file": "raw/eu/EU_2024-2847_cyber_resilience_act.xhtml",
+    "product_categories": [
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "cybersecurity",
+      "conformity",
+      "liability",
+      "chemical"
+    ]
   }
 }

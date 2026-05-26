@@ -2829,9 +2829,14 @@
       "EU"
     ],
     "regulatoryTypes": [
-      "chemical"
+      "waste",
+      "sustainability",
+      "labelling"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "electronics",
+      "waste_electrical"
+    ],
     "charCount": 99134,
     "region": "EU",
     "supplement_id": "eu-2012-19-weee",
@@ -2844,6 +2849,15 @@
       "raw/eu/eu-2012-19-weee.rdf",
       "raw/eu/eu-2012-19-weee.xhtml"
     ],
-    "primary_file": "raw/eu/eu-2012-19-weee.xhtml"
+    "primary_file": "raw/eu/eu-2012-19-weee.xhtml",
+    "product_categories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "waste",
+      "sustainability",
+      "labelling"
+    ]
   }
 }

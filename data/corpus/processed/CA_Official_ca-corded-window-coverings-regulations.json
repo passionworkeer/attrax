@@ -26,10 +26,12 @@
     ],
     "regulatoryTypes": [
       "product_safety",
-      "chemical"
+      "mechanical",
+      "labelling"
     ],
     "productCategories": [
-      "toys"
+      "children_products",
+      "home_goods"
     ],
     "charCount": 7717,
     "region": "CA",
@@ -42,6 +44,15 @@
     "raw_files": [
       "raw/ca/CA_corded_window_coverings_regulations.xml"
     ],
-    "primary_file": "raw/ca/CA_corded_window_coverings_regulations.xml"
+    "primary_file": "raw/ca/CA_corded_window_coverings_regulations.xml",
+    "product_categories": [
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical",
+      "labelling"
+    ]
   }
 }
