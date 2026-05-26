@@ -87,6 +87,7 @@ data/analysis/
 
 # Faiss 索引（由 build_faiss.py 生成，存储于 ASCII 路径）
 data/faiss/
+data/faiss_versions/
 C:/temp/faiss_index/
 
 # 临时输出文件
