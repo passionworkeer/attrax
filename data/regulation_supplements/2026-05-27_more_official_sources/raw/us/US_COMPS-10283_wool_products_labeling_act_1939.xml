@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="uslm.css"?><statuteCompilation xmlns="http://schemas.gpo.gov/xml/uslm" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gpo="http://www.gpo.gov/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.gpo.gov/xml/uslm https://www.govinfo.gov/schemas/xml/uslm/uslm-2.0.10.xsd" xml:lang="en" style="-uslm-dtd:statute">
+    <meta style="-uslm-dtd:compilation-act-form">
+        <dc:title>WOOL PRODUCTS LABELING ACT OF 1939</dc:title>
+        <citableAs>Chapter 871 of the 76th Congress, as amended</citableAs>
+        <citableAs>54 Stat. 1128, as amended</citableAs>
+        <citableAsShortTitle>WOOL PRODUCTS LABELING ACT OF 1939</citableAsShortTitle>
+        <docNumber>ch871</docNumber>
+        <currentThroughPublicLaw>110–246</currentThroughPublicLaw>
+        <dc:type>Statute Compilation</dc:type>
+        <dc:creator>United States House of Representatives</dc:creator>
+        <dc:creator>Office of the Legislative Counsel</dc:creator>
+        <dc:format>text/xml</dc:format>
+        <dc:language>EN</dc:language>
+        <dc:rights>Pursuant to Title 17 Section 105 of the United States Code, this file is not subject to copyright protection and is in the public domain.</dc:rights>
+        <processedBy>GPO Statute Compilations USLM converter, version 20210527.1</processedBy>
+        <processedDate>2021-10-15</processedDate>
+        <containsShortTitle>Wool Products Labeling Act of 1939</containsShortTitle>
+        <property role="fileId">10283</property>
+        <congress>76</congress>
+        <approvedDate>1940-10-14</approvedDate>
+    </meta>
+    <preface style="-uslm-dtd:compilation-act-form">
+        <property style="-uslm-dtd:comp-short-title" role="compShortTitle">WOOL PRODUCTS LABELING ACT OF 1939</property>
+        <citationNote style="-uslm-dtd:public-law">[<citableAs>Chapter 871 of the 76th Congress</citableAs>; <citableAs>54 Stat. 1128</citableAs>]</citationNote>
+        <editionNote style="-uslm-dtd:updated-through-note">[As Amended Through <currentThroughPublicLaw>P.L. 110–246</currentThroughPublicLaw>, Effective <date date="2008-05-22">May 22, 2008</date>]</editionNote>
+        <explanationNote style="-uslm-dtd:explanatory-note"><b>[</b>Currency: This publication is a compilation of the text of Chapter 871 of the 76th Congress. It was last amended by the public law listed in the As Amended Through note above and below at the bottom of each page of the pdf version and reflects current law through the date of the enactment of the public law listed at https://www.govinfo.gov/app/collection/comps/<b>]</b></explanationNote>
+        <explanationNote style="-uslm-dtd:explanatory-note"><b>[</b>Note: While this publication does  not represent an official version of any Federal statute, substantial efforts have been made to ensure the accuracy of its contents. The official version of Federal law is found in the United States Statutes at Large and in the United States Code. The legal effect to be given to the Statutes at Large and the United States Code is established by statute (1 U.S.C. 112, 204).<b>]</b></explanationNote><editorialContent style="-uslm-dtd:table-of-contents">
+        <toc style="-uslm-dtd:toc">
+            <heading style="-uslm-dtd:toc-entry" class="centered">TABLE OF CONTENTS<ref style="-uslm-dtd:footnote-ref" idref="ID1A3529D593F7448CB0014539657B9F2A" class="footnoteRef">1</ref></heading><footnote id="ID1A3529D593F7448CB0014539657B9F2A" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">1</sup><p style="-uslm-dtd:para; margin-left:1em">This table of contents is not part of the Act but is included for user convenience.</p></footnote>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 1.</designator><label> Short title.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 2.</designator><label> Definitions.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 3.</designator><label> Misbranding declared unlawful.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 4.</designator><label> Misbranded wool products.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 5.</designator><label> Affixing of stamp, tag, label, or other identification.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 6.</designator><label> Enforcement of the act.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 7.</designator><label> Condemnation and injunction proceedings.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 8.</designator><label> Exclusion of misbranded wool products.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 9.</designator><label> Guaranty.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 10.</designator><label> Criminal penalty.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 11.</designator><label> Application of existing laws.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 12.</designator><label> Effective date.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 13.</designator><label> Separability clause.</label></referenceItem>
+            <referenceItem style="-uslm-dtd:toc-entry" role="section"><designator>Sec. 14.</designator><label> Exceptions.</label></referenceItem>
+        </toc></editorialContent>
+    </preface>
+    <main style="-uslm-dtd:legis-body"><longTitle><docTitle style="-uslm-dtd:legis-type">AN ACT</docTitle><officialTitle style="-uslm-dtd:official-title">To protect producers, manufacturers, distributors, and consumers from the unrevealed presence of substitutes and mixtures in spun, woven, knitted, felted, or otherwise manufactured wool products, and for other purposes.</officialTitle></longTitle><enactingFormula style="-uslm-dtd:enacting-clause">Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled,</enactingFormula><section style="-uslm-dtd:section" styleType="OLC" role="undesignated-level" class="inline"><content style="-uslm-dtd:text">That <editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68">15 U.S.C. 68 note</ref><b>]</b></editorialNote> this Act may be cited as the “<shortTitle style="-uslm-dtd:quote">Wool Products Labeling Act of 1939</shortTitle>”.</content></section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s2" styleType="traditional" role="definitions">
+            <heading style="-uslm-dtd:header">definitions </heading>
+            <num style="-uslm-dtd:enum" value="2">Sec. 2. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68">15 U.S.C. 68</ref><b>]</b> </editorialNote><chapeau style="-uslm-dtd:text">As used in this Act—</chapeau>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/a" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">person</term>” means an individual, partnership, corporation, association, or any other form of business enterprise, plural or singular, as the case demands.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">wool</term>” means the fiber from the fleece of the sheep or lamb or hair of the Angora or Cashmere goat (and may include the so-called specialty fibers from the hair of the camel, aplaca, llama, and vicuna) which has never been reclaimed from any woven or felted wool product.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/c" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">recycled wool</term>” means (1) the resulting fiber when wool had been woven or felted into a wool product which, without ever having been utilized in any way by the ultimate consumer, subsequently has been made into a fibrous state, or (2) the resulting fiber when wool or reprocessed wool has been spun, woven, knitted, or felted into a wool product which, after having been used in any way by the ultimate consumer, subsequently has been made into a fibrous state.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/d" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="d">(d) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">wool product</term>” means any product, or any portion of a product, which contains, purports to contain, or in any way is represented as containing wool or recycled wool.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/e" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="e">(e) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">Commission</term>” means the Federal Trade Commission.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/f" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="f">(f) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">Federal Trade Commission Act</term>” means the Act of Congress entitled “<term style="-uslm-dtd:quote">An Act to create a Federal Trade Commission, to define its powers and duties, and for other purposes</term>” approved September 26, 1914, as amended, and the Federal Trade Commission Act approved March 21, 1938.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/g" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="g">(g) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">commerce</term>” means commerce among the several States or with foreign nations, or in any Territory of the United States or in the District of Columbia, or between any such Territory and another, or between any such Territory and any State or foreign nation, or between the District of Columbia and any State or Territory or foreign nation.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s2/h" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="h">(h) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">Territory</term>” includes the insular possessions of the United States and also any Territory of the United States.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s3" styleType="traditional">
+            <heading style="-uslm-dtd:header">misbranding declared unlawful </heading>
+            <num style="-uslm-dtd:enum" value="3">Sec. 3. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68a">15 U.S.C. 68a</ref><b>]</b> </editorialNote><chapeau style="-uslm-dtd:text">The introduction, or manufacture for introduction, into commerce, or the sale, transportation, or distribution in commerce, of any wool-product which is misbranded within the meaning of this Act or the rules and regulations hereunder, is unlawful and shall be an unfair method of competition, and an unfair and deceptive act or practice, in commerce under the Federal Trade Commission Act; and any person who shall manufacture or deliver for shipment or ship or sell or offer for sale in commerce, any such wool product which is misbranded within the meaning of this Act and the rule and regulations hereunder is guilty of an unfair method of competition, and an unfair and deceptive act or practice, in commerce within the meaning of the Federal Trade Commission Act.</chapeau>
+            <subsection style="-uslm-dtd:subsection" styleType="OLC" role="undesignated-level"><content style="-uslm-dtd:text">This section shall not apply—</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s3/a" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">To any common carrier or contract carrier in respect to a wool product shipped or delivered for shipment in commerce in the ordinary course of its business; or</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s3/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">To any person manufacturing, delivering for shipment, shipping, selling, or offering for sale, for exportation from the United States to any foreign country a wool product branded in accordance with the specifications of the purchaser and in accordance with the laws of such country.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s4" styleType="traditional">
+            <heading style="-uslm-dtd:header">misbranded wool products </heading>
+            <num style="-uslm-dtd:enum" value="4">Sec. 4. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68b">15 U.S.C. 68b</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s4/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">A wool product shall be misbranded—</chapeau>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s4/a/1" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">If it is falsely or deceptively stamped, tagged, labeled, or otherwise identified.</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s4/a/2" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="2">(2) </num><chapeau style="-uslm-dtd:text">If a stamp, tag, label, or other means of identification, or substitute therefor under section 5, is not on or affixed to the wool product and does not show—</chapeau>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/2/A" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">the percentage of the total fiber weight of the wool product, exclusive of ornamentation not exceeding 5 per centum of said total fiber weight, of (1) wool; (2) recycled wool; (3) each fiber other than wool if said percentage by weight of such fiber is 5 per centum or more; and (4) the aggregate of all other fibers: <i style="-uslm-dtd:italic">Provided,</i> That deviation of the fiber contents of the wool product from percentages stated on the stamp, tag, label, or other means of identification, shall not be misbranding under this section if the person charged with misbranding proves such deviation resulted from unavoidable variations in manufacture and despite the exercise of the due care to make accurate the statements on such stamp, tag, label, or other means of identification.</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/2/B" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">the maximum percentage of the total weight of the wool product, of any nonfibrous loading, filling, or adulterating matter.</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/2/C" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">the name of the manufacturer of the wool product and/or the name of one or more persons subject to section 3 with respect to such wool product.</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/2/D" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="D">(D) </num><content style="-uslm-dtd:text">the name of the country where processed or manufactured.</content>
+                </subparagraph>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s4/a/3" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">In the case of a wool product containing a fiber other than wool, if the percentage by weight of the wool contents thereof are not shown in words and figures plainly legible.</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s4/a/4" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">In the case of a wool product represented as wool, if the percentages by weight of the wool content thereof are not shown in words and figures plainly legible, or if the total fiber weight of such wool product if not 100 per centum wool exclusive of ornamentation not exceeding 5 per centum of such total fiber weight.</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s4/a/5" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="5">(5) </num><chapeau style="-uslm-dtd:text">In the case of a wool product stamped, tagged, labeled, or otherwise identified as—</chapeau>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/A" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 80's</term>” or “<quotedText style="-uslm-dtd:quote">80's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 19.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/B" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 90's</term>” or “<quotedText style="-uslm-dtd:quote">90's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 19.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/C" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 100's</term>” or “<quotedText style="-uslm-dtd:quote">100's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 18.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/D" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="D">(D) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 110's</term>” or “<quotedText style="-uslm-dtd:quote">110's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 18.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/E" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="E">(E) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 120's</term>” or “<quotedText style="-uslm-dtd:quote">120's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 17.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/F" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="F">(F) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 130's</term>” or “<quotedText style="-uslm-dtd:quote">130's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 17.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/G" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="G">(G) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 140's</term>” or “<quotedText style="-uslm-dtd:quote">140's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 16.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/H" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="H">(H) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 150's</term>” or “<quotedText style="-uslm-dtd:quote">150's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 16.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/I" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="I">(I) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 160's</term>” or “<quotedText style="-uslm-dtd:quote">160's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 15.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/J" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="J">(J) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 170's</term>” or “<quotedText style="-uslm-dtd:quote">170's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 15.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/K" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="K">(K) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 180's</term>” or “<quotedText style="-uslm-dtd:quote">180's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 14.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/L" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="L">(L) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 190's</term>” or “<quotedText style="-uslm-dtd:quote">190's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 14.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/M" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="M">(M) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 200's</term>” or “<quotedText style="-uslm-dtd:quote">200's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 13.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/N" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="N">(N) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 210's</term>” or “<quotedText style="-uslm-dtd:quote">210's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 13.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/O" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="O">(O) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 220's</term>” or “<quotedText style="-uslm-dtd:quote">220's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 12.75 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/P" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="P">(P) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 230's</term>” or “<quotedText style="-uslm-dtd:quote">230's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 12.25 microns or finer;</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/Q" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="Q">(Q) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 240's</term>” or “<quotedText style="-uslm-dtd:quote">240's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 11.75 microns or finer; and</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/5/R" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="R">(R) </num><content style="-uslm-dtd:text">“<term style="-uslm-dtd:term">Super 250's</term>” or “<quotedText style="-uslm-dtd:quote">250's</quotedText>”, if the average diameter of wool fiber of such wool product does not average 11.25 microns or finer.</content>
+                </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">In each such case, the average fiber diameter of such wool product may be subject to such standards or deviations as adopted by regulation by the Commission.</continuation>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s4/a/6" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="6">(6) </num><chapeau style="-uslm-dtd:text">In the case of a wool product stamped, tagged, labeled, or otherwise identified as cashmere, if—</chapeau>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/6/A" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">such wool product is not the fine (dehaired) undercoat fibers produced by a cashmere goat (capra hircus laniger);</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/6/B" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">the average diameter of the fiber of such wool product exceeds 19 microns; or</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/76/871/s4/a/6/C" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">such wool product contains more than 3 percent (by weight) of cashmere fibers with average diameters that exceed 30 microns.</content>
+                </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">The average fiber diameter may be subject to a coefficient of variation around the mean that shall not exceed 24 percent.</continuation>
+            </paragraph></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s4/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">In addition to information required in this section, the stamp, tag, label, or other means of identification, or substitute therefor under section 5, may contain other information not violating the provisions of this Act or the rules and regulations of the Commission.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s4/c" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">If any person subject to section 3 with respect to a wool product finds or has reasonable cause to believe its stamp, tag, label, or other means of identification, or substitute therefor under section 5, does not contain the information required by this Act, he may replace same with a substitute containing the information so required.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s4/d" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="d">(d) </num><chapeau style="-uslm-dtd:text">This section shall not be construed as requiring designation on garments or articles of apparel of fiber content of any linings, paddings, stiffening, trimmings, or facings, except those concerning which express or implied representations of fiber content are customarily made, nor as requiring designation of fiber content of products which have an insignificant or inconsequential textile content: <i style="-uslm-dtd:italic">Provided,</i> That if any such article or product purports to contain or in any manner is represented as containing wool, this section shall be applicable thereto and the information required shall be separately set forth and segregated.</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">The Commission, after giving due notice and opportunity to be heard to interested persons, may determine and publicly announce the classes of such articles concerning which express or implied representations of fiber content are customarily made, and those products which have an insignificant or inconsequential textile content.</content>
+                </paragraph>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s4/e" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="e">(e) </num><content style="-uslm-dtd:text">For the purposes of this Act, a wool product shall be considered to be falsely or deceptively advertised in any mail order promotional material which is used in the direct sale or direct offering for sale of such wool product, unless such wool product description states in a clear and conspicuous manner that such wool product is processed or manufactured in the United States of America, or imported, or both.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s4/f" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="f">(f) </num><content style="-uslm-dtd:text">For purposes of this Act, any wool product shall be misbranded if a stamp, tag, label, or other identification conforming to the requirements of this section is not on or affixed to the inside center of the neck midway between the shoulder seams or, if such product does not contain a neck, in the most conspicuous place on the inner side of such product, unless it is on or affixed on the outer side of such product or in the case of hosiery items, on the outer side of such product or package.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s5" styleType="traditional">
+            <heading style="-uslm-dtd:header">affixing of stamp, tag, label, or other identification </heading>
+            <num style="-uslm-dtd:enum" value="5">Sec. 5. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68c">15 U.S.C. 68c</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s5/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">Any person manufacturing for introduction, or first introducing into commerce a wool product shall affix thereto the stamp, tag, label, or other means of identification required by this Act, and the same, or substitutes therefor containing identical information with respect to content of the wool product or any other products contained therein in an amount of 5 per centum or more by weight and other information required under section 4, shall be and remain affixed to such wool product, whether it remains in its original state or is contained in garments or other articles made in whole or in part therefrom, until sold to the consumer: <i style="-uslm-dtd:italic">Provided,</i> That the name of the manufacturer of the wool product need not appear on the substitute stamp, tag, or label if the name of the person who affixes the substitute appears thereon.</content></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s5/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">Any person who shall cause or participate in the removal or mutilation of any stamp, tag, label, or other means of identification affixed to a wool product with intent to violate the provisions of this Act, is guilty of an unfair method of competition, and an unfair and deceptive act or practice, in commerce within the meaning of the Federal Trade Commission Act.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s5/c" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">For the purposes of subsections (a) and (b) of this section, any package of wool products intended for sale to the ultimate consumer shall also be considered a wool product and shall have affixed to it a stamp, tag, label, or other means of identification bearing the information required by section 4, with respect to the wool products contained therein, unless such package of wool products is transparent to the extent that it allows for the clear reading of the stamp, tag, label, or other means of identification affixed to the wool product, or in the case of hosiery items this section shall not be construed as requiring the affixing of a stamp, tag, label, or other means of identification to each hosiery product contained in a package if (1) such hosiery products are intended or sale to the ultimate consumer in such package, (2) such package has affixed to it a stamp, tag, label, or other means of identification bearing, with respect to the hosiery products contained therein, the information required by subsection (4), and (3) the information on the stamp, tag, label, or other means of identification affixed to such package is equally applicable with respect to each hosiery product contained therein.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s6" styleType="traditional">
+            <heading style="-uslm-dtd:header">enforcement of the act </heading>
+            <num style="-uslm-dtd:enum" value="6">Sec. 6. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68d">15 U.S.C. 68d</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s6/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">Except as otherwise specifically provided herein, this Act shall be enforced by the Federal Trade Commission under rules, regulations, and procedure provided for in the Federal Trade Commission Act.</chapeau>
+            <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">The Commission is authorized and directed to prevent any person from violating the provisions of this Act in the same manner, by the same means, and with the same jurisdiction, powers, and duties as through all applicable terms and provisions of the Federal Trade Commission Act were incorporated into and made a part of this Act; and any such person violating the provisions of this Act shall be subject to the penalties and entitled to the privileges and immunities provided in said Federal Trade Commission Act, in the same manner, by the same means, and with the same jurisdiction, powers, and duties as though the applicable terms and provisions of the said Federal Trade Commission Act were incorporated into and made a part of this Act.</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">The Commission is authorized and directed to make rules and regulations for the manner and form of disclosing information required by this Act, and for segregation of such information for different portions of a wool product as may be necessary to avoid deception or confusion, and to make such further rules and regulations under and in pursuance of the terms of this Act as may be necessary and proper for administration and enforcement.</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">The Commission is also authorized to cause inspections, analyses, tests, and examinations to be made of any wool products subject to this Act; and to cooperate with any department or agency of the Government, with any State, Territory, or possession, or with the District of Columbia; or with any department, agency, or political subdivision thereof; or with any person.</content>
+            </paragraph></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s6/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><chapeau style="-uslm-dtd:text">Every manufacturer of wool products shall maintain proper records showing the fiber content as required by this Act of all wool products made by him, and shall preserve such records for at least three years.</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">The neglect or refusal to maintain and so preserve such records is unlawful, and any such manufacturer who neglects or refuses to maintain and so preserve such records shall forfeit to the United States the sum of $100 for each day of such failure, which shall accrue to the United States and be recoverable in a civil action.</content>
+                </paragraph>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s7" styleType="traditional">
+            <heading style="-uslm-dtd:header">condemnation and injunction proceedings </heading>
+            <num style="-uslm-dtd:enum" value="7">Sec. 7. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68e">15 U.S.C. 68e</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s7/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">Any wool products shall be liable to be proceeded against in the district court of the United States for the district in which found, and to be seized for confiscation by process of libel for condemnation, if the Commission has reasonable cause to believe such wool products are being manufactured or held for shipment, or shipped, or held for sale or exchange after shipment, in commerce in violation of the provisions of this Act, and if after notice from the Commission the provisions of this Act with respect to said products are not shown to be complied with. Proceedings in such libel causes shall conform as nearly as may be to suits in rem in admiralty, and may be brought by the Commission.</chapeau>
+            <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">If such wool products are condemned by the court, they shall be disposed of, in the discretion of the court, by destruction; by sale; by delivery to the owner or claimant thereof upon payment of legal costs and charges and upon execution of good and sufficient bond to the effect that such wool products will not be disposed of until properly stamped, tagged, labeled, or otherwise identified under the provisions of this Act; or by such charitable disposition as the court may deem proper. If such wool products are disposed of by sale, the proceeds, less legal costs and charges, shall be paid into the Treasury of the United States.</content>
+            </paragraph></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s7/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><chapeau style="-uslm-dtd:text">Whenever the Commission has reason to believe that—</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s7/b/1" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">Any person is violating, or is about to violate, sections 3, 5, 8, or 9 of this Act, and that</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/76/871/s7/b/2" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">It would be to the public interest to enjoin such violation until complaint is issued by the Commission under the Federal Trade Commission Act and such complaint dismissed by the Commission or set aside by the court on review, or until order to cease and desist made thereon by the Commission has become final within the meaning of the Federal Trade Commission Act,</content>
+                </paragraph><continuation style="-uslm-dtd:continuation-text" role="subsection">the Commission may bring suit in the district court of the United States or in the United States court of any Territory, for the district or Territory in which such person resides or transacts business, to enjoin such violation, and upon proper showing a temporary injunction or restraining order shall be granted without bond.</continuation>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s8" styleType="traditional">
+            <heading style="-uslm-dtd:header">exclusion of misbranded wool products </heading>
+            <num style="-uslm-dtd:enum" value="8">Sec. 8. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68f">15 U.S.C. 68f</ref><b>]</b> </editorialNote><chapeau style="-uslm-dtd:text">All wool products imported into the United States, except those made more than twenty years prior to such importation, shall be stamped, tagged, labeled, or otherwise identified in accordance with the provisions of this Act, and all invoices of such wool products required under the Act of June 17, 1930 (c. 497, title IV, 46 Stat. 719), shall set forth, in addition to the matter therein specified, the information with respect to said wool products required under the provisions of this Act, which information shall be in the invoices prior to their certification under said Act of June 17, 1930.</chapeau>
+            <subsection style="-uslm-dtd:subsection" styleType="OLC" role="undesignated-level"><content style="-uslm-dtd:text">The falsification of, or failure to set forth, said information in said invoices, or the falsification or perjury of the consignee's declaration provided for in said Act of June 17, 1930, insofar as it relates to said information, shall be an unfair method of competition, and an unfair and deceptive act, or practice, in commerce under the Federal Trade Commission Act; and any person who falsifies, or fails to set forth, said information in said invoices, or who falsifies or perjures said consignee's declaration insofar as it relates to said information, may thenceforth be prohibited by the Commission from importing, or participating in the importation of, any wool products into the United States except upon filing bond with the Secretary of the Treasury in a sum double the value of said wool products and any duty thereon, conditioned upon compliance with provisions of this Act.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" styleType="OLC" role="undesignated-level"><content style="-uslm-dtd:text">A verified statement from the manufacturer or producer of such wool products showing their fiber content as required under the provisions of this Act may be required under regulations prescribed by the Secretary of the Treasury.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s9" styleType="traditional">
+            <heading style="-uslm-dtd:header">guaranty </heading>
+            <num style="-uslm-dtd:enum" value="9">Sec. 9. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68g">15 U.S.C. 68g</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s9/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">No person shall be guilty under section 3 if he establishes a guaranty received in good faith signed by and containing the name and address of the person residing in the United States by whom the wool product guaranteed was manufactured and/or from whom it was received, that said wool product is not misbranded under the provisions of this Act.</chapeau>
+            <paragraph style="-uslm-dtd:paragraph" styleType="OLC" role="undesignated-level" class="leftIndentDecrease1"><content style="-uslm-dtd:text">Said guaranty shall be either (1) a separate guaranty specifically designating the wool product guaranteed, in which case it may be on the invoice or other paper relating to said wool product; or (2) a continuing guaranty filed with the Commission applicable to all wool products handled by a guarantor in such form as the Commission by rules and regulations may prescribe.</content>
+            </paragraph></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/76/871/s9/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">Any person who furnishes a false guaranty, except a person relying upon a guaranty to the same effect received in good faith signed by and containing the name and address of the person residing in the United States by whom the wool product guaranteed was manufactured and/or from whom it was received, with reason to believe the wool product falsely guaranteed may be introduced, sold, transported, or distributed in commerce, is guilty of an unfair method of competition and an unfair and deceptive act or practice, in commerce within the meaning of the Federal Trade Commission Act.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s10" styleType="traditional">
+            <heading style="-uslm-dtd:header">criminal penalty </heading>
+            <num style="-uslm-dtd:enum" value="10">Sec. 10. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68h">15 U.S.C. 68h</ref><b>]</b> </editorialNote><chapeau style="-uslm-dtd:text">Any person who willfully violates sections 3, 5, 8, or 9(b) of this Act shall be guilty of a misdemeanor and upon conviction shall be fined not more than $5,000, or be imprisoned not more than one year, or both, in the discretion of the court: <i style="-uslm-dtd:italic">Provided,</i> That nothing herein shall limit other provisions of this Act.</chapeau>
+            <subsection style="-uslm-dtd:subsection" styleType="OLC" role="undesignated-level"><content style="-uslm-dtd:text">Whenever the Commission has reason to believe any person is guilty of a misdemeanor under this section, it shall certify all pertinent facts to the Attorney General, whose duty it shall be to cause appropriate proceedings to be brought for the enforcement of the provisions of this section against such person.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s11" styleType="traditional">
+            <heading style="-uslm-dtd:header">application of existing laws </heading>
+            <num style="-uslm-dtd:enum" value="11">Sec. 11. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68i">15 U.S.C. 68i</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">The provisions of this Act shall be held to be in addition to, and not in substitution for or limitation of, the provisions of any other Act of the United States.</content>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s12" styleType="traditional">
+            <heading style="-uslm-dtd:header">effective date </heading>
+            <num style="-uslm-dtd:enum" value="12">Sec. 12. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68">15 U.S.C. 68 note</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">This Act shall take effect nine months after the date of its passage.</content>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s13" styleType="traditional">
+            <heading style="-uslm-dtd:header">separability clause </heading>
+            <num style="-uslm-dtd:enum" value="13">Sec. 13. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68">15 U.S.C. 68 note</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">If any provision of this Act, or the application thereof to any person, partnership, corporation, or circumstance is held invalid, the remainder of the Act and the application of such provision to any other person, partnership, corporation, or circumstance shall not be affected thereby.</content>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/76/871/s14" styleType="traditional">
+            <heading style="-uslm-dtd:header">exceptions </heading>
+            <num style="-uslm-dtd:enum" value="14">Sec. 14. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s68j">15 U.S.C. 68j</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">None of the provisions of this Act shall be construed to apply to the manufacture, delivery for shipment, shipment, sale, or offering for sale any carpets, rugs, mats, or upholsteries, nor to any person manafacturing, delivering for shipment, shipping, selling, or offering for sale any carpets, rugs, mats, or upholsteries.</content>
+        </section>
+    </main>
+</statuteCompilation>

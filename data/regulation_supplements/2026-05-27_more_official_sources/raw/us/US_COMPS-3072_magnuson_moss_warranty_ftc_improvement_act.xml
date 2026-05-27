@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="uslm.css"?><statuteCompilation xmlns="http://schemas.gpo.gov/xml/uslm" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gpo="http://www.gpo.gov/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.gpo.gov/xml/uslm https://www.govinfo.gov/schemas/xml/uslm/uslm-2.0.10.xsd" xml:lang="en" style="-uslm-dtd:statute">
+    <meta style="-uslm-dtd:compilation-act-form">
+        <dc:title>MAGNUSON-MOSS WARRANTY—FEDERAL TRADE COMMISSION IMPROVEMENT ACT</dc:title>
+        <containsShortTitle>MAGNUSON-MOSS WARRANTY—FTC IMPROVEMENT ACT</containsShortTitle>
+        <citableAs>Public Law 93–637, as amended</citableAs>
+        <citableAs>88 Stat. 2183, as amended</citableAs>
+        <citableAsShortTitle>MAGNUSON-MOSS WARRANTY—FEDERAL TRADE COMMISSION IMPROVEMENT ACT</citableAsShortTitle>
+        <docNumber>637</docNumber>
+        <currentThroughPublicLaw>114–51</currentThroughPublicLaw>
+        <dc:type>Statute Compilation</dc:type>
+        <dc:creator>United States House of Representatives</dc:creator>
+        <dc:creator>Office of the Legislative Counsel</dc:creator>
+        <dc:format>text/xml</dc:format>
+        <dc:language>EN</dc:language>
+        <dc:rights>Pursuant to Title 17 Section 105 of the United States Code, this file is not subject to copyright protection and is in the public domain.</dc:rights>
+        <processedBy>GPO Statute Compilations USLM converter, version 20210527.1</processedBy>
+        <processedDate>2021-10-15</processedDate>
+        <containsShortTitle>Lemon Law</containsShortTitle>
+        <containsShortTitle>Magnuson-Moss Warranty—Federal Trade Commission Improvement Act</containsShortTitle>
+        <property role="fileId">3072</property>
+        <congress>93</congress>
+        <approvedDate>1975-01-04</approvedDate>
+    </meta>
+    <preface style="-uslm-dtd:compilation-act-form">
+        <property style="-uslm-dtd:comp-short-title" role="compShortTitle">MAGNUSON-MOSS WARRANTY—FEDERAL TRADE COMMISSION IMPROVEMENT ACT</property>
+        <citationNote style="-uslm-dtd:public-law">[<citableAs>Public Law 93–637</citableAs>, <citableAs>88 Stat. 2183</citableAs>, <date date="1975-01-04">January 4, 1975</date>]</citationNote>
+        <editionNote style="-uslm-dtd:updated-through-note">[As Amended Through <currentThroughPublicLaw>P.L. 114–51</currentThroughPublicLaw>, Enacted <date date="2015-09-24">September 24, 2015</date>]</editionNote>
+        <explanationNote style="-uslm-dtd:explanatory-note"><b>[</b>Currency: This publication is a compilation of the text of Public Law 93–637. It was last amended by the public law listed in the As Amended Through note above and below at the bottom of each page of the pdf version and reflects current law through the date of the enactment of the public law listed at https://www.govinfo.gov/app/collection/comps/<b>]</b></explanationNote>
+        <explanationNote style="-uslm-dtd:explanatory-note"><b>[</b>Note: While this publication does  not represent an official version of any Federal statute, substantial efforts have been made to ensure the accuracy of its contents. The official version of Federal law is found in the United States Statutes at Large and in the United States Code. The legal effect to be given to the Statutes at Large and the United States Code is established by statute (1 U.S.C. 112, 204).<b>]</b></explanationNote>
+    </preface>
+    <main style="-uslm-dtd:legis-body"><longTitle><docTitle style="-uslm-dtd:legis-type">AN ACT</docTitle><officialTitle style="-uslm-dtd:official-title">To provide minimum disclosure standards for written consumer product warranties; to define minimum Federal content standards for such warranties; to amend the Federal Trade Commission Act in order to improve its consumer protection activities; and for other purposes.</officialTitle></longTitle><enactingFormula style="-uslm-dtd:enacting-clause">
+Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled,
+</enactingFormula><section style="-uslm-dtd:section" styleType="OLC" role="undesignated-level" class="inline"><content style="-uslm-dtd:text">That <editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2301">15 U.S.C. 2301 note</ref><b>]</b></editorialNote> this Act may be cited as the “<shortTitle style="-uslm-dtd:quote">Magnuson-Moss Warranty—Federal Trade Commission Improvement Act</shortTitle>”.</content></section>
+        <title style="-uslm-dtd:title" identifier="/us/sComp/93/637/tI" styleType="traditional">
+            <num style="-uslm-dtd:enum" value="I">TITLE I—</num><heading style="-uslm-dtd:header">CONSUMER PRODUCT WARRANTIES </heading>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s101" styleType="traditional" role="definitions">
+                <heading style="-uslm-dtd:header">definitions </heading>
+                <num style="-uslm-dtd:enum" value="101">Sec. 101. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2301">15 U.S.C. 2301</ref><b>]</b> </editorialNote><chapeau style="-uslm-dtd:text">For the purposes of this title:</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/1" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">consumer product</term>” means any tangible personal property which is distributed in commerce and which is normally used for personal, family, or household purposes (including any such property intended to be attached to or installed in any real property without regard to whether it is so attached or installed).</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/2" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">Commission</term>” means the Federal Trade Commission.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/3" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">consumer</term>” means a buyer (other than for purposes of resale) of any consumer product, any person to whom such product is transferred during the duration of an implied or written warranty (or service contract) applicable to the product, and any other person who is entitled by the terms of such warranty (or service contract) or under applicable State law to enforce against the warrantor (or service contractor) the obligations of the warranty (or service contract).</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/4" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">supplier</term>” means any person engaged in the business of making a consumer product directly or indirectly available to consumers.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/5" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="5">(5) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">warrantor</term>” means any supplier or other person who gives or offers to give a written warranty or who is or may be obligated under an implied warranty.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/6" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="6">(6) </num><chapeau style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">written warranty</term>” means—</chapeau>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/6/A" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">any written affirmation of fact or written promise made in connection with the sale of a consumer product by a supplier to a buyer which relates to the nature of the material or workmanship and affirms or promises that such material or workmanship is defect free or will meet a specified level of performance over a specified period of time, or</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/6/B" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">any undertaking in writing in connection with the sale by a supplier of a consumer product to refund, repair, replace, or take other remedial action with respect to such product in the event that such product fails to meet the specifications set forth in the undertaking,</content>
+                    </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">which written affirmation, promise, or undertaking becomes part of the basis of the bargain between a supplier and a buyer for purposes other than resale of such product.</continuation>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/7" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="7">(7) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">implied warranty</term>” means an implied warranty arising under State law (as modified by sections 108 and 104(a)) in connection with the sale by a supplier of a consumer product.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/8" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="8">(8) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">service contract</term>” means a contract in writing to perform, over a fixed period of time or for a specified duration, services relating to the maintenance or repair (or both) of a consumer product.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/9" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="9">(9) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">reasonable and necessary maintenance</term>” consists of those operations (A) which the consumer reasonably can be expected to perform or have performed and (B) which are necessary to keep any consumer product performing its intended function and operating at a reasonable level of performance.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/10" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="10">(10) </num><chapeau style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">remedy</term>” means whichever of the following actions the warrantor elects:</chapeau>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/10/A" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">repair,</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/10/B" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">replacement, or</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/10/C" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">refund;</content>
+                    </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">except that the warrantor may not elect refund unless (i) the warrantor is unable to provide replacement and repair is not commercially practicable or cannot be timely made, or (ii) the consumer is willing to accept such refund.</continuation>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/11" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="11">(11) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">replacement</term>” means furnishing a new consumer product which is identical or reasonably equivalent to the warranted consumer product.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/12" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="12">(12) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">refund</term>” means refunding the actual purchase price (less reasonable depreciation based on actual use where permitted by rules of the Commission).</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/13" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="13">(13) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">distributed in commerce</term>” means sold in commerce, introduced or delivered for introduction into commerce, or held for sale or distribution after introduction into commerce.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/14" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="14">(14) </num><chapeau style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">commerce</term>” means trade, traffic, commerce, or transportation—</chapeau>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/14/A" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">between a place in a State and any place outside thereof, or</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s101/14/B" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">which affects trade, traffic, commerce, or transportation described in subparagraph (A).</content>
+                    </subparagraph>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s101/15" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="15">(15) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">State</term>” means a State, the District of Columbia, the Commonwealth of Puerto Rico, the Virgin Islands, Guam, the Canal Zone, or American Samoa. The term “<term style="-uslm-dtd:term">State law</term>” includes a law of the United States applicable only to the District of Columbia or only to a territory or possession of the United States; and the term “<term style="-uslm-dtd:term">Federal law</term>” excludes any State law.</content>
+                </paragraph>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s102" styleType="traditional">
+                <heading style="-uslm-dtd:header">warranty provisions </heading>
+                <num style="-uslm-dtd:enum" value="102">Sec. 102. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2302">15 U.S.C. 2302</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s102/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">In order to improve the adequacy of information available to consumers, prevent deception, and improve competition in the marketing of consumer products, any warrantor warranting a consumer product to a consumer by means of a written warranty shall, to the extent required by rules of the Commission, fully and conspicuously disclose in simple and readily understood language the terms and conditions of such warranty. Such rules may require inclusion in the written warranty of any of the following items among others:</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/1" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">The clear identification of the names and addresses of the warrantors.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/2" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">The identity of the party or parties to whom the warranty is extended.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/3" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">The products or parts covered.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/4" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">A statement of what the warrantor will do in the event of a defect, malfunction, or failure to conform with such written warranty—at whose expense—and for what period of time.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/5" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="5">(5) </num><content style="-uslm-dtd:text">A statement of what the consumer must do and expenses he must bear.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/6" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="6">(6) </num><content style="-uslm-dtd:text">Exceptions and exclusions from the terms of the warranty.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/7" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="7">(7) </num><content style="-uslm-dtd:text">The step-by-step procedure which the consumer should take in order to obtain performance of any obligation under the warranty, including the identification of any person or class of persons authorized to perform the obligations set forth in the warranty.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/8" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="8">(8) </num><content style="-uslm-dtd:text">Information respecting the availability of any informal dispute settlement procedure offered by the warrantor and a recital, where the warranty so provides, that the purchaser may be required to resort to such procedure before pursuing any legal remedies in the courts.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/9" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="9">(9) </num><content style="-uslm-dtd:text">A brief, general description of the legal remedies available to the consumer.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/10" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="10">(10) </num><content style="-uslm-dtd:text">The time at which the warrantor will perform any obligations under the warranty.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/11" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="11">(11) </num><content style="-uslm-dtd:text">The period of time within which, after notice of a defect, malfunction, or failure to conform with the warranty, the warrantor will perform any obligations under the warranty.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/12" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="12">(12) </num><content style="-uslm-dtd:text">The characteristics or properties of the products, or parts thereof, that are not covered by the warranty.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/a/13" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="13">(13) </num><content style="-uslm-dtd:text">The elements of the warranty in words or phrases which would not mislead a reasonable, average consumer as to the nature or scope of the warranty.</content>
+                </paragraph></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s102/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/b/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1)</num><subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s102/b/1/A" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">The Commission shall prescribe rules requiring that the terms of any written warranty on a consumer product be made available to the consumer (or prospective consumer) prior to the sale of the product to him.</content></subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s102/b/1/B" styleType="OLC" class="leftIndentDecrease2">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">The Commission may prescribe rules for determining the manner and form in which information with respect to any written warranty of a consumer product shall be clearly and conspicuously presented or displayed so as not to mislead the reasonable, average consumer, when such information is contained in advertising, labeling, point-of-sale material, or other representations in writing.</content>
+                    </subparagraph></paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/b/2" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">Nothing in this title (other than paragraph (3) of this subsection) shall be deemed to authorize the Commission to prescribe the duration of written warranties given or to require that a consumer product or any of its components be warranted.</content>
+                    </paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/b/3" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">The Commission may prescribe rules for extending the period of time a written warranty or service contract is in effect to correspond with any period of time in excess of a reasonable period (not less than 10 days) during which the consumer is deprived of the use of such consumer product by reason of failure of the product to conform with the written warranty or by reason of the failure of the warrantor (or service contract) to carry out such warranty (or service contract) within the period specified in the warranty (or service contract).</content>
+                    </paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/b/4" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="4">(4)</num><subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s102/b/4/A" styleType="OLC" class="inline leftIndentDecrease1"><num style="-uslm-dtd:enum" value="A">(A) </num><chapeau style="-uslm-dtd:text">Except as provided in subparagraph (B), the rules prescribed under this subsection shall allow for the satisfaction of all requirements concerning the availability of terms of a written warranty on a consumer product under this subsection by—</chapeau>
+                        <clause style="-uslm-dtd:clause" identifier="/us/sComp/93/637/tI/s102/b/4/A/i" styleType="OLC" class="leftIndentDecrease2">
+                            <num style="-uslm-dtd:enum" value="i">(i) </num><content style="-uslm-dtd:text">making available such terms in an accessible digital format on the Internet website of the manufacturer of the consumer product in a clear and conspicuous manner; and</content>
+                        </clause>
+                        <clause style="-uslm-dtd:clause" identifier="/us/sComp/93/637/tI/s102/b/4/A/ii" styleType="OLC" class="leftIndentDecrease2">
+                            <num style="-uslm-dtd:enum" value="ii">(ii) </num><chapeau style="-uslm-dtd:text">providing to the consumer (or prospective consumer) information with respect to how to obtain and review such terms by indicating on the product or product packaging or in the product manual—</chapeau>
+                            <subclause style="-uslm-dtd:subclause" identifier="/us/sComp/93/637/tI/s102/b/4/A/ii/I" styleType="OLC" class="leftIndentDecrease2">
+                                <num style="-uslm-dtd:enum" value="I">(I) </num><content style="-uslm-dtd:text">the Internet website of the manufacturer where such terms can be obtained and reviewed; and</content>
+                            </subclause>
+                            <subclause style="-uslm-dtd:subclause" identifier="/us/sComp/93/637/tI/s102/b/4/A/ii/II" styleType="OLC" class="leftIndentDecrease2">
+                                <num style="-uslm-dtd:enum" value="II">(II) </num><content style="-uslm-dtd:text">the phone number of the manufacturer, the postal mailing address of the manufacturer, or another reasonable non-Internet based means of contacting the manufacturer to obtain and review such terms.</content>
+                            </subclause>
+                        </clause></subparagraph>
+                        <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s102/b/4/B" styleType="OLC" class="leftIndentDecrease2">
+                            <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">With respect to any requirement that the terms of any written warranty for a consumer product be made available to the consumer (or prospective consumer) prior to sale of the product, in a case in which a consumer product is offered for sale in a retail location, by catalog, or through door-to-door sales, subparagraph (A) shall only apply if the seller makes available, through electronic or other means, at the location of the sale to the consumer purchasing the consumer product the terms of the warranty for the consumer product before the purchase.</content>
+                        </subparagraph>
+                    </paragraph>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s102/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c) </num><chapeau style="-uslm-dtd:text">No warrantor of a consumer product may condition his written or implied warranty of such product on the consumer's using, in connection with such product, any article or service (other than article or service provided without charge under the terms of the warranty) which is identified by brand, trade, or corporate name; except that the prohibition of this subsection may be waived by the Commission if—</chapeau>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/c/1" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">the warrantor satisfies the Commission that the warranted product will function properly only if the article or service so identified is used in connection with the warranted product, and</content>
+                    </paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s102/c/2" styleType="OLC">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">the Commission finds that such a waiver is in the public interest.</content>
+                    </paragraph><continuation style="-uslm-dtd:continuation-text" role="subsection">The Commission shall identify in the Federal Register, and permit public comment on, all applications for waiver of the prohibition of this subsection, and shall publish in the Federal Register its disposition of any such application, including the reasons therefor.</continuation>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s102/d" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="d">(d) </num><content style="-uslm-dtd:text">The Commission may by rule devise detailed substantive warranty provisions which warrantors may incorporate by reference in their warranties.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s102/e" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="e">(e) </num><content style="-uslm-dtd:text">The provisions of this section apply only to warranties which pertain to consumer products actually costing the consumer more than $5.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s103" styleType="traditional">
+                <heading style="-uslm-dtd:header">designation of warranties </heading>
+                <num style="-uslm-dtd:enum" value="103">Sec. 103. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2303">15 U.S.C. 2303</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s103/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">Any warrantor warranting a consumer product by means of a written warranty shall clearly and conspicuously designate such warranty in the following manner, unless exempted from doing so by the Commission pursuant to subsection (c) of this section:</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s103/a/1" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">If the written warranty meets the Federal minimum standards for warranty set forth in section 104 of this Act, then it shall be conspicuously designated a “<quotedText style="-uslm-dtd:quote">full (statement of duration) warranty</quotedText>”.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s103/a/2" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">If the written warranty does not meet the Federal minimum standards for warranty set forth in section 104 of this Act, then it shall be conspicuously designated a “<quotedText style="-uslm-dtd:quote">limited warranty</quotedText>”.</content>
+                </paragraph></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s103/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">Sections 102, 103, and 104 shall not apply to statements or representations which are similar to expressions of general policy concerning customer satisfaction and which are not subject to any specific limitations.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s103/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">In addition to exercising the authority pertaining to disclosure granted in section 102 of this Act, the Commission may by rule determine when a written warranty does not have to be designated either “<quotedText style="-uslm-dtd:quote">full (statement of duration)</quotedText>” or “<quotedText style="-uslm-dtd:quote">limited</quotedText>” in accordance with this section.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s103/d" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="d">(d) </num><content style="-uslm-dtd:text">The provisions of subsections (a) and (c) of this section apply only to warranties which pertain to consumer products actually costing the consumer more than $10 and which are not designated “<quotedText style="-uslm-dtd:quote">full (statement of duration) warranties</quotedText>”.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s104" styleType="traditional">
+                <heading style="-uslm-dtd:header">federal minimum standards for warranty </heading>
+                <num style="-uslm-dtd:enum" value="104">Sec. 104. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2304">15 U.S.C. 2304</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s104/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">In order for a warrantor warranting a consumer product by means of a written warranty to meet the Federal minimum standards for warranty—</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/a/1" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">such warrantor must as a minimum remedy such consumer product within a reasonable time and without charge, in the case of a defect, malfunction, or failure to conform with such written warranty;</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/a/2" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">notwithstanding section 108(b), such warrantor may not impose any limitation on the duration of any implied warranty on the product;</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/a/3" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">such warrantor may not exclude or limit consequential damages for breach of any written or implied warranty on such product, unless such exclusion or limitation conspicuously appears on the face of the warranty; and</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/a/4" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">if the product (or a component part thereof) contains a defect or malfunction after a reasonable number of attempts by the warrantor to remedy defects or malfunctions in such product, such warrantor must permit the consumer to elect either a refund for, or replacement without charge of, such product or part (as the case may be). The Commission may by rule specify for purposes of this paragraph, what constitutes a reasonable number of attempts to remedy particular kinds of defects or malfunctions under different circumstances. If the warrantor replaces a component part of a consumer product, such replacement shall include installing the part in the product without charge.</content>
+                </paragraph></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s104/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/b/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">In fulfilling the duties under subsection (a) respecting a written warranty, the warrantor shall not impose any duty other than notification upon any consumer as a condition of securing remedy of any consumer product which malfunctions, is defective, or does not conform to the written warranty, unless the warrantor has demonstrated in a rulemaking proceeding, or can demonstrate in an administrative or judicial enforcement proceeding (including private enforcement), or in an informal dispute settlement proceeding, that such a duty is reasonable.</content></paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/b/2" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">Notwithstanding paragraph (1), a warrantor may require, as a condition to replacement of, or refund for, any consumer product under subsection (a), that such consumer product shall be made available to the warrantor free and clear of liens and other encumbrances, except as otherwise provided by rule or order of the Commission in cases in which such a requirement would not be practicable.</content>
+                    </paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/b/3" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">The Commission may, by rule define in detail the duties set forth in section 104(a) of this Act and the applicability of such duties to warrantors of different categories of consumer products with “<quotedText style="-uslm-dtd:quote">full (statement of duration)</quotedText>” warranties.</content>
+                    </paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s104/b/4" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">The duties under subsection (a) extend from the warrantor to each person who is a consumer with respect to the consumer product.</content>
+                    </paragraph>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s104/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">The performance of the duties under subsection (a) of this section shall not be required of the warrantor if he can show that the defect, malfunction, or failure of any warranted consumer product to conform with a written warranty, was caused by damage (not resulting from defect or malfunction) while in the possession of the consumer, or unreasonable use (including failure to provide reasonable and necessary maintenance).</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s104/d" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="d">(d) </num><content style="-uslm-dtd:text">For purposes of this section and of section 102(c), the term “<term style="-uslm-dtd:term">without charge</term>” means that the warrantor may not assess the consumer for any costs the warrantor or his representatives incur in connection with the required remedy of a warranted consumer product. An obligation under subsection (a)(1)(A) to remedy without charge does not necessarily require the warrantor to compensate the consumer for incidental expenses; however, if any incidental expenses are incurred because the remedy is not made within a reasonable time or because the warrantor imposed an unreasonable duty upon the consumer as a condition of securing remedy, then the consumer shall be entitled to recover reasonable incidental expenses which are so incurred in any action against the warrantor.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s104/e" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="e">(e) </num><content style="-uslm-dtd:text">If a supplier designates a warranty applicable to a consumer product as a “<quotedText style="-uslm-dtd:quote">full (statement of duration)</quotedText>” warranty, then the warranty on such product shall, for purposes of any action under section 110(d) or under any State law, be deemed to incorporate at least the minimum requirements of this section and rules prescribed under this section.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s105" styleType="traditional">
+                <heading style="-uslm-dtd:header">full and limited warranting of a consumer product </heading>
+                <num style="-uslm-dtd:enum" value="105">Sec. 105. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2305">15 U.S.C. 2305</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">Nothing in this title shall prohibit the selling of a consumer product which has both full and limited warranties if such warranties are clearly and conspicuously differentiated.</content>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s106" styleType="traditional">
+                <heading style="-uslm-dtd:header">service contracts </heading>
+                <num style="-uslm-dtd:enum" value="106">Sec. 106. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2306">15 U.S.C. 2306</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s106/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">The Commission may prescribe by rule the manner and form in which the terms and conditions of service contracts shall be fully, clearly, and conspicuously disclosed.</content></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s106/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">Nothing in this title shall be construed to prevent a supplier or warrantor from entering into a service contract with the consumer in addition to or in lieu of a written warranty if such contract fully, clearly, and conspicuously discloses its terms and conditions in simple and readily understood language.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s107" styleType="traditional">
+                <heading style="-uslm-dtd:header">designation of representatives </heading>
+                <num style="-uslm-dtd:enum" value="107">Sec. 107. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2307">15 U.S.C. 2307</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">Nothing in this title shall be construed to prevent any warrantor from designating representatives to perform duties under the written or implied warranty: <i style="-uslm-dtd:italic">Provided, </i>That such warrantor shall make reasonable arrangements for compensation of such designated representatives, but no such designation shall relieve the warrantor of his direct responsibilities to the consumer or make the representative a cowarrantor.</content>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s108" styleType="traditional">
+                <heading style="-uslm-dtd:header">limitation on disclaimer of implied warranties </heading>
+                <num style="-uslm-dtd:enum" value="108">Sec. 108. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2308">15 U.S.C. 2308</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s108/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">No supplier may disclaim or modify (except as provided in subsection (b)) any implied warranty to a consumer with respect to such consumer product if (1) such supplier makes any written warranty to the consumer with respect to such consumer product, or (2) at the time of sale, or within 90 days thereafter, such supplier enters into a service contract with the consumer which applies to such consumer product.</content></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s108/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">For purposes of this title (other than section 104(a)(2)), implied warranties may be limited in duration to the duration of a written warranty of reasonable duration, if such limitation is conscionable and is set forth in clear and unmistakable language and prominently displayed on the face of the warranty.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s108/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">A disclaimer, modification, or limitation made in violation of this section shall be ineffective for purposes of this title and State law.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s109" styleType="traditional">
+                <heading style="-uslm-dtd:header">commission rules </heading>
+                <num style="-uslm-dtd:enum" value="109">Sec. 109. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2309">15 U.S.C. 2309</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s109/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">Any rule prescribed under this title shall be prescribed in accordance with section 553 of title 5, United States Code; except that the Commission shall give interested persons an opportunity for oral presentations of data, views, and arguments, in addition to written submissions. A transcript shall be kept of any oral presentation. Any such rule shall be subject to judicial review under section 18(e) of the Federal Trade Commission Act (as amended by section 202 of this Act) in the same manner as rules prescribed under section 18(a)(1)(B) of such Act, except that section 18(e)(3)(B) of such Act shall not apply.</content></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s109/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">The Commission shall initiate within one year after the date of enactment of this Act a rulemaking proceeding dealing with warranties and warranty practices in connection with the sale of used motor vehicles; and, to the extent necessary to supplement the protections offered the consumer by this title, shall prescribe rules dealing with such warranties and practices. In prescribing rules under this subsection, the Commission may exercise any authority it may have under this title, or other law, and in addition it may require disclosure that a used motor vehicle is sold without any warranty and specify the form and content of such disclosure.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s110" styleType="traditional">
+                <heading style="-uslm-dtd:header">remedies </heading>
+                <num style="-uslm-dtd:enum" value="110">Sec. 110. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2310">15 U.S.C. 2310</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s110/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/a/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">Congress hereby declares it to be its policy to encourage warrantors to establish procedures whereby consumer disputes are fairly and expeditiously settled through informal dispute settlement mechanisms.</content></paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/a/2" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">The Commission shall prescribe rules setting forth minimum requirements for any informal dispute settlement procedure which is incorporated into the terms of a written warranty to which any provision of this title applies. Such rules shall provide for participation in such procedure by independent or governmental entities.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/a/3" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="3">(3) </num><chapeau style="-uslm-dtd:text">One or more warrantors may establish an informal dispute settlement procedure which meets the requirements of the Commission's rules under paragraph (2). If—</chapeau>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/a/3/A" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">a warrantor establishes such a procedure,</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/a/3/B" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">such procedure, and its implementation, meets the requirements of such rules, and</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/a/3/C" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">he incorporates in a written warranty a requirement that the consumer resort to such procedure before pursuing any legal remedy under this section respecting such warranty,</content>
+                    </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">then (i) the consumer may not commence a civil action (other than a class action) under subsection (d) of this section unless he initially resorts to such procedure; and (ii) a class of consumers may not proceed in a class action under subsection (d) except to the extent the court determines necessary to establish the representative capacity of the named plaintiffs, unless the named plaintiffs (upon notifying the defendant that they are named plaintiffs in a class action with respect to a warranty obligation) initially resort to such procedure. In the case of such a class action which is brought in a district court of the United States, the representative capacity of the named plaintiffs shall be established in the application of rule 23 of the Federal Rules of Civil Procedure. In any civil action arising out of a warranty obligation and relating to a matter considered in such a procedure, any decision in such procedure shall be admissible in evidence.</continuation>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/a/4" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">The Commission on its own initiative may, or upon written complaint filed by any interested person shall, review the bona fide operation of any dispute settlement procedure resort to which is stated in a written warranty to be a prerequisite to pursuing a legal remedy under this section. If the Commission finds that such procedure or its implementation fails to comply with the requirements of the rules under paragraph (2), the Commission may take appropriate remedial action under any authority it may have under this title or any other provision of law.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/a/5" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="5">(5) </num><content style="-uslm-dtd:text">Until rules under paragraph (2) take effect, this subsection shall not affect the validity of any informal dispute settlement procedure respecting consumer warranties, but in any action under subsection (d), the court may invalidate any such procedure if it finds that such procedure is unfair.</content>
+                </paragraph></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s110/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">It shall be a violation of section 5(a)(1) of the Federal Trade Commission Act (15 U.S.C. 45(a)(1)) for any person to fail to comply with any requirement imposed on such person by this title (or a rule thereunder) or to violate any prohibition contained in this title (or a rule thereunder).</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s110/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/c/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">The district courts of the United States shall have jurisdiction of any action brought by the Attorney General (in his capacity as such), or by the Commission by any of its attorneys designated by it for such purpose, to restrain (A) any warrantor from making a deceptive warranty with respect to a consumer product, or (B) any person from failing to comply with any requirement imposed on such person by or pursuant to this title or from violating any prohibition contained in this title. Upon proper showing that, weighing the equities and considering the Commission's or Attorney General's likelihood of ultimate success, such action would be in the public interest and after notice to the defendant, a temporary restraining order or preliminary injunction may be granted without bond. In the case of an action brought by the Commission, if a complaint under section 5 of the Federal Trade Commission Act is not filed within such period (not exceeding 10 days) as may be specified by the court after the issuance of the temporary restraining order or preliminary injunction, the order or injunction shall be dissolved by the court and be of no further force and effect. Any suit shall be brought in the district in which such person resides or transacts business. Whenever it appears to the court that the ends of justice require that other persons should be parties in the action, the court may cause them to be summoned whether or not they reside in the district in which the court is held, and to that end process may be served in any district.</content></paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/c/2" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">For the purposes of this subsection, the term “<term style="-uslm-dtd:term">deceptive warranty</term>” means (A) a written warranty which (i) contains an affirmation, promise, description, or representation which is either false or fraudulent, or which, in light of all of the circumstances, would mislead a reasonable individual exercising due care; or (ii) fails to contain information which is necessary in light of all of the circumstances, to make the warranty not misleading to a reasonable individual exercising due care; or (B) a written warranty created by the use of such terms as “<quotedText style="-uslm-dtd:quote">guaranty</quotedText>” or “<quotedText style="-uslm-dtd:quote">warranty</quotedText>”, if the terms and conditions of such warranty so limit its scope and application as to deceive a reasonable individual.</content>
+                    </paragraph>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s110/d" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="d">(d)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/d/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><chapeau style="-uslm-dtd:text">Subject to subsections (a)(3) and (e), a consumer who is damaged by the failure of a supplier, warrantor, or service contractor to comply with any obligation under this title, or under a written warranty, implied warranty, or service contract, may bring suit for damages and other legal and equitable relief—</chapeau>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/d/1/A" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">in any court of competent jurisdiction in any State or the District of Columbia; or</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/d/1/B" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">in an appropriate district court of the United States, subject to paragraph (3) of this subsection.</content>
+                    </subparagraph></paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/d/2" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">If a consumer finally prevails in any action brought under paragraph (1) of this subsection, he may be allowed by the court to recover as part of the judgment a sum equal to the aggregate amount of cost and expenses (including attorneys' fees based on actual time expended) determined by the court to have been reasonably incurred by the plaintiff for or in connection with the commencement and prosecution of such action, unless the court in its discretion shall determine that such an award of attorneys' fees would be inappropriate.</content>
+                    </paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s110/d/3" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="3">(3) </num><chapeau style="-uslm-dtd:text">No claim shall be cognizable in a suit brought under paragraph (1)(B) of this subsection—</chapeau>
+                        <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/d/3/A" styleType="OLC" class="leftIndentDecrease1">
+                            <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">if the amount in controversy of any individual claim is less than the sum or value of $25;</content>
+                        </subparagraph>
+                        <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/d/3/B" styleType="OLC" class="leftIndentDecrease1">
+                            <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">if the amount in controversy is less than the sum or value of $50,000 (exclusive of interests and costs) computed on the basis of all claims to be determined in this suit; or</content>
+                        </subparagraph>
+                        <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s110/d/3/C" styleType="OLC" class="leftIndentDecrease1">
+                            <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">if the action is brought as a class action, and the number of named plaintiffs is less than one hundred.</content>
+                        </subparagraph>
+                    </paragraph>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s110/e" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="e">(e) </num><content style="-uslm-dtd:text">No action (other than a class action or an action respecting a warranty to which subsection (a)(3) applies) may be brought under subsection (d) for failure to comply with any obligation under any written or implied warranty or service contract, and a class of consumers may not proceed in a class action under such subsection with respect to such a failure except to the extent the court determines necessary to establish the representative capacity of the named plaintiffs, unless the person obligated under the warranty or service contract is afforded a reasonable opportunity to cure such failure to comply. In the case of such a class action (other than a class action respecting a warranty to which subsection (a)(3) applies) brought under subsection (d) for breach of any written or implied warranty or service contract, such reasonable opportunity will be afforded by the named plaintiffs and they shall at that time notify the defendant that they are acting on behalf of the class. In the case of such a class action which is brought in a district court of the United States, the representative capacity of the named plaintiffs shall be established in the application of rule 23 of the Federal Rules of Civil Procedure.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s110/f" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="f">(f) </num><content style="-uslm-dtd:text">For purposes of this section, only the warrantor actually making a written affirmation of fact, promise, or undertaking shall be deemed to have created a written warranty, and any rights arising thereunder may be enforced under this section only against such warrantor and no other person.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s111" styleType="traditional">
+                <heading style="-uslm-dtd:header">effect on other laws </heading>
+                <num style="-uslm-dtd:enum" value="111">Sec. 111. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2311">15 U.S.C. 2311</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s111/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s111/a/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">Nothing contained in this title shall be construed to repeal, invalidate, or supersede the Federal Trade Commission Act (15 U.S.C. 41 et seq.) or any statute defined therein as an Antitrust Act.</content></paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s111/a/2" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">Nothing in this title shall be construed to repeal, invalidate, or supersede the Federal Seed Act (7 U.S.C. 1551–1611) and nothing in this title shall apply to seed for planting.</content>
+                </paragraph></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s111/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s111/b/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">Nothing in this title shall invalidate or restrict any right or remedy of any consumer under State law or any other Federal law.</content></paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s111/b/2" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">Nothing in this title (other than sections 108 and 104(a) (2) and (4)) shall (A) affect the liability of, or impose liability on, any person for personal injury, or (B) supersede any provision of State law regarding consequential damages for injury to the person or other injury.</content>
+                    </paragraph>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s111/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s111/c/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><chapeau style="-uslm-dtd:text">Except as provided in subsection (b) and in paragraph (2) of this subsection, a State requirement—</chapeau>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s111/c/1/A" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">which relates to labeling or disclosure with respect to written warranties or performance thereunder;</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s111/c/1/B" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">which is within the scope of an applicable requirement of sections 102, 103, and 104 (and rules implementing such sections), and</content>
+                    </subparagraph>
+                    <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/93/637/tI/s111/c/1/C" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">which is not identical to a requirement of section 102, 103, or 104 (or a rule thereunder),</content>
+                    </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">shall not be applicable to written warranties complying with such sections (or rules thereunder).</continuation></paragraph>
+                    <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/93/637/tI/s111/c/2" styleType="OLC" class="leftIndentDecrease1">
+                        <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">If, upon application of an appropriate State agency, the Commission determines (pursuant to rules issued in accordance with section 109) that any requirement of such State covering any transaction to which this title applies (A) affords protection to consumers greater than the requirements of this title and (B) does not unduly burden interstate commerce, then such State requirement shall be applicable (notwithstanding the provisions of paragraph (1) of this subsection) to the extent specified in such determination for so long as the State administers and enforces effectively any such greater requirement.</content>
+                    </paragraph>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s111/d" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="d">(d) </num><content style="-uslm-dtd:text">This title (other than section 102(c)) shall be inapplicable to any written warranty the making or content of which is otherwise governed by Federal law. If only a portion of a written warranty is so governed by Federal law, the remaining portion shall be subject to this title.</content>
+                </subsection>
+            </section>
+            <section style="-uslm-dtd:section" identifier="/us/sComp/93/637/tI/s112" styleType="traditional">
+                <heading style="-uslm-dtd:header">effective date </heading>
+                <num style="-uslm-dtd:enum" value="112">Sec. 112. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s2312">15 U.S.C. 2312</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s112/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">Except as provided in subsection (b) of this section, this title shall take effect 6 months after the date of its enactment but shall not apply to consumer products manufactured prior to such date.</content></subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s112/b" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">Section 102(a) shall take effect 6 months after the final publication of rules respecting such section; except that the Commission, for good cause shown, may postpone the applicability of such sections until one year after such final publication in order to permit any designated classes of suppliers to bring their written warranties into compliance with rules promulgated pursuant to this title.</content>
+                </subsection>
+                <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/93/637/tI/s112/c" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">The Commission shall promulgate rules for initial implementation of this title as soon as possible after the date of enactment of this Act but in no event later than one year after such date.</content>
+                </subsection>
+            </section>
+        </title>
+        <title style="-uslm-dtd:title" identifier="/us/sComp/93/637/tII" styleType="traditional">
+            <num style="-uslm-dtd:enum" value="II">TITLE II—</num><heading style="-uslm-dtd:header">FEDERAL TRADE COMMISSION IMPROVEMENTS<ref style="-uslm-dtd:footnote-ref" idref="ID0793E9C8AABC43D284DBEBE95619C9EB" class="footnoteRef">1</ref> </heading><footnote id="ID0793E9C8AABC43D284DBEBE95619C9EB" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">1</sup><p style="-uslm-dtd:para; margin-left:1em">Title II made amendments to the Federal Trade Commission Act (15 U.S.C. 41 et seq.).</p></footnote>
+            <elided style="-uslm-dtd:omitted-text">* * * * * * *</elided>
+        </title>
+    </main>
+</statuteCompilation>
