@@ -5,12 +5,8 @@ hybrid_retriever.py - Hybrid retrieval pipeline
 检索流程：
   Dense(Faiss) + BM25 → RRF 融合 → Must-Check 注入
 
-Embedding 降级链：
-  1. OllamaEmbedder     (本地，需 ollama pull nomic-embed-text)
-  2. LocalEmbedder     (Qwen3-Embedding-0.6B，本地缓存)
-  3. ModelScopeEmbedder (云端 API，需 API key)
-
-用户提供云端 embedding key 后，删除前两级，直接用 ModelScopeEmbedder 即可。
+Embedding:
+  ModelScopeEmbedder (cloud API, requires MODELSCOPE_API_KEY)
 
 Rerank: 不实现
 
@@ -105,10 +101,11 @@ def _cache_set(key: str, results: list) -> None:
 
 def _probe_embedders():
     """
-    Embedder 探测，按优先级尝试：
-    1. OllamaEmbedder      (本地，无需网络)
-    2. LocalEmbedder       (Qwen3-Embedding-0.6B，本地缓存)
-    3. ModelScopeEmbedder  (云端 API，需 key)
+    Embedder probing.
+
+    Production intentionally uses only the ModelScope embedding API. Local
+    Ollama/Qwen embedders remain in the repository for tests and historical
+    experiments, but are not part of the deployment path.
 
     Returns (embedder_instance, name_str)
     """
@@ -116,30 +113,6 @@ def _probe_embedders():
     if _embedder is not None:
         return _embedder, _embedder_name
 
-    # ── 1. Ollama nomic-embed-text ──────────────────────────────
-    try:
-        from rag_service.retrieval.ollama_embedder import OllamaEmbedder
-        _embedder = OllamaEmbedder()
-        _embedder_name = "ollama"
-        logger.info("Embedding: OllamaEmbedder (nomic-embed-text, 768-dim)")
-        return _embedder, _embedder_name
-    except Exception as e:
-        logger.info(f"Embedding: OllamaEmbedder unavailable ({e})")
-
-    # ── 2. 本地 Qwen3-Embedding-0.6B ──────────────────────────
-    try:
-        from rag_service.retrieval.local_embedder import LocalEmbedder, MODEL_PATH as LOCAL_MODEL_PATH
-        if LOCAL_MODEL_PATH.exists():
-            _embedder = LocalEmbedder()
-            _embedder_name = "local_qwen"
-            logger.info("Embedding: LocalEmbedder (Qwen3-Embedding-0.6B, local cache)")
-            return _embedder, _embedder_name
-        else:
-            logger.info(f"Embedding: LocalEmbedder model not found at {LOCAL_MODEL_PATH}")
-    except Exception as e:
-        logger.warning(f"Embedding: LocalEmbedder failed ({e})")
-
-    # ── 3. ModelScope API ──────────────────────────────────────
     try:
         from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
         _embedder = ModelScopeEmbedder()
@@ -147,7 +120,7 @@ def _probe_embedders():
         logger.info("Embedding: ModelScopeEmbedder (Qwen3-Embedding-0.6B API)")
         return _embedder, _embedder_name
     except Exception as e:
-        logger.error(f"Embedding: all embedders failed: {e}")
+        logger.error(f"Embedding: ModelScope API unavailable: {e}")
         _embedder_name = "none"
         return None, "none"
 
@@ -156,7 +129,7 @@ class HybridRetriever:
     """
     Hybrid Dense(Faiss) + BM25 retriever with RRF fusion.
 
-    Embedding 优先级：Ollama → 本地 Qwen → ModelScope API
+    Embedding provider: ModelScope API only
     Faiss 维度不匹配时自动跳过向量分支，退化为纯 BM25。
     Rerank: 不实现
 

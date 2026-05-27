@@ -10,6 +10,7 @@
 | [RAG-ARCHITECTURE-v2-LEGACY.md](./RAG-ARCHITECTURE-v2-LEGACY.md) | RAG 架构文档 — 旧版（已归档） |
 | [IMPLEMENTATION-PLAN-v3.md](./IMPLEMENTATION-PLAN-v3.md) | 实施计划（⚠️ 历史文档，实际路线已变更） |
 | [DOCUMENT-PIPELINE.md](./DOCUMENT-PIPELINE.md) | 文档处理管线 — 语料库构建流程 |
+| [DEPLOYMENT.md](./DEPLOYMENT.md) | 服务器部署指南 — Docker Compose、环境变量、健康检查 |
 | [PROJECT-STATUS.md](./PROJECT-STATUS.md) | 项目上线评估报告 — 完成度 + 阻塞问题 |
 | [RAG-ARCHITECTURE.md](./archived/RAG-ARCHITECTURE.md) | RAG 架构文档 — 初始版（已归档） |
 | [archived/](./archived/) | 已归档文档（历史版本） |
@@ -33,6 +34,7 @@ npm run dev
 # 配置环境变量
 cp rag_service/.env.example rag_service/.env
 # 编辑 rag_service/.env，填入 MIMOTALK_API_KEY
+# 同时填入 MODELSCOPE_API_KEY（生产 embedding 只走 API）
 
 # 构建 FAISS 索引（如尚未构建）
 .venv\Scripts\python.exe scripts/build_faiss.py
@@ -54,6 +56,14 @@ npm run test:e2e
 .venv\Scripts\python.exe -m pytest rag_service/tests/ -v
 ```
 
+### 服务器部署
+
+```bash
+cp .env.production.example .env
+# 填入 MIMOTALK_API_KEY 和 MODELSCOPE_API_KEY
+npm run deploy:prod
+```
+
 ---
 
 ## 📁 文档目录结构
@@ -64,6 +74,7 @@ docs/
 ├── PROJECT.md                        # 项目描述
 ├── PRD.md                            # 产品需求文档
 ├── RAG-ARCHITECTURE-v3.md            # RAG 架构文档（当前）
+├── DEPLOYMENT.md                     # 服务器部署指南
 ├── archived/                         # 已归档文档
 │   ├── RAG-ARCHITECTURE.md           # ARCHIVED
 │   ├── RAG-ARCHITECTURE-v2-LEGACY.md  # ARCHIVED（原 RAG-ARCHITECTURE-v2.md）

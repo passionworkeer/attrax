@@ -2,6 +2,8 @@ import json
 import sys
 from pathlib import Path
 
+import pytest
+
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
@@ -103,3 +105,11 @@ def test_chunk_documents_preserves_source_metadata():
     assert chunks[0]["official_channel"] == "Official Journal"
     assert chunks[0]["product_categories"] == ["general_consumer_products"]
     assert chunks[0]["regulatory_types"] == ["product_safety"]
+
+
+def test_embed_chunks_requires_api_embedder_unless_hash_fallback_enabled(monkeypatch):
+    monkeypatch.setattr(build_faiss, "_probe_embedders", lambda: (None, "none"))
+    monkeypatch.delenv("ALLOW_HASH_EMBED_FALLBACK", raising=False)
+
+    with pytest.raises(RuntimeError, match="MODELSCOPE_API_KEY"):
+        build_faiss.embed_chunks([{"content": "Article 1 product safety"}])

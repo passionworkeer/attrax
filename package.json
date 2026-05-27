@@ -6,6 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "deploy:check": "node scripts/preflight-deploy.mjs --check-only",
+    "deploy:prod": "node scripts/preflight-deploy.mjs",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",

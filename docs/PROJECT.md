@@ -109,9 +109,7 @@
 | 层级 | 模型 | 维度 | 说明 |
 |------|------|------|------|
 | **LLM (报告生成 + Vision)** | mimoTalk (mimo-v2.5) | - | Anthropic SDK 兼容，统一调用 |
-| **Embedding 优先级 1** | Ollama (nomic-embed-text) | 768-dim | 本地 CPU，完全免费，零依赖 |
-| **Embedding 优先级 2** | ModelScope Qwen3-Embedding-0.6B | 1024-dim | 本地 GPU/CPU，可量化部署 |
-| **Embedding 优先级 3** | ModelScope API | 云端 | 降级兜底，高质量 |
+| **Embedding** | ModelScope Qwen3-Embedding-0.6B API | 1024-dim | 生产唯一 embedding provider |
 
 ---
 
@@ -148,26 +146,24 @@ def should_regenerate(state) -> str:
 
 ---
 
-### 亮点二：三级 Embedding 降级策略
+### 亮点二：API-only Embedding 策略
 
-**问题**：Embedding 是 RAG 的性能瓶颈，单一方案无法覆盖所有场景。
+**问题**：Embedding 是 RAG 的性能瓶颈，本地模型会增加服务器部署和运维复杂度。
 
 **解决方案**：
 
 ```
 用户请求
     │
-    ├──→ Ollama 本地 (nomic-embed-text, 768-dim)
+    ├──→ ModelScope API (Qwen3-Embedding-0.6B, 1024-dim)
     │         失败？↓
-    │    ├──→ Qwen3-Embedding-0.6B (本地, 1024-dim)
-    │         失败？↓
-    │    └──→ ModelScope API (云端)
+    └──→ BM25 fallback
 ```
 
 **效果**：
-- 完全离线可用（Ollama）
-- 支持 GPU 加速（Qwen3-Embedding）
-- 云端兜底保障质量（ModelScope）
+- 生产部署不依赖本地模型服务
+- 向量维度和索引构建路径一致
+- API 不可用时仍保留 BM25 基础召回
 
 ---
 
@@ -344,7 +340,7 @@ class ScanResponse(BaseModel):
 | 字符总量 | 12M+ | 涵盖主要跨境市场法规 |
 | 向量索引 | ~15,000 | FAISS Inner Product 索引 |
 | 预解析语料 | 200+ JSON | 已完成清洗和分块 |
-| 分块维度 | 768-dim（Ollama nomic-embed-text）/ 1024-dim（ModelScope Qwen3） |
+| 分块维度 | 1024-dim（ModelScope Qwen3） |
 
 ---
 
@@ -355,9 +351,7 @@ class ScanResponse(BaseModel):
 | `MIMOTALK_API_KEY` | 是 | - | mimoTalk LLM API Key |
 | `MIMOTALK_BASE_URL` | 否 | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | API 端点 |
 | `MIMOTALK_MODEL` | 否 | `mimo-v2.5` | 模型名称 |
-| `MODELSCOPE_API_KEY` | 否 | - | ModelScope API Key |
-| `OLLAMA_BASE_URL` | 否 | `http://localhost:11434` | Ollama 服务地址 |
-| `OLLAMA_EMBED_MODEL` | 否 | `nomic-embed-text` | Embedding 模型 |
+| `MODELSCOPE_API_KEY` | 是 | - | ModelScope Embedding API Key |
 | `DEMO_MODE` | 否 | `false` | Demo 模式 |
 | `RAG_SERVICE_URL` | 否 | `http://localhost:8001` | RAG Service 地址 |
 

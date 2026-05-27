@@ -25,7 +25,7 @@ Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
 |------|------|------|
 | HTTP 框架 | FastAPI 0.109 | ASGI 服务 |
 | LLM | mimoTalk (mimo-v2.5) | 报告生成 |
-| Embedding | Ollama → Local Qwen → ModelScope API | 三级降级 |
+| Embedding | ModelScope API | API-only embedding |
 | 向量检索 | FAISS | 本地向量索引 |
 | 稀疏检索 | BM25 + jieba | 中文分词 |
 | 编排 | LangGraph 1.1 | Agent 状态机 |
@@ -48,10 +48,7 @@ cp rag_service/.env.example rag_service/.env
 
 必需配置：
 - `MIMOTALK_API_KEY` — mimoTalk LLM（报告生成）
-
-可选配置（按降级顺序自动探测）：
-- `OLLAMA_BASE_URL` — Ollama 本地 embedding（需 `ollama pull nomic-embed-text`）
-- `MODELSCOPE_API_KEY` — ModelScope API embedding 降级
+- `MODELSCOPE_API_KEY` — ModelScope API embedding
 
 ### 3. 准备 FAISS 索引
 
@@ -184,9 +181,7 @@ rag_service/
 │   ├── bm25_retriever.py       # BM25 稀疏检索
 │   ├── hybrid_retriever.py      # 混合检索（RRF 融合）
 │   ├── fusion.py                 # RRF 融合算法
-│   ├── ollama_embedder.py      # Ollama 本地 embedding
-│   ├── local_embedder.py       # 本地 Qwen3 embedding
-│   └── modelScope_embedder.py  # ModelScope API embedding
+│   └── modelScope_embedder.py  # ModelScope API embedding（生产路径）
 ├── verify/              # NLI 引用验证
 ├── generate/           # 报告生成（mimoTalk）
 └── orchestrator/       # LangGraph Agent 编排

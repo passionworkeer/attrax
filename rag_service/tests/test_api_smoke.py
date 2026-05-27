@@ -9,7 +9,8 @@ import pytest
 from fastapi.testclient import TestClient
 
 from rag_service.config import settings
-from rag_service.main import app
+from rag_service import main as main_module
+from rag_service.main import _parse_markets, app
 
 
 @pytest.fixture(scope="module")
@@ -42,6 +43,39 @@ def test_ready_endpoint_reports_dependency_checks(client):
     assert "faiss" in data["checks"]
     assert "bm25" in data["checks"]
     assert data["checks"]["bm25"] is True
+
+
+def test_ready_endpoint_reports_required_api_keys(client):
+    """Production readiness reports API-only LLM and embedding configuration."""
+    previous_demo_mode = settings.demo_mode
+    previous_mimotalk = settings.mimotalk_api_key
+    previous_modelscope = settings.modelscope_api_key
+    previous_retriever = main_module._retriever
+    settings.demo_mode = False
+    settings.mimotalk_api_key = ""
+    settings.modelscope_api_key = ""
+
+    class ReadyRetriever:
+        faiss_retriever = object()
+
+    main_module._retriever = ReadyRetriever()
+    try:
+        resp = client.get("/ready")
+    finally:
+        settings.demo_mode = previous_demo_mode
+        settings.mimotalk_api_key = previous_mimotalk
+        settings.modelscope_api_key = previous_modelscope
+        main_module._retriever = previous_retriever
+
+    assert resp.status_code == 503
+    data = resp.json()
+    assert data["checks"]["mimotalk_api_key"] is False
+    assert data["checks"]["modelscope_api_key"] is False
+
+
+def test_parse_markets_accepts_json_array():
+    """Multipart form market values preserve JSON array entries."""
+    assert _parse_markets('["EU","US"]') == ["EU", "US"]
 
 
 def test_scan_requires_query(client):

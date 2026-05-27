@@ -106,6 +106,32 @@ if torch is None:
     sys.modules["torch.nn.functional"] = torch_functional
 
 # ---------------------------------------------------------------------------
+# API-only production selection tests
+# ---------------------------------------------------------------------------
+
+def test_probe_embedders_uses_modelscope_api_only(monkeypatch):
+    """Production embedder probing selects ModelScope API directly."""
+    from rag_service.retrieval import hybrid_retriever as hr
+
+    hr._embedder = None
+    hr._embedder_name = "none"
+    monkeypatch.setenv("MODELSCOPE_API_KEY", "test-key")
+
+    with patch("rag_service.retrieval.ollama_embedder.OllamaEmbedder") as ollama_cls, \
+         patch("rag_service.retrieval.local_embedder.LocalEmbedder") as local_cls, \
+         patch("rag_service.retrieval.modelScope_embedder.ModelScopeEmbedder") as modelscope_cls:
+        modelscope_instance = MagicMock()
+        modelscope_cls.return_value = modelscope_instance
+
+        embedder, name = hr._probe_embedders()
+
+    assert embedder is modelscope_instance
+    assert name == "modelscope_api"
+    ollama_cls.assert_not_called()
+    local_cls.assert_not_called()
+
+
+# ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
 

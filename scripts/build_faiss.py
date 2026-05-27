@@ -126,11 +126,11 @@ def _hash_embed(text: str, dim: int = 384) -> list[float]:
 
 
 def embed_chunks(chunks: list[dict]) -> tuple[list[dict], int]:
-    """Embed chunks with the same fallback chain used by the RAG service."""
+    """Embed chunks with the production ModelScope API embedder."""
     embedder, name = _probe_embedders()
     if embedder is None:
-        if os.environ.get("ALLOW_HASH_EMBED_FALLBACK", "true").lower() != "true":
-            raise RuntimeError("No embedding provider available. Start Ollama, install local Qwen, or set MODELSCOPE_API_KEY.")
+        if os.environ.get("ALLOW_HASH_EMBED_FALLBACK", "false").lower() != "true":
+            raise RuntimeError("No embedding provider available. Set MODELSCOPE_API_KEY or enable ALLOW_HASH_EMBED_FALLBACK.")
         logger.warning("No embedding provider available; using deterministic hash fallback index")
         for chunk in chunks:
             text = f"{chunk.get('prepend_en', '')}\n{chunk.get('content', '')}"

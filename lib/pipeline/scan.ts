@@ -34,9 +34,6 @@ function getRagServiceUrl(): string {
   if (!["http:", "https:"].includes(url.protocol)) {
     throw new Error("RAG_SERVICE_URL must use http or https");
   }
-  if (!["localhost", "127.0.0.1", "::1"].includes(url.hostname)) {
-    throw new Error("RAG_SERVICE_URL must point to localhost");
-  }
   return url.origin;
 }
 

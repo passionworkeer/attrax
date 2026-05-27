@@ -1,27 +1,52 @@
 version: "3.9"
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+      RAG_SERVICE_URL: http://rag-service:8000
+      DEMO_MODE: ${DEMO_MODE:-false}
+    volumes:
+      - ./data/sessions:/app/data/sessions
+      - ./public/uploads:/app/public/uploads
+    depends_on:
+      rag-service:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
   rag-service:
     build:
       context: .
       dockerfile: rag_service/Dockerfile
     ports:
-      - "8001:8000"
+      - "${RAG_PORT:-8001}:8000"
     environment:
-      - MIMOTALK_API_KEY=${MIMOTALK_API_KEY}
-      - MIMOTALK_BASE_URL=${MIMOTALK_BASE_URL:-https://token-plan-sgp.xiaomimimo.com/anthropic/v1}
-      - MIMOTALK_MODEL=${MIMOTALK_MODEL:-mimo-v2.5}
-      - MODELSCOPE_API_KEY=${MODELSCOPE_API_KEY}
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
-      - FAISS_INDEX_DIR=/app/data/faiss
-      - NO_PROXY=*
+      MIMOTALK_API_KEY: ${MIMOTALK_API_KEY:-}
+      MIMOTALK_BASE_URL: ${MIMOTALK_BASE_URL:-https://token-plan-sgp.xiaomimimo.com/anthropic/v1}
+      MIMOTALK_MODEL: ${MIMOTALK_MODEL:-mimo-v2.5}
+      MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
+      RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
+      FAISS_INDEX_DIR: /app/data/faiss
+      NO_PROXY: "*"
     volumes:
-      - ./data/faiss:/app/data/faiss
-      - ./data/corpus/processed:/app/data/corpus/processed
-      - ./rag_service/.env:/app/rag_service/.env:ro
+      - ./data/faiss:/app/data/faiss:ro
+      - ./data/corpus/processed:/app/data/corpus/processed:ro
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/ready"]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 45s
