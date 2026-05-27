@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="uslm.css"?><statuteCompilation xmlns="http://schemas.gpo.gov/xml/uslm" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:gpo="http://www.gpo.gov/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.gpo.gov/xml/uslm https://www.govinfo.gov/schemas/xml/uslm/uslm-2.0.10.xsd" xml:lang="en" style="-uslm-dtd:statute">
+    <meta style="-uslm-dtd:compilation-act-form">
+        <dc:title>POISON PREVENTION PACKAGING ACT OF 1970</dc:title>
+        <citableAs>Public Law 91–601</citableAs>
+        <citableAs>84 Stat. 1670</citableAs>
+        <citableAsShortTitle>POISON PREVENTION PACKAGING ACT OF 1970</citableAsShortTitle>
+        <docNumber>601</docNumber>
+        <currentThroughPublicLaw>91–601</currentThroughPublicLaw>
+        <dc:type>Statute Compilation</dc:type>
+        <dc:creator>United States House of Representatives</dc:creator>
+        <dc:creator>Office of the Legislative Counsel</dc:creator>
+        <dc:format>text/xml</dc:format>
+        <dc:language>EN</dc:language>
+        <dc:rights>Pursuant to Title 17 Section 105 of the United States Code, this file is not subject to copyright protection and is in the public domain.</dc:rights>
+        <processedBy>GPO Statute Compilations USLM converter, version 20210527.1</processedBy>
+        <processedDate>2021-10-15</processedDate>
+        <containsShortTitle>Poison Prevention Packaging Act of 1970</containsShortTitle>
+        <property role="fileId">392</property>
+        <congress>91</congress>
+        <approvedDate>1970-12-30</approvedDate>
+    </meta>
+    <preface style="-uslm-dtd:compilation-act-form">
+        <property style="-uslm-dtd:comp-short-title" role="compShortTitle">POISON PREVENTION PACKAGING ACT OF 1970</property>
+        <citationNote style="-uslm-dtd:public-law">[<citableAs>Public Law 91–601</citableAs>, <citableAs>84 Stat. 1670</citableAs>, <date date="1970-12-30">December 30, 1970</date>]</citationNote>
+        <editionNote style="-uslm-dtd:updated-through-note">[As amended through <currentThroughPublicLaw>Public Law 110–314</currentThroughPublicLaw>, Enacted <date date="2008-08-14">August 14, 2008</date>]</editionNote>
+        <explanationNote style="-uslm-dtd:explanatory-note"><b>[</b>Currency: This publication is a compilation of the text of Public Law 91–601. It was last amended by the public law listed in the As Amended Through note above and below at the bottom of each page of the pdf version and reflects current law through the date of the enactment of the public law listed at https://www.govinfo.gov/app/collection/comps/<b>]</b></explanationNote>
+        <explanationNote style="-uslm-dtd:explanatory-note"><b>[</b>Note: While this publication does  not represent an official version of any Federal statute, substantial efforts have been made to ensure the accuracy of its contents. The official version of Federal law is found in the United States Statutes at Large and in the United States Code. The legal effect to be given to the Statutes at Large and the United States Code is established by statute (1 U.S.C. 112, 204).<b>]</b></explanationNote>
+    </preface>
+    <main style="-uslm-dtd:legis-body"><longTitle><docTitle style="-uslm-dtd:legis-type">AN ACT</docTitle><officialTitle style="-uslm-dtd:official-title">To provide for special packaging to protect children from serious personal injury or serious illness resulting from handling, using, or ingesting household substances, and for other purposes.</officialTitle></longTitle><enactingFormula style="-uslm-dtd:enacting-clause">
+Be it enacted by the Senate and House of Representatives of the United States of America in Congress assembled,
+</enactingFormula>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s1" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>short title<b>]</b></editorialNote>
+<ref style="-uslm-dtd:footnote-ref" idref="IDD14AF2DE316646F7AD88A1452D6B55C2" class="footnoteRef">1</ref>
+ </heading>
+            <num style="-uslm-dtd:enum" value="1">Section 1. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1471">15 U.S.C. 1471 note</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text"> This Act may be cited as the “<shortTitle style="-uslm-dtd:quote">Poison Prevention Packaging Act of 1970</shortTitle>”.</content>
+        </section><footnote id="IDD14AF2DE316646F7AD88A1452D6B55C2" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">1</sup><p style="-uslm-dtd:para; margin-left:1em">Headings editorially supplied.</p></footnote>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s2" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>definitions<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="2">Sec. 2. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1471">15 U.S.C. 1471</ref><b>]</b> </editorialNote><chapeau style="-uslm-dtd:text">For the purpose of this Act—</chapeau>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s2/1" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="1">(1)<ref style="-uslm-dtd:footnote-ref" idref="ID6A466E22111740C0BF104A3654FA65DC" class="footnoteRef">2</ref> </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">Secretary</term>” means the Secretary of Health, Education, and Welfare.<ref style="-uslm-dtd:footnote-ref" idref="ID113292BF3A3340F4ACD37C7625C67971" class="footnoteRef">3</ref></content><footnote id="ID6A466E22111740C0BF104A3654FA65DC" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">2</sup><p style="-uslm-dtd:para; margin-left:1em">Indentation of paragraphs (1) through (5) so in law.</p></footnote><footnote id="ID113292BF3A3340F4ACD37C7625C67971" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">3</sup><p style="-uslm-dtd:para; margin-left:1em">Section 30(a) of the Consumer Product Safety Act (15 U.S.C. 2079(a)) (p. 176) transferred the functions of the Secretary of Health, Education, and Welfare under this Act to the Consumer Product Safety Commission.</p></footnote>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s2/2" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="2">(2) </num><chapeau style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">household substance</term>” means any substance which is customarily produced or distributed for sale for consumption or use, or customarily stored, by individuals in or about the household and which is—</chapeau>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s2/2/A" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">a hazardous substance as that term is defined in section 2(f) of the Federal Hazardous Substances Act (15 U.S.C. 1261(f));</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s2/2/B" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">a food, drug, or cosmetic as those terms are defined in section 201 of the Federal Food, Drug, and Cosmetic Act (21 U.S.C. 321); or</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s2/2/C" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="C">(C) </num><content style="-uslm-dtd:text">a substance intended for use as fuel when stored in a portable container and used in the heating, cooking, or refrigeration system of a house.</content>
+                </subparagraph>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s2/3" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="3">(3) </num><chapeau style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">package</term>” means the immediate container or wrapping in which any household substance is contained for consumption, use, or storage by individuals in or about the household, and, for purposes of section 4(a)(2) of this Act, also means any outer container or wrapping used in the retail display of any such substance to consumers. Such term does not include—</chapeau>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s2/3/A" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">any shipping container or wrapping used solely for the transportation of any household substance in bulk or in quantity to manufacturers, packers, or processors, or to wholesale or retail distributors thereof, or</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s2/3/B" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">any shipping container or outer wrapping used by retailers to ship or deliver any household substance to consumers unless it is the only such container or wrapping.</content>
+                </subparagraph>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s2/4" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">special packaging</term>” means packaging that is designed or constructed to be significantly difficult for children under five years of age to open or obtain a toxic or harmful amount of the substance contained therein within a reasonable time and not difficult for normal adults to use properly, but does not mean packaging which all such children cannot open or obtain a toxic or harmful amount within a reasonable time.</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s2/5" styleType="OLC" class="leftIndentDecrease1">
+                <num style="-uslm-dtd:enum" value="5">(5) </num><content style="-uslm-dtd:text">The term “<term style="-uslm-dtd:term">labeling</term>” means all labels and other written, printed, or graphic matter (A) upon any household substance or its package, or (B) accompanying such substance.</content>
+            </paragraph>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s3" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>special packaging standards<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="3">Sec. 3. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1472">15 U.S.C. 1472</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s3/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">The Secretary,<ref style="-uslm-dtd:footnote-ref" idref="IDE59F4EAC2D5F465FB5270024F3052C1E" class="footnoteRef">4</ref> may establish in accordance with the provisions of this Act, by regulation, standards for the special packaging of any household substance if he finds that—</chapeau><footnote id="IDE59F4EAC2D5F465FB5270024F3052C1E" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">4</sup><p style="-uslm-dtd:para; margin-left:1em">Comma in section 3(a) so in law.</p></footnote>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s3/a/1" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">the degree or nature of the hazard to children in the availability of such substance, by reason of its packaging, is such that special packaging is required to protect children from serious personal injury or serious illness resulting from handling, using, or ingesting such substance; and</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s3/a/2" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">the special packaging to be required by such standard is technically feasible, practicable, and appropriate for such substance.</content>
+            </paragraph></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s3/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><chapeau style="-uslm-dtd:text">In establishing a standard under this section, the Secretary shall consider—</chapeau>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s3/b/1" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">the reasonableness of such standard;</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s3/b/2" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">available scientific, medical, and engineering data concerning special packaging and concerning childhood accidental ingestions, illness, and injury caused by household substances;</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s3/b/3" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">the manufacturing practices of industries affected by this Act; and</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s3/b/4" styleType="OLC">
+                    <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">the nature and use of the household substance.</content>
+                </paragraph>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s3/c" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">In carrying out this Act, the Secretary shall publish his findings, his reasons therefor, and citation of the sections of statutes which authorize his action.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s3/d" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="d">(d) </num><content style="-uslm-dtd:text">Nothing in this Act shall authorize the Secretary to prescribe specific packaging designs, product content, package quantity, or, with the exception of authority granted in section 4(a)(2) of this Act, labeling. In the case of a household substance for which special packaging is required pursuant to a regulation under this section, the Secretary may in such regulation prohibit the packaging of such substance in packages which he determines are unnecessarily attractive to children.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s3/e" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="e">(e) </num><content style="-uslm-dtd:text">Nothing in this Act shall be construed to require the Consumer Product Safety Commission, in establishing a standard under this section, to prepare a comparison of the costs that would be incurred in complying with such standard with the benefits of such standard.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s4" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>marketing of noncomplying packages<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="4">Sec. 4. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1473">15 U.S.C. 1473</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s4/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><chapeau style="-uslm-dtd:text">For the purpose of making any household substance which is subject to a standard established under section 3 readily available to elderly or handicapped persons unable to use such substance when packaged in compliance with such standard, the manufacturer or packer, as the case may be, may package any household substance, subject to such a standard, in packaging of a single size which does not comply with such standard if—</chapeau>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s4/a/1" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">the manufacturer (or packer) also supplies such substance in packages which comply with such standard; and</content>
+            </paragraph>
+            <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s4/a/2" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">the packages of such substance which do not meet such standard bear conspicuous labeling stating: “<quotedText style="-uslm-dtd:quote">This package for households without young children</quotedText>”; except that the Secretary may by regulation prescribe a substitute statement to the same effect for packaging too small to accommodate such labeling.</content>
+            </paragraph></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s4/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">In the case of a household substance which is subject to such a standard and which is dispensed pursuant to an order of a physician, dentist, or other licensed medical practitioner authorized to prescribe, such substance may be dispensed in noncomplying packages only when directed in such order or when requested by the purchaser.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s4/c" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="c">(c) </num><content style="-uslm-dtd:text">In the case of a household substance subject to such a standard which is packaged under subsection (a) in a noncomplying package, if the Secretary determines that such substance is not also being supplied by a manufacturer (or packer) in popular size packages which comply with such standard, he may, after giving the manufacturer (or packer) an opportunity to comply with the purposes of this Act, by order require such substance to be packaged by such manufacturer (or packer) exclusively in special packaging complying with such standard if he finds, after opportunity for hearing, that such exclusive use of special packaging is necessary to accomplish the purposes of this Act.</content>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s5" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>proceedings<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="5">Sec. 5. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1474">15 U.S.C. 1474</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s5/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">Proceedings to issue, amend, or repeal a regulation prescribing a standard under section 3 shall be conducted in accordance with the procedures prescribed by section 553 (other than paragraph (3)(B) of the last sentence of subsection (b) of such section) of title 5 of the United States Code unless the Secretary elects the procedures prescribed by subsection (e) of section 701 of the Federal Food, Drug, and Cosmetic Act, in which event such subsection and subsections (f) and (g) of such section 701 shall apply to such proceedings. If the Secretary makes such election, he shall publish that fact with the proposal required to be published under paragraph (1) of such subsection (e).</content></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s5/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s5/b/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><content style="-uslm-dtd:text">In the case of any standard prescribed by a regulation issued in accordance with section 553 of title 5 of the United States Code, any person who will be adversely affected by such a standard may, at any time prior to the 60th day after the regulation prescribing such standard is issued by the Secretary, file a petition with the United States Court of Appeals for the circuit in which such person resides or has his principal place of business for a judicial review of such standard. A copy of the petition shall be forthwith transmitted by the clerk of the court to the Secretary or other officer designated by him for that purpose. The Secretary shall file in the court the record of the proceedings on which the Secretary based his standard, as provided in section 2112 of title 28 of the United States Code.</content></paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s5/b/2" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">If the petitioner applies to the court for leave to adduce additional evidence, and shows to the satisfaction of the court that such additional evidence is material and that there was no opportunity to adduce such evidence in the proceeding before the Secretary, the court may order such additional evidence (and evidence in rebuttal thereof) to be taken before the Secretary in a hearing or in such other manner, and upon such terms and conditions, as to the court may seem proper. The Secretary may modify his findings as to the facts, or make new findings, by reason of the additional evidence so taken, and he shall file such modified or new findings, and his recommendation, if any, for the modification or setting aside of his original standard, with the return of such additional evidence.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s5/b/3" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="3">(3) </num><content style="-uslm-dtd:text">Upon the filing of the petition under paragraph (1) of this subsection the court shall have jurisdiction to review the standard of the Secretary in accordance with subparagraphs (A), (B), (C), and (D) of paragraph (2) of section 706 of title 5 of the United States Code. If the court ordered additional evidence to be taken under paragraph (2) of this subsection, the court shall also review the Secretary's standard to determine if, on the basis of the entire record before the court pursuant to paragraphs (1) and (2) of this subsection, it is supported by substantial evidence. If the court finds the standard is not so supported, the court may set it aside.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s5/b/4" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="4">(4) </num><content style="-uslm-dtd:text">With respect to any standard reviewed under this subsection, the court may grant appropriate relief pending conclusion of the review proceedings, as provided in section 705 of such title 5.</content>
+                </paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s5/b/5" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="5">(5) </num><content style="-uslm-dtd:text">The judgment of the court affirming or setting aside, in whole or in part, any such standard of the Secretary shall be final, subject to review by the Supreme Court of the United States upon certiorari or certification, as provided in section 1254 of title 28 of the United States Code.</content>
+                </paragraph>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s6" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>amendments<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="6">Sec. 6. </num><editorialNote style="-uslm-dtd:legis-comment"><b>[</b>Omitted.<ref style="-uslm-dtd:footnote-ref" idref="ID5B380519600C4D9ABB74422F4DCD4C3A" class="footnoteRef">5</ref><b>]</b> </editorialNote><footnote id="ID5B380519600C4D9ABB74422F4DCD4C3A" style="-uslm-dtd:footnote"><sup style="-uslm-dtd:superscript">5</sup><p style="-uslm-dtd:para; margin-left:1em">Section 6 amended the Federal Hazardous Substances Act (15 U.S.C. 1261 et seq.), the Federal Insecticide, Fungicide, and Rodenticide Act (7 U.S.C. 136 et seq.), and the Federal Food, Drug, and Cosmetic Act (21 U.S.C. 301 et seq.).</p></footnote>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s7" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>preemption<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="7">Sec. 7. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1476">15 U.S.C. 1476</ref><b>]</b> </editorialNote><subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s7/a" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="a">(a) </num><content style="-uslm-dtd:text">Except as provided in subsections (b) and (c), whenever a standard established by the Secretary under this Act applicable to a household substance is in effect, no State or political subdivision thereof shall have any authority either to establish or continue in effect, with respect to such household substance, any standard for special packaging (and any exemption therefrom and requirement related thereto) which is not identical to the standard established under section 3 (and any exemption therefrom and requirement related thereto) of this Act.</content></subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s7/b" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="b">(b) </num><content style="-uslm-dtd:text">The Federal Government and the government of any State or political subdivision of a State may establish and continue in effect, with respect to a household substance for its own use, a standard for special packaging or related requirement which is designed to protect against a risk of illness or injury with respect to which a standard for special packaging or related requirement is in effect under this Act and which is not identical to such standard or requirement if the Federal, State, or political subdivision standard or requirement provides a higher degree of protection from such risk of illness or injury than the standard or requirement in effect under this Act.</content>
+            </subsection>
+            <subsection style="-uslm-dtd:subsection" identifier="/us/sComp/91/601/s7/c" styleType="OLC">
+                <num style="-uslm-dtd:enum" value="c">(c)</num><paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s7/c/1" styleType="OLC" class="inline"><num style="-uslm-dtd:enum" value="1">(1) </num><chapeau style="-uslm-dtd:text">Upon application of a State or political subdivision of a State, the Commission may, by regulation promulgated in accordance with paragraph (2), exempt from subsection (a), under such conditions as may be prescribed in such regulation, any standard for special packaging or related requirement of such State or political subdivision applicable to a household substance subject to a standard or requirement in effect under this Act if—</chapeau>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s7/c/1/A" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="A">(A) </num><content style="-uslm-dtd:text">compliance with the State or political subdivision standard or requirement would not cause the household substance to be in violation of the standard or requirement in effect under this Act, and</content>
+                </subparagraph>
+                <subparagraph style="-uslm-dtd:subparagraph" identifier="/us/sComp/91/601/s7/c/1/B" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="B">(B) </num><content style="-uslm-dtd:text">the State or political subdivision standard or requirement (i) provides a significantly higher degree of protection from the risk of illness or injury with respect to which the Federal standard or requirement is in effect, and (ii) does not unduly burden interstate commerce.</content>
+                </subparagraph><continuation style="-uslm-dtd:continuation-text" role="paragraph">In determining the burden, if any, of a State or political subdivision standard or requirement on interstate commerce the Commission shall consider and make appropriate (as determined by the Commission in its discretion) findings on the technological and economic feasibility of complying with such standard or requirement, the cost of complying with such standard or requirement, the geographic distribution of the household substance to which the standard or requirement would apply, the probability of other States or political subdivisions applying for an exemption under this subsection for a similar standard or requirement, and the need for a national, uniform standard or requirement under this Act for such household substance.</continuation></paragraph>
+                <paragraph style="-uslm-dtd:paragraph" identifier="/us/sComp/91/601/s7/c/2" styleType="OLC" class="leftIndentDecrease1">
+                    <num style="-uslm-dtd:enum" value="2">(2) </num><content style="-uslm-dtd:text">A regulation under paragraph (1) granting an exemption for a standard or requirement of a State or political subdivision of a State may be promulgated by the Commission only after it has provided, in accordance with section 553(b) of title 5, United States Code, notice with respect to the promulgation of the regulation and has provided opportunity for the oral presentation of views respecting its promulgation.</content>
+                </paragraph>
+            </subsection>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s8" styleType="traditional">
+            <heading style="-uslm-dtd:header">
+<editorialNote style="-uslm-dtd:legis-comment"><b>[</b>effective date<b>]</b></editorialNote>
+ </heading>
+            <num style="-uslm-dtd:enum" value="8">Sec. 8. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1471">15 U.S.C. 1471 note</ref><b>]</b> </editorialNote><content style="-uslm-dtd:text">This Act shall take effect on the date of its enactment. Each regulation establishing a special packaging standard shall specify the date such standard is to take effect which date shall not be sooner than one hundred and eighty days or later than one year from the date such regulation is final, unless the Secretary, for good cause found, determines that an earlier effective date is in the public interest and publishes in the Federal Register his reason for such finding, in which case such earlier date shall apply. No such standard shall be effective as to household substances subject to this Act packaged prior to the effective date of such final regulation.</content>
+        </section>
+        <section style="-uslm-dtd:section" identifier="/us/sComp/91/601/s9" styleType="OLC">
+            <num style="-uslm-dtd:enum" value="9">SEC. 9. </num><editorialNote style="-uslm-dtd:usc-reference" role="uscRef"><b>[</b><ref href="/us/usc/t15/s1477">15 U.S.C. 1477</ref><b>]</b> </editorialNote><heading style="-uslm-dtd:header">ENFORCEMENT BY STATE ATTORNEYS GENERAL. </heading>
+            <content style="-uslm-dtd:text" class="block">The attorney general of a State, or other authorized State officer, alleging a violation of a standard or rule promulgated under section 3 that affects or may affect such State or its residents, may bring an action on behalf of the residents of the State in any United States district court for the district in which the defendant is found or transacts business to obtain appropriate injunctive relief. The procedural requirements of section 24(b) of the Consumer Product Safety Act (15 U.S.C. 2073(b)) shall apply to any such action.</content>
+        </section>
+    </main>
+</statuteCompilation>

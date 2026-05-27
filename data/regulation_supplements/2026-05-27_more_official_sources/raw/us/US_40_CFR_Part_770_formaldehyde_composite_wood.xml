@@ -1,0 +1,774 @@
+<?xml version="1.0"?>
+<DIV5 N="770" TYPE="PART" VOLUME="34" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-40/part-770&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;40 CFR Part 770&amp;quot;}">
+<HEAD>PART 770&#x2014;FORMALDEHYDE STANDARDS FOR COMPOSITE WOOD PRODUCTS
+</HEAD>
+<AUTH>
+<HED>Authority:</HED><PSPACE>15 U.S.C. 2697(d).
+</PSPACE></AUTH>
+<SOURCE>
+<HED>Source:</HED><PSPACE>81 FR 89724, Dec. 12, 2016, unless otherwise noted.
+</PSPACE></SOURCE>
+<DIV6 N="A" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-40/part-770/subpart-A&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;40 CFR Part 770 Subpart A&amp;quot;}">
+<HEAD>Subpart A&#x2014;General Provisions</HEAD>
+<DIV8 N="770.1" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.1&quot;,&quot;citation&quot;:&quot;40 CFR 770.1&quot;}">
+<HEAD>&#xA7; 770.1 Scope and applicability.</HEAD>
+<P>(a) This part contains formaldehyde emission standards, testing and certification provisions, and other requirements for the manufacture (including import), distribution, and sale of composite wood products, component parts that contain composite wood products, and finished goods that contain composite wood products.</P>
+<P>(b) This part applies to:</P>
+<P>(1) Laboratory Accreditation Bodies (ABs) and Product ABs that are accrediting third-party certifiers (TPCs) for TSCA Title VI (15 U.S.C. 2697(d)) purposes and those that wish to commence accrediting TPCs for TSCA Title VI purposes.</P>
+<P>(2) TPCs that are certifying composite wood products for TSCA Title VI compliance and those that wish to commence certifying composite wood products for TSCA Title VI compliance.</P>
+<P>(3) Any composite wood products, and component parts or finished goods containing these materials, that are sold, supplied, offered for sale, or manufactured (including imported) in the United States, including composite wood products used or installed in manufactured housing.</P>
+<P>(c) Subparts B, C, and D of this part do not apply to the following:</P>
+<P>(1) Any finished good that has previously been sold or supplied to an end user, an individual or entity that purchased or acquired the finished good in good faith for purposes other than resale. For example, subparts B, C, and D of this part do not apply to antiques or secondhand furniture.</P>
+<P>(2) Hardboard.</P>
+<P>(3) Structural plywood, as specified in PS 1-19 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(4) Structural panels, as specified in PS 2-18 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(5) Structural composite lumber, as specified in ASTM D5456-21e1 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(6) Oriented strand board.</P>
+<P>(7) Glued laminated lumber, as specified in ANSI A190.1-2017, Standard for Wood Products&#x2014;Structural Glued Laminated Timber (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(8) Prefabricated wood I-joists, as specified in ASTM D5055-19e1 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(9) Finger-jointed lumber.</P>
+<P>(10) Wood packaging, including pallets, crates, spools, and dunnage.</P>
+<P>(11) Composite wood products used inside the following:</P>
+<P>(i) New vehicles (other than recreational vehicles) that are constructed entirely from new parts and that have never been the subject of a retail sale or registered with the applicable State or other governmental agency.</P>
+<P>(ii) New rail cars.</P>
+<P>(iii) New boats.</P>
+<P>(iv) New aerospace craft.</P>
+<P>(v) New aircraft.</P>
+<P>(d) The emission standards in &#xA7; 770.10 do not apply to windows that contain composite wood products, if the windows contain less than five percent by volume of composite wood products, combined, in relation to the total volume of the finished window.</P>
+<P>(e) The emission standards in &#xA7; 770.10 do not apply to exterior doors and garage doors that contain composite wood products, if:</P>
+<P>(1) The doors are made from composite wood products manufactured with no-added formaldehyde-based resins or ultra low-emitting formaldehyde resins; or</P>
+<P>(2) The doors contain less than three percent by volume of composite wood products, combined, in relation to the total volume of the finished exterior door or garage door.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 83 FR 5345, Feb. 7, 2018; 88 FR 10476, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.2" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.2&quot;,&quot;citation&quot;:&quot;40 CFR 770.2&quot;}">
+<HEAD>&#xA7; 770.2 Applicability and compliance dates.</HEAD>
+<P>(a) [Reserved]</P>
+<P>(b) Laboratory and Product ABs that wish to accredit TPCs for TSCA Title VI purposes may apply to EPA beginning May 22, 2017, to become recognized. Laboratory and Product ABs must be recognized by EPA before they begin to provide and at all times while providing TSCA Title VI accreditation services.</P>
+<P>(c) TPCs that are not approved by the California Air Resources Board (CARB) that wish to provide TSCA Title VI certification services may apply to EPA beginning May 22, 2017, to become recognized. TPCs must be recognized by EPA and comply with all of the applicable requirements of this part before they begin to provide and at all times while providing TSCA Title VI certification services.</P>
+<P>(d) Notwithstanding any other provision of this part, TPCs that are approved by CARB to certify composite wood products have until March 22, 2019, to become accredited by an EPA TSCA Title VI AB(s) pursuant to the requirements of this part. During this two-year transition period, existing CARB-approved TPCs that are recognized by EPA and CARB TPCs approved during this transition period may carry out certification activities under TSCA Title VI, provided that they remain approved by CARB and comply with all aspects of this part other than the requirements of &#xA7; 770.7(c)(1)(i) and (ii) and (c)(2)(iii) and (iv). After the two-year transition period, CARB-approved TPCs may continue to certify composite wood products under TSCA Title VI provided the TPC maintains its CARB approval, follows the requirements under this part, submits to EPA documentation from CARB supporting their eligibility for reciprocity and has received EPA recognition as an EPA TSCA Title VI TPC. All TPCs that are certifying products as compliant with TSCA Title VI, both during and after the transition period, are subject to enforcement actions for any violations of TSCA Title VI or these regulations.</P>
+<P>(e) Beginning June 1, 2018, all manufacturers (including importers), fabricators, suppliers, distributors, and retailers of composite wood products, and component parts or finished goods containing these materials, must comply with this part, subject to the following:</P>
+<P>(1) Beginning June 1, 2018, laminated product producers must comply with the requirements of this part that are applicable to fabricators.</P>
+<P>(2) Beginning March 22, 2024, producers of laminated products must comply with the requirements of this part that are applicable to hardwood plywood panel producers (in addition to the requirements of this part that are applicable to fabricators) except as provided at &#xA7; 770.4.</P>
+<P>(3) Beginning March 22, 2024, producers of laminated products that, as provided at &#xA7; 770.4, are exempt from the definition of &#x201C;hardwood plywood&#x201D; must comply with the recordkeeping requirements in &#xA7; 770.40(c) and (d) (in addition to the requirements of this part that are applicable to fabricators).</P>
+<P>(4) Composite wood products manufactured (including imported) before June 1, 2018 may be sold, supplied, offered for sale, or used to fabricate component parts or finished goods at any time.</P>
+<CITA TYPE="N">[82 FR 44536, Sept. 25, 2017, as amended at 84 FR 43523, Aug. 21, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.3" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.3&quot;,&quot;citation&quot;:&quot;40 CFR 770.3&quot;}">
+<HEAD>&#xA7; 770.3 Definitions.</HEAD>
+<P>For the purposes of this part, the following definitions apply:</P>
+<P><I>Accreditation Body</I> or <I>AB</I> means an organization that provides an impartial verification of the competency of conformity assessment bodies or TPCs.</P>
+<P><I>Agent for Service</I> means an entity designated by a TPC or AB to receive legal documents on their behalf.</P>
+<P><I>Article</I> means a manufactured item which:</P>
+<P>(1) Is formed to a specific shape or design during manufacture;</P>
+<P>(2) Has end use functions dependent in whole or in part upon its shape or design during the end use; and</P>
+<P>(3) Has either no change of chemical composition during its end use or only those changes of composition which have no commercial purpose separate from that of the article and that may occur as described in 19 CFR 12.120(a)(2), except that fluids and particles are not considered articles regardless of shape or design.</P>
+<P><I>Assessment</I> means a process to include an on-site review undertaken by an AB to assess the competence of all operations of a conformity assessment body and TPC, based on particular standard(s) and/or other normative documents for a defined scope of accreditation, as defined in ISO/IEC 17011:2017(E) (incorporated by reference, see &#xA7; 770.99).</P>
+<P><I>Bundle</I> means more than one composite wood product, component part, or finished good fastened together for transportation or sale.</P>
+<P><I>Combination core</I> means a platform for making hardwood plywood or laminated products that consists of a combination of layers of veneer and particleboard or medium density fiberboard.</P>
+<P><I>Component part</I> means an object other than a panel that contains one or more composite wood products and is used in the construction or assembly of finished goods. Component parts that are sold directly to consumers are considered finished goods.</P>
+<P><I>Composite core</I> means a platform for making hardwood plywood or laminated products that consists of particleboard and/or medium density fiberboard, or combination core.</P>
+<P><I>Composite wood product</I> means hardwood plywood made with a veneer or composite core, medium-density fiberboard, and particleboard.</P>
+<P><I>Distributor</I> means any person or entity to whom a composite wood product, component part, or finished good is sold or supplied for the purposes of resale or distribution in commerce, except that manufacturers and retailers are not distributors.</P>
+<P><I>Engineered veneer</I> means a type of veneer that is created by dyeing and gluing together leaves of veneer in a mold to produce a block. The block is then sliced into leaves of veneer with a designed appearance that is highly repeatable.</P>
+<P><I>EPA TSCA Title VI Laboratory Accreditation Body</I> or <I>EPA TSCA Title VI Laboratory AB</I> means an AB that has a recognition agreement with EPA under the EPA TSCA Title VI Third-Party Certification Program, accredits a TPC's testing laboratory or contract testing laboratory to ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99) with a scope of accreditation to include this part and the formaldehyde test methods used to comply with this part, and assesses the testing laboratory's conformance to ISO/IEC 17020:2012(E) (incorporated by reference, see &#xA7; 770.99) in order to perform laboratory testing services.</P>
+<P><I>EPA TSCA Title VI Product Accreditation Body</I> or <I>EPA TSCA Title VI Product AB</I> means an AB that has a recognition agreement with EPA under the EPA TSCA Title VI Third-Party Certification Program, accredits a TPC to ISO/IEC 17065:2012(E) (incorporated by reference, see &#xA7; 770.99) with a scope of accreditation to include composite wood products and this part, and assesses the TPC's conformance to ISO/IEC 17020:2012(E) (incorporated by reference, see &#xA7; 770.99) in order to perform product certification.</P>
+<P><I>EPA TSCA Title VI Third-Party Certifier</I> or <I>EPA TSCA Title VI TPC</I> means a conformity assessment body that provides both product certification services and laboratory testing services (either directly or through contracted services), is accredited by an EPA TSCA Title VI Product AB and an EPA TSCA Title VI Laboratory AB (unless the laboratory testing services are contracted to a laboratory accredited by an EPA TSCA Title VI Laboratory AB), and is recognized by EPA pursuant to &#xA7; 770.7(c).</P>
+<P><I>Fabricator</I> means a person or entity who incorporates composite wood products into component parts or into finished goods. This includes laminated product producers, but persons or entities in the construction trades are not fabricators by renovating or remodeling buildings.</P>
+<P><I>Finished good</I> means any good or product, other than a panel, that contains hardwood plywood (with a veneer or composite core), particleboard, or medium-density fiberboard and that is not a component part or other part used in the assembly of a finished good. Site-built buildings or other site-built real property improvements are not considered finished goods.</P>
+<P><I>Hardboard</I> means a composite panel composed of cellulosic fibers, consolidated under heat and pressure in a hot press by: A wet process; or a dry process that uses a phenolic resin, or a resin system in which there is no formaldehyde as part of the resin cross-linking structure; or a wet formed/dry pressed process; and that is commonly or commercially known, or sold, as hardboard, including any product conforming to one of the following ANSI standards: Basic Hardboard (ANSI A135.4-2012) (incorporated by reference, see &#xA7; 770.99), Prefinished Hardboard Paneling (ANSI A135.5-2012) (incorporated by reference, see &#xA7; 770.99), Engineered Wood Siding (ANSI A135.6-2012) (incorporated by reference, see &#xA7; 770.99), or Engineered Wood Trim (ANSI A135.7-2012) (incorporated by reference, see &#xA7; 770.99). There is a rebuttable presumption that products emitting more than 0.06 ppm formaldehyde as measured by ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) are not hardboard.</P>
+<P><I>Hardwood plywood</I> means a hardwood or decorative panel that is intended for interior use and composed of (as determined under ANSI/HPVA HP-1-2020 (incorporated by reference, see &#xA7; 770.99)) an assembly of layers or plies of veneer, joined by an adhesive with a lumber core, a particleboard core, a medium-density fiberboard core, a hardboard core, a veneer core, or any other special core or special back material. Hardwood plywood does not include military-specified plywood, curved plywood, or any plywood specified in PS 1-19 (incorporated by reference, see &#xA7; 770.99), or PS 2-18 (incorporated by reference, see &#xA7; 770.99). In addition, hardwood plywood includes laminated products except as provided at &#xA7; 770.4.</P>
+<P><I>Importer</I> means any person or entity who imports composite wood products, component parts, or finished goods into the customs territory of the United States (as defined in general note 2 of the Harmonized Tariff Schedules of the United States pursuant to 15 U.S.C. 2612(a)(1)). Importer includes:</P>
+<P>(1) The entity primarily liable for the payment of any duties on the products; or</P>
+<P>(2) An authorized agent acting on the entity's behalf.</P>
+<P><I>Intended for interior use</I> means intended for use or storage inside a building or recreational vehicle, or constructed in such a way that it is not suitable for long-term use in a location exposed to the elements. Windows, doors, and garage doors with at least one interior-facing side are intended for interior use.</P>
+<P><I>Laboratory Accreditation Body</I> or <I>Laboratory AB</I> means an AB that accredits conformity assessment body testing laboratories.</P>
+<P><I>Laminated product</I> means a product in which a wood or woody grass veneer is affixed to a particleboard core or platform, a medium-density fiberboard core or platform, or a veneer core or platform. A laminated product is a component part used in the construction or assembly of a finished good. In addition, a laminated product is produced by either the fabricator of the finished good in which the product is incorporated or a fabricator who uses the laminated product in the further construction or assembly of a component part.</P>
+<P><I>Laminated product producer</I> means a manufacturing plant or other facility that manufactures (excluding facilities that solely import products) laminated products on the premises. Laminated product producers are fabricators and, beginning March 22, 2024, laminated product producers are also hardwood plywood panel producers except as provided at &#xA7; 770.4.</P>
+<P><I>Lot</I> means the panels produced from the beginning of production of a product type until the first quality control test; between one quality control test and the next; or from the last quality control test to the end of production for a particular product type.</P>
+<P><I>Medium-density fiberboard</I> means a panel composed of cellulosic fibers made by dry forming and pressing a resinated fiber mat (as determined under ANSI A208.2-2022 (incorporated by reference, see &#xA7; 770.99)).</P>
+<P><I>No-added formaldehyde-based resin</I> means a resin formulated with no added formaldehyde as part of the resin crosslinking structure in a composite wood product that meets the emission standards in &#xA7; 770.17(c).</P>
+<P><I>Non-complying lot</I> means any lot of composite wood product represented by a quarterly test value or quality control test result that indicates that the lot exceeds the applicable standard for the particular composite wood product in &#xA7; 770.10(b). A quality control test result that exceeds the QCL is considered a test result that indicates that the lot exceeds the applicable standard. Future production of the product type(s) represented by a failed quarterly test are not considered certified and must be treated as a non-complying lot until the product type(s) are re-qualified through a successful quarterly test.</P>
+<P><I>Panel</I> means a thin (usually less than two inches thick), flat, usually rectangular piece of particleboard, medium-density fiberboard or hardwood plywood. Embossing or imparting of an irregular surface on the composite wood products by the original panel producer during pressing does not remove the product from this definition. Cutting a panel into smaller pieces, without additional fabrication, does not make the panel into a component part or finished good. This does not include items made for the purpose of research and development, provided such items are not sold, supplied, or offered for sale.</P>
+<P><I>Panel producer</I> means a manufacturing plant or other facility that manufactures (excluding facilities that solely import products) composite wood products on the premises.</P>
+<P><I>Particleboard</I> means a panel composed of cellulosic material in the form of discrete particles (as distinguished from fibers, flakes, or strands) that are pressed together with resin (as determined under ANSI A208.1-2022 (incorporated by reference, see &#xA7; 770.99)). Particleboard does not include any product specified in PS 2-18 (incorporated by reference, see &#xA7; 770.99).</P>
+<P><I>Phenol-formaldehyde resin</I> means a resin that consists primarily of phenol and formaldehyde and does not contain urea-formaldehyde.</P>
+<P><I>Product Accreditation Body</I> or <I>Product AB</I> means an AB that accredits conformity assessment bodies who perform product certification.</P>
+<P><I>Product type</I> means a type of composite wood product, or group of composite wood products, made by the same panel producer with the same resin system that differs from another product type based on panel composition and formaldehyde emission characteristics. Grouped products must have similar formaldehyde emission characteristics and their emissions must fit the same correlation curve or linear regression.</P>
+<P><I>Production line</I> means a set of operations and physical industrial or mechanical equipment used to produce a composite wood product in one facility utilizing the same or similar equipment and quality assurance and quality control procedures.</P>
+<P><I>Purchaser</I> means any panel producer, importer, fabricator, distributor, or retailer that acquires composite wood products, component parts, or finished goods for purposes of resale in exchange for money or its equivalent.</P>
+<P><I>Quality control limit</I> or <I>QCL</I> means the value from the quality control method test that is the correlative equivalent to the applicable emission standard based on the ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99) or, upon showing equivalence in accordance with &#xA7; 770.20(d), the ASTM D6007-14 method (incorporated by reference, see &#xA7; 770.99).</P>
+<P><I>Reassessment</I> means an assessment, as described in sections 7.4 to 7.13 of ISO/IEC 17011:2017(E) (incorporated by reference, see &#xA7; 770.99), except that experience gained during previous assessments shall be taken into account.</P>
+<P><I>Recreational vehicle</I> means a vehicle which is:</P>
+<P>(1) Built on a single chassis;</P>
+<P>(2) Four hundred square feet or less when measured at the largest horizontal projections;</P>
+<P>(3) Self-propelled or permanently towable by a light duty truck; and</P>
+<P>(4) Designed primarily not for use as a permanent dwelling but as temporary living quarters for recreational, camping, travel, or seasonal use.</P>
+<P><I>Resin system</I> means type of resin used, including but not limited to urea-formaldehyde, soy, phenol-formaldehyde, or melamine-urea-formaldehyde.</P>
+<P><I>Retailer</I> means any person or entity that sells, offers for sale, or supplies directly to consumers composite wood products, component parts or finished goods that contain composite wood products, except that persons or entities in the construction trades are not considered retailers by selling, renovating, or remodeling buildings.</P>
+<P><I>Scavenger</I> means a chemical or chemicals that can be applied to resins or composite wood products either during or after manufacture and that react with residual or excess formaldehyde to reduce the amount of formaldehyde that can be emitted from composite wood products.</P>
+<P><I>Shipping quality control limit</I> means a quality control limit that is developed in conjunction with an EPA TSCA Title VI TPC that is based on panels prior to shipment rather than immediately after manufacturing.</P>
+<P><I>Stockpiling</I> means manufacturing or purchasing composite wood products, whether in the form of panels or incorporated into component parts or finished goods, between July 7, 2010 and June 12, 2017 at an average rate at least 20% greater than the average rate of manufacture or purchase during the 2009 calendar year for the purpose of circumventing the emission standards and other requirements of this subpart.</P>
+<P><I>Surveillance On-Site Assessment</I> means a set of on-site activities that are less comprehensive than reassessment, to monitor the continued fulfilment by accredited conformance assessment bodies of requirements for accreditation, as described in sections 7.4 to 7.13 of ISO/IEC 17011:2017(E) (incorporated by reference, see &#xA7; 770.99).</P>
+<P><I>Thin medium-density fiberboard</I> means medium-density fiberboard that has a thickness less than or equal to 8 millimeters or 0.315 inches.</P>
+<P><I>Third-party certifier</I> or <I>TPC</I> means a conformity assessment body that provides both product certification services and laboratory testing services (either directly or through contracted services).</P>
+<P><I>TPC laboratory</I> means a laboratory or contract laboratory of an EPA TSCA Title VI TPC that is accredited by an EPA TSCA Title VI Laboratory AB to ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99), and whose inspection activities are in conformance with ISO/IEC 17020:2012(E) (incorporated by reference, see &#xA7; 770.99).</P>
+<P><I>Ultra low-emitting formaldehyde resin</I> means a resin in a composite wood product that meets the emission standards in &#xA7; 770.18(c).</P>
+<P><I>Veneer</I> means a sheet of wood or woody grass with a maximum thickness of 6.4 millimeters (
+<FR>1/4</FR> inch) that is rotary cut, sliced, or sawed from a log, bolt, flitch, block, or culm; including engineered veneer.</P>
+<P><I>Veneer core</I> means a platform for making hardwood plywood or laminated products that consists of veneer.</P>
+<P><I>Woody grass</I> means a plant of the family <I>Poaceae</I> (formerly <I>Gramineae</I>) with hard lignified tissues or woody parts.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 82 FR 44537, Sept. 25, 2017; 83 FR 5345, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019; 88 FR 10476, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.4" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.4&quot;,&quot;citation&quot;:&quot;40 CFR 770.4&quot;}">
+<HEAD>&#xA7; 770.4 Exemption from the hardwood plywood definition for certain laminated products.</HEAD>
+<P>(a) <I>Current exemptions.</I> The definition of the term &#x201C;hardwood plywood&#x201D; in &#xA7; 770.3 does not include:</P>
+<P>(1) Laminated products made by attaching a wood or woody grass veneer with a phenol-formaldehyde resin to a platform that has been manufactured in compliance with this part (including either certified in accordance with &#xA7; 770.15, manufactured with no-added formaldehyde-based resins under &#xA7; 770.17, or manufactured with ultra low-emitting formaldehyde-based resins under &#xA7; 770.18).</P>
+<P>(2) Laminated products made by attaching a wood or woody grass veneer with a resin formulated with no-added formaldehyde as part of the resin cross-linking structure to a platform that has been manufactured in compliance with this part (including either certified in accordance with &#xA7; 770.15, manufactured with no-added formaldehyde-based resins under &#xA7; 770.17, or manufactured with ultra low-emitting formaldehyde-based resins under &#xA7; 770.18).</P>
+<P>(b) <I>Rulemaking petitions for exemption.</I> (1) Any person may petition the Agency to initiate a rulemaking for additional exemptions for laminated products from the definition of the term &#x201C;hardwood plywood,&#x201D; pursuant to 15 U.S.C. 2697(a)(3)(C)(i)(I).</P>
+<P>(2) Each petition should provide all available and relevant information, including studies conducted and formaldehyde emissions data. Submit petitions to: TSCA Confidential Business Information Center (7407M), WJC East; Room 6428; Attn: TSCA Title VI Program, U.S. Environmental Protection Agency, 1200 Pennsylvania Avenue NW, Washington, DC 20460-0001.</P>
+<P>(3) EPA will promptly review each submitted petition and, where appropriate, publish a proposed rule in the <E T="04">Federal Register</E> based on the petition and provide a public comment period of generally 30 days before taking a final action.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 88 FR 10476, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.5" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.5&quot;,&quot;citation&quot;:&quot;40 CFR 770.5&quot;}">
+<HEAD>&#xA7; 770.5 Prohibited acts.</HEAD>
+<P>(a) Failure or refusal to comply with any requirement of TSCA section 601 (15 U.S.C. 2697) or this part is a violation of TSCA section 15 (15 U.S.C. 2614).</P>
+<P>(b) Failure or refusal to establish and maintain records or to make available or permit access to or copying of records, as required by this part, is a violation of TSCA section 15 (15 U.S.C. 2614).</P>
+<P>(c) Making false or misleading statements in any statement, certification, or record required by this part is a violation of TSCA section 15 (15 U.S.C. 2614).</P>
+<P>(d) Violators may be subject to civil and criminal sanctions pursuant to TSCA section 16 (15 U.S.C. 2615) for each violation.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="B" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-40/part-770/subpart-B&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;40 CFR Part 770 Subpart B&amp;quot;}">
+<HEAD>Subpart B&#x2014;EPA TSCA Title VI Third-Party Certification Program</HEAD>
+<DIV8 N="770.7" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.7&quot;,&quot;citation&quot;:&quot;40 CFR 770.7&quot;}">
+<HEAD>&#xA7; 770.7 Third-party certification.</HEAD>
+<P>(a) <I>EPA TSCA Title VI Product ABs.</I> To participate in the EPA TSCA Title VI Third-Party Certification Program as an EPA TSCA Title VI Product AB, a Product AB must have the qualifications described in this section, submit an application and enter into a recognition agreement with EPA as described in this section, and, upon recognition from EPA, impartially perform the responsibilities described in this section.</P>
+<P>(1) <I>Qualifications.</I> To qualify for recognition by EPA in the EPA TSCA Title VI Third-Party Certification Program as an EPA TSCA Title VI Product AB, an applicant Product AB must:</P>
+<P>(i) Be a signatory to the International Accreditation Forum, Inc.'s (IAF) Multilateral Recognition Arrangement (MLA) through level three, or have membership in one of the IAF recognized regional accreditation cooperations, or an equivalent organization as determined by EPA;</P>
+<P>(ii) Be in conformance with ISO/IEC 17011:2017(E) (incorporated by reference, see &#xA7; 770.99); and</P>
+<P>(iii) Be competent to perform accreditation activities for product certification according to ISO/IEC 17065:2012(E) (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(2) <I>Application.</I> To be recognized by EPA under the EPA TSCA Title VI Third-Party Certification Program, a Product AB must submit an application to EPA in accordance with &#xA7; 770.8 that contains the following:</P>
+<P>(i) Name, address, telephone number, and email address of the organization or primary contact;</P>
+<P>(ii) Documentation of IAF MLA signatory status, membership in one of the IAF recognized regional accreditation cooperations, or an equivalent organization as determined by EPA;</P>
+<P>(iii) Description of any other qualifications related to the Product AB's experience in performing product accreditation of TPCs for manufactured products including an affirmation that assessors will be technically competent to assess a TPC's ability to perform their activities under paragraph (c)(4) of this section; and</P>
+<P>(iv) If not a domestic entity, name and address of an agent for service located in the United States. Service on this agent constitutes service on the AB or any of its officers or employees for any action by EPA or otherwise by the United States related to the requirements of this part. ABs may share an agent for service.</P>
+<P>(3) <I>Recognition agreement.</I> To be recognized by EPA under the EPA TSCA Title VI Third-Party Certification Program, a Product AB must enter into a recognition agreement with EPA that describes the EPA TSCA Title VI Product AB's responsibilities under this subpart.</P>
+<P>(i) Each recognition agreement will be valid for three years.</P>
+<P>(ii) Each recognition agreement will identify an EPA Recognition Agreement Implementation Officer and an EPA TSCA Title VI Product AB Implementation Officer that will serve as the point of contact for the EPA TSCA Title VI Third-Party Certification Program.</P>
+<P>(iii) To renew a recognition agreement for an additional three-year period, the EPA TSCA Title VI Product AB must submit an application for renewal in accordance with &#xA7; 770.8 before the three-year period of the recognition agreement lapses. The application must indicate any changes from the EPA TSCA Title VI Product AB's initial application or most recent renewal application.</P>
+<P>(iv) If an EPA TSCA Title VI Product AB fails to submit an application for renewal prior to the expiration of the previous recognition agreement, its recognition will lapse and the EPA TSCA Title VI Product AB may not provide accreditation services under TSCA Title VI.</P>
+<P>(v) If an EPA TSCA Title VI Product AB does submit an application for renewal prior to the expiration of the previous recognition agreement, it may continue to provide TSCA Title VI accreditation services under the terms of its previous recognition agreement until EPA has taken action on its application for renewal of the recognition agreement.</P>
+<P>(4) <I>Impartiality.</I> EPA TSCA Title VI Product ABs must act impartially when performing activities under the EPA TSCA Title VI Third-Party Certification Program. To demonstrate impartiality, Product ABs must:</P>
+<P>(i) Ensure that an accreditation decision regarding a TPC is made by persons different from those who conducted the assessment of the TPC; and</P>
+<P>(ii) Ensure that the AB's personnel who assess TPCs or make decisions regarding accreditation do not receive financial benefit from the outcome of an accreditation decision.</P>
+<P>(5) <I>Responsibilities.</I> Each EPA TSCA Title VI Product AB has the following responsibilities under the EPA TSCA Title VI Third-Party Certification Program:</P>
+<P>(i) <I>Accreditation.</I> EPA TSCA Title VI Product ABs must determine the accreditation eligibility, and accredit if appropriate, each TPC seeking recognition under the EPA TSCA Title VI Third-Party Certification Program by performing an assessment of each TPC as described in this section. The assessment must include all of the following components:</P>
+<P>(A) An on-site assessment by the EPA TSCA Title VI Product AB to determine whether the TPC meets the requirements of ISO/IEC 17065:2012(E), is in conformance with ISO/IEC 17020:2012(E) as required under ISO/IEC 17065:2012(E) section 6.2.1 and section 6.2.2 (incorporated by reference, see &#xA7; 770.99) and the EPA TSCA Title VI TPC requirements under this part. In performing the on-site assessment, the EPA TSCA Title VI Product AB must:</P>
+<P>(<I>1</I>) Develop a checklist of the EPA TSCA Title VI TPC requirements under paragraph (c)(4) of this section and the key accreditation elements of ISO/IEC 17065:2012(E) (incorporated by reference, see &#xA7; 770.99); and</P>
+<P>(<I>2</I>) Use the checklist for each on-site assessment.</P>
+<P>(B) A review of the approach that the TPC will use to verify the accuracy of the formaldehyde emissions tests conducted by the TPC laboratory and the formaldehyde quality control tests conducted by or for the panel producers producing composite wood products that are subject to the requirements of TSCA Title VI.</P>
+<P>(C) A review of the approach that the TPC will use for evaluating a panel producer's quality assurance and quality control processes, the proficiency of the panel producer's quality assurance and quality control personnel, the required elements of a panel producer's quality assurance and quality control manual, and sufficiency of on-site testing facilities as applicable.</P>
+<P>(D) A review of the approach that the TPC laboratory will use for establishing correlation or equivalence between ASTM E1333-14 and ASTM D6007-14, if used, (incorporated by reference, see &#xA7; 770.99) or allowable formaldehyde test methods listed under &#xA7; 770.20.</P>
+<P>(E) A review of the approach that the TPC will use for evaluating the process for sample selection, handling, and shipping procedures that the panel producer will use for quality control testing as applicable.</P>
+<P>(F) A review of the accreditation credentials of the TPC laboratory, including a verification that the laboratory has been accredited to ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99) with a scope of accreditation to include this part&#x2014;Formaldehyde Standards for Composite Wood Products and the formaldehyde test methods ASTM E1333-14 and ASTM D6007-14, if used, by an EPA TSCA Title VI Laboratory AB (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(ii) <I>Reassessment.</I> Each EPA TSCA Title VI Product AB must, in accordance with ISO/IEC 17011:2017(E) section 7.9 (incorporated by reference, see &#xA7; 770.99), conduct an on-site reassessment or surveillance on-site assessment at least every two years of each EPA TSCA Title VI TPC that the AB has accredited.</P>
+<P>(iii) <I>Suspension, reduction, withdrawal.</I> Each EPA TSCA Title VI Product AB must suspend, reduce, or withdraw the accreditation of an EPA TSCA Title VI TPC that the AB has accredited when circumstances warrant.</P>
+<P>(iv) <I>Notifications.</I> Each EPA TSCA Title VI Product AB must provide, in accordance with &#xA7; 770.8, the following notifications to EPA, as applicable:</P>
+<P>(A) Notification of the loss of its status as a signatory to the IAF MLA, or loss of membership in one of the IAF recognized regional accreditation cooperations, or an equivalent organization as determined by EPA must be provided within five calendar days of the date that the body receives notification of the loss of its signatory or membership status.</P>
+<P>(B) Notification that an EPA TSCA Title VI TPC has failed to comply with any provision of this part must be provided within 72 hours of the time the Product AB identifies the deficiency. The notice must include a description of the steps taken to address the deficiency.</P>
+<P>(C) Notification of suspension, reduction or withdrawal of an EPA TSCA Title VI TPC's accreditation must be provided within 72 hours of the time that the suspension, reduction or withdrawal takes effect.</P>
+<P>(D) Notification of a change in a non-domestic Product AB's agent for service must be provided within five calendar days.</P>
+<P>(v) <I>Records.</I> Each EPA TSCA Title VI Product AB must maintain, in electronic form, the checklists and other records documenting compliance with the requirements for assessment, reassessment, and surveillance on-site assessments of EPA TSCA Title VI TPCs for three years.</P>
+<P>(vi) <I>Annual report.</I> Each EPA TSCA Title VI Product AB must provide, in accordance with &#xA7; 770.8, an annual report on or before March 1st of each year for the AB services performed during the previous calendar year including the number and locations of assessment, reassessment, and surveillance on-site assessments performed for each EPA TSCA Title VI TPC.</P>
+<P>(vii) <I>EPA meetings.</I> Each EPA TSCA Title VI Product AB must meet with EPA at least once every two years in person, via teleconference, or through other virtual methods to discuss the implementation of the EPA TSCA Title VI Third-Party Certification Program.</P>
+<P>(viii) <I>Inspections.</I> Each EPA TSCA Title VI Product AB must allow inspections of the AB's facilities by EPA, at reasonable times, within reasonable limits, and in a reasonable manner, upon the presentation of appropriate credentials and a written notification to the AB.</P>
+<P>(b) <I>EPA TSCA Title VI Laboratory ABs.</I> To participate in the EPA TSCA Title VI Third-Party Certification Program as an EPA TSCA Title VI Laboratory AB, a Laboratory AB must have the qualifications described in this section, submit an application and enter into a recognition agreement with EPA as described in this section, and, upon recognition from EPA, impartially perform the responsibilities described in this section.</P>
+<P>(1) <I>Qualifications.</I> To qualify for recognition by EPA under the EPA TSCA Title VI Third-Party Certification Program as an EPA TSCA Title VI Laboratory AB, an applicant Laboratory AB must:</P>
+<P>(i) Be a signatory to the International Laboratory Accreditation Cooperation (ILAC) Mutual Recognition Arrangement (MRA), or have membership in one of the ILAC recognized regional accreditation cooperations, or an equivalent organization as determined by EPA;</P>
+<P>(ii) Be in conformance with ISO/IEC 17011:2017(E) (incorporated by reference, see &#xA7; 770.99);</P>
+<P>(iii) Be competent to perform accreditation activities for laboratory accreditation according to ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99); and</P>
+<P>(iv) Be competent to ensure EPA TSCA Title VI TPC inspection activities are in conformance with ISO/IEC 17020:2012(E) (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(2) <I>Application.</I> To be recognized by EPA under the EPA TSCA Title VI Third-Party Certification Program, a Laboratory AB must submit an application to EPA, which may be submitted in conjunction with a Product AB application. For recognition, a Laboratory AB must submit an application in accordance with &#xA7; 770.8 that contains the following:</P>
+<P>(i) Name, address, telephone number, and email address of the organization or primary contact;</P>
+<P>(ii) Documentation of ILAC MRA signatory status, membership in one of the ILAC recognized regional accreditation cooperations, or an equivalent organization as determined by EPA;</P>
+<P>(iii) Description of any other qualifications related to the Laboratory AB's experience in performing laboratory accreditation and inspection certification of TPCs including an affirmation that assessors will be technically competent to assess TPCs ability to perform their activities under paragraph (c)(4) of this section; and</P>
+<P>(iv) If not a domestic entity, name and address of an agent for service located in the United States. Service on this agent constitutes service on the AB or any of its officers or employees for any action by EPA or otherwise by the United States related to the requirements of this part. ABs may share an agent for service.</P>
+<P>(3) <I>Recognition agreement.</I> To be recognized by EPA under the EPA TSCA Title VI Third-Party Certification Program, a Laboratory AB must enter into a recognition agreement with EPA that describes the EPA TSCA Title VI Laboratory AB's responsibilities under this subpart.</P>
+<P>(i) Each recognition agreement will be valid for three years.</P>
+<P>(ii) Each recognition agreement will identify an EPA Recognition Agreement Implementation Officer and an EPA TSCA Title VI Laboratory AB Implementation Officer that will serve as the point of contact for the EPA TSCA Title VI Third-Party Certification Program.</P>
+<P>(iii) To renew a recognition agreement for an additional three-year period, the EPA TSCA Title VI Laboratory AB must submit an application for renewal in accordance with &#xA7; 770.8 before the three-year period of the recognition agreement lapses. The application must indicate any changes from the EPA TSCA Title VI Laboratory AB's initial application or most recent renewal application.</P>
+<P>(iv) If an EPA TSCA Title VI Laboratory AB fails to submit an application for renewal prior to the expiration of the previous recognition agreement, its recognition will lapse and the EPA TSCA Title VI Laboratory AB may not provide accreditation services under TSCA Title VI.</P>
+<P>(v) If an EPA TSCA Title VI Laboratory AB does submit an application for renewal prior to the expiration of the previous recognition agreement, it may continue to provide TSCA Title VI accreditation services under the terms of its previous recognition agreement until EPA has taken action on its application for renewal of the recognition agreement.</P>
+<P>(4) <I>Impartiality.</I> EPA TSCA Title VI Laboratory ABs must act impartially when performing activities under the EPA TSCA Title VI Third-Party Certification Program. To demonstrate impartiality, Laboratory ABs must:</P>
+<P>(i) Ensure that an accreditation decision regarding a TPC is made by persons different from those who conducted the assessment of the TPC; and</P>
+<P>(ii) Ensure that the AB's personnel who assess TPCs or make decisions regarding accreditation do not receive financial benefit from the outcome of an accreditation decision.</P>
+<P>(5) <I>Responsibilities.</I> Each EPA TSCA Title VI Laboratory AB has the following responsibilities under the EPA TSCA Title VI Third-Party Certification Program:</P>
+<P>(i) <I>Accreditation.</I> EPA TSCA Title VI Laboratory ABs must determine the accreditation eligibility, and accredit if appropriate, each TPC seeking recognition under the EPA TSCA Title VI Third-Party Certification Program by performing an assessment of each TPC. The assessment must include an on-site assessment by the EPA TSCA Title VI Laboratory AB to determine whether the laboratory meets the requirements of ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99), is in conformance with ISO/IEC 17020:2012(E) (incorporated by reference, see &#xA7; 770.99) and the EPA TSCA Title VI TPC requirements under this part including the formaldehyde test methods ASTM E1333-14 and ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99), if used. In performing the on-site assessment, the EPA TSCA Title VI Laboratory AB must:</P>
+<P>(A) Develop a checklist of the TPC requirements under paragraph (c)(4) of this section and the key conformity elements of ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99); and</P>
+<P>(B) Use the checklist for each on-site assessment.</P>
+<P>(ii) <I>Reassessment.</I> Each EPA TSCA Title VI Laboratory AB must, in accordance with ISO/IEC 17011:2017(E) section 7.9 (incorporated by reference, see &#xA7; 770.99), conduct a follow-up reassessment or surveillance on-site assessment of each TPC laboratory that the AB has accredited.</P>
+<P>(iii) <I>Proficiency.</I> Each EPA TSCA Title VI Laboratory AB must verify the accuracy of the formaldehyde emissions tests conducted by the TPC laboratory by ensuring the TPC laboratory participates in the CARB interlaboratory comparison for formaldehyde emissions when offered. In lieu of participation in the CARB interlaboratory comparison ensure that the TPC laboratory participates in an EPA-recognized proficiency testing program, if available.</P>
+<P>(iv) <I>Suspension, reduction, withdrawal.</I> Each EPA TSCA Title VI Laboratory AB must suspend, reduce, or withdraw the accreditation of a TPC laboratory that the AB has accredited when circumstances warrant.</P>
+<P>(v) <I>Notifications.</I> Each EPA TSCA Title VI Laboratory AB must provide, in accordance with &#xA7; 770.8, the following notifications to EPA as applicable:</P>
+<P>(A) Notification of the loss of its status as a signatory to the ILAC MRA, or loss of membership in one of the ILAC recognized regional accreditation cooperations, or an equivalent organization as determined by EPA, within five calendar days of the date that the body receives notice of the loss of its signatory or membership status.</P>
+<P>(B) Notification that a TPC laboratory has failed to comply with any provision of this part within 72 hours of the time the Laboratory AB identifies the deficiency. The notice must include a description of the steps taken to address the deficiency.</P>
+<P>(C) Notification of suspension, reduction or withdrawal of a TPC laboratory's accreditation within 72 hours of the time that the suspension, reduction or withdrawal takes effect.</P>
+<P>(D) Notification of a change in a non-domestic Laboratory AB's agent for service within five calendar days.</P>
+<P>(vi) <I>Records.</I> Each EPA TSCA Title VI Laboratory AB must maintain, in electronic form, the checklists and other records documenting compliance with the requirements for assessment, reassessment, and surveillance on-site assessments of TPC laboratories for three years.</P>
+<P>(vii) <I>Annual report.</I> Each EPA TSCA Title VI Laboratory AB must provide, in accordance with &#xA7; 770.8, an annual report to EPA on or before March 1st of each year for AB services performed during the previous calendar year including the number and locations of assessment, reassessment, and surveillance on-site assessments performed for each TPC laboratory.</P>
+<P>(viii) <I>EPA meetings.</I> Each EPA TSCA Title VI Laboratory AB must meet with EPA at least once every two years in person, via teleconference, or through other virtual methods to discuss the implementation of the EPA TSCA Title VI Third-Party Certification Program.</P>
+<P>(ix) <I>Inspections.</I> Each EPA TSCA Title VI Laboratory AB must allow inspections of the AB's facilities by EPA, at reasonable times, within reasonable limits, and in a reasonable manner, upon the presentation of appropriate credentials and a written notification to the AB.</P>
+<P>(c) <I>EPA TSCA Title VI Third-Party Certifiers.</I> To participate in the EPA TSCA Title VI Third-Party Certification Program as an EPA TSCA Title VI TPC, a TPC must be accredited by an EPA TSCA Title VI Product AB, use a laboratory that is accredited by an EPA TSCA Title VI Laboratory AB, have the other qualifications described in this subsection, submit an application and be recognized by EPA, and, upon recognition from EPA, impartially perform the responsibilities described in this section. Alternatively, CARB-approved TPCs must meet the criteria for reciprocity in paragraph (d) of this section and comply with the requirements of this part in order to be recognized by EPA as an EPA TSCA Title VI TPC.</P>
+<P>(1) <I>Qualifications.</I> To qualify for recognition by EPA in the EPA TSCA Title VI Third-Party Certification Program as an EPA TSCA Title VI TPC, an applicant TPC must:</P>
+<P>(i) Be accredited by an EPA TSCA Title VI Product AB to ISO/IEC 17065:2012(E) (incorporated by reference, see &#xA7; 770.99), with a scope of accreditation that includes include composite wood products and this part&#x2014;Formaldehyde Standards for Composite Wood Products;</P>
+<P>(ii) Be, or have a contract with a laboratory that is, accredited by an EPA TSCA Title VI Laboratory AB to ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99) with a scope of accreditation to include this part&#x2014;Formaldehyde Standards for Composite Wood Products&#x2014;and the formaldehyde test methods ASTM E1333-14 and ASTM D6007-14, if used (incorporated by reference, see &#xA7; 770.99);</P>
+<P>(iii) Have the ability to conduct inspections of composite wood products and properly train and supervise inspectors to inspect composite wood products in conformance with ISO/IEC 17020:2012(E) as required under ISO/IEC 17065:2012(E) section 6.2.1 and section 6.2.2 (incorporated by reference, see &#xA7; 770.99);</P>
+<P>(iv) Have demonstrated experience in the composite wood product industry with at least one type of composite wood product and indicated the specific product(s) the applicant intends to certify; and</P>
+<P>(v) Have demonstrated experience in performing or verifying formaldehyde emissions testing on composite wood products, including experience with test method ASTM E1333-14 and ASTM D6007-14, if used, (incorporated by reference, see &#xA7; 770.99), and experience evaluating correlation between test methods. Applicant TPCs that have demonstrated experience with test method ASTM D6007-14 only, must be contracting testing with a laboratory that has a large chamber and demonstrate its experience with ASTM E1333-14.</P>
+<P>(2) <I>Application.</I> Before certifying any products under this part, a TPC must be recognized by EPA under the EPA TSCA Title VI Third-Party Certification Program. To be recognized by EPA, a TPC must submit an application in accordance with &#xA7; 770.8 and renew that application every two years. The application must contain the following:</P>
+<P>(i) Email address of the organization or primary contact, organization name, organization telephone number, and organization address;</P>
+<P>(ii) Type of composite wood products that the applicant intends to certify;</P>
+<P>(iii) A copy of the TPC's certificate of accreditation from an EPA TSCA Title VI Product AB to ISO/IEC 17065:2012(E) (incorporated by reference, see &#xA7; 770.99) with a scope of accreditation that includes composite wood products and this part&#x2014;Formaldehyde Standards for Composite Wood Products;</P>
+<P>(iv) A copy of the TPC laboratory's certificate of accreditation from an EPA TSCA Title VI Laboratory AB to ISO/IEC 17025:2017(E) (incorporated by reference, see &#xA7; 770.99) with a scope of accreditation to include this part&#x2014;Formaldehyde Standards for Composite Wood Products&#x2014;and the formaldehyde test methods ASTM E1333-14 and ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99), if used;</P>
+<P>(v) An affirmation of the TPC's ability to conduct inspections of composite wood products and properly train and supervise inspectors to inspect composite wood products in conformance with ISO/IEC 17020:2012(E) as required under ISO/IEC 17065:2012(E) section 6.2.1 and section 6.2.2 (incorporated by reference, see &#xA7; 770.99);</P>
+<P>(vi) A description of the TPC's experience in the composite wood product industry with at least one type of composite wood product and indicate the specific product(s) the applicant intends to certify;</P>
+<P>(vii) A description of the TPC's experience in performing or verifying formaldehyde emissions testing on composite wood products;</P>
+<P>(viii) A description of the TPC's experience with test method ASTM E1333-14 and/or ASTM D6007-14, if used, (incorporated by reference, see &#xA7; 770.99), and experience evaluating correlation between test methods. Applicant TPCs that have experience with test method ASTM D6007-14 only, must be contracting testing with a laboratory that has a large chamber and describe its experience with ASTM E1333-14; and</P>
+<P>(ix) If not a domestic entity, the name and address of an agent for service located in the United States. Service on this agent constitutes service on the TPC or any of its officers or employees for any action by EPA or otherwise by the United States related to the requirements of this part. TPCs may share an agent for service.</P>
+<P>(3) <I>Impartiality.</I> EPA TSCA Title VI TPCs must act impartially in accordance with their accreditation when performing activities under the EPA TSCA Title VI Third-Party Certification Program. To demonstrate impartiality, TPCs must:</P>
+<P>(i) Not also be, or have a financial interest in a panel producer, fabricator, laminated product producer, importer, designer, distributor or retailer of composite wood products;</P>
+<P>(ii) Ensure that TPC management personnel and TPC personnel involved in the review and certification decision-making process for composite wood products are not involved in activities within the same or separate legal entity that may compromise the impartiality of its certification decision-making process, such as advocacy or consulting activities;</P>
+<P>(iii) Ensure that TPC management personnel and TPC personnel of the same or separate legal entity involved in activities such as advocacy or consulting are not involved in the management of the certification body, the review, or the certification decisions; and</P>
+<P>(iv) Ensure that TPC management personnel and TPC personnel certifying composite wood products sign a conflict of interest statement attesting that they will receive no financial benefit from the outcome of certification.</P>
+<P>(4) <I>Responsibilities.</I> Each EPA TSCA Title VI TPC has the following responsibilities under the EPA TSCA Title VI Third-Party Certification Program:</P>
+<P>(i) <I>Certification.</I> EPA TSCA Title VI TPCs certify composite wood products that are produced in accordance with this part and that comply with the emission standards of TSCA Title VI and this part, in accordance with ISO/IEC 17065:2012(E) (incorporated by reference, see &#xA7; 770.99). For each panel producer making composite wood products certified by the TPC, the EPA TSCA Title VI TPC must:</P>
+<P>(A) Verify that each panel producer has adequate quality assurance and quality control procedures and is complying with the applicable quality assurance and quality control requirements of this part;</P>
+<P>(B) Verify each panel producer's quality control test results compared with test results from ASTM E1333-14 and ASTM D6007-14, if used, (incorporated by reference, see &#xA7; 770.99) by having the TPC laboratory conduct quarterly tests and evaluate test method equivalence and correlation as required under &#xA7; 770.20;</P>
+<P>(C) In consultation with the panel producer, establish quality control limits (QCLs) for formaldehyde emissions, and, if applicable, shipping quality control limits or other formaldehyde emission limits, for each panel producer and product type;</P>
+<P>(D) Establish, for each panel producer, the process that will be used to determine if products are exceeding the applicable QCL;</P>
+<P>(E) Provide its CARB or EPA TPC number to each panel producer for labeling and recordkeeping; and</P>
+<P>(F) Inspect each panel producer, its products, and its records at least quarterly in conformance with ISO/IEC 17020:2012(E) as required under ISO/IEC 17065:2012(E) section 6.2.1 and section 6.2.2 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(G) In the event a government entity has identified the existence of unsafe conditions (e.g., natural disasters, outbreaks, political unrest, epidemics, and pandemics) in the area of a composite wood product manufacturing panel producer that would prevent the required quarterly inspections from being conducted in-person on-site, a TPC may opt to perform a remote quarterly inspection in lieu of the in-person on-site inspection. Such a remote inspection may occur only during the period of the unsafe conditions. For such a remote inspection during the period of the unsafe conditions, the TPC must conduct a remote quarterly inspection via live remote technology (e.g., video/teleconference) operating as directed by the TPC to satisfy the requirements of paragraph (c)(4)(i)(F) of this section, and work with the panel producer quality control manager at that time to select, package, sign, and ship the TPC panels/samples for the quarterly test according to &#xA7; 770.20(c). TPCs and panel producers must remain in close communication with each other to ensure any changes or developments that might affect the panel producer or product type certification are managed according to the TSCA Title VI regulations in this part. The standard practice for a TPC providing certification services for composite wood panel producers remains that a TPC conducts in-person quarterly inspections and sample collection, packaging, signature, and shipping for quality control testing.</P>
+<P>(ii) <I>Laboratories.</I> For quarterly testing, each EPA TSCA Title VI TPC must use only laboratories that have been accredited by an EPA TSCA Title VI Laboratory AB and that either participate in the CARB interlaboratory comparison for formaldehyde emissions when offered or in an EPA-recognized proficiency or interlaboratory program, if available.</P>
+<P>(iii) <I>NAF and ULEF.</I> For panel producers that do not receive approval for NAF or ULEF third-party certification exemptions or ULEF reduced testing from CARB, EPA TSCA Title VI TPCs must review applications for NAF or ULEF third-party certification exemptions or ULEF reduced testing. Each EPA TSCA Title VI TPC must approve these applications within 90 calendar days of receipt if the panel producer demonstrates that the requirements for third-party certification exemption under &#xA7; 770.17 or &#xA7; 770.18 or reduced testing under &#xA7; 770.18 are met.</P>
+<P>(iv) <I>Reduced testing for medium-density fiberboard or fiberboard.</I> EPA TSCA Title VI TPCs must review applications from panel producers to reduce the number of quality control tests for particleboard and medium-density fiberboard, and approve these applications within 90 calendar days of receipt if the panel producer demonstrates that the requirements for reduced testing under &#xA7; 770.20(b)(2)(ii) are met.</P>
+<P>(v) <I>Notifications to EPA.</I> Each EPA TSCA Title VI TPC must provide, in accordance with &#xA7; 770.8, the following notifications to EPA, as applicable:</P>
+<P>(A) Notification of an approved or rejected application, including a renewal application, for a NAF or ULEF third-party certification exemption or ULEF reduced testing within five calendar days of the approval or rejection with copies of all approved applications forwarded to EPA within 30 calendar days of approval.</P>
+<P>(B) Notification of an approved or rejected application, including a renewal application, for reduced testing for medium-density fiberboard or particleboard within five calendar days of the approval or rejection with copies of all approved applications forwarded to EPA within 30 calendar days of approval.</P>
+<P>(C) Notification of a panel producer exceeding its established QCL for three consecutive quality control tests within 72 hours of the time that the TPC becomes aware of the third consecutive exceedance. The notice must include the product type, dates of the quality control tests that exceeded the QCL, quality control test results, ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or ASTM D6007-14 method (incorporated by reference, see &#xA7; 770.99) correlative equivalent values in accordance with &#xA7; 770.20(d), the established QCL value(s) and the quality control method used.</P>
+<P>(D) Notification of each failed quarterly test, that is any sample that exceeds the applicable formaldehyde emission standard in &#xA7; 770.10, within 72 hours. Information in this notification is not eligible for treatment as confidential business information.</P>
+<P>(E) Notification of a change in a non-domestic TPC's agent for service within five calendar days.</P>
+<P>(F) Notification of a loss of accreditation or notification that the TPC has discontinued its participation in the EPA TSCA Title VI Third-Party Certification Program must be provided within 72 hours.</P>
+<P>(vi) <I>Other notifications.</I> Each EPA TSCA Title VI TPC must provide the following notifications, if applicable:</P>
+<P>(A) Notification of each failed quarterly test, that is any sample that exceeds the applicable formaldehyde emission standard in &#xA7; 770.10, to the panel producer in writing within 72 hours. Information in this notification is not eligible for treatment as confidential business information.</P>
+<P>(B) Notification of a loss of accreditation or notification that the TPC has discontinued its participation in the EPA TSCA Title VI Third-Party Certification Program within 72 hours to all panel producers for which it provides EPA TSCA Title VI certification services.</P>
+<P>(C) Notification of any changes in personnel qualifications, procedures, or laboratories used, to the TPC's EPA TSCA Title VI ABs within 30 calendar days.</P>
+<P>(vii) <I>Records.</I> Each EPA TSCA Title VI TPC must maintain, in electronic form, the following records for three years from the date the record is created, and provide them to EPA within 30 calendar days of a request from EPA:</P>
+<P>(A) A list of panel producers and their respective products and product types, including type of resin systems used, that the EPA TSCA Title VI TPC has certified;</P>
+<P>(B) Results of inspections and formaldehyde emissions tests conducted for and linked to each panel producer and product type;</P>
+<P>(C) A list of laboratories used by the EPA TSCA Title VI TPC, as well as all test methods used, including test conditions and conditioning time, and quarterly test results;</P>
+<P>(D) Methods and results for establishing test method correlations and equivalence;</P>
+<P>(E) Documentation for NAF or ULEF third-party certification exemptions or ULEF reduced testing approvals, including the name of the panel producer, facility, products approved, type of resin systems used and dates of approval;</P>
+<P>(F) Documentation of reduced testing approval for panel producers of medium-density fiberboard or particleboard, including the name of the panel producer, products approved and dates of approval; and</P>
+<P>(G) A copy of the most recent assessment, reassessment, and/or surveillance on-site assessment report provided by its EPA TSCA Title VI ABs.</P>
+<P>(viii) <I>Annual report.</I> Each EPA TSCA Title VI TPC must provide, in accordance with &#xA7; 770.8, an annual report on or before March 1st of each year for the TPC services performed during the previous calendar year. Quarterly test results, the test method, date of test, and product tested (including the product name or description and panel producer name) are not eligible for treatment as confidential business information. The report must contain all of the following elements, as applicable:</P>
+<P>(A) The following information for each panel producer making composite wood products certified by the EPA TSCA Title VI TPC:</P>
+<P>(<I>1</I>) Composite wood products that the EPA TSCA Title VI TPC has certified during the previous calendar year;</P>
+<P>(<I>2</I>) Types of resin systems used for the composite wood products certified;</P>
+<P>(<I>3</I>) Dates of quarterly inspections; for any inspection(s) conducted remotely in accordance with paragraph (c)(4)(i)(G) of this section, the TPC must certify that a government entity identified the existence of unsafe conditions at the time of the inspection(s);</P>
+<P>(<I>4</I>) For each quarterly test, the date, result, test method, and whether a contract laboratory was used;</P>
+<P>(<I>5</I>) For each failed quarterly test, the product type, the volume of product affected, the results of recertification testing, and a description of the final disposition of the affected product, including how the non-complying lot was addressed;</P>
+<P>(<I>6</I>) For each non-complying lot resulting from a failed quality control test, the test date, method, product type, volume of product affected, lot numbers, the results of retesting, and a description of the final disposition of the affected product, including how the non-complying lot was addressed; and</P>
+<P>(<I>7</I>) Any corrective actions that resulted from quarterly tests and inspections.</P>
+<P>(B) A list of laboratories and test methods used by the TPC, number and volume (cubic meters) of large and small chambers, date of equivalence determination and equivalence data.</P>
+<P>(C) Any non-conformities identified by its EPA TSCA Title VI AB(s) and how they were addressed.</P>
+<P>(D) The results compared with the mean of the interlaboratory comparison for all formaldehyde emissions interlaboratory comparison tests other than the CARB interlaboratory comparison or, if available, the results of an EPA-recognized proficiency testing program.</P>
+<P>(ix) <I>Assessments and inspections.</I> Upon request, each EPA TSCA Title VI TPC must allow EPA representatives to:</P>
+<P>(A) Accompany the TPC's staff during an assessment, reassessment or surveillance on-site assessment of the TPC by its AB(s); and</P>
+<P>(B) Inspect the TPC's facilities, at reasonable times, within reasonable limits, and in a reasonable manner, upon the presentation of appropriate credentials and a written notification to the TPC.</P>
+<P>(d) <I>Reciprocity for third-party certifiers approved by the California Air Resources Board (CARB)</I>&#x2014;(1) <I>During transitional period.</I> The transitional period is defined as the period beginning on December 12, 2016 and ending on March 22, 2019. TPCs already approved by CARB and TPCs subsequently approved by CARB during the transitional period must apply for EPA recognition in accordance with &#xA7; 770.8 before they can certify any products under this part. Once recognized by EPA, CARB-approved TPCs become EPA TSCA Title VI TPCs and may certify composite wood products under TSCA Title VI until March 22, 2019, as long as they:</P>
+<P>(i) Remain approved by CARB; and</P>
+<P>(ii) Comply with all aspects of this part other than the requirements of paragraphs (c)(1)(i) and (ii) and (c)(2)(iii) and (iv) of this section. This includes:</P>
+<P>(A) Provide panel producers with the TPC number issued by CARB; and</P>
+<P>(B) Provide the annual report required by paragraph (c)(4)(viii) of this section to CARB and EPA during the two-year transitional period.</P>
+<P>(C) Provide notifications required by paragraph (c)(4)(v) to EPA.</P>
+<P>(2) <I>After transition period.</I> (i) TPCs approved by CARB may continue to certify composite wood products under TSCA Title VI after the two-year transitional period if the TPC:</P>
+<P>(A) Maintains its CARB approval;</P>
+<P>(B) Complies with the requirements of this part;</P>
+<P>(C) Submits to EPA, in accordance with &#xA7; 770.8:</P>
+<P>(<I>1</I>) Documentation from CARB that specifies eligibility for reciprocity; and</P>
+<P>(<I>2</I>) A copy of the application submitted to CARB to be recognized as a TPC under the CARB ATCM.</P>
+<P>(D) Receives EPA recognition as an EPA TSCA Title VI TPC.</P>
+<P>(ii) EPA retains the authority to deny recognition of CARB-approved TPCs who seek recognition through reciprocity in the EPA TSCA Title VI Third-Party Certification Program if EPA has information indicating that the TPC is not qualified.</P>
+<P>(e) <I>Suspension, revocation or modification of recognition</I>&#x2014;(1) <I>Third-party certifiers.</I> EPA may suspend, revoke or modify the recognition of a TPC, if the TPC:</P>
+<P>(i) Fails to comply with any requirement of TSCA Title VI or this part;</P>
+<P>(ii) Makes any false or misleading statements on its application, records, or reports; or</P>
+<P>(iii) Makes substantial changes to personnel qualifications, procedures, or laboratories that make the TPC or TPC laboratory unable to comply with any applicable requirements of this part.</P>
+<P>(2) <I>ABs.</I> EPA may suspend, revoke or modify the recognition of an AB if the AB:</P>
+<P>(i) No longer maintains signatory status to the IAF MLA or ILAC MRA, membership in one of the IAF/ILAC recognized regional accreditation cooperations, or an equivalent organization as determined by EPA;</P>
+<P>(ii) Fails to comply with any requirement of TSCA Title VI or this part;</P>
+<P>(iii) Makes any false or misleading statements on its application, records, or reports; or</P>
+<P>(iv) Makes substantial changes to personnel qualifications or procedures that make the AB, TPC and/or TPC laboratory unable to comply with any applicable requirements of this part.</P>
+<P>(3) <I>Process for suspending, revoking or modifying recognition.</I> (i) Prior to taking action to suspend, revoke or modify recognition, EPA will notify the participant AB or the participant TPC in writing of the following:</P>
+<P>(A) The legal and factual basis for the proposed suspension, revocation or modification;</P>
+<P>(B) The anticipated commencement date and duration of the suspension, revocation or modification;</P>
+<P>(C) Actions, if any, which the affected AB or TPC may take to avoid suspension, revocation or modification, or to receive recognition in the future; and</P>
+<P>(D) The opportunity and method for requesting a hearing with EPA prior to final suspension, revocation or modification.</P>
+<P>(ii) If the affected AB or TPC requests a hearing in writing to EPA within 30 calendar days of receipt of the notification, EPA will:</P>
+<P>(A) Provide the affected AB or TPC an opportunity to offer written statements in response to EPA's assertions of the legal and factual basis for the proposed action; and</P>
+<P>(B) Appoint an impartial EPA official as Presiding Officer to conduct the hearing. The Presiding Officer will:</P>
+<P>(<I>1</I>) Conduct a fair, orderly, and impartial hearing within 90 calendar days of the request for a hearing;</P>
+<P>(<I>2</I>) Consider all relevant evidence, explanations, comments, and arguments submitted; and</P>
+<P>(<I>3</I>) Notify the affected AB or TPC in writing within calendar 90 days of completion of the hearing of his or her decision and order. Such an order is a final EPA action which may be subject to judicial review. The order must contain the basis, commencement date, and duration of the suspension, revocation or modification.</P>
+<P>(iii) If EPA determines that the public health, interest, or welfare warrants immediate action to revoke the recognition of an AB or TPC prior to the opportunity for a hearing, it will notify the affected AB or TPC of its right to request a hearing on the immediate revocation within 15 calendar days of the revocation taking place and the procedures for the conduct of such a hearing.</P>
+<P>(iv) Any notification, decision, or order issued by EPA under this section, any transcript or other verbatim record of oral testimony, and any documents filed by a certified individual or firm in a hearing under this section will be available to the public, except as otherwise provided by TSCA section 14. Any such hearing at which oral testimony is presented will be open to the public, except that the Presiding Officer may exclude the public to the extent necessary to allow presentation of information which may be entitled to confidential treatment under TSCA section 14.</P>
+<P>(v) EPA will maintain a publicly available list of ABs on its Web site whose recognition has been suspended, revoked or modified, or reinstated and a publicly available list of TPCs whose recognition has been suspended, revoked, modified, or reinstated.</P>
+<P>(vi) Unless the decision and order issued under paragraph (e)(3) of this section specify otherwise, an AB or a TPC whose recognition has been revoked must reapply for recognition in order to become recognized under this part again.</P>
+<P>(vii) Unless the decision and order issued under paragraph (e)(3) of this section specify otherwise, an AB whose recognition has been revoked or a TPC whose recognition has been revoked, must immediately notify all TPCs or panel producers to which it provides TSCA Title VI accreditation or certification services of the revocation.</P>
+<P>(f) <I>Effect of the loss of recognition or accreditation.</I> (1) If an AB is removed or withdraws from the EPA TSCA Title VI Third-Party Certification Program:</P>
+<P>(i) For reasons other than fraud or providing false or misleading statements, and other than a reason that implicates a particular TPC in a violation of TSCA Title VI, TPCs accredited by that AB can continue to certify products under TSCA Title VI for 180 calendar days, after which the TPCs must be accredited again by another EPA TSCA Title VI AB and re-recognized by EPA.</P>
+<P>(ii) Due to fraud or providing false or misleading statements with respect to a particular TPC, or for any other reason that implicates a particular TPC in a violation of TSCA Title VI, that TPC may not provide any TSCA Title VI certification services until it has been accredited again by another EPA TSCA Title VI AB and re-recognized by EPA.</P>
+<P>(2) If a TPC loses its accreditation, or if TPC is removed or withdraws from the EPA TSCA Title VI Third-Party Certification Program:</P>
+<P>(i) For reasons other than fraud or providing false or misleading statements, and other than a reason that implicates a particular panel producer in a violation of TSCA Title VI, the panel producers that used the TPC to certify their products must enlist another EPA TSCA Title VI TPC to certify their products within 90 calendar days. If the panel producer is not able to obtain the services of another EPA TSCA Title VI TPC within 90 days, the panel producer may request from EPA a 90 calendar day extension. During the time a panel producer is seeking a new TPC, it must continue to comply with all other requirements of TSCA Title VI, including quality control testing.</P>
+<P>(ii) Due to fraud or providing false or misleading statements with respect to a particular panel producer, or for any other reason that implicates a particular panel producer in a violation of TSCA Title VI, that panel producer may not sell, supply, offer for sale, or manufacture composite wood products for sale in the United States until its composite wood products have been recertified by another EPA TSCA Title VI TPC.</P>
+<P>(g) <I>Process for denying EPA TSCA Title VI recognition.</I> (1) Upon EPA denying a request for recognition of an AB or TPC, EPA will notify the AB or TPC in writing of the following:</P>
+<P>(i) The legal and factual basis for the denial; and</P>
+<P>(ii) Actions, if any, which the affected AB or TPC may take to receive recognition in the future.</P>
+<P>(2) [Reserved]</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 82 FR 44537, Sept. 25, 2017; 83 FR 5346, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019; 88 FR 10476, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.8" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.8&quot;,&quot;citation&quot;:&quot;40 CFR 770.8&quot;}">
+<HEAD>&#xA7; 770.8 Applications, notifications, and reports.</HEAD>
+<P>(a) All applications, notifications, and reports that are required to be submitted to EPA under this subpart must be submitted via the EPA Central Data Exchange (CDX) found at <I>https://cdx.epa.gov.</I></P>
+<P>(b) If the EPA CDX is unavailable, EPA will so inform EPA TSCA Title VI ABs and TPCs and will make electronic applications and reporting forms available online at <I>http://www.epa.gov/formaldehyde.</I></P>
+<P>(c)(1) Persons submitting a notice under this rule are subject to EPA confidentiality regulations at 40 CFR part 2, subpart B, except that the certification in paragraph (c)(2) of this section must also be provided when asserting a claim of confidentiality.</P>
+<P>(2) In submitting a claim of confidentiality, a person must certify the truth of the following four statements concerning all information which is claimed as confidential:</P>
+<P>(i) My company has taken measures to protect the confidentiality of the information.</P>
+<P>(ii) I have determined that the information is not required to be disclosed or otherwise made available to the public under any other Federal law.</P>
+<P>(iii) I have a reasonable basis to conclude that disclosure of the information is likely to cause substantial harm to the competitive position of the person.</P>
+<P>(iv) I have a reasonable basis to believe that the information is not readily discoverable through reverse engineering.</P>
+</DIV8>
+
+</DIV6>
+<DIV6 N="C" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-40/part-770/subpart-C&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;40 CFR Part 770 Subpart C&amp;quot;}">
+<HEAD>Subpart C&#x2014;Composite Wood Products</HEAD>
+<DIV8 N="770.10" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.10&quot;,&quot;citation&quot;:&quot;40 CFR 770.10&quot;}">
+<HEAD>&#xA7; 770.10 Formaldehyde emission standards.</HEAD>
+<P>(a) Except as otherwise provided in this part, the emission standards in this section apply to composite wood products sold, supplied, offered for sale, or manufactured (including imported) on or after June 1, 2018 in the United States. These emission standards apply regardless of whether the composite wood product is in the form of a panel, a component part, or incorporated into a finished good.</P>
+<P>(b) The emission standards are based on test method ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99), and are as follows:</P>
+<P>(1) For hardwood plywood made with a veneer core or a composite core, 0.05 parts per million (ppm) of formaldehyde.</P>
+<P>(2) For medium-density fiberboard, 0.11 ppm of formaldehyde.</P>
+<P>(3) For thin medium-density fiberboard, 0.13 ppm of formaldehyde.</P>
+<P>(4) For particleboard, 0.09 ppm of formaldehyde.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 83 FR 5347, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.12" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.12&quot;,&quot;citation&quot;:&quot;40 CFR 770.12&quot;}">
+<HEAD>&#xA7; 770.12 Stockpiling.</HEAD>
+<P>(a) The sale of stockpiled inventory of composite wood products, whether in the form of panels or incorporated into component parts or finished goods, is prohibited after June 1, 2018.</P>
+<P>(b) To determine whether stockpiling has occurred, the rate of manufacture or purchase is measured as follows:</P>
+<P>(1) For composite wood products in the form of panels, the rate is measured in terms of square footage of panels produced.</P>
+<P>(2) For composite wood products incorporated into component parts or finished goods, the rate is measured in terms of the square footage of composite wood product panels purchased for the purpose of incorporating them into component parts or finished goods.</P>
+<P>(c) Manufacturers or purchasers who have, in an annual year, a greater than 20% increase in manufacturing or purchasing composite wood products relative to annual year 2009 for some reason other than circumventing the emission standards would not be in violation of this section. Such reasons may include, but are not limited to:</P>
+<P>(1) A quantifiable immediate increase in customer demand or sales.</P>
+<P>(2) A documented and planned business expansion.</P>
+<P>(3) The manufacturer or purchaser was not in business at the beginning of calendar year 2009.</P>
+<P>(4) An increase in production to meet increased demand resulting from an emergency event or natural disaster.</P>
+<P>(d) In order to be found to be stockpiling an entity must be increasing the rate of manufacturing or purchasing for the purpose of circumventing the emission standards.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 84 FR 43524, Aug. 21, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.15" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.15&quot;,&quot;citation&quot;:&quot;40 CFR 770.15&quot;}">
+<HEAD>&#xA7; 770.15 Composite wood product certification.</HEAD>
+<P>(a) Beginning June 1, 2018, only certified composite wood products, whether in the form of panels or incorporated into component parts or finished goods, are permitted to be sold, supplied, offered for sale, or manufactured (including imported) in the United States, unless the product is specifically exempted by this part.</P>
+<P>(b) Certified composite wood products are those that are produced or fabricated in accordance with all of the provisions of this part.</P>
+<P>(c) To obtain product certification, a panel producer must apply to an EPA TSCA Title VI TPC.</P>
+<P>(1) For panel producers that do not have any previous product certifications from a CARB-approved TPC or an EPA TSCA Title VI TPC, the application must contain the following:</P>
+<P>(i) The panel producer's name, address, telephone number, and other contact information;</P>
+<P>(ii) A copy of the panel producer's quality control manual as required by &#xA7; 770.21(a);</P>
+<P>(iii) Name and contact information for the panel producer's quality control manager;</P>
+<P>(iv) An identification of the specific products for which certification is requested, and the resin system used in panel production;</P>
+<P>(v) At least five tests conducted under the supervision of an EPA TSCA Title VI TPC pursuant to test method ASTM E1333-14 or ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99). Test results obtained by ASTM D6007-14 must include a showing of equivalence in accordance with &#xA7; 770.20(d)(1);</P>
+<P>(vi) At least five quality control tests conducted in accordance with &#xA7; 770.20(b)(1);</P>
+<P>(vii) Correlation data and linear regression equation (or, under the threshold approach, the correlation data and the upper limit); and</P>
+<P>(viii) Results of an initial, on-site inspection by the TPC of the panel producer. In the event a government entity has identified the existence of unsafe conditions as outlined in &#xA7; 770.7(c)(4)(i)(G) and in order to conduct the required initial, on-site inspection associated with new certification activities, the TPC may conduct a virtual inspection via on-site video/teleconference technology (operating as directed by the TPC) and that aligns with the standard operating procedure the TPC would normally employ during an in-person inspection to satisfy the requirements of this paragraph (c)(1)(viii).</P>
+<P>(2) For panel producers applying for certification of a new product type but that have previous product certifications from a CARB-approved TPC or an EPA TSCA Title VI TPC, the application must contain the following:</P>
+<P>(i) The panel producer's name, address, and telephone number;</P>
+<P>(ii) An identification of the specific products for which certification is requested, and the resin system used in panel production;</P>
+<P>(iii) At least five tests conducted under the supervision of an EPA TSCA Title VI TPC pursuant to test method ASTM E1333-14 or ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99). Test results obtained by ASTM D6007-14 must include a showing of equivalence in accordance with &#xA7; 770.20(d)(1);</P>
+<P>(iv) At least five quality control tests conducted in accordance with &#xA7; 770.20(b)(1);</P>
+<P>(v) Correlation data and linear regression equation (or, under the threshold approach, the correlation data and the upper limit); and</P>
+<P>(vi) Description of any changes in the panel producer's quality control manual and a copy of those changes.</P>
+<P>(d) The EPA TSCA Title VI TPC must act on a panel producer's complete application within 90 calendar days of receipt by reviewing all of the components of the application.</P>
+<P>(1) If the application indicates that the candidate product achieves the applicable emission standards described in &#xA7; 770.10, adequate correlation as described in &#xA7; 770.20(d)(2), and that the panel producer is meeting the requirements in &#xA7; 770.21, the EPA TSCA Title VI TPC will approve the application.</P>
+<P>(2) If the application is from a panel producer that did not previously have products certified by a CARB-approved TPC or an EPA TSCA Title VI TPC, the EPA TSCA Title VI TPC will review the quality control manual and results of the on-site initial inspection and approve or disapprove the quality control manual.</P>
+<P>(3) If the application does not demonstrate that the candidate product achieves the applicable emission standards described in &#xA7; 770.10, the EPA TSCA Title VI TPC will disapprove the application. A new application may be submitted for the candidate product at any time.</P>
+<P>(e) If a product is certified by a CARB-approved TPC that is also recognized by EPA, the product will also be considered certified under TSCA Title VI until March 22, 2019 after which the TPC needs to comply with all the requirements of this part as an EPA TSCA Title VI TPC under Section 770.7(d) in order for the product to remain certified.</P>
+<P>(f) To maintain certification, the panel producer making the certified product must get inspected by its EPA TSCA Title VI TPC quarterly as well as meet the testing requirements under &#xA7; 770.20.</P>
+<P>(g) If the certified product fails a quarterly test, certification for any product types represented by the sample is suspended until a compliant quarterly test result is obtained in accordance with &#xA7; 770.22.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 82 FR 44537, Sept. 25, 2017; 83 FR 5347, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019; 88 FR 10477, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.17" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.17&quot;,&quot;citation&quot;:&quot;40 CFR 770.17&quot;}">
+<HEAD>&#xA7; 770.17 No-added formaldehyde-based resins.</HEAD>
+<P>(a) Producers of composite wood product panels made with no-added formaldehyde-based resins may apply to an EPA TSCA Title VI TPC or to CARB for a two-year exemption from the testing requirements in &#xA7; 770.20 and certification requirements in &#xA7;&#xA7; 770.15 and 770.40(b). The application must contain the following:</P>
+<P>(1) The panel producer's name, address, and telephone number;</P>
+<P>(2) An identification of the specific product and the resin system;</P>
+<P>(3) At least one test conducted under the supervision of an EPA TSCA Title VI TPC pursuant to test method ASTM E1333-14 or ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99). Test results obtained by ASTM D6007-14 must include a showing of equivalence in accordance with &#xA7; 770.20(d)(1); and</P>
+<P>(4) Three months of routine quality control tests under &#xA7; 770.20, including a showing of correlation in accordance with &#xA7; 770.20(d)(2), totaling not less than thirteen quality control tests.</P>
+<P>(b) The EPA TSCA Title VI TPC will approve a panel producer's application within 90 calendar days of receipt if the application is complete and demonstrates that the candidate product achieves the emission standards described in paragraph (c) of this section.</P>
+<P>(c) As measured according to paragraphs (a)(3) and (4) of this section, the emission standards for composite wood products made with no-added formaldehyde-based resins are as follows:</P>
+<P>(1) No test result higher than 0.05 parts per million (ppm) of formaldehyde for hardwood plywood and 0.06 ppm for particleboard, medium-density fiberboard, and thin medium-density fiberboard.</P>
+<P>(2) Ninety percent of the three months of routine quality control testing data and the results of the one primary or secondary method test (required under paragraphs (a)(3) and (4) of this section) must be shown to be no higher than 0.04 ppm.</P>
+<P>(d) Products that meet the requirements specified under &#xA7; 770.17(c)(1) and (2) and have obtained exemption from the California Air Resources Board will also be exempt from the requirements in &#xA7;&#xA7; 770.15, 770.20, and 770.40(b), as long as the requirements of the California Air Resources Board remain as stringent as EPA's requirements.</P>
+<P>(e) After the two-year period of the initial exemption, and every two years thereafter, in order to continue to qualify for the exemption from the testing and certification requirements, the panel producer must reapply to an EPA TSCA Title VI TPC or to CARB and obtain at least one test result in accordance with paragraph (a)(3) of this section that complies with the emission standards in paragraph (c)(1) of this section.</P>
+<P>(f) Any time there is an operational or process change that is likely to affect formaldehyde emissions, such as a change in resin formulation, press cycle duration, temperature, or amount of resin used per panel, at least one quality control test under &#xA7; 770.20 and at least one test result in accordance with paragraph (a)(3) of this section that indicate compliance with the emission standards in paragraph (c)(1) of this section are required.</P>
+<P>(g) A change in the resin system invalidates the exemption for any product produced with the different resin after such a change.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 83 FR 5347, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019; 88 FR 10477, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.18" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.18&quot;,&quot;citation&quot;:&quot;40 CFR 770.18&quot;}">
+<HEAD>&#xA7; 770.18 Ultra low-emitting formaldehyde resins.</HEAD>
+<P>(a) Producers of composite wood product panels made with ultra low-emitting formaldehyde resins may apply to an EPA TSCA Title VI TPC or CARB for approval either to conduct less frequent testing than is specified in &#xA7; 770.20 or approval for a two-year exemption from the testing requirements in &#xA7; 770.20 and certification requirements in &#xA7;&#xA7; 770.15 and 770.40(b). The application must contain the following:</P>
+<P>(1) The panel producer's name, address, and telephone number;</P>
+<P>(2) An identification of the specific product type, including resin system;</P>
+<P>(3) At least two tests conducted under the supervision of an EPA TSCA Title VI TPC pursuant to test method ASTM E1333-14 or ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99). Test results obtained by ASTM D6007-14 must include a showing of equivalence in accordance with &#xA7; 770.20(d)(1); and</P>
+<P>(4) Six months of routine quality control tests under &#xA7; 770.20, including a showing of correlation in accordance with &#xA7; 770.20(d)(2), totaling not less than twenty-six quality control tests.</P>
+<P>(b) The EPA TSCA Title VI TPC will approve a panel producer's application within 90 calendar days of receipt if the application is complete and demonstrates that the candidate product achieves the emission standards required for reduced testing as described in paragraph (c) of this section or the emission standards required for a two-year exemption as described in paragraph (d) of this section.</P>
+<P>(c) As measured according to paragraphs (a)(3) and (4) of this section, the emission standards for reduced testing for composite wood products made with ultra low-emitting formaldehyde resins are as follows:</P>
+<P>(1) No test result higher than 0.05 parts per million (ppm) of formaldehyde for hardwood plywood, 0.08 ppm for particleboard, 0.09 ppm for medium-density fiberboard, and 0.11 ppm for thin medium-density fiberboard.</P>
+<P>(2) For 90% of the six months of routine quality control testing data required under paragraph (a)(4) of this section, no higher than 0.05 ppm of formaldehyde for particleboard, no higher than 0.06 ppm of formaldehyde for medium-density fiberboard, and no higher than 0.08 ppm of formaldehyde for thin medium-density fiberboard.</P>
+<P>(d) As measured according to paragraphs (a)(3) and (4) of this section, the emission standards for an exemption from the testing and certification requirements of &#xA7; 770.20 for composite wood products made with ultra low-emitting formaldehyde resins are as follows:</P>
+<P>(1) No test result higher than 0.05 ppm of formaldehyde for hardwood plywood or 0.06 ppm of formaldehyde for particleboard, medium-density fiberboard, and thin medium-density fiberboard.</P>
+<P>(2) Ninety percent of six months of routine quality control testing data and the results of two quarterly primary or secondary method tests (required under paragraphs (a)(3) and (4) of this section) must be shown to be no higher than an ultra-low-emitting formaldehyde resins (ULEF)-target value of 0.04 ppm.</P>
+<P>(e) Products that have obtained an exemption from the California Air Resources Board will also be exempt from the requirements in &#xA7;&#xA7; 770.15, 770.20, and 770.40(b) if they meet the requirements under &#xA7; 770.18(d) and the requirements of the California Air Resources Board remain as stringent as EPA's requirements. Products that have obtained approval for reduced testing from the California Air Resources Board will be granted approval to conduct less frequent testing than is specified in &#xA7; 770.20 if they meet the requirements under &#xA7; 770.18(c) and the requirements of the California Air Resources Board remain as stringent as EPA's requirements.</P>
+<P>(f) Products that are represented by a quarterly test result that exceeds the applicable emission standard in this section or a quality control test that indicates that the product exceeds the applicable emission standard in this section lose their reduced testing approval and must reapply as specified under &#xA7; 770.18(a).</P>
+<P>(g) After the two-year period of the initial exemption, and every two years thereafter, in order to continue to qualify for the exemption from the testing and certification requirements, the panel producer must reapply to an EPA TSCA Title VI TPC or CARB and obtain at least two test results in accordance with paragraph (a)(3) of this section that comply with the emission standards in paragraph (d)(1) of this section.</P>
+<P>(h) Any time there is an operational or process change such as a change in resin formulation, press cycle duration, temperature, or amount of resin used per panel, at least five quality control tests under &#xA7; 770.20 and at least one test result in accordance with paragraph (a)(3) of this section that indicate compliance with the emission standards in paragraph (d)(1) of this section are required.</P>
+<P>(i) A change in the resin system invalidates the exemption or reduced testing approval for any product type produced after such a change.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 83 FR 5347, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019; 88 FR 10477, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.20" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.20&quot;,&quot;citation&quot;:&quot;40 CFR 770.20&quot;}">
+<HEAD>&#xA7; 770.20 Testing requirements.</HEAD>
+<P>(a) <I>General requirements.</I> (1) All panels must be tested prior to the application of a finishing or topcoat. Conditioning of panels for testing must start as soon as possible after panel production, but no later than 30 calendar days after the panels were produced.</P>
+<P>(2) Facilities that conduct the formaldehyde testing required by this section must follow the procedures and specifications, such as testing conditions and loading ratios, of the test method being used.</P>
+<P>(3) All equipment used in the formaldehyde testing required by this section must be calibrated and otherwise maintained and used in accordance with the equipment manufacturer's instructions.</P>
+<P>(b) <I>Quality control testing</I>&#x2014;(1) <I>Allowable methods.</I> Quality control testing must be performed using any of the following methods, with a showing of correlation for each method pursuant to paragraph (d) of this section:</P>
+<P>(i) ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(ii) ASTM D5582-14 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(iii) BS EN ISO 12460-3:2020 (incorporated by reference, see &#xA7; 770.99) or ISO 12460-3:2020(E) (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(iv) DMC 2007 User's Manual (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(v) DMC 2012 GP User's Manual (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(vi) BS EN ISO 12460-5:2015 E (Perforator Method) (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(vii) JIS A 1460:2021(E) (24-hr Desiccator Method) (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(2) <I>Frequency of testing.</I> (i) Particleboard and medium-density fiberboard must be tested at least once per shift (eight or twelve hours, plus or minus one hour of production) for each production line for each product type. Quality control tests must also be conducted whenever:</P>
+<P>(A) A product type production ends, even if eight hours of production has not been reached;</P>
+<P>(B) The resin formulation is changed so that the formaldehyde to urea ratio is increased;</P>
+<P>(C) There is an increase by more than ten percent in the amount of formaldehyde resin used, by square foot or by panel;</P>
+<P>(D) There is a decrease in the designated press time by more than 20%; or</P>
+<P>(E) The quality control manager or quality control employee has reason to believe that the panel being produced may not meet the requirements of the applicable standards.</P>
+<P>(ii) Particleboard and medium-density fiberboard panel producers are eligible for reduced quality control testing if they demonstrate consistent operations and low variability of test values.</P>
+<P>(A) To qualify, panel producers must:</P>
+<P>(<I>1</I>) Apply in writing to an EPA TSCA Title VI TPC; and</P>
+<P>(<I>2</I>) Maintain a 30 panel running average.</P>
+<P>(B) With respect to reduced quality control testing, EPA TSCA Title VI TPCs:</P>
+<P>(<I>1</I>) May approve a reduction to one quality control test per 24-hour production period if the 30 panel running average remains two standard deviations below the designated QCL for the previous 60 consecutive calendar days or more;</P>
+<P>(<I>2</I>) May approve a reduction to one quality control test per 48-hour production period if the 30 panel running average remains three standard deviations below the designated QCL for the previous 60 consecutive calendar days or more;</P>
+<P>(<I>3</I>) Will approve a request for reduced quality control testing as long as the data submitted by the panel producer demonstrate compliance with the criteria and the EPA TSCA Title VI TPC does not otherwise have reason to believe that the data are inaccurate or the panel producer's production processes are inadequate to ensure continued compliance with the emission standards; and</P>
+<P>(<I>4</I>) Will revoke approval for reduced quality control testing if testing or inspections indicate a panel producer no longer demonstrates consistent operations and low variability of test values.</P>
+<P>(iii) Hardwood plywood must be tested as follows:</P>
+<P>(A) At least one test per week per product type if the weekly hardwood plywood production at the panel producer is more than 100,000 but less than 200,000 square feet.</P>
+<P>(B) At least two tests per week per product type if the weekly hardwood plywood production at the panel producer is 200,000 square feet or more, but less than 400,000 square feet.</P>
+<P>(C) At least four tests per week per product type if the weekly hardwood plywood production at the panel producer is 400,000 square feet or more.</P>
+<P>(D) If weekly production of hardwood plywood at the panel producer is 100,000 square feet or less, at least one test per 100,000 square feet for each product type produced; or, if less than 100,000 square feet of a particular product type is produced, one quality control test of that product type every month that it is produced.</P>
+<P>(E) Quality control tests must also be conducted whenever:</P>
+<P>(<I>1</I>) The resin formulation is changed so that the formaldehyde to urea ratio is increased;</P>
+<P>(<I>2</I>) There is an increase by more than ten percent in the amount of formaldehyde resin used, by square foot or by panel;</P>
+<P>(<I>3</I>) There is an increase by more than 20% in the adhesive application rate;</P>
+<P>(<I>4</I>) There is a decrease in the designated press time by more than 20%; or</P>
+<P>(<I>5</I>) The quality control manager or quality control employee has reason to believe that the panel being produced may not meet the requirements of the applicable standard.</P>
+<P>(iv) Composite wood products that have been approved by an EPA TSCA Title VI TPC or CARB for reduced testing under &#xA7; 770.18(b) through (c) must be tested at least once per week per product type and, for particle board and medium-density fiberboard, per production line, for products produced that week, except that hardwood plywood panel producers who qualify for less frequent testing under paragraph (b)(2)(iii)(D) of this section may continue to perform quality control testing under that provision.</P>
+<P>(3) <I>Results.</I> Any test result that exceeds the QCL established pursuant to &#xA7; 770.7(c)(4)(i)(C) must be reported to the EPA TSCA Title VI TPC in writing within 72 hours. The panel producer must comply with &#xA7; 770.22 with respect to any lot represented by a quality control sample that exceeds the QCL. Where multiple products are grouped in a single product type for testing, this includes all products in the group represented by the sample.</P>
+<P>(c) <I>Quarterly testing.</I> Quarterly testing must be supervised by EPA TSCA Title VI TPCs and performed by TPC laboratories.</P>
+<P>(1) <I>Allowable methods.</I> Quarterly testing must be performed using ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or, with a showing of equivalence pursuant to paragraph (d) of this section, ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(2) <I>Sample selection.</I> (i) Samples must be randomly chosen by an EPA TSCA Title VI TPC.</P>
+<P>(ii) Samples must be selected from each certified product type for quarterly testing purposes. For hardwood plywood samples, the samples must be randomly selected from products that represent the range of formaldehyde emissions of products produced by the panel producer.</P>
+<P>(iii) Samples must not include the top or the bottom composite wood product of a bundle.</P>
+<P>(iv) Test results may represent a single chamber value or, if using the ASTM D6007-14 apparatus, the average value of testing nine specimens representing evenly distributed portions of an entire panel. The nine specimens must be tested in groups of three specimens, resulting in three data points, which must be averaged to represent one test value for the panel those specimens represent.</P>
+<P>(3) <I>Sample handling.</I> Samples must be closely stacked or air-tight wrapped between the time of sample selection and the start of test conditioning. Samples must be labeled as such, signed by the EPA TSCA Title VI TPC, bundled air-tight, wrapped in polyethylene, protected by cover sheets, and promptly shipped to the TPC laboratory. Conditioning must begin as soon as possible, but no later than 30 calendar days after the samples were produced.</P>
+<P>(4) <I>Results.</I> Any sample that exceeds the applicable formaldehyde emission standard in &#xA7; 770.10 must be reported by the EPA TSCA Title VI TPC to the panel producer in writing and to EPA, in accordance with &#xA7; 770.8, within 72 hours. The panel producer must comply with &#xA7; 770.22 with respect to any lot represented by a sample result that exceeds the applicable formaldehyde emission standard. Where multiple products are grouped in a single product type for testing, this includes all products in the group represented by the sample.</P>
+<P>(5) <I>Reduced testing frequency.</I> Composite wood products that have been approved by an EPA TSCA Title VI TPC or CARB for reduced testing under &#xA7; 770.18(c) need only undergo quarterly testing every six months.</P>
+<P>(d) <I>Equivalence or correlation.</I> Equivalence between ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) and ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) must be demonstrated by EPA TSCA Title VI TPCs at least once each year or whenever there is a significant change in equipment, procedure, or the qualifications of testing personnel, or reason to believe that the equivalence is no longer valid. Equivalence may be demonstrated between several similar model or size and construction ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) and ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) apparatuses located in the same EPA TSCA Title VI TPC laboratory. Once equivalence has been established for three consecutive years, equivalence must be demonstrated every two years or whenever there is a significant change in equipment, procedure, or the qualifications of testing personnel. Correlation between ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or, upon a showing of equivalence in accordance with paragraph (d) of this section, ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) and any other test method used for quality control testing must be demonstrated by EPA TSCA Title VI TPCs or panel producers, respectively, before the certification of composite wood products, and then whenever there is a significant change in equipment, procedure, the qualifications of testing personnel, or reason to believe that the correlation is no longer valid. Correlation may be established between several similar model or size and construction mill quality control test methods defined in paragraph (b)(1) of this section located at any one physical mill quality control testing laboratory to the EPA TSCA Title VI TPC's laboratory's ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) and/or ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) apparatus. If the TPC laboratory's ASTM E1333-14 or equivalent ASTM D6007-14 test chamber is used for panel producer quality control testing, no correlation as determined in paragraph (d)(2) of this section would be required. Equivalence and correlation sample selection should be conducted in accordance with paragraph (c)(2)(iv) of this section.</P>
+<P>(1) <I>Equivalence between ASTM E1333-14 and ASTM D6007-14 when used by the TPC for quarterly testing.</I> Equivalence must be demonstrated for at least five comparison sample sets in each range tested by the TPC, which compare the results of the two methods. Equivalence must be demonstrated for any ranges listed in paragraph (d)(1)(iv) of this section that represent the formaldehyde emissions of composite wood products tested by the TPC.</P>
+<P>(i) <I>Samples.</I> (A) For the ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99), each comparison sample must consist of the result of testing panels, using the applicable loading ratios specified in the ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99), from similar panels of the same product type tested by the ASTM D6007-14 method (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(B) For the ASTM D6007-14 method (incorporated by reference, see &#xA7; 770.99), each comparison sample shall consist of testing specimens representing portions of panels similar to the panels tested in the ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99) and matched to their respective ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99) comparison sample result. The ratio of air flow to sample surface area specified in ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) must be used.</P>
+<P>(C) The five comparison sample must consist of testing a minimum of five sample sets as measured by the ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99).</P>
+<P>(ii) <I>Average and standard deviation.</I> The arithmetic mean, <I>x,</I> and standard deviation, <I>S,</I> of the difference of all comparison sets must be calculated as follows:</P>
+<img src="/graphics/er07fe18.001.gif"/>
+<FP>Where <I>x</I> = arithmetic mean; <I>S</I> = standard deviation; <I>n</I> = number of sets; <I>D</I> i = difference between the ASTM E1333-14 and ASTM D6007-14 method (incorporated by reference, see &#xA7; 770.99) values for the <I>i</I> th set; and <I>i</I> ranges from 1 to <I>n.</I>
+</FP>
+<P>(iii) <I>Equivalence determination.</I> The ASTM D6007-14 method (incorporated by reference, see &#xA7; 770.99) is considered equivalent to the ASTM E1333-14 method (incorporated by reference, see &#xA7; 770.99) if the following condition is met:</P>
+<FP-2>|<I>X
+<AC T="8"/></I>| + 0.88<I>S</I> &#x2264; <I>C</I>
+</FP-2>
+<EXTRACT>
+<FP-2>Where <I>C</I> is equal to:
+</FP-2>
+<FP-2>0.026 for the lower range;
+</FP-2>
+<FP-2>0.038 for the intermediate range; and
+</FP-2>
+<FP-2>0.052 for the upper range.
+</FP-2></EXTRACT>
+<P>(iv) <I>Equivalence Ranges.</I> EPA TSCA Title VI TPCs must demonstrate equivalence in at least two of the three formaldehyde emission ranges listed in paragraphs (d)(1)(iv)(A) through (C) of this section unless the EPA TSCA Title VI TPC will only certify hardwood plywood products in the low range. If the EPA TSCA Title VI TPC will only certify hardwood plywood products in the low range, the EPA TSCA Title VI TPC may demonstrate equivalence in only that range and would then be restricted to only certifying those composite wood products in that range. Equivalence in one range must be demonstrated for at least five comparison sample sets in that range which compare the two methods.</P>
+<P>(A) <I>Lower Range:</I> Less than, or equal to 0.05 ppm.</P>
+<P>(B) <I>Intermediate Range:</I> Greater than 0.05 ppm to less than or equal to 0.15 ppm.</P>
+<P>(C) <I>Upper Range:</I> Greater than 0.15 ppm.</P>
+<P>(2) <I>Correlation between ASTM E-1333-14 (incorporated by reference, see &#xA7; 770.99), or equivalent ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99), and any quality control test method.</I> Correlation must be demonstrated by establishing an acceptable correlation coefficient (&#x201C;r&#x201D; value) or following the threshold approach at paragraph (d)(2)(i)(B) of this section.</P>
+<P>(i) <I>Correlation.</I> The correlation must be based on a minimum sample size of five data pairs and a simple linear regression (unless the threshold approach at paragraph (d)(2)(i)(B) of this section is used) where the dependent variable (Y-axis) is the quality control test value and the independent variable (X-axis) is the ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) test value or, upon a showing of equivalence in accordance with paragraph (d) of this section, the equivalent ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) test value. Either composite wood products or formaldehyde emissions reference materials can be used to establish the correlation.</P>
+<P>(A) <I>Cluster Approach.</I> A panel producer may work with its EPA TSCA Title VI TPC to develop a correlation and linear regression between the TPC's ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or equivalent ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) test method and the panel producer's quality control method under paragraph (b) of this section. In the event of clustered test results, a panel producer may fit a line through a point near the origin (the intersection of the X and Y axes) and the average value of the clustered data pairs. The point near the origin should represent the value for the EPA TSCA Title VI TPC's ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or equivalent ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) test method and the panel producer's quality control method under &#xA7; 770.20(b) when each testing apparatus is empty or when a very low emitting sample is tested. The average value of the clustered data pairs represents the average of a minimum of five data pairs that compare the test results of the EPA TSCA Title VI TPC's ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or equivalent ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) test method with the panel producer's quality control method under paragraph (b) of this section. The line between the point near the origin and the average value of the cluster provides the linear regression. This line may be used by the panel producer and TPC to develop a quality control limit for the product.</P>
+<P>(B) <I>Threshold Approach.</I> As an alternative to the linear regression and cluster approaches, a panel producer may use the average value of the clustered data pairs from the EPA TSCA Title VI TPC's ASTM E1333-14 (incorporated by reference, see &#xA7; 770.99) or equivalent ASTM D6007-14 (incorporated by reference, see &#xA7; 770.99) test method and the panel producer's quality control method under paragraph (b) of this section as the quality control limit for the product. In this approach, no linear regression line is established. The average value would be assigned as the upper quality control limit for production of the subject composite wood product and must be below the applicable emission standard.</P>
+<P>(ii) <I>Minimum acceptable correlation coefficients (&#x201C;r&#x201D; values).</I> The minimum acceptable correlation coefficients are as follows, where &#x201C;n&#x201D; is equal to the number of data pairs, and &#x201C;r&#x201D; is the correlation coefficient:</P>
+<DIV width="100%"><DIV class="gpotbl_div">
+<TABLE border="1" cellpadding="1" cellspacing="1" class="gpo_table" frame="void" width="100%">
+<THEAD>
+<TR>
+<TH class="center border-top-single border-bottom-single border-right-single">Degrees of freedom<br/>(n-2)</TH>
+<TH class="center border-top-single border-bottom-single">&#x201C;r&#x201D; value</TH>
+</TR>
+</THEAD>
+<TBODY>
+<TR>
+<TD class="left border-right-single">3</TD>
+<TD class="right">0.878</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">4</TD>
+<TD class="right">0.811</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">5</TD>
+<TD class="right">0.754</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">6</TD>
+<TD class="right">0.707</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">7</TD>
+<TD class="right">0.666</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">8</TD>
+<TD class="right">0.632</TD>
+</TR>
+<TR>
+<TD class="left border-right-single">9</TD>
+<TD class="right">0.602</TD>
+</TR>
+<TR>
+<TD class="left border-bottom-single border-right-single">10 or more</TD>
+<TD class="right border-bottom-single">0.576</TD>
+</TR>
+</TBODY>
+</TABLE>
+</DIV></DIV>
+<P>(iii) <I>Variation from previous results.</I> If data from an EPA TSCA Title VI TPC's quarterly test results and a panel producer's quality control test results do not fit the previously established correlation, the panel producer must have its TPC establish a new correlation and new QCLs.</P>
+<P>(iv) <I>Failed quarterly tests.</I> If a panel producer fails two quarterly tests in a row for the same product type, the panel producer must have its TPC establish a new correlation curve.</P>
+<P>(e) <I>Quality assurance and quality control requirements for panel producers.</I> Panel producers are responsible for product compliance with the applicable emission standards.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 83 FR 5347, Feb. 7, 2018; 84 FR 43524, Aug. 21, 2019; 88 FR 10477, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.21" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.21&quot;,&quot;citation&quot;:&quot;40 CFR 770.21&quot;}">
+<HEAD>&#xA7; 770.21 Quality control manual, facilities, and personnel.</HEAD>
+<P>(a) <I>Quality control manual.</I> (1) Each panel producer must have a written quality control manual. The manual must contain, at a minimum, the following:</P>
+<P>(i) A description of the organizational structure of the quality control department, including the names of the quality control manager and quality control employees;</P>
+<P>(ii) A description of the sampling procedures to be followed;</P>
+<P>(iii) A description of the method of handling samples, including a specific maximum time period for analyzing quality control samples;</P>
+<P>(iv) A description of the frequency of quality control testing;</P>
+<P>(v) A description of the procedures used to identify changes in formaldehyde emissions resulting from production changes (e.g., increase in the percentage of resin, increase in formaldehyde/urea molar ratio in the resin, or decrease in press time);</P>
+<P>(vi) A description of provisions for additional testing;</P>
+<P>(vii) A description of recordkeeping procedures;</P>
+<P>(viii) A description of labeling procedures;</P>
+<P>(ix) The average percentage of resin and press time for each product type;</P>
+<P>(x) A description of product types, and if applicable, a description of product variables covered under each product type;</P>
+<P>(xi) Procedures for reduced quality control testing, if applicable; and</P>
+<P>(xii) Procedures for handling non-complying lots, including a description of how the panel producer will ensure compliance with the notification requirements of &#xA7; 770.22(d)(1).</P>
+<P>(2) The quality control manual must be approved by an EPA TSCA Title VI TPC.</P>
+<P>(b) <I>Quality control facilities.</I> Each panel producer must designate a quality control facility for conducting quality control formaldehyde testing.</P>
+<P>(1) The quality control facility must be an EPA TSCA Title VI TPC, a contract laboratory, or a laboratory owned and operated by the panel producer.</P>
+<P>(2) Each quality control facility must have quality control employees with adequate experience and/or training to conduct accurate chemical quantitative analytical tests. The quality control manager must identify each person conducting formaldehyde quality control testing to the EPA TSCA Title VI TPC.</P>
+<P>(c) <I>Quality control manager.</I> Each panel producer must designate a person as quality control manager with adequate experience and/or training to be responsible for formaldehyde emissions quality control. The quality control manager must:</P>
+<P>(1) Have the authority to take actions necessary to ensure that applicable formaldehyde emission standards are being met on an ongoing basis;</P>
+<P>(2) Be identified to the EPA TSCA Title VI TPC that will be overseeing the quality control testing. The panel producer must notify the EPA TSCA Title VI TPC in writing within ten calendar days of any change in the identity of the quality control manager and provide the EPA TSCA Title VI TPC with the new quality control manager's qualifications;</P>
+<P>(3) Review and approve all reports of quality control testing conducted on the production of the panel producer;</P>
+<P>(4) Ensure that the samples are collected, packaged, and shipped according to the procedures specified in the quality control manual; and</P>
+<P>(5) Inform the EPA TSCA Title VI TPC in writing of any significant changes in production that could affect formaldehyde emissions within 72 hours of making those changes.</P>
+</DIV8>
+
+<DIV8 N="770.22" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.22&quot;,&quot;citation&quot;:&quot;40 CFR 770.22&quot;}">
+<HEAD>&#xA7; 770.22 Non-complying lots.</HEAD>
+<P>(a) Non-complying lots are not certified composite wood products and they may not be sold, supplied or offered for sale in the United States except in accordance with this section.</P>
+<P>(b) Non-complying lots must be isolated from certified lots.</P>
+<P>(c) Non-complying lots must either be disposed of or retested and certified using the same test method, if each panel is treated with a scavenger or handled by other means of reducing formaldehyde emissions, such as aging. Tests must be performed as follows:</P>
+<P>(1) <I>Quality control tests.</I> (i) At least one test panel must be selected from each of three separate bundles. The panels must be selected so that they are representative of the entire non-complying lot and they are not the top or bottom panel of a bundle. The panels may be selected from properly stored samples set aside by the panel producer for retest in the event of a failure.</P>
+<P>(ii) All samples must test at or below the level that indicates that the product is in compliance with the applicable emission standards in &#xA7; 770.10.</P>
+<P>(2) <I>Quarterly tests.</I> (i) At least one test panel must be randomly selected so that it is representative of the entire non-complying lot and is not the top or bottom panel of a bundle. Panel sampling shall be conducted according to the quarterly testing procedure at &#xA7; 770.20(c)(2)(iv). The panel may be selected from properly stored samples set aside by the panel producer for retest in the event of a failure.</P>
+<P>(ii) The average of the three samples or the single chamber value (as described in &#xA7; 770.20(c)(2)(iv)) must test at or below the level that indicates that the product is in compliance with the applicable emission standards in &#xA7; 770.10.</P>
+<P>(d) If composite wood products belonging to a non-complying lot have been shipped to a fabricator, importer, distributor, or retailer before the test results are received, the panel producer must:</P>
+<P>(1) Ensure that the composite wood products are not distributed further by notifying, within 72 hours of the time that the panel producer is made aware of the failing test result, the fabricators, importers, distributors, and retailers that received the composite wood products. The notification must include the following:</P>
+<P>(i) Panel producer name, contact information, and date of notice;</P>
+<P>(ii) A description of the composite wood products that belong to the non-complying lot that is sufficient to allow the fabricator, importer, distributor, or retailer to identify the products;</P>
+<P>(iii) Whether the failed test result was of a quarterly test, a quality control test, or a retest of composite wood products belonging to a non-complying lot;</P>
+<P>(iv) A statement that composite wood products belonging to the non-complying lot must be isolated from other composite wood products and cannot be further distributed in commerce; and</P>
+<P>(v) A description of the steps the panel producer intends to take to either recall the composite wood products belonging to the non-complying lot or to treat and retest the products and certify the lot.</P>
+<P>(2) Do one of the following:</P>
+<P>(i) Recall the composite wood products belonging to the non-complying lot and either treat and retest products belonging to the non-complying lot or dispose of them; or</P>
+<P>(ii) Treat and retest composite wood products belonging to the non-complying lot while they remain in possession of a fabricator, importer, distributor, or retailer.</P>
+<P>(e) Information on the disposition of non-complying lots, including product type and amount of composite wood products affected, lot numbers, mitigation measures used, results of retesting, and final disposition, must be provided to the EPA TSCA Title VI TPC within seven calendar days of final disposition.</P>
+<P>(f) Fabricators, importers, distributors, or retailers who are notified that they have received composite wood products belonging to a non-complying lot and who have further distributed the composite wood products are responsible for notifying the purchasers of the composite wood products in accordance with paragraph (d)(1) of this section.</P>
+<P>(1) If a fabricator, importer, distributor, or retailer is notified that they have been supplied a non-complying lot after those composite wood products have been fabricated into component parts or finished goods, the notification requirement at paragraph (d)(1) of this section does not apply.</P>
+<P>(2) [Reserved]</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 84 FR 43525, Aug. 21, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.24" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.24&quot;,&quot;citation&quot;:&quot;40 CFR 770.24&quot;}">
+<HEAD>&#xA7; 770.24 Samples for testing.</HEAD>
+<P>(a) Composite wood products may be shipped into and transported across the United States for quality control or quarterly tests. TPCs that ship composite panels into or across the United States solely for quality control or quarterly tests are not considered importers or distributors or importers for the purposes of &#xA7; 770.7(c)(3)(i).</P>
+<P>(1) Such panels must not be sold, offered for sale or supplied to any entity other than a TPC laboratory before testing in accordance with &#xA7; 770.17, &#xA7; 770.18, or &#xA7; 770.20.</P>
+<P>(2) If test results for such products demonstrate compliance with the emission standards in this subpart, the panels may be relabeled in accordance with &#xA7; 770.45 and sold, offered for sale, or supplied.</P>
+<P>(b) [Reserved]</P>
+</DIV8>
+
+<DIV8 N="770.30" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.30&quot;,&quot;citation&quot;:&quot;40 CFR 770.30&quot;}">
+<HEAD>&#xA7; 770.30 Importers, fabricators, distributors, and retailers.</HEAD>
+<P>(a) Importers, fabricators, distributors, and retailers must take reasonable precautions to ensure that the composite wood products they sell, supply, offer for sale, or hold for sale, whether in the form of panels, component parts, or finished goods, comply with the emission standards and other requirements of this subpart.</P>
+<P>(b) Importers must demonstrate that they have taken reasonable precautions by maintaining, for three years, bills of lading, invoices, or comparable documents that include a written statement from the supplier that the composite wood products, component parts, or finished goods are TSCA Title VI compliant or were produced before June 1, 2018 and by ensuring the following records are made available to EPA within 30 calendar days of request:</P>
+<P>(1) Records identifying the panel producer and the date the composite wood products were produced; and</P>
+<P>(2) Records identifying the supplier, if different, and the date the composite wood products, component parts, or finished goods were purchased.</P>
+<P>(c) Fabricators, distributors, and retailers must demonstrate that they have taken reasonable precautions by obtaining bills of lading, invoices, or comparable documents that include a written statement from the supplier that the composite wood products, component parts, or finished goods are TSCA Title VI compliant or that the composite wood products were produced before June 1, 2018.</P>
+<P>(d) Beginning March 22, 2019, importers of articles that are regulated composite wood products, or articles that contain regulated composite wood products, must comply with the import certification regulations for &#x201C;Chemical Substances in Bulk and As Part of Mixtures and Articles,&#x201D; as found at 19 CFR 12.118 through 12.127.</P>
+<P>(e) Records required by this section must be maintained in accordance with &#xA7; 770.40(d).</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 82 FR 44537, Sept. 25, 2017; 84 FR 43525, Aug. 21, 2019]
+</CITA>
+</DIV8>
+
+<DIV8 N="770.40" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.40&quot;,&quot;citation&quot;:&quot;40 CFR 770.40&quot;}">
+<HEAD>&#xA7; 770.40 Reporting and recordkeeping.</HEAD>
+<P>(a) Panel producers must maintain the following records for a period of three years, except that records demonstrating initial eligibility for reduced testing or third-party certification exemption under &#xA7; 770.17 or &#xA7; 770.18 must be kept for as long as the panel producer is producing composite wood products with reduced testing or under a third-party certification exemption. The following records must also be made available to the panel producers' EPA TSCA Title VI TPCs. Panel producers must make the records described in paragraph (a)(1) of this section available to direct purchasers of their composite wood products. This information may not be withheld from direct purchasers as confidential business information.</P>
+<P>(1) Records of all quarterly emissions testing. These records must identify the EPA TSCA Title VI TPC conducting or overseeing the testing. These records must also include the date, the product type tested, the lot number that the tested material represents, the test method used, and the test results.</P>
+<P>(2) Records of all ongoing quality control testing. These records must identify the EPA TSCA Title VI TPC conducting or overseeing the testing and the facility actually performing the testing. These records must also include the date, the product type tested, the lot number that the tested material represents, the test method used, and the test results.</P>
+<P>(3) Production records, including a description of the composite wood product(s), the date of manufacture, lot numbers, and tracking information allowing each product to be traced to a specific lot produced.</P>
+<P>(4) Records of changes in production, including changes of more than ten percent in the resin use percentage, changes in resin composition that result in a higher ratio of formaldehyde to other resin components, and changes in the process, such as changes in press time by more than 20%.</P>
+<P>(5) Records demonstrating initial and continued eligibility for the reduced testing provisions in &#xA7;&#xA7; 770.17 and 770.18, if applicable. These records must include:</P>
+<P>(i) Approval for reduced testing from an EPA TSCA Title VI TPC or CARB;</P>
+<P>(ii) Amount of resin use reported by volume and weight;</P>
+<P>(iii) Production volume reported as square feet per product type;</P>
+<P>(iv) Resin trade name, resin manufacturer contact information (name, address, phone number, and email), and resin supplier contact information (name, address, phone number, and email); and</P>
+<P>(v) Any changes in the formulation of the resin.</P>
+<P>(6) Purchaser information for each composite wood product, if applicable, including the name, contact person if available, address, telephone number, email address if available, purchase order or invoice number, and amount purchased.</P>
+<P>(7) Transporter information for each composite wood product, if applicable, including name, contact person, address, telephone number, email address if available, and shipping invoice number.</P>
+<P>(8) Information on the disposition of non-complying lots, including product type and amount of composite wood products affected, lot numbers, purchasers who received product belonging to non-complying lots (if any), copies of purchaser notifications used (if any), mitigation measures used, results of retesting, and final disposition.</P>
+<P>(9) Representative copies of labels used.</P>
+<P>(b) Panel producers must provide their EPA TSCA Title VI TPC with monthly product data reports for each production facility, production line, and product type, maintain copies of the reports for a minimum of three years from the date that they are produced. Monthly product data reports must contain a data sheet for each specific product type with test and production information, and a quality control graph containing the following:</P>
+<P>(1) QCL;</P>
+<P>(2) Shipping QCL (if applicable);</P>
+<P>(3) Results of quality control tests; and</P>
+<P>(4) Retest values.</P>
+<P>(c) Laminated product producers whose products are exempt from the definition of hardwood plywood must keep records demonstrating eligibility for the exemption. These records must be kept for a minimum of three years from the date they are produced and must include:</P>
+<P>(1) Resin trade name, resin manufacturer contact information (name, address, phone number, and email), resin supplier contact information (name, address, phone number, and email), and resin purchase records;</P>
+<P>(2) Panel producer contact information and panel purchase records;</P>
+<P>(3) For panels produced in-house, records demonstrating that the panels have been certified by an EPA TSCA Title VI TPC; and</P>
+<P>(4) For resins produced in-house, records demonstrating the production of phenol-formaldehyde resins or resins formulated with no added formaldehyde as part of the resin cross-linking structure.</P>
+<P>(d) Importers, fabricators, distributors, and retailers must maintain the records described in &#xA7; 770.30 for a minimum of three years from the import date or the date of the purchases or shipments described therein.</P>
+</DIV8>
+
+<DIV8 N="770.45" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.45&quot;,&quot;citation&quot;:&quot;40 CFR 770.45&quot;}">
+<HEAD>&#xA7; 770.45 Labeling.</HEAD>
+<P>(a) Panels or bundles of panels that are imported, sold, supplied, or offered for sale in the United States must be labeled with the panel producer's name, the lot number, the number of the EPA TSCA Title VI TPC, and a statement that the products are TSCA Title VI certified. If a composite wood panel is not individually labeled, the panel producer, importer, distributor, fabricator, or retailer must have a method (e.g., color-coded edge marking) sufficient to identify the supplier of the panel and linking the information on the label to the products. This information must be made available to potential customers upon request. The label may be applied as a stamp, tag, or sticker.</P>
+<P>(1) A panel producer number may be used instead of a name to protect identity, so long as the identity of the panel producer can be determined at the request of EPA.</P>
+<P>(2) Only panels or bundles of panels manufactured in accordance with &#xA7; 770.17 may also be labeled that they were made with no-added formaldehyde-based resins in addition to the other information required by this section.</P>
+<P>(3) Only panels or bundles of panels manufactured in accordance with &#xA7; 770.18 may also be labeled that they were made with ultra low-emitting formaldehyde resins in addition to the other information required by this section.</P>
+<P>(b) Panels imported into or transported across the United States for quarterly or quality control testing purposes in accordance with &#xA7; 770.20 must be labeled &#x201C;For TSCA Title VI testing only, not for sale in the United States.&#x201D; The panels may be re-labeled if test results are below the applicable emission standards in this subpart.</P>
+<P>(c) Fabricators of finished goods containing composite wood products must label every finished good they produce or every box or bundle containing finished goods. If a finished good (including component parts sold separately to end users) is not individually labeled, the importer, distributor, or retailer must retain a copy of the label, be able to identify the products associated with that label, and make the label information available to potential customers upon request.</P>
+<P>(1) The label may be applied as a stamp, tag, or sticker.</P>
+<P>(2) The label must include, at a minimum, in legible English text, the fabricator's name, the date the finished good was produced (in month/year format), and a statement that the finished goods are TSCA Title VI compliant.</P>
+<P>(3) Finished goods made from panels manufactured in accordance with &#xA7; 770.17 and/or &#xA7; 770.18 may also be labeled that they were made with no-added formaldehyde-based resins, or ultra low-emitting formaldehyde resins in addition to the other information required by this section. They may be labeled as being made with a combination of compliant composite wood, no-added formaldehyde-based resins, and ultra low-emitting formaldehyde resins, if this is accurate.</P>
+<P>(4) Fabricators may substitute the name of a responsible downstream fabricator, importer, distributor, or retailer for their name on the label if they obtain and maintain written consent from the downstream entity.</P>
+<P>(d) Importers, distributors, and retailers must leave intact labels on finished goods, including component parts sold separately to end users.</P>
+<P>(e) Finished goods, including component parts sold separately to end users, containing only a <I>de minimis</I> amount of regulated composite wood product are excepted from the labeling requirements. A finished good, including component parts sold directly to consumers, contains a <I>de minimis</I> amount of regulated composite wood product if its regulated composite wood product content does not exceed 144 square inches, based on the surface area of its largest face. The exception does not apply to finished goods or component parts that are designed to be used in combination or in multiples to create larger surfaces, finished goods, or component parts.</P>
+<P>(f) All panels (or bundles of panels) and finished goods (or boxes or bundles containing finished goods) must be properly labeled pursuant to paragraphs (a), (b), and (c) of this section before being imported into the United States, except as provided in paragraph (e) of this section.</P>
+<CITA TYPE="N">[81 FR 89724, Dec. 12, 2016, as amended at 82 FR 31924, July 11, 2017; 84 FR 43526, Aug. 21, 2019]
+</CITA>
+</DIV8>
+
+</DIV6>
+<DIV6 N="D" TYPE="SUBPART" hierarchy_metadata="{&amp;quot;path&amp;quot;:&amp;quot;/on/_SUBSTITUTE_DATE_/title-40/part-770/subpart-D&amp;quot;,&amp;quot;citation&amp;quot;:&amp;quot;40 CFR Part 770 Subpart D&amp;quot;}">
+<HEAD>Subpart D&#x2014;Incorporation by Reference</HEAD>
+<DIV8 N="770.99" TYPE="SECTION" hierarchy_metadata="{&quot;path&quot;:&quot;/on/_SUBSTITUTE_DATE_/title-40/section-770.99&quot;,&quot;citation&quot;:&quot;40 CFR 770.99&quot;}">
+<HEAD>&#xA7; 770.99 Incorporation by reference.</HEAD>
+<P>Certain material is incorporated by reference into this part with the approval of the Director of the Federal Register in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. To enforce any edition other than that specified in this section, the Environmental Protection Agency (EPA) must publish a document in the <E T="04">Federal Register</E> and the material must be available to the public. All approved incorporation by reference (IBR) material is available for inspection at the EPA and at the National Archives and Records Administration (NARA). Contact EPA at: OPPT Docket in the Environmental Protection Agency Docket Center (EPA/DC), West William Jefferson Clinton Bldg., Rm. 3334, 1301 Constitution Ave. NW, Washington, DC. The EPA/DC Public Reading Room hours of operation are 8:30 a.m. to 4:30 p.m., Monday through Friday, excluding legal holidays. The telephone number of the EPA/DC Public Reading room is (202) 566-1744, and the telephone number for the OPPT Docket is (202) 566-0280. For information on the availability of this material at NARA, visit <I>www.archives.gov/federal-register/cfr/ibr-locations.html</I> or email <I>fr.inspection@nara.gov.</I> The material may be obtained from the following sources:</P>
+<P>(a) <I>APA.</I> APA&#x2014;The Engineered Wood Association, 7011 S 19th Street, Tacoma, WA 98466-5333; (253) 565-6600; <I>www.apawood.org.</I></P>
+<P>(1) ANSI A190.1-2017, Standard for Wood Products&#x2014;Structural Glued Laminated Timber, Approved January 24, 2017; IBR approved for &#xA7; 770.1(c).</P>
+<P>(2) [Reserved]</P>
+<P>(b) <I>ASTM.</I> ASTM International, 100 Barr Harbor Dr., P.O. Box C700, West Conshohocken, PA 19428-2959; (877) 909-ASTM; <I>www.astm.org.</I></P>
+<P>(1) ASTM D5055-19e1, Standard Specification for Establishing and Monitoring Structural Capacities of Prefabricated Wood I-Joists, Approved March 1, 2019; IBR approved for &#xA7; 770.1(c).</P>
+<P>(2) ASTM D5456-21e1, Standard Specification for Evaluation of Structural Composite Lumber Products, Approved February 1, 2021; IBR approved for &#xA7; 770.1(c).</P>
+<P>(3) ASTM D5582-14, Standard Test Method for Determining Formaldehyde Levels from Wood Products Using a Desiccator, Approved August 1, 2014; IBR approved for &#xA7; 770.20(b).</P>
+<P>(4) ASTM D6007-14, Standard Test Method for Determining Formaldehyde Concentrations in Air from Wood Products Using a Small-Scale Chamber, Approved October 1, 2014; IBR approved for &#xA7;&#xA7; 770.3; 770.7(a) through (c); 770.15(c); 770.17(a); 770.18(a); 770.20(b) through (d).</P>
+<P>(5) ASTM E1333-14, Standard Test Method for Determining Formaldehyde Concentrations in Air and Emission Rates from Wood Products Using a Large Chamber, Approved October 1, 2014; IBR approved for &#xA7;&#xA7; 770.3; 770.7(a) through (c); 770.10(b); 770.15(c); 770.17(a); 770.18(a); 770.20(c) and (d).</P>
+<P>(c) <I>BSI.</I> British Standards Institute, 12950 Worldgate Dr., Suite 800, Herndon, VA 20170; (800) 862-4977; <I>www.bsigroup.com.</I></P>
+<P>(1) BS EN ISO 12460-3:2020, Wood-based panels.&#x2014;Determination of formaldehyde release&#x2014;Part 3: Gas analysis method, Published 31 October 2020; IBR approved for &#xA7; 770.20(b).</P>
+<P>(2) BS EN ISO 12460-5:2015 E, Wood based panels.&#x2014;Determination of formaldehyde release&#x2014;Part 5: Extraction method (called the perforator method), December 2015; IBR approved for &#xA7; 770.20(b).</P>
+<P>(d) <I>CPA.</I> Composite Panel Association, 19465 Deerfield Avenue, Suite 306, Leesburg, Virginia 20176; (703) 724-1128; <I>www.compositepanel.org.</I></P>
+<P>(1) ANSI A135.4-2012, Basic Hardboard, Approved June 8, 2012; IBR approved for &#xA7; 770.3.</P>
+<P>(2) ANSI A135.5-2012, Prefinished Hardboard Paneling, Approved March 29, 2012; IBR approved for &#xA7; 770.3.</P>
+<P>(3) ANSI A135.6-2012, Engineered Wood Siding, Approved June 5, 2012; IBR approved for &#xA7; 770.3.</P>
+<P>(4) ANSI A135.7-2012, Engineered Wood Trim, Approved July 17, 2012; IBR approved for &#xA7; 770.3.</P>
+<P>(5) ANSI A208.1-2022, Particleboard, Approved June 22, 2022; IBR approved for &#xA7; 770.3.</P>
+<P>(6) ANSI A208.2-2022, Medium Density Fiberboard (MDF) for Interior Applications, Approved April 14, 2022; IBR approved for &#xA7; 770.3.</P>
+<P>(e) <I>Georgia Pacific.</I> Georgia-Pacific Chemicals LLC, 133 Peachtree Street, Atlanta, GA 30303; (877) 377-2737; <I>www.gp.com.</I></P>
+<P>(1) The Dynamic Microchamber computer integrated formaldehyde test system, User Manual, revised March 2007 (DMC 2007 User's Manual); IBR approved for &#xA7; 770.20(b).</P>
+<P>(2) The GP Dynamic Microchamber Computer-integrated formaldehyde test system, User Manual, copyright 2012 (DMC 2012 GP User's Manual); IBR approved for &#xA7; 770.20(b).</P>
+<P>(f) <I>HPVA.</I> Decorative Hardwoods Association (formerly known as Hardwood Plywood and Veneer Association (HPVA)), 42777 Trade West Dr., Sterling, VA 20166; (703) 435-2900; <I>www.decorativehardwoods.org.</I></P>
+<P>(1) ANSI/HPVA HP-1-2020, American National Standard for Hardwood and Decorative Plywood, Approved August 17, 2020; IBR approved for &#xA7; 770.3.</P>
+<P>(2) [Reserved]</P>
+<P>(g) <I>ISO.</I> International Organization for Standardization, 1, ch. de la Voie- Creuse, CP 56, CH-1211, Geneve 20, Switzerland; +41-22-749-01-11; <I>www.iso.org.</I></P>
+<P>(1) ISO 12460-3:2020(E), Wood-based panels&#x2014;Determination of formaldehyde release&#x2014;Part 3: Gas analysis method, Third edition, October 2020; IBR approved for &#xA7; 770.20(b).</P>
+<P>(2) ISO/IEC 17011:2017(E) Conformity assessments&#x2014;Requirements for accreditation bodies accrediting conformity assessments bodies (Second Edition), November 2017; IBR approved for &#xA7;&#xA7; 770.3; 770.7(a) and (b).</P>
+<P>(3) ISO/IEC 17020:2012(E), Conformity assessment&#x2014;Requirements for the operation of various bodies performing inspection, Second edition, 2012-03-01; IBR approved for &#xA7;&#xA7; 770.3; 770.7(a) through (c).</P>
+<P>(4) ISO/IEC 17025:2017(E), General requirements for the competence of testing and calibration laboratories (Third Edition), November 2017; IBR approved for &#xA7;&#xA7; 770.3; 770.7(a) through (c).</P>
+<P>(5) ISO/IEC 17065:2012(E), Conformity assessment&#x2014;Requirements for bodies certifying products, processes and services, First edition, 2012-09-15; IBR approved for &#xA7;&#xA7; 770.3; 770.7(a) and (c).</P>
+<P>(h) <I>Japanese Standards Association.</I> Japanese Industrial Standards, 1-24, Akasaka 4, Minatoku, Tokyo 107- 8440, Japan; +81-3-3583-8000; <I>www.jsa.or.jp/en/.</I></P>
+<P>(1) JIS A 1460:2021(E), Determination of the emission of formaldehyde from building boards&#x2014;Desiccator method, First English edition, November 2021; IBR approved for &#xA7; 770.20(b).</P>
+<P>(2) [Reserved]</P>
+<P>(i) <I>NIST.</I> National Institute of Standards and Technology, Public Inquiries Unit, NIST, 100 Bureau Dr., Stop 1070, Gaithersburg, MD 20899-1070; (301) 975-NIST or (800) 553-6847; <I>www.nist.gov.</I></P>
+<P>(1) PS 1-19, Structural Plywood, Effective December 1, 2019; IBR approved for &#xA7;&#xA7; 770.1(c); 770.3.</P>
+<P>(2) PS 2-18, Performance Standard for Wood Structural Panels, March 2019; IBR approved for &#xA7;&#xA7; 770.1(c); 770.3.</P>
+<NOTE>
+<HED>Note 1 to paragraph (<E T="01">i</E>):</HED>
+<P>To purchase paper copies from NIST, call (301) 975-NIST for an order number. To purchase paper copies from GPO (with a stock number), mail: U.S. Government Publishing Office, P.O. Box 979050, St. Louis, MO 63197-9000; call: (866) 512-1800 or (DC Area only: (202) 512-1800); fax (202) 512-2104.</P></NOTE>
+<CITA TYPE="N">[88 FR 10477, Feb. 21, 2023]
+</CITA>
+</DIV8>
+
+</DIV6>
+</DIV5>

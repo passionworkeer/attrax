@@ -1,0 +1,1451 @@
+{
+  "version": "1.0",
+  "created_at": "2026-05-27T11:22:40+08:00",
+  "isolation": {
+    "status": "isolated",
+    "not_mixed_with": [
+      "data/corpus",
+      "data/corpus/processed",
+      "data/faiss"
+    ],
+    "raw_root": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw"
+  },
+  "summary": {
+    "regulation_entries": 40,
+    "raw_files": 76,
+    "markets": [
+      "BR",
+      "GCC",
+      "IN",
+      "JP",
+      "KR",
+      "MX",
+      "NZ",
+      "SG"
+    ],
+    "product_categories": [
+      "apparel",
+      "chemicals",
+      "children_products",
+      "controlled_goods",
+      "cosmetics",
+      "electrical_equipment",
+      "electronics",
+      "food_contact",
+      "general_consumer_products",
+      "home_appliances",
+      "home_goods",
+      "industrial_products",
+      "kitchenware",
+      "packaging",
+      "plastics",
+      "radio",
+      "raw_materials",
+      "telecommunications",
+      "textiles",
+      "toys",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "conformity",
+      "documentation",
+      "emc",
+      "flammability",
+      "food_contact",
+      "labelling",
+      "market_surveillance",
+      "mechanical",
+      "packaging",
+      "product_safety",
+      "radio",
+      "scope_classification",
+      "sustainability",
+      "technical_standard",
+      "testing",
+      "waste"
+    ],
+    "channels": [
+      "Brazilian Health Regulatory Agency (Anvisa)",
+      "Central Drugs Standard Control Organisation, Government of India",
+      "Central Pollution Control Board, Government of India",
+      "Consumer Product Safety Office Singapore",
+      "Gulf Cooperation Council Standardization Organization",
+      "Japanese Law Translation, Ministry of Justice",
+      "Korean Law Translation Center / KLRI",
+      "National Environment Agency Singapore",
+      "National Institute of Metrology, Quality and Technology (Inmetro)",
+      "National Telecommunications Agency of Brazil (Anatel)",
+      "PLATIICA, Secretaria de Economia, Government of Mexico",
+      "Presidency of the Republic of Brazil / Planalto",
+      "Product Safety New Zealand"
+    ],
+    "failed_downloads": 0
+  },
+  "entries": [
+    {
+      "id": "jp-jlt-consumer-product-safety-act-2804",
+      "market": "JP",
+      "title": "Consumer Product Safety Act",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/2804/en",
+      "files": [
+        "raw/jp/consumer-product-safety-act-2804.html",
+        "raw/jp/consumer-product-safety-act-2804.pdf",
+        "raw/jp/consumer-product-safety-act-2804.docx",
+        "raw/jp/consumer-product-safety-act-2804.xml"
+      ],
+      "why_added": "Japan general consumer-product safety, specified products, reporting, recall, and enforcement framework.",
+      "product_categories": [
+        "general_consumer_products",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "jlt_law_id": "2804",
+      "file_stats": [
+        {
+          "file": "raw/jp/consumer-product-safety-act-2804.html",
+          "bytes": 298414,
+          "sha256": "4ff3e5f5f0d781970b955f786e33259ceebd65bf150ad8bc1e2574a48a78e975"
+        },
+        {
+          "file": "raw/jp/consumer-product-safety-act-2804.pdf",
+          "bytes": 308767,
+          "sha256": "bfc5f7bbef15d529c209f0066063dd7e51137a5b5c9a7125e393a14a72c1f9b8"
+        },
+        {
+          "file": "raw/jp/consumer-product-safety-act-2804.docx",
+          "bytes": 53011,
+          "sha256": "110bfe1d7950b7d0796ca4f58c1d01efc718a6e5d134fe6f456d7f3e45357bf4"
+        },
+        {
+          "file": "raw/jp/consumer-product-safety-act-2804.xml",
+          "bytes": 253685,
+          "sha256": "649e2e5c68b3389b9d13333fd410ad2fba43756942b432a55d82f781877a32b4"
+        }
+      ]
+    },
+    {
+      "id": "jp-jlt-household-goods-quality-labeling-act-3935",
+      "market": "JP",
+      "title": "Household Goods Quality Labeling Act",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/3935/en",
+      "files": [
+        "raw/jp/household-goods-quality-labeling-act-3935.html",
+        "raw/jp/household-goods-quality-labeling-act-3935.pdf",
+        "raw/jp/household-goods-quality-labeling-act-3935.docx",
+        "raw/jp/household-goods-quality-labeling-act-3935.xml"
+      ],
+      "why_added": "Japan household goods quality and composition labeling baseline.",
+      "product_categories": [
+        "general_consumer_products",
+        "textiles",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "documentation"
+      ],
+      "jlt_law_id": "3935",
+      "file_stats": [
+        {
+          "file": "raw/jp/household-goods-quality-labeling-act-3935.html",
+          "bytes": 90302,
+          "sha256": "cf78074bbae47fb913feac8d9cf1471f9ac9a988b9732106ff19fc29e17aabc0"
+        },
+        {
+          "file": "raw/jp/household-goods-quality-labeling-act-3935.pdf",
+          "bytes": 127035,
+          "sha256": "ef5a6a21415d16fb12ff5cbb14e47fa5500530336f2c93e3b3acdad9d507de25"
+        },
+        {
+          "file": "raw/jp/household-goods-quality-labeling-act-3935.docx",
+          "bytes": 29375,
+          "sha256": "5984de030cf9a46ab0a1d7e0768822fd2980b6dece4478e33642cf5431cd53fd"
+        },
+        {
+          "file": "raw/jp/household-goods-quality-labeling-act-3935.xml",
+          "bytes": 66660,
+          "sha256": "de3ac4eb699185df281cc55123f7cfb63895270c5df5d0e806d98fc454d63711"
+        }
+      ]
+    },
+    {
+      "id": "jp-jlt-household-products-harmful-substances-act-3881",
+      "market": "JP",
+      "title": "Act on Control of Household Products Containing Harmful Substances",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/3881/en",
+      "files": [
+        "raw/jp/household-products-harmful-substances-act-3881.html",
+        "raw/jp/household-products-harmful-substances-act-3881.pdf",
+        "raw/jp/household-products-harmful-substances-act-3881.docx",
+        "raw/jp/household-products-harmful-substances-act-3881.xml"
+      ],
+      "why_added": "Japan household-product chemical restrictions for textiles, home goods, and consumer articles.",
+      "product_categories": [
+        "chemicals",
+        "textiles",
+        "children_products",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "jlt_law_id": "3881",
+      "file_stats": [
+        {
+          "file": "raw/jp/household-products-harmful-substances-act-3881.html",
+          "bytes": 32544,
+          "sha256": "8bdd84c3b7479279f1fb4149983d7cde7cb2f3dc8e4514dffe495422e4c8ef19"
+        },
+        {
+          "file": "raw/jp/household-products-harmful-substances-act-3881.pdf",
+          "bytes": 73121,
+          "sha256": "51acecbe2e9e0cb82c402a82f5f8f3bc461bc649b8131c5b751682bb62a48b6e"
+        },
+        {
+          "file": "raw/jp/household-products-harmful-substances-act-3881.docx",
+          "bytes": 21579,
+          "sha256": "fffde526979d6744e414db7261a9d7a0fafd38da8c9da10d4d19c98ae1d22108"
+        },
+        {
+          "file": "raw/jp/household-products-harmful-substances-act-3881.xml",
+          "bytes": 14337,
+          "sha256": "cf480868c2ce7bb88831a7400d0ccbbf095a99a136a68fdc6d8ad5a0a934cedf"
+        }
+      ]
+    },
+    {
+      "id": "jp-jlt-electrical-appliances-materials-safety-act-2745",
+      "market": "JP",
+      "title": "Electrical Appliances and Materials Safety Act",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/2745/en",
+      "files": [
+        "raw/jp/electrical-appliances-materials-safety-act-2745.html",
+        "raw/jp/electrical-appliances-materials-safety-act-2745.pdf",
+        "raw/jp/electrical-appliances-materials-safety-act-2745.docx",
+        "raw/jp/electrical-appliances-materials-safety-act-2745.xml"
+      ],
+      "why_added": "Japan PSE electrical-appliance safety and conformity framework.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "testing"
+      ],
+      "jlt_law_id": "2745",
+      "file_stats": [
+        {
+          "file": "raw/jp/electrical-appliances-materials-safety-act-2745.html",
+          "bytes": 224402,
+          "sha256": "013400a1444ef51063c5e8e01467ffdecab0dbf1d05b639878f55cf799bd815d"
+        },
+        {
+          "file": "raw/jp/electrical-appliances-materials-safety-act-2745.pdf",
+          "bytes": 242643,
+          "sha256": "b83813515c06628f9b4654ee1ebf07d325e16a34e8b5d8963e8ea67c413a650c"
+        },
+        {
+          "file": "raw/jp/electrical-appliances-materials-safety-act-2745.docx",
+          "bytes": 43625,
+          "sha256": "8111a6d119be79fd1693de082e9f34c5f3957a3545c3f8825ca93a48f0b08f1c"
+        },
+        {
+          "file": "raw/jp/electrical-appliances-materials-safety-act-2745.xml",
+          "bytes": 182648,
+          "sha256": "4a10abf4cc1143d4b2dab6dd008dd761f6928960d1fcc5a45f0aa43d7c955d35"
+        }
+      ]
+    },
+    {
+      "id": "jp-jlt-electrical-appliances-materials-enforcement-regulation-3006",
+      "market": "JP",
+      "title": "Regulation for Enforcement of the Electrical Appliances and Materials Safety Act",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/3006/en",
+      "files": [
+        "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.html",
+        "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.pdf",
+        "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.docx",
+        "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.xml"
+      ],
+      "why_added": "Japan PSE enforcement detail for electrical products and materials.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "technical_standard",
+        "conformity"
+      ],
+      "jlt_law_id": "3006",
+      "file_stats": [
+        {
+          "file": "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.html",
+          "bytes": 211497,
+          "sha256": "d594e4228188393c273520ec678975b2070b21ef8c240c57f07258490192c411"
+        },
+        {
+          "file": "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.pdf",
+          "bytes": 215083,
+          "sha256": "c2657a1c9d691f186664faead18fdf806e400ba03e98652298c2348df16f2f07"
+        },
+        {
+          "file": "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.docx",
+          "bytes": 35130,
+          "sha256": "95569bc66bf811c2e4ed99cd69e5dac1874f7f8313d7be96e4498cc410d85fb1"
+        },
+        {
+          "file": "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.xml",
+          "bytes": 157530,
+          "sha256": "e1b3d8b8a93be81c874f07b54254e35c9b5a7cc7036931948871be21701a31d8"
+        }
+      ]
+    },
+    {
+      "id": "jp-jlt-food-sanitation-act-5024",
+      "market": "JP",
+      "title": "Food Sanitation Act",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/5024/en",
+      "files": [
+        "raw/jp/food-sanitation-act-5024.html",
+        "raw/jp/food-sanitation-act-5024.pdf",
+        "raw/jp/food-sanitation-act-5024.docx",
+        "raw/jp/food-sanitation-act-5024.xml"
+      ],
+      "why_added": "Japan food-contact utensils, containers, packaging, and kitchenware sanitary baseline.",
+      "product_categories": [
+        "food_contact",
+        "kitchenware",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "food_contact",
+        "chemical",
+        "product_safety"
+      ],
+      "jlt_law_id": "5024",
+      "file_stats": [
+        {
+          "file": "raw/jp/food-sanitation-act-5024.html",
+          "bytes": 222892,
+          "sha256": "fff1e7a87d76c7154587cbaf57e989ef3c6db43b1090d7077fd00df785d2d537"
+        },
+        {
+          "file": "raw/jp/food-sanitation-act-5024.pdf",
+          "bytes": 331368,
+          "sha256": "344946061473ddb5df2c7643a2865b4cf1f893a998c804543d81a4fb09571f48"
+        },
+        {
+          "file": "raw/jp/food-sanitation-act-5024.docx",
+          "bytes": 43445,
+          "sha256": "828bf271a6399834c6509dc7aa00577957de1c3d77e383d9e899b1f0ec5a194d"
+        },
+        {
+          "file": "raw/jp/food-sanitation-act-5024.xml",
+          "bytes": 184523,
+          "sha256": "5c09818209c5982645fc705beb0e88b291832ca38accf469c6534061ce3f3c96"
+        }
+      ]
+    },
+    {
+      "id": "jp-jlt-pharmaceutical-medical-devices-act-3213",
+      "market": "JP",
+      "title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "channel": "Japanese Law Translation, Ministry of Justice",
+      "source_type": "japan_law_translation",
+      "source_url": "https://www.japaneselawtranslation.go.jp/en/laws/view/3213/en",
+      "files": [
+        "raw/jp/pharmaceutical-medical-devices-act-3213.html",
+        "raw/jp/pharmaceutical-medical-devices-act-3213.pdf",
+        "raw/jp/pharmaceutical-medical-devices-act-3213.docx",
+        "raw/jp/pharmaceutical-medical-devices-act-3213.xml"
+      ],
+      "why_added": "Japan cosmetics, quasi-drugs, and product-quality baseline under the PMD Act.",
+      "product_categories": [
+        "cosmetics",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "chemical"
+      ],
+      "jlt_law_id": "3213",
+      "file_stats": [
+        {
+          "file": "raw/jp/pharmaceutical-medical-devices-act-3213.html",
+          "bytes": 858669,
+          "sha256": "340e0e17bbcface866c45b75300e9b32ea848b46666ffc6537b96e7825e83843"
+        },
+        {
+          "file": "raw/jp/pharmaceutical-medical-devices-act-3213.pdf",
+          "bytes": 867548,
+          "sha256": "b30464493a658c6c1a8fb126702d5a03b9ea694c01aaf89f584846dc3b8d2bf1"
+        },
+        {
+          "file": "raw/jp/pharmaceutical-medical-devices-act-3213.docx",
+          "bytes": 117204,
+          "sha256": "4ab3514c7b807599c4aafff900cf2019746d35d51b05c4b1a96d7c6985f76ef6"
+        },
+        {
+          "file": "raw/jp/pharmaceutical-medical-devices-act-3213.xml",
+          "bytes": 775609,
+          "sha256": "befddce13a91e531e1d8c971a4882f5178735558681331cae969a9d637c6af6c"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-framework-act-safety-products-52809",
+      "market": "KR",
+      "title": "Framework Act on the Safety of Products",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=52809&lang=ENG",
+      "files": [
+        "raw/kr/framework-act-safety-products-52809.html"
+      ],
+      "why_added": "Korea cross-product product-safety policy, recall, and safety-management framework.",
+      "product_categories": [
+        "general_consumer_products",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "klri_hseq": "52809",
+      "file_stats": [
+        {
+          "file": "raw/kr/framework-act-safety-products-52809.html",
+          "bytes": 129968,
+          "sha256": "e2801bb4563c36dbc1c569deb23b1a7a4bb4fb05ae2abe80a45d6fdbe9384c39"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-special-act-safety-childrens-products-60495",
+      "market": "KR",
+      "title": "Special Act on the Safety of Children's Products",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=60495&lang=ENG",
+      "files": [
+        "raw/kr/special-act-safety-childrens-products-60495.html"
+      ],
+      "why_added": "Korea child-product certification, safety confirmation, and supplier conformity framework.",
+      "product_categories": [
+        "children_products",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "testing"
+      ],
+      "klri_hseq": "60495",
+      "file_stats": [
+        {
+          "file": "raw/kr/special-act-safety-childrens-products-60495.html",
+          "bytes": 179686,
+          "sha256": "46167baf4bb174a11c4e6a842b92a7f3825c5a5db04c2f26a0c3e8a5bde06830"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-electrical-appliances-consumer-products-safety-control-act-61394",
+      "market": "KR",
+      "title": "Electrical Appliances and Consumer Products Safety Control Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=61394&lang=ENG",
+      "files": [
+        "raw/kr/electrical-appliances-consumer-products-safety-control-act-61394.html"
+      ],
+      "why_added": "Korea KC electrical-appliance and consumer-product safety-control coverage.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "testing"
+      ],
+      "klri_hseq": "61394",
+      "file_stats": [
+        {
+          "file": "raw/kr/electrical-appliances-consumer-products-safety-control-act-61394.html",
+          "bytes": 277731,
+          "sha256": "527da172850d98192ba547401784d6654fd036d9b2a6c0a800ed460a0e76a2c0"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-food-sanitation-act-46429",
+      "market": "KR",
+      "title": "Food Sanitation Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=46429&lang=ENG",
+      "files": [
+        "raw/kr/food-sanitation-act-46429.html"
+      ],
+      "why_added": "Korea food-contact utensils, containers, packaging, and sanitary safety baseline.",
+      "product_categories": [
+        "food_contact",
+        "kitchenware",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "food_contact",
+        "chemical",
+        "labelling"
+      ],
+      "klri_hseq": "46429",
+      "file_stats": [
+        {
+          "file": "raw/kr/food-sanitation-act-46429.html",
+          "bytes": 477392,
+          "sha256": "7033b9807348d0602dc15cafc3110361203029a1074386b8d92bb0bd8f857282"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-cosmetics-act-68854",
+      "market": "KR",
+      "title": "Cosmetics Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=68854&lang=ENG",
+      "files": [
+        "raw/kr/cosmetics-act-68854.html"
+      ],
+      "why_added": "Korea cosmetics safety, labeling, importer/manufacturer, and advertising controls.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "chemical"
+      ],
+      "klri_hseq": "68854",
+      "file_stats": [
+        {
+          "file": "raw/kr/cosmetics-act-68854.html",
+          "bytes": 203418,
+          "sha256": "7ca9afa024e8532d216ed7b3487d2b42880de4294ba4df4fc34552f00612d122"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-k-reach-48870",
+      "market": "KR",
+      "title": "Act on Registration and Evaluation of Chemical Substances",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=48870&lang=ENG",
+      "files": [
+        "raw/kr/k-reach-48870.html"
+      ],
+      "why_added": "Korea K-REACH chemical registration and evaluation coverage for imported substances and articles.",
+      "product_categories": [
+        "chemicals",
+        "raw_materials",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "documentation"
+      ],
+      "klri_hseq": "48870",
+      "file_stats": [
+        {
+          "file": "raw/kr/k-reach-48870.html",
+          "bytes": 206998,
+          "sha256": "398d75a2cbc37273e01ca05f73c0da7359db4e119109caa6ee77ab841cefdbec"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-chemical-substances-control-act-55950",
+      "market": "KR",
+      "title": "Chemical Substances Control Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=55950&lang=ENG",
+      "files": [
+        "raw/kr/chemical-substances-control-act-55950.html"
+      ],
+      "why_added": "Korea hazardous-chemical handling, labelling, and control context.",
+      "product_categories": [
+        "chemicals",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "labelling",
+        "market_surveillance"
+      ],
+      "klri_hseq": "55950",
+      "file_stats": [
+        {
+          "file": "raw/kr/chemical-substances-control-act-55950.html",
+          "bytes": 305186,
+          "sha256": "d14bd70e852fbe6a3d637b902a04fd494f5b141c8046bc0a479eea657170eb86"
+        }
+      ]
+    },
+    {
+      "id": "kr-klri-radio-waves-act-61445",
+      "market": "KR",
+      "title": "Radio Waves Act",
+      "channel": "Korean Law Translation Center / KLRI",
+      "source_type": "klri_html",
+      "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=61445&lang=ENG",
+      "files": [
+        "raw/kr/radio-waves-act-61445.html"
+      ],
+      "why_added": "Korea radio equipment, spectrum, certification, and wireless-device context.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity",
+        "emc"
+      ],
+      "klri_hseq": "61445",
+      "file_stats": [
+        {
+          "file": "raw/kr/radio-waves-act-61445.html",
+          "bytes": 519599,
+          "sha256": "f51004224a320423b6317db19ade76dafab774909181980cc9274ebc5a29a11f"
+        }
+      ]
+    },
+    {
+      "id": "sg-cpso-cpsr-info-booklet",
+      "market": "SG",
+      "title": "Consumer Protection (Safety Requirements) Regulations information booklet",
+      "channel": "Consumer Product Safety Office Singapore",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/",
+      "files": [
+        "raw/sg/SG_cpso_cpsr_overview.html",
+        "raw/sg/SG_cpso_cpsr_info_booklet.pdf"
+      ],
+      "why_added": "Singapore controlled-goods CPSR safety mark and supplier obligation source pack.",
+      "product_categories": [
+        "controlled_goods",
+        "electronics",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "scope_classification"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_cpso_cpsr_overview.html",
+          "bytes": 36509,
+          "sha256": "c0672e85dfaaf955634b521c4d4d8ab96b92dec2ed8a809f2fb348750cf0ec18"
+        },
+        {
+          "file": "raw/sg/SG_cpso_cpsr_info_booklet.pdf",
+          "bytes": 793347,
+          "sha256": "796176533ca83e6863bdab1ba188db521ba1d049d7c2c24551f7575d04d861d3"
+        }
+      ]
+    },
+    {
+      "id": "sg-cpso-cgsr-info-book",
+      "market": "SG",
+      "title": "Consumer Goods Safety Requirements Regulations information book",
+      "channel": "Consumer Product Safety Office Singapore",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.consumerproductsafety.gov.sg/suppliers/cgsr/overview-of-cgsr/",
+      "files": [
+        "raw/sg/SG_cpso_cgsr_overview.html",
+        "raw/sg/SG_cpso_cgsr_info_book.pdf"
+      ],
+      "why_added": "Singapore general consumer goods safety requirements beyond controlled goods.",
+      "product_categories": [
+        "general_consumer_products",
+        "children_products",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_cpso_cgsr_overview.html",
+          "bytes": 38271,
+          "sha256": "e4d4136f99168c0a42277d52fe2b3f5016fb4f9222a00494610263a8f9944596"
+        },
+        {
+          "file": "raw/sg/SG_cpso_cgsr_info_book.pdf",
+          "bytes": 319986,
+          "sha256": "98efdd2f1a04b4fd3dde2ee3eba80b7507c9c413ba3b2de6c900f27f66a8f4d1"
+        }
+      ]
+    },
+    {
+      "id": "sg-nea-mels-meps-household-sector",
+      "market": "SG",
+      "title": "Mandatory Energy Labelling Scheme and Minimum Energy Performance Standards",
+      "channel": "National Environment Agency Singapore",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.nea.gov.sg/our-services/climate-change-energy-efficiency/energy-efficiency/household-sector/about-mandatory-energy-labelling-and-minimum-energy-performance-standards",
+      "files": [
+        "raw/sg/SG_nea_mels_meps_household_sector.html",
+        "raw/sg/SG_nea_mels_meps_key_amendments_circular.pdf"
+      ],
+      "why_added": "Singapore appliance energy label and MEPS requirements for household regulated goods.",
+      "product_categories": [
+        "home_appliances",
+        "electronics",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "sustainability",
+        "technical_standard"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_nea_mels_meps_household_sector.html",
+          "bytes": 70937,
+          "sha256": "96fb4ab66f6b9dbbfb1e8fa0b16de89002254bbbe11c112f1124f3a3b4e604f8"
+        },
+        {
+          "file": "raw/sg/SG_nea_mels_meps_key_amendments_circular.pdf",
+          "bytes": 336477,
+          "sha256": "f67759441fe6c9a2e5f74ac1d13e9cba148bdbaeeab35264a99b1cd172565d9f"
+        }
+      ]
+    },
+    {
+      "id": "sg-nea-mandatory-packaging-reporting",
+      "market": "SG",
+      "title": "Mandatory Packaging Reporting",
+      "channel": "National Environment Agency Singapore",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.nea.gov.sg/our-services/waste-management/mandatory-packaging-reporting",
+      "files": [
+        "raw/sg/SG_nea_mandatory_packaging_reporting.html",
+        "raw/sg/SG_nea_mandatory_packaging_reporting_guidebook.pdf"
+      ],
+      "why_added": "Singapore packaging data reporting and 3R plan obligations.",
+      "product_categories": [
+        "packaging"
+      ],
+      "regulatory_types": [
+        "packaging",
+        "sustainability",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_nea_mandatory_packaging_reporting.html",
+          "bytes": 81369,
+          "sha256": "af5b4f7f8888778f5fb432ecb3c5bc40a0bd98213f1b94d12331548099d3834a"
+        },
+        {
+          "file": "raw/sg/SG_nea_mandatory_packaging_reporting_guidebook.pdf",
+          "bytes": 5398692,
+          "sha256": "c24fc5f91ea9cfe7a229c502be0b00de7b0c468b99f261b814dbcedb5f2e9e73"
+        }
+      ]
+    },
+    {
+      "id": "sg-nea-e-waste-epr-system",
+      "market": "SG",
+      "title": "Extended Producer Responsibility system for e-waste management",
+      "channel": "National Environment Agency Singapore",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources/e-waste-management/extended-producer-responsibility-(epr)-system-for-e-waste-management-system",
+      "files": [
+        "raw/sg/SG_nea_e_waste_epr_system.html",
+        "raw/sg/SG_nea_e_waste_producer_guidelines_2026.pdf"
+      ],
+      "why_added": "Singapore regulated consumer e-waste and producer responsibility implementation guidance.",
+      "product_categories": [
+        "electronics",
+        "waste_electrical"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "waste",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sg/SG_nea_e_waste_epr_system.html",
+          "bytes": 98824,
+          "sha256": "bc5fb4e7f3562489103f16f29ca2305dc4b8cda5fd44a9ae5028f8ab194a7ee1"
+        },
+        {
+          "file": "raw/sg/SG_nea_e_waste_producer_guidelines_2026.pdf",
+          "bytes": 545372,
+          "sha256": "8d2c4509dbdf257ae4c44177a63a8853420167ee69ba8e81cba3640a409eb4c3"
+        }
+      ]
+    },
+    {
+      "id": "in-cpcb-plastic-waste-management-rules",
+      "market": "IN",
+      "title": "Plastic Waste Management Rules, 2016 and amendments",
+      "channel": "Central Pollution Control Board, Government of India",
+      "source_type": "official_html_pdf",
+      "source_url": "https://cpcb.nic.in/plastic-waste-rules/",
+      "files": [
+        "raw/in/IN_cpcb_plastic_waste_rules.html",
+        "raw/in/IN_plastic_waste_management_rules_2016.pdf",
+        "raw/in/IN_plastic_waste_management_rules_2022_amendment.pdf"
+      ],
+      "why_added": "India plastic packaging and EPR framework for packaging-heavy product categories.",
+      "product_categories": [
+        "packaging",
+        "plastics",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "packaging",
+        "sustainability",
+        "waste"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/in/IN_cpcb_plastic_waste_rules.html",
+          "bytes": 318932,
+          "sha256": "44c39cc0682c4620b159ce0667fa9fa1a6b552c8c6ebeb0e860eb2a9971b57d0"
+        },
+        {
+          "file": "raw/in/IN_plastic_waste_management_rules_2016.pdf",
+          "bytes": 770686,
+          "sha256": "aef5c9bdd1498de98bd81d84ed9ac9d7b2495794e4ce0f43ae399c8abcb9e070"
+        },
+        {
+          "file": "raw/in/IN_plastic_waste_management_rules_2022_amendment.pdf",
+          "bytes": 1457808,
+          "sha256": "8f00ff0e1be6a5b4fa9eed8bbb3474e110d6388084a4b6836595cfe01afe6091"
+        }
+      ]
+    },
+    {
+      "id": "in-cpcb-e-waste-rules-portal",
+      "market": "IN",
+      "title": "E-Waste (Management) Rules portal and 2022 rules",
+      "channel": "Central Pollution Control Board, Government of India",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.cpcb.nic.in/e-waste/",
+      "files": [
+        "raw/in/IN_cpcb_e_waste_rules_portal.html",
+        "raw/in/IN_cpcb_e_waste_management_rules_2022.pdf"
+      ],
+      "why_added": "India electronics EPR and waste-management implementation portal with official rules PDF.",
+      "product_categories": [
+        "electronics",
+        "waste_electrical"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "waste",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/in/IN_cpcb_e_waste_rules_portal.html",
+          "bytes": 344186,
+          "sha256": "1e848142ce60b2175d91e4d2ac41446ae0a9ed422118a10172307f80dcad4ef2"
+        },
+        {
+          "file": "raw/in/IN_cpcb_e_waste_management_rules_2022.pdf",
+          "bytes": 1609623,
+          "sha256": "d03f8744bc79d67a94b06e1020537e93d15572b0cf1d575cb32b76c89f30a5fb"
+        }
+      ]
+    },
+    {
+      "id": "in-cdsco-cosmetics-rules-2020",
+      "market": "IN",
+      "title": "Cosmetics Rules, 2020",
+      "channel": "Central Drugs Standard Control Organisation, Government of India",
+      "source_type": "official_html_pdf",
+      "source_url": "https://cdsco.gov.in/opencms/opencms/en/Acts-and-rules/Cosmetics-Rules/",
+      "files": [
+        "raw/in/IN_cdsco_cosmetics_rules_2020_page.html",
+        "raw/in/IN_cdsco_cosmetics_rules_2020.pdf",
+        "raw/in/IN_cdsco_cosmetics_rules_2020_gsr_763.pdf"
+      ],
+      "why_added": "India cosmetics import, registration, labelling, and safety rules.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/in/IN_cdsco_cosmetics_rules_2020_page.html",
+          "bytes": 58038,
+          "sha256": "89cc5ccb0e48c3af4a7dcbda2e687be8862691cf93db7f5ac6571feeab9c1b7c"
+        },
+        {
+          "file": "raw/in/IN_cdsco_cosmetics_rules_2020.pdf",
+          "bytes": 791563,
+          "sha256": "baf622fd41acd2bd42333ceba332362a9223c60b32cb8544ad408b5ae57e6e0f"
+        },
+        {
+          "file": "raw/in/IN_cdsco_cosmetics_rules_2020_gsr_763.pdf",
+          "bytes": 2885750,
+          "sha256": "4300f85695e9a787bc5ed008e0f6b2fb9514f408ffb3a0eac1d23bbd2f2ed476"
+        }
+      ]
+    },
+    {
+      "id": "mx-platiica-nom-050-scfi-2004-general-labelling",
+      "market": "MX",
+      "title": "NOM-050-SCFI-2004, commercial information and general product labelling",
+      "channel": "PLATIICA, Secretaria de Economia, Government of Mexico",
+      "source_type": "platiica_html_pdf",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-050-scfi-2004/",
+      "files": [
+        "raw/mx/nom-050-scfi-2004-general-labelling.html",
+        "raw/mx/nom-050-scfi-2004-general-labelling.pdf"
+      ],
+      "why_added": "Mexico general consumer product commercial information and labelling baseline.",
+      "product_categories": [
+        "general_consumer_products",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/nom-050-scfi-2004-general-labelling.html",
+          "bytes": 92829,
+          "sha256": "48f91af14cd8edc688baeeeb2674ea75360f12d3e8bf6093f8331962d8e02169"
+        },
+        {
+          "file": "raw/mx/nom-050-scfi-2004-general-labelling.pdf",
+          "bytes": 28808,
+          "sha256": "f62e0ef30c36ebcc928972f738e9410104af59f1cbd3df116c42848602eece68"
+        }
+      ]
+    },
+    {
+      "id": "mx-platiica-nom-024-scfi-2013-electrical-electronic-labelling",
+      "market": "MX",
+      "title": "NOM-024-SCFI-2013, commercial information for electrical, electronic and home appliances",
+      "channel": "PLATIICA, Secretaria de Economia, Government of Mexico",
+      "source_type": "platiica_html_pdf",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-024-scfi-2013/",
+      "files": [
+        "raw/mx/nom-024-scfi-2013-electrical-electronic-labelling.html",
+        "raw/mx/nom-024-scfi-2013-electrical-electronic-labelling.pdf"
+      ],
+      "why_added": "Mexico electrical, electronic, and home-appliance commercial information requirements.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/nom-024-scfi-2013-electrical-electronic-labelling.html",
+          "bytes": 92837,
+          "sha256": "01a001ae0cc35c86e12b865854147883d6d0d600e2f934d6e12cd28c652c6be6"
+        },
+        {
+          "file": "raw/mx/nom-024-scfi-2013-electrical-electronic-labelling.pdf",
+          "bytes": 87802,
+          "sha256": "c85cb2333a7baf5e5091660324c5a064f93df4f98df69e09cf27f4175c325a6b"
+        }
+      ]
+    },
+    {
+      "id": "mx-platiica-nom-003-scfi-2014-electrical-product-safety",
+      "market": "MX",
+      "title": "NOM-003-SCFI-2014, electrical product safety specifications",
+      "channel": "PLATIICA, Secretaria de Economia, Government of Mexico",
+      "source_type": "platiica_html_pdf",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-003-scfi-2014/",
+      "files": [
+        "raw/mx/nom-003-scfi-2014-electrical-product-safety.html",
+        "raw/mx/nom-003-scfi-2014-electrical-product-safety.pdf"
+      ],
+      "why_added": "Mexico electrical product safety and conformity standard baseline.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "technical_standard",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/nom-003-scfi-2014-electrical-product-safety.html",
+          "bytes": 99165,
+          "sha256": "d5d53cdeec15456af3bcdfd49dee4d70df99dfa7f12e083ce0d54b85621e2048"
+        },
+        {
+          "file": "raw/mx/nom-003-scfi-2014-electrical-product-safety.pdf",
+          "bytes": 631037,
+          "sha256": "5a3128d921f5d3b61eba9ac0b7e72a0a4be9c0d3dd8c6457671a57dc88ccb6ff"
+        }
+      ]
+    },
+    {
+      "id": "mx-platiica-nom-141-ssa1-scfi-2012-cosmetics-labelling",
+      "market": "MX",
+      "title": "NOM-141-SSA1/SCFI-2012, cosmetic products prepackaged labelling",
+      "channel": "PLATIICA, Secretaria de Economia, Government of Mexico",
+      "source_type": "platiica_html_pdf",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-141-ssa1-scfi-2012/",
+      "files": [
+        "raw/mx/nom-141-ssa1-scfi-2012-cosmetics-labelling.html",
+        "raw/mx/nom-141-ssa1-scfi-2012-cosmetics-labelling.pdf"
+      ],
+      "why_added": "Mexico cosmetic product labelling and health information standard.",
+      "product_categories": [
+        "cosmetics",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "chemical",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/nom-141-ssa1-scfi-2012-cosmetics-labelling.html",
+          "bytes": 96756,
+          "sha256": "734d09febb2badfc313ec65d430ca88b0ee9c66af94a068c251acc754ccd8bbb"
+        },
+        {
+          "file": "raw/mx/nom-141-ssa1-scfi-2012-cosmetics-labelling.pdf",
+          "bytes": 76417,
+          "sha256": "aa8ffd3b476f5327346bf335ebd8b1496773a983594029fa69fa365b1bbe9abb"
+        }
+      ]
+    },
+    {
+      "id": "mx-platiica-nom-051-scfi-ssa1-2010-food-labelling",
+      "market": "MX",
+      "title": "NOM-051-SCFI/SSA1-2010, food and non-alcoholic beverage labelling",
+      "channel": "PLATIICA, Secretaria de Economia, Government of Mexico",
+      "source_type": "platiica_html_pdf",
+      "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-051-scfi-ssa1-2010/",
+      "files": [
+        "raw/mx/nom-051-scfi-ssa1-2010-food-labelling.html",
+        "raw/mx/nom-051-scfi-ssa1-2010-2025-review.pdf"
+      ],
+      "why_added": "Mexico food and non-alcoholic beverage packaging and warning-label context.",
+      "product_categories": [
+        "packaging",
+        "food_contact",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "packaging",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/mx/nom-051-scfi-ssa1-2010-food-labelling.html",
+          "bytes": 98346,
+          "sha256": "50fd1fe06101cb1496b965154f43352dcb9391b8229d0caa0f36660e172c9517"
+        },
+        {
+          "file": "raw/mx/nom-051-scfi-ssa1-2010-2025-review.pdf",
+          "bytes": 2329502,
+          "sha256": "a80dedf7f3cde4ede2f51542eb3d8ebde42b0be3f41d167be75ac31310032f12"
+        }
+      ]
+    },
+    {
+      "id": "br-planalto-consumer-defense-code",
+      "market": "BR",
+      "title": "Consumer Defense Code, Law No. 8,078/1990",
+      "channel": "Presidency of the Republic of Brazil / Planalto",
+      "source_type": "official_html",
+      "source_url": "http://www.planalto.gov.br/ccivil_03/leis/l8078compilado.htm",
+      "files": [
+        "raw/br/BR_planalto_consumer_defense_code_law_8078.html"
+      ],
+      "why_added": "Brazil consumer protection, product information, defects, and liability baseline.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/br/BR_planalto_consumer_defense_code_law_8078.html",
+          "bytes": 169132,
+          "sha256": "681633875651dc22d0cce0ca8c5c3b8b8fd41f69593b02f6115b30cf3c259292"
+        }
+      ]
+    },
+    {
+      "id": "br-inmetro-conformity-assessment",
+      "market": "BR",
+      "title": "Inmetro conformity assessment portal",
+      "channel": "National Institute of Metrology, Quality and Technology (Inmetro)",
+      "source_type": "official_html",
+      "source_url": "https://www.gov.br/inmetro/pt-br/assuntos/avaliacao-da-conformidade",
+      "files": [
+        "raw/br/BR_inmetro_conformity_assessment.html"
+      ],
+      "why_added": "Brazil conformity assessment and regulated-product certification portal.",
+      "product_categories": [
+        "general_consumer_products",
+        "industrial_products",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "testing",
+        "scope_classification"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/br/BR_inmetro_conformity_assessment.html",
+          "bytes": 116083,
+          "sha256": "71a3b949070da3bdee083d2ed8b462b09c1f8ba1dc0c28684c291d76ab11f338"
+        }
+      ]
+    },
+    {
+      "id": "br-anvisa-cosmetics-portal",
+      "market": "BR",
+      "title": "Anvisa cosmetics portal",
+      "channel": "Brazilian Health Regulatory Agency (Anvisa)",
+      "source_type": "official_html",
+      "source_url": "https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos",
+      "files": [
+        "raw/br/BR_anvisa_cosmetics_portal.html"
+      ],
+      "why_added": "Brazil cosmetics regulatory, safety, import, and labeling context.",
+      "product_categories": [
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/br/BR_anvisa_cosmetics_portal.html",
+          "bytes": 236849,
+          "sha256": "e63f5772f41c8678917ba65f005426d5f1226fa2b3fc241b0b3ba813b89feac8"
+        }
+      ]
+    },
+    {
+      "id": "br-anatel-certification-products-portal",
+      "market": "BR",
+      "title": "Anatel product certification portal",
+      "channel": "National Telecommunications Agency of Brazil (Anatel)",
+      "source_type": "official_html",
+      "source_url": "https://www.gov.br/anatel/pt-br/regulado/certificacao-de-produtos",
+      "files": [
+        "raw/br/BR_anatel_product_certification_portal.html"
+      ],
+      "why_added": "Brazil telecom product certification, homologation, and technical requirement portal.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity",
+        "emc"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/br/BR_anatel_product_certification_portal.html",
+          "bytes": 180017,
+          "sha256": "69e37c7718b2bdcf8500f2f6d98590bea24b5f1108a02479ead06676ec0dd66e"
+        }
+      ]
+    },
+    {
+      "id": "nz-product-safety-baby-walker-standard",
+      "market": "NZ",
+      "title": "Baby walker mandatory product safety standard",
+      "channel": "Product Safety New Zealand",
+      "source_type": "official_html",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/baby-walker-standard",
+      "files": [
+        "raw/nz/NZ_baby_walker_standard.html"
+      ],
+      "why_added": "New Zealand baby-walker mechanical and child product safety standard page.",
+      "product_categories": [
+        "children_products",
+        "home_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_baby_walker_standard.html",
+          "bytes": 188052,
+          "sha256": "bc98e5e65ed3ee95bb897918e88edd540515eefdd1df0eb84f8915c50fbe3e0b"
+        }
+      ]
+    },
+    {
+      "id": "nz-product-safety-childrens-nightwear-standard",
+      "market": "NZ",
+      "title": "Children's nightwear mandatory product safety standard",
+      "channel": "Product Safety New Zealand",
+      "source_type": "official_html",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-nightwear-standard",
+      "files": [
+        "raw/nz/NZ_childrens_nightwear_standard.html"
+      ],
+      "why_added": "New Zealand children's nightwear flammability and labelling standard page.",
+      "product_categories": [
+        "children_products",
+        "apparel",
+        "textiles"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "flammability",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_childrens_nightwear_standard.html",
+          "bytes": 188533,
+          "sha256": "915af7f244ed9dcc95ae877016318033c64df1cb26021ef8cc09850ef964a6be"
+        }
+      ]
+    },
+    {
+      "id": "nz-product-safety-bicycle-standard",
+      "market": "NZ",
+      "title": "Bicycle mandatory product safety standard",
+      "channel": "Product Safety New Zealand",
+      "source_type": "official_html",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/bicycle-standard",
+      "files": [
+        "raw/nz/NZ_bicycle_standard.html"
+      ],
+      "why_added": "New Zealand bicycle product safety standard page.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_bicycle_standard.html",
+          "bytes": 188542,
+          "sha256": "199e080104d11656cc6ff408c7efee1f73d3c18da88e13ec5c1e62eefab5078e"
+        }
+      ]
+    },
+    {
+      "id": "nz-product-safety-multipurpose-ladders-standard",
+      "market": "NZ",
+      "title": "Multipurpose ladders mandatory product safety standard",
+      "channel": "Product Safety New Zealand",
+      "source_type": "official_html",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/multipurpose-ladders",
+      "files": [
+        "raw/nz/NZ_multipurpose_ladders.html"
+      ],
+      "why_added": "New Zealand multipurpose ladder product safety standard page.",
+      "product_categories": [
+        "home_goods",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "mechanical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_multipurpose_ladders.html",
+          "bytes": 189294,
+          "sha256": "332ebb2c3202871f4c9dbc106dcb163102ee8ae4cb8fa45f8448e47540b9cd48"
+        }
+      ]
+    },
+    {
+      "id": "nz-product-safety-sunscreen-standard",
+      "market": "NZ",
+      "title": "Sunscreen mandatory product safety standard",
+      "channel": "Product Safety New Zealand",
+      "source_type": "official_html",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/sunscreen-standard",
+      "files": [
+        "raw/nz/NZ_sunscreen_standard.html"
+      ],
+      "why_added": "New Zealand sunscreen product safety standard page.",
+      "product_categories": [
+        "cosmetics",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/nz/NZ_sunscreen_standard.html",
+          "bytes": 189328,
+          "sha256": "a980f60102c6e4b069335df3c88e09cf1fd1be62614194f8881c3c3747f7564b"
+        }
+      ]
+    },
+    {
+      "id": "gcc-gso-conformity-main-portal",
+      "market": "GCC",
+      "title": "GSO conformity portal",
+      "channel": "Gulf Cooperation Council Standardization Organization",
+      "source_type": "official_html",
+      "source_url": "https://www.gso.org.sa/en/conformity/",
+      "files": [
+        "raw/gcc/GCC_GSO_conformity_portal.html"
+      ],
+      "why_added": "GSO conformity services and committee entry point for GCC product compliance.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/gcc/GCC_GSO_conformity_portal.html",
+          "bytes": 150194,
+          "sha256": "e9fd5126f63af7cadeca36e1307cda547f97c18306adea88726a77d6e02f5662"
+        }
+      ]
+    },
+    {
+      "id": "gcc-gso-conformity-assessment-scheme",
+      "market": "GCC",
+      "title": "GCC Conformity Assessment Scheme",
+      "channel": "Gulf Cooperation Council Standardization Organization",
+      "source_type": "official_html",
+      "source_url": "https://www.gso.org.sa/en/conformity/gcc-conformity-assessment-scheme/",
+      "files": [
+        "raw/gcc/GCC_GSO_conformity_assessment_scheme.html"
+      ],
+      "why_added": "GCC conformity assessment scheme context for regulated products.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "testing",
+        "scope_classification"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/gcc/GCC_GSO_conformity_assessment_scheme.html",
+          "bytes": 160475,
+          "sha256": "6fedc8804a98efbbc0a3b68d011b87a8bd7c66c94cf9bd1ced750f4d49d77239"
+        }
+      ]
+    },
+    {
+      "id": "gcc-gso-gcc-conformity-mark",
+      "market": "GCC",
+      "title": "GCC Conformity Mark",
+      "channel": "Gulf Cooperation Council Standardization Organization",
+      "source_type": "official_html",
+      "source_url": "https://www.gso.org.sa/en/conformity/gcc-conformity-mark/",
+      "files": [
+        "raw/gcc/GCC_GSO_conformity_mark.html"
+      ],
+      "why_added": "G-Mark / GCC conformity mark context for covered products.",
+      "product_categories": [
+        "electronics",
+        "toys",
+        "controlled_goods"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/gcc/GCC_GSO_conformity_mark.html",
+          "bytes": 150791,
+          "sha256": "3836b8f74a94be22133716115061b5c627a9a5d9076533bdcbb21add292949ae"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This supplement is a raw official-source collection only; it has not been ingested into data/corpus/processed or data/faiss.",
+    "The batch targets weaker market/category coverage: Japan, Korea, Singapore, India, Mexico, Brazil, GCC, and New Zealand.",
+    "Original formats are preserved where public official sources provide them: PDF, DOCX, XML, and official HTML.",
+    "Some jurisdictions publish standards behind paid standards portals; this batch keeps official government pages where the full standard PDF is not public."
+  ]
+}

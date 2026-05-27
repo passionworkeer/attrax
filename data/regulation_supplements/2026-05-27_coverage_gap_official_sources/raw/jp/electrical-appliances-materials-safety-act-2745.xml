@@ -1,0 +1,2472 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Law PUBLIC "-//JaLII//DTD J-STATUTE 1.0//EN" "jstatute.dtd">
+<Law OriginalPromulgateDate="November 16, 1961" LawType="Act" Lang="en" Year="36" Era="Showa" Num="234">
+	<LawNum>Act No. 234 of November 16, 1961</LawNum>
+	<LawBody>
+		<LawTitle>Electrical Appliances and Materials Safety Act</LawTitle>
+		<TOC id="en_toc">
+			<TOCLabel>Table of Contents</TOCLabel>
+			<TOCChapter Num="1">
+				<ChapterTitle>Chapter I General Provisions</ChapterTitle>
+				<ArticleRange>(Articles 1 and 2)</ArticleRange>
+			</TOCChapter>
+			<TOCChapter Num="2">
+				<ChapterTitle>Chapter II Notification of Business, etc.</ChapterTitle>
+				<ArticleRange>(Articles 3 to 7)</ArticleRange>
+			</TOCChapter>
+			<TOCChapter Num="3">
+				<ChapterTitle>Chapter III Conformity Assessment of Electrical Appliances and Materials, etc.</ChapterTitle>
+				<ArticleRange>(Articles 8 to 26)</ArticleRange>
+			</TOCChapter>
+			<TOCChapter Num="4">
+				<ChapterTitle>Chapter IV Restrictions on Sale, etc.</ChapterTitle>
+				<ArticleRange>(Articles 27 and 28)</ArticleRange>
+			</TOCChapter>
+			<TOCChapter Num="5">
+				<ChapterTitle>Chapter V Registration of Conformity Assessment Bodies, etc.</ChapterTitle>
+				<TOCSection Num="1">
+					<SectionTitle>Section 1 Registration of Conformity Assessment Bodies</SectionTitle>
+					<ArticleRange>(Articles 29 to 32)</ArticleRange>
+				</TOCSection>
+				<TOCSection Num="2">
+					<SectionTitle>Section 2 Domestic Registered Conformity Assessment Bodies</SectionTitle>
+					<ArticleRange>(Articles 33 to 42-2)</ArticleRange>
+				</TOCSection>
+				<TOCSection Num="3">
+					<SectionTitle>Section 3 Foreign Registered Conformity Assessment Bodies</SectionTitle>
+					<ArticleRange>(Articles 42-3 and 42-4)</ArticleRange>
+				</TOCSection>
+			</TOCChapter>
+			<TOCChapter Num="5_2">
+				<ChapterTitle>Chapter V-2 Order for Hazard Prevention, etc.</ChapterTitle>
+				<ArticleRange>(Article 42-5)</ArticleRange>
+			</TOCChapter>
+			<TOCChapter Num="6">
+				<ChapterTitle>Chapter VI Miscellaneous Provisions</ChapterTitle>
+				<ArticleRange>(Articles 43 to 56)</ArticleRange>
+			</TOCChapter>
+			<TOCChapter Num="7">
+				<ChapterTitle>Chapter VII Penal Provisions</ChapterTitle>
+				<ArticleRange>(Articles 57 to 61)</ArticleRange>
+			</TOCChapter>
+			<TOCSupplProvision>
+				<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			</TOCSupplProvision>
+		</TOC>
+		<MainProvision>
+			<Chapter Num="1" id="en_ch1">
+				<ChapterTitle>Chapter I General Provisions</ChapterTitle>
+				<Article Num="1" id="en_ch1at1">
+					<ArticleCaption>(Purpose)</ArticleCaption>
+					<ArticleTitle>Article 1</ArticleTitle>
+					<Paragraph Num="1" id="en_ch1at1cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The purpose of this Act is to prevent danger and electromagnetic interference caused by Electrical Appliances and Materials through regulating their manufacture, sale, etc. as well as fostering voluntary activities by private businesses to ensure the safety of Electrical Appliances and Materials.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="2" id="en_ch1at2">
+					<ArticleCaption>(Definitions)</ArticleCaption>
+					<ArticleTitle>Article 2</ArticleTitle>
+					<Paragraph Num="1" id="en_ch1at2cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The term "Electrical Appliances and Materials" as used in this Act means the following:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>Parts of electrical facilities for general use (meaning electrical facilities for general use as prescribed in Article 38, paragraph (1) of the Electricity Business Act (Act No. 170 of 1964)) and machines, appliances, and materials used in connection therewith, as specified by Cabinet Order;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>Portable power generators as specified by Cabinet Order; and</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="3">
+							<ItemTitle>(iii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>Secondary batteries as stipulated by Cabinet Order.</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch1at2cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The term "Specified Electrical Appliances and Materials" as used in this Act means Electrical Appliances and Materials as specified by Cabinet Order which are particularly likely to cause danger or electromagnetic interference because of their structure, manner of use, or other conditions of use.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+			</Chapter>
+			<Chapter Num="2" id="en_ch2">
+				<ChapterTitle>Chapter II Notification of Business, etc.</ChapterTitle>
+				<Article Num="3" id="en_ch2at1">
+					<ArticleCaption>(Notification of Business)</ArticleCaption>
+					<ArticleTitle>Article 3</ArticleTitle>
+					<Paragraph Num="1" id="en_ch2at1cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>All persons engaged in manufacturing or importing Electrical Appliances and Materials must, within 30 days from the commencement of such business, notify the Minister of Economy, Trade and Industry of the following particulars in accordance with the Electrical Appliance and Material classification specified by Ordinance of the Ministry of Economy, Trade and Industry:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>The name or trade name and address, and in the case of a corporation, the name of the representative;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>Classification by product type of the relevant Electrical Appliances and Materials as specified by Ordinance of the Ministry of Economy, Trade and Industry; and</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="3">
+							<ItemTitle>(iii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>The name and location of the plant or workplace where said Electrical Appliances and Materials are manufactured (in cases of persons engaged in importing Electrical Appliances and Materials, the name or trade name and address of the manufacturer of the Electrical Appliances and Materials).</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="4" id="en_ch2at2">
+					<ArticleCaption>(Succession)</ArticleCaption>
+					<ArticleTitle>Article 4</ArticleTitle>
+					<Paragraph Num="1" id="en_ch2at2cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When a person who has made a notification as set forth in the preceding Article (hereinafter referred to as a "Notifying Supplier") assigns all of the business to which such notification pertains to another person, or when there is a succession, merger, or company split (limited to those resulting in the transfer of all of the business to which the notification pertains) involving the Notifying Supplier, the person who acquires all of the business of the Notifying Supplier, the successor (or in the case of multiple successors, the one successor selected by unanimous agreement of all successors), the corporation surviving the merger or newly established as a result of the merger, or the corporation that succeeds to all of the business as a result of the company split shall succeed to the position of Notifying Supplier.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch2at2cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Any person who has succeeded to the position of Notifying Supplier pursuant to the provisions of the preceding paragraph must notify the Minister of Economy, Trade and Industry of such succession without delay, and shall attach documentation to such notification evidencing such fact.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="5" id="en_ch2at3">
+					<ArticleCaption>(Notification of Change)</ArticleCaption>
+					<ArticleTitle>Article 5</ArticleTitle>
+					<Paragraph Num="1" id="en_ch2at3cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence Num="1" Function="Main">In the case of any change in the particulars set forth in the items of Article 3, the Notifying Supplier must notify the Minister of Economy, Trade and Industry of such change without delay;</Sentence>
+							<Sentence Num="2" Function="Proviso">provided, however, that this shall not apply to a change in minor details as specified by Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="6" id="en_ch2at4">
+					<ArticleCaption>(Notification of Permanent Cessation of Business)</ArticleCaption>
+					<ArticleTitle>Article 6</ArticleTitle>
+					<Paragraph Num="1" id="en_ch2at4cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When a Notifying Supplier permanently ceases doing business to which the notification pertains, it must notify the Minister of Economy, Trade and Industry of such cessation without delay.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="7" id="en_ch2at5">
+					<ArticleCaption>(Provision of Information Pertaining to Notified Particulars)</ArticleCaption>
+					<ArticleTitle>Article 7</ArticleTitle>
+					<Paragraph Num="1" id="en_ch2at5cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Any person may request that the Minister of Economy, Trade and Industry provide information pertaining to the particulars listed in Article 3, items (i) and (ii).</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+			</Chapter>
+			<Chapter Num="3" id="en_ch3">
+				<ChapterTitle>Chapter III Conformity Assessment of Electrical Appliances and Materials, etc.</ChapterTitle>
+				<Article Num="8" id="en_ch3at1">
+					<ArticleCaption>(Obligation of Standards Compliance, etc.)</ArticleCaption>
+					<ArticleTitle>Article 8</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at1cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence Num="1" Function="Main">A Notifying Supplier, when manufacturing or importing Electrical Appliances and Materials of a product type pertaining to a notification given pursuant to the provisions of Article 3 (hereinafter referred to as the "Product Type Specified in the Notification") must comply with the technical standards specified by Ordinance of the Ministry of Economy, Trade and Industry (hereinafter referred to as the "Technical Standards");</Sentence>
+							<Sentence Num="2" Function="Proviso">provided, however, that this shall not apply in the following cases:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the approval of the Minister of Economy, Trade and Industry has been obtained for the manufacture or import of Electrical Appliances and Materials to be used for a specific application; or</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the manufacture or import is for experimental purposes.</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch3at1cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A Notifying Supplier shall conduct an assessment of the Electrical Appliances and Materials set forth in the preceding paragraph which are manufactured or imported by the Notifying Supplier (excluding Electrical Appliances and Materials manufactured or imported through the application of the proviso to the preceding paragraph) pursuant to Ordinance of the Ministry of Economy, Trade and Industry, and must prepare and keep a record of said assessment.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="9" id="en_ch3at2">
+					<ArticleCaption>(Conformity Assessment of Specified Electrical Appliances and Materials)</ArticleCaption>
+					<ArticleTitle>Article 9</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at2cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When the Electrical Appliances and Materials that are set forth in paragraph (1) of the preceding Article and manufactured or imported by a Notifying Supplier (excluding Electrical Appliances and Materials manufactured or imported through application of the proviso to said paragraph) are Specified Electrical Appliances and Materials, the Notifying Supplier shall, before their sale, have them assessed with respect to the following items (hereinafter referred to as a "Conformity Assessment") by an organization registered with the Minister of Economy, Trade and Industry pursuant to the provisions of the following paragraph, and must obtain and retain the certificate set forth in said paragraph; provided, however, that this shall not apply in the case where the certificate set forth in said paragraph pertaining to item (ii) has already been obtained and retained for a Specified Electrical Appliance and Material of the same product type as said Specified Electrical Appliance and Material and the period specified by Cabinet Order for each Specified Electrical Appliance and Material, calculated from the day on which said certificate was obtained, has not yet lapsed, or in the case where documentation specified by Ordinance of the Ministry of Economy, Trade and Industry as the equivalent of the certificate set forth in said paragraph is retained:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>Said Specified Electrical Appliances and Materials; and</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>The Specified Electrical Appliances and Materials used for testing and the assessment facilities for said Specified Electrical Appliances and Materials which are in the Notifying Supplier's plant or workplace, and other particulars as specified by Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch3at2cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The registered bodies set forth in the preceding paragraph shall conduct a Conformity Assessment of the particulars listed in the items of said paragraph by means specified by Ordinance of the Ministry of Economy, Trade and Industry, and when these particulars are found to comply with the Technical Standards and other standards specified by Ordinance of the Ministry of Economy, Trade and Industry relating to the assessment facilities set forth in item (ii) of said paragraph and other particulars specified by Ordinance of the Ministry of Economy, Trade and Industry, it may issue to the Notifying Supplier a certificate to that effect pursuant to Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="10" id="en_ch3at3">
+					<ArticleCaption>(Labeling)</ArticleCaption>
+					<ArticleTitle>Article 10</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at3cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When a Notifying Supplier has performed its obligations pursuant to the provisions of Article 8, paragraph (2) (in the case of Specified Electrical Appliances and Materials, Article 8, paragraph (2) and Article 9, paragraph (1)) concerning compliance with the Technical Standards for Electrical Appliances and Materials of the product type pertaining to the notification, it may affix labeling to said Electrical Appliances and Materials in the form specified by Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch3at3cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Except where a Notifying Supplier affixes labeling to the Electrical Appliances and Materials of the product type pertaining to the notification pursuant to the provisions of the preceding paragraph, no person shall affix labeling as set forth in said paragraph or any other labeling similar thereto to the Electrical Appliances and Materials.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="11" id="en_ch3at4">
+					<ArticleCaption>(Order for Improvement)</ArticleCaption>
+					<ArticleTitle>Article 11</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at4cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When the Minister of Economy, Trade and Industry finds that a Notifying Supplier has violated the provisions of Article 8, paragraph (1), they may order the Notifying Supplier to take the necessary measures to improve their way of manufacturing, importing, or assessing Electrical Appliances and Materials or other ways of conducting business.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="12" id="en_ch3at5">
+					<ArticleCaption>(Prohibition on Labeling)</ArticleCaption>
+					<ArticleTitle>Article 12</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at5cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>In the cases listed in the following items, the Minister of Economy, Trade and Industry may prohibit, for a specified period not exceeding one year, the Notifying Supplier from affixing labels, pursuant to the provisions of Article 10, paragraph (1), to the Electrical Appliances and Materials whose product type pertains to the notification prescribed in each of the items:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Column Num="1">
+									<Sentence>Where the Electrical Appliances and Materials of the product type pertaining to the notification that were manufactured or imported by the Notifying Supplier (excluding those manufactured or imported through the application of the proviso to Article 8, paragraph (1)) do not comply with the Technical Standards, and when the Minister of Economy, Trade and Industry deems it particularly necessary for the prevention of danger or electromagnetic interference:</Sentence>
+								</Column>
+								<Column Num="2">
+									<Sentence>The product type to which the notification pertains which relates to the Electrical Appliances and Materials that do not conform to said Technical Standards;</Sentence>
+								</Column>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Column Num="1">
+									<Sentence>Where there has been a violation of Article 8, paragraph (2) or Article 9, paragraph (1) with respect to the Electrical Appliances and Materials of the product type pertaining to the notification which were manufactured or imported by the Notifying Supplier:</Sentence>
+								</Column>
+								<Column Num="2">
+									<Sentence>The product type to which the notification pertains which relates to the Electrical Appliances and Materials concerning said violation; or</Sentence>
+								</Column>
+							</ItemSentence>
+						</Item>
+						<Item Num="3">
+							<ItemTitle>(iii)</ItemTitle>
+							<ItemSentence>
+								<Column Num="1">
+									<Sentence>Where there has been a violation of an order made pursuant to the provisions of the preceding Article with respect to the Electrical Appliances and Materials of the product type pertaining to the notification which were manufactured or imported by the Notifying Supplier:</Sentence>
+								</Column>
+								<Column Num="2">
+									<Sentence>The product type to which the notification pertains which relates to the Electrical Appliances and Materials concerning said violation.</Sentence>
+								</Column>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="13" id="en_ch3at6">
+					<ArticleTitle>Article 13</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at6cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="14" id="en_ch3at7">
+					<ArticleTitle>Article 14</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at7cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="15" id="en_ch3at8">
+					<ArticleTitle>Article 15</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at8cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="16" id="en_ch3at9">
+					<ArticleTitle>Article 16</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at9cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="17" id="en_ch3at10">
+					<ArticleTitle>Article 17</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at10cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="18" id="en_ch3at11">
+					<ArticleTitle>Article 18</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at11cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="19" id="en_ch3at12">
+					<ArticleTitle>Article 19</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at12cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="20" id="en_ch3at13">
+					<ArticleTitle>Article 20</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at13cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="21" id="en_ch3at14">
+					<ArticleTitle>Article 21</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at14cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="22" id="en_ch3at15">
+					<ArticleTitle>Article 22</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at15cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="23" id="en_ch3at16">
+					<ArticleTitle>Article 23</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at16cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="24" id="en_ch3at17">
+					<ArticleTitle>Article 24</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at17cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="25" id="en_ch3at18">
+					<ArticleTitle>Article 25</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at18cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="26" id="en_ch3at19">
+					<ArticleTitle>Article 26</ArticleTitle>
+					<Paragraph Num="1" id="en_ch3at19cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+			</Chapter>
+			<Chapter Num="4" id="en_ch4">
+				<ChapterTitle>Chapter IV Restrictions on Sale, etc.</ChapterTitle>
+				<Article Num="27" id="en_ch4at1">
+					<ArticleCaption>(Restrictions on Sale)</ArticleCaption>
+					<ArticleTitle>Article 27</ArticleTitle>
+					<Paragraph Num="1" id="en_ch4at1cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Any person engaged in manufacturing, importing, or selling Electrical Appliances and Materials must neither sell nor display for the purpose of sale said Electrical Appliances and Materials unless the labeling set forth in Article 10, paragraph (1) is affixed to said Electrical Appliances and Materials.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch4at1cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The provisions of the preceding paragraph shall not apply if the person prescribed in said paragraph falls under either of the following items:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the person has obtained the approval of the Minister of Economy, Trade and Industry in the case of the sale or display for the purpose of sale of the Electrical Appliances and Materials to be used for a specific application; or</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the person sells or displays for the purpose of sale the Electrical Appliances and Materials pertaining to the approval set forth in Article 8, paragraph (1), item (i).</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="28" id="en_ch4at2">
+					<ArticleCaption>(Restrictions on Use)</ArticleCaption>
+					<ArticleTitle>Article 28</ArticleTitle>
+					<Paragraph Num="1" id="en_ch4at2cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Electricity utilities as prescribed in Article 2, paragraph (1), item (x) of the Electricity Business Act, persons who install electrical facilities for private use as prescribed in Article 38, paragraph (4) of said Act, Electricians as prescribed in Article 2, paragraph (4) of the Electricians Act (Act No. 139 of 1960), Qualified Electrical Engineering Specialists as prescribed in Article 3, paragraph (3) of said Act, and Certified Electrical Engineers as prescribed in Article 3, paragraph (4) of said Act shall not use Electrical Appliances and Materials in any construction to install or modify electrical facilities as prescribed in Article 2, paragraph (1), item (xvi) of the Electricity Business Act unless the labeling set forth in Article 10, paragraph (1) is affixed thereto.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch4at2cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Any person engaged in manufacturing products that are manufactured using Electrical Appliances and Materials as parts or accessories and which are specified by Cabinet Order must not use Electrical Appliances and Materials in manufacturing such products unless the labeling set forth in Article 10, paragraph (1) is affixed thereto.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="3" id="en_ch4at2cl3">
+						<ParagraphNum>(3)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The provisions of paragraph (2) of the preceding Article shall apply mutatis mutandis to the cases set forth in the preceding two paragraphs.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+			</Chapter>
+			<Chapter Num="5" id="en_ch5">
+				<ChapterTitle>Chapter V Registration of Conformity Assessment Bodies, etc.</ChapterTitle>
+				<Section Num="1" id="en_ch5sc1">
+					<SectionTitle>Section 1 Registration of Conformity Assessment Bodies</SectionTitle>
+					<Article Num="29" id="en_ch5sc1at1">
+						<ArticleCaption>(Registration)</ArticleCaption>
+						<ArticleTitle>Article 29</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc1at1cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The registration set forth in Article 9, paragraph (1) shall be carried out based on an application made by a person who intends to conduct a Conformity Assessment for each classification of Specified Electrical Appliances and Materials (hereinafter referred to as the "Classification of Specified Electrical Appliances and Materials") specified by Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc1at1cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Where the Minister of Economy, Trade and Industry has received an application pursuant to the preceding paragraph, when they deem it necessary, they may have the National Institute of Technology and Evaluation (hereinafter referred to as "NITE") conduct an examination necessary to determine whether or not said application conforms to the items of Article 31, paragraph (1).</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="30" id="en_ch5sc1at2">
+						<ArticleCaption>(Disqualification)</ArticleCaption>
+						<ArticleTitle>Article 30</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc1at2cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Any person who falls under any of the following items shall not be able to obtain the registration set forth in Article 9, paragraph (1):</Sentence>
+							</ParagraphSentence>
+							<Item Num="1">
+								<ItemTitle>(i)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Any person who has violated this Act or a disposition pursuant to this Act, who has been punished by a fine or more severe punishment, and for whom two years have not passed since completion of said punishment or since the date on which the person ceased to be subject to the execution of said punishment;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="2">
+								<ItemTitle>(ii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Any person for whom two years have not passed since their registration was rescinded pursuant to the provisions of Article 41 or Article 42-4, paragraph (1); or</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="3">
+								<ItemTitle>(iii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Any corporation in which an officer engaged in duties falls under either of the preceding two items.</Sentence>
+								</ItemSentence>
+							</Item>
+						</Paragraph>
+					</Article>
+					<Article Num="31" id="en_ch5sc1at3">
+						<ArticleCaption>(Standards for Registration)</ArticleCaption>
+						<ArticleTitle>Article 31</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc1at3cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The Minister of Economy, Trade and Industry must register any person who applies for registration pursuant to Article 29, paragraph (1) (hereinafter referred to as the "Applicant" in this paragraph) when the Applicant conforms to all of the following items. In this case, the procedures necessary for registration shall be specified by Ordinance of the Ministry of Economy, Trade and Industry:</Sentence>
+							</ParagraphSentence>
+							<Item Num="1">
+								<ItemTitle>(i)</ItemTitle>
+								<ItemSentence>
+									<Sentence>The Applicant conforms to the standards set by the International Organization for Standardization and the International Electrotechnical Commission for bodies that certify products; and</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="2">
+								<ItemTitle>(ii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>The Applicant does not fall under any of the following sub-items as a person controlled by a Notifying Supplier which manufactures or imports Specified Electrical Appliances and Materials for which a Conformity Assessment is required pursuant to the provisions of Article 9, paragraph (1) (hereinafter referred to as a "Supplier Subject to Conformity Assessment" in this item and Article 37, paragraph (2)):</Sentence>
+								</ItemSentence>
+								<Subitem1 Num="1">
+									<Subitem1Title>(a)</Subitem1Title>
+									<Subitem1Sentence>
+										<Sentence>In the case where the Applicant is a business corporation, an Applicant for whom the Supplier Subject to Conformity Assessment is the parent corporation (meaning the parent corporation prescribed in Article 879, paragraph (1) of the Companies Act (Act No. 86 of 2005))</Sentence>
+									</Subitem1Sentence>
+								</Subitem1>
+								<Subitem1 Num="2">
+									<Subitem1Title>(b)</Subitem1Title>
+									<Subitem1Sentence>
+										<Sentence>An Applicant for which more than half of the officers or employees (in the case of an equity company (meaning an equity company as prescribed in Article 575, paragraph (1) of the Companies Act), officers in charge of its operations) are officers or employees of the Supplier Subject to Conformity Assessment (including those who have been officers or employees of the Supplier Subject to Conformity Assessment in the past two years); or</Sentence>
+									</Subitem1Sentence>
+								</Subitem1>
+								<Subitem1 Num="3">
+									<Subitem1Title>(c)</Subitem1Title>
+									<Subitem1Sentence>
+										<Sentence>The Applicant (for a corporation, an officer having representation power thereof) who is an officer or employee of a Supplier Subject to Conformity Assessment (including those who were officers or employees of said Supplier Subject to Conformity Assessment in the past two years).</Sentence>
+									</Subitem1Sentence>
+								</Subitem1>
+							</Item>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc1at3cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The registration set forth in Article 9, paragraph (1) shall be completed by describing the following particulars in the Registration Record for Conformity Assessment Bodies:</Sentence>
+							</ParagraphSentence>
+							<Item Num="1">
+								<ItemTitle>(i)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Date of registration and registration number;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="2">
+								<ItemTitle>(ii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Name or trade name and address of the registered person as well as the name of the representative in the case of a corporation;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="3">
+								<ItemTitle>(iii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Classification of Specified Electrical Appliances and Materials on which the registered person conducts Conformity Assessments; and</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="4">
+								<ItemTitle>(iv)</ItemTitle>
+								<ItemSentence>
+									<Sentence>Name and location of the office where the registered person conducts Conformity Assessments.</Sentence>
+								</ItemSentence>
+							</Item>
+						</Paragraph>
+					</Article>
+					<Article Num="32" id="en_ch5sc1at4">
+						<ArticleCaption>(Renewal of Registration)</ArticleCaption>
+						<ArticleTitle>Article 32</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc1at4cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>If the registration set forth in Article 9, paragraph (1) is not renewed at an interval of not less than every three years as specified by Cabinet Order said registration shall cease to be in effect as of the time said interval lapses.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc1at4cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The provisions of the preceding three Articles shall apply mutatis mutandis to the renewal of registration set forth in the preceding paragraph.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+				</Section>
+				<Section Num="2" id="en_ch5sc2">
+					<SectionTitle>Section 2 Domestic Registered Conformity Assessment Bodies</SectionTitle>
+					<Article Num="33" id="en_ch5sc2at1">
+						<ArticleCaption>(Obligation to Conduct Conformity Assessments)</ArticleCaption>
+						<ArticleTitle>Article 33</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at1cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When anybody that has obtained the registration set forth in Article 9, paragraph (1) (limited to one that has obtained registration in terms of conducting a Conformity Assessment at a place of business located in Japan; hereinafter referred to as a "Domestic Registered Conformity Assessment Body") is requested to conduct a Conformity Assessment, it must conduct the Conformity Assessment without delay except when there are justifiable grounds for not doing so.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc2at1cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Domestic Registered Conformity Assessment Bodies must conduct Conformity Assessments in a fair manner by means that conform to the Technical Standards.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="34" id="en_ch5sc2at2">
+						<ArticleCaption>(Change of Place of Business)</ArticleCaption>
+						<ArticleTitle>Article 34</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at2cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When a Domestic Registered Conformity Assessment Body intends to change the location of the place of business where it conducts Conformity Assessments, it must notify the Minister of Economy, Trade and Industry of such change of location at least two weeks prior to the date of said change.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="35" id="en_ch5sc2at3">
+						<ArticleCaption>(Operational Rules)</ArticleCaption>
+						<ArticleTitle>Article 35</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at3cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>A Domestic Registered Conformity Assessment Body shall establish operational rules for its Conformity Assessments (hereinafter referred to as the "Operational Rules") and must notify the Minister of Economy, Trade and Industry thereof prior to the commencement of said Conformity Assessment operations. The same shall apply when it intends to change said Operational Rules.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc2at3cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The Operational Rules must prescribe the manner of conducting Conformity Assessments, the manner of calculating the fees relating to Conformity Assessments, and any other particulars specified by Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="36" id="en_ch5sc2at4">
+						<ArticleCaption>(Suspension or Discontinuance of Operations)</ArticleCaption>
+						<ArticleTitle>Article 36</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at4cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When a Domestic Registered Conformity Assessment Body intends to suspend or discontinue all or part of its Conformity Assessment operations, it must notify the Minister of Economy, Trade and Industry to that effect in advance, pursuant to Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="37" id="en_ch5sc2at5">
+						<ArticleCaption>(Preparation and Inspection of Financial Statements, etc.)</ArticleCaption>
+						<ArticleTitle>Article 37</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at5cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>A Domestic Registered Conformity Assessment Body shall prepare an inventory of property, a balance sheet, and a profit and loss statement or income and expenditure account statement, as well as an operating statement (including electromagnetic records in the case where such documents are prepared in the form of electromagnetic records (meaning a record used in computer data processing, which is created in electronic form, magnetic form, or any other form that is impossible to perceive through the human senses alone, as specified by Ordinance of the Ministry of Justice; hereinafter the same shall apply in this Article), or in the case where electromagnetic records are prepared in place of records in paper form; hereinafter referred to as "Financial Statements, etc." in the next paragraph and Article 60, item (ii)) within three months from the end of each business year, and must keep them in its place of business for five years.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc2at5cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence Num="1" Function="Main">Suppliers Subject to Conformity Assessment and other interested persons may make the following requests at any time within the business hours of a Domestic Registered Conformity Assessment Body;</Sentence>
+								<Sentence Num="2" Function="Proviso">provided, however, that they must pay the fees set by the Domestic Registered Conformity Assessment Body for the requests set forth in item (ii) and (iv):</Sentence>
+							</ParagraphSentence>
+							<Item Num="1">
+								<ItemTitle>(i)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When Financial Statements, etc. have been prepared in writing, a request to inspect or photocopy such documents;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="2">
+								<ItemTitle>(ii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>A request for a copy or extract of the documents set forth in the preceding item;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="3">
+								<ItemTitle>(iii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When Financial Statements, etc. have been prepared in the form of electromagnetic records, a request to inspect or copy those which display the particulars that have been recorded in the electromagnetic records by means as specified by Ordinance of the Ministry of Economy, Trade and Industry; and</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="4">
+								<ItemTitle>(iv)</ItemTitle>
+								<ItemSentence>
+									<Sentence>A request to be provided with the particulars recorded in the electromagnetic records set forth in the preceding paragraph by electromagnetic means as specified by an Ordinance of the Ministry of Economy, Trade and Industry, or a request to be issued documents in which said particulars are described.</Sentence>
+								</ItemSentence>
+							</Item>
+						</Paragraph>
+					</Article>
+					<Article Num="38" id="en_ch5sc2at6">
+						<ArticleTitle>Article 38</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at6cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Deleted.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="39" id="en_ch5sc2at7">
+						<ArticleTitle>Article 39</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at7cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Deleted.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="40" id="en_ch5sc2at8">
+						<ArticleCaption>(Order for Compliance)</ArticleCaption>
+						<ArticleTitle>Article 40</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at8cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When the Minister of Economy, Trade and Industry finds that a Domestic Registered Conformity Assessment Body has ceased to comply with any of the items of Article 31, paragraph (1), they may order it to take the necessary measures to comply with said item.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="40_2" id="en_ch5sc2at9">
+						<ArticleCaption>(Order for Improvement)</ArticleCaption>
+						<ArticleTitle>Article 40-2</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at9cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When the Minister of Economy, Trade and Industry finds that a Domestic Registered Conformity Assessment Bodies is in violation of the provisions of Article 33, they may order it to undergo a Conformity Assessment or to take necessary measures to improve its means of conducting Conformity Assessments or its means of performing its other business operations.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="41" id="en_ch5sc2at10">
+						<ArticleCaption>(Rescission of Registration, etc.)</ArticleCaption>
+						<ArticleTitle>Article 41</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at10cl1">
+							<ParagraphNum></ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When a Domestic Registered Conformity Assessment Body falls under any of the following items, the Minister of Economy, Trade and Industry may rescind the registration thereof or may order the suspension of all or part of the Conformity Assessment operations for a specified period:</Sentence>
+							</ParagraphSentence>
+							<Item Num="1">
+								<ItemTitle>(i)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Domestic Registered Conformity Assessment Body has come to fall under Article 30, item (i) or (iii);</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="2">
+								<ItemTitle>(ii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Domestic Registered Conformity Assessment Body has violated the provisions of Article 33, Article 34, Article 35, paragraph (1), Article 36, Article 37, paragraph (1), or Article 42;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="3">
+								<ItemTitle>(iii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Domestic Registered Conformity Assessment Body has refused a request made pursuant to the provisions of any item of Article 37, paragraph (2) without justifiable grounds;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="4">
+								<ItemTitle>(iv)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Domestic Registered Conformity Assessment Body has violated an order pursuant to the provisions of the preceding two Articles; or</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="5">
+								<ItemTitle>(v)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Domestic Registered Conformity Assessment Body has obtained registration as set forth in Article 9, paragraph (1) by wrongful means.</Sentence>
+								</ItemSentence>
+							</Item>
+						</Paragraph>
+					</Article>
+					<Article Num="42" id="en_ch5sc2at11">
+						<ArticleCaption>(Statements in the Books)</ArticleCaption>
+						<ArticleTitle>Article 42</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at11cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Domestic Registered Conformity Assessment Bodies must prepare their books and state therein the particulars specified by Ordinance of the Ministry of Economy, Trade and Industry relating to Conformity Assessment.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc2at11cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The books set forth in the preceding paragraph must be retained pursuant to Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="42_2" id="en_ch5sc2at12">
+						<ArticleCaption>(Execution of Conformity Assessments by the Minister of Economy, Trade and Industry)</ArticleCaption>
+						<ArticleTitle>Article 42-2</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc2at12cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The Minister of Economy, Trade and Industry may personally administrate all or part of the Conformity Assessment operations when there is no person who is able to obtain the registration set forth in Article 9, paragraph (1), when a notification of suspension or discontinuation of all or part of the Conformity Assessment operations has been issued pursuant to Article 36, when the Minister has, pursuant to the provisions of Article 41, rescinded the registration set forth in said paragraph or ordered a Domestic Registered Conformity Assessment Body to suspend all or part of its Conformity Assessment operations, when it has become difficult for a Domestic Registered Conformity Assessment Body to conduct all or part of its Conformity Assessment operations due to a natural disaster or other reason, or other cases which the Minister deems necessary.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc2at12cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The Minister of Economy, Trade and Industry may, when they deem it necessary in the case set forth in the preceding paragraph, have the National Institute of Advanced Industrial Science and Technology (hereinafter referred to as "AIST") or NITE conduct all or part of the Conformity Assessment operations.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="3" id="en_ch5sc2at12cl3">
+							<ParagraphNum>(3)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Succession to Conformity Assessment operations or any other necessary particulars in the case where the Minister of Economy, Trade and Industry personally administrates or has AIST or NITE conduct all or part of the Conformity Assessment operations pursuant to the provisions of the preceding two paragraphs shall be specified by Ordinance of the Ministry of Economy, Trade and Industry.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+				</Section>
+				<Section Num="3" id="en_ch5sc3">
+					<SectionTitle>Section 3 Foreign Registered Conformity Assessment Bodies</SectionTitle>
+					<Article Num="42_3" id="en_ch5sc3at1">
+						<ArticleCaption>(Obligation to Conduct Conformity Assessment, etc.)</ArticleCaption>
+						<ArticleTitle>Article 42-3</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc3at1cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When anybody that has obtained the registration set forth in Article 9, paragraph (1) (limited to one that has obtained registration in terms of conducting a Conformity Assessment at a place of business overseas; hereinafter referred to as a "Foreign Registered Conformity Assessment Body") is requested to conduct a Conformity Assessment, it must conduct said Conformity Assessment without delay except when there are justifiable grounds for not doing so.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc3at1cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The provisions of Article 33, paragraph (2), Articles 34 through 37, Article 40, Article 40-2, and Article 42 shall apply mutatis mutandis to Foreign Registered Conformity Assessment Bodies. In this case, the term "order" in Article 40 and 40-2 shall be deemed to be replaced with "request."</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+					<Article Num="42_4" id="en_ch5sc3at2">
+						<ArticleCaption>(Rescission of Registration, etc.)</ArticleCaption>
+						<ArticleTitle>Article 42-4</ArticleTitle>
+						<Paragraph Num="1" id="en_ch5sc3at2cl1">
+							<ParagraphNum>(1)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When a Foreign Registered Conformity Assessment Body falls under any of the following items, the Minister of Economy, Trade and Industry may rescind the registration thereof:</Sentence>
+							</ParagraphSentence>
+							<Item Num="1">
+								<ItemTitle>(i)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has come to fall under Article 30, item (i) or (iii);</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="2">
+								<ItemTitle>(ii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has violated the provisions of Article 42-3, paragraph (1), or the provisions of Article 33, paragraph (2), Article 34, Article 35, paragraph (1), Article 36, Article 37, paragraph (1), or Article 42, as applied mutatis mutandis pursuant to paragraph (2) of the preceding Article;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="3">
+								<ItemTitle>(iii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has refused a request made pursuant to any of the items of Article 37, paragraph (2), as applied mutatis mutandis pursuant to paragraph (2) of the preceding Article, without justifiable grounds;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="4">
+								<ItemTitle>(iv)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has refused a request made pursuant to the provisions of Article 40 or Article 40-2, as applied mutatis mutandis pursuant to paragraph (2) of the preceding Article;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="5">
+								<ItemTitle>(v)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has obtained the registration set forth in Article 9, paragraph (1) by wrongful means;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="6">
+								<ItemTitle>(vi)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has refused a request for suspension of all or part of Conformity Assessment operations for a specified period by the Minister of Economy, Trade and Industry upon their finding the Foreign Registered Conformity Assessment Body to fall under any of the preceding items;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="7">
+								<ItemTitle>(vii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has failed to submit a report or has submitted a fraudulent report upon a request by the Minister of Economy, Trade and Industry to submit a report on its operations as they deem necessary;</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="8">
+								<ItemTitle>(viii)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body has refused, obstructed, or avoided inspection, or has, without any justifiable grounds, failed to make a statement in response to questions or has made a false statement, in the case where the Minister of Economy, Trade and Industry intended to have their officer inspect the particulars prescribed in Article 46, paragraph (2) or to have them ask questions of the relevant persons at the office or place of business of the Foreign Registered Conformity Assessment Body; or</Sentence>
+								</ItemSentence>
+							</Item>
+							<Item Num="9">
+								<ItemTitle>(ix)</ItemTitle>
+								<ItemSentence>
+									<Sentence>When the Foreign Registered Conformity Assessment Body does not bear the expenses pursuant to the provisions of the next paragraph.</Sentence>
+								</ItemSentence>
+							</Item>
+						</Paragraph>
+						<Paragraph Num="2" id="en_ch5sc3at2cl2">
+							<ParagraphNum>(2)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>Expenses required for the inspection set forth in item (viii) of the preceding paragraph (limited to those specified by Cabinet Order) shall be borne by the Foreign Registered Conformity Assessment Body which is subject to inspection.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="3" id="en_ch5sc3at2cl3">
+							<ParagraphNum>(3)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>The Minister of Economy, Trade and Industry may, when they deem it necessary, have NITE conduct the inspection or ask questions pursuant to the provisions of paragraph (1), item (viii).</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="4" id="en_ch5sc3at2cl4">
+							<ParagraphNum>(4)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When the Minister of Economy, Trade and Industry has NITE conduct the inspection or ask questions pursuant to the provisions of the preceding paragraph, they shall instruct NITE to do so while designating the place of the inspection and any other necessary particulars.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+						<Paragraph Num="5" id="en_ch5sc3at2cl5">
+							<ParagraphNum>(5)</ParagraphNum>
+							<ParagraphSentence>
+								<Sentence>When NITE has conducted an inspection or asked questions prescribed in paragraph (3) following the instructions set forth in the preceding paragraph, it must report the results to the Minister of Economy, Trade and Industry.</Sentence>
+							</ParagraphSentence>
+						</Paragraph>
+					</Article>
+				</Section>
+			</Chapter>
+			<Chapter Num="5_2" id="en_ch6">
+				<ChapterTitle>Chapter V-2 Order for Hazard Prevention, etc.</ChapterTitle>
+				<Article Num="42_5" id="en_ch6at1">
+					<ArticleCaption>(Order for Hazard Prevention, etc.)</ArticleCaption>
+					<ArticleTitle>Article 42-5</ArticleTitle>
+					<Paragraph Num="1" id="en_ch6at1cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Where there seems to be a risk of the occurrence of danger or electromagnetic interference as a result of either of the causes listed in the following items, the Minister of Economy, Trade and Industry may, when they deem it particularly necessary in order to prevent the spread of such danger or electromagnetic interference, order the person prescribed in the respective items to recall the Electrical Appliances and Materials that said person has sold or to take any other necessary measures to prevent the spread of the danger or electromagnetic interference caused by said Electrical Appliances and Materials:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>The person engaged in manufacturing, importing, or selling Electrical Appliances and Materials has sold Electrical Appliances and Materials in violation of Article 27, paragraph (1); or</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A Notifying Supplier has manufactured, imported, or sold Electrical Appliances and Materials of the product type specified in the notification which do not conform to the Technical Standards (excluding the cases where a Notifying Supplier has manufactured or imported the Electrical Appliances and Materials pursuant to the proviso to Article 8, paragraph (1)).</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+			</Chapter>
+			<Chapter Num="6" id="en_ch7">
+				<ChapterTitle>Chapter VI Miscellaneous Provisions</ChapterTitle>
+				<Article Num="43" id="en_ch7at1">
+					<ArticleCaption>(Conditions on Approval)</ArticleCaption>
+					<ArticleTitle>Article 43</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at1cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Conditions may be attached to the approval to be granted under Article 8, paragraph (1), item (i) or Article 27, paragraph (2), item (i).</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at1cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The conditions set forth in the preceding paragraph shall be limited to the minimum required to ensure the successful implementation of the particulars concerning the approval, and shall not impose any unreasonable obligation on the person who is to obtain said approval.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="44" id="en_ch7at2">
+					<ArticleCaption>(Public Notice)</ArticleCaption>
+					<ArticleTitle>Article 44</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at2cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>In any of the following cases, the Minister of Economy, Trade and Industry must place a public notice of the relevant particulars in the Official Gazette:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has made a registration under Article 9, paragraph (1);</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has prohibited labeling pursuant to Article 12;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="3">
+							<ItemTitle>(iii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has received a notification given under Article 34 (including the cases where it is applied mutatis mutandis pursuant to Article 42-3, paragraph (2));</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="4">
+							<ItemTitle>(iv)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has received a notification given under Article 36 (including the cases where it is applied mutatis mutandis pursuant to Article 42-3, paragraph (2));</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="5">
+							<ItemTitle>(v)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has rescinded a registration or ordered the suspension of Conformity Assessment operations pursuant to Article 41;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="6">
+							<ItemTitle>(vi)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister personally administers all or part of the Conformity Assessment operations pursuant to Article 42-2, paragraph (1), or when they cease to perform all or part of the Conformity Assessment operations that they had personally conducted;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="7">
+							<ItemTitle>(vii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has AIST or NITE conduct all or part of the Conformity Assessment operations pursuant to Article 42-2, paragraph (2), or has AIST or NITE cease conducting all or part of Conformity Assessment operations that AIST or NITE had conducted; or</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="8">
+							<ItemTitle>(viii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>When the Minister has rescinded a registration pursuant to Article 42-4, paragraph (1).</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="45" id="en_ch7at3">
+					<ArticleCaption>(Collection of Reports)</ArticleCaption>
+					<ArticleTitle>Article 45</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at3cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry may, to the extent necessary for the enforcement of this Act, pursuant to the provisions of Cabinet Order, have persons engaged in manufacturing, importing, or selling Electrical Appliances and Materials or persons engaged in business as prescribed in Article 28, paragraph (2) report on their operations.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at3cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry may, to the extent necessary for the enforcement of this Act, have Domestic Registered Conformity Assessment Bodies report on their operational or financial conditions.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="46" id="en_ch7at4">
+					<ArticleCaption>(On-site Inspections, etc.)</ArticleCaption>
+					<ArticleTitle>Article 46</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at4cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry may, to the extent necessary for the enforcement of this Act, have officials of the Ministry of Economy, Trade and Industry enter the offices, plants, workplaces, stores, or warehouses of persons engaged in manufacturing, importing, or selling Electrical Appliances and Materials or persons engaged in business as prescribed in Article 28, paragraph (2), inspect the Electrical Appliances and Materials, books, documents, and any other items, or ask questions of the relevant persons.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at4cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry may, to the extent necessary for the enforcement of this Act, have officials of the Ministry of Economy, Trade and Industry enter the offices or places of business of Domestic Registered Conformity Assessment Bodies, inspect their operational conditions or books, documents, and any other items, or ask questions of the relevant persons.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="3" id="en_ch7at4cl3">
+						<ParagraphNum>(3)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The officials who conduct on-site inspections or ask questions pursuant to the preceding two paragraphs shall carry a certificate of identification and must show it to the relevant persons.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="4" id="en_ch7at4cl4">
+						<ParagraphNum>(4)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry may, when they deem it necessary, have NITE conduct an on-site inspection or ask questions pursuant to paragraph (1) or paragraph (2).</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="5" id="en_ch7at4cl5">
+						<ParagraphNum>(5)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry shall, when they has NITE conduct an on-site inspection or ask questions pursuant to the preceding paragraph, give instructions to NITE with respect to the site to be inspected and any other necessary particulars.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="6" id="en_ch7at4cl6">
+						<ParagraphNum>(6)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>NITE must, when having conducted an on-site inspection or asked questions as prescribed in paragraph (4) following the instructions given under the preceding paragraph, report the results thereof to the Minister of Economy, Trade and Industry.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="7" id="en_ch7at4cl7">
+						<ParagraphNum>(7)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Any employee of NITE who conducts an on-site inspection or asks questions pursuant to paragraph (4) must carry a certificate of identification and show it to the relevant persons.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="8" id="en_ch7at4cl8">
+						<ParagraphNum>(8)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The authority under paragraph (1) or paragraph (2) must not be construed to allow criminal investigations.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="46_2" id="en_ch7at5">
+					<ArticleCaption>(Submission of Electrical Appliances and Materials)</ArticleCaption>
+					<ArticleTitle>Article 46-2</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at5cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Where the Minister of Economy, Trade and Industry has had officials of the Minister of Economy, Trade and Industry conduct an inspection pursuant to paragraph (1) of the preceding Article or has had NITE conduct an inspection pursuant to paragraph (4) of the same Article, and any Electrical Appliances and Materials are found to be difficult for the ministry officials or NITE to inspect at the place where they are located, the Minister may order the owner or possessor of such Electrical Appliances and Materials to submit them within a certain time limit.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at5cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The national government (or the relevant prefectural or city government in the event that the prefectural governor or the city mayor, pursuant to the provisions of the Cabinet Order specified in Article 55-2, takes charge of the affairs that fall within the authority of the Minister of Economy, Trade and Industry under the preceding paragraph) must compensate the owner or possessor for any loss arising from an order issued under the preceding paragraph.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="3" id="en_ch7at5cl3">
+						<ParagraphNum>(3)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The loss to be compensated under the preceding paragraph shall be any such loss that would generally arise from the order issued under paragraph (1).</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="46_3" id="en_ch7at6">
+					<ArticleCaption>(Order to NITE)</ArticleCaption>
+					<ArticleTitle>Article 46-3</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at6cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The Minister of Economy, Trade and Industry may, when they deem it necessary in order to ensure the appropriate implementation of the inspection or questioning operations as prescribed in Article 42-4, paragraph (3), or the on-site inspection or questioning operations prescribed in Article 46, paragraph (4), issue the necessary order to NITE with respect to said operations.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="47" id="en_ch7at7">
+					<ArticleTitle>Article 47</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at7cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="48" id="en_ch7at8">
+					<ArticleTitle>Article 48</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at8cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="49" id="en_ch7at9">
+					<ArticleTitle>Article 49</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at9cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Deleted</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="50" id="en_ch7at10">
+					<ArticleCaption>(Request for Review of Dispositions, etc. Made by AIST or NITE)</ArticleCaption>
+					<ArticleTitle>Article 50</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at10cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Any person who is dissatisfied with a disposition made by AIST or NITE or with their inaction in regard to a Conformity Assessment may make a request for review with the Minister of Economy, Trade and Industry pursuant to the Administrative Appeal Act (Act No. 160 of 1962).</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="51" id="en_ch7at11">
+					<ArticleCaption>(Hearing of Opinions in Appeal Proceedings)</ArticleCaption>
+					<ArticleTitle>Article 51</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at11cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A determination or decision on a request for review or on an objection with respect to a disposition made pursuant to this Act or any order issued hereunder must be made after giving a reasonable period of advance notice to the person subject to the disposition and after holding a public hearing.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at11cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The advance notice set forth in the preceding paragraph must specify the date and place of the hearing and the content of the case concerned.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="3" id="en_ch7at11cl3">
+						<ParagraphNum>(3)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When holding a public hearing as set forth in paragraph (1), the person subject to the disposition and any interested persons must be given the opportunity to present evidence and state their opinion with regard to the case.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="52" id="en_ch7at12">
+					<ArticleCaption>(Application for Conformity Assessment, and Order of the Minister of Economy, Trade and Industry)</ArticleCaption>
+					<ArticleTitle>Article 52</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at12cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A Notifying Supplier may, where a Domestic Registered Conformity Assessment Body does not conduct a Conformity Assessment or where the Notifying Supplier has an objection to the results of the Conformity Assessment conducted by a Domestic Registered Conformity Assessment Body, file an application to request that the Minister of Economy, Trade and Industry order the Domestic Registered Conformity Assessment Body to conduct or to repeat the Conformity Assessment.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at12cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Where the Minister of Economy, Trade and Industry has received an application under the preceding paragraph, in the event that they find that the Domestic Registered Conformity Assessment Body specified in the application is in violation of Article 33, they must issue an order under Article 40-2 to the Domestic Registered Conformity Assessment Body specified in the application.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="3" id="en_ch7at12cl3">
+						<ParagraphNum>(3)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>In the case referred to in the preceding paragraph, the Minister of Economy, Trade and Industry must, when they have issued an order under Article 40-2 or have decided not to issue an order, notify the Notifying Supplier that filed the application of their decision without delay.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="4" id="en_ch7at12cl4">
+						<ParagraphNum>(4)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The provisions of the preceding three paragraphs shall apply mutatis mutandis to Foreign Registered Conformity Assessment Bodies. In this case, the term "order" in paragraph (1) shall be deemed to be replaced with "request"; the term "Article 33" in paragraph (2) shall be deemed to be replaced with "Article 42-3, paragraph (1), or Article 33, paragraph (2) as applied mutatis mutandis pursuant Article 42-3, paragraph (2)"; the term "Article 40-2" in paragraph (2) and the preceding paragraph shall be deemed to be replaced with "Article 40-2 as applied mutatis mutandis pursuant to Article 42-3, paragraph (2)," and the term "order" shall be deemed to be replaced with "request."</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="53" id="en_ch7at13">
+					<ArticleCaption>(Fees)</ArticleCaption>
+					<ArticleTitle>Article 53</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at13cl1">
+						<ParagraphNum>(1)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A person who intends to undergo a Conformity Assessment conducted by the Minister of Economy, Trade and Industry pursuant to Article 42-2, paragraph (1) or a Conformity Assessment conducted by AIST or NITE pursuant to paragraph (2) of the same Article must pay the fees determined by Cabinet Order in light of the actual costs.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+					<Paragraph Num="2" id="en_ch7at13cl2">
+						<ParagraphNum>(2)</ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The fees paid under the preceding paragraph shall be regarded as national revenue where it is paid by a person who intends to undergo a Conformity Assessment conducted by the Minister of Economy, Trade and Industry, as income of AIST where it is paid by a person who intends to undergo a Conformity Assessment conducted by AIST, or as income of NITE where it is paid by a person who intends to undergo a Conformity Assessment conducted by NITE.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="54" id="en_ch7at14">
+					<ArticleCaption>(Special Provisions on Electrical Appliances and Materials Intended for Export)</ArticleCaption>
+					<ArticleTitle>Article 54</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at14cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Electrical Appliances and Materials intended for export may be excluded from the application of some provisions of this Act and subject to special provisions as necessary.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="55" id="en_ch7at15">
+					<ArticleCaption>(Transitional Measures)</ArticleCaption>
+					<ArticleTitle>Article 55</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at15cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>When enacting, revising, or repealing a Cabinet Order or Ordinance of the Ministry of Economy, Trade and Industry pursuant to this Act, necessary transitional measures may be provided for by Cabinet Order or an Ordinance of the Ministry of Economy, Trade and Industry to the extent considered reasonably necessary for said enactment, revision, or repeal.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="55_2" id="en_ch7at16">
+					<ArticleCaption>(Affairs Administered by Prefectural or City Governments)</ArticleCaption>
+					<ArticleTitle>Article 55-2</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at16cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Part of the affairs within the authority of the Ministry of Economy, Trade and Industry prescribed in this Act may be administered by prefectural governors or city mayors pursuant to Cabinet Order provisions.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+				<Article Num="56" id="en_ch7at17">
+					<ArticleCaption>(Delegation of Authority)</ArticleCaption>
+					<ArticleTitle>Article 56</ArticleTitle>
+					<Paragraph Num="1" id="en_ch7at17cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>The authority of the Ministry of Economy, Trade and Industry under this Act may be delegated to the Director of a Regional Bureau of Economy, Trade and Industry or the Director of a Regional Industrial Safety and Inspection Department pursuant to Cabinet Order provisions.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+			</Chapter>
+			<Chapter Num="7" id="en_ch8">
+				<ChapterTitle>Chapter VII Penal Provisions</ChapterTitle>
+				<Article Num="57" id="en_ch8at1">
+					<ArticleTitle>Article 57</ArticleTitle>
+					<Paragraph Num="1" id="en_ch8at1cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A person who falls under any of the following items shall be punished by imprisonment with work for up to one year or a fine of up to one million yen, or both:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has affixed labels, in violation of Article 10-2;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has violated Article 12 (limited to the part concerning item (i));</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="3">
+							<ItemTitle>(iii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has sold or displayed for sale Electrical Appliances and Materials, in violation of Article 27, paragraph (1);</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="4">
+							<ItemTitle>(iv)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has used Electrical Appliances and Materials, in violation of Article 28, paragraph (1) or paragraph (2);</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="5">
+							<ItemTitle>(v)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has violated a suspension of operations order issued under Article 41; and</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="6">
+							<ItemTitle>(vi)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has violated an order issued under Article 42-5.</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="58" id="en_ch8at2">
+					<ArticleTitle>Article 58</ArticleTitle>
+					<Paragraph Num="1" id="en_ch8at2cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A person who falls under any of the following items shall be punished by a fine of up to 300,000 yen:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to provide notification under Article 3 or who has provided fraudulent notification.</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to carry out assessment, who has failed to make assessment records, who has made fraudulent assessment records, or who has failed to preserve assessment records, in violation of Article 8, paragraph (2);</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="3">
+							<ItemTitle>(iii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to obtain or preserve a certificate, in violation of Article 9, paragraph (1);</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="4">
+							<ItemTitle>(iv)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to provide notification under Article 36 or who has provided fraudulent notification;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="5">
+							<ItemTitle>(v)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to state in the books the particulars prescribed in Article 42, paragraph (1), in violation of said paragraph, or who has made false statements or has failed to preserve the books, in violation of paragraph (2) of the same Article.</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="6">
+							<ItemTitle>(vi)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to make reports under Article 45, paragraph (1) or paragraph (2), or who has made fraudulent reports;</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="7">
+							<ItemTitle>(vii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has refused, obstructed, or avoided an inspection under Article 46, paragraph (1) or paragraph (2), who has, without justifiable grounds, failed to make statements in response to questions asked under the same paragraph, or who has made false statements; and</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="8">
+							<ItemTitle>(viii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has violated an order issued under Article 46-2, paragraph (1).</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="59" id="en_ch8at3">
+					<ArticleTitle>Article 59</ArticleTitle>
+					<Paragraph Num="1" id="en_ch8at3cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>Where the representative of a corporation or an agent, employee, or other worker of a corporation or an individual has, with regard to the operations of the corporation or the duties of the individual, committed the violations prescribed in the following items, the individual offender shall be punished by the fine prescribed in the relevant Article and by the fine prescribed in the following items:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Column Num="1">
+									<Sentence>Article 57 (limited to the parts concerning item (ii) and item (vi)):</Sentence>
+								</Column>
+								<Column Num="2">
+									<Sentence>A fine of up to 100 million yen; and</Sentence>
+								</Column>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Column Num="1">
+									<Sentence>Article 57 (excluding the parts concerning item (ii) and item (vi)) or the preceding Article:</Sentence>
+								</Column>
+								<Column Num="2">
+									<Sentence>The fines prescribed in the respective Articles.</Sentence>
+								</Column>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="60" id="en_ch8at4">
+					<ArticleTitle>Article 60</ArticleTitle>
+					<Paragraph Num="1" id="en_ch8at4cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>A person who falls under any of the following items shall be subject to an administrative fine of up to 200,000 yen:</Sentence>
+						</ParagraphSentence>
+						<Item Num="1">
+							<ItemTitle>(i)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to provide notification under Article 4, paragraph (2), Article 5, or Article 6, or who has provided fraudulent notification; and</Sentence>
+							</ItemSentence>
+						</Item>
+						<Item Num="2">
+							<ItemTitle>(ii)</ItemTitle>
+							<ItemSentence>
+								<Sentence>A person who has failed to retain Financial Statements, etc., who has failed to state the necessary particulars in the Financial Statements, etc., has made false statements or who has, without justifiable grounds, refused a request made under the items of paragraph (2) of the same Article, in violation of Article 37, paragraph (1).</Sentence>
+							</ItemSentence>
+						</Item>
+					</Paragraph>
+				</Article>
+				<Article Num="61" id="en_ch8at5">
+					<ArticleTitle>Article 61</ArticleTitle>
+					<Paragraph Num="1" id="en_ch8at5cl1">
+						<ParagraphNum></ParagraphNum>
+						<ParagraphSentence>
+							<Sentence>In the event of the violation of an order issued under Article 46-3, the officer of NITE who has committed the violation shall be subject to an administrative fine of up to 200,000 yen.</Sentence>
+						</ParagraphSentence>
+					</Paragraph>
+				</Article>
+			</Chapter>
+		</MainProvision>
+		<SupplProvision Extract="Yes" id="en_s1">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s1at1">
+				<ArticleCaption>(Effective date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s1at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of the day set by Cabinet Order within a period not exceeding nine months from the date of promulgation;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions set forth in Article 49 shall come into effect as of the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="3" id="en_s1at2">
+				<ArticleCaption>(Transitional Measures)</ArticleCaption>
+				<ArticleTitle>Article 3</ArticleTitle>
+				<Paragraph Num="1" id="en_s1at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1">A person who has obtained approval of product types under Article 3 or Article 4 of the old Ordinance as of the time of the enforcement of this Act shall be deemed to have obtained approval of classifications equivalent to said product types under Article 18 or Article 23, paragraph (1).</Sentence>
+						<Sentence Num="2">In this case, with regard to the application of the provisions of Article 24, paragraph (1) concerning a person who obtained approval of product types before March 31, 1958, that person shall be deemed to have obtained said approval on April 1, 1958.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="4" id="en_s1at3">
+				<ArticleTitle>Article 4</ArticleTitle>
+				<Paragraph Num="1" id="en_s1at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in the preceding two Articles, any dispositions, procedures, or other acts carried out pursuant to the provisions of the old Ordinance shall be deemed to have been carried out pursuant to the provisions of this Act where there are equivalent provisions in this Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="5" id="en_s1at4">
+				<ArticleTitle>Article 5</ArticleTitle>
+				<Paragraph Num="1" id="en_s1at4cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="6" id="en_s1at5">
+				<ArticleCaption>(Special Provisions on Labeling under the Old Electrical Appliance and Material Control Act)</ArticleCaption>
+				<ArticleTitle>Article 6</ArticleTitle>
+				<Paragraph Num="1" id="en_s1at5cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Labeling which is affixed to Electrical Appliances and Materials under Transition set forth in Article 46, paragraph (1) of the Supplementary Provisions of the Act on the Consolidation and Streamlining of Standards and Certification Systems Relating to the Ministry of International Trade and Industry (Act No. 121 of 1999; hereinafter referred to as the "Consolidation and Streamlining Act") that fall under the category of Electrical Appliances and Materials set forth in Article 2, paragraph (1), pursuant to the provisions of Article 25, paragraph (1) or Article 26-6, paragraph (1) of the Electrical Appliance and Material Control Act (Act No. 234 of 1961) prior to revision pursuant to the provisions of Article 10 of the Consolidation and Streamlining Act (hereinafter referred to as the "Old Electrical Appliance and Material Control Act") or pursuant to the provisions of Article 49 of the Supplementary Provisions of the Consolidation and Streamlining Act, shall be deemed to be labeling affixed pursuant to the provisions of Article 10, paragraph (1).</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s1at5cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Except when the provisions of Article 47, paragraph (2) or Article 50 of the Supplementary Provisions of the Consolidation and Streamlining Act are applied, labeling which is affixed to Electrical Appliances and Materials under Transition set forth in Article 47, paragraph (1) of the Supplementary Provisions of the Consolidation and Streamlining Act that fall under the category of Specified Electrical Appliances and Materials set forth in Article 2, paragraph (2), pursuant to the provisions of Article 25-4, paragraph (1) of the Old Electrical Appliance and Material Control Act (including labeling pursuant to the provisions of Article 25-4, paragraph (1) of the Old Electrical Appliance and Material Control Act, for which the provisions then in force shall remain applicable pursuant to the provisions of Article 47, paragraph (2) of the Supplementary Provisions of the Consolidation and Streamlining Act), shall be deemed to be labeling affixed pursuant to the provisions of Article 10, paragraph (1).</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 161 of September 15, 1962" id="en_s2">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s2cl1">
+				<ParagraphNum>(1)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of October 1, 1962.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="2" id="en_s2cl2">
+				<ParagraphNum>(2)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence Num="1" Function="Main">The provisions revised by this Act shall also apply to dispositions by administrative agencies prior to the enforcement of this Act, inaction by administrative agencies prior to the enforcement of this Act, and any other matters that occurred prior to the enforcement of this Act, except when there are special provisions in these Supplementary Provisions;</Sentence>
+					<Sentence Num="2" Function="Proviso">provided, however, that this shall not impair the effectiveness of this Act.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="3" id="en_s2cl3">
+				<ParagraphNum>(3)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>With regard to a petition, application for examination, filing of an objection, or any other appeal (hereinafter referred to as "Petitions, etc.") filed prior to the enforcement of this Act, the provisions then in force shall remain applicable after the enforcement of this Act. The same shall apply to Petitions, etc. in the case where a person is dissatisfied with any determination, decision, or other disposition (hereinafter referred to as "Determination, etc.") on Petitions, etc. filed prior to the enforcement of this Act or on any Determination, etc. given after the enforcement of this Act on Petitions, etc. filed prior to the enforcement of this Act.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="4" id="en_s2cl4">
+				<ParagraphNum>(4)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>Among Petitions, etc. prescribed in the preceding paragraph, those concerning dispositions for which appeals may be filed under the Administrative Appeal Act after the enforcement of this Act shall, with regard to the application of Acts other than said Act, be deemed to be appeals filed under the Administrative Appeal Act.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="5" id="en_s2cl5">
+				<ParagraphNum>(5)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>Appeals under the Administrative Appeal Act may not be filed against Determinations, etc. on applications for examination, the filing of objections, or any other appeals filed after the enforcement of this Act pursuant to the provisions of paragraph (3).</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="6" id="en_s2cl6">
+				<ParagraphNum>(6)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>With regard to dispositions by administrative agencies prior to the enforcement of this Act for which Petitions, etc. may be filed pursuant to the relevant provisions prior to their revision by this Act and where the period for filing is unspecified, the period during which appeals may be filed under the Administrative Appeal Act shall be counted as of the date on which this Act comes into effect.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="8" id="en_s2cl7">
+				<ParagraphNum>(8)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act, the provisions then in force shall remain applicable.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="9" id="en_s2cl8">
+				<ParagraphNum>(9)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>In addition to what is provided in the preceding eight paragraphs, the necessary transitional measures concerning the enforcement of this Act shall be specified by Cabinet Order.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 170 of July 11, 1964" id="en_s3">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s3cl1">
+				<ParagraphNum>(1)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding one year from the date of promulgation.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision AmendLawNum="Act No. 56 of May 20, 1968" id="en_s4">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s4cl1">
+				<ParagraphNum></ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding six months from the date of promulgation.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 27 of April 24, 1978" id="en_s5">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s5cl1">
+				<ParagraphCaption>(Effective Date)</ParagraphCaption>
+				<ParagraphNum>(1)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence Num="1" Function="Main">This Act shall come into effect as of the date of promulgation;</Sentence>
+					<Sentence Num="2" Function="Proviso">provided, however, that the provisions of Article 1 to revise Article 11, paragraph (1) of the Act on Real Estate Appraisal, the provisions of Article 2, Article 3, Article 5, and Article 6, the provisions of Article 19 to revise Article 107, paragraph (1) of the Patent Act, the provisions of Article 20 to revise Article 31, paragraph (1) of the Utility Model Act, the provisions of Article 21 to revise Article 42, paragraph (1) and paragraph (2) of the Design Act, the provisions of Article 22 to revise Article 40, paragraph (1) and paragraph (2) of the Trademark Act, the provisions of Article 28 to revise Article 5, paragraph (2) of the Interpreter Guide Act, and the provisions of Article 29 and Article 30 shall come into effect as of May 1, 1978.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 45 of May 19, 1981" id="en_s6">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s6cl1">
+				<ParagraphCaption>(Effective Date)</ParagraphCaption>
+				<ParagraphNum>(1)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of the date of promulgation.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 57 of May 25, 1983" id="en_s7">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s7at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s7at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding three months from the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="3" id="en_s7at2">
+				<ArticleCaption>(Transitional Measures in Accordance With the Partial Revision of the Electrical Appliance and Material Control Act)</ArticleCaption>
+				<ArticleTitle>Article 3</ArticleTitle>
+				<Paragraph Num="1" id="en_s7at2cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>When a person who has obtained registration under Article 17-2 of the Electrical Appliance and Material Control Act revised by Article 6 (hereinafter referred to as the "New Electrical Appliances and Materials Act" in this paragraph) (hereinafter such person shall be referred to as a "Foreign Registered Manufacturer" in this paragraph) received confirmation from the Minister of International Trade and Industry with regard to a product type defined as Class-A Electrical Appliances and Materials as set forth in Article 2, paragraph (2) of the New Electrical Appliances and Materials Act which they manufacture and for which an importer of Class-A Electrical Appliances and Materials as set forth in Article 23, paragraph (1) of the New Electrical Appliances and Materials Act had obtained approval under the same paragraph at the time of the enforcement of this Act that said product type belongs to the business category set forth in Article 17-2 of the New Electrical Appliances and Materials Act in which they have obtained said registration, said Foreign Registered Manufacturer shall be deemed to have obtained approval under Article 25-3, paragraph (1) of the New Electrical Appliances and Materials Act with regard to said Class-A Electrical Appliances and Materials.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s7at2cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>When the Minister of International Trade and Industry has given confirmation as set forth in the preceding paragraph, they must place a public notice to that effect in the Official Gazette.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="3" id="en_s7at2cl3">
+					<ParagraphNum>(3)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who intends to receive confirmation as set forth in paragraph (1) must pay the fees specified by Cabinet Order, calculated by taking into consideration actual expenses.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 23 of May 1, 1984" id="en_s8">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s8cl1">
+				<ParagraphCaption>(Effective Date)</ParagraphCaption>
+				<ParagraphNum>(1)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of the day on which 20 days have elapsed since the date of promulgation.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 84 of September 1, 1987" id="en_s9">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s9at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s9at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of the day on which one year has elapsed since the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 89 of November 12, 1993" id="en_s10">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s10at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s10at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of the date on which the Administrative Procedure Act (Act No. 88 of 1993) comes into effect.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="2" id="en_s10at2">
+				<ArticleCaption>(Transitional Measures Concerning Adverse Dispositions upon Appeal, etc.)</ArticleCaption>
+				<ArticleTitle>Article 2</ArticleTitle>
+				<Paragraph Num="1" id="en_s10at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Where, prior to the enforcement of this Act, an appeal or other request has been filed under laws and regulations with a council or with any other panel to demand that proceedings equivalent to those for holding hearings, for granting the opportunity to explain, or any other proceedings to hear statements of opinion as prescribed in Article 13 of the Administrative Procedure Act be implemented, with regard to proceedings for adverse dispositions pertaining to such appeals or demands, the provisions then in force shall remain applicable notwithstanding the provisions of the relevant Acts revised by this Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="13" id="en_s10at3">
+				<ArticleCaption>(Transitional Measures Concerning Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 13</ArticleTitle>
+				<Paragraph Num="1" id="en_s10at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="14" id="en_s10at4">
+				<ArticleCaption>(Transitional Measures upon Arrangement of Provisions on Hearings)</ArticleCaption>
+				<ArticleTitle>Article 14</ArticleTitle>
+				<Paragraph Num="1" id="en_s10at4cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Proceedings for hearings (excluding, however, those concerning adverse dispositions) implemented under Acts prior to the enforcement of this Act or proceedings incidental thereto, shall be deemed to have been carried out under the relevant provisions of the Acts revised by this Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="15" id="en_s10at5">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 15</ArticleTitle>
+				<Paragraph Num="1" id="en_s10at5cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in Article 2 through the preceding Article of the Supplementary Provisions, the necessary transitional measures concerning the enforcement of this Act shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 75 of April 21, 1995" id="en_s11">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s11at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s11at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding nine months from the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 33 of April 9, 1997" id="en_s12">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s12at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s12at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="14" id="en_s12at2">
+				<ArticleCaption>(Transitional Measures in Accordance with the Partial Revision of the Electrical Appliance and Material Control Act)</ArticleCaption>
+				<ArticleTitle>Article 14</ArticleTitle>
+				<Paragraph Num="1" id="en_s12at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Where a transfer, inheritance, or merger of all of a business has taken place prior to the enforcement of Article 13, the provisions of Article 26-2, paragraph (2) and paragraph (3) and of Article 26-3, paragraph (2) and paragraph (3) of the Electrical Appliance and Material Control Act as revised by Article 13 shall not apply to the assignee, heir, corporation surviving the merger, or the corporation newly established upon the merger of all of the business.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="17" id="en_s12at3">
+				<ArticleCaption>(Transitional Measures Concerning Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 17</ArticleTitle>
+				<Paragraph Num="1" id="en_s12at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act and acts committed after the enforcement of this Act, in the case where the provisions previously in force remain applicable as set forth in the Supplementary Provisions of this Act, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="18" id="en_s12at4">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 18</ArticleTitle>
+				<Paragraph Num="1" id="en_s12at4cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in Article 2 to the preceding Article of the Supplementary Provisions, the necessary transitional measures pertaining to the enforcement of this Act shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 50 of May 21, 1999" id="en_s13">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s13at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s13at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of March 21, 2000.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 87 of July 16, 1999" id="en_s14">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s14at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of April 1, 2000;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions set forth in the following items shall come into effect as of the date specified in each item:</Sentence>
+					</ParagraphSentence>
+					<Item Num="1">
+						<ItemTitle>(i)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions in Article 1 to revise the Local Autonomy Act (limited, however, to the part concerning Article 250-9, paragraph (1) of said Act (limited, however, to the part concerning the requirement of consent of both Houses)) by adding five Articles, a Section title, and two Subsections and their titles following Article 250; the provisions of Article 40 to revise paragraph (9) and paragraph (10) of the Supplementary Provisions of the Natural Parks Act (limited, however, to the part concerning paragraph (10) of the Supplementary Provisions of said Act); the provisions of Article 244 (excluding, however, the part concerning the provisions to revise Article 14-3 of the Agricultural Improvement and Promotion Act); the provisions of Article 472 (excluding, however, the part concerning the provisions to revise Article 6, Article 8, and Article 17 of the Act on Special Provisions Concerning Mergers of Municipalities); and the provisions of Article 7, Article 10, Article 12, the proviso in Article 59, Article 60, paragraph (4) and paragraph (5), Article 73, Article 77, Article 157, paragraph (4) through paragraph (6), Article 160, Article 163, Article 164, and Article 202 of the Supplementary Provisions:</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>the date of the promulgation of this Act;</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+				</Paragraph>
+			</Article>
+			<Article Num="159" id="en_s14at2">
+				<ArticleCaption>(Affairs of the State, etc.)</ArticleCaption>
+				<ArticleTitle>Article 159</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in the relevant Acts prior to their revision by this Act, affairs that are to be managed or performed, prior to the enforcement of this Act, by an agency of a local public entity on behalf of the State, another local public entity, or any other public organization pursuant to Acts or Cabinet Order enacted thereunder (hereinafter referred to as "Affairs of the State, etc." in Article 161 of the Supplementary Provisions) shall, after the enforcement of this Act, be handled by the local public entity as its own affairs pursuant to Acts or Cabinet Order enacted thereunder.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="160" id="en_s14at3">
+				<ArticleCaption>(Transitional Measures Concerning Dispositions, Applications, etc.)</ArticleCaption>
+				<ArticleTitle>Article 160</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at3cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With respect to dispositions to grant licenses or approval, etc. and other acts carried out, prior to the enforcement of this Act (or the respective provisions listed in the items of Article 1 of the Supplementary Provisions; hereinafter the same shall apply in this Article and Article 163 of the Supplementary Provisions), pursuant to the relevant Acts prior to their revision (hereinafter referred to as "Dispositions and Other Acts" in this Article) or applications for licenses or approval, etc. and other acts carried out, prior to the enforcement of this Act, pursuant to the relevant Acts prior to their revision (hereinafter referred to as "Applications and Other Acts" in this Article), if administrative affairs pertaining to these acts come under the jurisdiction of different persons on the date of the enforcement of this Act, these acts, except those prescribed in Article 2 through the preceding Article in the Supplementary Provisions or in the provisions of the respective revised Acts (including orders issued thereunder) concerning transitional measures, shall be deemed, with regard to the application of the respective revised Acts after the date of enforcement of this Act, as Dispositions and Other Acts or Applications and Other Acts carried out pursuant to the relevant provisions of the relevant revised Acts.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s14at3cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With respect to matters for which reports, notifications, submissions, or other procedures are to be carried out with agencies of the State or local public entities, prior to the enforcement of this Act, pursuant to the relevant Acts prior to their revision, if these procedures are ongoing as of the date of enforcement of this Act, the provisions of the relevant Acts revised by this Act shall apply to such procedures, except as otherwise provided by this Act or Cabinet Order enacted hereunder, on the assumption that reports, notifications, submissions, or other procedures have not yet been carried out with respect to matters for which such procedures were to be carried out with such agencies of the State or local public entities pursuant to the relevant provisions of said revised Acts.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="161" id="en_s14at4">
+				<ArticleCaption>(Transitional Measures Concerning Appeals)</ArticleCaption>
+				<ArticleTitle>Article 161</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at4cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1">With respect to dispositions pertaining to Affairs of the State, etc. that were made prior to the Date of Enforcement by an administrative agency (hereinafter referred to as the "Administrative Agency Ordering the Disposition" in this Article) that has been subordinated, prior to the Date of Enforcement, to a higher administrative agency as prescribed under the Administrative Appeal Act (hereinafter referred to as the "Higher Administrative Agency" in this Article), the Administrative Appeal Act shall apply to appeals filed against such dispositions pursuant to said Act, on the assumption that the Administrative Agency Ordering the Disposition remains subordinate to the Higher Administrative Agency after the date of enforcement.</Sentence>
+						<Sentence Num="2">In this case, the administrative agency deemed to be the Higher Administrative Agency of the Administrative Agency Ordering the Disposition shall be the administrative agency to which the Administrative Agency Ordering the Disposition was subordinated prior to the date of enforcement.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s14at4cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In the case referred to in the preceding paragraph, where an administrative agency that shall be deemed to be a Higher Administrative Agency is an agency of a local public entity, the affairs to be handled by said agency pursuant to the provisions of the Administrative Appeal Act shall be Item 1 Statutory Entrusted Affairs as prescribed in Article 2, paragraph (9), item (i) of the new Local Autonomy Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="162" id="en_s14at5">
+				<ArticleCaption>(Transitional Measures Concerning Fees)</ArticleCaption>
+				<ArticleTitle>Article 162</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at5cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to fees payable prior to the Date of Enforcement pursuant to the provisions of the relevant Acts prior to their revision by this Act (including orders issued thereunder), except those otherwise provided by this Act or by Cabinet Order enacted hereunder, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="163" id="en_s14at6">
+				<ArticleCaption>(Transitional Measures Concerning Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 163</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at6cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="164" id="en_s14at7">
+				<ArticleCaption>(Delegation of Other Transitional Measures to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 164</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at7cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in the Supplementary Provisions, any transitional measures necessary for the enforcement of this Act (including transitional measures concerning penal provisions) shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s14at7cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Any necessary particulars concerning the application of the provisions of Article 18, Article 51, or Article 184 of the Supplementary Provisions shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="250" id="en_s14at8">
+				<ArticleCaption>(Review)</ArticleCaption>
+				<ArticleTitle>Article 250</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at8cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>The creation of new Item 1 Statutory Entrusted Affairs as prescribed in Article 2, paragraph (9), item (i) of the new Local Autonomy Act shall be as limited as possible, and such affairs as those listed in Appended Table I of the new Local Autonomy Act and those provided by Cabinet Order enacted under the new Local Autonomy Act shall be examined from the perspective of promoting decentralization and shall be reviewed when appropriate.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="251" id="en_s14at9">
+				<ArticleTitle>Article 251</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at9cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>The government shall, in order to enable local public entities to execute their affairs and services voluntarily and independently, examine how to secure adequate sources of local tax revenue based on the sharing of roles between the State and local public entities, taking into account prevailing economic trends, and shall take necessary measures based on the results of such examination.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="252" id="en_s14at10">
+				<ArticleTitle>Article 252</ArticleTitle>
+				<Paragraph Num="1" id="en_s14at10cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>The government shall, along with various reforms such as medical insurance system and pension system reforms, embark on studies to identify the ideal administrative system and a desirable personnel system for social insurance, from the viewpoint of ensuring convenience for the insured and increasing administrative efficiency, and shall take any measures required based on the study results as it deems necessary.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 121 of August 6, 1999" id="en_s15">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s15at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of July 1, 2000;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions set forth in the following items shall come into effect as of the date specified in each item:</Sentence>
+					</ParagraphSentence>
+					<Item Num="2">
+						<ItemTitle>(ii)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions of Article 2, Article 14, Article 27, Article 33, Article 44, and Article 52 of the Supplementary Provisions:</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>April 1, 2000;</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+					<Item Num="5">
+						<ItemTitle>(v)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions of Article 3 revising Article 28, paragraph (1) of the Explosives Control Act (limited to the part adding, "containing a statement on the organizations and methods used to ensure safety and any other matters specified by Ordinance of the Ministry of Economy, Trade and Industry" before "in order to prevent"); the provisions revising Article 35, paragraph (1) of the same Act (limited to the part changing "(with regard to) ammunition storage" to "(with regard to) ammunition storage and the organizations and methods used to ensure safety at these facilities"); the provisions revising paragraph (2) of the same Article (limited to the part adding "and whether they implement particulars specified by Ordinance of the Ministry of International Trade and Industry as those pertaining to the organizations and methods used to ensure safety, among what is specified in the damage prevention rules approved as prescribed in Article 28, paragraph (1)" after "whether (specified facilities and ammunition storage) comply with ..."); and the provisions of Article 5, Article 10, Article 31 through Article 34, Article 45 through Article 50, Article 76, Article 77, and Article 79 of the Supplementary Provisions:</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>April 1, 2001;</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+				</Paragraph>
+			</Article>
+			<Article Num="44" id="en_s15at2">
+				<ArticleCaption>(Transitional Measures in Accordance with the Partial Revision of the Electrical Appliance and Material Control Act)</ArticleCaption>
+				<ArticleTitle>Article 44</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who intends to obtain approval or recognition pursuant to the provisions of Article 9, paragraph (1) of the Electrical Appliances and Materials Safety Act as revised by Article 10 (hereinafter referred to as the "Electrical Appliances and Materials Safety Act") may file an application prior to the enforcement of Article 10. The same shall apply to notification of the Rules of Operation pursuant to the provisions of Article 35, paragraph (1) (including the case where it is applied mutatis mutandis pursuant to Article 42-3, paragraph (2) of the Electrical Appliances and Materials Safety Act) of the Electrical Appliances and Materials Safety Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="45" id="en_s15at3">
+				<ArticleTitle>Article 45</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at3cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to an application for approval of product types as set forth in Article 18 or in Article 23, paragraph (1) of the Electrical Appliance and Material Control Act prior to its revision pursuant to the provisions of Article 10 (hereinafter referred to as the "Old Electrical Appliance and Material Control Act") which was filed prior to the enforcement of said Article, and for which a disposition of approval or disapproval had not been made at the time of enforcement of the relevant provisions, or with regard to an application for confirmation of product types as set forth in Article 23-2, paragraph (1) of the Old Electrical Appliance and Material Control Act or for approval of product types as set forth in Article 25-3, paragraph (1) of the Old Electrical Appliance and Material Control Act which was filed prior to the enforcement of Article 10 and for which a disposition of confirmation or approval had not been made at the time of enforcement of the relevant provisions, the provisions previously in force shall remain applicable to the disposition on such application.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s15at3cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to an application for testing as set forth in Article 21, paragraph (1) of the Old Electrical Appliance and Material Control Act (including the case where it is applied mutatis mutandis pursuant to Article 23, paragraph (2) or Article 25-3, paragraph (2) of the Old Electrical Appliance and Material Control Act; the same shall apply in the following paragraph) which was filed prior to the enforcement of Article 10 and for which a disposition of success or failure in passing said testing had not been made at the time of enforcement of the relevant provisions, the provisions then in force shall remain applicable to the disposition on such application.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="3" id="en_s15at3cl3">
+					<ParagraphNum>(3)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to an application for the approval of product types in accordance with the provisions of Article 18 or Article 23, paragraph (1) of the Old Electrical Appliance and Material Control Act or an application for the authorization of product types in accordance with the provisions of Article 25-3, paragraph (1) of the Old Electrical Appliance and Material Control Act that was filed by a person who had passed the testing set forth in Article 21, paragraph (1) of the Old Electrical Appliance and Material Control Act that was conducted prior to the enforcement of Article 10, while attaching a document to prove that they had passed the testing, within 10 days from the day of enforcement of the provisions of Article 10, or an application for approval of product types in accordance with the provisions of Article 18 or of Article 23, paragraph (1) of the Old Electrical Appliance and Material Control Act or an application for authorization of product types in accordance with the provisions of Article 25-3, paragraph (1) of the Old Electrical Appliance and Material Control Act that was filed by a person who had filed an application for testing for which the provisions then in force shall remain applicable pursuant to the provisions of the preceding paragraph and who had passed said testing, while attaching a document to prove that they had passed the testing, within 10 days from the day of having passed said testing, the provisions then in force shall remain applicable to the disposition on such an application.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="46" id="en_s15at4">
+				<ArticleTitle>Article 46</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at4cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who had, prior to the enforcement of Article 10, obtained or applied for approval with regard to Electrical Appliances and Materials as set forth in Article 2, paragraph (1) of the Old Electrical Appliance and Material Control Act which fall under the category of Electrical Appliances and Materials set forth in Article 2, paragraph (1) of the Electrical Appliances and Materials Safety Act (hereinafter referred to as "Electrical Appliances and Materials under Transition"), pursuant to the provisions of Article 18 of the Old Electrical Appliance and Material Control Act (including a person who had applied for approval under paragraph (3) of the preceding Article); a person who has obtained or applied for approval under Article 23, paragraph (1) of the Old Electrical Appliance and Material Control Act (including a person who had applied for approval under paragraph (3) of the preceding Article); or a person who has obtained or applied for confirmation under Article 23-2, paragraph (1) of the Old Electrical Appliance and Material Control Act shall be deemed to have given notification under Article 3 of the Electrical Appliances and Materials Safety Act with regard to Electrical Appliances and Materials under Transition for the product type pertaining to said approval, confirmation, or application.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s15at4cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1">A person who had provided notification under Article 26, paragraph (1) or Article 26-3, paragraph (1) of the Old Electrical Appliance and Material Control Act prior to the enforcement of Article 10 shall be deemed to have given a notification under Article 3 of the Electrical Appliances and Materials Safety Act.</Sentence>
+						<Sentence Num="2">In this case, with regard to the application of the provisions of Article 8, paragraph (1), Article 10, Article 12, and Article 42-5, item (ii) of the Electrical Appliances and Materials Safety Act to such person, the term "the Product Type Specified in the Notification under Article 3 (hereinafter simply referred to as 'the Product Type Specified in the Notification')" in Article 8, paragraph (1) of the Electrical Appliances and Materials Safety Act shall be deemed to be replaced with "the product type, which includes Electrical Appliances and Materials with structures specified in the notification under Article 26-2, paragraph (1) or Article 26-3, paragraph (1) of the Electrical Appliance and Material Control Act prior to its revision pursuant to Article 10 of the Act on the Consolidation and Streamlining of Standards and Certification Systems Relating to the Ministry of International Trade and Industry (Act No. 121 of 1999) (such a product type shall be simply referred to as the 'Product Type Including Electrical Appliances and Materials with Structures as Specified in the Notification')", and the term "the Product Type Specified in the Notification" in Article 10, Article 12, and Article 42-5, item (ii) shall be deemed to be replaced with "the Product Type Including Electrical Appliances and Materials with Structures as Specified in the Notification."</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="47" id="en_s15at5">
+				<ArticleTitle>Article 47</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at5cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who had, prior to the enforcement of Article 10, obtained approval of the product type under Article 18 or Article 23, paragraph (1) of the Old Electrical Appliance and Material Control Act or who had obtained a confirmation of the product type under Article 18 or Article 23, paragraph (1) of the Old Electrical Appliance and Material Control Act with regard to Class-A Electrical Appliances and Materials as set forth in Article 2, paragraph (2) of the Old Electrical Appliance and Material Control Act, which falls under the category of Specified Electrical Appliances and Materials as set forth in Article 2, paragraph (2) of the Electrical Appliances and Materials Safety Act (hereinafter referred to as "Specified Electrical Appliances and Materials under Transition") (including a person who has obtained approval or confirmation under the provisions of Article 45, paragraph (1) or paragraph (3) of the Supplementary Provisions for which the provisions then in force are to remain applicable pursuant to said provisions) shall be deemed to have performed the obligation under Article 9, paragraph (1) of the Electrical Appliances and Materials Safety Act during the period between the day when they obtained or was deemed to have obtained said approval or confirmation and the day when the period specified by Cabinet Order set forth in Article 24, paragraph (1) of the Old Electrical Appliance and Material Control Act, in the case where they manufactured or imported Specified Electrical Appliances and Materials with a product type pertaining to said approval or confirmation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s15at5cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the display and sales of Specified Electrical Appliances and Materials under Transition pertaining to authorization of product types under Article 25-3, paragraph (1) of the Old Electrical Appliance and Material Control Act that had already been obtained at the time of the enforcement of Article 10 (including the authorization of product types that was obtained by deeming that the provisions then in force remained applicable pursuant to the provisions of Article 45, paragraph (1) or paragraph (3) of the Supplementary Provisions), the provisions then in force shall remain applicable until either the day when the period specified by Cabinet Order set forth in Article 50, paragraph (2) of the Supplementary Provisions pertaining to said Specified Electrical Appliances and Materials under Transition elapses from the day of enforcement of Article 10, or the day when the period specified by Cabinet Order set forth in Article 24, paragraph (1) of the Old Electrical Appliance and Material Control Act as applied mutatis mutandis pursuant to Article 25-3, paragraph (2) of the Old Electrical Appliance and Material Control Act elapses from the day on which said authorization is obtained, whichever is earlier, notwithstanding the provisions of Article 10, paragraph (2), Article 27, paragraph (1), and Article 28 of the Electrical Appliances and Materials Safety Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="48" id="en_s15at6">
+				<ArticleTitle>Article 48</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at6cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who had obtained a designation under Article 21, paragraph (1) of the Old Electrical Appliance and Material Control Act at the time of the enforcement of Article 10 shall be deemed to have obtained approval under Article 9, paragraph (1) of the Electrical Appliances and Materials Safety Act until the day when six months have elapsed from the day of enforcement of Article 10. In the event that said person filed an application for approval under the same paragraph during said period, the same shall also apply during the period until a disposition pertaining to said application has been made.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s15at6cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Pursuant to the provisions of the preceding paragraph, a notification made under Article 33 of the Old Electrical Appliance and Material Control Act with regard to a person who is deemed to have obtained approval under Article 9, paragraph (1) of the Electrical Appliances and Materials Safety Act shall be deemed to be a notification made under Article 34 of the Electrical Appliances and Materials Safety Act; the Rules of Operation for which approval under Article 34 of the Old Electrical Appliance and Material Control Act has been obtained or applied for shall be deemed to be the Rules of Operation in a notification made under Article 35, paragraph (1) of the Electrical Appliances and Materials Safety Act; a suspension or cessation of business for which approval under Article 35 of the Old Electrical Appliance and Material Control Act has been obtained or applied for shall be deemed to be a suspension or cessation in a notification made under Article 36 of the Electrical Appliances and Materials Safety Act; and an order given under Article 40 of the Old Electrical Appliance and Material Control Act shall be deemed to be an order given under Article 41 of the Electrical Appliances and Materials Safety Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="49" id="en_s15at7">
+				<ArticleTitle>Article 49</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at7cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to Specified Electrical Appliances and Materials under Transition pertaining to a product type for which approval under Article 18 or Article 23, paragraph (1) of the Old Electrical Appliance and Material Control Act or confirmation under Article 23-2, paragraph (1) of the Old Electrical Appliance and Material Control Act had been obtained at the time of enforcement of Article 10, or with regard to Class-B Electrical Appliances and Materials as set forth in Article 2, paragraph (2) of the Old Electrical Appliance and Material Control Act with structures pertaining to a notification under Article 26-2, paragraph (1) or Article 26-3, paragraph (1) of the Old Electrical Appliance and Material Control Act which fall into the category of Electrical Appliances and Materials set forth in Article 2, paragraph (1) of the Electrical Appliances and Materials Safety Act, labeling in accordance with Article 25, paragraph (1) or Article 26-6, paragraph (1) may be affixed during the one year from the day of enforcement of Article 10 (with regard to those specified by Cabinet Order as Electrical Appliances and Materials under Transition that require a considerable period of time for the repair or alteration of manufacturing equipment accompanied with the change of labeling, the period specified by Cabinet Order for the relevant Electrical Appliances and Materials under Transition within a limit not exceeding three years from the day of enforcement of Article 10), notwithstanding the provisions of Article 10, paragraph (2) of the Electrical Appliances and Materials Safety Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="50" id="en_s15at8">
+				<ArticleTitle>Article 50</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at8cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to the case where the provisions then in force remain applicable pursuant to the provisions of Article 47, paragraph (2) of the Supplementary Provisions, with regard to Electrical Appliances and Materials under Transition with labeling affixed under Article 25-4, paragraph (1) of the Old Electrical Appliance and Material Control Act, the provisions then in force shall remain applicable until the day specified by Cabinet Order for the relevant Electrical Appliances and Materials under Transition within a limit not exceeding five years (10 years with regard to those specified by Cabinet Order as Electrical Appliances and Materials under Transition that require a considerable period of time from manufacturing to sales) from the day of enforcement of Article 10, notwithstanding the provisions of Article 10, paragraph (2), Article 27, paragraph (1), and Article 28 of the Electrical Appliances and Materials Safety Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="51" id="en_s15at9">
+				<ArticleTitle>Article 51</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at9cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A public hearing for the enactment of a Cabinet Order under Article 2, paragraph (2) of the Electrical Appliances and Materials Safety Act may be held prior to the enforcement of Article 10.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="68" id="en_s15at10">
+				<ArticleCaption>(Effectiveness of Dispositions, etc.)</ArticleCaption>
+				<ArticleTitle>Article 68</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at10cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Any dispositions, proceedings, or other acts carried out, prior to the enforcement of this Act (or the relevant provisions listed in the items of Article 1 of the Supplementary Provisions), pursuant to the provisions of the relevant Acts prior to their revision (including orders issued thereunder; hereinafter the same shall apply in this Article) shall, if the relevant revised Acts contain provisions corresponding to such provisions, be deemed to have been carried out under the relevant provisions of said revised Acts, except as otherwise provided in the Supplementary Provisions.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="69" id="en_s15at11">
+				<ArticleCaption>(Transitional Measures Concerning the Application of Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 69</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at11cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to any acts committed prior to the enforcement of this Act (or the relevant provisions of the items of Article 1 of the Supplementary Provisions) (or with respect to the Consumer Product Safety Association, prior to the expiration of the provisions of the old Consumer Product Safety Act that had been deemed to remain in force pursuant to the provisions of Article 10 of the Supplementary Provisions; with respect to the High Pressure Gas Safety Institute of Japan, prior to the expiration of the provisions of the old High Pressure Gas Safety Act that had been deemed to remain in force pursuant to the provisions of Article 30 of the Supplementary Provisions) as well as any acts committed after the enforcement of this Act in the cases where the provisions then in force remain applicable pursuant to the Supplementary Provisions, the provisions previously in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="70" id="en_s15at12">
+				<ArticleCaption>(Delegation of Other Transitional Measures to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 70</ArticleTitle>
+				<Paragraph Num="1" id="en_s15at12cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in Article 2 through Article 9 and in Article 14 through the preceding Article of the Supplementary Provisions, any other transitional measures necessary for the enforcement of this Act (including transitional measures concerning penal provisions) shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 160 of December 22, 1999" id="en_s16">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s16at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s16at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act (excluding Article 2 and Article 3) shall come into effect as of January 6, 2001.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 203 of December 22, 1999" id="en_s17">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s17at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s17at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of January 6, 2001;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions of Article 8 through Article 10 and Article 12 of the Supplementary Provisions shall come into effect as of the day specified by Cabinet Order within a period not exceeding six months from the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="11" id="en_s17at2">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 11</ArticleTitle>
+				<Paragraph Num="1" id="en_s17at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in Article 2 through Article 7 of the Supplementary Provisions, any necessary transitional measures for the establishment of AIST and any other necessary transitional measures for the enforcement of this Act shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 204 of December 22, 1999" id="en_s18">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s18at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s18at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of January 6, 2001;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions of paragraph (8) through paragraph (19) of the Supplementary Provisions shall come into effect as of the day specified by Cabinet Order within a period not exceeding six months from January 6, 2001.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="20" id="en_s18at2">
+				<ArticleCaption>(Transitional Measures Pertaining to Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 20</ArticleTitle>
+				<Paragraph Num="1" id="en_s18at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="21" id="en_s18at3">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 21</ArticleTitle>
+				<Paragraph Num="1" id="en_s18at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in Articles 2 through 7, Article 9, Article 18, and the preceding Article of the Supplementary Provisions, any necessary transitional measures for the establishment of NITE and any other necessary transitional measures for the enforcement of this Act shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision AmendLawNum="Act No. 91 of May 31, 2000" id="en_s19">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s19cl1">
+				<ParagraphCaption>(Effective Date)</ParagraphCaption>
+				<ParagraphNum>(1)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of the date on which the Act for Partial Revision of the Commercial Code, etc. (Act No. 90 of 2000) comes into effect.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+			<Paragraph Num="2" id="en_s19cl2">
+				<ParagraphCaption>(Transitional Measures)</ParagraphCaption>
+				<ParagraphNum>(2)</ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>Where the date of the enforcement of this Act falls before the date of the enforcement of Article 8 of the Supplementary Provisions of the Act on the Center for Food Quality, Labeling and Consumer Services (Act No. 183 of 1999), the term "Article 27" in the provisions of Article 31 revising Article 19-5-2, Article 19-6, paragraph (1), item (iv), and Article 27 of the Act on Standardization and Proper Quality Labeling of Agricultural and Forestry Products shall be deemed to be replaced with "Article 26."</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 76 of June 11, 2003" id="en_s20">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s20at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s20at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of March 1, 2004;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions set forth in the following items shall come into effect as of the date specified in each item:</Sentence>
+					</ParagraphSentence>
+					<Item Num="1">
+						<ItemTitle>(i)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions of Article 13 of the Supplementary Provisions:</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>The day of promulgation of this Act;</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+					<Item Num="2">
+						<ItemTitle>(ii)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions of Article 3, paragraph (1), Article 4, paragraph (1), Article 5, paragraph (1), Article 6, paragraph (1), Article 7, paragraph (1), Article 8, paragraph (1), and Article 9, paragraph (1) of the Supplementary Provisions:</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>October 1, 2003;</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+				</Paragraph>
+			</Article>
+			<Article Num="7" id="en_s20at2">
+				<ArticleCaption>(Transitional Measures in Accordance with the Partial Revision of the Electrical Appliances and Materials Safety Act)</ArticleCaption>
+				<ArticleTitle>Article 7</ArticleTitle>
+				<Paragraph Num="1" id="en_s20at2cl1">
+					<ParagraphNum>(1)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who intends to obtain registration under Article 9, paragraph (1) of the Electrical Appliances and Materials Safety Act as revised by Article 6 (hereinafter referred to as the "New Electrical Appliances and Materials Safety Act") may file an application prior to the enforcement of this Act. The same shall apply to a notification of the Rules of Operation under Article 35, paragraph (1) of the New Electrical Appliances and Materials Safety Act (including the case where it is applied mutatis mutandis pursuant to Article 42-3, paragraph (2) of the New Electrical Appliances and Materials Safety Act).</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+				<Paragraph Num="2" id="en_s20at2cl2">
+					<ParagraphNum>(2)</ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>A person who had obtained approval or recognition under Article 9, paragraph (1) of the Electrical Appliances and Materials Safety Act prior to its revision by Article 6 (hereinafter referred to as the "Old Electrical Appliances and Materials Safety Act") at the time of enforcement of this Act shall be deemed to have obtained a registration under Article 9, paragraph (1) of the New Electrical Appliances and Materials Safety Act. In this case, the registration shall be valid for the period during which the approval or recognition under Article 9, paragraph (1) of the Old Electrical Appliance and Material Control Act remains valid.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="11" id="en_s20at3">
+				<ArticleCaption>(Effectiveness of Dispositions, etc.)</ArticleCaption>
+				<ArticleTitle>Article 11</ArticleTitle>
+				<Paragraph Num="1" id="en_s20at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Any dispositions, proceedings, or other acts carried out, prior to the enforcement of this Act (or the relevant provisions listed in the items of Article 1 of the Supplementary Provisions), pursuant to the provisions of the relevant Acts prior to their revision (including orders issued thereunder; hereinafter the same shall apply in this Article) shall, if the relevant revised Acts contain provisions corresponding to such provisions, be deemed to have been carried out under the relevant provisions of said revised Acts, except as otherwise provided in the Supplementary Provisions.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="12" id="en_s20at4">
+				<ArticleCaption>(Transitional Measures Concerning the Application of Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 12</ArticleTitle>
+				<Paragraph Num="1" id="en_s20at4cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to any acts committed prior to the enforcement of this Act (or the relevant provisions listed in the items of Article 1 of the Supplementary Provisions; hereinafter the same shall apply in this Article) as well as any acts committed after the enforcement of this Act in the cases where the provisions previously in force remain applicable pursuant to the Supplementary Provisions, the provisions previously in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="13" id="en_s20at5">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 13</ArticleTitle>
+				<Paragraph Num="1" id="en_s20at5cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in Article 2 through the preceding Article in the Supplementary Provisions, any necessary transitional measures for the enforcement of this Act (including transitional measures concerning penal provisions) shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 92 of June 18, 2003" id="en_s21">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s21at1">
+				<ArticleCaption>(Effective date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s21at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of April 1, 2005.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 94 of June 9, 2004" id="en_s22">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s22at1">
+				<ArticleCaption>(Effective date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s22at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of April 1, 2005;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions of Article 7 and Article 28 of the Supplementary Provisions shall come into effect as of the date of promulgation, and the provisions of paragraphs (1) through (5) and paragraphs (9) through (11) of Article 4 and the provisions of Articles 5 and 6 of the Supplementary Provisions shall come into effect as of October 1, 2004.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="26" id="en_s22at2">
+				<ArticleCaption>(Transitional Measures Concerning Dispositions, etc.)</ArticleCaption>
+				<ArticleTitle>Article 26</ArticleTitle>
+				<Paragraph Num="1" id="en_s22at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Any dispositions, proceedings, or other acts carried out, prior to the enforcement of this Act, pursuant to the provisions of the relevant Acts prior to their revision (including orders issued thereunder; hereinafter the same shall apply in this Article) shall, if the relevant revised Acts contain provisions corresponding to such provisions, be deemed to have been carried out under the relevant provisions of said revised Acts, except as otherwise provided in the Supplementary Provisions.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="27" id="en_s22at3">
+				<ArticleCaption>(Transitional Measures Concerning the Application of Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 27</ArticleTitle>
+				<Paragraph Num="1" id="en_s22at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to any acts committed prior to the enforcement of this Act, the provisions then in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="28" id="en_s22at4">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 28</ArticleTitle>
+				<Paragraph Num="1" id="en_s22at4cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in the Supplementary Provisions, any transitional measures necessary for the enforcement of this Act shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="29" id="en_s22at5">
+				<ArticleCaption>(Review)</ArticleCaption>
+				<ArticleTitle>Article 29</ArticleTitle>
+				<Paragraph Num="1" id="en_s22at5cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>When five years have elapsed since the enforcement of this Act, the government shall, while taking into account the status of the enforcement of the new Mine Safety Act, review the provisions of said Act and take any necessary measures based on the results of such review.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 73 of June 29, 2005" id="en_s23">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s23at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s23at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding one year from the date of promulgation.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 87 of July 26, 2005" id="en_s24">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Paragraph Num="1" id="en_s24cl1">
+				<ParagraphNum></ParagraphNum>
+				<ParagraphSentence>
+					<Sentence>This Act shall come into effect as of the date on which the Companies Act comes into effect.</Sentence>
+				</ParagraphSentence>
+			</Paragraph>
+		</SupplProvision>
+		<SupplProvision AmendLawNum="Act No. 116 of November 21, 2007" id="en_s25">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s25at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s25at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding one year from the date of promulgation;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions to revise Article 6, the provisions which delete Articles 7 and 8 of the Supplementary Provisions, and the following Article shall come into effect as of the day on which one month has elapsed from the day of promulgation of this Act.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="2" id="en_s25at2">
+				<ArticleCaption>(Partial Revision of the Act on the Consolidation and Streamlining of Standards and Certification Systems Relating to the Ministry of International Trade and Industry)</ArticleCaption>
+				<ArticleTitle>Article 2</ArticleTitle>
+				<Paragraph Num="1" id="en_s25at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Part of the Act on Consolidation and Streamlining of Standards and Certification Systems Relating to the Ministry of International Trade and Industry (Act No. 121 of 1999) shall be revised as follows.</Sentence>
+					</ParagraphSentence>
+					<AmendProvision>
+						<AmendProvisionSentence>
+							<Sentence>Article 50, paragraph (1) of the Supplementary Provisions shall be deleted, and the present Article 50, paragraph (2) shall be moved up to become Article 50, paragraph (1).</Sentence>
+						</AmendProvisionSentence>
+					</AmendProvision>
+				</Paragraph>
+			</Article>
+			<Article Num="3" id="en_s25at3">
+				<ArticleCaption>(Review)</ArticleCaption>
+				<ArticleTitle>Article 3</ArticleTitle>
+				<Paragraph Num="1" id="en_s25at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>Within five years after the enforcement of this Act, the government shall review the status of the enforcement of the Electrical Appliances and Materials Safety Act revised by this Act, and shall take measures as required based on the results of such review where it finds it necessary to do so.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 70 of June 22, 2011" id="en_s26">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s26at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s26at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of April 1, 2012;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions of the following Article shall come into effect as of the date of promulgation, and the provisions of Article 17 of the Supplementary Provisions shall come into effect as of the date of promulgation of the Act on the Development of Related Acts for Promoting Reform with the Aim of Increasing the Autonomy and Independence of Local Authorities (Act No. 105 of 2011) or the date of promulgation of this Act, whichever comes later.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 105 of August 30, 2011" id="en_s27">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s27at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s27at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of the date of promulgation;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions listed in the following items shall come into effect as of the day specified therein:</Sentence>
+					</ParagraphSentence>
+					<Item Num="2">
+						<ItemTitle>(ii)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions of Article 2; Article 10 (limited to the provisions to revise Article 18 of the Act on Special Districts for Structural Reform); Article 14 (limited to the provisions to revise Article 252-19 and Article 260 of the Local Autonomy Act; and in Appended Table 1 of said Act, the row corresponding to the Noise Regulation Act (Act No. 98 of 1968); the row corresponding to the City Planning Act (Act No. 100 of 1968); the row corresponding to the Urban Renewal Act (Act No. 38 of 1969); the row corresponding to the Basic Environment Act (Act No. 91 of 1993); and the row corresponding to the Act on Promotion of Improvement of Disaster Control Districts in Populated Urban Districts (Act No. 49 of 1997); as well as in Appended Table 2 of the Local Autonomy Act, the row corresponding to the Urban Renewal Act (Act No. 38 of 1969); the row corresponding to the Act on Advancement of Expansion of Public Lands (Act No. 66 of 1972); the row corresponding to the Act on Special Measures concerning Promotion of Supply of Houses and Housing Lands in Urban Districts (Act No. 67 of 1975); the row corresponding to the Act on Promotion of Improvement of Disaster Control Districts in Populated Urban Districts (Act No. 49 of 1997); the row corresponding to the Act on Facilitation of Reconstruction of Condominiums (Act No. 78 of 2002)); Article 17 to Article 19; Article 22 (limited to the provisions to revise Article 21-5-6, Article 21-5-15, Article 21-5-23, Article 24-9, Article 24-17, Article 24-28, and Article 24-36 of the Child Welfare Act); Article 23 to Article 27; Article 29 to Article 33; Article 34 (limited to the provisions to revise Article 62, Article 65, and Article 71 of the Social Welfare Act); Article 35; Article 37; Article 38 (excluding the provisions to revise Article 46, Article 48-2, Article 50, and Article 50-2 of the Water Supply Act); Article 39; Article 43 (limited to the provisions to revise Article 19, Article 23, Article 28, and Article 30-2 of the Human Resources Development Promotion Act); Article 51 (limited to the provisions to revise Article 64 of the Act on Prevention of Infectious Diseases and Medical Care for Patients Suffering Infectious Diseases); Article 54 (excluding the provisions to revise Article 88 and Article 89 of the Services and Supports for Persons with Disabilities Act); Article 65 (excluding the provisions to revise Article 3, paragraph (1), item (ix), Article 4, Article 5, and Article 57 of the Agricultural Land Act); Article 87 to Article 92; Article 99 (limited to the provisions to revise Article 24-3 and Article 48-3 of the Road Act); Article 101 (limited to the provisions to revise Article 76 of the Land Readjustment Act); Article 102 (limited to the provisions to revise Article 18 to Article 21, Article 27, Article 49, and Article 50 of the Act on Special Measures concerning Road Construction and Improvement); Article 103; Article 105 (excluding the provisions to revise Article 4 of the Parking Lot Act); Article 107; Article 108; Article 115 (limited to the provisions to revise Article 15 and Article 17 of the Act on the Conservation of Suburban Green Zones in the National Capital Region); Article 116 (excluding the provisions to revise Article 3-2 of the Act on the Improvement of Urban Distribution Centers); Article 118 (limited to the provisions to revise Article 16 and Article 18 of the Act on Arrangement of Conservation Districts in Kinki Area); Article 120 (excluding the provisions to revise Article 6-2, Article 7-2, Article 8, Article 10-2 to Article 12-2, Article 12-4, Article 12-5, Article 12-10, Article 14, Article 20, Article 23, Article 33, and Article 58-2 of the City Planning Act); Article 121 (limited to the provisions to revise Article 7-4 to Article 7-7, Article 60 to Article 62, Article 66, Article 98, Article 99-8, Article 139-3, Article 141-2, and Article 142 of the Urban Renewal Act); Article 125 (excluding the provisions to revise Article 9 of the Act on Advancement of Expansion of Public Lands); Article 128 (excluding the provisions to revise Article 20 and Article 39 of the Urban Green Space Conservation Act); Article 131 (limited to the provisions to revise Article 7, Article 26, Article 64, Article 67, Article 104, and Article 109-2 of the Act on Special Measures concerning Promotion of Supply of Houses and Housing Lands in Urban Districts); Article 142 (limited to the provisions to revise Article 18 and Article 21 to Article 23 of the Act on Comprehensive Development of Regional Core Cities with Relocation of Office-Work Function); Article 145; Article 146 (excluding the provisions to revise Article 5 and Article 7, paragraph (3) of the Act on Special Measures concerning Reconstruction of Urban Districts Damaged by Disaster); Article 149 (limited to the provisions to revise Article 20, Article 21, Article 191, Article 192, Article 197, Article 233, Article 241, Article 283, Article 311, and Article 318 of the Act on Promotion of Improvement of Disaster Control Districts in Populated Urban Districts); Article 155 (limited to the provisions to revise Article 51, paragraph (4) of the Act on Special Measures concerning Urban Reconstruction); Article 156 (excluding the provisions to revise Article 102 of the Act on Facilitation of Reconstruction of Condominiums); Article 157; Article 158 (limited to the provisions to revise Article 57 of the Landscapes Act); Article 160 (limited to the provisions to revise Article 6, paragraph (5) of the Act on Special Measures concerning Development of Public Rental Housing, etc. to Accommodate Various Demands of Communities (excluding the part to revise the phrase "paragraph (2), item (ii), (a)" to "paragraph (2), item (i), (a)"), and the provisions to revise Article 11 and Article 13 of said Act); Article 162 (limited to the provisions to revise Article 10, Article 12, Article 13, Article 36, paragraph (2), and Article 56 of the Act on Promotion of Smooth Transportation, etc. of Elderly Persons, Disabled Persons, etc.); Article 165 (limited to the provisions to revise Article 24 and Article 29 of the Act on Maintenance and Improvement of Traditional Scenery in Certain Districts); Article 169; Article 171 (limited to the provisions to revise Article 21 of the Waste Management and Public Cleansing Act); Article 174; Article 178; Article 182 (limited to the provisions to revise Article 16 and Article 40-2 of the Basic Environment Act); Article 187 (limited to the provisions to revise Article 15 of the Wildlife Protection and Proper Hunting Act, the provisions to revise Article 28, paragraph (9) of said Act (excluding the part to revise the phrase "Article 4, paragraph (3)" to "Article 4, paragraph (4)"), the provisions to revise Article 29, paragraph (4) of said Act (excluding the part to revise the phrase "Article 4, paragraph (3)" to "Article 4, paragraph (4)"), and the provisions to revise Article 34 and Article 35 of said Act); and in the Supplementary Provisions, Article 13; Article 15 to Article 24; Article 25, paragraph (1); Article 26; Article 27, paragraph (1) to paragraph (3); Article 30 to Article 32; Article 38; Article 44; Article 46, paragraph (1) and paragraph (4); Article 47 to Article 49; Article 51 to Article 53; Article 55; Article 58; Article 59; Article 61 to Article 69; Article 71; Article 72, paragraph (1) to paragraph (3); Article 74 to Article 76; Article 78; Article 80, paragraph (1) and paragraph (3); Article 83; Article 87 (excluding the provisions to revise Article 587-2 of the Local Tax Act and Article 11 of the Supplementary Provisions); Article 89; Article 90; Article 92 (limited to the provisions to revise Article 25 of the National Highway Act), Article 101; Article 102; Article 105 to Article 107; Article 112; Article 117 (limited to the provisions to revise Article 4, paragraph (8) of the Act on the Promotion of Conservation for Biodiversity Activities through the Cooperation among Regional Diversified Actors (Act No. 72 of 2010)); Article 119; Article 121-2; and Article 123, paragraph (2):</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>April 1, 2012</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+				</Paragraph>
+			</Article>
+			<Article Num="81" id="en_s27at2">
+				<ArticleCaption>(Transitional Measures Concerning Penal Provisions)</ArticleCaption>
+				<ArticleTitle>Article 81</ArticleTitle>
+				<Paragraph Num="1" id="en_s27at2cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>With regard to the application of penal provisions to acts committed prior to the enforcement of this Act (for the provisions listed in the items of Article 1 of the Supplementary Provisions, said provisions; hereinafter the same shall apply in this Article) and acts committed after the enforcement of this Act, in the case where the provisions previously in force remain applicable as set forth in these Supplementary Provisions, the provisions previously in force shall remain applicable.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+			<Article Num="82" id="en_s27at3">
+				<ArticleCaption>(Delegation to Cabinet Order)</ArticleCaption>
+				<ArticleTitle>Article 82</ArticleTitle>
+				<Paragraph Num="1" id="en_s27at3cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence>In addition to what is provided in these Supplementary Provisions, any necessary transitional measures for the enforcement of this Act (including transitional measures concerning penal provisions) shall be specified by Cabinet Order.</Sentence>
+					</ParagraphSentence>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+		<SupplProvision Extract="Yes" AmendLawNum="Act No. 122 of December 14, 2011" id="en_s28">
+			<SupplProvisionLabel>Supplementary Provisions</SupplProvisionLabel>
+			<Article Num="1" id="en_s28at1">
+				<ArticleCaption>(Effective Date)</ArticleCaption>
+				<ArticleTitle>Article 1</ArticleTitle>
+				<Paragraph Num="1" id="en_s28at1cl1">
+					<ParagraphNum></ParagraphNum>
+					<ParagraphSentence>
+						<Sentence Num="1" Function="Main">This Act shall come into effect as of the day specified by Cabinet Order within a period not exceeding two months from the date of promulgation;</Sentence>
+						<Sentence Num="2" Function="Proviso">provided, however, that the provisions listed in the following item shall come into effect as of the day specified therein:</Sentence>
+					</ParagraphSentence>
+					<Item Num="1">
+						<ItemTitle>(i)</ItemTitle>
+						<ItemSentence>
+							<Column Num="1">
+								<Sentence>The provisions of Article 6, Article 8, Article 9, and Article 13 of the Supplementary Provisions:</Sentence>
+							</Column>
+							<Column Num="2">
+								<Sentence>The date of promulgation.</Sentence>
+							</Column>
+						</ItemSentence>
+					</Item>
+				</Paragraph>
+			</Article>
+		</SupplProvision>
+	</LawBody>
+</Law>

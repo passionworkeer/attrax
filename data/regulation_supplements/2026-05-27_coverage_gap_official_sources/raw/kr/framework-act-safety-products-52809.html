@@ -1,0 +1,1988 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>Statutes of the Republic of Korea</title>
+<link type="text/css" rel="stylesheet" href="/css/kor_service/lawcontent.css"/>
+<script type="text/javascript" src="/jquery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="/javascript/search.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		if (parent.document.getElementById("pageSearch").value != ""){
+			//parent.searchInPage('KOR');
+			parent.changePageSearch();
+			if (parent.document.getElementById("joseq").value == ""){
+				var offset = $("#result").offset();
+		        $("html, body").animate({scrollTop:offset.top},400);	
+			}
+		}
+		try{
+			parent.lawViewTitle.goTitle(parent.document.getElementById("hseq").value, parent.document.getElementById("joseq").value);
+		}catch (e) {}
+
+		//서식파일 로딩 euripek 20170904
+		loadAttachFilePTag();
+	};
+	function fontSize(fontint)
+	{
+
+		var tags = [".lawname", ".history", ".part", ".part_none", ".chapter", ".chapter_none", ".section", ".section_none"
+		            , ".subsection", ".subsectionSubsection", ".subsection_none", ".article", ".article_none", ".none", ".hang", ".hang_none", ".articletitle"
+		            ,".ho", ".ho_none", ".mok", ".mok_none", ".dann", ".dann_none", ".addenda", ".addendacontent_none",
+		            ,".attach", ".jocontent", ".keyword", ".lastUpdate", "a", "td", "span", "p"];
+
+		for(var i = 0; i < tags.length; i++)
+		{
+
+			try{
+				$(tags[i]).css("font-size" , parseInt($(tags[i]).css("font-size")) + fontint + "px");
+				$(tags[i]).css("line-height" , parseInt($(tags[i]).css("line-height")) + fontint + "px");
+			}catch(e){};
+		}
+	}
+
+	function Jodisplay(joId) {
+		var checkId = $("#"+joId+"");
+
+		if(checkId.css("display") == "none") {
+			//checkId.css("display", "");
+			checkId.show();
+		} else {
+			checkId.css("display", "none");
+			checkId.hide();
+		}
+	}
+	function showHistory(id) {
+		var obj = document.getElementById(id);
+		if (obj.style.display == 'none') {
+			obj.style.display = 'block';
+		} else if (obj.style.display == 'block') {
+			obj.style.display = 'none';
+		}
+	}
+
+	//별지 이미지 미리보기
+	function showImg(img , check){
+	  if(check == 'on'){
+	    $("#"+img+check).hide();
+	    $("#"+img+"_"+check).hide();
+	    $("#"+img+"off").show();
+	    $("#"+img+"_off").show();
+	    $("p#"+img+"").toggle();
+	  }else{
+	    $("#"+img+check).hide();
+	    $("#"+img+"_"+check).hide();
+	    $("#"+img+"on").show();
+	    $("#"+img+"_on").show();
+	    $("p#"+img+"").toggle();
+	  }
+	}
+</script>
+</head>
+<body id="body" style="padding:20px;">
+	<div id="lawcontent">
+		<div class="lawname" align="center">FRAMEWORK ACT ON THE SAFETY OF PRODUCTS</div>
+		<div class="history_title" style="display: block;" id="current_hisotry">
+			<p class="cur_history"><a onclick="showHistory('current_hisotry');showHistory('all_hisotry'); return false;"><img src="/images/kor_service/view/btn_history_plus2.png" alt="Expand" title="Expand"/></a>&nbsp;Act No. 16803, Dec. 10, 2019&nbsp;</p>
+		</div>
+		<div class="history_title" style="display: none;" id="all_hisotry">
+			
+				<p class="history_list"><a onclick="showHistory('current_hisotry');showHistory('all_hisotry'); return false;"><img src="/images/kor_service/view/btn_history_minus2.png" alt="Collapse" title="Collapse"/></a>&nbsp;Act No. 10028, Feb.  4, 2010</p>
+				
+			
+				
+				<p class="history_list">Amended by Act No. 11437, May 23, 2012</p>
+			
+				
+				<p class="history_list">Act No. 11690, Mar. 23, 2013</p>
+			
+				
+				<p class="history_list">Act No. 13092, Jan. 28, 2015</p>
+			
+				
+				<p class="history_list">Act No. 13314, May 18, 2015</p>
+			
+				
+				<p class="history_list">Act No. 13859, Jan. 27, 2016</p>
+			
+				
+				<p class="history_list">Act No. 14673, Mar. 21, 2017</p>
+			
+				
+				<p class="history_list">Act No. 15182, Dec. 12, 2017</p>
+			
+				
+				<p class="history_list">Act No. 15508, Mar. 20, 2018</p>
+			
+				
+				<p class="history_list">Act No. 16803, Dec. 10, 2019</p>
+			
+		</div>
+		
+		
+			<a name="1442430"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442431"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442432"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0001000" name="CT0001000"></a>
+					<div class="CT" id="1442432">
+						<div class="chapter" align="center">CHAPTER I GENERAL PROVISIONS</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442433"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0001000" name="JO0001000"></a>
+					<div class="JO" id="1442433">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 1 (Purpose)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442433, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The purpose of this Act is to prescribe basic matters necessary to ensure the safety of products so as to contribute to the improvement of the quality of life for citizens and the development of the national economy by protecting the lives of citizens and preventing any damage to their health and property.</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442434"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0002000" name="JO0002000"></a>
+					<div class="JO" id="1442434">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 2 (Fundamental Concepts)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442434, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The fundamental concepts of this Act are to confirm that it is the basic duty of the State and local governments to ensure product safety and minimize any damage that occurs in cases of danger or harm caused by products, and to ensure that citizens lead lives in a society safe from any risk associated with products by guiding all citizens and the State and local governments to consider safety as their priority while engaging in activities associated with the manufacture, assembling, processing, import, sale, lending, or use of products.</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442435"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0003000" name="JO0003000"></a>
+					<div class="JO" id="1442435">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 3 (Definitions)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442435, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The definitions of the terms used in this Act are as follows:</span></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> The term "product" means any article, or component part or accessory thereof, which is ultimately intended for use by a consumer;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> The term "business entity" means any person who engages in manufacture, assembling, or processing (hereinafter referred to as "manufacture") or import, sale, or lending (hereinafter referred to as "distribution"), of products;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> The term "safety inspection" means all activities concerning the inspection, examination, or assessment of defects in the manufacture, design, description, etc. of products to prevent risks of danger or harm to health, safety, or property which may be caused by such products.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442436"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0004000" name="JO0004000"></a>
+					<div class="JO" id="1442436">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 4 (Responsibilities of the State)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442436, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The State and local governments shall have the duty to formulate and implement policies concerning the safety of products (hereinafter referred to as "product safety policy") so that citizens may use products safely.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> In formulating and implementing a product safety policy, the State and local governments shall give priority to taking into consideration the prevention of any risk of danger or harm to health, safety, or property of consumers and the safety of groups particularly vulnerable to risks such as children, the aged, the weak, and people with disabilities.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> The State shall endeavor to establish or revise and enforce the standards or specifications for the manufacture, use, etc. of products to verify the safety of products (hereinafter referred to as "safety standards") in a manner consistent with international standards.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Business entities shall have the duty to manufacture or distribute safe products and to verify the safety of products which are manufactured or distributed.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442437"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0005000" name="JO0005000"></a>
+					<div class="JO" id="1442437">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 5 (Citizen's Right)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442437, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>Every citizen shall have the right to participate in the formulation and implementation of a product safety policy by the State or relevant local government and to use safe products.</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442438"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0006000" name="JO0006000"></a>
+					<div class="JO" id="1442438">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 6 (Relationship to Other Acts)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442438, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>Except as otherwise provided for in other Acts, this Act shall apply to the safety of products.</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442439"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0002000" name="CT0002000"></a>
+					<div class="CT" id="1442439">
+						<div class="chapter" align="center">CHAPTER II ESTABLISHMENT OF COMPREHENSIVE PLANS FOR PRODUCT SAFETY MANAGEMENT</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442440"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0007000" name="JO0007000"></a>
+					<div class="JO" id="1442440">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 7 (Establishment of Comprehensive Plans for Product Safety Management)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442440, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The Government shall establish a comprehensive plan for product safety management (hereinafter referred to as "comprehensive plan") every three years.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> A comprehensive plan shall include the following matters:</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Objectives and basic direction-setting of product safety policy;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Matters relating to the creation of a foundation to ensure the safety of products;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Matters relating to the prevention of incidents involving products and the establishment of measures therefor;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Matters relating to the safety management of imported products and new kinds of products;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">5.</td><td><span> Matters relating to research on product safety and the development of related technology;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">6.</td><td><span> Matters relating to the rationalization of regulation on product safety;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">7.</td><td><span> Matters relating to the system to share information on product safety;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">8.</td><td><span> Matters relating to cooperation with international organizations or foreign countries concerning product safety;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">9.</td><td><span> Matters relating to measures for the safety of groups particularly vulnerable to risks, such as children, the aged, the weak, and people with disabilities, with respect to their use of products;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">10.</td><td><span> Other matters necessary to ensure product safety.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Upon establishment of a comprehensive plan, the head of a central administrative agency shall submit it to the Consumer Policy Committee under </span><a title="타법링크 (법령:Framework Act on Consumers, 조:23)" href="javascript:f_jump('23', 'Framework Act on Consumers')">Article 23 of the Framework Act on Consumers</a><span>.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> The head of a central administrative agency shall make efforts to give priority to securing personnel and funds necessary to promote a comprehensive plan.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> Matters necessary for the establishment and implementation of comprehensive plans shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442441"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0007020" name="JO0007020"></a>
+					<div class="JO" id="1442441">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 7-2 (Product Safety Policy Council)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442441, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> There shall be established under the control of the Prime Minister a Product Safety Policy Council (hereinafter referred to as the "Policy Council") to discuss the following matters concerning product safety:</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Formulation and implementation of a comprehensive plan; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Cooperation among related government agencies to restrict the importation and distribution of illegal or defective products; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Coordination of the designation of the competent government agency on the product for which measures for prior safety management or ex-post market management are necessary;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Other important matters regarding the product safety that are submitted to its meetings by the chairperson. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> A person appointed by the Prime Minister, from among public officials at the vice-ministerial level in the Office for Government Policy Coordination, shall serve as the chairperson of the Policy Council; and members of the Senior Executive Service of central administrative agencies prescribed by Presidential Decree shall serve as members of the Policy Council.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> The Policy Council shall have one secretary among senior executives of the Ministry of Trade, Industry and Energy.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> There shall be established in the Policy Council a working council to efficiently manage the Policy Council.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> Other matters necessary for organizing and operating the Policy Council and the working council shall be prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 14673, Mar. 21, 2017]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442442"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0008000" name="JO0008000"></a>
+					<div class="JO" id="1442442">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 8 (Production of Statistics on Product Incidents)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442442, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> If necessary for formulating, etc. a comprehensive plan, the head of a central administrative agency may compile and manage statistics on product incidents or defective products.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The scope of statistical surveys and survey targets under paragraph (1) shall be prescribed by Presidential Decree.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Except as otherwise expressly provided for in this Act, the relevant provisions of the </span><a title="타법링크 (법령:Statistics Act, 조:lawname)" href="javascript:f_jump('lawname', 'Statistics Act')">Statistics Act</a><span> shall apply </span><italic>mutatis mutandis</italic><span> to compiling and managing statistics under paragraph (1).</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442443"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0003000" name="CT0003000"></a>
+					<div class="CT" id="1442443">
+						<div class="chapter" align="center">CHAPTER III MEANS TO ENSURE PRODUCT SAFETY</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442444"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0009000" name="JO0009000"></a>
+					<div class="JO" id="1442444">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 9 (Safety Inspections)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442444, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where a product distributed in the market falls under any of the following, the head of a central administrative agency may conduct a safety inspection of the product to ascertain whether it is likely to cause danger or harm: </span><span class="revision">&lt;Amended by Act No. 11437, May 23, 2012; Act No. 13092, Jan. 28, 2015; Act No. 13859, Jan. 27, 2016&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Where the product is subject to safety management under the Electronic Appliances and Consumer Products Safety Control Act;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Where the product causes or is likely to cause danger or harm to health, safety or property of consumers due to any defect in the manufacture or design of, or description, etc. on, the product;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2-2.</td><td><span> Where the product causes or is likely to cause danger or harm to health, safety, or property of consumers due to its technical or structural characteristics; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Where a business entity or another business entity in a foreign country takes a measure referred to in any subparagraph of </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span> (3) in the foreign country due to danger or harm caused by the product; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Where it is necessary to assess whether the product meets safety standards prescribed by the relevant statutes; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">5.</td><td><span> Where it is necessary to ensure the product safety.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Where the head of a central administrative agency conducts a safety inspection, he or she shall retain the details and findings of such inspection, and may allow inspection thereof at the request of the business entity of the relevant product or consumers. </span><span class="revision">&lt;Amended by Act No. 13092, Jan. 28, 2015&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Detailed matters regarding the methods and procedures for a safety inspection and retaining, inspection, etc. of details and findings of an inspection under paragraph (2) shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442445"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0009020" name="JO0009020"></a>
+					<div class="JO" id="1442445">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 9-2 (Consumers' Requests for Safety Inspections)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442445, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where at least a certain number of consumers prescribed by Presidential Decree request the head of a central administrative agency to conduct a safety inspection of products currently distributed in the market after meeting grounds for making a request, the scope of the request, and requirements prescribed by Presidential Decree, such as preparing certificates to identify consumers, the head of the central administrative agency shall comply with such request, except in any of the following cases: </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Where the head of the central administrative agency has no ability to conduct a safety inspection on the level requested by consumers;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Where excessive numbers of requests for safety inspections substantially interfere with the performance of duties; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Where the same consumers make repeated requests for safety inspection for the same purpose;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Where a consumer's request for safety inspection is contrary to the public interest, such as where consumers make a request for safety inspection for the benefit of a specific business entity. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Where the head of a central administrative agency complies with a request for safety inspection of the relevant product pursuant to paragraph (1), he or she shall conduct a safety inspection within 120 days and notify the consumer who requested the safety inspection of the findings therefrom, as prescribed by Presidential Decree. In such cases, he or she may recover expenses incurred in conducting the safety inspection from the consumer who requested the safety inspection, as prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 13092, Jan. 28, 2015]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442446"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0009030" name="JO0009030"></a>
+					<div class="JO" id="1442446">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 9-3 (Safety Inspection of Imported Products)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442446, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where any imported product at the stage of customs clearance is subject to safety management referred to in </span><a title="본법링크 (조:9)" href="javascript:f_jump('9', '')">Article 9</a><span> (1) 1 or is such product as prescribed by Presidential Decree, the head of a central administrative agency may conduct a safety inspection of the imported product jointly with the Commissioner of the Korea Customs Service before procedures for customs clearance are completed. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The head of a central administrative agency and the Commissioner of the Korea Customs Service may share information prescribed by Presidential Decree, such as information on business entities who distribute illegal or defective products, to conduct safety inspections of imported products pursuant to paragraph (1).</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Where the head of a central administrative agency conducts a safety inspection of an imported product, he or she shall preserve the details and findings of such inspection and shall allow the business entity of such product to inspect such details or findings.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Where any imported product prior to customs clearance is found to fall under any of the following as a result of a safety inspection, the head of a central administrative agency may request the Commissioner of the Korea Customs Service to take measures necessary to return, destroy, or improve such imported product: </span><italic>Provided</italic><span>, That with respect to any product which is cleared at customs, the head of a central administrative agency may recommend the collection, etc. of such product pursuant to </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> or issue an order for a product recall, etc. pursuant to </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span>:</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Where a product fails to meet the requirements prescribed by individual statutes;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Where there is a reasonable reason to believe that any significant defect of a product causes or is likely to cause harm to health, safety, or property of consumers. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> The methods of, and procedures for, conducting safety inspections of imported products; retaining and inspection of details and findings of inspections referred to in paragraph (3); the measures taken based on the findings of inspections referred to in paragraph (4); and other matters necessary therefor, shall be prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span>[This Article Added by Act No. 13314, May 18, 2015] </span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442447"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0010000" name="JO0010000"></a>
+					<div class="JO" id="1442447">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 10 (Recommendations for Product Recalls) </td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442447, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where a product distributed in the market causes or is likely to cause danger or harm to health, safety, or property of consumers due to any defect in the manufacture, design, description, etc. of the product or technical or structural characteristics of the product, the head of a central administrative agency may recommend the business entity of the relevant product to recall, destroy, repair, exchange, refund, or improve the product; may prohibit the manufacture or distribution of the product; or may take other necessary measures (hereinafter referred to as "recall, etc."). </span><span class="revision">&lt;Amended by Act No. 11437, May 23, 2012; Act No. 13092, Jan. 28, 2015&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Where the business entity in receipt of a recommendation under paragraph (1) fails to comply with such recommendation without just cause, the head of the competent central administrative agency may publish such fact.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Where the business entity takes measures pursuant to the recommendation under paragraph (1), he or she shall report to the head of the competent central administrative agency the matters prescribed by Presidential Decree, such as the outcomes of taking measures.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Matters necessary for recommendation for recall, etc. under paragraph (1), the publication thereof under paragraph (2), and giving a report under paragraph (3) shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442448"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0011000" name="JO0011000"></a>
+					<div class="JO" id="1442448">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 11 (Product Recall Orders)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442448, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The head of a central administrative agency may order a business entity to recall, etc. his or her products and publish such fact in accordance with the procedures prescribed by Presidential Decree, in any of the following cases: </span><span class="revision">&lt;Amended by Act No. 13314, May 18, 2015&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Where relevant product’s danger or harm is confirmed as a result of a safety inspection;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Where a business entity in receipt of a recommendation under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> (1) fails to comply with it without just cause;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Where there are reasonable grounds to believe that products distributed in the market cause or are likely to cause danger or harm to health, safety, or property of consumers due to any significant defects prescribed by Presidential Decree (hereinafter referred to as "significant defect") in their manufacture, design, description, etc.;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Where a product causes or is likely to cause harm to health, safety or property of consumers due to the change of parts, etc. of the relevant product after being certified, reported, verified, etc. prescribed by individual statutes. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> A business entity who has taken measures as ordered under paragraph (1) shall report, to the head of the competent central administrative agency, the matters prescribed by Presidential Decree, such as the result of measures taken.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> If a business entity fails to comply with an order issued under paragraph (1), the head of the competent central administrative agency may directly perform a recall, etc. of the relevant product. In such cases, expenses incurred in such recall, etc. may be collected from the business entity.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> A business entity who receives an order for product recall, etc. shall take measures as ordered under paragraph (1) and shall not distribute the relevant product on the market: </span><italic>Provided</italic><span>, That the foregoing shall not apply where he or she has taken necessary measures, such as repairs or improvements. </span><span class="revision">&lt;Added by Act No. 14673, Mar. 21, 2017&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> Matters necessary for the orders for recalls, etc. and the publication thereof under paragraph (1); giving a report under paragraph (2); and measures and collection of expenses under paragraph (3) shall be prescribed by Presidential Decree. </span><span class="revision">&lt;Amended by Act No. 14673, Mar. 21, 2017&gt;</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442449"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0012000" name="JO0012000"></a>
+					<div class="JO" id="1442449">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 12 (Application for Cancellation of Recommendation)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442449, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where a business entity who is recommended to recall, etc. the relevant product under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> (1) or has an interest in products subject to recall, etc. according to an order for recall, etc. under </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span> (1), is dissatisfied with such recommendation or order, he or she may file an application for the cancellation of such recommendation or order in whole or in part with the head of the competent central administrative agency within 30 days from the date he or she becomes aware that such recommendation or order is issued.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Upon receipt of an application under paragraph (1), the head of the competent central administrative agency shall decide whether to cancel in whole or in part the recommendation under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> (1) or the order under </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span> (1) within 30 days: </span><italic>Provided</italic><span>, That if, in extenuating circumstances where he or she cannot make such decision within said period, he or she may extend the period by up to 30 additional days.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> A business entity who has filed an application pursuant to paragraph (1) may file an administrative appeal under the </span><a title="타법링크 (법령:Administrative Appeals Act, 조:lawname)" href="javascript:f_jump('lawname', 'Administrative Appeals Act')">Administrative Appeals Act</a><span>, regardless of the application under said paragraph.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Matters necessary for the procedures, methods, etc. for application under paragraph (1) shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442450"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0013000" name="JO0013000"></a>
+					<div class="JO" id="1442450">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 13 (Business Entities’ Duty to Recall Products)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442450, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where a business entity discovers that his or her product distributed in the market causes or is likely to cause danger or harm to health, safety, or property of consumers due to any significant defect in the product, he or she shall immediately report the details of such defect to the head of the competent central administrative agency and recall, etc. the relevant product, as prescribed by Presidential Decree.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The business entity who has taken measures under paragraph (1) shall report to the head of the competent central administrative agency the matters prescribed by Presidential Decree, such as the outcomes of the recall, etc.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Where a business entity has taken any of the following measures in a foreign country regarding the same product as his or her product distributed in the market by reason of danger or harm, or discovers that another business entity in a foreign country has taken such measures, he or she shall immediately report such fact to the head of the central administrative agency regulating the relevant product, as prescribed by Presidential Decree: </span><italic>Provided</italic><span>, That this shall not apply where the relevant business entity has recalled, etc. the relevant product pursuant to paragraph (1): </span><span class="revision">&lt;Added by Act No. 11437, May 23, 2012&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Where the business entity has implemented measures, such as recall, etc., upon recommendation or order for recall, etc. from a foreign government;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Where the business entity has taken measures, such as recall, etc., voluntarily.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442451"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0013020" name="JO0013020"></a>
+					<div class="JO" id="1442451">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 13-2 (Business Entities’ Duty to Report)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442451, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where a product distributed in the market causes any of the following accidents (excluding accidents prescribed by Presidential Decree, such as an accident that occurs due to user negligence; hereinafter referred to as "significant accident") irrespective of a significant defect in the product under </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span> (1) 3, the relevant business entity shall report the matters prescribed by Presidential Decree, such as the name of the relevant product, the details of the accident, and the quantity sold, to the head of a central administrative agency immediately after he or she becomes aware of the significant accident: </span><span class="revision">&lt;Amended by Act No. 15182, Dec. 12, 2017&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A fatal accident;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> An accident that caused an injury requiring at least four weeks' medical treatment in a medical institution under </span><a title="타법링크 (법령:Medical Service Act, 조:3)" href="javascript:f_jump('3', 'Medical Service Act')">Article 3 (2) of the Medical Service Act</a><span>; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> A fire or explosion;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Other accidents prescribed by Presidential Decree, such as where the same product causes recurring accidents. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Matters necessary for the procedures for reporting under paragraph (1) shall be prescribed by Presidential Decree. </span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 13092, Jan. 28, 2015]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442452"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0013030" name="JO0013030"></a>
+					<div class="JO" id="1442452">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 13-3 (Investigation of Accidents by Business Entities)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442452, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Where the head of a central administrative agency in receipt of a report on a significant accident pursuant to </span><a title="본법링크 (조:13-2)" href="javascript:f_jump('13-2', '')">Article 13-2</a><span> (1) deems it necessary to investigate such accident in consideration of the matters prescribed by Presidential Decree, such as the frequency of the accident and the level of harm caused by the accident, he or she may order the relevant business entity (referring to a manufacturer or importer; hereafter in this Article, the same shall apply) to investigate the circumstances and causes of such accident to identify the causes of the accident.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Where a business entity is ordered to investigate an accident under paragraph (1), he or she shall commence to investigate the accident within seven days.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Where a business entity completes the investigation of an accident under paragraph (2), he or she shall immediately report the findings of such investigation to the head of the competent central administrative agency.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Matters necessary for the methods and procedures for investigating an accident under paragraph (2) and reporting on the findings of the investigation under paragraph (3) shall be prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 15182, Dec. 12, 2017]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442453"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0014000" name="JO0014000"></a>
+					<div class="JO" id="1442453">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 14 (Whistleblowing)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442453, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> If a business entity conceals any significant defect of his or her product, knowing that such significant defect causes or is likely to cause danger or harm to health, safety, or property of consumers, a worker who engages in the business (hereinafter referred to as "worker") of the relevant business entity may report such fact to the head of the competent central administrative agency. </span><span class="revision">&lt;Amended by Act No. 14673, Mar. 21, 2017&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> No business entity shall give any disadvantageous treatment to the relevant worker on account of the report under paragraph (1). </span><span class="revision">&lt;Amended by Act No. 14673, Mar. 21, 2017&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Any person who, on account of his or her report, is given any disadvantageous treatment with regard to his or her status may request the head of the competent central administrative agency to reinstate his or her status or take other necessary measures.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> If the above-mentioned request is deemed well-grounded as a result of an investigation, the head of the competent central administrative agency may demand that the relevant business entity take appropriate measures. In such cases, the business entity shall comply with such demand, except in extenuating circumstances.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442454"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0015000" name="JO0015000"></a>
+					<div class="JO" id="1442454">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 15 (Requests for Submission of Materials Related to Product Accidents)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442454, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> If an accident causes or is likely to cause danger or harm to health, safety, or property of consumers due to any defect in the manufacture, design, description, etc., of products distributed in the market, or technical or structural characteristics thereof, the head of the competent central administrative agency may request the relevant business entity or the head of each of the following agencies or institutions to submit materials related to the accident so as to ascertain the circumstances and causes of the accident and take necessary safety measures accordingly. In such cases, any person in receipt of a request to submit materials shall comply therewith, except in extenuating circumstances: </span><span class="revision">&lt;Amended by Act No. 13092, Jan. 28, 2015&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A relevant central administrative agency or local government;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> A public institution under </span><a title="타법링크 (법령:Act on the Management of Public Institutions, 조:4)" href="javascript:f_jump('4', 'Act on the Management of Public Institutions')">Article 4 of the Act on the Management of Public Institutions</a><span>; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> A consumer organization registered pursuant to </span><a title="타법링크 (법령:Framework Act on Consumers, 조:29)" href="javascript:f_jump('29', 'Framework Act on Consumers')">Article 29 of the Framework Act on Consumers</a><span>;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> A testing or inspection agency authorized pursuant to </span><a title="타법링크 (법령:Framework Act on National Standards, 조:23)" href="javascript:f_jump('23', 'Framework Act on National Standards')">Article 23 of the Framework Act on National Standards</a><span>;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">5.</td><td><span> A medical institution under </span><a title="타법링크 (법령:Medical Service Act, 조:3)" href="javascript:f_jump('3', 'Medical Service Act')">Article 3 (2) of the Medical Service Act</a><span> (limited to data to ascertain the cause of an accident, such as the kind of product and the injured part);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">6.</td><td><span> An insurance company under </span><a title="타법링크 (법령:Insurance Business Act, 조:2)" href="javascript:f_jump('2', 'Insurance Business Act')">Article 2 of the Insurance Business Act</a><span> (limited to data to ascertain the cause of an accident, such as the kind of product and the injured part);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">7.</td><td><span> Other institutions prescribed by Presidential Decree which retain information about accidents caused by products. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> To ascertain the circumstances and causes of product accidents under paragraph (1) scientifically and efficiently, the head of the competent central administrative agency may designate a legal entity or organization engaging in product safety-related work as a product accident investigation center to investigate the circumstances, causes, etc. of such product accidents, as prescribed by Presidential Decree.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> The scope of materials that may be requested pursuant to paragraph (1), the methods and procedures for investigation under paragraph (2), and other necessary matters shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442455"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0015020" name="JO0015020"></a>
+					<div class="JO" id="1442455">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 15-2 (Publication of Findings from Safety Inspections)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442455, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The head of a central administrative agency may publish the findings from a safety inspection under </span><a title="본법링크 (조:9)" href="javascript:f_jump('9', '')">Article 9</a><span> (1) or the findings from the investigation of a product accident under </span><a title="본법링크 (조:15)" href="javascript:f_jump('15', '')">Article 15</a><span> (2). </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Where the head of a local government or the head of a public institution intends to conduct a safety inspection and publish the findings therefrom pursuant to another statute, he or she shall notify the head of a central administrative agency having jurisdiction over the relevant product of such fact in advance.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Matters necessary for publication, such as methods of publication under paragraph (1), shall be prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 13092, Jan. 28, 2015]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442456"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0015030" name="JO0015030"></a>
+					<div class="JO" id="1442456">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 15-3 (Inspection of Implementation of Product Recalls)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442456, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> A business entity who has received recommendation or order for product recalls, etc. under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> or 11 or who shall recall a product under </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span> shall prepare a plan therefor and submit the plan to the head of a central administrative agency, as prescribed by Presidential Decree.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> After a business entity has taken the measures under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span>, 11, or 13 or has reported on the results thereof, the head of the central administrative agency may have a relevant public official or executive officer or employee of the Korean Institute of Product Safety established under </span><a title="본법링크 (조:21-2)" href="javascript:f_jump('21-2', '')">Article 21-2</a><span> visit the business place of such business entity and inspect the status of implementation.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> A public official or executive officer or employee who visits the business place and conducts inspection under paragraph (2) shall carry an identification indicating his or her authority and show it to the relevant person.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> After inspection of the implementation status under paragraph (2), the head of the central administration agency may order the business entity deemed to have failed to faithfully implement the measures in accordance with the plan under paragraph (1) to make necessary supplementation. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> Matters necessary for the procedures and methods for preparing and submitting a plan, inspection of implementation and access, and orders for supplementation under paragraphs (1) through (4) shall be prescribed by Presidential Decree. </span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 16803, Dec. 10, 2019]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442457"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0004000" name="CT0004000"></a>
+					<div class="CT" id="1442457">
+						<div class="chapter" align="center">CHAPTER IV ESTABLISHMENT OF FOUNDATION FOR PRODUCT SAFETY MANAGEMENT</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442458"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0016000" name="JO0016000"></a>
+					<div class="JO" id="1442458">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 16 (Establishment and Management of Product Safety Information Network)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442458, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> To formulate and implement a product safety policy and to prevent product accidents, the head of the competent central administrative agency may establish and manage a product safety information network for collecting and providing the following information: </span><span class="revision">&lt;Amended by Act No. 13092, Jan. 28, 2015; Act No. 15182, Dec. 12, 2017&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Details and findings of inspections under </span><a title="본법링크 (조:9)" href="javascript:f_jump('9', '')">Article 9</a><span> (2);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Information on recommendations for recall, etc. under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> and orders for recall, etc. under </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span>;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2-2.</td><td><span> Information on recalls, etc. implemented by business entities pursuant to </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span>, and information reported by business entities pursuant to </span><a title="본법링크 (조:13-2)" href="javascript:f_jump('13-2', '')">Article 13-2</a><span>;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2-3.</td><td><span> Details and findings of investigations under </span><a title="본법링크 (조:13-3)" href="javascript:f_jump('13-3', '')">Article 13-3</a><span> (3);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Other information on product safety.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The head of the competent central administrative agency shall share information collected under paragraph (1) with the heads of other relevant central administrative agencies.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Matters necessary for establishing and managing the product safety information network under paragraph (1), sharing information under paragraph (2), etc. shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442459"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0017000" name="JO0017000"></a>
+					<div class="JO" id="1442459">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 17 (Education, Training, and Publicity on Product Safety)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442459, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The head of a central administrative agency may provide education and training programs to business entities and their workers and publicize necessary information to consumers so that such business entities, workers, and consumers can better understand product safety and voluntarily ensure product safety in the process of manufacturing, distributing, or using products. </span><span class="revision">&lt;Amended by Act No. 14673, Mar. 21, 2017&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Methods of education, training, and publicity under paragraph (1), and other relevant details shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442460"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0018000" name="JO0018000"></a>
+					<div class="JO" id="1442460">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 18 (Contributions to Product Safety Research)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442460, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The head of a central administrative agency may contribute funds to the Korea Evaluation Institute of Industrial Technology under </span><a title="타법링크 (법령:Industrial Technology Innovation Promotion Act, 조:39)" href="javascript:f_jump('39', 'Industrial Technology Innovation Promotion Act')">Article 39 of the Industrial Technology Innovation Promotion Act</a><span> or other corporations or organizations that conduct affairs related to product safety prescribed by Presidential Decree to cover expenses incurred in research and technical development concerning product safety. </span><span class="revision">&lt;Amended by Act No. 13092, Jan. 28, 2015&gt;</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Matters necessary for the standards for payment, and use and management, of contributions under paragraph (1) shall be prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442461"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0019000" name="JO0019000"></a>
+					<div class="JO" id="1442461">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 19 (Cooperation with Organizations Related to Product Safety)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442461, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> To prevent product accidents, the head of the competent central administrative agency may conduct market monitoring and other business matters prescribed by Presidential Decree, in cooperation with corporations, organizations, etc. which engage in work related to consumers and product safety. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> To improve product safety, the Minister of Trade, Industry and Energy may formulate and implement policies necessary to promote cooperation among business entities, academic circles, and small, medium, and large enterprises, with respect to research on product safety, related technical development, publicity, etc. </span><span class="revision">&lt;Amended by Act No. 11690, Mar. 23, 2013&gt;</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442462"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0020000" name="JO0020000"></a>
+					<div class="JO" id="1442462">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 20 (International Cooperation)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442462, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The head of a central administrative agency may conduct the following projects to promote international cooperation with international organizations, foreign governments, and product safety-related institutions:</span></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Exchange of information on product safety;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Exchange of professionals concerning product safety;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Participation in various international events, including international conferences concerning product safety;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Other projects deemed necessary to promote international cooperation concerning product safety.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442463"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0021000" name="JO0021000"></a>
+					<div class="JO" id="1442463">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 21 Deleted. &lt;by Act No. 15508, Mar. 20, 2018&gt;</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442463, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						
+					</div>
+		        
+				
+			
+		
+			<a name="1442464"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0004020" name="CT0004020"></a>
+					<div class="CT" id="1442464">
+						<div class="chapter" align="center">CHAPTER IV-2 KOREAN INSTITUTE OF PRODUCT SAFETY</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442465"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0021020" name="JO0021020"></a>
+					<div class="JO" id="1442465">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 21-2 (Establishment of Korean Institute of Product Safety)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442465, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> The Minister of Trade, Industry and Energy shall establish the Korean Institute of Product Safety (hereinafter referred to as "KIPS") to efficiently and systematically conduct affairs concerning the safety management of products.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> KIPS shall be a corporation.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Except as otherwise provided for in this Act, the provisions concerning incorporated foundations under the </span><a title="타법링크 (법령:Civil Act, 조:lawname)" href="javascript:f_jump('lawname', 'Civil Act')">Civil Act</a><span> shall apply </span><italic>mutatis mutandis</italic><span> to KIPS.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> KIPS shall be duly formed upon completion of registration for its establishment with the registry at the seat of its principal office.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> No person, other than KIPS, shall use the name "Korean Institute of Product Safety" or a name similar thereto.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(6)</td><td><span> Other matters necessary for the articles of incorporation, organization, operation, etc. of KIPS shall be prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 15508, Mar. 20, 2018]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442466"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0021030" name="JO0021030"></a>
+					<div class="JO" id="1442466">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 21-3 (Activities of KIPS)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442466, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>KIPS shall engage in the following:</span></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Research, development, education, and publicity concerning the product safety management system;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Research and development for establishing and amending safety standards;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Publication and dissemination of materials related to safety standards; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> Monitoring and investigation of illegal products and products with potential risks at the stages of importation and distribution;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">5.</td><td><span> Investigation of safety of products imported and distributed;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">6.</td><td><span> Inspection of implementation of product recalls, etc.;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">7.</td><td><span> Collection and analysis of information on product accidents and information on products with potential risks, and production and management of statistics thereon;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">8.</td><td><span> Investigation and analysis of product accidents and assessment of the level of risk;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">9.</td><td><span> Cooperation and support activities with enterprises, organizations, etc. to ensure product safety; </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">10.</td><td><span> International cooperation concerning product safety management;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">11.</td><td><span> Affairs delegated under other statutes, such as the </span><a title="타법링크 (법령:Electrical Appliances and Consumer Products Safety Control Act, 조:lawname)" href="javascript:f_jump('lawname', 'Electrical Appliances and Consumer Products Safety Control Act')">Electrical Appliances and Consumer Products Safety Control Act</a><span>;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">12.</td><td><span> Other affairs delegated by the heads of related central administrative agencies.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 15508, Mar. 20, 2018]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442467"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0021040" name="JO0021040"></a>
+					<div class="JO" id="1442467">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 21-4 (Financial Resources for Operation)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442467, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> KIPS shall be operated with fees for the performance of duties under subparagraphs 11 and 12 of </span><a title="본법링크 (조:21-3)" href="javascript:f_jump('21-3', '')">Article 21-3</a><span> and other revenues.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The Minister of Trade, industry and Energy may subsidize KIPS to cover the expenses necessary for performing its duties. </span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 15508, Mar. 20, 2018]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442468"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0021050" name="JO0021050"></a>
+					<div class="JO" id="1442468">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 21-5 (Approval and Reporting)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442468, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> KIPS shall prepare the following and obtain approval from the Minister of Trade, Industry and Energy, as prescribed by Presidential Decree:</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A business plan;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Estimates of revenue and expenditure.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> KIPS shall report the following to the Minister of Trade, Industry and Energy, as prescribed by Presidential Decree:</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Settlement of revenue and expenditure;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Business performance;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Matters concerning the performance of duties delegated by the Minister of Trade, Industry and Energy.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> The Minister of Trade, Industry and Energy may control and supervise KIPS, as prescribed by Presidential Decree.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 15508, Mar. 20, 2018]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442469"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0005000" name="CT0005000"></a>
+					<div class="CT" id="1442469">
+						<div class="chapter" align="center">CHAPTER V SUPPLEMENTARY PROVISIONS</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442470"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0022000" name="JO0022000"></a>
+					<div class="JO" id="1442470">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 22 (Operation of Supplementary Safety Standards)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442470, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>With respect to the certification, investigation, etc. of products for which applicable safety standards do not exist or to which the existing safety standards are not applicable, the head of the competent central administrative agency may conduct such certification, investigation, etc. by establishing and applying separate safety standards.</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442471"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0023000" name="JO0023000"></a>
+					<div class="JO" id="1442471">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 23 (Duty to Maintain Confidentiality)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442471, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> No person who falls or has fallen under any of the following shall divulge to anyone or use for other than purposes of his or her official duties, any confidential information he or she has become aware of in the course of performing his or her duties: </span><span class="revision">&lt;Amended by Act No. 15508, Mar. 20, 2018&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Any executive officer or employee of the product accident investigation center designated pursuant to </span><a title="본법링크 (조:15)" href="javascript:f_jump('15', '')">Article 15</a><span> (2);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Any executive officer or employee of the Institution of Management;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> Any person engaging in the work delegated pursuant to </span><a title="본법링크 (조:24)" href="javascript:f_jump('24', '')">Article 24</a><span>.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> No public official engaging in duties under this Act shall use information he or she has learned from investigation, reporting, notification or submitted materials under </span><a title="본법링크 (조:9)" href="javascript:f_jump('9', '')">Article 9</a><span> (1), 10 (3), 11 (2), 13 (1) and (2), 13-2, 14 (1), or 15 (1) and (2), for other than purposes of enforcing this Act. </span><span class="revision">&lt;Amended by Act No. 13092, Jan. 28, 2015&gt;</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442472"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0024000" name="JO0024000"></a>
+					<div class="JO" id="1442472">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 24 (Delegation or Entrustment of Authority)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442472, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The head of a central administrative agency may delegate part of his or her authority under this Act to the head of an agency under his or her jurisdiction, the competent Special Metropolitan City Mayor, Metropolitan City Mayor, Special Self-Governing City Mayor, </span><italic>Do</italic><span> Governor, or Special Self-Governing Province Governor, or may entrust part of his or her authority to an institution or organization that conducts affairs related to product safety, as prescribed by Presidential Decree. </span><span class="revision">&lt;Amended by Act No. 13092, Jan. 28, 2015&gt;</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442473"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0025000" name="JO0025000"></a>
+					<div class="JO" id="1442473">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 25 (Legal Fiction as Public Officials for Purposes of Penalty Provisions)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442473, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>For the purposes of applying </span><a title="타법링크 (법령:Criminal Act, 조:129)" href="javascript:f_jump('129', 'Criminal Act')">Articles 129 through 132 of the Criminal Act</a><span>, any person referred to in the subparagraphs of </span><a title="본법링크 (조:23)" href="javascript:f_jump('23', '')">Article 23</a><span> (1) shall be deemed a public official. </span><span class="revision">&lt;Amended by Act No. 15508, Mar. 20, 2018&gt;</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442474"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0025020" name="JO0025020"></a>
+					<div class="JO" id="1442474">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 25-2 (Ambiguities of Jurisdiction)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442474, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The Minister of Trade, Industry and Energy and the head of a relevant central administrative agency may, subject to mutual consultation, designate the head of a central administrative agency with competent jurisdiction under this Act over matters for which jurisdiction is unclear. </span></div><div class="none"><span class="revision">[This Article Added by Act No. 13092, Jan. 28, 2015]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442475"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0025030" name="JO0025030"></a>
+					<div class="JO" id="1442475">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 25-3 (Re-Examination of Regulation)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442475, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="none"><span>The Minister of Trade, Industry and Energy shall examine the appropriateness of the following every three years (referring to the date before every third anniversary from the base date) based on January 1, 2015, and shall take measures, such as making improvements:</span></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> Reports submitted by business entities pursuant to </span><a title="본법링크 (조:13-2)" href="javascript:f_jump('13-2', '')">Article 13-2</a><span>;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> Guidelines for imposing administrative fines under </span><a title="본법링크 (조:27)" href="javascript:f_jump('27', '')">Article 27</a><span> (1) (limited to matters concerning the violation of the duty to report under </span><a title="본법링크 (조:13-2))" href="javascript:f_jump('13-2)', '')">Article 13-2)</a><span>.</span></td></tr></table></div><div class="none"><span class="revision">[This Article Added by Act No. 13092, Jan. 28, 2015]</span></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442476"></a>
+			
+				
+				
+				
+				
+				
+					<!-- 장 -->
+					<a id="CT0006000" name="CT0006000"></a>
+					<div class="CT" id="1442476">
+						<div class="chapter" align="center">CHAPTER VI PENALTY PROVISIONS</div>
+					</div>
+					
+				
+				
+				
+				
+				
+				
+				
+			
+		
+			<a name="1442477"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0026000" name="JO0026000"></a>
+					<div class="JO" id="1442477">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 26 (Penalty Provisions)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442477, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Any of the following persons shall be punished by imprisonment for not more than three years or by a fine not exceeding 30 million won: </span><span class="revision">&lt;Amended by Act No. 13314, May 18, 2015; Act No. 14673, Mar. 21, 2017&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A person who fails to comply with an order for recall, etc. under </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span> (1);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1-2.</td><td><span> A person who manufactures or distributes a product falling under </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span> (1) 4 (referring to a person who imports such product if it is imported);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1-3.</td><td><span> A person who distributes the relevant product, in violation of </span><a title="본법링크 (조:11)" href="javascript:f_jump('11', '')">Article 11</a><span> (4); </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> A person who fails to recall, etc. the relevant product, in violation of </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span> (1);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> A person who uses any information he or she has learned from investigation, reporting, notification, or submitted materials, etc. for other than purposes of enforcing this Act, in violation of </span><a title="본법링크 (조:23)" href="javascript:f_jump('23', '')">Article 23</a><span> (2).</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Any of the following persons shall be punished by imprisonment with labor for not more than two years or by a fine not exceeding 20 million won: </span><span class="revision">&lt;Amended by Act No. 16803, Dec. 10, 2019&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A person who has given any disadvantageous treatment under </span><a title="본법링크 (조:14)" href="javascript:f_jump('14', '')">Article 14</a><span> (2) and fails to comply with a demand for taking measures under paragraph (4) of the same Article;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> A person who divulges any confidential information he or she becomes aware of in the course of performing his or her duties, or uses such information for other than purposes of his or her official duties, in violation of </span><a title="본법링크 (조:23)" href="javascript:f_jump('23', '')">Article 23</a><span> (1).</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> A person who fails to comply with an order for supplementation under </span><a title="본법링크 (조:15-3)" href="javascript:f_jump('15-3', '')">Article 15-3</a><span> (4) shall be punished by imprisonment with labor for not more than one year or by a fine not exceeding ten million won. </span><span class="revision">&lt;Amended by Act No. 16803, Dec. 10, 2019&gt;</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442478"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 조 -->
+					<a id="JO0027000" name="JO0027000"></a>
+					<div class="JO" id="1442478">
+						<div class="articletitle">
+							<table border="0" cellspacing="0" cellpadding="0" >
+								<caption>법령보기 화면</caption>
+		                         <tr>
+		                         	<!--  -->
+									<td>&nbsp;Article 27 (Administrative Fines)</td>
+									<td>&nbsp;
+		                           		<a href="javascript:goJomunPrint(52809, 1442478, 'eng',0);" title="Printed articles" class="btn_link">
+		                           			<!-- <img src="/images/kor_service/contents/icone_print.gif" alt="Printed articles" title="Printed articles"/> -->
+		                           		</a>
+									</td>
+									
+		                         </tr>
+		                       </table>
+						</div>
+						<div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> Any of the following persons shall be subject to an administrative fine not exceeding 30 million won. </span><span class="revision">&lt;Amended by Act No. 15182, Dec. 12, 2017; Act No. 16803, Dec. 10, 2019&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A person who fails to file a report or files a false report, in violation of </span><a title="본법링크 (조:13-2)" href="javascript:f_jump('13-2', '')">Article 13-2</a><span> (1); </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> A person who fails to investigate an accident, in violation of </span><a title="본법링크 (조:13-3)" href="javascript:f_jump('13-3', '')">Article 13-3</a><span> (2); </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> A person who fails to report the findings of investigation or files a false report, in violation of </span><a title="본법링크 (조:13-3)" href="javascript:f_jump('13-3', '')">Article 13-3</a><span> (3); </span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> A person who fails to submit materials required to be submitted under </span><a title="본법링크 (조:15)" href="javascript:f_jump('15', '')">Article 15</a><span> (1) or submits false materials without just cause. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Any of the following persons shall be subject to an administrative fine not exceeding five million won: </span><span class="revision">&lt;Amended by Act No. 11437, May 23, 2012; Act No. 15508, Mar. 20, 2018; Act No. 16803, Dec. 10, 2019&gt;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">1.</td><td><span> A person who fails to make a report on the results of measures, etc. taken under </span><a title="본법링크 (조:10)" href="javascript:f_jump('10', '')">Article 10</a><span> (3) or 11 (2) or files a false report thereon;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">2.</td><td><span> A person who fails to report the details of any significant defect or files a false report, in violation of </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span> (1);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">3.</td><td><span> A person who fails to make a report on the outcomes, etc. of recall, etc. under </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span> (2) or files a false report thereon;</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4.</td><td><span> A person who fails to submit a report or submits a false report, in violation of </span><a title="본법링크 (조:13)" href="javascript:f_jump('13', '')">Article 13</a><span> (3);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">4-2.</td><td><span> A person who fails to submit a plan for product recalls or submits a false plan, in violation of </span><a title="본법링크 (조:15-3)" href="javascript:f_jump('15-3', '')">Article 15-3</a><span> (1);</span></td></tr></table></div><div class="ho"><table><tr><td style="vertical-align:top;">5.</td><td><span> A person who uses the name “Korean Institute of Product Safety” or a name similar thereto, in violation of </span><a title="본법링크 (조:21-2)" href="javascript:f_jump('21-2', '')">Article 21-2</a><span> (5).</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> Administrative fines referred to in paragraphs (1) and (2) shall be imposed and collected by the head of the competent central administrative agency, as prescribed by Presidential Decree.</span></td></tr></table></div>
+					</div>
+		        
+				
+			
+		
+			<a name="1442479"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0000000" id="AD0000000"></a>
+					<div id="1442479">
+					<div class="addenda">ADDENDA</div>
+		               	<div class="article"><span>Article 1 (Enforcement Date)</span></div><div class="addenda_none"><span>This Act shall enter into force one year after the date of its promulgation.</span></div><div class="article"><span>Article 2 (Transitional Measures concerning Comprehensive Plans)</span></div><div class="addenda_none"><span>As at the time this Act enters into force, a comprehensive plan for safety management of industrial products under </span><a title="본법링크 (조:9)" href="javascript:f_jump('9', '')">Article 9</a><span> (1) of the previous </span><a title="타법링크 (법령:Quality Control and Safety Management of Industrial Products Act, 조:lawname)" href="javascript:f_jump('lawname', 'Quality Control and Safety Management of Industrial Products Act')">Quality Control and Safety Management of Industrial Products Act</a><span> shall be deemed a comprehensive plan under this Act until such plan is established pursuant to this Act.</span></div><div class="article"><span>Article 3 (Transitional Measures concerning Korean Electrical Appliances Safety Association)</span></div><div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> As at the time this Act enters into force, the Korean Electrical Appliances Safety Association established under </span><a title="본법링크 (조:16)" href="javascript:f_jump('16', '')">Article 16</a><span> of the previous </span><a title="타법링크 (법령:Electrical Appliances Safety Control Act, 조:lawname)" href="javascript:f_jump('lawname', 'Electrical Appliances Safety Control Act')">Electrical Appliances Safety Control Act</a><span> (hereinafter referred to as the "Korean Electrical Appliances Safety Association") shall be deemed the Association under this Act. In such cases, the Association shall make necessary amendments to its articles of incorporation pursuant to this Act and obtain authorization therefor from the Minister of Knowledge Economy within three months after this Act enters into force.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> As at the time this Act enters into force, all property and rights and obligations that belong to the Korean Electrical Appliances Safety Association shall be universally succeeded to by the Association under this Act.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> As at the time this Act enters into force, the title of the Korean Electrical Appliances Safety Association entered in any register and other public books shall be read as the title of the Association under this Act.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Any act done by or in relation to the Korean Electrical Appliances Safety Association before this Act enters into force shall be deemed an act done by or in relation to the Association under this Act.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> As at the time this Act enters into force, references in other Acts and subordinate statutes to the Korean Electrical Appliances Safety Association shall be deemed references to the Association under this Act.</span></td></tr></table></div><div class="article"><span>Article 4 Omitted.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442480"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0001000" id="AD0001000"></a>
+					<div id="1442480">
+					<div class="addenda">ADDENDUM &lt;Act No. 11437, May 23, 2012&gt;</div>
+		               	<div class="addenda_none"><span>This Act shall enter into force three months after the date of its promulgation.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442481"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0002000" id="AD0002000"></a>
+					<div id="1442481">
+					<div class="addenda">ADDENDA &lt;Act No. 11690, Mar. 23, 2013&gt;</div>
+		               	<div class="article"><span>Article 1 (Enforcement Date)</span></div><div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> This Act shall enter into force on the date of its promulgation. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> Omitted.</span></td></tr></table></div><div class="article"><span>Articles 2 through 7 Omitted.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442482"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0003000" id="AD0003000"></a>
+					<div id="1442482">
+					<div class="addenda">ADDENDA &lt;Act No. 13092, Jan. 28, 2015&gt;</div>
+		               	<div class="article"><span>Article 1 (Enforcement Date)</span></div><div class="addenda_none"><span>This Act shall enter into force six months after the date of its promulgation.</span></div><div class="article"><span>Article 2 (Applicability to Publication of Findings of Safety Inspections)</span></div><div class="addenda_none"><span>The amended provisions of </span><a title="본법링크 (조:15-2)" href="javascript:f_jump('15-2', '')">Article 15-2</a><span> shall begin to apply to the first safety inspection or inspection of an accident caused by a product, conducted under the amended provisions of </span><a title="본법링크 (조:9)" href="javascript:f_jump('9', '')">Article 9</a><span> (1) or the provisions of </span><a title="본법링크 (조:15)" href="javascript:f_jump('15', '')">Article 15</a><span> (2) after this Act enters into force.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442483"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0004000" id="AD0004000"></a>
+					<div id="1442483">
+					<div class="addenda">ADDENDUM &lt;Act No. 13314, May 18, 2015&gt;</div>
+		               	<div class="addenda_none"><span>This Act shall enter into force on the date of its promulgation: </span><italic>Provided</italic><span>, That the amended provisions of </span><a title="본법링크 (조:9-3)" href="javascript:f_jump('9-3', '')">Article 9-3</a><span> shall enter into force six months after the date of the promulgation.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442484"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0005000" id="AD0005000"></a>
+					<div id="1442484">
+					<div class="addenda">ADDENDA &lt;Act No. 13859, Jan. 27, 2016&gt;</div>
+		               	<div class="article"><span>Article 1 (Enforcement Date)</span></div><div class="addenda_none"><span>This Act shall enter into force one year after the date of its promulgation.</span></div><div class="article"><span>Articles 2 through 19 Omitted.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442485"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0006000" id="AD0006000"></a>
+					<div id="1442485">
+					<div class="addenda">ADDENDUM &lt;Act No. 14673, Mar. 21, 2017&gt;</div>
+		               	<div class="addenda_none"><span>This Act shall enter into force on the date of its promulgation: </span><italic>Provided</italic><span>, That the amended provisions of </span><a title="본법링크 (조:7-2)" href="javascript:f_jump('7-2', '')">Article 7-2</a><span> shall enter into force six months after the date of the promulgation.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442486"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0007000" id="AD0007000"></a>
+					<div id="1442486">
+					<div class="addenda">ADDENDA &lt;Act No. 15182, Dec. 12, 2017&gt;</div>
+		               	<div class="article"><span>Article 1 (Enforcement Date)</span></div><div class="addenda_none"><span>This Act shall enter into force six months after the date of its promulgation.</span></div><div class="article"><span>Article 2 (Applicability to Investigation of Significant Accidents)</span></div><div class="addenda_none"><span>The amended provisions of </span><a title="본법링크 (조:13-3)" href="javascript:f_jump('13-3', '')">Article 13-3</a><span> shall begin to apply to the investigation of the first significant accident which occurs after this Act enters into force.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442487"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0008000" id="AD0008000"></a>
+					<div id="1442487">
+					<div class="addenda">ADDENDA &lt;Act No. 15508, Mar. 20, 2018&gt;</div>
+		               	<div class="article"><span>Article 1 (Enforcement Date)</span></div><div class="addenda_none"><span>This Act shall enter into force six months after the date of its promulgation: </span><italic>Provided</italic><span>, That </span><a title="본법링크 (조:2)" href="javascript:f_jump('2', '')">Article 2</a><span> of the Addenda shall enter into force on the date of the promulgation.</span></div><div class="article"><span>Article 2 (Preparation for Establishment of KIPS)</span></div><div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> There shall be established a Committee for the Establishment of the Korean Institute of Product Safety (hereinafter referred to as the "Establishment Committee") to conduct affairs concerning the establishment of the Korean Institute of Product Safety.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The Establishment Committee shall consist of not more than seven members including one chairperson.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> The Minister of Trade, Industry and Energy shall appoint the chairperson and members of the Establishment Committee.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> The Establishment Committee shall prepare the articles of incorporation of KIPS and obtain approval from the Minister of Trade, Industry and Energy.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> The Establishment Committee shall complete registration for the establishment of KIPS immediately after executive officers of KIPS reappointed; and transfer its affairs to the chairperson of KIPS. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(6)</td><td><span> The Establishment Committee and its members shall be deemed dissolved and dismissed upon completion of transfer under paragraph (5).</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(7)</td><td><span> The Korean Product Safety Association established pursuant to previous </span><a title="본법링크 (조:21)" href="javascript:f_jump('21', '')">Article 21</a><span> (hereinafter referred to as the "former Association") shall bear expenses incurred in preparing the establishment of KIPS.</span></td></tr></table></div><div class="addenda_none"><span>&lt;&lt;Enforcement Date:　Mar. 20, 2018&gt;&gt; Article 2</span></div><div class="article"><span>Article 3 (Transitional Measures concerning Conversion of Korean Product Safety Association to Incorporated Association)</span></div><div class="hang"><table><tr><td style="vertical-align:top;">(1)</td><td><span> As at the time this Act enters into force, the former Association shall amend its articles of incorporation through a resolution adopted at a general meeting thereof so that it is converted into an incorporated association under </span><a title="타법링크 (법령:Civil Act, 조:32)" href="javascript:f_jump('32', 'Civil Act')">Article 32 of the Civil Act</a><span>.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(2)</td><td><span> The former Association which has amended its articles of incorporation pursuant to paragraph (1) shall file an application for permission to amend the articles of incorporation with the Minister of Trade, Industry and Energy pursuant to </span><a title="타법링크 (법령:Civil Act, 조:42)" href="javascript:f_jump('42', 'Civil Act')">Article 42 of the Civil Act</a><span>. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(3)</td><td><span> The former Association shall file an application for permission to amend the articles of incorporation under paragraph (2) along with an application for approval of the articles of incorporation of KIPS under </span><a title="본법링크 (조:2)" href="javascript:f_jump('2', '')">Article 2</a><span> of the Addenda. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(4)</td><td><span> Where the former Association obtains permission to amend the articles of incorporation under paragraph (2), it shall complete registration for the conversion thereof into the incorporated association.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(5)</td><td><span> KIPS shall succeed to authority of the former Association concerning the performance of duties referred to in the subparagraphs of previous </span><a title="본법링크 (조:21)" href="javascript:f_jump('21', '')">Article 21</a><span> (3), obligations related thereto, and some assets of the former Association through a resolution adopted at a general meeting of the former Association on the date KIPS completes registration for its establishment.</span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(6)</td><td><span> The value of assets to which KIPS shall succeed pursuant to paragraph (5) shall be the book value as at the day before the date KIPS completes registration for its establishment. </span></td></tr></table></div><div class="hang"><table><tr><td style="vertical-align:top;">(7)</td><td><span> Any act done by the former Association concerning the duties referred to in the subparagraphs of previous </span><a title="본법링크 (조:21)" href="javascript:f_jump('21', '')">Article 21</a><span> (3) shall be deemed an act done by KIPS; and any act done in relation to the former Association shall be deemed an act done in relation to KIPS. </span></td></tr></table></div><div class="article"><span>Article 4 (Transitional Measures concerning Penalty Provisions and Administrative Fines)</span></div><div class="addenda_none"><span>The application of penalty provisions and administrative fines to any act done before this Act enters into force shall be governed by the previous provisions.</span></div><div class="article"><span>Article 5 (Relationship to Other Statutes)</span></div><div class="addenda_none"><span>Where the Korean Product Safety Association is cited by other statutes in relation to the performance of duties referred to in the subparagraphs of previous </span><a title="본법링크 (조:21)" href="javascript:f_jump('21', '')">Article 21</a><span> (3) as at the time this Act enters into force, the Korean Institute of Product Safety under this Act shall be deemed cited.</span></div>
+		            </div>
+				
+			
+		
+			<a name="1442488"></a>
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					<!-- 부칙 -->
+					<a name="AD0009000" id="AD0009000"></a>
+					<div id="1442488">
+					<div class="addenda">ADDENDUM &lt;Act No. 16803, Dec. 10, 2019&gt;</div>
+		               	<div class="addenda_none"><span>This Act shall enter into force six months after the date of its promulgation.</span></div>
+		            </div>
+				
+			
+		
+		<p />
+		
+		<div class="lastUpdate" style="text-align:right;font-size:14px;">
+			Last updated : 2021-02-18
+		</div>
+		<br/>
+	</div>
+	<!-- 화면에 이미지 서식파일 출력후 스크립트처리 -->
+	<script type="text/javascript">
+		function loadAttachFilePTag() {
+			var imgFile = new Image();
+			
+		}
+	</script>
+</body>
+</html>

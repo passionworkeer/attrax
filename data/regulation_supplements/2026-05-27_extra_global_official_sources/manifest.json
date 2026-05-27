@@ -1,0 +1,997 @@
+{
+  "version": "1.0",
+  "created_at": "2026-05-27T12:12:28+08:00",
+  "isolation": {
+    "status": "isolated",
+    "not_mixed_with": [
+      "data/corpus",
+      "data/corpus/processed",
+      "data/faiss"
+    ],
+    "raw_root": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw"
+  },
+  "summary": {
+    "regulation_entries": 30,
+    "raw_files": 36,
+    "markets": [
+      "AE",
+      "AR",
+      "CL",
+      "ID",
+      "MY",
+      "PH",
+      "SA",
+      "TH",
+      "TR",
+      "VN",
+      "ZA"
+    ],
+    "product_categories": [
+      "apparel",
+      "batteries",
+      "chemicals",
+      "children_products",
+      "cosmetics",
+      "electrical_equipment",
+      "electronics",
+      "furniture",
+      "general_consumer_products",
+      "home_appliances",
+      "industrial_products",
+      "packaging",
+      "ppe",
+      "radio",
+      "telecommunications",
+      "textiles",
+      "toys"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "conformity",
+      "documentation",
+      "emc",
+      "labelling",
+      "market_surveillance",
+      "product_safety",
+      "radio",
+      "recall",
+      "scope_classification",
+      "sustainability",
+      "technical_standard",
+      "testing"
+    ],
+    "channels": [
+      "Bureau of Philippine Standards, Department of Trade and Industry",
+      "Energy Commission / Suruhanjaya Tenaga, Malaysia",
+      "Independent Communications Authority of South Africa",
+      "InfoLeg, Ministry of Justice, Argentina",
+      "JDIH BPK, Republic of Indonesia",
+      "Ley Chile, Biblioteca del Congreso Nacional de Chile",
+      "Ministry of Industry and Advanced Technology, UAE",
+      "Ministry of Information and Communications, Vietnam",
+      "Ministry of Trade, Turkiye",
+      "National Telecommunications Commission, Philippines",
+      "Official Gazette of Turkiye",
+      "Saudi Standards, Metrology and Quality Organization",
+      "Supreme Court E-Library and Bureau of Philippine Standards, Republic of the Philippines",
+      "Thai Industrial Standards Institute"
+    ],
+    "failed_downloads": 0
+  },
+  "entries": [
+    {
+      "id": "my-st-electrical-equipment-approval-guidelines",
+      "market": "MY",
+      "title": "Guidelines for the Approval of Electrical Equipment, 2024 edition",
+      "channel": "Energy Commission / Suruhanjaya Tenaga, Malaysia",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.st.gov.my/resources/guidelines-approval-electrical-equipment",
+      "files": [
+        "raw/my/MY_st_electrical_equipment_approval_guidelines.html",
+        "raw/my/MY_st_guidelines_approval_electrical_equipment_2024.pdf"
+      ],
+      "why_added": "Malaysia COA/ST-SIRIM approval, regulated electrical equipment, safety, energy efficiency, and labeling guidance.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "labelling",
+        "technical_standard"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/my/MY_st_electrical_equipment_approval_guidelines.html",
+          "bytes": 92293,
+          "sha256": "46ea032f4b6529c5e14aac85290573d1c3099eab82debe8e30aac7d0dcae832f"
+        },
+        {
+          "file": "raw/my/MY_st_guidelines_approval_electrical_equipment_2024.pdf",
+          "bytes": 13672506,
+          "sha256": "a68a3878cff2e4358f18f480012bcf95e0b7468d11b93e13b7b41b77281a91d2"
+        }
+      ]
+    },
+    {
+      "id": "my-st-energy-using-products",
+      "market": "MY",
+      "title": "Energy-Using Product approval and energy efficiency page",
+      "channel": "Energy Commission / Suruhanjaya Tenaga, Malaysia",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.st.gov.my/energy-using-product-0",
+      "files": [
+        "raw/my/MY_st_energy_using_products.html"
+      ],
+      "why_added": "Malaysia energy-using product COE and MEPS context for appliances and electrical products.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "sustainability",
+        "labelling",
+        "technical_standard"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/my/MY_st_energy_using_products.html",
+          "bytes": 119172,
+          "sha256": "40aa915a05a78f688438d30ca760dc53d81c8bc8a226e5e687feb41e70097e8c"
+        }
+      ]
+    },
+    {
+      "id": "ph-bps-product-certification",
+      "market": "PH",
+      "title": "BPS product certification schemes",
+      "channel": "Bureau of Philippine Standards, Department of Trade and Industry",
+      "source_type": "official_html_pdf",
+      "source_url": "https://bps.dti.gov.ph/product-certification",
+      "files": [
+        "raw/ph/PH_bps_product_certification.html"
+      ],
+      "why_added": "Philippines PS/ICC mandatory product certification framework for regulated consumer, electrical, mechanical, and chemical products.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "electrical_equipment",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "testing",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ph/PH_bps_product_certification.html",
+          "bytes": 56175,
+          "sha256": "b7d1c5f9e77e6bb726fbf78cd839938ad2e5e3549c9661b103d8604fb27b49e9"
+        }
+      ]
+    },
+    {
+      "id": "ph-bps-list-products-under-mandatory-certification",
+      "market": "PH",
+      "title": "List of products under mandatory certification",
+      "channel": "Bureau of Philippine Standards, Department of Trade and Industry",
+      "source_type": "official_html_pdf",
+      "source_url": "https://bps.dti.gov.ph/product-certification/list-of-products-under-mandatory-certification",
+      "files": [
+        "raw/ph/PH_bps_mandatory_certification_list.html",
+        "raw/ph/PH_bps_products_systems_mandatory_certification.pdf"
+      ],
+      "why_added": "Philippines mandatory certification product scope, including household appliances, electrical products, batteries, helmets, lighters, and LPG cylinders.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances",
+        "batteries",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "scope_classification",
+        "conformity",
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ph/PH_bps_mandatory_certification_list.html",
+          "bytes": 85911,
+          "sha256": "8c71775236cfa41e8f8d6efb0f9d7c9890486ba8bd2ad0c164fc2590e8c8511f"
+        },
+        {
+          "file": "raw/ph/PH_bps_products_systems_mandatory_certification.pdf",
+          "bytes": 3975603,
+          "sha256": "968438e03595cecad7dd64fa3ebb218505fa9d368460511aefc12da8c137c3d2"
+        }
+      ]
+    },
+    {
+      "id": "ph-judiciary-consumer-act-ra7394",
+      "market": "PH",
+      "title": "Republic Act No. 7394, Consumer Act of the Philippines",
+      "channel": "Supreme Court E-Library and Bureau of Philippine Standards, Republic of the Philippines",
+      "source_type": "official_html_pdf",
+      "source_url": "https://elibrary.judiciary.gov.ph/thebookshelf/showdocs/2/3302",
+      "files": [
+        "raw/ph/PH_consumer_act_ra7394_supreme_court_elibrary.html",
+        "raw/ph/PH_consumer_act_ra7394_dti_bps.pdf"
+      ],
+      "why_added": "Philippines consumer product safety, standards, labeling, advertising, and remedies baseline.",
+      "product_categories": [
+        "general_consumer_products",
+        "children_products",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ph/PH_consumer_act_ra7394_supreme_court_elibrary.html",
+          "bytes": 237717,
+          "sha256": "0b13a617a70b4d306440f27f61523f8fb8436876efa271cc0ff65bc7a1ee9fbc"
+        },
+        {
+          "file": "raw/ph/PH_consumer_act_ra7394_dti_bps.pdf",
+          "bytes": 253765,
+          "sha256": "b72640d6dd39f42fff056bbe7871f5b2da6a5d6a63766ff5fb11c9ec0b1dd7db"
+        }
+      ]
+    },
+    {
+      "id": "ph-ntc-type-approval-application-form-1-17",
+      "market": "PH",
+      "title": "Application for type approval, acceptance, and grant of equipment conformity certificate",
+      "channel": "National Telecommunications Commission, Philippines",
+      "source_type": "official_html_pdf",
+      "source_url": "https://region7.ntc.gov.ph/information/application-forms/",
+      "files": [
+        "raw/ph/PH_ntc_downloadable_application_forms.html",
+        "raw/ph/PH_ntc_type_approval_equipment_conformity_certificate_form_1_17.pdf"
+      ],
+      "why_added": "Philippines official NTC application artifact for equipment type approval and conformity certificate review.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ph/PH_ntc_downloadable_application_forms.html",
+          "bytes": 136420,
+          "sha256": "a772493d18904c20a66b97b53cc0c7ef43d9e4480d73152b09c379aea7fd3c7e"
+        },
+        {
+          "file": "raw/ph/PH_ntc_type_approval_equipment_conformity_certificate_form_1_17.pdf",
+          "bytes": 84459,
+          "sha256": "6ecd9e657eee7c56c26ce81bd88b8055d3acdae575905ca204f080be8c5f2bb4"
+        }
+      ]
+    },
+    {
+      "id": "id-bpk-consumer-protection-law-8-1999",
+      "market": "ID",
+      "title": "Law No. 8 of 1999 on Consumer Protection",
+      "channel": "JDIH BPK, Republic of Indonesia",
+      "source_type": "official_html_pdf",
+      "source_url": "https://peraturan.bpk.go.id/Home/Download/33784/UU%20Nomor%208%20Tahun%201999.pdf",
+      "files": [
+        "raw/id/ID_consumer_protection_law_8_1999.pdf"
+      ],
+      "why_added": "Indonesia consumer protection law covering product quality, safety, information, and business obligations.",
+      "product_categories": [
+        "general_consumer_products",
+        "children_products",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/id/ID_consumer_protection_law_8_1999.pdf",
+          "bytes": 192920,
+          "sha256": "df253c489e78e66d9da5337c85bebe1384c68763af2001335b4880b0f225d816"
+        }
+      ]
+    },
+    {
+      "id": "id-bpk-consumer-protection-supervision-pp-58-2001",
+      "market": "ID",
+      "title": "Government Regulation No. 58 of 2001 on consumer protection supervision",
+      "channel": "JDIH BPK, Republic of Indonesia",
+      "source_type": "official_html_pdf",
+      "source_url": "https://peraturan.bpk.go.id/Download/42336/PP%20NO%2058%20TH%202001.pdf",
+      "files": [
+        "raw/id/ID_consumer_protection_supervision_pp_58_2001.pdf"
+      ],
+      "why_added": "Indonesia implementing regulation for guidance and supervision of consumer protection.",
+      "product_categories": [
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "market_surveillance",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/id/ID_consumer_protection_supervision_pp_58_2001.pdf",
+          "bytes": 84590,
+          "sha256": "7cfd858d168794fede78baf8a1fb3784dd83b9feb448abf0b6cdd688296b2db8"
+        }
+      ]
+    },
+    {
+      "id": "id-bpk-standardization-conformity-law-20-2014",
+      "market": "ID",
+      "title": "Law No. 20 of 2014 on Standardization and Conformity Assessment",
+      "channel": "JDIH BPK, Republic of Indonesia",
+      "source_type": "official_html_pdf",
+      "source_url": "https://peraturan.bpk.go.id/Home/Download/38663/UU%20Nomor%2020%20Tahun%202014.pdf",
+      "files": [
+        "raw/id/ID_standardization_conformity_law_20_2014.pdf"
+      ],
+      "why_added": "Indonesia standardization and conformity assessment baseline for compulsory SNI and product certification.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "technical_standard",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/id/ID_standardization_conformity_law_20_2014.pdf",
+          "bytes": 11635829,
+          "sha256": "4ec1e55ae004f918325d611030e77640e3699151e460bec27558b60246dff731"
+        }
+      ]
+    },
+    {
+      "id": "vn-mic-electrical-safety-telecom-it-terminal-equipment",
+      "market": "VN",
+      "title": "Circular 24/2022/TT-BTTTT on electrical safety for telecom and IT terminal equipment",
+      "channel": "Ministry of Information and Communications, Vietnam",
+      "source_type": "official_html_pdf",
+      "source_url": "https://cspl.mic.gov.vn/Pages/TinTuc/138525/Thong-tu-so-24-2022-TT-BTTTT-Ban-hanh--quy-chuan-ky-thuat-quoc-gia-ve-an-toan-dien-doi-voi-thiet-bi-dau-cuoi-vien-thong-va-cong-nghe-thong-tin-.html",
+      "files": [
+        "raw/vn/VN_mic_electrical_safety_telecom_it_terminal_equipment.html"
+      ],
+      "why_added": "Vietnam telecom and IT terminal equipment electrical-safety technical regulation context.",
+      "product_categories": [
+        "electronics",
+        "telecommunications",
+        "electrical_equipment"
+      ],
+      "regulatory_types": [
+        "technical_standard",
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/vn/VN_mic_electrical_safety_telecom_it_terminal_equipment.html",
+          "bytes": 78998,
+          "sha256": "bbad3396139622b15c78931466d39d9ba31fa09ec1a93f3e71896375c5c25127"
+        }
+      ]
+    },
+    {
+      "id": "th-tisi-industrial-product-standards-act",
+      "market": "TH",
+      "title": "Industrial Product Standards Act, B.E. 2511 (1968)",
+      "channel": "Thai Industrial Standards Institute",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.tisi.go.th/data/law/pdf_files/law1/2511_1968.pdf",
+      "files": [
+        "raw/th/TH_tisi_industrial_product_standards_act_1968.pdf"
+      ],
+      "why_added": "Thailand industrial product standards statutory baseline for standards, licensing, and mandatory control.",
+      "product_categories": [
+        "general_consumer_products",
+        "industrial_products",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "technical_standard",
+        "conformity",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/th/TH_tisi_industrial_product_standards_act_1968.pdf",
+          "bytes": 589264,
+          "sha256": "38aa75ff30d05dfc1715853039527defd7fe46359e7d97593bb596edc6ebc44b"
+        }
+      ]
+    },
+    {
+      "id": "sa-saso-technical-regulations-portal",
+      "market": "SA",
+      "title": "SASO technical regulations portal",
+      "channel": "Saudi Standards, Metrology and Quality Organization",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.saso.gov.sa/en/laws-and-regulations/technical_regulations/pages/default.aspx",
+      "files": [
+        "raw/sa/SA_saso_technical_regulations_portal.html"
+      ],
+      "why_added": "Saudi Arabia official technical regulation index for textiles, electrical, mechanical, chemical, and other products.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "textiles",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "scope_classification",
+        "conformity",
+        "technical_standard"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sa/SA_saso_technical_regulations_portal.html",
+          "bytes": 220429,
+          "sha256": "0f6d9d0eb452e01f0827812215ef4c59d4a9dfc6374a5a8e052e26abf7add46b"
+        }
+      ]
+    },
+    {
+      "id": "sa-saso-low-voltage-electrical-equipment",
+      "market": "SA",
+      "title": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances",
+      "channel": "Saudi Standards, Metrology and Quality Organization",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.saso.gov.sa/en/Laws-And-Regulations/Documents/Gulf-Technical-Regulation-for-Low-Voltage-Electrical-Equipment-and-Appliances-BD-142004-01.pdf",
+      "files": [
+        "raw/sa/SA_saso_gulf_low_voltage_electrical_equipment.pdf"
+      ],
+      "why_added": "Saudi/GCC low-voltage electrical equipment safety, EMC, and conformity requirements.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "home_appliances"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "emc"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sa/SA_saso_gulf_low_voltage_electrical_equipment.pdf",
+          "bytes": 661711,
+          "sha256": "ef5182a88ef603d5eeef59da933af831f6d20429ffca7bfd4d98377cbdead1f6"
+        }
+      ]
+    },
+    {
+      "id": "sa-saso-rohs-electrical-electronic-equipment",
+      "market": "SA",
+      "title": "Technical Regulation for Restriction of Hazardous Substances in Electrical and Electronic Equipment",
+      "channel": "Saudi Standards, Metrology and Quality Organization",
+      "source_type": "official_html_pdf",
+      "source_url": "https://saso.gov.sa/en/Laws-And-Regulations/Technical_regulations/Documents/TR-Restriction-of-hazardous-Substance-in-Electrical-and-Electronic-Equipment-V2.pdf",
+      "files": [
+        "raw/sa/SA_saso_rohs_electrical_electronic_equipment_v2.pdf"
+      ],
+      "why_added": "Saudi RoHS-like hazardous substance restrictions and technical-file obligations for EEE.",
+      "product_categories": [
+        "electronics",
+        "electrical_equipment",
+        "chemicals"
+      ],
+      "regulatory_types": [
+        "chemical",
+        "conformity",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sa/SA_saso_rohs_electrical_electronic_equipment_v2.pdf",
+          "bytes": 3179647,
+          "sha256": "20878d1c47a2ceaac534a030ce26c053c549a2c63e844dc13146d545bd829ee2"
+        }
+      ]
+    },
+    {
+      "id": "sa-saso-textile-products-technical-regulation",
+      "market": "SA",
+      "title": "Technical Regulation for Textile Products",
+      "channel": "Saudi Standards, Metrology and Quality Organization",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.saso.gov.sa/en/Laws-And-Regulations/Technical_regulations/Documents/TR-for-Textile-Products.pdf",
+      "files": [
+        "raw/sa/SA_saso_textile_products_technical_regulation.pdf"
+      ],
+      "why_added": "Saudi textile product essential requirements, labeling, and conformity assessment.",
+      "product_categories": [
+        "textiles",
+        "apparel",
+        "furniture"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "conformity",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sa/SA_saso_textile_products_technical_regulation.pdf",
+          "bytes": 4153461,
+          "sha256": "8a24cd0897ffdbc451b597a172c2075e7b087752ee78a3c61cabb93b1cdb9e56"
+        }
+      ]
+    },
+    {
+      "id": "sa-saso-ppe-clothing-technical-regulation",
+      "market": "SA",
+      "title": "Technical Regulation for Personal Protective Equipment and Clothing",
+      "channel": "Saudi Standards, Metrology and Quality Organization",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.saso.gov.sa/en/Laws-And-Regulations/Technical_regulations/Documents/TR%20-%20Personal%20Protective%20Equipment%20and%20Clothing.pdf",
+      "files": [
+        "raw/sa/SA_saso_ppe_clothing_technical_regulation.pdf"
+      ],
+      "why_added": "Saudi PPE and protective clothing essential health and safety requirements and conformity assessment.",
+      "product_categories": [
+        "ppe",
+        "apparel",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sa/SA_saso_ppe_clothing_technical_regulation.pdf",
+          "bytes": 3584250,
+          "sha256": "0d522683da606aeba4012f392e174b9119dd86eb59c178c7c8d1b15947338129"
+        }
+      ]
+    },
+    {
+      "id": "sa-saso-gcc-children-toys-technical-regulation",
+      "market": "SA",
+      "title": "GCC Technical Regulation on Children Toys",
+      "channel": "Saudi Standards, Metrology and Quality Organization",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.saso.gov.sa/en/Laws-And-Regulations/Technical_regulations/Documents/GSO-Technical-Regulation-On-Toys.pdf",
+      "files": [
+        "raw/sa/SA_saso_gcc_children_toys_technical_regulation.pdf"
+      ],
+      "why_added": "Saudi/GCC toys safety, conformity, and G-mark technical regulation.",
+      "product_categories": [
+        "toys",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "labelling"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/sa/SA_saso_gcc_children_toys_technical_regulation.pdf",
+          "bytes": 2473041,
+          "sha256": "26aac175177963b02cb107b072f26b14af8528c2236fe4b590df4462a8448ba3"
+        }
+      ]
+    },
+    {
+      "id": "ae-moiat-ecas-conformity-certificates",
+      "market": "AE",
+      "title": "Issue conformity certificates for regulated products",
+      "channel": "Ministry of Industry and Advanced Technology, UAE",
+      "source_type": "official_html_pdf",
+      "source_url": "https://moiat.gov.ae/en/services/issue-conformity-certificates-for-regulated-products?search=ecas",
+      "files": [
+        "raw/ae/AE_moiat_ecas_conformity_certificates.html"
+      ],
+      "why_added": "UAE ECAS regulated-product conformity certificate service and health/safety product control context.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "cosmetics"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "scope_classification",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ae/AE_moiat_ecas_conformity_certificates.html",
+          "bytes": 478232,
+          "sha256": "843d63e42f81068c73f68b3acb580b379309364606f69f1c0b91c10c58efc0a0"
+        }
+      ]
+    },
+    {
+      "id": "ae-moiat-laws-and-regulations",
+      "market": "AE",
+      "title": "MOIAT laws and regulations portal",
+      "channel": "Ministry of Industry and Advanced Technology, UAE",
+      "source_type": "official_html_pdf",
+      "source_url": "https://moiat.gov.ae/en/about-us/laws-and-legislation/",
+      "files": [
+        "raw/ae/AE_moiat_laws_and_regulations.html"
+      ],
+      "why_added": "UAE official laws and regulations entry point for quality infrastructure, product conformity, and regulated sectors.",
+      "product_categories": [
+        "general_consumer_products",
+        "industrial_products",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "technical_standard",
+        "scope_classification"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ae/AE_moiat_laws_and_regulations.html",
+          "bytes": 413625,
+          "sha256": "e6aa878c993290a6bdd9e76018920b02139a7ac80ccf1b2bf71a97168565260b"
+        }
+      ]
+    },
+    {
+      "id": "ae-moiat-manaa-product-safety",
+      "market": "AE",
+      "title": "Manaa product safety and recall platform",
+      "channel": "Ministry of Industry and Advanced Technology, UAE",
+      "source_type": "official_html_pdf",
+      "source_url": "https://moiat.gov.ae/en/programs/manaa",
+      "files": [
+        "raw/ae/AE_moiat_manaa_product_safety.html"
+      ],
+      "why_added": "UAE product safety alert, recall, and consumer reporting platform context.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "children_products"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance",
+        "recall"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ae/AE_moiat_manaa_product_safety.html",
+          "bytes": 386092,
+          "sha256": "011a4bd33d0194aa445e4b02e3c4a68f9b1a9eaa2b1919f87e6f0764f7968ca8"
+        }
+      ]
+    },
+    {
+      "id": "za-icasa-type-approval-requirements",
+      "market": "ZA",
+      "title": "Type approval requirements for South Africa",
+      "channel": "Independent Communications Authority of South Africa",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.icasa.org.za/pages/type-approval",
+      "files": [
+        "raw/za/ZA_icasa_type_approval_requirements.html"
+      ],
+      "why_added": "South Africa radio and telecommunications equipment type approval requirements and application process.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity",
+        "technical_standard"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/za/ZA_icasa_type_approval_requirements.html",
+          "bytes": 113590,
+          "sha256": "ac5009f66de97086934e926f4e1b710be84d130a80ec4442c14e7ea459bc1e5d"
+        }
+      ]
+    },
+    {
+      "id": "za-icasa-type-approval-regulations-2013",
+      "market": "ZA",
+      "title": "Type Approval Regulations 2013",
+      "channel": "Independent Communications Authority of South Africa",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.icasa.org.za/legislation-and-regulations/type-approval-regulations-2013",
+      "files": [
+        "raw/za/ZA_icasa_type_approval_regulations_2013.html"
+      ],
+      "why_added": "South Africa ICASA type approval regulation source page.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "conformity",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/za/ZA_icasa_type_approval_regulations_2013.html",
+          "bytes": 80519,
+          "sha256": "b892aec264a927eaf26f135858656b4f19da4b6268ad96e6e7a93691b0638cda"
+        }
+      ]
+    },
+    {
+      "id": "za-icasa-labelling-regulations-2013",
+      "market": "ZA",
+      "title": "Labelling Regulations 2013",
+      "channel": "Independent Communications Authority of South Africa",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.icasa.org.za/legislation-and-regulations/labelling-regulations",
+      "files": [
+        "raw/za/ZA_icasa_labelling_regulations_2013.html"
+      ],
+      "why_added": "South Africa labeling requirements for type-approved telecommunications equipment.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "radio",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/za/ZA_icasa_labelling_regulations_2013.html",
+          "bytes": 80629,
+          "sha256": "2fa50ae2407f29f7877887b1f1ddd1fffafb7c26934b12362a3a32a49295112c"
+        }
+      ]
+    },
+    {
+      "id": "za-icasa-radio-frequency-spectrum-regulations-2015",
+      "market": "ZA",
+      "title": "Radio Frequency Spectrum Regulations 2015",
+      "channel": "Independent Communications Authority of South Africa",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.icasa.org.za/legislation-and-regulations/radio-frequency-spectrum-regulations-2015",
+      "files": [
+        "raw/za/ZA_icasa_radio_frequency_spectrum_regulations_2015.html"
+      ],
+      "why_added": "South Africa spectrum regulation context for radio equipment and regulated wireless devices.",
+      "product_categories": [
+        "electronics",
+        "radio",
+        "telecommunications"
+      ],
+      "regulatory_types": [
+        "radio",
+        "technical_standard",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/za/ZA_icasa_radio_frequency_spectrum_regulations_2015.html",
+          "bytes": 80821,
+          "sha256": "f5c3d153fa5b4752528d7d55fce8be5f9e27473eecab4b1b0af6ba8b0ae24802"
+        }
+      ]
+    },
+    {
+      "id": "tr-product-safety-technical-regulations-law-7223",
+      "market": "TR",
+      "title": "Product Safety and Technical Regulations Law No. 7223",
+      "channel": "Ministry of Trade, Turkiye",
+      "source_type": "official_html_pdf",
+      "source_url": "https://urunkurallari.ticaret.gov.tr/en/legislation/product-safety-and-technical-regulations-law-no-7223",
+      "files": [
+        "raw/tr/TR_product_safety_technical_regulations_law_7223.html"
+      ],
+      "why_added": "Turkiye product safety, technical regulation, traceability, recall, and producer/importer responsibility baseline.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/tr/TR_product_safety_technical_regulations_law_7223.html",
+          "bytes": 10023,
+          "sha256": "073977c51e3a84e25a0d7048cade2349f789dca5b593e4371b7bb02fd61b179f"
+        }
+      ]
+    },
+    {
+      "id": "tr-law-7223-implementing-regulations",
+      "market": "TR",
+      "title": "Implementing regulations of Law No. 7223",
+      "channel": "Ministry of Trade, Turkiye",
+      "source_type": "official_html_pdf",
+      "source_url": "https://urunkurallari.ticaret.gov.tr/en/legislation/product-safety-and-technical-regulations-law-no-7223/implementing-regulations",
+      "files": [
+        "raw/tr/TR_law_7223_implementing_regulations.html"
+      ],
+      "why_added": "Turkiye implementing regulations for general product safety and market surveillance under Law No. 7223.",
+      "product_categories": [
+        "general_consumer_products",
+        "children_products",
+        "electronics"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/tr/TR_law_7223_implementing_regulations.html",
+          "bytes": 12421,
+          "sha256": "ec7f71ca086d3778b297ddb382a8d7f6b28b7347fa2e32008c4461436d06cf22"
+        }
+      ]
+    },
+    {
+      "id": "tr-ministry-product-safety-consumer-info",
+      "market": "TR",
+      "title": "Product safety information and Ministry-supervised product groups",
+      "channel": "Ministry of Trade, Turkiye",
+      "source_type": "official_html_pdf",
+      "source_url": "https://ticaret.gov.tr/tuketici/piyasa-gozetimi/urun-guvenligi",
+      "files": [
+        "raw/tr/TR_ministry_product_safety_consumer_info.html"
+      ],
+      "why_added": "Turkiye product safety surveillance scope for textiles, toys, childcare products, furniture, bicycles, chemicals, and consumer products.",
+      "product_categories": [
+        "general_consumer_products",
+        "toys",
+        "children_products",
+        "textiles",
+        "furniture"
+      ],
+      "regulatory_types": [
+        "market_surveillance",
+        "product_safety",
+        "scope_classification"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/tr/TR_ministry_product_safety_consumer_info.html",
+          "bytes": 62528,
+          "sha256": "28df73ce996686b59df7a0cb651bfadfb6d216d896173e4c3e53b5a58e25b2ee"
+        }
+      ]
+    },
+    {
+      "id": "tr-official-gazette-market-surveillance-regulation-2021",
+      "market": "TR",
+      "title": "Official Gazette regulation implementing Law No. 7223",
+      "channel": "Official Gazette of Turkiye",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.resmigazete.gov.tr/eskiler/2021/05/20210527-2.pdf",
+      "files": [
+        "raw/tr/TR_official_gazette_law_7223_implementing_regulation_2021.pdf"
+      ],
+      "why_added": "Turkiye official gazette PDF for product safety / market surveillance implementing regulation under Law No. 7223.",
+      "product_categories": [
+        "general_consumer_products",
+        "industrial_products"
+      ],
+      "regulatory_types": [
+        "market_surveillance",
+        "product_safety",
+        "conformity"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/tr/TR_official_gazette_law_7223_implementing_regulation_2021.pdf",
+          "bytes": 239228,
+          "sha256": "9d794ef448cf817348df9ed7adbb03976234f1ff1db2e66e68a2512e0791fc26"
+        }
+      ]
+    },
+    {
+      "id": "ar-infoleg-consumer-defense-law-24240",
+      "market": "AR",
+      "title": "Law No. 24,240 on Consumer Defense",
+      "channel": "InfoLeg, Ministry of Justice, Argentina",
+      "source_type": "official_html_pdf",
+      "source_url": "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=638",
+      "files": [
+        "raw/ar/AR_infoleg_consumer_defense_law_24240_metadata.html",
+        "raw/ar/AR_infoleg_consumer_defense_law_24240_text.html"
+      ],
+      "why_added": "Argentina consumer defense law official legal database text.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "labelling",
+        "market_surveillance"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/ar/AR_infoleg_consumer_defense_law_24240_metadata.html",
+          "bytes": 4894,
+          "sha256": "9c3be8e579fdca94a0a82c1a9d9e1cd638ce8d17f5b3bd5348680e795855bc3e"
+        },
+        {
+          "file": "raw/ar/AR_infoleg_consumer_defense_law_24240_text.html",
+          "bytes": 83944,
+          "sha256": "17a2b25d85cca2a7ec363d3c17391aa07cd6d25174338e0b8b9ec239fba9d7b7"
+        }
+      ]
+    },
+    {
+      "id": "cl-leychile-consumer-rights-law-19496",
+      "market": "CL",
+      "title": "Law No. 19,496 on consumer rights protection",
+      "channel": "Ley Chile, Biblioteca del Congreso Nacional de Chile",
+      "source_type": "official_html_pdf",
+      "source_url": "https://www.leychile.cl/Navegar?idNorma=61438",
+      "files": [
+        "raw/cl/CL_leychile_consumer_rights_law_19496.html",
+        "raw/cl/CL_leychile_consumer_rights_law_19496.pdf"
+      ],
+      "why_added": "Chile consumer rights and product/service information law from official Ley Chile source.",
+      "product_categories": [
+        "general_consumer_products",
+        "electronics",
+        "packaging"
+      ],
+      "regulatory_types": [
+        "labelling",
+        "market_surveillance",
+        "documentation"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/cl/CL_leychile_consumer_rights_law_19496.html",
+          "bytes": 9771,
+          "sha256": "af3bd0da6702c0c259bc112173d01e69270149cdc2976402bb4f9049283e2f32"
+        },
+        {
+          "file": "raw/cl/CL_leychile_consumer_rights_law_19496.pdf",
+          "bytes": 97968,
+          "sha256": "e065b334d73d7fbeb928f3600471e03581ecaa1352f217640ca17a84713b85a3"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This supplement is a raw official-source collection only; it has not been ingested into data/corpus/processed or data/faiss.",
+    "The batch expands weaker geographic coverage, especially ASEAN, Middle East, South Africa, Latin America, Turkey, Hong Kong, and Taiwan.",
+    "Original PDF files are preserved where official sites expose them; otherwise official legal database or regulator HTML is retained.",
+    "Several jurisdictions publish mandatory standards through paid standards stores; this batch keeps official law, technical regulation, certification, and regulator pages that are public."
+  ]
+}
