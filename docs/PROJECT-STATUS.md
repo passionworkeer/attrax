@@ -121,7 +121,7 @@
 - BM25Retriever（jieba 中文分词）✅
 - RRF 融合（k=25）✅
 - Must-Check 强制注入 ✅
-- 三级 Embedding 降级（Ollama → Local Qwen → ModelScope API）✅
+- API-only Embedding（ModelScope API + BM25 fallback）✅
 
 **数据层：**
 - FAISS 索引：`data/faiss/legal_chunks.index`（26MB）✅
@@ -136,7 +136,7 @@
 
 | 文档描述（ARCHITECTURE-v2.md） | 实际实现 | 影响 |
 |------|------|------|
-| 使用 **Cohere embed-multilingual-v3** | 使用 **Ollama / Local Qwen / ModelScope** | 文档过期 |
+| 使用 **Cohere embed-multilingual-v3** | 使用 **ModelScope API** | 文档过期 |
 | 使用 **Qdrant** 向量数据库 | 使用 **FAISS**（本地文件） | 文档过期 |
 | 实现了 **Cohere Rerank** | **未实现** Rerank | 实际缺功能 |
 | 使用 **Docling** 解析 PDF | 使用 **pdfplumber** | 文档过期 |
@@ -405,9 +405,7 @@ attrax/
 │   │   ├── hybrid_retriever.py     # ✅ RRF + MustCheck
 │   │   ├── fusion.py               # ✅ RRF 融合
 │   │   ├── must_check.py           # ✅ 强制注入
-│   │   ├── ollama_embedder.py       # ✅ Ollama 本地
-│   │   ├── local_embedder.py        # ✅ 本地 Qwen
-│   │   └── modelScope_embedder.py   # ✅ ModelScope API
+│   │   └── modelScope_embedder.py   # ✅ ModelScope API（生产路径）
 │   ├── verify/
 │   │   └── citation_verifier.py     # ✅ NLI 引用验证
 │   ├── generate/

@@ -1,16 +1,18 @@
 FROM python:3.10-slim
 
 WORKDIR /app
+ENV PYTHONUNBUFFERED=1
+ENV PIP_NO_CACHE_DIR=1
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+    libgomp1 \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy requirements first for caching
-COPY rag_service/requirements.txt ./requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+COPY rag_service/requirements-prod.txt ./requirements-prod.txt
+RUN pip install -r requirements-prod.txt
 
 # Copy source code
 COPY . .

@@ -115,8 +115,7 @@
 | FastAPI | 0.109.0 | HTTP 服务框架 |
 | LangGraph | 1.1.6 | Agent 编排（Send fan-out 多市场并行） |
 | FAISS | 1.12.0 | 本地向量检索（IndexFlatIP） |
-| Ollama | nomic-embed-text | 本地 Embedding（768 维） |
-| ModelScope Qwen3-Embedding | 0.6B | 云端 Embedding 降级 |
+| ModelScope Qwen3-Embedding | 0.6B | API Embedding（1024 维） |
 | jieba | 0.42.1 | 中文分词（BM25） |
 | Anthropic SDK | 0.91.0 | mimoTalk LLM（Vision + 生成） |
 | pdfplumber | 0.11.8 | PDF 解析 |
@@ -130,18 +129,16 @@
 
 本项目采用**多层检索 + 动态降级**的 RAG 架构设计，在保证精度的同时最大化可用性：
 
-#### 1. 三级 Embedding 降级策略（零 API 依赖）
+#### 1. API-only Embedding 策略
 
 ```
-优先级 1: OllamaEmbedder (nomic-embed-text, 768-dim)
-         ↓ 本地 CPU，无需 GPU，完全免费
-优先级 2: LocalEmbedder (Qwen3-Embedding-0.6B, 1024-dim)
-         ↓ 本地 GPU/CPU，MIT 模型，零费用
-优先级 3: ModelScopeEmbedder (Qwen3-Embedding API)
-         ↓ 云端 API，按需付费
+ModelScopeEmbedder (Qwen3-Embedding API)
+         ↓ 云端 API，1024 维
+BM25 fallback
+         ↓ API 不可用时保持基础召回
 ```
 
-**优势**：在无网络或无 API Key 的情况下，系统自动降级到本地模型，确保服务持续可用。
+**优势**：生产环境无需宿主机模型服务，部署路径统一，问题定位更直接。
 
 #### 2. Parent-Child 双层分块
 
@@ -215,7 +212,7 @@ QueryPlanner → [EU] → Fan-out
 
 | 维度 | 本项目方案 | 传统方案 |
 |------|-----------|---------|
-| Embedding | 三级降级（Ollama → Qwen → ModelScope） | 仅 API |
+| Embedding | ModelScope API-only + BM25 fallback | 仅 API |
 | Rerank | 已实现但未接入管线（cohere_reranker.py 存在，未调用） | 单一向量检索 |
 | 分块 | Parent-Child + 法律条款边界 | 固定 token |
 | 融合 | RRF (k=25) + Must-Check | 单一向量检索 |
@@ -233,7 +230,7 @@ QueryPlanner → [EU] → Fan-out
 - **Python** 3.10+
 - **npm / yarn / pnpm / bun**
 - 可选：**Docker + Docker Compose**（RAG Service 容器化）
-- 可选：**Ollama**（本地 embedding，默认 nomic-embed-text）
+- 必需：mimoTalk API Key + ModelScope API Key（非 Demo 模式）
 
 ### 1. 安装前端依赖
 
@@ -255,12 +252,8 @@ cp .env.local.example .env.local
 MIMOTALK_API_KEY=your_mimotalk_api_key
 MIMOTALK_BASE_URL=https://token-plan-sgp.xiaomimimo.com/anthropic/v1
 
-# 可选：ModelScope API（云端 embedding，Ollama 不可用时降级）
+# ModelScope API（API embedding）
 MODELSCOPE_API_KEY=your_modelscope_api_key
-
-# 可选：Ollama（本地 embedding，如已安装）
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_EMBED_MODEL=nomic-embed-text
 
 # RAG Service（默认端口 8001）
 RAG_SERVICE_URL=http://localhost:8001
@@ -338,12 +331,10 @@ attrax/
 │   ├── retrieval/                 # 混合检索管线
 │   │   ├── faiss_retriever.py    # FAISS 向量检索
 │   │   ├── bm25_retriever.py     # BM25 稀疏检索
-│   │   ├── hybrid_retriever.py   # 混合检索主类（自动降级 Ollama→Qwen→BM25）
+│   │   ├── hybrid_retriever.py   # 混合检索主类（ModelScope API + BM25）
 │   │   ├── fusion.py             # RRF 融合
 │   │   ├── must_check.py        # 强制注入规则
-│   │   ├── ollama_embedder.py    # Ollama 本地 embedding
-│   │   ├── local_embedder.py    # 本地 Qwen embedding
-│   │   ├── modelScope_embedder.py # ModelScope API embedding
+│   │   ├── modelScope_embedder.py # ModelScope API embedding（生产路径）
 │   │   └── cohere_reranker.py   # ⚠️ 已实现但未接入管线
 │   ├── verify/                   # NLI 引用验证
 │   │   └── citation_verifier.py  # 归因分数软门
@@ -487,8 +478,7 @@ attrax/
 
 `rag_service/retrieval/hybrid_retriever.py`
 
-自动探测可用 embedder，按优先级降级：
-1. OllamaEmbedder → 2. LocalEmbedder → 3. ModelScopeEmbedder
+生产路径使用 ModelScope API embedding；API 不可用时向量分支降级，BM25 仍可召回。
 
 检索流程：
 1. Faiss Dense 检索（Top-50）
@@ -549,7 +539,7 @@ LangGraph StateGraph，支持：
 ### FAISS 索引
 
 - 位置：`data/faiss/legal_chunks.index`
-- 维度：1024（Qwen3-Embedding / Ollama nomic-embed-text 768 维）
+- 维度：1024（ModelScope Qwen3-Embedding）
 - 向量数：~15,000 个 Chunk
 - 存储大小：~26 MB
 
@@ -638,9 +628,7 @@ RAG Service 返回 `status` (PASS/WARN/REJECTED) → 前端映射为评分：
 | `MIMOTALK_API_KEY` | - | mimoTalk LLM API Key（必填） |
 | `MIMOTALK_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | mimoTalk 端点 |
 | `MIMOTALK_MODEL` | `mimo-v2.5` | 模型名称 |
-| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key（可选） |
-| `OLLAMA_BASE_URL` | `http://localhost:11434` | Ollama 服务地址 |
-| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | Ollama Embedding 模型 |
+| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key（必填，非 Demo） |
 | `RAG_SERVICE_URL` | `http://localhost:8001` | RAG 服务地址 |
 | `DEMO_MODE` | `false` | Demo 模式（使用 Mock 数据，无需 API Key） |
 | `DAILY_FREE_SCAN_LIMIT` | `3` | 每日免费扫描次数 |

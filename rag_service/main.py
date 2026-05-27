@@ -7,6 +7,7 @@ GET /health
 """
 import os
 import io
+import json
 import logging
 import base64
 from pathlib import Path
@@ -236,6 +237,8 @@ def ready():
     checks = {
         "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
         "bm25": _retriever is not None,
+        "mimotalk_api_key": settings.demo_mode or bool(settings.mimotalk_api_key.strip()),
+        "modelscope_api_key": settings.demo_mode or bool(settings.modelscope_api_key.strip()),
         "config_loaded": True,
     }
     all_ok = all(checks.values())

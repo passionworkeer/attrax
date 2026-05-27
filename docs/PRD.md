@@ -584,7 +584,7 @@ Content-Type: multipart/form-data
 | Python 版本 | Python | 3.10+ |
 | Agent 框架 | LangGraph | latest |
 | RAG 引擎 | FAISS + BM25 | - |
-| Embedding | Ollama / ModelScope | - |
+| Embedding | ModelScope API | - |
 | 知识库 | mimoTalk | - |
 
 ### 系统约束

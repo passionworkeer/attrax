@@ -17,7 +17,7 @@
 | 项目 | v2（LEGACY） | v3（当前） |
 |------|-------------|-----------|
 | 向量存储 | Qdrant / Infinity | FAISS 本地索引（data/faiss/） |
-| Embedding | Cohere API | Ollama nomic-embed-text（本地）+ ModelScope Qwen3-Embedding-0.6B（云端） |
+| Embedding | Cohere API | ModelScope Qwen3-Embedding-0.6B API（生产唯一 embedding） |
 | 文档解析 | Docling | pdfplumber（主要） |
 | Reranker | Cohere Rerank API | **未接入**（cohere_reranker.py 存在但未在管线中使用） |
 | 引用验证 | 硬门（≥3 验证通过） | **软门**（attribution_score 0.9/0.5/0） |
@@ -108,8 +108,7 @@ rag_service/
 │   ├── faiss_retriever.py          # FAISS 本地向量检索（IndexFlatIP）
 │   ├── bm25_retriever.py           # BM25（jieba 中文分词 + 英文词项保护）
 │   ├── hybrid_retriever.py         # FAISS + BM25 混合检索
-│   ├── ollama_embedder.py          # Ollama nomic-embed-text 本地嵌入
-│   ├── modelScope_embedder.py      # ModelScope Qwen3-Embedding-0.6B 云端嵌入
+│   ├── modelScope_embedder.py      # ModelScope Qwen3-Embedding-0.6B API 嵌入
 │   └── cohere_reranker.py          # ⚠️ 存在但未接入管线（未使用）
 ├── verify/
 │   └── citation_verifier.py        # NLI 引用验证（DeBERTa-v3-large-mnli）
@@ -131,39 +130,31 @@ data/
 
 ## 2. 检索管线
 
-### 2.1 三层 Embedding 架构
+### 2.1 API-only Embedding 架构
 
 ```
 文本输入
     │
-    ├─→ Ollama nomic-embed-text（本地，768 维）
-    │    优点：无需 API Key，CPU 可跑，延迟低
-    │    触发：Ollama 服务在 localhost:11434 运行
-    │
-    ├─→ ModelScope Qwen3-Embedding-0.6B（云端，1024 维）
-    │    优点：国产模型，中文语义更优，API 调用
-    │    触发：Ollama 不可用时降级至此
+    ├─→ ModelScope Qwen3-Embedding-0.6B（API，1024 维）
+    │    优点：生产环境一致，无需本地模型或宿主机 Ollama
     │
     └─→ 降级：纯 BM25（无向量检索）
-         触发：上述两者均不可用
+         触发：ModelScope API Key 缺失或请求失败
 ```
 
 #### 详细触发条件与 Fallback 链路
 
 | 层级 | 服务 | 触发条件 | 降级行为 |
 |------|------|---------|---------|
-| L1（Primary） | Ollama nomic-embed-text | Ollama 服务运行中（`/api/tags` 返回 200）且 `OLLAMA_EMBED_MODEL` 可用 | 正常向量检索，768 维，归一化后内积 |
-| L2（Fallback） | ModelScope Qwen3-Embedding-0.6B | Ollama 不可用（连接超时 5s 或返回非 200） | 1024 维向量，通过 HTTP 请求调用 ModelScope API |
-| L3（Degraded） | 纯 BM25 | ModelScope API 也不可用（`MODELSCOPE_API_KEY` 未配置或请求失败） | 禁用向量检索，仅使用 BM25 词项召回（仍可正常返回结果） |
+| L1（Primary） | ModelScope Qwen3-Embedding-0.6B API | `MODELSCOPE_API_KEY` 已配置 | 1024 维向量，通过 HTTP 请求调用 ModelScope API |
+| L2（Degraded） | 纯 BM25 | ModelScope API 不可用 | 禁用向量检索，仅使用 BM25 词项召回（仍可正常返回结果） |
 
 **环境变量对应：**
 ```env
-OLLAMA_BASE_URL=http://localhost:11434    # L1 检索
-OLLAMA_EMBED_MODEL=nomic-embed-text       # L1 模型
-MODELSCOPE_API_KEY=...                    # L2 检索（Ollama 不可用时启用）
+MODELSCOPE_API_KEY=...                    # API embedding
 ```
 
-**注意：** L3 降级到纯 BM25 时，系统仍可正常运行，只是检索精度有所下降（无向量语义匹配）。
+**注意：** 降级到纯 BM25 时，系统仍可正常运行，只是检索精度有所下降（无向量语义匹配）。
 
 ### 2.2 BM25 检索（必走层）
 
@@ -288,7 +279,7 @@ verify 节点输出 → should_regenerate 条件函数
 - **索引文件**：`data/faiss/legal_chunks.index`
 - **元数据文件**：`data/faiss/legal_chunks_meta.json`（含 parent_id 映射）
 - **索引类型**：`IndexFlatIP`（内积）+ L2 归一化 = 等效 cosine 相似度
-- **维度**：运行时自动探测（Ollama 768 / ModelScope 1024）
+- **维度**：1024（ModelScope Qwen3-Embedding-0.6B API）
 - **构建脚本**：`scripts/build_faiss.py`（将语料库切块并构建 FAISS 索引）
 - **优点**：无需 Docker，轻量，CPU 可跑
 
@@ -300,18 +291,11 @@ verify 节点输出 → should_regenerate 条件函数
 - Model：`mimo-v2.5`
 - 代理已禁用（`NO_PROXY=*`）
 
-### 5.3 Ollama 本地嵌入
-
-- 模型：`nomic-embed-text`（768 维）
-- 地址：`http://localhost:11434`
-- 用途：primary embedding（轻量，无需 API 费用）
-- 降级：Ollama 不可用时 → ModelScope Qwen3-Embedding-0.6B
-
-### 5.4 ModelScope 云端嵌入
+### 5.3 ModelScope 云端嵌入
 
 - 模型：`Qwen3-Embedding-0.6B`
 - API Key：`MODELSCOPE_API_KEY`
-- 用途：Ollama 不可用时的降级 embedding
+- 用途：生产唯一 embedding provider
 - 向量维度：1024
 
 ### 5.5 未接入组件（待集成）
@@ -456,11 +440,7 @@ LangGraph 8 节点管线
 前端 `.env.local.example` 中的 RAG 相关配置：
 
 ```env
-# Ollama 本地嵌入（L1）
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_EMBED_MODEL=nomic-embed-text
-
-# ModelScope 嵌入降级（L2）
+# ModelScope API embedding
 MODELSCOPE_API_KEY=your_modelscope_api_key
 
 # RAG 服务地址（端口 8001）
@@ -483,11 +463,7 @@ MIMOTALK_API_KEY=...
 MIMOTALK_BASE_URL=https://token-plan-sgp.xiaomimimo.com/anthropic/v1
 MIMOTALK_MODEL=mimo-v2.5
 
-# Ollama 本地嵌入（L1 Primary）
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_EMBED_MODEL=nomic-embed-text
-
-# ModelScope 嵌入降级（L2 Fallback）
+# ModelScope API embedding
 MODELSCOPE_API_KEY=...
 
 DAILY_FREE_SCAN_LIMIT=3
@@ -504,8 +480,6 @@ MIMOTALK_API_KEY=...
 MIMOTALK_BASE_URL=https://token-plan-sgp.xiaomimimo.com/anthropic/v1
 MIMOTALK_MODEL=mimo-v2.5
 MODELSCOPE_API_KEY=...
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_EMBED_MODEL=nomic-embed-text
 DAILY_FREE_SCAN_LIMIT=3
 DEMO_MODE=false
 RAG_SERVICE_URL=http://localhost:8001
@@ -518,9 +492,10 @@ RAG_SERVICE_URL=http://localhost:8001
 | 版本 | 日期 | 变更内容 |
 |------|------|---------|
 | 1.0 - 2.1 | 2026-04 | 初版至 v2 LEGACY（Cohere API / Qdrant / Docling 路线） |
-| **3.0** | **2026-05-05** | **当前实现**：Ollama 本地嵌入 + ModelScope 降级 + FAISS 本地索引 + pdfplumber + mimoTalk + 软门引用验证 |
-| **3.1** | **2026-05-07** | 补充前端接入说明、cohere_reranker 未接入原因、三级 Embedding 降级触发条件、Parent-Child 分块、FAISS 索引构建脚本 |
+| **3.0** | **2026-05-05** | 当前实现：FAISS 本地索引 + pdfplumber + mimoTalk + 软门引用验证 |
+| **3.1** | **2026-05-07** | 补充前端接入说明、cohere_reranker 未接入原因、Embedding 降级触发条件、Parent-Child 分块、FAISS 索引构建脚本 |
 | **3.2** | **2026-05-07** | 新增 POST /profit-report 接口（成本利润报告），版本号更正为 0.3.0，测试覆盖率更新（pytest 254 / vitest 156） |
+| **3.3** | **2026-05-27** | 生产部署收敛为 ModelScope API-only embedding + mimoTalk API-only LLM，并补充一键部署入口 |
 
 ---
 

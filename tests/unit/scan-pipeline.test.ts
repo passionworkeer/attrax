@@ -473,11 +473,11 @@ describe('Scan Pipeline', () => {
       await expect(import('@/lib/pipeline/scan')).rejects.toThrow('RAG_SERVICE_URL must use http or https')
     })
 
-    it('rejects non-local service hosts during module initialization', async () => {
+    it('accepts deploy service hosts during module initialization', async () => {
       vi.resetModules()
-      vi.stubEnv('RAG_SERVICE_URL', 'https://example.com')
+      vi.stubEnv('RAG_SERVICE_URL', 'http://rag-service:8000')
 
-      await expect(import('@/lib/pipeline/scan')).rejects.toThrow('RAG_SERVICE_URL must point to localhost')
+      await expect(import('@/lib/pipeline/scan')).resolves.toBeDefined()
     })
   })
 })
