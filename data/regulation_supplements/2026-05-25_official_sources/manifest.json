@@ -32,7 +32,31 @@
         "raw/eu/EU_2024-2847_cyber_resilience_act.rdf",
         "raw/eu/EU_2024-2847_cyber_resilience_act.xhtml"
       ],
-      "why_added": "Connected devices and software-enabled products; complements RED, GPSR, AI Act, and product-safety coverage."
+      "why_added": "Connected devices and software-enabled products; complements RED, GPSR, AI Act, and product-safety coverage.",
+      "source_type": "eu_celex",
+      "product_categories": [
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "cybersecurity",
+        "conformity",
+        "liability",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/eu/EU_2024-2847_cyber_resilience_act.rdf",
+          "bytes": 1545796,
+          "sha256": "efcaa06434e848daf4fc713b4b2c6df73a23e0295bc5e7b1ca937743d843c875"
+        },
+        {
+          "file": "raw/eu/EU_2024-2847_cyber_resilience_act.xhtml",
+          "bytes": 710696,
+          "sha256": "fe0cca4a0caec50e7cf5a91432b94a19b211f86be8584fdba56372bdcea571ed"
+        }
+      ]
     },
     {
       "id": "eu-2024-1781-espr",
@@ -45,7 +69,32 @@
         "raw/eu/EU_2024-1781_ecodesign_sustainable_products.rdf",
         "raw/eu/EU_2024-1781_ecodesign_sustainable_products.xhtml"
       ],
-      "why_added": "Product design, durability, sustainability, digital product passport, and market access obligations."
+      "why_added": "Product design, durability, sustainability, digital product passport, and market access obligations.",
+      "source_type": "eu_celex",
+      "product_categories": [
+        "electronics",
+        "painted_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "cybersecurity",
+        "conformity",
+        "sustainability",
+        "liability",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/eu/EU_2024-1781_ecodesign_sustainable_products.rdf",
+          "bytes": 2118070,
+          "sha256": "43571195d54fc20df2326dc10d0085ae7ec5425c5828f381e79e5160df01f250"
+        },
+        {
+          "file": "raw/eu/EU_2024-1781_ecodesign_sustainable_products.xhtml",
+          "bytes": 822919,
+          "sha256": "6437b8c619c6fb7731f5feb15be11243f2ed6fe69795e5bfe3a7ea94058733bf"
+        }
+      ]
     },
     {
       "id": "eu-2024-2853-product-liability",
@@ -58,7 +107,30 @@
         "raw/eu/EU_2024-2853_product_liability_directive.rdf",
         "raw/eu/EU_2024-2853_product_liability_directive.xhtml"
       ],
-      "why_added": "Updates EU product liability coverage for software, digital services, and product defects."
+      "why_added": "Updates EU product liability coverage for software, digital services, and product defects.",
+      "source_type": "eu_celex",
+      "product_categories": [
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "cybersecurity",
+        "liability",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/eu/EU_2024-2853_product_liability_directive.rdf",
+          "bytes": 529055,
+          "sha256": "d8429d34590660bd0c26b86cb961732949e83029a518dfc2a7961a9c486c18ea"
+        },
+        {
+          "file": "raw/eu/EU_2024-2853_product_liability_directive.xhtml",
+          "bytes": 223057,
+          "sha256": "5f20d9d33eb307683419f481f0e661e1be9d2daf186780a65c20d7690bf940b5"
+        }
+      ]
     },
     {
       "id": "eu-2022-2380-common-charger",
@@ -71,7 +143,30 @@
         "raw/eu/EU_2022-2380_common_charger_directive.rdf",
         "raw/eu/EU_2022-2380_common_charger_directive.xhtml"
       ],
-      "why_added": "Useful for phones, tablets, headphones, cameras, portable speakers, e-readers, and other charging-interface checks."
+      "why_added": "Useful for phones, tablets, headphones, cameras, portable speakers, e-readers, and other charging-interface checks.",
+      "source_type": "eu_celex",
+      "product_categories": [
+        "electronics",
+        "battery"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "sustainability",
+        "battery",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/eu/EU_2022-2380_common_charger_directive.rdf",
+          "bytes": 424938,
+          "sha256": "d9e4ae05089a65e930f2177a33fe645df6dd8c8f07ab3e877838a6edde581205"
+        },
+        {
+          "file": "raw/eu/EU_2022-2380_common_charger_directive.xhtml",
+          "bytes": 332345,
+          "sha256": "7dbb76210f025d721aaed13e739e5eb970185989ffc54b402e0f16256bb5b6f6"
+        }
+      ]
     },
     {
       "id": "us-16-cfr-1263-button-coin-batteries",
@@ -82,7 +177,25 @@
       "files": [
         "raw/us/US_16_CFR_Part_1263_button_coin_batteries.xml"
       ],
-      "why_added": "Important for electronics, toys, remote controls, and consumer products containing button or coin batteries."
+      "why_added": "Important for electronics, toys, remote controls, and consumer products containing button or coin batteries.",
+      "source_type": "ecfr_part",
+      "product_categories": [
+        "electronics",
+        "battery",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "battery",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1263_button_coin_batteries.xml",
+          "bytes": 14779,
+          "sha256": "fe7722a83b3c239a726f6011c21aa2f2519d63b29eae7af6c2ef67f9f37fd99f"
+        }
+      ]
     },
     {
       "id": "us-16-cfr-1250-toy-safety",
@@ -93,7 +206,21 @@
       "files": [
         "raw/us/US_16_CFR_Part_1250_toy_safety.xml"
       ],
-      "why_added": "Core US toy safety baseline; complements current CPSIA and children-product coverage."
+      "why_added": "Core US toy safety baseline; complements current CPSIA and children-product coverage.",
+      "source_type": "ecfr_part",
+      "product_categories": [
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1250_toy_safety.xml",
+          "bytes": 15458,
+          "sha256": "e5e5820f4f1365414d509a37f3965ed7b08fadbe6f746439090a876b24fed3c8"
+        }
+      ]
     },
     {
       "id": "us-16-cfr-1262-magnets",
@@ -104,7 +231,22 @@
       "files": [
         "raw/us/US_16_CFR_Part_1262_magnets.xml"
       ],
-      "why_added": "Relevant to toys, novelty products, office products, and small parts risk checks."
+      "why_added": "Relevant to toys, novelty products, office products, and small parts risk checks.",
+      "source_type": "ecfr_part",
+      "product_categories": [
+        "toys",
+        "painted_goods"
+      ],
+      "regulatory_types": [
+        "product_safety"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1262_magnets.xml",
+          "bytes": 23352,
+          "sha256": "0298d659c00173c5fcf474193d9f50c5e636321256c37f23a0fbf82113f65021"
+        }
+      ]
     },
     {
       "id": "us-16-cfr-1303-lead-paint",
@@ -115,7 +257,24 @@
       "files": [
         "raw/us/US_16_CFR_Part_1303_lead_paint.xml"
       ],
-      "why_added": "Useful for toys, furniture, coatings, accessories, and painted consumer goods."
+      "why_added": "Useful for toys, furniture, coatings, accessories, and painted consumer goods.",
+      "source_type": "ecfr_part",
+      "product_categories": [
+        "electronics",
+        "toys",
+        "painted_goods"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/us/US_16_CFR_Part_1303_lead_paint.xml",
+          "bytes": 19992,
+          "sha256": "6022026a24168a3259b505d806c9905ad1842a3e1cf6cbb0cab9e7060239873b"
+        }
+      ]
     },
     {
       "id": "uk-psti-consumer-connectable-security",
@@ -126,7 +285,24 @@
       "files": [
         "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html"
       ],
-      "why_added": "Adds UK connected-product security requirements, statement-of-compliance duties, and OPSS enforcement context."
+      "why_added": "Adds UK connected-product security requirements, statement-of-compliance duties, and OPSS enforcement context.",
+      "source_type": "official_html",
+      "product_categories": [
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "cybersecurity",
+        "chemical"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_PSTI_consumer_connectable_product_security_guidance.html",
+          "bytes": 99678,
+          "sha256": "996c9dfa9cfa4783aec7f68122ecc96c50bdbd6ae898bb6873a84f0a3b3c1919"
+        }
+      ]
     },
     {
       "id": "uk-ukca-conformity-assessment",
@@ -137,7 +313,24 @@
       "files": [
         "raw/uk/UK_UKCA_CE_marking_conformity_assessment_guidance.html"
       ],
-      "why_added": "Complements the existing UK NSI item with practical conformity assessment and UKCA/CE documentation guidance."
+      "why_added": "Complements the existing UK NSI item with practical conformity assessment and UKCA/CE documentation guidance.",
+      "source_type": "official_html",
+      "product_categories": [
+        "electronics",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "sustainability"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/uk/UK_UKCA_CE_marking_conformity_assessment_guidance.html",
+          "bytes": 160034,
+          "sha256": "4e1ea51e96dc03405ce7b433179fde6a1514d1aa8ab2333bcc55cc4d26f609a2"
+        }
+      ]
     },
     {
       "id": "cn-ccc-catalogue-scope-2023",
@@ -148,7 +341,25 @@
       "files": [
         "raw/cn/CN_CCC_catalogue_scope_2023.html"
       ],
-      "why_added": "Adds official CCC category scoping for China-market product compliance classification."
+      "why_added": "Adds official CCC category scoping for China-market product compliance classification.",
+      "source_type": "cn_official_source",
+      "product_categories": [
+        "electronics",
+        "battery",
+        "toys"
+      ],
+      "regulatory_types": [
+        "product_safety",
+        "conformity",
+        "battery"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/cn/CN_CCC_catalogue_scope_2023.html",
+          "bytes": 136629,
+          "sha256": "3a5dca7cff6d3182f9b341e6573afed6c87520e24878a6d4fb89131d8ef6dca5"
+        }
+      ]
     },
     {
       "id": "cn-ccc-electronics-safety-accessories-2023",
@@ -159,7 +370,23 @@
       "files": [
         "raw/cn/CN_CCC_electronics_safety_accessories_rule_2023.html"
       ],
-      "why_added": "Adds product-specific CCC implementation rules for electronics and accessories."
+      "why_added": "Adds product-specific CCC implementation rules for electronics and accessories.",
+      "source_type": "cn_official_source",
+      "product_categories": [
+        "electronics",
+        "battery"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "battery"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/cn/CN_CCC_electronics_safety_accessories_rule_2023.html",
+          "bytes": 22023,
+          "sha256": "78594351dfdac34673d309ab0c323fa2d86409b8ba1331b7cbf4d2731491d596"
+        }
+      ]
     },
     {
       "id": "cn-ccc-power-bank-marking-pilot-2025",
@@ -170,7 +397,23 @@
       "files": [
         "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html"
       ],
-      "why_added": "Highly relevant to power banks; includes CCC traceability QR-code marking timing and pilot scope."
+      "why_added": "Highly relevant to power banks; includes CCC traceability QR-code marking timing and pilot scope.",
+      "source_type": "cn_official_source",
+      "product_categories": [
+        "electronics",
+        "battery"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "battery"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/cn/CN_CCC_power_bank_marking_pilot_2025.html",
+          "bytes": 9559,
+          "sha256": "59ee1a959eb9185ba06bab20309bb296c486341767ad572e16db9d0bcd4f0f63"
+        }
+      ]
     },
     {
       "id": "cn-ccc-eleven-rules-2026",
@@ -181,7 +424,24 @@
       "files": [
         "raw/cn/CN_CCC_11_rules_2026.html"
       ],
-      "why_added": "Keeps CCC implementation-rule coverage current for later China-market checks."
+      "why_added": "Keeps CCC implementation-rule coverage current for later China-market checks.",
+      "source_type": "cn_official_source",
+      "product_categories": [
+        "electrical_equipment",
+        "industrial_products",
+        "general_consumer_products"
+      ],
+      "regulatory_types": [
+        "conformity",
+        "testing"
+      ],
+      "file_stats": [
+        {
+          "file": "raw/cn/CN_CCC_11_rules_2026.html",
+          "bytes": 16291,
+          "sha256": "364fc29fa229ca1e08fdfaaa4bb871307580de293b13d744c34bc01c168c9fb8"
+        }
+      ]
     }
   ],
   "ingestion_status": {
