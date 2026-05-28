@@ -123,7 +123,8 @@
           "bytes": 860932,
           "sha256": "45172093d5547c21c9f7d5da2628e5c630b5e7e586e163aff6b7c936ded17b48"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2025-40-packaging-waste",
@@ -155,7 +156,8 @@
           "bytes": 1199763,
           "sha256": "f3174f0ac946db202bfa2e5c284216d87e9178ec1fde147a90f9b275124dd060"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2023-1115-deforestation",
@@ -188,7 +190,8 @@
           "bytes": 387997,
           "sha256": "fc30a30a1b6701800ad8abeb63e1d606769a4128bc97ddb2e481ee4bf6057259"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2011-1007-textile-labelling",
@@ -220,7 +223,8 @@
           "bytes": 994742,
           "sha256": "4232e9cc93adb0857300b7708025934bda6acfa2064faa9c5fb7348dc65c8353"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2009-1223-cosmetics",
@@ -252,7 +256,8 @@
           "bytes": 2154972,
           "sha256": "858298b0649bd04c96565e92c5db593d8c88ed9b67f96f91189c2b194a1efec8"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2004-1935-food-contact-materials",
@@ -285,7 +290,8 @@
           "bytes": 92866,
           "sha256": "260e9ee86ac218e78bfdd55ce7faf6f82737ead055b906e46747bca9cc0a33a6"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2011-10-plastic-food-contact",
@@ -319,7 +325,8 @@
           "bytes": 2083080,
           "sha256": "05371d7cb1aecdd4c048708865d0c18707a4fa08f6bfd09692c9abdcb5a29624"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2023-1542-batteries",
@@ -353,7 +360,8 @@
           "bytes": 1132664,
           "sha256": "20083c87cc6e7c0e84cd30a52cff44e135d3cb35397b2daa86f58cf050689f60"
         }
-      ]
+      ],
+      "source_type": "eu_celex"
     },
     {
       "id": "us-47-cfr-15-radio-frequency-devices",
@@ -379,7 +387,8 @@
           "bytes": 570313,
           "sha256": "38da96bf1179a9cc10e35e8c2c970725f222883dfcbeb9c986b0fc3d397a5c1d"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1107-testing-certification",
@@ -405,7 +414,8 @@
           "bytes": 28560,
           "sha256": "bfb7bf3e3f716f84c9ed353b745fa0abd5bde877a9df192e1359a8295cbb4478"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1110-certificates-compliance",
@@ -430,7 +440,8 @@
           "bytes": 9561,
           "sha256": "0693b508f2ee4f76d2ff859d1f240e2a35763a1a3d2226a61d0c93a5a7e76d34"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1500-hazardous-substances",
@@ -457,7 +468,8 @@
           "bytes": 480856,
           "sha256": "16411b04b1b03158c078bdeb81e47474cc9c3674d35b7afba98358b4c0633bfa"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1501-small-parts",
@@ -483,7 +495,8 @@
           "bytes": 8023,
           "sha256": "9c32ae9c546c9f39cfa9910e26d9d638229c2795e9f5b8ff01a3343464a935c1"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1610-textile-flammability",
@@ -509,7 +522,8 @@
           "bytes": 97209,
           "sha256": "11cbb6e33dc13d01e95ae341811068ee371128ca4175a5dc322dd60c956beb66"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
@@ -536,7 +550,8 @@
           "bytes": 112947,
           "sha256": "68a213ef034aee2b46dabe0ac1ff5c1097e5c101fc924719c5cbcc020db322f9"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1616-childrens-sleepwear-7-14",
@@ -563,7 +578,8 @@
           "bytes": 131669,
           "sha256": "70465105f17a30bc58b496ca337da3b64e28aba27539f987ec80df4478ca1936"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1632-mattresses",
@@ -590,7 +606,8 @@
           "bytes": 67482,
           "sha256": "3711d28c9c19ec33c307f7452460320ce36ecea6f462d4e10dd94218c7b2700d"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-21-cfr-177-food-contact-polymers",
@@ -618,7 +635,8 @@
           "bytes": 595722,
           "sha256": "c19b5ad6e09e34b42014782e8e848cc525f0972963998449afc0cdcd63337e16"
         }
-      ]
+      ],
+      "source_type": "ecfr_part"
     },
     {
       "id": "uk-product-safety-advice-businesses",
@@ -643,7 +661,8 @@
           "bytes": 87345,
           "sha256": "af8d4cd6666bb4fa71088afa472bb3ca40e0081c6436037a62f848573c430466"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "uk-toys-safety-regulations-2011-gb",
@@ -670,7 +689,8 @@
           "bytes": 179214,
           "sha256": "6ab5f8ccafb59bedaa810932e21503657d0be216322d42b766bbae2f0d4011d8"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "uk-electrical-equipment-safety-regulations-2016-gb",
@@ -696,7 +716,8 @@
           "bytes": 157762,
           "sha256": "aef40c35757f0a11a4a3c64543ddf08b14e85f7ce8a80d05b0847a1d2ba335a0"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "uk-emc-regulations-2016-gb",
@@ -721,7 +742,8 @@
           "bytes": 179856,
           "sha256": "a39943fdd1ca35eba13fda336e1ae4ceabeba954c8ba408629a79e733e46c8a4"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "uk-radio-equipment-regulations-2017-gb",
@@ -747,7 +769,8 @@
           "bytes": 186519,
           "sha256": "038f5d4a27dae3da94830713311c35f7bc629637c6f42f4a87e22cc493b9b671"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "uk-cosmetic-products-enforcement-regulations-2013-gb",
@@ -773,7 +796,8 @@
           "bytes": 263246,
           "sha256": "d48d7e80a23b23b73258d6c25b1289510b2472f330a692ac80fa2335bed70b71"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "ca-consumer-product-safety-act",
@@ -798,7 +822,8 @@
           "bytes": 161851,
           "sha256": "08484c7d630af8161844244dff5701b86ede5eb7e36fec4611547f81f9be87cc"
         }
-      ]
+      ],
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-toys-regulations-sor-2011-17",
@@ -825,7 +850,8 @@
           "bytes": 134330,
           "sha256": "66de647909acf995d9f090ccd9c6e16a7c79688fc8fafdc5171d4aa0fc34b465"
         }
-      ]
+      ],
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-cosmetics-regulations-crc-c-869",
@@ -851,7 +877,8 @@
           "bytes": 98072,
           "sha256": "f9027ef73c758556759d4d8b3f57d06f4ffb887a6cff8a754aa3dc83cd6e60ad"
         }
-      ]
+      ],
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-textile-labelling-advertising-regulations-crc-c-1551",
@@ -876,7 +903,8 @@
           "bytes": 133870,
           "sha256": "ff916b597546d865a6afcc0c667a38511d551ecf72a774750969f8790ae90294"
         }
-      ]
+      ],
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-consumer-packaging-labelling-regulations-crc-c-417",
@@ -902,7 +930,8 @@
           "bytes": 138343,
           "sha256": "9c610c13b089b731e36f3e560ee7cdc85d6d76da7802448f4401fc2aa26800fe"
         }
-      ]
+      ],
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "au-button-coin-batteries-safety-standard-2020",
@@ -929,7 +958,8 @@
           "bytes": 561357,
           "sha256": "0b1afb9abe031f80fbc43fe5139df65e213804286516991d6d5dfd18e27a5c67"
         }
-      ]
+      ],
+      "source_type": "au_legislation"
     },
     {
       "id": "au-toys-children-36-months-safety-standard-2023",
@@ -955,7 +985,8 @@
           "bytes": 765222,
           "sha256": "4e8079238a1e5feaf2f4bb7d10ebed4a758361cc3b080adec6fedcf5f1a8952f"
         }
-      ]
+      ],
+      "source_type": "au_legislation"
     },
     {
       "id": "au-childrens-nightwear-safety-standard-2017",
@@ -982,7 +1013,8 @@
           "bytes": 656797,
           "sha256": "f615531fb81c8adee9c4dff3c2e65f44950b4cb17d131d28a76456f2d1d6f513"
         }
-      ]
+      ],
+      "source_type": "au_legislation"
     },
     {
       "id": "au-cosmetics-ingredients-information-standard-2020",
@@ -1007,7 +1039,8 @@
           "bytes": 669472,
           "sha256": "6e8149f12682054628ba8ad4b107f492b06f74fbee8209da9052cebfb3ee8e9a"
         }
-      ]
+      ],
+      "source_type": "au_legislation"
     },
     {
       "id": "jp-electrical-appliance-material-safety-act",
@@ -1033,7 +1066,8 @@
           "bytes": 242643,
           "sha256": "b83813515c06628f9b4654ee1ebf07d325e16a34e8b5d8963e8ea67c413a650c"
         }
-      ]
+      ],
+      "source_type": "japan_law_translation"
     },
     {
       "id": "jp-consumer-product-safety-act",
@@ -1058,7 +1092,8 @@
           "bytes": 305729,
           "sha256": "2391ce88fd152fa3823dc867fd972b27b9031c524a60da28e49705d72f51d04b"
         }
-      ]
+      ],
+      "source_type": "japan_law_translation"
     },
     {
       "id": "jp-food-sanitation-act",
@@ -1085,7 +1120,8 @@
           "bytes": 331368,
           "sha256": "344946061473ddb5df2c7643a2865b4cf1f893a998c804543d81a4fb09571f48"
         }
-      ]
+      ],
+      "source_type": "japan_law_translation"
     },
     {
       "id": "jp-technical-standards-electrical-appliances-materials",
@@ -1111,7 +1147,8 @@
           "bytes": 44868,
           "sha256": "fba666fd1e855fc076efad997f201c06755e26d22fa4d753217a012528fa8ee3"
         }
-      ]
+      ],
+      "source_type": "japan_law_translation"
     },
     {
       "id": "sg-cpsr-overview",
@@ -1137,7 +1174,8 @@
           "bytes": 36509,
           "sha256": "c0672e85dfaaf955634b521c4d4d8ab96b92dec2ed8a809f2fb348750cf0ec18"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "sg-cpsr-controlled-goods-list",
@@ -1164,7 +1202,8 @@
           "bytes": 61348,
           "sha256": "6ea3a27790e232fc1f972f9f0eea500b8f31663537722acbd1fce05277b509e1"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "sg-consumer-protection-safety-requirements-regulations-2002",
@@ -1190,7 +1229,8 @@
           "bytes": 109658,
           "sha256": "87827d074ab19f27808b998872bc2ad4618140a07ccf9393ca7cec51f3d5fc56"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "sg-consumer-product-safety-regulations-ccs",
@@ -1214,7 +1254,8 @@
           "bytes": 410805,
           "sha256": "bf3d2e605a36d3f75a3bc7d166bab872968ade8f951dd270363108e362fdb5e1"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "kr-electrical-appliances-consumer-products-safety-control-act",
@@ -1241,7 +1282,8 @@
           "bytes": 350713,
           "sha256": "7898819e1970d7bb62a0f9542a60029f0b7ea83b24975b76b7a4f67eb2b6ca4a"
         }
-      ]
+      ],
+      "source_type": "klri_html"
     },
     {
       "id": "kr-radio-waves-act",
@@ -1267,7 +1309,8 @@
           "bytes": 1202009,
           "sha256": "1e0b67d5776efe5214d613095cc9f957f9c30a16236636aa88e679c8c0ca129e"
         }
-      ]
+      ],
+      "source_type": "klri_html"
     },
     {
       "id": "kr-cosmetics-act",
@@ -1293,7 +1336,8 @@
           "bytes": 252587,
           "sha256": "964580cd10270670ce99ec88dc1c95dcc43ba8fb06c2d34d7a4db4ab14276862"
         }
-      ]
+      ],
+      "source_type": "klri_html"
     },
     {
       "id": "kr-food-sanitation-act",
@@ -1320,7 +1364,8 @@
           "bytes": 833009,
           "sha256": "4a5d471ac716f7eaafdbf782cbb825bb7ab61ca477cadad405477cb5925b604f"
         }
-      ]
+      ],
+      "source_type": "klri_html"
     },
     {
       "id": "in-toys-quality-control-order-2020",
@@ -1346,7 +1391,8 @@
           "bytes": 753487,
           "sha256": "96eefa64ed07b2b5a4c70c0562fc4e8635a7e38377e0d33e62458511df0c4ccb"
         }
-      ]
+      ],
+      "source_type": "direct_url"
     },
     {
       "id": "in-battery-waste-management-rules-2022",
@@ -1372,7 +1418,8 @@
           "bytes": 1571686,
           "sha256": "50966a351d4a86c2b8d5cfb5218543bbdbe714acc6b23bd48a65645d217ef237"
         }
-      ]
+      ],
+      "source_type": "direct_url"
     },
     {
       "id": "in-e-waste-management-rules-2022",
@@ -1397,7 +1444,8 @@
           "bytes": 1609623,
           "sha256": "d03f8744bc79d67a94b06e1020537e93d15572b0cf1d575cb32b76c89f30a5fb"
         }
-      ]
+      ],
+      "source_type": "direct_url"
     },
     {
       "id": "br-anatel-resolution-715-2019-telecom-products",
@@ -1424,7 +1472,8 @@
           "bytes": 169902,
           "sha256": "eccd34e201a5818770099e4c9f83f83292fff3e4b9ed6b1db0846cabb81cb67d"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "br-anatel-resolution-780-2023-telecom-products",
@@ -1451,7 +1500,8 @@
           "bytes": 75786,
           "sha256": "3671cde19b42e655e3451dd5959a36bd3beeea121c1b37461639fbb80ea22ea5"
         }
-      ]
+      ],
+      "source_type": "official_html"
     },
     {
       "id": "mx-nom-001-scfi-2018-electronic-apparatus",
@@ -1476,7 +1526,8 @@
           "bytes": 97735,
           "sha256": "86ed0bd294e72f21aff2eb00899362f68bca88387b625b9d30d820d6353ccd60"
         }
-      ]
+      ],
+      "source_type": "platiica_html_pdf"
     },
     {
       "id": "mx-nom-024-scfi-2013-commercial-information-electrical-electronic-appliances",
@@ -1501,7 +1552,8 @@
           "bytes": 92837,
           "sha256": "5a20bf5155ef10bec2ac80f7dea7f2c65b10a60e97c3426975607a322a304a72"
         }
-      ]
+      ],
+      "source_type": "platiica_html_pdf"
     },
     {
       "id": "mx-nom-252-ssa1-2011-toys",
@@ -1527,7 +1579,8 @@
           "bytes": 94459,
           "sha256": "4087677b01c7c3487691e6346a08d82c52ffde6462290d1521f7d7656ea134ce"
         }
-      ]
+      ],
+      "source_type": "platiica_html_pdf"
     },
     {
       "id": "gcc-gso-low-voltage-electrical-equipment-technical-regulation",
@@ -1553,7 +1606,8 @@
           "bytes": 661711,
           "sha256": "ef5182a88ef603d5eeef59da933af831f6d20429ffca7bfd4d98377cbdead1f6"
         }
-      ]
+      ],
+      "source_type": "direct_url"
     },
     {
       "id": "gcc-gso-gmark-toys-guidance",
@@ -1579,7 +1633,8 @@
           "bytes": 6745991,
           "sha256": "2f25c4d2721c8d7fcd78c2ae8cf99e28fd3197056705a8c6d14cbb90e0302f86"
         }
-      ]
+      ],
+      "source_type": "direct_url"
     }
   ],
   "notes": [

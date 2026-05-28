@@ -26,3 +26,9 @@ This directory contains isolated raw official or government-source regulation do
 - US eCFR browser pages may require access checks, so raw US files use the official eCFR API XML endpoint.
 - EU files use Publications Office RDF metadata plus resolved Cellar XHTML document files where available.
 - PDF-heavy entries will need the project PDF parser path before ingestion.
+## Document Inventory
+
+- Per-document inventory: [DOCUMENTS.md](DOCUMENTS.md)
+- Source audit: [../SOURCE_AUDIT_2026-05-27.md](../SOURCE_AUDIT_2026-05-27.md)
+- Local integrity status: raw files are referenced by manifest entries and hash-checked in the document inventory.
+- Legal-effect boundary: these are preserved official-source originals for RAG review; formal legal validity still requires checking the live issuing authority or counsel.

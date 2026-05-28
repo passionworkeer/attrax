@@ -67,3 +67,9 @@ materials. It has not been ingested into `data/corpus/processed` or `data/faiss`
 - Original PDF files are retained where public official sources expose them.
 - Official regulator HTML is retained where PDF/Word originals are not public or the jurisdiction publishes via legal database pages.
 - This batch targets broad geographic gap filling rather than ingestion; review and embedding should happen as a separate step.
+## Document Inventory
+
+- Per-document inventory: [DOCUMENTS.md](DOCUMENTS.md)
+- Source audit: [../SOURCE_AUDIT_2026-05-27.md](../SOURCE_AUDIT_2026-05-27.md)
+- Local integrity status: raw files are referenced by manifest entries and hash-checked in the document inventory.
+- Legal-effect boundary: these are preserved official-source originals for RAG review; formal legal validity still requires checking the live issuing authority or counsel.

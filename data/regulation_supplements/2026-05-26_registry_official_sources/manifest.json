@@ -107,7 +107,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2009-48-toy-safety",
@@ -152,7 +153,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2011-65-rohs",
@@ -196,7 +198,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2012-19-weee",
@@ -240,7 +243,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2014-53-radio-equipment",
@@ -284,7 +288,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2014-30-emc",
@@ -328,7 +333,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2014-35-low-voltage",
@@ -372,7 +378,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "eu-2019-1020-market-surveillance",
@@ -417,7 +424,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "eu_celex"
     },
     {
       "id": "us-16-cfr-1307-phthalates",
@@ -457,7 +465,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1630-carpets-rugs",
@@ -497,7 +506,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1631-small-carpets-rugs",
@@ -537,7 +547,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1633-mattresses-open-flame",
@@ -577,7 +588,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "ecfr_part"
     },
     {
       "id": "us-16-cfr-1700-poison-prevention-packaging",
@@ -618,7 +630,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "ecfr_part"
     },
     {
       "id": "ca-consumer-chemicals-containers-regulations-2001",
@@ -657,7 +670,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-surface-coating-materials-regulations",
@@ -694,7 +708,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-phthalates-regulations",
@@ -731,7 +746,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-childrens-sleepwear-regulations",
@@ -769,7 +785,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-consumer-products-containing-lead-regulations",
@@ -807,7 +824,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "ca-corded-window-coverings-regulations",
@@ -844,7 +862,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "canada_justice_laws_xml"
     },
     {
       "id": "uk-weee-regulations-guidance",
@@ -881,7 +900,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "official_html"
     },
     {
       "id": "uk-packaging-epr-who-is-affected",
@@ -918,7 +938,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "official_html"
     },
     {
       "id": "uk-reach-compliance-guidance",
@@ -956,7 +977,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "official_html"
     },
     {
       "id": "uk-hse-svhc-overview",
@@ -992,7 +1014,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "official_html"
     },
     {
       "id": "nz-product-safety-standards-2005",
@@ -1029,7 +1052,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "official_html"
     },
     {
       "id": "nz-product-safety-standards-household-cots-2016",
@@ -1066,7 +1090,8 @@
         "effective_date": "",
         "supersedes": [],
         "replaces": []
-      }
+      },
+      "source_type": "official_html"
     }
   ],
   "notes": [

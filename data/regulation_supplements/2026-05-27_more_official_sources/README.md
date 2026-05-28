@@ -26,3 +26,9 @@ This directory contains an additional isolated batch of raw official or governme
 - GovInfo entries include both PDF and USLM XML forms when available.
 - UK entries include both legislation.gov.uk PDF and XML forms.
 - Australia entries include both PDF and Word/DOCX originals from the Federal Register of Legislation.
+## Document Inventory
+
+- Per-document inventory: [DOCUMENTS.md](DOCUMENTS.md)
+- Source audit: [../SOURCE_AUDIT_2026-05-27.md](../SOURCE_AUDIT_2026-05-27.md)
+- Local integrity status: raw files are referenced by manifest entries and hash-checked in the document inventory.
+- Legal-effect boundary: these are preserved official-source originals for RAG review; formal legal validity still requires checking the live issuing authority or counsel.
