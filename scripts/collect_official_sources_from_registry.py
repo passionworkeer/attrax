@@ -6,12 +6,17 @@ import argparse
 import datetime as dt
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from rag_service.regulation_collectors.base import BaseCollector
+from rag_service.regulation_collectors.eu_rdf import ensure_eu_text
+
 try:
     from scripts.collect_global_regulation_sources import (
-        Collector,
         as_posix,
         build_readme,
         make_entry,
@@ -20,7 +25,6 @@ try:
     from scripts.diff_regulation_manifests import compare_manifests, load_manifest, write_diff_report
 except ImportError:  # pragma: no cover - direct script execution path
     from collect_global_regulation_sources import (
-        Collector,
         as_posix,
         build_readme,
         make_entry,
@@ -32,6 +36,7 @@ except ImportError:  # pragma: no cover - direct script execution path
 DEFAULT_REGISTRY = Path("data/regulation_sources/official_sources.json")
 DEFAULT_SUPPLEMENT_DIR = Path("data/regulation_supplements/2026-05-26_registry_official_sources")
 DEFAULT_MIN_BYTES = 128
+REGISTRY_USER_AGENT = "Mozilla/5.0 (compatible; AttraxOfficialSourceCollector/1.0)"
 
 
 def load_registry(path: Path = DEFAULT_REGISTRY) -> list[dict[str, Any]]:
@@ -70,60 +75,6 @@ def eu_cellar_content_variants() -> list[str]:
         for suffix in ("04", "03", "02", "01"):
             variants.append(f"{i:04d}.{suffix}")
     return variants
-
-
-def ensure_eu_text(collector: Collector, entry: dict[str, Any], celex: str, rdf_rel: str, xhtml_rel: str) -> None:
-    rdf_path = collector.supplement_dir / rdf_rel
-    if not rdf_path.exists() or rdf_path.stat().st_size < 128:
-        collector.download(f"https://publications.europa.eu/resource/celex/{celex}", rdf_rel, min_bytes=500)
-
-    rdf_text = rdf_path.read_text(encoding="utf-8", errors="ignore")
-    cellar_uuid = None
-    descriptions = re.finditer(
-        r'<rdf:Description rdf:about="http://publications\.europa\.eu/resource/cellar/([^"]+)">(.*?)</rdf:Description>',
-        rdf_text,
-        flags=re.S,
-    )
-    for match in descriptions:
-        body = match.group(2)
-        same_as = f'owl:sameAs rdf:resource="http://publications.europa.eu/resource/celex/{celex}"'
-        if same_as in body:
-            cellar_uuid = match.group(1)
-            break
-
-    if not cellar_uuid:
-        collector.failures.append(
-            {
-                "url": entry["source_url"],
-                "file": xhtml_rel,
-                "error": f"could not resolve Cellar UUID for {celex}",
-            }
-        )
-        return
-
-    for variant in eu_cellar_content_variants():
-        content_url = f"https://publications.europa.eu/resource/cellar/{cellar_uuid}.{variant}/DOC_1"
-        result = collector.download(
-            content_url,
-            xhtml_rel,
-            force=not (collector.supplement_dir / xhtml_rel).exists(),
-            min_bytes=1000,
-            fallback_curl=False,
-            record_failure=False,
-        )
-        if result["status"] in {"downloaded", "existing"}:
-            entry["content_url"] = content_url
-            if xhtml_rel not in entry["files"]:
-                entry["files"].append(xhtml_rel)
-            return
-
-    collector.failures.append(
-        {
-            "url": entry["source_url"],
-            "file": xhtml_rel,
-            "error": f"could not download XHTML for {celex} cellar {cellar_uuid}",
-        }
-    )
 
 
 def build_manifest_entry(entry: dict[str, Any], files: list[str]) -> dict[str, Any]:
@@ -174,12 +125,21 @@ def build_lifecycle_metadata(entry: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def collect_entry(collector: Collector, entry: dict[str, Any]) -> dict[str, Any]:
+def collect_entry(collector: BaseCollector, entry: dict[str, Any]) -> dict[str, Any]:
     source_type = entry["source_type"]
     if source_type == "eu_celex":
         rdf_rel, xhtml_rel = eu_registry_files(entry)
         manifest_entry = build_manifest_entry(entry, [rdf_rel])
-        ensure_eu_text(collector, manifest_entry, entry["celex"], rdf_rel, xhtml_rel)
+        ensure_eu_text(
+            collector,
+            manifest_entry,
+            entry["celex"],
+            rdf_rel,
+            xhtml_rel,
+            min_bytes_for_rdf=128,
+            variants=eu_cellar_content_variants(),
+            use_eurlex_fallback=False,
+        )
         return manifest_entry
 
     file_rel = entry["files"][0]
@@ -194,7 +154,7 @@ def collect_entry(collector: Collector, entry: dict[str, Any]) -> dict[str, Any]
 
 def build_registry_manifest(
     registry: list[dict[str, Any]],
-    collector: Collector,
+    collector: BaseCollector,
 ) -> dict[str, Any]:
     entries = [collect_entry(collector, entry) for entry in registry]
     raw_file_set: set[str] = set()
@@ -205,12 +165,11 @@ def build_registry_manifest(
             raw_file_set.add(rel_path)
             path = collector.supplement_dir / rel_path
             if not path.exists() or path.stat().st_size == 0:
-                collector.failures.append(
-                    {
-                        "entry_id": manifest_entry["id"],
-                        "file": rel_path,
-                        "error": "missing or empty file referenced by manifest",
-                    }
+                collector.record_failure(
+                    url="",
+                    file=rel_path,
+                    error="missing or empty file referenced by manifest",
+                    entry_id=manifest_entry["id"],
                 )
                 continue
             stats.append(
@@ -261,7 +220,7 @@ def build_registry_manifest(
     }
 
 
-def write_outputs(collector: Collector, manifest: dict[str, Any]) -> None:
+def write_outputs(collector: BaseCollector, manifest: dict[str, Any]) -> None:
     collector.supplement_dir.mkdir(parents=True, exist_ok=True)
     (collector.supplement_dir / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -287,8 +246,10 @@ def main() -> int:
     parser.add_argument("--diff-output", type=Path, default=None)
     args = parser.parse_args()
 
+    collector = BaseCollector(args.supplement_dir, REGISTRY_USER_AGENT, timeout=60, max_retries=3)
+    collector.raw_dir = args.supplement_dir / "raw"
+
     registry = load_registry(args.registry)
-    collector = Collector(args.supplement_dir)
     manifest = build_registry_manifest(registry, collector)
     if args.previous_manifest:
         diff = compare_manifests(load_manifest(args.previous_manifest), manifest)

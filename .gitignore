@@ -94,6 +94,7 @@ C:/temp/faiss_index/
 # 临时输出文件
 integration_result.txt
 check_result.txt
+/export-*.zip
 
 # scripts/ 调试脚本（不纳入版本控制）
 scripts/debug_dense.py
