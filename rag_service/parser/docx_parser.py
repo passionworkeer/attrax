@@ -17,6 +17,27 @@ from docx.text.paragraph import Paragraph
 logger = logging.getLogger(__name__)
 
 
+def _escape_prompt_injection(text: str) -> str:
+    """
+    Escape prompt-injection patterns in extracted document text.
+
+    Defends against attempts to break out of <user_document> / <user_image>
+    XML wrappers used by the generator node. Conservative: only escapes
+    closing-tag-shaped fragments, leaving normal content untouched.
+    """
+    if not text:
+        return text
+    # Neutralize common prompt-injection / tag-break tokens.
+    text = text.replace("</user_document>", "&lt;/user_document&gt;")
+    text = text.replace("</user_image>", "&lt;/user_image&gt;")
+    text = text.replace("<|im_start|>", "&lt;|im_start|&gt;")
+    text = text.replace("<|im_end|>", "&lt;|im_end|&gt;")
+    text = text.replace("<|system|>", "&lt;|system|&gt;")
+    text = text.replace("<|user|>", "&lt;|user|&gt;")
+    text = text.replace("<|assistant|>", "&lt;|assistant|&gt;")
+    return text
+
+
 def parse_docx(file_path: str) -> dict:
     """
     Parse DOCX file and return structured data.
@@ -66,6 +87,8 @@ def parse_docx(file_path: str) -> dict:
                 tables.append(table_data)
 
     raw_text = "\n\n".join(paragraphs)
+    # Escape prompt-injection patterns before returning to upstream consumers.
+    raw_text = _escape_prompt_injection(raw_text)
 
     return {
         "rawText": raw_text[:100_000],  # Truncate to 100k chars

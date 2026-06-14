@@ -59,13 +59,35 @@ def detect_boundary(text: str) -> Optional[dict]:
     return None
 
 
-def build_prepend(doc_name: str, section_path: list, article_no: Optional[str]) -> tuple[str, str]:
-    """Build bilingual contextual prepend tags."""
+_EN_TO_ZH_TERMS = {
+    "Article": "条",
+    "Annex": "附件",
+    "Recital": "序言",
+    "Section": "节",
+    "Chapter": "章",
+    "Art.": "条",
+}
+
+
+def _translate_term(text: str) -> str:
+    """Best-effort English→Chinese translation for common legal section terms."""
+    result = text
+    for en, zh in _EN_TO_ZH_TERMS.items():
+        result = result.replace(en, zh)
+    return result
+
+
+def build_prepend(doc_name: str, section_path: list, article_no: Optional[str], lang: str = "en") -> tuple[str, str]:
+    """Build bilingual contextual prepend tags.
+    Returns (en, zh); zh is independently translated from common legal terms when lang="zh"."""
     parts = [doc_name] + section_path
     if article_no:
         parts.append(article_no)
     en = " | ".join(parts)
-    return en, en  # Simplified: same for now, override per language if needed
+    if lang == "zh":
+        zh = " | ".join([_translate_term(p) for p in parts])
+        return en, zh
+    return en, en
 
 
 def estimate_tokens(text: str) -> int:
@@ -139,6 +161,7 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
             total_parents: int
     """
     page_map = page_map or []
+    lang = "zh" if region == "CN" else "en"
 
     # Step 1: split at boundaries
     segments = split_by_boundaries(raw_text)
@@ -159,7 +182,7 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
         if tokens <= 600:
             # Single child chunk
             chunk_id = str(uuid.uuid4())[:8]
-            prepend_en, prepend_zh = build_prepend(doc_name, [], article_no)
+            prepend_en, prepend_zh = build_prepend(doc_name, [], article_no, lang)
 
             child = Chunk(
                 id=chunk_id,
@@ -210,7 +233,7 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
                 if current_tokens + sent_tokens > 600 and current:
                     # Flush current as child
                     chunk_id = str(uuid.uuid4())[:8]
-                    prepend_en, prepend_zh = build_prepend(doc_name, [], article_no)
+                    prepend_en, prepend_zh = build_prepend(doc_name, [], article_no, lang)
                     child = Chunk(
                         id=chunk_id,
                         content=current.strip(),
@@ -235,7 +258,7 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
 
             if current.strip():
                 chunk_id = str(uuid.uuid4())[:8]
-                prepend_en, prepend_zh = build_prepend(doc_name, [], article_no)
+                prepend_en, prepend_zh = build_prepend(doc_name, [], article_no, lang)
                 child = Chunk(
                     id=chunk_id,
                     content=current.strip(),
@@ -255,6 +278,7 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
 
             # For long articles: parent = full segment
             parent_id = str(uuid.uuid4())[:8]
+            prepend_en, _ = build_prepend(doc_name, [], article_no, lang)
             parent = Chunk(
                 id=parent_id,
                 content=content,
@@ -267,8 +291,8 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
                 page_start=0,
                 page_end=0,
                 total_chars=len(content),
-                prepend_en=build_prepend(doc_name, [], article_no)[0],
-                prepend_zh=build_prepend(doc_name, [], article_no)[0],
+                prepend_en=prepend_en,
+                prepend_zh=prepend_en if lang != "zh" else build_prepend(doc_name, [], article_no, lang)[1],
             )
             parent_chunks.append(asdict(parent))
 

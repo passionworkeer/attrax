@@ -10,6 +10,7 @@ import io
 import json
 import logging
 import base64
+from collections import deque
 from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
@@ -35,7 +36,8 @@ _MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024
 _MAX_PDF_SIZE_BYTES = 15 * 1024 * 1024
 _ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp"}
 _RATE_LIMITED_PATHS = {"/scan", "/scan-multipart", "/profit-report"}
-_rate_limit_hits: dict[str, list[float]] = {}
+_rate_limit_hits: dict[str, deque] = {}
+_rate_limit_lock = asyncio.Lock()
 
 # Load .env so os.environ.get() picks up values
 try:
@@ -173,13 +175,20 @@ async def protect_requests(request: Request, call_next):
     if request.url.path in _RATE_LIMITED_PATHS:
         now = time.monotonic()
         ip = _client_ip(request)
-        hits = [hit for hit in _rate_limit_hits.get(ip, []) if now - hit < _RATE_LIMIT_WINDOW_SECS]
-        if len(hits) >= _RATE_LIMIT_MAX_REQUESTS:
-            return JSONResponse(
-                status_code=429,
-                content={"error": "Too many requests"},
-            )
-        _rate_limit_hits[ip] = [*hits, now]
+        async with _rate_limit_lock:
+            hits = _rate_limit_hits.get(ip)
+            if hits is None:
+                hits = deque(maxlen=_RATE_LIMIT_MAX_REQUESTS)
+                _rate_limit_hits[ip] = hits
+            # Evict expired entries
+            while hits and now - hits[0] >= _RATE_LIMIT_WINDOW_SECS:
+                hits.popleft()
+            if len(hits) >= _RATE_LIMIT_MAX_REQUESTS:
+                return JSONResponse(
+                    status_code=429,
+                    content={"error": "Too many requests"},
+                )
+            hits.append(now)
 
     return await call_next(request)
 

@@ -86,9 +86,17 @@ class FaissRetriever:
         q = np.array([query_vec], dtype=np.float32)
 
         if q.shape[1] != self.dim:
-            logger.warning(
-                f"Query vector dim={q.shape[1]} != index dim={self.dim}, "
-                "skipping Faiss search (fallback to BM25)"
+            # P0-2 fail-loud: this used to be a silent warning + empty
+            # result, which made dense retrieval appear healthy while
+            # actually being 100% disabled. Promote to ERROR so the
+            # mismatch is visible in production logs.
+            logger.error(
+                "FAISS search DISABLED: query vector dim=%d != index dim=%d. "
+                "Previously this silently returned [], hiding the fact that "
+                "dense retrieval was offline. Caller should rebuild the "
+                "index or switch embedder.",
+                q.shape[1],
+                self.dim,
             )
             return []
 
