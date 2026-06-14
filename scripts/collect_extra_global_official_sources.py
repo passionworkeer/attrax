@@ -6,13 +6,15 @@ import argparse
 import datetime as dt
 import hashlib
 import json
-import subprocess
-import time
+import sys
+from functools import partial
 from pathlib import Path
 from typing import Any
 
-import requests
-import urllib3
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from rag_service.regulation_collectors.base import BaseCollector
+from rag_service.regulation_collectors.powershell_fetcher import fetch_with_powershell
 
 
 DEFAULT_SUPPLEMENT_DIR = Path("data/regulation_supplements/2026-05-27_extra_global_official_sources")
@@ -20,126 +22,31 @@ USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36"
 )
+INFOLEG_POWERSHELL_HEADERS = {
+    "User-Agent": "Mozilla/5.0",
+    "Accept-Language": "es-AR,es;q=0.9,en;q=0.8",
+    "Referer": "https://servicios.infoleg.gob.ar/",
+}
 
 
-class Collector:
+class Collector(BaseCollector):
     def __init__(self, supplement_dir: Path) -> None:
-        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-        self.supplement_dir = supplement_dir
-        self.raw_dir = supplement_dir / "raw"
-        self.failures: list[dict[str, Any]] = []
-        self.session = requests.Session()
-        self.session.headers.update(
-            {
-                "User-Agent": USER_AGENT,
-                "Accept": "*/*",
-                "Accept-Language": "en-US,en;q=0.9",
-            }
+        super().__init__(
+            supplement_dir,
+            USER_AGENT,
+            timeout=45,
+            max_retries=2,
+            curl_fallback=True,
+            insecure_tls=True,
         )
-
-    def download(
-        self,
-        url: str,
-        rel_path: str,
-        *,
-        force: bool = False,
-        min_bytes: int = 128,
-        fallback_curl: bool = True,
-        record_failure: bool = True,
-    ) -> dict[str, Any]:
-        path = self.supplement_dir / rel_path
-        if path.exists() and path.stat().st_size >= min_bytes and not force:
-            return {
-                "url": url,
-                "file": rel_path,
-                "status": "existing",
-                "bytes": path.stat().st_size,
-                "content_type": "",
-            }
-
-        path.parent.mkdir(parents=True, exist_ok=True)
-        last_error = ""
-        for attempt in range(2):
-            try:
-                response = self.session.get(url, timeout=45, allow_redirects=True, verify=False)
-                if response.status_code >= 400:
-                    raise RuntimeError(f"HTTP {response.status_code}")
-                if len(response.content) < min_bytes:
-                    raise RuntimeError(f"too small: {len(response.content)} bytes")
-                path.write_bytes(response.content)
-                return {
-                    "url": url,
-                    "final_url": response.url,
-                    "file": rel_path,
-                    "status": "downloaded",
-                    "bytes": len(response.content),
-                    "content_type": response.headers.get("content-type", ""),
-                }
-            except Exception as exc:  # noqa: BLE001 - retained in collection report
-                last_error = str(exc)
-                time.sleep(1 + attempt)
-
-        if fallback_curl:
-            try:
-                command = [
-                    "curl.exe",
-                    "-L",
-                    "-k",
-                    "--ssl-no-revoke",
-                    "--fail",
-                    "--max-time",
-                    "75",
-                    "-A",
-                    USER_AGENT,
-                    "-o",
-                    str(path),
-                    url,
-                ]
-                result = subprocess.run(command, text=True, capture_output=True, check=False)
-                if result.returncode == 0 and path.exists() and path.stat().st_size >= min_bytes:
-                    return {
-                        "url": url,
-                        "file": rel_path,
-                        "status": "downloaded-curl",
-                        "bytes": path.stat().st_size,
-                        "content_type": "",
-                    }
-                last_error = (result.stderr or result.stdout or f"curl exit {result.returncode}")[-500:]
-            except Exception as exc:  # noqa: BLE001 - retained in collection report
-                last_error = str(exc)
-
-        if fallback_curl:
-            try:
-                ps_url = url.replace("'", "''")
-                ps_path = str(path).replace("'", "''")
-                ps_ua = "Mozilla/5.0"
-                command = [
-                    "powershell.exe",
-                    "-NoProfile",
-                    "-Command",
-                    (
-                        "$ProgressPreference='SilentlyContinue'; "
-                        f"Invoke-WebRequest -Uri '{ps_url}' -OutFile '{ps_path}' "
-                        "-UseBasicParsing -MaximumRedirection 5 -TimeoutSec 75 "
-                        f"-Headers @{{'User-Agent'='{ps_ua}'; 'Accept-Language'='es-AR,es;q=0.9,en;q=0.8'; 'Referer'='https://servicios.infoleg.gob.ar/'}}"
-                    ),
-                ]
-                result = subprocess.run(command, text=True, capture_output=True, check=False)
-                if result.returncode == 0 and path.exists() and path.stat().st_size >= min_bytes:
-                    return {
-                        "url": url,
-                        "file": rel_path,
-                        "status": "downloaded-powershell",
-                        "bytes": path.stat().st_size,
-                        "content_type": "",
-                    }
-                last_error = (result.stderr or result.stdout or f"powershell exit {result.returncode}")[-500:]
-            except Exception as exc:  # noqa: BLE001 - retained in collection report
-                last_error = str(exc)
-
-        if record_failure:
-            self.failures.append({"url": url, "file": rel_path, "error": last_error})
-        return {"url": url, "file": rel_path, "status": "failed", "error": last_error}
+        self.raw_dir = supplement_dir / "raw"
+        self.register_fallback(
+            partial(
+                fetch_with_powershell,
+                timeout=75,
+                headers=INFOLEG_POWERSHELL_HEADERS,
+            )
+        )
 
     def build_manifest(self) -> dict[str, Any]:
         entries = build_entries()
@@ -159,12 +66,11 @@ class Collector:
                 raw_file_set.add(rel_path)
                 path = self.supplement_dir / rel_path
                 if not path.exists() or path.stat().st_size == 0:
-                    self.failures.append(
-                        {
-                            "entry_id": manifest_entry["id"],
-                            "file": rel_path,
-                            "error": "missing or empty file referenced by manifest",
-                        }
+                    self.record_failure(
+                        url="",
+                        file=rel_path,
+                        error="missing or empty file referenced by manifest",
+                        entry_id=manifest_entry["id"],
                     )
                     continue
                 stats.append(

@@ -7,13 +7,17 @@ import datetime as dt
 import hashlib
 import json
 import re
-import subprocess
 import sys
-import time
 from pathlib import Path
 from typing import Any
 
-import requests
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from rag_service.regulation_collectors.base import BaseCollector
+from rag_service.regulation_collectors.eu_rdf import (
+    EU_CELLAR_VARIANTS_SHORT,
+    ensure_eu_text,
+)
 
 
 DEFAULT_SUPPLEMENT_DIR = Path("data/regulation_supplements/2026-05-26_global_official_sources")
@@ -21,136 +25,21 @@ USER_AGENT = "Mozilla/5.0 (compatible; AttraxOfficialSourceCollector/1.0)"
 ECFR_DATE = "2026-05-21"
 
 
-class Collector:
+class Collector(BaseCollector):
     def __init__(self, supplement_dir: Path) -> None:
-        self.supplement_dir = supplement_dir
+        super().__init__(supplement_dir, USER_AGENT, timeout=60, max_retries=3)
         self.raw_dir = supplement_dir / "raw"
-        self.failures: list[dict[str, Any]] = []
-        self.session = requests.Session()
-        self.session.headers.update({"User-Agent": USER_AGENT, "Accept": "*/*"})
-
-    def download(
-        self,
-        url: str,
-        rel_path: str,
-        *,
-        force: bool = False,
-        min_bytes: int = 128,
-        fallback_curl: bool = True,
-        record_failure: bool = True,
-    ) -> dict[str, Any]:
-        path = self.supplement_dir / rel_path
-        if path.exists() and path.stat().st_size >= min_bytes and not force:
-            return {
-                "url": url,
-                "file": rel_path,
-                "status": "existing",
-                "bytes": path.stat().st_size,
-                "content_type": "",
-            }
-
-        path.parent.mkdir(parents=True, exist_ok=True)
-        last_error = ""
-        for attempt in range(3):
-            try:
-                response = self.session.get(url, timeout=60, allow_redirects=True)
-                if response.status_code >= 400:
-                    raise RuntimeError(f"HTTP {response.status_code}")
-                if len(response.content) < min_bytes:
-                    raise RuntimeError(f"too small: {len(response.content)} bytes")
-                path.write_bytes(response.content)
-                return {
-                    "url": url,
-                    "final_url": response.url,
-                    "file": rel_path,
-                    "status": "downloaded",
-                    "bytes": len(response.content),
-                    "content_type": response.headers.get("content-type", ""),
-                }
-            except Exception as exc:  # noqa: BLE001 - retained in collection report
-                last_error = str(exc)
-                time.sleep(1 + attempt)
-
-        if fallback_curl:
-            try:
-                command = [
-                    "curl.exe",
-                    "-L",
-                    "--fail",
-                    "--max-time",
-                    "90",
-                    "-o",
-                    str(path),
-                    url,
-                ]
-                result = subprocess.run(command, text=True, capture_output=True, check=False)
-                if result.returncode == 0 and path.exists() and path.stat().st_size >= min_bytes:
-                    return {
-                        "url": url,
-                        "file": rel_path,
-                        "status": "downloaded-curl",
-                        "bytes": path.stat().st_size,
-                        "content_type": "",
-                    }
-                last_error = (result.stderr or result.stdout or f"curl exit {result.returncode}")[-500:]
-            except Exception as exc:  # noqa: BLE001 - retained in collection report
-                last_error = str(exc)
-
-        if record_failure:
-            self.failures.append({"url": url, "file": rel_path, "error": last_error})
-        return {"url": url, "file": rel_path, "status": "failed", "error": last_error}
 
     def ensure_eu_text(self, entry: dict[str, Any], celex: str, rdf_rel: str, xhtml_rel: str) -> None:
-        rdf_path = self.supplement_dir / rdf_rel
-        if not rdf_path.exists() or rdf_path.stat().st_size < 128:
-            self.download(f"https://publications.europa.eu/resource/celex/{celex}", rdf_rel, min_bytes=500)
-
-        rdf_text = rdf_path.read_text(encoding="utf-8", errors="ignore")
-        cellar_uuid = None
-        descriptions = re.finditer(
-            r'<rdf:Description rdf:about="http://publications\.europa\.eu/resource/cellar/([^"]+)">(.*?)</rdf:Description>',
-            rdf_text,
-            flags=re.S,
-        )
-        for match in descriptions:
-            body = match.group(2)
-            same_as = f'owl:sameAs rdf:resource="http://publications.europa.eu/resource/celex/{celex}"'
-            if same_as in body:
-                cellar_uuid = match.group(1)
-                break
-
-        if not cellar_uuid:
-            self.failures.append(
-                {
-                    "url": entry["source_url"],
-                    "file": xhtml_rel,
-                    "error": f"could not resolve Cellar UUID for {celex}",
-                }
-            )
-            return
-
-        for variant in ("0006.03", "0006.02", "0001.03", "0001.02", "0002.03", "0002.02", "0003.03", "0003.02"):
-            content_url = f"https://publications.europa.eu/resource/cellar/{cellar_uuid}.{variant}/DOC_1"
-            result = self.download(
-                content_url,
-                xhtml_rel,
-                force=not (self.supplement_dir / xhtml_rel).exists(),
-                min_bytes=1000,
-                fallback_curl=False,
-                record_failure=False,
-            )
-            if result["status"] in {"downloaded", "existing"}:
-                entry["content_url"] = content_url
-                if xhtml_rel not in entry["files"]:
-                    entry["files"].append(xhtml_rel)
-                return
-
-        self.failures.append(
-            {
-                "url": entry["source_url"],
-                "file": xhtml_rel,
-                "error": f"could not download XHTML for {celex} cellar {cellar_uuid}",
-            }
+        ensure_eu_text(
+            self,
+            entry,
+            celex,
+            rdf_rel,
+            xhtml_rel,
+            min_bytes_for_rdf=128,
+            variants=EU_CELLAR_VARIANTS_SHORT,
+            use_eurlex_fallback=False,
         )
 
     def build_manifest(self) -> dict[str, Any]:
@@ -163,12 +52,11 @@ class Collector:
                 raw_file_set.add(rel_path)
                 path = self.supplement_dir / rel_path
                 if not path.exists() or path.stat().st_size == 0:
-                    self.failures.append(
-                        {
-                            "entry_id": manifest_entry["id"],
-                            "file": rel_path,
-                            "error": "missing or empty file referenced by manifest",
-                        }
+                    self.record_failure(
+                        url="",
+                        file=rel_path,
+                        error="missing or empty file referenced by manifest",
+                        entry_id=manifest_entry["id"],
                     )
                     continue
                 stats.append(
