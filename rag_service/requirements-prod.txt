@@ -1,15 +1,61 @@
-fastapi==0.109.0
-uvicorn[standard]==0.43.0
-python-dotenv==1.2.2
-python-multipart==0.0.22
+# =============================================================================
+# Attrax RAG Service — Production dependencies (P0-3)
+# =============================================================================
+# 用于生产部署 / Docker 构建。
+# 与 requirements.txt（开发/分析环境全量）分离，避免把 dev/eval 工具带入 prod。
+#
+# 安装：
+#   pip install -r rag_service/requirements-prod.txt
+#
+# Docker（rag_service/Dockerfile 已使用此文件）。
+# =============================================================================
+
+# ── Web 框架 / 服务器 ────────────────────────────────────────────────────────
+fastapi==0.115.6             # >= 0.115.0（修复 CVE-2024-47874 及之前问题）
+uvicorn[standard]==0.32.1    # >= 0.30.0
+starlette==0.41.3            # >= 0.40.0（修复 CVE-2024-47874 等）
+
+# ── 配置 / 数据校验 ──────────────────────────────────────────────────────────
 pydantic==2.12.5
 pydantic-settings==2.13.1
+pydantic_core==2.41.5
+python-dotenv==1.2.2
 
+# ── 表单 / 文件上传 ──────────────────────────────────────────────────────────
+python-multipart==0.0.20     # >= 0.0.20（修复 0.0.18 之前的 DoS 漏洞）
+
+# ── LangGraph / LangChain（编排） ─────────────────────────────────────────────
 langgraph==1.1.6
-openai==2.33.0
+langchain-core==1.2.5
 
+# ── 检索：向量 ───────────────────────────────────────────────────────────────
 faiss-cpu==1.12.0
 numpy==1.26.4
+
+# ── 检索：稀疏 ───────────────────────────────────────────────────────────────
 jieba==0.42.1
 rank-bm25==0.2.2
-pdfplumber==0.11.8
+
+# ── 文档解析 ─────────────────────────────────────────────────────────────────
+pdfplumber==0.11.8           # PDF 解析（main.py 中动态 import）
+python-docx==1.2.0           # DOCX 解析（docx_parser.py）
+beautifulsoup4==4.14.3       # HTML 解析（html_parser.py）
+lxml==6.0.2                  # bs4 后端（html_parser.py 使用 lxml parser）
+
+# ── XXE 防护（合规） ─────────────────────────────────────────────────────────
+defusedxml==0.7.1            # 替代 xml.etree.ElementTree，防 XXE 攻击
+
+# ── LLM / Embedding（Prod 通过 urllib 调用 mimoTalk/ModelScope/Ollama） ─────
+requests==2.32.5             # 内部辅助（如 regulation_collectors 调 PowerShell/registry）
+
+# ── 可选 Embedder（Cohere，由 settings 控制） ────────────────────────────────
+cohere==6.1.0                # HybridRetriever 中作为可选 embedder（默认未启用）
+
+# ── 嵌入式并发 / 工具 ────────────────────────────────────────────────────────
+anyio==4.10.0                # FastAPI 内部依赖
+h11==0.16.0                  # uvicorn 内部依赖
+sniffio==1.3.1               # anyio 内部依赖
+
+# ── 系统 / 安全（传递依赖中含 CVE，固定安全版本） ──────────────────────────
+cryptography==43.0.5         # >= 43.0.5（修复 CVE-2024-26130 等）
+tornado==6.5.0               # >= 6.5.0（修复早期 WebSocket 拒绝服务问题）

@@ -3,13 +3,14 @@
  *
  * Flow:
  * 1. Parse images for Vision AI context (basic product info extraction)
- * 2. POST scan request to rag-service (localhost:8000)
+ * 2. POST scan request to rag-service (RAG_SERVICE_URL env, default localhost:8001)
  * 3. Poll session until ready
  * 4. Update session store with full report + agent_trace
  *
  * Fallback: if rag-service is unreachable, degrades to mock result so the
  * user still sees a valid report instead of a generic error.
  */
+import { z } from "zod";
 import { updateSession } from "@/lib/pipeline/session-store";
 import {
   createMockComplianceReportResult,
@@ -27,6 +28,33 @@ import type {
   ProfitReportResult,
 } from "@/lib/types";
 import { serverT } from "@/lib/server-i18n";
+
+const RagServiceResponseSchema = z.object({
+  status: z.enum(["PASS", "WARN", "REJECTED", "UNKNOWN"]),
+  report: z.string(),
+  agent_trace: z.array(z.record(z.string(), z.unknown())),
+  loop_count: z.number(),
+  documents: z
+    .array(
+      z.object({
+        id: z.string(),
+        doc_name: z.string(),
+        article_no: z.string(),
+        region: z.string(),
+        score: z.number(),
+      })
+    )
+    .optional(),
+  report_package: z.unknown().optional(),
+  reportPackage: z.unknown().optional(),
+});
+
+const ProfitReportResponseSchema = z.object({
+  status: z.string(),
+  report: z.string(),
+  product: z.string().optional(),
+  market: z.string().optional(),
+});
 
 function getRagServiceUrl(): string {
   const value = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
@@ -185,7 +213,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       throw new Error(`RAG_SERVICE_HTTP_${resp.status}`);
     }
 
-    ragResponse = (await resp.json()) as RagServiceResponse;
+    const parsed = RagServiceResponseSchema.safeParse(await resp.json());
+    if (!parsed.success) {
+      throw new Error(`RAG_SERVICE_INVALID_RESPONSE: ${parsed.error.message}`);
+    }
+    ragResponse = parsed.data as RagServiceResponse;
   } catch (err: unknown) {
     // rag-service unavailable — degrade gracefully to mock
     const isTimeout = err instanceof Error && err.name === "AbortError";
@@ -303,14 +335,21 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       }
 
       if (profitResp.ok) {
-        const raw = (await profitResp.json()) as { status: string; report: string; product: string; market: string };
-        profitReport = buildProfitReportFromMarkdown(
-          sessionId,
-          raw.report,
-          raw.product || category,
-          raw.market || markets[0] || "EU"
-        );
-        profitReports = [profitReport];
+        const rawParsed = ProfitReportResponseSchema.safeParse(await profitResp.json());
+        if (!rawParsed.success) {
+          console.warn(`Profit report response invalid: ${rawParsed.error.message}, using mock`);
+          profitReport = createMockProfitReport(sessionId);
+          profitReports = createMockProfitReports(sessionId);
+        } else {
+          const raw = rawParsed.data;
+          profitReport = buildProfitReportFromMarkdown(
+            sessionId,
+            raw.report,
+            raw.product || category,
+            raw.market || markets[0] || "EU"
+          );
+          profitReports = [profitReport];
+        }
       } else {
         // profit resp not ok — fall back to mock
         console.warn(`Profit report endpoint returned ${profitResp.status}, using mock`);

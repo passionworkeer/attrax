@@ -115,23 +115,26 @@ class ModelScopeEmbedder:
         """
         Embed a single query string with in-process cache.
         Cache hits skip both the 2s rate-limit delay and the HTTP round-trip.
+        Thread-safe: full read-call-write is serialized to prevent thundering-herd
+        API calls and cache poisoning from concurrent first-time requests.
         """
         key = _qcache_key(text)
         with _QUERY_CACHE_LOCK:
             if key in _QUERY_CACHE:
                 return list(_QUERY_CACHE[key])
 
-        self._rate_limit(2.0)
-        result = self._call_api(text)
-
+        # Cache miss: acquire lock for the full critical section so concurrent
+        # requests for the same key coalesce into a single API call.
         with _QUERY_CACHE_LOCK:
+            if key in _QUERY_CACHE:
+                return list(_QUERY_CACHE[key])
+            self._rate_limit(2.0)
+            result = self._call_api(text)
             if len(_QUERY_CACHE) >= _CACHE_MAX:
-                # Simple eviction: remove the first (oldest) entry
                 first_key = next(iter(_QUERY_CACHE))
                 del _QUERY_CACHE[first_key]
             _QUERY_CACHE[key] = tuple(result)
-
-        return result
+            return list(result)
 
     def embed_batch(self, texts: list[str], batch_size: int = 1) -> list[list[float]]:
         """

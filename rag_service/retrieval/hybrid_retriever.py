@@ -150,6 +150,13 @@ class HybridRetriever:
         self._chunks_loaded = False
         self._embedder = None
 
+        # ─── P0-2 fail-loud: dimension mismatch metrics ─────────────────────
+        # Track mismatch as an exposed metric so the silent-degradation failure
+        # mode is visible. Dense silently degrading to BM25 was a P0 issue:
+        # callers had no signal that dense retrieval was disabled.
+        self.dense_dim_mismatch_count: int = 0
+        self.dense_dim_mismatch_last: dict | None = None
+
     def load_chunks(self, chunks: list[dict]):
         """Load chunks into BM25 index."""
         if self.bm25:
@@ -189,16 +196,30 @@ class HybridRetriever:
         ed_dim = self.embedder_dim
         fs_dim = self.faiss_retriever.dim
         if ed_dim > 0 and fs_dim > 0 and ed_dim != fs_dim:
-            logger.warning(
-                f"Dimension mismatch: embedder={ed_dim}, Faiss={fs_dim}. "
-                "Skipping vector search (fallback to BM25)."
+            # P0-2 fix: previously this only logged a warning and returned [],
+            # causing dense retrieval to silently degrade to BM25-only. Surface
+            # the failure loudly (ERROR level) and bump an exposed counter so
+            # operators / health endpoints can detect the mismatch.
+            self.dense_dim_mismatch_count += 1
+            self.dense_dim_mismatch_last = {
+                "embedder_dim": ed_dim,
+                "faiss_dim": fs_dim,
+            }
+            logger.error(
+                "FAISS dense retrieval DISABLED: dimension mismatch "
+                "(embedder=%d, faiss=%d). This was previously a silent "
+                "fallback to BM25-only. Rebuild the FAISS index to match the "
+                "production embedder dim, or switch embedder. Mismatch #%d.",
+                ed_dim,
+                fs_dim,
+                self.dense_dim_mismatch_count,
             )
             return []
 
         try:
             return self.faiss_retriever.search(query_vec, top_k)
         except Exception as e:
-            logger.warning(f"Dense search failed: {e}")
+            logger.error(f"Dense search failed: {e}")
             return []
 
     def retrieve(

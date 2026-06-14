@@ -17,6 +17,17 @@ export async function GET(
   const { sessionId } = await context.params;
 
   if (sessionId === "demo") {
+    // Demo session is only available outside production environments. In
+    // production, force callers to use real sessions with valid access tokens.
+    if (process.env.NODE_ENV === "production") {
+      return fail(
+        {
+          code: "NOT_FOUND",
+          message: serverT("errors.sessionNotFound", "zh"),
+        },
+        { status: 404 }
+      );
+    }
     return ok({
       sessionId: "demo",
       status: "ready" as const,

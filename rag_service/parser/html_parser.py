@@ -22,6 +22,27 @@ NOISE_CLASSES = [
 ]
 
 
+def _escape_prompt_injection(text: str) -> str:
+    """
+    Escape prompt-injection patterns in extracted document text.
+
+    Defends against attempts to break out of <user_document> / <user_image>
+    XML wrappers used by the generator node. Conservative: only escapes
+    closing-tag-shaped fragments and special tokens, leaving normal text
+    content untouched.
+    """
+    if not text:
+        return text
+    text = text.replace("</user_document>", "&lt;/user_document&gt;")
+    text = text.replace("</user_image>", "&lt;/user_image&gt;")
+    text = text.replace("<|im_start|>", "&lt;|im_start|&gt;")
+    text = text.replace("<|im_end|>", "&lt;|im_end|&gt;")
+    text = text.replace("<|system|>", "&lt;|system|&gt;")
+    text = text.replace("<|user|>", "&lt;|user|&gt;")
+    text = text.replace("<|assistant|>", "&lt;|assistant|&gt;")
+    return text
+
+
 def read_html_file(file_path: str) -> Optional[str]:
     """Read HTML file with encoding fallback. Returns None on failure."""
     encodings = ["utf-8", "gbk", "gb2312", "gb18030", "latin-1"]
@@ -96,7 +117,8 @@ def html_to_text(content: str) -> str:
     text = soup.get_text(separator=" ")
     # Collapse whitespace
     text = re.sub(r"\s+", " ", text).strip()
-    return text
+    # Escape prompt-injection patterns so downstream LLM wrappers stay intact.
+    return _escape_prompt_injection(text)
 
 
 def parse_html(file_path: str) -> dict:
