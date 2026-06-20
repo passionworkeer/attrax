@@ -53,13 +53,21 @@ def load_processed_files(processed_dir: Path = PROCESSED_DIR) -> list[dict]:
             raw_text = data.get("rawText", "")
             if len(raw_text) < 100:
                 continue
+            # Region: prefer explicit JSON field, fall back to filename prefix
+            # so chunks get a meaningful region even when source JSON omits it.
+            region = (
+                data.get("region", "")
+                or data.get("metadata", {}).get("region", "")
+            )
+            if not region.strip():
+                region = _region_from_filename(f.name)
             docs.append({
                 "file_path": str(f),
                 "file_name": f.name,
                 "raw_text": raw_text,
                 "title": data.get("title", f.stem[:50]),
                 "doc_id": data.get("id", f.stem),
-                "region": data.get("region", data.get("metadata", {}).get("region", "")),
+                "region": region,
                 "metadata": data.get("metadata", {}),
             })
         except Exception as e:
@@ -67,6 +75,23 @@ def load_processed_files(processed_dir: Path = PROCESSED_DIR) -> list[dict]:
 
     logger.info(f"Loaded {len(docs)} documents with sufficient rawText")
     return docs
+
+
+def _region_from_filename(filename: str) -> str:
+    """
+    Derive a region tag from the file's leading prefix.
+
+    Patterns seen in data/corpus/processed/:
+      AE_*.json, CN_*.json, EU_Official_*.json   -> use prefix as-is
+      GCC_*.json, WIPO_*.json, Reference_*.json   -> use prefix as-is
+
+    The chunk's region field is only used by ``metadata_filter.chunk_matches``,
+    which does case-insensitive equality. GCC/WIPO/Reference chunks will only
+    surface when the user explicitly queries for those regions, which is the
+    correct behaviour (a WIPO treaty is not a specific market regulation).
+    """
+    head = filename.split("_", 1)[0]
+    return head.upper() if head else ""
 
 
 def chunk_documents(docs: list[dict]) -> list[dict]:
