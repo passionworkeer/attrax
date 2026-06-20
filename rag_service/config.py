@@ -31,3 +31,14 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+# ─── Bridge: settings → os.environ ───────────────────────────────────────────
+# ModelScopeEmbedder / mimoTalk clients read os.environ directly.
+# When .env is the only source (local builds, tests), Settings is populated
+# but os.environ is empty, so the embedder raises "MODELSCOPE_API_KEY is not
+# configured". In Docker, env vars are pre-set, so setdefault is a no-op.
+import os as _bridge
+_bridge.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
+_bridge.environ.setdefault("MIMOTALK_API_KEY", settings.mimotalk_api_key)
+_bridge.environ.setdefault("MIMOTALK_BASE_URL", settings.mimotalk_base_url)
+_bridge.environ.setdefault("MIMOTALK_MODEL", settings.mimotalk_model)

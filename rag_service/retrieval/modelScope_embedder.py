@@ -111,6 +111,42 @@ class ModelScopeEmbedder:
                 raise
         raise RuntimeError(f"Max retries exceeded for: {text[:50]}")
 
+    def _call_api_batch(self, texts: list[str]) -> list[list[float]]:
+        """Embed multiple texts in a single API call."""
+        cleaned_batch = [clean_text(t) for t in texts]
+        valid = [
+            (i, t[:MAX_TEXT_LEN])
+            for i, t in enumerate(cleaned_batch)
+            if not is_likely_binary(t) and len(t) >= MIN_TEXT_LEN
+        ]
+        if not valid:
+            return [[0.0] * self.DIM for _ in texts]
+
+        indices = [i for i, _ in valid]
+        batch_texts = [t for _, t in valid]
+
+        delay = 1.0
+        for attempt in range(8):
+            try:
+                resp = self.client.embeddings.create(
+                    model=self.MODEL,
+                    input=batch_texts,
+                    encoding_format="float",
+                )
+                out = [[0.0] * self.DIM for _ in texts]
+                for j, idx in enumerate(indices):
+                    out[idx] = resp.data[j].embedding
+                return out
+            except Exception as e:
+                err_str = str(e)
+                if "429" in err_str or "rate limit" in err_str.lower():
+                    logger.warning(f"Rate limited (batch), retry {attempt+1}/8 in {delay:.1f}s")
+                    time.sleep(delay)
+                    delay = min(delay * 2, 60)
+                    continue
+                raise
+        raise RuntimeError(f"Max retries exceeded for batch of {len(texts)} texts")
+
     def embed_query(self, text: str) -> list[float]:
         """
         Embed a single query string with in-process cache.
@@ -136,9 +172,16 @@ class ModelScopeEmbedder:
             _QUERY_CACHE[key] = tuple(result)
             return list(result)
 
-    def embed_batch(self, texts: list[str], batch_size: int = 1) -> list[list[float]]:
+    def embed_batch(self, texts: list[str], batch_size: int = 50) -> list[list[float]]:
         """
         Embed a batch of texts with retry/backoff.
+
+        Sends up to ``batch_size`` texts per API call (batch inference), which
+        drastically reduces the number of HTTP round-trips (from N to N/50) and
+        avoids aggressive API rate limits.  The default ``batch_size=50`` was
+        chosen because ModelScope's free tier throttles at ~350 requests per hour
+        per model, and 7170 chunks ÷ 50 ≈ 144 calls is well under that threshold.
+
         Returns zero vectors for chunks that permanently fail.
         """
         if not texts:
@@ -148,23 +191,24 @@ class ModelScopeEmbedder:
         failed = 0
         t0 = time.monotonic()
 
-        for i, text in enumerate(texts):
+        for i in range(0, len(texts), batch_size):
+            batch = texts[i : i + batch_size]
             self._rate_limit(2.0)
             try:
-                vec = self._call_api(text)
-                results.append(vec)
+                vecs = self._call_api_batch(batch)
+                results.extend(vecs)
             except Exception as e:
-                logger.warning(f"Chunk {i} failed ({e}), using zero vector")
-                results.append([0.0] * self.DIM)
-                failed += 1
+                logger.warning(f"Batch at {i} failed ({e}), using zero vectors")
+                results.extend([[0.0] * self.DIM for _ in batch])
+                failed += len(batch)
 
-            if (i + 1) % 50 == 0 or (i + 1) == len(texts):
+            if (i + batch_size) % 50 == 0 or (i + batch_size) >= len(texts):
                 elapsed = time.monotonic() - t0
-                rate = (i + 1) / elapsed if elapsed > 0 else 0
-                eta = (len(texts) - i - 1) / rate if rate > 0 else 0
+                rate = (i + batch_size) / elapsed if elapsed > 0 else 0
+                eta = (len(texts) - i - batch_size) / rate if rate > 0 else 0
                 logger.info(
-                    f"  Embedded {i+1}/{len(texts)} ({failed} failed, "
-                    f"{rate:.1f}/s, ETA {eta/60:.1f}min)"
+                    f"  Embedded {min(i + batch_size, len(texts))}/{len(texts)} "
+                    f"({failed} failed, {rate:.1f}/s, ETA {eta/60:.1f}min)"
                 )
 
         elapsed = time.monotonic() - t0
