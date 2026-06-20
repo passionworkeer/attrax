@@ -21,6 +21,7 @@
 - [前端扫描流程](#前端扫描流程)
 - [环境变量](#环境变量)
 - [开发指南](#开发指南)
+- [已知限制](#已知限制)
 
 ---
 
@@ -35,9 +36,9 @@
 | **欧盟 (EU)** | REACH、RoHS、GPSR、RED、DSA、DMA、GDPR、AI Act 等 | 4.7M 字符 |
 | **美国 (US)** | FCC、CPSIA、TSCA、DOT、UL 标准等 | 3.6M 字符 |
 | **中国 (CN)** | 出口管制法、两用物项、境外投资管理办法等 | 2.1M 字符 |
-| **中东/其他** | 阿联酋、沙迦、沙特、巴西、东南亚等 | 2M+ 字符 |
+| **中东/其他** | 阿联酋、沙特、巴西、东南亚等 | 2M+ 字符 |
 
-**总计 96 个法规文件，12M+ 字符，覆盖消费电子、玩具、纺织品、电池等多个品类。**
+**总计 200+ 已处理 JSON，覆盖消费电子、玩具、纺织品、电池等多个品类。**
 
 ### 快速精准的风险识别
 
@@ -73,7 +74,7 @@
 │                                                          │
 │  ┌────────────────────────────────────────────────────┐  │
 │  │         LangGraph Agentic RAG Pipeline              │  │
-│  │                                                   │  │
+│  │                                                    │  │
 │  │  Vision → QueryPlanner → [EU/US/CN]  → Synthesis   │  │
 │  │                          Parallel Retrieve        │  │
 │  │                                    ↓               │  │
@@ -81,7 +82,7 @@
 │  │                                    ↓               │  │
 │  │                              Generator             │  │
 │  │                                    ↓               │  │
-│  │                           NLI Citation Verifier   │  │
+│  │                           NLI Citation Verifier    │  │
 │  │                                    ↓               │  │
 │  │                      PASS / WARN / REJECTED        │  │
 │  └────────────────────────────────────────────────────┘  │
@@ -115,9 +116,10 @@
 | FastAPI | 0.109.0 | HTTP 服务框架 |
 | LangGraph | 1.1.6 | Agent 编排（Send fan-out 多市场并行） |
 | FAISS | 1.12.0 | 本地向量检索（IndexFlatIP） |
-| ModelScope Qwen3-Embedding | 0.6B | API Embedding（1024 维） |
+| ModelScope Qwen3-Embedding | 0.6B | API Embedding（1024 维，生产路径） |
+| Ollama nomic-embed-text | - | 本地 Embedding（768 维，fallback） |
 | jieba | 0.42.1 | 中文分词（BM25） |
-| Anthropic SDK | 0.91.0 | mimoTalk LLM（Vision + 生成） |
+| Anthropic SDK | 0.91.0 | MiniMax-M3 LLM（Vision + 生成，端点 api.minimaxi.com） |
 | pdfplumber | 0.11.8 | PDF 解析 |
 | Docker + Docker Compose | - | 容器化部署 |
 
@@ -129,13 +131,15 @@
 
 本项目采用**多层检索 + 动态降级**的 RAG 架构设计，在保证精度的同时最大化可用性：
 
-#### 1. API-only Embedding 策略
+#### 1. API-only Embedding 策略（生产路径）
 
 ```
-ModelScopeEmbedder (Qwen3-Embedding API)
-         ↓ 云端 API，1024 维
-BM25 fallback
-         ↓ API 不可用时保持基础召回
+ModelScopeEmbedder (Qwen3-Embedding API, 1024 维)
+         ↓ 云端 API 不可用
+Ollama nomic-embed-text (768 维，本地 fallback)
+         ↓ 仍不可用
+BM25 (jieba 中文分词 + 英文词项保护)
+         ↓ 基础召回兜底
 ```
 
 **优势**：生产环境无需宿主机模型服务，部署路径统一，问题定位更直接。
@@ -148,12 +152,7 @@ BM25 fallback
 - **Child Chunk**（200-300 tokens）：按 Article/Section 边界切分，用于精确向量检索
 - **Parent Chunk**（800-1000 tokens）：2-4 个相邻 Article 组合，用于 LLM 完整上下文
 
-**Contextual Prepending**：每个 Child Chunk 在 embedding 前拼接法规名和条款编号前缀，提升语义召回精度：
-
-```
-[REACH (EC) 1907/2006] [第VIII章 注册] [Article 22 聚合物的注册要求]
-Article 22 原文内容...
-```
+**Contextual Prepending**：每个 Child Chunk 在 embedding 前拼接法规名和条款编号前缀，提升语义召回精度。
 
 #### 3. 混合检索：Dense + BM25 + RRF
 
@@ -212,7 +211,7 @@ QueryPlanner → [EU] → Fan-out
 
 | 维度 | 本项目方案 | 传统方案 |
 |------|-----------|---------|
-| Embedding | ModelScope API-only + BM25 fallback | 仅 API |
+| Embedding | ModelScope API → Ollama → BM25 多级降级 | 仅 API |
 | Rerank | 已实现但未接入管线（cohere_reranker.py 存在，未调用） | 单一向量检索 |
 | 分块 | Parent-Child + 法律条款边界 | 固定 token |
 | 融合 | RRF (k=25) + Must-Check | 单一向量检索 |
@@ -230,7 +229,7 @@ QueryPlanner → [EU] → Fan-out
 - **Python** 3.10+
 - **npm / yarn / pnpm / bun**
 - 可选：**Docker + Docker Compose**（RAG Service 容器化）
-- 必需：mimoTalk API Key + ModelScope API Key（非 Demo 模式）
+- 必需：MiniMax-M3 API Key + ModelScope API Key（非 Demo 模式）
 
 ### 1. 安装前端依赖
 
@@ -248,12 +247,17 @@ cp .env.local.example .env.local
 编辑 `.env.local`，填入必要的 API Key：
 
 ```env
-# mimoTalk API（主要 LLM，用于 Vision 分析 + 报告生成）
-MIMOTALK_API_KEY=your_mimotalk_api_key
-MIMOTALK_BASE_URL=https://token-plan-sgp.xiaomimimo.com/anthropic/v1
+# MiniMax-M3（主要 LLM，用于 Vision 分析 + 报告生成）
+MIMOTALK_API_KEY=your_minimax_api_key
+MIMOTALK_BASE_URL=https://api.minimaxi.com/anthropic/v1
+MIMOTALK_MODEL=MiniMax-M3
 
-# ModelScope API（API embedding）
+# ModelScope API（生产 Embedding 路径）
 MODELSCOPE_API_KEY=your_modelscope_api_key
+
+# Ollama（本地 Embedding fallback，可选）
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_EMBED_MODEL=nomic-embed-text
 
 # RAG Service（默认端口 8001）
 RAG_SERVICE_URL=http://localhost:8001
@@ -270,7 +274,7 @@ DAILY_FREE_SCAN_LIMIT=3
 
 ```bash
 # 方式 A：使用批处理脚本
-scripts\start_rag.bat
+start-rag.bat
 
 # 方式 B：手动启动
 D:\python\python.exe -m uvicorn rag_service.main:app --reload --port 8001
@@ -296,92 +300,130 @@ attrax/
 ├── app/                          # Next.js App Router
 │   ├── page.tsx                  # 首页 (Landing)
 │   ├── layout.tsx                # 根布局
+│   ├── [locale]/page.tsx         # i18n 变体
 │   ├── upload/page.tsx           # 图片上传页
 │   ├── burning/[sessionId]/      # 扫描中页面
 │   ├── result/[sessionId]/       # 扫描结果页
-│   └── api/scan/                 # API 路由
-│       ├── route.ts              # POST /api/scan — 创建扫描会话
-│       └── [sessionId]/route.ts  # GET /api/scan/[sessionId] — 轮询状态
+│   ├── regulations/page.tsx      # 法规更新列表
+│   ├── trace/[sessionId]/        # Agent 轨迹页
+│   ├── roadmap/[sessionId]/      # 合规路线图页
+│   └── api/                      # API 路由
+│       ├── session-access.ts     # 会话 token 校验
+│       ├── scan/                 # POST 创建扫描 / GET 轮询状态
+│       ├── regulations/updates/  # GET 法规更新
+│       ├── trace/[sessionId]/    # GET Agent 轨迹
+│       ├── roadmap/[sessionId]/  # GET 合规路线图
+│       └── health/               # GET 健康检查
 │
 ├── components/                   # UI 组件
-│   ├── ui/                       # shadcn/ui 基础组件
-│   ├── upload/                   # 上传相关
-│   ├── burning/                  # 扫描中相关
-│   └── result/                   # 结果展示
+│   ├── ui/                       # shadcn/ui 基础组件（11 个）
+│   ├── upload/UploadForm.tsx     # 上传表单
+│   ├── burning/BurningAnimation.tsx
+│   ├── result/                   # 结果展示（含 ProfitReportView、AgentTraceView）
+│   └── trace/                    # 轨迹可视化
+│       ├── AgentDecisionTree.tsx
+│       └── ComplianceTimeline.tsx
 │
 ├── lib/                          # 核心库
-│   ├── schemas.ts                # Zod 验证 schema（StartScanRequestSchema 等）
-│   ├── types.ts                  # TypeScript 类型定义（Market, ProductCategory, ScanStatus）
+│   ├── types.ts                  # TypeScript 类型定义
+│   ├── schemas.ts                # Zod 验证 schema
+│   ├── constants.ts              # 共享常量（超时/限额/限流）
+│   ├── api-response.ts           # API 响应信封
+│   ├── i18n.tsx                  # 前端 i18n Provider
+│   ├── server-i18n.ts            # 服务端 i18n
+│   ├── rate-limit.ts             # 限流
+│   ├── upload-validation.ts      # 上传文件校验
+│   ├── report-localization.ts    # 报告字段本地化
+│   ├── report-export.ts          # 报告导出入口
+│   ├── report-export-modules/    # 报告导出实现（compliance/profit/decision/roadmap）
 │   ├── pipeline/
 │   │   ├── scan.ts               # 扫描管线（调用 RAG 服务，端口 8001）
-│   │   └── session-store.ts      # 会话存储（globalThis.__scanStore + 文件持久化，TTL 1小时）
-│   ├── mock/
-│   │   └── scan-result.ts        # Demo 模式模拟数据
-│   └── hooks/
-│       └── useScanPolling.ts     # 轮询 hook
+│   │   ├── session-store.ts      # 会话存储（globalThis + 文件，TTL 1小时）
+│   │   ├── scan-queue.ts         # 扫描任务队列（持久化）
+│   │   ├── session-auth.ts       # 会话访问 token
+│   │   ├── profit-report.ts      # 成本利润报告
+│   │   └── report-package.ts     # 报告包结构
+│   ├── mock/scan-result.ts       # Demo 模式模拟数据
+│   └── hooks/useScanPolling.ts   # 轮询 hook
 │
 ├── rag_service/                  # Python RAG 服务（FastAPI，端口 8001）
-│   ├── main.py                   # FastAPI 入口，/scan + /health
-│   ├── config.py                 # 配置管理（settings）
-│   ├── parser/                   # 文档解析
-│   │   ├── docx_parser.py        # DOCX 解析
-│   │   └── html_parser.py        # HTML 解析
-│   ├── chunker/                  # Parent-Child 分块
-│   │   └── legal_chunker.py      # 法律条款分块
-│   ├── retrieval/                 # 混合检索管线
+│   ├── main.py                   # FastAPI 入口（/scan, /health, /profit-report）
+│   ├── config.py                 # 配置管理
+│   ├── Dockerfile                # 容器化
+│   ├── parser/                   # 文档解析（docx/html）
+│   ├── chunker/legal_chunker.py  # Parent-Child 分块
+│   ├── retrieval/                # 混合检索管线
 │   │   ├── faiss_retriever.py    # FAISS 向量检索
 │   │   ├── bm25_retriever.py     # BM25 稀疏检索
-│   │   ├── hybrid_retriever.py   # 混合检索主类（ModelScope API + BM25）
+│   │   ├── hybrid_retriever.py   # 混合检索主类
 │   │   ├── fusion.py             # RRF 融合
-│   │   ├── must_check.py        # 强制注入规则
+│   │   ├── must_check.py         # 强制注入规则
+│   │   ├── metadata_filter.py    # 元数据过滤
 │   │   ├── modelScope_embedder.py # ModelScope API embedding（生产路径）
-│   │   └── cohere_reranker.py   # ⚠️ 已实现但未接入管线
-│   ├── verify/                   # NLI 引用验证
-│   │   └── citation_verifier.py  # 归因分数软门
-│   ├── generate/                 # 报告生成
-│   │   └── report_generator.py   # mimoTalk 报告生成器
+│   │   ├── ollama_embedder.py    # Ollama embedding（fallback）
+│   │   ├── cohere_embedder.py    # Cohere embedding（默认未启用）
+│   │   └── cohere_reranker.py    # ⚠️ 已实现但未接入管线
+│   ├── verify/citation_verifier.py  # NLI 归因分数软门
+│   ├── generate/
+│   │   ├── report_generator.py   # MiniMax-M3 报告生成器
+│   │   └── prebuilt_profit_data.py
+│   ├── schemas/report_package.py # 报告包 Pydantic Schema
 │   ├── orchestrator/             # LangGraph Agent 编排
-│   │   ├── state.py             # GraphState 定义
-│   │   ├── graph.py             # StateGraph 组装
-│   │   └── nodes/               # 8 个 Graph Node
-│   │       ├── vision.py        # Vision 分析（mimoTalk 多模态）
-│   │       ├── query_planner.py # 查询规划
-│   │       ├── retriever.py     # fan_out + retrieve 节点
-│   │       ├── synthesis.py     # RRF 融合 + must_check
-│   │       ├── generator.py     # 报告生成
-│   │       ├── verifier.py      # NLI 验证
-│   │       ├── refiner.py       # HyDE 查询精化
-│   │       └── __init__.py
+│   │   ├── state.py              # GraphState 定义
+│   │   ├── graph.py              # StateGraph 组装（8 节点）
+│   │   └── nodes/                # 节点实现
+│   │       ├── vision.py
+│   │       ├── query_planner.py
+│   │       ├── retriever.py
+│   │       ├── synthesis.py
+│   │       ├── generator.py
+│   │       ├── verifier.py
+│   │       └── refiner.py
+│   ├── regulation_collectors/    # 法规离线采集（base/eu_rdf/powershell_fetcher）
+│   ├── eval/                     # 检索评估（metrics/run_eval）
 │   └── tests/                    # Python 单元测试（pytest）
 │
 ├── scripts/                      # 运维脚本
-│   ├── build_corpus.py          # 批量构建语料库
-│   ├── build_faiss.py           # FAISS 索引构建
-│   ├── parse_regulation.py      # 法规解析
-│   └── start_rag.bat            # RAG 服务启动脚本
+│   ├── build_faiss.py            # FAISS 索引构建（主）
+│   ├── collect_*.py              # 5 个法规离线采集脚本
+│   ├── ingest_regulation_supplements.py
+│   ├── diff_regulation_manifests.py
+│   ├── report_regulation_coverage.py
+│   ├── evaluate_regulation_retrieval.py
+│   ├── preflight-deploy.mjs
+│   ├── run-pytest.mjs
+│   ├── start_rag.bat
+│   └── sync-data-to-server.sh
 │
 ├── data/                         # 数据文件
-│   ├── faiss/                   # FAISS 索引
-│   │   ├── legal_chunks.index   # 26MB 向量索引
-│   │   └── legal_chunks_meta.json # 15MB 元数据
-│   └── corpus/                  # 预解析语料库
-│       ├── processed/           # 已处理文件（200+ JSON）
-│       └── screenshot_pending/  # ⚠️ 待 OCR 处理（截屏 PDF）
+│   ├── faiss/                    # FAISS 索引
+│   ├── corpus/                   # 法规语料（按地域 + processed/）
+│   ├── regulation_supplements/   # 法规补充包（6 批次 + manifest + audit）
+│   ├── regulation_reports/       # 法规覆盖率报告
+│   ├── sessions/                 # 会话文件
+│   └── scan-queue/               # 扫描任务队列
 │
-├── docs/                         # 文档
-│   ├── RAG-ARCHITECTURE-v3.md   # RAG 架构文档（当前）
-│   ├── RAG-ARCHITECTURE-v2-LEGACY.md  # v2 旧版（已归档）
-│   ├── IMPLEMENTATION-PLAN-v3.md # 实施计划
-│   ├── PRD.md                   # 产品需求文档
-│   ├── PROJECT.md               # 项目描述
-│   └── PROJECT-STATUS.md        # 上线评估报告
+├── tests/                        # 前端测试
+│   ├── unit/                     # Vitest 单元测试（30+ 文件）
+│   ├── e2e/                      # Playwright E2E 测试
+│   ├── fixtures/                 # 测试数据
+│   ├── pressure/                 # 压力测试
+│   └── setup.ts
 │
-├── tests/                        # 测试
-│   ├── unit/                    # Vitest 单元测试
-│   ├── e2e/                     # Playwright E2E 测试
-│   └── smoke-tests.mjs         # Smoke 测试脚本
+├── docs/                         # 项目文档
+│   ├── README.md                 # 文档索引
+│   ├── PROJECT.md                # 项目描述
+│   ├── PRD.md                    # 产品需求
+│   ├── PROJECT-STATUS.md         # 上线评估
+│   ├── RAG-ARCHITECTURE-v3.md    # RAG 架构（当前）
+│   ├── DOCUMENT-PIPELINE.md      # 语料库构建
+│   ├── DEPLOYMENT.md             # 部署指南
+│   ├── plans/                    # 修复计划
+│   └── superpowers/specs/        # 架构设计 spec
 │
-└── docker-compose.yml            # 容器化部署（8001:8000 端口映射）
+├── docker-compose.yml            # 容器化部署（8001:8000 端口映射）
+├── start-all.bat                 # 一键启动
+└── start-rag.bat                 # 仅启动 RAG
 ```
 
 ---
@@ -424,30 +466,7 @@ attrax/
 | `agent_trace` | array | 各节点执行轨迹（调试用） |
 | `loop_count` | int | 重生成循环次数 |
 | `documents` | array | 检索到的相关法规片段（最多 15 条） |
-
-```json
-{
-  "status": "PASS",
-  "report": "## 合规要求\n\n根据 [REACH Article 22]...",
-  "agent_trace": [
-    {"node": "vision", "status": "done"},
-    {"node": "query_planner", "sub_queries_count": 3},
-    {"node": "retrieve", "total_docs": 20, "unique_docs": 15},
-    {"node": "synthesis", "status": "done"},
-    {"node": "generate", "chunks_count": 15},
-    {"node": "verify", "status": "PASS", "attribution_score": 0.95}
-  ],
-  "loop_count": 0,
-  "documents": [
-    {
-      "doc_name": "reach_regulation.json",
-      "article_no": "Article 22",
-      "chunk_id": "eu_reach_001",
-      "text": "Article 22 聚合物的注册要求..."
-    }
-  ]
-}
-```
+| `report_package` | object | 结构化报告包（决策/路线图/利润） |
 
 ### GET /health - 健康检查
 
@@ -478,7 +497,7 @@ attrax/
 
 `rag_service/retrieval/hybrid_retriever.py`
 
-生产路径使用 ModelScope API embedding；API 不可用时向量分支降级，BM25 仍可召回。
+生产路径使用 ModelScope API embedding（1024 维）；API 不可用时降级到 Ollama（768 维）；仍不可用时降级到 BM25。
 
 检索流程：
 1. Faiss Dense 检索（Top-50）
@@ -513,9 +532,9 @@ NLI 软门验证（归因分数）：
 
 `rag_service/orchestrator/graph.py`
 
-LangGraph StateGraph，支持：
+LangGraph StateGraph（8 节点），支持：
 - 多市场并行检索（Send() fan-out）
-- 最优 2 轮重检索循环（HyDE）
+- 最多 2 轮重检索循环（HyDE）
 - NLI 验证失败自动重生成
 
 ---
@@ -526,34 +545,33 @@ LangGraph StateGraph，支持：
 
 | 数据源 | 格式 | 数量 | 状态 |
 |--------|------|------|------|
-| EU 法规 PDF | PDF | 18 个 | ✅ 已处理 |
-| 合规产品 DOCX | DOCX | 9 个 | ✅ 已处理 |
-| HTML 法规 | HTML | 35+ 个 | ✅ 已处理 |
-| 其他市场法规 | 混合 | ~40 个 | ✅ 已处理 |
-| 截屏 PDF | PDF | ~20 个 | ⚠️ 待 OCR 处理 |
-| **processed 目录** | JSON | **200+ 个** | ✅ 已完成 |
+| 已处理法规 | JSON | ~140 个（`data/corpus/processed/`） | ✅ 已完成 |
+| EU 法规 | HTML | 6+ 个 | ✅ 已处理 |
+| 美国法规 | HTML | 1+ 个 | ✅ 已处理 |
+| 中国法规 | HTML | 10+ 个 | ✅ 已处理 |
+| 东南亚法规 | HTML | 5 国 10+ 个 | ✅ 已处理 |
+| 法规补充包 | HTML/PDF/DOCX/RDF | 6 批次 369 个原始文件 | ✅ 已处理 |
+| FAISS Chunks | 向量 | 7,170 个 | ✅ |
 
-> ⚠️ `data/corpus/screenshot_pending/` 下约 20 个 PDF 截图为待 OCR 处理状态。
-> ⚠️ `data/全部法规/` 和 `data/合规/` 为冗余副本，建议清理。
+> 数据目录结构详见 `data/corpus/manifest.json` 和 `data/regulation_supplements/README.md`。
 
 ### FAISS 索引
 
 - 位置：`data/faiss/legal_chunks.index`
 - 维度：1024（ModelScope Qwen3-Embedding）
-- 向量数：~15,000 个 Chunk
-- 存储大小：~26 MB
+- 向量数：~15,000 个 Chunk（`legal_chunks_meta.json` ~167 MB）
+- 存储大小：~29 MB（索引）+ ~167 MB（元数据）
 
 ### 语料库构建
 
-如需重新构建语料库：
+如需重建 FAISS 索引：
 
 ```bash
-# 解析法规文件
-D:\python\python.exe scripts/parse_regulation.py
-
-# 构建 FAISS 索引
-D:\python\python.exe scripts/build_faiss.py
+# 构建 FAISS 索引（主脚本）
+D:\python\python.exe scripts/build_faiss.py [--limit N]
 ```
+
+> ModelScope Embedding 限流 ~350 calls/h，构建脚本已用 50/batch 批量化。
 
 ---
 
@@ -568,6 +586,7 @@ D:\python\python.exe scripts/build_faiss.py
               ├─ 解析图片 → base64
               ├─ 解析文档 (PDF→base64, DOCX→mammoth, HTML→文本)
               ├─ 创建 session → session-store.ts
+              ├─ enqueueScan → scan-queue.ts（持久化任务）
               ├─ DEMO_MODE? → runDemoSimulation() [4.5s mock]
               └─ 否则 → runScan() → RAG Service (8001/scan)
               ↓ 返回 202 Accepted { sessionId }
@@ -588,11 +607,12 @@ D:\python\python.exe scripts/build_faiss.py
                   └─ false → LegacyResultView (JSON dump + 文档列表)
 ```
 
-### 会话存储（双层架构）
+### 会话存储（三层架构）
 
 - **内存 Map**：`globalThis.__scanStore` — 热读取，TTL 1 小时
 - **文件持久化**：`data/sessions/{sessionId}.json` — 进程重启可恢复
-- **过期清理**：启动时清理超过 SESSION_TTL_MS 的文件
+- **扫描队列**：`data/scan-queue/{jobId}.json` — 可恢复的扫描任务
+- **访问 token**：session 创建时生成 base64url token + SHA-256 哈希，跨标签页/刷新使用
 
 ### 关键代码位置
 
@@ -601,10 +621,12 @@ D:\python\python.exe scripts/build_faiss.py
 | 上传页面 | `app/upload/page.tsx` — 图片/文档选择，FormData 构建 |
 | API Route | `app/api/scan/route.ts` — POST 创建 session，GET 查询状态 |
 | 扫描管线 | `lib/pipeline/scan.ts` — 调用 RAG Service，超时 120s |
+| 任务队列 | `lib/pipeline/scan-queue.ts` — 持久化扫描任务 |
 | 会话存储 | `lib/pipeline/session-store.ts` — create/update/getSession |
+| 访问认证 | `lib/pipeline/session-auth.ts` — token 创建/哈希/校验 |
 | 轮询 Hook | `lib/hooks/useScanPolling.ts` — 800ms 轮询 + ease-out 动画 |
 | 扫描中页 | `app/burning/[sessionId]/page.tsx` — 进度条 + 阶段文字 |
-| 结果页 | `app/result/[sessionId]/page.tsx` — ComplianceReportView + LegacyResultView |
+| 结果页 | `app/result/[sessionId]/page.tsx` — 多视图分发 |
 | Mock 数据 | `lib/mock/scan-result.ts` — `mockScanResult` (USB 加湿器 Demo) |
 
 ### 评分等级映射
@@ -623,15 +645,18 @@ RAG Service 返回 `status` (PASS/WARN/REJECTED) → 前端映射为评分：
 
 ## 环境变量参考
 
-| 变量 | 默认值 | 说明 |
-|------|--------|------|
-| `MIMOTALK_API_KEY` | - | mimoTalk LLM API Key（必填） |
-| `MIMOTALK_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | mimoTalk 端点 |
-| `MIMOTALK_MODEL` | `mimo-v2.5` | 模型名称 |
-| `MODELSCOPE_API_KEY` | - | ModelScope Embedding API Key（必填，非 Demo） |
-| `RAG_SERVICE_URL` | `http://localhost:8001` | RAG 服务地址 |
-| `DEMO_MODE` | `false` | Demo 模式（使用 Mock 数据，无需 API Key） |
-| `DAILY_FREE_SCAN_LIMIT` | `3` | 每日免费扫描次数 |
+| 变量 | 默认值 | 必填 | 说明 |
+|------|--------|------|------|
+| `MIMOTALK_API_KEY` | - | 是 | MiniMax-M3 LLM API Key |
+| `MIMOTALK_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | MiniMax-M3 端点 |
+| `MIMOTALK_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
+| `MODELSCOPE_API_KEY` | - | 是（非 Demo） | ModelScope Embedding API Key |
+| `OLLAMA_BASE_URL` | `http://localhost:11434` | 否 | Ollama 地址 |
+| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | 否 | Ollama Embedding 模型 |
+| `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址 |
+| `DEMO_MODE` | `false` | 否 | Demo 模式（使用 Mock 数据，无需 API Key） |
+| `DAILY_FREE_SCAN_LIMIT` | `3` | 否 | 每日免费扫描次数 |
+| `VISION_PROVIDER` | `mimo` | 否 | Vision AI 提供商 |
 
 ---
 
@@ -663,12 +688,14 @@ npm run lint
 ruff check rag_service/
 ```
 
-### 添加新的市场法规
+### 重建 FAISS 索引
 
-1. 将法规文件放入 `data/corpus/` 对应目录
-2. 运行解析脚本：`python scripts/parse_regulation.py`
-3. 重建 FAISS 索引：`python scripts/build_faiss.py`
-4. 在 `rag_service/retrieval/must_check.py` 添加对应规则
+```bash
+# 解析后的 JSON 在 data/corpus/processed/
+D:\python\python.exe scripts/build_faiss.py --limit N
+```
+
+> ModelScope Embedding 限流 ~350 calls/h，构建脚本已用 50/batch 批量化。
 
 ### 添加 Must-Check 规则
 
@@ -694,23 +721,25 @@ RULES = {
 | 限制 | 说明 |
 |------|------|
 | **无持久化** | 会话仅存储 1 小时（内存 + 文件 TTL），无数据库 |
-| **无用户系统** | 无登录/注册/权限控制 |
+| **无用户系统** | 无登录/注册/权限控制（Demo 模式有访问 token 校验） |
 | **cohere_reranker 未接入** | `cohere_reranker.py` 已实现，管线中未调用 |
-| **截屏 PDF 待 OCR** | `data/corpus/screenshot_pending/` 下约 20 个截屏未处理 |
-| **数据冗余** | `data/全部法规/` 和 `data/合规/` 为冗余副本 |
+| **cohere_embedder 默认未启用** | 切到 ModelScope + Ollama 路径 |
+| **requirements.txt 冗余** | `rag_service/requirements.txt` 含 500+ 条，核心仅 20 个 |
+| **数据冗余** | 已清理 `data/全部法规/` 和 `data/合规/`（2026-05） |
+| **无多语言报告** | 报告目前仅中文输出 |
 
 ---
 
 ## 相关文档
 
 - [RAG 架构文档 v3](./docs/RAG-ARCHITECTURE-v3.md) - 详细技术架构说明（当前版本）
-- [RAG 架构文档 v2](./docs/RAG-ARCHITECTURE-v2-LEGACY.md) - 旧版架构（已归档）
-- [实施计划](./docs/IMPLEMENTATION-PLAN-v3.md) - 开发路线图
+- [修复路线图 2026-06-18](./docs/plans/ATTRAX_REMEDIATION_PLAN_2026-06-18.md) - 最新修复计划
 - [产品需求文档](./docs/PRD.md) - 产品功能规格
 - [项目描述](./docs/PROJECT.md) - 技术栈和目录结构
 - [上线评估报告](./docs/PROJECT-STATUS.md) - 项目完成度评估
+- [部署指南](./docs/DEPLOYMENT.md) - Docker Compose + 环境变量 + 健康检查
 
 ---
 
 **版本**：0.2.0
-**最后更新**：2026-05-07
+**最后更新**：2026-06-20
