@@ -31,7 +31,7 @@
 - **语言**：Python 3.10+
 - **向量检索**：FAISS（IndexFlatIP）+ BM25（jieba 分词）
 - **Embedding**：Ollama nomic-embed-text（本地，768维）→ ModelScope Qwen3-Embedding-0.6B（云端，1024维）
-- **LLM**：mimoTalk mimo-v2.5（Anthropic SDK）
+- **LLM**：MiniMax-M3（Anthropic SDK，兼容 MiniMax/anthropic 端点）
 - **PDF 解析**：pdfplumber
 - **目录**：`rag_service/`（FastAPI 服务）、`data/`（语料和索引）
 
@@ -136,7 +136,7 @@ attrax/
 │   ├── verify/
 │   │   └── citation_verifier.py  # NLI 引用验证（软门）
 │   ├── generate/
-│   │   └── report_generator.py  # mimoTalk 报告生成
+│   │   └── report_generator.py  # LLM 报告生成（Anthropic SDK）
 │   ├── chunker/
 │   │   └── legal_chunker.py     # Parent-Child 法律分块
 │   └── tests/             # pytest 单元测试
@@ -226,9 +226,9 @@ const StartScanRequestSchema = z.object({
 
 | 变量 | 默认值 | 必填 | 说明 |
 |------|--------|------|------|
-| `MIMOTALK_API_KEY` | - | 是 | mimoTalk LLM API Key |
-| `MIMOTALK_BASE_URL` | `https://token-plan-sgp.xiaomimimo.com/anthropic/v1` | 否 | mimoTalk 端点 |
-| `MIMOTALK_MODEL` | `mimo-v2.5` | 否 | 模型名称 |
+| `MIMOTALK_API_KEY` | - | 是 | LLM API Key（MiniMax-M3） |
+| `MIMOTALK_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
+| `MIMOTALK_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
 | `MODELSCOPE_API_KEY` | - | 否 | ModelScope Embedding API Key |
 | `OLLAMA_BASE_URL` | `http://localhost:11434` | 否 | Ollama 地址 |
 | `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | 否 | Ollama Embedding 模型 |
@@ -289,4 +289,4 @@ scripts\start_rag.bat         # 仅启动 RAG 服务
 
 ---
 
-*最后更新：2026-05-18*
+*最后更新：2026-06-19*
