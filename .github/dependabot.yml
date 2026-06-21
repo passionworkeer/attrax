@@ -1,0 +1,45 @@
+---
+# Attrax Dependabot config
+# Auto-PR security patches for npm + GitHub Actions.
+# Replaces the manual `npm audit fix` flow (which OOM'd the server
+# on 2026-06-21 when run with `npm ci --omit=dev`).
+#
+# With this enabled:
+# - Weekly scan of package.json + package-lock.json
+# - PRs grouped by ecosystem, limited to 5 open
+# - Auto-rebase enabled so we don't have to manually fix conflicts
+# - Ignores major version bumps (those need manual review + build test)
+# - `npm audit fix` runs only after the test suite + build pass in CI
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Asia/Shanghai"
+    open-pull-requests-limit: 5
+    rebase-strategy: "auto"
+    versioning-strategy: "increase"
+    groups:
+      patch-and-minor:
+        update-types: ["minor", "patch"]
+    ignore:
+      # Major bumps need manual rebuild + memory check (see RECOVERY.md).
+      # Past breakage: next.js major bumps have changed standalone build
+      # behavior, breaking deploys.
+      - dependency-name: "next"
+        update-types: ["major"]
+      - dependency-name: "react"
+        update-types: ["major"]
+      - dependency-name: "react-dom"
+        update-types: ["major"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    rebase-strategy: "auto"
