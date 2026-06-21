@@ -36,13 +36,15 @@ const RagServiceResponseSchema = z.object({
   loop_count: z.number(),
   documents: z
     .array(
-      z.object({
-        id: z.string(),
-        doc_name: z.string(),
-        article_no: z.string(),
-        region: z.string(),
-        score: z.number(),
-      })
+      z
+        .object({
+          id: z.string(),
+          doc_name: z.string().nullish(),
+          article_no: z.string().nullish(),
+          region: z.string().nullish(),
+          score: z.number().nullish(),
+        })
+        .passthrough()
     )
     .optional(),
   report_package: z.unknown().optional(),
@@ -221,6 +223,13 @@ export async function runScan(sessionId: string, input: RunScanInput) {
   } catch (err: unknown) {
     // rag-service unavailable — degrade gracefully to mock
     const isTimeout = err instanceof Error && err.name === "AbortError";
+    const detail = err instanceof Error ? err.message : String(err);
+    const errorCode = isTimeout
+      ? "RAG_SERVICE_TIMEOUT"
+      : detail.startsWith("RAG_SERVICE_")
+        ? detail.split(":")[0]
+        : "RAG_SERVICE_UNAVAILABLE";
+    console.error(`[scan ${sessionId}] rag-service call failed: ${detail}`);
     updateSession(sessionId, {
       progress: 70,
       stageText: isTimeout ? stages.backendTimeout : stages.backendUnavailable,
@@ -232,7 +241,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       result: { ...createMockComplianceReportResult(sessionId), source: "fallback" },
       profitReport: createMockProfitReport(sessionId),
       profitReports: createMockProfitReports(sessionId),
-      error: isTimeout ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
+      error: errorCode,
     });
     return;
   }

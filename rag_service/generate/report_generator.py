@@ -138,12 +138,38 @@ def _parse_json_object(text: str) -> dict | None:
             lines = lines[:-1]
         raw = "\n".join(lines).strip()
 
+    # Strip leading language hint on first fenced line, e.g. ```json
+    if raw.lower().startswith("json"):
+        raw = raw[4:].lstrip()
+
+    # Strip a leading BOM that some LLMs prepend
+    if raw.startswith("﻿"):
+        raw = raw[1:]
+
     try:
         data = json.loads(raw)
         return data if isinstance(data, dict) else None
     except Exception:
         pass
 
+    # Try to find the largest balanced top-level JSON object.
+    decoder = json.JSONDecoder()
+    best_obj: dict | None = None
+    best_len = 0
+    for i, ch in enumerate(raw):
+        if ch != "{":
+            continue
+        try:
+            obj, end_idx = decoder.raw_decode(raw, i)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(obj, dict) and end_idx - i > best_len:
+            best_obj = obj
+            best_len = end_idx - i
+    if best_obj is not None:
+        return best_obj
+
+    # Last-resort: substring between first { and last }.
     start = raw.find("{")
     end = raw.rfind("}")
     if start >= 0 and end > start:
@@ -229,7 +255,7 @@ class ReportGenerator:
             else ""
         )
 
-        system = REPORT_PACKAGE_SYSTEM_PROMPT.format(source_chunks=source_context)
+        system = REPORT_PACKAGE_SYSTEM_PROMPT.replace("{source_chunks}", source_context)
         user_prompt = (
             f"产品类型：{product}\n"
             f"目标市场：{market}\n"
@@ -242,7 +268,7 @@ class ReportGenerator:
         try:
             raw = self._generate_mimotalk(system, user_prompt, max_tokens)
         except Exception as e:
-            logger.error(f"mimoTalk package generation failed: {e}")
+            logger.error(f"mimoTalk package generation failed: {e!r}")
             return self._fallback_report_package(
                 product=product,
                 market=market,
@@ -504,7 +530,7 @@ class ReportGenerator:
             f"{doc_section}"
         )
 
-        system = SYSTEM_PROMPT.format(source_chunks=source_context)
+        system = SYSTEM_PROMPT.replace("{source_chunks}", source_context)
 
         try:
             return self._generate_mimotalk(system, user_prompt, max_tokens)
@@ -534,7 +560,7 @@ class ReportGenerator:
             },
         )
 
-        with urllib.request.urlopen(req, timeout=60) as r:
+        with urllib.request.urlopen(req, timeout=180) as r:
             data = json.loads(r.read())
             content = data.get("content", [{}])[0].get("text", "")
             if content and content.strip():
@@ -661,11 +687,12 @@ class ReportGenerator:
         """调用 LLM 从 chunks 中提取利润数据填充模板占位符。失败返回 None。"""
         source_context = _build_profit_context(chunks, product_type)
 
-        system = PROFIT_SYSTEM_PROMPT.format(
-            product_name=product_type,
-            product_type=product_type,
-            market=market,
-            source_chunks=source_context,
+        system = (
+            PROFIT_SYSTEM_PROMPT
+            .replace("{product_name}", product_type)
+            .replace("{product_type}", product_type)
+            .replace("{market}", market)
+            .replace("{source_chunks}", source_context)
         )
 
         user_prompt = (

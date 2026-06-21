@@ -47,6 +47,7 @@ defusedxml==0.7.1            # 替代 xml.etree.ElementTree，防 XXE 攻击
 
 # ── LLM / Embedding（Prod 通过 urllib 调用 mimoTalk/ModelScope/Ollama） ─────
 requests==2.32.5             # 内部辅助（如 regulation_collectors 调 PowerShell/registry）
+openai>=2.0.0                # ModelScopeEmbedder 通过 OpenAI 兼容 SDK 调 Qwen3-Embedding API
 
 # ── 可选 Embedder（Cohere，由 settings 控制） ────────────────────────────────
 cohere==6.1.0                # HybridRetriever 中作为可选 embedder（默认未启用）
@@ -57,5 +58,5 @@ h11==0.16.0                  # uvicorn 内部依赖
 sniffio==1.3.1               # anyio 内部依赖
 
 # ── 系统 / 安全（传递依赖中含 CVE，固定安全版本） ──────────────────────────
-cryptography==43.0.5         # >= 43.0.5（修复 CVE-2024-26130 等）
+cryptography==43.0.3         # >= 42.0.4（修复 CVE-2024-26130 等；43.0.5 在镜像里不存在）
 tornado==6.5.0               # >= 6.5.0（修复早期 WebSocket 拒绝服务问题）
