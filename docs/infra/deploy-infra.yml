@@ -1,0 +1,199 @@
+---
+# Attrax production server config deploy
+# Usage: ansible-playbook -i inventory deploy-infra.yml --ask-become-pass
+#
+# Inventory example (inventory):
+#   [attrax_prod]
+#   203.0.113.10 ansible_user=root ansible_become_password=YOUR_SUDO_PASSWORD
+#
+# Reads configs from docs/infra/ relative to playbook
+
+- name: Attrax server hardening
+  hosts: attrax_prod
+  become: true
+  vars:
+    attrax_user: admin
+    attrax_log_dir: /opt/attrax/logs
+    backup_script_src: "../../docs/infra/backup-data.sh"
+    uptime_script_src: "../../docs/infra/uptime-check.sh"
+
+  tasks:
+    - name: Ensure attrax log dir exists with correct perms
+      ansible.builtin.file:
+        path: "{{ attrax_log_dir }}"
+        state: directory
+        owner: "{{ attrax_user }}"
+        group: "{{ attrax_user }}"
+        mode: '0750'
+
+    - name: Deploy nginx main config additions (server_tokens, buffer/timing)
+      ansible.builtin.copy:
+        src: "../../docs/infra/nginx-nginx.conf"
+        dest: /etc/nginx/nginx.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload nginx
+
+    - name: Deploy attrax nginx site
+      ansible.builtin.copy:
+        src: "../../docs/infra/nginx-attrax-site.conf"
+        dest: /etc/nginx/sites-available/attrax
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload nginx
+
+    - name: Deploy custom error pages
+      ansible.builtin.copy:
+        src: "../../docs/infra/nginx-custom-error-pages.conf"
+        dest: /etc/nginx/custom-error-pages.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload nginx
+
+    - name: Deploy sysctl hardening
+      ansible.builtin.copy:
+        src: "../../docs/infra/sysctl-99-attrax-hardening.conf"
+        dest: /etc/sysctl.d/99-attrax-hardening.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload sysctl
+
+    - name: Deploy sshd hardening
+      ansible.builtin.copy:
+        src: "../../docs/infra/sshd-00-attrax-hardening.conf"
+        dest: /etc/ssh/sshd_config.d/00-attrax-hardening.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload sshd
+
+    - name: Deploy sshd banner
+      ansible.builtin.copy:
+        src: "../../docs/infra/sshd-banner.txt"
+        dest: /etc/ssh/banner
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload sshd
+
+    - name: Deploy journald config
+      ansible.builtin.file:
+        path: /etc/systemd/journald.conf.d
+        state: directory
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Deploy journald hardening
+      ansible.builtin.copy:
+        src: "../../docs/infra/journald-00-attrax.conf"
+        dest: /etc/systemd/journald.conf.d/00-attrax.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart journald
+
+    - name: Deploy fail2ban filter
+      ansible.builtin.copy:
+        src: "../../docs/infra/fail2ban-filter-attrax-404-probe.conf"
+        dest: /etc/fail2ban/filter.d/attrax-404-probe.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart fail2ban
+
+    - name: Deploy fail2ban jail
+      ansible.builtin.copy:
+        src: "../../docs/infra/fail2ban-jail-attrax-404-probe.conf"
+        dest: /etc/fail2ban/jail.d/attrax-404-probe.conf
+        owner: root
+        group: root
+        mode: '0644'
+      notify: restart fail2ban
+
+    - name: Ensure fail2ban ignoreip set
+      ansible.builtin.lineinfile:
+        path: /etc/fail2ban/jail.local
+        line: "ignoreip = 127.0.0.1/8 127.0.0.1/8 203.0.113.10"
+        regexp: "^ignoreip"
+        create: yes
+        mode: '0644'
+      notify: restart fail2ban
+
+    - name: Deploy backup cron
+      ansible.builtin.copy:
+        src: "../../docs/infra/cron-attrax-backup"
+        dest: /etc/cron.d/attrax-backup
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Deploy uptime cron
+      ansible.builtin.copy:
+        src: "../../docs/infra/cron-attrax-uptime"
+        dest: /etc/cron.d/attrax-uptime
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Ensure scripts dir
+      ansible.builtin.file:
+        path: /opt/attrax/scripts
+        state: directory
+        owner: "{{ attrax_user }}"
+        group: "{{ attrax_user }}"
+        mode: '0750'
+
+    - name: Deploy backup script
+      ansible.builtin.copy:
+        src: "{{ backup_script_src }}"
+        dest: /opt/attrax/scripts/backup-data.sh
+        owner: "{{ attrax_user }}"
+        group: "{{ attrax_user }}"
+        mode: '0700'
+
+    - name: Deploy uptime script
+      ansible.builtin.copy:
+        src: "{{ uptime_script_src }}"
+        dest: /opt/attrax/scripts/uptime-check.sh
+        owner: "{{ attrax_user }}"
+        group: "{{ attrax_user }}"
+        mode: '0700'
+
+    - name: Verify services active
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+      loop:
+        - nginx
+        - fail2ban
+        - cron
+
+  handlers:
+    - name: reload nginx
+      ansible.builtin.systemd:
+        name: nginx
+        state: reloaded
+
+    - name: reload sshd
+      ansible.builtin.systemd:
+        name: sshd
+        state: reloaded
+
+    - name: reload sysctl
+      ansible.builtin.command: sysctl -p /etc/sysctl.d/99-attrax-hardening.conf
+
+    - name: restart journald
+      ansible.builtin.systemd:
+        name: systemd-journald
+        state: restarted
+
+    - name: restart fail2ban
+      ansible.builtin.systemd:
+        name: fail2ban
+        state: restarted

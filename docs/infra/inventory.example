@@ -1,0 +1,26 @@
+---
+# Ansible inventory for Attrax production
+#
+# Before running, install Ansible:
+#   pip install ansible
+#
+# Then run:
+#   ansible-playbook -i inventory deploy-infra.yml --ask-become-pass
+#
+# Note: ansible_become_password should be the root password or
+# configured in ansible.cfg via vault for security.
+
+[attrax_prod]
+203.0.113.10 ansible_user=root
+
+[attrax_prod:vars]
+# Use SSH key from default location (~/.ssh/id_ed25519) by default
+# ansible_ssh_private_key_file=~/.ssh/attrax_prod
+
+# Required because we run as root for system changes
+ansible_become=yes
+ansible_become_method=sudo
+ansible_become_password=ASK
+
+# Safety: check host key
+ansible_ssh_extra_args='-o StrictHostKeyChecking=accept-new'
