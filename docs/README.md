@@ -10,7 +10,8 @@
 | [PRD.md](./PRD.md) | 产品需求文档 — 功能范围、验收标准 |
 | [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md) | RAG 架构文档（当前实现） |
 | [DOCUMENT-PIPELINE.md](./DOCUMENT-PIPELINE.md) | 文档处理管线 — 语料库构建流程 |
-| [DEPLOYMENT.md](./DEPLOYMENT.md) | 服务器部署指南 — Docker Compose、环境变量、健康检查 |
+| [DEPLOYMENT.md](./DEPLOYMENT.md) | 服务器部署指南 — Docker Compose、环境变量、健康检查（已弃用，当前生产为无 Docker 部署）|
+| [SERVER-OPS.md](./SERVER-OPS.md) | **生产服务器运维手册 — 当前部署 120.77.36.107（无 Docker）** |
 | [PROJECT-STATUS.md](./PROJECT-STATUS.md) | 项目上线评估报告 — 完成度 + 阻塞问题 |
 | [regulation-data-sources-coverage-2026-05-27.md](./regulation-data-sources-coverage-2026-05-27.md) | 法规数据源覆盖说明 |
 | [plans/ATTRAX_REMEDIATION_PLAN_2026-06-18.md](./plans/ATTRAX_REMEDIATION_PLAN_2026-06-18.md) | 修复路线图（最新） |
@@ -76,7 +77,8 @@ docs/
 ├── PROJECT.md                              # 项目描述
 ├── PRD.md                                  # 产品需求文档
 ├── RAG-ARCHITECTURE-v3.md                  # RAG 架构文档（当前）
-├── DEPLOYMENT.md                           # 服务器部署指南
+├── DEPLOYMENT.md                           # 服务器部署指南（Docker，已弃用）
+├── SERVER-OPS.md                           # 生产服务器运维手册（当前）
 ├── DOCUMENT-PIPELINE.md                    # 文档处理管线
 ├── PROJECT-STATUS.md                       # 项目上线评估
 ├── regulation-data-sources-coverage-2026-05-27.md
