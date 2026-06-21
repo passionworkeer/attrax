@@ -1,128 +1,78 @@
 # 火鹰合规 - 文档索引
 
-> 文档最后更新：2026-06-20
+> 最后更新：2026-06-21（16 轮安全加固后）
 
-## 📚 文档列表
+## 🎯 入口
 
-| 文档 | 描述 |
-|------|------|
-| [PROJECT.md](./PROJECT.md) | 项目描述 — 技术栈、架构、目录结构 |
-| [PRD.md](./PRD.md) | 产品需求文档 — 功能范围、验收标准 |
-| [RAG-ARCHITECTURE-v3.md](./RAG-ARCHITECTURE-v3.md) | RAG 架构文档（当前实现） |
-| [DOCUMENT-PIPELINE.md](./DOCUMENT-PIPELINE.md) | 文档处理管线 — 语料库构建流程 |
-| [DEPLOYMENT.md](./DEPLOYMENT.md) | 服务器部署指南 — Docker Compose、环境变量、健康检查（已弃用，当前生产为无 Docker 部署）|
-| [SERVER-OPS.md](./SERVER-OPS.md) | **生产服务器运维手册 — 当前部署 203.0.113.10（无 Docker）** |
-| [PROJECT-STATUS.md](./PROJECT-STATUS.md) | 项目上线评估报告 — 完成度 + 阻塞问题 |
-| [regulation-data-sources-coverage-2026-05-27.md](./regulation-data-sources-coverage-2026-05-27.md) | 法规数据源覆盖说明 |
-| [plans/ATTRAX_REMEDIATION_PLAN_2026-06-18.md](./plans/ATTRAX_REMEDIATION_PLAN_2026-06-18.md) | 修复路线图（最新） |
-| [plans/2026-05-23-full-remediation-design.md](./plans/2026-05-23-full-remediation-design.md) | 早期修复设计 |
-| [superpowers/specs/](./superpowers/specs/) | 架构设计 spec（法规源注册 + 治理设计） |
+| 我想知道… | 看这里 |
+|---|---|
+| **当前状态 / 16 轮做了什么** | [`HARDENING-SUMMARY.md`](./HARDENING-SUMMARY.md) ⭐ 起点 |
+| 安全政策（key、网络、权限、headers）| [`SECURITY.md`](./SECURITY.md) |
+| 服务器怎么跑、怎么改、怎么备份 | [`SERVER-OPS.md`](./SERVER-OPS.md) |
+| 服务器挂了怎么恢复 | [`RECOVERY.md`](./RECOVERY.md) |
+| nginx/sysctl/sshd/fail2ban 实际配置 | [`infra/`](./infra/)（含 Ansible playbook）|
+| 项目本身（架构、需求、状态）| [`PROJECT.md`](./PROJECT.md) [`PRD.md`](./PRD.md) [`RAG-ARCHITECTURE-v3.md`](./RAG-ARCHITECTURE-v3.md) [`PROJECT-STATUS.md`](./PROJECT-STATUS.md) |
+| RAG 语料库怎么构建 | [`DOCUMENT-PIPELINE.md`](./DOCUMENT-PIPELINE.md) |
+| 法规数据源覆盖 | [`regulation-data-sources-coverage-2026-05-27.md`](./regulation-data-sources-coverage-2026-05-27.md) |
+| 历史修复计划 | [`plans/`](./plans/) |
 
----
-
-## 🚀 快速开始
-
-### 前端
+## 🚀 快速开始（本地开发）
 
 ```bash
-cd attrax
+# 前端
 npm install
 npm run dev
 # 访问 http://localhost:3000
-```
 
-### RAG 后端（可选，需完整功能）
-
-```bash
-# 配置环境变量
+# RAG 后端
 cp rag_service/.env.example rag_service/.env
-# 编辑 rag_service/.env，填入 MIMOTALK_API_KEY、MODELSCOPE_API_KEY
+# 编辑填入 MIMOTALK_API_KEY + MODELSCOPE_API_KEY
+D:\python\python.exe -m uvicorn rag_service.main:app --reload --port 8001
 
-# 构建 FAISS 索引（如尚未构建）
-D:\python\python.exe scripts/build_faiss.py
-
-# 启动服务
-start-rag.bat
-# 或：D:\python\python.exe -m uvicorn rag_service.main:app --reload --port 8001
+# 测试
+npm run test           # vitest 单元
+npm run test:e2e       # Playwright E2E
+npm run test:all       # 全部
 ```
 
-### 测试
+## 🏭 生产部署（203.0.113.10，无 Docker）
 
-```bash
-# 前端单元测试
-npm run test
+| 操作 | 方法 |
+|---|---|
+| 改服务器配置 | 改 `infra/` 对应文件 → `ansible-playbook -i inventory deploy-infra.yml` |
+| 重新 build 应用 | `SERVER-OPS.md` 5.4 节（**必须先 `pm2 stop rag-service`**）|
+| 紧急恢复 | `RECOVERY.md` |
+| 备份位置 | `/opt/attrax/backups/` (每日 03:00 cron, 保留 14 份) |
+| 健康检查 | `https://203.0.113.10/api/health` |
 
-# 前端 E2E 测试
-npm run test:e2e
-
-# Python 单元测试
-D:\python\python.exe -m pytest rag_service/tests/ -v
-```
-
-### 服务器部署
-
-```bash
-cp .env.production.example .env
-# 填入 MIMOTALK_API_KEY 和 MODELSCOPE_API_KEY
-docker compose up -d
-```
-
----
-
-## 📁 文档目录结构
+## 📁 目录结构
 
 ```
 docs/
-├── README.md                                # 本文件
-├── PROJECT.md                              # 项目描述
-├── PRD.md                                  # 产品需求文档
-├── RAG-ARCHITECTURE-v3.md                  # RAG 架构文档（当前）
-├── DEPLOYMENT.md                           # 服务器部署指南（Docker，已弃用）
-├── SERVER-OPS.md                           # 生产服务器运维手册（当前）
-├── DOCUMENT-PIPELINE.md                    # 文档处理管线
-├── PROJECT-STATUS.md                       # 项目上线评估
+├── README.md                    ← 你在这里
+├── HARDENING-SUMMARY.md         ← 16 轮加固摘要（建议先看）
+├── SECURITY.md                  ← 安全政策
+├── SERVER-OPS.md                ← 运维手册
+├── RECOVERY.md                  ← 紧急恢复
+├── PROJECT.md / PRD.md / RAG-ARCHITECTURE-v3.md
+├── DOCUMENT-PIPELINE.md         ← 语料库构建
+├── PROJECT-STATUS.md            ← 上线评估
 ├── regulation-data-sources-coverage-2026-05-27.md
-├── plans/                                  # 修复计划
-│   ├── ATTRAX_REMEDIATION_PLAN_2026-06-18.md
-│   └── 2026-05-23-full-remediation-design.md
-└── superpowers/
-    └── specs/                              # 架构设计 spec
-        ├── 2026-05-26-regulation-retrieval-governance-design.md
-        └── 2026-05-26-regulation-source-registry-design.md
+├── plans/                       ← 历史修复计划
+├── superpowers/specs/           ← 架构设计 spec
+└── infra/                       ← 服务器配置快照 + Ansible
+    ├── README.md                ← 部署到新服务器指南
+    ├── deploy-infra.yml         ← Ansible playbook
+    ├── inventory.example
+    ├── nginx-*.conf / sysctl-*.conf / sshd-*.conf
+    ├── fail2ban-*.conf / journald-*.conf
+    ├── cron-attrax-* / *.sh
+    └── sshd-banner.txt
 ```
-
----
 
 ## 🔗 相关链接
 
 - **首页**: http://localhost:3000
-- **上传页**: http://localhost:3000/upload
-- **Demo 结果**: http://localhost:3000/result/demo
-- **法规更新**: http://localhost:3000/regulations
-- **RAG Service**: http://localhost:8001（需单独启动后端）
-- **RAG Service 健康检查**: http://localhost:8001/health
-
----
-
-## 📊 项目状态（2026-06）
-
-| 模块 | 状态 | 说明 |
-|------|------|------|
-| 首页 | ✅ 完成 | Landing 页面 |
-| 上传页 | ✅ 完成 | 图片上传 |
-| 扫描页 | ✅ 完成 | 实时轮询 |
-| 结果页 | ✅ 完成 | 合规 + 利润 + 决策 + 路线图 |
-| 法规更新页 | ✅ 完成 | `/regulations` |
-| Agent 轨迹页 | ✅ 完成 | `/trace/[sessionId]` |
-| 合规路线图页 | ✅ 完成 | `/roadmap/[sessionId]` |
-| API 路由 | ✅ 完成 | Next.js → RAG Service |
-| Vision AI | ✅ 完成 | MiniMax-M3 vision |
-| 混合检索 | ✅ 完成 | FAISS + BM25 + RRF |
-| 多市场并行 | ✅ 完成 | LangGraph Send fan-out |
-| 引用验证 | ✅ 完成 | NLI 软门（attribution_score 0.9/0.5/0） |
-| 持久化存储 | ⏳ 计划中 | P2 |
-| 用户系统 | ⏳ 计划中 | P3-P4 |
-
----
-
-*最后更新: 2026-06-20*
+- **公网**: https://203.0.113.10
+- **API 健康**: `https://203.0.113.10/api/health`
+- **GitHub**: https://github.com/passionworkeer/attrax
