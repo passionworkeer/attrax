@@ -56,13 +56,13 @@ Authorized keys: `~root/.ssh/authorized_keys` (2 keys), `~admin/.ssh/authorized_
 See `infra/nginx-*.conf`:
 
 - **TLS 1.2 + 1.3 only**, strong ciphers (`HIGH:!aNULL:!MD5`)
-- **Self-signed cert** at `/etc/nginx/ssl/attrax.{crt,key}` (10-year, key 600)
+- **Let's Encrypt cert** at `/etc/letsencrypt/live/twinbuddy.xyz/{fullchain.pem,privkey.pem}` (90-day, auto-renew via certbot systemd timer; issued 2026-06-21, expires 2026-09-19). Covers `twinbuddy.xyz` + `www.twinbuddy.xyz`. ACME challenge path served from `/var/www/acme-challenge` (nginx location, not proxied to Next.js).
 - `server_tokens off` — `Server:` header shows only `nginx`
 - Custom error pages at `/var/www/custom-errors/` — 162 bytes instead of leaking build ID
 - 11 security response headers (see infra README)
 - `proxy_intercept_errors on` + `error_page 500 =404` — upstream 5xx hidden from clients
 
-**Production note**: Self-signed cert triggers browser warnings. Use a real domain + Let's Encrypt before public launch.
+**Domain**: `https://twinbuddy.xyz` (A record → 203.0.113.10). Old self-signed cert at `/etc/nginx/ssl/attrax.{crt,key}` is kept as fallback; nginx config now points to Let's Encrypt paths.
 
 ## API protection
 
