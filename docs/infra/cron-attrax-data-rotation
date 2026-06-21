@@ -1,0 +1,5 @@
+#!/bin/bash
+# Attrax data rotation cron
+# Belt-and-suspenders cleanup of stale queue files
+0 * * * * root find /opt/attrax/data/scan-queue -type f -name "*.json" -mmin +1440 -delete 2>/dev/null
+0 * * * * root find /opt/attrax/.next/standalone/data/scan-queue -type f -name "*.json" -mmin +1440 -delete 2>/dev/null
