@@ -41,14 +41,15 @@ function getTimers(): Map<string, NodeJS.Timeout> {
   return globalThis.__sessionTimers;
 }
 
-function validateSessionId(sessionId: string): void {
+function validateSessionId(sessionId: string): boolean {
   if (!/^[a-zA-Z0-9_-]+$/.test(sessionId)) {
-    throw new Error("Invalid sessionId");
+    return false;
   }
+  return true;
 }
 
-function sessionFilePath(sessionId: string): string {
-  validateSessionId(sessionId);
+function sessionFilePath(sessionId: string): string | null {
+  if (!validateSessionId(sessionId)) return null;
   return join(SESSION_DIR, `${sessionId}.json`);
 }
 
@@ -76,7 +77,7 @@ function isExpired(session: StoredScanStatus): boolean {
 function loadSessionFromFile(sessionId: string): StoredScanStatus | null {
   if (getClearedSessionIds().has(sessionId)) return null;
   const filePath = sessionFilePath(sessionId);
-  if (!existsSync(filePath)) {
+  if (!filePath || !existsSync(filePath)) {
     return null;
   }
   try {
@@ -135,7 +136,9 @@ function writeJsonAtomic(filePath: string, value: unknown): void {
 function persistSession(session: StoredScanStatus): void {
   try {
     ensureSessionDir();
-    writeJsonAtomic(sessionFilePath(session.sessionId), session);
+    const filePath = sessionFilePath(session.sessionId);
+    if (!filePath) return;
+    writeJsonAtomic(filePath, session);
   } catch (error) {
     // Roll back the in-memory write so memory and disk stay in sync.
     // Without this, a subsequent getSession() would return data that
@@ -153,7 +156,7 @@ function persistSession(session: StoredScanStatus): void {
 function removeSessionFile(sessionId: string): void {
   try {
     const filePath = sessionFilePath(sessionId);
-    if (existsSync(filePath)) unlinkSync(filePath);
+    if (filePath && existsSync(filePath)) unlinkSync(filePath);
   } catch (error) {
     console.warn(`[session-store] failed to remove "${sessionId}"`, error);
   }

@@ -1,0 +1,9 @@
+*************************************************************************
+*  Attrax production server. Authorized access only.                    *
+*  All activity is logged and monitored.                                *
+*************************************************************************
+# Attrax data backup, daily 03:00
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+0 3 * * * admin /opt/attrax/scripts/backup-data.sh >> /opt/attrax/logs/attrax-backup.log 2>&1

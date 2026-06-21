@@ -2,6 +2,7 @@ import { getSession } from "@/lib/pipeline/session-store";
 import { serverT } from "@/lib/server-i18n";
 import { ok, fail } from "@/lib/api-response";
 import { requireSessionAccess } from "@/app/api/session-access";
+import { SessionIdSchema } from "@/lib/schemas";
 import type { ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -11,6 +12,13 @@ export async function GET(
   context: { params: Promise<{ sessionId: string }> }
 ) {
   const { sessionId } = await context.params;
+
+  if (!SessionIdSchema.safeParse(sessionId).success) {
+    return fail(
+      { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") },
+      { status: 404 }
+    );
+  }
 
   const session = getSession(sessionId);
   if (!session) {
