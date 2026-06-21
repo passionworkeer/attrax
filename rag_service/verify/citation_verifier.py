@@ -114,6 +114,8 @@ def _article_matches(article_no: str, text: str) -> bool:
     """Check if article_no appears as a whole word in text using word-boundary matching."""
     if not article_no:
         return True
+    if not text:
+        return False
     pattern = re.compile(r'\b' + re.escape(article_no) + r'\b', re.IGNORECASE)
     return bool(pattern.search(text))
 

@@ -19,7 +19,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 
 # Default timeouts (seconds) — prevents executor thread exhaustion on slow LLM calls
-_SCAN_TIMEOUT_SECS = 180
+_SCAN_TIMEOUT_SECS = 280
 _PROFIT_TIMEOUT_SECS = 60
 _MAX_BODY_SIZE_BYTES = 50 * 1024 * 1024
 _RATE_LIMIT_WINDOW_SECS = 60
