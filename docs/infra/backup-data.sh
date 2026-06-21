@@ -1,13 +1,6 @@
-*************************************************************************
-*  Attrax production server. Authorized access only.                    *
-*  All activity is logged and monitored.                                *
-*************************************************************************
 #!/bin/bash
 set -euo pipefail
-BACKUP_DIR=/opt/attrax/backups
-LOGFILE=/opt/attrax/logs/attrax-backup.log
-STAMP=$(date +%Y%m%d-%H%M%S)
-ARCHIVE="$BACKUP_DIR/attrax-data-$STAMP.tar.gz"
+umask 077
 mkdir -p "$BACKUP_DIR"
 
 tar czf "$ARCHIVE" \
