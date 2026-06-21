@@ -288,7 +288,27 @@ class ReportGenerator:
                 compliance_report=raw,
             )
 
-        return self._normalize_report_package(parsed, product, market, query, chunks)
+        return self._normalize_report_package(
+            parsed, product, market, query, chunks, self._extract_markdown_fallback(raw)
+        )
+
+    @staticmethod
+    def _extract_markdown_fallback(raw: str) -> str:
+        """Strip ``` fences / language hints so raw LLM text can serve as the
+        compliance report body when the structured JSON omits the field."""
+        text = (raw or "").strip()
+        if text.startswith("```"):
+            lines = text.splitlines()
+            if lines and lines[0].startswith("```"):
+                lines = lines[1:]
+            if lines and lines[-1].strip().startswith("```"):
+                lines = lines[:-1]
+            text = "\n".join(lines).strip()
+        if text.lower().startswith("json"):
+            text = text[4:].lstrip()
+        if text.startswith("﻿"):
+            text = text[1:]
+        return text
 
     def _normalize_report_package(
         self,
@@ -297,6 +317,7 @@ class ReportGenerator:
         market: str,
         query: str,
         chunks: list[dict],
+        markdown_fallback: str = "",
     ) -> dict:
         """Normalize model JSON keys and fill missing scenes conservatively."""
         compliance = (
@@ -306,7 +327,14 @@ class ReportGenerator:
             or ""
         )
         if not isinstance(compliance, str) or not compliance.strip():
-            compliance = self._mock_report(product, market, query, error="合规报告为空，已使用保守模板。")
+            if markdown_fallback.strip():
+                compliance = markdown_fallback
+                logger.info(
+                    "complianceReport missing in JSON; using raw LLM text as fallback (%d chars)",
+                    len(compliance),
+                )
+            else:
+                compliance = self._mock_report(product, market, query, error="合规报告为空，已使用保守模板。")
 
         profit = package.get("profitReport") or package.get("profit_report") or {}
         if isinstance(profit, str):
