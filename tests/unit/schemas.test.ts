@@ -384,3 +384,67 @@ describe('StartScanRequestSchema', () => {
     })).toThrow()
   })
 })
+
+// SessionIdSchema + AccessTokenSchema added in the 16-round audit
+// (June 2026) to harden [sessionId] routes against path-traversal
+// and to lock the access-token contract. These tests pin those rules.
+
+import { SessionIdSchema, AccessTokenSchema } from '@/lib/schemas'
+
+describe('SessionIdSchema — guards [sessionId] dynamic routes', () => {
+  it('accepts a valid ULID-style id', () => {
+    const id = 'scan_01KVM7WF5EA6QFZGF68EFV1BBT'
+    expect(SessionIdSchema.parse(id)).toBe(id)
+  })
+
+  it('accepts a generic valid id (alphanumeric + underscore)', () => {
+    // SessionIdSchema is strict Crockford base32 (excludes I, L, O, U)
+    // to match ULID format. The 26-char body is uppercase + digits only.
+    // Use a real ULID: 01ARZ3NDEKTSV4RRFFQ69G5FAV
+    const id = 'scan_01ARZ3NDEKTSV4RRFFQ69G5FAV'
+    expect(SessionIdSchema.parse(id)).toBe(id)
+  })
+
+  it('rejects path-traversal attempts (the bug that caused 500s)', () => {
+    expect(() => SessionIdSchema.parse('../etc/passwd')).toThrow()
+    expect(() => SessionIdSchema.parse('..%2F..%2Fetc%2Fpasswd')).toThrow()
+    expect(() => SessionIdSchema.parse('../../admin')).toThrow()
+    expect(() => SessionIdSchema.parse('scan_/etc/passwd')).toThrow()
+  })
+
+  it('rejects empty / too short', () => {
+    expect(() => SessionIdSchema.parse('')).toThrow()
+    expect(() => SessionIdSchema.parse('scan_')).toThrow()
+    expect(() => SessionIdSchema.parse('x')).toThrow()
+  })
+
+  it('rejects too long (DoS guard)', () => {
+    expect(() => SessionIdSchema.parse('scan_' + 'a'.repeat(100))).toThrow()
+  })
+
+  it('rejects special chars', () => {
+    expect(() => SessionIdSchema.parse('scan_<script>')).toThrow()
+    expect(() => SessionIdSchema.parse('scan_a;b')).toThrow()
+    expect(() => SessionIdSchema.parse('scan_a b')).toThrow() // space
+  })
+})
+
+describe('AccessTokenSchema', () => {
+  it('accepts a real base64url token (43-44 chars)', () => {
+    const tok = 'cT5bdiCW4yKM5u2pomCHZIIUocVRLAGAp-k6a5bvoR0'
+    expect(AccessTokenSchema.parse(tok)).toBe(tok)
+  })
+
+  it('rejects too short (DoS guard)', () => {
+    expect(() => AccessTokenSchema.parse('short')).toThrow()
+  })
+
+  it('rejects too long (DoS guard)', () => {
+    expect(() => AccessTokenSchema.parse('a'.repeat(200))).toThrow()
+  })
+
+  it('rejects non-base64url chars (e.g. +, /, =)', () => {
+    expect(() => AccessTokenSchema.parse('abc+def/==')).toThrow()
+    expect(() => AccessTokenSchema.parse('has space here')).toThrow()
+  })
+})
