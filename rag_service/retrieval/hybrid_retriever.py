@@ -317,9 +317,44 @@ class HybridRetriever:
     def _bm25_search(self, query: str, top_k: int, chunks: list[dict] | None = None) -> list[dict]:
         """BM25 search helper (called in thread pool)."""
         if chunks is not None:
-            bm25 = BM25Retriever()
-            bm25.build_index(chunks)
+            bm25 = _get_or_build_filter_bm25(chunks)
             return bm25.search(query, top_k=top_k)
         if self.bm25:
             return self.bm25.search(query, top_k=top_k)
         return []
+
+
+# ─── Filtered BM25 Sub-Index LRU Cache ────────────────────────────────────────
+# Reuses BM25 sub-indices across queries with the same chunk filter signature.
+# Without this, every retrieve() call with metadata filters rebuilt BM25Okapi
+# from scratch (tokenizing thousands of chunks), which dominated scan latency
+# and caused /scan to exceed its 280s timeout.
+_FILTER_BM25_CACHE: OrderedDict[str, tuple[BM25Retriever, float]] = OrderedDict()
+_FILTER_BM25_LOCK = threading.Lock()
+_FILTER_BM25_MAX = 20
+
+
+def _filter_signature(chunks: list[dict]) -> str:
+    """Stable signature for a filtered chunk subset."""
+    return hashlib.md5(
+        "|".join(sorted(c["id"] for c in chunks)).encode()
+    ).hexdigest()
+
+
+def _get_or_build_filter_bm25(chunks: list[dict]) -> BM25Retriever:
+    """Return cached BM25Retriever for the chunk subset, building if missing."""
+    sig = _filter_signature(chunks)
+    with _FILTER_BM25_LOCK:
+        entry = _FILTER_BM25_CACHE.get(sig)
+        if entry is not None:
+            bm25, _ = entry
+            _FILTER_BM25_CACHE.move_to_end(sig)
+            return bm25
+    bm25 = BM25Retriever()
+    bm25.build_index(chunks)
+    with _FILTER_BM25_LOCK:
+        _FILTER_BM25_CACHE[sig] = (bm25, time.monotonic())
+        _FILTER_BM25_CACHE.move_to_end(sig)
+        while len(_FILTER_BM25_CACHE) > _FILTER_BM25_MAX:
+            _FILTER_BM25_CACHE.popitem(last=False)
+    return bm25

@@ -51,6 +51,12 @@ public/uploads/
 # session persistence files (auto-generated at runtime)
 data/sessions/
 
+# per-session upload archive (admin-only, auto-generated, see lib/pipeline/upload-storage.ts)
+data/uploads/
+
+# user activity log (auto-generated per request)
+logs/user-activity.log
+
 # test artifacts
 test-doc-upload/
 

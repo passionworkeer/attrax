@@ -12,6 +12,7 @@
  */
 import { z } from "zod";
 import { updateSession } from "@/lib/pipeline/session-store";
+import { logUserActivity } from "@/lib/pipeline/upload-storage";
 import {
   createMockComplianceReportResult,
   createMockProfitReport,
@@ -243,6 +244,13 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       profitReports: createMockProfitReports(sessionId),
       error: errorCode,
     });
+    logUserActivity({
+      ts: new Date().toISOString(),
+      event: "scan_completed",
+      sessionId,
+      status: "ready",
+      error: errorCode,
+    });
     return;
   }
 
@@ -389,5 +397,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     result: complianceReport as Parameters<typeof updateSession>[1]["result"],
     profitReport,
     profitReports,
+  });
+  logUserActivity({
+    ts: new Date().toISOString(),
+    event: "scan_completed",
+    sessionId,
+    status: statusMap[ragResponse.status] ?? "ready",
   });
 }
