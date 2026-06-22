@@ -19,20 +19,20 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 bg-white/80 backdrop-blur-sm rounded-lg border border-gray-200 hover:bg-white transition-colors shadow-sm"
+        className="flex items-center gap-2 rounded-2xl border border-white/60 bg-white/85 px-3 py-2 shadow-sm backdrop-blur transition-colors hover:bg-white/90"
         aria-label={t("language")}
       >
-        <Globe className="w-4 h-4 text-gray-600" />
-        <span className="text-sm font-medium text-gray-700">
+        <Globe className="h-4 w-4 text-blaze-red" />
+        <span className="text-sm font-medium text-foreground">
           {currentLang.flag} {t(currentLang.nameKey)}
         </span>
-        <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+        <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
       {isOpen && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
-          <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg border border-gray-200 shadow-lg z-50 overflow-hidden">
+          <div className="absolute right-0 z-50 mt-2 w-40 overflow-hidden rounded-2xl border border-white/60 bg-white/85 shadow-lg backdrop-blur">
             {languages.map((lang) => (
               <button
                 key={lang.code}
@@ -40,8 +40,10 @@ export default function LanguageSwitcher() {
                   setLocale(lang.code as "zh" | "en");
                   setIsOpen(false);
                 }}
-                className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-gray-50 transition-colors ${
-                  locale === lang.code ? "bg-blue-50 text-blue-600" : "text-gray-700"
+                className={`flex w-full items-center gap-3 px-4 py-3 text-left transition-colors ${
+                  locale === lang.code
+                    ? "bg-blaze-red/10 text-blaze-red"
+                    : "text-foreground hover:bg-muted/80"
                 }`}
               >
                 <span className="text-lg">{lang.flag}</span>
