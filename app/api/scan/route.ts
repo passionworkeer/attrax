@@ -2,6 +2,7 @@ import { ulid } from "ulid";
 import { createMockComplianceReportResult, createMockProfitReport, createMockProfitReports } from "@/lib/mock/scan-result";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { enqueueScan } from "@/lib/pipeline/scan-queue";
+import { logUserActivity, saveUploadsForSession } from "@/lib/pipeline/upload-storage";
 import { ok, fail } from "@/lib/api-response";
 import type { ComplianceReportResult } from "@/lib/types";
 import { createAccessToken, hashAccessToken } from "@/lib/pipeline/session-auth";
@@ -156,6 +157,7 @@ export async function POST(request: Request) {
 
   const sessionId = `scan_${ulid()}`;
   const accessToken = createAccessToken();
+  const ip = clientIp(request);
   createSession(sessionId);
   updateSession(sessionId, { accessTokenHash: hashAccessToken(accessToken) });
 
@@ -258,6 +260,62 @@ export async function POST(request: Request) {
     pdfs,
     category: parsed.data.category as ProductCategory,
     markets: parsed.data.markets,
+  });
+
+  // ── Audit trail ────────────────────────────────────────────────────────
+  // Save the original uploads to disk so admins can review what each user
+  // submitted after the fact. The buffers above are only kept in memory until
+  // the pipeline finishes; without this step the originals are lost.
+  const savedUploads = saveUploadsForSession(
+    sessionId,
+    imageData.map((img) => ({
+      buffer: img.buffer,
+      originalName: img.originalName,
+      mimeType: img.mimeType,
+      kind: "image" as const,
+    }))
+  );
+  for (const doc of documents) {
+    // text-only docs have no on-disk buffer to archive; record the metadata so
+    // admins at least see what was attached by filename and size estimate.
+    savedUploads.push({
+      originalName: doc.name,
+      savedAs: "",
+      savedPath: "",
+      size: doc.text.length,
+      mimeType: doc.mimeType,
+      sha256: "",
+      kind: "document" as const,
+    });
+  }
+  for (const pdf of pdfs) {
+    const [saved] = saveUploadsForSession(sessionId, [
+      {
+        buffer: pdf.buffer,
+        originalName: pdf.name,
+        mimeType: pdf.mimeType,
+        kind: "document" as const,
+      },
+    ]);
+    if (saved) savedUploads.push(saved);
+  }
+  updateSession(sessionId, { uploads: savedUploads });
+
+  logUserActivity({
+    ts: new Date().toISOString(),
+    event: "scan_started",
+    ip,
+    sessionId,
+    category: parsed.data.category,
+    markets: parsed.data.markets,
+    fileCount: savedUploads.length,
+    totalBytes: savedUploads.reduce((sum, u) => sum + u.size, 0),
+    files: savedUploads.map((u) => ({
+      originalName: u.originalName,
+      size: u.size,
+      kind: u.kind,
+      sha256: u.sha256,
+    })),
   });
 
   return ok(

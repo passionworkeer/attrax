@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, unlinkSyn
 import { join } from "path";
 import { runScan, type RunScanInput } from "@/lib/pipeline/scan";
 import { updateSession } from "@/lib/pipeline/session-store";
+import { logUserActivity } from "@/lib/pipeline/upload-storage";
 
 const QUEUE_DIR = join(process.cwd(), "data", "scan-queue");
 const MAX_CONCURRENT_SCANS = Number.parseInt(process.env.SCAN_WORKER_CONCURRENCY ?? "1", 10);
@@ -141,11 +142,19 @@ async function executeScan(sessionId: string, input: RunScanInput): Promise<void
     await runScan(sessionId, input);
   } catch (error) {
     console.error(`[scan-queue] job failed for ${sessionId}`, error);
+    const errMsg = error instanceof Error ? error.message : "SCAN_FAILED";
     updateSession(sessionId, {
       status: "failed",
       progress: 100,
       stageText: "扫描失败，请稍后重试。",
-      error: error instanceof Error ? error.message : "SCAN_FAILED",
+      error: errMsg,
+    });
+    logUserActivity({
+      ts: new Date().toISOString(),
+      event: "scan_failed",
+      sessionId,
+      status: "failed",
+      error: errMsg,
     });
   }
 }

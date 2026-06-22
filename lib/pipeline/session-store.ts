@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, unlinkSync, writeFileSync } from "fs";
 import { join } from "path";
 import { SESSION_CLEANUP_INTERVAL_MS, SESSION_TTL_MS } from "@/lib/constants";
+import { removeAllUploads, removeUploadsForSession } from "@/lib/pipeline/upload-storage";
 import type { ScanStatus } from "@/lib/types";
 
 export type StoredScanStatus = ScanStatus & {
@@ -172,6 +173,10 @@ function scheduleExpiry(session: StoredScanStatus): void {
     getStore().delete(session.sessionId);
     timers.delete(session.sessionId);
     removeSessionFile(session.sessionId);
+    // Drop the archived uploads alongside the session so the disk doesn't grow
+    // unbounded. Admins who need the files long-term should back them up before
+    // the TTL elapses (see scripts/backup-data.sh).
+    removeUploadsForSession(session.sessionId);
   }, remaining);
   timers.set(session.sessionId, timer);
 }
@@ -208,14 +213,16 @@ export function clearStore() {
     clearTimeout(timer);
   }
   globalThis.__sessionTimers = new Map();
-  if (!existsSync(SESSION_DIR)) return;
-  try {
-    for (const file of readdirSync(SESSION_DIR)) {
-      if (file.endsWith(".json")) unlinkSync(join(SESSION_DIR, file));
+  if (existsSync(SESSION_DIR)) {
+    try {
+      for (const file of readdirSync(SESSION_DIR)) {
+        if (file.endsWith(".json")) unlinkSync(join(SESSION_DIR, file));
+      }
+    } catch (error) {
+      console.warn("[session-store] failed to clear store", error);
     }
-  } catch (error) {
-    console.warn("[session-store] failed to clear store", error);
   }
+  removeAllUploads();
 }
 
 /**

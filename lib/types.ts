@@ -167,6 +167,20 @@ export interface ScanStatus {
   profitReport?: ProfitReportResult;
   profitReports?: ProfitReportResult[];
   error?: string;
+  /**
+   * Per-upload archive metadata, populated by /api/scan so admins can review
+   * what each session submitted even after the buffers are freed. See
+   * lib/pipeline/upload-storage.ts for the on-disk layout.
+   */
+  uploads?: Array<{
+    originalName: string;
+    savedAs: string;
+    savedPath: string;
+    size: number;
+    mimeType: string;
+    sha256: string;
+    kind: "image" | "document";
+  }>;
 }
 
 export interface ProductDossier {
