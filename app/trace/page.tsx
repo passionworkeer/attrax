@@ -74,8 +74,10 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
 
   if (!mounted || (sessionId && sessionId !== "demo" && loading)) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50 flex items-center justify-center">
-        <div className="animate-pulse text-gray-400">{t("trace.loading")}</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="rounded-2xl border border-white/60 bg-white/85 px-6 py-4 text-muted-foreground shadow-sm backdrop-blur animate-pulse">
+          {t("trace.loading")}
+        </div>
       </div>
     );
   }
@@ -89,12 +91,12 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
   const grade = stats?.grade || "B";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50/30 to-indigo-50/30">
+    <div className="min-h-screen">
       {/* Back Button */}
       <div className="max-w-6xl mx-auto px-6 pt-8">
         <button
           onClick={handleBack}
-          className={cn(buttonVariants({ variant: "ghost", size: "default" }), "text-gray-600 hover:text-gray-900")}
+          className={cn(buttonVariants({ variant: "ghost", size: "default" }), "text-muted-foreground hover:text-foreground")}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1.5">
             <path d="m15 18-6-6 6-6"/>
@@ -104,34 +106,37 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
       </div>
 
       {/* Hero Header */}
-      <div className="bg-gradient-to-r from-blaze-red/5 via-rose-50 to-amber-50 border-b border-blaze-red/10">
-        <div className="max-w-6xl mx-auto px-6 py-12">
+      <div className="mx-6 mt-6 rounded-4xl border border-white/60 bg-white/85 p-8 shadow-[0_30px_120px_rgba(26,26,46,0.12)] backdrop-blur">
+        <div className="max-w-6xl mx-auto">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="min-w-0">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-500 shadow-lg">
+              <p className="text-sm font-medium uppercase tracking-[0.24em] text-blaze-red/80">
+                Agent Trace
+              </p>
+              <div className="mt-3 flex items-center gap-3">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blaze-red to-blaze-orange shadow-lg">
                   <span className="text-2xl font-bold text-white">AI</span>
                 </div>
                 <div className="min-w-0">
-                  <h1 className="text-4xl font-black text-gray-900 max-sm:text-3xl">{t("trace.title")}</h1>
-                  <p className="text-gray-500">{t("trace.subtitle")}</p>
+                  <h1 className="text-3xl font-semibold tracking-tight text-foreground max-sm:text-2xl">{t("trace.title")}</h1>
+                  <p className="text-sm text-muted-foreground">{t("trace.subtitle")}</p>
                 </div>
               </div>
             </div>
 
             {/* Stats */}
             <div className="grid w-full grid-cols-3 gap-3 lg:w-auto lg:flex lg:items-center lg:gap-6">
-              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border sm:px-6">
+              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-6">
                 <div className="text-2xl font-black text-blaze-red sm:text-3xl">{totalTime}s</div>
-                <div className="text-xs text-gray-500">{t("trace.executionTime")}</div>
+                <div className="text-xs text-muted-foreground">{t("trace.executionTime")}</div>
               </div>
-              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border sm:px-6">
-                <div className="text-2xl font-black text-purple-600 sm:text-3xl">{steps}</div>
-                <div className="text-xs text-gray-500">{t("trace.executionSteps")}</div>
+              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-6">
+                <div className="text-2xl font-black text-blaze-red sm:text-3xl">{steps}</div>
+                <div className="text-xs text-muted-foreground">{t("trace.executionSteps")}</div>
               </div>
-              <div className="min-w-0 text-center px-3 py-3 bg-white rounded-2xl shadow-md border sm:px-6">
-                <div className="text-2xl font-black text-green-600 sm:text-3xl">{markets}</div>
-                <div className="text-xs text-gray-500">{t("trace.targetMarkets")}</div>
+              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-6">
+                <div className="text-2xl font-black text-blaze-red sm:text-3xl">{markets}</div>
+                <div className="text-xs text-muted-foreground">{t("trace.targetMarkets")}</div>
               </div>
             </div>
           </div>
@@ -150,19 +155,19 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
       </div>
 
       {/* Features */}
-      <div className="max-w-6xl mx-auto px-6 py-12 border-t border-gray-200">
+      <div className="max-w-6xl mx-auto px-6 pb-16">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">{t("trace.realtime")}</h3>
-            <p className="text-sm text-gray-600">{t("trace.realtimeDesc")}</p>
+          <div className="rounded-2xl border border-white/60 bg-white/85 p-6 shadow-sm backdrop-blur">
+            <h3 className="mb-2 text-lg font-semibold text-foreground">{t("trace.realtime")}</h3>
+            <p className="text-sm text-muted-foreground">{t("trace.realtimeDesc")}</p>
           </div>
-          <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">{t("trace.multiMarket")}</h3>
-            <p className="text-sm text-gray-600">{t("trace.multiMarketDesc")}</p>
+          <div className="rounded-2xl border border-white/60 bg-white/85 p-6 shadow-sm backdrop-blur">
+            <h3 className="mb-2 text-lg font-semibold text-foreground">{t("trace.multiMarket")}</h3>
+            <p className="text-sm text-muted-foreground">{t("trace.multiMarketDesc")}</p>
           </div>
-          <div className="p-6 bg-white rounded-2xl border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-bold text-gray-900 mb-2">{t("trace.actionableAdvice")}</h3>
-            <p className="text-sm text-gray-600">{t("trace.actionableAdviceDesc")}</p>
+          <div className="rounded-2xl border border-white/60 bg-white/85 p-6 shadow-sm backdrop-blur">
+            <h3 className="mb-2 text-lg font-semibold text-foreground">{t("trace.actionableAdvice")}</h3>
+            <p className="text-sm text-muted-foreground">{t("trace.actionableAdviceDesc")}</p>
           </div>
         </div>
       </div>
