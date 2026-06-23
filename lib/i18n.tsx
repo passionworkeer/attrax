@@ -144,6 +144,24 @@ const translations = {
       scanFailed: "扫描失败。",
       reupload: "重新上传",
       viewDemo: "查看 Demo",
+      processing: "处理中…",
+      autoRunning: "自动运行中",
+      aiAnalyzing: "AI 正在拆解你的产品",
+      step2Tag: "STEP 2 · 智能拆解",
+      sidebar: {
+        scan: "实景扫描",
+        disassembly: "智能拆解",
+        analysis: "结构分析",
+        heatmap: "热力图谱",
+        export: "导出报告",
+      },
+      components: {
+        casing: "外壳 Casing",
+        battery: "电芯 Battery",
+        motherboard: "主板 Motherboard",
+        label: "标签 Label",
+        packaging: "包装 Packaging",
+      },
     },
 
     // Agent trace
@@ -589,11 +607,29 @@ const translations = {
     burning: {
       scanComplete: "Scan complete!",
       eagleReady: "The eagle is ready!",
-      eagleAnalyzing: "The eagle is analyzing your product",
+      eagleAnalyzing: "AI is disassembling your product",
       waitingForTask: "Waiting for task to start…",
       scanFailed: "Scan failed.",
       reupload: "Re-upload",
       viewDemo: "View Demo",
+      processing: "Processing…",
+      autoRunning: "AUTO RUNNING",
+      aiAnalyzing: "AI is disassembling your product",
+      step2Tag: "STEP 2 · DISASSEMBLY",
+      sidebar: {
+        scan: "Live Scan",
+        disassembly: "Disassembly",
+        analysis: "Analysis",
+        heatmap: "Heat Map",
+        export: "Export",
+      },
+      components: {
+        casing: "Casing",
+        battery: "Battery Cells",
+        motherboard: "Motherboard",
+        label: "Label",
+        packaging: "Packaging",
+      },
     },
 
     // Agent trace

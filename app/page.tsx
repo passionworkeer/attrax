@@ -64,7 +64,7 @@ export default function Home() {
             <div className="md:col-span-7 flex flex-col gap-6">
               <div className="space-y-3">
                 <p className="data-mono text-xs tracking-[0.2em] uppercase text-blaze-orange">
-                  {isEn ? "Burn Before You Fly." : "Burn Before You Fly."}
+                  Burn Before You Fly.
                 </p>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
                   {isEn ? (
@@ -185,26 +185,51 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-10 bg-slate-950/50">
-        <div className="max-w-[1440px] mx-auto px-6 sm:px-12 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <Flame className="h-4 w-4 text-blaze-red" fill="currentColor" />
-            <span className="text-sm font-black italic text-white uppercase tracking-tighter">
+      <footer className="border-t border-white/5 py-16 bg-slate-950">
+        <div className="max-w-7xl mx-auto px-6 sm:px-12">
+          <div className="mb-8">
+            <div className="text-xl font-black italic tracking-tighter text-white">
               Attrax
-            </span>
-            <span className="text-xs text-slate-500 ml-2">
-              © 2026 ATTRAX. {isEn ? "Engineered for High-Velocity Precision." : "硬核赛博工业风·全链路合规。"}
-            </span>
+            </div>
           </div>
-          <div className="flex items-center gap-6 text-xs text-slate-500">
-            <Link href="/regulations" className="hover:text-blaze-red transition-colors">
-              {isEn ? "Regulations" : "法规"}
-            </Link>
-            <Link href="/upload" className="hover:text-blaze-red transition-colors">
-              {isEn ? "Scanner" : "扫描"}
-            </Link>
-            <span>{isEn ? "Privacy" : "隐私"}</span>
-            <span>{isEn ? "Terms" : "条款"}</span>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div className="flex flex-col gap-3">
+              <Link href="/" className="text-sm text-slate-400 hover:text-blaze-red transition-colors">
+                {isEn ? "Solutions" : "产品方案"}
+              </Link>
+              <Link href="/upload" className="text-sm text-slate-400 hover:text-blaze-red transition-colors">
+                {isEn ? "Demo" : "Demo 演示"}
+              </Link>
+            </div>
+            <div className="flex flex-col gap-3">
+              <Link href="/regulations" className="text-sm text-slate-400 hover:text-blaze-red transition-colors">
+                {isEn ? "Regulations" : "法规更新"}
+              </Link>
+              <Link href="/trace" className="text-sm text-slate-400 hover:text-blaze-red transition-colors">
+                {isEn ? "Trace" : "智能体轨迹"}
+              </Link>
+            </div>
+            <div className="flex flex-col gap-3">
+              <Link href="/roadmap" className="text-sm text-slate-400 hover:text-blaze-red transition-colors">
+                {isEn ? "Roadmap" : "合规路线图"}
+              </Link>
+              <span className="text-sm text-slate-400 hover:text-blaze-red transition-colors cursor-pointer">
+                {isEn ? "Resources" : "合作资源"}
+              </span>
+            </div>
+            <div className="flex flex-col gap-3">
+              <span className="text-sm text-slate-400 hover:text-blaze-red transition-colors cursor-pointer">
+                {isEn ? "About" : "关于我们"}
+              </span>
+              <span className="text-sm text-slate-400 hover:text-blaze-red transition-colors cursor-pointer">
+                {isEn ? "Contact" : "联系我们"}
+              </span>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-white/10">
+            <p className="text-sm text-slate-400">
+              © 2026 Attrax. {isEn ? "Engineered for High-Velocity Precision." : "硬核赛博工业风·全链路出海合规。"}
+            </p>
           </div>
         </div>
       </footer>

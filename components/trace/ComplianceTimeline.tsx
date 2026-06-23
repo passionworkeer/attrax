@@ -41,10 +41,10 @@ interface ComplianceTimelineProps {
 }
 
 const typeColors = {
-  apply: { bg: "bg-blue-50", border: "border-blue-200", icon: "📝", color: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
-  test: { bg: "bg-amber-50", border: "border-amber-200", icon: "🔬", color: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
-  certify: { bg: "bg-green-50", border: "border-green-200", icon: "📜", color: "text-green-600", light: "bg-green-100", dark: "bg-green-500" },
-  complete: { bg: "bg-emerald-50", border: "border-emerald-200", icon: "✅", color: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
+  apply: { bg: "bg-blaze-red/15", border: "border-blaze-red/40", icon: "📝", color: "text-blaze-red", light: "bg-blaze-red/25", dark: "bg-blaze-red" },
+  test: { bg: "bg-amber-500/15", border: "border-amber-500/40", icon: "🔬", color: "text-amber-300", light: "bg-amber-500/25", dark: "bg-amber-500" },
+  certify: { bg: "bg-cyan-500/15", border: "border-cyan-500/40", icon: "📜", color: "text-cyan-300", light: "bg-cyan-500/25", dark: "bg-cyan-500" },
+  complete: { bg: "bg-emerald-500/15", border: "border-emerald-500/40", icon: "✅", color: "text-emerald-300", light: "bg-emerald-500/25", dark: "bg-emerald-500" },
 };
 
 const defaultItems: TimelineItem[] = [
@@ -151,7 +151,7 @@ function AnimatedEntry({ children, delay = 0, className = "" }: { children: Reac
 
 function ProgressBar({ progress, color = "bg-gradient-to-r from-blaze-red to-amber-400" }: { progress: number; color?: string }) {
   return (
-    <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+    <div className="w-full h-2 bg-slate-700 rounded-full overflow-hidden">
       <div
         className={`h-full ${color} transition-all duration-700 ease-out rounded-full`}
         style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
@@ -212,21 +212,21 @@ export default function ComplianceTimeline({
     switch (status) {
       case "completed":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700">
+          <span className="inline-flex items-center gap-1 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-bold text-emerald-300">
             <CheckCircle2 className="w-3 h-3" />
             {t("roadmap.completed")}
           </span>
         );
       case "in-progress":
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-700">
+          <span className="inline-flex items-center gap-1 rounded-full bg-blue-500/15 px-3 py-1 text-xs font-bold text-blue-300">
             <Clock className="w-3 h-3 animate-pulse" />
             {t("roadmap.inProgress")}
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600">
+          <span className="inline-flex items-center gap-1 rounded-full bg-slate-500/15 px-3 py-1 text-xs font-medium text-slate-300">
             <Circle className="w-3 h-3" />
             {t("roadmap.pending")}
           </span>
@@ -254,14 +254,14 @@ export default function ComplianceTimeline({
             <Target className="w-7 h-7 text-white" />
           </div>
           <div className="min-w-0">
-            <h3 className="text-2xl font-black text-gray-900 max-sm:text-xl">{t("roadmap.title")}</h3>
-            <p className="text-sm text-gray-500">{t("roadmap.subtitle")}</p>
+            <h3 className="text-2xl font-black text-white max-sm:text-xl">{t("roadmap.title")}</h3>
+            <p className="text-sm text-slate-400">{t("roadmap.subtitle")}</p>
           </div>
         </div>
         <button
           onClick={() => setIsPlaying(!isPlaying)}
           className={`p-3 rounded-xl transition-all shadow-md ${
-            isPlaying ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"
+            isPlaying ? "bg-red-500/15 text-red-300" : "bg-emerald-500/15 text-emerald-300"
           }`}
         >
           {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
@@ -277,47 +277,47 @@ export default function ComplianceTimeline({
                 <Clock className="w-5 h-5 text-blaze-red" />
               </div>
               <div>
-                <div className="text-2xl font-black text-gray-900">{getTotalDays()}</div>
-                <div className="text-xs text-gray-500">{t("roadmap.totalDuration")}</div>
+                <div className="text-2xl font-black text-white">{getTotalDays()}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.totalDuration")}</div>
               </div>
             </div>
           </div>
         </AnimatedEntry>
         <AnimatedEntry delay={100}>
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-200">
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-emerald-500/40">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
-                <DollarSign className="w-5 h-5 text-green-600" />
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                <DollarSign className="w-5 h-5 text-emerald-300" />
               </div>
               <div>
-                <div className="text-sm font-bold text-gray-900">{getTotalCost()}</div>
-                <div className="text-xs text-gray-500">{t("roadmap.estimatedCost")}</div>
+                <div className="text-sm font-bold text-white">{getTotalCost()}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.estimatedCost")}</div>
               </div>
             </div>
           </div>
         </AnimatedEntry>
         <AnimatedEntry delay={200}>
-          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-200">
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-500/40">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <div className="text-2xl font-black text-gray-900">{items.length}</div>
-                <div className="text-xs text-gray-500">{t("roadmap.stepsCount")}</div>
+                <div className="text-2xl font-black text-white">{items.length}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.stepsCount")}</div>
               </div>
             </div>
           </div>
         </AnimatedEntry>
         <AnimatedEntry delay={300}>
-          <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-4 border border-purple-200">
+          <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-4 border border-purple-500/40">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center">
                 <TrendingUp className="w-5 h-5 text-purple-600" />
               </div>
               <div>
-                <div className="text-2xl font-black text-gray-900">{getProgress()}%</div>
-                <div className="text-xs text-gray-500">{t("roadmap.completed")}</div>
+                <div className="text-2xl font-black text-white">{getProgress()}%</div>
+                <div className="text-xs text-slate-400">{t("roadmap.completed")}</div>
               </div>
             </div>
           </div>
@@ -355,7 +355,7 @@ export default function ComplianceTimeline({
                         ? "border-blue-500 bg-blue-500 animate-pulse"
                         : isActive
                         ? "border-blaze-red bg-blaze-red animate-bounce"
-                        : "border-gray-300 bg-white"
+                        : "border-white/15 bg-white"
                     }`}
                     style={{ top: "1.1rem" }}
                   >
@@ -388,16 +388,16 @@ export default function ComplianceTimeline({
                               {t("roadmap.startToday")}
                             </span>
                           )}
-                          <h4 className="text-lg font-bold text-gray-900">
+                          <h4 className="text-lg font-bold text-white">
                             {locale === "en" ? englishText(item.titleEn, englishText(item.title, "Roadmap task")) : item.title}
                           </h4>
-                          <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-gray-500">
+                          <div className="mt-1 flex flex-wrap items-center gap-3 text-sm text-slate-400">
                             <span className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
                               {formatDate(item.date)}
                             </span>
                             {item.estimatedDays && (
-                              <span className="flex items-center gap-1 font-medium text-amber-600">
+                              <span className="flex items-center gap-1 font-medium text-amber-300">
                                 <Clock className="w-4 h-4" />
                                 {item.estimatedDays} {t("roadmap.days")}
                               </span>
@@ -408,7 +408,7 @@ export default function ComplianceTimeline({
                       <div className="flex flex-wrap items-center gap-3 sm:justify-end">
                         {getStatusBadge(item.status)}
                         <ChevronRight
-                          className={`w-5 h-5 text-gray-400 transition-all duration-300 ${
+                          className={`w-5 h-5 text-slate-500 transition-all duration-300 ${
                             expandedId === item.id ? "rotate-90" : ""
                           }`}
                         />
@@ -416,7 +416,7 @@ export default function ComplianceTimeline({
                     </div>
 
                     {/* Description */}
-                    <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                    <p className="mt-3 text-sm text-slate-300 leading-relaxed">
                       {locale === "en" ? englishText(item.descriptionEn, englishText(item.description, "Add detailed execution notes before starting this step.")) : item.description}
                     </p>
 
@@ -426,16 +426,16 @@ export default function ComplianceTimeline({
                         expandedId === item.id ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
                       }`}
                     >
-                      <div className="pt-4 border-t border-gray-200 space-y-4">
+                      <div className="pt-4 border-t border-slate-500/40 space-y-4">
                         {/* Cost */}
                         {item.cost && (
                           <div className="flex items-center gap-3 p-3 bg-white rounded-xl border">
-                            <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
-                              <DollarSign className="w-5 h-5 text-green-600" />
+                            <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+                              <DollarSign className="w-5 h-5 text-emerald-300" />
                             </div>
                             <div>
-                              <div className="text-xs text-gray-500">{t("roadmap.cost")}</div>
-                              <div className="text-lg font-bold text-gray-900">{item.cost}</div>
+                              <div className="text-xs text-slate-400">{t("roadmap.cost")}</div>
+                              <div className="text-lg font-bold text-white">{item.cost}</div>
                             </div>
                           </div>
                         )}
@@ -444,8 +444,8 @@ export default function ComplianceTimeline({
                         {item.documents && item.documents.length > 0 && (
                           <div className="p-3 bg-white rounded-xl border">
                             <div className="flex items-center gap-2 mb-3">
-                              <FileText className="w-4 h-4 text-gray-500" />
-                              <span className="text-sm font-semibold text-gray-700">{t("roadmap.requiredDocs")}:</span>
+                              <FileText className="w-4 h-4 text-slate-400" />
+                              <span className="text-sm font-semibold text-slate-200">{t("roadmap.requiredDocs")}:</span>
                             </div>
                             <div className="flex flex-wrap gap-2">
                               {(item.documents && item.documents.length > 0
@@ -456,7 +456,7 @@ export default function ComplianceTimeline({
                               ).map((doc, i) => (
                                 <span
                                   key={i}
-                                  className="inline-flex items-center gap-1.5 rounded-lg bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-700 border"
+                                  className="inline-flex items-center gap-1.5 rounded-lg bg-slate-500/10 px-3 py-1.5 text-xs font-medium text-slate-200 border"
                                 >
                                   📄 {doc}
                                 </span>
@@ -467,13 +467,13 @@ export default function ComplianceTimeline({
 
                         {/* Days indicator */}
                         {daysFromNow > 0 && (
-                          <div className="flex items-center gap-3 p-3 bg-amber-50 rounded-xl border border-amber-200">
+                          <div className="flex items-center gap-3 p-3 bg-amber-500/10 rounded-xl border border-amber-500/40">
                             <AlertTriangle className="w-5 h-5 text-amber-500" />
                             <div>
                               <div className="text-sm font-medium text-amber-800">
                                 {t("roadmap.untilThisStep", { days: daysFromNow })}
                               </div>
-                              <div className="text-xs text-amber-600">{t("roadmap.suggestStartNow")}</div>
+                              <div className="text-xs text-amber-300">{t("roadmap.suggestStartNow")}</div>
                             </div>
                           </div>
                         )}
@@ -492,8 +492,8 @@ export default function ComplianceTimeline({
         <div className="mt-8 p-6 bg-gradient-to-r from-blaze-red/10 via-rose-50 to-amber-50 rounded-2xl border border-blaze-red/20">
           <div className="flex items-center justify-between">
             <div>
-              <h4 className="text-lg font-bold text-gray-900">{t("roadmap.readyToStart")}</h4>
-              <p className="text-sm text-gray-600">{t("roadmap.suggestStartNow")}</p>
+              <h4 className="text-lg font-bold text-white">{t("roadmap.readyToStart")}</h4>
+              <p className="text-sm text-slate-300">{t("roadmap.suggestStartNow")}</p>
             </div>
             <button className="px-6 py-3 bg-gradient-to-r from-blaze-red to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
               {t("roadmap.startNow")} →
