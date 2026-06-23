@@ -56,13 +56,13 @@ const typeIcons: Record<string, string> = {
 };
 
 const typeColors: Record<string, { bg: string; border: string; text: string; light: string; dark: string }> = {
-  input: { bg: "bg-blue-50", border: "border-blue-200", text: "text-blue-600", light: "bg-blue-100", dark: "bg-blue-500" },
-  vision: { bg: "bg-purple-50", border: "border-purple-200", text: "text-purple-600", light: "bg-purple-100", dark: "bg-purple-500" },
-  planner: { bg: "bg-amber-50", border: "border-amber-200", text: "text-amber-600", light: "bg-amber-100", dark: "bg-amber-500" },
-  fanout: { bg: "bg-emerald-50", border: "border-emerald-200", text: "text-emerald-600", light: "bg-emerald-100", dark: "bg-emerald-500" },
-  market: { bg: "bg-cyan-50", border: "border-cyan-200", text: "text-cyan-600", light: "bg-cyan-100", dark: "bg-cyan-500" },
-  synthesis: { bg: "bg-indigo-50", border: "border-indigo-200", text: "text-indigo-600", light: "bg-indigo-100", dark: "bg-indigo-500" },
-  result: { bg: "bg-rose-50", border: "border-rose-200", text: "text-rose-600", light: "bg-rose-100", dark: "bg-rose-500" },
+  input: { bg: "bg-blue-500/15", border: "border-blue-500/40", text: "text-blue-300", light: "bg-blue-500/25", dark: "bg-blue-500" },
+  vision: { bg: "bg-purple-500/15", border: "border-purple-500/40", text: "text-purple-300", light: "bg-purple-500/25", dark: "bg-purple-500" },
+  planner: { bg: "bg-amber-500/15", border: "border-amber-500/40", text: "text-amber-300", light: "bg-amber-500/25", dark: "bg-amber-500" },
+  fanout: { bg: "bg-emerald-500/15", border: "border-emerald-500/40", text: "text-emerald-300", light: "bg-emerald-500/25", dark: "bg-emerald-500" },
+  market: { bg: "bg-cyan-500/15", border: "border-cyan-500/40", text: "text-cyan-300", light: "bg-cyan-500/25", dark: "bg-cyan-500" },
+  synthesis: { bg: "bg-indigo-500/15", border: "border-indigo-500/40", text: "text-indigo-300", light: "bg-indigo-500/25", dark: "bg-indigo-500" },
+  result: { bg: "bg-blaze-red/15", border: "border-blaze-red/40", text: "text-blaze-red", light: "bg-blaze-red/25", dark: "bg-blaze-red" },
 };
 
 const HAN_TEXT_RE = /\p{Script=Han}/u;
@@ -363,7 +363,7 @@ function AnimatedEntry({ children, delay = 0, className = "" }: { children: Reac
 function StatusIcon({ status }: { status?: string }) {
   switch (status) {
     case "pending":
-      return <Loader2 className="w-4 h-4 text-gray-400 animate-spin" />;
+      return <Loader2 className="w-4 h-4 text-slate-500 animate-spin" />;
     case "running":
       return <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />;
     case "success":
@@ -377,7 +377,7 @@ function StatusIcon({ status }: { status?: string }) {
 
 function ProgressBar({ progress, color = "bg-blue-500" }: { progress: number; color?: string }) {
   return (
-    <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
+    <div className="w-full h-1 bg-slate-700 rounded-full overflow-hidden">
       <div
         className={`h-full ${color} transition-all duration-500 ease-out`}
         style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
@@ -390,7 +390,7 @@ function ConfidenceBadge({ confidence }: { confidence?: number }) {
   if (!confidence) return null;
   const percentage = Math.round(confidence * 100);
   return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100 text-xs font-medium">
+    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-500/15 text-xs font-medium">
       <Zap className="w-3 h-3" />
       {percentage}%
     </span>
@@ -400,9 +400,9 @@ function ConfidenceBadge({ confidence }: { confidence?: number }) {
 function RiskBadge({ level, count, locale }: { level: "high" | "medium" | "low"; count: number; locale: "zh" | "en" }) {
   if (count === 0) return null;
   const config = {
-    high: { bg: "bg-red-100", text: "text-red-700", border: "border-red-200", label: locale === "en" ? "High" : "高", icon: "🔴" },
-    medium: { bg: "bg-amber-100", text: "text-amber-700", border: "border-amber-200", label: locale === "en" ? "Med" : "中", icon: "🟡" },
-    low: { bg: "bg-green-100", text: "text-green-700", border: "border-green-200", label: locale === "en" ? "Low" : "低", icon: "🟢" },
+    high: { bg: "bg-red-500/15", text: "text-red-300", border: "border-red-500/40", label: locale === "en" ? "High" : "高", icon: "🔴" },
+    medium: { bg: "bg-amber-500/15", text: "text-amber-300", border: "border-amber-500/40", label: locale === "en" ? "Med" : "中", icon: "🟡" },
+    low: { bg: "bg-emerald-500/15", text: "text-emerald-300", border: "border-emerald-500/40", label: locale === "en" ? "Low" : "低", icon: "🟢" },
   };
   const { bg, text, label, icon } = config[level];
   return (
@@ -419,12 +419,12 @@ function ReasoningPanel({ text }: { text?: string }) {
     <AnimatedEntry delay={100}>
       <div className="mt-3 p-4 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 border-l-4 border-yellow-400 shadow-sm">
         <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
+          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-500/15 flex items-center justify-center">
             <Lightbulb className="w-4 h-4 text-yellow-600" />
           </div>
           <div>
-            <div className="text-xs font-semibold text-yellow-700 mb-1">{t("trace.aiReasoning")}</div>
-            <p className="text-sm text-gray-700 leading-relaxed">{text}</p>
+            <div className="text-xs font-semibold text-yellow-300 mb-1">{t("trace.aiReasoning")}</div>
+            <p className="text-sm text-slate-200 leading-relaxed">{text}</p>
           </div>
         </div>
       </div>
@@ -451,11 +451,11 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
   const timelineKeys = Object.keys(timelineLabels);
 
   const gradeColors: Record<string, { bg: string; text: string; ring: string }> = {
-    A: { bg: "bg-green-100", text: "text-green-700", ring: "ring-green-500" },
-    B: { bg: "bg-blue-100", text: "text-blue-700", ring: "ring-blue-500" },
-    C: { bg: "bg-amber-100", text: "text-amber-700", ring: "ring-amber-500" },
-    D: { bg: "bg-orange-100", text: "text-orange-700", ring: "ring-orange-500" },
-    F: { bg: "bg-red-100", text: "text-red-700", ring: "ring-red-500" },
+    A: { bg: "bg-emerald-500/15", text: "text-emerald-300", ring: "ring-green-500" },
+    B: { bg: "bg-blue-500/15", text: "text-blue-300", ring: "ring-blue-500" },
+    C: { bg: "bg-amber-500/15", text: "text-amber-300", ring: "ring-amber-500" },
+    D: { bg: "bg-orange-500/15", text: "text-orange-700", ring: "ring-orange-500" },
+    F: { bg: "bg-red-500/15", text: "text-red-300", ring: "ring-red-500" },
   };
 
   return (
@@ -466,11 +466,11 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
           <div className="text-center">
             <div className="relative">
               <div className="text-5xl font-black text-blaze-red">{score}</div>
-              <span className="absolute -right-4 top-0 text-sm text-gray-400">/100</span>
+              <span className="absolute -right-4 top-0 text-sm text-slate-500">/100</span>
             </div>
-            <div className="text-xs text-gray-500 mt-1">{t("trace.score")}</div>
+            <div className="text-xs text-slate-400 mt-1">{t("trace.score")}</div>
           </div>
-          <div className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black ring-4 ${gradeColors[grade]?.ring || "ring-gray-300"} ${gradeColors[grade]?.bg || "bg-gray-100"} ${gradeColors[grade]?.text || "text-gray-700"}`}>
+          <div className={`w-20 h-20 rounded-2xl flex items-center justify-center text-3xl font-black ring-4 ${gradeColors[grade]?.ring || "ring-gray-300"} ${gradeColors[grade]?.bg || "bg-slate-500/15"} ${gradeColors[grade]?.text || "text-slate-200"}`}>
             {grade}
           </div>
         </div>
@@ -479,10 +479,10 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
         {marketSummary.length > 0 && (
           <div className="grid grid-cols-3 gap-3">
             {marketSummary.map((m, i) => (
-              <div key={i} className={`p-3 rounded-xl border ${m.status === "pass" ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"}`}>
+              <div key={i} className={`p-3 rounded-xl border ${m.status === "pass" ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-300" : "bg-amber-500/15 border-amber-500/40 text-amber-300"}`}>
                 <div className="text-lg font-bold">{locale === "en" ? m.marketEn : m.market}</div>
                 <div className="text-2xl font-black mt-1">{m.score}</div>
-                <div className="text-xs text-gray-500">{t("trace.score")}</div>
+                <div className="text-xs text-slate-400">{t("trace.score")}</div>
               </div>
             ))}
           </div>
@@ -497,8 +497,8 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
 
         {/* Timeline */}
         {timeline && (
-          <div className="p-4 bg-gray-50 rounded-xl">
-            <div className="text-xs font-semibold text-gray-500 mb-2">{t("trace.estimatedTimeline")}</div>
+          <div className="p-4 bg-slate-500/10 rounded-xl">
+            <div className="text-xs font-semibold text-slate-400 mb-2">{t("trace.estimatedTimeline")}</div>
             <div className="grid grid-cols-4 gap-2 text-center">
               {timelineKeys.map((key) => {
                 const value =
@@ -508,8 +508,8 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
                 const displayKey = locale === "en" ? timelineLabels[key].en : timelineLabels[key].zh;
                 return (
                   <div key={key} className="p-2 bg-white rounded-lg border">
-                    <div className="text-lg font-bold text-gray-900">{value}</div>
-                    <div className="text-xs text-gray-500">{displayKey}</div>
+                    <div className="text-lg font-bold text-white">{value}</div>
+                    <div className="text-xs text-slate-400">{displayKey}</div>
                   </div>
                 );
               })}
@@ -521,20 +521,20 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
         {recommendations.length > 0 && (
           <div className="border-t pt-4">
             <div className="flex items-center gap-2 mb-3">
-              <Target className="w-4 h-4 text-gray-500" />
-              <span className="text-sm font-semibold text-gray-700">{t("trace.suggestedAction")}</span>
+              <Target className="w-4 h-4 text-slate-400" />
+              <span className="text-sm font-semibold text-slate-200">{t("trace.suggestedAction")}</span>
             </div>
             <div className="space-y-2">
               {recommendations.map((rec, i) => (
                 <div key={i} className="flex items-start gap-3 p-3 bg-white rounded-xl border hover:shadow-md transition-shadow">
                   <div className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-sm font-bold ${
-                    rec.priority === 1 ? "bg-red-100 text-red-600" : rec.priority === 2 ? "bg-amber-100 text-amber-600" : "bg-gray-100 text-gray-600"
+                    rec.priority === 1 ? "bg-red-500/15 text-red-300" : rec.priority === 2 ? "bg-amber-500/15 text-amber-300" : "bg-slate-500/15 text-slate-300"
                   }`}>
                     {rec.priority}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-gray-900 truncate">{locale === "en" ? rec.actionEn : rec.action}</div>
-                    <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                    <div className="text-sm font-medium text-white truncate">{locale === "en" ? rec.actionEn : rec.action}</div>
+                    <div className="flex items-center gap-3 mt-1 text-xs text-slate-400">
                       <span className="flex items-center gap-1">
                         <Clock className="w-3 h-3" />
                         {rec.deadline}
@@ -572,9 +572,9 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {/* Stats */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">{t("trace.regulations")}</span>
-            <span className="text-xl font-bold text-gray-900">{data?.regulations || 0}</span>
-            <span className="text-sm text-gray-600">{t("trace.regulations")}</span>
+            <span className="text-sm text-slate-300">{t("trace.regulations")}</span>
+            <span className="text-xl font-bold text-white">{data?.regulations || 0}</span>
+            <span className="text-sm text-slate-300">{t("trace.regulations")}</span>
           </div>
           <ConfidenceBadge confidence={node.confidence} />
         </div>
@@ -583,8 +583,8 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
         {data?.complianceRate !== undefined && (
           <div className="space-y-1">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-gray-500">{t("result.overallScore")}</span>
-              <span className="font-medium text-gray-700">{data.complianceRate}%</span>
+              <span className="text-slate-400">{t("result.overallScore")}</span>
+              <span className="font-medium text-slate-200">{data.complianceRate}%</span>
             </div>
             <ProgressBar progress={data.complianceRate} color={data.complianceRate >= 80 ? "bg-green-500" : data.complianceRate >= 50 ? "bg-amber-500" : "bg-red-500"} />
           </div>
@@ -599,10 +599,10 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
 
         {/* Top match */}
         {data?.topMatch && (
-          <div className="p-3 bg-gray-50 rounded-lg">
-            <div className="text-xs text-gray-500 mb-1">{t("trace.maxMatch")}</div>
-            <div className="text-sm font-medium text-gray-900">{locale === "en" ? data.topMatch.titleEn : data.topMatch.title}</div>
-            <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
+          <div className="p-3 bg-slate-500/10 rounded-lg">
+            <div className="text-xs text-slate-400 mb-1">{t("trace.maxMatch")}</div>
+            <div className="text-sm font-medium text-white">{locale === "en" ? data.topMatch.titleEn : data.topMatch.title}</div>
+            <div className="flex items-center gap-2 mt-1 text-xs text-slate-400">
               <span>{Math.round(data.topMatch.score * 100)}%</span>
               <span>•</span>
               <span>{t("trace.effective")}: {data.topMatch.effectiveDate}</span>
@@ -669,10 +669,10 @@ function TraceNodeComponent({
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-gray-900">{label}</h4>
+                  <h4 className="text-lg font-bold text-white">{label}</h4>
                   <div className="flex items-center gap-3 mt-1">
                     {node.duration && (
-                      <span className="inline-flex items-center gap-1 text-xs text-gray-500 font-mono">
+                      <span className="inline-flex items-center gap-1 text-xs text-slate-400 font-mono">
                         <Clock className="w-3 h-3" />
                         {node.duration}
                       </span>
@@ -686,7 +686,7 @@ function TraceNodeComponent({
                 {node.reasoning && (
                   <button
                     onClick={() => setShowReasoning(!showReasoning)}
-                    className={`p-2 rounded-xl transition-all ${showReasoning ? `${colors.light} ${colors.text}` : "hover:bg-gray-100 text-gray-500"}`}
+                    className={`p-2 rounded-xl transition-all ${showReasoning ? `${colors.light} ${colors.text}` : "hover:bg-slate-500/15 text-slate-400"}`}
                     title={t("trace.aiReasoning")}
                   >
                     <Lightbulb className="w-5 h-5" />
@@ -695,12 +695,12 @@ function TraceNodeComponent({
                 {hasChildren && (
                   <button
                     onClick={handleToggle}
-                    className="p-2 rounded-xl hover:bg-gray-100 transition-colors"
+                    className="p-2 rounded-xl hover:bg-slate-500/15 transition-colors"
                   >
                     {expanded ? (
-                      <ChevronDown className="w-5 h-5 text-gray-500" />
+                      <ChevronDown className="w-5 h-5 text-slate-400" />
                     ) : (
-                      <ChevronRight className="w-5 h-5 text-gray-500" />
+                      <ChevronRight className="w-5 h-5 text-slate-400" />
                     )}
                   </button>
                 )}
@@ -712,7 +712,7 @@ function TraceNodeComponent({
 
             {/* Data content */}
             {node.data && !showReasoning && (
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 pt-4 border-t border-slate-500/40">
                 {node.type === "result" && <ResultCard data={node.data} locale={locale} />}
                 {node.type === "market" && <MarketCard node={node} locale={locale} />}
               </div>
@@ -722,7 +722,7 @@ function TraceNodeComponent({
 
         {/* Children */}
         {hasChildren && expanded && (
-          <div className="mt-4 ml-6 pl-6 border-l-2 border-dashed border-gray-300 space-y-4">
+          <div className="mt-4 ml-6 pl-6 border-l-2 border-dashed border-white/15 space-y-4">
             {node.children!.map((child, idx) => (
               <TraceNodeComponent key={child.id} node={child} locale={locale} depth={depth + 1} index={idx} />
             ))}
@@ -793,28 +793,28 @@ export default function AgentDecisionTree({
               <span className="text-sm font-bold text-white">AI</span>
             </div>
             <div className="min-w-0">
-              <h3 className="text-2xl font-black text-gray-900 max-sm:text-xl">{t("trace.title")}</h3>
-              <p className="text-sm text-gray-500">{t("trace.subtitle")}</p>
+              <h3 className="text-2xl font-black text-white max-sm:text-xl">{t("trace.title")}</h3>
+              <p className="text-sm text-slate-400">{t("trace.subtitle")}</p>
             </div>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-3 sm:gap-6">
           <div className="text-center">
-            <div className="text-2xl font-black text-gray-900">
+            <div className="text-2xl font-black text-white">
               {totalTime.toFixed(1)}s
             </div>
-            <div className="text-xs text-gray-500">{t("trace.executionTime")}</div>
+            <div className="text-xs text-slate-400">{t("trace.executionTime")}</div>
           </div>
-          <div className="w-px h-10 bg-gray-200" />
+          <div className="w-px h-10 bg-slate-700" />
           <div className="text-center">
-            <div className="text-2xl font-black text-gray-900">
+            <div className="text-2xl font-black text-white">
               {totalSteps}
             </div>
-            <div className="text-xs text-gray-500">{t("trace.executionSteps")}</div>
+            <div className="text-xs text-slate-400">{t("trace.executionSteps")}</div>
           </div>
           <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className={`p-3 rounded-xl transition-all ${isPlaying ? "bg-red-100 text-red-600" : "bg-green-100 text-green-600"}`}
+            className={`p-3 rounded-xl transition-all ${isPlaying ? "bg-red-500/15 text-red-300" : "bg-emerald-500/15 text-emerald-300"}`}
           >
             {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
           </button>
@@ -834,7 +834,7 @@ export default function AgentDecisionTree({
             className={`flex items-center gap-2 px-3 py-2 rounded-xl ${colors.bg} ${colors.border} border transition-all hover:scale-105`}
           >
             <span className="text-lg">{typeIcons[type]}</span>
-            <span className="text-xs font-semibold text-gray-700">
+            <span className="text-xs font-semibold text-slate-200">
               {t("trace." + type)}
             </span>
           </div>
@@ -842,26 +842,26 @@ export default function AgentDecisionTree({
       </div>
 
       {/* Tree */}
-      <div className="bg-gradient-to-br from-gray-50 via-white to-purple-50 rounded-3xl border border-gray-200 p-4 shadow-inner sm:p-8">
+      <div className="bg-gradient-to-br from-gray-50 via-white to-purple-50 rounded-3xl border border-slate-500/40 p-4 shadow-inner sm:p-8">
         <TraceNodeComponent node={data} locale={locale} />
       </div>
 
       {/* Footer stats */}
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-green-200">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-emerald-500/40">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center">
-              <CheckCircle2 className="w-5 h-5 text-green-600" />
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
+              <CheckCircle2 className="w-5 h-5 text-emerald-300" />
             </div>
             <div>
               <div className="text-lg font-bold text-green-800">{t("trace.analysisComplete")}</div>
-              <div className="text-xs text-green-600">4 {t("trace.targetMarkets")}</div>
+              <div className="text-xs text-emerald-300">4 {t("trace.targetMarkets")}</div>
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-200">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-500/40">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center">
               <Brain className="w-5 h-5 text-blue-600" />
             </div>
             <div>
@@ -870,9 +870,9 @@ export default function AgentDecisionTree({
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-4 border border-purple-200">
+        <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-4 border border-purple-500/40">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center">
               <FileSearch className="w-5 h-5 text-purple-600" />
             </div>
             <div>
@@ -881,14 +881,14 @@ export default function AgentDecisionTree({
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-200">
+        <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-500/40">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
-              <Shield className="w-5 h-5 text-amber-600" />
+            <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center">
+              <Shield className="w-5 h-5 text-amber-300" />
             </div>
             <div>
               <div className="text-lg font-bold text-amber-800">Grade {displayGrade}</div>
-              <div className="text-xs text-amber-600">{t("trace.score")}: {displayScore}/100</div>
+              <div className="text-xs text-amber-300">{t("trace.score")}: {displayScore}/100</div>
             </div>
           </div>
         </div>
