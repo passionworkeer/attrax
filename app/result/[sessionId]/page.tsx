@@ -256,14 +256,14 @@ function SourceNotice({ source }: { source?: "real" | "fallback" | "demo" }) {
   const { t } = useTranslation();
   if (source === "fallback") {
     return (
-      <div className="mt-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm text-amber-800">
+      <div className="mt-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm text-amber-300">
         {t("result.fallbackNotice")}
       </div>
     );
   }
   if (source === "demo") {
     return (
-      <div className="mt-6 rounded-2xl border border-blue-500/30 bg-blue-500/10 px-5 py-4 text-sm text-blue-800">
+      <div className="mt-6 rounded-2xl border border-blaze-cyan/40 bg-blaze-cyan/10 px-5 py-4 text-sm text-blaze-cyan">
         {t("result.demoNotice")}
       </div>
     );
@@ -843,34 +843,34 @@ export default function ResultPage() {
   }, [applyProfitReports, isDemoSession, sessionId, t]);
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-16">
-      <section className="rounded-4xl border border-white/60 bg-white/85 p-8 shadow-[0_30px_100px_rgba(26,26,46,0.12)] backdrop-blur">
+    <main className="mx-auto min-h-[calc(100vh-5rem)] w-full max-w-7xl px-4 sm:px-6 py-10">
+      <section className="glass-panel rounded-3xl p-6 sm:p-8 shadow-[0_30px_100px_rgba(0,0,0,0.5)]">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.24em] text-blaze-red/80">Result</p>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight">
+            <p className="label-caps text-xs text-blaze-red/80">Result</p>
+            <h1 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
               {isDemoSession ? t("result.demoResult") : `${t("result.scanResult")} · ${sessionId}`}
             </h1>
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            <p className="mt-3 text-sm leading-6 text-slate-400">
               {isDemoSession ? t("result.demoLoaded") : message}
             </p>
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Link
               href={`/trace?sessionId=${sessionId}`}
-              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-purple-200 text-purple-600 hover:bg-purple-50")}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-blaze-red/30 text-blaze-red hover:bg-blaze-red/10 hover:border-blaze-red")}
             >
               {t("result.aiDecision")}
             </Link>
             <Link
               href={`/roadmap?sessionId=${sessionId}`}
-              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-green-200 text-green-600 hover:bg-green-50")}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-blaze-cyan/30 text-blaze-cyan hover:bg-blaze-cyan/10 hover:border-blaze-cyan")}
             >
               {t("result.complianceRoadmap")}
             </Link>
             <Link
               href="/upload"
-              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0")}
+              className={cn(buttonVariants({ variant: "outline", size: "default" }), "shrink-0 border-white/15 text-slate-200 hover:bg-white/5 hover:border-white/30")}
             >
               {t("result.reupload")}
             </Link>

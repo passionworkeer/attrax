@@ -10,12 +10,16 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono-stack);
   --font-heading: var(--font-inter);
+  --font-label: var(--font-label-stack);
   --color-blaze-red: var(--blaze-red);
   --color-blaze-orange: var(--blaze-orange);
   --color-blaze-gold: var(--blaze-gold);
   --color-blaze-dark: var(--blaze-dark);
   --color-blaze-surface: var(--blaze-surface);
   --color-blaze-ink: var(--blaze-ink);
+  --color-blaze-cyan: var(--blaze-cyan);
+  --color-blaze-glass: var(--blaze-glass);
+  --color-blaze-glass-strong: var(--blaze-glass-strong);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -56,59 +60,136 @@
 
 :root {
   --font-inter: "Inter", "Segoe UI", Arial, "Helvetica Neue", sans-serif;
-  --font-mono-stack: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-mono-stack: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-label-stack: "Space Grotesk", "Inter", system-ui, sans-serif;
+
   --blaze-red: #d93a1a;
+  --blaze-red-bright: #ff5625;
   --blaze-orange: #ff8a1f;
   --blaze-gold: #ffd23f;
   --blaze-dark: #1a1a2e;
-  --blaze-surface: #fff8f4;
-  --blaze-ink: #221c1a;
-  --background: #fff9f5;
-  --foreground: #221c1a;
-  --card: #ffffff;
-  --card-foreground: #221c1a;
-  --popover: #ffffff;
-  --popover-foreground: #221c1a;
+  --blaze-deep: #0b0f11;
+  --blaze-surface: #16213e;
+  --blaze-ink: #e5e2e1;
+  --blaze-cyan: #4cc9f0;
+  --blaze-glass: rgba(22, 33, 62, 0.7);
+  --blaze-glass-strong: rgba(22, 33, 62, 0.85);
+
+  --background: #0b0f11;
+  --foreground: #e5e2e1;
+  --card: rgba(22, 33, 62, 0.7);
+  --card-foreground: #e5e2e1;
+  --popover: #16213e;
+  --popover-foreground: #e5e2e1;
   --primary: #d93a1a;
   --primary-foreground: #fff7f3;
-  --secondary: #ffe8d8;
-  --secondary-foreground: #6c2c16;
-  --muted: #fff0e7;
-  --muted-foreground: #7c665e;
-  --accent: #ffe2c5;
-  --accent-foreground: #7a2d0f;
+  --secondary: #16213e;
+  --secondary-foreground: #e5e2e1;
+  --muted: #1a1f2e;
+  --muted-foreground: #9ca3af;
+  --accent: #d93a1a;
+  --accent-foreground: #fff7f3;
   --destructive: #b91c1c;
-  --border: rgba(34, 28, 26, 0.12);
-  --input: rgba(34, 28, 26, 0.1);
-  --ring: rgba(217, 58, 26, 0.35);
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.06);
+  --ring: rgba(217, 58, 26, 0.55);
   --chart-1: #d93a1a;
   --chart-2: #ff8a1f;
-  --chart-3: #ffd23f;
-  --chart-4: #1a1a2e;
-  --chart-5: #7c665e;
+  --chart-3: #4cc9f0;
+  --chart-4: #ffd23f;
+  --chart-5: #9ca3af;
   --radius: 0.625rem;
-  --sidebar: #fff3ec;
-  --sidebar-foreground: #221c1a;
+  --sidebar: rgba(15, 23, 42, 0.95);
+  --sidebar-foreground: #e5e2e1;
   --sidebar-primary: #d93a1a;
   --sidebar-primary-foreground: #fff7f3;
-  --sidebar-accent: #ffe8d8;
-  --sidebar-accent-foreground: #6c2c16;
-  --sidebar-border: rgba(34, 28, 26, 0.12);
-  --sidebar-ring: rgba(217, 58, 26, 0.35);
+  --sidebar-accent: #1a1f2e;
+  --sidebar-accent-foreground: #e5e2e1;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: rgba(217, 58, 26, 0.55);
 }
 
 @layer base {
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    color-scheme: dark;
   }
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+    background-color: #0b0f11;
     background-image:
-      radial-gradient(circle at top, rgba(255, 210, 63, 0.2), transparent 32%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 244, 0.92));
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217, 58, 26, 0.12), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(76, 201, 240, 0.05), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 0% 80%, rgba(217, 58, 26, 0.05), transparent 60%);
+    background-attachment: fixed;
   }
+}
+
+@layer utilities {
+  /* Dark glass surface used by hero / cards across the app */
+  .glass-panel {
+    background-color: rgba(22, 33, 62, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .glass-panel-strong {
+    background-color: rgba(22, 33, 62, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glass-input {
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .glow-red {
+    box-shadow: 0 0 20px rgba(217, 58, 26, 0.45);
+  }
+  .glow-red-strong {
+    box-shadow: 0 0 35px rgba(217, 58, 26, 0.6), 0 0 80px rgba(217, 58, 26, 0.3);
+  }
+  .glow-cyan {
+    box-shadow: 0 0 15px rgba(76, 201, 240, 0.35);
+  }
+  .text-glow {
+    text-shadow: 0 0 12px rgba(217, 58, 26, 0.55);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 10px rgba(76, 201, 240, 0.6);
+  }
+  /* Subtle fire divider */
+  .flame-divider {
+    background: linear-gradient(to top, rgba(217, 58, 26, 0.4), transparent);
+    filter: blur(2px);
+  }
+  /* Technical label: uppercase Space Grotesk */
+  .label-caps {
+    font-family: var(--font-label-stack);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  /* Data: JetBrains Mono */
+  .data-mono {
+    font-family: var(--font-mono-stack);
+    letter-spacing: 0.02em;
+  }
+  /* HUD corner marks */
+  .corner-mark {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+  }
+  .corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
 }

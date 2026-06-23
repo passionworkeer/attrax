@@ -82,24 +82,24 @@ const marketFilterKeys: Record<string, string> = {
 const marketCodes = ["all", "EU", "US", "UK", "CN", "AU", "SA", "AE", "JP", "BR", "CA", "KR", "IN"] as const;
 
 const riskClasses: Record<RiskLevel, string> = {
-  critical: "bg-red-50 text-red-700 ring-red-100",
-  high: "bg-orange-50 text-orange-700 ring-orange-100",
-  medium: "bg-amber-50 text-amber-700 ring-amber-100",
-  low: "bg-emerald-50 text-emerald-700 ring-emerald-100",
+  critical: "bg-red-500/15 text-red-300 ring-red-500/40",
+  high: "bg-orange-500/15 text-orange-300 ring-orange-500/40",
+  medium: "bg-amber-500/15 text-amber-300 ring-amber-500/40",
+  low: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/40",
 };
 
 const riskBorderClasses: Record<RiskLevel, string> = {
   critical: "border-l-red-500",
-  high: "border-l-orange-400",
-  medium: "border-l-amber-400",
-  low: "border-l-emerald-400",
+  high: "border-l-orange-500",
+  medium: "border-l-amber-500",
+  low: "border-l-emerald-500",
 };
 
 const changeTypeClasses: Record<ChangeType, string> = {
-  new: "bg-blue-50 text-blue-700 ring-blue-100",
-  revision: "bg-violet-50 text-violet-700 ring-violet-100",
-  enforcement: "bg-rose-50 text-rose-700 ring-rose-100",
-  consultation: "bg-cyan-50 text-cyan-700 ring-cyan-100",
+  new: "bg-blaze-cyan/15 text-blaze-cyan ring-blaze-cyan/40",
+  revision: "bg-violet-500/15 text-violet-300 ring-violet-500/40",
+  enforcement: "bg-rose-500/15 text-rose-300 ring-rose-500/40",
+  consultation: "bg-sky-500/15 text-sky-300 ring-sky-500/40",
 };
 
 const fallbackMeta: RegulationsMeta = {
@@ -185,76 +185,76 @@ export default function RegulationsPage() {
   };
 
   return (
-    <div className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-[calc(100vh-5rem)] px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <section className="rounded-4xl border border-white/60 bg-white/85 p-8 shadow-[0_30px_120px_rgba(26,26,46,0.12)] backdrop-blur">
+        <section className="glass-panel rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
         <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="mb-3 text-sm font-medium uppercase tracking-[0.24em] text-blaze-red/80">
+            <p className="label-caps mb-3 text-xs text-blaze-red/80">
               <ShieldCheck className="mr-2 inline h-3.5 w-3.5" />
               {t("regulations.demoBadge")}
             </p>
-            <h1 className="mb-2 text-3xl font-semibold tracking-tight text-foreground">
+            <h1 className="mb-2 text-3xl font-bold tracking-tight text-white">
               {t("regulations.title")}
             </h1>
-            <p className="max-w-3xl text-sm leading-6 text-muted-foreground sm:text-base">
+            <p className="max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">
               {t("regulations.subtitle")}
             </p>
           </div>
 
           {meta.lastVerifiedAt && (
-            <div className="flex items-center gap-2 rounded-2xl border border-white/60 bg-white/85 px-4 py-3 text-sm text-muted-foreground backdrop-blur">
-              <Clock3 className="h-4 w-4 text-muted-foreground" />
+            <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/50 px-4 py-3 text-sm text-slate-300 backdrop-blur">
+              <Clock3 className="h-4 w-4 text-slate-400" />
               <span>{t("regulations.lastVerified")}: {formatDate(meta.lastVerifiedAt)}</span>
             </div>
           )}
         </div>
 
-        <div className="mb-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm leading-6 text-amber-800">
+        <div className="mb-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm leading-6 text-amber-300">
           {t("regulations.mockNotice")}
         </div>
         </section>
 
         <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-2xl border border-white/60 bg-white/85 p-4 backdrop-blur shadow-sm">
+          <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">{t("regulations.total")}</span>
-              <ListChecks className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-slate-400">{t("regulations.total")}</span>
+              <ListChecks className="h-4 w-4 text-slate-400" />
             </div>
-            <p className="text-2xl font-bold text-foreground">{meta.total || regulations.length}</p>
+            <p className="text-2xl font-bold text-white">{meta.total || regulations.length}</p>
           </div>
-          <div className="rounded-2xl border border-white/60 bg-white/85 p-4 backdrop-blur shadow-sm">
+          <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">{t("regulations.trackedMarkets")}</span>
-              <Globe2 className="h-4 w-4 text-muted-foreground" />
+              <span className="text-sm text-slate-400">{t("regulations.trackedMarkets")}</span>
+              <Globe2 className="h-4 w-4 text-slate-400" />
             </div>
-            <p className="text-2xl font-bold text-foreground">{meta.markets || "-"}</p>
+            <p className="text-2xl font-bold text-white">{meta.markets || "-"}</p>
           </div>
-          <div className="rounded-2xl border border-white/60 bg-white/85 p-4 backdrop-blur shadow-sm">
+          <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">{t("regulations.highPriority")}</span>
+              <span className="text-sm text-slate-400">{t("regulations.highPriority")}</span>
               <AlertTriangle className="h-4 w-4 text-orange-500" />
             </div>
-            <p className="text-2xl font-bold text-orange-600">{meta.highRisk || 0}</p>
+            <p className="text-2xl font-bold text-orange-400">{meta.highRisk || 0}</p>
           </div>
-          <div className="rounded-2xl border border-white/60 bg-white/85 p-4 backdrop-blur shadow-sm">
+          <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-muted-foreground">{t("regulations.effectiveSoon")}</span>
+              <span className="text-sm text-slate-400">{t("regulations.effectiveSoon")}</span>
               <Calendar className="h-4 w-4 text-blaze-red" />
             </div>
             <p className="text-2xl font-bold text-blaze-red">{meta.effectiveSoon || 0}</p>
           </div>
         </div>
 
-        <div className="mb-6 flex flex-col gap-4 rounded-2xl border border-white/60 bg-white/85 p-4 backdrop-blur shadow-sm lg:flex-row lg:items-center">
+        <div className="mb-6 flex flex-col gap-4 glass-panel rounded-2xl p-4 lg:flex-row lg:items-center">
           <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               placeholder={t("regulations.search")}
               value={search}
               onChange={(event) => setSearch(event.target.value)}
-              className="w-full rounded-lg border border-white/60 bg-white/85 py-3 pl-12 pr-4 text-foreground placeholder:text-muted-foreground focus:border-blaze-red focus:outline-none focus:ring-2 focus:ring-blaze-red/20"
+              className="w-full rounded-lg border border-white/10 bg-slate-900/60 py-3 pl-12 pr-4 text-white placeholder:text-slate-500 focus:border-blaze-red focus:outline-none focus:ring-2 focus:ring-blaze-red/30"
             />
           </div>
 
@@ -265,8 +265,8 @@ export default function RegulationsPage() {
                 onClick={() => setSelectedMarket(code)}
                 className={`whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   selectedMarket === code
-                    ? "bg-blaze-red text-white"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
+                    ? "bg-blaze-red text-white shadow-[0_0_15px_rgba(217,58,26,0.4)]"
+                    : "bg-slate-800/60 text-slate-300 hover:bg-slate-700/60"
                 }`}
               >
                 {t(marketFilterKeys[code])}
@@ -298,12 +298,12 @@ export default function RegulationsPage() {
               return (
                 <article
                   key={regulation.id}
-                  className={`rounded-2xl border border-white/60 border-l-4 bg-white/85 p-5 shadow-sm backdrop-blur transition-shadow hover:shadow-md ${riskBorderClasses[regulation.riskLevel]}`}
+                  className={`glass-panel rounded-2xl border-l-4 p-5 transition-all hover:border-blaze-red/40 hover:shadow-[0_0_25px_rgba(217,58,26,0.15)] ${riskBorderClasses[regulation.riskLevel]}`}
                 >
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="min-w-0 flex-1">
                       <div className="mb-3 flex flex-wrap items-center gap-2">
-                        <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground">
+                        <span className="inline-flex items-center rounded-full bg-slate-800/80 px-3 py-1 text-xs font-medium text-slate-200">
                           {marketLabel}
                         </span>
                         <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ${riskClasses[regulation.riskLevel]}`}>
@@ -313,35 +313,35 @@ export default function RegulationsPage() {
                           {t(`regulations.changeTypes.${regulation.changeType}`)}
                         </span>
                         {isUrgent && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-medium text-orange-700 ring-1 ring-orange-100">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-orange-500/15 px-3 py-1 text-xs font-medium text-orange-300 ring-1 ring-orange-500/40">
                             <AlertTriangle className="h-3 w-3" />
                             {t("regulations.comingSoon")}
                           </span>
                         )}
                       </div>
 
-                      <h3 className="mb-2 text-lg font-semibold leading-7 text-foreground">
+                      <h3 className="mb-2 text-lg font-semibold leading-7 text-white">
                         {title}
                       </h3>
-                      <p className="mb-4 line-clamp-2 text-sm leading-6 text-muted-foreground">
+                      <p className="mb-4 line-clamp-2 text-sm leading-6 text-slate-400">
                         {summary}
                       </p>
 
-                      <div className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2 xl:grid-cols-4">
+                      <div className="grid gap-2 text-sm text-slate-400 sm:grid-cols-2 xl:grid-cols-4">
                         <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <Calendar className="h-4 w-4 text-slate-500" />
                           <span>{t("regulations.published")}: {formatDate(regulation.publishDate)}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Calendar className="h-4 w-4 text-muted-foreground" />
+                          <Calendar className="h-4 w-4 text-slate-500" />
                           <span>{t("regulations.effective")}: {formatDate(regulation.effectiveDate)}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Building2 className="h-4 w-4 text-muted-foreground" />
+                          <Building2 className="h-4 w-4 text-slate-500" />
                           <span>{sourceAgency}</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
+                          <CheckCircle2 className="h-4 w-4 text-slate-500" />
                           <span>{status}</span>
                         </div>
                       </div>
@@ -349,7 +349,7 @@ export default function RegulationsPage() {
 
                     <button
                       onClick={() => toggleExpand(regulation.id)}
-                      className="inline-flex items-center justify-center gap-1 rounded-lg bg-muted px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground lg:shrink-0"
+                      className="inline-flex items-center justify-center gap-1 rounded-lg border border-white/10 bg-slate-800/60 px-3 py-2 text-sm font-medium text-slate-200 transition-colors hover:bg-slate-700/60 hover:border-blaze-red/40 hover:text-white lg:shrink-0"
                     >
                       {isExpanded ? t("regulations.collapse") : t("regulations.viewDetails")}
                       <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
@@ -357,23 +357,23 @@ export default function RegulationsPage() {
                   </div>
 
                   {isExpanded && (
-                    <div className="mt-5 border-t border-border pt-5">
+                    <div className="mt-5 border-t border-white/10 pt-5">
                       <div className="mb-5 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
                         <div>
-                          <h4 className="mb-2 text-sm font-semibold text-foreground">
+                          <h4 className="mb-2 text-sm font-semibold text-white">
                             {t("regulations.businessImpact")}
                           </h4>
-                          <p className="text-sm leading-6 text-muted-foreground">{businessImpact}</p>
+                          <p className="text-sm leading-6 text-slate-300">{businessImpact}</p>
                         </div>
                         <div>
-                          <h4 className="mb-2 text-sm font-semibold text-foreground">
+                          <h4 className="mb-2 text-sm font-semibold text-white">
                             {t("regulations.affectedCategories")}
                           </h4>
                           <div className="flex flex-wrap gap-2">
                             {categories.map((category) => (
                               <span
                                 key={category}
-                                className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-foreground"
+                                className="inline-flex items-center rounded-full bg-slate-800/80 px-3 py-1 text-xs font-medium text-slate-200"
                               >
                                 {category}
                               </span>
@@ -384,25 +384,25 @@ export default function RegulationsPage() {
 
                       <div className="grid gap-5 lg:grid-cols-2">
                         <div>
-                          <h4 className="mb-3 text-sm font-semibold text-foreground">
+                          <h4 className="mb-3 text-sm font-semibold text-white">
                             {t("regulations.keyRequirements")}
                           </h4>
                           <ul className="space-y-2">
                             {requirements.map((requirement) => (
-                              <li key={requirement} className="flex gap-2 text-sm leading-6 text-muted-foreground">
-                                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" />
+                              <li key={requirement} className="flex gap-2 text-sm leading-6 text-slate-300">
+                                <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-400" />
                                 <span>{requirement}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
                         <div>
-                          <h4 className="mb-3 text-sm font-semibold text-foreground">
+                          <h4 className="mb-3 text-sm font-semibold text-white">
                             {t("regulations.recommendedActions")}
                           </h4>
                           <ul className="space-y-2">
                             {actions.map((action) => (
-                              <li key={action} className="flex gap-2 text-sm leading-6 text-muted-foreground">
+                              <li key={action} className="flex gap-2 text-sm leading-6 text-slate-300">
                                 <ListChecks className="mt-1 h-4 w-4 shrink-0 text-blaze-red" />
                                 <span>{action}</span>
                               </li>
@@ -411,19 +411,19 @@ export default function RegulationsPage() {
                         </div>
                       </div>
 
-                      <div className="mt-5 flex flex-col gap-3 border-t border-border pt-4 sm:flex-row sm:items-center sm:justify-between">
-                        <div className="text-sm text-muted-foreground">
+                      <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                        <div className="text-sm text-slate-400">
                           {daysUntil > 0
                             ? t("regulations.daysLeft", { days: daysUntil })
                             : t("regulations.inForce")}
-                          <span className="mx-2 text-muted-foreground/60">/</span>
+                          <span className="mx-2 text-slate-600">/</span>
                           {t("regulations.lastChecked")}: {formatDate(regulation.lastVerifiedAt)}
                         </div>
                         <a
                           href={regulation.sourceUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-700"
+                          className="inline-flex items-center gap-1 text-sm font-medium text-blaze-cyan hover:text-blaze-cyan/80"
                         >
                           {t("regulations.viewSource")}
                           <ExternalLink className="h-4 w-4" />
@@ -436,26 +436,26 @@ export default function RegulationsPage() {
             })}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center rounded-2xl border border-white/60 bg-white/85 py-20 text-center backdrop-blur">
-            <Filter className="mb-4 h-12 w-12 text-muted-foreground/60" />
-            <p className="mb-2 text-lg font-medium text-foreground">
+          <div className="flex flex-col items-center justify-center glass-panel rounded-2xl py-20 text-center">
+            <Filter className="mb-4 h-12 w-12 text-slate-500" />
+            <p className="mb-2 text-lg font-medium text-white">
               {t("regulations.noResults")}
             </p>
           </div>
         )}
 
         {!loading && regulations.length > 0 && (
-          <div className="mt-6 rounded-2xl border border-white/60 bg-white/85 p-5 backdrop-blur">
+          <div className="mt-6 glass-panel rounded-2xl p-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-slate-400">
                 {t("regulations.showing", {
                   from: 1,
                   to: regulations.length,
                   total: meta.matching || regulations.length,
                 })}
               </p>
-              <p className="text-sm text-muted-foreground">
-                {t("regulations.dataset")}: <span className="font-medium text-foreground">{meta.dataset ?? "static-demo"}</span>
+              <p className="text-sm text-slate-400">
+                {t("regulations.dataset")}: <span className="font-medium text-white">{meta.dataset ?? "static-demo"}</span>
               </p>
             </div>
           </div>

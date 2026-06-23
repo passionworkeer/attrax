@@ -27,7 +27,7 @@ export default function BurningPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-blaze-dark px-4 sm:px-6 py-16 text-white">
+    <main className="flex min-h-[calc(100vh-5rem)] items-center justify-center px-4 sm:px-6 py-12 text-white">
       {/* Screen flash on completion */}
       <AnimatePresence>
         {completing && (
@@ -37,7 +37,7 @@ export default function BurningPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-white/20 backdrop-blur-sm"
+            className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-blaze-red/20 backdrop-blur-sm"
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -46,8 +46,8 @@ export default function BurningPage() {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="flex flex-col items-center gap-3"
             >
-              <div className="text-5xl">&#128293;</div>
-              <p className="text-lg font-semibold text-white">{t("burning.scanComplete")}</p>
+              <div className="text-6xl drop-shadow-[0_0_30px_rgba(217,58,26,0.8)]">&#128293;</div>
+              <p className="text-xl font-bold text-white text-glow">{t("burning.scanComplete")}</p>
             </motion.div>
           </motion.div>
         )}

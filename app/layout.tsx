@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import SiteHeader from "@/components/SiteHeader";
 import PageTransition from "@/components/PageTransition";
 import { TranslationProvider } from "@/lib/i18n";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Blaze Hawks · Think Before You Expand",
+  title: "Attrax · Think Before You Expand",
   description: "AI-powered compliance risk scanning for cross-border e-commerce",
 };
 
@@ -16,14 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh" className="h-full antialiased" data-scroll-behavior="smooth">
+    <html lang="zh" className="h-full antialiased dark" data-scroll-behavior="smooth">
       <body className="min-h-full">
         <TranslationProvider>
           <TooltipProvider>
-            <div className="fixed top-4 right-4 z-50">
-              <LanguageSwitcher />
+            <SiteHeader />
+            <div className="pt-20">
+              <PageTransition>{children}</PageTransition>
             </div>
-            <PageTransition>{children}</PageTransition>
           </TooltipProvider>
         </TranslationProvider>
       </body>

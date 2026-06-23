@@ -128,41 +128,41 @@ export default function RoadmapPage({ params }: { params: Promise<{ sessionId?: 
       </div>
 
       {/* Hero Header */}
-      <div className="mx-6 mt-6 rounded-4xl border border-white/60 bg-white/85 p-8 shadow-[0_30px_120px_rgba(26,26,46,0.12)] backdrop-blur">
+      <div className="mx-6 mt-6 glass-panel rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="min-w-0">
-              <p className="text-sm font-medium uppercase tracking-[0.24em] text-blaze-red/80">
+              <p className="label-caps text-xs text-blaze-red/80">
                 Compliance Roadmap
               </p>
               <div className="mt-3 flex items-center gap-4">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blaze-red to-blaze-orange shadow-lg">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blaze-red to-blaze-orange shadow-[0_0_20px_rgba(217,58,26,0.5)]">
                   <span className="text-lg font-bold text-white">RM</span>
                 </div>
                 <div className="min-w-0">
-                  <h1 className="text-3xl font-semibold tracking-tight text-foreground max-sm:text-2xl">{t("roadmap.title")}</h1>
-                  <p className="text-sm text-muted-foreground">{t("roadmap.subtitle")}</p>
+                  <h1 className="text-3xl font-bold tracking-tight text-white max-sm:text-2xl">{t("roadmap.title")}</h1>
+                  <p className="text-sm text-slate-400">{t("roadmap.subtitle")}</p>
                 </div>
               </div>
             </div>
 
             {/* Stats */}
             <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 lg:w-auto lg:flex lg:items-center lg:gap-4">
-              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
+              <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
                 <div className="text-2xl font-black text-blaze-red">{totalDays}</div>
-                <div className="text-xs text-muted-foreground">{t("roadmap.totalDays")}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.totalDays")}</div>
               </div>
-              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
+              <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
                 <div className="text-lg font-black text-blaze-red">{totalCost}</div>
-                <div className="text-xs text-muted-foreground">{t("roadmap.estimatedCost")}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.estimatedCost")}</div>
               </div>
-              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
+              <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
                 <div className="text-2xl font-black text-blaze-red">{steps}</div>
-                <div className="text-xs text-muted-foreground">{t("roadmap.stepsCount")}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.stepsCount")}</div>
               </div>
-              <div className="min-w-0 text-center rounded-2xl border border-white/60 bg-white/80 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
+              <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
                 <div className="text-2xl font-black text-blaze-red">{progress}%</div>
-                <div className="text-xs text-muted-foreground">{t("roadmap.progress")}</div>
+                <div className="text-xs text-slate-400">{t("roadmap.progress")}</div>
               </div>
             </div>
           </div>
