@@ -149,8 +149,11 @@ def _parse_json_object(text: str) -> dict | None:
     try:
         data = json.loads(raw)
         return data if isinstance(data, dict) else None
-    except Exception:
-        pass
+    except Exception as exc:
+        # Malformed LLM output is the most common cause of parse failures
+        # here. Log at WARNING so we can diagnose regressions without
+        # breaking the downstream fallback to the substring search.
+        logger.warning("direct json.loads failed: %s; raw[:200]=%r", exc, raw[:200])
 
     # Try to find the largest balanced top-level JSON object.
     decoder = json.JSONDecoder()
@@ -176,7 +179,8 @@ def _parse_json_object(text: str) -> dict | None:
         try:
             data = json.loads(raw[start:end + 1])
             return data if isinstance(data, dict) else None
-        except Exception:
+        except Exception as exc:
+            logger.warning("substring json.loads failed: %s; slice[:200]=%r", exc, raw[start:end + 1][:200])
             return None
 
     return None
