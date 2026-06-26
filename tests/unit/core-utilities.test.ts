@@ -114,7 +114,7 @@ describe('session auth utilities', () => {
     expect(verifyAccessToken(token, 'deadbeef')).toBe(false)
   })
 
-  it('reads bearer tokens before query string tokens', () => {
+  it('reads bearer tokens and ignores query string tokens (security)', () => {
     const bearer = new Request('http://localhost/api/scan/abc?token=query-token', {
       headers: { authorization: 'Bearer header-token' },
     })
@@ -124,7 +124,10 @@ describe('session auth utilities', () => {
     })
 
     expect(tokenFromRequest(bearer)).toBe('header-token')
-    expect(tokenFromRequest(query)).toBe('query-token')
+    // SECURITY: ?token= in query string MUST be ignored — it would leak to
+    // nginx access logs and any downstream log aggregator. See
+    // tests/unit/session-auth.test.ts for the authoritative regression guard.
+    expect(tokenFromRequest(query)).toBeNull()
     expect(tokenFromRequest(emptyBearer)).toBeNull()
   })
 })

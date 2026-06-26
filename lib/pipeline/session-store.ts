@@ -122,16 +122,51 @@ function writeJsonAtomic(filePath: string, value: unknown): void {
     writeFileSync(filePath, serialized, "utf-8");
     return;
   }
-  try {
-    renameSync(tmpPath, filePath);
-  } catch (error) {
+  // On Windows, antivirus or another process can briefly hold the .tmp file,
+  // making rename fail with EPERM. Retry a few times with exponential backoff
+  // before falling back to a direct (non-atomic) write — safer than throwing
+  // inside persistSession() and rolling back the in-memory state.
+  const renameAttempts = 3;
+  let lastError: unknown = null;
+  for (let attempt = 1; attempt <= renameAttempts; attempt++) {
+    try {
+      renameSync(tmpPath, filePath);
+      return;
+    } catch (error) {
+      lastError = error;
+      if (attempt < renameAttempts) {
+        // Brief sync wait — Windows file lock typically clears within a few ms.
+        const waitMs = attempt * 5;
+        const end = Date.now() + waitMs;
+        while (Date.now() < end) {
+          /* spin briefly */
+        }
+      }
+    }
+  }
+  // Atomic rename failed after retries — best-effort direct write so callers
+  // can still read what they just stored. We keep the rollback on the table
+  // by checking the error code: EBUSY/EPERM/EACCES are transient, anything
+  // else (e.g. ENOENT, EISDIR) should still surface.
+  const code = (lastError as NodeJS.ErrnoException | null)?.code;
+  if (code === "EPERM" || code === "EBUSY" || code === "EACCES") {
+    console.warn(
+      `[session-store] rename ${tmpPath} → ${filePath} failed (${code}); falling back to direct write`
+    );
     try {
       if (existsSync(tmpPath)) unlinkSync(tmpPath);
     } catch {
       /* ignore */
     }
-    throw error;
+    writeFileSync(filePath, serialized, "utf-8");
+    return;
   }
+  try {
+    if (existsSync(tmpPath)) unlinkSync(tmpPath);
+  } catch {
+    /* ignore */
+  }
+  throw lastError;
 }
 
 function persistSession(session: StoredScanStatus): void {
@@ -329,6 +364,9 @@ export function updateSession(sessionId: string, patch: Partial<ScanStatus> & { 
 }
 
 export function getSession(sessionId: string): StoredScanStatus | undefined {
+  if (!validateSessionId(sessionId)) {
+    throw new Error("Invalid sessionId");
+  }
   cleanStaleFilesIfDue();
   const store = getStore();
   const cached = store.get(sessionId);

@@ -213,7 +213,10 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     }
 
     if (!resp.ok) {
-      throw new Error(`RAG_SERVICE_HTTP_${resp.status}`);
+      // Normalize to a stable code so downstream consumers (and tests) can
+      // pattern-match on RAG_SERVICE_UNAVAILABLE without leaking the upstream
+      // HTTP status. The original status is preserved in the error detail.
+      throw new Error(`RAG_SERVICE_UNAVAILABLE: HTTP ${resp.status}`);
     }
 
     const parsed = RagServiceResponseSchema.safeParse(await resp.json());

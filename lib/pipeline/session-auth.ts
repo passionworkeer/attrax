@@ -19,6 +19,9 @@ export function verifyAccessToken(token: string, hash: string | undefined): bool
 }
 
 export function tokenFromRequest(request: Request): string | null {
+  // SECURITY: Bearer header ONLY. Do NOT read ?token= from the query string —
+  // it would be persisted in nginx access logs and leaked to operators/CDNs.
+  // See tests/unit/session-auth.test.ts for the regression guard.
   const auth = request.headers.get("authorization") ?? "";
   if (auth.toLowerCase().startsWith("bearer ")) {
     return auth.slice(7).trim() || null;
