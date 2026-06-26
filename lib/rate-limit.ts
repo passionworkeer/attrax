@@ -12,6 +12,14 @@ function buckets(): Map<string, Bucket> {
 }
 
 export function clientIp(request: Request): string {
+  // X-Forwarded-For is trivially spoofable by clients when the app is
+  // reachable without a trusted upstream proxy — anyone can send
+  // "X-Forwarded-For: 1.2.3.4" and reset their bucket. Prefer X-Real-IP
+  // (commonly set by nginx in front of this app) which is a single value
+  // and harder to inject, then fall back to the leftmost XFF entry for
+  // legitimate proxy chains, then "unknown" for direct connections.
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return realIp;
   const forwarded = request.headers.get("x-forwarded-for") ?? "";
   return forwarded.split(",", 1)[0].trim() || "unknown";
 }
