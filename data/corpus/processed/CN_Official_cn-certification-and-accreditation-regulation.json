@@ -1,0 +1,60 @@
+{
+  "id": "cn-certification-and-accreditation-regulation",
+  "title": "Regulation of the People's Republic of China on Certification and Accreditation",
+  "fileName": "CN_certification_and_accreditation_regulation.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/cn/CN_certification_and_accreditation_regulation.html",
+  "sourceType": "html",
+  "region": "CN",
+  "pageCount": 1,
+  "totalChars": 19,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 19,
+      "hasText": false,
+      "hasTables": false,
+      "textPreview": "https://www.gov.cn/"
+    }
+  ],
+  "tables": [],
+  "rawText": "https://www.gov.cn/",
+  "metadata": {
+    "detectedMarkets": [
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "conformity",
+      "testing",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "electronics",
+      "electrical_equipment"
+    ],
+    "charCount": 19,
+    "region": "CN",
+    "supplement_id": "cn-certification-and-accreditation-regulation",
+    "source_url": "https://www.gov.cn/gongbao/content/2003/content_62427.htm",
+    "content_url": "",
+    "official_channel": "State Council / Government of China",
+    "why_added": "China certification and accreditation framework relevant to CCC and conformity assessment.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/cn/CN_certification_and_accreditation_regulation.html"
+    ],
+    "primary_file": "raw/cn/CN_certification_and_accreditation_regulation.html",
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "testing",
+      "market_surveillance"
+    ]
+  }
+}

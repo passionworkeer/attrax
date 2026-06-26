@@ -1,0 +1,56 @@
+{
+  "id": "us-16-cfr-1231-high-chairs",
+  "title": "16 CFR Part 1231, Safety Standard for High Chairs",
+  "fileName": "US_16_CFR_Part_1231_high_chairs.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/us/US_16_CFR_Part_1231_high_chairs.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 1368,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1368,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1231—SAFETY STANDARD FOR HIGH CHAIRS Authority: Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (15 U.S.C. 2056a); Sec 3, Pub. L. 112-28, 125 Stat. 273. Source: 83 FR 28370, June 19, 2018, unless other"
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1231—SAFETY STANDARD FOR HIGH CHAIRS Authority: Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (15 U.S.C. 2056a); Sec 3, Pub. L. 112-28, 125 Stat. 273. Source: 83 FR 28370, June 19, 2018, unless otherwise noted. § 1231.1 Scope. This part establishes a consumer product safety standard for high chairs. § 1231.2 Requirements for high chairs. Each high chair shall comply with all applicable provisions of ASTM F404-21, Standard Consumer Safety Specification for High Chairs, approved on November 15, 2021. The Director of the Federal Register approves this incorporation by reference in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. A read-only copy of the standard is available for viewing on the ASTM website at https://www.astm.org/READINGLIBRARY/. You may obtain a copy from ASTM International, 100 Barr Harbor Drive, PO Box C700, West Conshohocken, PA 19428-2959; telephone (610) 832-9585; www.astm.org. You may inspect a copy at the Division of the Secretariat, U.S. Consumer Product Safety Commission, Room 820, 4330 East West Highway, Bethesda, MD 20814, telephone (301) 504-7479, email cpsc-os@cpsc.gov, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, email fr.inspection@nara.gov, or go to: www.archives.gov/federal-register/cfr/ibr-locations.html. [87 FR 42636, July 18, 2022]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "children_products",
+      "furniture"
+    ],
+    "charCount": 1368,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1231-high-chairs",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1231",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US durable infant product safety standard for high chairs.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1231_high_chairs.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1231_high_chairs.xml",
+    "product_categories": [
+      "children_products",
+      "furniture"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

@@ -1,6 +1,282 @@
 {
-  "status": "raw_only_not_ingested",
-  "created_at": "2026-05-27T12:12:28+08:00",
-  "failed_downloads": 0,
-  "failures": []
+  "generated_at": "2026-06-25T23:46:57+08:00",
+  "supplement_dir": "data/regulation_supplements/2026-05-27_extra_global_official_sources",
+  "processed_dir": "data/corpus/processed",
+  "entries_total": 30,
+  "entries_processed": 30,
+  "entries_failed": 0,
+  "files_written": [
+    {
+      "id": "my-st-electrical-equipment-approval-guidelines",
+      "market": "MY",
+      "title": "Guidelines for the Approval of Electrical Equipment, 2024 edition",
+      "primary_file": "raw/my/MY_st_electrical_equipment_approval_guidelines.html",
+      "output_path": "data/corpus/processed/MY_Official_my-st-electrical-equipment-approval-guidelines.json",
+      "source_type": "html",
+      "total_chars": 471
+    },
+    {
+      "id": "my-st-energy-using-products",
+      "market": "MY",
+      "title": "Energy-Using Product approval and energy efficiency page",
+      "primary_file": "raw/my/MY_st_energy_using_products.html",
+      "output_path": "data/corpus/processed/MY_Official_my-st-energy-using-products.json",
+      "source_type": "html",
+      "total_chars": 7831
+    },
+    {
+      "id": "ph-bps-product-certification",
+      "market": "PH",
+      "title": "BPS product certification schemes",
+      "primary_file": "raw/ph/PH_bps_product_certification.html",
+      "output_path": "data/corpus/processed/PH_Official_ph-bps-product-certification.json",
+      "source_type": "html",
+      "total_chars": 3980
+    },
+    {
+      "id": "ph-bps-list-products-under-mandatory-certification",
+      "market": "PH",
+      "title": "List of products under mandatory certification",
+      "primary_file": "raw/ph/PH_bps_mandatory_certification_list.html",
+      "output_path": "data/corpus/processed/PH_Official_ph-bps-list-products-under-mandatory-certification.json",
+      "source_type": "html",
+      "total_chars": 6093
+    },
+    {
+      "id": "ph-judiciary-consumer-act-ra7394",
+      "market": "PH",
+      "title": "Republic Act No. 7394, Consumer Act of the Philippines",
+      "primary_file": "raw/ph/PH_consumer_act_ra7394_supreme_court_elibrary.html",
+      "output_path": "data/corpus/processed/PH_Official_ph-judiciary-consumer-act-ra7394.json",
+      "source_type": "html",
+      "total_chars": 99999
+    },
+    {
+      "id": "ph-ntc-type-approval-application-form-1-17",
+      "market": "PH",
+      "title": "Application for type approval, acceptance, and grant of equipment conformity certificate",
+      "primary_file": "raw/ph/PH_ntc_downloadable_application_forms.html",
+      "output_path": "data/corpus/processed/PH_Official_ph-ntc-type-approval-application-form-1-17.json",
+      "source_type": "html",
+      "total_chars": 2440
+    },
+    {
+      "id": "id-bpk-consumer-protection-law-8-1999",
+      "market": "ID",
+      "title": "Law No. 8 of 1999 on Consumer Protection",
+      "primary_file": "raw/id/ID_consumer_protection_law_8_1999.pdf",
+      "output_path": "data/corpus/processed/ID_Official_id-bpk-consumer-protection-law-8-1999.json",
+      "source_type": "pdf",
+      "total_chars": 60075
+    },
+    {
+      "id": "id-bpk-consumer-protection-supervision-pp-58-2001",
+      "market": "ID",
+      "title": "Government Regulation No. 58 of 2001 on consumer protection supervision",
+      "primary_file": "raw/id/ID_consumer_protection_supervision_pp_58_2001.pdf",
+      "output_path": "data/corpus/processed/ID_Official_id-bpk-consumer-protection-supervision-pp-58-2001.json",
+      "source_type": "pdf",
+      "total_chars": 11695
+    },
+    {
+      "id": "id-bpk-standardization-conformity-law-20-2014",
+      "market": "ID",
+      "title": "Law No. 20 of 2014 on Standardization and Conformity Assessment",
+      "primary_file": "raw/id/ID_standardization_conformity_law_20_2014.pdf",
+      "output_path": "data/corpus/processed/ID_Official_id-bpk-standardization-conformity-law-20-2014.json",
+      "source_type": "pdf",
+      "total_chars": 9394
+    },
+    {
+      "id": "vn-mic-electrical-safety-telecom-it-terminal-equipment",
+      "market": "VN",
+      "title": "Circular 24/2022/TT-BTTTT on electrical safety for telecom and IT terminal equipment",
+      "primary_file": "raw/vn/VN_mic_electrical_safety_telecom_it_terminal_equipment.html",
+      "output_path": "data/corpus/processed/VN_Official_vn-mic-electrical-safety-telecom-it-terminal-equipment.json",
+      "source_type": "html",
+      "total_chars": 4274
+    },
+    {
+      "id": "th-tisi-industrial-product-standards-act",
+      "market": "TH",
+      "title": "Industrial Product Standards Act, B.E. 2511 (1968)",
+      "primary_file": "raw/th/TH_tisi_industrial_product_standards_act_1968.pdf",
+      "output_path": "data/corpus/processed/TH_Official_th-tisi-industrial-product-standards-act.json",
+      "source_type": "pdf",
+      "total_chars": 0
+    },
+    {
+      "id": "sa-saso-technical-regulations-portal",
+      "market": "SA",
+      "title": "SASO technical regulations portal",
+      "primary_file": "raw/sa/SA_saso_technical_regulations_portal.html",
+      "output_path": "data/corpus/processed/SA_Official_sa-saso-technical-regulations-portal.json",
+      "source_type": "html",
+      "total_chars": 2576
+    },
+    {
+      "id": "sa-saso-low-voltage-electrical-equipment",
+      "market": "SA",
+      "title": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances",
+      "primary_file": "raw/sa/SA_saso_gulf_low_voltage_electrical_equipment.pdf",
+      "output_path": "data/corpus/processed/SA_Official_sa-saso-low-voltage-electrical-equipment.json",
+      "source_type": "pdf",
+      "total_chars": 94776
+    },
+    {
+      "id": "sa-saso-rohs-electrical-electronic-equipment",
+      "market": "SA",
+      "title": "Technical Regulation for Restriction of Hazardous Substances in Electrical and Electronic Equipment",
+      "primary_file": "raw/sa/SA_saso_rohs_electrical_electronic_equipment_v2.pdf",
+      "output_path": "data/corpus/processed/SA_Official_sa-saso-rohs-electrical-electronic-equipment.json",
+      "source_type": "pdf",
+      "total_chars": 54913
+    },
+    {
+      "id": "sa-saso-textile-products-technical-regulation",
+      "market": "SA",
+      "title": "Technical Regulation for Textile Products",
+      "primary_file": "raw/sa/SA_saso_textile_products_technical_regulation.pdf",
+      "output_path": "data/corpus/processed/SA_Official_sa-saso-textile-products-technical-regulation.json",
+      "source_type": "pdf",
+      "total_chars": 89941
+    },
+    {
+      "id": "sa-saso-ppe-clothing-technical-regulation",
+      "market": "SA",
+      "title": "Technical Regulation for Personal Protective Equipment and Clothing",
+      "primary_file": "raw/sa/SA_saso_ppe_clothing_technical_regulation.pdf",
+      "output_path": "data/corpus/processed/SA_Official_sa-saso-ppe-clothing-technical-regulation.json",
+      "source_type": "pdf",
+      "total_chars": 77795
+    },
+    {
+      "id": "sa-saso-gcc-children-toys-technical-regulation",
+      "market": "SA",
+      "title": "GCC Technical Regulation on Children Toys",
+      "primary_file": "raw/sa/SA_saso_gcc_children_toys_technical_regulation.pdf",
+      "output_path": "data/corpus/processed/SA_Official_sa-saso-gcc-children-toys-technical-regulation.json",
+      "source_type": "pdf",
+      "total_chars": 451772
+    },
+    {
+      "id": "ae-moiat-ecas-conformity-certificates",
+      "market": "AE",
+      "title": "Issue conformity certificates for regulated products",
+      "primary_file": "raw/ae/AE_moiat_ecas_conformity_certificates.html",
+      "output_path": "data/corpus/processed/AE_Official_ae-moiat-ecas-conformity-certificates.json",
+      "source_type": "html",
+      "total_chars": 5144
+    },
+    {
+      "id": "ae-moiat-laws-and-regulations",
+      "market": "AE",
+      "title": "MOIAT laws and regulations portal",
+      "primary_file": "raw/ae/AE_moiat_laws_and_regulations.html",
+      "output_path": "data/corpus/processed/AE_Official_ae-moiat-laws-and-regulations.json",
+      "source_type": "html",
+      "total_chars": 2468
+    },
+    {
+      "id": "ae-moiat-manaa-product-safety",
+      "market": "AE",
+      "title": "Manaa product safety and recall platform",
+      "primary_file": "raw/ae/AE_moiat_manaa_product_safety.html",
+      "output_path": "data/corpus/processed/AE_Official_ae-moiat-manaa-product-safety.json",
+      "source_type": "html",
+      "total_chars": 2016
+    },
+    {
+      "id": "za-icasa-type-approval-requirements",
+      "market": "ZA",
+      "title": "Type approval requirements for South Africa",
+      "primary_file": "raw/za/ZA_icasa_type_approval_requirements.html",
+      "output_path": "data/corpus/processed/ZA_Official_za-icasa-type-approval-requirements.json",
+      "source_type": "html",
+      "total_chars": 15200
+    },
+    {
+      "id": "za-icasa-type-approval-regulations-2013",
+      "market": "ZA",
+      "title": "Type Approval Regulations 2013",
+      "primary_file": "raw/za/ZA_icasa_type_approval_regulations_2013.html",
+      "output_path": "data/corpus/processed/ZA_Official_za-icasa-type-approval-regulations-2013.json",
+      "source_type": "html",
+      "total_chars": 314
+    },
+    {
+      "id": "za-icasa-labelling-regulations-2013",
+      "market": "ZA",
+      "title": "Labelling Regulations 2013",
+      "primary_file": "raw/za/ZA_icasa_labelling_regulations_2013.html",
+      "output_path": "data/corpus/processed/ZA_Official_za-icasa-labelling-regulations-2013.json",
+      "source_type": "html",
+      "total_chars": 352
+    },
+    {
+      "id": "za-icasa-radio-frequency-spectrum-regulations-2015",
+      "market": "ZA",
+      "title": "Radio Frequency Spectrum Regulations 2015",
+      "primary_file": "raw/za/ZA_icasa_radio_frequency_spectrum_regulations_2015.html",
+      "output_path": "data/corpus/processed/ZA_Official_za-icasa-radio-frequency-spectrum-regulations-2015.json",
+      "source_type": "html",
+      "total_chars": 513
+    },
+    {
+      "id": "tr-product-safety-technical-regulations-law-7223",
+      "market": "TR",
+      "title": "Product Safety and Technical Regulations Law No. 7223",
+      "primary_file": "raw/tr/TR_product_safety_technical_regulations_law_7223.html",
+      "output_path": "data/corpus/processed/TR_Official_tr-product-safety-technical-regulations-law-7223.json",
+      "source_type": "html",
+      "total_chars": 2049
+    },
+    {
+      "id": "tr-law-7223-implementing-regulations",
+      "market": "TR",
+      "title": "Implementing regulations of Law No. 7223",
+      "primary_file": "raw/tr/TR_law_7223_implementing_regulations.html",
+      "output_path": "data/corpus/processed/TR_Official_tr-law-7223-implementing-regulations.json",
+      "source_type": "html",
+      "total_chars": 2111
+    },
+    {
+      "id": "tr-ministry-product-safety-consumer-info",
+      "market": "TR",
+      "title": "Product safety information and Ministry-supervised product groups",
+      "primary_file": "raw/tr/TR_ministry_product_safety_consumer_info.html",
+      "output_path": "data/corpus/processed/TR_Official_tr-ministry-product-safety-consumer-info.json",
+      "source_type": "html",
+      "total_chars": 4658
+    },
+    {
+      "id": "tr-official-gazette-market-surveillance-regulation-2021",
+      "market": "TR",
+      "title": "Official Gazette regulation implementing Law No. 7223",
+      "primary_file": "raw/tr/TR_official_gazette_law_7223_implementing_regulation_2021.pdf",
+      "output_path": "data/corpus/processed/TR_Official_tr-official-gazette-market-surveillance-regulation-2021.json",
+      "source_type": "pdf",
+      "total_chars": 127
+    },
+    {
+      "id": "ar-infoleg-consumer-defense-law-24240",
+      "market": "AR",
+      "title": "Law No. 24,240 on Consumer Defense",
+      "primary_file": "raw/ar/AR_infoleg_consumer_defense_law_24240_metadata.html",
+      "output_path": "data/corpus/processed/AR_Official_ar-infoleg-consumer-defense-law-24240.json",
+      "source_type": "html",
+      "total_chars": 710
+    },
+    {
+      "id": "cl-leychile-consumer-rights-law-19496",
+      "market": "CL",
+      "title": "Law No. 19,496 on consumer rights protection",
+      "primary_file": "raw/cl/CL_leychile_consumer_rights_law_19496.html",
+      "output_path": "data/corpus/processed/CL_Official_cl-leychile-consumer-rights-law-19496.json",
+      "source_type": "html",
+      "total_chars": 189
+    }
+  ],
+  "failures": [],
+  "dry_run": false
 }

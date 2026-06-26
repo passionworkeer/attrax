@@ -1,0 +1,58 @@
+{
+  "id": "tr-official-gazette-market-surveillance-regulation-2021",
+  "title": "Official Gazette regulation implementing Law No. 7223",
+  "fileName": "TR_official_gazette_law_7223_implementing_regulation_2021.pdf",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/tr/TR_official_gazette_law_7223_implementing_regulation_2021.pdf",
+  "sourceType": "pdf",
+  "region": "TR",
+  "pageCount": 9,
+  "totalChars": 127,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 127,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "27 Mayıs 2021 PERŞEMBE Resmî Gazete Sayı : 31493 YÖNETMELİK Karar Sayısı: 4021 26 Mayıs 2021 Recep Tayyip ERDOĞAN CUMHURBAŞKANI"
+    }
+  ],
+  "tables": [],
+  "rawText": "27 Mayıs 2021 PERŞEMBE Resmî Gazete Sayı : 31493\nYÖNETMELİK\nKarar Sayısı: 4021\n26 Mayıs 2021\nRecep Tayyip ERDOĞAN\nCUMHURBAŞKANI",
+  "metadata": {
+    "detectedMarkets": [
+      "TR"
+    ],
+    "regulatoryTypes": [
+      "market_surveillance",
+      "product_safety",
+      "conformity"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "industrial_products"
+    ],
+    "charCount": 127,
+    "region": "TR",
+    "supplement_id": "tr-official-gazette-market-surveillance-regulation-2021",
+    "source_url": "https://www.resmigazete.gov.tr/eskiler/2021/05/20210527-2.pdf",
+    "content_url": "",
+    "official_channel": "Official Gazette of Turkiye",
+    "why_added": "Turkiye official gazette PDF for product safety / market surveillance implementing regulation under Law No. 7223.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/tr/TR_official_gazette_law_7223_implementing_regulation_2021.pdf"
+    ],
+    "primary_file": "raw/tr/TR_official_gazette_law_7223_implementing_regulation_2021.pdf",
+    "product_categories": [
+      "general_consumer_products",
+      "industrial_products"
+    ],
+    "regulatory_types": [
+      "market_surveillance",
+      "product_safety",
+      "conformity"
+    ]
+  }
+}

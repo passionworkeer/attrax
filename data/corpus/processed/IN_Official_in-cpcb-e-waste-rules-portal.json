@@ -1,0 +1,59 @@
+{
+  "id": "in-cpcb-e-waste-rules-portal",
+  "title": "E-Waste (Management) Rules portal and 2022 rules",
+  "fileName": "IN_cpcb_e_waste_rules_portal.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/in/IN_cpcb_e_waste_rules_portal.html",
+  "sourceType": "html",
+  "region": "IN",
+  "pageCount": 1,
+  "totalChars": 429,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 429,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Air Quality Management Water Quality Management Quality Assurance/Quality Control Waste Management Contaminated Sites Industrial Pollution Noise Pollution Urban Pollution Pollution Control Planning In"
+    }
+  ],
+  "tables": [],
+  "rawText": "Air Quality Management Water Quality Management Quality Assurance/Quality Control Waste Management Contaminated Sites Industrial Pollution Noise Pollution Urban Pollution Pollution Control Planning Information Technology Environmental Training NGT/Court Cases Public Relations Annual Reports Infrastructure Development Regional Directorates / Project Office Old Projects Research and Development E- Waste (Management) Rules, 2022",
+  "metadata": {
+    "detectedMarkets": [
+      "IN"
+    ],
+    "regulatoryTypes": [
+      "sustainability",
+      "waste",
+      "documentation"
+    ],
+    "productCategories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "charCount": 429,
+    "region": "IN",
+    "supplement_id": "in-cpcb-e-waste-rules-portal",
+    "source_url": "https://www.cpcb.nic.in/e-waste/",
+    "content_url": "",
+    "official_channel": "Central Pollution Control Board, Government of India",
+    "why_added": "India electronics EPR and waste-management implementation portal with official rules PDF.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/in/IN_cpcb_e_waste_rules_portal.html",
+      "raw/in/IN_cpcb_e_waste_management_rules_2022.pdf"
+    ],
+    "primary_file": "raw/in/IN_cpcb_e_waste_rules_portal.html",
+    "product_categories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "sustainability",
+      "waste",
+      "documentation"
+    ]
+  }
+}

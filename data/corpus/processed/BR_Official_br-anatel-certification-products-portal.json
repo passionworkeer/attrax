@@ -1,0 +1,60 @@
+{
+  "id": "br-anatel-certification-products-portal",
+  "title": "Anatel product certification portal",
+  "fileName": "BR_anatel_product_certification_portal.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/br/BR_anatel_product_certification_portal.html",
+  "sourceType": "html",
+  "region": "BR",
+  "pageCount": 1,
+  "totalChars": 63,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 63,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Certificação de Produtos — Agência Nacional de Telecomunicações"
+    }
+  ],
+  "tables": [],
+  "rawText": "Certificação de Produtos — Agência Nacional de Telecomunicações",
+  "metadata": {
+    "detectedMarkets": [
+      "BR"
+    ],
+    "regulatoryTypes": [
+      "radio",
+      "conformity",
+      "emc"
+    ],
+    "productCategories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "charCount": 63,
+    "region": "BR",
+    "supplement_id": "br-anatel-certification-products-portal",
+    "source_url": "https://www.gov.br/anatel/pt-br/regulado/certificacao-de-produtos",
+    "content_url": "",
+    "official_channel": "National Telecommunications Agency of Brazil (Anatel)",
+    "why_added": "Brazil telecom product certification, homologation, and technical requirement portal.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/br/BR_anatel_product_certification_portal.html"
+    ],
+    "primary_file": "raw/br/BR_anatel_product_certification_portal.html",
+    "product_categories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "regulatory_types": [
+      "radio",
+      "conformity",
+      "emc"
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "id": "nz-product-safety-multipurpose-ladders-standard",
+  "title": "Multipurpose ladders mandatory product safety standard",
+  "fileName": "NZ_multipurpose_ladders.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/nz/NZ_multipurpose_ladders.html",
+  "sourceType": "html",
+  "region": "NZ",
+  "pageCount": 1,
+  "totalChars": 1171,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1171,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "About the standard This requirement for ladders came into force in 2012 and this updated standard came into effect on 13 April 2023. The standard applies to new multipurpose ladders supplied, or offer"
+    }
+  ],
+  "tables": [],
+  "rawText": "About the standard This requirement for ladders came into force in 2012 and this updated standard came into effect on 13 April 2023. The standard applies to new multipurpose ladders supplied, or offered or advertised for supply, in trade. 'Multipurpose ladder' means any portable ladder that has one or more pairs of articulation joints, which allow the ladder to be rearranged to function as: a single ladder, with or without a stand-off a single or double sided step ladder scaffold or work platform. 'Articulation joint' means a hinge which is capable of being locked in one or more positions. All new multipurpose ladders must fully comply with all applicable clauses of: AS 1892.1:2018, Portable ladders, Part 1: Performance and geometric requirements, as modified by Schedule 2 of the notice. Until 1 September 2023, multipurpose ladders may alternatively comply with AS/NZS 1892.1:1996, Portable ladders, Part 1: Metal, as modified by the Regulations. More information Commerce Commission - Multipurpose ladders (comcom.govt.nz) (external link) Product Safety Standards (Multipurpose Ladders) Regulations 2023 (SL 2023/29) – New Zealand Legislation (external link)",
+  "metadata": {
+    "detectedMarkets": [
+      "NZ"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "home_goods",
+      "industrial_products"
+    ],
+    "charCount": 1171,
+    "region": "NZ",
+    "supplement_id": "nz-product-safety-multipurpose-ladders-standard",
+    "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/multipurpose-ladders",
+    "content_url": "",
+    "official_channel": "Product Safety New Zealand",
+    "why_added": "New Zealand multipurpose ladder product safety standard page.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/nz/NZ_multipurpose_ladders.html"
+    ],
+    "primary_file": "raw/nz/NZ_multipurpose_ladders.html",
+    "product_categories": [
+      "home_goods",
+      "industrial_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

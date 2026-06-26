@@ -1,0 +1,60 @@
+{
+  "id": "za-icasa-type-approval-regulations-2013",
+  "title": "Type Approval Regulations 2013",
+  "fileName": "ZA_icasa_type_approval_regulations_2013.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/za/ZA_icasa_type_approval_regulations_2013.html",
+  "sourceType": "html",
+  "region": "ZA",
+  "pageCount": 1,
+  "totalChars": 314,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 314,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Type Approval Regulations 2013 Type Approval Regulations Purpose: To provide guidance to applicants who wish to obtain obtain Type Approval for their Radio Equipment and Telecommunication Terminal Equ"
+    }
+  ],
+  "tables": [],
+  "rawText": "Type Approval Regulations 2013 Type Approval Regulations Purpose: To provide guidance to applicants who wish to obtain obtain Type Approval for their Radio Equipment and Telecommunication Terminal Equipment and describes the associated documents and the process to be followed. Download (1.64 MB) Final regulations",
+  "metadata": {
+    "detectedMarkets": [
+      "ZA"
+    ],
+    "regulatoryTypes": [
+      "radio",
+      "conformity",
+      "documentation"
+    ],
+    "productCategories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "charCount": 314,
+    "region": "ZA",
+    "supplement_id": "za-icasa-type-approval-regulations-2013",
+    "source_url": "https://www.icasa.org.za/legislation-and-regulations/type-approval-regulations-2013",
+    "content_url": "",
+    "official_channel": "Independent Communications Authority of South Africa",
+    "why_added": "South Africa ICASA type approval regulation source page.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/za/ZA_icasa_type_approval_regulations_2013.html"
+    ],
+    "primary_file": "raw/za/ZA_icasa_type_approval_regulations_2013.html",
+    "product_categories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "regulatory_types": [
+      "radio",
+      "conformity",
+      "documentation"
+    ]
+  }
+}

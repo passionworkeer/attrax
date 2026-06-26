@@ -1,0 +1,60 @@
+{
+  "id": "br-inmetro-conformity-assessment",
+  "title": "Inmetro conformity assessment portal",
+  "fileName": "BR_inmetro_conformity_assessment.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/br/BR_inmetro_conformity_assessment.html",
+  "sourceType": "html",
+  "region": "BR",
+  "pageCount": 1,
+  "totalChars": 35,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 35,
+      "hasText": false,
+      "hasTables": false,
+      "textPreview": "Avaliação da Conformidade — INMETRO"
+    }
+  ],
+  "tables": [],
+  "rawText": "Avaliação da Conformidade — INMETRO",
+  "metadata": {
+    "detectedMarkets": [
+      "BR"
+    ],
+    "regulatoryTypes": [
+      "conformity",
+      "testing",
+      "scope_classification"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "industrial_products",
+      "electronics"
+    ],
+    "charCount": 35,
+    "region": "BR",
+    "supplement_id": "br-inmetro-conformity-assessment",
+    "source_url": "https://www.gov.br/inmetro/pt-br/assuntos/avaliacao-da-conformidade",
+    "content_url": "",
+    "official_channel": "National Institute of Metrology, Quality and Technology (Inmetro)",
+    "why_added": "Brazil conformity assessment and regulated-product certification portal.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/br/BR_inmetro_conformity_assessment.html"
+    ],
+    "primary_file": "raw/br/BR_inmetro_conformity_assessment.html",
+    "product_categories": [
+      "general_consumer_products",
+      "industrial_products",
+      "electronics"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "testing",
+      "scope_classification"
+    ]
+  }
+}

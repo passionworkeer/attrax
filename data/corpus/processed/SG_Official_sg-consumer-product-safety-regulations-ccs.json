@@ -1,0 +1,52 @@
+{
+  "id": "sg-consumer-product-safety-regulations-ccs",
+  "title": "Consumer Product Safety Regulations",
+  "fileName": "SG_consumer_product_safety_regulations_ccs.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_global_official_sources/raw/sg/SG_consumer_product_safety_regulations_ccs.html",
+  "sourceType": "html",
+  "region": "SG",
+  "pageCount": 1,
+  "totalChars": 701,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 701,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Home Consumer Protection Legislation and Guidelines Consumer Product Safety Regulations Consumer Product Safety Regulations Singapore's consumer product safety regulations ensure goods meet required s"
+    }
+  ],
+  "tables": [],
+  "rawText": "Home Consumer Protection Legislation and Guidelines Consumer Product Safety Regulations Consumer Product Safety Regulations Singapore's consumer product safety regulations ensure goods meet required safety standards and requirements. Last updated 26 September 2025 The Consumer Protection (Safety Requirements) Regulations (CPSR) and Consumer Protection (Consumer Goods Safety Requirements) Regulations (CGSR) are administered by the Consumer Product Safety Office (CPSO) of CCS to ensure consumer products sold in Singapore comply with applicable safety standards and requirements. Access the CPSR and CGSR via the Singapore Statues Online. Find out more about the work of the CPSO here . Back to top",
+  "metadata": {
+    "detectedMarkets": [
+      "SG"
+    ],
+    "regulatoryTypes": [
+      "product_safety"
+    ],
+    "productCategories": [
+      "general_consumer_products"
+    ],
+    "charCount": 701,
+    "region": "SG",
+    "supplement_id": "sg-consumer-product-safety-regulations-ccs",
+    "source_url": "https://www.ccs.gov.sg/consumer-protection/legislation-and-guidelines/consumer-product-safety-regulations/",
+    "content_url": "",
+    "official_channel": "Competition and Consumer Commission of Singapore",
+    "why_added": "Singapore consumer product safety regulatory overview for broader product coverage.",
+    "collected_at": "2026-05-26T17:02:25+08:00",
+    "raw_files": [
+      "raw/sg/SG_consumer_product_safety_regulations_ccs.html"
+    ],
+    "primary_file": "raw/sg/SG_consumer_product_safety_regulations_ccs.html",
+    "product_categories": [
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "product_safety"
+    ]
+  }
+}

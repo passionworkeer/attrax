@@ -1,0 +1,2409 @@
+{
+  "id": "kr-klri-k-reach-48870",
+  "title": "Act on Registration and Evaluation of Chemical Substances",
+  "fileName": "k-reach-48870.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/kr/k-reach-48870.html",
+  "sourceType": "html",
+  "region": "KR",
+  "pageCount": 1,
+  "totalChars": 89557,
+  "hasTables": true,
+  "tableCount": 401,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 89557,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "ACT ON REGISTRATION AND EVALUATION OF CHEMICAL SUBSTANCES Act No. 15844, Oct. 16, 2018 Act No. 11789, May 22, 2013 Amended by Act No. 13891, Jan. 27, 2016 Act No. 15512, Mar. 20, 2018 Act No. 15584, A"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "Article 1 (Purpose)"
+      ]
+    ],
+    [
+      [
+        "Article 2 (Definitions)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The term \"chemical substance\" means an element, its compounds and substances obtained by artificial chemical reaction thereto, and substances obtained by chemical modification, extraction or purification of substances in their natural state;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The term \"mixture\" means a substance or solution composed of at least two substances;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "The term \"phase-in substance\" means any of the following chemical substances:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "Chemical substances publicly notified by the Minister of Environment in consultation with the Minister of Employment and Labor, which were domestically distributed for commercial purposes before February 2, 1991;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "Chemical substances publicly notified by the Minister of Environment and where the hazard reviews thereof have been conducted pursuant to the previous Toxic Chemical Substances Control Act after February 2, 1991;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "The term \"non-phase-in substance\" means all chemical substances excluding phase-in substances;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "The term \"toxic substance\" means a hazardous chemical substance designated and publicly notified by the Minister of Environment according to the standards prescribed by Presidential Decree;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "The term \"substance subject to permission\" means a chemical substance likely to pose a risk, which is publicly notified by the Minister of Environment after consultation with the heads of relevant central administrative agencies in accordance with Article 25 and deliberation by the Chemicals Evaluation Committee prescribed in Article 7 to be manufactured, imported, or used with permission of the Minister of Environment;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "The term \"restricted substance\" means a chemical substance deemed to pose a significant risk, if used for a specific purpose, which is publicly notified by the Minister of Environment after consultation with the heads of relevant central administrative agencies in accordance with Article 27 and deliberation by the Chemicals Evaluation Committee prescribed in Article 7 to prohibit such chemical substance from being manufactured, imported, sold, kept, stored, transported, or used for such purpose;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "The term \"prohibited substance\" means a chemical substance deemed to pose a significant risk, which is publicly notified by the Minister of Environment after consultation with the heads of relevant central administrative agencies in accordance with Article 27 and deliberation by the Chemicals Evaluation Committee prescribed in Article 7 to prohibit such chemical substance from being manufactured, imported, sold, kept, stored, transported, or used for any purpose;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "The term \"hazardous chemical substance\" means toxic substances, substances subject to permission, restricted substances, and prohibited substances;"
+      ]
+    ],
+    [
+      [
+        "10-2.",
+        "The term \"substance subject to intensive control\" means any of the following chemical substances, which are designated and publicly notified by the Minister of Environment after deliberation by the Chemicals Evaluation Committee prescribed in Article 7 because they are likely to pose a risk:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "A substance that causes or is likely to cause cancer, mutation, reproductive disorders or disorders of the endocrine system in humans or animals;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "A substance that is highly likely to accumulate in the bodies of humans, animals or plants and remains in the environment for an extended period of time;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "A substance that, when exposed to humans, may cause damage to the internal organs such as lungs, liver, and kidneys;"
+      ]
+    ],
+    [
+      [
+        "(d)",
+        "A substance that may pose a risk equivalent to or more serious than the substances referred to in items (a) through (c) to humans, animals or plants;"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "The term \"hazard\" means the intrinsic properties of any chemical substance that causes adverse effects to human health or the environment, such as the toxicity of a chemical substance;"
+      ]
+    ],
+    [
+      [
+        "12.",
+        "The term \"risk\" means the degree of damage to human health or the environment caused by exposure to a hazardous chemical substance;"
+      ]
+    ],
+    [
+      [
+        "13.",
+        "The term \"generic name\" means a name given in place of an actual chemical substance name to protect confidential data;"
+      ]
+    ],
+    [
+      [
+        "14.",
+        "The term \"business entity\" means a person that manufactures, imports, uses, or sells chemical substances for business purposes;"
+      ]
+    ],
+    [
+      [
+        "15.",
+        "The term \"product\" means any of the following products which are goods used by the consumers defined in subparagraph 1 of Article 2 of the Framework Act on Consumers , or components or accessories thereof and which may cause exposure to chemical substances by such consumers:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "A product composed of mixtures;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "A product that fulfills a certain function in a solid state with specific shape without discharging any chemical substance in its use;"
+      ]
+    ],
+    [
+      [
+        "16.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "17.",
+        "The term \"downstream user\" means a person who uses chemical substances or mixtures in the course of his or her business activities (in the case of a corporation, limited to where it is incorporated in the Republic of Korea): Provided , That manufacturers, importers, sellers, or consumers of chemical substances or mixtures shall be excluded herefrom;"
+      ]
+    ],
+    [
+      [
+        "18.",
+        "The term \"sale\" means placing chemical substances, mixtures, or products on the market;"
+      ]
+    ],
+    [
+      [
+        "19.",
+        "The term \"alternative to vertebrate animal testing\" means a test that minimizes the use of vertebrate animals or that alleviates any unnecessary pain if unavoidable to use live vertebrate animals, in the process of generating information on hazards and risks of chemical substances."
+      ]
+    ],
+    [
+      [
+        "Article 3 (Scope of Application)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Radioactive materials defined in subparagraph 5 of Article 2 of the Nuclear Safety Act ;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Drugs defined in subparagraph 4 of Article 2 of the Pharmaceutical Affairs Act and quasi-drugs defined in subparagraph 7 of the said Article;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Narcotics defined in subparagraph 1 of Article 2 of the Act on the Narcotics Control Act;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Cosmetics defined in subparagraph 1 of Article 2 of the Cosmetics Act and raw materials used for cosmetics;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Pesticides defined in subparagraph 1 of Article 2 of the Pesticide Control Act and active ingredients defined in subparagraph 3 of the said Article;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Fertilizers defined in subparagraph 1 of Article 2 of the Fertilizer Control Act ;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Foods defined in subparagraph 1 of Article 2 of the Food Sanitation Act , food additives defined in subparagraph 2 of the said Article, apparatus defined in subparagraph 4 of the said Article, containers and packages defined in subparagraph 5 of the said Article;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Feed defined in subparagraph 1 of Article 2 of the Control of Livestock and Fish Feed Act ;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Explosives defined in Article 2 (3) of the Act on Control of Guns, Swords, and Explosives;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Munitions defined in Article 2 of the Act on the Management of Military Supplies and subparagraph 2 of Article 3 of the Defense Acquisition Program Act (excluding ordinary commodities prescribed in Article 3 of the Act on the Management of Military Supplies );"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "Health functional foods defined in subparagraph 1 of Article 3 of the Health Functional Foods Act ;"
+      ]
+    ],
+    [
+      [
+        "12.",
+        "Medical devices defined in Article 2 (1) of the Medical Devices Act ;"
+      ]
+    ],
+    [
+      [
+        "13.",
+        "Hygiene products defined in subparagraph 1 of Article 2 of the Hygiene Products Control Act ;"
+      ]
+    ],
+    [
+      [
+        "14.",
+        "Biocidal substances and biocidal products defined in subparagraphs 7 and 8 of Article 3 of the Act on Safety Control of Consumer Chemical Products and Biocides."
+      ]
+    ],
+    [
+      [
+        "Article 4 (Duties of State)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The State shall formulate and implement policies necessary to identify hazards and risks of chemical substances and prevent any harm caused thereby."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The State shall provide technical, administrative and financial support so that information on hazards and risks of chemical substances may be generated, secured, and systematically managed, and that the relevant information may be communicated in the process of transferring and acquiring chemical substances."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The State shall formulate and implement policies on the safety management of products to protect public health and the environment from chemical substances contained in products."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The State shall provide support, such as for surveys, research, education, and public relations, regarding the registration, evaluation, etc. of chemical substances of small and medium enterprises. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "The State shall formulate and implement policies on the development and use of alternatives to vertebrate animal testing so as to minimize the use of vertebrate animals, in the process of generating information on hazards and risks of chemical substances. <Added by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 5 (Duties of Business Entity)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Every business entity shall take necessary measures, such as reducing the use of hazardous or risky chemical substances or developing substances or new technology that may replace such chemical substances, to prevent or minimize risks posed by chemical substances to public health or the environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Every business entity shall actively produce, exchange, and use information on hazards and risks of chemical substances that it manufactures or imports, and shall participate and cooperate in policies of the State related to the registration, reporting, hazard review, and risk assessment of chemical substances. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Every business entity shall endeavor to protect public health and the environment, such as by actively preparing information on uses and safety of chemical substances and methods for response to exposure of chemical substances."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Every business entity manufacturing or importing products shall ensure that chemical substances contained in products do not cause any harm to lives, bodies, or property of people. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Every business entity shall preferentially consider alternatives to vertebrate animal testing, where he or she generates information on hazards and risks of chemical substances. <Added by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 6 (Master Plan for Evaluation of Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment shall formulate a master plan for registering, reporting and evaluating chemical substances, and reporting substances subject to intensive control contained in products, etc. (hereinafter referred to as \"master plan\") every five years. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where the Minister of Environment formulates a master plan, prior consultations shall be undertaken with the heads of relevant central administrative agencies and the master plan shall be subject to deliberation by the Chemicals Evaluation Committee prescribed in Article 7 . The same shall also apply to the revision of the master plan."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "A master plan shall include the following: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Methods and plans for registering and reporting chemical substances, hazard reviews and risk assessments, reporting substances subject to intensive control contained in products, etc.;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Matters concerning registering and reporting chemical substances, reporting substances subject to intensive control contained in products, developing technology necessary for hazard reviews and risk assessments, etc.;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Matters concerning surveys and research, safety management, and international cooperation related to hazards and risks of chemical substances;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Matters concerning industrial activities to prevent any harm caused by chemical substances to public health or the environment, safety support and education for workers and consumers;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Other matters necessary for registering and reporting chemical substances, hazard reviews, risk assessments, etc."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Where the Minister of Environment formulates a master plan, he or she shall notify the heads of relevant central administrative agencies and the heads of local governments of the details thereof without delay."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "The head of each relevant central administrative agency and the head of each local government shall formulate and implement policies regarding  matters under his or her jurisdiction in accordance with the master plan."
+      ]
+    ],
+    [
+      [
+        "Article 7 (Chemicals Evaluation Committee)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Chemicals Evaluation Committee (hereinafter referred to as the \"Evaluation Committee\") shall be established under the jurisdiction of the Minister of Environment to deliberate on the following related to registering and reporting chemical substances, reporting substances subject to intensive control contained in products, hazard reviews, risk assessments, etc.: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Matters concerning the formulation of master plans;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Matters concerning the designation of substances subject to intensive control;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Matters concerning substances subject to permission, restricted substances, or prohibited substances;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Matters concerning the designation of chemical substances to be registered pursuant to Article 10 (5);"
+      ]
+    ],
+    [
+      [
+        "4-2.",
+        "Matters concerning the designation of chemical substances exempted from registration, etc. pursuant to Article 11 (1) 2;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Other matters prescribed by Presidential Decree regarding registration and reporting of chemical substances and the hazard review, risk assessment, safety management, etc. of chemical substances."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Evaluation Committee shall be composed of up to 30 members, including 1 chairperson and 1 vice chairperson."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Vice Minister of Environment shall be the chairperson of the Evaluation Committee and the vice chairperson shall be elected from among, and by, the members."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The Minister of Environment shall appoint or commission members of the Evaluation Committee from among the following persons: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Persons recommended by the head of the relevant central administrative agency in charge of affairs concerning chemical substances from among public officials belonging to such agency;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Experts with profound knowledge and experience in relevant fields, such as chemistry, the environment and public health, and relevant persons in the industry and non-governmental organizations related to chemical substances;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Persons recommended by the heads of relevant central administrative agencies from among the persons referred to in subparagraph 2."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "A majority of the members of the Evaluation Committee shall constitute a quorum, and any decision thereof shall require the concurring vote of a majority of those present."
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "Where it is necessary to conduct professional research and examination of matters to be deliberated by the Evaluation Committee, expert committees for each area may be established, such as a risk assessment committee composed of members of the Evaluation Committee and experts in the relevant fields. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "Except as provided in paragraphs (1) through (6), matters necessary for the composition and operation of the Evaluation Committee and expert committees shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Articles 8 and 9 Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 10 (Registration of Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who intends to manufacture or import at least 100 kilograms of a non-phase-in substance per year or at least 1 ton of a phase-in substance per year (excluding a person falling under paragraph (4) 2) shall register the chemical substance with the Minister of Environment before it is manufactured or imported. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Notwithstanding paragraph (1), any person who intends to manufacture or import a phase-in substance may manufacture or import such substance without registration thereof during a registration grace period (hereinafter referred to as \"registration grace period\") provided in the following: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where he or she intends to manufacture or import at least 1 ton of a phase-in substance per year designated and publicly notified by the Minister of Environment following deliberation by the Evaluation Committee, which causes or is likely to cause cancer, mutation or reproductive disorders to humans or animals, or at least 1,000 tons of a phase-in substance per year: By December 31, 2021;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where he or she intends to manufacture or import at least 100 tons and less than 1,000 tons of a phase-in substance per year: By December 31, 2024;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where he or she intends to manufacture or import at least 1 ton and less than 100 tons of a phase-in substance per year: Period prescribed by Presidential Decree but by no later than December 31, 2030."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Any person who intends to manufacture or import a phase-in substance without registration thereof during the registration grace period pursuant to paragraph (2) shall report the following to the Minister of Environment before he or she manufactures or imports the phase-in substance, as prescribed by Ministerial Decree of Environment, and where the matters prescribed by Presidential Decree are changed among the matters reported, he or she shall report such change to the Minister of Environment, as prescribed by Ministerial Decree of Environment: <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Name of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Annual quantity of manufacture or import;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Classification and labelling of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Uses of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Other matters prescribed by Ministerial Decree of Environment, such as the trade name of the person who intends to manufacture or import the chemical substance."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Any of the following persons shall report the Minister of Environment before he or she manufactures or imports the following relevant non-phase-in substances: <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A person who intends to manufacture or import less than 100 kilograms of a non-phase-in substance per year;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who has obtained confirmation of exemption from hazard reviews of any of the following non-phase-in substances pursuant to Article 10 (1) 3 of the previous Toxic Chemical Substances Control Act (referring to the aforesaid Act before amended by Act No. 11862) and who, accordingly, intends to manufacture or import the relevant non-phase-in substance:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "A non-phase-in substance manufactured or imported in quantities of not more than 100 kilograms per year;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "A non-phase-in substance designated and publicly notified by the Minister of Environment, which is a polymer only composed of chemical substances other than non-phase-in substances."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Any person who intends to manufacture or import a chemical substance which is designated and publicly notified by the Minister of Environment following deliberation by the Evaluation Committee because the chemical substance is deemed highly likely to inflict serious damage on human health and the environment though not subject to registration under paragraph (1) or because the total quantity of such chemical substance domestically manufactured or imported per year exceeds the criteria prescribed by Presidential Decree, shall register the relevant chemical substance with the Minister of Environment within a period prescribed by Presidential Decree. <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "Any person who intends to register pursuant to paragraphs (1) and (5) or make a report pursuant to paragraph (4) shall apply for registration with or make a report to the Minister of Environment, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "The Minister of Environment shall decide whether to accept a registration or report, and shall notify an applicant of his or her decision within a period prescribed by Ministerial Decree of Environment from the date of receipt of an application for such registration or report pursuant to paragraph (6). <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(8)",
+        "Except as provided in paragraphs (1) through (7), matters necessary for registering and reporting chemical substances shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 11 (Exemption from Registration of Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any of the following persons may manufacture or import a chemical substance without registration under Article 10 (1) and (5) or reporting under paragraph (4) of the aforesaid Article: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A person who intends to manufacture or import any of the following chemical substances:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "A chemical substance contained in a machine imported;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "A chemical substance imported along with a machine or device used for a test run;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "A chemical substance contained in a product performing a certain function in a specific solid form, which does not leak in the process of using the product;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who intends to manufacture or import a chemical substance of very low risk designated and publicly notified by the Minister of Environment following deliberation by the Evaluation Committee;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A person who intends to manufacture or import other chemical substances prescribed by Presidential Decree, such as a chemical substance manufactured or imported to export the whole quantity thereof, in which case he or she has obtained confirmation of exemption from registration or reporting (hereinafter referred to as \"confirmation of exemption from registration, etc.\") from the Minister of Environment."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Any person who intends to obtain confirmation of exemption from registration, etc. shall file an application for confirmation of exemption from registration, etc. with the Minister of Environment. In such cases, the Minister of Environment shall confirm whether a chemical substance is eligible for exemption from registration or reporting under paragraph (1) 3 and notify the applicant of the eligibility determination, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Any person who is informed of confirmation of exemption from registration, etc. from the Minister of Environment under paragraph (2) shall file an application for changes with the Minister of Environment, where any change is made to the matters prescribed by Ministerial Decree of Environment, such as a manufacturing or import quantity of chemical substance for which he or she has received confirmation of exemption from registration, etc. <Added by Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) and (3), matters necessary for confirmation of exemption from registration, etc., such as criteria for confirmation of exemption from registration, etc., and for application of changes shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 12 (Registration and Reporting of Change)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where any of the following changes occurs, a person who has registered pursuant to Article 10 (1) or (5) shall register such change, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where any change is made to an annual quantity of a registered chemical substance manufactured or imported beyond the range prescribed by Ministerial Decree of Environment;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where any change is made to the matters prescribed by Ministerial Decree of Environment concerning uses, hazards, and risks of  registered chemical substances."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where any of the following changes occurs, a person who has registered pursuant to Article 10 (1) or (5) shall report such change, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The trade name, name or location of a person who has registered;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The representative (only applicable where a person who has registered is a corporation);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Other matters prescribed by Ministerial Decree of Environment concerning reporting."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where any of the following changes occurs, a person who has made a report pursuant to Article 10 (4) shall report such change to the Minister of Environment, as prescribed by Ministerial Decree of Environment: <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The trade name, name or location of a person who has made a report;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The representative (only applicable where a person who has made a report is a corporation);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Matters prescribed by Ministerial Decree of Environment, concerning uses, hazards and risks of reported chemical substances."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary for registration of changes, reporting and reporting changes shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 13 (Measures against Non-Compliance of Duty to Register)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "No person shall manufacture, import, use or sell a chemical substance in which case he or she has failed to register or report the chemical substance or to obtain confirmation of exemption from registration, etc. thereof (hereafter referred to as \"chemical substance whose registration, etc. is not filed\" in this Article) though it is subject to registration under Article 10 (1) or (5) or reporting under paragraph (4) of the aforesaid Article."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Environment may order a person who manufactures or imports a chemical substance whose registration, etc. is not filed to suspend the manufacture, import, use or sale of such chemical substance, to withdraw it from the market and to take other necessary measures prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Environment may order a person who manufactures or imports a phase-in substance within the registration grace period without making a report under Article 10 (3) to suspend the manufacture, import, use or sale of such chemical substance."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Notwithstanding Article 10 (2), where a person ordered to suspend manufacture or import of a phase-in substance under paragraph (3) intends to manufacture or import the relevant phase-in substance, he or she shall register such phase-in substance, and Article 10 (6) and (7) shall apply to the application for registration."
+      ]
+    ],
+    [
+      [
+        "Article 14 (Data to Be Submitted When Applying for Registration of Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who intends to register pursuant to Article 10 (1) or (5) shall submit data on the following matters (hereinafter referred to as \"data to apply for registration\"), as prescribed by Ministerial Decree of Environment: Provided , That in the case of a phase-in substance or non-phase-in substance prescribed by Presidential Decree, he or she need not submit some of the relevant data, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The name, location, and representative of a person who intends to manufacture or import the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Information on the identification of the chemical substance, such as the name, molecular formula, and structural formula of such chemical substance;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Uses of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Classification and labelling of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Physical and chemical properties of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Hazards of the chemical substance;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Ri sks of the chemical substance, including an exposure scenario describing handling, exposure controls, and management measures during the life-cycle of the chemical substance (applicable only where the quantity of the chemical substance that the applicant intends to manufacture or import is at least ten tons per year);"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Guidance on safe use (personal protections, first-aid measures, etc. in case of explosion, fire or leakage);"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Other data prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Among the data to apply for registration regarding the matters referred to in paragraph (1) 5 and 6, the data prescribed by Ministerial Decree of Environment shall be submitted in documents stating the results of a test conducted by any of the following testing institutions:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A Korean testing institution prescribed in Article 22 (1);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A confirmed foreign testing institution pursuant to Ministerial Decree of Environment to comply with the Principles of Good Laboratory Practice of the Organization for Economic Cooperation and Development."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Any person who intends to register pursuant to Article 10 (1) or (5) may submit a plan that includes the details of and schedule for testing and other relevant matters (hereafter referred to as \"testing plan\" in this Article) in lieu of some of the data to apply for registration on the matters referred to in paragraph (1) 5 and 6, as prescribed by Ministerial Decree of Environment. In such cases, the Minister of Environment shall review the appropriateness, etc. of the details of and schedule for testing in such testing plan, as prescribed by Ministerial Decree of Environment, and shall inform a manufacturer or importer of the specific details of such testing, the deadline for such data submission, and other relevant matters. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The Minister of Environment may acquire the data to apply for  registration concerning the matters prescribed in paragraph (1) 5 and 6 for some phase-in substances and may provide such data to a person who intends to register under paragraph (1). In such cases, the Minister of Environment may receive the expenses incurred in acquiring the data to apply for registration from a person who intends to register, as prescribed by Ministerial Decree of Environment. <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Where the Minister of Environment intends to acquire the data to apply for registration pursuant to the former part of paragraph (4), he or she shall first acquire test data in which the results of tests conducted by testing institutions prescribed in the subparagraphs of paragraph (2) using vertebrate animals are recorded (hereinafter referred to as \"vertebrate animal test data\") to minimize animal testing or data prepared in accordance with alternatives to animal testing. <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "Any person who intends to make a report pursuant to Article 10 (4) shall submit the following data, as prescribed by Ministerial Decree of Environment: <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Data concerning the matters referred to in paragraph (1) 1 through 4;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Other data prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "Matters necessary for the details of data prescribed in paragraph (1), testing methods to produce data to apply for registration on the matters referred to in paragraph (1) 5 and 6, methods for preparing data on the risks referred to in paragraph (1) 7, methods for preparing testing plans, and the securing of data prescribed in paragraph (4) shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 15 (Method for Submitting Data When Applying for Registration of Phase-In Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Persons who intend to register phase-in substances within the registration grace period shall individually apply for registration pursuant to Article 10 (6), but in the case of data to apply for registration prescribed by Ministerial Decree of Environment, they shall jointly submit such data by designating a representative: Provided , That in any of the following cases, they may individually submit such data after obtaining confirmation from the Minister of Environment (hereinafter referred to as \"confirmation of individual submission\"): <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the disclosure of trade secrets of the enterprise is expected to cause considerable commercial loss;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where more expenses are incurred for joint submission than individual submission;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where any ground prescribed by Presidential Decree exists."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Environment may provide information necessary for jointly submitting data to apply for registration among the matters reported pursuant to Article 10 (3) to those who should jointly submit such data pursuant to the main sentence of paragraph (1) so that the joint submission of the data can be facilitated. <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Necessary matters concerning joint submission of data to apply for registration, provision of information necessary for joint submission, methods and procedures for confirmation of individual submission, etc. shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 16 (Joint Use of Existing Data to Apply for Registration)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who intends to register pursuant to Article 10 (1) or (5) may use the data to apply for registration prescribed by Ministerial Decree of Environment among the existing such data submitted by another registrant pursuant to Article 14 (1) for the purpose of applying for his or her own registration after obtaining consent to use from the owner thereof: Provided , That in the case of data to apply for registration where 15 years have passed since the data was registered, he or she may use such data without obtaining consent to use from the owner thereof. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Any person who intends to register pursuant to Article 10 (1) or (5) may inquire of the Minister of Environment whether the same chemical substance has been registered and other relevant matters to use the existing data to apply for registration pursuant to paragraph (1). In such cases, the Minister of Environment shall inform him or her of the results thereof, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Except as provided in paragraphs (1) and (2), matters necessary for joint use of data to apply for registration shall be prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "Article 16-2 (Principle of Minimizing Vertebrate Animal Testing)"
+      ]
+    ],
+    [
+      [
+        "Article 17 (Special Case on Vertebrate Animal Test Data)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who intends to register pursuant to Article 10 (1) or (5) shall check if vertebrate animal test data already exist, to minimize vertebrate animal testing. <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where the check under paragraph (1) finds that vertebrate animal test data already exist, any person who intends to apply for registration shall use the relevant vertebrate animal test data for the purpose of his or her own application for registration with the consent to use of the relevant animal test data from the owner thereof: Provided , That where at least 15 years have passed since vertebrate animal test data were registered as data to apply for registration, he or she may use such data without consent to use from the owner thereof. <Added by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Notwithstanding paragraph (2), where the owner of vertebrate animal test data does not consent to their use, a person who intends to apply for registration need not submit the relevant data to apply for registration with confirmation from the Minister of Environment: Provided , That where deemed necessary to submit vertebrate animal test data, such as where it is difficult to determine hazards, etc. of chemical substances without the relevant vertebrate animal test data, the Minister of Environment may order him or her to produce and submit the relevant data within a period prescribed by Ministerial Decree of Environment. <Amended by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Any person requested to consent to use of vertebrate animal test data pursuant to paragraph (2) shall comply with such request, unless there are good reasons prescribed by Presidential Decree. <Amended by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "No person who refuses to consent to use of vertebrate animal test data without good cause prescribed in paragraph (4) shall submit the relevant vertebrate animal test data for the purpose of applying for registration. <Amended by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "Except as provided in paragraphs (1) through (5), matters necessary for consent to use, etc. of vertebrate animal test data shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 17-2 (Imposition of Penalty Surcharge)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where any person who manufactures or imports a chemical substance commits any of the following offenses, the Minister of Environment may impose a penalty surcharge equivalent to not more than 5/100 of the sales on the person who manufactures or imports the relevant chemical substance , as prescribed by Presidential Decree: Provided , That in cases prescribed by Presidential Decree, such as where there is no sales or it is difficult to calculate sales, the Minister of Environment may impose a penalty surcharge not exceeding 1 billion won, and in the case of an enterprise that has one place of business, the amount of a penalty surcharge shall not exceed 25/1,000 of its sales:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where he or she fails to register, in violation of Article 10 (1) or (5), or manufactures or imports a chemical substance different from the details he or she has registered;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where he or she fails to register changes, in violation of Article 12 (1), or manufactures or imports a chemical substance different from the details of any change he or she has registered."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where the Minister of Environment collects penalty surcharges pursuant to paragraph (1), he or she shall take the following into consideration:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The details and gravity of the offense;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The period during which a person commits an offense and the number of times he or she commits such offense;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "The size of profits an offender has gained from having committed the offense."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where a corporation that has committed an offense falling under any of the subparagraphs of paragraph (1) effects a merger, the Minister of Environment may impose a penalty surcharge on such corporation considering an offense the corporation has committed to be an offense committed by a corporation that survives the merger or is incorporated following the merger."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary to impose penalty surcharges, such as criteria for imposing penalty surcharges, shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 17-3 (Collection of Penalty Surcharge and Disposition on Default Thereof)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where a person obliged to pay a penalty surcharge (hereafter referred to as \"person obliged to pay a penalty surcharge\" in this Article) under Article 17-2 (1) fails to pay it within the payment deadline, the Minister of Environment may collect an additional charge for a period from the date after the payment deadline to the date he or she pays the penalty surcharge, based on an interest rate for late payment of a bank prescribed in Article 2 (1) 2 of the Banking Act . In such cases, the period during which the Minister of Environment collects the additional charge shall not exceed 60 months."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where a person obliged to pay a penalty surcharge fails to pay it within the payment deadline, the Minister of Environment shall urge him or her to pay it within a fixed period, and where he or she fails to pay the penalty surcharge and an additional charge prescribed in paragraph (1) within that period, the Minister of Environment may collect the penalty surcharge and the additional charge in the same manner as delinquent national taxes are collected."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where the Minister of Environment refunds a penalty surcharge on the grounds of a decision, etc. of a court, he or she shall pay an additional charge for refunding for the period from the date a person pays the penalty surcharge to the date the Minister of Environment refunds it, as prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary for collecting penalty surcharges, disposition on penalty surcharges in arrears, etc. shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 18 (Hazard Review)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment shall conduct a hazard review of a chemical substance registered pursuant to Article 10 (1) or (5) (including a chemical substance in which case any change in the registration thereof has been registered pursuant to Article 12 (1)), as prescribed by Ministerial Decree of Environment, and shall inform a registrant of the results thereof. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where necessary for hazard reviews, the Minister of Environment may order a registrant to submit data necessary for hazard reviews."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Matters necessary for hazard reviews and informing the results thereof under paragraph (1), and orders to submit data under paragraph (2) shall be prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "Article 19 (Hazard Assessment)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "With regard to the chemical substances prescribed by Presidential Decree  as a hazard assessment of which is deemed necessary, such as chemical substances that the Republic of Korea assesses by itself, among chemical substances that their hazard assessment is conducted by international organizations, the Minister of Environment shall conduct a hazard assessment of such chemical substances as prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Any person who intends to use hazard data generated for a hazard assessment under paragraph (1) (hereinafter referred to as \"hazard data\") for registration of a chemical substance or application for a hazard review under domestic or foreign statutes and regulations, including provisions concerning registration under Article 10 , shall obtain approval from the Minister of Environment. <Amended by Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Environment may revoke approval where any person who has obtained approval for the use of hazard data under paragraph (2) falls under any of the following: Provided , That in cases falling under subparagraph 1, the Minister of Environment shall revoke such approval: <Added by Act No. 13891, Jan. 27, 2016; Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where he or she has obtained the approval by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where he or she allows another person who has not obtained approval for the use of hazard data to use such data;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where he or she uses hazard data for any purpose other than that for which the approval was obtained."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Necessary matters concerning the methods of approving and revoking the use of hazard data under paragraphs (2) and (3) shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 13891, Jan. 27, 2016; Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 20 (Designation of Toxic Substance)"
+      ]
+    ],
+    [
+      [
+        "Article 21 (Disclosure of Results of Hazard Review)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where the Minister of Environment completes a hazard review, he or she shall publicly notify the name and hazards of the relevant chemical substance, whether the chemical substance falls under the category of toxic substances under Article 20 , and other matters prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where the name of a chemical substance publicly notified pursuant to paragraph (1) is subject to data protection under Article 45 (1), the Minister of Environment shall publicly notify such chemical substance by its generic name until the period for data protection expires: Provided , That where the chemical substance falls under the category of toxic substances under Article 20 , the Minister of Environment shall publicly notify its name."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Detailed matters necessary for public notice referred to in paragraphs (1) and (2) shall be prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "Article 22 (Designation of Testing Institution)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment shall designate a testing institution that may perform testing on physical and chemical properties and hazards of chemical substances from among the research institutions prescribed by Presidential Decree. In such cases, the Minister of Environment shall also designate a test field or test item in which the relevant testing institution may perform tests."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The head of a research institution who intends to be designated as a testing institution pursuant to paragraph (1) shall file an application for designation with the Minister of Environment. Where the head of the research institution intends to change any important matter prescribed by Ministerial Decree of Environment among the designated matters, he or she shall apply for change of designation."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Environment shall regularly evaluate whether a testing institution designated pursuant to paragraph (1) is properly operated as prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The head of a research institution designated as a testing institution pursuant to paragraph (1) shall report its operational performance to the Minister of Environment. <Added by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Except as provided in paragraphs (1) through (4), matters necessary for standards and procedures for designation of testing institutions and change of designation, standards for management of testing institutions, and other relevant matters shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 23 (Revocation of Designation of Testing Institution)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where any person designated as a testing institution pursuant to Article 22 falls under any of the following, the Minister of Environment shall revoke the designation of a testing institution:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the testing institution has been designated by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the testing institution has conducted testing during a period of business suspension;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where the testing institution has falsified test results by intention or gross negligence;"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where any person designated as a testing institution pursuant to Article 22 falls under any of the following, the Minister of Environment may revoke the designation of such testing institution or the designation of a test field or test item, or may order the testing institution to suspend business on the test field or test item for a fixed period not exceeding six months: <Amended by Act No. 15584, Apr. 17, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the testing institution has failed to meet the designation standards under Article 22 (4) or violates management standards as a result of evaluation under paragraph (3) of the said Article:"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the testing institution has failed to commence testing on the designated test field or test item within two years after being designated as a testing institution without just cause or has no business performance for more than two consecutive years;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where the testing institution has conducted a testing or issued a test report other than on the designated test field or test item;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Where the testing institution has failed to report under Article 22 (4) or submitted a falsified report."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where two years have not passed since the designation of a testing institution was revoked pursuant to paragraph (1) or (2), no such testing institution shall be designated as a testing institution under Article 22 ."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Where six months have not passed since the designation of a test field or test item was revoked pursuant to paragraph (2), no such testing institution shall be designated for a test field or test item under Article 22 on the same test field or test item."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Criteria for administrative dispositions under paragraphs (1) and (2) shall be prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "Article 24 (Risk Assessment)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment shall conduct a risk assessment of any of the following chemical substances from among chemical substances registered pursuant to Article 10 (1) or (5), based on the results of a hazard review, and shall inform a registrant of the results thereof, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the quantity of a chemical substance manufactured or imported is at least ten tons per year;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the risk assessment of a chemical substance is deemed necessary based on the results of a hazard review thereof."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where necessary to conduct a risk assessment, the Minister of Environment may order a registrant to submit data necessary for the risk assessment, as prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Environment may take necessary measures to minimize risks, based on the results of the risk assessment, as prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 25 (Designation of Substance Subject to Permission)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment may designate and publicly notify substances subject to intensive control and other chemical substances likely to pose a risk based on a hazard review and a risk assessment as a substance subject to permission before they are manufactured, imported or used, in consultation with the heads of related central administrative agencies after deliberation by the Evaluation Committee. In such cases, the Minister of Environment may designate and publicly notify the uses of such chemical substances or substances that can be manufactured, imported, or used without his or her permission because they are less likely to pose a risk, as prescribed by Presidential Decree: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "through 3. Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where the Minister of Environment designates and publicly notifies a substance subject to permission pursuant to paragraph (1), he or she shall include the name of the substance subject to permission, and the period during which the substance may be manufactured, imported or used without obtaining permission. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Except as provided in paragraphs (1) and (2), matters necessary for designation and public notice of substances subject to permission shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 26 (Termination of Designation of Substance Subject to Permission)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the substance subject to permission no longer needs to be used, as a substance that can substitute the substance subject to permission is manufactured or new technology is developed;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where any use of the substance subject to permission no longer poses a risk due to the commercialization of new technology;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where new scientific evidence verifies that the substance subject to permission does not pose a risk."
+      ]
+    ],
+    [
+      [
+        "Article 27 (Designation of Restricted Substance or Prohibited Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where a chemical substance falls under any of the following, the Minister of Environment shall designate and publicly notify the relevant chemical substance as a restricted substance or prohibited substance after consultation with the heads of relevant central administrative agencies and deliberation by the Evaluation Committee, as prescribed by Presidential Decree: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the chemical substance is deemed to pose a risk based on the results of a hazard review and a risk assessment:"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where a foreign government, international organization, etc. deems that the chemical substance poses a risk;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where manufacture, import or use of the chemical substance is prohibited or restricted in accordance with an international agreement, etc.;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Where the chemical substance falls under substances subject to permission that the designation of which has been terminated due to the ground under subparagraph 1 of Article 26 ."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where the Minister of Environment intends to designate a chemical substance as a restricted substance or prohibited substance, he or she shall notify beforehand the name of the chemical substance to be designated, the timing of designation, and other similar matters in the Official Gazette or on the website: Provided , That this shall not apply where urgent response is required because the relevant chemical substance poses or is likely to pose a critical risk to human health or the environment."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where the Minister of Environment designates and publicly notifies a chemical substance as a restricted substance or prohibited substance, he or she shall include the name of the restricted substance or prohibited substance, details of prohibition depending on its use, and similar matters."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary for the designation and public notice of restricted substances or prohibited substances shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 28 (Termination of Designation of Restricted Substance or Prohibited Substance)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the restricted substance or prohibited substance no longer poses a risk due to commercialization of new technology;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where new scientific evidence verifies that the restricted substance or prohibited substance does not pose a risk."
+      ]
+    ],
+    [
+      [
+        "Article 29 (Provision of Information on Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who transfers any of the following chemical substances or a mixture containing such chemical substance shall, where the content of the relevant chemical substance reaches the level prescribed by Presidential Decree, prepare and provide information prescribed by Ministerial Decree of Environment, such as information on the registration number, name, hazards, and risks of the relevant chemical substance, and information on the safe use thereof, to a person who acquires the chemical substance: Provided , That where the transferor shall prepare and provide a material safety data sheet pursuant to Article 41 of the Occupational Safety and Health Act , he or she shall record and provide the relevant information in the material safety data sheet: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A chemical substance registered or reported under Article 10 (1), (4), or (5);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A hazardous chemical substance, among phase-in substances not registered during the registration grace period under Article 10 (2)."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where a transferor prescribed in paragraph (1) continuously and repeatedly transfers the same chemical substance or a mixture containing such chemical substance to the same person, the transferor may provide information prescribed in paragraph (1) only for the first transfer of such information."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where any change prescribed by Ministerial Decree of Environment is made to information provided, any person who has provided information pursuant to paragraphs (1) and (2) or any person who has been provided with such information shall inform the other party of such change within one month from the date he or she becomes aware of the change, as prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Information shall be provided under paragraphs (1) through (3) only when the relevant chemical substance or mixture is transferred or acquired to be used or consumed as a raw material of a product in a place of business."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Except as provided in paragraphs (1) through (4), matters necessary to provide information on chemical substances shall be prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "Article 30 (Provision of Information by Downstream User)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where any person who manufactures or imports a chemical substance or mixture requests any downstream user or seller of the chemical substance or mixture to provide information to file a registration or report under Article 10 , the downstream user or seller shall provide the manufacturer or importer with information on uses of the chemical substance he or she uses or sells, exposure information, the quantities used and sold, information on safe use, and other similar matters. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where a downstream user or seller of a chemical substance or mixture requests a manufacturer or importer of the chemical substance or mixture to provide information, such manufacturer or importer shall provide the downstream user or seller with information on its properties, uses, the quantities manufactured and imported, information on safe use, and other similar matters."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Matters necessary to provide information on chemical substances under paragraphs (1) and (2) shall be prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "Article 31 (Notification to Provide Information on Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "Article 32 (Reporting of Substance Subject to Intensive Control Contained in Product)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where a product containing a substance subject to intensive control fully meets the following requirements, a person who manufactures or imports such product shall report the name, content, hazard information, exposure information and uses of the substance subject to intensive control contained in the relevant product to the Minister of Environment before the manufacture or import thereof: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The content of each individual substance subject to intensive control contained in one unit of the product shall exceed 0.1 weight percent;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The total quantity of each individual substance subject to intensive control contained in the whole products shall exceed one ton per year."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where a chemical substance falls under any of the following, a person may manufacture or import a product containing a substance subject to intensive control without making a report under paragraph (1), as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A chemical substance to which humans or the environment is not exposed where a product is used in a usual way;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A chemical substance already registered pursuant to Article 10 (1) or (5) or reported pursuant to paragraph (4) of the aforesaid Article for the use of the relevant product;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A chemical substance that can be manufactured or imported without  registration or reporting pursuant to Article 11 (1)."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where the details of a report prescribed in paragraph (1) conform to this Act, the Minister of Environment shall accept such report. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary to report substances subject to intensive control contained in products shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Articles 33 and 34 Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 35 (Provision of Information on Chemical Substance Contained in Product)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who transfers a product containing a substance subject to intensive control reported pursuant to Article 32 shall prepare information prescribed by Ministerial Decree of Environment, such as the name, uses and conditions of the substance subject to intensive control contained in the product, and shall provide it to a person who acquires the product, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where any consumer of a product requests a person who transfers the product pursuant to paragraph (1) to provide the information, he or she shall provide information related to the safe use of the product to the consumer, as prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Article 29 (2) through (4) or 30 shall apply mutatis mutandis to methods, etc. for providing information on substances subject to intensive control contained in a product. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary to provide information on substances subject to intensive control contained in a product shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Articles 36 and 37 Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 38 (Application for Registration by Person Appointed by Overseas Manufacturer or Producer)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who manufactures or produces or intends to manufacture or produce a chemical substance or product overseas that is imported to the Republic of Korea (hereafter in this Article referred to as \"overseas manufacturer or producer\") may appoint a person meeting the requirements prescribed by Ministerial Decree of Environment and require him or her to perform the following affairs in lieu of a person who imports or intends to import the chemical substance or product: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Registration and reporting of the chemical substance, and reporting of any change thereof under Article 10 ;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Filing an application for confirmation of exemption from registration, or any change thereof, etc. under Article 11 ;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Registration of any change, reporting and reporting of any change under Article 12 ;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Reporting under Article 32 ;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Other affairs prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Any person appointed pursuant to paragraph (1) shall report the Minister of Environment of the fact that he or she is appointed or dismissed by an overseas manufacturer or producer, as prescribed by Ministerial Decree of Environment."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Any person appointed pursuant to paragraph (1) shall notify a person who imports or intends to import a chemical substance or product prescribed in paragraph (1) of the matters prescribed by Presidential Decree, such as the fact that he or she has been appointed or affairs entrusted, as prescribed by Ministerial Decree of Environment. <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 39 (Establishment and Operation of Chemical Data Processing System)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment shall establish and operate a chemical data processing system so that any person who manufactures, produces or imports, or intends to manufacture, produce or import a chemical substance or product may electronically perform the affairs prescribed by Presidential Decree, such as registration, reporting or reporting of any change under Article 10 , registration of any change, reporting or reporting of any change under Article 12 or reporting, etc. under Article 32 . <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Matters necessary for establishing and operating a chemical data processing system under paragraph (1) shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 40 (Designation and Operation of Green Chemical Center)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment may designate and operate an institution prescribed by Presidential Decree as a green chemical center in consultation with the heads of relevant central administrative agencies to have such center engage in technological development, etc. for the prevention of damage caused by hazards and risks of chemical substances."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A green chemical center prescribed in paragraph (1) (hereinafter referred to as \"green chemical center\") may perform the following affairs: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Cultivation, education and training of professionals for the production of information on chemical substances, hazard reviews and risk assessments of chemical substances;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Technological development related to the production of information on chemical substances, hazard reviews and risk assessments of chemical substances, reduction and prevention of risks thereof;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Support for activities to reduce risks of chemical substances in the industry and activities to prevent any harm caused by chemical substances to public health or the environment;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Support for the preparation, etc. of data that are necessary for registration, reporting, evaluation, etc. of chemical substances;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Other affairs necessary to prevent any harm caused by hazards and risks of chemical substances."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Environment or the head of a relevant central administrative agency may provide subsidies to cover all or some of the expenses incurred in performing affairs of a green chemical center within budgetary limits."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary for procedures and requirements for designation and operation of a green chemical center shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 41 (Revocation of Designation of Green Chemical Center)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where a green chemical center falls under any of the following, the Minister of Environment may revoke the designation of a green chemical center or order the suspension of the whole or part of its business for a fixed period not exceeding six months: Provided , That where it falls under subparagraphs 1 and 2, the designation shall be revoked:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where it is designated by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where it conducts the affairs referred to in the subparagraphs of Article 40 (2) during a period of business suspension;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where it fails to meet requirements for designation under Article 40 (4);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Other cases prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Matters necessary for criteria and procedures for revocation of designation and business suspension under paragraph (1) and others shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 42 (Disclosure of Information on Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "Article 42-2 (Support for Small and Medium Enterprise for Registration and Assessment of Chemical Substance)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Establishment of infrastructure to produce and manage information on chemical substances;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Establishment of infrastructure to register or report chemical substances;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Acquisition and use of the existing vertebrate animal test data;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Development and diffusion of alternatives to vertebrate animal testing;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Development of workforce in charge of controlling chemical substances;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Management of products containing substances subject to intensive control;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Mutual cooperation among small and medium enterprises;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Methods to use the chemical data processing system established under Article 39 ;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Other matters prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 43 (Reporting and Inspection)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment may, as prescribed by Ministerial Decree of Environment, require the following persons to submit necessary reports or data, or related public officials to access their facilities or places of business to collect chemical substances or inspect related documents, facilities and equipment: <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A person who manufactures, imports, or sells a chemical substance;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who makes a report pursuant to Article 10 (3);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "A person who produces or imports a product containing substances subject to intensive control prescribed in Article 32 (1);"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "A person who has been entrusted with affairs by the Minister of Environment pursuant to Article 48 (2)."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Any public official who accesses facilities or a place of business, or inspects documents, facilities and equipment pursuant to paragraph (1) shall carry identification indicating his or her authority and present it to interested persons."
+      ]
+    ],
+    [
+      [
+        "Article 44 (Recording and Retaining Document)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Any person who applies for a registration or makes a report of a chemical substance pursuant to Article 10 (including a person who registers any change, makes a report or reports any change pursuant to Article 12 );"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Any person who applies for confirmation or change of exemption from registration, etc. of a chemical substance pursuant to Article 11 ;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Any person who reports a substance subject to intensive control contained in a product prescribed in Article 32 (1);"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "and 6. Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 45 (Data Protection)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where any person who has submitted data pursuant to Articles 11 (2) and (3), 12 (1) through (3), 14 (1), (3) and (6), 18 (2), 24 (2) and 32 (1) requests the Minister of Environment to protect data on components, etc. of a chemical substance to protect confidential information, the Minister of Environment shall not disclose such data during the period of data protection prescribed by Presidential Decree: Provided , That where the data requested to be protected is already disclosed or falls under the data prescribed by Presidential Decree, such data may be disclosed. <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where data requested to be protected pursuant to the main sentence of paragraph (1) is not eligible for protection pursuant to the proviso of paragraph (1), the Minister of Environment shall notify the person who has requested data protection of such fact."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Where any ground for data protection ceases to exist, a person who has requested data protection pursuant to paragraph (1) shall request the Minister of Environment to terminate data protection, as prescribed by Ministerial Decree of Environment. <Added by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Except as provided in paragraphs (1) through (3), matters necessary for procedures, etc. for requesting data protection and termination thereof shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 46 (Fee)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Registration or reporting of a chemical substance under Article 10 ;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Confirmation of exemption from registration, etc. of a chemical substance under Article 11 (2);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Registration of changes in a chemical substance under Article 12 (1);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Approval to use the hazard data prescribed in Article 19 ;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Reporting of a substance subject to intensive control contained in a product under Article 32 (1);"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 47 (Hearing)"
+      ]
+    ],
+    [
+      [
+        "Article 48 (Delegation or Entrustment of Authority)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Environment may delegate part of his or her authority granted under this Act to the President of the National Institute of Environmental Research, the President of the National Institute of Chemical Safety, the head of a river basin environmental office, and the head of a regional environmental office, as prescribed by Presidential Decree. <Amended by Act No. 13891, Jan. 27, 2016>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Environment may entrust part of his or her duties prescribed in this Act to the Korea Environmental Industry and Technology Institute established under the Korea Environmental Industry and Technology Institute Act, the Korea Environment Corporation established under the Korea Environment Corporation Act , or an association established pursuant to Article 53 of the Chemical Substances Control Act. <Amended by Act No. 13891, Jan. 27, 2016>"
+      ]
+    ],
+    [
+      [
+        "Article 48-2 (Legal Fiction as Public Officials in Application of Penalty Provisions)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A member who is not a public official among the members of the Evaluation Committee;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "An executive officer or employee of a testing institution designated pursuant to Article 22 (1);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "An executive officer or employee of an institution that engages in affairs entrusted pursuant to Article 48 (2)."
+      ]
+    ],
+    [
+      [
+        "Article 49 Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 50 (Penalty Provision)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Any person who manufactures or imports a non-phase-in substance or phase-in substance without registration or after false registration, in violation of Article 10 (1) or (5);"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "Any person who manufactures or imports a non-phase-in substance without reporting or after making a false report, in violation of Article 10 (4);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Any person who fails to register a change in a chemical substance or falsely registers such change, in violation of Article 12 (1);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Any person who violates an order to take measures under Article 13 (2);"
+      ]
+    ],
+    [
+      [
+        "3-2.",
+        "Any person designated as a testing institution pursuant to Article 22 (1) who prepares a test result different from the fact intentionally or by gross negligence;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Any person who produces or imports a product containing a substance subject to intensive control without reporting the substance subject to intensive control contained in the product or after falsely reporting such substance, in violation of Article 32 (1);"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Deleted. <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 51 (Penalty Provision)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Deleted; <by Act No. 15512, Mar. 20, 2018>"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Any person who manufactures or imports a non-phase-in substance or  phase-in substance without obtaining confirmation of exemption from registration, etc. or after obtaining false confirmation of exemption from registration, etc., in violation of Article 11 ;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Any person who fails to submit data or submits false data, in violation of an order to submit data under Articles 18 (2) and 24 (2);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Any person who performs the affairs of a testing institution without having been designated as a testing institution pursuant to Article 22 (1) or is designated as a testing institution by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Any person who performs the affairs of a testing institution, in violation of an order to suspend business under Article 23 (2)."
+      ]
+    ],
+    [
+      [
+        "Article 52 (Penalty Provision)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Any person who obtains approval for the use of hazard data by fraud or other improper means, in violation of Article 19 (2);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Any person who fails to provide information on a chemical substance or provides false information, in violation of Articles 29 (1) and 35 (1);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Any person who fails to provide information or provides false information, in violation of Article 30 (1) and (2);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Any person who fails to provide information related to the safe use of a product to consumers or provides false information, in violation of Article 35 (2)."
+      ]
+    ],
+    [
+      [
+        "Article 53 (Joint Penalty Provision)"
+      ]
+    ],
+    [
+      [
+        "Article 54 (Administrative Fine)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any of the following persons shall be punished by an administrative fine not exceeding ten million won: Provided , That where a person appointed pursuant to Article 38 (1) falls under any of the following, the foregoing shall apply to such appointed person only: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Any person who fails to file an application for change of confirmation of exemption from registration, etc. or files a false application therefor, in violation of Article 11 (3);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Any person who fails to make a report under Article 12 (2) or to report any change under paragraph (3) of the aforesaid Article, or makes a false report or falsely report any change;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Any person who fails to jointly submit data to apply for registration without obtaining confirmation of individual submission, in violation of Article 15 (1);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Any person who fails to inform any change in information or gives false information, in violation of Article 29 (3);"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Any person who fails to submit reports or data prescribed in Article 43 (1) or submits false reports or data, and a person who refuses, obstructs, or evades any access or inspection by the relevant public official;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Any person who violates the duty to record or retain documents prescribed in Article 44 ."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Environment shall impose and collect administrative fines under paragraph (1), as prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the quantity of a chemical substance to be manufactured or imported is at least 100 tons per year: January 1, 2015;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the quantity of a chemical substance to be manufactured or imported is at least 70 tons per year: January 1, 2017;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where the quantity of a chemical susbtance to be manufactured or imported is at least 50 tons per year: January 1, 2018;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Where the quantity of a chemical substance to be manufactured or imported is at least 20 tons per year: January 1, 2019;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Where the quantity of a chemical substance to be manufactured or imported is at least 10 tons per year: January 1, 2020."
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person in whose case a hazard review of a chemical substance under the previous Toxic Chemical Substances Control Act has been conducted, at the time this Act enters into force, the registration of the chemical substance under Article 10 and the hazard review under Article 18 shall be deemed completed. In such cases, he or she shall make a report to the Minister of Environment in accordance with the procedures prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Notwithstanding the latter part of paragraph (1), where a person who has made a report falls under any of the subparagraphs of Article 12 (1), he or she shall apply for registration of changes."
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where the Minister of Environment revokes the designation of a testing institution or suspends its business due to any act committed before this Act enters into force, the previous Toxic Chemical Substances Control Act shall apply, notwithstanding Article 23 ."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A testing institution subject to revocation of its designation or suspension of its business pursuant to Article 14-2 (1) or (2) of the previous Toxic Chemical Substances Control Act, at the time this Act enters into force, shall be deemed subject to revocation of its designation or suspension of its business pursuant to Article 23 (1) or (2)."
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who has registered a non-phase-in substance to manufacture or import less than 100 kilograms of such substance per year pursuant to the former Article 10 (1) before this Act enters into force shall be deemed to have made a report under the amended provision of Article 10 (4)."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Any person falling under the amended provision of Article 10 (4) 2 who manufactures or imports a non-phase-in substance at the time this Act enters into force, may manufacture or import the relevant non-phase-in substance without reporting under the amended provision of Article 10 (4) until two years elapse from the enforcement date of this Act."
+      ]
+    ]
+  ],
+  "rawText": "ACT ON REGISTRATION AND EVALUATION OF CHEMICAL SUBSTANCES Act No. 15844, Oct. 16, 2018 Act No. 11789, May 22, 2013 Amended by Act No. 13891, Jan. 27, 2016 Act No. 15512, Mar. 20, 2018 Act No. 15584, Apr. 17, 2018 Act No. 15844, Oct. 16, 2018 CHAPTER I GENERAL PROVISIONS 법령보기 화면 Article 1 (Purpose) The purpose of this Act is to protect public health and the environment by providing for matters regarding the registration and reporting of chemical substances, the review and assessment of hazards and risks of chemical substances, and the designation of hazardous chemical substances, and by producing and utilizing information on chemical substances. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 2 (Definitions) The terms used in this Act shall be defined as follows: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15584, Apr. 17, 2018> 1. The term \"chemical substance\" means an element, its compounds and substances obtained by artificial chemical reaction thereto, and substances obtained by chemical modification, extraction or purification of substances in their natural state; 2. The term \"mixture\" means a substance or solution composed of at least two substances; 3. The term \"phase-in substance\" means any of the following chemical substances: (a) Chemical substances publicly notified by the Minister of Environment in consultation with the Minister of Employment and Labor, which were domestically distributed for commercial purposes before February 2, 1991; (b) Chemical substances publicly notified by the Minister of Environment and where the hazard reviews thereof have been conducted pursuant to the previous Toxic Chemical Substances Control Act after February 2, 1991; 4. The term \"non-phase-in substance\" means all chemical substances excluding phase-in substances; 5. Deleted; <by Act No. 15512, Mar. 20, 2018> 6. The term \"toxic substance\" means a hazardous chemical substance designated and publicly notified by the Minister of Environment according to the standards prescribed by Presidential Decree; 7. The term \"substance subject to permission\" means a chemical substance likely to pose a risk, which is publicly notified by the Minister of Environment after consultation with the heads of relevant central administrative agencies in accordance with Article 25 and deliberation by the Chemicals Evaluation Committee prescribed in Article 7 to be manufactured, imported, or used with permission of the Minister of Environment; 8. The term \"restricted substance\" means a chemical substance deemed to pose a significant risk, if used for a specific purpose, which is publicly notified by the Minister of Environment after consultation with the heads of relevant central administrative agencies in accordance with Article 27 and deliberation by the Chemicals Evaluation Committee prescribed in Article 7 to prohibit such chemical substance from being manufactured, imported, sold, kept, stored, transported, or used for such purpose; 9. The term \"prohibited substance\" means a chemical substance deemed to pose a significant risk, which is publicly notified by the Minister of Environment after consultation with the heads of relevant central administrative agencies in accordance with Article 27 and deliberation by the Chemicals Evaluation Committee prescribed in Article 7 to prohibit such chemical substance from being manufactured, imported, sold, kept, stored, transported, or used for any purpose; 10. The term \"hazardous chemical substance\" means toxic substances, substances subject to permission, restricted substances, and prohibited substances; 10-2. The term \"substance subject to intensive control\" means any of the following chemical substances, which are designated and publicly notified by the Minister of Environment after deliberation by the Chemicals Evaluation Committee prescribed in Article 7 because they are likely to pose a risk: (a) A substance that causes or is likely to cause cancer, mutation, reproductive disorders or disorders of the endocrine system in humans or animals; (b) A substance that is highly likely to accumulate in the bodies of humans, animals or plants and remains in the environment for an extended period of time; (c) A substance that, when exposed to humans, may cause damage to the internal organs such as lungs, liver, and kidneys; (d) A substance that may pose a risk equivalent to or more serious than the substances referred to in items (a) through (c) to humans, animals or plants; 11. The term \"hazard\" means the intrinsic properties of any chemical substance that causes adverse effects to human health or the environment, such as the toxicity of a chemical substance; 12. The term \"risk\" means the degree of damage to human health or the environment caused by exposure to a hazardous chemical substance; 13. The term \"generic name\" means a name given in place of an actual chemical substance name to protect confidential data; 14. The term \"business entity\" means a person that manufactures, imports, uses, or sells chemical substances for business purposes; 15. The term \"product\" means any of the following products which are goods used by the consumers defined in subparagraph 1 of Article 2 of the Framework Act on Consumers , or components or accessories thereof and which may cause exposure to chemical substances by such consumers: (a) A product composed of mixtures; (b) A product that fulfills a certain function in a solid state with specific shape without discharging any chemical substance in its use; 16. Deleted; <by Act No. 15512, Mar. 20, 2018> 17. The term \"downstream user\" means a person who uses chemical substances or mixtures in the course of his or her business activities (in the case of a corporation, limited to where it is incorporated in the Republic of Korea): Provided , That manufacturers, importers, sellers, or consumers of chemical substances or mixtures shall be excluded herefrom; 18. The term \"sale\" means placing chemical substances, mixtures, or products on the market; 19. The term \"alternative to vertebrate animal testing\" means a test that minimizes the use of vertebrate animals or that alleviates any unnecessary pain if unavoidable to use live vertebrate animals, in the process of generating information on hazards and risks of chemical substances. 법령보기 화면 Article 3 (Scope of Application) This Act shall not apply to any of the following chemical substances: <Amended by Act No. 15512, Mar. 20, 2018> 1. Radioactive materials defined in subparagraph 5 of Article 2 of the Nuclear Safety Act ; 2. Drugs defined in subparagraph 4 of Article 2 of the Pharmaceutical Affairs Act and quasi-drugs defined in subparagraph 7 of the said Article; 3. Narcotics defined in subparagraph 1 of Article 2 of the Act on the Narcotics Control Act; 4. Cosmetics defined in subparagraph 1 of Article 2 of the Cosmetics Act and raw materials used for cosmetics; 5. Pesticides defined in subparagraph 1 of Article 2 of the Pesticide Control Act and active ingredients defined in subparagraph 3 of the said Article; 6. Fertilizers defined in subparagraph 1 of Article 2 of the Fertilizer Control Act ; 7. Foods defined in subparagraph 1 of Article 2 of the Food Sanitation Act , food additives defined in subparagraph 2 of the said Article, apparatus defined in subparagraph 4 of the said Article, containers and packages defined in subparagraph 5 of the said Article; 8. Feed defined in subparagraph 1 of Article 2 of the Control of Livestock and Fish Feed Act ; 9. Explosives defined in Article 2 (3) of the Act on Control of Guns, Swords, and Explosives; 10. Munitions defined in Article 2 of the Act on the Management of Military Supplies and subparagraph 2 of Article 3 of the Defense Acquisition Program Act (excluding ordinary commodities prescribed in Article 3 of the Act on the Management of Military Supplies ); 11. Health functional foods defined in subparagraph 1 of Article 3 of the Health Functional Foods Act ; 12. Medical devices defined in Article 2 (1) of the Medical Devices Act ; 13. Hygiene products defined in subparagraph 1 of Article 2 of the Hygiene Products Control Act ; 14. Biocidal substances and biocidal products defined in subparagraphs 7 and 8 of Article 3 of the Act on Safety Control of Consumer Chemical Products and Biocides. 법령보기 화면 Article 4 (Duties of State) (1) The State shall formulate and implement policies necessary to identify hazards and risks of chemical substances and prevent any harm caused thereby. (2) The State shall provide technical, administrative and financial support so that information on hazards and risks of chemical substances may be generated, secured, and systematically managed, and that the relevant information may be communicated in the process of transferring and acquiring chemical substances. (3) The State shall formulate and implement policies on the safety management of products to protect public health and the environment from chemical substances contained in products. (4) The State shall provide support, such as for surveys, research, education, and public relations, regarding the registration, evaluation, etc. of chemical substances of small and medium enterprises. <Amended by Act No. 15512, Mar. 20, 2018> (5) The State shall formulate and implement policies on the development and use of alternatives to vertebrate animal testing so as to minimize the use of vertebrate animals, in the process of generating information on hazards and risks of chemical substances. <Added by Act No. 15584, Apr. 17, 2018> 법령보기 화면 Article 5 (Duties of Business Entity) (1) Every business entity shall take necessary measures, such as reducing the use of hazardous or risky chemical substances or developing substances or new technology that may replace such chemical substances, to prevent or minimize risks posed by chemical substances to public health or the environment. <Amended by Act No. 15512, Mar. 20, 2018> (2) Every business entity shall actively produce, exchange, and use information on hazards and risks of chemical substances that it manufactures or imports, and shall participate and cooperate in policies of the State related to the registration, reporting, hazard review, and risk assessment of chemical substances. <Amended by Act No. 15512, Mar. 20, 2018> (3) Every business entity shall endeavor to protect public health and the environment, such as by actively preparing information on uses and safety of chemical substances and methods for response to exposure of chemical substances. (4) Every business entity manufacturing or importing products shall ensure that chemical substances contained in products do not cause any harm to lives, bodies, or property of people. <Amended by Act No. 15512, Mar. 20, 2018> (5) Every business entity shall preferentially consider alternatives to vertebrate animal testing, where he or she generates information on hazards and risks of chemical substances. <Added by Act No. 15584, Apr. 17, 2018> 법령보기 화면 Article 6 (Master Plan for Evaluation of Chemical Substance) (1) The Minister of Environment shall formulate a master plan for registering, reporting and evaluating chemical substances, and reporting substances subject to intensive control contained in products, etc. (hereinafter referred to as \"master plan\") every five years. <Amended by Act No. 15512, Mar. 20, 2018> (2) Where the Minister of Environment formulates a master plan, prior consultations shall be undertaken with the heads of relevant central administrative agencies and the master plan shall be subject to deliberation by the Chemicals Evaluation Committee prescribed in Article 7 . The same shall also apply to the revision of the master plan. (3) A master plan shall include the following: <Amended by Act No. 15512, Mar. 20, 2018> 1. Methods and plans for registering and reporting chemical substances, hazard reviews and risk assessments, reporting substances subject to intensive control contained in products, etc.; 2. Matters concerning registering and reporting chemical substances, reporting substances subject to intensive control contained in products, developing technology necessary for hazard reviews and risk assessments, etc.; 3. Matters concerning surveys and research, safety management, and international cooperation related to hazards and risks of chemical substances; 4. Matters concerning industrial activities to prevent any harm caused by chemical substances to public health or the environment, safety support and education for workers and consumers; 5. Other matters necessary for registering and reporting chemical substances, hazard reviews, risk assessments, etc. (4) Where the Minister of Environment formulates a master plan, he or she shall notify the heads of relevant central administrative agencies and the heads of local governments of the details thereof without delay. (5) The head of each relevant central administrative agency and the head of each local government shall formulate and implement policies regarding matters under his or her jurisdiction in accordance with the master plan. 법령보기 화면 Article 7 (Chemicals Evaluation Committee) (1) The Chemicals Evaluation Committee (hereinafter referred to as the \"Evaluation Committee\") shall be established under the jurisdiction of the Minister of Environment to deliberate on the following related to registering and reporting chemical substances, reporting substances subject to intensive control contained in products, hazard reviews, risk assessments, etc.: <Amended by Act No. 15512, Mar. 20, 2018> 1. Matters concerning the formulation of master plans; 2. Matters concerning the designation of substances subject to intensive control; 3. Matters concerning substances subject to permission, restricted substances, or prohibited substances; 4. Matters concerning the designation of chemical substances to be registered pursuant to Article 10 (5); 4-2. Matters concerning the designation of chemical substances exempted from registration, etc. pursuant to Article 11 (1) 2; 5. Deleted; <by Act No. 15512, Mar. 20, 2018> 6. Other matters prescribed by Presidential Decree regarding registration and reporting of chemical substances and the hazard review, risk assessment, safety management, etc. of chemical substances. (2) The Evaluation Committee shall be composed of up to 30 members, including 1 chairperson and 1 vice chairperson. (3) The Vice Minister of Environment shall be the chairperson of the Evaluation Committee and the vice chairperson shall be elected from among, and by, the members. (4) The Minister of Environment shall appoint or commission members of the Evaluation Committee from among the following persons: <Amended by Act No. 15512, Mar. 20, 2018> 1. Persons recommended by the head of the relevant central administrative agency in charge of affairs concerning chemical substances from among public officials belonging to such agency; 2. Experts with profound knowledge and experience in relevant fields, such as chemistry, the environment and public health, and relevant persons in the industry and non-governmental organizations related to chemical substances; 3. Persons recommended by the heads of relevant central administrative agencies from among the persons referred to in subparagraph 2. (5) A majority of the members of the Evaluation Committee shall constitute a quorum, and any decision thereof shall require the concurring vote of a majority of those present. (6) Where it is necessary to conduct professional research and examination of matters to be deliberated by the Evaluation Committee, expert committees for each area may be established, such as a risk assessment committee composed of members of the Evaluation Committee and experts in the relevant fields. <Amended by Act No. 15512, Mar. 20, 2018> (7) Except as provided in paragraphs (1) through (6), matters necessary for the composition and operation of the Evaluation Committee and expert committees shall be prescribed by Presidential Decree. CHAPTER II REGISTRATION OF CHEMICAL SUBSTANCES 법령보기 화면 Articles 8 and 9 Deleted. <by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 10 (Registration of Chemical Substance) (1) Any person who intends to manufacture or import at least 100 kilograms of a non-phase-in substance per year or at least 1 ton of a phase-in substance per year (excluding a person falling under paragraph (4) 2) shall register the chemical substance with the Minister of Environment before it is manufactured or imported. <Amended by Act No. 15512, Mar. 20, 2018> (2) Notwithstanding paragraph (1), any person who intends to manufacture or import a phase-in substance may manufacture or import such substance without registration thereof during a registration grace period (hereinafter referred to as \"registration grace period\") provided in the following: <Amended by Act No. 15512, Mar. 20, 2018> 1. Where he or she intends to manufacture or import at least 1 ton of a phase-in substance per year designated and publicly notified by the Minister of Environment following deliberation by the Evaluation Committee, which causes or is likely to cause cancer, mutation or reproductive disorders to humans or animals, or at least 1,000 tons of a phase-in substance per year: By December 31, 2021; 2. Where he or she intends to manufacture or import at least 100 tons and less than 1,000 tons of a phase-in substance per year: By December 31, 2024; 3. Where he or she intends to manufacture or import at least 1 ton and less than 100 tons of a phase-in substance per year: Period prescribed by Presidential Decree but by no later than December 31, 2030. (3) Any person who intends to manufacture or import a phase-in substance without registration thereof during the registration grace period pursuant to paragraph (2) shall report the following to the Minister of Environment before he or she manufactures or imports the phase-in substance, as prescribed by Ministerial Decree of Environment, and where the matters prescribed by Presidential Decree are changed among the matters reported, he or she shall report such change to the Minister of Environment, as prescribed by Ministerial Decree of Environment: <Added by Act No. 15512, Mar. 20, 2018> 1. Name of the chemical substance; 2. Annual quantity of manufacture or import; 3. Classification and labelling of the chemical substance; 4. Uses of the chemical substance; 5. Other matters prescribed by Ministerial Decree of Environment, such as the trade name of the person who intends to manufacture or import the chemical substance. (4) Any of the following persons shall report the Minister of Environment before he or she manufactures or imports the following relevant non-phase-in substances: <Added by Act No. 15512, Mar. 20, 2018> 1. A person who intends to manufacture or import less than 100 kilograms of a non-phase-in substance per year; 2. A person who has obtained confirmation of exemption from hazard reviews of any of the following non-phase-in substances pursuant to Article 10 (1) 3 of the previous Toxic Chemical Substances Control Act (referring to the aforesaid Act before amended by Act No. 11862) and who, accordingly, intends to manufacture or import the relevant non-phase-in substance: (a) A non-phase-in substance manufactured or imported in quantities of not more than 100 kilograms per year; (b) A non-phase-in substance designated and publicly notified by the Minister of Environment, which is a polymer only composed of chemical substances other than non-phase-in substances. (5) Any person who intends to manufacture or import a chemical substance which is designated and publicly notified by the Minister of Environment following deliberation by the Evaluation Committee because the chemical substance is deemed highly likely to inflict serious damage on human health and the environment though not subject to registration under paragraph (1) or because the total quantity of such chemical substance domestically manufactured or imported per year exceeds the criteria prescribed by Presidential Decree, shall register the relevant chemical substance with the Minister of Environment within a period prescribed by Presidential Decree. <Added by Act No. 15512, Mar. 20, 2018> (6) Any person who intends to register pursuant to paragraphs (1) and (5) or make a report pursuant to paragraph (4) shall apply for registration with or make a report to the Minister of Environment, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> (7) The Minister of Environment shall decide whether to accept a registration or report, and shall notify an applicant of his or her decision within a period prescribed by Ministerial Decree of Environment from the date of receipt of an application for such registration or report pursuant to paragraph (6). <Amended by Act No. 15512, Mar. 20, 2018> (8) Except as provided in paragraphs (1) through (7), matters necessary for registering and reporting chemical substances shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 11 (Exemption from Registration of Chemical Substance) (1) Any of the following persons may manufacture or import a chemical substance without registration under Article 10 (1) and (5) or reporting under paragraph (4) of the aforesaid Article: <Amended by Act No. 15512, Mar. 20, 2018> 1. A person who intends to manufacture or import any of the following chemical substances: (a) A chemical substance contained in a machine imported; (b) A chemical substance imported along with a machine or device used for a test run; (c) A chemical substance contained in a product performing a certain function in a specific solid form, which does not leak in the process of using the product; 2. A person who intends to manufacture or import a chemical substance of very low risk designated and publicly notified by the Minister of Environment following deliberation by the Evaluation Committee; 3. A person who intends to manufacture or import other chemical substances prescribed by Presidential Decree, such as a chemical substance manufactured or imported to export the whole quantity thereof, in which case he or she has obtained confirmation of exemption from registration or reporting (hereinafter referred to as \"confirmation of exemption from registration, etc.\") from the Minister of Environment. (2) Any person who intends to obtain confirmation of exemption from registration, etc. shall file an application for confirmation of exemption from registration, etc. with the Minister of Environment. In such cases, the Minister of Environment shall confirm whether a chemical substance is eligible for exemption from registration or reporting under paragraph (1) 3 and notify the applicant of the eligibility determination, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> (3) Any person who is informed of confirmation of exemption from registration, etc. from the Minister of Environment under paragraph (2) shall file an application for changes with the Minister of Environment, where any change is made to the matters prescribed by Ministerial Decree of Environment, such as a manufacturing or import quantity of chemical substance for which he or she has received confirmation of exemption from registration, etc. <Added by Act No. 15844, Oct. 16, 2018> (4) Except as provided in paragraphs (1) and (3), matters necessary for confirmation of exemption from registration, etc., such as criteria for confirmation of exemption from registration, etc., and for application of changes shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> 법령보기 화면 Article 12 (Registration and Reporting of Change) (1) Where any of the following changes occurs, a person who has registered pursuant to Article 10 (1) or (5) shall register such change, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018> 1. Where any change is made to an annual quantity of a registered chemical substance manufactured or imported beyond the range prescribed by Ministerial Decree of Environment; 2. Where any change is made to the matters prescribed by Ministerial Decree of Environment concerning uses, hazards, and risks of registered chemical substances. (2) Where any of the following changes occurs, a person who has registered pursuant to Article 10 (1) or (5) shall report such change, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018> 1. The trade name, name or location of a person who has registered; 2. The representative (only applicable where a person who has registered is a corporation); 3. Other matters prescribed by Ministerial Decree of Environment concerning reporting. (3) Where any of the following changes occurs, a person who has made a report pursuant to Article 10 (4) shall report such change to the Minister of Environment, as prescribed by Ministerial Decree of Environment: <Added by Act No. 15512, Mar. 20, 2018> 1. The trade name, name or location of a person who has made a report; 2. The representative (only applicable where a person who has made a report is a corporation); 3. Matters prescribed by Ministerial Decree of Environment, concerning uses, hazards and risks of reported chemical substances. (4) Except as provided in paragraphs (1) through (3), matters necessary for registration of changes, reporting and reporting changes shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 13 (Measures against Non-Compliance of Duty to Register) (1) No person shall manufacture, import, use or sell a chemical substance in which case he or she has failed to register or report the chemical substance or to obtain confirmation of exemption from registration, etc. thereof (hereafter referred to as \"chemical substance whose registration, etc. is not filed\" in this Article) though it is subject to registration under Article 10 (1) or (5) or reporting under paragraph (4) of the aforesaid Article. (2) The Minister of Environment may order a person who manufactures or imports a chemical substance whose registration, etc. is not filed to suspend the manufacture, import, use or sale of such chemical substance, to withdraw it from the market and to take other necessary measures prescribed by Presidential Decree. (3) The Minister of Environment may order a person who manufactures or imports a phase-in substance within the registration grace period without making a report under Article 10 (3) to suspend the manufacture, import, use or sale of such chemical substance. (4) Notwithstanding Article 10 (2), where a person ordered to suspend manufacture or import of a phase-in substance under paragraph (3) intends to manufacture or import the relevant phase-in substance, he or she shall register such phase-in substance, and Article 10 (6) and (7) shall apply to the application for registration. [This Article Wholly Amended by Act No. 15512, Mar. 20, 2018] 법령보기 화면 Article 14 (Data to Be Submitted When Applying for Registration of Chemical Substance) (1) Any person who intends to register pursuant to Article 10 (1) or (5) shall submit data on the following matters (hereinafter referred to as \"data to apply for registration\"), as prescribed by Ministerial Decree of Environment: Provided , That in the case of a phase-in substance or non-phase-in substance prescribed by Presidential Decree, he or she need not submit some of the relevant data, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018> 1. The name, location, and representative of a person who intends to manufacture or import the chemical substance; 2. Information on the identification of the chemical substance, such as the name, molecular formula, and structural formula of such chemical substance; 3. Uses of the chemical substance; 4. Classification and labelling of the chemical substance; 5. Physical and chemical properties of the chemical substance; 6. Hazards of the chemical substance; 7. Ri sks of the chemical substance, including an exposure scenario describing handling, exposure controls, and management measures during the life-cycle of the chemical substance (applicable only where the quantity of the chemical substance that the applicant intends to manufacture or import is at least ten tons per year); 8. Guidance on safe use (personal protections, first-aid measures, etc. in case of explosion, fire or leakage); 9. Other data prescribed by Ministerial Decree of Environment. (2) Among the data to apply for registration regarding the matters referred to in paragraph (1) 5 and 6, the data prescribed by Ministerial Decree of Environment shall be submitted in documents stating the results of a test conducted by any of the following testing institutions: 1. A Korean testing institution prescribed in Article 22 (1); 2. A confirmed foreign testing institution pursuant to Ministerial Decree of Environment to comply with the Principles of Good Laboratory Practice of the Organization for Economic Cooperation and Development. (3) Any person who intends to register pursuant to Article 10 (1) or (5) may submit a plan that includes the details of and schedule for testing and other relevant matters (hereafter referred to as \"testing plan\" in this Article) in lieu of some of the data to apply for registration on the matters referred to in paragraph (1) 5 and 6, as prescribed by Ministerial Decree of Environment. In such cases, the Minister of Environment shall review the appropriateness, etc. of the details of and schedule for testing in such testing plan, as prescribed by Ministerial Decree of Environment, and shall inform a manufacturer or importer of the specific details of such testing, the deadline for such data submission, and other relevant matters. <Amended by Act No. 15512, Mar. 20, 2018> (4) The Minister of Environment may acquire the data to apply for registration concerning the matters prescribed in paragraph (1) 5 and 6 for some phase-in substances and may provide such data to a person who intends to register under paragraph (1). In such cases, the Minister of Environment may receive the expenses incurred in acquiring the data to apply for registration from a person who intends to register, as prescribed by Ministerial Decree of Environment. <Added by Act No. 15512, Mar. 20, 2018> (5) Where the Minister of Environment intends to acquire the data to apply for registration pursuant to the former part of paragraph (4), he or she shall first acquire test data in which the results of tests conducted by testing institutions prescribed in the subparagraphs of paragraph (2) using vertebrate animals are recorded (hereinafter referred to as \"vertebrate animal test data\") to minimize animal testing or data prepared in accordance with alternatives to animal testing. <Added by Act No. 15512, Mar. 20, 2018> (6) Any person who intends to make a report pursuant to Article 10 (4) shall submit the following data, as prescribed by Ministerial Decree of Environment: <Added by Act No. 15512, Mar. 20, 2018> 1. Data concerning the matters referred to in paragraph (1) 1 through 4; 2. Other data prescribed by Ministerial Decree of Environment. (7) Matters necessary for the details of data prescribed in paragraph (1), testing methods to produce data to apply for registration on the matters referred to in paragraph (1) 5 and 6, methods for preparing data on the risks referred to in paragraph (1) 7, methods for preparing testing plans, and the securing of data prescribed in paragraph (4) shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> [Enforcement Date: Jan. 1, 2020] Where the quantity of a chemical substance intended to be manufactured or imported in the amended provision of Article 14 (1) 7 is at least ten tons per year. 법령보기 화면 Article 15 (Method for Submitting Data When Applying for Registration of Phase-In Substance) (1) Persons who intend to register phase-in substances within the registration grace period shall individually apply for registration pursuant to Article 10 (6), but in the case of data to apply for registration prescribed by Ministerial Decree of Environment, they shall jointly submit such data by designating a representative: Provided , That in any of the following cases, they may individually submit such data after obtaining confirmation from the Minister of Environment (hereinafter referred to as \"confirmation of individual submission\"): <Amended by Act No. 15512, Mar. 20, 2018> 1. Where the disclosure of trade secrets of the enterprise is expected to cause considerable commercial loss; 2. Where more expenses are incurred for joint submission than individual submission; 3. Where any ground prescribed by Presidential Decree exists. (2) The Minister of Environment may provide information necessary for jointly submitting data to apply for registration among the matters reported pursuant to Article 10 (3) to those who should jointly submit such data pursuant to the main sentence of paragraph (1) so that the joint submission of the data can be facilitated. <Added by Act No. 15512, Mar. 20, 2018> (3) Necessary matters concerning joint submission of data to apply for registration, provision of information necessary for joint submission, methods and procedures for confirmation of individual submission, etc. shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 16 (Joint Use of Existing Data to Apply for Registration) (1) Any person who intends to register pursuant to Article 10 (1) or (5) may use the data to apply for registration prescribed by Ministerial Decree of Environment among the existing such data submitted by another registrant pursuant to Article 14 (1) for the purpose of applying for his or her own registration after obtaining consent to use from the owner thereof: Provided , That in the case of data to apply for registration where 15 years have passed since the data was registered, he or she may use such data without obtaining consent to use from the owner thereof. <Amended by Act No. 15512, Mar. 20, 2018> (2) Any person who intends to register pursuant to Article 10 (1) or (5) may inquire of the Minister of Environment whether the same chemical substance has been registered and other relevant matters to use the existing data to apply for registration pursuant to paragraph (1). In such cases, the Minister of Environment shall inform him or her of the results thereof, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> (3) Except as provided in paragraphs (1) and (2), matters necessary for joint use of data to apply for registration shall be prescribed by Ministerial Decree of Environment. 법령보기 화면 Article 16-2 (Principle of Minimizing Vertebrate Animal Testing) Vertebrate animal testing for registration of chemical substances, hazard reviews and risk assessments thereof shall be minimized with alternatives to vertebrate animal testing or other means. Except for the cases prescribed by Presidential Decree, such as where new findings suggest that the relevant chemical substance poses a risk on humans, animals, or the environment, no duplicate test shall be conducted on the same chemical substance. [This Article Added by Act No. 15584, Apr. 17, 2018] 법령보기 화면 Article 17 (Special Case on Vertebrate Animal Test Data) (1) Any person who intends to register pursuant to Article 10 (1) or (5) shall check if vertebrate animal test data already exist, to minimize vertebrate animal testing. <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15584, Apr. 17, 2018> (2) Where the check under paragraph (1) finds that vertebrate animal test data already exist, any person who intends to apply for registration shall use the relevant vertebrate animal test data for the purpose of his or her own application for registration with the consent to use of the relevant animal test data from the owner thereof: Provided , That where at least 15 years have passed since vertebrate animal test data were registered as data to apply for registration, he or she may use such data without consent to use from the owner thereof. <Added by Act No. 15584, Apr. 17, 2018> (3) Notwithstanding paragraph (2), where the owner of vertebrate animal test data does not consent to their use, a person who intends to apply for registration need not submit the relevant data to apply for registration with confirmation from the Minister of Environment: Provided , That where deemed necessary to submit vertebrate animal test data, such as where it is difficult to determine hazards, etc. of chemical substances without the relevant vertebrate animal test data, the Minister of Environment may order him or her to produce and submit the relevant data within a period prescribed by Ministerial Decree of Environment. <Amended by Act No. 15584, Apr. 17, 2018> (4) Any person requested to consent to use of vertebrate animal test data pursuant to paragraph (2) shall comply with such request, unless there are good reasons prescribed by Presidential Decree. <Amended by Act No. 15584, Apr. 17, 2018> (5) No person who refuses to consent to use of vertebrate animal test data without good cause prescribed in paragraph (4) shall submit the relevant vertebrate animal test data for the purpose of applying for registration. <Amended by Act No. 15584, Apr. 17, 2018> (6) Except as provided in paragraphs (1) through (5), matters necessary for consent to use, etc. of vertebrate animal test data shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15584, Apr. 17, 2018> 법령보기 화면 Article 17-2 (Imposition of Penalty Surcharge) (1) Where any person who manufactures or imports a chemical substance commits any of the following offenses, the Minister of Environment may impose a penalty surcharge equivalent to not more than 5/100 of the sales on the person who manufactures or imports the relevant chemical substance , as prescribed by Presidential Decree: Provided , That in cases prescribed by Presidential Decree, such as where there is no sales or it is difficult to calculate sales, the Minister of Environment may impose a penalty surcharge not exceeding 1 billion won, and in the case of an enterprise that has one place of business, the amount of a penalty surcharge shall not exceed 25/1,000 of its sales: 1. Where he or she fails to register, in violation of Article 10 (1) or (5), or manufactures or imports a chemical substance different from the details he or she has registered; 2. Where he or she fails to register changes, in violation of Article 12 (1), or manufactures or imports a chemical substance different from the details of any change he or she has registered. (2) Where the Minister of Environment collects penalty surcharges pursuant to paragraph (1), he or she shall take the following into consideration: 1. The details and gravity of the offense; 2. The period during which a person commits an offense and the number of times he or she commits such offense; 3. The size of profits an offender has gained from having committed the offense. (3) Where a corporation that has committed an offense falling under any of the subparagraphs of paragraph (1) effects a merger, the Minister of Environment may impose a penalty surcharge on such corporation considering an offense the corporation has committed to be an offense committed by a corporation that survives the merger or is incorporated following the merger. (4) Except as provided in paragraphs (1) through (3), matters necessary to impose penalty surcharges, such as criteria for imposing penalty surcharges, shall be prescribed by Presidential Decree. [This Article Added by Act No. 15512, Mar. 20, 2018] 법령보기 화면 Article 17-3 (Collection of Penalty Surcharge and Disposition on Default Thereof) (1) Where a person obliged to pay a penalty surcharge (hereafter referred to as \"person obliged to pay a penalty surcharge\" in this Article) under Article 17-2 (1) fails to pay it within the payment deadline, the Minister of Environment may collect an additional charge for a period from the date after the payment deadline to the date he or she pays the penalty surcharge, based on an interest rate for late payment of a bank prescribed in Article 2 (1) 2 of the Banking Act . In such cases, the period during which the Minister of Environment collects the additional charge shall not exceed 60 months. (2) Where a person obliged to pay a penalty surcharge fails to pay it within the payment deadline, the Minister of Environment shall urge him or her to pay it within a fixed period, and where he or she fails to pay the penalty surcharge and an additional charge prescribed in paragraph (1) within that period, the Minister of Environment may collect the penalty surcharge and the additional charge in the same manner as delinquent national taxes are collected. (3) Where the Minister of Environment refunds a penalty surcharge on the grounds of a decision, etc. of a court, he or she shall pay an additional charge for refunding for the period from the date a person pays the penalty surcharge to the date the Minister of Environment refunds it, as prescribed by Presidential Decree. (4) Except as provided in paragraphs (1) through (3), matters necessary for collecting penalty surcharges, disposition on penalty surcharges in arrears, etc. shall be prescribed by Presidential Decree. [This Article Added by Act No. 15512, Mar. 20, 2018] CHAPTER III HAZARD REVIEW AND RISK ASSESSMENT OF CHEMICAL SUBSTANCES 법령보기 화면 Article 18 (Hazard Review) (1) The Minister of Environment shall conduct a hazard review of a chemical substance registered pursuant to Article 10 (1) or (5) (including a chemical substance in which case any change in the registration thereof has been registered pursuant to Article 12 (1)), as prescribed by Ministerial Decree of Environment, and shall inform a registrant of the results thereof. <Amended by Act No. 15512, Mar. 20, 2018> (2) Where necessary for hazard reviews, the Minister of Environment may order a registrant to submit data necessary for hazard reviews. (3) Matters necessary for hazard reviews and informing the results thereof under paragraph (1), and orders to submit data under paragraph (2) shall be prescribed by Ministerial Decree of Environment. 법령보기 화면 Article 19 (Hazard Assessment) (1) With regard to the chemical substances prescribed by Presidential Decree as a hazard assessment of which is deemed necessary, such as chemical substances that the Republic of Korea assesses by itself, among chemical substances that their hazard assessment is conducted by international organizations, the Minister of Environment shall conduct a hazard assessment of such chemical substances as prescribed by Ministerial Decree of Environment. (2) Any person who intends to use hazard data generated for a hazard assessment under paragraph (1) (hereinafter referred to as \"hazard data\") for registration of a chemical substance or application for a hazard review under domestic or foreign statutes and regulations, including provisions concerning registration under Article 10 , shall obtain approval from the Minister of Environment. <Amended by Act No. 15844, Oct. 16, 2018> (3) The Minister of Environment may revoke approval where any person who has obtained approval for the use of hazard data under paragraph (2) falls under any of the following: Provided , That in cases falling under subparagraph 1, the Minister of Environment shall revoke such approval: <Added by Act No. 13891, Jan. 27, 2016; Act No. 15844, Oct. 16, 2018> 1. Where he or she has obtained the approval by fraud or other improper means; 2. Where he or she allows another person who has not obtained approval for the use of hazard data to use such data; 3. Where he or she uses hazard data for any purpose other than that for which the approval was obtained. (4) Necessary matters concerning the methods of approving and revoking the use of hazard data under paragraphs (2) and (3) shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 13891, Jan. 27, 2016; Act No. 15844, Oct. 16, 2018> 법령보기 화면 Article 20 (Designation of Toxic Substance) With regard to a chemical substance that is found hazardous based on the results of a hazard review, the Minister of Environment shall designate and publicly notify such chemical substance as a toxic substance in accordance with the standards prescribed by Presidential Decree. 법령보기 화면 Article 21 (Disclosure of Results of Hazard Review) (1) Where the Minister of Environment completes a hazard review, he or she shall publicly notify the name and hazards of the relevant chemical substance, whether the chemical substance falls under the category of toxic substances under Article 20 , and other matters prescribed by Ministerial Decree of Environment. (2) Where the name of a chemical substance publicly notified pursuant to paragraph (1) is subject to data protection under Article 45 (1), the Minister of Environment shall publicly notify such chemical substance by its generic name until the period for data protection expires: Provided , That where the chemical substance falls under the category of toxic substances under Article 20 , the Minister of Environment shall publicly notify its name. (3) Detailed matters necessary for public notice referred to in paragraphs (1) and (2) shall be prescribed by Ministerial Decree of Environment. 법령보기 화면 Article 22 (Designation of Testing Institution) (1) The Minister of Environment shall designate a testing institution that may perform testing on physical and chemical properties and hazards of chemical substances from among the research institutions prescribed by Presidential Decree. In such cases, the Minister of Environment shall also designate a test field or test item in which the relevant testing institution may perform tests. (2) The head of a research institution who intends to be designated as a testing institution pursuant to paragraph (1) shall file an application for designation with the Minister of Environment. Where the head of the research institution intends to change any important matter prescribed by Ministerial Decree of Environment among the designated matters, he or she shall apply for change of designation. (3) The Minister of Environment shall regularly evaluate whether a testing institution designated pursuant to paragraph (1) is properly operated as prescribed by Ministerial Decree of Environment. (4) The head of a research institution designated as a testing institution pursuant to paragraph (1) shall report its operational performance to the Minister of Environment. <Added by Act No. 15584, Apr. 17, 2018> (5) Except as provided in paragraphs (1) through (4), matters necessary for standards and procedures for designation of testing institutions and change of designation, standards for management of testing institutions, and other relevant matters shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15584, Apr. 17, 2018> 법령보기 화면 Article 23 (Revocation of Designation of Testing Institution) (1) Where any person designated as a testing institution pursuant to Article 22 falls under any of the following, the Minister of Environment shall revoke the designation of a testing institution: 1. Where the testing institution has been designated by fraud or other improper means; 2. Where the testing institution has conducted testing during a period of business suspension; 3. Where the testing institution has falsified test results by intention or gross negligence; (2) Where any person designated as a testing institution pursuant to Article 22 falls under any of the following, the Minister of Environment may revoke the designation of such testing institution or the designation of a test field or test item, or may order the testing institution to suspend business on the test field or test item for a fixed period not exceeding six months: <Amended by Act No. 15584, Apr. 17, 2018> 1. Where the testing institution has failed to meet the designation standards under Article 22 (4) or violates management standards as a result of evaluation under paragraph (3) of the said Article: 2. Where the testing institution has failed to commence testing on the designated test field or test item within two years after being designated as a testing institution without just cause or has no business performance for more than two consecutive years; 3. Where the testing institution has conducted a testing or issued a test report other than on the designated test field or test item; 4. Where the testing institution has failed to report under Article 22 (4) or submitted a falsified report. (3) Where two years have not passed since the designation of a testing institution was revoked pursuant to paragraph (1) or (2), no such testing institution shall be designated as a testing institution under Article 22 . (4) Where six months have not passed since the designation of a test field or test item was revoked pursuant to paragraph (2), no such testing institution shall be designated for a test field or test item under Article 22 on the same test field or test item. (5) Criteria for administrative dispositions under paragraphs (1) and (2) shall be prescribed by Ministerial Decree of Environment. 법령보기 화면 Article 24 (Risk Assessment) (1) The Minister of Environment shall conduct a risk assessment of any of the following chemical substances from among chemical substances registered pursuant to Article 10 (1) or (5), based on the results of a hazard review, and shall inform a registrant of the results thereof, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018> 1. Where the quantity of a chemical substance manufactured or imported is at least ten tons per year; 2. Where the risk assessment of a chemical substance is deemed necessary based on the results of a hazard review thereof. (2) Where necessary to conduct a risk assessment, the Minister of Environment may order a registrant to submit data necessary for the risk assessment, as prescribed by Ministerial Decree of Environment. (3) The Minister of Environment may take necessary measures to minimize risks, based on the results of the risk assessment, as prescribed by Presidential Decree. [Enforcement Date: Jan. 1, 2020] Where the quantity of a chemical substance to be manufactured or imported in the amended provision of Article 24 (1) 1 is at least ten tons per year. CHAPTER IV DESIGNATION AND CHANGE OF SUBSTANCES SUBJECT TO PERMISSION 법령보기 화면 Article 25 (Designation of Substance Subject to Permission) (1) The Minister of Environment may designate and publicly notify substances subject to intensive control and other chemical substances likely to pose a risk based on a hazard review and a risk assessment as a substance subject to permission before they are manufactured, imported or used, in consultation with the heads of related central administrative agencies after deliberation by the Evaluation Committee. In such cases, the Minister of Environment may designate and publicly notify the uses of such chemical substances or substances that can be manufactured, imported, or used without his or her permission because they are less likely to pose a risk, as prescribed by Presidential Decree: <Amended by Act No. 15512, Mar. 20, 2018> 1. through 3. Deleted. <by Act No. 15512, Mar. 20, 2018> (2) Where the Minister of Environment designates and publicly notifies a substance subject to permission pursuant to paragraph (1), he or she shall include the name of the substance subject to permission, and the period during which the substance may be manufactured, imported or used without obtaining permission. <Amended by Act No. 15512, Mar. 20, 2018> (3) Except as provided in paragraphs (1) and (2), matters necessary for designation and public notice of substances subject to permission shall be prescribed by Presidential Decree. 법령보기 화면 Article 26 (Termination of Designation of Substance Subject to Permission) Where a substance subject to permission falls under any of the following, the Minister of Environment may terminate the designation as a substance subject to permission, or may fully or partially change the details publicly notified pursuant to Article 25 (1), after deliberation by the Evaluation Committee. In such cases, the Minister of Environment shall publicly notify such termination or change: 1. Where the substance subject to permission no longer needs to be used, as a substance that can substitute the substance subject to permission is manufactured or new technology is developed; 2. Where any use of the substance subject to permission no longer poses a risk due to the commercialization of new technology; 3. Where new scientific evidence verifies that the substance subject to permission does not pose a risk. 법령보기 화면 Article 27 (Designation of Restricted Substance or Prohibited Substance) (1) Where a chemical substance falls under any of the following, the Minister of Environment shall designate and publicly notify the relevant chemical substance as a restricted substance or prohibited substance after consultation with the heads of relevant central administrative agencies and deliberation by the Evaluation Committee, as prescribed by Presidential Decree: <Amended by Act No. 15512, Mar. 20, 2018> 1. Where the chemical substance is deemed to pose a risk based on the results of a hazard review and a risk assessment: 2. Where a foreign government, international organization, etc. deems that the chemical substance poses a risk; 3. Where manufacture, import or use of the chemical substance is prohibited or restricted in accordance with an international agreement, etc.; 4. Where the chemical substance falls under substances subject to permission that the designation of which has been terminated due to the ground under subparagraph 1 of Article 26 . (2) Where the Minister of Environment intends to designate a chemical substance as a restricted substance or prohibited substance, he or she shall notify beforehand the name of the chemical substance to be designated, the timing of designation, and other similar matters in the Official Gazette or on the website: Provided , That this shall not apply where urgent response is required because the relevant chemical substance poses or is likely to pose a critical risk to human health or the environment. (3) Where the Minister of Environment designates and publicly notifies a chemical substance as a restricted substance or prohibited substance, he or she shall include the name of the restricted substance or prohibited substance, details of prohibition depending on its use, and similar matters. (4) Except as provided in paragraphs (1) through (3), matters necessary for the designation and public notice of restricted substances or prohibited substances shall be prescribed by Presidential Decree. 법령보기 화면 Article 28 (Termination of Designation of Restricted Substance or Prohibited Substance) In any of the following cases, the Minister of Environment may terminate the designation of a chemical substance as a restricted substance or prohibited substance, or may fully or partially change the details publicly notified pursuant to Article 27 (1), after deliberation by the Evaluation Committee. In such cases, the Minister of Environment shall publicly notify such termination or change: 1. Where the restricted substance or prohibited substance no longer poses a risk due to commercialization of new technology; 2. Where new scientific evidence verifies that the restricted substance or prohibited substance does not pose a risk. CHAPTER V PROVISION OF INFORMATION ON CHEMICAL SUBSTANCES 법령보기 화면 Article 29 (Provision of Information on Chemical Substance) (1) Any person who transfers any of the following chemical substances or a mixture containing such chemical substance shall, where the content of the relevant chemical substance reaches the level prescribed by Presidential Decree, prepare and provide information prescribed by Ministerial Decree of Environment, such as information on the registration number, name, hazards, and risks of the relevant chemical substance, and information on the safe use thereof, to a person who acquires the chemical substance: Provided , That where the transferor shall prepare and provide a material safety data sheet pursuant to Article 41 of the Occupational Safety and Health Act , he or she shall record and provide the relevant information in the material safety data sheet: <Amended by Act No. 15512, Mar. 20, 2018> 1. A chemical substance registered or reported under Article 10 (1), (4), or (5); 2. A hazardous chemical substance, among phase-in substances not registered during the registration grace period under Article 10 (2). (2) Where a transferor prescribed in paragraph (1) continuously and repeatedly transfers the same chemical substance or a mixture containing such chemical substance to the same person, the transferor may provide information prescribed in paragraph (1) only for the first transfer of such information. (3) Where any change prescribed by Ministerial Decree of Environment is made to information provided, any person who has provided information pursuant to paragraphs (1) and (2) or any person who has been provided with such information shall inform the other party of such change within one month from the date he or she becomes aware of the change, as prescribed by Ministerial Decree of Environment. (4) Information shall be provided under paragraphs (1) through (3) only when the relevant chemical substance or mixture is transferred or acquired to be used or consumed as a raw material of a product in a place of business. (5) Except as provided in paragraphs (1) through (4), matters necessary to provide information on chemical substances shall be prescribed by Ministerial Decree of Environment. 법령보기 화면 Article 30 (Provision of Information by Downstream User) (1) Where any person who manufactures or imports a chemical substance or mixture requests any downstream user or seller of the chemical substance or mixture to provide information to file a registration or report under Article 10 , the downstream user or seller shall provide the manufacturer or importer with information on uses of the chemical substance he or she uses or sells, exposure information, the quantities used and sold, information on safe use, and other similar matters. <Amended by Act No. 15512, Mar. 20, 2018> (2) Where a downstream user or seller of a chemical substance or mixture requests a manufacturer or importer of the chemical substance or mixture to provide information, such manufacturer or importer shall provide the downstream user or seller with information on its properties, uses, the quantities manufactured and imported, information on safe use, and other similar matters. (3) Matters necessary to provide information on chemical substances under paragraphs (1) and (2) shall be prescribed by Ministerial Decree of Environment. 법령보기 화면 Article 31 (Notification to Provide Information on Chemical Substance) Where any change is made to the information to be provided pursuant to Articles 29 , 30 , and 35 , the Minister of Environment shall take necessary measures as prescribed by Ministerial Decree of Environment, such as informing such change to a registrant under Article 10 and a reporting person under Article 32 without delay, so that information on chemical substances may be effectively provided under Articles 29 , 30 , and 35 . CHAPTER VI MANAGEMENT OF PRODUCTS CONTAINING CHEMICAL SUBSTANCES 법령보기 화면 Article 32 (Reporting of Substance Subject to Intensive Control Contained in Product) (1) Where a product containing a substance subject to intensive control fully meets the following requirements, a person who manufactures or imports such product shall report the name, content, hazard information, exposure information and uses of the substance subject to intensive control contained in the relevant product to the Minister of Environment before the manufacture or import thereof: <Amended by Act No. 15512, Mar. 20, 2018> 1. The content of each individual substance subject to intensive control contained in one unit of the product shall exceed 0.1 weight percent; 2. The total quantity of each individual substance subject to intensive control contained in the whole products shall exceed one ton per year. (2) Where a chemical substance falls under any of the following, a person may manufacture or import a product containing a substance subject to intensive control without making a report under paragraph (1), as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018> 1. A chemical substance to which humans or the environment is not exposed where a product is used in a usual way; 2. A chemical substance already registered pursuant to Article 10 (1) or (5) or reported pursuant to paragraph (4) of the aforesaid Article for the use of the relevant product; 3. A chemical substance that can be manufactured or imported without registration or reporting pursuant to Article 11 (1). (3) Where the details of a report prescribed in paragraph (1) conform to this Act, the Minister of Environment shall accept such report. <Amended by Act No. 15512, Mar. 20, 2018> (4) Except as provided in paragraphs (1) through (3), matters necessary to report substances subject to intensive control contained in products shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Articles 33 and 34 Deleted. <by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 35 (Provision of Information on Chemical Substance Contained in Product) (1) Any person who transfers a product containing a substance subject to intensive control reported pursuant to Article 32 shall prepare information prescribed by Ministerial Decree of Environment, such as the name, uses and conditions of the substance subject to intensive control contained in the product, and shall provide it to a person who acquires the product, as prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> (2) Where any consumer of a product requests a person who transfers the product pursuant to paragraph (1) to provide the information, he or she shall provide information related to the safe use of the product to the consumer, as prescribed by Ministerial Decree of Environment. (3) Article 29 (2) through (4) or 30 shall apply mutatis mutandis to methods, etc. for providing information on substances subject to intensive control contained in a product. <Amended by Act No. 15512, Mar. 20, 2018> (4) Except as provided in paragraphs (1) through (3), matters necessary to provide information on substances subject to intensive control contained in a product shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Articles 36 and 37 Deleted. <by Act No. 15512, Mar. 20, 2018> CHAPTER VII SUPPLEMENTARY PROVISIONS 법령보기 화면 Article 38 (Application for Registration by Person Appointed by Overseas Manufacturer or Producer) (1) Any person who manufactures or produces or intends to manufacture or produce a chemical substance or product overseas that is imported to the Republic of Korea (hereafter in this Article referred to as \"overseas manufacturer or producer\") may appoint a person meeting the requirements prescribed by Ministerial Decree of Environment and require him or her to perform the following affairs in lieu of a person who imports or intends to import the chemical substance or product: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> 1. Registration and reporting of the chemical substance, and reporting of any change thereof under Article 10 ; 2. Filing an application for confirmation of exemption from registration, or any change thereof, etc. under Article 11 ; 3. Registration of any change, reporting and reporting of any change under Article 12 ; 4. Reporting under Article 32 ; 5. Other affairs prescribed by Presidential Decree. (2) Any person appointed pursuant to paragraph (1) shall report the Minister of Environment of the fact that he or she is appointed or dismissed by an overseas manufacturer or producer, as prescribed by Ministerial Decree of Environment. (3) Any person appointed pursuant to paragraph (1) shall notify a person who imports or intends to import a chemical substance or product prescribed in paragraph (1) of the matters prescribed by Presidential Decree, such as the fact that he or she has been appointed or affairs entrusted, as prescribed by Ministerial Decree of Environment. <Added by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 39 (Establishment and Operation of Chemical Data Processing System) (1) The Minister of Environment shall establish and operate a chemical data processing system so that any person who manufactures, produces or imports, or intends to manufacture, produce or import a chemical substance or product may electronically perform the affairs prescribed by Presidential Decree, such as registration, reporting or reporting of any change under Article 10 , registration of any change, reporting or reporting of any change under Article 12 or reporting, etc. under Article 32 . <Amended by Act No. 15512, Mar. 20, 2018> (2) Matters necessary for establishing and operating a chemical data processing system under paragraph (1) shall be prescribed by Presidential Decree. 법령보기 화면 Article 40 (Designation and Operation of Green Chemical Center) (1) The Minister of Environment may designate and operate an institution prescribed by Presidential Decree as a green chemical center in consultation with the heads of relevant central administrative agencies to have such center engage in technological development, etc. for the prevention of damage caused by hazards and risks of chemical substances. (2) A green chemical center prescribed in paragraph (1) (hereinafter referred to as \"green chemical center\") may perform the following affairs: <Amended by Act No. 15512, Mar. 20, 2018> 1. Cultivation, education and training of professionals for the production of information on chemical substances, hazard reviews and risk assessments of chemical substances; 2. Technological development related to the production of information on chemical substances, hazard reviews and risk assessments of chemical substances, reduction and prevention of risks thereof; 3. Support for activities to reduce risks of chemical substances in the industry and activities to prevent any harm caused by chemical substances to public health or the environment; 4. Support for the preparation, etc. of data that are necessary for registration, reporting, evaluation, etc. of chemical substances; 5. Other affairs necessary to prevent any harm caused by hazards and risks of chemical substances. (3) The Minister of Environment or the head of a relevant central administrative agency may provide subsidies to cover all or some of the expenses incurred in performing affairs of a green chemical center within budgetary limits. (4) Except as provided in paragraphs (1) through (3), matters necessary for procedures and requirements for designation and operation of a green chemical center shall be prescribed by Presidential Decree. 법령보기 화면 Article 41 (Revocation of Designation of Green Chemical Center) (1) Where a green chemical center falls under any of the following, the Minister of Environment may revoke the designation of a green chemical center or order the suspension of the whole or part of its business for a fixed period not exceeding six months: Provided , That where it falls under subparagraphs 1 and 2, the designation shall be revoked: 1. Where it is designated by fraud or other improper means; 2. Where it conducts the affairs referred to in the subparagraphs of Article 40 (2) during a period of business suspension; 3. Where it fails to meet requirements for designation under Article 40 (4); 4. Other cases prescribed by Presidential Decree. (2) Matters necessary for criteria and procedures for revocation of designation and business suspension under paragraph (1) and others shall be prescribed by Presidential Decree. 법령보기 화면 Article 42 (Disclosure of Information on Chemical Substance) The Minister of Environment shall, as prescribed by Ministerial Decree of Environment, disclose information on the names, risks, etc. of chemical substances so that the general public may readily access and use the information on hazards and risks of chemical substances. 법령보기 화면 Article 42-2 (Support for Small and Medium Enterprise for Registration and Assessment of Chemical Substance) The Minister of Environment may provide administrative, technical, and financial support for small and medium enterprises for the following related to the registration, assessment, etc. of chemical substances, in consultation with the heads of relevant central administrative agencies: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15584, Apr. 17, 2018> 1. Establishment of infrastructure to produce and manage information on chemical substances; 2. Establishment of infrastructure to register or report chemical substances; 3. Acquisition and use of the existing vertebrate animal test data; 4. Development and diffusion of alternatives to vertebrate animal testing; 5. Development of workforce in charge of controlling chemical substances; 6. Management of products containing substances subject to intensive control; 7. Mutual cooperation among small and medium enterprises; 8. Methods to use the chemical data processing system established under Article 39 ; 9. Other matters prescribed by Presidential Decree. [This Article Added by Act No. 13891, Jan. 27, 2016] 법령보기 화면 Article 43 (Reporting and Inspection) (1) The Minister of Environment may, as prescribed by Ministerial Decree of Environment, require the following persons to submit necessary reports or data, or related public officials to access their facilities or places of business to collect chemical substances or inspect related documents, facilities and equipment: <Amended by Act No. 15512, Mar. 20, 2018> 1. A person who manufactures, imports, or sells a chemical substance; 2. A person who makes a report pursuant to Article 10 (3); 3. Deleted; <by Act No. 15512, Mar. 20, 2018> 4. A person who produces or imports a product containing substances subject to intensive control prescribed in Article 32 (1); 5. Deleted; <by Act No. 15512, Mar. 20, 2018> 6. A person who has been entrusted with affairs by the Minister of Environment pursuant to Article 48 (2). (2) Any public official who accesses facilities or a place of business, or inspects documents, facilities and equipment pursuant to paragraph (1) shall carry identification indicating his or her authority and present it to interested persons. 법령보기 화면 Article 44 (Recording and Retaining Document) Any of the following persons shall record and retain documents on matters related to manufacture, import, sale, and use of relevant chemical substances, as prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> 1. Deleted; <by Act No. 15512, Mar. 20, 2018> 2. Any person who applies for a registration or makes a report of a chemical substance pursuant to Article 10 (including a person who registers any change, makes a report or reports any change pursuant to Article 12 ); 3. Any person who applies for confirmation or change of exemption from registration, etc. of a chemical substance pursuant to Article 11 ; 4. Any person who reports a substance subject to intensive control contained in a product prescribed in Article 32 (1); 5. and 6. Deleted. <by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 45 (Data Protection) (1) Where any person who has submitted data pursuant to Articles 11 (2) and (3), 12 (1) through (3), 14 (1), (3) and (6), 18 (2), 24 (2) and 32 (1) requests the Minister of Environment to protect data on components, etc. of a chemical substance to protect confidential information, the Minister of Environment shall not disclose such data during the period of data protection prescribed by Presidential Decree: Provided , That where the data requested to be protected is already disclosed or falls under the data prescribed by Presidential Decree, such data may be disclosed. <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> (2) Where data requested to be protected pursuant to the main sentence of paragraph (1) is not eligible for protection pursuant to the proviso of paragraph (1), the Minister of Environment shall notify the person who has requested data protection of such fact. (3) Where any ground for data protection ceases to exist, a person who has requested data protection pursuant to paragraph (1) shall request the Minister of Environment to terminate data protection, as prescribed by Ministerial Decree of Environment. <Added by Act No. 15512, Mar. 20, 2018> (4) Except as provided in paragraphs (1) through (3), matters necessary for procedures, etc. for requesting data protection and termination thereof shall be prescribed by Ministerial Decree of Environment. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 46 (Fee) Any person who intends to file a registration or make a report, or obtain confirmation or approval falling under any of the following shall pay a fee prescribed by Ministerial Decree of Environment: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> 1. Registration or reporting of a chemical substance under Article 10 ; 2. Confirmation of exemption from registration, etc. of a chemical substance under Article 11 (2); 3. Registration of changes in a chemical substance under Article 12 (1); 4. Approval to use the hazard data prescribed in Article 19 ; 5. Reporting of a substance subject to intensive control contained in a product under Article 32 (1); 6. Deleted. <by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 47 (Hearing) Where the Minister of Environment intends to revoke approval of the use under Article 19 (3) or designation pursuant to Articles 23 and 41, he or she shall hold a hearing. <Amended by Act. No. 13891, Jan. 27, 2016> 법령보기 화면 Article 48 (Delegation or Entrustment of Authority) (1) The Minister of Environment may delegate part of his or her authority granted under this Act to the President of the National Institute of Environmental Research, the President of the National Institute of Chemical Safety, the head of a river basin environmental office, and the head of a regional environmental office, as prescribed by Presidential Decree. <Amended by Act No. 13891, Jan. 27, 2016> (2) The Minister of Environment may entrust part of his or her duties prescribed in this Act to the Korea Environmental Industry and Technology Institute established under the Korea Environmental Industry and Technology Institute Act, the Korea Environment Corporation established under the Korea Environment Corporation Act , or an association established pursuant to Article 53 of the Chemical Substances Control Act. <Amended by Act No. 13891, Jan. 27, 2016> 법령보기 화면 Article 48-2 (Legal Fiction as Public Officials in Application of Penalty Provisions) Any of the following persons shall be deemed a public official when Articles 127 and 129 through 132 of the Criminal Act apply: <Amended by Act No. 15512, Mar. 20, 2018> 1. A member who is not a public official among the members of the Evaluation Committee; 2. An executive officer or employee of a testing institution designated pursuant to Article 22 (1); 3. An executive officer or employee of an institution that engages in affairs entrusted pursuant to Article 48 (2). [This Article Added by Act No. 13891, Jan. 27, 2016] CHAPTER VIII PENALTY PROVISIONS 법령보기 화면 Article 49 Deleted. <by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 50 (Penalty Provision) Any of the following persons shall be punished by imprisonment with labor for not more than 5 years or by a fine not exceeding 100 million won: Provided , That where a person appointed pursuant to Article 38 (1) falls under any of the following, the foregoing shall apply to such appointed person only: <Amended by Act No. 15512, Mar. 20, 2018> 1. Any person who manufactures or imports a non-phase-in substance or phase-in substance without registration or after false registration, in violation of Article 10 (1) or (5); 1-2. Any person who manufactures or imports a non-phase-in substance without reporting or after making a false report, in violation of Article 10 (4); 2. Any person who fails to register a change in a chemical substance or falsely registers such change, in violation of Article 12 (1); 3. Any person who violates an order to take measures under Article 13 (2); 3-2. Any person designated as a testing institution pursuant to Article 22 (1) who prepares a test result different from the fact intentionally or by gross negligence; 4. Any person who produces or imports a product containing a substance subject to intensive control without reporting the substance subject to intensive control contained in the product or after falsely reporting such substance, in violation of Article 32 (1); 5. Deleted. <by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 51 (Penalty Provision) Any of the following persons shall be punished by imprisonment with labor for not more than 3 years or by a fine not exceeding 50 million won: Provided , That where a person appointed pursuant to Article 38 (1) falls under any of the following, the foregoing shall apply to such appointed person only: <Amended by Act No. 15512, Mar. 20, 2018> 1. Deleted; <by Act No. 15512, Mar. 20, 2018> 2. Any person who manufactures or imports a non-phase-in substance or phase-in substance without obtaining confirmation of exemption from registration, etc. or after obtaining false confirmation of exemption from registration, etc., in violation of Article 11 ; 3. Any person who fails to submit data or submits false data, in violation of an order to submit data under Articles 18 (2) and 24 (2); 4. Any person who performs the affairs of a testing institution without having been designated as a testing institution pursuant to Article 22 (1) or is designated as a testing institution by fraud or other improper means; 5. Any person who performs the affairs of a testing institution, in violation of an order to suspend business under Article 23 (2). 법령보기 화면 Article 52 (Penalty Provision) Any of the following persons shall be punished by imprisonment with labor for not more than 1 year or by a fine not exceeding 30 million won: Provided , That where a person appointed pursuant to Article 38 (1) falls under any of the following, the foregoing shall apply to such appointed person only: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> 1. Any person who obtains approval for the use of hazard data by fraud or other improper means, in violation of Article 19 (2); 2. Any person who fails to provide information on a chemical substance or provides false information, in violation of Articles 29 (1) and 35 (1); 3. Any person who fails to provide information or provides false information, in violation of Article 30 (1) and (2); 4. Any person who fails to provide information related to the safe use of a product to consumers or provides false information, in violation of Article 35 (2). 법령보기 화면 Article 53 (Joint Penalty Provision) Where the representative of a corporation, or an agent, employee or worker of a corporation or individual commits an offense falling under any of Articles 50 through 52 concerning the affairs of the corporation or individual, not only such offender shall be punished, but also the corporation or individual shall be punished by a fine prescribed in the relevant Article: Provided , That the foregoing shall not apply where the corporation or individual has not neglected to pay considerable attention to and exercise reasonable supervision over the relevant affairs to prevent such offense. <Amended by Act No. 15512, Mar. 20, 2018> 법령보기 화면 Article 54 (Administrative Fine) (1) Any of the following persons shall be punished by an administrative fine not exceeding ten million won: Provided , That where a person appointed pursuant to Article 38 (1) falls under any of the following, the foregoing shall apply to such appointed person only: <Amended by Act No. 15512, Mar. 20, 2018; Act No. 15844, Oct. 16, 2018> 1. Any person who fails to file an application for change of confirmation of exemption from registration, etc. or files a false application therefor, in violation of Article 11 (3); 2. Any person who fails to make a report under Article 12 (2) or to report any change under paragraph (3) of the aforesaid Article, or makes a false report or falsely report any change; 3. Any person who fails to jointly submit data to apply for registration without obtaining confirmation of individual submission, in violation of Article 15 (1); 4. Any person who fails to inform any change in information or gives false information, in violation of Article 29 (3); 5. Any person who fails to submit reports or data prescribed in Article 43 (1) or submits false reports or data, and a person who refuses, obstructs, or evades any access or inspection by the relevant public official; 6. Any person who violates the duty to record or retain documents prescribed in Article 44 . (2) The Minister of Environment shall impose and collect administrative fines under paragraph (1), as prescribed by Presidential Decree. ADDENDA Article 1 (Enforcement Date) This Act shall enter into force on January 1, 2015: Provided , That the amended provisions of Articles 14 (1) 7 and 24 (1) 1 shall enter into force on the date classified as follows: 1. Where the quantity of a chemical substance to be manufactured or imported is at least 100 tons per year: January 1, 2015; 2. Where the quantity of a chemical substance to be manufactured or imported is at least 70 tons per year: January 1, 2017; 3. Where the quantity of a chemical susbtance to be manufactured or imported is at least 50 tons per year: January 1, 2018; 4. Where the quantity of a chemical substance to be manufactured or imported is at least 20 tons per year: January 1, 2019; 5. Where the quantity of a chemical substance to be manufactured or imported is at least 10 tons per year: January 1, 2020. Article 2 (Transitional Measures concerning Designation and Public Notice of Toxic Substance, Restricted Substance, and Prohibited Substance) A toxic substance, and a substance the handling of which is restricted or prohibited that have been designated and publicly notified pursuant to the previous Toxic Chemical Substances Control Act, at the time this Act enters into force, shall be deemed designated and publicly notified as a toxic substance under Article 20 and a restricted substance or prohibited substance under Article 27 . Article 3 (Transitional Measures concerning Application for Registration of Chemical Substance) (1) Any person in whose case a hazard review of a chemical substance under the previous Toxic Chemical Substances Control Act has been conducted, at the time this Act enters into force, the registration of the chemical substance under Article 10 and the hazard review under Article 18 shall be deemed completed. In such cases, he or she shall make a report to the Minister of Environment in accordance with the procedures prescribed by Presidential Decree. (2) Notwithstanding the latter part of paragraph (1), where a person who has made a report falls under any of the subparagraphs of Article 12 (1), he or she shall apply for registration of changes. Article 4 (Transitional Measures concerning Application for Confirmation of Exemption from Registration of Chemical Substance) Any person who has obtained confirmation of exemption from a hazard review under the previous Toxic Chemical Substances Control Act, at the time this Act enters into force, shall be deemed to have obtained confirmation of exemption from registration pursuant to Article 11 . Article 5 (Transitional Measures concerning Designation of Testing Institution) Any testing institution designated pursuant to Article 14 of the previous Toxic Chemical Substances Control Act at the time this Act enters into force shall be deemed a testing institution designated pursuant to Article 22 . Article 6 (Transitional Measures concerning Administrative Disposition) (1) Where the Minister of Environment revokes the designation of a testing institution or suspends its business due to any act committed before this Act enters into force, the previous Toxic Chemical Substances Control Act shall apply, notwithstanding Article 23 . (2) A testing institution subject to revocation of its designation or suspension of its business pursuant to Article 14-2 (1) or (2) of the previous Toxic Chemical Substances Control Act, at the time this Act enters into force, shall be deemed subject to revocation of its designation or suspension of its business pursuant to Article 23 (1) or (2). Article 7 (Transitional Measures concerning Penalty Provision and Administrative Fine) The application of provisions regarding penalty and administrative fines to an act committed before this Act enters into force shall be governed by the previous Toxic Chemical Substances Control Act. ADDENDUM <Act No. 13891, Jan. 27, 2016> This Act shall enter into force one year after the date of its promulgation: Provided , That the amended provisions of Articles 19 (3) and (4) and 47 shall enter into force six months after the date of its promulgation. ADDENDA <Act No. 15512, Mar. 20, 2018> Article 1 (Enforcement Date) This Act shall enter into force on January 1, 2019: Provided , That the amended provisions of subparagraphs 10 and 15 of Article 2 , Articles 4 (4) and 27 shall enter into force on the date of its promulgation. Article 2 (Applicability to Reporting of Substance Subject to Intensive Control Contained in Product) The amended provisions of Article 32 shall apply, starting with cases where a person produces or imports a product containing a substance subject to intensive control after this Act enters into force. Article 3 (Transitional Measures concerning Formulation of Master Plan) The Minister of Environment shall formulate a master plan prescribed in the amended provisions of Article 6 by no later than July 1, 2019. Article 4 (Transitional Measures concerning Phase-In Substance Subject to Registration) Notwithstanding the amended provisions of Article 10 (1) through (3), the former provisions thereof shall apply to the registration and the registration grace period of a chemical substance designated and publicly notified as a phase-in substance subject to registration pursuant to the former Article 9 at the time this Act enters into force. Article 5 (Transitional Measures concerning Reporting of Non-Phase-In Substance) (1) Any person who has registered a non-phase-in substance to manufacture or import less than 100 kilograms of such substance per year pursuant to the former Article 10 (1) before this Act enters into force shall be deemed to have made a report under the amended provision of Article 10 (4). (2) Any person falling under the amended provision of Article 10 (4) 2 who manufactures or imports a non-phase-in substance at the time this Act enters into force, may manufacture or import the relevant non-phase-in substance without reporting under the amended provision of Article 10 (4) until two years elapse from the enforcement date of this Act. Article 6 (Transitional Measures concerning Confirmation of Exemption from Registration) Any person who has obtained confirmation of exemption from registration under the former Article 11 (1) 2 at the time this Act enters into force or any person deemed to have obtained confirmation of exemption from registration (excluding any person falling under the amended provision of Article 10 (4) 2) pursuant to Article 4 of the Addenda to the Act on Registration and Evaluation of Chemical Substances (Act No. 11789) shall be deemed to have obtained confirmation of exemption from registration under the amended provision of Article 11 (1) 3. Article 7 (Transitional Measures concerning Reporting of Manufacture of Chemical Substance within Registration Grace Period) Any person who manufactures or imports at least one ton of a phase-in substance at the time this Act enters into force and who manufactures or imports a phase-in substance without registration during the registration grace period pursuant to the former Article 10 (2), may manufacture or import the relevant phase-in substance without making a report under the amended provision of Article 10 (3) until six months elapse from the enforcement date of this Act. Article 8 (Transitional Measures concerning Penalty Provision and Administrative Fine) The application of provisions regarding penalty and administrative fines to any act committed before this Act enters into force shall be governed by the former provisions. ADDENDUM <Act No. 15584, Apr. 17, 2018> This Act shall enter into force on January 1, 2019. ADDENDUM <Act No. 15844, Oct. 16, 2018> This Act shall enter into force on January 1, 2019. Last updated : 2019-10-29",
+  "metadata": {
+    "detectedMarkets": [
+      "KR"
+    ],
+    "regulatoryTypes": [
+      "chemical",
+      "documentation"
+    ],
+    "productCategories": [
+      "chemicals",
+      "raw_materials",
+      "general_consumer_products"
+    ],
+    "charCount": 89557,
+    "region": "KR",
+    "supplement_id": "kr-klri-k-reach-48870",
+    "source_url": "https://elaw.klri.re.kr/eng_service/lawView.do?hseq=48870&lang=ENG",
+    "content_url": "",
+    "official_channel": "Korean Law Translation Center / KLRI",
+    "why_added": "Korea K-REACH chemical registration and evaluation coverage for imported substances and articles.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/kr/k-reach-48870.html"
+    ],
+    "primary_file": "raw/kr/k-reach-48870.html",
+    "product_categories": [
+      "chemicals",
+      "raw_materials",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "documentation"
+    ]
+  }
+}

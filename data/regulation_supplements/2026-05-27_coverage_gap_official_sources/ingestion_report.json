@@ -1,6 +1,372 @@
 {
-  "status": "raw_only_not_ingested",
-  "created_at": "2026-05-27T11:22:40+08:00",
-  "failed_downloads": 0,
-  "failures": []
+  "generated_at": "2026-06-25T23:49:34+08:00",
+  "supplement_dir": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources",
+  "processed_dir": "data/corpus/processed",
+  "entries_total": 40,
+  "entries_processed": 40,
+  "entries_failed": 0,
+  "files_written": [
+    {
+      "id": "jp-jlt-consumer-product-safety-act-2804",
+      "market": "JP",
+      "title": "Consumer Product Safety Act",
+      "primary_file": "raw/jp/consumer-product-safety-act-2804.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-consumer-product-safety-act-2804.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "jp-jlt-household-goods-quality-labeling-act-3935",
+      "market": "JP",
+      "title": "Household Goods Quality Labeling Act",
+      "primary_file": "raw/jp/household-goods-quality-labeling-act-3935.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-household-goods-quality-labeling-act-3935.json",
+      "source_type": "html",
+      "total_chars": 41841
+    },
+    {
+      "id": "jp-jlt-household-products-harmful-substances-act-3881",
+      "market": "JP",
+      "title": "Act on Control of Household Products Containing Harmful Substances",
+      "primary_file": "raw/jp/household-products-harmful-substances-act-3881.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-household-products-harmful-substances-act-3881.json",
+      "source_type": "html",
+      "total_chars": 8920
+    },
+    {
+      "id": "jp-jlt-electrical-appliances-materials-safety-act-2745",
+      "market": "JP",
+      "title": "Electrical Appliances and Materials Safety Act",
+      "primary_file": "raw/jp/electrical-appliances-materials-safety-act-2745.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-electrical-appliances-materials-safety-act-2745.json",
+      "source_type": "html",
+      "total_chars": 99999
+    },
+    {
+      "id": "jp-jlt-electrical-appliances-materials-enforcement-regulation-3006",
+      "market": "JP",
+      "title": "Regulation for Enforcement of the Electrical Appliances and Materials Safety Act",
+      "primary_file": "raw/jp/electrical-appliances-materials-enforcement-regulation-3006.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-electrical-appliances-materials-enforcement-regulation-3006.json",
+      "source_type": "html",
+      "total_chars": 93297
+    },
+    {
+      "id": "jp-jlt-food-sanitation-act-5024",
+      "market": "JP",
+      "title": "Food Sanitation Act",
+      "primary_file": "raw/jp/food-sanitation-act-5024.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-food-sanitation-act-5024.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "jp-jlt-pharmaceutical-medical-devices-act-3213",
+      "market": "JP",
+      "title": "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices",
+      "primary_file": "raw/jp/pharmaceutical-medical-devices-act-3213.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-jlt-pharmaceutical-medical-devices-act-3213.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-klri-framework-act-safety-products-52809",
+      "market": "KR",
+      "title": "Framework Act on the Safety of Products",
+      "primary_file": "raw/kr/framework-act-safety-products-52809.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-framework-act-safety-products-52809.json",
+      "source_type": "html",
+      "total_chars": 50405
+    },
+    {
+      "id": "kr-klri-special-act-safety-childrens-products-60495",
+      "market": "KR",
+      "title": "Special Act on the Safety of Children's Products",
+      "primary_file": "raw/kr/special-act-safety-childrens-products-60495.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-special-act-safety-childrens-products-60495.json",
+      "source_type": "html",
+      "total_chars": 78149
+    },
+    {
+      "id": "kr-klri-electrical-appliances-consumer-products-safety-control-act-61394",
+      "market": "KR",
+      "title": "Electrical Appliances and Consumer Products Safety Control Act",
+      "primary_file": "raw/kr/electrical-appliances-consumer-products-safety-control-act-61394.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-electrical-appliances-consumer-products-safety-control-act-61394.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-klri-food-sanitation-act-46429",
+      "market": "KR",
+      "title": "Food Sanitation Act",
+      "primary_file": "raw/kr/food-sanitation-act-46429.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-food-sanitation-act-46429.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-klri-cosmetics-act-68854",
+      "market": "KR",
+      "title": "Cosmetics Act",
+      "primary_file": "raw/kr/cosmetics-act-68854.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-cosmetics-act-68854.json",
+      "source_type": "html",
+      "total_chars": 81962
+    },
+    {
+      "id": "kr-klri-k-reach-48870",
+      "market": "KR",
+      "title": "Act on Registration and Evaluation of Chemical Substances",
+      "primary_file": "raw/kr/k-reach-48870.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-k-reach-48870.json",
+      "source_type": "html",
+      "total_chars": 89557
+    },
+    {
+      "id": "kr-klri-chemical-substances-control-act-55950",
+      "market": "KR",
+      "title": "Chemical Substances Control Act",
+      "primary_file": "raw/kr/chemical-substances-control-act-55950.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-chemical-substances-control-act-55950.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-klri-radio-waves-act-61445",
+      "market": "KR",
+      "title": "Radio Waves Act",
+      "primary_file": "raw/kr/radio-waves-act-61445.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-klri-radio-waves-act-61445.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "sg-cpso-cpsr-info-booklet",
+      "market": "SG",
+      "title": "Consumer Protection (Safety Requirements) Regulations information booklet",
+      "primary_file": "raw/sg/SG_cpso_cpsr_overview.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-cpso-cpsr-info-booklet.json",
+      "source_type": "html",
+      "total_chars": 2121
+    },
+    {
+      "id": "sg-cpso-cgsr-info-book",
+      "market": "SG",
+      "title": "Consumer Goods Safety Requirements Regulations information book",
+      "primary_file": "raw/sg/SG_cpso_cgsr_overview.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-cpso-cgsr-info-book.json",
+      "source_type": "html",
+      "total_chars": 3004
+    },
+    {
+      "id": "sg-nea-mels-meps-household-sector",
+      "market": "SG",
+      "title": "Mandatory Energy Labelling Scheme and Minimum Energy Performance Standards",
+      "primary_file": "raw/sg/SG_nea_mels_meps_household_sector.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-nea-mels-meps-household-sector.json",
+      "source_type": "html",
+      "total_chars": 5094
+    },
+    {
+      "id": "sg-nea-mandatory-packaging-reporting",
+      "market": "SG",
+      "title": "Mandatory Packaging Reporting",
+      "primary_file": "raw/sg/SG_nea_mandatory_packaging_reporting.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-nea-mandatory-packaging-reporting.json",
+      "source_type": "html",
+      "total_chars": 15736
+    },
+    {
+      "id": "sg-nea-e-waste-epr-system",
+      "market": "SG",
+      "title": "Extended Producer Responsibility system for e-waste management",
+      "primary_file": "raw/sg/SG_nea_e_waste_epr_system.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-nea-e-waste-epr-system.json",
+      "source_type": "html",
+      "total_chars": 19743
+    },
+    {
+      "id": "in-cpcb-plastic-waste-management-rules",
+      "market": "IN",
+      "title": "Plastic Waste Management Rules, 2016 and amendments",
+      "primary_file": "raw/in/IN_cpcb_plastic_waste_rules.html",
+      "output_path": "data/corpus/processed/IN_Official_in-cpcb-plastic-waste-management-rules.json",
+      "source_type": "html",
+      "total_chars": 288
+    },
+    {
+      "id": "in-cpcb-e-waste-rules-portal",
+      "market": "IN",
+      "title": "E-Waste (Management) Rules portal and 2022 rules",
+      "primary_file": "raw/in/IN_cpcb_e_waste_rules_portal.html",
+      "output_path": "data/corpus/processed/IN_Official_in-cpcb-e-waste-rules-portal.json",
+      "source_type": "html",
+      "total_chars": 429
+    },
+    {
+      "id": "in-cdsco-cosmetics-rules-2020",
+      "market": "IN",
+      "title": "Cosmetics Rules, 2020",
+      "primary_file": "raw/in/IN_cdsco_cosmetics_rules_2020_page.html",
+      "output_path": "data/corpus/processed/IN_Official_in-cdsco-cosmetics-rules-2020.json",
+      "source_type": "html",
+      "total_chars": 165
+    },
+    {
+      "id": "mx-platiica-nom-050-scfi-2004-general-labelling",
+      "market": "MX",
+      "title": "NOM-050-SCFI-2004, commercial information and general product labelling",
+      "primary_file": "raw/mx/nom-050-scfi-2004-general-labelling.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-platiica-nom-050-scfi-2004-general-labelling.json",
+      "source_type": "html",
+      "total_chars": 2160
+    },
+    {
+      "id": "mx-platiica-nom-024-scfi-2013-electrical-electronic-labelling",
+      "market": "MX",
+      "title": "NOM-024-SCFI-2013, commercial information for electrical, electronic and home appliances",
+      "primary_file": "raw/mx/nom-024-scfi-2013-electrical-electronic-labelling.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-platiica-nom-024-scfi-2013-electrical-electronic-labelling.json",
+      "source_type": "html",
+      "total_chars": 2318
+    },
+    {
+      "id": "mx-platiica-nom-003-scfi-2014-electrical-product-safety",
+      "market": "MX",
+      "title": "NOM-003-SCFI-2014, electrical product safety specifications",
+      "primary_file": "raw/mx/nom-003-scfi-2014-electrical-product-safety.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-platiica-nom-003-scfi-2014-electrical-product-safety.json",
+      "source_type": "html",
+      "total_chars": 4292
+    },
+    {
+      "id": "mx-platiica-nom-141-ssa1-scfi-2012-cosmetics-labelling",
+      "market": "MX",
+      "title": "NOM-141-SSA1/SCFI-2012, cosmetic products prepackaged labelling",
+      "primary_file": "raw/mx/nom-141-ssa1-scfi-2012-cosmetics-labelling.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-platiica-nom-141-ssa1-scfi-2012-cosmetics-labelling.json",
+      "source_type": "html",
+      "total_chars": 4342
+    },
+    {
+      "id": "mx-platiica-nom-051-scfi-ssa1-2010-food-labelling",
+      "market": "MX",
+      "title": "NOM-051-SCFI/SSA1-2010, food and non-alcoholic beverage labelling",
+      "primary_file": "raw/mx/nom-051-scfi-ssa1-2010-food-labelling.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-platiica-nom-051-scfi-ssa1-2010-food-labelling.json",
+      "source_type": "html",
+      "total_chars": 5721
+    },
+    {
+      "id": "br-planalto-consumer-defense-code",
+      "market": "BR",
+      "title": "Consumer Defense Code, Law No. 8,078/1990",
+      "primary_file": "raw/br/BR_planalto_consumer_defense_code_law_8078.html",
+      "output_path": "data/corpus/processed/BR_Official_br-planalto-consumer-defense-code.json",
+      "source_type": "html",
+      "total_chars": 82267
+    },
+    {
+      "id": "br-inmetro-conformity-assessment",
+      "market": "BR",
+      "title": "Inmetro conformity assessment portal",
+      "primary_file": "raw/br/BR_inmetro_conformity_assessment.html",
+      "output_path": "data/corpus/processed/BR_Official_br-inmetro-conformity-assessment.json",
+      "source_type": "html",
+      "total_chars": 35
+    },
+    {
+      "id": "br-anvisa-cosmetics-portal",
+      "market": "BR",
+      "title": "Anvisa cosmetics portal",
+      "primary_file": "raw/br/BR_anvisa_cosmetics_portal.html",
+      "output_path": "data/corpus/processed/BR_Official_br-anvisa-cosmetics-portal.json",
+      "source_type": "html",
+      "total_chars": 62
+    },
+    {
+      "id": "br-anatel-certification-products-portal",
+      "market": "BR",
+      "title": "Anatel product certification portal",
+      "primary_file": "raw/br/BR_anatel_product_certification_portal.html",
+      "output_path": "data/corpus/processed/BR_Official_br-anatel-certification-products-portal.json",
+      "source_type": "html",
+      "total_chars": 63
+    },
+    {
+      "id": "nz-product-safety-baby-walker-standard",
+      "market": "NZ",
+      "title": "Baby walker mandatory product safety standard",
+      "primary_file": "raw/nz/NZ_baby_walker_standard.html",
+      "output_path": "data/corpus/processed/NZ_Official_nz-product-safety-baby-walker-standard.json",
+      "source_type": "html",
+      "total_chars": 343
+    },
+    {
+      "id": "nz-product-safety-childrens-nightwear-standard",
+      "market": "NZ",
+      "title": "Children's nightwear mandatory product safety standard",
+      "primary_file": "raw/nz/NZ_childrens_nightwear_standard.html",
+      "output_path": "data/corpus/processed/NZ_Official_nz-product-safety-childrens-nightwear-standard.json",
+      "source_type": "html",
+      "total_chars": 638
+    },
+    {
+      "id": "nz-product-safety-bicycle-standard",
+      "market": "NZ",
+      "title": "Bicycle mandatory product safety standard",
+      "primary_file": "raw/nz/NZ_bicycle_standard.html",
+      "output_path": "data/corpus/processed/NZ_Official_nz-product-safety-bicycle-standard.json",
+      "source_type": "html",
+      "total_chars": 624
+    },
+    {
+      "id": "nz-product-safety-multipurpose-ladders-standard",
+      "market": "NZ",
+      "title": "Multipurpose ladders mandatory product safety standard",
+      "primary_file": "raw/nz/NZ_multipurpose_ladders.html",
+      "output_path": "data/corpus/processed/NZ_Official_nz-product-safety-multipurpose-ladders-standard.json",
+      "source_type": "html",
+      "total_chars": 1171
+    },
+    {
+      "id": "nz-product-safety-sunscreen-standard",
+      "market": "NZ",
+      "title": "Sunscreen mandatory product safety standard",
+      "primary_file": "raw/nz/NZ_sunscreen_standard.html",
+      "output_path": "data/corpus/processed/NZ_Official_nz-product-safety-sunscreen-standard.json",
+      "source_type": "html",
+      "total_chars": 1372
+    },
+    {
+      "id": "gcc-gso-conformity-main-portal",
+      "market": "GCC",
+      "title": "GSO conformity portal",
+      "primary_file": "raw/gcc/GCC_GSO_conformity_portal.html",
+      "output_path": "data/corpus/processed/GCC_Official_gcc-gso-conformity-main-portal.json",
+      "source_type": "html",
+      "total_chars": 2330
+    },
+    {
+      "id": "gcc-gso-conformity-assessment-scheme",
+      "market": "GCC",
+      "title": "GCC Conformity Assessment Scheme",
+      "primary_file": "raw/gcc/GCC_GSO_conformity_assessment_scheme.html",
+      "output_path": "data/corpus/processed/GCC_Official_gcc-gso-conformity-assessment-scheme.json",
+      "source_type": "html",
+      "total_chars": 14138
+    },
+    {
+      "id": "gcc-gso-gcc-conformity-mark",
+      "market": "GCC",
+      "title": "GCC Conformity Mark",
+      "primary_file": "raw/gcc/GCC_GSO_conformity_mark.html",
+      "output_path": "data/corpus/processed/GCC_Official_gcc-gso-gcc-conformity-mark.json",
+      "source_type": "html",
+      "total_chars": 7047
+    }
+  ],
+  "failures": [],
+  "dry_run": false
 }

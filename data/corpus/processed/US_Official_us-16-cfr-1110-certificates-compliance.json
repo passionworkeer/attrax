@@ -1,0 +1,54 @@
+{
+  "id": "us-16-cfr-1110-certificates-compliance",
+  "title": "16 CFR Part 1110, Certificates of Compliance",
+  "fileName": "US_16_CFR_Part_1110_certificates_compliance.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-26_global_official_sources/raw/us/US_16_CFR_Part_1110_certificates_compliance.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 7185,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 7185,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1110—CERTIFICATES OF COMPLIANCE Link to an amendment published at 90 FR 1843, Jan. 8, 2025. Link to a correction of the above amendment published at 90 FR 45917, Sept. 24, 2025. Authority: Pub. L"
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1110—CERTIFICATES OF COMPLIANCE Link to an amendment published at 90 FR 1843, Jan. 8, 2025. Link to a correction of the above amendment published at 90 FR 45917, Sept. 24, 2025. Authority: Pub. L. No. 110-314, § 3, 122 Stat. 3016, 3017 (2008); 15 U.S.C. 14. Source: 73 FR 68331, Nov. 18, 2008, unless otherwise noted. § 1110.1 Purpose and scope. (a) This part 1110: (1) Limits the entities required to provide certificates in accordance with section 14(a) of the Consumer Product Safety Act, as amended (CPSA), 15 U.S.C. 2063(a), to importers and U.S. domestic manufacturers; (2) Specifies the content, form, and availability requirements of the CPSA that must be met for a certificate to satisfy the certificate requirements of section 14(a); and (3) Specifies means by which an electronic certificate shall meet those requirements. (b) This part 1110 does not address issues related to type or frequency of testing necessary to satisfy the certification requirements of CPSA section 14(a). It does not address issues related to CPSA section 14(g)(4) concerning advance filing of electronic certificates of compliance with the Commission and/or the Commissioner of Customs. § 1110.3 Definitions. The following definitions apply for purposes of this part 1110. (a) Electronic certificate means, for purposes of this part 1110, a set of information available in, and accessible by, electronic means that sets forth the information required by CPSA section 14(a) and section 14(g) and that meets the availability requirements of CPSA section 14(g)(3). (b) Unless otherwise stated, the definitions of section 3 of the CPSA and additional definitions in the Consumer Product Safety Improvement Act of 2008 (CPSIA), Pub. L. 110-314, apply for purposes of this part 1110. § 1110.5 Acceptable certificates. A certificate that is in hard copy or electronic form and complies with all applicable requirements of this part 1110 meets the certificate requirements of section 14 of the CPSA. This does not relieve the importer or domestic manufacturer from the underlying statutory requirements concerning the supporting testing and/or other bases to support certification and issuance of certificates. § 1110.7 Who must certify and provide a certificate. (a) Imports. Except as otherwise provided in a specific standard, in the case of a product manufactured outside the United States, only the importer must certify in accordance with, and provide the certificate required by, CPSA section 14(a) as applicable, that the product or shipment in question complies with all applicable CPSA rules and all similar rules, bans, standards, and regulations applicable to the product or shipment under any other Act enforced by the Commission. (b) Domestic products. Except as otherwise provided in a specific standard, in the case of a product manufactured in the United States, only the manufacturer must certify in accordance with, and provide the certificate required by, CPSA section 14(a) as applicable, that the product or shipment in question complies with all applicable CPSA rules and all similar rules, bans, standards, and regulations applicable to the product or shipment under any other Act enforced by the Commission. (c) Availability of certificates —(1) Imports. In the case of imports, the certificate required by CPSA section 14(a) must be available to the Commission from the importer as soon as the product or shipment itself is available for inspection in the United States. (2) Domestic products. In the case of domestic products, the certificate required by CPSA section 14(a) must be available to the Commission from the manufacturer prior to introduction of the product or shipment in question into domestic commerce. § 1110.9 Form of certificate. As required by CPSA section 14(g)(2), the information on a hard copy or electronic certificate must be provided in English and may be provided in any other language. § 1110.11 Content of certificate. As required by CPSA sections 14(a) and 14(g), a certificate must contain the following information: (a) Identification of the product covered by the certificate. (b) Citation to each CPSC product safety regulation or statutory requirement to which the product is being certified. Specifically, the certificate shall identify separately each applicable consumer product safety rule under the Consumer Product Safety Act and any similar rule, ban, standard or regulation under any other Act enforced by the Commission that is applicable to the product. (c) Identification of the importer or domestic manufacturer certifying compliance of the product, including the importer or domestic manufacturer's name, full mailing address, and telephone number. (d) Contact information for the individual maintaining records of test results, including the custodian's name, e-mail address, full mailing address, and telephone number. (CPSC suggests that each issuer maintain test records supporting the certification for at least three years as is currently required by certain consumer product specific CPSC standards, for example at 16 CFR 1508.10 for full-size baby cribs.) (e) Date (month and year at a minimum) and place (including city and state, country, or administrative region) where the product was manufactured. If the same manufacturer operates more than one location in the same city, the street address of the factory in question should be provided. (f) Date and place (including city and state, country or administrative region) where the product was tested for compliance with the regulation(s) cited above in subsection (b). (g) Identification of any third-party laboratory on whose testing the certificate depends, including name, full mailing address and telephone number of the laboratory. § 1110.13 Availability of electronic certificate. (a) CPSA section 14(g)(3) requires that the certificates required by section 14(a) “accompany” each product or product shipment and be “furnished” to each distributor and retailer of the product in question. (1) An electronic certificate satisfies the “accompany” requirement if the certificate is identified by a unique identifier and can be accessed via a World Wide Web URL or other electronic means, provided the URL or other electronic means and the unique identifier are created in advance and are available, along with access to the electronic certificate itself, to the Commission or to the Customs authorities as soon as the product or shipment itself is available for inspection. (2) An electronic certificate satisfies the “furnish” requirement if the distributor(s) and retailer(s) of the product are provided a reasonable means to access the certificate. (b) An electronic certificate shall have a means to verify the date of its creation or last modification. § 1110.15 Legal responsibility for certificate information. Any entity or entities may maintain an electronic certificate platform and may enter the requisite data. However, the entity or entities required by CPSA section 14(a) to issue the certificate remain legally responsible for the accuracy and completeness of the certificate information required by statute and its availability in timely fashion.",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "conformity",
+      "documentation"
+    ],
+    "productCategories": [
+      "general_consumer_products"
+    ],
+    "charCount": 7185,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1110-certificates-compliance",
+    "source_url": "https://www.ecfr.gov/api/versioner/v1/full/2026-05-21/title-16.xml?part=1110",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "Certificate data requirements for consumer products subject to CPSC rules.",
+    "collected_at": "2026-05-26T17:02:25+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1110_certificates_compliance.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1110_certificates_compliance.xml",
+    "product_categories": [
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "documentation"
+    ]
+  }
+}

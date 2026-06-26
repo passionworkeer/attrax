@@ -1,0 +1,295 @@
+{
+  "id": "sg-nea-e-waste-epr-system",
+  "title": "Extended Producer Responsibility system for e-waste management",
+  "fileName": "SG_nea_e_waste_epr_system.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/sg/SG_nea_e_waste_epr_system.html",
+  "sourceType": "html",
+  "region": "SG",
+  "pageCount": 1,
+  "totalChars": 19743,
+  "hasTables": true,
+  "tableCount": 5,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 19743,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "Normal Font Size Big Font Size Bigger Font Size Extended Producer Responsibility (EPR) System for E-waste Management System Background The National Environment Agency (NEA) introduced a regulated e-wa"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "Map Legend"
+      ],
+      [
+        "Name of Recycling Programme",
+        "Type of bin",
+        "Icon",
+        "Type of e-waste accepted at collection point"
+      ],
+      [
+        "Extended Producer Responsibility (EPR) Scheme for E-waste organised by ALBA E-waste Smart Recycling Pte Ltd",
+        "3-in-1 bin",
+        "ICT equipment , batteries and lamps only"
+      ],
+      [
+        "Manned in-store counter collection",
+        "ICT equipment and batteries only"
+      ],
+      [
+        "Battery & Bulb (BB) bin",
+        "Batteries and lamps only"
+      ],
+      [
+        "Battery-only bin",
+        "Batteries only"
+      ],
+      [
+        "ALBA's depot drop-off",
+        "All regulated consumer products"
+      ],
+      [
+        "E-waste Collection Drive",
+        "All regulated consumer products"
+      ]
+    ],
+    [
+      [
+        "Type of e-bin",
+        "ICT Equipment",
+        "Batteries",
+        "Bulbs and Lamps"
+      ],
+      [
+        "3-in-1 bin (ICT, Batteries and Lamps)",
+        "Printers, power banks, computers, laptops, mobile phones & tablets, modems, routers, set-top boxes, small TVs & desktop monitors). Devices must be able to fit through the 500mm x 250mm slot.",
+        "Batteries (AA, AAA, AAAA, D, C, 9-volt*, Button Cell* only) with battery circumference of no more than 50mm.",
+        "Light bulbs with bulb circumference of no more than 100mm. Long fluorescent/LED tubes are not accepted. Please dispose them through ALBA's collection drives or doorstep collection."
+      ],
+      [
+        "Battery and Bulb bin",
+        "Not accepted.",
+        "Batteries (AA, AAA, AAAA, D, C, 9-volt*, Button Cell* only) are accepted.",
+        "Bulbs and lamps are accepted. Long fluorescent/LED tubes are not accepted. Please dispose them through ALBA's collection drives or doorstep collection."
+      ],
+      [
+        "Batteries only bin",
+        "Not accepted.",
+        "Batteries (AA, AAA, AAAA, D, C, 9-volt*, and Button Cell* only.",
+        "Not accepted."
+      ]
+    ],
+    [
+      [
+        "Obligation",
+        "Applicable to which Producers",
+        "Description"
+      ],
+      [
+        "Register with the NEA",
+        "All Producers",
+        "From 1 Jan 2020, all Producers of regulated products (Table A) must be registered with the NEA prior to supplying regulated products in Singapore. As such, Producers are to register with the NEA through the registration form accessible via https://go.gov.sg/rsa-reg , or the QR code below. More information on the registration process is available here . Instructions to perform the registration are provided here . Registration is free."
+      ],
+      [
+        "Keep records on regulated products supplied",
+        "All Producers",
+        "From 1 Jan 2020, all Producers are to keep and maintain complete and accurate records of the weight and number of all regulated products supplied in Singapore. The list of records that the NEA considers to be relevant to verifying the accuracy of the weight and number of regulated products supplied is shown here ."
+      ],
+      [
+        "Submit records on regulated products to NEA",
+        "All Producers",
+        "From 2021, all Producers are to declare the weight of each type of regulated product supplied in Singapore for the previous calendar year, to the NEA. Declarations are to be made on an annual basis, in the first quarter of every year. Instructions for making declarations will be given in due course. Instructions to perform the declarations are provided here ."
+      ],
+      [
+        "Being a member of the licensed Producer Responsibility Scheme",
+        "Producers of regulated consumer products",
+        "From 1 July 2021, a Producer of regulated consumer product(s) is to be a member of the licensed Producer Responsibility Scheme (PRS) and finance the PRS if the total amount of regulated consumer products under a particular class or sub-class of products supplied in Singapore exceeds the thresholds prescribed in the First Schedule of the Resource Sustainability (Prescribed Regulated Products) Regulations 2019 . Producer fees payable by obligated Producers and the fee structure can be viewed here ."
+      ],
+      [
+        "Collection of unwanted products",
+        "Producers of regulated non-consumer products",
+        "From 1 July 2021, Producers of regulated non-consumer products are to collect unwanted regulated non-consumer products supplied by the company within a reasonable amount of time after: Being presented with the regulated non-consumer product(s); or Receiving a request for disposal of the regulated non-consumer product(s). Producers must not demand or require any payment for the collection and disposal of the regulated non-consumer product(s). However, Producers may charge a service fee for the dismantling of products. Producers are also advised to be transparent about these additional charges upfront (i.e. specifying these charges before collection is made) and keep the necessary document in the event of an audit."
+      ],
+      [
+        "Disposal of unwanted products",
+        "Producers of regulated non-consumer products",
+        "From 1 July 2021, collected products are to be disposed of through a licensed waste collector or licensed e-waste recycler. The list of licensed e-waste recyclers and licensed waste collectors is accessible here: https://go.gov.sg/licensed-recyclers ."
+      ],
+      [
+        "Keep records on regulated non-consumer products collected and how they are managed",
+        "Producers of regulated non-consumer products",
+        "From 1 July 2021, Producers are to keep and maintain records of the weight and number of each type of regulated non-consumer product collected, sent for reuse, recycled and disposed of. The list of records that the NEA considers to be relevant to verifying the accuracy of the weight and number of regulated products collected, sent for reuse, recycled and disposed of, is shown here ."
+      ],
+      [
+        "Submit records on non-consumer products collected and how they are managed, to the NEA",
+        "Producers of regulated non-consumer products",
+        "From 1 Jan 2022, all Producers are to declare the weight of each type of regulated non-consumer product collected, as well as the weight of each type of product sent for reuse, recycling and/or disposal, over the previous calendar year. Declarations are to be made on an annual basis, in the first quarter of every year. Instructions for making declarations will be given in due course."
+      ]
+    ],
+    [
+      [
+        "Product Class",
+        "Consumer Product Type",
+        "Non-consumer Product Type"
+      ],
+      [
+        "Information and Communications Technology (ICT) Equipment",
+        "Printer with a weight of 20 kg or less",
+        "Printer with a weight above 20 kg"
+      ],
+      [
+        "Consumer computer (e.g. desktops, laptops, tablets)",
+        "Computer that has a built-in smart card reader or is a thin client computer"
+      ],
+      [
+        "Desktop monitor",
+        "-"
+      ],
+      [
+        "-",
+        "Server"
+      ],
+      [
+        "Router that is not a EMC Class A router or router that is designed to be mounted ona server rack",
+        "EMC Class A router or router that is designed to be mounted on a server rack"
+      ],
+      [
+        "Modem",
+        "-"
+      ],
+      [
+        "-",
+        "Wireless access point"
+      ],
+      [
+        "Set-top box",
+        "-"
+      ],
+      [
+        "Network hub with 8 or fewer ports",
+        "Network hub with more than 8 ports"
+      ],
+      [
+        "EMC Class B network switch",
+        "EMC Class A network switch"
+      ],
+      [
+        "Mobile Telephone",
+        "-"
+      ],
+      [
+        "Large household appliances",
+        "Refrigerator",
+        "-"
+      ],
+      [
+        "Air-conditioner",
+        "-"
+      ],
+      [
+        "Washing Machine",
+        "-"
+      ],
+      [
+        "Dryer",
+        "-"
+      ],
+      [
+        "Television",
+        "-"
+      ],
+      [
+        "Electric mobility devices",
+        "Personal mobility device",
+        "-"
+      ],
+      [
+        "Power assisted bicycle",
+        "-"
+      ],
+      [
+        "Electric mobility scooter",
+        "-"
+      ],
+      [
+        "Batteries",
+        "Portable battery* (e.g. alkaline batteries, rechargeable batteries, power banks)",
+        "-"
+      ],
+      [
+        "-",
+        "Industrial battery*"
+      ],
+      [
+        "Consumer electric vehicle battery (includes hybrid vehicle battery)",
+        "Non-consumer electric vehicle battery (includes hybrid vehicle battery)"
+      ],
+      [
+        "Lamps",
+        "Consumer lamp",
+        "Specified single-phase lamp that is an incandescent lamp with a power rating of above 100W"
+      ],
+      [
+        "Solar Photovoltaic Panels",
+        "-",
+        "Solar photovoltaic panel"
+      ]
+    ],
+    [
+      [
+        "Obligation",
+        "Applicable to which Retailers",
+        "Description"
+      ],
+      [
+        "Provide 1-for-1 take back of regulated consumer products",
+        "All Retailers of regulated consumer products",
+        "From 1 July 2021, all Retailers of regulated consumer products are to, during delivery of a product bought by a consumer provide a one-for-one take-back service of a product (of the same class or type as the supplied product) for disposal at no cost ."
+      ],
+      [
+        "In-store collection of e-waste",
+        "Large Retailers of regulated consumer products with stores having floor area of more than or equal to 300 square metres",
+        "From 1 July 2021, Retailers will need to provide in-store collection of e-waste from consumers (same class or type of consumer product as that supplied at the retail store) at each store with a floor area of more than or equal to 300 square metres. Retailers are to either present the e-waste to the NEA-appointed operator of the PRS, or deposit the waste at a place directed or designated by the PRS operator."
+      ]
+    ]
+  ],
+  "rawText": "Normal Font Size Big Font Size Bigger Font Size Extended Producer Responsibility (EPR) System for E-waste Management System Background The National Environment Agency (NEA) introduced a regulated e-waste management system in 2021 to ensure the proper collection and handling of e-waste, and the extraction of valuable resources from e-waste. As the rate of e-waste generation is expected to increase in tandem with economic growth and the prevalence of electrical and electronic equipment (EEE) among consumers and businesses, it is important to manage e-waste properly as it contains valuable resources that can be extracted through proper handling and treatment processes. E-waste also contains small amounts of hazardous substances that may harm the environment and our health, if improperly disposed of. With the regulated e-waste management system, this helps to safeguard the environment and our health. The regulated e-waste management system is based on the Extended Producer Responsibility (EPR) approach, where producers bear the responsibility for the collection and treatment of their products when they reach end-of-life. The EPR Scheme for E-waste is implemented through the Resource Sustainability Act (RSA), administered by the NEA. In addition, ALBA E-waste Smart Recycling Pte Ltd has been appointed as the Producer Responsibility Scheme (PRS) Operator to collect regulated consumer electrical and electronic waste across Singapore for proper treatment and recycling on behalf of producers. For more information on ALBA's services, please visit ALBA's website . To get rewarded when recycling e-waste, use the ALBA STEP UP App to scan the QR code on the bin and gain points to redeem rewards . E-waste Collection Avenues Each of us can play our part in reducing the amount of e-waste generated and ensuring that e-waste is not thrown away as general waste but sent for proper treatment and recycling instead. The following e-waste collection avenues are available for us to conveniently dispose of our e-waste. E-waste Collection Points Find the E-waste Collection Points near you from the map below. You may dispose the following items at the various e-waste collection points: ICT equipment (Printers, power banks, computers & laptops, mobile phones & tablets, network & set-top boxes, TVs & desktop monitors). Devices must be able to fit through a 500mm x 250mm slot Batteries (AA, AAA, AAAA, D, C, 9-volt, Button Cell only) with battery circumference of no more than 50mm. Please do not dispose any batteries into general bins or blue recycling bins. To reduce the risk of short-circuits and creation of fire hazard, please tape the ends or wires of rechargeable batteries and seal any leaking batteries in leak-proof container/bag before recycling them. Light Bulbs with bulb circumference of no more than 100mm. Long fluorescent/LED tubes are not accepted. Map Legend Name of Recycling Programme Type of bin Icon Type of e-waste accepted at collection point Extended Producer Responsibility (EPR) Scheme for E-waste organised by ALBA E-waste Smart Recycling Pte Ltd 3-in-1 bin ICT equipment , batteries and lamps only Manned in-store counter collection ICT equipment and batteries only Battery & Bulb (BB) bin Batteries and lamps only Battery-only bin Batteries only ALBA's depot drop-off All regulated consumer products E-waste Collection Drive All regulated consumer products The following types of e-wastes can be disposed at ALBA's e-bins. Bulky e-waste that do not fit into bin's openings are not to be placed outside the bin. To reduce the risk of short-circuits and creation of fire hazard, please tape the ends or wires of rechargeable batteries before recycling them. Type of e-bin ICT Equipment Batteries Bulbs and Lamps 3-in-1 bin (ICT, Batteries and Lamps) Printers, power banks, computers, laptops, mobile phones & tablets, modems, routers, set-top boxes, small TVs & desktop monitors). Devices must be able to fit through the 500mm x 250mm slot. Batteries (AA, AAA, AAAA, D, C, 9-volt*, Button Cell* only) with battery circumference of no more than 50mm. Light bulbs with bulb circumference of no more than 100mm. Long fluorescent/LED tubes are not accepted. Please dispose them through ALBA's collection drives or doorstep collection. Battery and Bulb bin Not accepted. Batteries (AA, AAA, AAAA, D, C, 9-volt*, Button Cell* only) are accepted. Bulbs and lamps are accepted. Long fluorescent/LED tubes are not accepted. Please dispose them through ALBA's collection drives or doorstep collection. Batteries only bin Not accepted. Batteries (AA, AAA, AAAA, D, C, 9-volt*, and Button Cell* only. Not accepted. *Please tape the ends of the batteries and seal any leaking batteries in leak-proof container/bag before disposing them into the bin E-waste Collection Drives and Doorstep Collection Quarterly collection drives will be organised by ALBA in conjunction with Town Councils across Singapore to allow you to dispose of your e-waste. Bulky e-waste, which does not fit into the bins at e-waste collection points, will be accepted. E-waste collection drives will be held at the housing estates managed by these town councils on the following dates: Sengkang Town Council, 16 May 2026, Saturday 10am to 3pm Tampines Town Council, 16 May 2026, Saturday 10am to 3pm Jurong-Clementi-Bukit Batok, 23 May 2026, Saturday 10am to 3pm Bishan-Toa Payoh Town Council, 30 May 2026, Saturday 10am to 3pm Sembawang Town Council, 6 June 2026, Saturday 10am to 3pm Nee Soon Town Council, 13 June 2026, Saturday 10am to 3pm Jalan Besar Town Council, 20 June 2026, Saturday 10am to 3pm Pasir Ris-Changi Town Council, 27 June 2026, Saturday 10am to 3pm Punggol Town Council, 27 June 2026, Saturday 10am to 3pm More details on the exact e-waste collection locations can be found from the map. The list of e-waste collection drives can also be found at ALBA's website on e-waste collection drives . For added convenience in disposing of your e-waste, you may also engage ALBA for its doorstep collection services at a fee. Since 1 January 2025, ALBA has started free doorstep collection services for large household appliances for all residential premises. For request for a collection of e-waste at your premises, please visit ALBA's website on doorstep collection . You may dispose the following items at the e-waste collection drives and through the doorstep collection service: ICT equipment (Printers, power banks, computers & laptops, mobile phones & tablets, network & set-top boxes, desktop monitors). Large household appliances (Air-conditioners, dryers, refrigerators, televisions, washing machines) Electric mobility devices (Personal mobility devices, power-assisted bicycles, electric mobility scooters). Batteries (AA, AAA, AAAA, D, C, 9-volt, Button Cell, standalone rechargeable batteries, electric vehicle batteries). Light Bulbs, long or circular fluorescent/LED tubes. Other e-waste recycling programmes For the locations of other e-waste recycing programmes offered by our industry partners, please visit Where to Recycle E-Waste . Producers of Regulated Electrical and Electronic Products A company is a Producer of a regulated electrical and electronic product if it: Carries on the business of supplying the regulated product in Singapore; and In the furtherance of that business: Imports the regulated product into Singapore; or Manufactures the regulated product in Singapore 1 ; or Engages another person to manufacture the regulated product in Singapore, or otherwise causes such manufacture. 1 However, the manufacturer of a regulated product may not be a Producer of the regulated product if the former manufactures the regulated product for or on behalf of a Singapore-connected person. Producers are subject to the following obligations. Please refer to the Producer Guidelines for guidance. Obligation Applicable to which Producers Description Register with the NEA All Producers From 1 Jan 2020, all Producers of regulated products (Table A) must be registered with the NEA prior to supplying regulated products in Singapore. As such, Producers are to register with the NEA through the registration form accessible via https://go.gov.sg/rsa-reg , or the QR code below. More information on the registration process is available here . Instructions to perform the registration are provided here . Registration is free. Keep records on regulated products supplied All Producers From 1 Jan 2020, all Producers are to keep and maintain complete and accurate records of the weight and number of all regulated products supplied in Singapore. The list of records that the NEA considers to be relevant to verifying the accuracy of the weight and number of regulated products supplied is shown here . Submit records on regulated products to NEA All Producers From 2021, all Producers are to declare the weight of each type of regulated product supplied in Singapore for the previous calendar year, to the NEA. Declarations are to be made on an annual basis, in the first quarter of every year. Instructions for making declarations will be given in due course. Instructions to perform the declarations are provided here . Being a member of the licensed Producer Responsibility Scheme Producers of regulated consumer products From 1 July 2021, a Producer of regulated consumer product(s) is to be a member of the licensed Producer Responsibility Scheme (PRS) and finance the PRS if the total amount of regulated consumer products under a particular class or sub-class of products supplied in Singapore exceeds the thresholds prescribed in the First Schedule of the Resource Sustainability (Prescribed Regulated Products) Regulations 2019 . Producer fees payable by obligated Producers and the fee structure can be viewed here . Collection of unwanted products Producers of regulated non-consumer products From 1 July 2021, Producers of regulated non-consumer products are to collect unwanted regulated non-consumer products supplied by the company within a reasonable amount of time after: Being presented with the regulated non-consumer product(s); or Receiving a request for disposal of the regulated non-consumer product(s). Producers must not demand or require any payment for the collection and disposal of the regulated non-consumer product(s). However, Producers may charge a service fee for the dismantling of products. Producers are also advised to be transparent about these additional charges upfront (i.e. specifying these charges before collection is made) and keep the necessary document in the event of an audit. Disposal of unwanted products Producers of regulated non-consumer products From 1 July 2021, collected products are to be disposed of through a licensed waste collector or licensed e-waste recycler. The list of licensed e-waste recyclers and licensed waste collectors is accessible here: https://go.gov.sg/licensed-recyclers . Keep records on regulated non-consumer products collected and how they are managed Producers of regulated non-consumer products From 1 July 2021, Producers are to keep and maintain records of the weight and number of each type of regulated non-consumer product collected, sent for reuse, recycled and disposed of. The list of records that the NEA considers to be relevant to verifying the accuracy of the weight and number of regulated products collected, sent for reuse, recycled and disposed of, is shown here . Submit records on non-consumer products collected and how they are managed, to the NEA Producers of regulated non-consumer products From 1 Jan 2022, all Producers are to declare the weight of each type of regulated non-consumer product collected, as well as the weight of each type of product sent for reuse, recycling and/or disposal, over the previous calendar year. Declarations are to be made on an annual basis, in the first quarter of every year. Instructions for making declarations will be given in due course. List of Registered Producers Companies registered as producers under the Resource Sustainability Act (RSA): Registered Producers For enquiries and feedback related to the list of registered producers, please contact us at e-waste@nea.gov.sg Regulated Electrical and Electronic Products The five product classes regulated are below: Solar photovoltaic panels; Information and Communications Technology (ICT) equipment; Large appliances; Batteries; and Lamps. The product types regulated under each product class are shown in Table A below. The products are further classified as consumer or non-consumer products . Consumer products generally refer to products largely marketed to, and bought or used for private consumption (e.g. mobile phones and household appliances), and includes dual-use products that are supplied to both consumers and businesses. Table A: Regulated Products Product Class Consumer Product Type Non-consumer Product Type Information and Communications Technology (ICT) Equipment Printer with a weight of 20 kg or less Printer with a weight above 20 kg Consumer computer (e.g. desktops, laptops, tablets) Computer that has a built-in smart card reader or is a thin client computer Desktop monitor - - Server Router that is not a EMC Class A router or router that is designed to be mounted ona server rack EMC Class A router or router that is designed to be mounted on a server rack Modem - - Wireless access point Set-top box - Network hub with 8 or fewer ports Network hub with more than 8 ports EMC Class B network switch EMC Class A network switch Mobile Telephone - Large household appliances Refrigerator - Air-conditioner - Washing Machine - Dryer - Television - Electric mobility devices Personal mobility device - Power assisted bicycle - Electric mobility scooter - Batteries Portable battery* (e.g. alkaline batteries, rechargeable batteries, power banks) - - Industrial battery* Consumer electric vehicle battery (includes hybrid vehicle battery) Non-consumer electric vehicle battery (includes hybrid vehicle battery) Lamps Consumer lamp Specified single-phase lamp that is an incandescent lamp with a power rating of above 100W Solar Photovoltaic Panels - Solar photovoltaic panel *Except portable batteries or industrial batteries that are supplied only in connection with supply of other products (See Resource Sustainability (Exemption for Incidentally Supplied Batteries) Order 2019 ) The definitions of each regulated product and criteria for distinguishing consumer products from non-consumer products , are shown in the Resource Sustainability (Prescribed Regulated Products) Regulations 2019 Producer Responsibility Scheme (PRS) The NEA has awarded the licence to operate a Producer Responsibility Scheme (PRS) in Singapore to ALBA E-Waste Smart Recycling Pte Ltd (ALBA). As the PRS Operator, ALBA will collect regulated consumer electrical and electronic waste across Singapore for proper treatment and recycling on behalf of producers by performing the following: Develop programmes to encourage the public to recycle e-waste; Provide a variety of e-waste collection avenues for e-waste recycling (e.g. e-waste receptacles in public areas, scheduled collection drives and ad-hoc door-step collection services); Collect and transport the e-waste to NEA-licensed e-waste recyclers; and Set up a data management system to track and report to NEA the amount of e-waste collected for treatment. From 1 July 2021, a Producer of regulated consumer product(s) is to be a member of the licensed Producer Responsibility Scheme (PRS) and finance the PRS if the total amount of regulated consumer products under a particular class or sub-class of products supplied in Singapore exceeds the thresholds prescribed in the First Schedule of the Resource Sustainability (Prescribed Regulated Products) Regulations 2019 . Producer fees payable by obligated Producers and the fee structure can be viewed here . The list of Producers who are Members of the PRS can be viewed here . Retailers of Regulated Electrical and Electronic Products Retailers of regulated consumer products (i.e. those who carry on a business of supplying regulated products to consumers) are subject to the following obligations. Obligation Applicable to which Retailers Description Provide 1-for-1 take back of regulated consumer products All Retailers of regulated consumer products From 1 July 2021, all Retailers of regulated consumer products are to, during delivery of a product bought by a consumer provide a one-for-one take-back service of a product (of the same class or type as the supplied product) for disposal at no cost . In-store collection of e-waste Large Retailers of regulated consumer products with stores having floor area of more than or equal to 300 square metres From 1 July 2021, Retailers will need to provide in-store collection of e-waste from consumers (same class or type of consumer product as that supplied at the retail store) at each store with a floor area of more than or equal to 300 square metres. Retailers are to either present the e-waste to the NEA-appointed operator of the PRS, or deposit the waste at a place directed or designated by the PRS operator. Licensed E-waste Recyclers Licensed e-waste recyclers (i.e. a person who is licensed under section 23(1) of the Environmental Public Health Act (Cap. 95) to operate a disposal facility that receives, stores, sorts, processes or treats electrical and electronic waste) are subject to the following obligations, as required by the the Resource Sustainability (E-waste Recyclers) Regulations 2021 : Ensure the weight of materials recovered from regulated products meet the specified material recovery target. Take all reasonable steps to ensure: remove all specified pollutants from any electrical or electronic product (whether or not that product is a regulated product) that is processed or treated in a disposal facility the licensed e‑waste recycler operates; and process or treat the specified pollutants removed so as to prevent the specified pollutants from polluting the environment. Ensure that any regulated product received by the licensed e‑waste recycler in the course of operating one or more disposal facilities is not prepared for re‑use if the person from whom the regulated product was received gives notice, before or at the time the regulated product is received, that the regulated product must not be re-used. Ensure that all data stored in a data‑bearing device (e.g. ) that the licensed e‑waste recycler received for disposal, is permanently erased or destroyed before the licensed e‑waste recycler does or allows the (i) preparation for re-use, (ii) recycling, (iii) disposal or transfer to another e-waste recycler (whether within or outside Singapore) of the data‑bearing device. Must not transfer any regulated product to another e-waste recycler outside Singapore, i.e. foreign recycler, that process or treat that regulated product, unless the foreign recycler is able to ensure the weight of materials recovered from regulated products meet the specified material recovery target. Provide recycling reports on the flow of regulated e-waste on a quarterly basis, including the amount being prepared for reuse or repurposing. Other Information The RSA is accessible here: https://go.gov.sg/rsa . The Resource Sustainability Act factsheet provides information on the regulated e-waste management system and is accessible here: https://go.gov.sg/rsa-factsheet . For the other subsidiary legislation under the RSA, please refer here: https://www.nea.gov.sg/corporate-functions/resources/legislation-international-law/legislation Should you have any queries, please do not hesitate to reach out to the NEA at e-waste@nea.gov.sg . Kindly provide your contact information along with your queries.",
+  "metadata": {
+    "detectedMarkets": [
+      "SG"
+    ],
+    "regulatoryTypes": [
+      "sustainability",
+      "waste",
+      "documentation"
+    ],
+    "productCategories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "charCount": 19743,
+    "region": "SG",
+    "supplement_id": "sg-nea-e-waste-epr-system",
+    "source_url": "https://www.nea.gov.sg/our-services/waste-management/3r-programmes-and-resources/e-waste-management/extended-producer-responsibility-(epr)-system-for-e-waste-management-system",
+    "content_url": "",
+    "official_channel": "National Environment Agency Singapore",
+    "why_added": "Singapore regulated consumer e-waste and producer responsibility implementation guidance.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/sg/SG_nea_e_waste_epr_system.html",
+      "raw/sg/SG_nea_e_waste_producer_guidelines_2026.pdf"
+    ],
+    "primary_file": "raw/sg/SG_nea_e_waste_epr_system.html",
+    "product_categories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "sustainability",
+      "waste",
+      "documentation"
+    ]
+  }
+}

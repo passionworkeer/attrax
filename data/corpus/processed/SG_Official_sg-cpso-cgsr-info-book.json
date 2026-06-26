@@ -1,0 +1,86 @@
+{
+  "id": "sg-cpso-cgsr-info-book",
+  "title": "Consumer Goods Safety Requirements Regulations information book",
+  "fileName": "SG_cpso_cgsr_overview.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/sg/SG_cpso_cgsr_overview.html",
+  "sourceType": "html",
+  "region": "SG",
+  "pageCount": 1,
+  "totalChars": 3004,
+  "hasTables": true,
+  "tableCount": 1,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 3004,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "Consumer Protection (Consumer Goods Safety Requirements) Regulations (CGSR) Consumer Protection (Consumer Goods Safety Requirements) Regulations (CGSR) Overview of CGSR The Consumer Protection (Consum"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "Product Type",
+        "Regulator"
+      ],
+      [
+        "Food and beverages",
+        "Singapore Food Agency"
+      ],
+      [
+        "Cosmetics, medical devices, pharmaceuticals and Chinese proprietary medicines",
+        "Health Sciences Authority"
+      ],
+      [
+        "Motor vehicles",
+        "Land Transport Authority"
+      ],
+      [
+        "Motorcycle helmets and children car seats",
+        "Traffic Police"
+      ],
+      [
+        "Pesticides and vector repellents",
+        "National Environment Agency"
+      ]
+    ]
+  ],
+  "rawText": "Consumer Protection (Consumer Goods Safety Requirements) Regulations (CGSR) Consumer Protection (Consumer Goods Safety Requirements) Regulations (CGSR) Overview of CGSR The Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011 ( CGSR ) aims to protect consumers from unsafe general consumer goods such as toys, children’s products, apparel, sports and recreation products, furniture, mattresses and bedding and DIY tools. General consumer goods covered by the CGSR must comply with A and B below: A. At least one of the applicable safety standards by any of the following organisations: International Organization for Standardization (ISO); International Electrotechnical Commission (IEC); European Committee for Standardisation (EN); or ASTM International; and B. The additional safety requirements in section 5.2 of the CGSR Information Booklet . Regional or national standards may also be accepted for consumer goods that do not have applicable international safety standards. Please refer to section 5.1 ( pages 9 – 12) of the CGSR Information Booklet for a non-exhaustive list of common general consumer goods and their applicable safety standards. The CPSO does active post-market surveillance to reduce the impact of unsafe general consumer goods. When general consumer goods that do not meet applicable safety standards and requirements are detected, the CPSO can direct suppliers to stop the sale of these goods in the market and inform users of the potential dangers of such goods. The penalty for non-compliance is a fine and/or imprisonment. Who should know the CGSR? Suppliers of consumer goods (this includes manufacturers, importers, distributors, retailers and other traders) should sell only safe goods. Suppliers can enhance the safety of their products by: Ensuring that their products have been tested and/or certified to applicable safety standards by an accredited laboratory. For a list of laboratories accredited by the Singapore Accreditation Council (SAC) and their relevant testing scope(s), please visit the SAC’s database at https://sacinet2.enterprisesg.gov.sg/sacsearch/search . Checking their products for safety problems or defects before sale Providing warnings to consumers on potential hazards or risks associated with the use of the product Supplying unsafe goods may result in: Loss of company reputation and consumer confidence Costs incurred to resolve the issue, such as the removal of goods from the market and/or replacement of products Penalties and fines Exclusions under the Regulations The following consumer goods are under other regulations or regulatory agencies in Singapore, and do not come under the CGSR. Product Type Regulator Food and beverages Singapore Food Agency Cosmetics, medical devices, pharmaceuticals and Chinese proprietary medicines Health Sciences Authority Motor vehicles Land Transport Authority Motorcycle helmets and children car seats Traffic Police Pesticides and vector repellents National Environment Agency",
+  "metadata": {
+    "detectedMarkets": [
+      "SG"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "children_products",
+      "home_goods"
+    ],
+    "charCount": 3004,
+    "region": "SG",
+    "supplement_id": "sg-cpso-cgsr-info-book",
+    "source_url": "https://www.consumerproductsafety.gov.sg/suppliers/cgsr/overview-of-cgsr/",
+    "content_url": "",
+    "official_channel": "Consumer Product Safety Office Singapore",
+    "why_added": "Singapore general consumer goods safety requirements beyond controlled goods.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/sg/SG_cpso_cgsr_overview.html",
+      "raw/sg/SG_cpso_cgsr_info_book.pdf"
+    ],
+    "primary_file": "raw/sg/SG_cpso_cgsr_overview.html",
+    "product_categories": [
+      "general_consumer_products",
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "market_surveillance"
+    ]
+  }
+}

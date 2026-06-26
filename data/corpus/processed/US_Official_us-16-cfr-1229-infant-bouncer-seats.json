@@ -1,0 +1,54 @@
+{
+  "id": "us-16-cfr-1229-infant-bouncer-seats",
+  "title": "16 CFR Part 1229, Safety Standard for Infant Bouncer Seats",
+  "fileName": "US_16_CFR_Part_1229_infant_bouncer_seats.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/us/US_16_CFR_Part_1229_infant_bouncer_seats.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 1369,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1369,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1229—SAFETY STANDARD FOR INFANT BOUNCER SEATS Authority: Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (15 U.S.C. 2056a). Source: 82 FR 43480, Sept. 18, 2017, unless otherwise noted. § 1229.1 Scope."
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1229—SAFETY STANDARD FOR INFANT BOUNCER SEATS Authority: Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (15 U.S.C. 2056a). Source: 82 FR 43480, Sept. 18, 2017, unless otherwise noted. § 1229.1 Scope. This part establishes a consumer product safety standard for infant bouncer seats. § 1229.2 Requirements for infant bouncer seats. Each infant bouncer seat must comply with all applicable provisions of ASTM F2167-22, Standard Consumer Safety Specification for Infant Bouncer Seats, approved on approved May 1, 2022. The Director of the Federal Register approves this incorporation by reference in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. A read-only copy of the standard is available for viewing on the ASTM website at www.astm.org/READINGLIBRARY/. You may obtain a copy from ASTM International, 100 Barr Harbor Drive, P.O. Box C700, West Conshohocken, PA 19428-2959; telephone (610) 832-9585; www.astm.org. You may inspect a copy at the Office of the Secretary, U.S. Consumer Product Safety Commission, Room 820, 4330 East West Highway, Bethesda, MD 20814, telephone (301) 504-7479, email cpsc-os@cpsc.gov, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, email fr.inspection@nara.gov, or go to: www.archives.gov/federal-register/cfr/ibr-locations.html. [87 FR 54366, Sept. 6, 2022]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "children_products"
+    ],
+    "charCount": 1369,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1229-infant-bouncer-seats",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1229",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US durable infant product safety standard for infant bouncer seats.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1229_infant_bouncer_seats.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1229_infant_bouncer_seats.xml",
+    "product_categories": [
+      "children_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

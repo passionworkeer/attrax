@@ -1,0 +1,56 @@
+{
+  "id": "us-16-cfr-1219-full-size-baby-cribs",
+  "title": "16 CFR Part 1219, Safety Standard for Full-Size Baby Cribs",
+  "fileName": "US_16_CFR_Part_1219_full_size_baby_cribs.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/us/US_16_CFR_Part_1219_full_size_baby_cribs.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 4038,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 4038,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1219—SAFETY STANDARD FOR FULL-SIZE BABY CRIBS Authority: Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (August 14, 2008); Sec. 3, Pub. L. 112-28, 125 Stat. 273 (August 12, 2011). Link to an amendment"
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1219—SAFETY STANDARD FOR FULL-SIZE BABY CRIBS Authority: Sec. 104, Pub. L. 110-314, 122 Stat. 3016 (August 14, 2008); Sec. 3, Pub. L. 112-28, 125 Stat. 273 (August 12, 2011). Link to an amendment published at 91 FR 23913, May 4, 2026. Source: 75 FR 81786, Dec. 28, 2010, unless otherwise noted. § 1219.1 Scope, compliance dates, and definitions. (a) Scope. This part establishes a consumer product safety standard for new and used full-size baby cribs. (b) Compliance dates. (1) Except as provided in paragraph (b)(2) of this section, compliance with this part 1219 shall be required on June 28, 2011, and applies to the manufacture, sale, contract for sale or resale, lease, sublet, offer, provision for use, or other placement in the stream of commerce of a new or used full-size baby crib on or after that date. (2) Child care facilities, family child care homes, and places of public accommodation affecting commerce shall be required to comply with this part on December 28, 2012, but this provision applies only to the offer or provision for use of cribs by child care facilities, family child care homes, and places of public accommodation affecting commerce and not the sale, resale, or other placement in the stream of commerce of cribs by these entities. (c) Definitions. (1) Full-size baby crib means a bed that is: (i) Designed to provide sleeping accommodations for an infant; (ii) Intended for use in the home, in a child care facility, a family child care home, or place of public accommodation affecting commerce; and (iii) Within a range of ±5.1 cm (±2 in.) of the following interior dimensions: The interior dimensions shall be 71 ±1.6 cm (28 ± 5/8 in.) wide as measured between the innermost surfaces of the crib sides and 133 ±1.6 cm (52 3/8 ± 5/8 in.) long as measured between the innermost surfaces of the crib end panels, slats, rods, or spindles. Both measurements are to be made at the level of the mattress support spring in each of its adjustable positions and no more than 5 cm (2 in.) from the crib corner posts or from the first spindle to the corresponding point of the first spindle at the other end of the crib. If a crib has contoured or decorative spindles, in either or both of the sides or ends, the measurement shall be determined from the largest diameter of the first turned spindle within a range of 10 cm (4 in.) above the mattress support spring in each of its adjustable positions, to a corresponding point on the first spindle or innermost surface of the opposite side of the crib. (2) Place of public accommodation affecting commerce means any inn, hotel, or other establishment that provides lodging to transient guests, except that such term does not include an establishment treated as an apartment building for purposes of any State or local law or regulation or an establishment located within a building that contains not more than five rooms for rent or hire and that is actually occupied as a residence by the proprietor of such establishment. § 1219.2 Requirements for full-size baby cribs. Link to an amendment published at 91 FR 23913, May 4, 2026. Each full-size baby crib must comply with all applicable provisions of ASTM F1169-19, Standard Consumer Safety Specification for Full-Size Baby Cribs approved March 15, 2019. The Director of the Federal Register approves the incorporation by reference listed in this section in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. You may obtain a copy of this ASTM standard from ASTM International, 100 Barr Harbor Drive, P.O. Box C700, West Conshohocken, PA 19428-2959 USA; phone: 610-832-9585; www.astm.org. You may inspect a copy at the Division of the Secretariat, U.S. Consumer Product Safety Commission, Room 820, 4330 East West Highway, Bethesda, MD 20814, telephone 301-504-7923, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, call 202-741-6030, or go to: www.archives.gov/federal-register/cfr/ibr-locations.html. [84 FR 35296, July 23, 2019]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "children_products",
+      "furniture"
+    ],
+    "charCount": 4038,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1219-full-size-baby-cribs",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1219",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US durable infant product safety standard for full-size cribs.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1219_full_size_baby_cribs.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1219_full_size_baby_cribs.xml",
+    "product_categories": [
+      "children_products",
+      "furniture"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

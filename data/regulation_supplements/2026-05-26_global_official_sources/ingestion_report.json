@@ -1,0 +1,507 @@
+{
+  "generated_at": "2026-06-25T23:49:47+08:00",
+  "supplement_dir": "data/regulation_supplements/2026-05-26_global_official_sources",
+  "processed_dir": "data/corpus/processed",
+  "entries_total": 55,
+  "entries_processed": 55,
+  "entries_failed": 0,
+  "files_written": [
+    {
+      "id": "eu-2023-1230-machinery",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/1230 on machinery",
+      "primary_file": "raw/eu/eu-2023-1230-machinery.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2023-1230-machinery.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2025-40-packaging-waste",
+      "market": "EU",
+      "title": "Regulation (EU) 2025/40 on packaging and packaging waste",
+      "primary_file": "raw/eu/eu-2025-40-packaging-waste.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2025-40-packaging-waste.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2023-1115-deforestation",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/1115 on deforestation-free products",
+      "primary_file": "raw/eu/eu-2023-1115-deforestation.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2023-1115-deforestation.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2011-1007-textile-labelling",
+      "market": "EU",
+      "title": "Regulation (EU) No 1007/2011 on textile fibre names and labelling",
+      "primary_file": "raw/eu/eu-2011-1007-textile-labelling.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2011-1007-textile-labelling.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2009-1223-cosmetics",
+      "market": "EU",
+      "title": "Regulation (EC) No 1223/2009 on cosmetic products",
+      "primary_file": "raw/eu/eu-2009-1223-cosmetics.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2009-1223-cosmetics.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2004-1935-food-contact-materials",
+      "market": "EU",
+      "title": "Regulation (EC) No 1935/2004 on materials and articles intended to contact food",
+      "primary_file": "raw/eu/eu-2004-1935-food-contact-materials.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2004-1935-food-contact-materials.json",
+      "source_type": "xhtml",
+      "total_chars": 47220
+    },
+    {
+      "id": "eu-2011-10-plastic-food-contact",
+      "market": "EU",
+      "title": "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+      "primary_file": "raw/eu/eu-2011-10-plastic-food-contact.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2011-10-plastic-food-contact.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2023-1542-batteries",
+      "market": "EU",
+      "title": "Regulation (EU) 2023/1542 concerning batteries and waste batteries",
+      "primary_file": "raw/eu/eu-2023-1542-batteries.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2023-1542-batteries.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "us-47-cfr-15-radio-frequency-devices",
+      "market": "US",
+      "title": "47 CFR Part 15, Radio Frequency Devices",
+      "primary_file": "raw/us/US_47_CFR_Part_15_radio_frequency_devices.xml",
+      "output_path": "data/corpus/processed/US_Official_us-47-cfr-15-radio-frequency-devices.json",
+      "source_type": "xml",
+      "total_chars": 441674
+    },
+    {
+      "id": "us-16-cfr-1107-testing-certification",
+      "market": "US",
+      "title": "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+      "primary_file": "raw/us/US_16_CFR_Part_1107_testing_certification.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1107-testing-certification.json",
+      "source_type": "xml",
+      "total_chars": 24736
+    },
+    {
+      "id": "us-16-cfr-1110-certificates-compliance",
+      "market": "US",
+      "title": "16 CFR Part 1110, Certificates of Compliance",
+      "primary_file": "raw/us/US_16_CFR_Part_1110_certificates_compliance.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1110-certificates-compliance.json",
+      "source_type": "xml",
+      "total_chars": 7185
+    },
+    {
+      "id": "us-16-cfr-1500-hazardous-substances",
+      "market": "US",
+      "title": "16 CFR Part 1500, Hazardous Substances and Articles",
+      "primary_file": "raw/us/US_16_CFR_Part_1500_hazardous_substances.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1500-hazardous-substances.json",
+      "source_type": "xml",
+      "total_chars": 422629
+    },
+    {
+      "id": "us-16-cfr-1501-small-parts",
+      "market": "US",
+      "title": "16 CFR Part 1501, Small Parts",
+      "primary_file": "raw/us/US_16_CFR_Part_1501_small_parts.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1501-small-parts.json",
+      "source_type": "xml",
+      "total_chars": 6382
+    },
+    {
+      "id": "us-16-cfr-1610-textile-flammability",
+      "market": "US",
+      "title": "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+      "primary_file": "raw/us/US_16_CFR_Part_1610_textile_flammability.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1610-textile-flammability.json",
+      "source_type": "xml",
+      "total_chars": 83930
+    },
+    {
+      "id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
+      "market": "US",
+      "title": "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+      "primary_file": "raw/us/US_16_CFR_Part_1615_childrens_sleepwear_0_6x.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1615-childrens-sleepwear-0-6x.json",
+      "source_type": "xml",
+      "total_chars": 87281
+    },
+    {
+      "id": "us-16-cfr-1616-childrens-sleepwear-7-14",
+      "market": "US",
+      "title": "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+      "primary_file": "raw/us/US_16_CFR_Part_1616_childrens_sleepwear_7_14.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1616-childrens-sleepwear-7-14.json",
+      "source_type": "xml",
+      "total_chars": 93937
+    },
+    {
+      "id": "us-16-cfr-1632-mattresses",
+      "market": "US",
+      "title": "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+      "primary_file": "raw/us/US_16_CFR_Part_1632_mattresses.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1632-mattresses.json",
+      "source_type": "xml",
+      "total_chars": 60394
+    },
+    {
+      "id": "us-21-cfr-177-food-contact-polymers",
+      "market": "US",
+      "title": "21 CFR Part 177, Indirect Food Additives: Polymers",
+      "primary_file": "raw/us/US_21_CFR_Part_177_food_contact_polymers.xml",
+      "output_path": "data/corpus/processed/US_Official_us-21-cfr-177-food-contact-polymers.json",
+      "source_type": "xml",
+      "total_chars": 459402
+    },
+    {
+      "id": "uk-product-safety-advice-businesses",
+      "market": "UK",
+      "title": "Product safety advice for businesses",
+      "primary_file": "raw/uk/UK_product_safety_advice_for_businesses.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-product-safety-advice-businesses.json",
+      "source_type": "html",
+      "total_chars": 6610
+    },
+    {
+      "id": "uk-toys-safety-regulations-2011-gb",
+      "market": "UK",
+      "title": "Toys (Safety) Regulations 2011: Great Britain",
+      "primary_file": "raw/uk/UK_toys_safety_regulations_2011_gb.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-toys-safety-regulations-2011-gb.json",
+      "source_type": "html",
+      "total_chars": 41825
+    },
+    {
+      "id": "uk-electrical-equipment-safety-regulations-2016-gb",
+      "market": "UK",
+      "title": "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+      "primary_file": "raw/uk/UK_electrical_equipment_safety_regulations_2016_gb.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-electrical-equipment-safety-regulations-2016-gb.json",
+      "source_type": "html",
+      "total_chars": 34870
+    },
+    {
+      "id": "uk-emc-regulations-2016-gb",
+      "market": "UK",
+      "title": "Electromagnetic Compatibility Regulations 2016: Great Britain",
+      "primary_file": "raw/uk/UK_emc_regulations_2016_gb.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-emc-regulations-2016-gb.json",
+      "source_type": "html",
+      "total_chars": 42249
+    },
+    {
+      "id": "uk-radio-equipment-regulations-2017-gb",
+      "market": "UK",
+      "title": "Radio Equipment Regulations 2017: Great Britain",
+      "primary_file": "raw/uk/UK_radio_equipment_regulations_2017_gb.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-radio-equipment-regulations-2017-gb.json",
+      "source_type": "html",
+      "total_chars": 45039
+    },
+    {
+      "id": "uk-cosmetic-products-enforcement-regulations-2013-gb",
+      "market": "UK",
+      "title": "Regulation 2009/1223 and the Cosmetic Products Enforcement Regulations 2013: Great Britain",
+      "primary_file": "raw/uk/UK_cosmetic_products_enforcement_regulations_2013_gb.html",
+      "output_path": "data/corpus/processed/UK_Official_uk-cosmetic-products-enforcement-regulations-2013-gb.json",
+      "source_type": "html",
+      "total_chars": 73330
+    },
+    {
+      "id": "ca-consumer-product-safety-act",
+      "market": "CA",
+      "title": "Canada Consumer Product Safety Act",
+      "primary_file": "raw/ca/CA_consumer_product_safety_act.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-consumer-product-safety-act.json",
+      "source_type": "xml",
+      "total_chars": 70525
+    },
+    {
+      "id": "ca-toys-regulations-sor-2011-17",
+      "market": "CA",
+      "title": "Toys Regulations (SOR/2011-17)",
+      "primary_file": "raw/ca/CA_toys_regulations_SOR-2011-17.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-toys-regulations-sor-2011-17.json",
+      "source_type": "xml",
+      "total_chars": 58759
+    },
+    {
+      "id": "ca-cosmetics-regulations-crc-c-869",
+      "market": "CA",
+      "title": "Cosmetic Regulations (C.R.C., c. 869)",
+      "primary_file": "raw/ca/CA_cosmetics_regulations_CRC_c_869.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-cosmetics-regulations-crc-c-869.json",
+      "source_type": "xml",
+      "total_chars": 37273
+    },
+    {
+      "id": "ca-textile-labelling-advertising-regulations-crc-c-1551",
+      "market": "CA",
+      "title": "Textile Labelling and Advertising Regulations (C.R.C., c. 1551)",
+      "primary_file": "raw/ca/CA_textile_labelling_advertising_regulations_CRC_c_1551.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-textile-labelling-advertising-regulations-crc-c-1551.json",
+      "source_type": "xml",
+      "total_chars": 58482
+    },
+    {
+      "id": "ca-consumer-packaging-labelling-regulations-crc-c-417",
+      "market": "CA",
+      "title": "Consumer Packaging and Labelling Regulations (C.R.C., c. 417)",
+      "primary_file": "raw/ca/CA_consumer_packaging_labelling_regulations_CRC_c_417.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-consumer-packaging-labelling-regulations-crc-c-417.json",
+      "source_type": "xml",
+      "total_chars": 42563
+    },
+    {
+      "id": "au-button-coin-batteries-safety-standard-2020",
+      "market": "AU",
+      "title": "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020",
+      "primary_file": "raw/au/AU_button_coin_batteries_safety_standard_2020.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-button-coin-batteries-safety-standard-2020.json",
+      "source_type": "pdf",
+      "total_chars": 11746
+    },
+    {
+      "id": "au-toys-children-36-months-safety-standard-2023",
+      "market": "AU",
+      "title": "Consumer Goods (Toys for Children up to and including 36 Months of Age) Safety Standard 2023",
+      "primary_file": "raw/au/AU_toys_children_36_months_safety_standard_2023.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-toys-children-36-months-safety-standard-2023.json",
+      "source_type": "pdf",
+      "total_chars": 24054
+    },
+    {
+      "id": "au-childrens-nightwear-safety-standard-2017",
+      "market": "AU",
+      "title": "Consumer Goods (Children's Nightwear and Limited Daywear and Paper Patterns for Children's Nightwear) Safety Standard 2017",
+      "primary_file": "raw/au/AU_childrens_nightwear_safety_standard_2017.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-childrens-nightwear-safety-standard-2017.json",
+      "source_type": "pdf",
+      "total_chars": 14622
+    },
+    {
+      "id": "au-cosmetics-ingredients-information-standard-2020",
+      "market": "AU",
+      "title": "Consumer Goods (Cosmetics) Information Standard 2020",
+      "primary_file": "raw/au/AU_cosmetics_ingredients_information_standard_2020.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-cosmetics-ingredients-information-standard-2020.json",
+      "source_type": "pdf",
+      "total_chars": 15195
+    },
+    {
+      "id": "jp-electrical-appliance-material-safety-act",
+      "market": "JP",
+      "title": "Electrical Appliance and Material Safety Act",
+      "primary_file": "raw/jp/JP_electrical_appliances_materials_safety_act.pdf",
+      "output_path": "data/corpus/processed/JP_Official_jp-electrical-appliance-material-safety-act.json",
+      "source_type": "pdf",
+      "total_chars": 109049
+    },
+    {
+      "id": "jp-consumer-product-safety-act",
+      "market": "JP",
+      "title": "Consumer Product Safety Act",
+      "primary_file": "raw/jp/JP_consumer_product_safety_act.pdf",
+      "output_path": "data/corpus/processed/JP_Official_jp-consumer-product-safety-act.json",
+      "source_type": "pdf",
+      "total_chars": 148570
+    },
+    {
+      "id": "jp-food-sanitation-act",
+      "market": "JP",
+      "title": "Food Sanitation Act",
+      "primary_file": "raw/jp/JP_food_sanitation_act.pdf",
+      "output_path": "data/corpus/processed/JP_Official_jp-food-sanitation-act.json",
+      "source_type": "pdf",
+      "total_chars": 110764
+    },
+    {
+      "id": "jp-technical-standards-electrical-appliances-materials",
+      "market": "JP",
+      "title": "Ministerial Order to Provide Technical Standards for Electrical Appliances and Materials",
+      "primary_file": "raw/jp/JP_technical_standards_electrical_appliances.html",
+      "output_path": "data/corpus/processed/JP_Official_jp-technical-standards-electrical-appliances-materials.json",
+      "source_type": "html",
+      "total_chars": 12089
+    },
+    {
+      "id": "sg-cpsr-overview",
+      "market": "SG",
+      "title": "Consumer Protection (Safety Requirements) Regulations overview",
+      "primary_file": "raw/sg/SG_cpsr_overview.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-cpsr-overview.json",
+      "source_type": "html",
+      "total_chars": 2121
+    },
+    {
+      "id": "sg-cpsr-controlled-goods-list",
+      "market": "SG",
+      "title": "List of controlled goods under CPSR",
+      "primary_file": "raw/sg/SG_cpsr_controlled_goods_list.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-cpsr-controlled-goods-list.json",
+      "source_type": "html",
+      "total_chars": 14334
+    },
+    {
+      "id": "sg-consumer-protection-safety-requirements-regulations-2002",
+      "market": "SG",
+      "title": "Consumer Protection (Safety Requirements) Regulations 2002",
+      "primary_file": "raw/sg/SG_consumer_protection_safety_requirements_regulations_2002.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-consumer-protection-safety-requirements-regulations-2002.json",
+      "source_type": "html",
+      "total_chars": 12470
+    },
+    {
+      "id": "sg-consumer-product-safety-regulations-ccs",
+      "market": "SG",
+      "title": "Consumer Product Safety Regulations",
+      "primary_file": "raw/sg/SG_consumer_product_safety_regulations_ccs.html",
+      "output_path": "data/corpus/processed/SG_Official_sg-consumer-product-safety-regulations-ccs.json",
+      "source_type": "html",
+      "total_chars": 701
+    },
+    {
+      "id": "kr-electrical-appliances-consumer-products-safety-control-act",
+      "market": "KR",
+      "title": "Electrical Appliances and Consumer Products Safety Control Act",
+      "primary_file": "raw/kr/KR_electrical_appliances_consumer_products_safety_control_act.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-electrical-appliances-consumer-products-safety-control-act.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-radio-waves-act",
+      "market": "KR",
+      "title": "Radio Waves Act",
+      "primary_file": "raw/kr/KR_radio_waves_act.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-radio-waves-act.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-cosmetics-act",
+      "market": "KR",
+      "title": "Cosmetics Act",
+      "primary_file": "raw/kr/KR_cosmetics_act.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-cosmetics-act.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "kr-food-sanitation-act",
+      "market": "KR",
+      "title": "Food Sanitation Act",
+      "primary_file": "raw/kr/KR_food_sanitation_act.html",
+      "output_path": "data/corpus/processed/KR_Official_kr-food-sanitation-act.json",
+      "source_type": "html",
+      "total_chars": 100000
+    },
+    {
+      "id": "in-toys-quality-control-order-2020",
+      "market": "IN",
+      "title": "Toys (Quality Control) Order, 2020",
+      "primary_file": "raw/in/IN_toys_quality_control_order_2020.pdf",
+      "output_path": "data/corpus/processed/IN_Official_in-toys-quality-control-order-2020.json",
+      "source_type": "pdf",
+      "total_chars": 3286
+    },
+    {
+      "id": "in-battery-waste-management-rules-2022",
+      "market": "IN",
+      "title": "Battery Waste Management Rules, 2022",
+      "primary_file": "raw/in/IN_battery_waste_management_rules_2022.pdf",
+      "output_path": "data/corpus/processed/IN_Official_in-battery-waste-management-rules-2022.json",
+      "source_type": "pdf",
+      "total_chars": 116005
+    },
+    {
+      "id": "in-e-waste-management-rules-2022",
+      "market": "IN",
+      "title": "E-Waste (Management) Rules, 2022",
+      "primary_file": "raw/in/IN_e_waste_management_rules_2022.pdf",
+      "output_path": "data/corpus/processed/IN_Official_in-e-waste-management-rules-2022.json",
+      "source_type": "pdf",
+      "total_chars": 109030
+    },
+    {
+      "id": "br-anatel-resolution-715-2019-telecom-products",
+      "market": "BR",
+      "title": "Anatel Resolution No. 715/2019, conformity assessment and approval of telecommunications products",
+      "primary_file": "raw/br/BR_anatel_resolution_715_2019_telecom_products.html",
+      "output_path": "data/corpus/processed/BR_Official_br-anatel-resolution-715-2019-telecom-products.json",
+      "source_type": "html",
+      "total_chars": 67258
+    },
+    {
+      "id": "br-anatel-resolution-780-2023-telecom-products",
+      "market": "BR",
+      "title": "Anatel Resolution No. 780/2023",
+      "primary_file": "raw/br/BR_anatel_resolution_780_2023.html",
+      "output_path": "data/corpus/processed/BR_Official_br-anatel-resolution-780-2023-telecom-products.json",
+      "source_type": "html",
+      "total_chars": 9841
+    },
+    {
+      "id": "mx-nom-001-scfi-2018-electronic-apparatus",
+      "market": "MX",
+      "title": "NOM-001-SCFI-2018, Electronic apparatus - safety requirements and test methods",
+      "primary_file": "raw/mx/MX_NOM_001_SCFI_2018_electronic_apparatus.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-nom-001-scfi-2018-electronic-apparatus.json",
+      "source_type": "html",
+      "total_chars": 3733
+    },
+    {
+      "id": "mx-nom-024-scfi-2013-commercial-information-electrical-electronic-appliances",
+      "market": "MX",
+      "title": "NOM-024-SCFI-2013, commercial information for electrical, electronic and household appliances",
+      "primary_file": "raw/mx/MX_NOM_024_SCFI_2013_commercial_information_electrical_electronic_appliances.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-nom-024-scfi-2013-commercial-information-electrical-electronic-appliances.json",
+      "source_type": "html",
+      "total_chars": 2318
+    },
+    {
+      "id": "mx-nom-252-ssa1-2011-toys",
+      "market": "MX",
+      "title": "NOM-252-SSA1-2011, toys and school articles: health and safety",
+      "primary_file": "raw/mx/MX_NOM_252_SSA1_2011_toys_health_safety.html",
+      "output_path": "data/corpus/processed/MX_Official_mx-nom-252-ssa1-2011-toys.json",
+      "source_type": "html",
+      "total_chars": 3964
+    },
+    {
+      "id": "gcc-gso-low-voltage-electrical-equipment-technical-regulation",
+      "market": "GCC",
+      "title": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances",
+      "primary_file": "raw/gcc/GCC_GSO_low_voltage_electrical_equipment_technical_regulation.pdf",
+      "output_path": "data/corpus/processed/GCC_Official_gcc-gso-low-voltage-electrical-equipment-technical-regulation.json",
+      "source_type": "pdf",
+      "total_chars": 94776
+    },
+    {
+      "id": "gcc-gso-gmark-toys-guidance",
+      "market": "GCC",
+      "title": "G-Mark HS Toys Guidance, English",
+      "primary_file": "raw/gcc/GCC_GSO_GMark_HS_toys_guidance_english.pdf",
+      "output_path": "data/corpus/processed/GCC_Official_gcc-gso-gmark-toys-guidance.json",
+      "source_type": "pdf",
+      "total_chars": 210312
+    }
+  ],
+  "failures": [],
+  "dry_run": false
+}

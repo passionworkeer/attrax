@@ -1,0 +1,56 @@
+{
+  "id": "us-16-cfr-1215-infant-bath-seats",
+  "title": "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+  "fileName": "US_16_CFR_Part_1215_infant_bath_seats.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/us/US_16_CFR_Part_1215_infant_bath_seats.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 1391,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1391,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1215—SAFETY STANDARD FOR INFANT BATH SEATS Authority: 15 U.S.C. 2056a. Source: 75 FR 31698, June 4, 2010, unless otherwise noted. § 1215.1 Scope. This part 1215 establishes a consumer product saf"
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1215—SAFETY STANDARD FOR INFANT BATH SEATS Authority: 15 U.S.C. 2056a. Source: 75 FR 31698, June 4, 2010, unless otherwise noted. § 1215.1 Scope. This part 1215 establishes a consumer product safety standard for infant bath seats manufactured or imported on or after December 6, 2010. § 1215.2 Requirements for infant bath seats. Each infant bath seat must comply with all applicable provisions of ASTM F1967-24, Standard Consumer Safety Specification for Infant Bath Seats, approved June 1, 2024. The Director of the Federal Register approves the incorporation by reference listed in this section in accordance with 5 U.S.C. 552(a) and 1 CFR part 51. A read-only copy of the standard is available for viewing on the ASTM website at www.astm.org/READINGLIBRARY/. You may obtain a copy of this ASTM standard from ASTM International, 100 Barr Harbor Drive, P.O. Box C700, West Conshohocken, PA 19428-2959; telephone: (610) 832-9500; www.astm.org. You may inspect a copy at the Office of the Secretary, U.S. Consumer Product Safety Commission, 4330 East West Highway, Bethesda, MD 20814; telephone: (301) 504-7479; email: cpsc-os@cpsc.gov; or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, email fedreg.legal@nara.gov, or go to: www.archives.gov/federal-register/cfr/ibr-locations.html. [89 FR 81828, Oct. 9, 2024]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "children_products",
+      "home_goods"
+    ],
+    "charCount": 1391,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1215-infant-bath-seats",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1215",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US durable infant product safety standard for infant bath seats.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1215_infant_bath_seats.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1215_infant_bath_seats.xml",
+    "product_categories": [
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

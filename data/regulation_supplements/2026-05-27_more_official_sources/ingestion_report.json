@@ -1,6 +1,867 @@
 {
-  "status": "raw_only_not_ingested",
-  "created_at": "2026-05-27T10:36:57+08:00",
-  "failed_downloads": 0,
-  "failures": []
+  "generated_at": "2026-06-25T23:48:48+08:00",
+  "supplement_dir": "data/regulation_supplements/2026-05-27_more_official_sources",
+  "processed_dir": "data/corpus/processed",
+  "entries_total": 95,
+  "entries_processed": 95,
+  "entries_failed": 0,
+  "files_written": [
+    {
+      "id": "eu-2016-425-ppe",
+      "market": "EU",
+      "title": "Regulation (EU) 2016/425 on personal protective equipment",
+      "primary_file": "raw/eu/eu-2016-425-ppe.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2016-425-ppe.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2016-426-gas-appliances",
+      "market": "EU",
+      "title": "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+      "primary_file": "raw/eu/eu-2016-426-gas-appliances.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2016-426-gas-appliances.json",
+      "source_type": "xhtml",
+      "total_chars": 99999
+    },
+    {
+      "id": "eu-2014-68-pressure-equipment",
+      "market": "EU",
+      "title": "Directive 2014/68/EU on pressure equipment",
+      "primary_file": "raw/eu/eu-2014-68-pressure-equipment.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2014-68-pressure-equipment.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2014-34-atex",
+      "market": "EU",
+      "title": "Directive 2014/34/EU on equipment and protective systems for explosive atmospheres",
+      "primary_file": "raw/eu/eu-2014-34-atex.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2014-34-atex.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2014-32-measuring-instruments",
+      "market": "EU",
+      "title": "Directive 2014/32/EU on measuring instruments",
+      "primary_file": "raw/eu/eu-2014-32-measuring-instruments.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2014-32-measuring-instruments.json",
+      "source_type": "xhtml",
+      "total_chars": 99999
+    },
+    {
+      "id": "eu-2014-31-non-automatic-weighing-instruments",
+      "market": "EU",
+      "title": "Directive 2014/31/EU on non-automatic weighing instruments",
+      "primary_file": "raw/eu/eu-2014-31-non-automatic-weighing-instruments.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2014-31-non-automatic-weighing-instruments.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2013-29-pyrotechnic-articles",
+      "market": "EU",
+      "title": "Directive 2013/29/EU on pyrotechnic articles",
+      "primary_file": "raw/eu/eu-2013-29-pyrotechnic-articles.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2013-29-pyrotechnic-articles.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2000-14-outdoor-noise",
+      "market": "EU",
+      "title": "Directive 2000/14/EC on noise emission by equipment for use outdoors",
+      "primary_file": "raw/eu/eu-2000-14-outdoor-noise.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2000-14-outdoor-noise.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2006-1907-reach",
+      "market": "EU",
+      "title": "Regulation (EC) No 1907/2006 concerning REACH",
+      "primary_file": "raw/eu/eu-2006-1907-reach.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2006-1907-reach.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2008-1272-clp",
+      "market": "EU",
+      "title": "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+      "primary_file": "raw/eu/eu-2008-1272-clp.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2008-1272-clp.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "eu-2019-1021-persistent-organic-pollutants",
+      "market": "EU",
+      "title": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+      "primary_file": "raw/eu/eu-2019-1021-persistent-organic-pollutants.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2019-1021-persistent-organic-pollutants.json",
+      "source_type": "xhtml",
+      "total_chars": 89580
+    },
+    {
+      "id": "eu-2017-1369-energy-labelling",
+      "market": "EU",
+      "title": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+      "primary_file": "raw/eu/eu-2017-1369-energy-labelling.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2017-1369-energy-labelling.json",
+      "source_type": "xhtml",
+      "total_chars": 84804
+    },
+    {
+      "id": "eu-2009-125-ecodesign-energy-related-products",
+      "market": "EU",
+      "title": "Directive 2009/125/EC establishing a framework for ecodesign requirements for energy-related products",
+      "primary_file": "raw/eu/eu-2009-125-ecodesign-energy-related-products.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2009-125-ecodesign-energy-related-products.json",
+      "source_type": "xhtml",
+      "total_chars": 83928
+    },
+    {
+      "id": "eu-2011-83-consumer-rights",
+      "market": "EU",
+      "title": "Directive 2011/83/EU on consumer rights",
+      "primary_file": "raw/eu/eu-2011-83-consumer-rights.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2011-83-consumer-rights.json",
+      "source_type": "xhtml",
+      "total_chars": 99999
+    },
+    {
+      "id": "eu-2005-29-unfair-commercial-practices",
+      "market": "EU",
+      "title": "Directive 2005/29/EC concerning unfair business-to-consumer commercial practices",
+      "primary_file": "raw/eu/eu-2005-29-unfair-commercial-practices.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2005-29-unfair-commercial-practices.json",
+      "source_type": "xhtml",
+      "total_chars": 68662
+    },
+    {
+      "id": "eu-2022-2065-digital-services-act",
+      "market": "EU",
+      "title": "Regulation (EU) 2022/2065 on a Single Market For Digital Services",
+      "primary_file": "raw/eu/eu-2022-2065-digital-services-act.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2022-2065-digital-services-act.json",
+      "source_type": "xhtml",
+      "total_chars": 99999
+    },
+    {
+      "id": "eu-2022-1925-digital-markets-act",
+      "market": "EU",
+      "title": "Regulation (EU) 2022/1925 on contestable and fair markets in the digital sector",
+      "primary_file": "raw/eu/eu-2022-1925-digital-markets-act.xhtml",
+      "output_path": "data/corpus/processed/EU_Official_eu-2022-1925-digital-markets-act.json",
+      "source_type": "xhtml",
+      "total_chars": 100000
+    },
+    {
+      "id": "us-consumer-product-safety-act",
+      "market": "US",
+      "title": "Consumer Product Safety Act",
+      "primary_file": "raw/us/US_COMPS-384_consumer_product_safety_act.xml",
+      "output_path": "data/corpus/processed/US_Official_us-consumer-product-safety-act.json",
+      "source_type": "xml",
+      "total_chars": 229956
+    },
+    {
+      "id": "us-consumer-product-safety-improvement-act-2008",
+      "market": "US",
+      "title": "Consumer Product Safety Improvement Act of 2008",
+      "primary_file": "raw/us/US_COMPS-9748_consumer_product_safety_improvement_act_2008.xml",
+      "output_path": "data/corpus/processed/US_Official_us-consumer-product-safety-improvement-act-2008.json",
+      "source_type": "xml",
+      "total_chars": 52732
+    },
+    {
+      "id": "us-flammable-fabrics-act",
+      "market": "US",
+      "title": "Flammable Fabrics Act",
+      "primary_file": "raw/us/US_COMPS-390_flammable_fabrics_act.xml",
+      "output_path": "data/corpus/processed/US_Official_us-flammable-fabrics-act.json",
+      "source_type": "xml",
+      "total_chars": 49986
+    },
+    {
+      "id": "us-federal-hazardous-substances-act",
+      "market": "US",
+      "title": "Federal Hazardous Substances Act",
+      "primary_file": "raw/us/US_COMPS-387_federal_hazardous_substances_act.xml",
+      "output_path": "data/corpus/processed/US_Official_us-federal-hazardous-substances-act.json",
+      "source_type": "xml",
+      "total_chars": 98275
+    },
+    {
+      "id": "us-poison-prevention-packaging-act-1970",
+      "market": "US",
+      "title": "Poison Prevention Packaging Act of 1970",
+      "primary_file": "raw/us/US_COMPS-392_poison_prevention_packaging_act_1970.xml",
+      "output_path": "data/corpus/processed/US_Official_us-poison-prevention-packaging-act-1970.json",
+      "source_type": "xml",
+      "total_chars": 16756
+    },
+    {
+      "id": "us-fair-packaging-labeling-act",
+      "market": "US",
+      "title": "Fair Packaging and Labeling Act",
+      "primary_file": "raw/us/US_COMPS-385_fair_packaging_labeling_act.xml",
+      "output_path": "data/corpus/processed/US_Official_us-fair-packaging-labeling-act.json",
+      "source_type": "xml",
+      "total_chars": 22814
+    },
+    {
+      "id": "us-wool-products-labeling-act-1939",
+      "market": "US",
+      "title": "Wool Products Labeling Act of 1939",
+      "primary_file": "raw/us/US_COMPS-10283_wool_products_labeling_act_1939.xml",
+      "output_path": "data/corpus/processed/US_Official_us-wool-products-labeling-act-1939.json",
+      "source_type": "xml",
+      "total_chars": 25373
+    },
+    {
+      "id": "us-magnuson-moss-warranty-ftc-improvement-act",
+      "market": "US",
+      "title": "Magnuson-Moss Warranty-Federal Trade Commission Improvement Act",
+      "primary_file": "raw/us/US_COMPS-3072_magnuson_moss_warranty_ftc_improvement_act.xml",
+      "output_path": "data/corpus/processed/US_Official_us-magnuson-moss-warranty-ftc-improvement-act.json",
+      "source_type": "xml",
+      "total_chars": 33837
+    },
+    {
+      "id": "us-16-cfr-303-textile-fiber-products-identification",
+      "market": "US",
+      "title": "16 CFR Part 303, Rules and Regulations Under the Textile Fiber Products Identification Act",
+      "primary_file": "raw/us/US_16_CFR_Part_303_textile_fiber_products_identification.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-303-textile-fiber-products-identification.json",
+      "source_type": "xml",
+      "total_chars": 75583
+    },
+    {
+      "id": "us-16-cfr-423-care-labeling",
+      "market": "US",
+      "title": "16 CFR Part 423, Care Labeling of Textile Wearing Apparel and Certain Piece Goods",
+      "primary_file": "raw/us/US_16_CFR_Part_423_care_labeling.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-423-care-labeling.json",
+      "source_type": "xml",
+      "total_chars": 23553
+    },
+    {
+      "id": "us-16-cfr-500-fair-packaging-labeling",
+      "market": "US",
+      "title": "16 CFR Part 500, Regulations Under Section 4 of the Fair Packaging and Labeling Act",
+      "primary_file": "raw/us/US_16_CFR_Part_500_fair_packaging_labeling.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-500-fair-packaging-labeling.json",
+      "source_type": "xml",
+      "total_chars": 49585
+    },
+    {
+      "id": "us-16-cfr-305-energy-water-labeling",
+      "market": "US",
+      "title": "16 CFR Part 305, Energy and Water Use Labeling for Consumer Products",
+      "primary_file": "raw/us/US_16_CFR_Part_305_energy_water_labeling.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-305-energy-water-labeling.json",
+      "source_type": "xml",
+      "total_chars": 174918
+    },
+    {
+      "id": "us-16-cfr-1219-full-size-baby-cribs",
+      "market": "US",
+      "title": "16 CFR Part 1219, Safety Standard for Full-Size Baby Cribs",
+      "primary_file": "raw/us/US_16_CFR_Part_1219_full_size_baby_cribs.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1219-full-size-baby-cribs.json",
+      "source_type": "xml",
+      "total_chars": 4038
+    },
+    {
+      "id": "us-16-cfr-1220-non-full-size-baby-cribs",
+      "market": "US",
+      "title": "16 CFR Part 1220, Safety Standard for Non-Full-Size Baby Cribs",
+      "primary_file": "raw/us/US_16_CFR_Part_1220_non_full_size_baby_cribs.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1220-non-full-size-baby-cribs.json",
+      "source_type": "xml",
+      "total_chars": 5873
+    },
+    {
+      "id": "us-16-cfr-1221-play-yards",
+      "market": "US",
+      "title": "16 CFR Part 1221, Safety Standard for Play Yards",
+      "primary_file": "raw/us/US_16_CFR_Part_1221_play_yards.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1221-play-yards.json",
+      "source_type": "xml",
+      "total_chars": 2000
+    },
+    {
+      "id": "us-47-cfr-2-equipment-authorization",
+      "market": "US",
+      "title": "47 CFR Part 2, Frequency Allocations and Radio Treaty Matters; General Rules and Regulations",
+      "primary_file": "raw/us/US_47_CFR_Part_2_equipment_authorization.xml",
+      "output_path": "data/corpus/processed/US_Official_us-47-cfr-2-equipment-authorization.json",
+      "source_type": "xml",
+      "total_chars": 780857
+    },
+    {
+      "id": "us-16-cfr-300-wool-products-labeling",
+      "market": "US",
+      "title": "16 CFR Part 300, Rules and Regulations Under the Wool Products Labeling Act of 1939",
+      "primary_file": "raw/us/US_16_CFR_Part_300_wool_products_labeling.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-300-wool-products-labeling.json",
+      "source_type": "xml",
+      "total_chars": 49921
+    },
+    {
+      "id": "us-16-cfr-301-fur-products-labeling",
+      "market": "US",
+      "title": "16 CFR Part 301, Rules and Regulations Under the Fur Products Labeling Act",
+      "primary_file": "raw/us/US_16_CFR_Part_301_fur_products_labeling.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-301-fur-products-labeling.json",
+      "source_type": "xml",
+      "total_chars": 49925
+    },
+    {
+      "id": "us-16-cfr-260-green-guides",
+      "market": "US",
+      "title": "16 CFR Part 260, Guides for the Use of Environmental Marketing Claims",
+      "primary_file": "raw/us/US_16_CFR_Part_260_green_guides.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-260-green-guides.json",
+      "source_type": "xml",
+      "total_chars": 64070
+    },
+    {
+      "id": "us-16-cfr-323-made-in-usa-labeling",
+      "market": "US",
+      "title": "16 CFR Part 323, Made in USA Labeling Rule",
+      "primary_file": "raw/us/US_16_CFR_Part_323_made_in_usa_labeling.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-323-made-in-usa-labeling.json",
+      "source_type": "xml",
+      "total_chars": 3977
+    },
+    {
+      "id": "us-16-cfr-1505-electrically-operated-toys",
+      "market": "US",
+      "title": "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+      "primary_file": "raw/us/US_16_CFR_Part_1505_electrically_operated_toys.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1505-electrically-operated-toys.json",
+      "source_type": "xml",
+      "total_chars": 60811
+    },
+    {
+      "id": "us-16-cfr-1507-fireworks-devices",
+      "market": "US",
+      "title": "16 CFR Part 1507, Fireworks Devices",
+      "primary_file": "raw/us/US_16_CFR_Part_1507_fireworks_devices.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1507-fireworks-devices.json",
+      "source_type": "xml",
+      "total_chars": 6708
+    },
+    {
+      "id": "us-16-cfr-1215-infant-bath-seats",
+      "market": "US",
+      "title": "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+      "primary_file": "raw/us/US_16_CFR_Part_1215_infant_bath_seats.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1215-infant-bath-seats.json",
+      "source_type": "xml",
+      "total_chars": 1391
+    },
+    {
+      "id": "us-16-cfr-1216-infant-walkers",
+      "market": "US",
+      "title": "16 CFR Part 1216, Safety Standard for Infant Walkers",
+      "primary_file": "raw/us/US_16_CFR_Part_1216_infant_walkers.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1216-infant-walkers.json",
+      "source_type": "xml",
+      "total_chars": 1455
+    },
+    {
+      "id": "us-16-cfr-1217-toddler-beds",
+      "market": "US",
+      "title": "16 CFR Part 1217, Safety Standard for Toddler Beds",
+      "primary_file": "raw/us/US_16_CFR_Part_1217_toddler_beds.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1217-toddler-beds.json",
+      "source_type": "xml",
+      "total_chars": 1484
+    },
+    {
+      "id": "us-16-cfr-1218-bassinets-cradles",
+      "market": "US",
+      "title": "16 CFR Part 1218, Safety Standard for Bassinets and Cradles",
+      "primary_file": "raw/us/US_16_CFR_Part_1218_bassinets_cradles.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1218-bassinets-cradles.json",
+      "source_type": "xml",
+      "total_chars": 1502
+    },
+    {
+      "id": "us-16-cfr-1222-bedside-sleepers",
+      "market": "US",
+      "title": "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+      "primary_file": "raw/us/US_16_CFR_Part_1222_bedside_sleepers.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1222-bedside-sleepers.json",
+      "source_type": "xml",
+      "total_chars": 1796
+    },
+    {
+      "id": "us-16-cfr-1223-infant-swings",
+      "market": "US",
+      "title": "16 CFR Part 1223, Safety Standard for Infant Swings",
+      "primary_file": "raw/us/US_16_CFR_Part_1223_infant_swings.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1223-infant-swings.json",
+      "source_type": "xml",
+      "total_chars": 1427
+    },
+    {
+      "id": "us-16-cfr-1224-portable-bed-rails",
+      "market": "US",
+      "title": "16 CFR Part 1224, Safety Standard for Portable Bed Rails",
+      "primary_file": "raw/us/US_16_CFR_Part_1224_portable_bed_rails.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1224-portable-bed-rails.json",
+      "source_type": "xml",
+      "total_chars": 1600
+    },
+    {
+      "id": "us-16-cfr-1227-carriages-strollers",
+      "market": "US",
+      "title": "16 CFR Part 1227, Safety Standard for Carriages and Strollers",
+      "primary_file": "raw/us/US_16_CFR_Part_1227_carriages_strollers.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1227-carriages-strollers.json",
+      "source_type": "xml",
+      "total_chars": 1493
+    },
+    {
+      "id": "us-16-cfr-1229-infant-bouncer-seats",
+      "market": "US",
+      "title": "16 CFR Part 1229, Safety Standard for Infant Bouncer Seats",
+      "primary_file": "raw/us/US_16_CFR_Part_1229_infant_bouncer_seats.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1229-infant-bouncer-seats.json",
+      "source_type": "xml",
+      "total_chars": 1369
+    },
+    {
+      "id": "us-16-cfr-1231-high-chairs",
+      "market": "US",
+      "title": "16 CFR Part 1231, Safety Standard for High Chairs",
+      "primary_file": "raw/us/US_16_CFR_Part_1231_high_chairs.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1231-high-chairs.json",
+      "source_type": "xml",
+      "total_chars": 1368
+    },
+    {
+      "id": "us-16-cfr-1234-infant-sleep-products",
+      "market": "US",
+      "title": "16 CFR Part 1234, Safety Standard for Infant Sleep Products",
+      "primary_file": "raw/us/US_16_CFR_Part_1234_infant_sleep_products.xml",
+      "output_path": "data/corpus/processed/US_Official_us-16-cfr-1234-infant-sleep-products.json",
+      "source_type": "xml",
+      "total_chars": 1450
+    },
+    {
+      "id": "us-40-cfr-770-formaldehyde-composite-wood",
+      "market": "US",
+      "title": "40 CFR Part 770, Formaldehyde Standards for Composite Wood Products",
+      "primary_file": "raw/us/US_40_CFR_Part_770_formaldehyde_composite_wood.xml",
+      "output_path": "data/corpus/processed/US_Official_us-40-cfr-770-formaldehyde-composite-wood.json",
+      "source_type": "xml",
+      "total_chars": 133574
+    },
+    {
+      "id": "uk-general-product-safety-regulations-2005",
+      "market": "UK",
+      "title": "The General Product Safety Regulations 2005",
+      "primary_file": "raw/uk/UK_general_product_safety_regulations_2005.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-general-product-safety-regulations-2005.json",
+      "source_type": "xml",
+      "total_chars": 111492
+    },
+    {
+      "id": "uk-toys-safety-regulations-2011-original",
+      "market": "UK",
+      "title": "The Toys (Safety) Regulations 2011",
+      "primary_file": "raw/uk/UK_toys_safety_regulations_2011.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-toys-safety-regulations-2011-original.json",
+      "source_type": "xml",
+      "total_chars": 238100
+    },
+    {
+      "id": "uk-electrical-equipment-safety-regulations-2016-original",
+      "market": "UK",
+      "title": "The Electrical Equipment (Safety) Regulations 2016",
+      "primary_file": "raw/uk/UK_electrical_equipment_safety_regulations_2016.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-electrical-equipment-safety-regulations-2016-original.json",
+      "source_type": "xml",
+      "total_chars": 193697
+    },
+    {
+      "id": "uk-emc-regulations-2016-original",
+      "market": "UK",
+      "title": "The Electromagnetic Compatibility Regulations 2016",
+      "primary_file": "raw/uk/UK_electromagnetic_compatibility_regulations_2016.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-emc-regulations-2016-original.json",
+      "source_type": "xml",
+      "total_chars": 263097
+    },
+    {
+      "id": "uk-radio-equipment-regulations-2017-original",
+      "market": "UK",
+      "title": "The Radio Equipment Regulations 2017",
+      "primary_file": "raw/uk/UK_radio_equipment_regulations_2017.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-radio-equipment-regulations-2017-original.json",
+      "source_type": "xml",
+      "total_chars": 382342
+    },
+    {
+      "id": "uk-rohs-regulations-2012-original",
+      "market": "UK",
+      "title": "The Restriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012",
+      "primary_file": "raw/uk/UK_rohs_regulations_2012.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-rohs-regulations-2012-original.json",
+      "source_type": "xml",
+      "total_chars": 165054
+    },
+    {
+      "id": "uk-packaging-essential-requirements-regulations-2015",
+      "market": "UK",
+      "title": "The Packaging (Essential Requirements) Regulations 2015",
+      "primary_file": "raw/uk/UK_packaging_essential_requirements_regulations_2015.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-packaging-essential-requirements-regulations-2015.json",
+      "source_type": "xml",
+      "total_chars": 54600
+    },
+    {
+      "id": "uk-psti-security-requirements-regulations-2023-original",
+      "market": "UK",
+      "title": "The Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023",
+      "primary_file": "raw/uk/UK_psti_security_requirements_regulations_2023.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-psti-security-requirements-regulations-2023-original.json",
+      "source_type": "xml",
+      "total_chars": 32260
+    },
+    {
+      "id": "uk-cosmetic-products-enforcement-regulations-2013-original",
+      "market": "UK",
+      "title": "The Cosmetic Products Enforcement Regulations 2013",
+      "primary_file": "raw/uk/UK_cosmetic_products_enforcement_regulations_2013.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-cosmetic-products-enforcement-regulations-2013-original.json",
+      "source_type": "xml",
+      "total_chars": 89834
+    },
+    {
+      "id": "uk-simple-pressure-vessels-safety-regulations-2016",
+      "market": "UK",
+      "title": "The Simple Pressure Vessels (Safety) Regulations 2016",
+      "primary_file": "raw/uk/UK_simple_pressure_vessels_safety_regulations_2016.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-simple-pressure-vessels-safety-regulations-2016.json",
+      "source_type": "xml",
+      "total_chars": 339424
+    },
+    {
+      "id": "uk-pressure-equipment-safety-regulations-2016",
+      "market": "UK",
+      "title": "The Pressure Equipment (Safety) Regulations 2016",
+      "primary_file": "raw/uk/UK_pressure_equipment_safety_regulations_2016.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-pressure-equipment-safety-regulations-2016.json",
+      "source_type": "xml",
+      "total_chars": 499918
+    },
+    {
+      "id": "uk-consumer-protection-act-1987",
+      "market": "UK",
+      "title": "Consumer Protection Act 1987",
+      "primary_file": "raw/uk/UK_consumer_protection_act_1987.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-consumer-protection-act-1987.json",
+      "source_type": "xml",
+      "total_chars": 199375
+    },
+    {
+      "id": "uk-reach-enforcement-regulations-2008-original",
+      "market": "UK",
+      "title": "The REACH Enforcement Regulations 2008",
+      "primary_file": "raw/uk/UK_reach_enforcement_regulations_2008.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-reach-enforcement-regulations-2008-original.json",
+      "source_type": "xml",
+      "total_chars": 238159
+    },
+    {
+      "id": "uk-supply-of-machinery-safety-regulations-2008",
+      "market": "UK",
+      "title": "The Supply of Machinery (Safety) Regulations 2008",
+      "primary_file": "raw/uk/UK_supply_of_machinery_safety_regulations_2008.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-supply-of-machinery-safety-regulations-2008.json",
+      "source_type": "xml",
+      "total_chars": 365618
+    },
+    {
+      "id": "uk-ppe-enforcement-regulations-2018",
+      "market": "UK",
+      "title": "The Personal Protective Equipment (Enforcement) Regulations 2018",
+      "primary_file": "raw/uk/UK_ppe_enforcement_regulations_2018.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-ppe-enforcement-regulations-2018.json",
+      "source_type": "xml",
+      "total_chars": 99302
+    },
+    {
+      "id": "uk-gas-appliances-enforcement-regulations-2018",
+      "market": "UK",
+      "title": "The Gas Appliances (Enforcement) and Miscellaneous Amendments Regulations 2018",
+      "primary_file": "raw/uk/UK_gas_appliances_enforcement_regulations_2018.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-gas-appliances-enforcement-regulations-2018.json",
+      "source_type": "xml",
+      "total_chars": 83234
+    },
+    {
+      "id": "uk-ecodesign-energy-related-products-regulations-2010",
+      "market": "UK",
+      "title": "The Ecodesign for Energy-Related Products Regulations 2010",
+      "primary_file": "raw/uk/UK_ecodesign_energy_related_products_regulations_2010.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-ecodesign-energy-related-products-regulations-2010.json",
+      "source_type": "xml",
+      "total_chars": 147301
+    },
+    {
+      "id": "uk-product-safety-metrology-ukni-amendment-2020",
+      "market": "UK",
+      "title": "The Product Safety and Metrology etc. (Amendment etc.) (UK(NI) Indication) (EU Exit) Regulations 2020",
+      "primary_file": "raw/uk/UK_product_safety_metrology_ukni_amendment_2020.xml",
+      "output_path": "data/corpus/processed/UK_Official_uk-product-safety-metrology-ukni-amendment-2020.json",
+      "source_type": "xml",
+      "total_chars": 150211
+    },
+    {
+      "id": "au-projectile-toys-safety-standard-2020",
+      "market": "AU",
+      "title": "Consumer Goods (Projectile Toys) Safety Standard 2020",
+      "primary_file": "raw/au/AU_projectile_toys_safety_standard_2020.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-projectile-toys-safety-standard-2020.json",
+      "source_type": "pdf",
+      "total_chars": 19713
+    },
+    {
+      "id": "au-aquatic-toys-safety-standard-2020",
+      "market": "AU",
+      "title": "Consumer Goods (Aquatic Toys) Safety Standard 2020",
+      "primary_file": "raw/au/AU_aquatic_toys_safety_standard_2020.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-aquatic-toys-safety-standard-2020.json",
+      "source_type": "pdf",
+      "total_chars": 9311
+    },
+    {
+      "id": "au-baby-bath-aids-safety-standard-2017",
+      "market": "AU",
+      "title": "Consumer Goods (Baby Bath Aids) Safety Standard 2017",
+      "primary_file": "raw/au/AU_baby_bath_aids_safety_standard_2017.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-baby-bath-aids-safety-standard-2017.json",
+      "source_type": "pdf",
+      "total_chars": 9104
+    },
+    {
+      "id": "au-bean-bags-safety-standard-2014",
+      "market": "AU",
+      "title": "Consumer Goods (Bean Bags) Safety Standard 2014",
+      "primary_file": "raw/au/AU_bean_bags_safety_standard_2014.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-bean-bags-safety-standard-2014.json",
+      "source_type": "pdf",
+      "total_chars": 6894
+    },
+    {
+      "id": "au-swimming-flotation-aids-safety-standard-2017",
+      "market": "AU",
+      "title": "Consumer Goods (Swimming and Flotation Aids) Safety Standard 2017",
+      "primary_file": "raw/au/AU_swimming_flotation_aids_safety_standard_2017.pdf",
+      "output_path": "data/corpus/processed/AU_Official_au-swimming-flotation-aids-safety-standard-2017.json",
+      "source_type": "pdf",
+      "total_chars": 8551
+    },
+    {
+      "id": "ca-energy-efficiency-regulations-2016",
+      "market": "CA",
+      "title": "Energy Efficiency Regulations, 2016",
+      "primary_file": "raw/ca/CA_energy_efficiency_regulations_2016.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-energy-efficiency-regulations-2016.json",
+      "source_type": "xml",
+      "total_chars": 454347
+    },
+    {
+      "id": "ca-hazardous-products-act",
+      "market": "CA",
+      "title": "Hazardous Products Act",
+      "primary_file": "raw/ca/CA_hazardous_products_act.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-hazardous-products-act.json",
+      "source_type": "xml",
+      "total_chars": 70289
+    },
+    {
+      "id": "ca-hazardous-products-regulations-sor-2015-17",
+      "market": "CA",
+      "title": "Hazardous Products Regulations (SOR/2015-17)",
+      "primary_file": "raw/ca/CA_hazardous_products_regulations_SOR-2015-17.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-hazardous-products-regulations-sor-2015-17.json",
+      "source_type": "xml",
+      "total_chars": 243135
+    },
+    {
+      "id": "ca-textile-labelling-act",
+      "market": "CA",
+      "title": "Textile Labelling Act",
+      "primary_file": "raw/ca/CA_textile_labelling_act.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-textile-labelling-act.json",
+      "source_type": "xml",
+      "total_chars": 20063
+    },
+    {
+      "id": "ca-consumer-packaging-labelling-act",
+      "market": "CA",
+      "title": "Consumer Packaging and Labelling Act",
+      "primary_file": "raw/ca/CA_consumer_packaging_labelling_act.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-consumer-packaging-labelling-act.json",
+      "source_type": "xml",
+      "total_chars": 30245
+    },
+    {
+      "id": "ca-cribs-cradles-bassinets-regulations-sor-2016-152",
+      "market": "CA",
+      "title": "Cribs, Cradles and Bassinets Regulations (SOR/2016-152)",
+      "primary_file": "raw/ca/CA_cribs_cradles_bassinets_regulations_SOR-2016-152.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-cribs-cradles-bassinets-regulations-sor-2016-152.json",
+      "source_type": "xml",
+      "total_chars": 89857
+    },
+    {
+      "id": "ca-playpens-regulations-sor-2018-186",
+      "market": "CA",
+      "title": "Playpens Regulations (SOR/2018-186)",
+      "primary_file": "raw/ca/CA_playpens_regulations_SOR-2018-186.xml",
+      "output_path": "data/corpus/processed/CA_Official_ca-playpens-regulations-sor-2018-186.json",
+      "source_type": "xml",
+      "total_chars": 64206
+    },
+    {
+      "id": "cn-compulsory-product-certification-management-regulations",
+      "market": "CN",
+      "title": "Measures for the Administration of Compulsory Product Certification",
+      "primary_file": "raw/cn/CN_compulsory_product_certification_management_regulations.pdf",
+      "output_path": "data/corpus/processed/CN_Official_cn-compulsory-product-certification-management-regulations.json",
+      "source_type": "pdf",
+      "total_chars": 8579
+    },
+    {
+      "id": "cn-consumer-product-recall-interim-provisions",
+      "market": "CN",
+      "title": "Interim Provisions on the Administration of Consumer Product Recalls",
+      "primary_file": "raw/cn/CN_consumer_product_recall_interim_provisions.pdf",
+      "output_path": "data/corpus/processed/CN_Official_cn-consumer-product-recall-interim-provisions.json",
+      "source_type": "pdf",
+      "total_chars": 3661
+    },
+    {
+      "id": "cn-product-quality-supervision-sampling-interim-measures",
+      "market": "CN",
+      "title": "Interim Measures for the Administration of Product Quality Supervision and Random Inspection",
+      "primary_file": "raw/cn/CN_product_quality_supervision_sampling_interim_measures.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-product-quality-supervision-sampling-interim-measures.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-industrial-product-production-quality-safety-responsibility-regulation",
+      "market": "CN",
+      "title": "Provisions on the Supervision and Administration of Quality and Safety Responsibilities of Industrial Product Production Units",
+      "primary_file": "raw/cn/CN_industrial_product_production_quality_safety_responsibility_regulation.pdf",
+      "output_path": "data/corpus/processed/CN_Official_cn-industrial-product-production-quality-safety-responsibility-regulation.json",
+      "source_type": "pdf",
+      "total_chars": 4121
+    },
+    {
+      "id": "cn-industrial-product-sales-quality-safety-responsibility-regulation",
+      "market": "CN",
+      "title": "Provisions on the Supervision and Administration of Quality and Safety Responsibilities of Industrial Product Sellers",
+      "primary_file": "raw/cn/CN_industrial_product_sales_quality_safety_responsibility_regulation.pdf",
+      "output_path": "data/corpus/processed/CN_Official_cn-industrial-product-sales-quality-safety-responsibility-regulation.json",
+      "source_type": "pdf",
+      "total_chars": 4050
+    },
+    {
+      "id": "cn-ccc-electric-bicycle-battery-charger-2024",
+      "market": "CN",
+      "title": "Announcement on CCC Management for Lithium-ion Batteries and Chargers for Electric Bicycles",
+      "primary_file": "raw/cn/CN_ccc_electric_bicycle_battery_charger_2024.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-ccc-electric-bicycle-battery-charger-2024.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-ccc-commercial-gas-burning-appliances-2024",
+      "market": "CN",
+      "title": "Announcement on CCC Management for Commercial Gas-burning Appliances and Other Products",
+      "primary_file": "raw/cn/CN_ccc_commercial_gas_burning_appliances_2024.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-ccc-commercial-gas-burning-appliances-2024.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-product-quality-law",
+      "market": "CN",
+      "title": "Product Quality Law of the People's Republic of China",
+      "primary_file": "raw/cn/CN_product_quality_law.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-product-quality-law.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-certification-and-accreditation-regulation",
+      "market": "CN",
+      "title": "Regulation of the People's Republic of China on Certification and Accreditation",
+      "primary_file": "raw/cn/CN_certification_and_accreditation_regulation.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-certification-and-accreditation-regulation.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-rohs-hazardous-substances-electrical-electronic-products",
+      "market": "CN",
+      "title": "Administrative Measures for the Restriction of the Use of Hazardous Substances in Electrical and Electronic Products",
+      "primary_file": "raw/cn/CN_rohs_hazardous_substances_electrical_electronic_products.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-rohs-hazardous-substances-electrical-electronic-products.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-rohs-compliance-management-catalogue-2018",
+      "market": "CN",
+      "title": "Compliance Management Catalogue for the Restriction of Hazardous Substances in Electrical and Electronic Products",
+      "primary_file": "raw/cn/CN_rohs_compliance_management_catalogue_2018.pdf",
+      "output_path": "data/corpus/processed/CN_Official_cn-rohs-compliance-management-catalogue-2018.json",
+      "source_type": "pdf",
+      "total_chars": 3308
+    },
+    {
+      "id": "cn-defective-consumer-product-recall-management",
+      "market": "CN",
+      "title": "Measures for the Administration of Recalls of Defective Consumer Products",
+      "primary_file": "raw/cn/CN_defective_consumer_product_recall_management.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-defective-consumer-product-recall-management.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-consumer-rights-protection-law-implementation-regulations-2024",
+      "market": "CN",
+      "title": "Implementation Regulations for the Law on the Protection of Consumer Rights and Interests",
+      "primary_file": "raw/cn/CN_consumer_rights_protection_law_implementation_regulations_2024.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-consumer-rights-protection-law-implementation-regulations-2024.json",
+      "source_type": "html",
+      "total_chars": 19
+    },
+    {
+      "id": "cn-reach-chemical-substance-environmental-management",
+      "market": "CN",
+      "title": "Measures for Environmental Management Registration of New Chemical Substances",
+      "primary_file": "raw/cn/CN_new_chemical_substance_environmental_management_registration.html",
+      "output_path": "data/corpus/processed/CN_Official_cn-reach-chemical-substance-environmental-management.json",
+      "source_type": "html",
+      "total_chars": 19
+    }
+  ],
+  "failures": [],
+  "dry_run": false
 }

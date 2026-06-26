@@ -1,0 +1,54 @@
+{
+  "id": "nz-product-safety-bicycle-standard",
+  "title": "Bicycle mandatory product safety standard",
+  "fileName": "NZ_bicycle_standard.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/nz/NZ_bicycle_standard.html",
+  "sourceType": "html",
+  "region": "NZ",
+  "pageCount": 1,
+  "totalChars": 624,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 624,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "About the standard Bicycles must: meet design and performance requirements to ensure they are safe and roadworthy have warning labels come with an owner's manual. The standard sets out minimum conditi"
+    }
+  ],
+  "tables": [],
+  "rawText": "About the standard Bicycles must: meet design and performance requirements to ensure they are safe and roadworthy have warning labels come with an owner's manual. The standard sets out minimum conditions for the design, assembly and performance of pedal bicycles (in relation to handlebars, seats, brakes etc). It applies to: new pedal bicycles partially assembled pedal bicycles and sub-assemblies of pedal bicycles that have a wheel base of 640mm or greater and are supplied by a retailer, importer, distributor or manufacturer. More information Pedal bicycles – Commerce Commission Te Komihana Tauhokohoko (external link)",
+  "metadata": {
+    "detectedMarkets": [
+      "NZ"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "general_consumer_products"
+    ],
+    "charCount": 624,
+    "region": "NZ",
+    "supplement_id": "nz-product-safety-bicycle-standard",
+    "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/bicycle-standard",
+    "content_url": "",
+    "official_channel": "Product Safety New Zealand",
+    "why_added": "New Zealand bicycle product safety standard page.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/nz/NZ_bicycle_standard.html"
+    ],
+    "primary_file": "raw/nz/NZ_bicycle_standard.html",
+    "product_categories": [
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

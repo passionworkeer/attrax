@@ -1,0 +1,80 @@
+{
+  "id": "sg-cpso-cpsr-info-booklet",
+  "title": "Consumer Protection (Safety Requirements) Regulations information booklet",
+  "fileName": "SG_cpso_cpsr_overview.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/sg/SG_cpso_cpsr_overview.html",
+  "sourceType": "html",
+  "region": "SG",
+  "pageCount": 1,
+  "totalChars": 2121,
+  "hasTables": true,
+  "tableCount": 1,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 2121,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "Consumer Protection (Safety Requirements) Regulations Consumer Protection (Safety Requirements) Regulations Overview of CPSR The Consumer Protection (Safety Requirements) Regulations (CPSR) requires 3"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "Steps",
+        "Description"
+      ],
+      [
+        "1",
+        "Visit go.gov.sg/safety-mark and\nclick on \"Register of Registered Controlled Goods\""
+      ],
+      [
+        "2",
+        "Key in either the product model number or the 8-digit registration number\nfound on the SAFETY Mark"
+      ],
+      [
+        "3",
+        "Check that the product information in the search results tallies with\nthe product. Should there be no matches, contact us at our online form ."
+      ]
+    ]
+  ],
+  "rawText": "Consumer Protection (Safety Requirements) Regulations Consumer Protection (Safety Requirements) Regulations Overview of CPSR The Consumer Protection (Safety Requirements) Regulations (CPSR) requires 33 categories of household electrical, electronic and gas appliances & accessories also known as Controlled Goods, to be tested to specified safety standards, registered with the authority, and affixed with the SAFETY Mark before they can be sold in Singapore. Registration of Controlled Goods under the CPSR is based on Certificates of Conformity (CoC) issued by designated third party Conformity Assessment Bodies (CABs), or Supplier’s Declaration of Conformity (SDoC) declared by Registered Suppliers. Once the model of a particular Controlled Good has been registered, it can then be advertised for supply and/or supplied in Singapore. Click to find out more about the 33 categories of Controlled Goods under CPSR. Suppliers must also be a Registered Supplier before supplying the Controlled Goods. Click to find out more on how to apply to be Registered Supplier and how to register Controlled Goods . Any person found guilty of selling unregistered Controlled Goods, is liable upon conviction, to a fine not exceeding S$10,000 or imprisonment for a term not exceeding two years or both. What is the SAFETY Mark? The SAFETY Mark helps consumers and suppliers identify registered Controlled Goods. Controlled Goods must carry the SAFETY Mark on the product or the product's packaging. The mark consists of a “safety logo” and the words “SAFETY MARK” in a rectangle on the right. These goods can also be traced with a unique 8-digit registration number to the registrant and the registered models. You may check the validity of the product's SAFETY Mark in 3 easy steps: Steps Description 1 Visit go.gov.sg/safety-mark and click on \"Register of Registered Controlled Goods\" 2 Key in either the product model number or the 8-digit registration number found on the SAFETY Mark 3 Check that the product information in the search results tallies with the product. Should there be no matches, contact us at our online form .",
+  "metadata": {
+    "detectedMarkets": [
+      "SG"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "conformity",
+      "scope_classification"
+    ],
+    "productCategories": [
+      "controlled_goods",
+      "electronics",
+      "home_appliances"
+    ],
+    "charCount": 2121,
+    "region": "SG",
+    "supplement_id": "sg-cpso-cpsr-info-booklet",
+    "source_url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/",
+    "content_url": "",
+    "official_channel": "Consumer Product Safety Office Singapore",
+    "why_added": "Singapore controlled-goods CPSR safety mark and supplier obligation source pack.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/sg/SG_cpso_cpsr_overview.html",
+      "raw/sg/SG_cpso_cpsr_info_booklet.pdf"
+    ],
+    "primary_file": "raw/sg/SG_cpso_cpsr_overview.html",
+    "product_categories": [
+      "controlled_goods",
+      "electronics",
+      "home_appliances"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "conformity",
+      "scope_classification"
+    ]
+  }
+}

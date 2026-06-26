@@ -1,0 +1,62 @@
+{
+  "id": "in-cpcb-plastic-waste-management-rules",
+  "title": "Plastic Waste Management Rules, 2016 and amendments",
+  "fileName": "IN_cpcb_plastic_waste_rules.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/in/IN_cpcb_plastic_waste_rules.html",
+  "sourceType": "html",
+  "region": "IN",
+  "pageCount": 1,
+  "totalChars": 288,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 288,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Environmental Acts & Rules Environment Protection Water Pollution Air Pollution Noise Pollution Waste Management Hazardous waste Municipal Solid waste Biomedical waste Plastic waste E-waste Constructi"
+    }
+  ],
+  "tables": [],
+  "rawText": "Environmental Acts & Rules Environment Protection Water Pollution Air Pollution Noise Pollution Waste Management Hazardous waste Municipal Solid waste Biomedical waste Plastic waste E-waste Construction & Demolition waste Plastic waste Management Rules Plastic Waste Management Rules 2016",
+  "metadata": {
+    "detectedMarkets": [
+      "IN"
+    ],
+    "regulatoryTypes": [
+      "packaging",
+      "sustainability",
+      "waste"
+    ],
+    "productCategories": [
+      "packaging",
+      "plastics",
+      "general_consumer_products"
+    ],
+    "charCount": 288,
+    "region": "IN",
+    "supplement_id": "in-cpcb-plastic-waste-management-rules",
+    "source_url": "https://cpcb.nic.in/plastic-waste-rules/",
+    "content_url": "",
+    "official_channel": "Central Pollution Control Board, Government of India",
+    "why_added": "India plastic packaging and EPR framework for packaging-heavy product categories.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/in/IN_cpcb_plastic_waste_rules.html",
+      "raw/in/IN_plastic_waste_management_rules_2016.pdf",
+      "raw/in/IN_plastic_waste_management_rules_2022_amendment.pdf"
+    ],
+    "primary_file": "raw/in/IN_cpcb_plastic_waste_rules.html",
+    "product_categories": [
+      "packaging",
+      "plastics",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "packaging",
+      "sustainability",
+      "waste"
+    ]
+  }
+}
