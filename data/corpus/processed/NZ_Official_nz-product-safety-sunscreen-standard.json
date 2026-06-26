@@ -1,0 +1,58 @@
+{
+  "id": "nz-product-safety-sunscreen-standard",
+  "title": "Sunscreen mandatory product safety standard",
+  "fileName": "NZ_sunscreen_standard.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/nz/NZ_sunscreen_standard.html",
+  "sourceType": "html",
+  "region": "NZ",
+  "pageCount": 1,
+  "totalChars": 1372,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1372,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "About the standard Sunscreen products must provide the protection advertised on the label and must label products clearly with: the SPF in durable and legible characters, clear instructions for produc"
+    }
+  ],
+  "tables": [],
+  "rawText": "About the standard Sunscreen products must provide the protection advertised on the label and must label products clearly with: the SPF in durable and legible characters, clear instructions for product use such as how to apply the product, and other additional information depending on the product type as required in the AS/NZ 2604:2012 (external link) standard. The standard applies to: sunscreen (products where the primary purpose is to protect the skin from ultraviolet radiation). insect repellents with a labelled SPF of 4 or more, and skin care products as defined under the safety standard (which includes moisturisers, oils creams and gels) with a labelled SPF greater than 15. All relevant products manufactured or imported after 8 March 2022 must comply with the new Sunscreen Safety Standard. Sunscreen products manufactured in or imported into New Zealand before 8 March 2022 do not need to meet the specifics of the AS/NZ 2604:2021 standard until 8 September 2023. However, The Fair Trading Act still requires that any product with advertised claims must meet those claims. Any sunscreen with an advertised SPF rating must still meet that advertised level of protection. The Sunscreen (Product Safety Standard) Act 2021 is enforced by the Commerce Commission. More information Sunscreen products (external link) – Commerce Commission Te Komihana Tauhokohoko",
+  "metadata": {
+    "detectedMarkets": [
+      "NZ"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ],
+    "productCategories": [
+      "cosmetics",
+      "general_consumer_products"
+    ],
+    "charCount": 1372,
+    "region": "NZ",
+    "supplement_id": "nz-product-safety-sunscreen-standard",
+    "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/sunscreen-standard",
+    "content_url": "",
+    "official_channel": "Product Safety New Zealand",
+    "why_added": "New Zealand sunscreen product safety standard page.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/nz/NZ_sunscreen_standard.html"
+    ],
+    "primary_file": "raw/nz/NZ_sunscreen_standard.html",
+    "product_categories": [
+      "cosmetics",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ]
+  }
+}

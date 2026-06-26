@@ -1,0 +1,80 @@
+{
+  "id": "in-cdsco-cosmetics-rules-2020",
+  "title": "Cosmetics Rules, 2020",
+  "fileName": "IN_cdsco_cosmetics_rules_2020_page.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/in/IN_cdsco_cosmetics_rules_2020_page.html",
+  "sourceType": "html",
+  "region": "IN",
+  "pageCount": 1,
+  "totalChars": 165,
+  "hasTables": true,
+  "tableCount": 1,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 165,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "S.no Title Release Date Download Pdf Pdf Size 1 THE COSMETICS RULES 2020 2022-Nov-21 774 KB 2 CR_G.S.R. 763(E) dt_15.12.2020_COSMETICS RULES 2020 2020-Dec-15 2819 KB"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "S.no",
+        "Title",
+        "Release Date",
+        "Download Pdf",
+        "Pdf Size"
+      ],
+      [
+        "1",
+        "THE COSMETICS RULES 2020",
+        "2022-Nov-21",
+        "774 KB"
+      ],
+      [
+        "2",
+        "CR_G.S.R. 763(E) dt_15.12.2020_COSMETICS RULES 2020",
+        "2020-Dec-15",
+        "2819 KB"
+      ]
+    ]
+  ],
+  "rawText": "S.no Title Release Date Download Pdf Pdf Size 1 THE COSMETICS RULES 2020 2022-Nov-21 774 KB 2 CR_G.S.R. 763(E) dt_15.12.2020_COSMETICS RULES 2020 2020-Dec-15 2819 KB",
+  "metadata": {
+    "detectedMarkets": [
+      "IN"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ],
+    "productCategories": [
+      "cosmetics"
+    ],
+    "charCount": 165,
+    "region": "IN",
+    "supplement_id": "in-cdsco-cosmetics-rules-2020",
+    "source_url": "https://cdsco.gov.in/opencms/opencms/en/Acts-and-rules/Cosmetics-Rules/",
+    "content_url": "",
+    "official_channel": "Central Drugs Standard Control Organisation, Government of India",
+    "why_added": "India cosmetics import, registration, labelling, and safety rules.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/in/IN_cdsco_cosmetics_rules_2020_page.html",
+      "raw/in/IN_cdsco_cosmetics_rules_2020.pdf",
+      "raw/in/IN_cdsco_cosmetics_rules_2020_gsr_763.pdf"
+    ],
+    "primary_file": "raw/in/IN_cdsco_cosmetics_rules_2020_page.html",
+    "product_categories": [
+      "cosmetics"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "id": "uk-product-safety-advice-businesses",
+  "title": "Product safety advice for businesses",
+  "fileName": "UK_product_safety_advice_for_businesses.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_global_official_sources/raw/uk/UK_product_safety_advice_for_businesses.html",
+  "sourceType": "html",
+  "region": "UK",
+  "pageCount": 1,
+  "totalChars": 6610,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 6610,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "From: Office for Product Safety and Standards Published 29 March 2019 Last updated 13 December 2024 — See all updates Get emails about this page Print this page Overview If you make, import, distribut"
+    }
+  ],
+  "tables": [],
+  "rawText": "From: Office for Product Safety and Standards Published 29 March 2019 Last updated 13 December 2024 — See all updates Get emails about this page Print this page Overview If you make, import, distribute or sell consumer products in the UK, you are responsible for making sure they are safe for consumers to use and following the legal requirements in relation to labelling. You could face action if a product is found to be unsafe or causes harm to consumers, including legal action. Understanding the law on product safety Products should only be sold if their compliance with product safety regulations has been demonstrated appropriately. The General Product Safety Regulations 2005 (GPSR) require all products to be safe in their normal or reasonably foreseeable usage and enforcement authorities have powers to take appropriate action when this obligation isn’t met. From 13 December 2024 Regulation (EU) 2023/988 on general product safety applies in Northern Ireland. There are also specific regulations for some product sectors, setting out essential safety requirements. While they cover the UK, their provisions are applied differently in Great Britain and Northern Ireland. Consequently, there is separate guidance for businesses selling products in these areas. This will continue to be the case while the Windsor Framework is in place. Where there’s crossover with the GPSR, the product-specific legislation usually takes precedence. Product safety for businesses: A to Z of industry guidance Demonstrating compliance Manufacturers and importers placing products on the UK market need to demonstrate that they comply with relevant safety requirements. This basically involves: minimising the risks associated with the product generating and keeping records of associated technical documentation placing appropriate labelling on the product providing instructions on how to use it safely The use of agreed standards covering aspects of the product or its production process – where these exist – is one way to demonstrate compliance. Businesses bringing products into Great Britain from the EU are likely to be importers rather than distributors, with extra legal responsibilities for demonstrating compliance. Read guidance on product safety law compliance for manufacturers and importers If your business sells consumer products in the UK, you must not sell products that you know – or should have known – are unsafe. You need to keep records identifying the suppliers of the products you sell to allow their origins to be traced. If you’re made aware of any safety risks or consumer incidents related to a product you’ve sold, you have a legal duty to report these to the manufacturer, supplier or your local Trading Standards service. If you don’t do this, you could become liable in the event of harm to a person or damage to property. Visit Business Companion for more information on product safety for retailers and wholesalers. Corrective action, recalls and safety incidents Businesses that make, import, distribute or sell consumer products in the UK are all responsible for their safety. For example, if a manufacturer discovers that a product it has sold represents a safety risk, it must take action to remedy the issue. This could include issuing new instructions, modifying the product, or requiring consumers to stop using the product and return it for a refund. The manufacturer must contact all the consumers it knows are affected to alert them to the issue and tell them what they should do. The Code of Practice on Product Recalls provides best practice guidance on how businesses should prepare for and respond to product safety incidents. Product safety liability and insurance Manufacturers, and sometimes others involved in a product’s supply chain, are liable for their products under the Consumer Protection Act 1987. This means that if the product is unsafe and causes personal injury or death to any person, or damage to private property, you could be sued for compensation. For this reason, many businesses take out appropriate product liability insurance. Note that this is not the same as general business or employer’s liability insurance. Visit Business Companion for more information on consumer rights in relation to supply and supply of goods Read guidance on non-disclosure clauses in compensation settlement agreements Product safety advice and enforcement Advice and support for manufacturers and importers is available in Great Britain from Local Authority Trading Standards, and in Northern Ireland from Local Authority Environmental Health. Information is also available from Business Companion . Contact your local authority service to request advice or to set up a primary authority arrangement covering product safety (enabling your business to form a legal partnership with one local authority, which then provides assured and tailored advice on complying with regulations that local regulators must respect). Local authorities are responsible for investigating allegations of non-compliance, conducting market surveillance by examining and testing products to check they are safe, and prosecuting serious offences. They have a full suite of powers to enter premises, inspect goods, issue notices, obtain evidence, request technical documents, and more. The Office for Product Safety and Standards (OPSS) enforcement staff are authorised with similar investigatory powers covering the UK and will investigate allegations of non-compliance that are national, novel or contentious in scope. We work closely with local authorities to support their work and to share intelligence. We take a risk-based and proportionate approach to our enforcement activities, operate under the Regulators’ Code and follow the OPSS enforcement policy. OPSS produces guidance notes for businesses covering a wide range of product safety legislation . Trade associations providing advice on specific products British Blind and Shutter Organisation Ladder Association Updates to this page Published 29 March 2019 Last updated 13 December 2024 + show all updates 13 December 2024 Page updated to reflect the introduction of new general product safety regulations in Northern Ireland, with other minor amendments. 28 January 2021 Business Readiness Leaflet providing guidance to business on following the end of the EU Transition Period, has been added 20 September 2019 Link added to guidance on how to place manufactured goods on the UK market after Brexit. 29 March 2019 First published. Sign up for emails or print this page Get emails about this page Print this page Contents",
+  "metadata": {
+    "detectedMarkets": [
+      "UK"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "general_consumer_products"
+    ],
+    "charCount": 6610,
+    "region": "UK",
+    "supplement_id": "uk-product-safety-advice-businesses",
+    "source_url": "https://www.gov.uk/guidance/product-safety-advice-for-businesses",
+    "content_url": "",
+    "official_channel": "GOV.UK / OPSS",
+    "why_added": "General UK consumer-product safety obligations, recalls, reporting, enforcement, and labelling context.",
+    "collected_at": "2026-05-26T17:02:25+08:00",
+    "raw_files": [
+      "raw/uk/UK_product_safety_advice_for_businesses.html"
+    ],
+    "primary_file": "raw/uk/UK_product_safety_advice_for_businesses.html",
+    "product_categories": [
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "market_surveillance"
+    ]
+  }
+}

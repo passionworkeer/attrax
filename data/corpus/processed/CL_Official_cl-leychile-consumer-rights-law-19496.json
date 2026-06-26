@@ -1,0 +1,61 @@
+{
+  "id": "cl-leychile-consumer-rights-law-19496",
+  "title": "Law No. 19,496 on consumer rights protection",
+  "fileName": "CL_leychile_consumer_rights_law_19496.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/cl/CL_leychile_consumer_rights_law_19496.html",
+  "sourceType": "html",
+  "region": "CL",
+  "pageCount": 1,
+  "totalChars": 189,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 189,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Ley Chile - Biblioteca del Congreso Nacional Ley Chile Este proceso demora demasiado, es probable que su conexión esté muy lenta o que su navegador no sea compatible con nuestra aplicación."
+    }
+  ],
+  "tables": [],
+  "rawText": "Ley Chile - Biblioteca del Congreso Nacional Ley Chile Este proceso demora demasiado, es probable que su conexión esté muy lenta o que su navegador no sea compatible con nuestra aplicación.",
+  "metadata": {
+    "detectedMarkets": [
+      "CL"
+    ],
+    "regulatoryTypes": [
+      "labelling",
+      "market_surveillance",
+      "documentation"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "electronics",
+      "packaging"
+    ],
+    "charCount": 189,
+    "region": "CL",
+    "supplement_id": "cl-leychile-consumer-rights-law-19496",
+    "source_url": "https://www.leychile.cl/Navegar?idNorma=61438",
+    "content_url": "",
+    "official_channel": "Ley Chile, Biblioteca del Congreso Nacional de Chile",
+    "why_added": "Chile consumer rights and product/service information law from official Ley Chile source.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/cl/CL_leychile_consumer_rights_law_19496.html",
+      "raw/cl/CL_leychile_consumer_rights_law_19496.pdf"
+    ],
+    "primary_file": "raw/cl/CL_leychile_consumer_rights_law_19496.html",
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "packaging"
+    ],
+    "regulatory_types": [
+      "labelling",
+      "market_surveillance",
+      "documentation"
+    ]
+  }
+}

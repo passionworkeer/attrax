@@ -1,0 +1,54 @@
+{
+  "id": "us-16-cfr-1216-infant-walkers",
+  "title": "16 CFR Part 1216, Safety Standard for Infant Walkers",
+  "fileName": "US_16_CFR_Part_1216_infant_walkers.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/us/US_16_CFR_Part_1216_infant_walkers.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 1455,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1455,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1216—SAFETY STANDARD FOR INFANT WALKERS Authority: 15 U.S.C. 2056a. Source: 75 FR 35273, June 21, 2010, unless otherwise noted. § 1216.1 Scope. This part 1216 establishes a consumer product safet"
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1216—SAFETY STANDARD FOR INFANT WALKERS Authority: 15 U.S.C. 2056a. Source: 75 FR 35273, June 21, 2010, unless otherwise noted. § 1216.1 Scope. This part 1216 establishes a consumer product safety standard for infant walkers manufactured or imported on or after December 21, 2010. § 1216.2 Requirements for infant walkers. Each infant walker must comply with all applicable provisions of ASTM F977-22e1, Standard Consumer Safety Specification for Infant Walkers. ASTM F977-22e1, Standard Consumer Safety Specification for Infant Walkers, approved June 15, 2022 is incorporated by reference into this section with the approval of the Director of the Federal Register under 5 U.S.C. 552(a) and 1 CFR part 51. This material is available for inspection at the Office of the Secretary, U.S. Consumer Product Safety Commission at: Room 820, 4330 East West Highway, Bethesda, MD 20814, telephone (301) 504-7479, email cpsc-os@cpsc.gov, or at the National Archives and Records Administration (NARA). For information on the availability of this material at NARA, email fr.inspection@nara.gov, or go to: www.archives.gov/federal-register/cfr/ibr-locations.html. A read-only copy of the standard is available for viewing on the ASTM website at www.astm.org/READINGLIBRARY/. You may obtain a copy from ASTM International, 100 Barr Harbor Drive, P.O. Box C700, West Conshohocken, PA 19428-2959; telephone (610) 832-9585; www.astm.org. [87 FR 73245, Nov. 29, 2022]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "children_products"
+    ],
+    "charCount": 1455,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1216-infant-walkers",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1216",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US durable infant product safety standard for infant walkers.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1216_infant_walkers.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1216_infant_walkers.xml",
+    "product_categories": [
+      "children_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "sa-saso-technical-regulations-portal",
+  "title": "SASO technical regulations portal",
+  "fileName": "SA_saso_technical_regulations_portal.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/sa/SA_saso_technical_regulations_portal.html",
+  "sourceType": "html",
+  "region": "SA",
+  "pageCount": 1,
+  "totalChars": 2576,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 2576,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Dear visitor We inform you that the site services will be temporarily out of service on Monday 5/11/2020 from 5 AM to 8 AM due to scheduled system updates procedures Follow Links to official Saudi web"
+    }
+  ],
+  "tables": [],
+  "rawText": "Dear visitor We inform you that the site services will be temporarily out of service on Monday 5/11/2020 from 5 AM to 8 AM due to scheduled system updates procedures Follow Links to official Saudi websites end with gov.sa All links to official websites of government agencies in the Kingdom of Saudi Arabia end with .gov.sa Government websites use the HTTPS protocol for encryption and security. Secure websites in the Kingdom of Saudi Arabia use the HTTPS protocol for encryption. Registered with the Digital Government Authority under number : 20250414141 All Textile Construction and building Mechanical Electrical chemistry Services Items List of Standards Relevant to the Implementation of the Technical Regulation for Autonomou... ​​ ​Approval Date: 17/07/2025​ ​Publication Date: 31/10/2025 ​​​Mandatory application​: 29/04/2026​ ​ Technical Regulation for Autonomous Vehicles ​Approval Date: 17/07/2025​ Publication Date: 31/10/2025 ​​​Mandatory application​: 29/04/2026​ Technical Regulations for Tanks - Part 3: Dry Gas Transport Tanks ​Approval Date: 03/10/2024​ ​Publication Date: 06/12/2024 ​​Mandatory application​: 06/06/2025​ ​​ Technical Regulation for Special-Use Vehicle Equipment and Accessories ​​ ​Approval Date: 27/06/2024​ ​​Publication Date: 23/08/2024​ Technical Regulation for Communications and Information Technology Devices ​Approval Date: 28/12/2023​ ​​Publication Date: 16/08/2024​ ​ Technical Regulation for General Requirements for Machinery Safety ​Approval Date: 28/12/2023​ ​​Publication Date: 29/03/2024​ General Regulation for Conformity Models ​Approval Date: 28/09/2023​ ​​Publication Date: 17/11/2023​ ​ Technical Regulation for Equipment and Protective Systems Intended for Use in Potentially ... ​Approval Date: 28/09/2023​ ​Publication Date: 17/11/2023​ ​ Technical Regulation for Electromagnetic Compatibility ​Approval Date: 28/09/2023​ ​Publication Date: 17/11/2023​ ​ Technical Regulation for Cableway Installations ​Approval Date: 14/07/2023​ ​Publication Date: 25/08/2023​ Technical Regulation of the Requirements for Standby, off Mode Electric Power Consumption ... ​Approval Date: 06/04/2023​ ​Publication Date: 19/05/2023​ Technical Regulation for Watercrafts ​Approval Date: 06/04/2023​ ​Publication Date: 19/05/2023​ Page Content ​​​​​ Last modified 29 May 2021 Rate content Rating count: 21 This new feature allows you to give voice commands to the gateway and the gateway will interact with you according to the voice command you give. Voice commands list: Go to News Go to e-services Go to the photo library Site tour",
+  "metadata": {
+    "detectedMarkets": [
+      "SA"
+    ],
+    "regulatoryTypes": [
+      "scope_classification",
+      "conformity",
+      "technical_standard"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "electronics",
+      "textiles",
+      "industrial_products"
+    ],
+    "charCount": 2576,
+    "region": "SA",
+    "supplement_id": "sa-saso-technical-regulations-portal",
+    "source_url": "https://www.saso.gov.sa/en/laws-and-regulations/technical_regulations/pages/default.aspx",
+    "content_url": "",
+    "official_channel": "Saudi Standards, Metrology and Quality Organization",
+    "why_added": "Saudi Arabia official technical regulation index for textiles, electrical, mechanical, chemical, and other products.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/sa/SA_saso_technical_regulations_portal.html"
+    ],
+    "primary_file": "raw/sa/SA_saso_technical_regulations_portal.html",
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "textiles",
+      "industrial_products"
+    ],
+    "regulatory_types": [
+      "scope_classification",
+      "conformity",
+      "technical_standard"
+    ]
+  }
+}

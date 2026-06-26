@@ -1,0 +1,58 @@
+{
+  "id": "gcc-gso-conformity-main-portal",
+  "title": "GSO conformity portal",
+  "fileName": "GCC_GSO_conformity_portal.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/gcc/GCC_GSO_conformity_portal.html",
+  "sourceType": "html",
+  "region": "GCC",
+  "pageCount": 1,
+  "totalChars": 2330,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 2330,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Certification can be a useful tool to add credibility, by demonstrating that your product or service meets the expectations of your customers Conformity It has been a giant leap forward when the GCC S"
+    }
+  ],
+  "tables": [],
+  "rawText": "Certification can be a useful tool to add credibility, by demonstrating that your product or service meets the expectations of your customers Conformity It has been a giant leap forward when the GCC Standardization Organization (GSO) has decided to implement the RCAS project in November 2005. Such enormous step by GSO aims at advancing the Gulf Cooperation Council (GCC) goals through the harmonization, integration and building of the standardization areas and quality infrastructure in the Member States. RCAS stands for the initials of “Regional Conformity Assessment Scheme”. The project has been planned to focus on the current procedures and practices to verify the conformity of the imported or the exported local produced products. The outcomes of the project have evolved to comprise developing scheme to enhance such practices in the context of a harmonized unified regional system. The target of the system should be serving the national and regional interests of GCC member states, so as to streamline the commercial activities of members inter alia and with other countries and regions as well. In accordance with the decision of the Ministerial Council of the GCC Standardization Organization (GSO) held in Kuwait on 12th October 2004 to have a common GCC Conformity Certificate based on the relevant Gulf Standards for new motor vehicles and tires, the GCC Conformity Certificate for Motor Vehicles and Tires will be verified and approved by the GSO’s Head quarters starting January 1st, 2005. Conformity Products bearing the G-Mark registered by Gulf Notified Bodies. Browse G-Mark Products Conformity Certificates and Fuel Efficiency Labels for Motor Vehicles, Motorcycles and Tyres. Apply & Download Your CCR Designation of Conformity Assessment Bodies as Gulf, Bahrain & Oman Notified Bodies. Apply Notification Energy Efficiency Rating Labels for Air Conditioners in Bahrain & Oman. Browse Registered Products Gulf Conformity Committees, Membership, Messages, Documents... Browse Conformity Committees The Gulf Association for Laboratories (GCCLAB) is an open network for laboratories and supporting companies operating in the GCC member states. It was established as an initiative of the GSO and the recommendations of the first GCC conference for Laboratories proficiency (Dubai, 13 March 2013) View GCCLAB",
+  "metadata": {
+    "detectedMarkets": [
+      "GCC"
+    ],
+    "regulatoryTypes": [
+      "conformity",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "electronics",
+      "industrial_products"
+    ],
+    "charCount": 2330,
+    "region": "GCC",
+    "supplement_id": "gcc-gso-conformity-main-portal",
+    "source_url": "https://www.gso.org.sa/en/conformity/",
+    "content_url": "",
+    "official_channel": "Gulf Cooperation Council Standardization Organization",
+    "why_added": "GSO conformity services and committee entry point for GCC product compliance.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/gcc/GCC_GSO_conformity_portal.html"
+    ],
+    "primary_file": "raw/gcc/GCC_GSO_conformity_portal.html",
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "industrial_products"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "market_surveillance"
+    ]
+  }
+}

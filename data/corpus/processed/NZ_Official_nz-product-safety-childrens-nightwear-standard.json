@@ -1,0 +1,60 @@
+{
+  "id": "nz-product-safety-childrens-nightwear-standard",
+  "title": "Children's nightwear mandatory product safety standard",
+  "fileName": "NZ_childrens_nightwear_standard.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/nz/NZ_childrens_nightwear_standard.html",
+  "sourceType": "html",
+  "region": "NZ",
+  "pageCount": 1,
+  "totalChars": 638,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 638,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "About the standard All new and used children's nightwear covered by the standard must have a fire hazard information label. The fire hazard label: should be easy to see must be on the inside back neck"
+    }
+  ],
+  "tables": [],
+  "rawText": "About the standard All new and used children's nightwear covered by the standard must have a fire hazard information label. The fire hazard label: should be easy to see must be on the inside back neck of a top or one-piece garment or, in pants, at the waist, waistband or top of the back seam must have fire hazard and size information clearly visible on the face side of the label must be permanently fixed on the nightwear is white for low fire hazard fabrics and those that are snug fitting, or red for fabrics with a higher fire risk. More information Children's nightwear — Commerce Commission Te Komihana Tauhokohoko (external link)",
+  "metadata": {
+    "detectedMarkets": [
+      "NZ"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "flammability",
+      "labelling"
+    ],
+    "productCategories": [
+      "children_products",
+      "apparel",
+      "textiles"
+    ],
+    "charCount": 638,
+    "region": "NZ",
+    "supplement_id": "nz-product-safety-childrens-nightwear-standard",
+    "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-nightwear-standard",
+    "content_url": "",
+    "official_channel": "Product Safety New Zealand",
+    "why_added": "New Zealand children's nightwear flammability and labelling standard page.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/nz/NZ_childrens_nightwear_standard.html"
+    ],
+    "primary_file": "raw/nz/NZ_childrens_nightwear_standard.html",
+    "product_categories": [
+      "children_products",
+      "apparel",
+      "textiles"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "flammability",
+      "labelling"
+    ]
+  }
+}

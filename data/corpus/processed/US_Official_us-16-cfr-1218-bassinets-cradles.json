@@ -1,0 +1,56 @@
+{
+  "id": "us-16-cfr-1218-bassinets-cradles",
+  "title": "16 CFR Part 1218, Safety Standard for Bassinets and Cradles",
+  "fileName": "US_16_CFR_Part_1218_bassinets_cradles.xml",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/us/US_16_CFR_Part_1218_bassinets_cradles.xml",
+  "sourceType": "xml",
+  "region": "US",
+  "pageCount": 1,
+  "totalChars": 1502,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 1502,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "PART 1218—SAFETY STANDARD FOR BASSINETS AND CRADLES Authority: 15 U.S.C. 2056a. Source: 78 FR 63034, Oct. 23, 2013, unless otherwise noted. § 1218.1 Scope. This part establishes a consumer product saf"
+    }
+  ],
+  "tables": [],
+  "rawText": "PART 1218—SAFETY STANDARD FOR BASSINETS AND CRADLES Authority: 15 U.S.C. 2056a. Source: 78 FR 63034, Oct. 23, 2013, unless otherwise noted. § 1218.1 Scope. This part establishes a consumer product safety standard for bassinets and cradles. [90 FR 57695, Dec. 12, 2025] § 1218.2 Requirements for bassinets and cradles. Each bassinet and cradle must comply with all applicable provisions of ASTM F2194-25. ASTM F2194-25, Standard Consumer Safety Specification for Bassinets and Cradles, approved August 1, 2025, which is incorporated by reference into this section with the approval of the Director of the Federal Register under 5 U.S.C. 552(a) and 1 CFR part 51. This incorporation by reference (IBR) material is available for inspection at the U.S. Consumer Product Safety Commission (CPSC) and at the National Archives and Records Administration (NARA). Contact CPSC at: the Office of the Secretary, U.S. Consumer Product Safety Commission, 4330 East West Highway, Bethesda, MD 20814; phone: (301) 504-7479; email: cpsc-os@cpsc.gov . For information on the availability of this material at NARA, visit www.archives.gov/federalregister/cfr/ibr-locations or email fr.inspection@nara.gov . A read-only copy of the standard is available for viewing on the ASTM website at https://www.astm.org/READINGLIBRARY/ . You may obtain a copy from ASTM International, 100 Barr Harbor Drive, P.O. Box C700, West Conshohocken, PA 19428-2959; phone: (610) 832-9585; website: www.astm.org . [90 FR 57695, Dec. 12, 2025]",
+  "metadata": {
+    "detectedMarkets": [
+      "US"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "mechanical"
+    ],
+    "productCategories": [
+      "children_products",
+      "furniture"
+    ],
+    "charCount": 1502,
+    "region": "US",
+    "supplement_id": "us-16-cfr-1218-bassinets-cradles",
+    "source_url": "https://www.ecfr.gov/current/title-16/part-1218",
+    "content_url": "",
+    "official_channel": "eCFR API (2026-05-21)",
+    "why_added": "US durable infant product safety standard for bassinets and cradles.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/us/US_16_CFR_Part_1218_bassinets_cradles.xml"
+    ],
+    "primary_file": "raw/us/US_16_CFR_Part_1218_bassinets_cradles.xml",
+    "product_categories": [
+      "children_products",
+      "furniture"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical"
+    ]
+  }
+}

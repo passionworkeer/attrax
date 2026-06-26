@@ -1,0 +1,60 @@
+{
+  "id": "za-icasa-labelling-regulations-2013",
+  "title": "Labelling Regulations 2013",
+  "fileName": "ZA_icasa_labelling_regulations_2013.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/za/ZA_icasa_labelling_regulations_2013.html",
+  "sourceType": "html",
+  "region": "ZA",
+  "pageCount": 1,
+  "totalChars": 352,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 352,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Labelling Regulations 2013 Labelling Regulations These regulations specify the labelling requirements for all Type Approval Equipment. Related Regulations: Type Approval Regulations 2013 Repealed Regu"
+    }
+  ],
+  "tables": [],
+  "rawText": "Labelling Regulations 2013 Labelling Regulations These regulations specify the labelling requirements for all Type Approval Equipment. Related Regulations: Type Approval Regulations 2013 Repealed Regulations: The Regulations in Respect of the Labelling of Telecommunications Equipment Regulations of 2002 - Government Gazette 23212 Download (442.26 KB)",
+  "metadata": {
+    "detectedMarkets": [
+      "ZA"
+    ],
+    "regulatoryTypes": [
+      "labelling",
+      "radio",
+      "conformity"
+    ],
+    "productCategories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "charCount": 352,
+    "region": "ZA",
+    "supplement_id": "za-icasa-labelling-regulations-2013",
+    "source_url": "https://www.icasa.org.za/legislation-and-regulations/labelling-regulations",
+    "content_url": "",
+    "official_channel": "Independent Communications Authority of South Africa",
+    "why_added": "South Africa labeling requirements for type-approved telecommunications equipment.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/za/ZA_icasa_labelling_regulations_2013.html"
+    ],
+    "primary_file": "raw/za/ZA_icasa_labelling_regulations_2013.html",
+    "product_categories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "regulatory_types": [
+      "labelling",
+      "radio",
+      "conformity"
+    ]
+  }
+}

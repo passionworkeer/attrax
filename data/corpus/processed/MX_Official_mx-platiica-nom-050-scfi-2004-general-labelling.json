@@ -1,0 +1,57 @@
+{
+  "id": "mx-platiica-nom-050-scfi-2004-general-labelling",
+  "title": "NOM-050-SCFI-2004, commercial information and general product labelling",
+  "fileName": "nom-050-scfi-2004-general-labelling.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/mx/nom-050-scfi-2004-general-labelling.html",
+  "sourceType": "html",
+  "region": "MX",
+  "pageCount": 1,
+  "totalChars": 2160,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 2160,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Normas NOM-050-SCFI-2004 Publicación en el DOF Información principal Clave de la Norma: NOM-050-SCFI-2004 Título de la Norma: Información comercial-Etiquetado general de productos. Estado de la Norma:"
+    }
+  ],
+  "tables": [],
+  "rawText": "Normas NOM-050-SCFI-2004 Publicación en el DOF Información principal Clave de la Norma: NOM-050-SCFI-2004 Título de la Norma: Información comercial-Etiquetado general de productos. Estado de la Norma: Vigente Fecha de publicación en el DOF: 1/6/2004 Fecha de entrada en vigor: 31/7/2004 Información general Producto, servicio, proceso o sistema: Etiquetado Dependencia(s): Secretaría de Economía Comité que desarrolló la Norma: Comité Consultivo Nacional De Normalización De Seguridad Al Usuario, Información Comercial Y Prácticas De Comercio Concordancia internacional Esta Norma Oficial Mexicana concuerda parcialmente con la Norma Internacional ISO. Guide 37. Instructions for use of products of consumer interest. First edition 1995. Grado: Parcialmente equivalente Historial Documental de la Norma Proyecto de NOM 27 Jun 2003 Respuesta a comentarios 13 May 2004 Norma Oficial Mexicana NOM-050-SCFI-2004, Información comercial-Etiquetado general de productos 01 Jun 2004 Referencias Normativas NOM-008-SCFI-2002, Sistema General de Unidades de Medida. Enlace NOM-030-SCFI-1993 ,Información comercial – declaración de cantidad en la etiqueta-especificaciones (Esta Norma cancela la NOM-ZZ-3-1989). Enlace Bibliografía ISO/IEC Guide 37 1995 (E) Instructions for use of products of consumer interest. Enlace Ley Federal de Protección al Consumidor Enlace Ley Federal sobre Metrología y Normalización Enlace Ley Federal sobre Metrología y Normalización, publicada en el Diario Oficial de la Federación el 2 de julio de 1992 y sus reformas publicadas el 20 de mayo de 1997. Enlace Reglamento de la Ley Federal sobre Metrología y Normalización Enlace Revisión Sistemática Fecha última revisión sistemática: 11 de junio de 2024 Resultado del informe: Confirmación Descarga el informe de revisión > Enlace al último Informe de revisión Organismos de Evaluación de la Conformidad Verificaciones PDF de la Norma Enlaces Participa Publicaciones Oficiales Marco Jurídico Plataforma Nacional de Transparencia Alerta Denuncia ¿Qué es gob.mx? Es el único portal de trámites, información y participación ciudadana. Leer más. Denuncia contra servidores públicos Síguenos en",
+  "metadata": {
+    "detectedMarkets": [
+      "MX"
+    ],
+    "regulatoryTypes": [
+      "labelling",
+      "documentation"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "packaging"
+    ],
+    "charCount": 2160,
+    "region": "MX",
+    "supplement_id": "mx-platiica-nom-050-scfi-2004-general-labelling",
+    "source_url": "https://platiica.economia.gob.mx/normalizacion/nom-050-scfi-2004/",
+    "content_url": "",
+    "official_channel": "PLATIICA, Secretaria de Economia, Government of Mexico",
+    "why_added": "Mexico general consumer product commercial information and labelling baseline.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/mx/nom-050-scfi-2004-general-labelling.html",
+      "raw/mx/nom-050-scfi-2004-general-labelling.pdf"
+    ],
+    "primary_file": "raw/mx/nom-050-scfi-2004-general-labelling.html",
+    "product_categories": [
+      "general_consumer_products",
+      "packaging"
+    ],
+    "regulatory_types": [
+      "labelling",
+      "documentation"
+    ]
+  }
+}

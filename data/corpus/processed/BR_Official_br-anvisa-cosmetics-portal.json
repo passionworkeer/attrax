@@ -1,0 +1,56 @@
+{
+  "id": "br-anvisa-cosmetics-portal",
+  "title": "Anvisa cosmetics portal",
+  "fileName": "BR_anvisa_cosmetics_portal.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_coverage_gap_official_sources/raw/br/BR_anvisa_cosmetics_portal.html",
+  "sourceType": "html",
+  "region": "BR",
+  "pageCount": 1,
+  "totalChars": 62,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 62,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Cosméticos — Agência Nacional de Vigilância Sanitária - Anvisa"
+    }
+  ],
+  "tables": [],
+  "rawText": "Cosméticos — Agência Nacional de Vigilância Sanitária - Anvisa",
+  "metadata": {
+    "detectedMarkets": [
+      "BR"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ],
+    "productCategories": [
+      "cosmetics"
+    ],
+    "charCount": 62,
+    "region": "BR",
+    "supplement_id": "br-anvisa-cosmetics-portal",
+    "source_url": "https://www.gov.br/anvisa/pt-br/assuntos/cosmeticos",
+    "content_url": "",
+    "official_channel": "Brazilian Health Regulatory Agency (Anvisa)",
+    "why_added": "Brazil cosmetics regulatory, safety, import, and labeling context.",
+    "collected_at": "2026-05-27T11:22:40+08:00",
+    "raw_files": [
+      "raw/br/BR_anvisa_cosmetics_portal.html"
+    ],
+    "primary_file": "raw/br/BR_anvisa_cosmetics_portal.html",
+    "product_categories": [
+      "cosmetics"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ]
+  }
+}

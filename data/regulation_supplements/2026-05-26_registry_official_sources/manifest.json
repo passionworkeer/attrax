@@ -1102,8 +1102,8 @@
   ],
   "ingestion_status": {
     "processed_into_current_corpus": true,
-    "faiss_rebuilt": true,
-    "processed_at": "2026-05-26T18:49:32+08:00",
+    "faiss_rebuilt": false,
+    "processed_at": "2026-06-25T23:51:19+08:00",
     "processed_files": [
       "data/corpus/processed/EU_Official_eu-2023-988-general-product-safety.json",
       "data/corpus/processed/EU_Official_eu-2009-48-toy-safety.json",
@@ -1131,12 +1131,7 @@
       "data/corpus/processed/NZ_Official_nz-product-safety-standards-2005.json",
       "data/corpus/processed/NZ_Official_nz-product-safety-standards-household-cots-2016.json"
     ],
-    "report": "data/regulation_supplements/2026-05-26_registry_official_sources/ingestion_report.json",
-    "faiss_version_label": "2026-05-26_metadata_routing",
-    "faiss_index_dir": "data/faiss_versions/2026-05-26_metadata_routing",
-    "active_faiss_dir": "data/faiss",
-    "faiss_index_manifest": "data/faiss_versions/2026-05-26_metadata_routing/index_manifest.json",
-    "coverage_report": "data/regulation_reports/2026-05-26_metadata_routing_coverage.json"
+    "report": "data/regulation_supplements/2026-05-26_registry_official_sources/ingestion_report.json"
   },
   "incremental_diff": {
     "summary": {

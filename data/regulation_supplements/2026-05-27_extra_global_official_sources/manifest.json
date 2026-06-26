@@ -993,5 +993,43 @@
     "The batch expands weaker geographic coverage, especially ASEAN, Middle East, South Africa, Latin America, Turkey, Hong Kong, and Taiwan.",
     "Original PDF files are preserved where official sites expose them; otherwise official legal database or regulator HTML is retained.",
     "Several jurisdictions publish mandatory standards through paid standards stores; this batch keeps official law, technical regulation, certification, and regulator pages that are public."
-  ]
+  ],
+  "ingestion_status": {
+    "processed_into_current_corpus": true,
+    "faiss_rebuilt": false,
+    "processed_at": "2026-06-25T23:46:57+08:00",
+    "processed_files": [
+      "data/corpus/processed/MY_Official_my-st-electrical-equipment-approval-guidelines.json",
+      "data/corpus/processed/MY_Official_my-st-energy-using-products.json",
+      "data/corpus/processed/PH_Official_ph-bps-product-certification.json",
+      "data/corpus/processed/PH_Official_ph-bps-list-products-under-mandatory-certification.json",
+      "data/corpus/processed/PH_Official_ph-judiciary-consumer-act-ra7394.json",
+      "data/corpus/processed/PH_Official_ph-ntc-type-approval-application-form-1-17.json",
+      "data/corpus/processed/ID_Official_id-bpk-consumer-protection-law-8-1999.json",
+      "data/corpus/processed/ID_Official_id-bpk-consumer-protection-supervision-pp-58-2001.json",
+      "data/corpus/processed/ID_Official_id-bpk-standardization-conformity-law-20-2014.json",
+      "data/corpus/processed/VN_Official_vn-mic-electrical-safety-telecom-it-terminal-equipment.json",
+      "data/corpus/processed/TH_Official_th-tisi-industrial-product-standards-act.json",
+      "data/corpus/processed/SA_Official_sa-saso-technical-regulations-portal.json",
+      "data/corpus/processed/SA_Official_sa-saso-low-voltage-electrical-equipment.json",
+      "data/corpus/processed/SA_Official_sa-saso-rohs-electrical-electronic-equipment.json",
+      "data/corpus/processed/SA_Official_sa-saso-textile-products-technical-regulation.json",
+      "data/corpus/processed/SA_Official_sa-saso-ppe-clothing-technical-regulation.json",
+      "data/corpus/processed/SA_Official_sa-saso-gcc-children-toys-technical-regulation.json",
+      "data/corpus/processed/AE_Official_ae-moiat-ecas-conformity-certificates.json",
+      "data/corpus/processed/AE_Official_ae-moiat-laws-and-regulations.json",
+      "data/corpus/processed/AE_Official_ae-moiat-manaa-product-safety.json",
+      "data/corpus/processed/ZA_Official_za-icasa-type-approval-requirements.json",
+      "data/corpus/processed/ZA_Official_za-icasa-type-approval-regulations-2013.json",
+      "data/corpus/processed/ZA_Official_za-icasa-labelling-regulations-2013.json",
+      "data/corpus/processed/ZA_Official_za-icasa-radio-frequency-spectrum-regulations-2015.json",
+      "data/corpus/processed/TR_Official_tr-product-safety-technical-regulations-law-7223.json",
+      "data/corpus/processed/TR_Official_tr-law-7223-implementing-regulations.json",
+      "data/corpus/processed/TR_Official_tr-ministry-product-safety-consumer-info.json",
+      "data/corpus/processed/TR_Official_tr-official-gazette-market-surveillance-regulation-2021.json",
+      "data/corpus/processed/AR_Official_ar-infoleg-consumer-defense-law-24240.json",
+      "data/corpus/processed/CL_Official_cl-leychile-consumer-rights-law-19496.json"
+    ],
+    "report": "data/regulation_supplements/2026-05-27_extra_global_official_sources/ingestion_report.json"
+  }
 }

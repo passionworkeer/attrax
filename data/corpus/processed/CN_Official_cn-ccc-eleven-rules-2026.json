@@ -88,9 +88,14 @@
       "CN"
     ],
     "regulatoryTypes": [
-      "conformity"
+      "conformity",
+      "testing"
     ],
-    "productCategories": [],
+    "productCategories": [
+      "electrical_equipment",
+      "industrial_products",
+      "general_consumer_products"
+    ],
     "charCount": 697,
     "region": "CN",
     "supplement_id": "cn-ccc-eleven-rules-2026",
@@ -103,9 +108,14 @@
       "raw/cn/CN_CCC_11_rules_2026.html"
     ],
     "primary_file": "raw/cn/CN_CCC_11_rules_2026.html",
-    "product_categories": [],
+    "product_categories": [
+      "electrical_equipment",
+      "industrial_products",
+      "general_consumer_products"
+    ],
     "regulatory_types": [
-      "conformity"
+      "conformity",
+      "testing"
     ]
   }
 }

@@ -1,0 +1,58 @@
+{
+  "id": "cn-ccc-electric-bicycle-battery-charger-2024",
+  "title": "Announcement on CCC Management for Lithium-ion Batteries and Chargers for Electric Bicycles",
+  "fileName": "CN_ccc_electric_bicycle_battery_charger_2024.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/cn/CN_ccc_electric_bicycle_battery_charger_2024.html",
+  "sourceType": "html",
+  "region": "CN",
+  "pageCount": 1,
+  "totalChars": 19,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 19,
+      "hasText": false,
+      "hasTables": false,
+      "textPreview": "https://www.gov.cn/"
+    }
+  ],
+  "tables": [],
+  "rawText": "https://www.gov.cn/",
+  "metadata": {
+    "detectedMarkets": [
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "conformity",
+      "scope_classification"
+    ],
+    "productCategories": [
+      "batteries",
+      "electronics",
+      "electrical_equipment"
+    ],
+    "charCount": 19,
+    "region": "CN",
+    "supplement_id": "cn-ccc-electric-bicycle-battery-charger-2024",
+    "source_url": "https://www.gov.cn/zhengce/zhengceku/202407/content_6960795.htm",
+    "content_url": "",
+    "official_channel": "State Council / Government of China",
+    "why_added": "China CCC scope expansion context for electric bicycle batteries and chargers.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/cn/CN_ccc_electric_bicycle_battery_charger_2024.html"
+    ],
+    "primary_file": "raw/cn/CN_ccc_electric_bicycle_battery_charger_2024.html",
+    "product_categories": [
+      "batteries",
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "scope_classification"
+    ]
+  }
+}

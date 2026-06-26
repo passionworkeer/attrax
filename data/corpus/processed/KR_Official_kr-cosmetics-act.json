@@ -1,0 +1,2745 @@
+{
+  "id": "kr-cosmetics-act",
+  "title": "Cosmetics Act",
+  "fileName": "KR_cosmetics_act.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_global_official_sources/raw/kr/KR_cosmetics_act.html",
+  "sourceType": "html",
+  "region": "KR",
+  "pageCount": 1,
+  "totalChars": 100000,
+  "hasTables": true,
+  "tableCount": 435,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 100000,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "2-column view COSMETICS ACT 2-column view table COSMETICS ACT No.20901 20260402 COSMETICS ACT No.20767 20250801 COSMETICS ACT No.20512 20241022 COSMETICS ACT No.20248 20250207 COSMETICS ACT No.18448 2"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "COSMETICS ACT",
+        "No.20901",
+        "20260402"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.20767",
+        "20250801"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.20512",
+        "20241022"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.20248",
+        "20250207"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.18448",
+        "20220218"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.17250",
+        "20200407"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.16298",
+        "20200116"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.15947",
+        "20181211"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.15488",
+        "20190314"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.14264",
+        "20160529"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.14027",
+        "20160203"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.13117",
+        "20150729"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.12497",
+        "20140318"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.11985",
+        "20140731"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.11690",
+        "20130323"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.11014",
+        "20120205"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.9932",
+        "20100319"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.8852",
+        "20080229"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.8646",
+        "20081018"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.8365",
+        "20070411"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.8206",
+        "20070704"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.7586",
+        "20070114"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.6617",
+        "20030120"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.6153",
+        "20000701"
+      ],
+      [
+        "COSMETICS ACT",
+        "No.6025",
+        "20000701"
+      ]
+    ],
+    [
+      [
+        "Article 1 (Purpose)"
+      ]
+    ],
+    [
+      [
+        "Article 2 (Definitions)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "The term \"cosmetic\" means any commodity intended to be used by means of spreading, rubbing, spraying on or otherwise applied to the human body for cleansing, beautifying, promoting attractiveness or brightening the appearance, or maintaining or improving the health of skin and hair, which have light effects on the human body: Provided , That goods constituting medicines defined in subparagraph 4 of Article 2 of the Pharmaceutical Affairs Act shall be excluded herefrom;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The term \"functional cosmetic\" means any of the following cosmetics prescribed by Ordinance of the Prime Minister:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "A product aiding in the whitening of the skin;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "A product aiding in improving wrinkles in the skin;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "A product aiding in tanning skin gently or protecting skin from ultraviolet rays;"
+      ]
+    ],
+    [
+      [
+        "(d)",
+        "A product aiding in changing or removing the color of hair, or nourishing hair;"
+      ]
+    ],
+    [
+      [
+        "(e)",
+        "A product aiding in preventing or improving dryness, splits, loss, cornification, etc. resulting from weakened functions of skin or hair;"
+      ]
+    ],
+    [
+      [
+        "2-2.",
+        "The term \"natural cosmetic\" means any cosmetic that contains animals, plants, raw materials, etc. derived therefrom, and complies with the standards determined by the Minister of Food and Drug Safety;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "The term \"organic cosmetic\" means any cosmetic that contains organic materials, plants, animals, materials, etc. derived therefrom, and complies with the standards determined by the Minister of Food and Drug Safety;"
+      ]
+    ],
+    [
+      [
+        "3-2.",
+        "The term \"customized cosmetic\" means any of the following:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "A cosmetic made by mixing the contents of a manufactured or imported cosmetic with the contents of any other cosmetic or a raw material determined by the Minister of Food and Drug Safety;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "A cosmetic repackaged by subdividing the contents of a manufactured or imported cosmetic into smaller amounts: Provided , That cosmetics are repackaged by subdividing the contents of a cosmetic specified by Ordinance of the Prime Minister, such as solid soap, shall be excluded herefrom;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "The term \"childproof container or packaging\" means any container or packaging designed or planned with childproof lids for children under the age of five;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "The term \"use-by date\" means the minimum period from date of manufacture during which consumers can safely use a cosmetic with its unique characteristics preserved in appropriate storage conditions;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "The term \"primary package\" means packaging containers which come into direct contact with the contents of cosmetics at the time of manufacturing;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "The term \"secondary package\" means one or more packages, protecting materials, and packages for the purpose of labeling (including attached documents, etc.) that encase the primary package;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "The term \"labeling\" means letters, numbers, figures, pictures, etc. stated on the containers and packages of cosmetics;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "The term \"advertisement\" means conduct to display or notify information on cosmetics by means of radio, television, newspapers, magazines, voice, sound, videos, the Internet, printings or billboards, or by other means;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "The term \"cosmetic manufacturing business\" means the business of manufacturing (excluding the process of secondary packaging or labeling only) all or part of cosmetics;"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "The term \"responsible cosmetic distribution business\" means the business of distributing or selling cosmetics, or offering or supplying cosmetics for import agency business while controlling the quality, safety, etc. of such cosmetics;"
+      ]
+    ],
+    [
+      [
+        "12.",
+        "The term \"customized cosmetic sales business\" means the business of selling customized cosmetics."
+      ]
+    ],
+    [
+      [
+        "Article 2-2 (Types of Business)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The types of business provided in this Act shall be as follows:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Cosmetic manufacturing business;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Responsible cosmetic distribution business;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Customized cosmetic sales business."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The detailed types of business described in paragraph (1) and the scope thereof shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 3 (Registration of Business)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A person who intends to conduct cosmetic manufacturing business or responsible cosmetic distribution business shall file for registration with the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. The same shall also apply to any modification of any of the important matters prescribed by Ordinance of the Prime Minister among registered matters. <Amended on Mar. 23, 2013; Feb. 3, 2016; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A person who intends to file for registration of his or her cosmetic manufacturing business pursuant to paragraph (1) shall meet the facility standards prescribed by Ordinance of the Prime Minister: Provided , That the person need not be equipped with part of the required facilities in cases prescribed by Ordinance of the Prime Minister, such as engaging in only part of cosmetic manufacturing processes. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "A person who intends to file for registration of his or her responsible cosmetic distribution business pursuant to paragraph (1) shall comply with the standards for the quality management and the post-market safety management of cosmetics, which are prescribed by Ordinance of the Prime Minister, and shall employ a manager capable of managing such standards (hereinafter referred to as \"responsible distribution manager\"). <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Matters necessary for procedures for registration, qualification requirements for and duties of responsible distribution managers, etc. under paragraphs (1) through (3) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 3-2 (Filing Reports on Customized Cosmetic Sales Business)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A person who intends to conduct customized cosmetic sales business shall file a report with the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. The same shall apply to any modification of any of the matters prescribed by Ordinance of the Prime Minister among reported matters."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A person who intends to file a report on customized cosmetic sales business pursuant to paragraph (1) shall comply with the standards for facilities prescribed by Ordinance of the Prime Minister, and employ persons engaged in the quality and safety management such as mixing and subdividing customized cosmetics (hereinafter referred as \"customized cosmetic compounding managers\"). <Amended on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "Article 3-3 (Grounds for Disqualification)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A mental patient defined in subparagraph 1 of Article 3 of the Act on the Improvement of Mental Health and the Support for Welfare Services for Mental Patients : Provided , That a person recognized by a specialized medical doctor as appropriate for a cosmetic manufacturer (referring to a person who file for registration of his or her cosmetic manufacturing business pursuant to Article 3 (1); hereinafter the same shall apply) shall be excluded herefrom;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person under adult guardianship or a person declared bankrupt and not yet reinstated;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "An addict to narcotics defined in subparagraph 1 of Article 2 of the Narcotics Control Act ;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "A person who was sentenced to imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Public Health Crimes and for whom the execution of such sentence has not been completed (including where the execution of such sentence is deemed completed) or exempted;"
+      ]
+    ],
+    [
+      [
+        "4-2.",
+        "A person who is still subject to a stay of sentence after having been sentenced to a stayed execution of imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Health Crimes;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "A person for whom one year has not passed from the date his or her registration was revoked or his or her business place was closed under Article 24 (excluding the revocation of registration or the closure of business place for falling under any of subparagraphs 1 through 3 of this Article)."
+      ]
+    ],
+    [
+      [
+        "Article 3-4 (Qualification Test for Customized Cosmetic Compounding Managers)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A person who intends to become a customized cosmetic compounding manager shall pass a qualification test conducted by the Minister of Food and Drug Safety regarding cosmetics and raw materials."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Food and Drug Safety shall suspend the qualification examination or nullify a passing score obtained by a person who has taken the test by fraud or other improper means or cheated on the examination. In such cases, a person for whom the qualification test has been suspended or whose score has been nullified shall not be eligible to take the qualification examination for three years from the date such disposition is rendered. <Amended on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Food and Drug Safety may designate an institution or organization having professional personnel and facilities necessary to effectively perform business affairs related to the management of the qualification test under paragraph (1) and issuance, etc. of a qualification certificate under paragraph (4) as a test administration agency and entrust it with the business affairs of test administration. <Amended on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Matters necessary for the qualification examination, such as the schedule, procedure, and method for the qualification examination, exam subjects, issuance of a qualification certificate, and designation of testing administration agencies under paragraphs (1) through (3) shall be prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "Article 3-5 (Grounds for Disqualification for Customized Cosmetic Compounding Managers)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A mental patient defined in subparagraph 1 of Article 3 of the Act on the Improvement of Mental Health and the Support for Welfare Services for Mental Patients : Provided , That a person deemed by a specialized medical doctor as appropriate to serve as a customized cosmetic compounding manager shall be excluded herefrom;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person under adult guardianship;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "An addict to narcotics defined in subparagraph 1 of Article 2 of the Narcotics Control Act ;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "A person who was sentenced to imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Public Health Crimes and for whom the execution of such sentence has not been completed (including where the execution of such sentence is deemed completed) or exempted;"
+      ]
+    ],
+    [
+      [
+        "4-2.",
+        "A person who is still subject to a stay of sentence after having been sentenced to a stayed execution of imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Health Crimes;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "A person for whom three years have not passed since his or her qualification as a customized cosmetic compounding manager was revoked under Article 3-8 ."
+      ]
+    ],
+    [
+      [
+        "Article 3-6 (Prohibition of Lending of Qualification Certificates)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "No customized cosmetic compounding manager shall allow any other person to perform the business affairs of customized cosmetic compounding manager using his or her name, or transfer or lend his or her qualification certificate as a customized cosmetic compounding manager."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "No one shall acquire by transfer or borrow and use any other person’s qualification certificate as a customized cosmetic compounding manager."
+      ]
+    ],
+    [
+      [
+        "Article 3-7 (Prohibition of Use of Similar Titles)"
+      ]
+    ],
+    [
+      [
+        "Article 3-8 (Revocation of Qualification of Customized Cosmetic Compounding Managers)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where he or she obtains the qualification of the customized cosmetic compounding manager by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where he or she falls under any of subparagraphs 1 through 4 or subparagraph 4-2 of Article 3-5 ;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where he or she allows any other person to perform the business affairs of a customized cosmetic compounding manager using his or her name, or transfer or lend his or her qualification certificate as customized cosmetic compounding manager, in violation of Article 3-6 (1)."
+      ]
+    ],
+    [
+      [
+        "Article 4 (Examination of Functional Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A cosmetic manufacturer, responsible cosmetic distributor (referring to a person who filed for registration of his or her responsible cosmetic distribution business pursuant to Article 3 (1); hereinafter the same shall apply), or university, research institute, etc. prescribed by Ordinance of the Prime Minister that intends to obtain a recognition of functional cosmetics and engage in the sale, etc. of the recognized functional cosmetics shall undergo an examination by the Minister of Food and Drug Safety or shall submit a report to the Minister of Food and Drug Safety on the safety and effectiveness of each product. The same shall apply to any modification of the report submitted or the matters examined. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Examinations of effectiveness under paragraph (1) shall be limited to the efficacy and effects provided for in the items of subparagraph 2 of Article 2 ."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "A person who intends to undergo an examination under paragraph (1) shall submit data necessary for such examination to the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Matters necessary for the scope of and procedures, etc. for examinations or submission of reports under paragraphs (1) and (2) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 4-2 (Management of Cosmetics Used by Infants or Children)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "When a responsible cosmetic distributor intends to label or advertise cosmetics as usable by infants or children, he or she shall prepare and retain the following data that can prove safety and quality by product (hereinafter referred to as \"safety data by product\"):"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Materials explaining about products and manufacturing methods;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Materials on the evaluation of cosmetics safety;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Materials evidencing the efficacy and effects of products."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Food and Drug Safety shall periodically conduct fact-finding surveys on cosmetics prescribed in paragraph (1) in terms of safety data by product, actual status of consumers using cosmetics, cases of experiencing adverse events after use, etc., and formulate a plan for the attenuation of hazardous elements."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Food and Drug Safety may render education or public relations so as to enable consumers to use cosmetics prescribed in paragraph (1) safely."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Matters necessary for the ages of infants or children, scope of labeling and advertising, scope of preparation and retention period of safety data by product, etc. under paragraph (1), and fact-finding surveys, and the scope of, timing and procedures for formulating plans, etc. under paragraph (2) shall be prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "Article 5 (Obligations of Business Operators)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A cosmetic manufacturer shall comply with the requirements prescribed by Ordinance of the Prime Minister with respect to methods for managing records, facilities and equipment related to the manufacture of cosmetics, and methods for and obligation of test, inspection and verification of raw materials, materials, finished products, etc. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A responsible cosmetic distributor shall comply with the requirements prescribed by Ordinance of the Prime Minister with respect to the quality management standards of cosmetics, the post-market safety management standards, methods for and obligation of quality tests, the obligation to report information on the safety and efficacy of cosmetics, and the obligation to establish safety measures. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "No customized cosmetic seller (referring to a person who has reported a customized cosmetic sales business pursuant to Article 3-2 (1); hereinafter the same shall apply) shall mix or subdivide cosmetics distributed and sold to consumers at his or her discretion. <Newly Inserted on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "A customized cosmetic seller shall comply with the requirements prescribed by Ordinance of the Prime Minister with respect to the management method for the facilities and apparatus of customized cosmetic shops, obligation to comply with the safety management standards for the mixing or subdivision of customized cosmetics, and obligation to describe the content and raw materials to be mixed and subdivided, and obligation to report on safety matters. <Newly Inserted on Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "A responsible cosmetic distributor shall file a report on the performance of production or importation of cosmetics and the bill of materials used in the process of manufacturing cosmetics, with the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. In such cases, a report on the list of raw materials shall be filed before the distribution or sale of the relevant cosmetics. <Amended on Mar. 23, 2013; Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "A customized cosmetic seller shall report the bill of materials for customized cosmetics to the Minister of Food and Drug Safety once a year, as prescribed by Ordinance of the Prime Minister. <Newly Inserted on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "A responsible distribution manager and a customized cosmetic compounding manager shall receive education on securing safety and quality management of cosmetics every year. <Amended on Mar. 23, 2013; Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(8)",
+        "Where deemed necessary to prevent a risk to public health, the Minister of Food and Drug Safety may order cosmetic manufacturers, responsible cosmetic distributors, and customized cosmetic sellers (hereinafter referred to as \"business operators\") to receive education on cosmetics-related statutes, regulations and institutions (including content on securing safety and quality management of cosmetics). <Amended on Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(9)",
+        "Where a person who should receive education under paragraph (8) conducts cosmetic manufacturing business, responsible cosmetic distribution business, or customized cosmetic sales business at two or more places, he or she may designate a person prescribed by Ordinance of the Prime Minister as the person-in-charge from among his or her employees and require the person to receive education. <Newly Inserted on Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(10)",
+        "Matters necessary for the institutions providing education, the content of education, persons required to receive education, education expenses, etc. under paragraphs (7) through (9) shall be prescribed by Ordinance of the Prime Minister. <Newly Inserted on Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "Article 5-2 (Recall of Hazardous Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A business operator shall without delay recall or take measures necessary to recall a cosmetic, where he or she becomes aware of the fact that the cosmetic that poses or is likely to pose a risk to the public health in violation of Article 9 , 15, or 16 (1) is on the market. <Amended on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A business operator who intends to recall or take measures necessary to recall a cosmetic under paragraph (1) shall report a recall plan to the Minister of Food and Drug Safety in advance. <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Food and Drug Safety may mitigate or remit the administrative disposition under Article 24 to be imposed on the business operator who has conscientiously conducted the recall or taken measures necessary for recall under paragraph (1), because of the relevant cosmetics, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Cosmetics subject to recall under paragraphs (1) and (2), the hazard class necessary to recall the relevant cosmetic, the risk classification criteria, the procedures for reporting a recall plan, recall procedures, and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 6 (Reporting on Business Closure)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A business operator shall file a report with the Minister of Food and Drug Safety in any of the following cases, as prescribed by Ordinance of the Prime Minister: Provided , That this shall not apply where the business operator suspends his or her business for less than 1 month or resumes his or her business after suspension for less than 1 month: <Amended on Mar. 23, 2013; Mar. 13, 2018; Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where he or she intends to close or suspend business;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where he or she intends to resume business after suspension;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Deleted. <Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where a cosmetic manufacturer or responsible cosmetic distributor filed a closure report with the head of the competent tax office under Article 8 of the Value-Added Tax Act or the head of the competent tax office canceled his or her business registration, the Minister of Food and Drug Safety may revoke the registration of the cosmetic manufacturer or responsible cosmetic distributor. <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "If necessary to revoke the registration of a cosmetic manufacturer or responsible cosmetic distributor under paragraph (2), the Minister of Food and Drug Safety may request the head of the competent tax office to provide information about his or her business closure. In such cases, upon receipt of such request, the head of the competent tax office shall provide the Minister of Food and Drug Safety with information about the business closure of the cosmetic manufacturer or responsible cosmetic distributor pursuant to Article 39 of the Electronic Government Act . <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The Minister of Food and Drug Safety shall notify the reporter of whether to accept a report on business closure or suspension under Article 1 (1) within 7 days from the date of receipt of such report. <Newly Inserted on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Where the Minister of Food and Drug Safety fails to notify the reporter of whether to accept his or her report within the period specified in paragraph (4) or of the extension of the handling period under the statutes or regulations related to handling civil petitions, such report shall be deemed accepted on the day after the end of such period (where the handling period is extended or re-extended under the statutes or regulations related to handling civil petitions, referring to the relevant handling period). <Newly Inserted on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 7 Deleted. <Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 8 (Safety Standards for Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety shall designate and publicly notify raw materials which cannot be used for the manufacture, etc. of cosmetics. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Food and Drug Safety shall designate and publicly notify the standards for using raw materials, such as preservatives, pigments, and sunscreen, which are subject to special restriction on use, and no preservatives, pigments, and sunscreen the standards for the use of which are not designated and publicly notified shall be used. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "As for raw materials of cosmetics, etc. that could pose a risk to the public health, such as those known to contain harmful materials in Korea or overseas, the Minister of Food and Drug Safety shall promptly assess the risks of such materials and determine whether such materials are hazardous, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "After completing a risk assessment under paragraph (3), the Minister of Food and Drug Safety shall designate the relevant raw materials of cosmetics as unusable in manufacturing cosmetics or shall designate the standards for using such materials. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "The Minister of Food and Drug Safety shall review the safety of the designated and publicly notified standards for using raw materials under paragraph (2), and may amend such standards for using raw materials based on the findings of review. In such cases, matters relating to the frequency, procedures, etc. for safety review shall be prescribed by Ordinance of the Prime Minister. <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "A cosmetic manufacturer, responsible cosmetic distributor, or university, research institute, etc. prescribed by Ordinance of the Prime Minister may file an application with the Minister of Food and Drug Safety to designate and publicly notify the standards for using a raw material that has no standards designated and publicly notified under paragraph (2), or to amend the designated and publicly notified standards for using any raw material under paragraph (2), as prescribed by Ordinance of the Prime Minister. <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "Upon receipt of an application filed under paragraph (6), the Minister of Food and Drug Safety shall review whether the content of the application is feasible, and may designate and publicly notify or amend the standards for using the relevant raw material if the content of such application is deemed feasible. In such cases, the Minister shall inform an applicant of result of the review in writing. <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(8)",
+        "The Minister of Food and Drug Safety may formulate and publicly notify other safety management standards for distributed cosmetics. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 9 (Childproof Containers and Packaging)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Every responsible cosmetic distributor and customized cosmetic seller shall use childproof containers and packages for the sale of cosmetics in order to prevent children from being physically harmed by misuse. <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Items requiring childproof containers and packages under paragraph (1), standards for containers and packages, and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 10 (Statements for Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Each of the following matters shall be stated and labeled on the primary or secondary package of cosmetics, as prescribed by the Ordinance of the Prime Minister: Provided , That in cases of packages prescribed by Ordinance of the Prime Minister including packages of cosmetics with a small quantity of contents, matters other than the name of a cosmetic, the trade name of the responsible cosmetic distributor and customized cosmetic seller, the price, the batch number, the use-by date, or the period after opening (where the period after opening is stated, the manufacturing date shall also be stated; hereafter in this Article the same shall apply) need not be stated and labeled thereon: <Amended on Mar. 23, 2013; Feb. 3, 2016; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Name of the cosmetic;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Trade name and address of the business operator;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "All ingredients used in manufacturing the relevant cosmetic (excluding ingredients prescribed by Ordinance of the Prime Minister, such as trace ingredients that are not harmful to the human body);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Volume or weight of contents;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Batch number;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Use-by date or the period after opening;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Price;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "For a functional cosmetic, the word \"functional cosmetic\" or the logo determined by the Minister of Food and Drug Safety indicating that the product is a functional cosmetic;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Cautions for use;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Other matters prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Notwithstanding the main clause, with the exception of the subparagraphs, of paragraph (1), the following matters shall be labeled on the primary package: Provided , That this shall not apply to cosmetics prescribed by Ordinance of the Prime Minister, such as a bar soap designed to be used after removing the primary package of the cosmetics. <Amended on Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Name of the cosmetic;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Trade name of the business operator;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Batch number;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Use-by date and the period after opening."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The name of a product and the trade name of the business operator may also be labeled in Braille for visually-impaired persons when making statements under paragraph (1) on the containers and packages of cosmetics. <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "Standards and methods for labeling under paragraphs (1) and (2) and other relevant matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 11 (Price Labeling of Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Prices referred to in Article 10 (1) 7 shall be labeled by a person who directly sells cosmetics to consumers (hereinafter referred to as \"seller\")."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Methods of labeling under paragraph (1) and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 12 (Cautions for Statements or Labeling)"
+      ]
+    ],
+    [
+      [
+        "Article 13 (Prohibition of False Labeling and Advertising)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Neither business operator nor seller shall label or advertise in any of the following manners: <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Labeling or advertisements likely to mislead consumers into thinking the cosmetics are medicines;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Labeling or advertisements likely to mislead consumers into thinking any cosmetic other than a functional cosmetic is a functional cosmetic, or labeling or advertisements different from the examination results of its safety and efficacy;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Labeling or advertisements likely to mislead consumers into thinking any cosmetic other than a natural or organic cosmetic is a natural or organic cosmetic;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Other labeling or advertisements likely to deceive or mislead consumers by misrepresentation."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The scope of labeling and advertising set forth in paragraph (1) and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 14 (Substantiation of Claims of Labeling and Advertisements)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A business operator or seller shall be able to substantiate the claims of the labeling and advertisements which he or she has placed. <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "If the Minister of Food and Drug Safety deems it necessary to substantiate the claims of the labeling or advertisements placed by a business operator or seller pursuant to paragraph (1) to determine whether the labeling or advertisements fall under Article 13 (1) 4, he or she may request the business operator or seller to submit relevant data specifying the details thereof. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "A business operator or seller in receipt of a request to submit the claim substantiation data under paragraph (2) shall submit it to the Minister of Food and Drug Safety within 15 days after receipt of such request: Provided , That the period for submission may be extended when the Minister of Food and Drug Safety deems good cause exists. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "When a business operator or seller continues placing labeling or advertisements without submitting the claim substantiation data within the period for submission prescribed in paragraph (3) even after having been requested to do so under paragraph (2), the Minister of Food and Drug Safety shall issue an order to suspend the labeling or advertisements until he or she submits such claim substantiation data. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "A business operator or seller may refuse the submission of claim substantiation data requested by other organizations under other statutes, such as the Act on Fair Labeling and Advertising , so long as he or she has submitted the claim substantiation data requested by the Minister of Food and Drug Safety pursuant to paragraphs (2) and (3). <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(6)",
+        "The Minister of Food and Drug Safety shall comply with other organizations' request for the submitted claim substantiation data, made under other statutes, such as the Act on Fair Labeling and Advertising , unless there is a compelling reason not to do so. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(7)",
+        "Matters necessary for those required to substantiate their claims, the scope of and requirements for the claim substantiation data, and methods of submission under paragraphs (1) through (4) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 14-2 (Certification of Natural Cosmetics and Organic Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may certify a cosmetic that complies with the standards determined by the Minister as a natural cosmetic or organic cosmetic in order to encourage the quality improvement of natural cosmetics and organic cosmetics and to provide consumers with more accurate product information."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A cosmetic manufacturer, responsible cosmetic distributor, or university, research institute, etc. prescribed by Ordinance of the Prime Minister that intends to obtain a certification under paragraph (1) shall apply for certification to the Minister of Food and Drug Safety."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Food and Drug Safety shall revoke the certification of a cosmetic certified under paragraph (1) in any of the following cases:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the cosmetic obtained certification by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the cosmetic fails to comply with the standards for certification under paragraph (1)."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "In order to effectively perform business affairs related to certification, the Minister of Food and Drug Safety may designate an agency or organization equipped with required professional personnel and facilities as a certifying agency and may entrust such business affairs to the certifying agency."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Certification procedures and standards for designation of certifying agencies under paragraphs (1) through (4) and other matters necessary to operate the certification system shall be prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "Article 14-3 (Effective Period of Certification)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The effective period of a certification under Article 14-2 (1) shall be three years from the date of certification."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A person who intends to extend the effective period of a certification shall apply for an extension to the Minister of Food and Drug Safety at least 90 days prior to the expiration of such effective period."
+      ]
+    ],
+    [
+      [
+        "Article 14-4 (Certification Marking)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A cosmetic certified under Article 14-2 (1) may bear a certification mark prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "No one shall place the certification mark prescribed in paragraph (1) or any similar label on any cosmetic not certified under Article 14-2 (1)."
+      ]
+    ],
+    [
+      [
+        "Article 14-5 (Revocation of Designation of Certifying Agencies)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may require a relevant public official to inspect whether a certifying agency designated under Article 14-2 (4) (hereinafter referred to as \"certifying agency\") properly performs business affairs related to certification, if deemed necessary."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where a certifying agency falls under any of the following subparagraphs, the Minister of Food and Drug Safety may revoke the designation of the certifying agency or issue an order to suspend all or part of its business affairs for a specified period not to exceed one year: Provided , That he or she shall revoke such designation in the case of subparagraph 1:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the certifying agency obtained designation by fraud or other improper means:"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the certifying agency ceases to meet the standards for designation prescribed under Article 14-2 (5)."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "Matters necessary for the revocation of designation and suspension of business affairs under paragraph (2) shall be prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "Article 15 (Prohibition of Sales Business)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Functional cosmetics that fail to undergo an examination or a report on which has not been submitted, as prescribed in Article 4 ;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Fully or partially deteriorated cosmetics;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Cosmetics contaminated by pathogens;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Cosmetics mixed or mingled with foreign substances;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Cosmetics using raw materials that cannot be used for cosmetics as prescribed in Article 8 (1) and (2), or cosmetics that fail to meet safety management standards for distributed cosmetics under paragraph (8) of that Article;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Cosmetics using the horns of rhinoceros or bones of tigers, or the extracts thereof;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Cosmetics manufactured either under unsanitary conditions which are likely to cause harm to health and sanitation, or in facilities which fail to satisfy facility standards under Article 3 (2);"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Cosmetics which are likely to cause harm to health and sanitation due to poor containers and packages;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Cosmetics with forged or falsified use-by date or period after opening (including the date of manufacture stated) prescribed in Article 10 (1) 6;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Cosmetics which are likely to be consumed or misused as food because they are imitating the shape, smell, color, size, container, package, etc. of foods."
+      ]
+    ],
+    [
+      [
+        "Article 15-2 (Prohibition of Distribution or Sale of Animal-Tested Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "No responsible cosmetic distributor or customized cosmetic seller shall distribute or sell any cosmetics which were tested on animals under subparagraph 1 of Article 2 of the Laboratory Animal Act (hereafter in this Article referred to as \"animal testing\"), or cosmetics manufactured (including manufacturing by consignment) or imported using raw materials which underwent animal testing: Provided , That this shall not apply to any of the following cases: <Amended on Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where animal testing is needed to designate the standards for using raw materials requiring a specific restriction on usage, such as preservatives, pigments, or sunscreen under Article 8 (2), or to assess hazards of cosmetics raw materials, etc. posing risks to public health pursuant to paragraph (3) of that Article;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where animal testing is needed because no alternative to animal testing (referring to non-animal testing or testing on a limited number of animals or reducing animal pains, and recognized as such by the Minister of Food and Drug Safety; hereafter the same shall apply in this Article) exists;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where animal testing is needed to export cosmetics in accordance with the statutes and regulations of the export partner country;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Where animal testing is needed for product development in accordance with the statutes and regulations of the importing country;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Where raw materials developed through animal testing conducted under other statutes and regulations are used for the manufacture, etc. of cosmetics;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Other cases determined by the Minister of Food and Drug Safety, where it is impractical to conduct alternatives to animal testing."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Food and Drug Safety shall endeavor to develop alternatives to animal testing and shall take measures necessary to enable responsible cosmetic distributors, etc. to utilize the alternatives to animal testing. <Amended on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 16 (Prohibition of Sale)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "No person shall sell any of the following cosmetics, or store or display them for sale: Provided , That this shall only apply to cosmetics to be sold to consumers in the case of subparagraph 3: <Amended on May 29, 2016; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Cosmetics distributed and sold after being manufactured (including manufacturing by consignment) or imported by a person who has not been registered under Article 3 (1);"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "Customized cosmetics sold by a person who did not file a report under Article 3-2 (1);"
+      ]
+    ],
+    [
+      [
+        "1-3.",
+        "Customized cosmetics sold without employing a customized cosmetic compounding manager under Article 3-2 (2);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Cosmetics violating Articles 10 through 12 or cosmetics with statements or labeling likely to mislead consumers into thinking the cosmetics are medicines;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Cosmetics manufactured or imported for consumers to test and use in advance not for the purpose of sale but for publicity and sales promotions;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Cosmetics, the package of which or statement or labeling on which has been damaged (excluding damage necessary to sell a customized cosmetic), forged, or falsified."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "No one (excluding a customized cosmetic seller who sells cosmetics through a customized cosmetic compounding manager and a seller of cosmetics manufactured for the purpose of subdivision and sale among cosmetics under the proviso of subparagraph 3-2 (b) of Article 2) may sell contents divided from a container of a cosmetic. <Amended on Mar. 13, 2018; Apr. 7, 2020>"
+      ]
+    ],
+    [
+      [
+        "Article 17 (Establishment of Association)"
+      ]
+    ],
+    [
+      [
+        "Article 18 (Reporting and Inspection)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may order a business operator, seller, or any other person who handles cosmetics for their business to file a necessary report, or may require a relevant public official to enter a place for manufacturing cosmetics, place of business, warehouse, store, or any other place handling cosmetics in order to inspect relevant facilities, books, documents, or other things or to ask questions to relevant persons. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Food and Drug Safety may collect the minimum amount of a cosmetic necessary to inspect the propriety of quality or safety standards, or statements or labeling on packages, etc. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Food and Drug Safety may operate a monitoring system on the sale of products, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "In the case of paragraph (1), a relevant public official shall present identification verifying his or her authority to relevant persons."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Qualification of relevant public officials under paragraphs (1) and (2) and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 18-2 (Consumer Watchdog for Cosmetics Safety Management)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "For the safety management of cosmetics, the Minister of Food and Drug Safety or the heads of the regional offices of food and drug safety may appoint a person recommended by the head of the relevant association or consumer organization, from among the executive officers and employees of an association established under Article 17 or a consumer organization registered under Article 29 of the Framework Act on Consumers , or a person knowledgeable about the safety management of cosmetics as a consumer watchdog for cosmetics safety management."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Duties of consumer watchdogs for cosmetics safety management appointed under paragraph (1) (hereinafter referred to as \"consumer watchdog for cosmetics safety management\") shall be as follows:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Reporting a cosmetic on the market to the competent administrative agency or providing information for such agency, where the cosmetic fails to comply with the labeling standards prescribed under Article 10 (1) and (2) or is labeled or advertised in any manner provided in the subparagraphs of Article 13 (1);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Assisting a relevant public official in entry, inspections, inquiries, and collection under Article 18 (1) and (2);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Other duties prescribed by Ordinance of the Prime Minister with respect to the safety management of cosmetics."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The Minister of Food and Drug Safety or the heads of the regional offices of food and drug safety may provide consumer watchdogs for cosmetics safety management with education necessary to perform their duties."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The Minister of Food and Drug Safety or the heads of the regional offices of food and drug safety shall dismiss a consumer watchdog for cosmetics safety management in any of the following cases:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where he or she retires or is discharged from the association or organization that recommended him or her;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where he or she engages in misconduct or abuses power with respect to the duties provided in the subparagraphs of paragraph (2);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where he or she has difficulty in performing duties due to a disease, injury, etc."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Qualifications and education for consumer watchdogs for cosmetics safety management and other necessary matters shall be prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "Article 19 (Corrective Orders)"
+      ]
+    ],
+    [
+      [
+        "Article 20 (Inspection Orders)"
+      ]
+    ],
+    [
+      [
+        "Article 21 Deleted. <Jul. 30, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 22 (Orders to Repair Facilities)"
+      ]
+    ],
+    [
+      [
+        "Article 23 (Orders to Recall or Destroy Goods)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where a cosmetic sold, stored, displayed, manufactured or imported, or a raw material, ingredient, etc. of such cosmetic (hereinafter referred to as \"goods\") is likely to pose a risk to the public health in violation of Article 9 , 15, or 16 (1), the Minister of Food and Drug Safety shall issue to a relevant business operator or seller, or any other person handling cosmetics for business an order to take measures, such as recalling or destroying the relevant goods. <Amended on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Where it is deemed that goods sold, stored, displayed, manufactured or imported pose or are likely to pose a risk to the public health, the Minister of Food and Drug Safety shall issue to a relevant business operator or seller, or any other person handling cosmetics for business an order to take measures, such as recalling or destroying the goods. <Newly Inserted on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "A business operator or seller or any other person handling cosmetics for business who is issued with an order under paragraphs (1) and (2) shall, in advance, report a recall plan to the Minister of Food and Drug Safety. <Newly Inserted on Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "The Minister of Food and Drug Safety may require a relevant public official to destroy the relevant goods or take other necessary measures in any of the following cases: <Amended on Mar. 23, 2013; Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where a person issued with an order under paragraph (1) or (2) fails to comply with the order;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Other urgent measures are necessary for public health."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "The hazard class necessary to recall goods under paragraphs (1) through (3), the risk classification criteria, procedures and plans for recall or destruction, follow-up measures, and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Newly Inserted on Jan. 28, 2015; Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 23-2 (Publication of Hazardous Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may order the relevant business operator to publish the relevant facts in any of the following cases: <Amended on Mar. 13, 2018; Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "When the Minister receives a report on a recall plan under Article 5-2 (2);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "When the Minister receives a report on a recall plan under Article 23 (3)."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Matters necessary for methods and procedures for publication under paragraph (1) shall be prescribed by Ordinance of the Prime Minister."
+      ]
+    ],
+    [
+      [
+        "Article 24 (Revocation of Registration)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Where a business operator falls under any of the following cases, the Minister of Food and Drug Safety may revoke the registration of the business or order to close the place of business (only applicable to business reported under Article 3-2 (1); hereafter in this Article the same shall apply), to prohibit the manufacture, importation, or sale of items (including an act of offering or supplying for the import agency business), or to suspend all or part of the business affairs for a specified period not exceeding one year: Provided , That the Minister of Food and Drug Safety shall revoke the registration or close the place of business in cases falling under subparagraph 1-2, 3, or 14 (excluding cases where an order is issued to suspend only the advertisement activities): <Amended on Mar. 23, 2013; Jan. 28, 2015; May 29, 2016; Mar. 13, 2018; Dec. 11, 2018; Jan. 15, 2019; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where the business operator fails to file for registration of any modification of cosmetic manufacturing business or responsible cosmetic distribution business under the latter part of Article 3 (1);"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "Where the business operator files for registration or registration for modification or files a report or a report on modification under Article 3 (1) or 3-2 (1) by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where the business operator fails to equipped with the facilities under Article 3 (2);"
+      ]
+    ],
+    [
+      [
+        "2-2.",
+        "Where the business operator fails to file a report on modification of customized cosmetic sales business under the latter part of Article 3-2 (1);"
+      ]
+    ],
+    [
+      [
+        "2-3.",
+        "Where the customized cosmetic seller ceases to comply with the standards for facilities under Article 3-2 (2);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Where the business operator falls under any subparagraph of Article 3-3 ;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Where the business operator manufactures or imports cosmetics that have posed or are likely to pose a risk to the public health;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Where the business operator sells functional cosmetics on which he or she fails to receive an examination or submit a report, in violation of Article 4 (1);"
+      ]
+    ],
+    [
+      [
+        "5-2.",
+        "Where the business operator fails to prepare or retain safety data by product under Article 4-2 (1);"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Where the business operator fails to comply with matters to be observed, in violation of Article 5 ;"
+      ]
+    ],
+    [
+      [
+        "6-2.",
+        "Where the business operator fails to recall or to take measures necessary to recall the cosmetics subject to recall, in violation of Article 5-2 (1);"
+      ]
+    ],
+    [
+      [
+        "6-3.",
+        "Where the business operator fails to report or falsely reports a recall plan, in violation of Article 5-2 (2);"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Deleted; <Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Where the business operator violates the standards for childproof containers and packages of cosmetics under Article 9 ;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Where the business operator places statements or labeling on the containers or packages of cosmetics and attached documents, in violation of Articles 10 through 12;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Where the business operator labels or advertises cosmetics, in violation of Article 13 or in violation of an order for suspension under Article 14 (4);"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "Where the business operator sells cosmetics, or manufactures, imports, stores, or displays cosmetics for the purpose of sale, in violation of Article 15 ;"
+      ]
+    ],
+    [
+      [
+        "12.",
+        "Where the business operator refuses or interferes with an inspection, questioning, collection, etc. under Article 18 (1) and (2);"
+      ]
+    ],
+    [
+      [
+        "13.",
+        "Where the business operator fails to comply with an order for correction, inspection, repair, recall, destruction, or publication under Article 19 , 20, 22, 23 (1) or (2), or 23-2;"
+      ]
+    ],
+    [
+      [
+        "13-2.",
+        "Where the business operator fails to report or falsely reports a recall plan under Article 23 (3);"
+      ]
+    ],
+    [
+      [
+        "14.",
+        "Where the business operator performs his or her business affairs during a period of business suspension."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Standards for administrative dispositions under paragraph (1) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 24-2 (Revocation of Recognition of Functional Cosmetics)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Where they have received an examination or an examination of modification under Article 4 by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Where they have submitted reports under Article 4 by fraud or other improper means."
+      ]
+    ],
+    [
+      [
+        "Article 25 Deleted. <Jul. 30, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 26 (Succession to Status of Business Operators)"
+      ]
+    ],
+    [
+      [
+        "Article 26-2 (Succession to Effects of Administrative Sanctions)"
+      ]
+    ],
+    [
+      [
+        "Article 27 (Hearings)"
+      ]
+    ],
+    [
+      [
+        "Article 28 (Imposition of Penalty Surcharges)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may impose a penalty surcharge of not more than one billion won on a business operator who should be subject to business suspension under Article 24 in lieu such business suspension. <Amended on Mar. 23, 2013; Mar. 13, 2018; Dec. 11, 2018>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Amounts of penalty surcharges, based on the types, degrees, etc. of violations subject to penalty surcharges under paragraph (1), and other necessary matters shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "If necessary to impose a penalty surcharge on a business operator, the Minister of Food and Drug Safety may request, in writing, tax information about the business operator from the head of the competent tax office, specifying the following: <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Personal information of the taxpayer;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The purpose of using the tax information;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Sales amount based on which the penalty surcharge is imposed."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "When a person liable to pay a penalty surcharge under paragraph (1) fails to pay it by the due date, the Minister of Food and Drug Safety may revoke the penalty surcharge imposed under paragraph (1), as prescribed by Presidential Decree, and order the person to suspend business under Article 24 (1) or collect such penalty surcharge in the same manner as delinquent national taxes are collected: Provided , That when the Minister of Food and Drug Safety cannot order the person to suspend business under Article 24 (1) due to business closure, etc. under Article 6 , the penalty surcharge shall be collected in the same manner as delinquent national taxes are collected. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "The Minister of Food and Drug Safety may request the following data or information from the person described in each subparagraph in order to collect an unpaid penalty surcharge under paragraph (4). In such cases, a person who receives such request shall comply therewith unless there is good cause: <Newly Inserted on Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A certified copy of building register under Article 38 of the Building Act : The Minister of Land, Infrastructure and Transport;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A certified copy of land cadaster under Article 71 of the Act on the Establishment and Management of Spatial Data : The Minister of Land, Infrastructure and Transport;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A certified copy of motor vehicle register under Article 7 of the Motor Vehicle Management Act : The Special Metropolitan City Mayor, Metropolitan City Mayors, Special Self-Governing City Mayors, Do Governors, or Special Self-Governing Province Governor."
+      ]
+    ],
+    [
+      [
+        "Article 28-2 (Publication of Violations)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may release to the public matters related to administrative dispositions and prescribed by Presidential Decree regarding the person against whom an administrative disposition has become final and conclusive pursuant to Article 22 , 23, 23-2, 24 or 28, such as the grounds for and content of the disposition, the name and address of the person subject to the disposition, and the name of the representative, and the name of the relevant items."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Matters necessary for the publication such as the methods of the publication set forth under paragraph (1) shall be prescribed by Presidential Decree."
+      ]
+    ],
+    [
+      [
+        "Article 29 (Support for Voluntary Management)"
+      ]
+    ],
+    [
+      [
+        "Article 30 (Exception to Products for Exportation)"
+      ]
+    ],
+    [
+      [
+        "Article 31 (Re-Issuance of Registration Certificate)"
+      ]
+    ],
+    [
+      [
+        "Article 32 (Fees)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any of the following persons shall pay fees to the Minister of Food and Drug Safety as prescribed by Ordinance of the Prime Minister: Provided , That where the business affairs are entrusted under Article 3-4 (3), fees determined by the entrusted institution (hereafter in this Article referred to as \"entrusted institution\") shall be paid to the entrusted institution: <Amended on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A person who intends to file for registration or to file a report, or to receive an examination or certification under this Act;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who intends to modify the registered or reported matters or examined or certified matters under this Act;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A person who intends to apply for the qualification test under Article 3-4 or to apply for the issuance of the qualification certificate."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "When an entrusted institution determines the amount of fees pursuant to the proviso of paragraph (1), it shall specify the criteria therefor and obtain approval thereof from the Minister of Food and Drug Safety. The same shall also apply to any modification of the approved matters. <Newly Inserted on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "The fees collected by an entrusted institution under the proviso of paragraph (1) shall be the revenue of the entrusted institution in consideration of performance of the entrusted business affairs under Article 3-4 (3). <Newly Inserted on Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "Article 33 (Support for Cosmetics Industry)"
+      ]
+    ],
+    [
+      [
+        "Article 33-2 (International Cooperation)"
+      ]
+    ],
+    [
+      [
+        "Article 34 (Entrustment or Delegation of Authority)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Part of the authority of the Minister of Food and Drug Safety vested under this Act may be delegated to the heads of the regional offices of food and drug safety, the Special Metropolitan City Mayor, a Metropolitan City Mayor, or a Do Governor, as prescribed by Presidential Decree. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The Minister of Food and Drug Safety may entrust some of his or her business affairs related to cosmetics vested under this Act to an association established pursuant to Article 17 or an agency, corporation or association related to cosmetics, as prescribed by Presidential Decree. <Amended on Mar. 23, 2013; Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 35 Deleted. <Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "Article 36 (Penalty Provisions)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any of the following persons shall be punished by imprisonment with labor for not more than 3 years or by a fine not exceeding 30 million won: <Amended on Mar. 18, 2014; Mar. 13, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A person who violates the former part of Article 3 (1);"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "A person who files for registration or registration for modification or files a report or a report on modification under Article 3 (1) or Article 3-2 (1);"
+      ]
+    ],
+    [
+      [
+        "1-3.",
+        "A person who violates the former part of Article 3-2 (1);"
+      ]
+    ],
+    [
+      [
+        "1-4.",
+        "A person who violates Article 3-2 (2);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who violates the former part of Article 4 (1);"
+      ]
+    ],
+    [
+      [
+        "2-2.",
+        "A person who receives an examination or examination of modification or files a report under Article 4 by fraud or other improper means;"
+      ]
+    ],
+    [
+      [
+        "2-3.",
+        "A person who is certified by fraud or other improper means under Article 14-2 (3) 1;"
+      ]
+    ],
+    [
+      [
+        "2-4.",
+        "A person who places a certification mark in violation of Article 14-4 (2);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A person who violates Article 15 ;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "A person who violates Article 16 (1) 1, 1-2, or 4."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Imprisonment with labor and fines under paragraph (1) may be imposed concurrently."
+      ]
+    ],
+    [
+      [
+        "Article 37 (Penalty Provisions)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any person who violates Articles 3-6 , 4-2 (1), 9, 13, 16 (1) 2 or 3, or Article 16 (2), or who fails to comply with a suspension order under Article 14 (4) shall be punished by imprisonment with labor for not more than one year or by a fine not exceeding 10 million won. <Amended on Jul. 30, 2013; Mar. 18, 2014; Jan. 15, 2019; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Imprisonment with labor and fines under paragraph (1) may be imposed concurrently."
+      ]
+    ],
+    [
+      [
+        "Article 38 (Penalty Provisions)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "A person who violates any of the matters to be complied with under Article 5 (1) through (4);"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "A person who violates Article 5-2 (1);"
+      ]
+    ],
+    [
+      [
+        "1-3.",
+        "A person who violates Article 5-2 (2);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who violates Article 10 (1) (excluding Article 10 (1) 7) and (2);"
+      ]
+    ],
+    [
+      [
+        "2-2.",
+        "A person who uses the certification mark prescribed in Article 14-4 (1) on a cosmetic the effective period of certification for which under Article 14-3 has expired;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A person who violates any order issued under Article 18 , 19, 20, 22 or 23, or refuses, interferes with, or evades an inspection, collection or disposition by a relevant public official."
+      ]
+    ],
+    [
+      [
+        "Article 39 (Joint Penalty Provisions)"
+      ]
+    ],
+    [
+      [
+        "Article 40 (Administrative Fines)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "Any of the following persons shall be subject to an administrative fine not exceeding one million won: <Amended on Feb. 3, 2016; Mar. 13, 2018; Dec. 11, 2018; Aug. 17, 2021>"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Deleted; <Mar. 13, 2018>"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "A person who uses the name \"customized cosmetic compounding manager\" or any other names similar thereto, in violation of Article 3-7 ;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "A person who fails to undergo an examination of modification, in violation of the latter part of Article 4 (1);"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "A person who fails to report the performance of production or importation of cosmetics or the bill of materials for cosmetics, etc., in violation of Article 5 (5);"
+      ]
+    ],
+    [
+      [
+        "3-2.",
+        "A person who fails to report the bill of materials for customized cosmetics, in violation of Article 5 (6);"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "A person who fails to receive education, in violation of Article 5 (7);"
+      ]
+    ],
+    [
+      [
+        "4-2.",
+        "A person who violates any order issued under Article 5 (8);"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "A person who fails to report business closure, in violation of Article 6 ;"
+      ]
+    ],
+    [
+      [
+        "5-2.",
+        "A person who fails to label the price of a cosmetic, in violation of Article 10 (1) 7 or Article 11 ;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "A person who fails to file a report, in violation of Article 18 ;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "A person who distributes or sells animal-tested cosmetics or cosmetics manufactured (including manufacturing by consignment) or imported cosmetics using animal-tested raw materials, in violation of Article 15-2 (1)."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Administrative fines under paragraph (1) shall be imposed and collected by the Minister of Food and Drug Safety, as prescribed by Presidential Decree. <Amended on Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "This Act shall enter into force on the date of its promulgation."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Omitted."
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "A person who filed for the registration of cosmetic manufacturing business or cosmetic manufacturing-selling business under previous Article 3-1 before this Act enters into force shall be deemed to have filed for the registration of cosmetic manufacturing business or responsible cosmetic distribution business under the amended provisions of Article 3 (1)."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "A person who filed for registration of his or her cosmetic manufacturing business or cosmetic manufacturing-selling business under previous Article 3-1 before this Act enters into force shall be deemed to have registered his or her cosmetic manufacturing business or responsible cosmetic distribution business under the amended provisions of Article 3 (1)."
+      ]
+    ],
+    [
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.36176",
+        "20260310"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.33913",
+        "20231212"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.32445",
+        "20220218"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.31655",
+        "20210427"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.30245",
+        "20191212"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.29621",
+        "20190314"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.27827",
+        "20170204"
+      ],
+      [
+        "ENFORCEMENT DECREE OF THE COSMETICS ACT",
+        "No.26452",
+        "20150724"
+      ]
+    ],
+    [
+      [
+        "Article 1 (Purpose)"
+      ]
+    ],
+    [
+      [
+        "Article 2 (Detailed types and scope of business)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Cosmetic manufacturing business: The following business:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "Business of directly manufacturing cosmetics;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "Business of manufacturing cosmetics by consignment;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "Business of packaging cosmetics (limited to primary packaging);"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Responsible cosmetic distribution business: The following business:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "Business in which a cosmetic manufacturer (referring to a person whose cosmetic manufacturing business is registered pursuant to Article 3 (1) of the Act; hereinafter the same shall apply) directly manufactures, distributes, and sells cosmetics;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "Business of distributing and selling cosmetics that a cosmetic manufacturer manufactures by consignment;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "Business of distributing and selling imported cosmetics;"
+      ]
+    ],
+    [
+      [
+        "(d)",
+        "Business of arranging or presenting cosmetics for import agency business (limited to electronic commerce transaction under subparagraph 1 of Article 2 of the act on the consumer protection in electronic commerce );"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Customized cosmetic sales business: The following business:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "Business of selling cosmetics made by mixing the contents of a manufactured or imported cosmetic with the contents of any other cosmetic or a raw material determined and publicly notified by the Minister of Food and Drug Safety;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "Business of selling cosmetics repackaged by subdividing the contents of a manufactured or imported cosmetic into smaller amounts."
+      ]
+    ],
+    [
+      [
+        "Article 3 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 4 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 5 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 6 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 7 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 8 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 9 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 10 Deleted. <Feb. 3, 2012>"
+      ]
+    ],
+    [
+      [
+        "Article 11 (Criteria for calculation of penalty surcharges)"
+      ]
+    ],
+    [
+      [
+        "Article 12 (Procedures for imposition and collection of penalty surcharges)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "If the Minister of Food and Drug Safety intends to impose a penalty surcharge pursuant to Article 28 of the Act, he or she shall give written notice of the type of the relevant violation, the amount of the penalty surcharge, and other related matters. <Amended on Feb. 3, 2012; Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The procedures for collection of penalty surcharges shall be prescribed by Prime Ministerial Decree. <Amended on Feb. 29, 2008; Mar. 15, 2010; Mar. 23, 2013>"
+      ]
+    ],
+    [
+      [
+        "Article 12-2 (Extension of deadline for payment of penalty surcharge and installment payment)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "The Minister of Food and Drug Safety may allow a person who has been imposed a surcharge under Article 28 (1) of the Act to defer the payment deadline for the penalty surcharge or to pay it in installments under the proviso of Article 29 of the Framework Act on Administrative Regulations , if the amount of the penalty surcharge payable is not less than 1 million won. <Amended on Dec. 12 2023>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "Deleted. <Dec. 12, 2023>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "If the deadline for payment of a penalty surcharge is extended under paragraph (1), the deadline shall be within 1 year from the day following the deadline for payment."
+      ]
+    ],
+    [
+      [
+        "(4)",
+        "If payment in installments is allowed pursuant to paragraph (1), the interval between deadlines for payment in installments shall not exceed 4 months and the number of installments shall not exceed 3 times."
+      ]
+    ],
+    [
+      [
+        "(5)",
+        "Deleted. <Dec. 12, 2023>"
+      ]
+    ],
+    [
+      [
+        "Article 12-3 (Disposition against defaulters of penalty surcharges)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "If a person obligated to pay a penalty surcharge fails to pay it by the specified deadline (Where a decision on installment payment is canceled under Article 12-2 (5), referring to the deadline for a lump sum payment), the Minister of Food and Drug Safety shall serve a reminder notice on him or her within 15 days after the elapse of such specified deadline. In such cases, the deadline for payment shall not exceed 10 days from the date of sending the reminder notice. <Amended on Feb. 3, 2012; Mar. 23, 2013; Mar. 12, 2019; Apr. 27, 2021>"
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "If a person obligated to pay a penalty surcharge fails to pay it by the deadline for payment after receiving a reminder notice under paragraph (1), the Minister of Food and Drug Safety shall cancel the imposition of penalty surcharge and issue a disposition to suspend business; provided, in cases falling under the proviso of Article 28 (4) of the Act, such penalty surcharge shall be collected in the same manner as delinquent national taxes. <Amended on Nov. 4, 2014; Mar. 12, 2019; Apr. 27, 2021>"
+      ]
+    ],
+    [
+      [
+        "(3)",
+        "In order to cancel the imposition of penalty surcharge and issue a disposition to suspend business pursuant to the main clause of paragraph (2), the details of the disposition shall be notified in writing to the person subject to the disposition, and the grounds for changing the original disposition, the period of suspension of business operations shall be specified in the document. <Amended on Feb. 3, 2012; Nov. 4, 2014>"
+      ]
+    ],
+    [
+      [
+        "Article 13 (Publication of relevant violations)"
+      ]
+    ],
+    [
+      [
+        "(1)",
+        "\"Matters prescribed by Presidential Decree\" in Article 28-2 (1) of the Act means the following matters:"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Grounds for the disposition;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Content of the disposition;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Name and address of the person subject to the disposition, and the name of the representative of such person;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Name and batch number of the relevant item."
+      ]
+    ],
+    [
+      [
+        "(2)",
+        "The publication under Article 28-2 (1) of the Act shall be made by posting the relevant fact on the website of the Ministry of Food and Drug Safety."
+      ]
+    ],
+    [
+      [
+        "Article 14 (Delegation of authority)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "To file for registration or registration of change of cosmetic manufacturing business or responsible cosmetic distribution business under Article 3 of the Act;"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "To accept a report on customized cosmetic sales business or a report on change thereof under Article 3-2 (1) of the Act;"
+      ]
+    ],
+    [
+      [
+        "1-3.",
+        "To order cosmetic manufacturers, responsible cosmetic distributors, and customized cosmetic sellers (hereinafter referred to as \"business operators\") to attend education under Article 5 (8) of the Act;"
+      ]
+    ],
+    [
+      [
+        "1-4.",
+        "Receipt of a report on a recall plan under Article 5-2 (2) of the Act, and mitigation or remission of administrative disposition under Article 5-2 (3) of the Act;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "The following authority regarding reporting on business closure, under Article 6 of the Act:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "To accept reports filed pursuant to the subparagraphs of Article 6 (1) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "To cancel registration pursuant to Article 6 (2) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "To make a request for the provision of information under Article 6 (3) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(d)",
+        "To give notice under Article 6 (4) of the Act;"
+      ]
+    ],
+    [
+      [
+        "2-2.",
+        "The following authority regarding the substantiation of the claims of labeling and advertisements under Article 14 of the Act:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "To request the submission of data under Article 14 (2) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "To extend a period for the acceptance or submission of data under Article 14 (3) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "To issue an order to suspend pursuant to Article 14 (4) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(d)",
+        "To reply to other agencies' requests for data pursuant to Article 14 (6) of the Act;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "To issue a reporting order, access, inspection, inquiry, and collection under Article 18 of the Act;"
+      ]
+    ],
+    [
+      [
+        "3-2.",
+        "To appoint, dismiss, or educate consumer watchdogs for cosmetics safety management under Article 18-2 of the Act;"
+      ]
+    ],
+    [
+      [
+        "3-3.",
+        "To issue a corrective order under Article 19 of the Act in any of the following cases:"
+      ]
+    ],
+    [
+      [
+        "(a)",
+        "In cases of a failure to file a registration for change under the latter part of Article 3 (1) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(b)",
+        "In cases of a failure to file a report on change under the latter part of Article 3-2 (1) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(c)",
+        "In cases of a violation of an order to attend education under Article 5 (8) of the Act;"
+      ]
+    ],
+    [
+      [
+        "(d)",
+        "In cases of a failure to file a report on business closure or suspension or a report on resuming business after suspension under Article 6 (1) of the Act;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "To issue an inspection order under Article 20 of the Act;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "To issue an order to repair facilities, or an order to prohibit the use of all or part of facilities under Article 22 of the Act;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "To issue an order to recall, destroy; to accept reports on recall plans; to destroy goods; and to take other necessary measures pursuant to Article 23 of the Act;"
+      ]
+    ],
+    [
+      [
+        "6-2.",
+        "To issue an order for publication under Article 23-2 of the Act;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "To cancel registration; issue an order to close a place of business; issue an order to prohibit manufacture, import, or sale of items, or issue an order to suspend the whole or part of business under Article 24 of the Act;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "To hold a hearing pursuant to Article 27 of the Act;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "To impose and collect penalty surcharges pursuant to Article 28 of the Act;"
+      ]
+    ],
+    [
+      [
+        "9-2.",
+        "To publish under Article 28-2 of the Act;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "To reissue certificates of registration or certificates of completion of report under Article 31 of the Act;"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "To impose or collect administrative fines under Article 40 (1) of the Act."
+      ]
+    ],
+    [
+      [
+        "Article 15 (Management of sensitive information and personally identifiable information)"
+      ]
+    ],
+    [
+      [
+        "1.",
+        "Business affairs relating to registration of or registration for change of a cosmetic manufacturing business or a responsible cosmetic distribution business under Article 3 of the Act;"
+      ]
+    ],
+    [
+      [
+        "1-2.",
+        "Business affairs relating to reports on customized cosmetic sales businesses or reports on change thereof under Article 3-2 (1) of the Act;"
+      ]
+    ],
+    [
+      [
+        "1-3.",
+        "Business affairs relating to the management of the qualification test for a customized cosmetic compounding manager and the issuance and re-issuance of a qualification certificate under Article 3-4 (1) and (4) of the Act;"
+      ]
+    ],
+    [
+      [
+        "2.",
+        "Business affairs relating to examination of functional cosmetics under Article 4 of the Act;"
+      ]
+    ],
+    [
+      [
+        "3.",
+        "Business affairs relating to business closure under Article 6 of the Act;"
+      ]
+    ],
+    [
+      [
+        "4.",
+        "Business affairs relating to reporting, inspection under Article 18 of the Act;"
+      ]
+    ],
+    [
+      [
+        "4-2.",
+        "Business affairs relating to corrective orders under Article 19 of the Act;"
+      ]
+    ],
+    [
+      [
+        "5.",
+        "Business affairs relating to inspection orders under Article 20 of the Act;"
+      ]
+    ],
+    [
+      [
+        "6.",
+        "Business affairs relating to orders to repair, and orders for prohibition of the use of all or part of facilities under Article 22 of the Act;"
+      ]
+    ],
+    [
+      [
+        "7.",
+        "Business affairs relating to orders for recall, destruction; and destruction or other necessary dispositions under Article 23 of the Act;"
+      ]
+    ],
+    [
+      [
+        "8.",
+        "Business affairs relating to the cancellation of registration; orders for the closure of a place of business; orders for prohibition of the manufacture, import, and sale of any items; and orders for the suspension of the whole or part of business affairs under Article 24 of the Act;"
+      ]
+    ],
+    [
+      [
+        "9.",
+        "Business affairs relating to hearings under Article 27 of the Act;"
+      ]
+    ],
+    [
+      [
+        "10.",
+        "Business affairs relating to the imposition and collection of penalty surcharges under Article 28 of the Act;"
+      ]
+    ],
+    [
+      [
+        "11.",
+        "Business affairs relating to re-issuance of certificates of registration under Article 31 of the Act."
+      ]
+    ],
+    [
+      [
+        "Article 16 (Criteria for imposition of administrative fines)"
+      ]
+    ]
+  ],
+  "rawText": "2-column view COSMETICS ACT 2-column view table COSMETICS ACT No.20901 20260402 COSMETICS ACT No.20767 20250801 COSMETICS ACT No.20512 20241022 COSMETICS ACT No.20248 20250207 COSMETICS ACT No.18448 20220218 COSMETICS ACT No.17250 20200407 COSMETICS ACT No.16298 20200116 COSMETICS ACT No.15947 20181211 COSMETICS ACT No.15488 20190314 COSMETICS ACT No.14264 20160529 COSMETICS ACT No.14027 20160203 COSMETICS ACT No.13117 20150729 COSMETICS ACT No.12497 20140318 COSMETICS ACT No.11985 20140731 COSMETICS ACT No.11690 20130323 COSMETICS ACT No.11014 20120205 COSMETICS ACT No.9932 20100319 COSMETICS ACT No.8852 20080229 COSMETICS ACT No.8646 20081018 COSMETICS ACT No.8365 20070411 COSMETICS ACT No.8206 20070704 COSMETICS ACT No.7586 20070114 COSMETICS ACT No.6617 20030120 COSMETICS ACT No.6153 20000701 COSMETICS ACT No.6025 20000701 CHAPTER I GENERAL PROVISIONS 법령 이단보기 Article 1 (Purpose) The purpose of this Act is to contribute to improving public health and developing the cosmetics industry by prescribing matters concerning the manufacture, importation, sale, exportation, etc. of cosmetics. <Amended on Mar. 13, 2018> 법령 이단보기 Article 2 (Definitions) The terms used in this Act are defined as follows: <Amended on Mar. 23, 2013; May 29, 2016; Mar. 13, 2018; Jan. 15, 2019; Apr. 7, 2020> 1. The term \"cosmetic\" means any commodity intended to be used by means of spreading, rubbing, spraying on or otherwise applied to the human body for cleansing, beautifying, promoting attractiveness or brightening the appearance, or maintaining or improving the health of skin and hair, which have light effects on the human body: Provided , That goods constituting medicines defined in subparagraph 4 of Article 2 of the Pharmaceutical Affairs Act shall be excluded herefrom; 2. The term \"functional cosmetic\" means any of the following cosmetics prescribed by Ordinance of the Prime Minister: (a) A product aiding in the whitening of the skin; (b) A product aiding in improving wrinkles in the skin; (c) A product aiding in tanning skin gently or protecting skin from ultraviolet rays; (d) A product aiding in changing or removing the color of hair, or nourishing hair; (e) A product aiding in preventing or improving dryness, splits, loss, cornification, etc. resulting from weakened functions of skin or hair; 2-2. The term \"natural cosmetic\" means any cosmetic that contains animals, plants, raw materials, etc. derived therefrom, and complies with the standards determined by the Minister of Food and Drug Safety; 3. The term \"organic cosmetic\" means any cosmetic that contains organic materials, plants, animals, materials, etc. derived therefrom, and complies with the standards determined by the Minister of Food and Drug Safety; 3-2. The term \"customized cosmetic\" means any of the following: (a) A cosmetic made by mixing the contents of a manufactured or imported cosmetic with the contents of any other cosmetic or a raw material determined by the Minister of Food and Drug Safety; (b) A cosmetic repackaged by subdividing the contents of a manufactured or imported cosmetic into smaller amounts: Provided , That cosmetics are repackaged by subdividing the contents of a cosmetic specified by Ordinance of the Prime Minister, such as solid soap, shall be excluded herefrom; 4. The term \"childproof container or packaging\" means any container or packaging designed or planned with childproof lids for children under the age of five; 5. The term \"use-by date\" means the minimum period from date of manufacture during which consumers can safely use a cosmetic with its unique characteristics preserved in appropriate storage conditions; 6. The term \"primary package\" means packaging containers which come into direct contact with the contents of cosmetics at the time of manufacturing; 7. The term \"secondary package\" means one or more packages, protecting materials, and packages for the purpose of labeling (including attached documents, etc.) that encase the primary package; 8. The term \"labeling\" means letters, numbers, figures, pictures, etc. stated on the containers and packages of cosmetics; 9. The term \"advertisement\" means conduct to display or notify information on cosmetics by means of radio, television, newspapers, magazines, voice, sound, videos, the Internet, printings or billboards, or by other means; 10. The term \"cosmetic manufacturing business\" means the business of manufacturing (excluding the process of secondary packaging or labeling only) all or part of cosmetics; 11. The term \"responsible cosmetic distribution business\" means the business of distributing or selling cosmetics, or offering or supplying cosmetics for import agency business while controlling the quality, safety, etc. of such cosmetics; 12. The term \"customized cosmetic sales business\" means the business of selling customized cosmetics. 법령 이단보기 Article 2-2 (Types of Business) (1) The types of business provided in this Act shall be as follows: 1. Cosmetic manufacturing business; 2. Responsible cosmetic distribution business; 3. Customized cosmetic sales business. (2) The detailed types of business described in paragraph (1) and the scope thereof shall be prescribed by Presidential Decree. [This Article Newly Inserted on Mar. 13, 2018] CHAPTER II MANUFACTURE AND DISTRIBUTION OF COSMETICS 법령 이단보기 Article 3 (Registration of Business) (1) A person who intends to conduct cosmetic manufacturing business or responsible cosmetic distribution business shall file for registration with the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. The same shall also apply to any modification of any of the important matters prescribed by Ordinance of the Prime Minister among registered matters. <Amended on Mar. 23, 2013; Feb. 3, 2016; Mar. 13, 2018> (2) A person who intends to file for registration of his or her cosmetic manufacturing business pursuant to paragraph (1) shall meet the facility standards prescribed by Ordinance of the Prime Minister: Provided , That the person need not be equipped with part of the required facilities in cases prescribed by Ordinance of the Prime Minister, such as engaging in only part of cosmetic manufacturing processes. <Amended on Mar. 23, 2013; Mar. 13, 2018> (3) A person who intends to file for registration of his or her responsible cosmetic distribution business pursuant to paragraph (1) shall comply with the standards for the quality management and the post-market safety management of cosmetics, which are prescribed by Ordinance of the Prime Minister, and shall employ a manager capable of managing such standards (hereinafter referred to as \"responsible distribution manager\"). <Amended on Mar. 23, 2013; Mar. 13, 2018> (4) Matters necessary for procedures for registration, qualification requirements for and duties of responsible distribution managers, etc. under paragraphs (1) through (3) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013; Mar. 13, 2018> [Title Amended on Mar. 13, 2018] 법령 이단보기 Article 3-2 (Filing Reports on Customized Cosmetic Sales Business) (1) A person who intends to conduct customized cosmetic sales business shall file a report with the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. The same shall apply to any modification of any of the matters prescribed by Ordinance of the Prime Minister among reported matters. (2) A person who intends to file a report on customized cosmetic sales business pursuant to paragraph (1) shall comply with the standards for facilities prescribed by Ordinance of the Prime Minister, and employ persons engaged in the quality and safety management such as mixing and subdividing customized cosmetics (hereinafter referred as \"customized cosmetic compounding managers\"). <Amended on Aug. 17, 2021> [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 3-3 (Grounds for Disqualification) None of the following persons may file for registration of cosmetic manufacturing business or responsible cosmetic distribution business or file a report on customized cosmetic sales business: Provided , That subparagraphs 1 and 3 shall apply only to cosmetic manufacturing business: <Amended on Oct. 22, 2024> 1. A mental patient defined in subparagraph 1 of Article 3 of the Act on the Improvement of Mental Health and the Support for Welfare Services for Mental Patients : Provided , That a person recognized by a specialized medical doctor as appropriate for a cosmetic manufacturer (referring to a person who file for registration of his or her cosmetic manufacturing business pursuant to Article 3 (1); hereinafter the same shall apply) shall be excluded herefrom; 2. A person under adult guardianship or a person declared bankrupt and not yet reinstated; 3. An addict to narcotics defined in subparagraph 1 of Article 2 of the Narcotics Control Act ; 4. A person who was sentenced to imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Public Health Crimes and for whom the execution of such sentence has not been completed (including where the execution of such sentence is deemed completed) or exempted; 4-2. A person who is still subject to a stay of sentence after having been sentenced to a stayed execution of imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Health Crimes; 5. A person for whom one year has not passed from the date his or her registration was revoked or his or her business place was closed under Article 24 (excluding the revocation of registration or the closure of business place for falling under any of subparagraphs 1 through 3 of this Article). [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 3-4 (Qualification Test for Customized Cosmetic Compounding Managers) (1) A person who intends to become a customized cosmetic compounding manager shall pass a qualification test conducted by the Minister of Food and Drug Safety regarding cosmetics and raw materials. (2) The Minister of Food and Drug Safety shall suspend the qualification examination or nullify a passing score obtained by a person who has taken the test by fraud or other improper means or cheated on the examination. In such cases, a person for whom the qualification test has been suspended or whose score has been nullified shall not be eligible to take the qualification examination for three years from the date such disposition is rendered. <Amended on Aug. 17, 2021> (3) The Minister of Food and Drug Safety may designate an institution or organization having professional personnel and facilities necessary to effectively perform business affairs related to the management of the qualification test under paragraph (1) and issuance, etc. of a qualification certificate under paragraph (4) as a test administration agency and entrust it with the business affairs of test administration. <Amended on Aug. 17, 2021> (4) Matters necessary for the qualification examination, such as the schedule, procedure, and method for the qualification examination, exam subjects, issuance of a qualification certificate, and designation of testing administration agencies under paragraphs (1) through (3) shall be prescribed by Ordinance of the Prime Minister. [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 3-5 (Grounds for Disqualification for Customized Cosmetic Compounding Managers) None of the following persons shall be qualified as a customized cosmetic compounding manager: <Amended on Oct. 22, 2024> 1. A mental patient defined in subparagraph 1 of Article 3 of the Act on the Improvement of Mental Health and the Support for Welfare Services for Mental Patients : Provided , That a person deemed by a specialized medical doctor as appropriate to serve as a customized cosmetic compounding manager shall be excluded herefrom; 2. A person under adult guardianship; 3. An addict to narcotics defined in subparagraph 1 of Article 2 of the Narcotics Control Act ; 4. A person who was sentenced to imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Public Health Crimes and for whom the execution of such sentence has not been completed (including where the execution of such sentence is deemed completed) or exempted; 4-2. A person who is still subject to a stay of sentence after having been sentenced to a stayed execution of imprisonment without labor or heavier punishment for violating this Act or the Act on Special Measures for the Control of Health Crimes; 5. A person for whom three years have not passed since his or her qualification as a customized cosmetic compounding manager was revoked under Article 3-8 . [This Article Newly Inserted on Aug. 17, 2021] 법령 이단보기 Article 3-6 (Prohibition of Lending of Qualification Certificates) (1) No customized cosmetic compounding manager shall allow any other person to perform the business affairs of customized cosmetic compounding manager using his or her name, or transfer or lend his or her qualification certificate as a customized cosmetic compounding manager. (2) No one shall acquire by transfer or borrow and use any other person’s qualification certificate as a customized cosmetic compounding manager. [This Article Newly Inserted on Aug. 17, 2021] 법령 이단보기 Article 3-7 (Prohibition of Use of Similar Titles) No person other than a customized cosmetic compounding manager shall use the title \"customized cosmetic compounding manager\" or any other similar titles. [This Article Newly Inserted on Aug. 17, 2021] 법령 이단보기 Article 3-8 (Revocation of Qualification of Customized Cosmetic Compounding Managers) The Minister of Food and Drug Safety shall revoke the qualification of a customized cosmetic compounding manager if the customized cosmetic compounding manager falls under any of the following cases: <Amended on Oct. 22, 2024> 1. Where he or she obtains the qualification of the customized cosmetic compounding manager by fraud or other improper means; 2. Where he or she falls under any of subparagraphs 1 through 4 or subparagraph 4-2 of Article 3-5 ; 3. Where he or she allows any other person to perform the business affairs of a customized cosmetic compounding manager using his or her name, or transfer or lend his or her qualification certificate as customized cosmetic compounding manager, in violation of Article 3-6 (1). [This Article Newly Inserted on Aug. 17, 2021] 법령 이단보기 Article 4 (Examination of Functional Cosmetics) (1) A cosmetic manufacturer, responsible cosmetic distributor (referring to a person who filed for registration of his or her responsible cosmetic distribution business pursuant to Article 3 (1); hereinafter the same shall apply), or university, research institute, etc. prescribed by Ordinance of the Prime Minister that intends to obtain a recognition of functional cosmetics and engage in the sale, etc. of the recognized functional cosmetics shall undergo an examination by the Minister of Food and Drug Safety or shall submit a report to the Minister of Food and Drug Safety on the safety and effectiveness of each product. The same shall apply to any modification of the report submitted or the matters examined. <Amended on Mar. 23, 2013; Mar. 13, 2018> (2) Examinations of effectiveness under paragraph (1) shall be limited to the efficacy and effects provided for in the items of subparagraph 2 of Article 2 . (3) A person who intends to undergo an examination under paragraph (1) shall submit data necessary for such examination to the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> (4) Matters necessary for the scope of and procedures, etc. for examinations or submission of reports under paragraphs (1) and (2) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> 법령 이단보기 Article 4-2 (Management of Cosmetics Used by Infants or Children) (1) When a responsible cosmetic distributor intends to label or advertise cosmetics as usable by infants or children, he or she shall prepare and retain the following data that can prove safety and quality by product (hereinafter referred to as \"safety data by product\"): 1. Materials explaining about products and manufacturing methods; 2. Materials on the evaluation of cosmetics safety; 3. Materials evidencing the efficacy and effects of products. (2) The Minister of Food and Drug Safety shall periodically conduct fact-finding surveys on cosmetics prescribed in paragraph (1) in terms of safety data by product, actual status of consumers using cosmetics, cases of experiencing adverse events after use, etc., and formulate a plan for the attenuation of hazardous elements. (3) The Minister of Food and Drug Safety may render education or public relations so as to enable consumers to use cosmetics prescribed in paragraph (1) safely. (4) Matters necessary for the ages of infants or children, scope of labeling and advertising, scope of preparation and retention period of safety data by product, etc. under paragraph (1), and fact-finding surveys, and the scope of, timing and procedures for formulating plans, etc. under paragraph (2) shall be prescribed by Ordinance of the Prime Minister. [This Article Newly Inserted on Jan. 15, 2019] 법령 이단보기 Article 5 (Obligations of Business Operators) (1) A cosmetic manufacturer shall comply with the requirements prescribed by Ordinance of the Prime Minister with respect to methods for managing records, facilities and equipment related to the manufacture of cosmetics, and methods for and obligation of test, inspection and verification of raw materials, materials, finished products, etc. <Amended on Mar. 23, 2013; Mar. 13, 2018> (2) A responsible cosmetic distributor shall comply with the requirements prescribed by Ordinance of the Prime Minister with respect to the quality management standards of cosmetics, the post-market safety management standards, methods for and obligation of quality tests, the obligation to report information on the safety and efficacy of cosmetics, and the obligation to establish safety measures. <Amended on Mar. 23, 2013; Mar. 13, 2018> (3) No customized cosmetic seller (referring to a person who has reported a customized cosmetic sales business pursuant to Article 3-2 (1); hereinafter the same shall apply) shall mix or subdivide cosmetics distributed and sold to consumers at his or her discretion. <Newly Inserted on Aug. 17, 2021> (4) A customized cosmetic seller shall comply with the requirements prescribed by Ordinance of the Prime Minister with respect to the management method for the facilities and apparatus of customized cosmetic shops, obligation to comply with the safety management standards for the mixing or subdivision of customized cosmetics, and obligation to describe the content and raw materials to be mixed and subdivided, and obligation to report on safety matters. <Newly Inserted on Mar. 13, 2018; Aug. 17, 2021> (5) A responsible cosmetic distributor shall file a report on the performance of production or importation of cosmetics and the bill of materials used in the process of manufacturing cosmetics, with the Minister of Food and Drug Safety, as prescribed by Ordinance of the Prime Minister. In such cases, a report on the list of raw materials shall be filed before the distribution or sale of the relevant cosmetics. <Amended on Mar. 23, 2013; Mar. 13, 2018; Aug. 17, 2021> (6) A customized cosmetic seller shall report the bill of materials for customized cosmetics to the Minister of Food and Drug Safety once a year, as prescribed by Ordinance of the Prime Minister. <Newly Inserted on Aug. 17, 2021> (7) A responsible distribution manager and a customized cosmetic compounding manager shall receive education on securing safety and quality management of cosmetics every year. <Amended on Mar. 23, 2013; Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021> (8) Where deemed necessary to prevent a risk to public health, the Minister of Food and Drug Safety may order cosmetic manufacturers, responsible cosmetic distributors, and customized cosmetic sellers (hereinafter referred to as \"business operators\") to receive education on cosmetics-related statutes, regulations and institutions (including content on securing safety and quality management of cosmetics). <Amended on Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021> (9) Where a person who should receive education under paragraph (8) conducts cosmetic manufacturing business, responsible cosmetic distribution business, or customized cosmetic sales business at two or more places, he or she may designate a person prescribed by Ordinance of the Prime Minister as the person-in-charge from among his or her employees and require the person to receive education. <Newly Inserted on Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021> (10) Matters necessary for the institutions providing education, the content of education, persons required to receive education, education expenses, etc. under paragraphs (7) through (9) shall be prescribed by Ordinance of the Prime Minister. <Newly Inserted on Feb. 3, 2016; Mar. 13, 2018; Aug. 17, 2021> [Title Amended on Mar. 13, 2018] 법령 이단보기 Article 5-2 (Recall of Hazardous Cosmetics) (1) A business operator shall without delay recall or take measures necessary to recall a cosmetic, where he or she becomes aware of the fact that the cosmetic that poses or is likely to pose a risk to the public health in violation of Article 9 , 15, or 16 (1) is on the market. <Amended on Dec. 11, 2018> (2) A business operator who intends to recall or take measures necessary to recall a cosmetic under paragraph (1) shall report a recall plan to the Minister of Food and Drug Safety in advance. <Amended on Mar. 13, 2018> (3) The Minister of Food and Drug Safety may mitigate or remit the administrative disposition under Article 24 to be imposed on the business operator who has conscientiously conducted the recall or taken measures necessary for recall under paragraph (1), because of the relevant cosmetics, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 13, 2018> (4) Cosmetics subject to recall under paragraphs (1) and (2), the hazard class necessary to recall the relevant cosmetic, the risk classification criteria, the procedures for reporting a recall plan, recall procedures, and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Dec. 11, 2018> [This Article Newly Inserted on Jan. 28, 2015] 법령 이단보기 Article 6 (Reporting on Business Closure) (1) A business operator shall file a report with the Minister of Food and Drug Safety in any of the following cases, as prescribed by Ordinance of the Prime Minister: Provided , That this shall not apply where the business operator suspends his or her business for less than 1 month or resumes his or her business after suspension for less than 1 month: <Amended on Mar. 23, 2013; Mar. 13, 2018; Dec. 11, 2018> 1. Where he or she intends to close or suspend business; 2. Where he or she intends to resume business after suspension; 3. Deleted. <Dec. 11, 2018> (2) Where a cosmetic manufacturer or responsible cosmetic distributor filed a closure report with the head of the competent tax office under Article 8 of the Value-Added Tax Act or the head of the competent tax office canceled his or her business registration, the Minister of Food and Drug Safety may revoke the registration of the cosmetic manufacturer or responsible cosmetic distributor. <Newly Inserted on Mar. 13, 2018> (3) If necessary to revoke the registration of a cosmetic manufacturer or responsible cosmetic distributor under paragraph (2), the Minister of Food and Drug Safety may request the head of the competent tax office to provide information about his or her business closure. In such cases, upon receipt of such request, the head of the competent tax office shall provide the Minister of Food and Drug Safety with information about the business closure of the cosmetic manufacturer or responsible cosmetic distributor pursuant to Article 39 of the Electronic Government Act . <Newly Inserted on Mar. 13, 2018> (4) The Minister of Food and Drug Safety shall notify the reporter of whether to accept a report on business closure or suspension under Article 1 (1) within 7 days from the date of receipt of such report. <Newly Inserted on Dec. 11, 2018> (5) Where the Minister of Food and Drug Safety fails to notify the reporter of whether to accept his or her report within the period specified in paragraph (4) or of the extension of the handling period under the statutes or regulations related to handling civil petitions, such report shall be deemed accepted on the day after the end of such period (where the handling period is extended or re-extended under the statutes or regulations related to handling civil petitions, referring to the relevant handling period). <Newly Inserted on Dec. 11, 2018> 법령 이단보기 Article 7 Deleted. <Mar. 13, 2018> CHAPTER III HANDLING OF COSMETICS SECTION 1 STANDARDS 법령 이단보기 Article 8 (Safety Standards for Cosmetics) (1) The Minister of Food and Drug Safety shall designate and publicly notify raw materials which cannot be used for the manufacture, etc. of cosmetics. <Amended on Mar. 23, 2013> (2) The Minister of Food and Drug Safety shall designate and publicly notify the standards for using raw materials, such as preservatives, pigments, and sunscreen, which are subject to special restriction on use, and no preservatives, pigments, and sunscreen the standards for the use of which are not designated and publicly notified shall be used. <Amended on Mar. 23, 2013; Mar. 13, 2018> (3) As for raw materials of cosmetics, etc. that could pose a risk to the public health, such as those known to contain harmful materials in Korea or overseas, the Minister of Food and Drug Safety shall promptly assess the risks of such materials and determine whether such materials are hazardous, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> (4) After completing a risk assessment under paragraph (3), the Minister of Food and Drug Safety shall designate the relevant raw materials of cosmetics as unusable in manufacturing cosmetics or shall designate the standards for using such materials. <Amended on Mar. 23, 2013> (5) The Minister of Food and Drug Safety shall review the safety of the designated and publicly notified standards for using raw materials under paragraph (2), and may amend such standards for using raw materials based on the findings of review. In such cases, matters relating to the frequency, procedures, etc. for safety review shall be prescribed by Ordinance of the Prime Minister. <Newly Inserted on Mar. 13, 2018> (6) A cosmetic manufacturer, responsible cosmetic distributor, or university, research institute, etc. prescribed by Ordinance of the Prime Minister may file an application with the Minister of Food and Drug Safety to designate and publicly notify the standards for using a raw material that has no standards designated and publicly notified under paragraph (2), or to amend the designated and publicly notified standards for using any raw material under paragraph (2), as prescribed by Ordinance of the Prime Minister. <Newly Inserted on Mar. 13, 2018> (7) Upon receipt of an application filed under paragraph (6), the Minister of Food and Drug Safety shall review whether the content of the application is feasible, and may designate and publicly notify or amend the standards for using the relevant raw material if the content of such application is deemed feasible. In such cases, the Minister shall inform an applicant of result of the review in writing. <Newly Inserted on Mar. 13, 2018> (8) The Minister of Food and Drug Safety may formulate and publicly notify other safety management standards for distributed cosmetics. <Amended on Mar. 23, 2013; Mar. 13, 2018> 법령 이단보기 Article 9 (Childproof Containers and Packaging) (1) Every responsible cosmetic distributor and customized cosmetic seller shall use childproof containers and packages for the sale of cosmetics in order to prevent children from being physically harmed by misuse. <Amended on Mar. 13, 2018> (2) Items requiring childproof containers and packages under paragraph (1), standards for containers and packages, and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> SECTION 2 LABELING, ADVERTISEMENTS AND HANDLING 법령 이단보기 Article 10 (Statements for Cosmetics) (1) Each of the following matters shall be stated and labeled on the primary or secondary package of cosmetics, as prescribed by the Ordinance of the Prime Minister: Provided , That in cases of packages prescribed by Ordinance of the Prime Minister including packages of cosmetics with a small quantity of contents, matters other than the name of a cosmetic, the trade name of the responsible cosmetic distributor and customized cosmetic seller, the price, the batch number, the use-by date, or the period after opening (where the period after opening is stated, the manufacturing date shall also be stated; hereafter in this Article the same shall apply) need not be stated and labeled thereon: <Amended on Mar. 23, 2013; Feb. 3, 2016; Mar. 13, 2018> 1. Name of the cosmetic; 2. Trade name and address of the business operator; 3. All ingredients used in manufacturing the relevant cosmetic (excluding ingredients prescribed by Ordinance of the Prime Minister, such as trace ingredients that are not harmful to the human body); 4. Volume or weight of contents; 5. Batch number; 6. Use-by date or the period after opening; 7. Price; 8. For a functional cosmetic, the word \"functional cosmetic\" or the logo determined by the Minister of Food and Drug Safety indicating that the product is a functional cosmetic; 9. Cautions for use; 10. Other matters prescribed by Ordinance of the Prime Minister. (2) Notwithstanding the main clause, with the exception of the subparagraphs, of paragraph (1), the following matters shall be labeled on the primary package: Provided , That this shall not apply to cosmetics prescribed by Ordinance of the Prime Minister, such as a bar soap designed to be used after removing the primary package of the cosmetics. <Amended on Mar. 13, 2018; Aug. 17, 2021> 1. Name of the cosmetic; 2. Trade name of the business operator; 3. Batch number; 4. Use-by date and the period after opening. (3) The name of a product and the trade name of the business operator may also be labeled in Braille for visually-impaired persons when making statements under paragraph (1) on the containers and packages of cosmetics. <Amended on Mar. 13, 2018> (4) Standards and methods for labeling under paragraphs (1) and (2) and other relevant matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> 법령 이단보기 Article 11 (Price Labeling of Cosmetics) (1) Prices referred to in Article 10 (1) 7 shall be labeled by a person who directly sells cosmetics to consumers (hereinafter referred to as \"seller\"). (2) Methods of labeling under paragraph (1) and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> 법령 이단보기 Article 12 (Cautions for Statements or Labeling) Matters prescribed in Articles 10 and 11 shall be stated or labeled in a more conspicuous place than a place where other characters or sentences are and shall be accurately stated or labeled in easily readable and comprehensible Korean characters, as prescribed by Ordinance of the Prime Minister, and scripts in Chinese characters and foreign languages may also be placed. <Amended on Mar. 23, 2013> 법령 이단보기 Article 13 (Prohibition of False Labeling and Advertising) (1) Neither business operator nor seller shall label or advertise in any of the following manners: <Amended on Mar. 13, 2018> 1. Labeling or advertisements likely to mislead consumers into thinking the cosmetics are medicines; 2. Labeling or advertisements likely to mislead consumers into thinking any cosmetic other than a functional cosmetic is a functional cosmetic, or labeling or advertisements different from the examination results of its safety and efficacy; 3. Labeling or advertisements likely to mislead consumers into thinking any cosmetic other than a natural or organic cosmetic is a natural or organic cosmetic; 4. Other labeling or advertisements likely to deceive or mislead consumers by misrepresentation. (2) The scope of labeling and advertising set forth in paragraph (1) and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> 법령 이단보기 Article 14 (Substantiation of Claims of Labeling and Advertisements) (1) A business operator or seller shall be able to substantiate the claims of the labeling and advertisements which he or she has placed. <Amended on Mar. 13, 2018> (2) If the Minister of Food and Drug Safety deems it necessary to substantiate the claims of the labeling or advertisements placed by a business operator or seller pursuant to paragraph (1) to determine whether the labeling or advertisements fall under Article 13 (1) 4, he or she may request the business operator or seller to submit relevant data specifying the details thereof. <Amended on Mar. 23, 2013; Mar. 13, 2018> (3) A business operator or seller in receipt of a request to submit the claim substantiation data under paragraph (2) shall submit it to the Minister of Food and Drug Safety within 15 days after receipt of such request: Provided , That the period for submission may be extended when the Minister of Food and Drug Safety deems good cause exists. <Amended on Mar. 23, 2013; Mar. 13, 2018> (4) When a business operator or seller continues placing labeling or advertisements without submitting the claim substantiation data within the period for submission prescribed in paragraph (3) even after having been requested to do so under paragraph (2), the Minister of Food and Drug Safety shall issue an order to suspend the labeling or advertisements until he or she submits such claim substantiation data. <Amended on Mar. 23, 2013; Mar. 13, 2018> (5) A business operator or seller may refuse the submission of claim substantiation data requested by other organizations under other statutes, such as the Act on Fair Labeling and Advertising , so long as he or she has submitted the claim substantiation data requested by the Minister of Food and Drug Safety pursuant to paragraphs (2) and (3). <Amended on Mar. 23, 2013> (6) The Minister of Food and Drug Safety shall comply with other organizations' request for the submitted claim substantiation data, made under other statutes, such as the Act on Fair Labeling and Advertising , unless there is a compelling reason not to do so. <Amended on Mar. 23, 2013> (7) Matters necessary for those required to substantiate their claims, the scope of and requirements for the claim substantiation data, and methods of submission under paragraphs (1) through (4) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> 법령 이단보기 Article 14-2 (Certification of Natural Cosmetics and Organic Cosmetics) (1) The Minister of Food and Drug Safety may certify a cosmetic that complies with the standards determined by the Minister as a natural cosmetic or organic cosmetic in order to encourage the quality improvement of natural cosmetics and organic cosmetics and to provide consumers with more accurate product information. (2) A cosmetic manufacturer, responsible cosmetic distributor, or university, research institute, etc. prescribed by Ordinance of the Prime Minister that intends to obtain a certification under paragraph (1) shall apply for certification to the Minister of Food and Drug Safety. (3) The Minister of Food and Drug Safety shall revoke the certification of a cosmetic certified under paragraph (1) in any of the following cases: 1. Where the cosmetic obtained certification by fraud or other improper means; 2. Where the cosmetic fails to comply with the standards for certification under paragraph (1). (4) In order to effectively perform business affairs related to certification, the Minister of Food and Drug Safety may designate an agency or organization equipped with required professional personnel and facilities as a certifying agency and may entrust such business affairs to the certifying agency. (5) Certification procedures and standards for designation of certifying agencies under paragraphs (1) through (4) and other matters necessary to operate the certification system shall be prescribed by Ordinance of the Prime Minister. [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 14-3 (Effective Period of Certification) (1) The effective period of a certification under Article 14-2 (1) shall be three years from the date of certification. (2) A person who intends to extend the effective period of a certification shall apply for an extension to the Minister of Food and Drug Safety at least 90 days prior to the expiration of such effective period. [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 14-4 (Certification Marking) (1) A cosmetic certified under Article 14-2 (1) may bear a certification mark prescribed by Ordinance of the Prime Minister. (2) No one shall place the certification mark prescribed in paragraph (1) or any similar label on any cosmetic not certified under Article 14-2 (1). [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 14-5 (Revocation of Designation of Certifying Agencies) (1) The Minister of Food and Drug Safety may require a relevant public official to inspect whether a certifying agency designated under Article 14-2 (4) (hereinafter referred to as \"certifying agency\") properly performs business affairs related to certification, if deemed necessary. (2) Where a certifying agency falls under any of the following subparagraphs, the Minister of Food and Drug Safety may revoke the designation of the certifying agency or issue an order to suspend all or part of its business affairs for a specified period not to exceed one year: Provided , That he or she shall revoke such designation in the case of subparagraph 1: 1. Where the certifying agency obtained designation by fraud or other improper means: 2. Where the certifying agency ceases to meet the standards for designation prescribed under Article 14-2 (5). (3) Matters necessary for the revocation of designation and suspension of business affairs under paragraph (2) shall be prescribed by Ordinance of the Prime Minister. [This Article Newly Inserted on Mar. 13, 2018] SECTION 3 PROHIBITION OF MANUFACTURE, IMPORTATION, AND SALE 법령 이단보기 Article 15 (Prohibition of Sales Business) No person shall sell (including act of offering or supplying for the purpose of import agency business) or manufacture, import, store, or display cosmetics for the purpose of selling cosmetics that fall under any of the following subparagraphs: <Amended on May 29, 2016; Mar. 13, 2018; Aug. 17, 2021> 1. Functional cosmetics that fail to undergo an examination or a report on which has not been submitted, as prescribed in Article 4 ; 2. Fully or partially deteriorated cosmetics; 3. Cosmetics contaminated by pathogens; 4. Cosmetics mixed or mingled with foreign substances; 5. Cosmetics using raw materials that cannot be used for cosmetics as prescribed in Article 8 (1) and (2), or cosmetics that fail to meet safety management standards for distributed cosmetics under paragraph (8) of that Article; 6. Cosmetics using the horns of rhinoceros or bones of tigers, or the extracts thereof; 7. Cosmetics manufactured either under unsanitary conditions which are likely to cause harm to health and sanitation, or in facilities which fail to satisfy facility standards under Article 3 (2); 8. Cosmetics which are likely to cause harm to health and sanitation due to poor containers and packages; 9. Cosmetics with forged or falsified use-by date or period after opening (including the date of manufacture stated) prescribed in Article 10 (1) 6; 10. Cosmetics which are likely to be consumed or misused as food because they are imitating the shape, smell, color, size, container, package, etc. of foods. [Title Amended on Mar. 13, 2018] 법령 이단보기 Article 15-2 (Prohibition of Distribution or Sale of Animal-Tested Cosmetics) (1) No responsible cosmetic distributor or customized cosmetic seller shall distribute or sell any cosmetics which were tested on animals under subparagraph 1 of Article 2 of the Laboratory Animal Act (hereafter in this Article referred to as \"animal testing\"), or cosmetics manufactured (including manufacturing by consignment) or imported using raw materials which underwent animal testing: Provided , That this shall not apply to any of the following cases: <Amended on Mar. 13, 2018; Aug. 17, 2021> 1. Where animal testing is needed to designate the standards for using raw materials requiring a specific restriction on usage, such as preservatives, pigments, or sunscreen under Article 8 (2), or to assess hazards of cosmetics raw materials, etc. posing risks to public health pursuant to paragraph (3) of that Article; 2. Where animal testing is needed because no alternative to animal testing (referring to non-animal testing or testing on a limited number of animals or reducing animal pains, and recognized as such by the Minister of Food and Drug Safety; hereafter the same shall apply in this Article) exists; 3. Where animal testing is needed to export cosmetics in accordance with the statutes and regulations of the export partner country; 4. Where animal testing is needed for product development in accordance with the statutes and regulations of the importing country; 5. Where raw materials developed through animal testing conducted under other statutes and regulations are used for the manufacture, etc. of cosmetics; 6. Other cases determined by the Minister of Food and Drug Safety, where it is impractical to conduct alternatives to animal testing. (2) The Minister of Food and Drug Safety shall endeavor to develop alternatives to animal testing and shall take measures necessary to enable responsible cosmetic distributors, etc. to utilize the alternatives to animal testing. <Amended on Mar. 13, 2018> [This Article Newly Inserted on Feb. 3, 2016] 법령 이단보기 Article 16 (Prohibition of Sale) (1) No person shall sell any of the following cosmetics, or store or display them for sale: Provided , That this shall only apply to cosmetics to be sold to consumers in the case of subparagraph 3: <Amended on May 29, 2016; Mar. 13, 2018> 1. Cosmetics distributed and sold after being manufactured (including manufacturing by consignment) or imported by a person who has not been registered under Article 3 (1); 1-2. Customized cosmetics sold by a person who did not file a report under Article 3-2 (1); 1-3. Customized cosmetics sold without employing a customized cosmetic compounding manager under Article 3-2 (2); 2. Cosmetics violating Articles 10 through 12 or cosmetics with statements or labeling likely to mislead consumers into thinking the cosmetics are medicines; 3. Cosmetics manufactured or imported for consumers to test and use in advance not for the purpose of sale but for publicity and sales promotions; 4. Cosmetics, the package of which or statement or labeling on which has been damaged (excluding damage necessary to sell a customized cosmetic), forged, or falsified. (2) No one (excluding a customized cosmetic seller who sells cosmetics through a customized cosmetic compounding manager and a seller of cosmetics manufactured for the purpose of subdivision and sale among cosmetics under the proviso of subparagraph 3-2 (b) of Article 2) may sell contents divided from a container of a cosmetic. <Amended on Mar. 13, 2018; Apr. 7, 2020> SECTION 4 COSMETICS INDUSTRY ASSOCIATION 법령 이단보기 Article 17 (Establishment of Association) Business operators may establish an association to guarantee their independent activities and common interests and to contribute to improving national health. <Amended on Mar. 13, 2018> [Title Amended on Mar. 13, 2018] CHAPTER IV SUPERVISION 법령 이단보기 Article 18 (Reporting and Inspection) (1) The Minister of Food and Drug Safety may order a business operator, seller, or any other person who handles cosmetics for their business to file a necessary report, or may require a relevant public official to enter a place for manufacturing cosmetics, place of business, warehouse, store, or any other place handling cosmetics in order to inspect relevant facilities, books, documents, or other things or to ask questions to relevant persons. <Amended on Mar. 23, 2013; Mar. 13, 2018> (2) The Minister of Food and Drug Safety may collect the minimum amount of a cosmetic necessary to inspect the propriety of quality or safety standards, or statements or labeling on packages, etc. <Amended on Mar. 23, 2013> (3) The Minister of Food and Drug Safety may operate a monitoring system on the sale of products, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> (4) In the case of paragraph (1), a relevant public official shall present identification verifying his or her authority to relevant persons. (5) Qualification of relevant public officials under paragraphs (1) and (2) and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> 법령 이단보기 Article 18-2 (Consumer Watchdog for Cosmetics Safety Management) (1) For the safety management of cosmetics, the Minister of Food and Drug Safety or the heads of the regional offices of food and drug safety may appoint a person recommended by the head of the relevant association or consumer organization, from among the executive officers and employees of an association established under Article 17 or a consumer organization registered under Article 29 of the Framework Act on Consumers , or a person knowledgeable about the safety management of cosmetics as a consumer watchdog for cosmetics safety management. (2) Duties of consumer watchdogs for cosmetics safety management appointed under paragraph (1) (hereinafter referred to as \"consumer watchdog for cosmetics safety management\") shall be as follows: 1. Reporting a cosmetic on the market to the competent administrative agency or providing information for such agency, where the cosmetic fails to comply with the labeling standards prescribed under Article 10 (1) and (2) or is labeled or advertised in any manner provided in the subparagraphs of Article 13 (1); 2. Assisting a relevant public official in entry, inspections, inquiries, and collection under Article 18 (1) and (2); 3. Other duties prescribed by Ordinance of the Prime Minister with respect to the safety management of cosmetics. (3) The Minister of Food and Drug Safety or the heads of the regional offices of food and drug safety may provide consumer watchdogs for cosmetics safety management with education necessary to perform their duties. (4) The Minister of Food and Drug Safety or the heads of the regional offices of food and drug safety shall dismiss a consumer watchdog for cosmetics safety management in any of the following cases: 1. Where he or she retires or is discharged from the association or organization that recommended him or her; 2. Where he or she engages in misconduct or abuses power with respect to the duties provided in the subparagraphs of paragraph (2); 3. Where he or she has difficulty in performing duties due to a disease, injury, etc. (5) Qualifications and education for consumer watchdogs for cosmetics safety management and other necessary matters shall be prescribed by Ordinance of the Prime Minister. [This Article Newly Inserted on Mar. 13, 2018] 법령 이단보기 Article 19 (Corrective Orders) If deemed necessary, the Minister of Food and Drug Safety may issue a corrective order to persons who fail to comply with this Act. <Amended on Mar. 23, 2013> 법령 이단보기 Article 20 (Inspection Orders) The Minister of Food and Drug Safety may order a business operator to undergo an inspection conducted by a cosmetics testing and inspection agency prescribed in Article 6 (2) 5 of the Act on Testing and Inspection in the Food and Drug Industry , on cosmetics handled by the business operator, if deemed necessary. <Amended on Mar. 23, 2013; Jul. 30, 2013; Mar. 13, 2018> 법령 이단보기 Article 21 Deleted. <Jul. 30, 2013> 법령 이단보기 Article 22 (Orders to Repair Facilities) If the Minister of Food and Drug Safety deems that facilities held by a cosmetic manufacturer are likely to compromise the safety and quality of cosmetics because such facilities fail to satisfy the facility standards referred to in Article 3 (2) or are decrepit or damaged, he or she may order the cosmetic manufacturer to repair the facilities or prohibit the use of all or part of the facilities until repair is complete. <Amended on Mar. 23, 2013; Mar. 13, 2018> 법령 이단보기 Article 23 (Orders to Recall or Destroy Goods) (1) Where a cosmetic sold, stored, displayed, manufactured or imported, or a raw material, ingredient, etc. of such cosmetic (hereinafter referred to as \"goods\") is likely to pose a risk to the public health in violation of Article 9 , 15, or 16 (1), the Minister of Food and Drug Safety shall issue to a relevant business operator or seller, or any other person handling cosmetics for business an order to take measures, such as recalling or destroying the relevant goods. <Amended on Dec. 11, 2018> (2) Where it is deemed that goods sold, stored, displayed, manufactured or imported pose or are likely to pose a risk to the public health, the Minister of Food and Drug Safety shall issue to a relevant business operator or seller, or any other person handling cosmetics for business an order to take measures, such as recalling or destroying the goods. <Newly Inserted on Dec. 11, 2018> (3) A business operator or seller or any other person handling cosmetics for business who is issued with an order under paragraphs (1) and (2) shall, in advance, report a recall plan to the Minister of Food and Drug Safety. <Newly Inserted on Dec. 11, 2018> (4) The Minister of Food and Drug Safety may require a relevant public official to destroy the relevant goods or take other necessary measures in any of the following cases: <Amended on Mar. 23, 2013; Dec. 11, 2018> 1. Where a person issued with an order under paragraph (1) or (2) fails to comply with the order; 2. Other urgent measures are necessary for public health. (5) The hazard class necessary to recall goods under paragraphs (1) through (3), the risk classification criteria, procedures and plans for recall or destruction, follow-up measures, and other necessary matters shall be prescribed by Ordinance of the Prime Minister. <Newly Inserted on Jan. 28, 2015; Dec. 11, 2018> [Title Amended on Jan. 28, 2015] 법령 이단보기 Article 23-2 (Publication of Hazardous Cosmetics) (1) The Minister of Food and Drug Safety may order the relevant business operator to publish the relevant facts in any of the following cases: <Amended on Mar. 13, 2018; Dec. 11, 2018> 1. When the Minister receives a report on a recall plan under Article 5-2 (2); 2. When the Minister receives a report on a recall plan under Article 23 (3). (2) Matters necessary for methods and procedures for publication under paragraph (1) shall be prescribed by Ordinance of the Prime Minister. [This Article Newly Inserted on Jan. 28, 2015] 법령 이단보기 Article 24 (Revocation of Registration) (1) Where a business operator falls under any of the following cases, the Minister of Food and Drug Safety may revoke the registration of the business or order to close the place of business (only applicable to business reported under Article 3-2 (1); hereafter in this Article the same shall apply), to prohibit the manufacture, importation, or sale of items (including an act of offering or supplying for the import agency business), or to suspend all or part of the business affairs for a specified period not exceeding one year: Provided , That the Minister of Food and Drug Safety shall revoke the registration or close the place of business in cases falling under subparagraph 1-2, 3, or 14 (excluding cases where an order is issued to suspend only the advertisement activities): <Amended on Mar. 23, 2013; Jan. 28, 2015; May 29, 2016; Mar. 13, 2018; Dec. 11, 2018; Jan. 15, 2019; Aug. 17, 2021> 1. Where the business operator fails to file for registration of any modification of cosmetic manufacturing business or responsible cosmetic distribution business under the latter part of Article 3 (1); 1-2. Where the business operator files for registration or registration for modification or files a report or a report on modification under Article 3 (1) or 3-2 (1) by fraud or other improper means; 2. Where the business operator fails to equipped with the facilities under Article 3 (2); 2-2. Where the business operator fails to file a report on modification of customized cosmetic sales business under the latter part of Article 3-2 (1); 2-3. Where the customized cosmetic seller ceases to comply with the standards for facilities under Article 3-2 (2); 3. Where the business operator falls under any subparagraph of Article 3-3 ; 4. Where the business operator manufactures or imports cosmetics that have posed or are likely to pose a risk to the public health; 5. Where the business operator sells functional cosmetics on which he or she fails to receive an examination or submit a report, in violation of Article 4 (1); 5-2. Where the business operator fails to prepare or retain safety data by product under Article 4-2 (1); 6. Where the business operator fails to comply with matters to be observed, in violation of Article 5 ; 6-2. Where the business operator fails to recall or to take measures necessary to recall the cosmetics subject to recall, in violation of Article 5-2 (1); 6-3. Where the business operator fails to report or falsely reports a recall plan, in violation of Article 5-2 (2); 7. Deleted; <Mar. 13, 2018> 8. Where the business operator violates the standards for childproof containers and packages of cosmetics under Article 9 ; 9. Where the business operator places statements or labeling on the containers or packages of cosmetics and attached documents, in violation of Articles 10 through 12; 10. Where the business operator labels or advertises cosmetics, in violation of Article 13 or in violation of an order for suspension under Article 14 (4); 11. Where the business operator sells cosmetics, or manufactures, imports, stores, or displays cosmetics for the purpose of sale, in violation of Article 15 ; 12. Where the business operator refuses or interferes with an inspection, questioning, collection, etc. under Article 18 (1) and (2); 13. Where the business operator fails to comply with an order for correction, inspection, repair, recall, destruction, or publication under Article 19 , 20, 22, 23 (1) or (2), or 23-2; 13-2. Where the business operator fails to report or falsely reports a recall plan under Article 23 (3); 14. Where the business operator performs his or her business affairs during a period of business suspension. (2) Standards for administrative dispositions under paragraph (1) shall be prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013> [Title Amended on Mar. 13, 2018] 법령 이단보기 Article 24-2 (Revocation of Recognition of Functional Cosmetics) If cosmetic manufacturers, responsible cosmetic distributors, or the universities, research institutes, etc. prescribed by Ordinance of the Prime Minister fall under any of the following cases, the Minister of Food and Drug Safety shall revoke the recognition of the relevant functional cosmetics: 1. Where they have received an examination or an examination of modification under Article 4 by fraud or other improper means; 2. Where they have submitted reports under Article 4 by fraud or other improper means. [This Article Newly Inserted on Aug. 17, 2021] 법령 이단보기 Article 25 Deleted. <Jul. 30, 2013> 법령 이단보기 Article 26 (Succession to Status of Business Operators) When a business operator dies or transfers his or her business, or a merger between corporate business operators takes place, the heir, the transferee, or the surviving or resulting corporation following the merger or consolidation shall succeed to the status of the business operator. <Amended on Mar. 13, 2018> [Title Amended on Mar. 13, 2018] 법령 이단보기 Article 26-2 (Succession to Effects of Administrative Sanctions) Where a person succeeds to the status of a business operator pursuant to Article 26 , he or she shall succeed to any administrative sanction imposed on the business operator under Article 24 for one year from the date the sanction period ends; and where the procedure for imposing an administrative sanction is ongoing, it may continue with respect to such person: Provided , That this shall not apply where the person who succeeded to the status of the business operator proves that he or she did not know such administrative sanction or violation at the time of succession to the status. [This Article Newly Inserted on Dec. 11, 2018] 법령 이단보기 Article 27 (Hearings) If the Minister of Food and Drug Safety intends to revoke the qualification under Article 3-8 ; revoke the certification under Article 14-2 (3); revoke the designation of a certifying agency or order the suspension of all the business affairs under Article 14-5 (2); or revoke the registration, or order the closure of the place of business, prohibition of the manufacturing, importation, or sale of items (including an act of offering or supply for the import agency business), or suspension of all the business affairs under Article 24 , the Minister shall hold a hearing. <Amended on Mar. 23, 2013; May 29, 2016; Mar. 13, 2018; Aug. 17, 2021> 법령 이단보기 Article 28 (Imposition of Penalty Surcharges) (1) The Minister of Food and Drug Safety may impose a penalty surcharge of not more than one billion won on a business operator who should be subject to business suspension under Article 24 in lieu such business suspension. <Amended on Mar. 23, 2013; Mar. 13, 2018; Dec. 11, 2018> (2) Amounts of penalty surcharges, based on the types, degrees, etc. of violations subject to penalty surcharges under paragraph (1), and other necessary matters shall be prescribed by Presidential Decree. (3) If necessary to impose a penalty surcharge on a business operator, the Minister of Food and Drug Safety may request, in writing, tax information about the business operator from the head of the competent tax office, specifying the following: <Newly Inserted on Mar. 13, 2018> 1. Personal information of the taxpayer; 2. The purpose of using the tax information; 3. Sales amount based on which the penalty surcharge is imposed. (4) When a person liable to pay a penalty surcharge under paragraph (1) fails to pay it by the due date, the Minister of Food and Drug Safety may revoke the penalty surcharge imposed under paragraph (1), as prescribed by Presidential Decree, and order the person to suspend business under Article 24 (1) or collect such penalty surcharge in the same manner as delinquent national taxes are collected: Provided , That when the Minister of Food and Drug Safety cannot order the person to suspend business under Article 24 (1) due to business closure, etc. under Article 6 , the penalty surcharge shall be collected in the same manner as delinquent national taxes are collected. <Amended on Mar. 23, 2013; Mar. 13, 2018> (5) The Minister of Food and Drug Safety may request the following data or information from the person described in each subparagraph in order to collect an unpaid penalty surcharge under paragraph (4). In such cases, a person who receives such request shall comply therewith unless there is good cause: <Newly Inserted on Mar. 13, 2018> 1. A certified copy of building register under Article 38 of the Building Act : The Minister of Land, Infrastructure and Transport; 2. A certified copy of land cadaster under Article 71 of the Act on the Establishment and Management of Spatial Data : The Minister of Land, Infrastructure and Transport; 3. A certified copy of motor vehicle register under Article 7 of the Motor Vehicle Management Act : The Special Metropolitan City Mayor, Metropolitan City Mayors, Special Self-Governing City Mayors, Do Governors, or Special Self-Governing Province Governor. 법령 이단보기 Article 28-2 (Publication of Violations) (1) The Minister of Food and Drug Safety may release to the public matters related to administrative dispositions and prescribed by Presidential Decree regarding the person against whom an administrative disposition has become final and conclusive pursuant to Article 22 , 23, 23-2, 24 or 28, such as the grounds for and content of the disposition, the name and address of the person subject to the disposition, and the name of the representative, and the name of the relevant items. (2) Matters necessary for the publication such as the methods of the publication set forth under paragraph (1) shall be prescribed by Presidential Decree. [This Article Newly Inserted on Jan. 28, 2015] 법령 이단보기 Article 29 (Support for Voluntary Management) The Minister of Food and Drug Safety may provide administrative or financial support to business operators in order to settle and spread a voluntary management system under which they voluntarily endeavor to comply with criteria for labeling, advertisements, quality management, and domestic and foreign certification. <Amended on Mar. 23, 2013; Mar. 13, 2018> 법령 이단보기 Article 30 (Exception to Products for Exportation) Products for exportation only that are not sold domestically may be in compliance with provisions of an importing country, notwithstanding Articles 4 , 8 through 12, and 14, subparagraphs 1 and 5 of Article 15 , Article 16 (1) 2 and 3, and Article 16 (2). <Amended on May 29, 2016> CHAPTER V SUPPLEMENTARY PROVISIONS 법령 이단보기 Article 31 (Re-Issuance of Registration Certificate) When a business operator loses his or her certificate of registration, certificate of completion of report, or a notice of the examination results of functional cosmetics, or such certificate or notice becomes unusable, he or she may be re-issued such certificate, as prescribed by Ordinance of the Prime Minister. <Amended on Mar. 23, 2013; Mar. 13, 2018> 법령 이단보기 Article 32 (Fees) (1) Any of the following persons shall pay fees to the Minister of Food and Drug Safety as prescribed by Ordinance of the Prime Minister: Provided , That where the business affairs are entrusted under Article 3-4 (3), fees determined by the entrusted institution (hereafter in this Article referred to as \"entrusted institution\") shall be paid to the entrusted institution: <Amended on Aug. 17, 2021> 1. A person who intends to file for registration or to file a report, or to receive an examination or certification under this Act; 2. A person who intends to modify the registered or reported matters or examined or certified matters under this Act; 3. A person who intends to apply for the qualification test under Article 3-4 or to apply for the issuance of the qualification certificate. (2) When an entrusted institution determines the amount of fees pursuant to the proviso of paragraph (1), it shall specify the criteria therefor and obtain approval thereof from the Minister of Food and Drug Safety. The same shall also apply to any modification of the approved matters. <Newly Inserted on Aug. 17, 2021> (3) The fees collected by an entrusted institution under the proviso of paragraph (1) shall be the revenue of the entrusted institution in consideration of performance of the entrusted business affairs under Article 3-4 (3). <Newly Inserted on Aug. 17, 2021> [This Article Wholly Amended on Mar. 13, 2018] 법령 이단보기 Article 33 (Support for Cosmetics Industry) The Minister of Health and Welfare and the Minister of Food and Drug Safety shall establish the foundation for promoting the cosmetic industry and formulate and implement policy measures necessary for enhancing competitiveness, and shall secure finances thereof and grant support necessary for developing technology, conducting survey and research projects, providing overseas information, and building an international cooperation system. <Amended on Mar. 23, 2013; Mar. 13, 2018> 법령 이단보기 Article 33-2 (International Cooperation) The Minister of Food and Drug shall strive for international cooperation through such activities as entering into an agreement with an importing or exporting country, in order to promote the export of cosmetics and to ensure the safety and quality management of cosmetics. [This Article Newly Inserted on Dec. 11, 2018] 법령 이단보기 Article 34 (Entrustment or Delegation of Authority) (1) Part of the authority of the Minister of Food and Drug Safety vested under this Act may be delegated to the heads of the regional offices of food and drug safety, the Special Metropolitan City Mayor, a Metropolitan City Mayor, or a Do Governor, as prescribed by Presidential Decree. <Amended on Mar. 23, 2013> (2) The Minister of Food and Drug Safety may entrust some of his or her business affairs related to cosmetics vested under this Act to an association established pursuant to Article 17 or an agency, corporation or association related to cosmetics, as prescribed by Presidential Decree. <Amended on Mar. 23, 2013; Mar. 13, 2018> [Title Amended on Mar. 13, 2018] CHAPTER VI PENALTY PROVISIONS 법령 이단보기 Article 35 Deleted. <Mar. 13, 2018> 법령 이단보기 Article 36 (Penalty Provisions) (1) Any of the following persons shall be punished by imprisonment with labor for not more than 3 years or by a fine not exceeding 30 million won: <Amended on Mar. 18, 2014; Mar. 13, 2018; Aug. 17, 2021> 1. A person who violates the former part of Article 3 (1); 1-2. A person who files for registration or registration for modification or files a report or a report on modification under Article 3 (1) or Article 3-2 (1); 1-3. A person who violates the former part of Article 3-2 (1); 1-4. A person who violates Article 3-2 (2); 2. A person who violates the former part of Article 4 (1); 2-2. A person who receives an examination or examination of modification or files a report under Article 4 by fraud or other improper means; 2-3. A person who is certified by fraud or other improper means under Article 14-2 (3) 1; 2-4. A person who places a certification mark in violation of Article 14-4 (2); 3. A person who violates Article 15 ; 4. A person who violates Article 16 (1) 1, 1-2, or 4. (2) Imprisonment with labor and fines under paragraph (1) may be imposed concurrently. 법령 이단보기 Article 37 (Penalty Provisions) (1) Any person who violates Articles 3-6 , 4-2 (1), 9, 13, 16 (1) 2 or 3, or Article 16 (2), or who fails to comply with a suspension order under Article 14 (4) shall be punished by imprisonment with labor for not more than one year or by a fine not exceeding 10 million won. <Amended on Jul. 30, 2013; Mar. 18, 2014; Jan. 15, 2019; Aug. 17, 2021> (2) Imprisonment with labor and fines under paragraph (1) may be imposed concurrently. 법령 이단보기 Article 38 (Penalty Provisions) Any of the following persons shall be punished by a fine not exceeding two million won: <Amended on Mar. 13, 2018; Dec. 11, 2018; Aug. 17, 2021> 1. A person who violates any of the matters to be complied with under Article 5 (1) through (4); 1-2. A person who violates Article 5-2 (1); 1-3. A person who violates Article 5-2 (2); 2. A person who violates Article 10 (1) (excluding Article 10 (1) 7) and (2); 2-2. A person who uses the certification mark prescribed in Article 14-4 (1) on a cosmetic the effective period of certification for which under Article 14-3 has expired; 3. A person who violates any order issued under Article 18 , 19, 20, 22 or 23, or refuses, interferes with, or evades an inspection, collection or disposition by a relevant public official. 법령 이단보기 Article 39 (Joint Penalty Provisions) If the representative of a corporation or an agent or employee of, or any other person employed by, a corporation or an individual commits any violation under Articles 36 through 38 in connection with the business affairs of the corporation or individual, not only shall the violator be punished, but also the corporation or individual shall be punished by a fine under the relevant provisions: Provided , That this shall not apply where such corporation or individual has not been negligent in giving due attention and supervision concerning the relevant business affairs to prevent such violation. <Amended on Mar. 13, 2018> 법령 이단보기 Article 40 (Administrative Fines) (1) Any of the following persons shall be subject to an administrative fine not exceeding one million won: <Amended on Feb. 3, 2016; Mar. 13, 2018; Dec. 11, 2018; Aug. 17, 2021> 1. Deleted; <Mar. 13, 2018> 1-2. A person who uses the name \"customized cosmetic compounding manager\" or any other names similar thereto, in violation of Article 3-7 ; 2. A person who fails to undergo an examination of modification, in violation of the latter part of Article 4 (1); 3. A person who fails to report the performance of production or importation of cosmetics or the bill of materials for cosmetics, etc., in violation of Article 5 (5); 3-2. A person who fails to report the bill of materials for customized cosmetics, in violation of Article 5 (6); 4. A person who fails to receive education, in violation of Article 5 (7); 4-2. A person who violates any order issued under Article 5 (8); 5. A person who fails to report business closure, in violation of Article 6 ; 5-2. A person who fails to label the price of a cosmetic, in violation of Article 10 (1) 7 or Article 11 ; 6. A person who fails to file a report, in violation of Article 18 ; 7. A person who distributes or sells animal-tested cosmetics or cosmetics manufactured (including manufacturing by consignment) or imported cosmetics using animal-tested raw materials, in violation of Article 15-2 (1). (2) Administrative fines under paragraph (1) shall be imposed and collected by the Minister of Food and Drug Safety, as prescribed by Presidential Decree. <Amended on Mar. 23, 2013> ADDENDA <Act No. 11014, Aug. 4, 2011> Article 1 (Enforcement Date) This Act shall enter into force six months after the date of its promulgation: Provided , That the amended provisions of Articles 21 , 25 and 37 (limited to the provisions concerning inspection reports under Article 21 (2)) shall enter into force one year after the date of its promulgation. Article 2 (General Transitional Measures) Dispositions, procedures and other acts taken or done pursuant to the previous Cosmetics Act before this Act enters into force shall be deemed taken or done pursuant to the provisions of this Act corresponding thereto. Article 3 (Transitional measures concerning registration of manufacturing and sales business) A person who intends to obtain registration as a manufacturer-seller pursuant to amended provisions of Article 3 (1) among manufacturers of cosmetics who filed a report pursuant to previous Article 3 (1) shall file for registration, after fulfilling the requirements therefor, within one year after this Act enters into force. Article 4 (Transitional Measures concerning Registration of Manufacturers) Manufacturers who have filed a report under previous Article 3 (1) as at the time this Act enters into force shall renew the report as registration within one year after this Act enters into force. Article 5 (Transitional Measures concerning Statements on Packages of Cosmetics) Packages (including labeling) on which statements referred to in Article 10 are made as at the time this Act enters into force may be used for manufacturing relevant cosmetic items by the date on which two years pass after this Act enters into force. Article 6 (Transitional Measures concerning Designation of Inspection Agencies) Any inspection agency designated by the Commissioner of the Korea Food and Drug Administration pursuant to the previous provisions as at the time this Act enters into force shall be deemed an inspection agency designated pursuant to the amended provisions of Article 21 . Article 7 (Transitional Measures concerning Penalty Provisions) The application of penalty provisions and administrative fines to any act committed before this Act enters into force shall be governed by the previous provisions. Article 8 Omitted. ADDENDA <Act No. 11690, Mar. 23, 2013> Article 1 (Enforcement Date) (1) This Act shall enter into force on the date of its promulgation. (2) Omitted. Articles 2 through 7 Omitted. ADDENDA <Act No. 11985, Jul. 30, 2013> Article 1 (Enforcement Date) This Act shall enter into force one year after the date of its promulgation. Articles 2 through 5 Omitted. ADDENDA <Act No. 12497, Mar. 18, 2014> Article 1 (Enforcement Date) This Act shall enter into force on the date of its promulgation. Article 2 (Transitional Measures concerning Incompetent Persons) Incompetent persons under the adult guardianship referred to in the amended provisions of Article 3 (2) 2 shall be deemed to include persons for whom a declaration of incompetency remains in effect under Article 2 of the Addenda to the Civil Act (Act No. 10429). Article 3 (Transitional Measures concerning Quasi-Incompetent Persons) Notwithstanding the amended provisions of Article 3 (2) 2, the previous provisions shall apply to persons for whom a declaration of quasi-incompetency remains in effect under Article 2 of the Addenda to the Civil Act (Act No. 10429). ADDENDUM <Act No. 13117, Jan. 28, 2015> This Act shall enter into force six months after the date of its promulgation: Provided , That the amended provisions of Article 28-2 shall enter into force on the date of its promulgation. ADDENDA <Act No. 14027, Feb. 3, 2016> Article 1 (Enforcement Date) This Act shall enter into force one year after the date of its promulgation: Provided , That the amended provisions of Article 3 shall enter into force on the date of its promulgation. Article 2 (Applicability to Animal-Tested Cosmetics) The amended provisions of Article 15-2 shall apply starting with cosmetics for which animal testing was conducted, or manufactured (including manufacturing by consignment) or imported (based on the date of customs clearance) using raw materials for which animal testing was conducted, after this Act enters into force. ADDENDA <Act No. 14264, May 29, 2016> Article 1 (Enforcement Date) This Act shall enter into force on the date of its promulgation: Provided , That the amended provisions of subparagraph 2 of Article 2 , Articles 15 and 16, the main clause of Article 24 (1), and Article 27 shall enter into force one year after the date of its promulgation. Article 2 (Applicability to Revocation of Registration) The amended provisions of Article 24 (1) 14 shall also apply where any person under a period of business suspension as at the time this Act enters into force performs business after this Act enters into force. Article 3 (Transitional Measures concerning Products for Export) Notwithstanding the amended provisions of Article 30 , the previous provisions shall apply to cosmetics manufactured before this Act enters into force and intended for export only: Provided , That the amended provisions of Article 30 (limited to the portion concerning Article 4) shall apply to functional cosmetics for which examinations of safety or effectiveness under Article 4 are underway. ADDENDA <Act No. 15488, Mar. 13, 2018> Article 1 (Enforcement Date) This Act shall enter into force one year after the date of its promulgation: Provided , That the amended provisions of Articles 3-2 and 3-4 and the amended provisions of Articles 2 , 2-2, 3-3, 5, 5-2, 6, 9, 10, 13, 14, 15, 16, 17, 18, 18-2, 20, 23, 23-2, 24, 26, 27, 28, 29, 31, 32, 34, 36, 38, 39, and 40 (only limited to customized cosmetics, customized cosmetic sellers, and customized cosmetic compounding managers) shall enter into force two years after the date of its promulgation. Article 2 (Transitional Measures concerning Business Registration) (1) A person who filed for the registration of cosmetic manufacturing business or cosmetic manufacturing-selling business under previous Article 3-1 before this Act enters into force shall be deemed to have filed for the registration of cosmetic manufacturing business or responsible cosmetic distribution business under the amended provisions of Article 3 (1). (2) A person who filed for registration of his or her cosmetic manufacturing business or cosmetic manufacturing-selling business under previous Article 3-1 before this Act enters into force shall be deemed to have registered his or her cosmetic manufacturing business or responsible cosmetic distribution business under the amended provisions of Article 3 (1). Article 3 (Transitional Measures concerning Change in Title of Manufacture-Sales Managers) A manufacture-sales manager provided in previous Article 3 (4) as at the time this Act enters into force shall be deemed a responsible distribution manager provided in amended Article 3 (3). Article 4 (Transitional Measures concerning Statements for Cosmetics) Any container or package on which the matters provided in previous Article 10 (1) and (2) are stated or labeled as at the time this Act enters into force may be used for manufacturing a cosmetic of the relevant item for one year from the date this Act enters into force. Article 5 (Transitional Measures concerning Revocation of Registration) The previous provisions shall apply to the revocation, etc. of registration for any violation committed before this Act enters into force. Article 6 (Transitional Measures concerning Penalty Provisions and Administrative Fines) The previous provisions shall apply to the imposition of penalties or administrative fines for any violation committed before this Act enters into force. ADDENDA <Act No. 15947, Dec. 11, 2018> Article 1 (Enforcement Date) This Act shall enter into force one year after the date of its promulgation: Provided , That the amended provisions of Article 6 of the Cosmetics Act (Act No. 15488) shall enter into force on March 14, 2019; the amended provisions of Article 26-2 shall enter into force six months after the date of its promulgation; and the amended provisions of Article 33-2 shall enter into force on the date of its promulgation. Article 2 (Applicability to Reporting on Business Closure or Suspension) The amended provisions of Article 6 of the Cosmetics Act (Act No. 15488) shall begin to apply to business operators who file a report on business closure or suspension after such amended provisions enter into force. Article 3 (Applicability to Succession to Effects of Administrative Sanctions) The amended provisions of Article 26-2 shall begin to apply to persons who succeed to the status of business operators after such amended provisions enter into force. Article 4 (Transitional Measures concerning Breach of Obligation to Label Price of Cosmetics) The previous provisions shall apply to any act committed in violation of Article 10 (1) 7 or Article 11 before this Act enters into force, notwithstanding the amended provisions of subparagraph 2 of Article 38 and Article 40 (1) 5-2. Article 5 (Transitional Measures concerning Penalty Surcharges) The previous provisions shall apply to the imposition of penalty surcharges for any violation committed before this Act enters into force. ADDENDUM <Act No. 16298, Jan. 15, 2019> This Act shall enter into force one year after the date of its promulgation. ADDENDUM <Act No. 17250, Apr. 7, 2020> This Act shall enter into force on the date of its promulgation. ADDENDA <Act No. 18448, Aug. 17, 2021> Article 1 (Enforcement Date) This Act shall enter into force six months after the date of its promulgation: Provided , That the amended provisions of Articles 3-4 (3), 24 (1) 1-2, Articles 24-2 , 32, and 36 (1) 1-2, 1-3, 1-4, 2-2, 2-3, and 2-4 shall enter into force on the date of the promulgation, and the amended provisions of subparagraph 10 of Article 15 shall enter into force one months after the date of the promulgation. Article 2 (Applicability to Cosmetics Imitating Foods) The amended provisions of subparagraph 10 of Article 15 shall begin to apply to items which are manufactured or imported (based on the date of customs clearance) after the same amended provisions enter into force. Article 3 (Applicability to Animal-Tested Cosmetics) The amended provisions of Article 15-2 shall begin to apply to cosmetics that are distributed or sold by customized cosmetic sellers after this Act enters into force. Article 4 (Applicability to Revocation of Examination) The amended provisions of Articles 24 (1) and 24-2 shall also apply where a person receives an examination or examination of modification, submits a report, or files for registration or registration for modification, files a report or a report on modification, by fraud or other improper means before the same amended provisions enter into force. Article 5 (Applicability to Fees) The amended provisions of Article 32 (3) shall begin to apply to the fiscal year immediately following the fiscal year in which the date the same amended provisions enter into force falls. Article 6 (Transitional Measures concerning Report on Customized Cosmetic Sales Business) Notwithstanding the amended provisions of Article 3-2 (2), a person who reports customized cosmetic sales business under previous Article 3-2 as at the time this Act enters into force shall comply with the standards for facilities specified in the same amended provisions until the date two years after the enforcement date of this Act. Article 7 (Transitional Measures concerning Grounds for Disqualification for Customized Cosmetic Compounding Managers) If a customized cosmetic compounding manager meets the grounds for disqualification under the amended provisions of Article 3-5 as at the time this Act enters into force due to any circumstances that occurred before this Act enters into force, the previous provisions shall apply, notwithstanding the same amended provisions. ADDENDUM <Presidential Decree No. 20512, Oct. 22, 2024> This Act shall enter into force on the date of its promulgation. (Proviso Omitted.) ENFORCEMENT DECREE OF THE COSMETICS ACT 2-column view table ENFORCEMENT DECREE OF THE COSMETICS ACT No.36176 20260310 ENFORCEMENT DECREE OF THE COSMETICS ACT No.33913 20231212 ENFORCEMENT DECREE OF THE COSMETICS ACT No.32445 20220218 ENFORCEMENT DECREE OF THE COSMETICS ACT No.31655 20210427 ENFORCEMENT DECREE OF THE COSMETICS ACT No.30245 20191212 ENFORCEMENT DECREE OF THE COSMETICS ACT No.29621 20190314 ENFORCEMENT DECREE OF THE COSMETICS ACT No.27827 20170204 ENFORCEMENT DECREE OF THE COSMETICS ACT No.26452 20150724 법령 이단보기 Article 1 (Purpose) The purpose of this Decree is to prescribe matters mandated by the Cosmetics Act and other matters necessary for the enforcement thereof. <Amended on Feb. 3, 2012> 법령 이단보기 Article 2 (Detailed types and scope of business) The detailed types and scope of cosmetic business under Article 2-2 (1) of the Cosmetics Act (hereinafter referred to as the \"act\") shall be as follows: 1. Cosmetic manufacturing business: The following business: (a) Business of directly manufacturing cosmetics; (b) Business of manufacturing cosmetics by consignment; (c) Business of packaging cosmetics (limited to primary packaging); 2. Responsible cosmetic distribution business: The following business: (a) Business in which a cosmetic manufacturer (referring to a person whose cosmetic manufacturing business is registered pursuant to Article 3 (1) of the Act; hereinafter the same shall apply) directly manufactures, distributes, and sells cosmetics; (b) Business of distributing and selling cosmetics that a cosmetic manufacturer manufactures by consignment; (c) Business of distributing and selling imported cosmetics; (d) Business of arranging or presenting cosmetics for import agency business (limited to electronic commerce transaction under subparagraph 1 of Article 2 of the act on the consumer protection in electronic commerce ); 3. Customized cosmetic sales business: The following business: (a) Business of selling cosmetics made by mixing the contents of a manufactured or imported cosmetic with the contents of any other cosmetic or a raw material determined and publicly notified by the Minister of Food and Drug Safety; (b) Business of selling cosmetics repackaged by subdividing the contents of a manufactured or imported cosmetic into smaller amounts. [This Article Added on Mar. 12, 2019] 법령 이단보기 Article 3 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 4 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 5 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 6 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 7 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 8 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 9 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 10 Deleted. <Feb. 3, 2012> 법령 이단보기 Article 11 (Criteria for calculation of penalty surcharges) The amount of a penalty surcharge under Article 28 (1) of the Act shall be calculated by applying the criteria under Appendix 1 in accordance with the criteria for disposition to suspend business prescribed by Prime Ministerial Decree in consideration of the kind, severity of the relevant violation, but the total amount thereof shall not exceed 1 billion won. <Amended on Feb. 29, 2008; Mar. 15, 2010; Feb. 3, 2012; Mar. 23, 2013; Mar. 12, 2019; Dec. 10, 2019> 법령 이단보기 Article 12 (Procedures for imposition and collection of penalty surcharges) (1) If the Minister of Food and Drug Safety intends to impose a penalty surcharge pursuant to Article 28 of the Act, he or she shall give written notice of the type of the relevant violation, the amount of the penalty surcharge, and other related matters. <Amended on Feb. 3, 2012; Mar. 23, 2013> (2) The procedures for collection of penalty surcharges shall be prescribed by Prime Ministerial Decree. <Amended on Feb. 29, 2008; Mar. 15, 2010; Mar. 23, 2013> 법령 이단보기 Article 12-2 (Extension of deadline for payment of penalty surcharge and installment payment) (1) The Minister of Food and Drug Safety may allow a person who has been imposed a surcharge under Article 28 (1) of the Act to defer the payment deadline for the penalty surcharge or to pay it in installments under the proviso of Article 29 of the Framework Act on Administrative Regulations , if the amount of the penalty surcharge payable is not less than 1 million won. <Amended on Dec. 12 2023> (2) Deleted. <Dec. 12, 2023> (3) If the deadline for payment of a penalty surcharge is extended under paragraph (1), the deadline shall be within 1 year from the day following the deadline for payment. (4) If payment in installments is allowed pursuant to paragraph (1), the interval between deadlines for payment in installments shall not exceed 4 months and the number of installments shall not exceed 3 times. (5) Deleted. <Dec. 12, 2023> [This Article Added on Apr. 27, 2021] [Title Amended on Dec. 12, 2023] [Previous Article 12-2 moved to Article 12-3 <Apr. 27, 2021>] 법령 이단보기 Article 12-3 (Disposition against defaulters of penalty surcharges) (1) If a person obligated to pay a penalty surcharge fails to pay it by the specified deadline (Where a decision on installment payment is canceled under Article 12-2 (5), referring to the deadline for a lump sum payment), the Minister of Food and Drug Safety shall serve a reminder notice on him or her within 15 days after the elapse of such specified deadline. In such cases, the deadline for payment shall not exceed 10 days from the date of sending the reminder notice. <Amended on Feb. 3, 2012; Mar. 23, 2013; Mar. 12, 2019; Apr. 27, 2021> (2) If a person obligated to pay a penalty surcharge fails to pay it by the deadline for payment after receiving a reminder notice under paragraph (1), the Minister of Food and Drug Safety shall cancel the imposition of penalty surcharge and issue a disposition to suspend business; provided, in cases falling under the proviso of Article 28 (4) of the Act, such penalty surcharge shall be collected in the same manner as delinquent national taxes. <Amended on Nov. 4, 2014; Mar. 12, 2019; Apr. 27, 2021> (3) In order to cancel the imposition of penalty surcharge and issue a disposition to suspend business pursuant to the main clause of paragraph (2), the details of the disposition shall be notified in writing to the person subject to the disposition, and the grounds for changing the original disposition, the period of suspension of business operations shall be specified in the document. <Amended on Feb. 3, 2012; Nov. 4, 2014> [This Article Added on Jul. 3, 2007] [Moved from Article 12-2 <Apr. 27, 2021>] 법령 이단보기 Article 13 (Publication of relevant violations) (1) \"Matters prescribed by Presidential Decree\" in Article 28-2 (1) of the Act means the following matters: 1. Grounds for the disposition; 2. Content of the disposition; 3. Name and address of the person subject to the disposition, and the name of the representative of such person; 4. Name and batch number of the relevant item. (2) The publication under Article 28-2 (1) of the Act shall be made by posting the relevant fact on the website of the Ministry of Food and Drug Safety. [This Article Added on Jul. 24, 2015] 법령 이단보기 Article 14 (Delegation of authority) The Minister of Food and Drug Safety shall delegate the following authority to the heads of the Regional Offices of Food and Drug Safety, pursuant to Article 34 (1) of the Act: <Amended on Feb. 3, 2012; Mar. 23, 2013; Nov. 4, 2014; Jul. 24, 2015; Jan. 31, 2017; Mar. 12, 2019; Apr. 27, 2021; Feb. 15, 2022> 1. To file for registration or registration of change of cosmetic manufacturing business or responsible cosmetic distribution business under Article 3 of the Act; 1-2. To accept a report on customized cosmetic sales business or a report on change thereof under Article 3-2 (1) of the Act; 1-3. To order cosmetic manufacturers, responsible cosmetic distributors, and customized cosmetic sellers (hereinafter referred to as \"business operators\") to attend education under Article 5 (8) of the Act; 1-4. Receipt of a report on a recall plan under Article 5-2 (2) of the Act, and mitigation or remission of administrative disposition under Article 5-2 (3) of the Act; 2. The following authority regarding reporting on business closure, under Article 6 of the Act: (a) To accept reports filed pursuant to the subparagraphs of Article 6 (1) of the Act; (b) To cancel registration pursuant to Article 6 (2) of the Act; (c) To make a request for the provision of information under Article 6 (3) of the Act; (d) To give notice under Article 6 (4) of the Act; 2-2. The following authority regarding the substantiation of the claims of labeling and advertisements under Article 14 of the Act: (a) To request the submission of data under Article 14 (2) of the Act; (b) To extend a period for the acceptance or submission of data under Article 14 (3) of the Act; (c) To issue an order to suspend pursuant to Article 14 (4) of the Act; (d) To reply to other agencies' requests for data pursuant to Article 14 (6) of the Act; 3. To issue a reporting order, access, inspection, inquiry, and collection under Article 18 of the Act; 3-2. To appoint, dismiss, or educate consumer watchdogs for cosmetics safety management under Article 18-2 of the Act; 3-3. To issue a corrective order under Article 19 of the Act in any of the following cases: (a) In cases of a failure to file a registration for change under the latter part of Article 3 (1) of the Act; (b) In cases of a failure to file a report on change under the latter part of Article 3-2 (1) of the Act; (c) In cases of a violation of an order to attend education under Article 5 (8) of the Act; (d) In cases of a failure to file a report on business closure or suspension or a report on resuming business after suspension under Article 6 (1) of the Act; 4. To issue an inspection order under Article 20 of the Act; 5. To issue an order to repair facilities, or an order to prohibit the use of all or part of facilities under Article 22 of the Act; 6. To issue an order to recall, destroy; to accept reports on recall plans; to destroy goods; and to take other necessary measures pursuant to Article 23 of the Act; 6-2. To issue an order for publication under Article 23-2 of the Act; 7. To cancel registration; issue an order to close a place of business; issue an order to prohibit manufacture, import, or sale of items, or issue an order to suspend the whole or part of business under Article 24 of the Act; 8. To hold a hearing pursuant to Article 27 of the Act; 9. To impose and collect penalty surcharges pursuant to Article 28 of the Act; 9-2. To publish under Article 28-2 of the Act; 10. To reissue certificates of registration or certificates of completion of report under Article 31 of the Act; 11. To impose or collect administrative fines under Article 40 (1) of the Act. [This Article Added on Jul. 3, 2007] 법령 이단보기 Article 15 (Management of sensitive information and personally identifiable information) The Minister of Food and Drug Safety (including a person to whom the authority of the Minister of Food and Drug Safety is delegated under Article 14 , or a person entrusted with duties regarding the administration of qualification tests and the issuance of qualification certificates, etc. under Article 3-4 (3) of that Act) may, if unavoidable for performing any of the following duties, process information on health under Article 23 of the Personal Information Protection Act (hereinafter referred to as “health information”), information falling under criminal history records under Article 18 (2) 2 of the Enforcement Decree of that Act (hereinafter referred to as “criminal history information”), and data including resident registration numbers or alien registration numbers under Article 19 (1) 1 or 4 of that Decree; provided, criminal history information shall be excluded for the business affairs under subparagraphs 2, 5, and 6, and both health information and criminal history information shall be excluded for the business affairs under subparagraphs 3 and 11. <Amended on Feb. 3 2012; Mar. 23 2013; Jul. 24 2015; Mar. 12 2019; Dec. 10 2019; Feb. 15 2022; Dec. 20 2022> 1. Business affairs relating to registration of or registration for change of a cosmetic manufacturing business or a responsible cosmetic distribution business under Article 3 of the Act; 1-2. Business affairs relating to reports on customized cosmetic sales businesses or reports on change thereof under Article 3-2 (1) of the Act; 1-3. Business affairs relating to the management of the qualification test for a customized cosmetic compounding manager and the issuance and re-issuance of a qualification certificate under Article 3-4 (1) and (4) of the Act; 2. Business affairs relating to examination of functional cosmetics under Article 4 of the Act; 3. Business affairs relating to business closure under Article 6 of the Act; 4. Business affairs relating to reporting, inspection under Article 18 of the Act; 4-2. Business affairs relating to corrective orders under Article 19 of the Act; 5. Business affairs relating to inspection orders under Article 20 of the Act; 6. Business affairs relating to orders to repair, and orders for prohibition of the use of all or part of facilities under Article 22 of the Act; 7. Business affairs relating to orders for recall, destruction; and destruction or other necessary dispositions under Article 23 of the Act; 8. Business affairs relating to the cancellation of registration; orders for the closure of a place of business; orders for prohibition of the manufacture, import, and sale of any items; and orders for the suspension of the whole or part of business affairs under Article 24 of the Act; 9. Business affairs relating to hearings under Article 27 of the Act; 10. Business affairs relating to the imposition and collection of penalty surcharges under Article 28 of the Act; 11. Business affairs relating to re-issuance of certificates of registration under Article 31 of the Act. [This Article Added on Jan. 6, 2012] 법령 이단보기 Article 16 (Criteria for imposition of administrative fines) The criteria for the imposition of administrative fines under Article 40 (1) of the Act shall be as listed in Appendix 2. <Amended on Mar. 12, 2019> [This Article Wholly Amended on Feb. 3, 2012] [Moved from Article 13 <Feb. 3, 2012>] ADDENDUM <Presidential Decree No. 16869, Jun. 27, 2000> This Decree shall enter into force on July 1, 2000. ADDENDUM <Presidential Decree No. 20158, Jul. 3, 2007> This Decree shall enter into force on July 4, 2007. ADDENDA <Presidential Decree No. 20679, Feb. 29, 2008> Article 1 (Enforcement date) This Decree shall enter into force on the date of its promulgation. Articles 2 through 9 Omitted. ADDENDA <Presidential Decree No. 22075, Mar. 15, 2010> Article 1 (Enforcement date) This Decree shall enter into force on March 19, 2010. (Proviso omitted.) Article 2 Omitted. ADDENDA <Presidential Decree No. 23488, Jan. 6, 2012> Article 1 (Enforcement date) This Decree shall enter into force on the date of its promulgation. (Proviso omitted.) Article 2 Omitted. ADDENDA <Presidential Decree No. 23614, Feb. 3, 2012> Article 1 (Enforcement date) This Decree shall enter into force on February 5, 2012. Article 2 (Transitional measures concerning standards for calculation of penalty surcharges) Notwithstanding the amended provisions of Appendix 1, the application of standards for calculation of penalty surcharges against violations committed before this Decree enters into force shall be governed by the previous provisions. ADDENDA <Presidential Decree No. 24454, Mar. 23, 2013> Article 1 (Enforcement date) This Decree shall enter into force on the date of its promulgation. (Proviso omitted.) Articles 2 through 4 Omitted. ADDENDA <Presidential Decree No. 25705, Nov. 4, 2014> Article 1 (Enforcement date) This Decree shall enter into force on the date of its promulgation. Article 2 (Transitional measures concerning disposition against defaulter of penalty surcharge) A person who fails to pay a penalty surcharge by the specified deadline for payment even after receiving a reminder notice pursuant to Article 12-2 (1) before this Decree enters into force shall be governed by the previous provisions. ADDENDUM <Presidential Decree No. 26452, Jul. 24, 2015> This Decree shall enter into force on the date of its promulgation; provided, the amended provisions of subparagraphs 3, 6 and 6-2 of Article 14 and subparagraph 7 of Article 15 shall enter into force on July 29, 2015. ADDENDUM <Presidential Decree No. 27827, Jan. 31, 2017> This Decree shall enter into force on February 4, 2017. ADDENDUM <Presidential Decree No. 29621, Mar. 12, 2019> This Decree shall enter into force on March 14, 2019; provided, the amended provisions of subparagraph 3 of Article 2 , subparagraph 1-2 of Article 14 , and subparagraph 1-2 of Article 15 and the amended provisions of subparagraph 1-3, 2, 3-3, 7, 10, and 11 of Article 14 , subparagraph 8 of Article 15 , and Appendixes 1 and 2 regarding customized cosmetic sales business and customized cosmetic sellers shall enter into force on March 14, 2020. ADDENDA <Presidential Decree No. 30245, Dec. 10, 2019> Article 1 (Enforcement date) This Decree shall enter into force on December 12, 2019; provided, the amended provisions, with the exception of the subparagraphs, of Article 15 and those of subparagraph 1-3 of Article 15 of the Enforcement Decree of the Cosmetics Act (Presidential Decree No. 29621) shall enter into force on March 14, 2020. Article 2 (Transitional measures concerning criteria for calculation of penalty surcharges) Notwithstanding the amended provisions of subparagraph 2 of Appendix 1, the previous provisions shall govern in applying the criteria for the calculation of penalty surcharges to violations",
+  "metadata": {
+    "detectedMarkets": [
+      "KR"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ],
+    "productCategories": [
+      "cosmetics"
+    ],
+    "charCount": 100000,
+    "region": "KR",
+    "supplement_id": "kr-cosmetics-act",
+    "source_url": "https://elaw.klri.re.kr/eng_service/lawTwoView.do?hseq=68854",
+    "content_url": "",
+    "official_channel": "Korean Law Translation Center / KLRI",
+    "why_added": "Korea cosmetics safety, labelling, importer/manufacturer, and advertising controls.",
+    "collected_at": "2026-05-26T17:02:25+08:00",
+    "raw_files": [
+      "raw/kr/KR_cosmetics_act.html"
+    ],
+    "primary_file": "raw/kr/KR_cosmetics_act.html",
+    "product_categories": [
+      "cosmetics"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "labelling",
+      "chemical"
+    ]
+  }
+}

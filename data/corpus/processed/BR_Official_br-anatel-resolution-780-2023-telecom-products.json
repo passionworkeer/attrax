@@ -1,0 +1,65 @@
+{
+  "id": "br-anatel-resolution-780-2023-telecom-products",
+  "title": "Anatel Resolution No. 780/2023",
+  "fileName": "BR_anatel_resolution_780_2023.html",
+  "sourcePath": "data/regulation_supplements/2026-05-26_global_official_sources/raw/br/BR_anatel_resolution_780_2023.html",
+  "sourceType": "html",
+  "region": "BR",
+  "pageCount": 1,
+  "totalChars": 9841,
+  "hasTables": true,
+  "tableCount": 1,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 9841,
+      "hasText": true,
+      "hasTables": true,
+      "textPreview": "﻿﻿﻿ Portaria nº 221, de 4 de março de 2015 (REVOGADA) Revogada pela Resolução Interna Anatel nº 206, de 16 de maio de 2023 Dispõe sobre a instituição da Comissão de Segurança da Informação e Comunicaç"
+    }
+  ],
+  "tables": [
+    [
+      [
+        "Revogada pela Resolução Interna Anatel nº 206, de 16 de maio de 2023",
+        "Dispõe sobre a instituição da Comissão de Segurança da Informação e Comunicações da Anatel (CSIC/Anatel) e da Equipe de Tratamento de Incidentes em Redes Computacionais (ETIR/Anatel)."
+      ]
+    ]
+  ],
+  "rawText": "﻿﻿﻿ Portaria nº 221, de 4 de março de 2015 (REVOGADA) Revogada pela Resolução Interna Anatel nº 206, de 16 de maio de 2023 Dispõe sobre a instituição da Comissão de Segurança da Informação e Comunicações da Anatel (CSIC/Anatel) e da Equipe de Tratamento de Incidentes em Redes Computacionais (ETIR/Anatel). Observação : Este texto não substitui o publicado no Boletim de Serviço Eletrônico em 4/3/2015 . O CONSELHO DIRETOR DA AGÊNCIA NACIONAL DE TELECOMUNICAÇÕES , no uso das competências que lhe conferem o art. 133 do Regimento Interno da Agência Nacional de Telecomunicações, aprovado pela Resolução nº 612, de 29 de abril de 2013, CONSIDERANDO que a metodologia de Gestão da Segurança da Informação e Comunicações da Anatel baseia-se no processo de melhoria contínua, denominado ciclo “PDCA” (Plan-Do-Check-Act), conforme disposto na Norma Complementar nº 2/DSIC/GSIPR, de 13 de outubro de 2008 ; CONSIDERANDO o disposto nos arts. 5º, 6º e 7º da Instrução Normativa GSI/PR nº 1, de 13 de junho de 2008 , o item 5 da Norma Complementar nº 3/DSIC/GSIPR de 30 de junho de 2009 , e a Portaria nº 559, de 13 de julho de 2013, que aprova a Política de Segurança da Informação e Comunicações da Agência Nacional de Telecomunicações (POSIC/Anatel); CONSIDERANDO que a instituição de uma Comissão de Segurança da Informação e Comunicações (CSIC), a ser coordenada pelo Gestor de Segurança da Informação e Comunicações, é condição necessária para promover a Gestão de Segurança da Informação e Comunicações no âmbito da Anatel; CONSIDERANDO que a instituição de uma Equipe de Tratamento e Resposta a Incidentes em Redes Computacionais (ETIR) é condição primordial para receber, analisar e responder às notificações e atividades relacionadas a incidentes de segurança em redes de computadores; CONSIDERANDO a Norma Complementar nº 08/IN01/DSIC/GSIPR , de 19 de agosto de 2010, que disciplina o gerenciamento de Incidentes de Segurança em Redes de Computadores realizado pelas Equipes de Tratamento e Resposta a Incidentes de Segurança em Redes Computacionais - ETIR dos órgãos e entidades da APF; CONSIDERANDO deliberação tomada por meio do Circuito Deliberativo nº 2.250, de 26 de fevereiro de 2015; RESOLVE: Art. 1º Instituir a Comissão de Segurança da Informação e Comunicações no âmbito da Agência Nacional de Telecomunicações (CSIC/Anatel). Parágrafo único. A CSIC/Anatel, órgão colegiado, de natureza consultiva e de caráter permamente, atuará na proposição e condução das diretrizes da POSIC/Anatel, bem como no assessoramento do Conselho Diretor em matérias correlatas, de forma a promover a gestão e fomentar aspectos de segurança da informação e comunicações na Agência. Art. 2º Instituir a Equipe de Tratamento e Resposta a Incidentes em Redes Computacionais no âmbito da Agência Nacional de Telecomunicações (ETIR/Anatel). Parágrafo único. A ETIR/Anatel atuará como facilitadora e coordenadora das atividades de tratamento e resposta a indicentes na rede computacional da Anatel, receberá e notificará qualquer evento adverso ou sob suspeita, relacionado à segurança dos sistemas de computação ou das redes de computadores, a fim de contribuir para a adequada prestação dos serviços da Agência. Art. 3º O Gestor de Segurança da Informação e Comunicações é responsável pelas ações de segurança da informação e comunicações no âmbito da Agência, a ele cabendo: I - promover cultura de segurança da informação e comunicações; II - acompanhar as investigações e as avaliações dos danos decorrentes de quebras de segurança; III - propor recursos necessários às ações de segurança da informação e comunicações; IV - coordenar a Comissão de Segurança da Informação e Comunicações da Anatel (CSIC/Anatel) e a Equipe de Tratamento e Resposta a Incidentes em Redes Computacionais da Anatel (ETIR/Anatel); V - realizar e acompanhar estudos de novas tecnologias, quanto a possíveis impactos na segurança da informação e comunicações; e, VI - manter contato permanente e estreito com o Departamento de Segurança da Informação e Comunicações do Gabinete de Segurança Institucional da Presidência da República (DSIC/GSIPR) para o trato de assuntos relativos à segurança da informação e comunicações. Art. 4º A CSIC/Anatel é o grupo de pessoas com a responsabilidade de assessorar a implementação das ações de segurança da informação e comunicações no âmbito da Anatel, a ele cabendo: I - propor ao Conselho Diretor, para aprovação, a Política de Segurança da Informação e Comunicações da Anatel (POSIC/Anatel); II - definir o modelo de gestão corporativa da segurança da informação e comunicações e fomentar sua aplicação; III - propor a elaboração e a revisão de normas e procedimentos inerentes à segurança da informação; IV - propor metas e ações corporativas em segurança da informação e comunicações; V - coordenar as ações de segurança da informação e comunicações; VI - propor as ações corretivas cabíveis nos casos de quebra de segurança; VII - analisar incidentes de segurança da informação e encaminhar à Corregedoria aqueles passíveis de correição; VIII - propor ajustes no modelo de gestão corporativa da segurança da informação e comunicações, e nas ações necessárias à sua implementação, com subsídio no monitoramento e avaliação periódica das práticas de segurança da informação e comunicações; IX - elaborar proposta e promover atualização periódica de plano com medidas que garantam a continuidade das atividades da Anatel e o retorno à situação de normalidade em caso de desastre ou falha nos recursos que suportam os processos vitais de negócio da Agência; X - manifestar-se sobre ações corporativas em segurança da informação e comunicações; XI - requerer, às unidades administrativas da Anatel, informações que considerar necessárias ao acompanhamento das ações de gestão de segurança da informação e comunicações; XII - promover a divulgação de boas práticas em segurança da informação e comunicações; XIII - submeter à aprovação minutas de normativos e propostas de natureza estratégica ou que necessitem de cooperação intersetorial que versem sobre segurança da informação e comunicações; XIV - instituir grupos de trabalho para tratar de temas específicos para as ações de segurança da informação e comunicações; XV - interagir com as unidades administrativas da Agência ou entidades externas, objetivando o pleno atendimento ao objeto da POSIC/Anatel; e, XVI - a edição das demais normas referentes ao seu funcionamento. Art. 5º A ETIR/Anatel é o grupo de pessoas com a responsabilidade de receber e analisar notificações e atividades relacionadas aos incidentes de segurança em redes computacionais no âmbito da Anatel, a ela cabendo: I - tomar as providências de emergência pertinentes à segurança da informação e comunicações, imediatamente após detecção ou conhecimento de incidentes de segurança em redes computacionais no âmbito da Anatel; e, II - analisar os incidentes de segurança em redes computacionais e encaminhar mensalmente relatório dos incidentes à Comissão de Segurança da Informação. Art. 6º Integram a CSIC/Anatel: I - o Gestor de Segurança da Informação e Comunicações da Anatel, que a presidirá; II - 1 (um) representante do Gabinete do Presidente (GPR); III - 1 (um) representante da Superintendência Executiva (SUE); IV - 3 (três) representantes da Superintendência de Gestão Interna da Informação (SGI), sendo 1 (um) da Gerência Gerência de Planejamento, Operação e Manutenção de Redes (GIMR) e 2 (dois) da Gerência de Planejamento, Desenvolvimento e Segurança de Sistemas (GIDS); V - 2 (dois) representantes da Superintendência de Administração e Finanças (SAF), sendo 1 (um) da Gerência de Infraestrutura e Segurança Institucional (AFIS) e 1 (um) da Gerência de Administração e Desenvolvimento de Pessoas (AFPE); VI - 1 (um) representante da Superintendência de Planejamento e Regulamentação (SPR); VII - 1 (um) representante da Superintendência de Outorga e Recursos à Prestação (SOR); VIII - 1 (um) representante da Superintendência de Fiscalização (SFI); IX - 1 (um) representante da Superintendência de Controle de Obrigações (SCO); X - 1 (um) representante da Superintendência de Competição (SCP); e, XI - 1 (um) representante da Superintendência de Relações com Consumidores (SRC). Art. 7º A ETIR/Anatel será composta por integrantes da equipe da SGI, que além de suas funções regulares, passarão a desempenhar as atividades relacionadas ao tratamento e resposta a incidentes em redes computacionais, desta forma, não existirá um grupo dedicado exclusivamente às funções de tratamento e resposta a incidentes. Art. 8º A ETIR/Anatel ficará subordinada à SGI na estrutura organizacional da Agência e será composta por: I - 5 (cinco) representantes da Gerência de Planejamento, Operação e Manutenção de Redes (GIMR); e, II - 1 (um) representante da Gerência de Planejamento, Desenvolvimento e Segurança de Sistemas (GIDS). Art. 9º Para cada um dos integrantes da CSIC/Anatel e da ETIR/Anatel, será designado um suplente que deverá ter condições de substituir o titular e executar todas as suas atribuições como se o mesmo fosse. Art. 10. Esta Portaria entra em vigor na data de sua publicação no Boletim de Serviço da Anatel, ficando revogadas a Portaria nº 24, de 7 de janeiro de 2010, e a Portaria nº 698, de 28 de agosto de 2013. JOÃO BATISTA DE REZENDE Presidente do Conselho registrado em: Portarias Normativas , 2015 Assunto(s): Instituição , Comissão de Segurança , Segurança da Informação , CSIC , PortariaRevogada Nós protegemos seus dados Para melhorar a sua experiência na plataforma e prover serviços personalizados, utilizamos cookies. Saiba como usamos seus dados em nosso Aviso de Privacidade . Ao clicar em “Aceitar cookies”, você concorda com os Termos de Serviço e a Política de Privacidade da Anatel e terá acesso a todas as funcionalidades do site. Saiba mais Aceitar cookies",
+  "metadata": {
+    "detectedMarkets": [
+      "BR"
+    ],
+    "regulatoryTypes": [
+      "radio",
+      "conformity"
+    ],
+    "productCategories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "charCount": 9841,
+    "region": "BR",
+    "supplement_id": "br-anatel-resolution-780-2023-telecom-products",
+    "source_url": "https://informacoes.anatel.gov.br/legislacao/resolucoes/2023/1852-resolucao-780",
+    "content_url": "",
+    "official_channel": "Anatel Legislation Portal",
+    "why_added": "Brazil Anatel update coverage for telecom-product regulatory checks.",
+    "collected_at": "2026-05-26T17:02:25+08:00",
+    "raw_files": [
+      "raw/br/BR_anatel_resolution_780_2023.html"
+    ],
+    "primary_file": "raw/br/BR_anatel_resolution_780_2023.html",
+    "product_categories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "regulatory_types": [
+      "radio",
+      "conformity"
+    ]
+  }
+}

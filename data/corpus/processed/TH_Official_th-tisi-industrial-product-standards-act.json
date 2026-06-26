@@ -1,0 +1,60 @@
+{
+  "id": "th-tisi-industrial-product-standards-act",
+  "title": "Industrial Product Standards Act, B.E. 2511 (1968)",
+  "fileName": "TH_tisi_industrial_product_standards_act_1968.pdf",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/th/TH_tisi_industrial_product_standards_act_1968.pdf",
+  "sourceType": "pdf",
+  "region": "TH",
+  "pageCount": 15,
+  "totalChars": 0,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 0,
+      "hasText": false,
+      "hasTables": false,
+      "textPreview": ""
+    }
+  ],
+  "tables": [],
+  "rawText": "",
+  "metadata": {
+    "detectedMarkets": [
+      "TH"
+    ],
+    "regulatoryTypes": [
+      "technical_standard",
+      "conformity",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "industrial_products",
+      "electronics"
+    ],
+    "charCount": 0,
+    "region": "TH",
+    "supplement_id": "th-tisi-industrial-product-standards-act",
+    "source_url": "https://www.tisi.go.th/data/law/pdf_files/law1/2511_1968.pdf",
+    "content_url": "",
+    "official_channel": "Thai Industrial Standards Institute",
+    "why_added": "Thailand industrial product standards statutory baseline for standards, licensing, and mandatory control.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/th/TH_tisi_industrial_product_standards_act_1968.pdf"
+    ],
+    "primary_file": "raw/th/TH_tisi_industrial_product_standards_act_1968.pdf",
+    "product_categories": [
+      "general_consumer_products",
+      "industrial_products",
+      "electronics"
+    ],
+    "regulatory_types": [
+      "technical_standard",
+      "conformity",
+      "market_surveillance"
+    ]
+  }
+}

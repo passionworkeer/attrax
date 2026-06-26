@@ -1,0 +1,60 @@
+{
+  "id": "za-icasa-radio-frequency-spectrum-regulations-2015",
+  "title": "Radio Frequency Spectrum Regulations 2015",
+  "fileName": "ZA_icasa_radio_frequency_spectrum_regulations_2015.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/za/ZA_icasa_radio_frequency_spectrum_regulations_2015.html",
+  "sourceType": "html",
+  "region": "ZA",
+  "pageCount": 1,
+  "totalChars": 513,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 513,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Radio Frequency Spectrum Regulations 2015 Radio Frequency Spectrum Regulations 2015 Purpose: To establish the framework through which the Authority may allocate and assign radio frequency spectrum und"
+    }
+  ],
+  "tables": [],
+  "rawText": "Radio Frequency Spectrum Regulations 2015 Radio Frequency Spectrum Regulations 2015 Purpose: To establish the framework through which the Authority may allocate and assign radio frequency spectrum under the South African National Radio Frequency Plan Repealed Regulations : Repeals the Radio Frequency Spectrum Regulations, 2011 published in GN 184 of 2011 GG No. 34172; and The Spectrum Reallocation for Radio Frequency identification (RFID) Systems GN 713 of 2008 & GG No.31127 Download (4 MB) Final regulations",
+  "metadata": {
+    "detectedMarkets": [
+      "ZA"
+    ],
+    "regulatoryTypes": [
+      "radio",
+      "technical_standard",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "charCount": 513,
+    "region": "ZA",
+    "supplement_id": "za-icasa-radio-frequency-spectrum-regulations-2015",
+    "source_url": "https://www.icasa.org.za/legislation-and-regulations/radio-frequency-spectrum-regulations-2015",
+    "content_url": "",
+    "official_channel": "Independent Communications Authority of South Africa",
+    "why_added": "South Africa spectrum regulation context for radio equipment and regulated wireless devices.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/za/ZA_icasa_radio_frequency_spectrum_regulations_2015.html"
+    ],
+    "primary_file": "raw/za/ZA_icasa_radio_frequency_spectrum_regulations_2015.html",
+    "product_categories": [
+      "electronics",
+      "radio",
+      "telecommunications"
+    ],
+    "regulatory_types": [
+      "radio",
+      "technical_standard",
+      "market_surveillance"
+    ]
+  }
+}

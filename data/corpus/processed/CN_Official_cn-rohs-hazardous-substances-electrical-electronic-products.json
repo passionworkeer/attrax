@@ -1,0 +1,60 @@
+{
+  "id": "cn-rohs-hazardous-substances-electrical-electronic-products",
+  "title": "Administrative Measures for the Restriction of the Use of Hazardous Substances in Electrical and Electronic Products",
+  "fileName": "CN_rohs_hazardous_substances_electrical_electronic_products.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/cn/CN_rohs_hazardous_substances_electrical_electronic_products.html",
+  "sourceType": "html",
+  "region": "CN",
+  "pageCount": 1,
+  "totalChars": 19,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 19,
+      "hasText": false,
+      "hasTables": false,
+      "textPreview": "https://www.gov.cn/"
+    }
+  ],
+  "tables": [],
+  "rawText": "https://www.gov.cn/",
+  "metadata": {
+    "detectedMarkets": [
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "chemical",
+      "labelling",
+      "conformity"
+    ],
+    "productCategories": [
+      "electronics",
+      "electrical_equipment",
+      "chemicals"
+    ],
+    "charCount": 19,
+    "region": "CN",
+    "supplement_id": "cn-rohs-hazardous-substances-electrical-electronic-products",
+    "source_url": "https://www.gov.cn/gongbao/content/2016/content_5065677.htm",
+    "content_url": "",
+    "official_channel": "State Council / Government of China",
+    "why_added": "China RoHS management measures for hazardous substances in electrical and electronic products.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/cn/CN_rohs_hazardous_substances_electrical_electronic_products.html"
+    ],
+    "primary_file": "raw/cn/CN_rohs_hazardous_substances_electrical_electronic_products.html",
+    "product_categories": [
+      "electronics",
+      "electrical_equipment",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "labelling",
+      "conformity"
+    ]
+  }
+}

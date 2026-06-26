@@ -1,0 +1,56 @@
+{
+  "id": "cn-product-quality-supervision-sampling-interim-measures",
+  "title": "Interim Measures for the Administration of Product Quality Supervision and Random Inspection",
+  "fileName": "CN_product_quality_supervision_sampling_interim_measures.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_more_official_sources/raw/cn/CN_product_quality_supervision_sampling_interim_measures.html",
+  "sourceType": "html",
+  "region": "CN",
+  "pageCount": 1,
+  "totalChars": 19,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 19,
+      "hasText": false,
+      "hasTables": false,
+      "textPreview": "https://www.gov.cn/"
+    }
+  ],
+  "tables": [],
+  "rawText": "https://www.gov.cn/",
+  "metadata": {
+    "detectedMarkets": [
+      "CN"
+    ],
+    "regulatoryTypes": [
+      "market_surveillance",
+      "testing"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "industrial_products"
+    ],
+    "charCount": 19,
+    "region": "CN",
+    "supplement_id": "cn-product-quality-supervision-sampling-interim-measures",
+    "source_url": "https://www.gov.cn/zhengce/2019-11/26/content_5723745.htm",
+    "content_url": "",
+    "official_channel": "State Council / Government of China",
+    "why_added": "China product quality supervision sampling rules published by the government portal.",
+    "collected_at": "2026-05-27T10:36:57+08:00",
+    "raw_files": [
+      "raw/cn/CN_product_quality_supervision_sampling_interim_measures.html"
+    ],
+    "primary_file": "raw/cn/CN_product_quality_supervision_sampling_interim_measures.html",
+    "product_categories": [
+      "general_consumer_products",
+      "industrial_products"
+    ],
+    "regulatory_types": [
+      "market_surveillance",
+      "testing"
+    ]
+  }
+}

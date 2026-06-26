@@ -1,0 +1,61 @@
+{
+  "id": "ar-infoleg-consumer-defense-law-24240",
+  "title": "Law No. 24,240 on Consumer Defense",
+  "fileName": "AR_infoleg_consumer_defense_law_24240_metadata.html",
+  "sourcePath": "data/regulation_supplements/2026-05-27_extra_global_official_sources/raw/ar/AR_infoleg_consumer_defense_law_24240_metadata.html",
+  "sourceType": "html",
+  "region": "AR",
+  "pageCount": 1,
+  "totalChars": 710,
+  "hasTables": false,
+  "tableCount": 0,
+  "pages": [
+    {
+      "pageNumber": 1,
+      "charCount": 710,
+      "hasText": true,
+      "hasTables": false,
+      "textPreview": "Ley 24240 HONORABLE CONGRESO DE LA NACION ARGENTINA 22-sep-1993 DEFENSA DEL CONSUMIDOR REGIMEN LEGAL Publicada en el Boletín Oficial del 15-oct-1993 Número: 27744 Página: 34 Resumen: NORMAS DE PROTECC"
+    }
+  ],
+  "tables": [],
+  "rawText": "Ley 24240 HONORABLE CONGRESO DE LA NACION ARGENTINA 22-sep-1993 DEFENSA DEL CONSUMIDOR REGIMEN LEGAL Publicada en el Boletín Oficial del 15-oct-1993 Número: 27744 Página: 34 Resumen: NORMAS DE PROTECCION Y DEFENSA DE LOS CONSUMIDORES - AMBITO DE APLICACION - AUTORIDAD DE APLICACION PROCEDIMIENTOS Y SANCIONES - DISPOSICIONES FINALES Observaciones: OBSERVADA: INC. C) DEL ART. 10, ART. 13, 14, 31, 40, 52, 53, 54 Y 56. PROMULGADA Y VETADA PARCIALMENTE POR DEC. 2089 DEL13/10/93 Texto completo de la norma Texto actualizado de la norma Esta norma modifica o complementa a 1 norma(s). Esta norma es complementada o modificada por 272 norma(s). Copyright 2005 Ministerio de Justicia infoleg@jus.gob.ar Aviso Legal",
+  "metadata": {
+    "detectedMarkets": [
+      "AR"
+    ],
+    "regulatoryTypes": [
+      "product_safety",
+      "labelling",
+      "market_surveillance"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "electronics",
+      "packaging"
+    ],
+    "charCount": 710,
+    "region": "AR",
+    "supplement_id": "ar-infoleg-consumer-defense-law-24240",
+    "source_url": "https://servicios.infoleg.gob.ar/infolegInternet/verNorma.do?id=638",
+    "content_url": "",
+    "official_channel": "InfoLeg, Ministry of Justice, Argentina",
+    "why_added": "Argentina consumer defense law official legal database text.",
+    "collected_at": "2026-05-27T12:12:28+08:00",
+    "raw_files": [
+      "raw/ar/AR_infoleg_consumer_defense_law_24240_metadata.html",
+      "raw/ar/AR_infoleg_consumer_defense_law_24240_text.html"
+    ],
+    "primary_file": "raw/ar/AR_infoleg_consumer_defense_law_24240_metadata.html",
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "packaging"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "labelling",
+      "market_surveillance"
+    ]
+  }
+}
