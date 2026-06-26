@@ -76,6 +76,7 @@ interface ImageCarouselProps {
 }
 
 function ImageCarousel({ files }: ImageCarouselProps) {
+  const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
   const urls = useMemo(() => files.map((file) => URL.createObjectURL(file)), [files]);
 

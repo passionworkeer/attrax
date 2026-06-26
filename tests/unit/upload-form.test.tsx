@@ -405,15 +405,15 @@ describe('UploadForm component', () => {
       })
 
       await waitFor(() => {
-        expect(screen.getByLabelText('Next')).toBeInTheDocument()
+        expect(screen.getByLabelText('下一张')).toBeInTheDocument()
       })
 
       expect(screen.getByText('2.0 MB')).toBeInTheDocument()
 
-      fireEvent.click(screen.getByLabelText('Next'))
+      fireEvent.click(screen.getByLabelText('下一张'))
       fireEvent.keyDown(window, { key: 'ArrowRight' })
       fireEvent.keyDown(window, { key: 'ArrowLeft' })
-      fireEvent.click(screen.getByLabelText('Previous'))
+      fireEvent.click(screen.getByLabelText('上一张'))
 
       const secondThumbnail = container.querySelector('img[title="carousel-b.jpg"]')?.closest('button')
       expect(secondThumbnail).toBeTruthy()
