@@ -9,7 +9,8 @@ import {
   POLL_MAX_INTERVAL_MS,
 } from "@/lib/constants";
 
-function failedStatus(sessionId: string, error: string): ScanStatus {
+/** @internal Exported for unit tests only — not part of the public hook API. */
+export function failedStatus(sessionId: string, error: string): ScanStatus {
   return {
     sessionId,
     status: "failed",
@@ -19,7 +20,8 @@ function failedStatus(sessionId: string, error: string): ScanStatus {
   };
 }
 
-function isScanStatusLike(value: unknown): value is ScanStatus {
+/** @internal Exported for unit tests only — not part of the public hook API. */
+export function isScanStatusLike(value: unknown): value is ScanStatus {
   if (!value || typeof value !== "object") return false;
 
   const status = (value as { status?: unknown }).status;
