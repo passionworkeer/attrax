@@ -5,6 +5,18 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-Frame-Options", value: "DENY" },
+  // Disable browser features the app does not use, defense in depth against
+  // malicious injected content. geolocation/microphone/camera/payment are
+  // turned off so a compromised dependency cannot silently request them.
+  // HSTS is intentionally set at the reverse-proxy (nginx) layer only —
+  // see docs/infra/nginx-attrax-site.conf — because emitting it from the app
+  // is meaningless to browsers connecting on plain HTTP and would mask
+  // misconfiguration if the proxy header is ever dropped.
+  { key: "Permissions-Policy", value: "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()" },
+  // Cross-Origin-Opener-Policy isolates the browsing context from cross-origin
+  // popups. safe-origin fallback avoids breaking the dev server's HMR.
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+  { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
 ];
 
 const nextConfig: NextConfig = {
