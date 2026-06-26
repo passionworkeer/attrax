@@ -1,0 +1,1886 @@
+{
+  "generatedAt": "2026-06-26T08:37:47+00:00",
+  "totalDocs": 355,
+  "categories": {
+    "general_consumer_products": 80,
+    "electronics": 108,
+    "cosmetics": 16,
+    "industrial_products": 33,
+    "children_products": 68,
+    "packaging": 27,
+    "toys": 40,
+    "home_goods": 17,
+    "furniture": 19,
+    "batteries": 5,
+    "textiles": 26,
+    "apparel": 20,
+    "radio": 15,
+    "telecommunications": 12,
+    "chemicals": 25,
+    "home_appliances": 21,
+    "battery": 5,
+    "electrical_equipment": 33,
+    "raw_materials": 5,
+    "machinery": 5,
+    "food_contact": 8,
+    "kitchenware": 8,
+    "plastics": 3,
+    "waste_electrical": 4,
+    "ppe": 3,
+    "painted_goods": 3,
+    "controlled_goods": 5,
+    "锂电池": 4,
+    "玩具": 2
+  },
+  "markets": {
+    "AE": 13,
+    "AR": 1,
+    "AU": 9,
+    "BR": 6,
+    "CA": 18,
+    "CL": 1,
+    "CN": 36,
+    "VN": 16,
+    "ID": 14,
+    "EU": 88,
+    "US": 63,
+    "UK": 37,
+    "GCC": 11,
+    "SG": 23,
+    "MY": 10,
+    "SA": 16,
+    "TH": 9,
+    "IN": 6,
+    "JP": 11,
+    "KR": 12,
+    "MX": 8,
+    "NZ": 7,
+    "PH": 4,
+    "TR": 4,
+    "ZA": 4
+  },
+  "matrix": {
+    "apparel": {
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Children's Nightwear and Limited Daywear and Paper Patterns for Children's Nightwear) Safety Standard 2017"
+        ]
+      },
+      "CA": {
+        "count": 3,
+        "titles": [
+          "Children's Sleepwear Regulations",
+          "Textile Labelling Act",
+          "Textile Labelling and Advertising Regulations (C.R.C., c. 1551)"
+        ]
+      },
+      "EU": {
+        "count": 2,
+        "titles": [
+          "Regulation (EU) No 1007/2011 on textile fibre names and labelling",
+          "Regulation (EU) 2016/425 on personal protective equipment"
+        ]
+      },
+      "NZ": {
+        "count": 1,
+        "titles": [
+          "Children's nightwear mandatory product safety standard"
+        ]
+      },
+      "SA": {
+        "count": 2,
+        "titles": [
+          "Technical Regulation for Personal Protective Equipment and Clothing",
+          "Technical Regulation for Textile Products"
+        ]
+      },
+      "UK": {
+        "count": 1,
+        "titles": [
+          "The Personal Protective Equipment (Enforcement) Regulations 2018"
+        ]
+      },
+      "US": {
+        "count": 10,
+        "titles": [
+          "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+          "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "16 CFR Part 300, Rules and Regulations Under the Wool Products Labeling Act of 1939",
+          "16 CFR Part 301, Rules and Regulations Under the Fur Products Labeling Act",
+          "16 CFR Part 303, Rules and Regulations Under the Textile Fiber Products Identification Act",
+          "16 CFR Part 323, Made in USA Labeling Rule",
+          "16 CFR Part 423, Care Labeling of Textile Wearing Apparel and Certain Piece Goods",
+          "Flammable Fabrics Act",
+          "Wool Products Labeling Act of 1939"
+        ]
+      }
+    },
+    "batteries": {
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020"
+        ]
+      },
+      "CN": {
+        "count": 1,
+        "titles": [
+          "Announcement on CCC Management for Lithium-ion Batteries and Chargers for Electric Bicycles"
+        ]
+      },
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Regulation (EU) 2023/1542 concerning batteries and waste batteries"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Battery Waste Management Rules, 2022"
+        ]
+      },
+      "PH": {
+        "count": 1,
+        "titles": [
+          "List of products under mandatory certification"
+        ]
+      }
+    },
+    "battery": {
+      "CN": {
+        "count": 3,
+        "titles": [
+          "CNCA 2023 CCC catalogue description and scope table",
+          "CNCA 2023 CCC implementation rule for electronic products and safety accessories",
+          "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products"
+        ]
+      },
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Directive (EU) 2022/2380, common charger amendment to RED"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries"
+        ]
+      }
+    },
+    "chemicals": {
+      "CA": {
+        "count": 6,
+        "titles": [
+          "Consumer Chemicals and Containers Regulations, 2001",
+          "Consumer Products Containing Lead Regulations",
+          "Hazardous Products Act",
+          "Hazardous Products Regulations (SOR/2015-17)",
+          "Phthalates Regulations",
+          "Surface Coating Materials Regulations"
+        ]
+      },
+      "CN": {
+        "count": 3,
+        "titles": [
+          "Measures for Environmental Management Registration of New Chemical Substances",
+          "Compliance Management Catalogue for the Restriction of Hazardous Substances in Electrical and Electronic Products",
+          "Administrative Measures for the Restriction of the Use of Hazardous Substances in Electrical and Electronic Products"
+        ]
+      },
+      "EU": {
+        "count": 3,
+        "titles": [
+          "Regulation (EC) No 1907/2006 concerning REACH",
+          "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+          "Regulation (EU) 2019/1021 on persistent organic pollutants"
+        ]
+      },
+      "JP": {
+        "count": 1,
+        "titles": [
+          "Act on Control of Household Products Containing Harmful Substances"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Chemical Substances Control Act",
+          "Act on Registration and Evaluation of Chemical Substances"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "Technical Regulation for Restriction of Hazardous Substances in Electrical and Electronic Equipment"
+        ]
+      },
+      "UK": {
+        "count": 4,
+        "titles": [
+          "Substances of very high concern overview",
+          "How to comply with REACH chemical regulations",
+          "The REACH Enforcement Regulations 2008",
+          "The Restriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012"
+        ]
+      },
+      "US": {
+        "count": 5,
+        "titles": [
+          "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+          "16 CFR Part 1500, Hazardous Substances and Articles",
+          "16 CFR Part 1700, Poison Prevention Packaging",
+          "Federal Hazardous Substances Act",
+          "Poison Prevention Packaging Act of 1970"
+        ]
+      }
+    },
+    "children_products": {
+      "AE": {
+        "count": 1,
+        "titles": [
+          "Manaa product safety and recall platform"
+        ]
+      },
+      "AU": {
+        "count": 8,
+        "titles": [
+          "Consumer Goods (Aquatic Toys) Safety Standard 2020",
+          "Consumer Goods (Baby Bath Aids) Safety Standard 2017",
+          "Consumer Goods (Bean Bags) Safety Standard 2014",
+          "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020",
+          "Consumer Goods (Children's Nightwear and Limited Daywear and Paper Patterns for Children's Nightwear) Safety Standard 2017",
+          "Consumer Goods (Projectile Toys) Safety Standard 2020",
+          "Consumer Goods (Swimming and Flotation Aids) Safety Standard 2017",
+          "Consumer Goods (Toys for Children up to and including 36 Months of Age) Safety Standard 2023"
+        ]
+      },
+      "BR": {
+        "count": 1,
+        "titles": [
+          "Consumer Defense Code, Law No. 8,078/1990"
+        ]
+      },
+      "CA": {
+        "count": 8,
+        "titles": [
+          "Children's Sleepwear Regulations",
+          "Consumer Products Containing Lead Regulations",
+          "Corded Window Coverings Regulations",
+          "Cribs, Cradles and Bassinets Regulations (SOR/2016-152)",
+          "Phthalates Regulations",
+          "Playpens Regulations (SOR/2018-186)",
+          "Surface Coating Materials Regulations",
+          "Toys Regulations (SOR/2011-17)"
+        ]
+      },
+      "CN": {
+        "count": 2,
+        "titles": [
+          "Interim Provisions on the Administration of Consumer Product Recalls",
+          "Measures for the Administration of Recalls of Defective Consumer Products"
+        ]
+      },
+      "EU": {
+        "count": 2,
+        "titles": [
+          "Directive 2009/48/EC on the safety of toys",
+          "Regulation (EU) 2023/988 on general product safety"
+        ]
+      },
+      "GCC": {
+        "count": 1,
+        "titles": [
+          "G-Mark HS Toys Guidance, English"
+        ]
+      },
+      "ID": {
+        "count": 1,
+        "titles": [
+          "Law No. 8 of 1999 on Consumer Protection"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Toys (Quality Control) Order, 2020"
+        ]
+      },
+      "JP": {
+        "count": 1,
+        "titles": [
+          "Act on Control of Household Products Containing Harmful Substances"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Framework Act on the Safety of Products",
+          "Special Act on the Safety of Children's Products"
+        ]
+      },
+      "MX": {
+        "count": 1,
+        "titles": [
+          "NOM-252-SSA1-2011, toys and school articles: health and safety"
+        ]
+      },
+      "NZ": {
+        "count": 4,
+        "titles": [
+          "Baby walker mandatory product safety standard",
+          "Children's nightwear mandatory product safety standard",
+          "Children's toy standard",
+          "Household cot standard"
+        ]
+      },
+      "PH": {
+        "count": 1,
+        "titles": [
+          "Republic Act No. 7394, Consumer Act of the Philippines"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "GCC Technical Regulation on Children Toys"
+        ]
+      },
+      "SG": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods Safety Requirements Regulations information book"
+        ]
+      },
+      "TR": {
+        "count": 2,
+        "titles": [
+          "Implementing regulations of Law No. 7223",
+          "Product safety information and Ministry-supervised product groups"
+        ]
+      },
+      "UK": {
+        "count": 4,
+        "titles": [
+          "Consumer Protection Act 1987",
+          "The General Product Safety Regulations 2005",
+          "Toys (Safety) Regulations 2011: Great Britain",
+          "The Toys (Safety) Regulations 2011"
+        ]
+      },
+      "US": {
+        "count": 26,
+        "titles": [
+          "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+          "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+          "16 CFR Part 1216, Safety Standard for Infant Walkers",
+          "16 CFR Part 1217, Safety Standard for Toddler Beds",
+          "16 CFR Part 1218, Safety Standard for Bassinets and Cradles",
+          "16 CFR Part 1219, Safety Standard for Full-Size Baby Cribs",
+          "16 CFR Part 1220, Safety Standard for Non-Full-Size Baby Cribs",
+          "16 CFR Part 1221, Safety Standard for Play Yards",
+          "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "16 CFR Part 1223, Safety Standard for Infant Swings",
+          "16 CFR Part 1224, Safety Standard for Portable Bed Rails",
+          "16 CFR Part 1227, Safety Standard for Carriages and Strollers",
+          "16 CFR Part 1229, Safety Standard for Infant Bouncer Seats",
+          "16 CFR Part 1231, Safety Standard for High Chairs",
+          "16 CFR Part 1234, Safety Standard for Infant Sleep Products",
+          "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+          "16 CFR Part 1500, Hazardous Substances and Articles",
+          "16 CFR Part 1501, Small Parts",
+          "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "16 CFR Part 1700, Poison Prevention Packaging",
+          "Consumer Product Safety Act",
+          "Consumer Product Safety Improvement Act of 2008",
+          "Federal Hazardous Substances Act",
+          "Poison Prevention Packaging Act of 1970"
+        ]
+      }
+    },
+    "controlled_goods": {
+      "GCC": {
+        "count": 1,
+        "titles": [
+          "GCC Conformity Mark"
+        ]
+      },
+      "SG": {
+        "count": 4,
+        "titles": [
+          "Consumer Protection (Safety Requirements) Regulations 2002",
+          "Consumer Protection (Safety Requirements) Regulations information booklet",
+          "List of controlled goods under CPSR",
+          "Consumer Protection (Safety Requirements) Regulations overview"
+        ]
+      }
+    },
+    "cosmetics": {
+      "AE": {
+        "count": 1,
+        "titles": [
+          "Issue conformity certificates for regulated products"
+        ]
+      },
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Cosmetics) Information Standard 2020"
+        ]
+      },
+      "BR": {
+        "count": 1,
+        "titles": [
+          "Anvisa cosmetics portal"
+        ]
+      },
+      "CA": {
+        "count": 1,
+        "titles": [
+          "Cosmetic Regulations (C.R.C., c. 869)"
+        ]
+      },
+      "EU": {
+        "count": 4,
+        "titles": [
+          "Directive 2005/29/EC concerning unfair business-to-consumer commercial practices",
+          "Regulation (EC) No 1907/2006 concerning REACH",
+          "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+          "Regulation (EC) No 1223/2009 on cosmetic products"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Cosmetics Rules, 2020"
+        ]
+      },
+      "JP": {
+        "count": 1,
+        "titles": [
+          "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Cosmetics Act",
+          "Cosmetics Act"
+        ]
+      },
+      "MX": {
+        "count": 1,
+        "titles": [
+          "NOM-141-SSA1/SCFI-2012, cosmetic products prepackaged labelling"
+        ]
+      },
+      "NZ": {
+        "count": 1,
+        "titles": [
+          "Sunscreen mandatory product safety standard"
+        ]
+      },
+      "UK": {
+        "count": 2,
+        "titles": [
+          "Regulation 2009/1223 and the Cosmetic Products Enforcement Regulations 2013: Great Britain",
+          "The Cosmetic Products Enforcement Regulations 2013"
+        ]
+      }
+    },
+    "electrical_equipment": {
+      "CN": {
+        "count": 6,
+        "titles": [
+          "Announcement on CCC Management for Lithium-ion Batteries and Chargers for Electric Bicycles",
+          "CNCA 2026 announcement on eleven compulsory product certification implementation rules",
+          "Regulation of the People's Republic of China on Certification and Accreditation",
+          "Measures for the Administration of Compulsory Product Certification",
+          "Compliance Management Catalogue for the Restriction of Hazardous Substances in Electrical and Electronic Products",
+          "Administrative Measures for the Restriction of the Use of Hazardous Substances in Electrical and Electronic Products"
+        ]
+      },
+      "EU": {
+        "count": 5,
+        "titles": [
+          "Directive 2009/125/EC establishing a framework for ecodesign requirements for energy-related products",
+          "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "Directive 2014/30/EU on electromagnetic compatibility",
+          "Directive 2014/35/EU on low voltage electrical equipment",
+          "Regulation (EU) 2017/1369 setting a framework for energy labelling"
+        ]
+      },
+      "GCC": {
+        "count": 1,
+        "titles": [
+          "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances"
+        ]
+      },
+      "JP": {
+        "count": 4,
+        "titles": [
+          "Electrical Appliance and Material Safety Act",
+          "Regulation for Enforcement of the Electrical Appliances and Materials Safety Act",
+          "Electrical Appliances and Materials Safety Act",
+          "Ministerial Order to Provide Technical Standards for Electrical Appliances and Materials"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Electrical Appliances and Consumer Products Safety Control Act",
+          "Electrical Appliances and Consumer Products Safety Control Act"
+        ]
+      },
+      "MX": {
+        "count": 2,
+        "titles": [
+          "NOM-003-SCFI-2014, electrical product safety specifications",
+          "NOM-024-SCFI-2013, commercial information for electrical, electronic and home appliances"
+        ]
+      },
+      "MY": {
+        "count": 2,
+        "titles": [
+          "Guidelines for the Approval of Electrical Equipment, 2024 edition",
+          "Energy-Using Product approval and energy efficiency page"
+        ]
+      },
+      "PH": {
+        "count": 2,
+        "titles": [
+          "List of products under mandatory certification",
+          "BPS product certification schemes"
+        ]
+      },
+      "SA": {
+        "count": 2,
+        "titles": [
+          "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances",
+          "Technical Regulation for Restriction of Hazardous Substances in Electrical and Electronic Equipment"
+        ]
+      },
+      "SG": {
+        "count": 1,
+        "titles": [
+          "Mandatory Energy Labelling Scheme and Minimum Energy Performance Standards"
+        ]
+      },
+      "UK": {
+        "count": 5,
+        "titles": [
+          "The Ecodesign for Energy-Related Products Regulations 2010",
+          "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+          "The Electrical Equipment (Safety) Regulations 2016",
+          "The Electromagnetic Compatibility Regulations 2016",
+          "The Restriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012"
+        ]
+      },
+      "VN": {
+        "count": 1,
+        "titles": [
+          "Circular 24/2022/TT-BTTTT on electrical safety for telecom and IT terminal equipment"
+        ]
+      }
+    },
+    "electronics": {
+      "AE": {
+        "count": 3,
+        "titles": [
+          "Issue conformity certificates for regulated products",
+          "MOIAT laws and regulations portal",
+          "Manaa product safety and recall platform"
+        ]
+      },
+      "AR": {
+        "count": 1,
+        "titles": [
+          "Law No. 24,240 on Consumer Defense"
+        ]
+      },
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020"
+        ]
+      },
+      "BR": {
+        "count": 5,
+        "titles": [
+          "Anatel product certification portal",
+          "Anatel Resolution No. 715/2019, conformity assessment and approval of telecommunications products",
+          "Anatel Resolution No. 780/2023",
+          "Inmetro conformity assessment portal",
+          "Consumer Defense Code, Law No. 8,078/1990"
+        ]
+      },
+      "CA": {
+        "count": 1,
+        "titles": [
+          "Energy Efficiency Regulations, 2016"
+        ]
+      },
+      "CL": {
+        "count": 1,
+        "titles": [
+          "Law No. 19,496 on consumer rights protection"
+        ]
+      },
+      "CN": {
+        "count": 9,
+        "titles": [
+          "CNCA 2023 CCC catalogue description and scope table",
+          "Announcement on CCC Management for Lithium-ion Batteries and Chargers for Electric Bicycles",
+          "CNCA 2023 CCC implementation rule for electronic products and safety accessories",
+          "CNCA 2025 No. 27 announcement on CCC mark pilot reform for power banks and other products",
+          "Regulation of the People's Republic of China on Certification and Accreditation",
+          "Measures for the Administration of Compulsory Product Certification",
+          "Implementation Regulations for the Law on the Protection of Consumer Rights and Interests",
+          "Compliance Management Catalogue for the Restriction of Hazardous Substances in Electrical and Electronic Products",
+          "Administrative Measures for the Restriction of the Use of Hazardous Substances in Electrical and Electronic Products"
+        ]
+      },
+      "EU": {
+        "count": 23,
+        "titles": [
+          "Directive 2005/29/EC concerning unfair business-to-consumer commercial practices",
+          "Regulation (EC) No 1907/2006 concerning REACH",
+          "Directive 2009/125/EC establishing a framework for ecodesign requirements for energy-related products",
+          "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "Directive 2011/83/EU on consumer rights",
+          "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "Directive 2014/30/EU on electromagnetic compatibility",
+          "Directive 2014/31/EU on non-automatic weighing instruments",
+          "Directive 2014/32/EU on measuring instruments",
+          "Directive 2014/34/EU on equipment and protective systems for explosive atmospheres",
+          "Directive 2014/35/EU on low voltage electrical equipment",
+          "Directive 2014/53/EU on radio equipment",
+          "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "Regulation (EU) 2022/1925 on contestable and fair markets in the digital sector",
+          "Regulation (EU) 2022/2065 on a Single Market For Digital Services",
+          "Directive (EU) 2022/2380, common charger amendment to RED",
+          "Regulation (EU) 2023/1542 concerning batteries and waste batteries",
+          "Regulation (EU) 2023/988 on general product safety",
+          "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "Directive (EU) 2024/2853 on liability for defective products"
+        ]
+      },
+      "GCC": {
+        "count": 4,
+        "titles": [
+          "GCC Conformity Assessment Scheme",
+          "GSO conformity portal",
+          "GCC Conformity Mark",
+          "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances"
+        ]
+      },
+      "ID": {
+        "count": 1,
+        "titles": [
+          "Law No. 20 of 2014 on Standardization and Conformity Assessment"
+        ]
+      },
+      "IN": {
+        "count": 2,
+        "titles": [
+          "E-Waste (Management) Rules portal and 2022 rules",
+          "E-Waste (Management) Rules, 2022"
+        ]
+      },
+      "JP": {
+        "count": 4,
+        "titles": [
+          "Electrical Appliance and Material Safety Act",
+          "Regulation for Enforcement of the Electrical Appliances and Materials Safety Act",
+          "Electrical Appliances and Materials Safety Act",
+          "Ministerial Order to Provide Technical Standards for Electrical Appliances and Materials"
+        ]
+      },
+      "KR": {
+        "count": 4,
+        "titles": [
+          "Electrical Appliances and Consumer Products Safety Control Act",
+          "Electrical Appliances and Consumer Products Safety Control Act",
+          "Radio Waves Act",
+          "Radio Waves Act"
+        ]
+      },
+      "MX": {
+        "count": 4,
+        "titles": [
+          "NOM-001-SCFI-2018, Electronic apparatus - safety requirements and test methods",
+          "NOM-024-SCFI-2013, commercial information for electrical, electronic and household appliances",
+          "NOM-003-SCFI-2014, electrical product safety specifications",
+          "NOM-024-SCFI-2013, commercial information for electrical, electronic and home appliances"
+        ]
+      },
+      "MY": {
+        "count": 2,
+        "titles": [
+          "Guidelines for the Approval of Electrical Equipment, 2024 edition",
+          "Energy-Using Product approval and energy efficiency page"
+        ]
+      },
+      "PH": {
+        "count": 3,
+        "titles": [
+          "List of products under mandatory certification",
+          "BPS product certification schemes",
+          "Application for type approval, acceptance, and grant of equipment conformity certificate"
+        ]
+      },
+      "SA": {
+        "count": 3,
+        "titles": [
+          "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances",
+          "Technical Regulation for Restriction of Hazardous Substances in Electrical and Electronic Equipment",
+          "SASO technical regulations portal"
+        ]
+      },
+      "SG": {
+        "count": 6,
+        "titles": [
+          "Consumer Protection (Safety Requirements) Regulations 2002",
+          "Consumer Protection (Safety Requirements) Regulations information booklet",
+          "List of controlled goods under CPSR",
+          "Consumer Protection (Safety Requirements) Regulations overview",
+          "Extended Producer Responsibility system for e-waste management",
+          "Mandatory Energy Labelling Scheme and Minimum Energy Performance Standards"
+        ]
+      },
+      "TH": {
+        "count": 1,
+        "titles": [
+          "Industrial Product Standards Act, B.E. 2511 (1968)"
+        ]
+      },
+      "TR": {
+        "count": 2,
+        "titles": [
+          "Implementing regulations of Law No. 7223",
+          "Product Safety and Technical Regulations Law No. 7223"
+        ]
+      },
+      "UK": {
+        "count": 15,
+        "titles": [
+          "Consumer Protection Act 1987",
+          "The Ecodesign for Energy-Related Products Regulations 2010",
+          "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+          "The Electrical Equipment (Safety) Regulations 2016",
+          "Electromagnetic Compatibility Regulations 2016: Great Britain",
+          "The Electromagnetic Compatibility Regulations 2016",
+          "The Product Safety and Metrology etc. (Amendment etc.) (UK(NI) Indication) (EU Exit) Regulations 2020",
+          "Regulations: consumer connectable product security",
+          "The Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023",
+          "Radio Equipment Regulations 2017: Great Britain",
+          "The Radio Equipment Regulations 2017",
+          "How to comply with REACH chemical regulations",
+          "The Restriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012",
+          "UKCA marking: conformity assessment and documentation",
+          "Regulations: waste electrical and electronic equipment"
+        ]
+      },
+      "US": {
+        "count": 8,
+        "titles": [
+          "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "16 CFR Part 305, Energy and Water Use Labeling for Consumer Products",
+          "16 CFR Part 323, Made in USA Labeling Rule",
+          "47 CFR Part 15, Radio Frequency Devices",
+          "47 CFR Part 2, Frequency Allocations and Radio Treaty Matters; General Rules and Regulations",
+          "Magnuson-Moss Warranty-Federal Trade Commission Improvement Act"
+        ]
+      },
+      "VN": {
+        "count": 1,
+        "titles": [
+          "Circular 24/2022/TT-BTTTT on electrical safety for telecom and IT terminal equipment"
+        ]
+      },
+      "ZA": {
+        "count": 4,
+        "titles": [
+          "Labelling Regulations 2013",
+          "Radio Frequency Spectrum Regulations 2015",
+          "Type Approval Regulations 2013",
+          "Type approval requirements for South Africa"
+        ]
+      }
+    },
+    "food_contact": {
+      "EU": {
+        "count": 2,
+        "titles": [
+          "Regulation (EC) No 1935/2004 on materials and articles intended to contact food",
+          "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food"
+        ]
+      },
+      "JP": {
+        "count": 2,
+        "titles": [
+          "Food Sanitation Act",
+          "Food Sanitation Act"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Food Sanitation Act",
+          "Food Sanitation Act"
+        ]
+      },
+      "MX": {
+        "count": 1,
+        "titles": [
+          "NOM-051-SCFI/SSA1-2010, food and non-alcoholic beverage labelling"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "21 CFR Part 177, Indirect Food Additives: Polymers"
+        ]
+      }
+    },
+    "furniture": {
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Bean Bags) Safety Standard 2014"
+        ]
+      },
+      "CA": {
+        "count": 2,
+        "titles": [
+          "Cribs, Cradles and Bassinets Regulations (SOR/2016-152)",
+          "Playpens Regulations (SOR/2018-186)"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "Technical Regulation for Textile Products"
+        ]
+      },
+      "TR": {
+        "count": 1,
+        "titles": [
+          "Product safety information and Ministry-supervised product groups"
+        ]
+      },
+      "US": {
+        "count": 14,
+        "titles": [
+          "16 CFR Part 1217, Safety Standard for Toddler Beds",
+          "16 CFR Part 1218, Safety Standard for Bassinets and Cradles",
+          "16 CFR Part 1219, Safety Standard for Full-Size Baby Cribs",
+          "16 CFR Part 1220, Safety Standard for Non-Full-Size Baby Cribs",
+          "16 CFR Part 1221, Safety Standard for Play Yards",
+          "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "16 CFR Part 1224, Safety Standard for Portable Bed Rails",
+          "16 CFR Part 1231, Safety Standard for High Chairs",
+          "16 CFR Part 1234, Safety Standard for Infant Sleep Products",
+          "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
+          "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+          "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+          "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+          "40 CFR Part 770, Formaldehyde Standards for Composite Wood Products"
+        ]
+      }
+    },
+    "general_consumer_products": {
+      "AE": {
+        "count": 3,
+        "titles": [
+          "Issue conformity certificates for regulated products",
+          "MOIAT laws and regulations portal",
+          "Manaa product safety and recall platform"
+        ]
+      },
+      "AR": {
+        "count": 1,
+        "titles": [
+          "Law No. 24,240 on Consumer Defense"
+        ]
+      },
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Swimming and Flotation Aids) Safety Standard 2017"
+        ]
+      },
+      "BR": {
+        "count": 2,
+        "titles": [
+          "Inmetro conformity assessment portal",
+          "Consumer Defense Code, Law No. 8,078/1990"
+        ]
+      },
+      "CA": {
+        "count": 6,
+        "titles": [
+          "Consumer Chemicals and Containers Regulations, 2001",
+          "Consumer Packaging and Labelling Act",
+          "Consumer Packaging and Labelling Regulations (C.R.C., c. 417)",
+          "Canada Consumer Product Safety Act",
+          "Consumer Products Containing Lead Regulations",
+          "Hazardous Products Act"
+        ]
+      },
+      "CL": {
+        "count": 1,
+        "titles": [
+          "Law No. 19,496 on consumer rights protection"
+        ]
+      },
+      "CN": {
+        "count": 10,
+        "titles": [
+          "CNCA 2026 announcement on eleven compulsory product certification implementation rules",
+          "Regulation of the People's Republic of China on Certification and Accreditation",
+          "Measures for the Administration of Compulsory Product Certification",
+          "Interim Provisions on the Administration of Consumer Product Recalls",
+          "Implementation Regulations for the Law on the Protection of Consumer Rights and Interests",
+          "Measures for the Administration of Recalls of Defective Consumer Products",
+          "Provisions on the Supervision and Administration of Quality and Safety Responsibilities of Industrial Product Production Units",
+          "Provisions on the Supervision and Administration of Quality and Safety Responsibilities of Industrial Product Sellers",
+          "Product Quality Law of the People's Republic of China",
+          "Interim Measures for the Administration of Product Quality Supervision and Random Inspection"
+        ]
+      },
+      "EU": {
+        "count": 9,
+        "titles": [
+          "Directive 2005/29/EC concerning unfair business-to-consumer commercial practices",
+          "Regulation (EC) No 1907/2006 concerning REACH",
+          "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+          "Directive 2011/83/EU on consumer rights",
+          "Directive 2013/29/EU on pyrotechnic articles",
+          "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "Regulation (EU) 2022/1925 on contestable and fair markets in the digital sector",
+          "Regulation (EU) 2022/2065 on a Single Market For Digital Services",
+          "Regulation (EU) 2023/988 on general product safety"
+        ]
+      },
+      "GCC": {
+        "count": 2,
+        "titles": [
+          "GCC Conformity Assessment Scheme",
+          "GSO conformity portal"
+        ]
+      },
+      "ID": {
+        "count": 3,
+        "titles": [
+          "Law No. 8 of 1999 on Consumer Protection",
+          "Government Regulation No. 58 of 2001 on consumer protection supervision",
+          "Law No. 20 of 2014 on Standardization and Conformity Assessment"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Plastic Waste Management Rules, 2016 and amendments"
+        ]
+      },
+      "JP": {
+        "count": 4,
+        "titles": [
+          "Consumer Product Safety Act",
+          "Consumer Product Safety Act",
+          "Household Goods Quality Labeling Act",
+          "Act on Securing Quality, Efficacy and Safety of Products Including Pharmaceuticals and Medical Devices"
+        ]
+      },
+      "KR": {
+        "count": 4,
+        "titles": [
+          "Electrical Appliances and Consumer Products Safety Control Act",
+          "Electrical Appliances and Consumer Products Safety Control Act",
+          "Framework Act on the Safety of Products",
+          "Act on Registration and Evaluation of Chemical Substances"
+        ]
+      },
+      "MX": {
+        "count": 2,
+        "titles": [
+          "NOM-050-SCFI-2004, commercial information and general product labelling",
+          "NOM-051-SCFI/SSA1-2010, food and non-alcoholic beverage labelling"
+        ]
+      },
+      "NZ": {
+        "count": 2,
+        "titles": [
+          "Bicycle mandatory product safety standard",
+          "Sunscreen mandatory product safety standard"
+        ]
+      },
+      "PH": {
+        "count": 2,
+        "titles": [
+          "BPS product certification schemes",
+          "Republic Act No. 7394, Consumer Act of the Philippines"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "SASO technical regulations portal"
+        ]
+      },
+      "SG": {
+        "count": 2,
+        "titles": [
+          "Consumer Product Safety Regulations",
+          "Consumer Goods Safety Requirements Regulations information book"
+        ]
+      },
+      "TH": {
+        "count": 1,
+        "titles": [
+          "Industrial Product Standards Act, B.E. 2511 (1968)"
+        ]
+      },
+      "TR": {
+        "count": 4,
+        "titles": [
+          "Implementing regulations of Law No. 7223",
+          "Product safety information and Ministry-supervised product groups",
+          "Official Gazette regulation implementing Law No. 7223",
+          "Product Safety and Technical Regulations Law No. 7223"
+        ]
+      },
+      "UK": {
+        "count": 9,
+        "titles": [
+          "Consumer Protection Act 1987",
+          "The General Product Safety Regulations 2005",
+          "Substances of very high concern overview",
+          "Extended producer responsibility for packaging: who is affected and what to do",
+          "Product safety advice for businesses",
+          "The Product Safety and Metrology etc. (Amendment etc.) (UK(NI) Indication) (EU Exit) Regulations 2020",
+          "The Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023",
+          "How to comply with REACH chemical regulations",
+          "The REACH Enforcement Regulations 2008"
+        ]
+      },
+      "US": {
+        "count": 10,
+        "titles": [
+          "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+          "16 CFR Part 1110, Certificates of Compliance",
+          "16 CFR Part 1507, Fireworks Devices",
+          "16 CFR Part 260, Guides for the Use of Environmental Marketing Claims",
+          "16 CFR Part 323, Made in USA Labeling Rule",
+          "16 CFR Part 500, Regulations Under Section 4 of the Fair Packaging and Labeling Act",
+          "Consumer Product Safety Act",
+          "Fair Packaging and Labeling Act",
+          "Federal Hazardous Substances Act",
+          "Magnuson-Moss Warranty-Federal Trade Commission Improvement Act"
+        ]
+      }
+    },
+    "home_appliances": {
+      "CA": {
+        "count": 1,
+        "titles": [
+          "Energy Efficiency Regulations, 2016"
+        ]
+      },
+      "CN": {
+        "count": 1,
+        "titles": [
+          "Announcement on CCC Management for Commercial Gas-burning Appliances and Other Products"
+        ]
+      },
+      "EU": {
+        "count": 3,
+        "titles": [
+          "Directive 2009/125/EC establishing a framework for ecodesign requirements for energy-related products",
+          "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+          "Regulation (EU) 2017/1369 setting a framework for energy labelling"
+        ]
+      },
+      "JP": {
+        "count": 2,
+        "titles": [
+          "Regulation for Enforcement of the Electrical Appliances and Materials Safety Act",
+          "Electrical Appliances and Materials Safety Act"
+        ]
+      },
+      "KR": {
+        "count": 1,
+        "titles": [
+          "Electrical Appliances and Consumer Products Safety Control Act"
+        ]
+      },
+      "MX": {
+        "count": 3,
+        "titles": [
+          "NOM-024-SCFI-2013, commercial information for electrical, electronic and household appliances",
+          "NOM-003-SCFI-2014, electrical product safety specifications",
+          "NOM-024-SCFI-2013, commercial information for electrical, electronic and home appliances"
+        ]
+      },
+      "MY": {
+        "count": 2,
+        "titles": [
+          "Guidelines for the Approval of Electrical Equipment, 2024 edition",
+          "Energy-Using Product approval and energy efficiency page"
+        ]
+      },
+      "PH": {
+        "count": 1,
+        "titles": [
+          "List of products under mandatory certification"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances"
+        ]
+      },
+      "SG": {
+        "count": 3,
+        "titles": [
+          "Consumer Protection (Safety Requirements) Regulations information booklet",
+          "List of controlled goods under CPSR",
+          "Mandatory Energy Labelling Scheme and Minimum Energy Performance Standards"
+        ]
+      },
+      "UK": {
+        "count": 2,
+        "titles": [
+          "The Ecodesign for Energy-Related Products Regulations 2010",
+          "The Gas Appliances (Enforcement) and Miscellaneous Amendments Regulations 2018"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "16 CFR Part 305, Energy and Water Use Labeling for Consumer Products"
+        ]
+      }
+    },
+    "home_goods": {
+      "AU": {
+        "count": 2,
+        "titles": [
+          "Consumer Goods (Baby Bath Aids) Safety Standard 2017",
+          "Consumer Goods (Bean Bags) Safety Standard 2014"
+        ]
+      },
+      "CA": {
+        "count": 1,
+        "titles": [
+          "Corded Window Coverings Regulations"
+        ]
+      },
+      "JP": {
+        "count": 3,
+        "titles": [
+          "Consumer Product Safety Act",
+          "Household Goods Quality Labeling Act",
+          "Act on Control of Household Products Containing Harmful Substances"
+        ]
+      },
+      "NZ": {
+        "count": 3,
+        "titles": [
+          "Baby walker mandatory product safety standard",
+          "Multipurpose ladders mandatory product safety standard",
+          "Household cot standard"
+        ]
+      },
+      "SG": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods Safety Requirements Regulations information book"
+        ]
+      },
+      "US": {
+        "count": 7,
+        "titles": [
+          "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+          "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
+          "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+          "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+          "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+          "40 CFR Part 770, Formaldehyde Standards for Composite Wood Products",
+          "Flammable Fabrics Act"
+        ]
+      }
+    },
+    "industrial_products": {
+      "AE": {
+        "count": 1,
+        "titles": [
+          "MOIAT laws and regulations portal"
+        ]
+      },
+      "BR": {
+        "count": 1,
+        "titles": [
+          "Inmetro conformity assessment portal"
+        ]
+      },
+      "CN": {
+        "count": 6,
+        "titles": [
+          "Announcement on CCC Management for Commercial Gas-burning Appliances and Other Products",
+          "CNCA 2026 announcement on eleven compulsory product certification implementation rules",
+          "Provisions on the Supervision and Administration of Quality and Safety Responsibilities of Industrial Product Production Units",
+          "Provisions on the Supervision and Administration of Quality and Safety Responsibilities of Industrial Product Sellers",
+          "Product Quality Law of the People's Republic of China",
+          "Interim Measures for the Administration of Product Quality Supervision and Random Inspection"
+        ]
+      },
+      "EU": {
+        "count": 9,
+        "titles": [
+          "Directive 2000/14/EC on noise emission by equipment for use outdoors",
+          "Directive 2013/29/EU on pyrotechnic articles",
+          "Directive 2014/31/EU on non-automatic weighing instruments",
+          "Directive 2014/32/EU on measuring instruments",
+          "Directive 2014/34/EU on equipment and protective systems for explosive atmospheres",
+          "Directive 2014/68/EU on pressure equipment",
+          "Regulation (EU) 2016/425 on personal protective equipment",
+          "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+          "Regulation (EU) 2023/1230 on machinery"
+        ]
+      },
+      "GCC": {
+        "count": 1,
+        "titles": [
+          "GSO conformity portal"
+        ]
+      },
+      "ID": {
+        "count": 1,
+        "titles": [
+          "Law No. 20 of 2014 on Standardization and Conformity Assessment"
+        ]
+      },
+      "KR": {
+        "count": 1,
+        "titles": [
+          "Chemical Substances Control Act"
+        ]
+      },
+      "NZ": {
+        "count": 1,
+        "titles": [
+          "Multipurpose ladders mandatory product safety standard"
+        ]
+      },
+      "PH": {
+        "count": 2,
+        "titles": [
+          "List of products under mandatory certification",
+          "BPS product certification schemes"
+        ]
+      },
+      "SA": {
+        "count": 2,
+        "titles": [
+          "Technical Regulation for Personal Protective Equipment and Clothing",
+          "SASO technical regulations portal"
+        ]
+      },
+      "TH": {
+        "count": 1,
+        "titles": [
+          "Industrial Product Standards Act, B.E. 2511 (1968)"
+        ]
+      },
+      "TR": {
+        "count": 1,
+        "titles": [
+          "Official Gazette regulation implementing Law No. 7223"
+        ]
+      },
+      "UK": {
+        "count": 6,
+        "titles": [
+          "The Gas Appliances (Enforcement) and Miscellaneous Amendments Regulations 2018",
+          "The Personal Protective Equipment (Enforcement) Regulations 2018",
+          "The Pressure Equipment (Safety) Regulations 2016",
+          "The Product Safety and Metrology etc. (Amendment etc.) (UK(NI) Indication) (EU Exit) Regulations 2020",
+          "The Simple Pressure Vessels (Safety) Regulations 2016",
+          "The Supply of Machinery (Safety) Regulations 2008"
+        ]
+      }
+    },
+    "kitchenware": {
+      "EU": {
+        "count": 3,
+        "titles": [
+          "Regulation (EC) No 1935/2004 on materials and articles intended to contact food",
+          "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+          "Regulation (EU) 2016/426 on appliances burning gaseous fuels"
+        ]
+      },
+      "JP": {
+        "count": 2,
+        "titles": [
+          "Food Sanitation Act",
+          "Food Sanitation Act"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Food Sanitation Act",
+          "Food Sanitation Act"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "21 CFR Part 177, Indirect Food Additives: Polymers"
+        ]
+      }
+    },
+    "machinery": {
+      "EU": {
+        "count": 3,
+        "titles": [
+          "Directive 2000/14/EC on noise emission by equipment for use outdoors",
+          "Directive 2014/68/EU on pressure equipment",
+          "Regulation (EU) 2023/1230 on machinery"
+        ]
+      },
+      "UK": {
+        "count": 2,
+        "titles": [
+          "The Pressure Equipment (Safety) Regulations 2016",
+          "The Supply of Machinery (Safety) Regulations 2008"
+        ]
+      }
+    },
+    "packaging": {
+      "AR": {
+        "count": 1,
+        "titles": [
+          "Law No. 24,240 on Consumer Defense"
+        ]
+      },
+      "CA": {
+        "count": 3,
+        "titles": [
+          "Consumer Chemicals and Containers Regulations, 2001",
+          "Consumer Packaging and Labelling Act",
+          "Consumer Packaging and Labelling Regulations (C.R.C., c. 417)"
+        ]
+      },
+      "CL": {
+        "count": 1,
+        "titles": [
+          "Law No. 19,496 on consumer rights protection"
+        ]
+      },
+      "EU": {
+        "count": 3,
+        "titles": [
+          "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+          "Regulation (EU) 2023/1115 on deforestation-free products",
+          "Regulation (EU) 2025/40 on packaging and packaging waste"
+        ]
+      },
+      "ID": {
+        "count": 1,
+        "titles": [
+          "Law No. 8 of 1999 on Consumer Protection"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Plastic Waste Management Rules, 2016 and amendments"
+        ]
+      },
+      "JP": {
+        "count": 2,
+        "titles": [
+          "Food Sanitation Act",
+          "Food Sanitation Act"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Food Sanitation Act",
+          "Food Sanitation Act"
+        ]
+      },
+      "MX": {
+        "count": 3,
+        "titles": [
+          "NOM-050-SCFI-2004, commercial information and general product labelling",
+          "NOM-051-SCFI/SSA1-2010, food and non-alcoholic beverage labelling",
+          "NOM-141-SSA1/SCFI-2012, cosmetic products prepackaged labelling"
+        ]
+      },
+      "PH": {
+        "count": 1,
+        "titles": [
+          "Republic Act No. 7394, Consumer Act of the Philippines"
+        ]
+      },
+      "SG": {
+        "count": 1,
+        "titles": [
+          "Mandatory Packaging Reporting"
+        ]
+      },
+      "UK": {
+        "count": 2,
+        "titles": [
+          "Extended producer responsibility for packaging: who is affected and what to do",
+          "The Packaging (Essential Requirements) Regulations 2015"
+        ]
+      },
+      "US": {
+        "count": 6,
+        "titles": [
+          "16 CFR Part 1700, Poison Prevention Packaging",
+          "16 CFR Part 260, Guides for the Use of Environmental Marketing Claims",
+          "16 CFR Part 500, Regulations Under Section 4 of the Fair Packaging and Labeling Act",
+          "21 CFR Part 177, Indirect Food Additives: Polymers",
+          "Fair Packaging and Labeling Act",
+          "Poison Prevention Packaging Act of 1970"
+        ]
+      }
+    },
+    "painted_goods": {
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products"
+        ]
+      },
+      "US": {
+        "count": 2,
+        "titles": [
+          "16 CFR Part 1262, Safety Standard for Magnets",
+          "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint"
+        ]
+      }
+    },
+    "plastics": {
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Plastic Waste Management Rules, 2016 and amendments"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "21 CFR Part 177, Indirect Food Additives: Polymers"
+        ]
+      }
+    },
+    "ppe": {
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Regulation (EU) 2016/425 on personal protective equipment"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "Technical Regulation for Personal Protective Equipment and Clothing"
+        ]
+      },
+      "UK": {
+        "count": 1,
+        "titles": [
+          "The Personal Protective Equipment (Enforcement) Regulations 2018"
+        ]
+      }
+    },
+    "radio": {
+      "BR": {
+        "count": 3,
+        "titles": [
+          "Anatel product certification portal",
+          "Anatel Resolution No. 715/2019, conformity assessment and approval of telecommunications products",
+          "Anatel Resolution No. 780/2023"
+        ]
+      },
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Directive 2014/53/EU on radio equipment"
+        ]
+      },
+      "KR": {
+        "count": 2,
+        "titles": [
+          "Radio Waves Act",
+          "Radio Waves Act"
+        ]
+      },
+      "PH": {
+        "count": 1,
+        "titles": [
+          "Application for type approval, acceptance, and grant of equipment conformity certificate"
+        ]
+      },
+      "UK": {
+        "count": 2,
+        "titles": [
+          "Radio Equipment Regulations 2017: Great Britain",
+          "The Radio Equipment Regulations 2017"
+        ]
+      },
+      "US": {
+        "count": 2,
+        "titles": [
+          "47 CFR Part 15, Radio Frequency Devices",
+          "47 CFR Part 2, Frequency Allocations and Radio Treaty Matters; General Rules and Regulations"
+        ]
+      },
+      "ZA": {
+        "count": 4,
+        "titles": [
+          "Labelling Regulations 2013",
+          "Radio Frequency Spectrum Regulations 2015",
+          "Type Approval Regulations 2013",
+          "Type approval requirements for South Africa"
+        ]
+      }
+    },
+    "raw_materials": {
+      "CN": {
+        "count": 1,
+        "titles": [
+          "Measures for Environmental Management Registration of New Chemical Substances"
+        ]
+      },
+      "EU": {
+        "count": 2,
+        "titles": [
+          "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "Regulation (EU) 2023/1115 on deforestation-free products"
+        ]
+      },
+      "KR": {
+        "count": 1,
+        "titles": [
+          "Act on Registration and Evaluation of Chemical Substances"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "40 CFR Part 770, Formaldehyde Standards for Composite Wood Products"
+        ]
+      }
+    },
+    "telecommunications": {
+      "BR": {
+        "count": 3,
+        "titles": [
+          "Anatel product certification portal",
+          "Anatel Resolution No. 715/2019, conformity assessment and approval of telecommunications products",
+          "Anatel Resolution No. 780/2023"
+        ]
+      },
+      "KR": {
+        "count": 1,
+        "titles": [
+          "Radio Waves Act"
+        ]
+      },
+      "PH": {
+        "count": 1,
+        "titles": [
+          "Application for type approval, acceptance, and grant of equipment conformity certificate"
+        ]
+      },
+      "UK": {
+        "count": 1,
+        "titles": [
+          "The Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023"
+        ]
+      },
+      "US": {
+        "count": 1,
+        "titles": [
+          "47 CFR Part 2, Frequency Allocations and Radio Treaty Matters; General Rules and Regulations"
+        ]
+      },
+      "VN": {
+        "count": 1,
+        "titles": [
+          "Circular 24/2022/TT-BTTTT on electrical safety for telecom and IT terminal equipment"
+        ]
+      },
+      "ZA": {
+        "count": 4,
+        "titles": [
+          "Labelling Regulations 2013",
+          "Radio Frequency Spectrum Regulations 2015",
+          "Type Approval Regulations 2013",
+          "Type approval requirements for South Africa"
+        ]
+      }
+    },
+    "textiles": {
+      "AU": {
+        "count": 1,
+        "titles": [
+          "Consumer Goods (Children's Nightwear and Limited Daywear and Paper Patterns for Children's Nightwear) Safety Standard 2017"
+        ]
+      },
+      "CA": {
+        "count": 3,
+        "titles": [
+          "Children's Sleepwear Regulations",
+          "Textile Labelling Act",
+          "Textile Labelling and Advertising Regulations (C.R.C., c. 1551)"
+        ]
+      },
+      "EU": {
+        "count": 3,
+        "titles": [
+          "Regulation (EC) No 1907/2006 concerning REACH",
+          "Regulation (EU) No 1007/2011 on textile fibre names and labelling",
+          "Regulation (EU) 2019/1021 on persistent organic pollutants"
+        ]
+      },
+      "JP": {
+        "count": 2,
+        "titles": [
+          "Household Goods Quality Labeling Act",
+          "Act on Control of Household Products Containing Harmful Substances"
+        ]
+      },
+      "NZ": {
+        "count": 1,
+        "titles": [
+          "Children's nightwear mandatory product safety standard"
+        ]
+      },
+      "SA": {
+        "count": 2,
+        "titles": [
+          "SASO technical regulations portal",
+          "Technical Regulation for Textile Products"
+        ]
+      },
+      "TR": {
+        "count": 1,
+        "titles": [
+          "Product safety information and Ministry-supervised product groups"
+        ]
+      },
+      "US": {
+        "count": 13,
+        "titles": [
+          "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+          "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
+          "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+          "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+          "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+          "16 CFR Part 300, Rules and Regulations Under the Wool Products Labeling Act of 1939",
+          "16 CFR Part 301, Rules and Regulations Under the Fur Products Labeling Act",
+          "16 CFR Part 303, Rules and Regulations Under the Textile Fiber Products Identification Act",
+          "16 CFR Part 423, Care Labeling of Textile Wearing Apparel and Certain Piece Goods",
+          "Flammable Fabrics Act",
+          "Wool Products Labeling Act of 1939"
+        ]
+      }
+    },
+    "toys": {
+      "AU": {
+        "count": 3,
+        "titles": [
+          "Consumer Goods (Aquatic Toys) Safety Standard 2020",
+          "Consumer Goods (Projectile Toys) Safety Standard 2020",
+          "Consumer Goods (Toys for Children up to and including 36 Months of Age) Safety Standard 2023"
+        ]
+      },
+      "CA": {
+        "count": 4,
+        "titles": [
+          "Consumer Products Containing Lead Regulations",
+          "Phthalates Regulations",
+          "Surface Coating Materials Regulations",
+          "Toys Regulations (SOR/2011-17)"
+        ]
+      },
+      "CN": {
+        "count": 2,
+        "titles": [
+          "CNCA 2023 CCC catalogue description and scope table",
+          "Measures for the Administration of Compulsory Product Certification"
+        ]
+      },
+      "EU": {
+        "count": 8,
+        "titles": [
+          "Regulation (EC) No 1907/2006 concerning REACH",
+          "Directive 2009/48/EC on the safety of toys",
+          "Directive 2011/83/EU on consumer rights",
+          "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "Regulation (EU) 2022/2065 on a Single Market For Digital Services",
+          "Regulation (EU) 2023/988 on general product safety",
+          "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "Directive (EU) 2024/2853 on liability for defective products"
+        ]
+      },
+      "GCC": {
+        "count": 3,
+        "titles": [
+          "GCC Conformity Assessment Scheme",
+          "GCC Conformity Mark",
+          "G-Mark HS Toys Guidance, English"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "Toys (Quality Control) Order, 2020"
+        ]
+      },
+      "KR": {
+        "count": 1,
+        "titles": [
+          "Special Act on the Safety of Children's Products"
+        ]
+      },
+      "MX": {
+        "count": 1,
+        "titles": [
+          "NOM-252-SSA1-2011, toys and school articles: health and safety"
+        ]
+      },
+      "NZ": {
+        "count": 1,
+        "titles": [
+          "Children's toy standard"
+        ]
+      },
+      "SA": {
+        "count": 1,
+        "titles": [
+          "GCC Technical Regulation on Children Toys"
+        ]
+      },
+      "TR": {
+        "count": 2,
+        "titles": [
+          "Product safety information and Ministry-supervised product groups",
+          "Product Safety and Technical Regulations Law No. 7223"
+        ]
+      },
+      "UK": {
+        "count": 5,
+        "titles": [
+          "Regulations: consumer connectable product security",
+          "How to comply with REACH chemical regulations",
+          "Toys (Safety) Regulations 2011: Great Britain",
+          "The Toys (Safety) Regulations 2011",
+          "UKCA marking: conformity assessment and documentation"
+        ]
+      },
+      "US": {
+        "count": 8,
+        "titles": [
+          "16 CFR Part 1250, Safety Standard Mandating ASTM F963 for Toys",
+          "16 CFR Part 1262, Safety Standard for Magnets",
+          "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+          "16 CFR Part 1501, Small Parts",
+          "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "Consumer Product Safety Improvement Act of 2008"
+        ]
+      }
+    },
+    "waste_electrical": {
+      "EU": {
+        "count": 1,
+        "titles": [
+          "Directive 2012/19/EU on waste electrical and electronic equipment"
+        ]
+      },
+      "IN": {
+        "count": 1,
+        "titles": [
+          "E-Waste (Management) Rules portal and 2022 rules"
+        ]
+      },
+      "SG": {
+        "count": 1,
+        "titles": [
+          "Extended Producer Responsibility system for e-waste management"
+        ]
+      },
+      "UK": {
+        "count": 1,
+        "titles": [
+          "Regulations: waste electrical and electronic equipment"
+        ]
+      }
+    },
+    "玩具": {
+      "EU": {
+        "count": 2,
+        "titles": [
+          "10 5710ecb863a33.pdf",
+          "8 5710ecb863a33.pdf"
+        ]
+      },
+      "US": {
+        "count": 2,
+        "titles": [
+          "10 5710ecb863a33.pdf",
+          "8 5710ecb863a33.pdf"
+        ]
+      }
+    },
+    "锂电池": {
+      "EU": {
+        "count": 4,
+        "titles": [
+          "10 5710ecb863a33.pdf",
+          "1 PRVV0001-R1_UL 62368-1 2019.pdf",
+          "6 PRVV0001-R1_UL 62368-1 2019.pdf",
+          "8 5710ecb863a33.pdf"
+        ]
+      },
+      "US": {
+        "count": 2,
+        "titles": [
+          "10 5710ecb863a33.pdf",
+          "8 5710ecb863a33.pdf"
+        ]
+      }
+    }
+  }
+}

@@ -347,7 +347,7 @@ attrax/
 
 **整体评价：** 火鹰合规项目的核心 RAG 架构实现扎实，LangGraph 编排、混合检索管线、NLI 引用验证等关键组件均已落地，前端页面骨架完整，会话存储升级到三层架构（内存 + 文件 + 队列 + 访问 token），LLM 已切到 MiniMax-M3。
 
-**2026-06-20 → 2026-06-26 主要变更（17 轮 P0/P1/P2/P2-Plus 迭代）：**
+**2026-06-20 → 2026-06-26 主要变更（18 轮 P0/P1/P2/P2-Plus 迭代）：**
 
 1. **测试通过率 90% → 100%**：从 587/652 提升到 **696/696** 通过；新增 60+ 测试覆盖新组件
 2. **TypeScript 错误清零**：修复 10 个假错误（stale attrax/ 目录误导 tsc）；Windows EPERM 重试 + 降级
@@ -361,7 +361,16 @@ attrax/
 6. **错误处理 + UX**：3 个 error boundary（`app/error.tsx` / `app/result/[sessionId]/error.tsx` / `app/not-found.tsx`）+ 5 个 loading.tsx skeleton（upload/burning/result/trace/roadmap）
 7. **法规知识库扩容**：`data/corpus/processed/` 135 → **355 文档**；FAISS 索引 0 → **14,495 chunks**（28 区域覆盖）；6 个 supplements 全部 ingest
 8. **API 安全合约**：`tokenFromRequest` 注释明确 Bearer-only（防 query string 泄漏到 access log）；`core-utilities.test.ts` 更新反映安全合约
-9. **未 commit 改动**：~29 代码文件 + 220 语料 + FAISS 386M + 3 新测试文件（待用户授权 commit + attrax/ 决策）
+
+**2026-06-26 增量（19 轮）：**
+
+1. **4 个核心组件补 unit test**：ImageCarousel / ReportPanels / ComplianceReportView / LegacyResultView 之前 0% 覆盖 → 新增 41 个测试（result-imagecarousel-legacy.test.tsx 16 + result-reportpanels.test.tsx 10 + result-compliancereport.test.tsx 15），85/85 通过
+2. **CSP + rate limit 收紧**：
+   - `next.config.ts` `connect-src` 删除 dead 规则 `http://localhost:8001`（client 端从不直连 RAG，全部经 Next.js API 代理）
+   - `lib/rate-limit.ts clientIp()` 优先 X-Real-IP > X-Forwarded-For > unknown（防 XFF 欺骗重置 bucket）
+   - 加 6 个测试锁定 clientIp 信任合约
+3. **知识库结构化工具**：新增 `scripts/build_category_market_matrix.py` —— 从 `metadata.productCategories × metadata.detectedMarkets` 生成 category × market 矩阵（29 类别 × 25 市场 = 725 cells，155 sparse cells），输出 `data/regulation_reports/category_market_matrix.{md,json}`。registry-only coverage 看不到的 category 级别 gap 现在可被定位，未来 ingest 可按 sparse cell 补齐
+4. **未 commit 改动**：~29 代码文件 + 220 语料 + FAISS 386M + 3 新测试文件（待用户授权 commit + attrax/ 决策）
 
 **主要风险（更新）：**
 
