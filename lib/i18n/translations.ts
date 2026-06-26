@@ -21,7 +21,6 @@ export const translations = {
       search: "搜索",
       filter: "筛选",
       language: "语言",
-      home: "首页",
     },
     language: {
       zh: "中文",
@@ -33,7 +32,6 @@ export const translations = {
       description: "AI驱动的跨境电商合规风险智能扫描平台",
       startScanning: "开始扫描",
       features: {
-        title: "核心功能",
         multiMarket: "多市场覆盖",
         multiMarketDesc: "覆盖欧盟、美国、英国、中国、澳大利亚、沙特、阿联酋等16+市场",
         fastAnalysis: "快速分析",
@@ -46,20 +44,15 @@ export const translations = {
       stats: {
         markets: "市场",
         regulations: "法规",
-        users: "用户",
       },
       regulations: {
-        title: "法规更新",
-        recentUpdates: "最新更新",
         viewAll: "查看全部",
-        noUpdates: "暂无更新",
       },
     },
 
     // 上传表单
     upload: {
       title: "上传产品资料",
-      description: "支持上传图片（最多 8 张）和产品文档（PDF / DOCX / HTML，最多 5 份）。",
       productImages: "产品图片",
       productDocs: "产品文档",
       productImagesCount: "{count}/8 张",
@@ -95,7 +88,6 @@ export const translations = {
       CA: "加拿大",
       KR: "韩国",
       IN: "印度",
-      all: "全部市场",
     },
 
     // 产品分类
@@ -117,9 +109,6 @@ export const translations = {
       warning: "警告",
       rejected: "拒绝",
       unknown: "未知",
-      passedDesc: "合规扫描通过",
-      warningDesc: "合规警告，请查看报告",
-      riskDesc: "合规风险，需关注",
     },
 
     // 扫描阶段
@@ -143,12 +132,6 @@ export const translations = {
     // Burning 页面
     burning: {
       scanComplete: "扫描完成！",
-      eagleReady: "雄鹰已准备就绪！",
-      eagleAnalyzing: "雄鹰正在分析你的产品",
-      waitingForTask: "等待任务启动…",
-      scanFailed: "扫描失败。",
-      reupload: "重新上传",
-      viewDemo: "查看 Demo",
       processing: "处理中…",
       autoRunning: "自动运行中",
       aiAnalyzing: "AI 正在拆解你的产品",
@@ -169,17 +152,6 @@ export const translations = {
       },
     },
 
-    // Agent trace
-    agentTrace: {
-      executionLink: "执行链路",
-      initialReview: "初审",
-      reviewRound: "复审",
-      hitCount: "命中 {count} 条法规",
-      confidence: "置信度 {score}",
-      hitRegulations: "命中法规",
-      moreItems: "还有 {count} 项...",
-    },
-
     // 结果页面
     result: {
       scanResult: "扫描结果",
@@ -197,7 +169,6 @@ export const translations = {
       retrievalRounds: "检索轮次",
       uploadedDocs: "已上传文档",
       documentCount: "共 {count} 份文档",
-      loading: "正在加载扫描结果",
       restored: "已从会话缓存恢复结果",
       notFound: "未找到对应扫描结果",
       loaded: "结果已从接口载入",
@@ -279,13 +250,7 @@ export const translations = {
       realtime: "实时分析",
       multiMarket: "多市场覆盖",
       actionableAdvice: "可执行建议",
-      input: "图片输入",
-      vision: "视觉识别",
-      planner: "查询规划",
       fanout: "并行检索",
-      market: "市场检索",
-      synthesis: "综合分析",
-      result: "结果生成",
       analysisComplete: "分析完成",
       vectorSearch: "向量检索",
       aiReasoning: "AI 推理过程",
@@ -297,18 +262,11 @@ export const translations = {
       confidence: "置信度 {score}",
       regulationsHit: "命中法规",
       remaining: "还有 {count} 项…",
-      regulationsCount: "条法规",
       score: "评分",
       maxMatch: "最高匹配",
       effective: "生效",
       suggestedAction: "建议行动",
       estimatedTimeline: "预计时间线",
-      productImage: "图片上传",
-      portableBluetoothSpeaker: "便携式蓝牙音箱",
-      batteryPowered: "电池供电",
-      bluetooth: "蓝牙连接",
-      ledScreen: "LED显示屏",
-      queryStrategy: "根据产品特征智能生成多市场合规查询策略",
       loading: "加载中...",
       backToResult: "返回扫描结果",
       realtimeDesc: "观看 AI Agent 实时分析您的产品，从图片上传到合规报告",
@@ -327,60 +285,29 @@ export const translations = {
       progress: "完成度",
       loading: "加载中...",
       backToResult: "返回扫描结果",
-      roadmap: "路线",
       startToday: "今天",
-      estimated: "预计",
       days: "天",
       completed: "已完成",
       inProgress: "进行中",
       pending: "待完成",
-      materials: "所需材料",
       cost: "预估费用",
       startNow: "立即开始",
-      remaining: "还有",
       untilThisStep: "还有 {days} 天到达此步骤",
       suggestStartNow: "建议现在就开始准备",
       requiredDocs: "所需文件",
       readyToStart: "准备好开始了吗",
-      stepTypes: {
-        apply: "申请",
-        test: "检测",
-        certify: "认证",
-        complete: "完成",
-      },
-      timeline: {
-        assessment: "合规评估完成",
-        prepareMaterials: "准备申请材料",
-        selectAgency: "选择认证机构",
-        submitApplication: "提交认证申请",
-        productTesting: "产品检测",
-        getCertificate: "获取认证证书",
-        goToMarket: "合规上市销售",
-      },
-      descriptions: {
-        assessment: "完成产品合规性初步评估",
-        prepareMaterials: "收集产品规格、技术文档、测试报告等申请所需材料",
-        selectAgency: "根据目标市场选择合适的认证机构",
-        submitApplication: "向认证机构提交认证申请和相关材料",
-        productTesting: "在认证机构实验室进行安全、EMC、环境等测试",
-        getCertificate: "测试通过后，获得认证证书（如 CE、FCC、CCC 等）",
-        goToMarket: "完成所有合规要求后，产品可在目标市场上市销售",
-      },
     },
 
     // 错误消息
     errors: {
       sessionNotFound: "未找到对应扫描会话。",
       resultNotReady: "扫描结果未就绪。",
-      sessionExpired: "会话已失效",
       invalidRequest: "无效的请求格式",
-      uploadAtLeastOneImage: "请至少上传 1 张图片，并确认 category / markets 合法。",
       uploadAtLeastOne: "请至少上传 1 张图片。",
       tooManyDocuments: "文档数量不能超过 5 个。",
       scanFailed: "扫描失败。",
       backendTimeout: "后端服务响应超时，降级到演示模式…",
       backendUnavailable: "后端服务不可用，降级到演示模式…",
-      demoMode: "演示结果已生成（离线模式）",
       uploadFailed: "提交失败，请稍后重试。",
       invalidSessionId: "接口未返回有效的 sessionId。",
     },
@@ -449,30 +376,10 @@ export const translations = {
       },
     },
 
-    // Mock 数据中的产品信息
-    mock: {
-      productName: "USB 智能加湿器",
-      certDoc: "CE认证证书.docx",
-      specDoc: "产品规格书.pdf",
-      riskTitle1: "缺少 CE 标识",
-      riskTitle2: "警示标签可疑",
-      regulationName: "CE 标识通用要求",
-      category: "CE 认证 / 欧盟市场",
-      materials: {
-        spec: "产品规格书",
-        nameplate: "铭牌版式",
-        supplier: "供应商信息",
-        packaging: "包装图稿",
-        warnings: "警示语清单",
-      },
-    },
-
     // 动画文字
     animation: {
       eagleReady: "雄鹰已准备就绪！",
       eagleAnalyzing: "雄鹰正在分析你的产品",
-      scanComplete: "雄鹰已准备就绪！",
-      reportComplete: "报告生成完成",
       waitingForTask: "等待任务启动…",
       currentSession: "当前会话：",
     },
@@ -491,7 +398,6 @@ export const translations = {
       search: "Search",
       filter: "Filter",
       language: "Language",
-      home: "Home",
     },
     language: {
       zh: "中文",
@@ -503,7 +409,6 @@ export const translations = {
       description: "AI-powered compliance risk scanning for cross-border e-commerce",
       startScanning: "Start Scanning",
       features: {
-        title: "Key Features",
         multiMarket: "Multi-Market Coverage",
         multiMarketDesc: "Covering 16+ markets including EU, US, UK, CN, AU, SA, AE",
         fastAnalysis: "Fast Analysis",
@@ -516,20 +421,15 @@ export const translations = {
       stats: {
         markets: "Markets",
         regulations: "Regulations",
-        users: "Users",
       },
       regulations: {
-        title: "Regulation Updates",
-        recentUpdates: "Recent Updates",
         viewAll: "View All",
-        noUpdates: "No recent updates",
       },
     },
 
     // Upload form
     upload: {
       title: "Upload Product Materials",
-      description: "Upload up to 8 product images and 5 documents (PDF / DOCX / HTML).",
       productImages: "Product Images",
       productDocs: "Product Documents",
       productImagesCount: "{count}/8 images",
@@ -565,7 +465,6 @@ export const translations = {
       CA: "Canada",
       KR: "South Korea",
       IN: "India",
-      all: "All Markets",
     },
 
     // Product categories
@@ -587,9 +486,6 @@ export const translations = {
       warning: "Warning",
       rejected: "Rejected",
       unknown: "Unknown",
-      passedDesc: "Compliance scan passed",
-      warningDesc: "Compliance warnings, please review the report",
-      riskDesc: "Compliance risk, attention required",
     },
 
     // Scan stages
@@ -613,12 +509,6 @@ export const translations = {
     // Burning page
     burning: {
       scanComplete: "Scan complete!",
-      eagleReady: "The eagle is ready!",
-      eagleAnalyzing: "AI is disassembling your product",
-      waitingForTask: "Waiting for task to start…",
-      scanFailed: "Scan failed.",
-      reupload: "Re-upload",
-      viewDemo: "View Demo",
       processing: "Processing…",
       autoRunning: "AUTO RUNNING",
       aiAnalyzing: "AI is disassembling your product",
@@ -639,17 +529,6 @@ export const translations = {
       },
     },
 
-    // Agent trace
-    agentTrace: {
-      executionLink: "Execution Link",
-      initialReview: "Initial Review",
-      reviewRound: "Review",
-      hitCount: "{count} regulation(s) matched",
-      confidence: "Confidence {score}",
-      hitRegulations: "Matched Regulations",
-      moreItems: "{count} more...",
-    },
-
     // Result page
     result: {
       scanResult: "Scan Result",
@@ -667,7 +546,6 @@ export const translations = {
       retrievalRounds: "Retrieval Rounds",
       uploadedDocs: "Uploaded Documents",
       documentCount: "{count} document(s)",
-      loading: "Loading scan results",
       restored: "Results restored from session cache",
       notFound: "Scan results not found",
       loaded: "Results loaded from API",
@@ -749,13 +627,7 @@ export const translations = {
       realtime: "Real-time Analysis",
       multiMarket: "Multi-Market Coverage",
       actionableAdvice: "Actionable Advice",
-      input: "Image Input",
-      vision: "Vision",
-      planner: "Planning",
       fanout: "Parallel Search",
-      market: "Market Search",
-      synthesis: "Synthesis",
-      result: "Result",
       analysisComplete: "Analysis Complete",
       vectorSearch: "Vector Search",
       aiReasoning: "AI Reasoning Process",
@@ -767,18 +639,11 @@ export const translations = {
       confidence: "Confidence {score}",
       regulationsHit: "Regulations Hit",
       remaining: "{count} more...",
-      regulationsCount: "regulations",
       score: "Score",
       maxMatch: "Top Match",
       effective: "Effective",
       suggestedAction: "Suggested Action",
       estimatedTimeline: "Estimated Timeline",
-      productImage: "Image Upload",
-      portableBluetoothSpeaker: "Portable Bluetooth Speaker",
-      batteryPowered: "Battery Powered",
-      bluetooth: "Bluetooth Connectivity",
-      ledScreen: "LED Display",
-      queryStrategy: "Intelligent multi-market compliance query strategy based on product features",
       loading: "Loading...",
       backToResult: "Back to Results",
       realtimeDesc: "Watch the AI agent analyze your product in real-time",
@@ -797,60 +662,29 @@ export const translations = {
       progress: "Progress",
       loading: "Loading...",
       backToResult: "Back to Results",
-      roadmap: "Roadmap",
       startToday: "Today",
-      estimated: "Estimated",
       days: "days",
       completed: "Completed",
       inProgress: "In Progress",
       pending: "Pending",
-      materials: "Required Materials",
       cost: "Estimated Cost",
       startNow: "Start Now",
-      remaining: "remaining",
       untilThisStep: "{days} days until this step",
       suggestStartNow: "Recommended to start preparation now",
       requiredDocs: "Required Documents",
       readyToStart: "Ready to get started",
-      stepTypes: {
-        apply: "Apply",
-        test: "Test",
-        certify: "Certify",
-        complete: "Complete",
-      },
-      timeline: {
-        assessment: "Compliance Assessment Complete",
-        prepareMaterials: "Prepare Application Materials",
-        selectAgency: "Select Certification Body",
-        submitApplication: "Submit Certification Application",
-        productTesting: "Product Testing",
-        getCertificate: "Obtain Certification Certificate",
-        goToMarket: "Launch Compliantly",
-      },
-      descriptions: {
-        assessment: "Complete initial product compliance assessment",
-        prepareMaterials: "Collect application materials including product specs, technical documents, and test reports",
-        selectAgency: "Select an appropriate certification body based on target market",
-        submitApplication: "Submit certification application and supporting documents to the certification body",
-        productTesting: "Conduct safety, EMC, and environmental tests in the certification laboratory",
-        getCertificate: "Obtain certification certificate (CE, FCC, CCC, etc.) upon passing tests",
-        goToMarket: "Product can be sold in the target market after completing all compliance requirements",
-      },
     },
 
     // Error messages
     errors: {
       sessionNotFound: "Scan session not found.",
       resultNotReady: "Scan result is not ready.",
-      sessionExpired: "Session expired",
       invalidRequest: "Invalid request format",
-      uploadAtLeastOneImage: "Please upload at least 1 image, and ensure category / markets are valid.",
       uploadAtLeastOne: "Please upload at least 1 image.",
       tooManyDocuments: "Document count cannot exceed 5.",
       scanFailed: "Scan failed.",
       backendTimeout: "Backend service timed out, falling back to demo mode…",
       backendUnavailable: "Backend service unavailable, falling back to demo mode…",
-      demoMode: "Demo result generated (offline mode)",
       uploadFailed: "Upload failed, please try again.",
       invalidSessionId: "API did not return a valid sessionId.",
     },
@@ -919,30 +753,10 @@ export const translations = {
       },
     },
 
-    // Mock data product info
-    mock: {
-      productName: "USB Smart Humidifier",
-      certDoc: "CE Certificate.docx",
-      specDoc: "Product Specification.pdf",
-      riskTitle1: "Missing CE Mark",
-      riskTitle2: "Suspicious Warning Labels",
-      regulationName: "General CE Marking Requirements",
-      category: "CE Certification / EU Market",
-      materials: {
-        spec: "Product Specification",
-        nameplate: "Nameplate Layout",
-        supplier: "Supplier Information",
-        packaging: "Packaging Design",
-        warnings: "Warning Statement List",
-      },
-    },
-
     // Animation text
     animation: {
       eagleReady: "The eagle is ready!",
       eagleAnalyzing: "The eagle is analyzing your product",
-      scanComplete: "The eagle is ready!",
-      reportComplete: "Report generation complete",
       waitingForTask: "Waiting for task to start…",
       currentSession: "Current session:",
     },
