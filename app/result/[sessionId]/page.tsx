@@ -2,7 +2,7 @@
 
 import { startTransition, useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
@@ -137,6 +137,12 @@ export default function ResultPage() {
 
     loadResult();
   }, [applyProfitReports, isDemoSession, sessionId, t]);
+
+  // Demo is dev-only — block it in production to mirror the
+  // /api/scan/[sessionId] route guard. Renders the branded not-found page.
+  if (isDemoSession && process.env.NODE_ENV === "production") {
+    notFound();
+  }
 
   return (
     <main className="mx-auto min-h-[calc(100vh-5rem)] w-full max-w-7xl px-4 sm:px-6 py-10">
