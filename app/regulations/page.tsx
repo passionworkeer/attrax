@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useDeferredValue, useState, useEffect } from "react";
 import {
   AlertTriangle,
   Building2,
@@ -117,6 +117,11 @@ export default function RegulationsPage() {
   const [meta, setMeta] = useState<RegulationsMeta>(fallbackMeta);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  // Defer the search so that fast typing does not block the input or the
+  // server filter. useEffect below watches `deferredSearch` and the fetch
+  // runs against the trailing value. The input itself stays bound to `search`
+  // so the user sees each keystroke immediately.
+  const deferredSearch = useDeferredValue(search);
   const [selectedMarket, setSelectedMarket] = useState("all");
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
 
@@ -127,7 +132,7 @@ export default function RegulationsPage() {
       setLoading(true);
       try {
         const params = new URLSearchParams({ limit: "50" });
-        if (search) params.set("search", search);
+        if (deferredSearch) params.set("search", deferredSearch);
         if (selectedMarket !== "all") params.set("market", selectedMarket);
 
         const response = await fetch(`/api/regulations/updates?${params.toString()}`, {
@@ -154,7 +159,7 @@ export default function RegulationsPage() {
       clearTimeout(timer);
       controller.abort();
     };
-  }, [search, selectedMarket]);
+  }, [deferredSearch, selectedMarket]);
 
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
