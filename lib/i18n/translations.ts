@@ -76,6 +76,8 @@ export const translations = {
       notSupportedImageFormat: "部分文件不是支持的图片格式，已跳过 {count} 个。",
       notSupportedDocFormat: "部分文件不是支持的文档格式（PDF / DOCX / HTML），已跳过 {count} 个。",
       selectAtLeastOneImageError: "请先选择至少 1 张图片。",
+      prevImage: "上一张",
+      nextImage: "下一张",
     },
 
     // 市场名称
@@ -544,6 +546,8 @@ export const translations = {
       notSupportedImageFormat: "{count} file(s) were skipped as they are not supported image formats.",
       notSupportedDocFormat: "{count} file(s) were skipped as they are not supported document formats (PDF / DOCX / HTML).",
       selectAtLeastOneImageError: "Please select at least 1 image first.",
+      prevImage: "Previous image",
+      nextImage: "Next image",
     },
 
     // Market names

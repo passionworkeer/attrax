@@ -35,32 +35,32 @@ describe("ImageCarousel", () => {
 
   it("hides navigation arrows when there is only one image", () => {
     const { container } = renderInProvider(<ImageCarousel images={[makeImage()]} />);
-    expect(screen.queryByLabelText("Previous image")).not.toBeInTheDocument();
-    expect(screen.queryByLabelText("Next image")).not.toBeInTheDocument();
+    // Use locale-aware matcher (default zh = "上一张" / "下一张")
+    expect(screen.queryByLabelText(/^(上一张|下一张)$/)).not.toBeInTheDocument();
   });
 
   it("advances to the next image when the next button is clicked", () => {
     const images = [makeImage({ imageId: "a" }), makeImage({ imageId: "b" }), makeImage({ imageId: "c" })];
     const { container } = renderInProvider(<ImageCarousel images={images} />);
-    fireEvent.click(screen.getByLabelText("Next image"));
+    fireEvent.click(screen.getByLabelText("下一张"));
     expect(container.textContent).toContain("2 / 3");
-    fireEvent.click(screen.getByLabelText("Next image"));
+    fireEvent.click(screen.getByLabelText("下一张"));
     expect(container.textContent).toContain("3 / 3");
   });
 
   it("wraps from last to first when next is clicked", () => {
     const images = [makeImage({ imageId: "a" }), makeImage({ imageId: "b" })];
     const { container } = renderInProvider(<ImageCarousel images={images} />);
-    fireEvent.click(screen.getByLabelText("Next image"));
+    fireEvent.click(screen.getByLabelText("下一张"));
     expect(container.textContent).toContain("2 / 2");
-    fireEvent.click(screen.getByLabelText("Next image"));
+    fireEvent.click(screen.getByLabelText("下一张"));
     expect(container.textContent).toContain("1 / 2");
   });
 
   it("wraps from first to last when prev is clicked", () => {
     const images = [makeImage({ imageId: "a" }), makeImage({ imageId: "b" })];
     const { container } = renderInProvider(<ImageCarousel images={images} />);
-    fireEvent.click(screen.getByLabelText("Previous image"));
+    fireEvent.click(screen.getByLabelText("上一张"));
     expect(container.textContent).toContain("2 / 2");
   });
 

@@ -495,7 +495,7 @@ export default function ComplianceTimeline({
               <h4 className="text-lg font-bold text-white">{t("roadmap.readyToStart")}</h4>
               <p className="text-sm text-slate-300">{t("roadmap.suggestStartNow")}</p>
             </div>
-            <button className="px-6 py-3 bg-gradient-to-r from-blaze-red to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
+            <button type="button" className="px-6 py-3 bg-gradient-to-r from-blaze-red to-rose-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
               {t("roadmap.startNow")} →
             </button>
           </div>
