@@ -1,3 +1,15 @@
+# =============================================================================
+# ⚠️  DO NOT `pip install` this file for the Attrax RAG service.
+# This is a full-machine `pip freeze` snapshot (~550 pkgs) from a dev
+# workstation, NOT the project's real dependency set. It includes
+# tensorflow / torch / jupyter / selenium / whisper etc. that the
+# service never imports. Installing it is slow, fragile, and unnecessary.
+#
+#   prod / Docker / CI → rag_service/requirements-prod.txt  (62 pkgs, pinned)
+#   local dev extras   → rag_service/requirements-dev.txt   (5 pkgs, local-only)
+#
+# Kept only as a reproducibility snapshot. Do not add new entries here.
+# =============================================================================
 about-time==4.2.1
 absl-py==2.3.1
 aiodns==4.0.0
