@@ -20,10 +20,10 @@ function DownloadButtons({
     <div className="flex flex-wrap gap-2">
       {(["zh", "en"] as const).map((locale) => (
         <div key={locale} className="flex overflow-hidden rounded-lg border border-white/10 bg-slate-900/40 backdrop-blur-sm">
-          <button onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-red transition-colors">
+          <button type="button" onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-red transition-colors">
             PDF {locale.toUpperCase()}
           </button>
-          <button onClick={() => onDocx(locale)} className="border-l border-white/10 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-cyan transition-colors">
+          <button type="button" onClick={() => onDocx(locale)} className="border-l border-white/10 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-cyan transition-colors">
             Word {locale.toUpperCase()}
           </button>
         </div>
