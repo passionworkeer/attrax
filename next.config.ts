@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const securityHeaders = [
-  { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' data:; connect-src 'self' http://localhost:8001 http://127.0.0.1:8001; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
+  // The browser never talks to the RAG service directly — all calls go
+  // through Next.js API routes (proxy). connect-src is therefore just 'self';
+  // the previous localhost:8001 entries were dead CSP rules that leaked dev
+  // infrastructure URLs into every response. If a future feature requires a
+  // direct browser→RAG connection, add it explicitly via build-time env.
+  { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-Frame-Options", value: "DENY" },
