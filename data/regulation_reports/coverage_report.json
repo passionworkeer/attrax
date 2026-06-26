@@ -1,0 +1,399 @@
+{
+  "generated_at": "2026-06-25T23:52:07+08:00",
+  "inputs": {
+    "registry_path": "data/regulation_sources/official_sources.json",
+    "supplement_dirs": [
+      "data/regulation_supplements/2026-05-27_extra_global_official_sources"
+    ],
+    "processed_dir": "data/corpus/processed",
+    "faiss_meta_path": ""
+  },
+  "summary": {
+    "registry_entries": 25,
+    "supplement_entries": 30,
+    "processed_registry_entries": 55,
+    "missing_processed_entries": 0,
+    "processed_official_documents": 259,
+    "faiss_chunks": 0,
+    "failed_downloads": 0
+  },
+  "coverage_by_market": {
+    "AE": {
+      "registry_entries": 3,
+      "processed_entries": 3,
+      "missing_processed_entries": 0
+    },
+    "AR": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "CA": {
+      "registry_entries": 6,
+      "processed_entries": 6,
+      "missing_processed_entries": 0
+    },
+    "CL": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "EU": {
+      "registry_entries": 8,
+      "processed_entries": 8,
+      "missing_processed_entries": 0
+    },
+    "ID": {
+      "registry_entries": 3,
+      "processed_entries": 3,
+      "missing_processed_entries": 0
+    },
+    "MY": {
+      "registry_entries": 2,
+      "processed_entries": 2,
+      "missing_processed_entries": 0
+    },
+    "NZ": {
+      "registry_entries": 2,
+      "processed_entries": 2,
+      "missing_processed_entries": 0
+    },
+    "PH": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "SA": {
+      "registry_entries": 6,
+      "processed_entries": 6,
+      "missing_processed_entries": 0
+    },
+    "TH": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "TR": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "UK": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "US": {
+      "registry_entries": 5,
+      "processed_entries": 5,
+      "missing_processed_entries": 0
+    },
+    "VN": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "ZA": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    }
+  },
+  "coverage_by_category": {
+    "apparel": {
+      "registry_entries": 3,
+      "processed_entries": 3,
+      "missing_processed_entries": 0
+    },
+    "batteries": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "chemicals": {
+      "registry_entries": 9,
+      "processed_entries": 9,
+      "missing_processed_entries": 0
+    },
+    "children_products": {
+      "registry_entries": 17,
+      "processed_entries": 17,
+      "missing_processed_entries": 0
+    },
+    "cosmetics": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "electrical_equipment": {
+      "registry_entries": 10,
+      "processed_entries": 10,
+      "missing_processed_entries": 0
+    },
+    "electronics": {
+      "registry_entries": 31,
+      "processed_entries": 31,
+      "missing_processed_entries": 0
+    },
+    "furniture": {
+      "registry_entries": 5,
+      "processed_entries": 5,
+      "missing_processed_entries": 0
+    },
+    "general_consumer_products": {
+      "registry_entries": 23,
+      "processed_entries": 23,
+      "missing_processed_entries": 0
+    },
+    "home_appliances": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "home_goods": {
+      "registry_entries": 5,
+      "processed_entries": 5,
+      "missing_processed_entries": 0
+    },
+    "industrial_products": {
+      "registry_entries": 8,
+      "processed_entries": 8,
+      "missing_processed_entries": 0
+    },
+    "packaging": {
+      "registry_entries": 7,
+      "processed_entries": 7,
+      "missing_processed_entries": 0
+    },
+    "ppe": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "radio": {
+      "registry_entries": 6,
+      "processed_entries": 6,
+      "missing_processed_entries": 0
+    },
+    "telecommunications": {
+      "registry_entries": 6,
+      "processed_entries": 6,
+      "missing_processed_entries": 0
+    },
+    "textiles": {
+      "registry_entries": 7,
+      "processed_entries": 7,
+      "missing_processed_entries": 0
+    },
+    "toys": {
+      "registry_entries": 12,
+      "processed_entries": 12,
+      "missing_processed_entries": 0
+    },
+    "waste_electrical": {
+      "registry_entries": 2,
+      "processed_entries": 2,
+      "missing_processed_entries": 0
+    }
+  },
+  "coverage_by_regulatory_type": {
+    "chemical": {
+      "registry_entries": 11,
+      "processed_entries": 11,
+      "missing_processed_entries": 0
+    },
+    "conformity": {
+      "registry_entries": 25,
+      "processed_entries": 25,
+      "missing_processed_entries": 0
+    },
+    "documentation": {
+      "registry_entries": 12,
+      "processed_entries": 12,
+      "missing_processed_entries": 0
+    },
+    "emc": {
+      "registry_entries": 3,
+      "processed_entries": 3,
+      "missing_processed_entries": 0
+    },
+    "flammability": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "labelling": {
+      "registry_entries": 13,
+      "processed_entries": 13,
+      "missing_processed_entries": 0
+    },
+    "market_surveillance": {
+      "registry_entries": 16,
+      "processed_entries": 16,
+      "missing_processed_entries": 0
+    },
+    "mechanical": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "packaging": {
+      "registry_entries": 3,
+      "processed_entries": 3,
+      "missing_processed_entries": 0
+    },
+    "product_safety": {
+      "registry_entries": 26,
+      "processed_entries": 26,
+      "missing_processed_entries": 0
+    },
+    "radio": {
+      "registry_entries": 6,
+      "processed_entries": 6,
+      "missing_processed_entries": 0
+    },
+    "recall": {
+      "registry_entries": 1,
+      "processed_entries": 1,
+      "missing_processed_entries": 0
+    },
+    "scope_classification": {
+      "registry_entries": 5,
+      "processed_entries": 5,
+      "missing_processed_entries": 0
+    },
+    "sustainability": {
+      "registry_entries": 4,
+      "processed_entries": 4,
+      "missing_processed_entries": 0
+    },
+    "technical_standard": {
+      "registry_entries": 9,
+      "processed_entries": 9,
+      "missing_processed_entries": 0
+    },
+    "testing": {
+      "registry_entries": 13,
+      "processed_entries": 13,
+      "missing_processed_entries": 0
+    },
+    "waste": {
+      "registry_entries": 3,
+      "processed_entries": 3,
+      "missing_processed_entries": 0
+    }
+  },
+  "processed_entry_ids": [
+    "ae-moiat-ecas-conformity-certificates",
+    "ae-moiat-laws-and-regulations",
+    "ae-moiat-manaa-product-safety",
+    "ar-infoleg-consumer-defense-law-24240",
+    "ca-childrens-sleepwear-regulations",
+    "ca-consumer-chemicals-containers-regulations-2001",
+    "ca-consumer-products-containing-lead-regulations",
+    "ca-corded-window-coverings-regulations",
+    "ca-phthalates-regulations",
+    "ca-surface-coating-materials-regulations",
+    "cl-leychile-consumer-rights-law-19496",
+    "eu-2009-48-toy-safety",
+    "eu-2011-65-rohs",
+    "eu-2012-19-weee",
+    "eu-2014-30-emc",
+    "eu-2014-35-low-voltage",
+    "eu-2014-53-radio-equipment",
+    "eu-2019-1020-market-surveillance",
+    "eu-2023-988-general-product-safety",
+    "id-bpk-consumer-protection-law-8-1999",
+    "id-bpk-consumer-protection-supervision-pp-58-2001",
+    "id-bpk-standardization-conformity-law-20-2014",
+    "my-st-electrical-equipment-approval-guidelines",
+    "my-st-energy-using-products",
+    "nz-product-safety-standards-2005",
+    "nz-product-safety-standards-household-cots-2016",
+    "ph-bps-list-products-under-mandatory-certification",
+    "ph-bps-product-certification",
+    "ph-judiciary-consumer-act-ra7394",
+    "ph-ntc-type-approval-application-form-1-17",
+    "sa-saso-gcc-children-toys-technical-regulation",
+    "sa-saso-low-voltage-electrical-equipment",
+    "sa-saso-ppe-clothing-technical-regulation",
+    "sa-saso-rohs-electrical-electronic-equipment",
+    "sa-saso-technical-regulations-portal",
+    "sa-saso-textile-products-technical-regulation",
+    "th-tisi-industrial-product-standards-act",
+    "tr-law-7223-implementing-regulations",
+    "tr-ministry-product-safety-consumer-info",
+    "tr-official-gazette-market-surveillance-regulation-2021",
+    "tr-product-safety-technical-regulations-law-7223",
+    "uk-hse-svhc-overview",
+    "uk-packaging-epr-who-is-affected",
+    "uk-reach-compliance-guidance",
+    "uk-weee-regulations-guidance",
+    "us-16-cfr-1307-phthalates",
+    "us-16-cfr-1630-carpets-rugs",
+    "us-16-cfr-1631-small-carpets-rugs",
+    "us-16-cfr-1633-mattresses-open-flame",
+    "us-16-cfr-1700-poison-prevention-packaging",
+    "vn-mic-electrical-safety-telecom-it-terminal-equipment",
+    "za-icasa-labelling-regulations-2013",
+    "za-icasa-radio-frequency-spectrum-regulations-2015",
+    "za-icasa-type-approval-regulations-2013",
+    "za-icasa-type-approval-requirements"
+  ],
+  "missing_processed_entry_ids": [],
+  "supplements": [
+    {
+      "dir": "data/regulation_supplements/2026-05-27_extra_global_official_sources",
+      "manifest": "data/regulation_supplements/2026-05-27_extra_global_official_sources/manifest.json",
+      "entries": 30,
+      "raw_files": 36,
+      "failed_downloads": 0,
+      "ingestion_status": {
+        "processed_into_current_corpus": true,
+        "faiss_rebuilt": false,
+        "processed_at": "2026-06-25T23:46:57+08:00",
+        "processed_files": [
+          "data/corpus/processed/MY_Official_my-st-electrical-equipment-approval-guidelines.json",
+          "data/corpus/processed/MY_Official_my-st-energy-using-products.json",
+          "data/corpus/processed/PH_Official_ph-bps-product-certification.json",
+          "data/corpus/processed/PH_Official_ph-bps-list-products-under-mandatory-certification.json",
+          "data/corpus/processed/PH_Official_ph-judiciary-consumer-act-ra7394.json",
+          "data/corpus/processed/PH_Official_ph-ntc-type-approval-application-form-1-17.json",
+          "data/corpus/processed/ID_Official_id-bpk-consumer-protection-law-8-1999.json",
+          "data/corpus/processed/ID_Official_id-bpk-consumer-protection-supervision-pp-58-2001.json",
+          "data/corpus/processed/ID_Official_id-bpk-standardization-conformity-law-20-2014.json",
+          "data/corpus/processed/VN_Official_vn-mic-electrical-safety-telecom-it-terminal-equipment.json",
+          "data/corpus/processed/TH_Official_th-tisi-industrial-product-standards-act.json",
+          "data/corpus/processed/SA_Official_sa-saso-technical-regulations-portal.json",
+          "data/corpus/processed/SA_Official_sa-saso-low-voltage-electrical-equipment.json",
+          "data/corpus/processed/SA_Official_sa-saso-rohs-electrical-electronic-equipment.json",
+          "data/corpus/processed/SA_Official_sa-saso-textile-products-technical-regulation.json",
+          "data/corpus/processed/SA_Official_sa-saso-ppe-clothing-technical-regulation.json",
+          "data/corpus/processed/SA_Official_sa-saso-gcc-children-toys-technical-regulation.json",
+          "data/corpus/processed/AE_Official_ae-moiat-ecas-conformity-certificates.json",
+          "data/corpus/processed/AE_Official_ae-moiat-laws-and-regulations.json",
+          "data/corpus/processed/AE_Official_ae-moiat-manaa-product-safety.json",
+          "data/corpus/processed/ZA_Official_za-icasa-type-approval-requirements.json",
+          "data/corpus/processed/ZA_Official_za-icasa-type-approval-regulations-2013.json",
+          "data/corpus/processed/ZA_Official_za-icasa-labelling-regulations-2013.json",
+          "data/corpus/processed/ZA_Official_za-icasa-radio-frequency-spectrum-regulations-2015.json",
+          "data/corpus/processed/TR_Official_tr-product-safety-technical-regulations-law-7223.json",
+          "data/corpus/processed/TR_Official_tr-law-7223-implementing-regulations.json",
+          "data/corpus/processed/TR_Official_tr-ministry-product-safety-consumer-info.json",
+          "data/corpus/processed/TR_Official_tr-official-gazette-market-surveillance-regulation-2021.json",
+          "data/corpus/processed/AR_Official_ar-infoleg-consumer-defense-law-24240.json",
+          "data/corpus/processed/CL_Official_cl-leychile-consumer-rights-law-19496.json"
+        ],
+        "report": "data/regulation_supplements/2026-05-27_extra_global_official_sources/ingestion_report.json"
+      }
+    }
+  ],
+  "faiss": {
+    "meta_path": "",
+    "dim": 0,
+    "chunks": 0,
+    "chunks_by_region": {},
+    "chunks_by_source_id": {},
+    "source_files": []
+  }
+}
