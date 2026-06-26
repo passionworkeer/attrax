@@ -6,19 +6,20 @@ import { useTranslation } from "@/lib/i18n";
 import { englishText } from "@/lib/report-localization";
 import type { ComplianceReportResult } from "@/lib/types";
 
-const NODE_COLORS: Record<string, { bg: string; dot: string; label: string }> = {
-  vision: { bg: "bg-blue-50", dot: "bg-blue-600", label: "text-blue-700" },
-  query_planner: { bg: "bg-violet-50", dot: "bg-violet-600", label: "text-violet-700" },
-  retriever: { bg: "bg-cyan-50", dot: "bg-cyan-600", label: "text-cyan-700" },
-  synthesizer: { bg: "bg-purple-50", dot: "bg-purple-600", label: "text-purple-700" },
-  generator: { bg: "bg-emerald-50", dot: "bg-emerald-600", label: "text-emerald-700" },
-  verifier: { bg: "bg-amber-50", dot: "bg-amber-600", label: "text-amber-700" },
+const NODE_COLORS: Record<string, { bg: string; dot: string; label: string; border: string }> = {
+  vision: { bg: "bg-blue-500/10", dot: "bg-blue-400", label: "text-blue-300", border: "border-blue-500/30" },
+  query_planner: { bg: "bg-violet-500/10", dot: "bg-violet-400", label: "text-violet-300", border: "border-violet-500/30" },
+  retriever: { bg: "bg-cyan-500/10", dot: "bg-cyan-400", label: "text-cyan-300", border: "border-cyan-500/30" },
+  synthesizer: { bg: "bg-purple-500/10", dot: "bg-purple-400", label: "text-purple-300", border: "border-purple-500/30" },
+  generator: { bg: "bg-emerald-500/10", dot: "bg-emerald-400", label: "text-emerald-300", border: "border-emerald-500/30" },
+  verifier: { bg: "bg-amber-500/10", dot: "bg-amber-400", label: "text-amber-300", border: "border-amber-500/30" },
 };
 
 const DEFAULT_NODE_COLOR = {
-  bg: "bg-slate-50",
-  dot: "bg-slate-500",
-  label: "text-slate-700",
+  bg: "bg-slate-500/10",
+  dot: "bg-slate-400",
+  label: "text-slate-300",
+  border: "border-slate-500/30",
 };
 
 function nodeStyle(node: string) {
@@ -52,12 +53,12 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
 
   return (
     <div className="mt-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+      <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400">
         {t("trace.executionSteps")}
       </h3>
 
       <div className="relative mt-3">
-        <div className="absolute bottom-0 left-4 top-0 w-px bg-border" />
+        <div className="absolute bottom-0 left-4 top-0 w-px bg-white/10" />
 
         {rounds.map((round, ri) => (
           <div key={ri} className="mb-6">
@@ -66,8 +67,8 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
                 className={cn(
                   "flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-xs font-medium",
                   ri === 0
-                    ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                    : "border-amber-200 bg-amber-50 text-amber-700"
+                    ? "border-emerald-500/40 bg-emerald-500/10 text-emerald-300"
+                    : "border-amber-500/40 bg-amber-500/10 text-amber-300"
                 )}
               >
                 {ri === 0 ? t("trace.firstInspection") : t("trace.reInspection")}
@@ -89,19 +90,19 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
                     <div className="absolute left-3 top-1/2 z-10 flex -translate-y-1/2 items-center justify-center">
                       <div
                         className={cn(
-                          "size-2.5 rounded-full border-2 border-white shadow-sm",
+                          "size-2.5 rounded-full border-2 border-slate-950 shadow-sm",
                           style.dot
                         )}
                       />
                     </div>
 
                     {idx < trace.length - 1 && (
-                      <div className="absolute left-[15px] top-full h-4 w-px bg-border" />
+                      <div className="absolute left-[15px] top-full h-4 w-px bg-white/10" />
                     )}
 
                     <div
                       className={cn(
-                        "flex-1 rounded-xl border border-border px-3 py-2 text-xs transition-colors",
+                        "flex-1 rounded-xl border border-white/10 px-3 py-2 text-xs transition-colors",
                         style.bg
                       )}
                     >
@@ -116,13 +117,13 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
                         </span>
 
                         {duration && (
-                          <span className="text-[11px] tabular-nums text-muted-foreground">
+                          <span className="text-[11px] tabular-nums text-slate-400">
                             {duration}
                           </span>
                         )}
 
                         {step.status === "WARN" && (
-                          <span className="inline-flex items-center gap-0.5 rounded-full border border-amber-200 bg-amber-100 px-2 py-0.5 text-[11px] font-medium text-amber-700">
+                          <span className="inline-flex items-center gap-0.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[11px] font-medium text-amber-300">
                             <svg viewBox="0 0 12 12" fill="currentColor" className="size-3">
                               <path d="M6 0a6 6 0 1 0 0 12A6 6 0 0 0 6 0zm-.75 3h1.5v4H5.25V3zm0 5.25h1.5v1.5H5.25V8.25z" />
                             </svg>
@@ -131,20 +132,20 @@ export function AgentTraceTimeline({ trace }: { trace: ComplianceReportResult["a
                         )}
 
                         {step.status === "PASS" && (
-                          <span className="inline-flex items-center gap-0.5 rounded-full border border-emerald-200 bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
+                          <span className="inline-flex items-center gap-0.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 text-[11px] font-medium text-emerald-300">
                             PASS
                           </span>
                         )}
                       </div>
 
                       {step.docs_retrieved !== undefined && (
-                        <div className="mt-1 text-[11px] text-muted-foreground">
+                        <div className="mt-1 text-[11px] text-slate-400">
                           {t("trace.regulationHit", { count: Number(step.docs_retrieved ?? 0) })}
                         </div>
                       )}
 
                       {step.score !== undefined && (
-                        <div className="mt-0.5 text-[11px] text-muted-foreground">
+                        <div className="mt-0.5 text-[11px] text-slate-400">
                           {t("trace.confidence", { score: Number(step.score).toFixed(3) })}
                         </div>
                       )}
@@ -173,33 +174,33 @@ export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["re
 
   return (
     <div className="mt-4">
-      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+      <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-400">
         {t("trace.regulationsHit")}
-        <span className="ml-2 font-mono text-muted-foreground">({chunks.length})</span>
+        <span className="ml-2 font-mono text-slate-500">({chunks.length})</span>
       </h3>
       <div className="mt-2 flex flex-wrap gap-2">
         {visible.map((c, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs transition-colors hover:border-blaze-red/40"
+            className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-900/40 px-3 py-1 text-xs transition-colors hover:border-blaze-red/40"
           >
             <span className="font-medium text-blaze-red">{c.region}</span>
-            <span className="text-muted-foreground">/</span>
-            <span className="text-muted-foreground">{locale === "en" ? englishText(c.docNameEn, englishText(c.docName, c.regId || "Regulation document")) : c.docName}</span>
+            <span className="text-slate-500">/</span>
+            <span className="text-slate-300">{locale === "en" ? englishText(c.docNameEn, englishText(c.docName, c.regId || "Regulation document")) : c.docName}</span>
             {c.articleNo && (
               <>
-                <span className="text-muted-foreground">/</span>
-                <span className="font-mono text-muted-foreground">{c.articleNo}</span>
+                <span className="text-slate-500">/</span>
+                <span className="font-mono text-slate-400">{c.articleNo}</span>
               </>
             )}
             <span
               className={cn(
                 "ml-0.5 rounded px-1 py-0.5 text-[10px] tabular-nums",
                 (c.score ?? 0) >= 0.9
-                  ? "bg-emerald-500/20 text-emerald-700"
+                  ? "bg-emerald-500/20 text-emerald-300"
                   : (c.score ?? 0) >= 0.7
-                    ? "bg-blue-500/20 text-blue-700"
-                    : "bg-muted text-muted-foreground"
+                    ? "bg-blue-500/20 text-blue-300"
+                    : "bg-slate-700/50 text-slate-400"
               )}
             >
               {(c.score ?? 0).toFixed(2)}
@@ -207,7 +208,7 @@ export function RetrievedChunks({ chunks }: { chunks: ComplianceReportResult["re
           </span>
         ))}
         {overflow > 0 && (
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-3 py-1 text-xs text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-800/60 px-3 py-1 text-xs text-slate-400">
             {t("trace.remaining", { count: overflow })}
           </span>
         )}

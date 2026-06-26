@@ -1,16 +1,13 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import {
   ChevronRight,
   ChevronDown,
-  CheckCircle2,
-  XCircle,
-  Loader2,
-  Zap,
   Brain,
   FileSearch,
   Lightbulb,
+  CheckCircle2,
   Clock,
   Target,
   TrendingUp,
@@ -19,6 +16,14 @@ import {
   Pause,
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import {
+  AnimatedEntry,
+  ConfidenceBadge,
+  ProgressBar,
+  ReasoningPanel,
+  RiskBadge,
+  StatusIcon,
+} from "./DecisionTreePrimitives";
 
 export interface TraceNode {
   id: string;
@@ -339,99 +344,6 @@ const demoTrace: TraceNode = {
     },
   ],
 };
-
-// Animation component
-function AnimatedEntry({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-500 ease-out ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} ${className}`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function StatusIcon({ status }: { status?: string }) {
-  switch (status) {
-    case "pending":
-      return <Loader2 className="w-4 h-4 text-slate-500 animate-spin" />;
-    case "running":
-      return <Loader2 className="w-4 h-4 text-blue-500 animate-spin" />;
-    case "success":
-      return <CheckCircle2 className="w-4 h-4 text-green-500" />;
-    case "error":
-      return <XCircle className="w-4 h-4 text-red-500" />;
-    default:
-      return null;
-  }
-}
-
-function ProgressBar({ progress, color = "bg-blue-500" }: { progress: number; color?: string }) {
-  return (
-    <div className="w-full h-1 bg-slate-700 rounded-full overflow-hidden">
-      <div
-        className={`h-full ${color} transition-all duration-500 ease-out`}
-        style={{ width: `${Math.min(100, Math.max(0, progress))}%` }}
-      />
-    </div>
-  );
-}
-
-function ConfidenceBadge({ confidence }: { confidence?: number }) {
-  if (!confidence) return null;
-  const percentage = Math.round(confidence * 100);
-  return (
-    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-500/15 text-xs font-medium">
-      <Zap className="w-3 h-3" />
-      {percentage}%
-    </span>
-  );
-}
-
-function RiskBadge({ level, count, locale }: { level: "high" | "medium" | "low"; count: number; locale: "zh" | "en" }) {
-  if (count === 0) return null;
-  const config = {
-    high: { bg: "bg-red-500/15", text: "text-red-300", border: "border-red-500/40", label: locale === "en" ? "High" : "高", icon: "🔴" },
-    medium: { bg: "bg-amber-500/15", text: "text-amber-300", border: "border-amber-500/40", label: locale === "en" ? "Med" : "中", icon: "🟡" },
-    low: { bg: "bg-emerald-500/15", text: "text-emerald-300", border: "border-emerald-500/40", label: locale === "en" ? "Low" : "低", icon: "🟢" },
-  };
-  const { bg, text, label, icon } = config[level];
-  return (
-    <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium border ${bg} ${text} ${config[level].border}`}>
-      {icon} {count} {label}
-    </span>
-  );
-}
-
-function ReasoningPanel({ text }: { text?: string }) {
-  const { t } = useTranslation();
-  if (!text) return null;
-  return (
-    <AnimatedEntry delay={100}>
-      <div className="mt-3 p-4 rounded-xl bg-gradient-to-r from-yellow-50 to-amber-50 border-l-4 border-yellow-400 shadow-sm">
-        <div className="flex items-start gap-3">
-          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-yellow-500/15 flex items-center justify-center">
-            <Lightbulb className="w-4 h-4 text-yellow-600" />
-          </div>
-          <div>
-            <div className="text-xs font-semibold text-yellow-300 mb-1">{t("trace.aiReasoning")}</div>
-            <p className="text-sm text-slate-200 leading-relaxed">{text}</p>
-          </div>
-        </div>
-      </div>
-    </AnimatedEntry>
-  );
-}
-
 function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "zh" | "en" }) {
   const { t } = useTranslation();
   const score = typeof data.score === "number" ? data.score : 0;
@@ -451,18 +363,18 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
   const timelineKeys = Object.keys(timelineLabels);
 
   const gradeColors: Record<string, { bg: string; text: string; ring: string }> = {
-    A: { bg: "bg-emerald-500/15", text: "text-emerald-300", ring: "ring-green-500" },
-    B: { bg: "bg-blue-500/15", text: "text-blue-300", ring: "ring-blue-500" },
-    C: { bg: "bg-amber-500/15", text: "text-amber-300", ring: "ring-amber-500" },
-    D: { bg: "bg-orange-500/15", text: "text-orange-700", ring: "ring-orange-500" },
-    F: { bg: "bg-red-500/15", text: "text-red-300", ring: "ring-red-500" },
+    A: { bg: "bg-emerald-500/15", text: "text-emerald-300", ring: "ring-emerald-500/50" },
+    B: { bg: "bg-blue-500/15", text: "text-blue-300", ring: "ring-blue-500/50" },
+    C: { bg: "bg-amber-500/15", text: "text-amber-300", ring: "ring-amber-500/50" },
+    D: { bg: "bg-orange-500/15", text: "text-orange-300", ring: "ring-orange-500/50" },
+    F: { bg: "bg-blaze-red/15", text: "text-blaze-red", ring: "ring-blaze-red/50" },
   };
 
   return (
     <AnimatedEntry delay={200}>
       <div className="mt-4 space-y-4">
         {/* Score and Grade */}
-        <div className="flex items-center justify-center gap-8 p-4 bg-gradient-to-r from-gray-50 to-white rounded-xl border">
+        <div className="flex items-center justify-center gap-8 p-4 bg-slate-900/40 rounded-xl border border-white/10">
           <div className="text-center">
             <div className="relative">
               <div className="text-5xl font-black text-blaze-red">{score}</div>
@@ -497,7 +409,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
 
         {/* Timeline */}
         {timeline && (
-          <div className="p-4 bg-slate-500/10 rounded-xl">
+          <div className="p-4 bg-slate-900/40 rounded-xl border border-white/10">
             <div className="text-xs font-semibold text-slate-400 mb-2">{t("trace.estimatedTimeline")}</div>
             <div className="grid grid-cols-4 gap-2 text-center">
               {timelineKeys.map((key) => {
@@ -507,7 +419,7 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
                     : timeline[key] ?? timeline[`${key}En`] ?? "—";
                 const displayKey = locale === "en" ? timelineLabels[key].en : timelineLabels[key].zh;
                 return (
-                  <div key={key} className="p-2 bg-white rounded-lg border">
+                  <div key={key} className="p-2 bg-slate-950/60 rounded-lg border border-white/10">
                     <div className="text-lg font-bold text-white">{value}</div>
                     <div className="text-xs text-slate-400">{displayKey}</div>
                   </div>
@@ -519,14 +431,14 @@ function ResultCard({ data, locale }: { data: Record<string, unknown>; locale: "
 
         {/* Recommendations */}
         {recommendations.length > 0 && (
-          <div className="border-t pt-4">
+          <div className="border-t border-white/10 pt-4">
             <div className="flex items-center gap-2 mb-3">
               <Target className="w-4 h-4 text-slate-400" />
               <span className="text-sm font-semibold text-slate-200">{t("trace.suggestedAction")}</span>
             </div>
             <div className="space-y-2">
               {recommendations.map((rec, i) => (
-                <div key={i} className="flex items-start gap-3 p-3 bg-white rounded-xl border hover:shadow-md transition-shadow">
+                <div key={i} className="flex items-start gap-3 p-3 bg-slate-900/40 rounded-xl border border-white/10 hover:border-blaze-red/40 transition-colors">
                   <div className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-sm font-bold ${
                     rec.priority === 1 ? "bg-red-500/15 text-red-300" : rec.priority === 2 ? "bg-amber-500/15 text-amber-300" : "bg-slate-500/15 text-slate-300"
                   }`}>
@@ -599,7 +511,7 @@ function MarketCard({ node, locale }: { node: TraceNode; locale: "zh" | "en" }) 
 
         {/* Top match */}
         {data?.topMatch && (
-          <div className="p-3 bg-slate-500/10 rounded-lg">
+          <div className="p-3 bg-slate-900/40 rounded-lg border border-white/10">
             <div className="text-xs text-slate-400 mb-1">{t("trace.maxMatch")}</div>
             <div className="text-sm font-medium text-white">{locale === "en" ? data.topMatch.titleEn : data.topMatch.title}</div>
             <div className="flex items-center gap-2 mt-1 text-xs text-slate-400">
@@ -646,7 +558,7 @@ function TraceNodeComponent({
       <div className="relative">
         {/* Connector line */}
         {depth > 0 && (
-          <div className="absolute -left-6 top-6 w-4 h-px bg-gradient-to-r from-transparent to-gray-300" />
+          <div className="absolute -left-6 top-6 w-4 h-px bg-gradient-to-r from-transparent to-white/30" />
         )}
 
         {/* Node card */}
@@ -842,53 +754,53 @@ export default function AgentDecisionTree({
       </div>
 
       {/* Tree */}
-      <div className="bg-gradient-to-br from-gray-50 via-white to-purple-50 rounded-3xl border border-slate-500/40 p-4 shadow-inner sm:p-8">
+      <div className="glass-panel rounded-3xl p-4 shadow-inner sm:p-8">
         <TraceNodeComponent node={data} locale={locale} />
       </div>
 
       {/* Footer stats */}
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-4 border border-emerald-500/40">
+        <div className="bg-emerald-500/10 rounded-2xl p-4 border border-emerald-500/30">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/15 flex items-center justify-center">
               <CheckCircle2 className="w-5 h-5 text-emerald-300" />
             </div>
             <div>
-              <div className="text-lg font-bold text-green-800">{t("trace.analysisComplete")}</div>
-              <div className="text-xs text-emerald-300">4 {t("trace.targetMarkets")}</div>
+              <div className="text-lg font-bold text-emerald-200">{t("trace.analysisComplete")}</div>
+              <div className="text-xs text-emerald-300/80">4 {t("trace.targetMarkets")}</div>
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-4 border border-blue-500/40">
+        <div className="bg-blue-500/10 rounded-2xl p-4 border border-blue-500/30">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center">
-              <Brain className="w-5 h-5 text-blue-600" />
+              <Brain className="w-5 h-5 text-blue-300" />
             </div>
             <div>
-              <div className="text-lg font-bold text-blue-800">LangGraph</div>
-              <div className="text-xs text-blue-600">FAISS + {t("trace.vectorSearch")}</div>
+              <div className="text-lg font-bold text-blue-200">LangGraph</div>
+              <div className="text-xs text-blue-300/80">FAISS + {t("trace.vectorSearch")}</div>
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-purple-50 to-rose-50 rounded-2xl p-4 border border-purple-500/40">
+        <div className="bg-purple-500/10 rounded-2xl p-4 border border-purple-500/30">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-purple-500/15 flex items-center justify-center">
-              <FileSearch className="w-5 h-5 text-purple-600" />
+              <FileSearch className="w-5 h-5 text-purple-300" />
             </div>
             <div>
-              <div className="text-lg font-bold text-purple-800">6 {t("trace.regulations")}</div>
-              <div className="text-xs text-purple-600">5 {t("trace.riskPoints")}</div>
+              <div className="text-lg font-bold text-purple-200">6 {t("trace.regulations")}</div>
+              <div className="text-xs text-purple-300/80">5 {t("trace.riskPoints")}</div>
             </div>
           </div>
         </div>
-        <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-500/40">
+        <div className="bg-amber-500/10 rounded-2xl p-4 border border-amber-500/30">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-amber-500/15 flex items-center justify-center">
               <Shield className="w-5 h-5 text-amber-300" />
             </div>
             <div>
-              <div className="text-lg font-bold text-amber-800">Grade {displayGrade}</div>
-              <div className="text-xs text-amber-300">{t("trace.score")}: {displayScore}/100</div>
+              <div className="text-lg font-bold text-amber-200">Grade {displayGrade}</div>
+              <div className="text-xs text-amber-300/80">{t("trace.score")}: {displayScore}/100</div>
             </div>
           </div>
         </div>

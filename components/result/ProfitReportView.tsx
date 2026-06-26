@@ -19,11 +19,11 @@ function DownloadButtons({
   return (
     <div className="flex flex-wrap gap-2">
       {(["zh", "en"] as const).map((locale) => (
-        <div key={locale} className="flex overflow-hidden rounded-lg border border-border bg-muted">
-          <button onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-red-500">
+        <div key={locale} className="flex overflow-hidden rounded-lg border border-white/10 bg-slate-900/40 backdrop-blur-sm">
+          <button onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-red transition-colors">
             PDF {locale.toUpperCase()}
           </button>
-          <button onClick={() => onDocx(locale)} className="border-l border-border px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:text-blue-500">
+          <button onClick={() => onDocx(locale)} className="border-l border-white/10 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-cyan transition-colors">
             Word {locale.toUpperCase()}
           </button>
         </div>
@@ -68,24 +68,24 @@ function MetricTable({ rows, currency }: { rows: MetricRow[]; currency?: string 
   return (
     <table className="min-w-[560px] w-full text-sm">
       <thead>
-        <tr className="border-b border-border">
-          <th className="py-2 pr-4 text-left font-medium text-muted-foreground">{t("report.columns.costItem")}</th>
+        <tr className="border-b border-white/10">
+          <th className="py-2 pr-4 text-left font-medium text-slate-400">{t("report.columns.costItem")}</th>
           <th className="w-32 py-2 text-right font-medium text-blaze-red/80">{t("report.labels.noCompliance")}</th>
-          <th className="w-32 py-2 text-right font-medium text-emerald-500">{t("report.labels.withCompliance")}</th>
-          <th className="w-28 py-2 text-right font-medium text-muted-foreground">{t("report.columns.difference")}</th>
+          <th className="w-32 py-2 text-right font-medium text-emerald-400">{t("report.labels.withCompliance")}</th>
+          <th className="w-28 py-2 text-right font-medium text-slate-400">{t("report.columns.difference")}</th>
         </tr>
       </thead>
-      <tbody className="divide-y divide-border">
+      <tbody className="divide-y divide-white/5">
         {rows.map((r) => (
-          <tr key={r.label} className="hover:bg-muted/40 transition-colors">
-            <td className="py-2.5 pr-4 font-medium">{r.label}</td>
+          <tr key={r.label} className="hover:bg-white/5 transition-colors">
+            <td className="py-2.5 pr-4 font-medium text-slate-200">{r.label}</td>
             <td className="py-2.5 text-right tabular-nums text-blaze-red/80">
               {fmt(r.barebone, r.unit, currency)}
             </td>
-            <td className="py-2.5 text-right tabular-nums text-emerald-500">
+            <td className="py-2.5 text-right tabular-nums text-emerald-400">
               {fmt(r.compliant, r.unit, currency)}
             </td>
-            <td className="py-2.5 text-right tabular-nums text-muted-foreground">
+            <td className="py-2.5 text-right tabular-nums text-slate-400">
               {profitDelta(r.barebone, r.compliant, currency)}
             </td>
           </tr>
@@ -114,15 +114,15 @@ function RiskBar({
 
   return (
     <div className="space-y-1.5">
-      <div className="flex justify-between text-xs text-muted-foreground">
+      <div className="flex justify-between text-xs text-slate-400">
         <span>{label}</span>
         <span>
           <span className="text-blaze-red/70">{t("report.labels.noCompliance")} {fmt(barebone, undefined, currency)}</span>
           <span className="mx-1.5">/</span>
-          <span className="text-emerald-500">{t("report.labels.withCompliance")} {fmt(compliant, undefined, currency)}</span>
+          <span className="text-emerald-400">{t("report.labels.withCompliance")} {fmt(compliant, undefined, currency)}</span>
         </span>
       </div>
-      <div className="flex h-3 overflow-hidden rounded-full bg-muted">
+      <div className="flex h-3 overflow-hidden rounded-full bg-slate-800/60">
         <div
           className="h-full bg-blaze-red/70 transition-all"
           style={{ width: `${bw}%` }}
@@ -145,14 +145,14 @@ function ConclusionCard({ text }: { text: string }) {
   const body = lines.slice(1).join(" ");
 
   return (
-    <div className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-5 py-4">
+    <div className="rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4">
       <div className="flex items-start gap-3">
         <svg viewBox="0 0 20 20" fill="currentColor" className="mt-0.5 size-5 shrink-0 text-amber-400">
           <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92ZM11 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm-1-8a1 1 0 0 0-1 1v3a1 1 0 0 0 0 2h.5a1 1 0 0 0 .5-.866V8a1 1 0 0 0-1-1H10Z" clipRule="evenodd"/>
         </svg>
         <div>
-          <p className="font-semibold text-amber-300">{headline}</p>
-          {body && <p className="mt-1 text-sm leading-relaxed text-amber-200/80">{body}</p>}
+          <p className="font-semibold text-amber-200">{headline}</p>
+          {body && <p className="mt-1 text-sm leading-relaxed text-amber-100/80">{body}</p>}
         </div>
       </div>
     </div>
@@ -195,7 +195,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
       {/* Two-column comparison cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {/* Barebone card */}
-        <div className="rounded-2xl border border-blaze-red/25 bg-blaze-red/5 p-5">
+        <div className="rounded-2xl border border-blaze-red/30 bg-blaze-red/5 p-5">
           <div className="mb-3 flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-wider text-blaze-red/60">{t("report.labels.noCompliance")}</p>
@@ -208,7 +208,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
               <p className="text-xs text-blaze-red/60">{t("report.cards.grossProfit")}</p>
             </div>
           </div>
-          <div className="space-y-1 text-xs text-muted-foreground">
+          <div className="space-y-1 text-xs text-slate-400">
             <p>{t("report.cards.salePrice")}：{fmt(viewResult.barebone.asp, undefined, currency)}</p>
             <p>{t("report.cards.totalCost")}：{fmt(viewResult.barebone.bom + viewResult.barebone.packaging + viewResult.barebone.cert + viewResult.barebone.epr + viewResult.barebone.logistics, undefined, currency)}</p>
             <p>{t("report.cards.riskExposure")}：{fmt(viewResult.bareboneRiskExposure, undefined, currency)}</p>
@@ -216,20 +216,20 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
         </div>
 
         {/* Compliant card */}
-        <div className="rounded-2xl border border-emerald-500/25 bg-emerald-500/5 p-5">
+        <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/5 p-5">
           <div className="mb-3 flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-wider text-emerald-500/60">{t("report.labels.withCompliance")}</p>
-              <p className="mt-0.5 text-sm font-medium text-emerald-500/80">Compliant</p>
+              <p className="text-xs uppercase tracking-wider text-emerald-400/60">{t("report.labels.withCompliance")}</p>
+              <p className="mt-0.5 text-sm font-medium text-emerald-400">Compliant</p>
             </div>
             <div className="text-right">
-              <p className="text-2xl font-bold tabular-nums text-emerald-500">
+              <p className="text-2xl font-bold tabular-nums text-emerald-400">
                 {fmt(viewResult.compliant.gp, undefined, currency)}
               </p>
-              <p className="text-xs text-emerald-500/60">{t("report.cards.grossProfit")}</p>
+              <p className="text-xs text-emerald-400/60">{t("report.cards.grossProfit")}</p>
             </div>
           </div>
-          <div className="space-y-1 text-xs text-muted-foreground">
+          <div className="space-y-1 text-xs text-slate-400">
             <p>{t("report.cards.salePrice")}：{fmt(viewResult.compliant.asp, undefined, currency)}</p>
             <p>{t("report.cards.totalCost")}：{fmt(viewResult.compliant.bom + viewResult.compliant.packaging + viewResult.compliant.cert + viewResult.compliant.epr + viewResult.compliant.logistics, undefined, currency)}</p>
             <p>{t("report.cards.riskExposure")}：{fmt(viewResult.compliantRiskExposure, undefined, currency)}</p>
@@ -238,9 +238,9 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
       </div>
 
       {/* Cost comparison table */}
-      <div className="rounded-2xl border border-border bg-card">
-        <div className="border-b border-border px-5 py-3">
-          <h3 className="text-sm font-semibold">{t("report.cards.costComparison")}</h3>
+      <div className="glass-panel rounded-2xl p-0 overflow-hidden">
+        <div className="border-b border-white/10 px-5 py-3">
+          <h3 className="text-sm font-semibold text-white">{t("report.cards.costComparison")}</h3>
         </div>
         <div className="overflow-x-auto p-5">
           <MetricTable rows={rows} currency={currency} />
@@ -248,8 +248,8 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
       </div>
 
       {/* Risk-adjusted profit bars */}
-      <div className="rounded-2xl border border-border bg-card px-5 py-4">
-        <h3 className="mb-4 text-sm font-semibold">{t("report.riskAdjustedRevenue")}</h3>
+      <div className="glass-panel rounded-2xl px-5 py-4">
+        <h3 className="mb-4 text-sm font-semibold text-white">{t("report.riskAdjustedRevenue")}</h3>
         <div className="mb-3 space-y-3">
           <RiskBar
             label={t("report.cards.grossProfit")}
@@ -266,7 +266,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
             currency={currency}
           />
         </div>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        <div className="flex items-center gap-4 text-xs text-slate-400">
           <span className="flex items-center gap-1.5">
             <span className="inline-block size-2.5 rounded-full bg-blaze-red/70" />
             {t("report.cards.barebone")}
@@ -285,11 +285,11 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
 
       {/* Markdown report body */}
       {viewResult.report && (
-        <div className="rounded-2xl border border-border bg-card">
-          <div className="border-b border-border px-5 py-3">
-            <h3 className="text-sm font-semibold">{t("report.cards.analysisReport")}</h3>
+        <div className="glass-panel rounded-2xl overflow-hidden">
+          <div className="border-b border-white/10 px-5 py-3">
+            <h3 className="text-sm font-semibold text-white">{t("report.cards.analysisReport")}</h3>
           </div>
-          <div className="p-5 text-sm leading-relaxed [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_blockquote]:border-l-2 [&_blockquote]:border-border [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-muted-foreground [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap [&_th]:border [&_th]:border-border [&_th]:bg-muted [&_th]:px-3 [&_th]:py-1.5 [&_td]:border [&_td]:border-border [&_td]:px-3 [&_td]:py-1.5">
+          <div className="p-5 text-sm leading-relaxed text-slate-200 [&_h1]:mb-3 [&_h1]:mt-6 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-5 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-1.5 [&_h3]:mt-4 [&_h3]:text-base [&_h3]:font-semibold [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1 [&_p]:mt-2 [&_code]:rounded [&_code]:bg-slate-800 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-xs [&_code]:text-blaze-cyan [&_blockquote]:border-l-2 [&_blockquote]:border-white/20 [&_blockquote]:pl-3 [&_blockquote]:italic [&_blockquote]:text-slate-400 [&_table]:block [&_table]:max-w-full [&_table]:overflow-x-auto [&_table]:whitespace-nowrap [&_th]:border [&_th]:border-white/10 [&_th]:bg-slate-800/50 [&_th]:px-3 [&_th]:py-1.5 [&_th]:text-slate-200 [&_td]:border [&_td]:border-white/10 [&_td]:px-3 [&_td]:py-1.5">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {viewResult.report}
             </ReactMarkdown>
@@ -298,7 +298,7 @@ export function ProfitReportView({ result }: { result: ProfitReportResult }) {
       )}
 
       {/* Footer meta */}
-      <p className="text-xs text-muted-foreground">
+      <p className="text-xs text-slate-500">
         {t("report.generatedAt")} {new Date(viewResult.generatedAt).toLocaleString(locale === "en" ? "en-US" : "zh-CN")}
       </p>
     </div>
