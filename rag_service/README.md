@@ -36,7 +36,7 @@ Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
 ### 1. 安装依赖
 
 ```bash
-.venv\Scripts\python.exe -m pip install -r rag_service/requirements.txt
+.venv\Scripts\python.exe -m pip install -r rag_service/requirements-prod.txt
 ```
 
 ### 2. 配置环境变量

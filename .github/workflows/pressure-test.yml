@@ -1,0 +1,41 @@
+name: pressure-test
+
+# Manual load test against a deployed target. Not run on PRs — the load
+# script hammers a live server (tests/pressure/improved-load-test.js), and
+# starting one inside CI would require `npm run build`, which is omitted
+# everywhere due to the server OOM constraint (see RECOVERY.md).
+#
+# Trigger from the Actions tab: provide TARGET_URL (staging/prod) and the
+# scenario. Results print to the job log.
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: "Base URL to load-test (e.g. https://staging.example.com)"
+        required: true
+        default: "http://localhost:3000"
+      scenario:
+        description: "Load scenario (smoke | load)"
+        type: choice
+        options: ["smoke", "load"]
+        default: "smoke"
+
+jobs:
+  pressure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run load test (${{ inputs.scenario }})
+        env:
+          TARGET_URL: ${{ inputs.target_url }}
+        run: node tests/pressure/improved-load-test.js ${{ inputs.scenario }}
