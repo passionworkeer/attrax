@@ -124,7 +124,7 @@ describe("LanguageSwitcher", () => {
 
   it("opens the dropdown when the toggle button is clicked", () => {
     renderInProvider(<LanguageSwitcher />);
-    const toggle = screen.getByRole("button", { name: /language/i });
+    const toggle = screen.getByRole("button", { name: /语言|language/i });
     fireEvent.click(toggle);
     // The EN option only appears in the dropdown (toggle shows current = zh).
     // Use getAllByText since both flags exist after open.
@@ -144,7 +144,7 @@ describe("LanguageSwitcher", () => {
       </TranslationProvider>,
     );
     expect(screen.getByTestId("locale").textContent).toBe("zh");
-    fireEvent.click(screen.getByRole("button", { name: /language/i }));
+    fireEvent.click(screen.getByRole("button", { name: /语言|language/i }));
     fireEvent.click(screen.getByText("🇺🇸"));
     expect(screen.getByTestId("locale").textContent).toBe("en");
     // After selection, dropdown closes (EN flag not directly visible without re-opening)
@@ -152,7 +152,7 @@ describe("LanguageSwitcher", () => {
 
   it("closes the dropdown when the backdrop is clicked", () => {
     renderInProvider(<LanguageSwitcher />);
-    fireEvent.click(screen.getByRole("button", { name: /language/i }));
+    fireEvent.click(screen.getByRole("button", { name: /语言|language/i }));
     expect(screen.getByText("🇺🇸")).toBeInTheDocument();
     const backdrop = document.querySelector(".fixed.inset-0");
     expect(backdrop).toBeInTheDocument();
