@@ -17,15 +17,7 @@ export async function GET(
 ) {
   const { sessionId } = await context.params;
 
-  // Reject malformed sessionIds before they reach the session store
-  const parsedId = SessionIdSchema.safeParse(sessionId);
-  if (!parsedId.success) {
-    return fail(
-      { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") },
-      { status: 404 }
-    );
-  }
-
+  // Demo is a special token, not a sessionId — handle it before schema validation.
   if (sessionId === "demo") {
     // Demo session is only available outside production environments. In
     // production, force callers to use real sessions with valid access tokens.
@@ -47,6 +39,15 @@ export async function GET(
       profitReport: createMockProfitReport("demo"),
       profitReports: createMockProfitReports("demo"),
     });
+  }
+
+  // Reject malformed sessionIds before they reach the session store
+  const parsedId = SessionIdSchema.safeParse(sessionId);
+  if (!parsedId.success) {
+    return fail(
+      { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") },
+      { status: 404 }
+    );
   }
 
   const session = getSession(sessionId);

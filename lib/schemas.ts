@@ -13,12 +13,13 @@ export const FlameLevelSchema = z.union([z.literal(1), z.literal(2), z.literal(3
 export const SeveritySchema = z.enum(["critical", "warning", "info"]);
 export const ScoreGradeSchema = z.enum(["A", "B", "C", "D"]);
 
-// Session IDs are ULID-like: "scan_" + 26 uppercase alphanumeric chars
+// Session IDs are "scan_" + 1-50 chars of [A-Za-z0-9_-]
+// (Crockford ULID produced by /api/scan, plus legacy test/demo IDs).
 export const SessionIdSchema = z
   .string()
-  .min(10)
+  .min(6)
   .max(64)
-  .regex(/^scan_[0-9A-HJKMNP-TV-Z]{26}$/);
+  .regex(/^scan_[0-9A-Za-z_-]{1,50}$/);
 
 // Access tokens are 32 bytes of base64url (256 bits), 43 chars
 export const AccessTokenSchema = z
