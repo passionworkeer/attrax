@@ -44,7 +44,12 @@ def _escape_prompt_injection(text: str) -> str:
 
 
 def read_html_file(file_path: str) -> Optional[str]:
-    """Read HTML file with encoding fallback. Returns None on failure."""
+    """Read HTML file with encoding fallback. Returns None on failure.
+
+    Returns None for both unreadable files (missing, no permissions) and
+    undecodable bytes — the contract is "None on failure", callers don't
+    need to distinguish.
+    """
     encodings = ["utf-8", "gbk", "gb2312", "gb18030", "latin-1"]
     for enc in encodings:
         try:
@@ -52,6 +57,12 @@ def read_html_file(file_path: str) -> Optional[str]:
                 return f.read()
         except (UnicodeDecodeError, LookupError):
             continue
+        except FileNotFoundError:
+            logger.warning("read_html_file: file not found: %s", file_path)
+            return None
+        except OSError as exc:
+            logger.warning("read_html_file: OS error for %s: %s", file_path, exc)
+            return None
     return None
 
 
