@@ -39,10 +39,11 @@ SOURCE_GLOBS = ("components", "app", "lib")
 # see that prefix, so they'd be reported as false positives. Exclude them.
 EXCLUDE_FILES = ("app/[locale]/page.tsx",)
 
-# Match t("foo.bar") / t('foo.bar') / t(`foo.bar`) — both quote styles.
-# Require at least one char after the dot to skip dynamic-key patterns like
-# t("trace." + type) where "trace." alone isn't a real key.
-KEY_PATTERN = re.compile(r'\bt\(\s*["\']([a-zA-Z][\w]*\.[\w]+)["\']')
+# Match t("foo.bar") / t('foo.bar') — both quote styles.
+# Also match tx("...") and i18n.t("...") since report-export modules and
+# server-side renderers use those helpers. Require at least one char after
+# the dot to skip dynamic-key patterns like t("trace." + type).
+KEY_PATTERN = re.compile(r'\b(?:t|tx|i18n\.t)\(\s*["\']([a-zA-Z][\w]*\.[\w]+)["\']')
 
 
 def collect_used_keys() -> set[str]:
@@ -51,7 +52,7 @@ def collect_used_keys() -> set[str]:
         base = REPO_ROOT / folder
         if not base.exists():
             continue
-        for f in base.rglob("*.tsx"):
+        for f in base.rglob("*.ts*"):
             # Skip files with local t() wrappers (see EXCLUDE_FILES).
             rel = str(f.relative_to(REPO_ROOT)).replace("\\", "/")
             if rel in EXCLUDE_FILES:
