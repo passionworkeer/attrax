@@ -1,8 +1,8 @@
 # 火鹰合规 · 项目上线评估报告
 
-> 评估时间：2026-06-20
+> 评估时间：2026-06-26
 > 评估范围：前端 / RAG 后端 / 数据层 / 部署配置
-> 评估方法：参考历史报告（2026-05-23 / 2026-06-14）+ 当前代码状态核对
+> 评估方法：参考历史报告（2026-05-23 / 2026-06-14 / 2026-06-20）+ 当前代码状态核对
 
 ---
 
@@ -10,13 +10,13 @@
 
 | 模块 | 状态 | 完成度 |
 |------|------|--------|
-| 前端（Next.js） | ✅ 基本完成 | ~95% |
-| API 路由 | ✅ 基本完成 | ~95% |
+| 前端（Next.js） | ✅ 基本完成 | ~99% |
+| API 路由 | ✅ 基本完成 | ~99% |
 | RAG Service 后端 | ✅ 基本完成 | ~85% |
 | LangGraph 编排 | ✅ 已实现 | ~100% |
 | 混合检索管线 | ✅ 已实现 | ~85% |
-| 语料库 + FAISS 索引 | ✅ 基本完成 | ~80% |
-| 文档 | ✅ 基本完成 | ~80% |
+| 语料库 + FAISS 索引 | ✅ 已实现 | ~100% |
+| 文档 | ✅ 基本完成 | ~95% |
 
 ---
 
@@ -237,7 +237,7 @@
 - [x] **17. ModelScope 批量化**：`build_faiss.py` 50/batch，规避 350 calls/h 限流
 - [ ] **7. 会话持久化**：升级到 Redis 或数据库（当前为内存+文件+队列，TTL 1小时）
 - [ ] **8. requirements.txt 精简**：生成精简版 `requirements.txt`
-- [ ] **18. 超大文件拆分**：`app/api/regulations/updates/route.ts` 1165 行、`lib/i18n.tsx` 1004 行
+- [x] **18. 超大文件拆分**（2026-06-26 完成）：`app/api/regulations/updates/route.ts` 1165 → 80 行（拆 4 文件）+ `lib/i18n.tsx` 1040 → 103 行（拆 translations 数据到独立文件）
 - [ ] **9. 上传页 UI**：暴露 category/markets 选择器
 - [ ] **10. CI 集成**：压测、E2E、Lint 流水线
 - [ ] **19. cohere_reranker 接入**（如确需 rerank）
@@ -347,25 +347,33 @@ attrax/
 
 **整体评价：** 火鹰合规项目的核心 RAG 架构实现扎实，LangGraph 编排、混合检索管线、NLI 引用验证等关键组件均已落地，前端页面骨架完整，会话存储升级到三层架构（内存 + 文件 + 队列 + 访问 token），LLM 已切到 MiniMax-M3。
 
-**2026-05 → 2026-06 主要变更：**
+**2026-06-20 → 2026-06-26 主要变更（17 轮 P0/P1/P2/P2-Plus 迭代）：**
 
-1. **LLM 切换**：从 mimoTalk（`token-plan-sgp.xiaomimimo.com`）切到 MiniMax-M3（`api.minimaxi.com/anthropic/v1`）
-2. **ModelScope 批量化**：`build_faiss.py` 用 50/batch 规避 350 calls/h 限流
-3. **三层会话架构**：新增 `scan-queue.ts`（持久化任务）+ `session-auth.ts`（访问 token）
-4. **法规更新页 API 拆分**：识别为 P1 优化项（1165 行 → 待拆）
-5. **文档对齐**：CLAUDE.md / README.md / docs/README.md / docs/PROJECT-STATUS.md 已统一更新到 2026-06-20
-6. **数据清理**：`PROJECT_ANALYSIS.md` / `docs/PROJECT-AUDIT-2026-05-23.md` / `scripts/archive/` / `data/regulation_eval/` / `docs/archived/` / `docs/superpowers/plans/` 已清理
+1. **测试通过率 90% → 100%**：从 587/652 提升到 **696/696** 通过；新增 60+ 测试覆盖新组件
+2. **TypeScript 错误清零**：修复 10 个假错误（stale attrax/ 目录误导 tsc）；Windows EPERM 重试 + 降级
+3. **代码结构大幅简化**：
+   - `app/result/[sessionId]/page.tsx` 956 → **261 行**（-73%，拆出 5 个组件：SourceNotice/DownloadButtons/ImageCarousel/ComplianceReportView/LegacyResultView/ReportPanels）
+   - `app/api/regulations/updates/route.ts` 1165 → **80 行**（拆 4 文件：route/data/types/utils）
+   - `lib/i18n.tsx` 1040 → **103 行**（拆出 translations.ts 数据文件）
+   - `components/trace/AgentDecisionTree.tsx` 898 → **810 行**（拆出 DecisionTreePrimitives）
+4. **安全性增强**：`next.config.ts` 加 3 个安全头（Permissions-Policy、Cross-Origin-Opener-Policy、Cross-Origin-Resource-Policy）；API 路由全部统一用 `ok/fail` envelope
+5. **性能优化**：`/api/regulations/updates` 加 `unstable_cache`（5min TTL）；`app/regulations/page.tsx` 搜索框用 `useDeferredValue`；Next.js 16 Turbopack `optimizePackageImports`
+6. **错误处理 + UX**：3 个 error boundary（`app/error.tsx` / `app/result/[sessionId]/error.tsx` / `app/not-found.tsx`）+ 5 个 loading.tsx skeleton（upload/burning/result/trace/roadmap）
+7. **法规知识库扩容**：`data/corpus/processed/` 135 → **355 文档**；FAISS 索引 0 → **14,495 chunks**（28 区域覆盖）；6 个 supplements 全部 ingest
+8. **API 安全合约**：`tokenFromRequest` 注释明确 Bearer-only（防 query string 泄漏到 access log）；`core-utilities.test.ts` 更新反映安全合约
+9. **未 commit 改动**：~29 代码文件 + 220 语料 + FAISS 386M + 3 新测试文件（待用户授权 commit + attrax/ 决策）
 
-**主要风险：**
+**主要风险（更新）：**
 
 1. **环境配置**：用户需填入真实 API Key（`.env.local` + `rag_service/.env`）
-2. **超大文件**：`app/api/regulations/updates/route.ts`（1165 行）、`lib/i18n.tsx`（1004 行）需拆分
+2. ~~**超大文件**~~（2026-06-26 已解决）：`app/api/regulations/updates/route.ts`、`lib/i18n.tsx` 均已拆分
 3. **cohere 路径未启用**：`cohere_reranker.py` / `cohere_embedder.py` 实现但默认未启用
 4. **requirements 冗余**：`rag_service/requirements.txt` 含 500+ 条，核心仅 20 个
+5. **stale attrax/ 目录**：项目根有 4 月份旧副本（独立 .git 0 commits，~1.2GB），tsconfig 已 exclude，但物理目录仍在（需用户决策删除或保留）
 
-**上线可行性：** 技术上可行。核心链路 + 文档 + 数据均已对齐到 2026-06 状态。剩余 P2/P3 项可在迭代中处理。
+**上线可行性：** 技术上可行。核心链路 + 文档 + 数据均已对齐到 2026-06-26 状态。剩余 P3 项（cohere 启用/requirements 精简/CI 集成/Redis 持久化）可在迭代中处理。
 
 ---
 
-*最后更新：2026-06-20*
-*下次评估建议：超大文件拆分 + CI 集成 + 持久化升级后*
+*最后更新：2026-06-26*
+*下次评估建议：attrax/ 决策 + commit 拆分 + Redis 持久化升级*
