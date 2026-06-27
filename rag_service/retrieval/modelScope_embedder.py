@@ -23,14 +23,47 @@ MIN_TEXT_LEN = 5  # Queries can be short; lower threshold for Chinese
 
 # ─── LRU cache for embed_query ─────────────────────────────────────────────────
 # Caches repeated query embeddings at the API level, bypassing both the network
-# round-trip and the 2s rate-limit delay entirely on cache hits.
+# round-trip and any rate-limit delay entirely on cache hits.
 _CACHE_MAX = 512
 _QUERY_CACHE: dict[str, tuple] = {}
 _QUERY_CACHE_LOCK = threading.Lock()
 
+# ─── Hourly rate-limit (sliding window) ────────────────────────────────────────
+# ModelScope's free tier throttles at ~350 requests/hour/model. We keep a safety
+# margin under the published cap and track call timestamps in a 1h sliding window.
+# Calls are admitted immediately while the window has capacity; only when the
+# window fills up do we sleep until the oldest call ages out.
+_DEFAULT_HOURLY_LIMIT = 300      # safety margin below the ~350 free-tier cap
+_DEFAULT_WINDOW_SECONDS = 3600   # 1 hour
+_DEFAULT_BURST_INTERVAL = 0.0    # no forced delay between calls by default
+_WINDOW_LOCK = threading.Lock()
+_CALL_TIMESTAMPS: list[float] = []
+
 
 def _qcache_key(text: str) -> str:
     return hashlib.md5(text.encode()).hexdigest()
+
+
+def _env_int(name: str, default: int) -> int:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        return int(raw)
+    except ValueError:
+        logger.warning(f"Invalid int for {name}={raw!r}, using default {default}")
+        return default
+
+
+def _env_float(name: str, default: float) -> float:
+    raw = os.environ.get(name, "").strip()
+    if not raw:
+        return default
+    try:
+        return float(raw)
+    except ValueError:
+        logger.warning(f"Invalid float for {name}={raw!r}, using default {default}")
+        return default
 
 
 def clean_text(text: str) -> str:
@@ -68,6 +101,17 @@ class ModelScopeEmbedder:
             )
         self._client = None
         self._last_call = 0.0
+        self._hourly_limit = _env_int(
+            "MODELSCOPE_HOURLY_LIMIT", _DEFAULT_HOURLY_LIMIT
+        )
+        self._window_seconds = _env_int(
+            "MODELSCOPE_WINDOW_SECONDS", _DEFAULT_WINDOW_SECONDS
+        )
+        # Optional small burst guard (default 0 = no forced per-call delay).
+        # Kept as a safety knob; the primary throttle is the sliding window.
+        self._burst_interval = _env_float(
+            "MODELSCOPE_BURST_INTERVAL", _DEFAULT_BURST_INTERVAL
+        )
 
     @property
     def client(self):
@@ -79,10 +123,50 @@ class ModelScopeEmbedder:
             )
         return self._client
 
-    def _rate_limit(self, min_interval: float = 2.0):
-        elapsed = time.monotonic() - self._last_call
-        if elapsed < min_interval:
-            time.sleep(min_interval - elapsed)
+    def _rate_limit(self, min_interval: float = 0.0):
+        """
+        Throttle API calls to respect the hourly quota.
+
+        Two layers of protection:
+        1. Burst guard: optional small floor between successive calls
+           (``_burst_interval``, default 0s — no per-call delay).
+        2. Sliding-window quota: admit calls immediately while the trailing
+           ``_window_seconds`` window holds fewer than ``_hourly_limit``
+           timestamps; otherwise sleep until the oldest call ages out.
+
+        The previous implementation forced a fixed 2s sleep on every call,
+        which mis-modelled an hourly quota as a per-call floor and dominated
+        query latency. Cache hits (``embed_query``) bypass this entirely.
+        """
+        now = time.monotonic()
+        # Burst guard (off by default).
+        burst = min_interval if min_interval > 0 else self._burst_interval
+        if burst > 0:
+            elapsed = now - self._last_call
+            if elapsed < burst:
+                time.sleep(burst - elapsed)
+                now = time.monotonic()
+        # Sliding-window quota.
+        with _WINDOW_LOCK:
+            cutoff = now - self._window_seconds
+            # Drop timestamps outside the window (immutable: rebuild list).
+            fresh = [t for t in _CALL_TIMESTAMPS if t > cutoff]
+            _CALL_TIMESTAMPS[:] = fresh
+            if len(fresh) >= self._hourly_limit:
+                # Wait until the oldest call ages out of the window.
+                wait = fresh[0] + self._window_seconds - now
+            else:
+                wait = 0.0
+                _CALL_TIMESTAMPS.append(now)
+        if wait > 0:
+            logger.warning(
+                f"Hourly quota {self._hourly_limit} reached; "
+                f"sleeping {wait:.1f}s for sliding window"
+            )
+            time.sleep(wait)
+            # After waiting, claim a slot.
+            with _WINDOW_LOCK:
+                _CALL_TIMESTAMPS.append(time.monotonic())
         self._last_call = time.monotonic()
 
     def _call_api(self, text: str) -> list[float]:
@@ -150,7 +234,7 @@ class ModelScopeEmbedder:
     def embed_query(self, text: str) -> list[float]:
         """
         Embed a single query string with in-process cache.
-        Cache hits skip both the 2s rate-limit delay and the HTTP round-trip.
+        Cache hits skip both the rate-limit delay and the HTTP round-trip.
         Thread-safe: full read-call-write is serialized to prevent thundering-herd
         API calls and cache poisoning from concurrent first-time requests.
         """
@@ -164,7 +248,7 @@ class ModelScopeEmbedder:
         with _QUERY_CACHE_LOCK:
             if key in _QUERY_CACHE:
                 return list(_QUERY_CACHE[key])
-            self._rate_limit(2.0)
+            self._rate_limit()
             result = self._call_api(text)
             if len(_QUERY_CACHE) >= _CACHE_MAX:
                 first_key = next(iter(_QUERY_CACHE))
@@ -193,7 +277,7 @@ class ModelScopeEmbedder:
 
         for i in range(0, len(texts), batch_size):
             batch = texts[i : i + batch_size]
-            self._rate_limit(2.0)
+            self._rate_limit()
             try:
                 vecs = self._call_api_batch(batch)
                 results.extend(vecs)

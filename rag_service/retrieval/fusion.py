@@ -30,15 +30,26 @@ def rrf_fuse(
     bm25_results: list[dict],
     k: int = DEFAULT_K,
     top_k: int = 50,
+    dense_weight: float = 1.0,
+    bm25_weight: float = 1.0,
 ) -> list[FusionResult]:
     """
     Fuse Dense + BM25 results using Reciprocal Rank Fusion.
+
+    Weighted contribution per result:
+        rrf_score += weight_i * 1.0 / (k + rank_i)
+
+    Defaults (dense_weight=1.0, bm25_weight=1.0) preserve the historical
+    equal-weight behavior exactly — no change to rankings or score scale
+    when callers omit the weights. Tuning is left to downstream eval.
 
     Args:
         dense_results: list of dicts with 'id' and 'score' (0-1)
         bm25_results: list of dicts with 'id' and 'score' (raw BM25)
         k: RRF smoothing parameter (default 25)
         top_k: number of results to return
+        dense_weight: multiplier on the dense contribution (default 1.0)
+        bm25_weight: multiplier on the bm25 contribution (default 1.0)
 
     Returns:
         list[FusionResult] sorted by rrf_score descending
@@ -59,13 +70,13 @@ def rrf_fuse(
 
     for i, r in enumerate(dense_results):
         doc_id = r.get("id", f"dense_{i}")
-        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + 1.0 / (k + i)
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + dense_weight * 1.0 / (k + i)
         dense_map[doc_id] = r.get("score", 0)
         bm25_map[doc_id] = r
 
     for i, r in enumerate(bm25_results):
         doc_id = r.get("id", f"bm25_{i}")
-        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + 1.0 / (k + i)
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + bm25_weight * 1.0 / (k + i)
         bm25_map[doc_id] = r
         dense_map.setdefault(doc_id, 0.0)
 
