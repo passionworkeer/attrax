@@ -18,6 +18,7 @@ Rerank: 不实现
 """
 import hashlib
 import logging
+import os
 import threading
 import time
 from collections import OrderedDict
@@ -125,6 +126,13 @@ def _probe_embedders():
         return None, "none"
 
 
+# Default regions to pre-build filtered BM25 sub-indices for at warmup.
+# Reflects the project's multi-market fan-out set (EU/US are defaults; the
+# rest are supported markets per CLAUDE.md). Keeps the working set bounded
+# while covering the high-traffic combinations.
+_WARMUP_REGIONS: list[str] = ["EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"]
+
+
 class HybridRetriever:
     """
     Hybrid Dense(Faiss) + BM25 retriever with RRF fusion.
@@ -163,6 +171,47 @@ class HybridRetriever:
             self.bm25.build_index(chunks)
         self._chunks = chunks
         self._chunks_loaded = True
+        # Best-effort filtered-BM25 cache warmup. Disabled by default to keep
+        # unit-test startup fast; flip on via env in production. Failures are
+        # swallowed so a corrupt chunk never blocks service boot.
+        if os.environ.get("ATTRAX_WARMUP_FILTER_BM25", "").strip() in ("1", "true", "True"):
+            try:
+                self.warmup_filter_bm25()
+            except Exception as e:
+                logger.warning(f"Filtered BM25 warmup failed (non-fatal): {e}")
+
+    def warmup_filter_bm25(self, regions: list[str] | None = None) -> int:
+        """
+        Pre-build filtered BM25 sub-indices for common (region) chunk subsets.
+
+        Populates _FILTER_BM25_CACHE so the first /scan requests with metadata
+        filters hit cache instead of paying the full tokenize+build cost.
+        Idempotent and graceful: any per-region failure is logged and skipped.
+
+        Args:
+            regions: optional region list to warm. Defaults to _WARMUP_REGIONS.
+
+        Returns:
+            number of sub-indices successfully built and cached.
+        """
+        if not self._chunks_loaded or not self._chunks:
+            return 0
+        targets = regions or _WARMUP_REGIONS
+        built = 0
+        for region in targets:
+            subset = filter_chunks(self._chunks, region=region)
+            if not subset:
+                continue
+            try:
+                _get_or_build_filter_bm25(subset)
+                built += 1
+            except Exception as e:
+                logger.warning(
+                    f"BM25 warmup skipped for region={region}: {e}"
+                )
+        if built:
+            logger.info(f"Filtered BM25 warmup: {built} sub-indices cached")
+        return built
 
     @property
     def embedder(self):
@@ -331,7 +380,17 @@ class HybridRetriever:
 # and caused /scan to exceed its 280s timeout.
 _FILTER_BM25_CACHE: OrderedDict[str, tuple[BM25Retriever, float]] = OrderedDict()
 _FILTER_BM25_LOCK = threading.Lock()
-_FILTER_BM25_MAX = 20
+# Cache ceiling for filtered BM25 sub-indices.
+#
+# Raised from 20 -> 80: with multi-market fan-out (EU/US/UK/CN/AU/...) crossed
+# with multiple product categories, the working set of (region, category)
+# combinations easily exceeds 20 entries. At 20 the cache thrashed under
+# realistic multi-market /scan traffic, forcing full re-tokenization of
+# thousands of chunks on miss — the dominant cause of /scan breaching its
+# 280s timeout. Memory cost per entry is dominated by tokenized corpus
+# (word-id arrays); 80 entries at ~14k chunks total stays well under a few
+# hundred MB, acceptable for the worker process.
+_FILTER_BM25_MAX = 80
 
 
 def _filter_signature(chunks: list[dict]) -> str:
