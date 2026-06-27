@@ -31,7 +31,21 @@ from rag_service.retrieval.fusion import rrf_fuse
 from rag_service.retrieval.metadata_filter import attach_metadata_fields, filter_chunks
 from rag_service.retrieval.must_check import apply_must_check
 
+# Width of the candidate window fed into RRF for each branch. 50 mirrors the
+# historical dense/bm25 search depth; widening it does not move the needle in
+# eval and just inflates fusion cost.
+_SEARCH_DEPTH = 50
+# RRF smoothing constant for merging two BM25 result lists. Kept in sync with
+# the main fusion default (fusion.DEFAULT_K) so a chunk found in both pools
+# scores identically to a chunk fused via the standard dense+bm25 path.
+_BM25_MERGE_K = 25
+
 logger = logging.getLogger(__name__)
+
+# Lazily-initialized shared executor for parallel dense + BM25 searches.
+# Reused across all HybridRetriever.retrieve() calls (and across LangGraph
+# Send() market fan-out) to avoid per-query ThreadPoolExecutor init overhead.
+_dense_bm25_pool: ThreadPoolExecutor | None = None
 
 _embedder = None
 _embedder_name = "none"
@@ -75,6 +89,59 @@ def _cache_key_v2(
 
 def jsonish_key(*parts) -> str:
     return "|".join(str(part) for part in parts)
+
+
+def _merge_bm25_results(
+    strict_results: list[dict],
+    loose_results: list[dict],
+    top_k: int,
+) -> list[dict]:
+    """Merge strict-pool and loose-pool BM25 result lists via reciprocal rank.
+
+    RRF lets a chunk found in only one pool surface (e.g. a target chunk with an
+    incomplete product_category tag that only the loose pool contains), while
+    chunks found in both pools get their contributions summed. Both inputs are
+    first de-duplicated by source_id (keeping the best-scoring chunk per
+    source) so multi-chunk regulations do not saturate the top-k window and
+    crowd out a target source that exists as fewer chunks.
+    """
+    strict_dedup = _dedupe_by_source_id(strict_results)
+    loose_dedup = _dedupe_by_source_id(loose_results)
+    if not loose_dedup:
+        return strict_dedup[:top_k]
+    if not strict_dedup:
+        return loose_dedup[:top_k]
+
+    rrf_scores: dict[str, float] = {}
+    payload: dict[str, dict] = {}
+    for rank, r in enumerate(strict_dedup):
+        doc_id = r.get("id") or f"strict_{rank}"
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0.0) + 1.0 / (_BM25_MERGE_K + rank)
+        payload.setdefault(doc_id, r)
+    for rank, r in enumerate(loose_dedup):
+        doc_id = r.get("id") or f"loose_{rank}"
+        rrf_scores[doc_id] = rrf_scores.get(doc_id, 0.0) + 1.0 / (_BM25_MERGE_K + rank)
+        payload.setdefault(doc_id, r)
+
+    ordered_ids = sorted(rrf_scores, key=rrf_scores.get, reverse=True)[:top_k]
+    return [
+        {**payload[doc_id], "bm25_merge_score": rrf_scores[doc_id]}
+        for doc_id in ordered_ids
+    ]
+
+
+def _dedupe_by_source_id(results: list[dict]) -> list[dict]:
+    """Keep the highest-scoring chunk per source_id, preserving order."""
+    seen: set[str] = set()
+    output: list[dict] = []
+    for r in results:
+        sid = r.get("source_id")
+        key = sid if sid else f"__no_sid__{r.get('id','')}"
+        if key in seen:
+            continue
+        seen.add(key)
+        output.append(r)
+    return output
 
 
 def _cache_get(key: str) -> Optional[list]:
@@ -328,12 +395,50 @@ class HybridRetriever:
             _cache_set(cache_k, [])
             return []
 
-        # Run dense + BM25 in parallel
-        with ThreadPoolExecutor(max_workers=2) as pool:
-            dense_future = pool.submit(self._dense_search, query, 50)
-            bm25_future = pool.submit(self._bm25_search, query, 50, candidate_chunks if use_metadata_candidates else None)
-            dense_results = dense_future.result()
-            bm25_results = bm25_future.result()
+        # Fallback pool: same filters as the strict candidate pool but with
+        # product_category dropped. Some regulation chunks carry incomplete
+        # product_category tags (e.g. lead-paint chunks tagged
+        # [electronics,toys,painted_goods] but queried as children_products),
+        # which the strict pool excludes outright. The loose pool keeps
+        # region/regulatory_types/official_only so the candidate set stays
+        # scoped; BM25 then surfaces chunks by term relevance. Only built when a
+        # product_category filter is active, otherwise the loose pool is
+        # identical to the strict pool.
+        loose_chunks = (
+            filter_chunks(
+                self._chunks,
+                region=region,
+                regulatory_types=regulatory_types,
+                source_ids=source_ids,
+                official_only=official_only,
+            )
+            if product_category
+            else None
+        )
+
+        # Run dense + BM25 in parallel. The executor is module-level (not
+        # per-call) so LangGraph's Send() fan-out across multiple markets
+        # reuses the same pool — ThreadPoolExecutor init/teardown was the
+        # dominant per-query cost in profiling.
+        global _dense_bm25_pool
+        if _dense_bm25_pool is None:
+            _dense_bm25_pool = ThreadPoolExecutor(max_workers=2, thread_name_prefix="hybrid-retrieve")
+        pool = _dense_bm25_pool
+        dense_future = pool.submit(self._dense_search, query, _SEARCH_DEPTH)
+        strict_chunks = candidate_chunks if use_metadata_candidates else None
+        bm25_future = pool.submit(self._bm25_search, query, _SEARCH_DEPTH, strict_chunks)
+        loose_future = (
+            pool.submit(self._bm25_search, query, _SEARCH_DEPTH, loose_chunks)
+            if loose_chunks
+            else None
+        )
+        dense_results = dense_future.result()
+        bm25_results = bm25_future.result()
+        loose_results = loose_future.result() if loose_future else []
+
+        # Merge strict + loose BM25 lists via RRF so a chunk that only the loose
+        # pool found can still surface, while chunks in both pools get boosted.
+        bm25_results = _merge_bm25_results(bm25_results, loose_results, _SEARCH_DEPTH)
 
         # RRF fusion
         if dense_results or bm25_results:
@@ -346,13 +451,18 @@ class HybridRetriever:
             fused = apply_must_check(fused, product_category, candidate_chunks or self._chunks)
 
         if use_metadata_candidates:
+            # Post-fusion filter. product_category is intentionally NOT applied
+            # here: the loose-pool fallback above exists precisely to recover
+            # chunks whose product_category tag is incomplete, and re-applying
+            # the strict category filter would drop them again. Region,
+            # regulatory_types, source_ids and official_only stay strict so the
+            # result set remains scoped to the request.
             fused = [
                 attach_metadata_fields(r)
                 for r in fused
                 if filter_chunks(
                     [r],
                     region=region,
-                    product_category=product_category,
                     regulatory_types=regulatory_types,
                     source_ids=source_ids,
                     official_only=official_only,
