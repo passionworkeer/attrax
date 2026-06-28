@@ -8,6 +8,7 @@ report_generator.py - Compliance report generator (mimoTalk only)
 import os
 import logging
 import json
+import time
 import urllib.request
 import urllib.error
 
@@ -21,6 +22,18 @@ os.environ.pop("https_proxy", None)
 os.environ.setdefault("NO_PROXY", "*")
 
 logger = logging.getLogger(__name__)
+
+
+class _TransientLLMError(Exception):
+    """Internal sentinel: a retryable LLM transport failure.
+
+    Wraps the original cause so callers can inspect it; raised only by
+    ``_read_mimotalk_response`` and caught by ``_generate_mimotalk``.
+    """
+
+    def __init__(self, cause: Exception):
+        super().__init__(str(cause))
+        self.cause = cause
 
 SYSTEM_PROMPT = """你是跨境电商合规专家。根据用户上传的产品图片，生成精准的合规报告。
 
@@ -128,8 +141,22 @@ def _build_source_context(chunks: list[dict], max_chunks: int = 20, max_chars: i
 
 
 def _parse_json_object(text: str) -> dict | None:
-    """Parse a JSON object from raw LLM text, accepting fenced output."""
+    """Parse a JSON object from raw LLM text, accepting fenced output.
+
+    The balanced-object scan is O(n) per opening brace and dominates parse
+    time on pathological multi-megabyte outputs, so very long inputs are
+    capped before the scan and a warning is logged.
+    """
     raw = (text or "").strip()
+
+    max_chars = ReportGenerator._JSON_PARSE_MAX_CHARS
+    if len(raw) > max_chars:
+        logger.warning(
+            "LLM JSON output %d chars exceeds parse cap %d; truncating before scan",
+            len(raw), max_chars,
+        )
+        raw = raw[:max_chars]
+
     if raw.startswith("```"):
         lines = raw.splitlines()
         if lines and lines[0].startswith("```"):
@@ -570,8 +597,24 @@ class ReportGenerator:
             logger.error(f"mimoTalk failed: {e}")
             return self._mock_report(product, market, query, error=f"LLM 调用失败：{e}")
 
+    # Max chars fed to the JSON parser's balanced-object scan. The scan is
+    # O(n) per opening brace and pathological LLM output (e.g. very long
+    # markdown wrapped in braces) can dominate parse time, so we cap it.
+    _JSON_PARSE_MAX_CHARS = 200_000
+
+    # LLM call retry config: 3 attempts, exponential backoff 1s/2s.
+    # Only transient (network/timeout/5xx) errors are retried; business
+    # errors (4xx auth/quota) surface immediately so we fall back to mock.
+    _LLM_MAX_ATTEMPTS = 3
+    _LLM_BACKOFF_BASE = 1.0  # seconds
+
     def _generate_mimotalk(self, system: str, user_prompt: str, max_tokens: int) -> str:
-        """Call mimoTalk /v1/messages endpoint."""
+        """Call mimoTalk /v1/messages endpoint with bounded retries.
+
+        Retries are limited to transient failures (URLError, timeout, 5xx
+        HTTPError, or HTTP 429). Authentication/quota/business 4xx errors are
+        re-raised so the caller can degrade to mock without burning attempts.
+        """
         body = json.dumps({
             "model": self.model,
             "max_tokens": max_tokens,
@@ -581,24 +624,59 @@ class ReportGenerator:
             ],
         }).encode("utf-8")
 
-        req = urllib.request.Request(
-            f"{self.base_url.rstrip('/')}/messages",
-            data=body,
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-                "anthropic-version": "2023-06-01",
-                "x-api-key": self.api_key,
-            },
-        )
+        last_exc: Exception | None = None
+        for attempt in range(1, self._LLM_MAX_ATTEMPTS + 1):
+            req = urllib.request.Request(
+                f"{self.base_url.rstrip('/')}/messages",
+                data=body,
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
+                    "anthropic-version": "2023-06-01",
+                    "x-api-key": self.api_key,
+                },
+            )
+            try:
+                return self._read_mimotalk_response(req)
+            except _TransientLLMError as e:
+                last_exc = e.cause
+                if attempt < self._LLM_MAX_ATTEMPTS:
+                    delay = self._LLM_BACKOFF_BASE * (2 ** (attempt - 1))
+                    logger.warning(
+                        "mimoTalk transient failure (attempt %d/%d): %r; retrying in %.1fs",
+                        attempt, self._LLM_MAX_ATTEMPTS, e.cause, delay,
+                    )
+                    time.sleep(delay)
+                    continue
+                raise last_exc  # type: ignore[misc]
+            except Exception as e:
+                # Non-transient (auth/quota/parse) — do not retry.
+                raise
 
-        with urllib.request.urlopen(req, timeout=180) as r:
-            data = json.loads(r.read())
-            content = data.get("content", [{}])[0].get("text", "")
-            if content and content.strip():
-                logger.info(f"mimoTalk report generated ({len(content)} chars)")
-                return content
-            raise ValueError("mimoTalk returned empty response")
+        # Defensive: loop should exit via return/raise above.
+        raise last_exc if last_exc else RuntimeError("mimoTalk retry loop exited unexpectedly")
+
+    def _read_mimotalk_response(self, req: urllib.request.Request) -> str:
+        """Execute a single mimoTalk request and return the text content.
+
+        Raises _TransientLLMError for retryable failures; everything else
+        propagates as-is.
+        """
+        try:
+            with urllib.request.urlopen(req, timeout=180) as r:
+                data = json.loads(r.read())
+        except urllib.error.HTTPError as e:
+            if e.code in (429, 500, 502, 503, 504):
+                raise _TransientLLMError(e) from e
+            raise
+        except (urllib.error.URLError, TimeoutError) as e:
+            raise _TransientLLMError(e) from e
+
+        content = data.get("content", [{}])[0].get("text", "")
+        if content and content.strip():
+            logger.info(f"mimoTalk report generated ({len(content)} chars)")
+            return content
+        raise ValueError("mimoTalk returned empty response")
 
     def _mock_report(
         self,

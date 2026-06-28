@@ -7,9 +7,9 @@ import { useTranslation } from "@/lib/i18n";
 const STATS = [
   { value: "16+", labelKey: "home.stats.markets" },
   { value: "96", labelKey: "home.stats.regulations" },
-  { value: "12M+", label: "Characters" },
+  { value: "12M+", labelKey: "home.charactersStat" },
   { value: "5min", labelKey: "home.features.fastAnalysis" },
-];
+] as const;
 
 const FEATURES = [
   {
@@ -69,15 +69,14 @@ export default function Home() {
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.05]">
                   {isEn ? (
                     <>
-                      Expand globally?
+                      {t("home.subtitleLead")}
                       <br />
-                      <span className="text-blaze-red text-glow">Burn first.</span>
+                      <span className="text-blaze-red text-glow">{t("home.subtitleHighlight")}</span>
                     </>
                   ) : (
                     <>
-                      {t("home.subtitle").split("？")[0]}
-                      <span className="text-blaze-red text-glow">{t("home.subtitle").split("？")[1] || "先烧毁"}</span>
-                      {t("home.subtitle").includes("！") ? "！" : "！"}
+                      {t("home.subtitleLead")}
+                      <span className="text-blaze-red text-glow">{t("home.subtitleHighlight")}</span>
                     </>
                   )}
                 </h1>
@@ -138,7 +137,7 @@ export default function Home() {
                   {stat.value}
                 </div>
                 <div className="text-xs text-slate-400 mt-1">
-                  {"labelKey" in stat ? t(stat.labelKey as string) : stat.label}
+                  {t(stat.labelKey)}
                 </div>
               </div>
             ))}

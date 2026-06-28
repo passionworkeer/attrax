@@ -29,14 +29,21 @@ describe('rate-limit utilities', () => {
     globalThis.__rateLimitBuckets = undefined
   })
 
-  it('extracts the first forwarded IP and falls back to unknown', () => {
+  it('ignores spoofable forwarding headers unless RATE_LIMIT_TRUST_XFF is set', () => {
     const forwarded = new Request('http://localhost', {
       headers: { 'x-forwarded-for': '203.0.113.7, 10.0.0.1' },
     })
     const noForwarded = new Request('http://localhost')
 
-    expect(clientIp(forwarded)).toBe('203.0.113.7')
+    // Default: XFF is untrusted — both collapse to 'unknown' so an attacker
+    // cannot reset their bucket by sending random X-Forwarded-For values.
+    expect(clientIp(forwarded)).toBe('unknown')
     expect(clientIp(noForwarded)).toBe('unknown')
+
+    // When deployed behind a trusted reverse proxy, the operator opts in.
+    vi.stubEnv('RATE_LIMIT_TRUST_XFF', 'true')
+    expect(clientIp(forwarded)).toBe('203.0.113.7')
+    vi.unstubAllEnvs()
   })
 
   it('allows all requests in test mode', () => {

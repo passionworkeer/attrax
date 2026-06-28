@@ -9,9 +9,18 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+# GOLDEN_SET_VERSION is pure metadata on the reviewed golden set. Import both
+# ways so this module works whether it is loaded as `eval.regulation_retrieval_eval`
+# (run_eval.py CLI path) or `rag_service.eval.regulation_retrieval_eval` (pytest).
+try:  # pragma: no cover - import wiring
+    from eval.metrics import GOLDEN_SET_VERSION
+except ImportError:  # pragma: no cover - import wiring
+    from rag_service.eval.metrics import GOLDEN_SET_VERSION
+
 
 DEFAULT_CASES_PATH = Path("data/regulation_eval/retrieval_cases.json")
 DEFAULT_FAISS_META_PATH = Path("data/faiss/legal_chunks_meta.json")
+DEFAULT_FAISS_INDEX_PATH = Path("data/faiss/legal_chunks.index")
 DEFAULT_OUTPUT_DIR = Path("data/regulation_eval/results")
 
 REQUIRED_CASE_FIELDS = {
@@ -81,6 +90,37 @@ def build_retriever_from_faiss_meta(meta_path: str | Path = DEFAULT_FAISS_META_P
     return build_retriever_from_chunks(load_chunks_from_faiss_meta(meta_path))
 
 
+def build_hybrid_retriever_from_faiss(
+    meta_path: str | Path = DEFAULT_FAISS_META_PATH,
+    index_path: str | Path = DEFAULT_FAISS_INDEX_PATH,
+):
+    """Build a hybrid (BM25 + dense FAISS) retriever for production-path eval.
+
+    Loads the real FAISS index from disk so eval reflects the live dense
+    retrieval path. Dense contribution weight is controlled at runtime by
+    the ``RAG_DENSE_WEIGHT`` env var (default 1.0, already at hit_rate 1.0);
+    tuning is recommended to land between 1.2 and 1.5 — run with
+    ``RAG_DENSE_WEIGHT=1.3`` to A/B against the baseline.
+    """
+    from rag_service.retrieval.bm25_retriever import BM25Retriever
+    from rag_service.retrieval.faiss_retriever import FaissRetriever
+    from rag_service.retrieval.hybrid_retriever import HybridRetriever
+
+    if not Path(index_path).exists():
+        raise FileNotFoundError(
+            f"FAISS index file not found at {index_path}; "
+            f"hybrid mode requires a built index. Run scripts/build_faiss.py first."
+        )
+
+    faiss_retriever = FaissRetriever.load(str(index_path), str(meta_path))
+    chunks = load_chunks_from_faiss_meta(meta_path)
+
+    bm25 = BM25Retriever()
+    retriever = HybridRetriever(bm25=bm25, faiss_retriever=faiss_retriever)
+    retriever.load_chunks(chunks)
+    return retriever
+
+
 def evaluate_cases(
     cases: list[dict[str, Any]],
     retriever,
@@ -146,6 +186,7 @@ def summarize_results(results: list[dict[str, Any]]) -> dict[str, Any]:
     reciprocal_sum = sum(float(result.get("reciprocal_rank", 0.0)) for result in results)
     summary = {
         "generated_at": datetime.now(timezone.utc).astimezone().isoformat(timespec="seconds"),
+        "golden_set_version": GOLDEN_SET_VERSION,
         "total_cases": total,
         "hits": hits,
         "misses": [result["id"] for result in results if not result.get("hit")],
@@ -260,15 +301,34 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Evaluate regulation retrieval against expected official source ids.")
     parser.add_argument("--cases", type=Path, default=DEFAULT_CASES_PATH)
     parser.add_argument("--faiss-meta", type=Path, default=DEFAULT_FAISS_META_PATH)
+    parser.add_argument("--faiss-index", type=Path, default=DEFAULT_FAISS_INDEX_PATH,
+                        help="Path to FAISS index file (only used in --mode hybrid).")
+    parser.add_argument(
+        "--mode",
+        choices=["bm25", "hybrid"],
+        default="bm25",
+        help=(
+            "bm25: BM25-only eval (default, no FAISS index needed). "
+            "hybrid: BM25 + dense FAISS eval reflecting production path "
+            "(requires data/faiss/legal_chunks.index). Tune dense weight "
+            "via RAG_DENSE_WEIGHT env (suggested 1.2-1.5)."
+        ),
+    )
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--label", default=datetime.now().strftime("%Y-%m-%d_registry_retrieval_eval"))
     parser.add_argument("--top-k", type=int, default=10)
     args = parser.parse_args(argv)
 
     cases = load_cases(args.cases)
-    retriever = build_retriever_from_faiss_meta(args.faiss_meta)
+    if args.mode == "hybrid":
+        retriever = build_hybrid_retriever_from_faiss(
+            meta_path=args.faiss_meta, index_path=args.faiss_index
+        )
+    else:
+        retriever = build_retriever_from_faiss_meta(args.faiss_meta)
     results = evaluate_cases(cases, retriever, top_k=args.top_k)
     summary = summarize_results(results)
+    summary["mode"] = args.mode
 
     json_path = args.output_dir / f"{args.label}.json"
     md_path = args.output_dir / f"{args.label}.md"

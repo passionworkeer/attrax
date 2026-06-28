@@ -23,6 +23,8 @@ def refiner_node(state: GraphState) -> dict:
                               re.IGNORECASE)
         regulatory_terms.extend(articles)
 
+    terms_suffix = " ".join(set(regulatory_terms))
+
     # Build refined query
     refined_parts = [current_query]
     if regulatory_terms:
@@ -33,22 +35,34 @@ def refiner_node(state: GraphState) -> dict:
 
     refined_query = " ".join(refined_parts)
 
-    # Create new sub-queries with expanded query
-    new_sub_queries = [
-        {**sq, "query": sq.get("query", "") + " " + " ".join(set(regulatory_terms))}
-        for sq in sub_queries
-    ]
+    # Create new sub-queries with expanded query.
+    # Dedup by expanded query text so repeated refine rounds don't keep
+    # accumulating identical sub_queries. state.sub_queries uses operator.add,
+    # so without dedup the list grows unboundedly across HyDE iterations and
+    # bloats both the next retriever call and downstream LLM context.
+    new_sub_queries = []
+    seen_queries: set[str] = set()
+    for sq in sub_queries:
+        expanded_q = f"{sq.get('query', '')} {terms_suffix}".strip()
+        if expanded_q in seen_queries:
+            continue
+        seen_queries.add(expanded_q)
+        new_sub_queries.append({**sq, "query": expanded_q})
+
+    # loop_count: read fresh from state, return new value (immutable — never
+    # mutate state in place).
+    next_loop_count = loop_count + 1
 
     trace_entry = {
         "node": "query_refiner",
         "missing_count": len(missing_citations),
-        "loop_count": loop_count + 1,
+        "loop_count": next_loop_count,
         "refined_query": refined_query[:100],
     }
 
     return {
         "sub_queries": new_sub_queries,
-        "query": refined_query,  # Update main query too
-        "loop_count": loop_count + 1,  # Increment counter HERE
+        "query": refined_query,           # Update main query too
+        "loop_count": next_loop_count,
         "agent_trace": state.get("agent_trace", []) + [trace_entry],
     }

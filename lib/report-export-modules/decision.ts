@@ -12,6 +12,7 @@ import {
   pdfSectionTitle,
   resolveLocale,
   tx,
+  yieldToMainThread,
 } from "./shared";
 import { englishText } from "@/lib/report-localization";
 
@@ -166,78 +167,96 @@ function addPdfFooter(doc: jsPDF, pageWidth: number, pageHeight: number, locale:
 }
 
 export async function downloadDecisionReportAsPdf(content: DecisionContent, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-  await embedFont(doc);
+  try {
+    const L = resolveLocale(locale);
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+    await embedFont(doc);
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 20;
-  const y = { cur: margin };
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const y = { cur: margin };
 
-  const title = L === "zh" ? "AI 决策报告" : "AI Decision Report";
-  const statusText = verdictStatusLabel(content.verdict, L);
-  const color = riskColor(content.riskLevel);
-  const fill = riskFill(content.riskLevel);
+    const title = L === "zh" ? "AI 决策报告" : "AI Decision Report";
+    const statusText = verdictStatusLabel(content.verdict, L);
+    const color = riskColor(content.riskLevel);
+    const fill = riskFill(content.riskLevel);
 
-  doc.setFont("NotoSansSC", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(148, 163, 184);
-  doc.text(tx("report.title", L), margin, y.cur);
-  y.cur += 6;
-  doc.setDrawColor(226, 232, 240);
-  doc.line(margin, y.cur, pageWidth - margin, y.cur);
-  y.cur += 8;
+    doc.setFont("NotoSansSC", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(148, 163, 184);
+    doc.text(tx("report.title", L), margin, y.cur);
+    y.cur += 6;
+    doc.setDrawColor(226, 232, 240);
+    doc.line(margin, y.cur, pageWidth - margin, y.cur);
+    y.cur += 8;
 
-  doc.setFont("NotoSansSC", "bold");
-  doc.setFontSize(20);
-  doc.setTextColor(31, 41, 55);
-  doc.text(title, margin, y.cur);
-  y.cur += 8;
-  doc.setFont("NotoSansSC", "normal");
-  doc.setFontSize(8);
-  doc.setTextColor(100, 116, 139);
-  doc.text(`${tx("report.sessionId", L)}: ${content.sessionId}`, margin, y.cur);
-  y.cur += 8;
+    doc.setFont("NotoSansSC", "bold");
+    doc.setFontSize(20);
+    doc.setTextColor(31, 41, 55);
+    doc.text(title, margin, y.cur);
+    y.cur += 8;
+    doc.setFont("NotoSansSC", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text(`${tx("report.sessionId", L)}: ${content.sessionId}`, margin, y.cur);
+    y.cur += 8;
 
-  doc.setFillColor(fill[0], fill[1], fill[2]);
-  doc.setDrawColor(color[0], color[1], color[2]);
-  doc.roundedRect(margin, y.cur, pageWidth - margin * 2, 14, 2, 2, "FD");
-  doc.setFont("NotoSansSC", "bold");
-  doc.setFontSize(10);
-  doc.setTextColor(color[0], color[1], color[2]);
-  doc.text(`${statusText}  ·  ${riskLevelLabel(content.riskLevel, L)}`, margin + 4, y.cur + 9);
-  y.cur += 20;
+    doc.setFillColor(fill[0], fill[1], fill[2]);
+    doc.setDrawColor(color[0], color[1], color[2]);
+    doc.roundedRect(margin, y.cur, pageWidth - margin * 2, 14, 2, 2, "FD");
+    doc.setFont("NotoSansSC", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(color[0], color[1], color[2]);
+    doc.text(`${statusText}  ·  ${riskLevelLabel(content.riskLevel, L)}`, margin + 4, y.cur + 9);
+    y.cur += 20;
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "决策概览" : "Decision Overview");
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, overviewRows(content, L), [42, 112]);
+    await yieldToMainThread();
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "决策摘要" : "Executive Summary");
-  pdfBody(doc, y, margin, pageWidth, pageHeight, fallbackSummary(content, L), 9);
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "决策概览" : "Decision Overview");
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, overviewRows(content, L), [42, 112]);
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "关键发现" : "Key Findings");
-  findingList(content, L).forEach((finding) => pdfBullet(doc, y, margin, pageWidth, pageHeight, finding));
+    await yieldToMainThread();
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "节点证据矩阵" : "Node Evidence Matrix");
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, nodeRows(content, L), [42, 38, 74]);
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "决策摘要" : "Executive Summary");
+    pdfBody(doc, y, margin, pageWidth, pageHeight, fallbackSummary(content, L), 9);
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "建议行动计划" : "Recommended Action Plan");
-  actionPlan(content, L).forEach((action) => pdfBullet(doc, y, margin, pageWidth, pageHeight, action));
+    await yieldToMainThread();
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "假设与限制" : "Assumptions and Limits");
-  assumptions(L).forEach((item) => pdfBullet(doc, y, margin, pageWidth, pageHeight, item));
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "关键发现" : "Key Findings");
+    findingList(content, L).forEach((finding) => pdfBullet(doc, y, margin, pageWidth, pageHeight, finding));
 
-  addPdfFooter(doc, pageWidth, pageHeight, L);
+    await yieldToMainThread();
 
-  doc.save(L === "zh" ? `AI决策报告_${content.sessionId}.pdf` : `AIDecisionReport_${content.sessionId}.pdf`);
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "节点证据矩阵" : "Node Evidence Matrix");
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, nodeRows(content, L), [42, 38, 74]);
+
+    await yieldToMainThread();
+
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "建议行动计划" : "Recommended Action Plan");
+    actionPlan(content, L).forEach((action) => pdfBullet(doc, y, margin, pageWidth, pageHeight, action));
+
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "假设与限制" : "Assumptions and Limits");
+    assumptions(L).forEach((item) => pdfBullet(doc, y, margin, pageWidth, pageHeight, item));
+
+    addPdfFooter(doc, pageWidth, pageHeight, L);
+
+    doc.save(L === "zh" ? `AI决策报告_${content.sessionId}.pdf` : `AIDecisionReport_${content.sessionId}.pdf`);
+  } catch (error) {
+    throw new Error(
+      `Failed to export decision PDF report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
 }
 
 export async function downloadDecisionReportAsDocx(content: DecisionContent, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const statusText = verdictStatusLabel(content.verdict, L);
-  const title = L === "zh" ? "AI 决策报告" : "AI Decision Report";
+  try {
+    const L = resolveLocale(locale);
+    const statusText = verdictStatusLabel(content.verdict, L);
+    const title = L === "zh" ? "AI 决策报告" : "AI Decision Report";
 
-  const children: Array<Paragraph | Table> = [
+    const children: Array<Paragraph | Table> = [
     new Paragraph({
       heading: HeadingLevel.HEADING_1,
       children: [new TextRun({ text: title, bold: true, size: 36, color: "C41E3A" })],
@@ -283,12 +302,18 @@ export async function downloadDecisionReportAsDocx(content: DecisionContent, loc
   });
 
   const blob = await Packer.toBlob(doc);
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = L === "zh" ? `AI决策报告_${content.sessionId}.docx` : `AIDecisionReport_${content.sessionId}.docx`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = L === "zh" ? `AI决策报告_${content.sessionId}.docx` : `AIDecisionReport_${content.sessionId}.docx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    throw new Error(
+      `Failed to export decision DOCX report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
 }

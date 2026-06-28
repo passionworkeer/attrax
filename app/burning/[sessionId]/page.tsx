@@ -39,7 +39,12 @@ export default function BurningPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = Array.isArray(params.sessionId) ? params.sessionId[0] : params.sessionId;
   const { status, displayProgress } = useScanPolling(sessionId);
-  const completing = status?.status === "ready" && Boolean(status.result);
+  // P0.2: both `ready` (real RAG) and `degraded` (RAG-unavailable fallback)
+  // carry a result the result page can render. Treat them symmetrically for
+  // the completion flash + redirect so degraded scans don't get stuck here.
+  const terminal = status?.status;
+  const hasResult = Boolean(status?.result);
+  const completing = (terminal === "ready" || terminal === "degraded") && hasResult;
   const { t } = useTranslation();
   const [mounted, setMounted] = useState(false);
 
@@ -48,7 +53,7 @@ export default function BurningPage() {
   }, []);
 
   useEffect(() => {
-    if (status?.status === "ready" && status.result) {
+    if ((status?.status === "ready" || status?.status === "degraded") && status.result) {
       sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
       setTimeout(() => router.push(`/result/${sessionId}`), 800);
     }

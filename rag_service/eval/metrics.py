@@ -51,6 +51,12 @@ def _chunk_to_keywords(chunk: dict) -> list[str]:
 
 # ── Test-set generation ────────────────────────────────────────────────────────
 
+# Version stamp for the reviewed golden set defined below. Bump this when the
+# REGULATION_TEMPLATES entries are intentionally edited so eval regressions can
+# be attributed to a golden-set change rather than a retrieval/scoring change.
+# NOTE: this is metadata only — it does not alter any scoring formula.
+GOLDEN_SET_VERSION = "2026-06-28-reviewed"
+
 REGULATION_TEMPLATES: list[dict] = [
     # ── REACH ──
     {

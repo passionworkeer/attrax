@@ -1,49 +1,163 @@
 /**
- * Tests for clientIp — added to lock in the trust contract:
- * X-Real-IP (single-value, harder to spoof) wins over X-Forwarded-For
- * (multi-value, trivially spoofable).
+ * Tests for clientIp — security contract:
+ *
+ * By default, X-Forwarded-For / X-Real-IP are NOT trusted. Anyone sending
+ * these headers cannot reset their rate-limit bucket. Set
+ * RATE_LIMIT_TRUST_XFF=true to honor them when deployed behind a trusted
+ * reverse proxy that overwrites forwarding headers.
+ *
+ * When XFF is untrusted, clientIp falls back to a salted SHA-256 of the
+ * User-Agent (truncated) so distinct browser fingerprints get distinct
+ * buckets instead of collapsing into a single global "unknown" bucket that
+ * any single attacker could exhaust.
  */
-import { describe, it, expect } from "vitest";
-import { clientIp } from "@/lib/rate-limit";
+import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
+import { clientIp, resolveClientId } from "@/lib/rate-limit";
 
 function makeRequest(headers: Record<string, string> = {}): Request {
   return new Request("http://localhost/", { headers });
 }
 
 describe("clientIp", () => {
-  it("returns X-Real-IP when present, ignoring XFF", () => {
-    const req = makeRequest({
-      "x-real-ip": "203.0.113.5",
-      "x-forwarded-for": "1.2.3.4, 10.0.0.1",
+  afterEach(() => {
+    vi.unstubAllEnvs();
+  });
+
+  describe("default (RATE_LIMIT_TRUST_XFF unset) — headers are ignored", () => {
+    beforeEach(() => {
+      vi.unstubAllEnvs();
     });
-    expect(clientIp(req)).toBe("203.0.113.5");
-  });
 
-  it("returns the leftmost XFF entry when X-Real-IP is missing", () => {
-    const req = makeRequest({ "x-forwarded-for": "198.51.100.7, 10.0.0.1" });
-    expect(clientIp(req)).toBe("198.51.100.7");
-  });
-
-  it("returns 'unknown' when neither header is set", () => {
-    expect(clientIp(makeRequest())).toBe("unknown");
-  });
-
-  it("returns 'unknown' when X-Real-IP is whitespace and XFF is empty", () => {
-    const req = makeRequest({ "x-real-ip": "   " });
-    expect(clientIp(req)).toBe("unknown");
-  });
-
-  it("trims whitespace from X-Real-IP", () => {
-    const req = makeRequest({ "x-real-ip": "  203.0.113.5  " });
-    expect(clientIp(req)).toBe("203.0.113.5");
-  });
-
-  it("does not trust spoofed XFF when both headers are present", () => {
-    // Attacker sends both. We trust X-Real-IP (set by trusted reverse proxy).
-    const req = makeRequest({
-      "x-real-ip": "203.0.113.5",
-      "x-forwarded-for": "999.999.999.999",
+    it("returns 'unknown' regardless of X-Real-IP / XFF", () => {
+      const req = makeRequest({
+        "x-real-ip": "203.0.113.5",
+        "x-forwarded-for": "1.2.3.4, 10.0.0.1",
+      });
+      expect(clientIp(req)).toBe("unknown");
     });
-    expect(clientIp(req)).toBe("203.0.113.5");
+
+    it("returns 'unknown' when no headers are set", () => {
+      expect(clientIp(makeRequest())).toBe("unknown");
+    });
+
+    it("returns 'unknown' even when an attacker spoofs only XFF", () => {
+      const req = makeRequest({ "x-forwarded-for": "999.999.999.999" });
+      expect(clientIp(req)).toBe("unknown");
+    });
+  });
+
+  describe("RATE_LIMIT_TRUST_XFF=true — proxy headers honored", () => {
+    beforeEach(() => {
+      vi.stubEnv("RATE_LIMIT_TRUST_XFF", "true");
+    });
+
+    it("returns X-Real-IP when present, ignoring XFF", () => {
+      const req = makeRequest({
+        "x-real-ip": "203.0.113.5",
+        "x-forwarded-for": "1.2.3.4, 10.0.0.1",
+      });
+      expect(clientIp(req)).toBe("203.0.113.5");
+    });
+
+    it("returns the leftmost XFF entry when X-Real-IP is missing", () => {
+      const req = makeRequest({ "x-forwarded-for": "198.51.100.7, 10.0.0.1" });
+      expect(clientIp(req)).toBe("198.51.100.7");
+    });
+
+    it("returns 'unknown' when X-Real-IP is whitespace and XFF is empty", () => {
+      const req = makeRequest({ "x-real-ip": "   " });
+      expect(clientIp(req)).toBe("unknown");
+    });
+
+    it("trims whitespace from X-Real-IP", () => {
+      const req = makeRequest({ "x-real-ip": "  203.0.113.5  " });
+      expect(clientIp(req)).toBe("203.0.113.5");
+    });
+
+    it("prefers X-Real-IP over a spoofed XFF from the same client", () => {
+      const req = makeRequest({
+        "x-real-ip": "203.0.113.5",
+        "x-forwarded-for": "999.999.999.999",
+      });
+      expect(clientIp(req)).toBe("203.0.113.5");
+    });
+
+    it("accepts '1' / 'yes' as truthy spellings", () => {
+      vi.stubEnv("RATE_LIMIT_TRUST_XFF", "1");
+      const req = makeRequest({ "x-real-ip": "203.0.113.5" });
+      expect(clientIp(req)).toBe("203.0.113.5");
+
+      vi.stubEnv("RATE_LIMIT_TRUST_XFF", "yes");
+      expect(clientIp(req)).toBe("203.0.113.5");
+    });
+  });
+
+  describe("default (XFF untrusted) — UA fingerprint isolation", () => {
+    beforeEach(() => {
+      vi.unstubAllEnvs();
+    });
+
+    it("different User-Agents resolve to different client ids (not 'unknown')", () => {
+      const chrome = makeRequest({ "user-agent": "Mozilla/5.0 Chrome/120" });
+      const firefox = makeRequest({ "user-agent": "Mozilla/5.0 Firefox/121" });
+      const a = clientIp(chrome);
+      const b = clientIp(firefox);
+      expect(a).not.toBe("unknown");
+      expect(b).not.toBe("unknown");
+      expect(a).not.toBe(b);
+    });
+
+    it("the same User-Agent resolves to the same client id (stable bucket)", () => {
+      const ua = "Mozilla/5.0 (Windows NT 10.0) Chrome/120";
+      expect(clientIp(makeRequest({ "user-agent": ua }))).toBe(
+        clientIp(makeRequest({ "user-agent": ua }))
+      );
+    });
+
+    it("does NOT surface the raw UA in the resolved id (privacy)", () => {
+      const raw = "Mozilla/5.0 unique-fingerprint-string-xyz";
+      const id = clientIp(makeRequest({ "user-agent": raw }));
+      expect(id).not.toContain(raw);
+      expect(id.startsWith("ua:")).toBe(true);
+      expect(id.length).toBeLessThan(raw.length);
+    });
+
+    it("spoofed XFF alone cannot override the UA-derived id (no reset attack)", () => {
+      const spoofed = makeRequest({
+        "user-agent": "Mozilla/5.0 Chrome/120",
+        "x-forwarded-for": "999.999.999.999",
+      });
+      const honest = makeRequest({ "user-agent": "Mozilla/5.0 Chrome/120" });
+      expect(clientIp(spoofed)).toBe(clientIp(honest));
+    });
+
+    it("prefers a session_id cookie over the UA fingerprint", () => {
+      const req = makeRequest({
+        "user-agent": "Mozilla/5.0 Chrome/120",
+        cookie: "session_id=abc123; theme=dark",
+      });
+      expect(clientIp(req)).toBe("cookie:abc123");
+    });
+
+    it("prefers the `sid` cookie when session_id is absent", () => {
+      const req = makeRequest({
+        "user-agent": "Mozilla/5.0 Chrome/120",
+        cookie: "sid=xyz789",
+      });
+      expect(clientIp(req)).toBe("cookie:xyz789");
+    });
+
+    it("falls back to 'unknown' only when UA + cookie + XFF are all absent", () => {
+      expect(resolveClientId(makeRequest())).toBe("unknown");
+    });
+
+    it("honors a custom RATE_LIMIT_CLIENT_ID_SALT (different salt → different id)", () => {
+      const ua = "Mozilla/5.0 Chrome/120";
+      vi.stubEnv("RATE_LIMIT_CLIENT_ID_SALT", "custom-salt-A");
+      const a = clientIp(makeRequest({ "user-agent": ua }));
+      vi.stubEnv("RATE_LIMIT_CLIENT_ID_SALT", "custom-salt-B");
+      const b = clientIp(makeRequest({ "user-agent": ua }));
+      expect(a).not.toBe(b);
+    });
   });
 });

@@ -9,6 +9,7 @@
     "deploy:check": "node scripts/preflight-deploy.mjs --check-only",
     "deploy:prod": "node scripts/preflight-deploy.mjs",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",

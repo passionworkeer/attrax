@@ -29,8 +29,11 @@ export const translations = {
     home: {
       title: "火鹰合规",
       subtitle: "想出海？先烧毁！",
+      subtitleLead: "想出海？", // P1: replaces subtitle.split("？") in app/page.tsx
+      subtitleHighlight: "先烧毁！",
       description: "AI驱动的跨境电商合规风险智能扫描平台",
       startScanning: "开始扫描",
+      charactersStat: "条字符",
       features: {
         multiMarket: "多市场覆盖",
         multiMarketDesc: "覆盖欧盟、美国、英国、中国、澳大利亚、沙特、阿联酋等16+市场",
@@ -177,6 +180,7 @@ export const translations = {
       demoResult: "Demo 扫描结果",
       demoLoaded: "已载入 Demo 数据",
       fallbackNotice: "当前报告为离线降级结果：RAG 服务未返回可用真实报告，请检查后端服务、索引和日志后重试。",
+      degradedBanner: "⚠️ 降级模式：RAG 服务不可用，以下为示例数据，不构成合规结论。",
       demoNotice: "当前报告使用 Demo 数据，仅用于演示流程。",
       aiDecision: "AI 决策过程",
       complianceRoadmap: "合规路线图",
@@ -406,8 +410,11 @@ export const translations = {
     home: {
       title: "Blaze Hawks",
       subtitle: "Think Before You Expand",
+      subtitleLead: "Expand globally?",
+      subtitleHighlight: "Burn first.",
       description: "AI-powered compliance risk scanning for cross-border e-commerce",
       startScanning: "Start Scanning",
+      charactersStat: "Characters",
       features: {
         multiMarket: "Multi-Market Coverage",
         multiMarketDesc: "Covering 16+ markets including EU, US, UK, CN, AU, SA, AE",
@@ -554,6 +561,7 @@ export const translations = {
       demoResult: "Demo Scan Result",
       demoLoaded: "Demo data loaded",
       fallbackNotice: "This report is an offline fallback result: the RAG service did not return a usable real report. Check the backend service, index, and logs before retrying.",
+      degradedBanner: "⚠️ Degraded mode: RAG service unavailable, the data below is illustrative only and not a compliance verdict.",
       demoNotice: "This report uses demo data and is only for workflow demonstration.",
       aiDecision: "AI Decision Process",
       complianceRoadmap: "Compliance Roadmap",

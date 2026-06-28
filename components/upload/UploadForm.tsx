@@ -7,6 +7,13 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import type { Market as ScanMarket, ProductCategory } from "@/lib/types";
 
+// Module-level cache shared across all LocalImageCarousel instances on the
+// page. Object URLs are keyed by stable file identity (name+size+lastModified)
+// so appending a file does NOT revoke-and-recreate URLs for existing files
+// (which previously caused image flicker). Lives outside the component so it
+// is not a React ref (avoids the React 19 ref-during-render lint).
+const urlCache = new Map<string, string>();
+
 export type Market = ScanMarket;
 export type Category = ProductCategory;
 
@@ -75,35 +82,98 @@ interface ImageCarouselProps {
   files: File[];
 }
 
-function ImageCarousel({ files }: ImageCarouselProps) {
+/**
+ * Local File carousel (upload page). Renamed internally to avoid name clash
+ * with the result-page ImageCarousel. Object URLs are keyed by stable file
+ * identity (name + size + lastModified) so that adding a single new file does
+ * not revoke-and-recreate URLs for previously-added files (which causes flicker).
+ */
+function LocalImageCarousel({ files }: ImageCarouselProps) {
   const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
-  const urls = useMemo(() => files.map((file) => URL.createObjectURL(file)), [files]);
 
+  const keys = useMemo(
+    () => files.map((f) => `${f.name}|${f.size}|${f.lastModified}`),
+    [files],
+  );
+
+  const urls = useMemo(
+    () =>
+      keys.map((key, i) => {
+        const existing = urlCache.get(key);
+        if (existing) return existing;
+        const url = URL.createObjectURL(files[i]);
+        urlCache.set(key, url);
+        return url;
+      }),
+    [files, keys],
+  );
+
+  // External-system cleanup: revoke any URL whose file identity has disappeared
+  // from `files`, and revoke everything on full unmount. The browser blob URL
+  // registry is an external system, so this is the canonical use of an effect.
   useEffect(() => {
-    return () => urls.forEach((url) => URL.revokeObjectURL(url));
-  }, [urls]);
+    const liveKeys = new Set(keys);
+    for (const [key, url] of urlCache) {
+      if (!liveKeys.has(key)) {
+        URL.revokeObjectURL(url);
+        urlCache.delete(key);
+      }
+    }
+    return () => {
+      // Only on unmount: clear every URL this carousel ever produced.
+      urlCache.forEach((url) => URL.revokeObjectURL(url));
+      urlCache.clear();
+    };
+  }, [keys]);
+
+  // Derive clamped index in render instead of a setState-in-effect.
+  const safeCurrent = current > files.length - 1 ? Math.max(0, files.length - 1) : current;
 
   const prev = useCallback(() => setCurrent((c) => (c > 0 ? c - 1 : files.length - 1)), [files.length]);
   const next = useCallback(() => setCurrent((c) => (c < files.length - 1 ? c + 1 : 0)), [files.length]);
 
+  // Arrow-key handlers are mounted globally but suppressed whenever an
+  // interactive element (input/select/menu/tab/cell) is focused, so the upload
+  // page's category/market chip buttons and form inputs keep their keyboard
+  // behavior.
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      const active = document.activeElement as Element | null;
+      if (
+        active &&
+        active.closest(
+          'input, textarea, select, [contenteditable="true"], [contenteditable=""], button, [role="menuitem"], [role="menuitemradio"], [role="tab"]',
+        )
+      ) {
+        return;
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prev();
+      } else {
+        e.preventDefault();
+        next();
+      }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [prev, next]);
 
   if (files.length === 0) return null;
-  const currentIndex = Math.min(current, files.length - 1);
+  const currentIndex = Math.min(safeCurrent, files.length - 1);
   const currentFile = files[currentIndex];
   const currentUrl = urls[currentIndex];
   if (!currentFile || !currentUrl) return null;
 
   return (
-    <div className="space-y-3">
+    <div
+      role="group"
+      aria-roledescription="carousel"
+      aria-label={t("upload.productImages")}
+      className="space-y-3"
+    >
       {/* Main view */}
       <div className="relative rounded-2xl border border-border bg-muted/30 overflow-hidden">
         <div className="relative aspect-[4/3] w-full">
@@ -282,7 +352,7 @@ export function UploadForm({ onSubmit, isSubmitting, error }: UploadFormProps) {
 
         {images.length > 0 && (
           <div className="space-y-3">
-            <ImageCarousel files={images} />
+            <LocalImageCarousel files={images} />
             <button
               type="button"
               onClick={clearImages}

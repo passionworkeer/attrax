@@ -59,12 +59,6 @@ _CACHE_TTL_SECS = 300  # 5 minutes
 _CACHE_MAX_SIZE = 500
 
 
-def _cache_key(query: str, region: str, product_category: str, top_k: int) -> str:
-    """Stable cache key from query parameters."""
-    raw = f"{query}|{region}|{product_category}|{top_k}"
-    return hashlib.md5(raw.encode()).hexdigest()
-
-
 def _cache_key_v2(
     query: str,
     region: str,
@@ -167,6 +161,28 @@ def _cache_set(key: str, results: list) -> None:
             _RETRIEVAL_CACHE.popitem(last=False)
 
 
+def _dense_weight() -> float:
+    """Read the dense-vs-BM25 fusion weight from the environment.
+
+    ``RAG_DENSE_WEIGHT`` (default 1.0) multiplies the dense contribution
+    in RRF fusion. Kept as a runtime knob so eval can rebalance without
+    code changes; the default preserves the historical equal-weight
+    behavior. Invalid values fall back to 1.0 with a warning.
+    """
+    raw = os.environ.get("RAG_DENSE_WEIGHT", "").strip()
+    if not raw:
+        return 1.0
+    try:
+        value = float(raw)
+    except ValueError:
+        logger.warning(f"Invalid RAG_DENSE_WEIGHT={raw!r}, using default 1.0")
+        return 1.0
+    if value < 0:
+        logger.warning(f"Negative RAG_DENSE_WEIGHT={value}, clamping to 0.0")
+        return 0.0
+    return value
+
+
 def _probe_embedders():
     """
     Embedder probing.
@@ -225,10 +241,24 @@ class HybridRetriever:
         self._chunks_loaded = False
         self._embedder = None
 
+        # A (high-risk) public contract: expose the active embedder name on
+        # the instance so callers (main.py) can read ``retriever.embedder_name``
+        # instead of reflecting into the module-private ``_embedder_name``.
+        # Initialised to the module-level default; updated when the lazy
+        # ``embedder`` property first probes the embedder.
+        self.embedder_name: str = _embedder_name
+
         # ─── P0-2 fail-loud: dimension mismatch metrics ─────────────────────
         # Track mismatch as an exposed metric so the silent-degradation failure
         # mode is visible. Dense silently degrading to BM25 was a P0 issue:
         # callers had no signal that dense retrieval was disabled.
+        # E (high-risk): the counter is bumped from inside the parallel dense
+        # branch of retrieve(), which LangGraph's Send() fan-out runs
+        # concurrently across markets. A bare ``+= 1`` loses updates under
+        # that concurrency, so the increment is guarded by a lock. The
+        # instance attribute itself stays a plain int (contract with
+        # main.py's ``getattr(retriever, 'dense_dim_mismatch_count', 0)``).
+        self._dim_mismatch_lock = threading.Lock()
         self.dense_dim_mismatch_count: int = 0
         self.dense_dim_mismatch_last: dict | None = None
 
@@ -285,6 +315,10 @@ class HybridRetriever:
         """Lazy-load embedder on first use."""
         if self._embedder is None:
             self._embedder, name = _probe_embedders()
+            # Mirror the resolved name onto the public attribute so callers
+            # that read ``retriever.embedder_name`` (R3 contract) see the
+            # post-probe value, not the pre-probe default.
+            self.embedder_name = name
             logger.info(f"HybridRetriever embedder: {name}")
         return self._embedder
 
@@ -316,11 +350,17 @@ class HybridRetriever:
             # causing dense retrieval to silently degrade to BM25-only. Surface
             # the failure loudly (ERROR level) and bump an exposed counter so
             # operators / health endpoints can detect the mismatch.
-            self.dense_dim_mismatch_count += 1
-            self.dense_dim_mismatch_last = {
-                "embedder_dim": ed_dim,
-                "faiss_dim": fs_dim,
-            }
+            # E (high-risk): lock-guarded increment — _dense_search runs inside
+            # the parallel branch of retrieve(), so under LangGraph Send()
+            # fan-out multiple markets can hit this path at once. A bare
+            # ``+= 1`` would lose updates under that concurrency.
+            with self._dim_mismatch_lock:
+                self.dense_dim_mismatch_count += 1
+                current_count = self.dense_dim_mismatch_count
+                self.dense_dim_mismatch_last = {
+                    "embedder_dim": ed_dim,
+                    "faiss_dim": fs_dim,
+                }
             logger.error(
                 "FAISS dense retrieval DISABLED: dimension mismatch "
                 "(embedder=%d, faiss=%d). This was previously a silent "
@@ -328,7 +368,7 @@ class HybridRetriever:
                 "production embedder dim, or switch embedder. Mismatch #%d.",
                 ed_dim,
                 fs_dim,
-                self.dense_dim_mismatch_count,
+                current_count,
             )
             return []
 
@@ -442,7 +482,13 @@ class HybridRetriever:
 
         # RRF fusion
         if dense_results or bm25_results:
-            fused = rrf_fuse(dense_results, bm25_results, k=25, top_k=top_k * 2)
+            fused = rrf_fuse(
+                dense_results,
+                bm25_results,
+                k=25,
+                top_k=top_k * 2,
+                dense_weight=_dense_weight(),
+            )
         else:
             fused = []
 

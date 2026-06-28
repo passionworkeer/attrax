@@ -87,6 +87,55 @@ def get_must_check_regulations(category: str) -> list[dict]:
     return CATEGORY_REGULATIONS.get(category.lower(), [])
 
 
+def _find_matching_chunk(mc: dict, all_chunks: list[dict]) -> dict | None:
+    """Find the best chunk for a must-check entry using precise fields.
+
+    Previous logic did substring matching on ``doc_name`` (and even matched
+    ``doc_name.split()[0]``), which caused false positives — e.g. ``RoHS``
+    matching any document whose name started with ``RoHS`` regardless of
+    market. This prefers, in order:
+
+      1. Exact ``source_id`` match (most reliable when chunks carry it).
+      2. Exact ``doc_name`` match (case-insensitive, equality not substring).
+      3. ``source_file`` basename match.
+      4. Containment fallback: chunk doc_name contains the target doc_name
+         AND region matches. Only triggered when the target carries a
+         region, so cross-market false positives are prevented.
+
+    Returns the first matching chunk, or ``None``.
+    """
+    target_doc = mc.get("doc_name", "").strip().lower()
+    target_sid = str(mc.get("source_id", "")).strip()
+    target_file = str(mc.get("source_file", "")).strip().lower()
+    target_region = str(mc.get("region", "")).strip().lower()
+
+    if target_sid:
+        for c in all_chunks:
+            if str(c.get("source_id", "")).strip() == target_sid:
+                return c
+    if target_doc:
+        for c in all_chunks:
+            if str(c.get("doc_name", "")).strip().lower() == target_doc:
+                return c
+    if target_file:
+        for c in all_chunks:
+            cfile = str(c.get("source_file", "")).strip().lower()
+            if cfile and (
+                cfile == target_file
+                or cfile.endswith("/" + target_file)
+                or cfile.endswith("\\" + target_file)
+            ):
+                return c
+    # Containment fallback (region-scoped to prevent cross-market false hits).
+    if target_doc and target_region:
+        for c in all_chunks:
+            c_doc = str(c.get("doc_name", "")).strip().lower()
+            c_region = str(c.get("region", "")).strip().lower()
+            if c_doc and c_region == target_region and target_doc in c_doc:
+                return c
+    return None
+
+
 def apply_must_check(
     results: list[dict],
     category: str,
@@ -95,46 +144,71 @@ def apply_must_check(
     """
     Inject must-check regulations into results if not already present.
 
+    Matching is precise (source_id / exact doc_name / source_file, with a
+    region-scoped containment fallback). Injected items are tagged
+    ``is_must_check=True`` and interleaved into the existing RRF ranking
+    instead of being force-prepended, so a high-scoring retrieval result
+    is not demoted below a must-check item that is merely "also relevant".
+    The injection still guarantees coverage: any must-check doc missing
+    from the result set is added, preserving the must-check semantics.
+
+    Immutability: inputs are not mutated; a new list is returned.
+
     Args:
-        results: current retrieval results
+        results: current retrieval results (sorted by rrf_score desc)
         category: product category
         all_chunks: full chunk list for lookups
 
     Returns:
-        Modified results with must-check items injected (with score boost)
+        New list with must-check items merged in. Capped at 50 entries.
     """
     must_checks = get_must_check_regulations(category)
     if not must_checks:
-        return results
+        return list(results)
 
-    existing_doc_names = {r.get("doc_name", "") for r in results}
+    existing_doc_names = {
+        str(r.get("doc_name", "")).strip().lower()
+        for r in results
+        if r.get("doc_name")
+    }
 
-    injected = []
+    injected: list[dict] = []
     for mc in must_checks:
         doc_name = mc["doc_name"]
-        if doc_name in existing_doc_names:
+        if doc_name.strip().lower() in existing_doc_names:
             continue
 
-        # Find matching chunks in all_chunks
-        matching = [
-            c for c in all_chunks
-            if doc_name.lower() in c.get("doc_name", "").lower()
-            or doc_name.split()[0].lower() in c.get("doc_name", "").lower()
-        ]
+        top = _find_matching_chunk(mc, all_chunks)
+        if top is None:
+            continue
 
-        if matching:
-            top = matching[0]
-            injected.append({
-                "id": f"must_check_{doc_name}",
-                "score": 0.95,  # High priority score
-                "content": top.get("content", ""),
-                "doc_name": doc_name,
-                "article_no": top.get("article_no", ""),
-                "region": mc["region"],
-                "is_must_check": True,
-                "must_check_reason": mc["reason"],
-            })
+        injected.append({
+            "id": f"must_check_{doc_name}",
+            # Injection score sits above typical RRF scores (max ~0.08) so
+            # the item is guaranteed to surface, but interleaving means a
+            # strongly-retrieved chunk with rrf_score>0.5 still ranks above
+            # a borderline must-check item.
+            "rrf_score": 0.5,
+            "score": 0.5,
+            "content": top.get("content", ""),
+            "doc_name": doc_name,
+            "article_no": top.get("article_no", ""),
+            "region": mc["region"],
+            "source_id": top.get("source_id", ""),
+            "is_must_check": True,
+            "must_check_reason": mc["reason"],
+        })
 
-    # Merge: must-check items first, then existing results
-    combined = injected + results
+    if not injected:
+        # Preserve the historical 50-cap even when nothing was injected.
+        return list(results)[:50]
+
+    # Interleave by score (stable sort preserves existing ordering among
+    # ties, so the original retrieval ranking is not reshuffled beyond
+    # the insertion points).
+    combined = sorted(
+        list(results) + injected,
+        key=lambda r: r.get("rrf_score", r.get("score", 0.0)),
+        reverse=True,
+    )
     return combined[:50]

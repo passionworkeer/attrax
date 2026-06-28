@@ -203,9 +203,20 @@ export async function runScan(sessionId: string, input: RunScanInput) {
         );
       });
 
+      // Shared-secret auth: when RAG_INTERNAL_SECRET is configured (matches
+      // the same-named env on the RAG service), send the X-Internal-Secret
+      // header so the RAG service authorizes the write. Unset → header
+      // omitted, RAG service stays in open (local/dev) mode.
+      const internalSecret = process.env.RAG_INTERNAL_SECRET;
+      const scanHeaders: Record<string, string> = {};
+      if (internalSecret) {
+        scanHeaders["X-Internal-Secret"] = internalSecret;
+      }
+
       resp = await fetch(`${RAG_SERVICE_URL}/scan-multipart`, {
         method: "POST",
         body: formData,
+        headers: scanHeaders,
         signal: controller.signal,
       });
     } finally {
@@ -225,7 +236,11 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     }
     ragResponse = parsed.data as RagServiceResponse;
   } catch (err: unknown) {
-    // rag-service unavailable — degrade gracefully to mock
+    // rag-service unavailable — degrade gracefully to mock. IMPORTANT: we mark
+    // the session `degraded` (NOT `ready`) so downstream UI can distinguish a
+    // real pass from a fallback. The result field is still populated with demo
+    // data so the page renders something, but `result.source === "fallback"`
+    // and `degradedReason` carries the error code.
     const isTimeout = err instanceof Error && err.name === "AbortError";
     const detail = err instanceof Error ? err.message : String(err);
     const errorCode = isTimeout
@@ -239,7 +254,8 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       stageText: isTimeout ? stages.backendTimeout : stages.backendUnavailable,
     });
     updateSession(sessionId, {
-      status: "ready",
+      status: "degraded",
+      degradedReason: errorCode,
       progress: 100,
       stageText: stages.demoResultGenerated,
       result: { ...createMockComplianceReportResult(sessionId), source: "fallback" },
@@ -251,7 +267,7 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       ts: new Date().toISOString(),
       event: "scan_completed",
       sessionId,
-      status: "ready",
+      status: "degraded",
       error: errorCode,
     });
     return;
@@ -287,16 +303,41 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       ? reportPackage.compliance_report_en
       : undefined;
 
+  // Pull a real compliance score out of the audit metadata if the RAG backend
+  // provided one; otherwise fall back to a status-derived heuristic. The
+  // heuristic is NOT the model's actual judgment — callers must not treat it
+  // as a calibrated score (see reportPackage.auditMetadata for ground truth).
+  const auditMeta = reportPackage?.auditMetadata as Record<string, unknown> | undefined;
+  const rawScore =
+    typeof auditMeta?.complianceScore === "number"
+      ? auditMeta.complianceScore
+      : typeof auditMeta?.compliance_score === "number"
+        ? auditMeta.compliance_score
+        : undefined;
+  const rawGrade =
+    typeof auditMeta?.scoreGrade === "string"
+      ? auditMeta.scoreGrade
+      : typeof auditMeta?.score_grade === "string"
+        ? auditMeta.score_grade
+        : undefined;
+  const isGrade = (v: unknown): v is "A" | "B" | "C" | "D" =>
+    v === "A" || v === "B" || v === "C" || v === "D";
+  // Heuristic fallback — clearly marked; real score comes from RAG auditMetadata.
+  const heuristicScore =
+    ragResponse.status === "PASS" ? 85 : ragResponse.status === "WARN" ? 55 : 25;
+  const heuristicGrade =
+    ragResponse.status === "PASS" ? "B" : ragResponse.status === "WARN" ? "C" : "D";
+  const complianceScore = rawScore ?? heuristicScore;
+  const scoreGrade = isGrade(rawGrade) ? rawGrade : heuristicGrade;
+
   const complianceReport: ComplianceReportResult = {
     sessionId,
     scanTime: new Date().toISOString(),
     productCategory: category,
     productName: input.query,
     targetMarkets: markets,
-    complianceScore:
-      ragResponse.status === "PASS" ? 85 : ragResponse.status === "WARN" ? 55 : 25,
-    scoreGrade:
-      ragResponse.status === "PASS" ? "B" : ragResponse.status === "WARN" ? "C" : "D",
+    complianceScore,
+    scoreGrade,
     complianceReport: packageComplianceReport ?? ragResponse.report,
     complianceReportEn: packageComplianceReportEn,
     complianceStatus: ragResponse.status,
@@ -314,7 +355,18 @@ export async function runScan(sessionId: string, input: RunScanInput) {
     riskPoints: undefined,
     checklist: undefined,
     generatedAt: new Date().toISOString(),
-    modelInfo: { ragProvider: "cohere-anthropic", latencyMs: 0 },
+    // ragProvider reflects the actual LLM in use (MiniMax-M3 via Anthropic-
+    // compatible endpoint). latencyMs is taken from auditMetadata when present;
+    // 0 is a placeholder, not a real measurement.
+    modelInfo: {
+      ragProvider: "MiniMax-M3",
+      latencyMs:
+        typeof auditMeta?.latencyMs === "number"
+          ? auditMeta.latencyMs
+          : typeof auditMeta?.latency_ms === "number"
+            ? auditMeta.latency_ms
+            : 0,
+    },
     source: "real",
     reportPackage,
   };
@@ -340,9 +392,17 @@ export async function runScan(sessionId: string, input: RunScanInput) {
       let profitResp: Response;
 
       try {
+        const profitHeaders: Record<string, string> = {
+          "Content-Type": "application/json",
+        };
+        // Same shared-secret mechanism as the /scan-multipart call above.
+        const internalSecret = process.env.RAG_INTERNAL_SECRET;
+        if (internalSecret) {
+          profitHeaders["X-Internal-Secret"] = internalSecret;
+        }
         profitResp = await fetch(`${RAG_SERVICE_URL}/profit-report`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: profitHeaders,
           body: JSON.stringify({
             product: category,
             category,

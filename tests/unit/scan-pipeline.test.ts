@@ -67,7 +67,11 @@ describe('Scan Pipeline', () => {
       })
 
       const session = getSession(sessionId)
-      expect(session?.status).toBe('ready')
+      // RAG unreachable -> session is `degraded` (NOT `ready`). The result is
+      // still populated (fallback demo data) so the page renders, but the
+      // status flag lets UI distinguish a real pass from a fallback.
+      expect(session?.status).toBe('degraded')
+      expect(session?.degradedReason).toBe('RAG_SERVICE_UNAVAILABLE')
       expect(session?.result).toBeDefined()
       expect(session?.profitReport).toBeDefined()
     })
@@ -85,7 +89,8 @@ describe('Scan Pipeline', () => {
       })
 
       const session = getSession(sessionId)
-      expect(session?.status).toBe('ready')
+      expect(session?.status).toBe('degraded')
+      expect(session?.degradedReason).toBe('RAG_SERVICE_UNAVAILABLE')
       expect(session?.error).toBe('RAG_SERVICE_UNAVAILABLE')
       expect(session?.result).toBeDefined()
     })
@@ -116,8 +121,31 @@ describe('Scan Pipeline', () => {
       await scanPromise
 
       const session = getSession(sessionId)
-      expect(session?.status).toBe('ready')
-      expect(session?.error).toBe('RAG_SERVICE_TIMEOUT')
+      expect(session?.status).toBe('degraded')
+      expect(session?.degradedReason).toBe('RAG_SERVICE_TIMEOUT')
+    })
+
+    it('marks session as degraded (not ready) and tags source=fallback on RAG 5xx', async () => {
+      vi.spyOn(global, 'fetch').mockResolvedValueOnce(new Response('server error', { status: 500 }))
+
+      const sessionId = 'test_degraded_contract'
+      createSession(sessionId)
+
+      await runScan(sessionId, {
+        images: [{ buffer: Buffer.from('fake'), originalName: 'test.jpg', mimeType: 'image/jpeg' }],
+        category: 'electronics',
+        markets: ['EU'],
+      })
+
+      const session = getSession(sessionId)
+      // Contract: degraded is distinct from ready so UI can warn the user the
+      // result is fallback data, not a real pass.
+      expect(session?.status).toBe('degraded')
+      expect(session?.status).not.toBe('ready')
+      expect(session?.degradedReason).toBe('RAG_SERVICE_UNAVAILABLE')
+      expect(session?.result).toBeDefined()
+      expect((session?.result as { source?: string })?.source).toBe('fallback')
+      expect(session?.profitReport).toBeDefined()
     })
 
     it('maps PASS status to ready session', async () => {

@@ -11,6 +11,30 @@ import { enrichRegulation, daysUntil, riskRank, searchableText } from "./utils";
 // threshold used by the sort.
 const CACHE_REVALIDATE_SECONDS = 300;
 
+// Upper bound for the search cache key. The slice that lands in the cache is
+// static-demo data, so any non-empty query only narrows results — long or
+// junk queries never increase the result set. Capping at 64 chars (after
+// whitespace collapse + lowercase) keeps attackers from inflating the cache
+// with millions of near-duplicate random strings (cache-poisoning DoS).
+const SEARCH_KEY_MAX_LEN = 64;
+
+/**
+ * Normalize a raw search string into a stable cache-key component.
+ *
+ * - trim + collapse internal whitespace so "foo  bar" and "foo bar" share a slot
+ * - lowercase so "Foo" and "foo" share a slot (the search itself is case-insensitive)
+ * - cap length so an attacker cannot fan out the cache by appending noise
+ *
+ * Returns null for empty/whitespace-only input — the cache then keys on the
+ * absence of search, not on its (irrelevant) value.
+ */
+function normalizeSearchKey(search: string | null): string | null {
+  if (!search) return null;
+  const collapsed = search.trim().replace(/\s+/g, " ").toLowerCase();
+  if (!collapsed) return null;
+  return collapsed.slice(0, SEARCH_KEY_MAX_LEN);
+}
+
 const getFilteredRegulations = unstable_cache(
   async (market: string | null, search: string | null, limit: number) => {
     let filtered = [...regulationUpdates];
@@ -77,7 +101,12 @@ export async function GET(request: NextRequest) {
   const limit = Math.min(parseInt(searchParams.get("limit") || "50", 10), 100);
 
   try {
-    const cached = await getFilteredRegulations(market, search, limit);
+    // Pass the NORMALIZED search as the cache-key component so junk queries
+    // (random long strings, casing variants, extra whitespace) cannot fan out
+    // the cache into millions of entries. The filtering inside the cached
+    // closure still uses the normalized value — semantics are unchanged
+    // because the filter is `searchableText(...).includes(normalizedLower)`.
+    const cached = await getFilteredRegulations(market, normalizeSearchKey(search), limit);
     return ok({
       data: cached.data,
       meta: {

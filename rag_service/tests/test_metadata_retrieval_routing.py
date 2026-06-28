@@ -148,3 +148,38 @@ def test_bm25_indexes_doc_name_and_source_metadata_for_short_official_docs():
     results = bm25.search("toy safety directive", top_k=2)
 
     assert results[0]["source_id"] == "eu-2009-48-toy-safety"
+
+
+# ---------------------------------------------------------------------------
+# Region alias regression (added with the metadata_filter.py region fix)
+# ---------------------------------------------------------------------------
+
+def test_region_alias_gcc_satisfies_sa_query():
+    """A GCC-tagged chunk must satisfy a SA region filter (regression).
+
+    Previously strict equality on region excluded the entire Gulf corpus
+    from Saudi Arabia queries, dropping core G-Mark / GCC regulations
+    out of every SA-typed retrieval.
+    """
+    chunk = {"id": "gcc-1", "region": "GCC", "doc_name": "G-Mark"}
+    assert chunk_matches(chunk, region="SA") is True
+    assert filter_chunks([chunk], region="SA") == [chunk]
+
+
+def test_region_alias_intl_satisfies_any_market():
+    """International reference corpora satisfy any market filter."""
+    for market in ("EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"):
+        chunk = {"id": "wipo-1", "region": "WIPO"}
+        assert chunk_matches(chunk, region=market) is True, f"failed for market={market}"
+
+
+def test_region_strict_match_still_preferred():
+    """When both exact and alias matches could apply, exact-tagged chunks pass."""
+    chunk = {"id": "sa-1", "region": "SA"}
+    assert chunk_matches(chunk, region="SA") is True
+
+
+def test_region_unrelated_does_not_match():
+    """A US chunk must NOT satisfy a JP query (no alias path)."""
+    chunk = {"id": "us-1", "region": "US"}
+    assert chunk_matches(chunk, region="JP") is False

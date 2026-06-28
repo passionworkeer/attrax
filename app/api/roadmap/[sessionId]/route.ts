@@ -4,9 +4,29 @@ import { ok, fail } from "@/lib/api-response";
 import { requireSessionAccess } from "@/app/api/session-access";
 import { SessionIdSchema } from "@/lib/schemas";
 import { englishText } from "@/lib/report-localization";
-import type { ReportPackage } from "@/lib/types";
+import type { ComplianceReportResult, ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
+
+/**
+ * Field subset of `session.result` consumed by this route. Includes both
+ * ComplianceReportResult fields and snake_case / alternative names that the
+ * RAG service may emit (product_name_en, product_name) so we avoid per-site
+ * `as` casts. Every field is optional because session.result can also be a
+ * ScanResult (different shape) — the route degrades to safe defaults.
+ */
+type RoadmapResult = Pick<
+  ComplianceReportResult,
+  "productName" | "productNameEn" | "targetMarkets" | "complianceScore" | "complianceStatus" | "reportPackage"
+> & {
+  product?: string;
+  productNameEn?: string;
+  product_name_en?: string;
+  product_name?: string;
+  target_markets?: string[];
+  compliance_status?: string;
+  report_package?: ReportPackage;
+};
 
 export async function GET(
   request: Request,
@@ -32,7 +52,9 @@ export async function GET(
   const denied = requireSessionAccess(request, session);
   if (denied) return denied;
 
-  const result = session.result;
+  // Narrow once to the field subset this route reads; per-site reads below no
+  // longer need `as` casts.
+  const result = session.result as Partial<RoadmapResult> | undefined;
   if (!result) {
     return fail(
       { code: "NOT_READY", message: serverT("errors.resultNotReady", "zh") },
@@ -40,21 +62,17 @@ export async function GET(
     );
   }
 
-  // Extract product and market info
-  const product = (result as { productName?: string; product?: string }).productName
-    || (result as { product?: string }).product
-    || "产品";
+  // Extract product and market info (camelCase first, snake_case fallback)
+  const product = result.productName ?? result.product_name ?? result.product ?? "产品";
   const productEn = englishText(
-    (result as { productNameEn?: string; product_name_en?: string; product?: string }).productNameEn
-      || (result as { product_name_en?: string }).product_name_en
-      || product,
+    result.productNameEn ?? result.product_name_en ?? result.product ?? product,
     "this product"
   );
-  const targetMarkets = (result as { targetMarkets?: string[] }).targetMarkets || ["EU"];
-  const complianceScore = (result as { complianceScore?: number }).complianceScore || 85;
+  const targetMarkets = result.targetMarkets ?? result.target_markets ?? ["EU"];
+  const complianceScore = result.complianceScore ?? 85;
 
   // Determine compliance status and generate roadmap items
-  const complianceStatus = (result as { complianceStatus?: string }).complianceStatus || "UNKNOWN";
+  const complianceStatus = result.complianceStatus ?? result.compliance_status ?? "UNKNOWN";
   const packagedRoadmap = _getReportPackage(result)?.roadmap;
 
   if (packagedRoadmap?.items?.length) {

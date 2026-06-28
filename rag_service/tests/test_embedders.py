@@ -118,7 +118,6 @@ def test_probe_embedders_uses_modelscope_api_only(monkeypatch):
     monkeypatch.setenv("MODELSCOPE_API_KEY", "test-key")
 
     with patch("rag_service.retrieval.ollama_embedder.OllamaEmbedder") as ollama_cls, \
-         patch("rag_service.retrieval.local_embedder.LocalEmbedder") as local_cls, \
          patch("rag_service.retrieval.modelScope_embedder.ModelScopeEmbedder") as modelscope_cls:
         modelscope_instance = MagicMock()
         modelscope_cls.return_value = modelscope_instance
@@ -128,7 +127,6 @@ def test_probe_embedders_uses_modelscope_api_only(monkeypatch):
     assert embedder is modelscope_instance
     assert name == "modelscope_api"
     ollama_cls.assert_not_called()
-    local_cls.assert_not_called()
 
 
 # ---------------------------------------------------------------------------
@@ -391,177 +389,10 @@ class TestOllamaEmbedderClass:
 
 
 # ---------------------------------------------------------------------------
-# LocalEmbedder tests
+# LocalEmbedder tests (removed — module was dead code; hybrid_retriever only
+# probes ModelScope + Ollama. LocalEmbedder was never imported by the live
+# retrieval path.)
 # ---------------------------------------------------------------------------
-
-class TestLocalEmbedder:
-    """Test LocalEmbedder with mocked transformers."""
-
-    def test_init_cpu(self):
-        """LocalEmbedder uses CPU when CUDA unavailable."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        with patch("torch.cuda.is_available", return_value=False):
-            embedder = LocalEmbedder()
-        assert embedder.device == "cpu"
-        assert embedder.max_batch == 16
-
-    def test_init_explicit_device(self):
-        """LocalEmbedder uses explicit device when provided."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        with patch.object(LocalEmbedder, "_load"):
-            embedder = LocalEmbedder(device="cpu", max_batch=8)
-        assert embedder.device == "cpu"
-        assert embedder.max_batch == 8
-
-    def test_model_property_lazy_loads(self):
-        """model property calls _load on first access."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        with patch.object(LocalEmbedder, "_load"):
-            embedder = LocalEmbedder()
-            embedder._model = None
-            embedder._tokenizer = None
-            _ = embedder.model
-            # _load was called (it tries to import transformers)
-            # We just verify no crash; the actual call goes through
-
-    def test_model_property_cached(self):
-        """model property calls _load which sets _model, and caches it."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        mock_tok = MagicMock()
-        mock_mod = MagicMock()
-        # Mock _load to set _model/_tokenizer without calling real transformers
-        def fake_load(self):
-            self._tokenizer = mock_tok
-            self._model = mock_mod
-        embedder = LocalEmbedder(device="cpu")
-        # Replace _load with our fake
-        embedder._load = lambda: fake_load(embedder)
-        # First access triggers _load
-        first = embedder.model
-        assert first is mock_mod
-        # Second access returns same cached object
-        second = embedder.model
-        assert second is mock_mod
-        assert embedder._model is mock_mod
-        assert embedder._tokenizer is mock_tok
-
-    def test_embed_texts_empty(self):
-        """embed_texts returns [] for empty list without calling model."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        embedder = LocalEmbedder(device="cpu")
-        with patch.object(embedder, "_load"):
-            embedder._model = MagicMock()
-            embedder._tokenizer = MagicMock()
-            result = embedder.embed_texts([])
-        assert result == []
-
-    def test_embed_texts_single(self):
-        """embed_texts normalizes output vectors."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        embedder = LocalEmbedder(device="cpu", max_batch=4)
-
-        mock_tokenizer = MagicMock()
-        hidden_np = np.random.randn(1, 5, 768).astype(np.float32)
-        hidden = torch.from_numpy(hidden_np)
-        mask_np = np.ones((1, 5), dtype=np.float32)
-        mask = torch.from_numpy(mask_np)
-        mock_output = MagicMock()
-        mock_output.last_hidden_state = hidden
-        mock_model = MagicMock(return_value=mock_output)
-        mock_tokenizer.return_value = {
-            "input_ids": torch.zeros(1, 5, dtype=torch.long),
-            "attention_mask": mask,
-        }
-
-        with patch.object(embedder, "_load"):
-            embedder._model = mock_model
-            embedder._tokenizer = mock_tokenizer
-            with patch("torch.nn.functional.normalize") as mock_norm:
-                # Return a unit-normalized tensor
-                mock_norm.return_value = torch.ones(1, 768)
-                result = embedder.embed_texts(["hello"])
-
-        assert isinstance(result, list)
-        assert len(result) == 1
-
-    def test_embed_query_single(self):
-        """embed_query returns a single vector."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        embedder = LocalEmbedder(device="cpu", max_batch=4)
-
-        hidden_np = np.random.randn(1, 5, 768).astype(np.float32)
-        hidden = torch.from_numpy(hidden_np)
-        mask_np = np.ones((1, 5), dtype=np.float32)
-        mask = torch.from_numpy(mask_np)
-        mock_output = MagicMock()
-        mock_output.last_hidden_state = hidden
-        mock_model = MagicMock(return_value=mock_output)
-        mock_tokenizer = MagicMock()
-        mock_tokenizer.return_value = {
-            "input_ids": torch.zeros(1, 5, dtype=torch.long),
-            "attention_mask": mask,
-        }
-
-        with patch.object(embedder, "_load"):
-            embedder._model = mock_model
-            embedder._tokenizer = mock_tokenizer
-            with patch("torch.nn.functional.normalize") as mock_norm:
-                mock_norm.return_value = torch.ones(1, 768)
-                result = embedder.embed_query("what is RoHS?")
-
-        assert isinstance(result, list)
-        assert len(result) == 768  # DIM from model
-
-    def test_embed_batch_passes_batch_size(self):
-        """embed_batch respects batch_size parameter."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        embedder = LocalEmbedder(device="cpu", max_batch=4)
-
-        hidden_np = np.random.randn(2, 5, 768).astype(np.float32)
-        hidden = torch.from_numpy(hidden_np)
-        mask_np = np.ones((2, 5), dtype=np.float32)
-        mask = torch.from_numpy(mask_np)
-        mock_output = MagicMock()
-        mock_output.last_hidden_state = hidden
-        mock_model = MagicMock(return_value=mock_output)
-        mock_tokenizer = MagicMock()
-        mock_tokenizer.return_value = {
-            "input_ids": torch.zeros(2, 5, dtype=torch.long),
-            "attention_mask": mask,
-        }
-
-        with patch.object(embedder, "_load"):
-            embedder._model = mock_model
-            embedder._tokenizer = mock_tokenizer
-            with patch("torch.nn.functional.normalize") as mock_norm:
-                mock_norm.return_value = torch.ones(2, 768)
-                result = embedder.embed_batch(["a", "b", "c", "d"],
-                                              batch_size=2)
-        assert len(result) == 4
-
-    def test_mean_pooling_output_correct(self):
-        """Mean pooling returns correct average over non-padding tokens."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        embedder = LocalEmbedder(device="cpu")
-        # All-ones hidden, mask [1,1,1,1,0,0,0,0,0,0] means only first 4 tokens count
-        hidden = torch.ones(1, 10, 4)
-        mask = torch.tensor([[1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]])
-        result = embedder._mean_pooling(hidden, mask)
-        # Average of first 4 tokens (each = [1,1,1,1]) → [1,1,1,1]
-        expected = np.ones((1, 4))
-        np.testing.assert_array_almost_equal(result.numpy(), expected)
-
-    def test_mean_pooling_handles_mask_correctly(self):
-        """Mean pooling ignores padding tokens."""
-        from rag_service.retrieval.local_embedder import LocalEmbedder
-        embedder = LocalEmbedder(device="cpu")
-        # hidden: 2 tokens, all 1s; mask: [1,0] means only first token counts
-        hidden = torch.ones(1, 2, 4)
-        mask = torch.tensor([[1.0, 0.0]])
-        result = embedder._mean_pooling(hidden, mask)
-        # Average of first token only: [1,1,1,1]
-        np.testing.assert_array_almost_equal(
-            result.numpy(), np.ones((1, 4)))
 
 
 # ---------------------------------------------------------------------------
@@ -740,7 +571,14 @@ class TestModelScopeEmbedderClass:
         assert len(call_kwargs["input"]) == MAX_TEXT_LEN
 
     def test_embed_query_with_rate_limit(self):
-        """embed_query respects rate limit before calling API."""
+        """embed_query reserves a rate-limit slot before calling the API.
+
+        B4: rate-limit is now invoked OUTSIDE the per-key lock and with NO
+        positional arg (the burst interval comes from ``_burst_interval`` /
+        the env, not a call-site parameter). The previous test asserted
+        ``_rate_limit(2.0)`` which encoded the old (self-DoS) call pattern;
+        it is updated here to reflect the corrected, quota-correct flow.
+        """
         from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
         embedder = ModelScopeEmbedder(api_key="k")
         mock_client = MagicMock()
@@ -751,42 +589,45 @@ class TestModelScopeEmbedderClass:
         embedder._last_call = time.monotonic()
         with patch.object(embedder, "_rate_limit") as mock_rl:
             result = embedder.embed_query("hello")
-            mock_rl.assert_called_once_with(2.0)
+            # B4: called exactly once, no positional min_interval arg.
+            mock_rl.assert_called_once_with()
         assert result == [0.5, 0.5]
 
     def test_embed_batch_mixed_success_failure(self):
-        """embed_batch returns DIM-length zero vector for permanently-failed chunks."""
+        """embed_batch returns DIM-length zero vector for a permanently-failed batch.
+
+        Note (B4): embed_batch routes through ``_call_api_batch`` (not
+        ``_call_api``); the mock target is updated accordingly. With
+        ``batch_size=50`` (default), the entire input is sent in a single
+        API call, so a server-side failure zero-fills the whole batch.
+        """
         from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder, DIM
         embedder = ModelScopeEmbedder(api_key="k")
-        # Mock _call_api: first call succeeds, second raises exception
-        call_results = [
-            [0.1, 0.2],               # ok_text → succeeds
-            Exception("server error"),  # fail_text → permanently fails → zero-fill
-        ]
-        call_iter = iter(call_results)
 
-        def mock_call(text):
-            val = next(call_iter)
-            if isinstance(val, Exception):
-                raise val
-            return val
+        def mock_batch(texts):
+            raise Exception("server error")
 
-        with patch.object(embedder, "_call_api", side_effect=mock_call), \
+        with patch.object(embedder, "_call_api_batch", side_effect=mock_batch), \
              patch.object(embedder, "_rate_limit"), \
              patch("rag_service.retrieval.modelScope_embedder.time.monotonic",
                    side_effect=[0.0, 0.5, 1.0, 1.5, 2.0]):
             result = embedder.embed_batch(["ok_text", "fail_text"])
         assert len(result) == 2
-        assert result[0] == [0.1, 0.2]
-        # Exception caught → zero-filled with DIM-length vector
+        # Whole batch failed → both zero-filled with DIM-length vector.
+        assert result[0] == [0.0] * DIM
         assert result[1] == [0.0] * DIM
 
     def test_embed_batch_all_success(self):
-        """embed_batch returns all vectors on full success."""
+        """embed_batch returns all vectors on full success.
+
+        Note (B4): embed_batch routes through ``_call_api_batch`` (not
+        ``_call_api``); the mock target is updated accordingly.
+        """
         from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
         embedder = ModelScopeEmbedder(api_key="k")
         mock_emb = [0.1, 0.2]
-        with patch.object(embedder, "_call_api", return_value=mock_emb), \
+        with patch.object(embedder, "_call_api_batch",
+                          return_value=[mock_emb, mock_emb]), \
              patch.object(embedder, "_rate_limit"):
             with patch("rag_service.retrieval.modelScope_embedder.time.monotonic",
                        side_effect=[0.0, 0.5, 1.0, 1.5, 2.0]):
@@ -838,3 +679,110 @@ class TestModelScopeEmbedderClass:
 
         assert result == []
         assert call_called is False
+
+
+# ---------------------------------------------------------------------------
+# B4 regression: rate-limit quota not multiplied by same-key concurrency
+# ---------------------------------------------------------------------------
+
+def test_embed_query_concurrent_same_key_consumes_one_quota_unit():
+    """B4: N concurrent embed_query calls for the SAME query must coalesce
+    into a single API call and consume exactly one rate-limit slot, not N.
+
+    Regression: previously the per-key lock wrapped both ``_rate_limit()``
+    and ``_call_api()``, so each same-key waiter ran its own rate-limit
+    check inside the holder cycle and each appended a timestamp. Under
+    multi-market LangGraph fan-out this multiplied the shared ~350/h quota
+    by the concurrency level, dropping hit_rate from 1.0 to ~0.3 once
+    concurrency exceeded ~5.
+
+    The fix moves rate-limit check/record OUTSIDE the per-key lock. This
+    test pins the contract by counting how many timestamps get appended to
+    ``_CALL_TIMESTAMPS`` when N threads race on the same query: it must be
+    exactly 1, not N.
+    """
+    import threading
+    from rag_service.retrieval import modelScope_embedder as ms_mod
+    from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
+
+    # Reset shared rate-limit state for an isolated measurement.
+    ms_mod._CALL_TIMESTAMPS.clear()
+    embedder = ModelScopeEmbedder(api_key="k")
+    mock_client = MagicMock()
+    mock_resp = MagicMock()
+    mock_resp.data = [MagicMock(embedding=[0.5, 0.5])]
+    mock_client.embeddings.create.return_value = mock_resp
+    embedder._client = mock_client
+
+    # Make the API call slightly slow so threads genuinely race on the
+    # per-key lock; without this the first thread completes before others
+    # start and the test would pass trivially.
+    def slow_create(*args, **kwargs):
+        time.sleep(0.05)
+        return mock_resp
+    mock_client.embeddings.create.side_effect = slow_create
+
+    # Also clear the query cache so every thread misses and races the lock.
+    ms_mod._QUERY_CACHE.clear()
+
+    N = 8
+    barrier = threading.Barrier(N)
+    results: list = []
+    results_lock = threading.Lock()
+
+    def worker():
+        barrier.wait()
+        r = embedder.embed_query("concurrent-same-key-query")
+        with results_lock:
+            results.append(r)
+
+    threads = [threading.Thread(target=worker) for _ in range(N)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join(timeout=10)
+
+    assert len(results) == N, "all threads must complete"
+    assert all(r == [0.5, 0.5] for r in results), "all threads got the embedding"
+    # B4 contract: the rate-limit quota is consumed exactly once for the
+    # coalesced same-key call, not N times.
+    assert len(ms_mod._CALL_TIMESTAMPS) == 1, (
+        f"B4 regression: same-key concurrency consumed "
+        f"{len(ms_mod._CALL_TIMESTAMPS)} quota units, expected 1"
+    )
+
+
+def test_embed_query_cache_hit_consumes_zero_quota():
+    """B4: a cache hit must NOT consume any rate-limit quota at all.
+
+    The fast-path cache lookup returns before ``_rate_limit()`` is ever
+    called, so repeated queries against an already-cached embedding are
+    effectively free. This test pins that behaviour so a future refactor
+    that accidentally moves the cache check below the rate-limit step is
+    caught.
+    """
+    from rag_service.retrieval import modelScope_embedder as ms_mod
+    from rag_service.retrieval.modelScope_embedder import ModelScopeEmbedder
+
+    ms_mod._CALL_TIMESTAMPS.clear()
+    embedder = ModelScopeEmbedder(api_key="k")
+    mock_client = MagicMock()
+    mock_resp = MagicMock()
+    mock_resp.data = [MagicMock(embedding=[0.7, 0.7])]
+    mock_client.embeddings.create.return_value = mock_resp
+    embedder._client = mock_client
+    ms_mod._QUERY_CACHE.clear()
+
+    # First call: cache miss → 1 API call, 1 quota unit.
+    r1 = embedder.embed_query("cached-query-text-xyz")
+    assert r1 == [0.7, 0.7]
+    quota_after_first = len(ms_mod._CALL_TIMESTAMPS)
+    assert quota_after_first == 1
+
+    # Second call: cache hit → 0 API calls, 0 additional quota units.
+    r2 = embedder.embed_query("cached-query-text-xyz")
+    assert r2 == [0.7, 0.7]
+    assert len(ms_mod._CALL_TIMESTAMPS) == quota_after_first, (
+        "cache hit must not consume rate-limit quota"
+    )
+    assert mock_client.embeddings.create.call_count == 1

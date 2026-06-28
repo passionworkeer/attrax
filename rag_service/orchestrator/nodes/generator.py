@@ -56,7 +56,15 @@ def set_generator(generator):
 
 
 def _get_generator():
-    """Get the report generator, preferring injected instances over lazy init."""
+    """Get the report generator, preferring injected instances over lazy init.
+
+    Lazy-init failure semantics: if lazy init fails (missing api_key or import
+    error) we mark _is_injected=True so subsequent calls short-circuit and
+    return None instead of retrying the import + constructor on every node
+    invocation. Rationale: the cause (env / config) won't change inside one
+    process lifetime, and re-attempting each call wastes time and re-logs the
+    same warning. Process restart re-runs set paths cleanly.
+    """
     global _generator_instance, _is_injected
     if _generator_instance is not None:
         return _generator_instance
@@ -69,10 +77,12 @@ def _get_generator():
 
         api_key = settings.mimotalk_api_key or None
         if not api_key:
+            _is_injected = True  # do not re-check env on every call
             return None
         _generator_instance = ReportGenerator(api_key=api_key)
     except Exception as e:
         logger.warning("Report generator lazy init failed: %s", e)
+        _is_injected = True  # do not retry failing import on subsequent calls
         return None
 
     return _generator_instance
@@ -144,7 +154,7 @@ def generator_node(state: GraphState) -> dict:
         report_package = {}
     else:
         try:
-            if getattr(generator, "supports_report_package", False) is True:
+            if getattr(generator, "supports_report_package", False):
                 report_package = generator.generate_report_package(
                     query=query,
                     product=product,

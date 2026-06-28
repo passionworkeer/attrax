@@ -18,6 +18,7 @@ import os
 import json
 import logging
 import re
+import hashlib
 from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
@@ -35,6 +36,92 @@ logger = logging.getLogger(__name__)
 PROCESSED_DIR = Path("data/corpus/processed")
 FAISS_DIR = Path(os.environ.get("FAISS_INDEX_DIR", "data/faiss"))
 BATCH_SIZE = 1
+
+# A (high-risk): parent chunks carry full Article/Section text used for LLM
+# context expansion (see FaissRetriever.expand_to_parent). Indexing them as
+# FAISS vectors used to double the on-disk index size for no retrieval
+# benefit — retrieval scores children and expands to parent via meta lookup,
+# never by dense similarity on the parent vector itself.
+#
+# ``INCLUDE_PARENT_IN_INDEX`` (default false) controls whether parent chunks
+# are added to the main FAISS IndexFlatIP. Parent metadata is ALWAYS written
+# to legal_chunks_meta.json regardless, so expand_to_parent keeps working.
+# Flip to "true" to restore the legacy behaviour (e.g. for an A/B comparison).
+INCLUDE_PARENT_IN_INDEX = os.environ.get(
+    "INCLUDE_PARENT_IN_INDEX", "false"
+).strip().lower() in ("1", "true", "yes", "on")
+
+# FAISS index backend. ``flat`` (default) keeps the long-running
+# IndexFlatIP path that the production index was built with; ``hnsw`` builds
+# an IndexHNSWFlat graph (M=32, efConstruction=200 defaults) for sub-linear
+# search. HNSW is opt-in because switching backends requires a full rebuild,
+# which burns ModelScope quota; the existing flat index stays load-bearing.
+# Defaults (env-overridable): FAISS_HNSW_M, FAISS_HNSW_EF_CONSTRUCTION,
+# FAISS_HNSW_EF_SEARCH (search-time, applied in faiss_retriever.load).
+
+
+def _build_index_backend(dim: int, faiss_module):
+    """Return a fresh FAISS index honouring ``FAISS_INDEX_TYPE``.
+
+    Both branches use L2-normalised vectors + inner product so the on-disk
+    format and search semantics stay compatible across flat/hnsw: ``search``
+    returns cosine-similarity scores regardless of backend.
+    """
+    index_type = os.environ.get("FAISS_INDEX_TYPE", "flat").strip().lower()
+    if index_type == "hnsw":
+        # Read live env so tests/CI can override per-invocation.
+        m = int(os.environ.get("FAISS_HNSW_M", "32"))
+        ef_construction = int(os.environ.get("FAISS_HNSW_EF_CONSTRUCTION", "200"))
+        index = faiss_module.IndexHNSWFlat(
+            dim, m, faiss_module.METRIC_INNER_PRODUCT
+        )
+        index.hnsw.efConstruction = ef_construction
+        logger.info(
+            f"Building HNSW index: M={m}, efConstruction={ef_construction}"
+        )
+        return index
+    if index_type != "flat":
+        logger.warning(
+            f"Unknown FAISS_INDEX_TYPE={index_type!r}, falling back to flat"
+        )
+    return faiss_module.IndexFlatIP(dim)
+
+# Per-chunk embed cache: lets build_faiss resume after a partial run without
+# re-embedding chunks that already succeeded. Keyed by a stable hash of
+# (embedder name, text) so changing embedders invalidates safely.
+EMBED_CACHE_PATH = FAISS_DIR / "embed_cache.json"
+# Reject the whole index when more than this fraction of chunks fail embedding,
+# so we never silently ship a poisoned index full of zero vectors.
+MAX_ZERO_VECTOR_FRACTION = 0.01
+
+
+def _embed_cache_key(embedder_name: str, text: str) -> str:
+    raw = f"{embedder_name}|{text}"
+    return hashlib.sha256(raw.encode("utf-8", errors="ignore")).hexdigest()
+
+
+def _load_embed_cache() -> dict:
+    try:
+        if EMBED_CACHE_PATH.exists():
+            with open(EMBED_CACHE_PATH, "r", encoding="utf-8") as f:
+                cache = json.load(f)
+            if isinstance(cache, dict):
+                return cache
+    except Exception as e:
+        logger.warning(f"Embed cache unreadable, starting fresh: {e}")
+    return {}
+
+
+def _save_embed_cache(cache: dict) -> None:
+    EMBED_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    tmp = EMBED_CACHE_PATH.with_suffix(".json.tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False)
+    os.replace(tmp, EMBED_CACHE_PATH)
+
+
+def _is_zero_vector(vec) -> bool:
+    return not vec or all(abs(float(x)) < 1e-9 for x in vec)
 
 
 def load_processed_files(processed_dir: Path = PROCESSED_DIR) -> list[dict]:
@@ -94,8 +181,36 @@ def _region_from_filename(filename: str) -> str:
     return head.upper() if head else ""
 
 
+def _inject_source_meta(chunk: dict, doc: dict) -> dict:
+    """Return a new chunk dict with source-file metadata attached (immutable)."""
+    meta = dict(doc.get("metadata", {}))
+    return {
+        **chunk,
+        "source_file": doc["file_name"],
+        "source_id": doc["doc_id"],
+        "metadata": meta,
+        "source_url": meta.get("source_url", ""),
+        "content_url": meta.get("content_url", ""),
+        "official_channel": meta.get("official_channel", ""),
+        "product_categories": (
+            meta.get("product_categories") or meta.get("productCategories") or []
+        ),
+        "regulatory_types": (
+            meta.get("regulatory_types") or meta.get("regulatoryTypes") or []
+        ),
+        "raw_files": meta.get("raw_files", []),
+    }
+
+
 def chunk_documents(docs: list[dict]) -> list[dict]:
-    """Chunk all documents using LegalChunker."""
+    """Chunk all documents using LegalChunker.
+
+    Parent-Child architecture: BOTH parent chunks (full Article/Section text,
+    used for context expansion) and child chunks (300-500 token retrieval
+    units) are returned so they can be indexed together. Each chunk carries a
+    ``chunk_type`` of ``"parent"`` or ``"child"`` in its metadata, and every
+    child records ``parent_id`` so retrieval can expand to its parent.
+    """
     all_chunks = []
     for doc in docs:
         try:
@@ -106,28 +221,18 @@ def chunk_documents(docs: list[dict]) -> list[dict]:
                 region=doc["region"],
             )
             for child in result.get("child_chunks", []):
-                child["source_file"] = doc["file_name"]
-                child["source_id"] = doc["doc_id"]
-                child["metadata"] = dict(doc.get("metadata", {}))
-                child["source_url"] = doc.get("metadata", {}).get("source_url", "")
-                child["content_url"] = doc.get("metadata", {}).get("content_url", "")
-                child["official_channel"] = doc.get("metadata", {}).get("official_channel", "")
-                child["product_categories"] = (
-                    doc.get("metadata", {}).get("product_categories")
-                    or doc.get("metadata", {}).get("productCategories")
-                    or []
-                )
-                child["regulatory_types"] = (
-                    doc.get("metadata", {}).get("regulatory_types")
-                    or doc.get("metadata", {}).get("regulatoryTypes")
-                    or []
-                )
-                child["raw_files"] = doc.get("metadata", {}).get("raw_files", [])
-                all_chunks.append(child)
+                all_chunks.append(_inject_source_meta(child, doc))
+            for parent in result.get("parent_chunks", []):
+                all_chunks.append(_inject_source_meta(parent, doc))
         except Exception as e:
             logger.warning(f"Failed to chunk {doc['file_name']}: {e}")
 
-    logger.info(f"Created {len(all_chunks)} child chunks from {len(docs)} documents")
+    child_count = sum(1 for c in all_chunks if c.get("chunk_type") == "child")
+    parent_count = sum(1 for c in all_chunks if c.get("chunk_type") == "parent")
+    logger.info(
+        f"Created {len(all_chunks)} chunks "
+        f"({child_count} child, {parent_count} parent) from {len(docs)} documents"
+    )
     return all_chunks
 
 
@@ -151,7 +256,18 @@ def _hash_embed(text: str, dim: int = 384) -> list[float]:
 
 
 def embed_chunks(chunks: list[dict]) -> tuple[list[dict], int]:
-    """Embed chunks with the production ModelScope API embedder."""
+    """Embed chunks with the production ModelScope API embedder.
+
+    Safety guarantees (vs. the previous implementation):
+    - Failed/zero-vector chunks are DROPPED from the returned list, never
+      silently mixed into the index as poison vectors.
+    - A persistent ``embed_cache.json`` keys every successful embedding by
+      ``(embedder, text)`` so rebuilds resume instead of re-paying the
+      ModelScope quota for chunks we already have.
+    - If the zero/failed fraction exceeds ``MAX_ZERO_VECTOR_FRACTION`` the
+      whole run aborts: writing an index dominated by zero vectors produces
+      silently broken retrieval and must never happen.
+    """
     embedder, name = _probe_embedders()
     if embedder is None:
         if os.environ.get("ALLOW_HASH_EMBED_FALLBACK", "false").lower() != "true":
@@ -161,18 +277,91 @@ def embed_chunks(chunks: list[dict]) -> tuple[list[dict], int]:
             text = f"{chunk.get('prepend_en', '')}\n{chunk.get('content', '')}"
             chunk["vector"] = _hash_embed(text)
         return chunks, 384
+
     logger.info(f"Using embedder: {name} ({getattr(embedder, 'DIM', 'unknown')}-dim)")
-    texts = []
-    for chunk in chunks:
-        prepend = chunk.get("prepend_en", chunk.get("prepend_zh", ""))
+
+    cache = _load_embed_cache()
+    cache_hits = 0
+    cache_misses = 0
+
+    # Phase 1 — resolve everything we already have cached.
+    pending_idx: list[int] = []
+    pending_texts: list[str] = []
+    for i, chunk in enumerate(chunks):
+        prepend = chunk.get("prepend_en") or chunk.get("prepend_zh", "")
         content = chunk.get("content", "")
-        texts.append(f"{prepend}\n{content}" if prepend else content)
+        text = f"{prepend}\n{content}" if prepend else content
+        key = _embed_cache_key(name, text)
+        cached = cache.get(key)
+        if cached is not None:
+            chunk["vector"] = cached
+            cache_hits += 1
+        else:
+            pending_idx.append(i)
+            pending_texts.append(text)
+            cache_misses += 1
 
-    vectors = embedder.embed_batch(texts)
-    for chunk, vec in zip(chunks, vectors):
-        chunk["vector"] = vec
+    logger.info(
+        f"Embed cache: {cache_hits} hits, {cache_misses} misses "
+        f"(cache file: {EMBED_CACHE_PATH})"
+    )
 
-    return chunks, getattr(embedder, "DIM", len(vectors[0]) if vectors else 0)
+    # Phase 2 — batch the misses through the embedder (50/batch, matching
+    # ModelScope's free-tier rate limit), checkpointing after every batch so
+    # an interrupted run can resume without losing work.
+    failed_count = 0
+    dim = getattr(embedder, "DIM", 0)
+    for start in range(0, len(pending_texts), 50):
+        batch_idx = pending_idx[start:start + 50]
+        batch_texts = pending_texts[start:start + 50]
+        try:
+            vectors = embedder.embed_batch(batch_texts)
+        except Exception as e:
+            logger.error(f"Embed batch at {start} failed permanently: {e}")
+            vectors = [[0.0] * (dim or 1024)] * len(batch_texts)
+
+        for j, vec in enumerate(vectors):
+            chunk = chunks[batch_idx[j]]
+            if _is_zero_vector(vec):
+                failed_count += 1
+                chunk["vector"] = None  # mark for drop
+                continue
+            chunk["vector"] = vec
+            if dim == 0:
+                dim = len(vec)
+            key = _embed_cache_key(name, batch_texts[j])
+            cache[key] = vec
+
+        _save_embed_cache(cache)
+
+    # Phase 3 — drop poisoned chunks; they must never enter the index.
+    good_chunks = [c for c in chunks if c.get("vector") is not None and not _is_zero_vector(c["vector"])]
+    dropped = len(chunks) - len(good_chunks)
+
+    if chunks:
+        zero_fraction = dropped / len(chunks)
+        if zero_fraction > MAX_ZERO_VECTOR_FRACTION:
+            _save_embed_cache(cache)  # keep what we did learn
+            raise RuntimeError(
+                f"Embedding failure rate {zero_fraction:.1%} exceeds safe "
+                f"threshold {MAX_ZERO_VECTOR_FRACTION:.0%}; refusing to write "
+                f"a poisoned index ({dropped}/{len(chunks)} chunks dropped)."
+            )
+
+    if dropped:
+        logger.warning(
+            f"Dropped {dropped} chunks with missing/zero vectors "
+            f"({dropped/len(chunks):.1%} of input)"
+        )
+
+    if dim == 0 and good_chunks:
+        dim = len(good_chunks[0]["vector"])
+
+    logger.info(
+        f"Embedded {len(good_chunks)}/{len(chunks)} chunks "
+        f"({dropped} dropped, dim={dim})"
+    )
+    return good_chunks, dim
 
 
 def save_faiss(
@@ -181,24 +370,57 @@ def save_faiss(
     faiss_dir: Path = FAISS_DIR,
     build_info: dict | None = None,
 ):
-    """Save chunks to Faiss index + JSON metadata."""
+    """Save chunks to Faiss index + JSON metadata.
+
+    A (high-risk): parent chunks (``chunk_type == "parent"``) are always
+    written to ``legal_chunks_meta.json`` so ``FaissRetriever.expand_to_parent``
+    can resolve them, but they are only added to the main FAISS IndexFlatIP
+    when ``INCLUDE_PARENT_IN_INDEX=true``. Defaulting to false halves the
+    on-disk index size without losing context-expansion capability, because
+    retrieval scores children and expands to parent via meta lookup, never
+    by dense similarity on the parent vector itself.
+    """
     import faiss
     import numpy as np
 
     faiss_dir = Path(faiss_dir)
     faiss_dir.mkdir(parents=True, exist_ok=True)
 
-    vectors = [c["vector"] for c in chunks if c.get("vector")]
-    chunks_with_vec = [c for c in chunks if c.get("vector")]
+    # All chunks with a valid vector go into the metadata file so the
+    # parent/sibling graph stays complete for expand_to_parent.
+    chunks_with_vec = [c for c in chunks if c.get("vector") and not _is_zero_vector(c["vector"])]
 
+    # FAISS index candidates: optionally exclude parent chunks to keep the
+    # vector matrix lean. Parent metadata still ships in the meta JSON.
+    if INCLUDE_PARENT_IN_INDEX:
+        index_chunks = chunks_with_vec
+    else:
+        index_chunks = [c for c in chunks_with_vec if c.get("chunk_type") != "parent"]
+        parent_only = len(chunks_with_vec) - len(index_chunks)
+        if parent_only:
+            logger.info(
+                f"Excluding {parent_only} parent chunks from FAISS index "
+                f"(INCLUDE_PARENT_IN_INDEX=false); parent metadata still "
+                f"written to {faiss_dir / 'legal_chunks_meta.json'}"
+            )
+
+    vectors = [c["vector"] for c in index_chunks]
     if not vectors:
         logger.error("No vectors to save")
         return
 
+    # Defense in depth: refuse to ever normalize zero vectors into the index,
+    # even if a caller bypassed embed_chunks' guards.
+    zero_count = sum(1 for v in vectors if all(abs(float(x)) < 1e-9 for x in v))
+    if zero_count:
+        raise RuntimeError(
+            f"Refusing to write {zero_count} zero vectors into the index"
+        )
+
     mat = np.array(vectors, dtype=np.float32)
     faiss.normalize_L2(mat)
 
-    index = faiss.IndexFlatIP(dim)
+    index = _build_index_backend(dim, faiss)
     index.add(mat)
 
     index_path = str(faiss_dir / "legal_chunks.index")
@@ -206,6 +428,9 @@ def save_faiss(
     manifest_path = faiss_dir / "index_manifest.json"
 
     faiss.write_index(index, index_path)
+    # Metadata carries the full chunk set (parents included) so
+    # expand_to_parent can resolve parent + sibling context regardless of
+    # whether parents were indexed as vectors.
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump({"dim": dim, "chunks": chunks_with_vec}, f, ensure_ascii=False)
 

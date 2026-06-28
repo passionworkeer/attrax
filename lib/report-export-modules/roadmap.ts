@@ -12,6 +12,7 @@ import {
   pdfSectionTitle,
   resolveLocale,
   tx,
+  yieldToMainThread,
 } from "./shared";
 import { englishArray, englishText } from "@/lib/report-localization";
 
@@ -155,86 +156,106 @@ function addPdfFooter(doc: jsPDF, pageWidth: number, pageHeight: number, locale:
 }
 
 export async function downloadRoadmapReportAsPdf(content: RoadmapContent, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const enriched: RoadmapContent = { ...content, items: defaultItems(content, L) };
-  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-  await embedFont(doc);
+  try {
+    const L = resolveLocale(locale);
+    const enriched: RoadmapContent = { ...content, items: defaultItems(content, L) };
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+    await embedFont(doc);
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 20;
-  const y = { cur: margin };
-  const title = L === "zh" ? "合规路线图报告" : "Compliance Roadmap Report";
-  const color = statusColor(enriched.currentStatus);
-  const fill = statusFill(enriched.currentStatus);
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    const y = { cur: margin };
+    const title = L === "zh" ? "合规路线图报告" : "Compliance Roadmap Report";
+    const color = statusColor(enriched.currentStatus);
+    const fill = statusFill(enriched.currentStatus);
 
-  doc.setFont("NotoSansSC", "normal");
-  doc.setFontSize(9);
-  doc.setTextColor(148, 163, 184);
-  doc.text(tx("report.title", L), margin, y.cur);
-  y.cur += 6;
-  doc.setDrawColor(226, 232, 240);
-  doc.line(margin, y.cur, pageWidth - margin, y.cur);
-  y.cur += 8;
+    doc.setFont("NotoSansSC", "normal");
+    doc.setFontSize(9);
+    doc.setTextColor(148, 163, 184);
+    doc.text(tx("report.title", L), margin, y.cur);
+    y.cur += 6;
+    doc.setDrawColor(226, 232, 240);
+    doc.line(margin, y.cur, pageWidth - margin, y.cur);
+    y.cur += 8;
 
-  doc.setFont("NotoSansSC", "bold");
-  doc.setFontSize(20);
-  doc.setTextColor(31, 41, 55);
-  doc.text(title, margin, y.cur);
-  y.cur += 8;
-  doc.setFont("NotoSansSC", "normal");
-  doc.setFontSize(8);
-  doc.setTextColor(100, 116, 139);
-  doc.text(`${tx("report.sessionId", L)}: ${content.sessionId}`, margin, y.cur);
-  y.cur += 8;
+    doc.setFont("NotoSansSC", "bold");
+    doc.setFontSize(20);
+    doc.setTextColor(31, 41, 55);
+    doc.text(title, margin, y.cur);
+    y.cur += 8;
+    doc.setFont("NotoSansSC", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(100, 116, 139);
+    doc.text(`${tx("report.sessionId", L)}: ${content.sessionId}`, margin, y.cur);
+    y.cur += 8;
 
-  doc.setFillColor(fill[0], fill[1], fill[2]);
-  doc.setDrawColor(color[0], color[1], color[2]);
-  doc.roundedRect(margin, y.cur, pageWidth - margin * 2, 14, 2, 2, "FD");
-  doc.setFont("NotoSansSC", "bold");
-  doc.setFontSize(10);
-  doc.setTextColor(color[0], color[1], color[2]);
-  doc.text(`${L === "zh" ? "当前状态" : "Current Status"}: ${statusLabel(enriched.currentStatus, L)}`, margin + 4, y.cur + 9);
-  y.cur += 20;
+    doc.setFillColor(fill[0], fill[1], fill[2]);
+    doc.setDrawColor(color[0], color[1], color[2]);
+    doc.roundedRect(margin, y.cur, pageWidth - margin * 2, 14, 2, 2, "FD");
+    doc.setFont("NotoSansSC", "bold");
+    doc.setFontSize(10);
+    doc.setTextColor(color[0], color[1], color[2]);
+    doc.text(`${L === "zh" ? "当前状态" : "Current Status"}: ${statusLabel(enriched.currentStatus, L)}`, margin + 4, y.cur + 9);
+    y.cur += 20;
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "路线图概览" : "Roadmap Overview");
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, overviewRows(enriched, L), [42, 112]);
+    await yieldToMainThread();
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "里程碑时间表" : "Milestone Timeline");
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, timelineRows(enriched, L), [10, 44, 24, 20, 24, 52]);
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "路线图概览" : "Roadmap Overview");
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, overviewRows(enriched, L), [42, 112]);
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "步骤详情与验收标准" : "Step Details and Acceptance Criteria");
-  enriched.items.forEach((item, index) => {
-    const heading = `${L === "zh" ? "步骤" : "Step"} ${index + 1}: ${itemTitle(item, L)}`;
-    pdfBody(doc, y, margin, pageWidth, pageHeight, heading, 9.5);
-    pdfBody(doc, y, margin, pageWidth, pageHeight, itemDescription(item, L) || (L === "zh" ? "该步骤需要在执行前补充详细说明。" : "Add detailed execution notes before starting this step."), 8.5);
-    acceptanceBullets(item, L).forEach((bullet) => pdfBullet(doc, y, margin, pageWidth, pageHeight, bullet));
-  });
+    await yieldToMainThread();
 
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "执行建议" : "Implementation Notes");
-  const notes = L === "zh"
-    ? [
-        "优先处理会阻断上架的拒绝项和平台强制字段，再处理可并行优化项。",
-        "每个节点都应保留文件版本、负责人、日期和验证状态，方便后续审计。",
-        "路线图完成后应重新导出合规、决策和利润报告，确认风险与成本口径一致。",
-      ]
-    : [
-        "Prioritize launch-blocking rejection items and required marketplace fields before parallel optimization tasks.",
-        "Keep file version, owner, date, and verification status for every milestone to support audit review.",
-        "After roadmap completion, re-export compliance, decision, and profit reports to confirm risk and cost alignment.",
-      ];
-  notes.forEach((note) => pdfBullet(doc, y, margin, pageWidth, pageHeight, note));
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "里程碑时间表" : "Milestone Timeline");
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, timelineRows(enriched, L), [10, 44, 24, 20, 24, 52]);
 
-  addPdfFooter(doc, pageWidth, pageHeight, L);
-  doc.save(L === "zh" ? `合规路线图报告_${content.sessionId}.pdf` : `ComplianceRoadmap_${content.sessionId}.pdf`);
+    await yieldToMainThread();
+
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "步骤详情与验收标准" : "Step Details and Acceptance Criteria");
+    for (let i = 0; i < enriched.items.length; i++) {
+      const item = enriched.items[i];
+      if (!item) continue;
+      const heading = `${L === "zh" ? "步骤" : "Step"} ${i + 1}: ${itemTitle(item, L)}`;
+      pdfBody(doc, y, margin, pageWidth, pageHeight, heading, 9.5);
+      pdfBody(doc, y, margin, pageWidth, pageHeight, itemDescription(item, L) || (L === "zh" ? "该步骤需要在执行前补充详细说明。" : "Add detailed execution notes before starting this step."), 8.5);
+      acceptanceBullets(item, L).forEach((bullet) => pdfBullet(doc, y, margin, pageWidth, pageHeight, bullet));
+      // Yield between steps to keep the long step list from blocking the UI.
+      if (i % 5 === 4) await yieldToMainThread();
+    }
+
+    await yieldToMainThread();
+
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, L === "zh" ? "执行建议" : "Implementation Notes");
+    const notes = L === "zh"
+      ? [
+          "优先处理会阻断上架的拒绝项和平台强制字段，再处理可并行优化项。",
+          "每个节点都应保留文件版本、负责人、日期和验证状态，方便后续审计。",
+          "路线图完成后应重新导出合规、决策和利润报告，确认风险与成本口径一致。",
+        ]
+      : [
+          "Prioritize launch-blocking rejection items and required marketplace fields before parallel optimization tasks.",
+          "Keep file version, owner, date, and verification status for every milestone to support audit review.",
+          "After roadmap completion, re-export compliance, decision, and profit reports to confirm risk and cost alignment.",
+        ];
+    notes.forEach((note) => pdfBullet(doc, y, margin, pageWidth, pageHeight, note));
+
+    addPdfFooter(doc, pageWidth, pageHeight, L);
+    doc.save(L === "zh" ? `合规路线图报告_${content.sessionId}.pdf` : `ComplianceRoadmap_${content.sessionId}.pdf`);
+  } catch (error) {
+    throw new Error(
+      `Failed to export roadmap PDF report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
 }
 
 export async function downloadRoadmapReportAsDocx(content: RoadmapContent, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const enriched: RoadmapContent = { ...content, items: defaultItems(content, L) };
-  const title = L === "zh" ? "合规路线图报告" : "Compliance Roadmap Report";
+  try {
+    const L = resolveLocale(locale);
+    const enriched: RoadmapContent = { ...content, items: defaultItems(content, L) };
+    const title = L === "zh" ? "合规路线图报告" : "Compliance Roadmap Report";
 
-  const children: Array<Paragraph | Table> = [
+    const children: Array<Paragraph | Table> = [
     new Paragraph({
       heading: HeadingLevel.HEADING_1,
       children: [new TextRun({ text: title, bold: true, size: 36, color: "C41E3A" })],
@@ -295,12 +316,18 @@ export async function downloadRoadmapReportAsDocx(content: RoadmapContent, local
   });
 
   const blob = await Packer.toBlob(doc);
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = L === "zh" ? `合规路线图报告_${content.sessionId}.docx` : `ComplianceRoadmap_${content.sessionId}.docx`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = L === "zh" ? `合规路线图报告_${content.sessionId}.docx` : `ComplianceRoadmap_${content.sessionId}.docx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    throw new Error(
+      `Failed to export roadmap DOCX report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
 }

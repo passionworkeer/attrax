@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Metadata normalization and strict filters for regulation retrieval chunks."""
 from __future__ import annotations
 
@@ -12,6 +11,30 @@ CATEGORY_ALIASES = {
     "home": "home_goods",
     "appliance": "home_appliances",
     "general": "general_consumer_products",
+}
+
+# Region aliases: when a request asks for a market (e.g. ``SA``), chunks
+# tagged with the regional bloc (``GCC``) should also be eligible. Strict
+# equality here previously excluded the entire Gulf corpus from Saudi
+# Arabia queries. Keys and values are stored in _normalize_value form
+# (lowercase, underscores) so the per-query lookup is a single dict
+# access with no extra normalization. The requested market itself is
+# always allowed in addition to the listed aliases.
+REGION_ALIASES: dict[str, list[str]] = {
+    # Gulf Cooperation Council: any member query accepts GCC-tagged chunks.
+    "sa": ["gcc", "gulf", "intl", "reference", "wipo"],
+    "ae": ["gcc", "gulf", "intl", "reference", "wipo"],
+    "bh": ["gcc", "gulf", "intl", "reference", "wipo"],
+    "qa": ["gcc", "gulf", "intl", "reference", "wipo"],
+    "kw": ["gcc", "gulf", "intl", "reference", "wipo"],
+    "om": ["gcc", "gulf", "intl", "reference", "wipo"],
+    # International reference corpora are useful for any market.
+    "eu": ["intl", "reference", "wipo"],
+    "us": ["intl", "reference", "wipo"],
+    "uk": ["intl", "reference", "wipo"],
+    "cn": ["intl", "reference", "wipo"],
+    "au": ["intl", "reference", "wipo"],
+    "jp": ["intl", "reference", "wipo"],
 }
 
 
@@ -87,11 +110,21 @@ def chunk_matches(
     source_ids: Iterable[str] | None = None,
     official_only: bool = False,
 ) -> bool:
-    """Return whether a chunk satisfies strict metadata criteria."""
+    """Return whether a chunk satisfies strict metadata criteria.
+
+    Region matching uses REGION_ALIASES as a soft-match fallback so a
+    ``SA`` query admits ``GCC``-tagged Gulf corpus chunks, and any market
+    query admits international reference corpora (``INTL``, ``REFERENCE``,
+    ``WIPO``). Strict equality is tried first; alias membership only
+    decides when equality fails.
+    """
     metadata = extract_chunk_metadata(chunk)
 
-    if region and metadata["region"].lower() != region.lower():
-        return False
+    if region:
+        wanted = _normalize_value(region)
+        chunk_region = _normalize_value(metadata["region"])
+        if chunk_region != wanted and chunk_region not in REGION_ALIASES.get(wanted, []):
+            return False
 
     if product_category:
         wanted = _normalize_category(product_category)

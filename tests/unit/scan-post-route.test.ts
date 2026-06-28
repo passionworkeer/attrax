@@ -153,7 +153,9 @@ describe("POST /api/scan", () => {
     const res = await POST(req);
     const body = await res.json();
 
-    expect(mockCreateSession).toHaveBeenCalledWith(body.sessionId);
+    // createSession is now called atomically WITH the access-token hash so
+    // there's no window where a concurrent poller can read a hashless session.
+    expect(mockCreateSession).toHaveBeenCalledWith(body.sessionId, expect.any(String));
     const session = mockSessions.get(body.sessionId);
     expect(session).toBeDefined();
     expect(session!.status).toBe("processing");

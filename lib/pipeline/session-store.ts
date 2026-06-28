@@ -102,7 +102,7 @@ function loadSessionFromFile(sessionId: string): StoredScanStatus | null {
   }
 }
 
-function writeJsonAtomic(filePath: string, value: unknown): void {
+function writeJsonAtomicInternal(filePath: string, value: unknown): void {
   const serialized = JSON.stringify(value);
   const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
   try {
@@ -169,12 +169,21 @@ function writeJsonAtomic(filePath: string, value: unknown): void {
   throw lastError;
 }
 
+/**
+ * Public alias of the internal atomic-write helper, exported so other pipeline
+ * modules (e.g. scan-queue) can reuse the same Windows-EPERM-retry logic
+ * instead of rolling their own. Writes `value` to `filePath` via a temp file
+ * + rename, with retries and a direct-write fallback for transient EPERM/
+ * EBUSY/EACCES (common on Windows when antivirus briefly holds the file).
+ */
+export const writeJsonAtomic = writeJsonAtomicInternal;
+
 function persistSession(session: StoredScanStatus): void {
   try {
     ensureSessionDir();
     const filePath = sessionFilePath(session.sessionId);
     if (!filePath) return;
-    writeJsonAtomic(filePath, session);
+    writeJsonAtomicInternal(filePath, session);
   } catch (error) {
     // Roll back the in-memory write so memory and disk stay in sync.
     // Without this, a subsequent getSession() would return data that

@@ -72,7 +72,11 @@ CHILD_INDEX = str(FAISS_INDEX_DIR / "legal_chunks.index")
 CHILD_META = str(FAISS_INDEX_DIR / "legal_chunks_meta.json")
 
 _retriever: Optional[HybridRetriever] = None
-_executor = ThreadPoolExecutor(max_workers=4)
+# Worker count comes from settings.scan_worker_concurrency (default 8) so
+# the 8-market fan-out doesn't serialize behind a single in-flight scan.
+_executor = ThreadPoolExecutor(
+    max_workers=settings.scan_worker_concurrency
+)
 
 
 @asynccontextmanager
@@ -159,8 +163,61 @@ app.add_middleware(
 
 
 def _client_ip(request: Request) -> str:
-    forwarded = request.headers.get("x-forwarded-for", "")
-    return forwarded.split(",", 1)[0].strip() or (request.client.host if request.client else "unknown")
+    """
+    Extract a stable client identifier for rate limiting.
+
+    X-Forwarded-For is only honored when the immediate socket peer is a
+    configured trusted reverse proxy (settings.trusted_proxies). This
+    prevents arbitrary clients from spoofing XFF to bypass per-IP limits.
+
+    If the peer is untrusted or empty (e.g. request.client is None — common
+    when the app is behind a misconfigured proxy), we previously fell back
+    to the literal string "unknown", which collapses every such request
+    into a single rate-limit bucket and effectively disables per-client
+    limiting. Instead we derive a keyed hash from the User-Agent with a
+    per-process salt so that distinct UAs are still distinguished, while
+    no plaintext UA is stored in the rate-limit map. Salt is regenerated
+    on each process start so the bucket keys are not correlatable across
+    restarts (sufficient for rate-limiting purposes).
+    """
+    peer = request.client.host if request.client else ""
+    peer_norm = (peer or "").lower()
+    if peer_norm and peer_norm in settings.trusted_proxies:
+        forwarded = request.headers.get("x-forwarded-for", "")
+        first = forwarded.split(",", 1)[0].strip()
+        if first:
+            return first
+
+    if peer:
+        # Untrusted direct connection — use the real socket peer.
+        return peer
+
+    # request.client is None (e.g. proxy that doesn't populate client scope).
+    # Fall back to a salted UA hash so we still distinguish different clients.
+    logger.warning(
+        "request.client is None — falling back to UA-hash for rate limiting "
+        "(path=%s)", request.url.path,
+    )
+    return _ua_hash_fallback(request)
+
+
+# Per-process salt; regenerated on each startup. Module-level so it is
+# computed exactly once (importing main.py is the natural lifecycle hook).
+import secrets as _secrets
+_UA_HASH_SALT: str = _secrets.token_hex(16)
+
+
+def _ua_hash_fallback(request: Request) -> str:
+    """Salted SHA-256 of User-Agent, truncated. Never returns 'unknown'.
+
+    Returns a stable per-process identifier for the UA so the rate-limit
+    map still distinguishes distinct UAs even when no socket peer exists.
+    Prefix marks it as a hash-derived key for observability.
+    """
+    ua = request.headers.get("user-agent", "")
+    import hashlib
+    digest = hashlib.sha256(f"{_UA_HASH_SALT}:{ua}".encode("utf-8")).hexdigest()
+    return f"ua:{digest[:16]}"
 
 
 @app.middleware("http")
@@ -171,6 +228,23 @@ async def protect_requests(request: Request, call_next):
             status_code=413,
             content={"error": "Request too large"},
         )
+
+    # Shared-secret guard for internal write endpoints. When
+    # settings.rag_internal_secret is set, /scan, /scan-multipart, and
+    # /profit-report must carry header X-Internal-Secret with a matching
+    # value or receive 401. Unset (default) = open, preserving local/dev
+    # backward compatibility. GET /health and /ready are not in
+    # _RATE_LIMITED_PATHS and are therefore never gated.
+    secret = settings.rag_internal_secret
+    if secret and request.url.path in _RATE_LIMITED_PATHS:
+        provided = request.headers.get("x-internal-secret", "")
+        # Use hmac.compare_digest to avoid timing-attack leakage.
+        import hmac as _hmac
+        if not provided or not _hmac.compare_digest(provided, secret):
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Unauthorized"},
+            )
 
     if request.url.path in _RATE_LIMITED_PATHS:
         now = time.monotonic()
@@ -226,14 +300,40 @@ class ProfitReportResponse(BaseModel):
     market: str
 
 
+def _current_embedding_provider() -> str:
+    """Best-effort read of the active embedding provider name.
+
+    Returns one of: 'modelscope_api', 'ollama', 'none', or 'unknown' if
+    the retriever / embedder is not yet initialized. Defensive: never raises.
+
+    Contract: HybridRetriever exposes `self.embedder_name` as a public
+    attribute (set when an embedder is selected). We read it directly;
+    getattr-with-default guards against older retriever instances that
+    predate the attribute. The previous implementation reflected into a
+    module-level private global of hybrid_retriever, which coupled main.py
+    to an internal symbol that could change without notice.
+    """
+    if _retriever is None:
+        return "none"
+    try:
+        return getattr(_retriever, "embedder_name", None) or "unknown"
+    except Exception:
+        return "unknown"
+
+
 @app.get("/health")
 def health():
     """Liveness probe — returns basic status. Used by /api/health on the frontend."""
     faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
+    dense_mismatch = (
+        getattr(_retriever, "dense_dim_mismatch_count", 0) if _retriever else 0
+    )
     return JSONResponse({
         "status": "ok",
         "version": app.version,
         "demo_mode": settings.demo_mode,
+        "embedding_provider": _current_embedding_provider(),
+        "dense_dim_mismatch_count": dense_mismatch,
     })
 
 
@@ -242,15 +342,31 @@ def ready():
     """
     Readiness probe — checks all critical dependencies.
     Used by Kubernetes / load-balancer to decide whether to route traffic here.
+
+    Embedding has a graceful-degradation path: if ModelScope is unavailable,
+    the service falls back to Ollama, then to BM25-only. ModelScope key
+    absence therefore does NOT block readiness; it is reported as a warning.
     """
+    modelscope_present = bool(settings.modelscope_api_key.strip())
+    has_modelscope = settings.demo_mode or modelscope_present
+
+    # Hard gates: FAISS index and LLM key are required for any useful output.
     checks = {
         "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
         "bm25": _retriever is not None,
         "mimotalk_api_key": settings.demo_mode or bool(settings.mimotalk_api_key.strip()),
-        "modelscope_api_key": settings.demo_mode or bool(settings.modelscope_api_key.strip()),
+        # Informational only — not part of readiness gate (Ollama fallback exists).
+        "modelscope_api_key": has_modelscope,
         "config_loaded": True,
     }
-    all_ok = all(checks.values())
+    gate_keys = ("faiss", "bm25", "mimotalk_api_key", "config_loaded")
+    all_ok = all(checks[k] for k in gate_keys)
+
+    warnings = []
+    embedding_status = "ok"
+    if not has_modelscope:
+        warnings.append("modelscope_api_key missing — embedding degraded to ollama_fallback")
+        embedding_status = "ollama_fallback"
 
     return JSONResponse(
         {
@@ -258,6 +374,12 @@ def ready():
             "checks": checks,
             "demo_mode": settings.demo_mode,
             "version": app.version,
+            "embedding_provider": _current_embedding_provider(),
+            "embedding_status": embedding_status,
+            "dense_dim_mismatch_count": (
+                getattr(_retriever, "dense_dim_mismatch_count", 0) if _retriever else 0
+            ),
+            "warnings": warnings,
         },
         status_code=200 if all_ok else 503,
     )
@@ -401,7 +523,7 @@ async def _run_scan_request(req: ScanRequest) -> ScanResponse:
     # Merge extracted PDF text into documents list
     all_docs = (req.documents or []) + extracted_pdf_docs
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     try:
         # Enforce a wall-clock timeout to prevent thread pool exhaustion.
         # The executor continues running but we return a clean 504 to the client.
@@ -521,7 +643,7 @@ async def profit_report(req: ProfitReportRequest):
             chunks=chunks,
         )
 
-    loop = asyncio.get_event_loop()
+    loop = asyncio.get_running_loop()
     try:
         report_text = await asyncio.wait_for(
             loop.run_in_executor(_executor, _generate),

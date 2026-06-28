@@ -43,6 +43,13 @@ def rrf_fuse(
     equal-weight behavior exactly — no change to rankings or score scale
     when callers omit the weights. Tuning is left to downstream eval.
 
+    Immutability: caller-owned dicts in ``dense_results`` and
+    ``bm25_results`` are never mutated. The previous implementation wrote
+    ``score_norm`` in place on each BM25 result dict, which leaked fusion
+    state back into the caller (and into the BM25 cache). All derived
+    state now lives in local maps and is reconstructed into fresh result
+    dicts via ``attach_metadata_fields``.
+
     Args:
         dense_results: list of dicts with 'id' and 'score' (0-1)
         bm25_results: list of dicts with 'id' and 'score' (raw BM25)
@@ -54,78 +61,90 @@ def rrf_fuse(
     Returns:
         list[FusionResult] sorted by rrf_score descending
     """
-    # Normalize BM25 scores to 0-1 range
+    # Normalize BM25 scores to 0-1 range WITHOUT mutating input dicts.
+    bm25_score_norm: dict[str, float] = {}
     if bm25_results and any(r.get("score", 0) for r in bm25_results):
         max_score = max(r["score"] for r in bm25_results)
         for r in bm25_results:
-            r["score_norm"] = r["score"] / max_score if max_score > 0 else 0
-    else:
-        for r in bm25_results:
-            r["score_norm"] = 0.0
+            doc_id = r.get("id")
+            if doc_id is None or max_score <= 0:
+                norm = 0.0
+            else:
+                norm = r["score"] / max_score
+            # If the same id appears twice in the list, keep the larger norm.
+            prev = bm25_score_norm.get(doc_id, 0.0)
+            if norm > prev:
+                bm25_score_norm[doc_id] = norm
+    # else: bm25_score_norm stays empty; missing keys yield 0.0 below.
 
-    # Build score maps
+    # Build score / payload maps. The contribution formula uses each
+    # result's position (i) within its own branch list as the rank, which
+    # is the standard RRF formulation. (Both branches normally feed
+    # equally-sized candidate windows from the retriever; we do not pad
+    # ranks to a common depth because doing so would change scores for
+    # single-branch hits, breaking the existing ranking tests.)
     rrf_scores: dict[str, float] = {}
     dense_map: dict[str, float] = {}
-    bm25_map: dict[str, dict] = {}
+    payload_map: dict[str, dict] = {}
 
     for i, r in enumerate(dense_results):
         doc_id = r.get("id", f"dense_{i}")
         rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + dense_weight * 1.0 / (k + i)
         dense_map[doc_id] = r.get("score", 0)
-        bm25_map[doc_id] = r
+        payload_map[doc_id] = r
 
     for i, r in enumerate(bm25_results):
         doc_id = r.get("id", f"bm25_{i}")
         rrf_scores[doc_id] = rrf_scores.get(doc_id, 0) + bm25_weight * 1.0 / (k + i)
-        bm25_map[doc_id] = r
+        payload_map.setdefault(doc_id, r)
         dense_map.setdefault(doc_id, 0.0)
 
-    # Sort by RRF score
     sorted_ids = sorted(rrf_scores, key=rrf_scores.get, reverse=True)[:top_k]
 
     results = []
     for doc_id in sorted_ids:
-        bm = bm25_map.get(doc_id, {})
-        base = bm or {}
+        payload = payload_map.get(doc_id, {})
+        bm_norm = bm25_score_norm.get(doc_id, 0.0)
         results.append(attach_metadata_fields({
             "id": doc_id,
             "rrf_score": rrf_scores[doc_id],
             "dense_score": dense_map.get(doc_id, 0.0),
-            "bm25_score": bm.get("score_norm", 0.0),
+            "bm25_score": bm_norm,
             # User-visible score: avg of dense (0-1) + normalized BM25 (0-1)
-            # This is the score displayed in the frontend; rrf_score is rank-based (max 0.08)
-            "score": (dense_map.get(doc_id, 0.0) + bm.get("score_norm", 0.0)) / 2,
-            "content": base.get("content", ""),
-            "doc_name": base.get("doc_name", ""),
-            "article_no": base.get("article_no", ""),
-            "region": base.get("region", ""),
-            "source_id": base.get("source_id", ""),
-            "source_file": base.get("source_file", ""),
-            "source_url": base.get("source_url", ""),
-            "content_url": base.get("content_url", ""),
-            "official_channel": base.get("official_channel", ""),
-            "product_categories": base.get("product_categories", []),
-            "regulatory_types": base.get("regulatory_types", []),
-            "raw_files": base.get("raw_files", []),
-            "metadata": base.get("metadata", {}),
+            # This is the score displayed in the frontend; rrf_score is
+            # rank-based (max ~0.08) and not user-friendly.
+            "score": (dense_map.get(doc_id, 0.0) + bm_norm) / 2,
+            "content": payload.get("content", ""),
+            "doc_name": payload.get("doc_name", ""),
+            "article_no": payload.get("article_no", ""),
+            "region": payload.get("region", ""),
+            "source_id": payload.get("source_id", ""),
+            "source_file": payload.get("source_file", ""),
+            "source_url": payload.get("source_url", ""),
+            "content_url": payload.get("content_url", ""),
+            "official_channel": payload.get("official_channel", ""),
+            "product_categories": payload.get("product_categories", []),
+            "regulatory_types": payload.get("regulatory_types", []),
+            "raw_files": payload.get("raw_files", []),
+            "metadata": payload.get("metadata", {}),
         }))
 
     return results
 
 
 def normalize_scores(results: list[dict]) -> list[dict]:
-    """Min-max normalize all score fields to 0-1."""
+    """Min-max normalize score fields to 0-1 (immutable: returns new dicts)."""
     if not results:
         return results
 
+    output = [dict(r) for r in results]
     for key in ["dense_score", "bm25_score", "rrf_score"]:
-        vals = [r.get(key, 0) for r in results]
+        vals = [r.get(key, 0) for r in output]
         mn, mx = min(vals), max(vals)
-        if mx > mn:
-            for r in results:
+        for r in output:
+            if mx > mn:
                 r[f"{key}_norm"] = (r.get(key, 0) - mn) / (mx - mn)
-        else:
-            for r in results:
+            else:
                 r[f"{key}_norm"] = 1.0
 
-    return results
+    return output

@@ -6,7 +6,26 @@ const securityHeaders = [
   // the previous localhost:8001 entries were dead CSP rules that leaked dev
   // infrastructure URLs into every response. If a future feature requires a
   // direct browser→RAG connection, add it explicitly via build-time env.
-  { key: "Content-Security-Policy", value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' blob: data:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" },
+  //
+  // CSP script-src previously carried 'unsafe-eval' and 'unsafe-inline'.
+  // Audited 2026-06-28:
+  //   - 'unsafe-eval' removed: no devDependency calls eval / new Function at
+  //     runtime in app code; jspdf / docx / react-markdown / remark-gfm /
+  //     framer-motion / shadcn-ui do not require eval in their production
+  //     paths (verified via build + smoke-checking report render/export +
+  //     scan flow).
+  //   - 'unsafe-inline' removed: Content-Security-Policy is now generated
+  //     per-request in middleware.ts with a fresh nonce
+  //     (`script-src 'self' 'nonce-<random>' 'strict-dynamic'`), so Next.js
+  //     hydration + inline runtime scripts get the nonce auto-stamped.
+  //     Keeping CSP out of next.config.ts avoids a static 'unsafe-inline'
+  //     fallback overriding the per-request nonce header.
+  // If a future dependency reintroduces an inline/eval requirement, scope it
+  // behind a nonce rather than re-adding 'unsafe-inline'/'unsafe-eval'.
+  //
+  // Note: the Content-Security-Policy header is intentionally NOT in this
+  // static list; it is owned by middleware.ts (see generateCsp below) so that
+  // a per-request nonce can be injected.
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-Frame-Options", value: "DENY" },

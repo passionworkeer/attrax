@@ -5,6 +5,10 @@ import type { ReportLocale } from "@/components/result/SourceNotice";
 /**
  * PDF + Word download buttons for a single report section, in both locales.
  * Used for compliance / profit / decision / roadmap exports.
+ *
+ * `label` is optional: when omitted, buttons render just `PDF ZH` / `Word EN`
+ * (back-compat for the profit-report view). When provided, it prefixes the
+ * locale tag with a space, e.g. `利润 PDF ZH`.
  */
 export function DownloadButtons({
   onPdf,
@@ -13,8 +17,9 @@ export function DownloadButtons({
 }: {
   onPdf: (dlLocale: ReportLocale) => void;
   onDocx: (dlLocale: ReportLocale) => void;
-  label: string;
+  label?: string;
 }) {
+  const prefix = label ? `${label} ` : "";
   return (
     <div className="flex flex-wrap gap-2">
       {(["zh", "en"] as const).map((dlLocale) => (
@@ -26,7 +31,7 @@ export function DownloadButtons({
             onClick={() => onPdf(dlLocale)}
             className="px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-red transition-colors"
           >
-            {label} PDF {dlLocale.toUpperCase()}
+            {prefix}PDF {dlLocale.toUpperCase()}
           </button>
           <button
             onClick={() => onDocx(dlLocale)}

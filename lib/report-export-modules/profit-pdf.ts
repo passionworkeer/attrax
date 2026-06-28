@@ -10,6 +10,7 @@ import {
   renderMarkdownPdf,
   resolveLocale,
   tx,
+  yieldToMainThread,
 } from "./shared";
 
 const CURRENCY_SYMBOLS: Record<string, string> = {
@@ -25,16 +26,17 @@ function currencySymbol(currency?: string): string {
 }
 
 export async function downloadProfitReportAsPdf(input: ProfitReportResult, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const result = localizeProfitReportResult(input, L);
-  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-  await embedFont(doc);
+  try {
+    const L = resolveLocale(locale);
+    const result = localizeProfitReportResult(input, L);
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+    await embedFont(doc);
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 18;
-  const contentWidth = pageWidth - margin * 2;
-  const y = { cur: margin };
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 18;
+    const contentWidth = pageWidth - margin * 2;
+    const y = { cur: margin };
 
   // Translation shortcuts
   const rp = (k: string) => tx(`report.${k}`, L);
@@ -122,93 +124,113 @@ export async function downloadProfitReportAsPdf(input: ProfitReportResult, local
   renderCard(margin + halfW + 4, lblWithCompliance, result.compliant.gp, result.compliantRiskExposure, [238, 255, 244], [50, 180, 100], [30, 150, 70]);
   y.cur += 30;
 
-  // ── Section 1: Cost Comparison ──────────────────────────────────────────
-  const s1Title = L === "zh"
-    ? `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`
-    : `${rp("costComparison")} (${lblWithCompliance} vs ${lblNoCompliance})`;
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, s1Title);
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
-    [colBomCost, `${ccy}${result.barebone.bom.toFixed(2)}`, `${ccy}${result.compliant.bom.toFixed(2)}`, `${ccy}${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
-    [colPackaging, `${ccy}${result.barebone.packaging.toFixed(2)}`, `${ccy}${result.compliant.packaging.toFixed(2)}`, `${ccy}${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
-    [colCertAmort, `${ccy}${result.barebone.cert.toFixed(2)}`, `${ccy}${result.compliant.cert.toFixed(2)}`, `${ccy}${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
-    [colEprFee, `${ccy}${result.barebone.epr.toFixed(2)}`, `${ccy}${result.compliant.epr.toFixed(2)}`, `${ccy}${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
-    [`${colAfterSales}/${colWarranty}`, `${ccy}${result.barebone.warranty.toFixed(2)}`, `${ccy}${result.compliant.warranty.toFixed(2)}`, `${ccy}${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
-    [colLogistics, `${ccy}${result.barebone.logistics.toFixed(2)}`, `${ccy}${result.compliant.logistics.toFixed(2)}`, `${ccy}${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
-    [colTotalCost, `${ccy}${result.barebone.total.toFixed(2)}`, `${ccy}${result.compliant.total.toFixed(2)}`, `${ccy}${(result.compliant.total - result.barebone.total).toFixed(2)}`],
-  ], [58, 28, 28, 28]);
+    // Yield between header/card draw and the table-heavy sections below so the
+    // main thread can paint a loading indicator and stay responsive.
+    await yieldToMainThread();
 
-  // ── Section 2: Revenue Comparison ─────────────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("revenueComparison"));
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
-    [`${colAvgPrice}${aspSuffix}`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
-    [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
-    [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
-  ], [58, 28, 28, 28]);
+    // ── Section 1: Cost Comparison ──────────────────────────────────────────
+    const s1Title = L === "zh"
+      ? `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`
+      : `${rp("costComparison")} (${lblWithCompliance} vs ${lblNoCompliance})`;
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, s1Title);
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
+      [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
+      [colBomCost, `${ccy}${result.barebone.bom.toFixed(2)}`, `${ccy}${result.compliant.bom.toFixed(2)}`, `${ccy}${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
+      [colPackaging, `${ccy}${result.barebone.packaging.toFixed(2)}`, `${ccy}${result.compliant.packaging.toFixed(2)}`, `${ccy}${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
+      [colCertAmort, `${ccy}${result.barebone.cert.toFixed(2)}`, `${ccy}${result.compliant.cert.toFixed(2)}`, `${ccy}${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
+      [colEprFee, `${ccy}${result.barebone.epr.toFixed(2)}`, `${ccy}${result.compliant.epr.toFixed(2)}`, `${ccy}${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
+      [`${colAfterSales}/${colWarranty}`, `${ccy}${result.barebone.warranty.toFixed(2)}`, `${ccy}${result.compliant.warranty.toFixed(2)}`, `${ccy}${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
+      [colLogistics, `${ccy}${result.barebone.logistics.toFixed(2)}`, `${ccy}${result.compliant.logistics.toFixed(2)}`, `${ccy}${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
+      [colTotalCost, `${ccy}${result.barebone.total.toFixed(2)}`, `${ccy}${result.compliant.total.toFixed(2)}`, `${ccy}${(result.compliant.total - result.barebone.total).toFixed(2)}`],
+    ], [58, 28, 28, 28]);
 
-  // ── Section 3: Risk-Adjusted Net Income ──────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("riskAdjustedRevenue"));
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    [lblMode, colGrossProfit, lblRiskExposure, lblRiskAdjNet],
-    [lblWithCompliance, `${ccy}${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? lblZeroRisk : `${ccy}${result.compliantRiskExposure.toFixed(0)}`, `${ccy}${(result.compliant.gp - result.compliantRiskExposure / 100).toFixed(2)}`],
-    [lblNoCompliance, `${ccy}${result.barebone.gp.toFixed(2)}`, lblSeizureRisk, `${ccy}${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
-  ], [40, 26, 40, 36]);
+    await yieldToMainThread();
 
-  if (result.riskNote) {
-    pdfBullet(doc, y, margin, pageWidth, pageHeight, result.riskNote);
-  }
+    // ── Section 2: Revenue Comparison ─────────────────────────────────────────
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("revenueComparison"));
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
+      [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
+      [`${colAvgPrice}${aspSuffix}`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
+      [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
+      [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
+    ], [58, 28, 28, 28]);
 
-  // ── Section 4: Breakeven Analysis ───────────────────────────────────────
-  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("breakEvenAnalysis"));
-  pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-    [lblAnalysis, lblNoCompliance, lblWithCompliance, lblExplanation],
-    [lblCompliancePremium, "—", result.premiumPct || "—", result.premiumPct ? `${L === "zh" ? "成本增加" : "Cost increase"} ${result.premiumPct}` : "—"],
-    [lblBreakevenUnits, "—", result.breakevenUnits || "—", result.breakevenUnits ? `${L === "zh" ? "约" : "Approx."} ${result.breakevenUnits}` : "—"],
-    [lblSuggestedPrice, "—", `${ccy}${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
-  ], [40, 26, 36, 40]);
+    await yieldToMainThread();
 
-  if (result.pricingStrategy) {
-    pdfBullet(doc, y, margin, pageWidth, pageHeight, `${lblPricingStrategy}${colon}${result.pricingStrategy}`);
-  }
+    // ── Section 3: Risk-Adjusted Net Income ──────────────────────────────────
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("riskAdjustedRevenue"));
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
+      [lblMode, colGrossProfit, lblRiskExposure, lblRiskAdjNet],
+      [lblWithCompliance, `${ccy}${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? lblZeroRisk : `${ccy}${result.compliantRiskExposure.toFixed(0)}`, `${ccy}${(result.compliant.gp - result.compliantRiskExposure / 100).toFixed(2)}`],
+      [lblNoCompliance, `${ccy}${result.barebone.gp.toFixed(2)}`, lblSeizureRisk, `${ccy}${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
+    ], [40, 26, 40, 36]);
 
-  // ── Section 5: Conclusions ──────────────────────────────────────────────
-  const conclusionText = result.conclusions || result.keyConclusion || "";
-  if (conclusionText) {
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("keyConclusions"));
-    for (const line of conclusionText.split("\n").filter(Boolean)) {
-      pdfBullet(doc, y, margin, pageWidth, pageHeight, line);
+    if (result.riskNote) {
+      pdfBullet(doc, y, margin, pageWidth, pageHeight, result.riskNote);
     }
-  }
 
-  // ── Section 6: References ──────────────────────────────────────────────
-  if (result.references) {
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("regulationCitations"));
-    for (const line of result.references.split("\n").filter(Boolean)) {
-      const clean = line.replace(/^[-*]\s*/, "• ");
-      pdfBullet(doc, y, margin, pageWidth, pageHeight, clean);
+    await yieldToMainThread();
+
+    // ── Section 4: Breakeven Analysis ───────────────────────────────────────
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("breakEvenAnalysis"));
+    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
+      [lblAnalysis, lblNoCompliance, lblWithCompliance, lblExplanation],
+      [lblCompliancePremium, "—", result.premiumPct || "—", result.premiumPct ? `${L === "zh" ? "成本增加" : "Cost increase"} ${result.premiumPct}` : "—"],
+      [lblBreakevenUnits, "—", result.breakevenUnits || "—", result.breakevenUnits ? `${L === "zh" ? "约" : "Approx."} ${result.breakevenUnits}` : "—"],
+      [lblSuggestedPrice, "—", `${ccy}${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
+    ], [40, 26, 36, 40]);
+
+    if (result.pricingStrategy) {
+      pdfBullet(doc, y, margin, pageWidth, pageHeight, `${lblPricingStrategy}${colon}${result.pricingStrategy}`);
     }
-  }
 
-  // ── Full markdown report appendix ─────────────────────────────────────
-  if (result.report) {
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, lblFullReport);
-    renderMarkdownPdf(doc, y, margin, pageWidth, pageHeight, result.report);
-  }
+    await yieldToMainThread();
 
-  // ── Footer on each page ──────────────────────────────────────────────────
-  const pageCount = doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
-    doc.setPage(i);
-    doc.setFontSize(8);
-    doc.setTextColor(200, 200, 200);
-    doc.text(
-      `${rp("profitTitle")} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i}/${pageCount}`,
-      pageWidth / 2,
-      pageHeight - 6,
-      { align: "center" }
+    // ── Section 5: Conclusions ──────────────────────────────────────────────
+    const conclusionText = result.conclusions || result.keyConclusion || "";
+    if (conclusionText) {
+      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("keyConclusions"));
+      for (const line of conclusionText.split("\n").filter(Boolean)) {
+        pdfBullet(doc, y, margin, pageWidth, pageHeight, line);
+      }
+    }
+
+    // ── Section 6: References ──────────────────────────────────────────────
+    if (result.references) {
+      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("regulationCitations"));
+      for (const line of result.references.split("\n").filter(Boolean)) {
+        const clean = line.replace(/^[-*]\s*/, "• ");
+        pdfBullet(doc, y, margin, pageWidth, pageHeight, clean);
+      }
+    }
+
+    await yieldToMainThread();
+
+    // ── Full markdown report appendix ─────────────────────────────────────
+    if (result.report) {
+      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, lblFullReport);
+      await renderMarkdownPdf(doc, y, margin, pageWidth, pageHeight, result.report, yieldToMainThread);
+    }
+
+    // ── Footer on each page ──────────────────────────────────────────────────
+    const pageCount = doc.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      doc.setFontSize(8);
+      doc.setTextColor(200, 200, 200);
+      doc.text(
+        `${rp("profitTitle")} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i}/${pageCount}`,
+        pageWidth / 2,
+        pageHeight - 6,
+        { align: "center" }
+      );
+    }
+
+    doc.save(L === "zh" ? `成本利润分析报告_${result.sessionId}.pdf` : `CostProfitAnalysisReport_${result.sessionId}.pdf`);
+  } catch (error) {
+    throw new Error(
+      `Failed to export profit PDF report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
     );
   }
-
-  doc.save(L === "zh" ? `成本利润分析报告_${result.sessionId}.pdf` : `CostProfitAnalysisReport_${result.sessionId}.pdf`);
 }

@@ -68,6 +68,15 @@ export default function ResultPage() {
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const isDemoSession = sessionId === "demo";
+
+  // P0.4: demo prod-guard runs BEFORE any useState so the hook call order
+  // matches between dev (state set up) and prod (early bail). The previous
+  // placement below all the useState/useEffect calls risked "rendered fewer
+  // hooks than expected" on the production demo branch.
+  if (isDemoSession && process.env.NODE_ENV === "production") {
+    notFound();
+  }
+
   const [result, setResult] = useState<ScanResult | ComplianceReportResult | null>(
     isDemoSession ? (mockComplianceReportResult as unknown as ScanResult | ComplianceReportResult | null) : null
   );
@@ -78,6 +87,10 @@ export default function ResultPage() {
     isDemoSession ? mockProfitReports : []
   );
   const [selectedProfitIndex, setSelectedProfitIndex] = useState(0);
+  // P0.2: explicitly track degraded so we can show the warning banner even
+  // when `result.source === "fallback"` did not propagate through the cache.
+  const [isDegraded, setIsDegraded] = useState(false);
+  const [degradedReason, setDegradedReason] = useState<string | undefined>(undefined);
   const [message, setMessage] = useState("");
   const visibleProfitReport = useMemo(
     () => profitReports[selectedProfitIndex] ?? profitReport,
@@ -146,6 +159,21 @@ export default function ResultPage() {
         startTransition(() => {
           setResult(payload.result ?? null);
           applyProfitReports(payload);
+          setIsDegraded(false);
+          setDegradedReason(undefined);
+          setMessage(t("result.loaded"));
+        });
+        return;
+      }
+      // P0.2: degraded = RAG unavailable, but result is filled with fallback
+      // demo data. We still render the report so the user sees something,
+      // but surface the warning banner.
+      if (payload.status === "degraded" && payload.result) {
+        startTransition(() => {
+          setResult(payload.result ?? null);
+          applyProfitReports(payload);
+          setIsDegraded(true);
+          setDegradedReason(payload.degradedReason);
           setMessage(t("result.loaded"));
         });
         return;
@@ -159,12 +187,6 @@ export default function ResultPage() {
 
     loadResult();
   }, [applyProfitReports, isDemoSession, sessionId, t]);
-
-  // Demo is dev-only — block it in production to mirror the
-  // /api/scan/[sessionId] route guard. Renders the branded not-found page.
-  if (isDemoSession && process.env.NODE_ENV === "production") {
-    notFound();
-  }
 
   return (
     <main className="mx-auto min-h-[calc(100vh-5rem)] w-full max-w-7xl px-4 sm:px-6 py-10">
@@ -200,6 +222,24 @@ export default function ResultPage() {
             </Link>
           </div>
         </div>
+
+        {/* P0.2: degraded banner. Visible when the poller returned a degraded
+            status OR the result itself flagged source=fallback. Sits above
+            SourceNotice so the warning is unmissable. */}
+        {(isDegraded || (result && result.source === "fallback")) && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="mt-6 rounded-2xl border border-amber-500/50 bg-amber-500/15 px-5 py-4 text-sm font-semibold text-amber-200 shadow-[0_0_24px_rgba(245,158,11,0.15)]"
+          >
+            {t("result.degradedBanner")}
+            {degradedReason ? (
+              <span className="ml-2 font-mono text-xs text-amber-300/80">
+                [{degradedReason}]
+              </span>
+            ) : null}
+          </div>
+        )}
 
         {result ? <SourceNotice source={result.source} /> : null}
 

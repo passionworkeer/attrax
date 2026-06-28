@@ -32,7 +32,6 @@ from qdrant_client import QdrantClient
 
 from rag_service.config import settings
 from rag_service.chunker.legal_chunker import chunk_document
-from rag_service.retrieval.cohere_embedder import CohereEmbedder
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -216,7 +215,6 @@ def main():
             chunk["vector"] = [0.0] * 1024
     else:
         logger.info("  Embedding chunks with Cohere...")
-        embedder = CohereEmbedder(api_key=settings.COHERE_API_KEY)
         chunks = embed_chunks(settings.COHERE_API_KEY, chunks)
 
     # Step 4: Upsert to Qdrant

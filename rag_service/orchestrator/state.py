@@ -2,7 +2,12 @@
 """
 state.py - GraphState definition for Agentic RAG
 
-Uses Annotated[list, operator.add] for automatic multi-round document merging.
+Annotated[list, operator.add] is REQUIRED on keys that receive contributions
+from multiple LangGraph Send() fan-out branches. Without a reducer, the default
+behaviour is overwrite: parallel branches (one per market) silently clobber
+each other's sub_queries, documents, and agent_trace entries — losing data and
+producing nondeterministic output. operator.add concatenates list contributions
+from every branch so multi-market results are preserved.
 """
 from typing import TypedDict, Annotated
 import operator
@@ -20,24 +25,30 @@ class GraphState(TypedDict, total=False):
     user_documents: list[dict]  # [{"name": str, "mime_type": str, "text": str}] user-uploaded docs
 
     # === Agent intermediate state ===
-    # Annotated[list, operator.add] → multiple Send() results auto-merge
-    sub_queries: list[dict]                            # QueryPlanner output
-    documents: Annotated[list[dict], operator.add]    # Accumulated across rounds
-    generation: str                                   # Current draft report
-    report_package: dict                              # Four-scene generated content package
-    relevance_score: str                               # "relevant" | "not_relevant"
-    generation_score: str                               # "supported" | "not_supported"
-    missing_citations: list[str]                       # Unverified citations
-    loop_count: int                                   # Retry counter
+    # operator.add → multiple Send() results auto-merge across branches.
+    # Without these reducers, parallel market branches overwrite each other.
+    sub_queries: Annotated[list[dict], operator.add]       # QueryPlanner output
+    documents: Annotated[list[dict], operator.add]         # Accumulated across rounds
+    generation: str                                        # Current draft report
+    report_package: dict                                   # Four-scene generated content package
+    relevance_score: str                                   # "relevant" | "not_relevant"
+    generation_score: str                                  # "supported" | "not_supported"
+    missing_citations: list[str]                           # Unverified citations
+    loop_count: int                                        # Retry counter
 
     # === Configuration ===
-    max_attempts: int                                 # Max retrieval rounds (default 1, disable loop)
-    hyde_query: str                                   # HyDE hypothetical query (optional)
+    # Default 2 (allow one refinement round). initial_state sets this explicitly
+    # so callers can override; should_regenerate reads it as the single source of
+    # truth. Was previously 1 here but 2 in should_regenerate's local fallback —
+    # the disagreement made the agent loop nondeterministic (sometimes infinite,
+    # sometimes disabled). Now both read from state.
+    max_attempts: int
+    hyde_query: str                                        # HyDE hypothetical query (optional)
 
     # === Output ===
     final_report: str
-    status: str                                       # PASS | WARN | REJECTED
-    agent_trace: list[dict]                           # Node execution trace for frontend
+    status: str                                            # PASS | WARN | REJECTED
+    agent_trace: Annotated[list[dict], operator.add]       # Node execution trace, merged across branches
 
 
 def initial_state(query: str, product: str, category: str,
@@ -61,7 +72,7 @@ def initial_state(query: str, product: str, category: str,
         generation_score="",
         missing_citations=[],
         loop_count=0,
-        max_attempts=1,
+        max_attempts=2,
         hyde_query="",
         final_report="",
         status="PENDING",

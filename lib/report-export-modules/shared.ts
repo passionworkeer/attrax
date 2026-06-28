@@ -17,7 +17,31 @@ export { parseMarkdownToPdfText, parseMarkdownBlocks } from "./markdown-text";
 
 export type Locale = "zh" | "en";
 
+/**
+ * Yield control back to the main thread so the UI can paint and react to
+ * interaction while a large PDF/DOCX is being built. Use between heavy
+ * sections (e.g. between drawing each table) to avoid long blocking tasks.
+ *
+ * Implementation note: we prefer `scheduler.yield` when available (Chromium),
+ * fall back to a macrotask via `setTimeout(0)`. In Node/test environments
+ * without a real event loop pressure this still resolves deterministically.
+ */
+export function yieldToMainThread(): Promise<void> {
+  const scheduler = (globalThis as { scheduler?: { yield?: () => Promise<void> } }).scheduler;
+  if (scheduler && typeof scheduler.yield === "function") {
+    return scheduler.yield();
+  }
+  return new Promise((resolve) => setTimeout(resolve, 0));
+}
+
+// Module-level cache of the font's base64 string. We keep both:
+//   - `cachedFontBase64`: a shared Promise so production never re-fetches
+//     the ~10MB font file twice in a session.
+//   - `fontBase64ByCacheKey`: a sync Map mirror so unit tests (which run
+//     many parallel downloads) also reuse the decoded bytes instead of
+//     re-fetching per call.
 let cachedFontBase64: Promise<string> | undefined;
+const fontBase64ByCacheKey = new Map<string, string>();
 
 /** Detect locale from localStorage (set by i18n provider), falling back to "zh". */
 export function detectLocale(): Locale {
@@ -111,15 +135,36 @@ export function parseMarkdownToDocx(text: string): Array<Paragraph | Table> {
   return children;
 }
 
+const FONT_URL = "/fonts/NotoSansSC-Regular.ttf";
+const FONT_CACHE_KEY = "NotoSansSC-Regular.ttf";
+
 async function loadFontBase64(): Promise<string> {
-  const fontBuffer = await fetch("/fonts/NotoSansSC-Regular.ttf").then((r) => r.arrayBuffer());
+  // Reuse the decoded base64 across calls (production Promise cache +
+  // synchronous Map cache for the test-mode path which is re-invoked
+  // per embedFont call). This avoids re-fetching the ~10MB TTF on every
+  // export, which is the dominant cost in unit tests and back-to-back
+  // downloads.
+  const cached = fontBase64ByCacheKey.get(FONT_CACHE_KEY);
+  if (cached) return cached;
+
+  const fontBuffer = await fetch(FONT_URL).then((r) => {
+    // Explicit HTTP failure (ok === false) is treated as an error. We don't
+    // reject when `ok` is undefined because some fetch test doubles (used in
+    // unit tests) only return an arrayBuffer() body without setting `ok`.
+    if (r.ok === false) {
+      throw new Error(`Failed to load report font (HTTP ${r.status}): ${FONT_URL}`);
+    }
+    return r.arrayBuffer();
+  });
   const bytes = new Uint8Array(fontBuffer);
   let binary = "";
   const chunkSize = 0x8000;
   for (let i = 0; i < bytes.length; i += chunkSize) {
     binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
   }
-  return btoa(binary);
+  const base64 = btoa(binary);
+  fontBase64ByCacheKey.set(FONT_CACHE_KEY, base64);
+  return base64;
 }
 
 export async function embedFont(doc: jsPDF): Promise<void> {
@@ -128,9 +173,9 @@ export async function embedFont(doc: jsPDF): Promise<void> {
     ? await loadFontBase64()
     : await (cachedFontBase64 ??= loadFontBase64());
   if ("addFileToVFS" in doc && typeof doc.addFileToVFS === "function") {
-    doc.addFileToVFS("NotoSansSC-Regular.ttf", base64);
-    doc.addFont("NotoSansSC-Regular.ttf", "NotoSansSC", "normal");
-    doc.addFont("NotoSansSC-Regular.ttf", "NotoSansSC", "bold");
+    doc.addFileToVFS(FONT_CACHE_KEY, base64);
+    doc.addFont(FONT_CACHE_KEY, "NotoSansSC", "normal");
+    doc.addFont(FONT_CACHE_KEY, "NotoSansSC", "bold");
   } else {
     doc.addFont(base64, "NotoSansSC", "normal");
     doc.addFont(base64, "NotoSansSC", "bold");
@@ -277,7 +322,15 @@ export function pdfBullet(doc: jsPDF, y: { cur: number }, margin: number, pageWi
   y.cur += 1;
 }
 
-export function renderMarkdownPdf(doc: jsPDF, y: { cur: number }, margin: number, pageWidth: number, pageHeight: number, text: string): void {
+export async function renderMarkdownPdf(
+  doc: jsPDF,
+  y: { cur: number },
+  margin: number,
+  pageWidth: number,
+  pageHeight: number,
+  text: string,
+  yieldFn: () => Promise<void> = () => Promise.resolve(),
+): Promise<void> {
   for (const block of parseMarkdownBlocks(text)) {
     if (block.type === "space") {
       y.cur += 2;
@@ -286,11 +339,13 @@ export function renderMarkdownPdf(doc: jsPDF, y: { cur: number }, margin: number
 
     if (block.type === "heading") {
       pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, block.text);
+      await yieldFn();
       continue;
     }
 
     if (block.type === "table") {
       pdfDrawTable(doc, y, margin, pageWidth, pageHeight, block.rows, []);
+      await yieldFn();
       continue;
     }
 

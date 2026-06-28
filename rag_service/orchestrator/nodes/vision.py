@@ -100,7 +100,13 @@ class VisionAnalyzer:
         self.model = os.environ.get("MIMOTALK_MODEL", "mimo-v2.5")
 
     def _call_mimotalk(self, messages: list[dict], max_tokens: int = 512) -> str:
-        """Call mimoTalk /messages endpoint."""
+        """Call mimoTalk /messages endpoint.
+
+        Retries up to 3 times on network/timeout class errors with exponential
+        backoff (1s, 2s). HTTPError (4xx/5xx) is a business-level failure and
+        is NOT retried — the request reached the server, so retrying the same
+        payload is unlikely to help and could mask a real config problem.
+        """
         if not self.api_key:
             return ""
 
@@ -110,25 +116,45 @@ class VisionAnalyzer:
             "messages": messages,
         }).encode("utf-8")
 
-        req = urllib.request.Request(
-            f"{self.base_url.rstrip('/')}/messages",
-            data=body,
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-                "anthropic-version": "2023-06-01",
-                "x-api-key": self.api_key,
-            },
-        )
+        max_retries = 3
+        base_delays = [1, 2]  # sleeps before attempt 2 and attempt 3
 
-        try:
-            with urllib.request.urlopen(req, timeout=60) as r:
-                data = json.loads(r.read())
-                return data.get("content", [{}])[0].get("text", "")
-        except urllib.error.HTTPError as e:
-            logger.error(f"mimoTalk HTTP {e.code}: {e.read().decode('utf-8', errors='replace')[:200]}")
-        except Exception as e:
-            logger.error(f"mimoTalk error: {type(e).__name__}: {e}")
+        for attempt in range(1, max_retries + 1):
+            req = urllib.request.Request(
+                f"{self.base_url.rstrip('/')}/messages",
+                data=body,
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
+                    "anthropic-version": "2023-06-01",
+                    "x-api-key": self.api_key,
+                },
+            )
+
+            try:
+                with urllib.request.urlopen(req, timeout=60) as r:
+                    data = json.loads(r.read())
+                    return data.get("content", [{}])[0].get("text", "")
+            except urllib.error.HTTPError as e:
+                # Business error — request reached server, do not retry.
+                logger.error(f"mimoTalk HTTP {e.code}: {e.read().decode('utf-8', errors='replace')[:200]}")
+                return ""
+            except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
+                # Network / timeout class — retryable.
+                if attempt < max_retries:
+                    delay = base_delays[attempt - 1]
+                    logger.warning(
+                        f"mimoTalk network error (attempt {attempt}/{max_retries}): "
+                        f"{type(e).__name__}: {e}; retrying in {delay}s"
+                    )
+                    time.sleep(delay)
+                    continue
+                logger.error(f"mimoTalk exhausted retries: {type(e).__name__}: {e}")
+                return ""
+            except Exception as e:
+                # Unknown failure — do not retry blindly; log and bail.
+                logger.error(f"mimoTalk error: {type(e).__name__}: {e}")
+                return ""
         return ""
 
     def analyze_single_image(self, image_data: bytes, mime_type: str = "image/jpeg") -> dict:
@@ -235,7 +261,8 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
     }
     upper = raw.upper()
     for mark, info in cert_map.items():
-        if f" {mark} " in f" {upper} " or f" {mark} " in f" {upper} ":
+        # Word-boundary check so we don't match substrings like "CE" inside "CELL".
+        if f" {mark} " in f" {upper} ":
             certifications.append({"mark": mark, "region": info["region"], "confidence": "high"})
         elif f"{mark}" in upper:
             # Only add if it's clearly a cert mention, not just text
