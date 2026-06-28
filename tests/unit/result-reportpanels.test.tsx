@@ -10,7 +10,7 @@ import { DecisionReportPanel, RoadmapReportPanel } from "@/components/result/Rep
 import { TranslationProvider } from "@/lib/i18n";
 import type { ComplianceReportResult } from "@/lib/types";
 
-vi.mock("@/lib/report-export", () => ({
+vi.mock("@/lib/report-download", () => ({
   downloadReportAsDocx: vi.fn(),
   downloadReportAsPdf: vi.fn(),
   downloadDecisionReportAsDocx: vi.fn(),
@@ -19,7 +19,7 @@ vi.mock("@/lib/report-export", () => ({
   downloadRoadmapReportAsPdf: vi.fn(),
 }));
 
-import * as reportExport from "@/lib/report-export";
+import * as reportExport from "@/lib/report-download";
 
 function renderInProvider(node: React.ReactNode) {
   return render(<TranslationProvider>{node}</TranslationProvider>);

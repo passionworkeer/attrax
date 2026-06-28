@@ -10,7 +10,7 @@ import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { TranslationProvider } from "@/lib/i18n";
 import type { ComplianceReportResult } from "@/lib/types";
 
-vi.mock("@/lib/report-export", () => ({
+vi.mock("@/lib/report-download", () => ({
   downloadReportAsDocx: vi.fn(),
   downloadReportAsPdf: vi.fn(),
   downloadDecisionReportAsDocx: vi.fn(),

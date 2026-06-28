@@ -1,6 +1,7 @@
 "use client";
 
 import { startTransition, useCallback, useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { buttonVariants } from "@/components/ui/button";
@@ -10,12 +11,33 @@ import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
 import { mockComplianceReportResult, mockProfitReport, mockProfitReports } from "@/lib/mock/scan-result";
 import { localizeComplianceReportResult, localizeProfitReportResult } from "@/lib/report-localization";
-import { ProfitReportView } from "@/components/result/ProfitReportView";
 import { SourceNotice } from "@/components/result/SourceNotice";
-import { ComplianceReportView } from "@/components/result/ComplianceReportView";
-import { DecisionReportPanel, RoadmapReportPanel } from "@/components/result/ReportPanels";
 import { LegacyResultView } from "@/components/result/LegacyResultView";
 import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult } from "@/lib/types";
+
+// Heavy report views pull react-markdown / remark-gfm / framer-motion.
+// Lazy-load them so those deps land in separate chunks instead of the
+// result route's initial bundle. A lightweight placeholder keeps layout
+// stable while the chunk streams in.
+const reportViewFallback = (
+  <div className="mt-8 min-h-[200px] animate-pulse rounded-2xl bg-slate-800/40" aria-hidden />
+);
+const ComplianceReportView = dynamic(
+  () => import("@/components/result/ComplianceReportView").then((m) => m.ComplianceReportView),
+  { loading: () => reportViewFallback }
+);
+const ProfitReportView = dynamic(
+  () => import("@/components/result/ProfitReportView").then((m) => m.ProfitReportView),
+  { loading: () => reportViewFallback }
+);
+const DecisionReportPanel = dynamic(
+  () => import("@/components/result/ReportPanels").then((m) => m.DecisionReportPanel),
+  { loading: () => reportViewFallback }
+);
+const RoadmapReportPanel = dynamic(
+  () => import("@/components/result/ReportPanels").then((m) => m.RoadmapReportPanel),
+  { loading: () => reportViewFallback }
+);
 
 function isComplianceReport(r: unknown): r is ComplianceReportResult {
   return (
