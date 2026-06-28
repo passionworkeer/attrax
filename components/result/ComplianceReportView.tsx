@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import { englishText, localizeComplianceReportResult } from "@/lib/report-localization";
-import { downloadReportAsDocx, downloadReportAsPdf } from "@/lib/report-export";
+import { downloadReportAsDocx, downloadReportAsPdf } from "@/lib/report-download";
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
 import { DownloadButtons } from "@/components/result/DownloadButtons";
 import { ImageCarousel, type ProductImage } from "@/components/result/ImageCarousel";

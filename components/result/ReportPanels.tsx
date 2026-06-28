@@ -15,7 +15,7 @@ import {
   downloadDecisionReportAsPdf,
   downloadRoadmapReportAsDocx,
   downloadRoadmapReportAsPdf,
-} from "@/lib/report-export";
+} from "@/lib/report-download";
 import type { DecisionContent } from "@/lib/report-export-modules/decision";
 import type { RoadmapContent } from "@/lib/report-export-modules/roadmap";
 import type { ComplianceReportResult, ReportPackage } from "@/lib/types";

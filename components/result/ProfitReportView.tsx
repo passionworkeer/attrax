@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useTranslation } from "@/lib/i18n";
 import { localizeProfitReportResult } from "@/lib/report-localization";
-import { downloadProfitReportAsPdf, downloadProfitReportAsDocx } from "@/lib/report-export";
+import { downloadProfitReportAsPdf, downloadProfitReportAsDocx } from "@/lib/report-download";
 import type { ProfitReportResult } from "@/lib/types";
 
 type ReportLocale = "zh" | "en";

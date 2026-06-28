@@ -28,8 +28,9 @@ vi.mock('remark-gfm', () => ({
   default: () => [],
 }))
 
-// Mock report-export functions
-vi.mock('@/lib/report-export', () => ({
+// Mock report-download functions (UI components import from here so jspdf/docx
+// stay out of the component bundle; tests still validate the wiring).
+vi.mock('@/lib/report-download', () => ({
   downloadProfitReportAsPdf: vi.fn(),
   downloadProfitReportAsDocx: vi.fn(),
 }))
@@ -37,7 +38,7 @@ vi.mock('@/lib/report-export', () => ({
 // Import after mocks
 import { ProfitReportView } from '@/components/result/ProfitReportView'
 import { TranslationProvider } from '@/lib/i18n'
-import * as reportExport from '@/lib/report-export'
+import * as reportDownload from '@/lib/report-download'
 
 describe('ProfitReportView component', () => {
   const baseResult: ProfitReportResult = {
@@ -190,7 +191,7 @@ describe('ProfitReportView component', () => {
         </TranslationProvider>
       )
       fireEvent.click(screen.getByText('PDF ZH'))
-      expect(reportExport.downloadProfitReportAsPdf).toHaveBeenCalledWith(baseResult, 'zh')
+      expect(reportDownload.downloadProfitReportAsPdf).toHaveBeenCalledWith(baseResult, 'zh')
     })
 
     it('calls downloadProfitReportAsDocx when Word button is clicked', () => {
@@ -200,7 +201,7 @@ describe('ProfitReportView component', () => {
         </TranslationProvider>
       )
       fireEvent.click(screen.getByText('Word ZH'))
-      expect(reportExport.downloadProfitReportAsDocx).toHaveBeenCalledWith(baseResult, 'zh')
+      expect(reportDownload.downloadProfitReportAsDocx).toHaveBeenCalledWith(baseResult, 'zh')
     })
   })
 
