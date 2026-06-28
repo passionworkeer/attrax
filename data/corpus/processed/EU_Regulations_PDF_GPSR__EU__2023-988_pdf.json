@@ -376,6 +376,14 @@
       "data_privacy",
       "battery"
     ],
-    "charCount": 189060
+    "charCount": 189060,
+    "product_categories": [
+      "general_consumer_products",
+      "children_products"
+    ],
+    "productCategories": [
+      "general_consumer_products",
+      "children_products"
+    ]
   }
 }

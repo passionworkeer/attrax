@@ -5962,6 +5962,20 @@
       "investment",
       "toy_safety"
     ],
-    "charCount": 956374
+    "charCount": 956374,
+    "product_categories": [
+      "chemicals",
+      "electronics",
+      "cosmetics",
+      "textiles",
+      "toys"
+    ],
+    "productCategories": [
+      "chemicals",
+      "electronics",
+      "cosmetics",
+      "textiles",
+      "toys"
+    ]
   }
 }

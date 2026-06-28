@@ -31,7 +31,8 @@
     "productCategories": [
       "electronics",
       "toys",
-      "painted_goods"
+      "painted_goods",
+      "children_products"
     ],
     "charCount": 17841,
     "region": "US",
@@ -48,7 +49,8 @@
     "product_categories": [
       "electronics",
       "toys",
-      "painted_goods"
+      "painted_goods",
+      "children_products"
     ],
     "regulatory_types": [
       "product_safety",

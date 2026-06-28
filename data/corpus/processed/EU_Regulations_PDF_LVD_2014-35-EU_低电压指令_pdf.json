@@ -140,6 +140,14 @@
       "EU"
     ],
     "regulatoryTypes": [],
-    "charCount": 60085
+    "charCount": 60085,
+    "product_categories": [
+      "electrical_equipment",
+      "electronics"
+    ],
+    "productCategories": [
+      "electrical_equipment",
+      "electronics"
+    ]
   }
 }

@@ -278,6 +278,14 @@
       "EMC",
       "toy_safety"
     ],
-    "charCount": 123541
+    "charCount": 123541,
+    "product_categories": [
+      "toys",
+      "children_products"
+    ],
+    "productCategories": [
+      "toys",
+      "children_products"
+    ]
   }
 }
