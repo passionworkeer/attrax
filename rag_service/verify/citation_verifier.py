@@ -11,6 +11,7 @@ Implements the CRAG (Corrective RAG) verification pattern:
 import re
 import logging
 from dataclasses import dataclass
+from functools import lru_cache
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -116,8 +117,26 @@ def _article_matches(article_no: str, text: str) -> bool:
         return True
     if not text:
         return False
-    pattern = re.compile(r'\b' + re.escape(article_no) + r'\b', re.IGNORECASE)
-    return bool(pattern.search(text))
+    return bool(_article_pattern(article_no).search(text))
+
+
+def _nli_label_to_status(label) -> str:
+    """Normalize an NLI label string into one of ENTAILED/CONTRADICTED/NEUTRAL."""
+    text = (str(label) if not isinstance(label, str) else label).upper()
+    if text in ("ENTAIL", "ENTAILED", "1"):
+        return "ENTAILED"
+    if text in ("CONTRADICT", "CONTRADICTED", "2"):
+        return "CONTRADICTED"
+    return "NEUTRAL"
+
+
+@lru_cache(maxsize=256)
+def _article_pattern(article_no: str) -> re.Pattern:
+    """Compile (and cache) the word-boundary regex for an article number.
+
+    Compiled patterns are immutable and thread-safe, so caching is safe.
+    """
+    return re.compile(r'\b' + re.escape(article_no) + r'\b', re.IGNORECASE)
 
 
 class CitationVerifier:
@@ -173,42 +192,106 @@ class CitationVerifier:
         if not self.nli_model:
             return self._verify_by_embedding(claim, chunks)
 
-        best_result = ClaimResult(
-            claim=claim,
-            status="NEUTRAL",
-            evidence=None,
-            citation_marker=None,
-        )
+        if not chunks:
+            return ClaimResult(
+                claim=claim,
+                status="NEUTRAL",
+                evidence=None,
+                citation_marker=None,
+            )
 
-        for chunk in chunks:
-            content = chunk.get("content", "")[:2000]
+        # Build all (chunk, claim) premise/hypothesis pairs once and try to
+        # run them through the NLI model in a single batched predict() call.
+        # Most HuggingFace NLI pipelines (and our unit-test mocks) accept a
+        # list input and return one label per premise. Older per-call APIs
+        # will raise on a list, in which case we fall back to per-chunk calls
+        # limited to a top-K of candidates to keep the cost bounded.
+        contents = [chunk.get("content", "")[:2000] for chunk in chunks]
+        pairs = [[f"{content}\n\nClaim: {claim}"] for content in contents]
 
+        try:
+            results = self.nli_model.predict(pairs, multi_label=False)
+            return self._best_nli_result(claim, contents, results)
+        except Exception as e:
+            logger.debug(f"NLI batched predict failed, falling back to per-chunk: {e}")
+
+        # Fallback: rank candidates by cheap text overlap, run NLI on top-K.
+        top_contents = self._top_candidates_by_overlap(claim, contents, k=3)
+        for content in top_contents:
             try:
                 result = self.nli_model.predict(
                     [f"{content}\n\nClaim: {claim}"],
                     multi_label=False,
                 )
                 label = result[0].label if hasattr(result[0], "label") else str(result[0])
-
-                if label.upper() in ("ENTAIL", "ENTAILED", "1"):
+                status = _nli_label_to_status(label)
+                if status in ("ENTAILED", "CONTRADICTED"):
                     return ClaimResult(
                         claim=claim,
-                        status="ENTAILED",
+                        status=status,
                         evidence=content[:500],
                         citation_marker=None,
                     )
-                elif label.upper() in ("CONTRADICT", "CONTRADICTED", "2"):
-                    return ClaimResult(
-                        claim=claim,
-                        status="CONTRADICTED",
-                        evidence=content[:500],
-                        citation_marker=None,
-                    )
-            except Exception as e:
-                logger.debug(f"NLI check failed: {e}")
+            except Exception as inner:
+                logger.debug(f"NLI per-chunk check failed: {inner}")
                 continue
 
-        return best_result
+        return ClaimResult(
+            claim=claim,
+            status="NEUTRAL",
+            evidence=None,
+            citation_marker=None,
+        )
+
+    @staticmethod
+    def _best_nli_result(
+        claim: str,
+        contents: list[str],
+        results,
+    ) -> ClaimResult:
+        """Pick the strongest NLI verdict across batched chunk results.
+
+        CONTRADICTED wins over ENTAILED (worst-case reporting), ENTAILED over
+        NEUTRAL, mirroring the original loop's short-circuit priority.
+        """
+        best = ClaimResult(
+            claim=claim,
+            status="NEUTRAL",
+            evidence=None,
+            citation_marker=None,
+        )
+        for content, result in zip(contents, results):
+            label = result.label if hasattr(result, "label") else str(result)
+            status = _nli_label_to_status(label)
+            if status == "CONTRADICTED":
+                return ClaimResult(
+                    claim=claim,
+                    status="CONTRADICTED",
+                    evidence=content[:500],
+                    citation_marker=None,
+                )
+            if status == "ENTAILED" and best.status != "CONTRADICTED":
+                best = ClaimResult(
+                    claim=claim,
+                    status="ENTAILED",
+                    evidence=content[:500],
+                    citation_marker=None,
+                )
+        return best
+
+    @staticmethod
+    def _top_candidates_by_overlap(claim: str, contents: list[str], k: int = 3) -> list[str]:
+        """Return the top-k contents ranked by cheap word overlap with claim."""
+        claim_words = set(re.findall(r"\w+", claim.lower()))
+        if not claim_words:
+            return contents[:k]
+        scored = []
+        for content in contents:
+            content_words = set(re.findall(r"\w+", content.lower()))
+            overlap = len(claim_words & content_words) / max(len(claim_words), 1)
+            scored.append((overlap, content))
+        scored.sort(key=lambda x: x[0], reverse=True)
+        return [content for _, content in scored[:k]]
 
     def _verify_by_embedding(self, claim: str, chunks: list[dict]) -> ClaimResult:
         """

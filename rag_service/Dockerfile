@@ -17,11 +17,19 @@ RUN pip install -r requirements-prod.txt
 # Copy source code
 COPY . .
 
-# Create data directories
-RUN mkdir -p /app/data/faiss /app/data/corpus/processed
+# Create data directories and a non-root user, then hand ownership.
+# uvicorn must not run as root: a container escape would yield root inside
+# the pod, so we drop to UID 1001 (attrax) for the runtime.
+RUN mkdir -p /app/data/faiss /app/data/corpus/processed \
+    && (getent group attrax >/dev/null 2>&1 || groupadd -r attrax) \
+    && (id -u attrax >/dev/null 2>&1 || useradd -r -u 1001 -g attrax -m -d /home/attrax attrax) \
+    && chown -R attrax:attrax /app
 
 # Default port
 EXPOSE 8000
+
+# Drop privileges for the runtime process
+USER attrax
 
 # Run
 CMD ["uvicorn", "rag_service.main:app", "--host", "0.0.0.0", "--port", "8000"]

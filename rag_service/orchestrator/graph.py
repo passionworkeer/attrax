@@ -55,13 +55,16 @@ def build_compliance_graph() -> StateGraph:
     g.add_edge("generate", "verify")
 
     # ── Conditional routing after verification ────────────────
+    # should_regenerate only ever returns "end" or "refine". An earlier
+    # implementation also had a "force_generate" branch that routed back to
+    # the generate node, but no code path produces that value, making it a
+    # dead branch that misleads readers. Removed.
     g.add_conditional_edges(
         "verify",
         should_regenerate,
         {
             "end":            END,
             "refine":         "refine",
-            "force_generate": "generate",
         },
     )
 
@@ -83,7 +86,7 @@ def get_compiled_graph() -> "CompiledStateGraph":
 
 
 def compile_graph() -> "CompiledStateGraph":
-    """Compile (no recursion_limit — not supported in this LangGraph version)."""
+    """Compile the graph. recursion_limit is passed at invoke time, not compile."""
     graph = build_compliance_graph()
     return graph.compile(debug=False)
 
@@ -132,7 +135,14 @@ def run_compliance_graph(
         documents=documents,
     )
 
-    result = compiled.invoke(initial)
+    # recursion_limit caps graph steps (including refine → query_planner loops
+    # and per-market Send() fan-out). HyDE refinement can recurse:
+    # query_planner → fan_out → retrieve → synthesis → generate → verify →
+    # refine → query_planner ...; with max_attempts=2 plus multi-market
+    # fan-out, 50 is a safe upper bound that prevents infinite loops without
+    # blocking legitimate workflows. LangGraph 1.1.6 honours recursion_limit
+    # via the config dict passed to invoke (not at compile time).
+    result = compiled.invoke(initial, config={"recursion_limit": 50})
 
     # Build final output
     final_report = result.get("generation", "") or result.get("final_report", "")
@@ -141,7 +151,7 @@ def run_compliance_graph(
     # Map to final status
     if status in ("supported", "PASS", "ENTAILED"):
         final_status = "PASS"
-    elif status in ("warn", "WARN", "force_generate"):
+    elif status in ("warn", "WARN"):
         final_status = "WARN"
     else:
         final_status = "REJECTED"

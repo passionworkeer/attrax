@@ -222,67 +222,17 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
             parent_chunks.append(asdict(parent))
 
         else:
-            # Long segment: split by paragraphs/sentences
-            # Try sentence splitting first
-            sentences = re.split(r"(?<=[。！？.!?])\s+", content)
-            current = ""
-            current_tokens = 0
-
-            for sent in sentences:
-                sent_tokens = estimate_tokens(sent)
-                if current_tokens + sent_tokens > 600 and current:
-                    # Flush current as child
-                    chunk_id = str(uuid.uuid4())[:8]
-                    prepend_en, prepend_zh = build_prepend(doc_name, [], article_no, lang)
-                    child = Chunk(
-                        id=chunk_id,
-                        content=current.strip(),
-                        chunk_type="child",
-                        doc_name=doc_name,
-                        doc_id=doc_id,
-                        region=region,
-                        article_no=article_no,
-                        section_path=[],
-                        page_start=0,
-                        page_end=0,
-                        total_chars=len(current),
-                        prepend_en=prepend_en,
-                        prepend_zh=prepend_zh,
-                    )
-                    child_chunks.append(asdict(child))
-                    current = sent
-                    current_tokens = sent_tokens
-                else:
-                    current += " " + sent
-                    current_tokens += sent_tokens
-
-            if current.strip():
-                chunk_id = str(uuid.uuid4())[:8]
-                prepend_en, prepend_zh = build_prepend(doc_name, [], article_no, lang)
-                child = Chunk(
-                    id=chunk_id,
-                    content=current.strip(),
-                    chunk_type="child",
-                    doc_name=doc_name,
-                    doc_id=doc_id,
-                    region=region,
-                    article_no=article_no,
-                    section_path=[],
-                    page_start=0,
-                    page_end=0,
-                    total_chars=len(current),
-                    prepend_en=prepend_en,
-                    prepend_zh=prepend_zh,
-                )
-                child_chunks.append(asdict(child))
-
-            # For long articles: parent = full segment
+            # Long segment: split by paragraphs/sentences.
+            # Create the parent FIRST so every child in this segment can be
+            # linked precisely by parent_id (no [-10:] lookback that drops
+            # early children when an Article fans out into >10 chunks).
+            prepend_en, prepend_zh = build_prepend(doc_name, [], article_no, lang)
             parent_id = str(uuid.uuid4())[:8]
-            prepend_en, _ = build_prepend(doc_name, [], article_no, lang)
             parent = Chunk(
                 id=parent_id,
                 content=content,
                 chunk_type="parent",
+                parent_id=None,
                 doc_name=doc_name,
                 doc_id=doc_id,
                 region=region,
@@ -292,14 +242,53 @@ def chunk_document(raw_text: str, doc_name: str = "", doc_id: str = "",
                 page_end=0,
                 total_chars=len(content),
                 prepend_en=prepend_en,
-                prepend_zh=prepend_en if lang != "zh" else build_prepend(doc_name, [], article_no, lang)[1],
+                prepend_zh=prepend_zh,
             )
             parent_chunks.append(asdict(parent))
 
-            # Link all children of this segment to this parent
-            for child in child_chunks[-10:]:  # approximate - just link last batch
-                if child["article_no"] == article_no and child["parent_id"] is None:
-                    child["parent_id"] = parent_id
+            # Try sentence splitting, accumulating children for THIS segment.
+            sentences = re.split(r"(?<=[。！？.!?])\s+", content)
+            current = ""
+            current_tokens = 0
+            seg_children: list[Chunk] = []
+
+            def _flush(buf: str) -> None:
+                if not buf.strip():
+                    return
+                cid = str(uuid.uuid4())[:8]
+                child = Chunk(
+                    id=cid,
+                    content=buf.strip(),
+                    chunk_type="child",
+                    parent_id=parent_id,
+                    doc_name=doc_name,
+                    doc_id=doc_id,
+                    region=region,
+                    article_no=article_no,
+                    section_path=[],
+                    page_start=0,
+                    page_end=0,
+                    total_chars=len(buf),
+                    prepend_en=prepend_en,
+                    prepend_zh=prepend_zh,
+                )
+                seg_children.append(child)
+
+            for sent in sentences:
+                sent_tokens = estimate_tokens(sent)
+                if current_tokens + sent_tokens > 600 and current:
+                    _flush(current)
+                    current = sent
+                    current_tokens = sent_tokens
+                else:
+                    current += " " + sent
+                    current_tokens += sent_tokens
+
+            _flush(current)
+
+            # Persist every child of this segment with the correct parent link.
+            for child in seg_children:
+                child_chunks.append(asdict(child))
 
     return {
         "child_chunks": child_chunks,

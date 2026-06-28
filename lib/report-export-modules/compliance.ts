@@ -27,6 +27,7 @@ import {
   renderMarkdownPdf,
   resolveLocale,
   tx,
+  yieldToMainThread,
 } from "./shared";
 
 function formatFileSize(size: number, locale: Locale): string {
@@ -63,111 +64,127 @@ function documentRows(result: ComplianceReportResult, locale: Locale): string[][
 }
 
 export async function downloadReportAsPdf(input: ComplianceReportResult, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const result = localizeComplianceReportResult(input, L);
-  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+  try {
+    const L = resolveLocale(locale);
+    const result = localizeComplianceReportResult(input, L);
+    const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
 
-  // Embed Noto Sans SC (supports Chinese) before any text is written.
-  await embedFont(doc);
+    // Embed Noto Sans SC (supports Chinese) before any text is written.
+    await embedFont(doc);
 
-  const pageWidth = doc.internal.pageSize.getWidth();
-  const pageHeight = doc.internal.pageSize.getHeight();
-  const margin = 20;
-  let y = margin;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 20;
+    let y = margin;
 
-  const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
-  const reportTitle = tx("report.title", L);
-  const reportFooter = tx("report.footer", L);
-  const lblGrade = tx("report.labels.productGrade", L);
-  const lblCategory = tx("report.labels.productCategory", L);
-  const lblMarket = tx("report.labels.productMarket", L);
-  const statusText = complianceStatusLabel(result.complianceStatus, L);
+    const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
+    const reportTitle = tx("report.title", L);
+    const reportFooter = tx("report.footer", L);
+    const lblGrade = tx("report.labels.productGrade", L);
+    const lblCategory = tx("report.labels.productCategory", L);
+    const lblMarket = tx("report.labels.productMarket", L);
+    const statusText = complianceStatusLabel(result.complianceStatus, L);
 
-  // ── Header ────────────────────────────────────────────
-  doc.setFontSize(10);
-  doc.setTextColor(180);
-  doc.text(reportTitle, margin, y);
-  y += 6;
-  doc.setDrawColor(220);
-  doc.line(margin, y, pageWidth - margin, y);
-  y += 8;
+    // ── Header ────────────────────────────────────────────
+    doc.setFontSize(10);
+    doc.setTextColor(180);
+    doc.text(reportTitle, margin, y);
+    y += 6;
+    doc.setDrawColor(220);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 8;
 
-  // ── Score & Meta ───────────────────────────────────────
-  const scoreColor = result.complianceStatus === "PASS"
-    ? [16, 185, 129]
-    : result.complianceStatus === "WARN"
-    ? [245, 158, 11]
-    : [239, 68, 68];
-  doc.setFontSize(48);
-  doc.setTextColor(scoreColor[0], scoreColor[1], scoreColor[2]);
-  doc.text(String(result.complianceScore), margin, y + 14);
-  doc.setFontSize(12);
-  doc.setTextColor(100);
-  doc.text(`${lblGrade}：${result.scoreGrade}`, margin + 28, y + 8);
-  doc.text(`${lblCategory}：${result.productCategory}`, margin + 28, y + 16);
-  doc.text(`${lblMarket}：${markets}`, margin + 28, y + 24);
-  y += 36;
+    // Yield after the header so the UI can paint a loading indicator before
+    // the heavy scoring/section rendering begins.
+    await yieldToMainThread();
 
-  // ── Status badge ─────────────────────────────────────
-  const badgeFill = result.complianceStatus === "PASS"
-    ? [236, 253, 245]
-    : result.complianceStatus === "WARN"
-      ? [255, 251, 235]
-      : [254, 242, 242];
-  doc.setFillColor(badgeFill[0], badgeFill[1], badgeFill[2]);
-  doc.setDrawColor(scoreColor[0], scoreColor[1], scoreColor[2]);
-  doc.setLineWidth(0.4);
-  const statusW = doc.getTextWidth(` ${statusText} `) + 4;
-  doc.roundedRect(margin, y, statusW, 7, 1.5, 1.5, "FD");
-  doc.setFontSize(9);
-  doc.setTextColor(scoreColor[0], scoreColor[1], scoreColor[2]);
-  doc.text(` ${statusText} `, margin + 2, y + 5);
-  y += 12;
+    // ── Score & Meta ───────────────────────────────────────
+    const scoreColor = result.complianceStatus === "PASS"
+      ? [16, 185, 129]
+      : result.complianceStatus === "WARN"
+      ? [245, 158, 11]
+      : [239, 68, 68];
+    doc.setFontSize(48);
+    doc.setTextColor(scoreColor[0], scoreColor[1], scoreColor[2]);
+    doc.text(String(result.complianceScore), margin, y + 14);
+    doc.setFontSize(12);
+    doc.setTextColor(100);
+    doc.text(`${lblGrade}：${result.scoreGrade}`, margin + 28, y + 8);
+    doc.text(`${lblCategory}：${result.productCategory}`, margin + 28, y + 16);
+    doc.text(`${lblMarket}：${markets}`, margin + 28, y + 24);
+    y += 36;
 
-  doc.setDrawColor(220);
-  doc.line(margin, y, pageWidth - margin, y);
-  y += 8;
+    // ── Status badge ─────────────────────────────────────
+    const badgeFill = result.complianceStatus === "PASS"
+      ? [236, 253, 245]
+      : result.complianceStatus === "WARN"
+        ? [255, 251, 235]
+        : [254, 242, 242];
+    doc.setFillColor(badgeFill[0], badgeFill[1], badgeFill[2]);
+    doc.setDrawColor(scoreColor[0], scoreColor[1], scoreColor[2]);
+    doc.setLineWidth(0.4);
+    const statusW = doc.getTextWidth(` ${statusText} `) + 4;
+    doc.roundedRect(margin, y, statusW, 7, 1.5, 1.5, "FD");
+    doc.setFontSize(9);
+    doc.setTextColor(scoreColor[0], scoreColor[1], scoreColor[2]);
+    doc.text(` ${statusText} `, margin + 2, y + 5);
+    y += 12;
 
-  // ── Report Content ────────────────────────────────────
-  const yRef = { cur: y };
-  renderMarkdownPdf(doc, yRef, margin, pageWidth, pageHeight, result.complianceReport);
+    doc.setDrawColor(220);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 8;
 
-  if (result.retrievedChunks.length > 0) {
-    pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "法规证据命中明细" : "Retrieved Evidence Details");
-    pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, evidenceRows(result, L), [10, 24, 74, 32, 16]);
-  }
+    await yieldToMainThread();
 
-  if (result.documents.length > 0) {
-    pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "上传原始资料清单" : "Uploaded Source Files");
-    pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, documentRows(result, L), [10, 88, 24, 22]);
-  }
-  y = yRef.cur;
+    // ── Report Content ────────────────────────────────────
+    const yRef = { cur: y };
+    await renderMarkdownPdf(doc, yRef, margin, pageWidth, pageHeight, result.complianceReport, yieldToMainThread);
 
-  // ── Footer on each page ────────────────────────────────
-  const pageCount = doc.getNumberOfPages();
-  for (let i = 1; i <= pageCount; i++) {
-    doc.setPage(i);
-    doc.setFontSize(8);
-    doc.setTextColor(180, 180, 180);
-    doc.text(
-      `${reportFooter} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i} / ${pageCount} ${L === "zh" ? "页" : ""}`,
-      pageWidth / 2,
-      pageHeight - 8,
-      { align: "center" }
+    if (result.retrievedChunks.length > 0) {
+      pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "法规证据命中明细" : "Retrieved Evidence Details");
+      pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, evidenceRows(result, L), [10, 24, 74, 32, 16]);
+      await yieldToMainThread();
+    }
+
+    if (result.documents.length > 0) {
+      pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "上传原始资料清单" : "Uploaded Source Files");
+      pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, documentRows(result, L), [10, 88, 24, 22]);
+      await yieldToMainThread();
+    }
+    y = yRef.cur;
+
+    // ── Footer on each page ────────────────────────────────
+    const pageCount = doc.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      doc.setFontSize(8);
+      doc.setTextColor(180, 180, 180);
+      doc.text(
+        `${reportFooter} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i} / ${pageCount} ${L === "zh" ? "页" : ""}`,
+        pageWidth / 2,
+        pageHeight - 8,
+        { align: "center" }
+      );
+    }
+
+    const filenameBase = L === "zh"
+      ? `合规报告_${result.sessionId}_${result.complianceStatus}.pdf`
+      : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.pdf`;
+    doc.save(filenameBase);
+  } catch (error) {
+    throw new Error(
+      `Failed to export compliance PDF report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
     );
   }
-
-  const filenameBase = L === "zh"
-    ? `合规报告_${result.sessionId}_${result.complianceStatus}.pdf`
-    : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.pdf`;
-  doc.save(filenameBase);
 }
 
 export async function downloadReportAsDocx(input: ComplianceReportResult, locale?: Locale): Promise<void> {
-  const L = resolveLocale(locale);
-  const result = localizeComplianceReportResult(input, L);
-  const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
-  const statusText = complianceStatusLabel(result.complianceStatus, L);
+  try {
+    const L = resolveLocale(locale);
+    const result = localizeComplianceReportResult(input, L);
+    const markets = result.targetMarkets.map((m) => marketLabel(m, L)).join(L === "zh" ? "、" : ", ");
+    const statusText = complianceStatusLabel(result.complianceStatus, L);
   const title = tx("report.title", L);
   const lblScore = tx("report.comprehensiveScore", L);
   const lblGrade = tx("report.labels.productGrade", L);
@@ -286,14 +303,20 @@ export async function downloadReportAsDocx(input: ComplianceReportResult, locale
   });
 
   const blob = await Packer.toBlob(doc);
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = L === "zh"
-    ? `合规报告_${result.sessionId}_${result.complianceStatus}.docx`
-    : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.docx`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = L === "zh"
+      ? `合规报告_${result.sessionId}_${result.complianceStatus}.docx`
+      : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.docx`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (error) {
+    throw new Error(
+      `Failed to export compliance DOCX report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
 }

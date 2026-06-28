@@ -15,7 +15,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from rag_service.orchestrator.nodes.query_planner import (
     _detect_product_type,
     _smart_expand,
-    _is_relevant_chunk,
     expand_synonyms,
     decompose_markets,
     query_planner_node,
@@ -79,33 +78,6 @@ def test_smart_expand_idempotent_does_not_duplicate():
     out = _smart_expand("充电宝 移动电源", "充电宝")
     # 移动电源 already present -> should not appear twice.
     assert out.count("移动电源") == 1
-
-
-# ── _is_relevant_chunk ───────────────────────────────────────────────────────
-
-def test_is_relevant_chunk_no_product_type_always_relevant():
-    assert _is_relevant_chunk("anything", "") is True
-
-
-def test_is_relevant_chunk_empty_text_is_relevant():
-    assert _is_relevant_chunk("", "充电宝") is True
-
-
-def test_is_relevant_chunk_power_bank_chunk_relevant_to_power_bank():
-    # Chunk mentions power bank AND the product type token (充电宝) -> relevant.
-    # _is_relevant_chunk requires product_type to appear in the chunk text to
-    # override the negative signal.
-    assert _is_relevant_chunk("这个充电宝 power bank 有 10000mAh", "充电宝") is True
-
-
-def test_is_relevant_chunk_earphone_chunk_irrelevant_to_power_bank():
-    """Chunk about power bank, but product is earphone -> irrelevant."""
-    assert _is_relevant_chunk("this is a power bank for charging", "耳机") is False
-
-
-def test_is_relevant_chunk_unknown_product_type_no_negatives():
-    # No NEGATIVE_SIGNALS entry -> always relevant.
-    assert _is_relevant_chunk("some chunk text", "玩具") is True
 
 
 # ── expand_synonyms (legacy delegate) ────────────────────────────────────────

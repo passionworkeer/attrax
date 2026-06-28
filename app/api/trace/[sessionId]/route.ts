@@ -3,9 +3,38 @@ import { serverT } from "@/lib/server-i18n";
 import { ok, fail } from "@/lib/api-response";
 import { requireSessionAccess } from "@/app/api/session-access";
 import { SessionIdSchema } from "@/lib/schemas";
-import type { ReportPackage } from "@/lib/types";
+import type { ComplianceReportResult, ReportPackage } from "@/lib/types";
 
 export const runtime = "nodejs";
+
+/**
+ * Shape of `session.result` fields this route actually consumes. Mirrors
+ * `ComplianceReportResult` from lib/types.ts but narrowed to the subset used
+ * here so the union with ScanResult (which lacks agentTrace) does not require
+ * ad-hoc `as` casts at every read site.
+ */
+type TraceResult = Pick<
+  ComplianceReportResult,
+  | "agentTrace"
+  | "retrievedChunks"
+  | "targetMarkets"
+  | "complianceScore"
+  | "scoreGrade"
+  | "reportPackage"
+>;
+
+// Loose entry shape for the heterogeneous agent_trace records. Each entry has
+// a `node` name plus optional timing/score fields that vary by node kind —
+// kept as a structural type rather than an `unknown`-cast to keep field names
+// auditable.
+interface AgentTraceEntry {
+  node: string;
+  status?: string;
+  duration_ms?: number;
+  duration?: number;
+  score?: number;
+  docs_retrieved?: number;
+}
 
 export async function GET(
   request: Request,
@@ -31,7 +60,9 @@ export async function GET(
   const denied = requireSessionAccess(request, session);
   if (denied) return denied;
 
-  const result = session.result;
+  // Narrow to the field subset this route reads; absence collapses to safe
+  // defaults below (no `as` casts needed at read sites).
+  const result = session.result as Partial<TraceResult> | undefined;
   if (!result) {
     return fail(
       { code: "NOT_READY", message: serverT("errors.resultNotReady", "zh") },
@@ -40,18 +71,18 @@ export async function GET(
   }
 
   // Build trace data from agent_trace
-  const agentTrace = (result as { agentTrace?: unknown[] }).agentTrace || [];
+  const agentTrace: AgentTraceEntry[] = (result.agentTrace ?? []) as AgentTraceEntry[];
   const decisionView = _getDecisionView(_getReportPackage(result));
 
   // Extract execution stats
-  const totalTime = (agentTrace as Array<{ duration_ms?: number; duration?: number }>).reduce((acc, entry) => {
-    return acc + (entry.duration_ms || entry.duration || 0);
+  const totalTime = agentTrace.reduce((acc, entry) => {
+    return acc + (entry.duration_ms ?? entry.duration ?? 0);
   }, 0) / 1000;
 
   const steps = agentTrace.length;
 
   // Extract market info from retrievedChunks or use defaults
-  const retrievedChunks = (result as { retrievedChunks?: Array<{ region?: string; docName?: string }> }).retrievedChunks || [];
+  const retrievedChunks = result.retrievedChunks ?? [];
   const markets = new Set<string>();
   const regulations = new Set<string>();
 
@@ -61,7 +92,7 @@ export async function GET(
   }
 
   // If no market data, derive from targetMarkets
-  const targetMarkets = (result as { targetMarkets?: string[] }).targetMarkets || [];
+  const targetMarkets = result.targetMarkets ?? [];
   for (const m of targetMarkets) {
     markets.add(m);
   }
@@ -70,20 +101,13 @@ export async function GET(
   // otherwise fall back to raw runtime agent_trace.
   const traceNodes = decisionView?.nodes?.length
     ? _normalizeDecisionNodes(decisionView.nodes)
-    : (agentTrace as Array<{
-        node: string;
-        status?: string;
-        duration_ms?: number;
-        duration?: number;
-        score?: number;
-        docs_retrieved?: number;
-      }>).map((entry) => ({
+    : agentTrace.map((entry) => ({
         ..._getNodeLabels(entry.node),
         id: entry.node,
         type: entry.node,
         icon: "📊",
         status: entry.status?.toLowerCase() || "pending",
-        duration: `${((entry.duration_ms || entry.duration) || 0) / 1000}s`,
+        duration: `${((entry.duration_ms ?? entry.duration) ?? 0) / 1000}s`,
         confidence: entry.score || 0,
       }));
 
@@ -93,8 +117,8 @@ export async function GET(
     steps,
     markets: markets.size || 4,
     regulations: regulations.size || 6,
-    score: (result as { complianceScore?: number }).complianceScore || 85,
-    grade: (result as { scoreGrade?: string }).scoreGrade || "B",
+    score: result.complianceScore ?? 85,
+    grade: result.scoreGrade ?? "B",
     decisionView,
     traceNodes,
     retrievedChunks,

@@ -1,4 +1,5 @@
 import { ulid } from "ulid";
+import { createHash } from "crypto";
 import { createMockComplianceReportResult, createMockProfitReport, createMockProfitReports } from "@/lib/mock/scan-result";
 import { createSession, updateSession } from "@/lib/pipeline/session-store";
 import { enqueueScan } from "@/lib/pipeline/scan-queue";
@@ -20,6 +21,20 @@ import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
 
+/** Per-IP-per-day free scan cap. Defaults to 3 (see CLAUDE.md). Set to 0 to
+ *  disable the daily cap (e.g. internal deployments). */
+function getDailyFreeScanLimit(): number {
+  const raw = Number.parseInt(process.env.DAILY_FREE_SCAN_LIMIT ?? "3", 10);
+  return Number.isFinite(raw) && raw >= 0 ? raw : 3;
+}
+
+/** Milliseconds until local-midnight — used as the TTL for daily counters so a
+ *  cap resets at the start of each day in server-local time. */
+function msUntilMidnight(now: Date = new Date()): number {
+  const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+  return Math.max(1, midnight.getTime() - now.getTime());
+}
+
 type ScanErrorReason =
   | "INVALID_REQUEST"
   | "UPLOAD_AT_LEAST_ONE_IMAGE"
@@ -30,26 +45,31 @@ type ScanErrorReason =
   | "UNSUPPORTED_IMAGE_TYPE"
   | "UNSUPPORTED_DOCUMENT_TYPE"
   | "INVALID_FILE_SIGNATURE"
-  | "RATE_LIMITED";
+  | "RATE_LIMITED"
+  | "DAILY_LIMIT_REACHED";
 
+// Each reason maps to its own i18n key so the UI can render a specific,
+// actionable message instead of a generic "invalid request".
 const SCAN_ERROR_KEYS: Record<ScanErrorReason, string> = {
   INVALID_REQUEST: "errors.invalidRequest",
   UPLOAD_AT_LEAST_ONE_IMAGE: "errors.uploadAtLeastOne",
   TOO_MANY_DOCUMENTS: "errors.tooManyDocuments",
-  TOO_MANY_IMAGES: "errors.invalidRequest",
-  IMAGE_TOO_LARGE: "errors.invalidRequest",
-  DOCUMENT_TOO_LARGE: "errors.invalidRequest",
-  UNSUPPORTED_IMAGE_TYPE: "errors.invalidRequest",
-  UNSUPPORTED_DOCUMENT_TYPE: "errors.invalidRequest",
-  INVALID_FILE_SIGNATURE: "errors.invalidRequest",
-  RATE_LIMITED: "errors.invalidRequest",
+  TOO_MANY_IMAGES: "errors.tooManyImages",
+  IMAGE_TOO_LARGE: "errors.imageTooLarge",
+  DOCUMENT_TOO_LARGE: "errors.documentTooLarge",
+  UNSUPPORTED_IMAGE_TYPE: "errors.unsupportedImageType",
+  UNSUPPORTED_DOCUMENT_TYPE: "errors.unsupportedDocumentType",
+  INVALID_FILE_SIGNATURE: "errors.invalidFileSignature",
+  RATE_LIMITED: "errors.rateLimited",
+  DAILY_LIMIT_REACHED: "errors.dailyLimitReached",
 };
 
 function scanBadInput(reason: ScanErrorReason, status = 400) {
   const key = SCAN_ERROR_KEYS[reason];
+  const code = status === 429 ? "RATE_LIMITED" : "BAD_INPUT";
   return fail(
     {
-      code: status === 429 ? "RATE_LIMITED" : "BAD_INPUT",
+      code,
       reason,
       message: serverT(key, "zh"),
       messageEn: serverT(key, "en"),
@@ -108,10 +128,6 @@ function runDemoSimulation(sessionId: string) {
 }
 
 export async function POST(request: Request) {
-  if (!checkRateLimit(`scan:${clientIp(request)}`, API_SCAN_RATE_LIMIT, API_RATE_LIMIT_WINDOW_MS)) {
-    return scanBadInput("RATE_LIMITED", 429);
-  }
-
   let formData: FormData;
   try {
     formData = await request.formData();
@@ -155,11 +171,34 @@ export async function POST(request: Request) {
     return scanBadInput("INVALID_REQUEST");
   }
 
+  // Rate-limit AFTER schema/validation: a request that fails Zod or upload
+  // checks returns 400 without burning a daily or short-window slot. This
+  // stops a bad-input flood from locking legitimate users out of their
+  // allotment. Both checks still run before any session is created.
+  if (!checkRateLimit(`scan:${clientIp(request)}`, API_SCAN_RATE_LIMIT, API_RATE_LIMIT_WINDOW_MS)) {
+    return scanBadInput("RATE_LIMITED", 429);
+  }
+
+  // Daily free-scan cap, keyed per client-per-local-day. TTL rolls over at
+  // local midnight so each user gets a fresh allotment at the start of their
+  // day. CLAUDE.md advertises DAILY_FREE_SCAN_LIMIT=3; set to 0 to disable.
+  const ip = clientIp(request);
+  const dailyLimit = getDailyFreeScanLimit();
+  if (dailyLimit > 0) {
+    const today = new Date();
+    const dateKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+    if (!checkRateLimit(`daily:${ip}:${dateKey}`, dailyLimit, msUntilMidnight(today))) {
+      return scanBadInput("DAILY_LIMIT_REACHED", 429);
+    }
+  }
+
   const sessionId = `scan_${ulid()}`;
   const accessToken = createAccessToken();
-  const ip = clientIp(request);
-  createSession(sessionId);
-  updateSession(sessionId, { accessTokenHash: hashAccessToken(accessToken) });
+  // Atomically create the session WITH its access-token hash. The previous
+  // createSession()+updateSession() pair left a window where a concurrent
+  // poller could read a session with no hash before it was written — closing
+  // it by passing the hash into createSession, which already supports it.
+  createSession(sessionId, hashAccessToken(accessToken));
 
   if (process.env.DEMO_MODE === "true") {
     runDemoSimulation(sessionId);
@@ -266,7 +305,11 @@ export async function POST(request: Request) {
   // Save the original uploads to disk so admins can review what each user
   // submitted after the fact. The buffers above are only kept in memory until
   // the pipeline finishes; without this step the originals are lost.
-  const savedUploads = saveUploadsForSession(
+  //
+  // Immutable accumulation: each step produces a NEW array instead of pushing
+  // into the returned array (which would mutate `saveUploadsForSession`'s
+  // output and violate the immutability rule).
+  const imageUploads = saveUploadsForSession(
     sessionId,
     imageData.map((img) => ({
       buffer: img.buffer,
@@ -275,30 +318,32 @@ export async function POST(request: Request) {
       kind: "image" as const,
     }))
   );
-  for (const doc of documents) {
-    // text-only docs have no on-disk buffer to archive; record the metadata so
-    // admins at least see what was attached by filename and size estimate.
-    savedUploads.push({
-      originalName: doc.name,
-      savedAs: "",
-      savedPath: "",
-      size: doc.text.length,
-      mimeType: doc.mimeType,
-      sha256: "",
-      kind: "document" as const,
-    });
-  }
-  for (const pdf of pdfs) {
-    const [saved] = saveUploadsForSession(sessionId, [
-      {
-        buffer: pdf.buffer,
-        originalName: pdf.name,
-        mimeType: pdf.mimeType,
-        kind: "document" as const,
-      },
-    ]);
-    if (saved) savedUploads.push(saved);
-  }
+  // text-only docs have no on-disk buffer to archive; record real metadata +
+  // a content-derived sha256 so admins have an integrity fingerprint even
+  // without a saved file.
+  const textDocUploads = documents.map((doc) => ({
+    originalName: doc.name,
+    savedAs: "",
+    savedPath: "",
+    size: doc.text.length,
+    mimeType: doc.mimeType,
+    sha256: createHash("sha256").update(doc.text).digest("hex"),
+    kind: "document" as const,
+  }));
+  const pdfUploads = pdfs
+    .map((pdf) => {
+      const [saved] = saveUploadsForSession(sessionId, [
+        {
+          buffer: pdf.buffer,
+          originalName: pdf.name,
+          mimeType: pdf.mimeType,
+          kind: "document" as const,
+        },
+      ]);
+      return saved;
+    })
+    .filter((u): u is NonNullable<typeof u> => Boolean(u));
+  const savedUploads = [...imageUploads, ...textDocUploads, ...pdfUploads];
   updateSession(sessionId, { uploads: savedUploads });
 
   logUserActivity({

@@ -66,6 +66,11 @@ def mock_generator():
     gen = MagicMock()
     gen.provider = "mimotalk"
     gen.generate.return_value = "## 合规报告\n\n这是一段测试报告内容。"
+    # Explicit: this generator only supports the legacy generate() path.
+    # Without this, MagicMock auto-creates supports_report_package as a truthy
+    # MagicMock, which would route generator_node into generate_report_package
+    # (the new boolean check) instead of generate() — masking the test intent.
+    gen.supports_report_package = False
     return gen
 
 

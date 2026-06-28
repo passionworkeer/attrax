@@ -10,6 +10,15 @@ export const metadata: Metadata = {
   description: "AI-powered compliance risk scanning for cross-border e-commerce",
 };
 
+// NOTE(P1.7): `<html lang>` starts as the default "zh" for SSR; once the
+// client mounts, TranslationProvider's useEffect syncs
+// `document.documentElement.lang` to the user's resolved locale (zh/en,
+// from localStorage / navigator.language). Cookie-based SSR locale is out
+// of scope for this pass — see lib/i18n.tsx:detectInitialLocale.
+// CSP nonce: no explicit work here. middleware.ts sets `x-nonce` on each
+// request; Next.js auto-stamps that nonce onto its own inline hydration
+// scripts (no manual <Script nonce> needed because this layout does not
+// emit any client-script tags directly).
 export default function RootLayout({
   children,
 }: Readonly<{

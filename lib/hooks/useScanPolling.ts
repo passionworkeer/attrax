@@ -25,7 +25,15 @@ export function isScanStatusLike(value: unknown): value is ScanStatus {
   if (!value || typeof value !== "object") return false;
 
   const status = (value as { status?: unknown }).status;
-  return status === "processing" || status === "ready" || status === "failed";
+  // Includes `degraded` (RAG unavailable fallback) so the poller surfaces the
+  // fallback result instead of treating the payload as invalid and polling
+  // until timeout. See lib/types.ts ScanStatus for the full contract.
+  return (
+    status === "processing" ||
+    status === "ready" ||
+    status === "degraded" ||
+    status === "failed"
+  );
 }
 
 export function useScanPolling(sessionId: string) {

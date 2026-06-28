@@ -1,11 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Flame } from "lucide-react";
+import { Flame, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 interface NavItem {
   href: string;
@@ -22,6 +31,7 @@ const NAV_ITEMS: NavItem[] = [
 export default function SiteHeader() {
   const pathname = usePathname();
   const { t, locale } = useTranslation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   function isActive(href: string): boolean {
     if (href === "/") return pathname === "/" || pathname === "/zh" || pathname === "/en";
@@ -49,7 +59,8 @@ export default function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-2">
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-2" aria-label={locale === "en" ? "Primary" : "主导航"}>
           {NAV_ITEMS.map((item) => {
             const active = isActive(item.href);
             return (
@@ -81,6 +92,71 @@ export default function SiteHeader() {
             <Flame className="h-4 w-4" fill="white" />
             {locale === "en" ? "Start Scan" : "立即扫描"}
           </Link>
+
+          {/* Mobile drawer trigger */}
+          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+            <SheetTrigger
+              render={
+                <button
+                  type="button"
+                  className="md:hidden inline-flex items-center justify-center rounded-lg border border-white/10 bg-slate-900/70 p-2 text-slate-200 hover:text-white hover:border-blaze-red/40 transition-colors"
+                  aria-label={locale === "en" ? "Open menu" : "打开菜单"}
+                />
+              }
+            >
+              <Menu className="h-5 w-5" />
+            </SheetTrigger>
+            <SheetContent side="right" className="w-72 bg-slate-950/95 border-l border-white/10">
+              <SheetHeader className="flex-row items-center justify-between">
+                <SheetTitle className="text-base font-bold text-white">
+                  {locale === "en" ? "Menu" : "菜单"}
+                </SheetTitle>
+                <SheetClose
+                  render={
+                    <button
+                      type="button"
+                      className="rounded-lg p-2 text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
+                      aria-label={locale === "en" ? "Close" : "关闭"}
+                    />
+                  }
+                >
+                  <X className="h-5 w-5" />
+                </SheetClose>
+              </SheetHeader>
+              <nav
+                className="flex flex-col gap-1 px-4 pb-6"
+                aria-label={locale === "en" ? "Mobile" : "移动端导航"}
+              >
+                {NAV_ITEMS.map((item) => {
+                  const active = isActive(item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cn(
+                        "rounded-lg px-4 py-3 text-sm font-semibold transition-colors",
+                        active
+                          ? "bg-blaze-red/15 text-blaze-red"
+                          : "text-slate-200 hover:bg-white/5 hover:text-white",
+                      )}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {locale === "en" ? item.labelEn : item.label}
+                    </Link>
+                  );
+                })}
+                <Link
+                  href="/upload"
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-lg bg-blaze-red px-4 py-3 text-sm font-bold text-white hover:bg-blaze-red/90 transition-colors"
+                >
+                  <Flame className="h-4 w-4" fill="white" />
+                  {locale === "en" ? "Start Scan" : "立即扫描"}
+                </Link>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

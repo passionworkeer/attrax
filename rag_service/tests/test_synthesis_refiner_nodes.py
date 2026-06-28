@@ -215,11 +215,14 @@ def test_refiner_does_not_duplicate_terms_already_in_query():
 
 
 def test_refiner_preserves_sub_queries_shape():
+    # Use market-specific base queries so dedup-by-expanded-text doesn't
+    # collapse the two entries (refiner now dedups identical expanded queries
+    # to prevent unbounded HyDE growth — see test_orchestrator_state).
     state = {
         "query": "query",
         "sub_queries": [
-            {"market": "EU", "query": "query", "product_type": "充电宝"},
-            {"market": "US", "query": "query", "product_type": "充电宝"},
+            {"market": "EU", "query": "EU specific query", "product_type": "充电宝"},
+            {"market": "US", "query": "US specific query", "product_type": "充电宝"},
         ],
         "missing_citations": ["[RoHS Article 4]"],
         "loop_count": 0,

@@ -5,32 +5,8 @@ import remarkGfm from "remark-gfm";
 import { useTranslation } from "@/lib/i18n";
 import { localizeProfitReportResult } from "@/lib/report-localization";
 import { downloadProfitReportAsPdf, downloadProfitReportAsDocx } from "@/lib/report-download";
+import { DownloadButtons } from "@/components/result/DownloadButtons";
 import type { ProfitReportResult } from "@/lib/types";
-
-type ReportLocale = "zh" | "en";
-
-function DownloadButtons({
-  onPdf,
-  onDocx,
-}: {
-  onPdf: (locale: ReportLocale) => void;
-  onDocx: (locale: ReportLocale) => void;
-}) {
-  return (
-    <div className="flex flex-wrap gap-2">
-      {(["zh", "en"] as const).map((locale) => (
-        <div key={locale} className="flex overflow-hidden rounded-lg border border-white/10 bg-slate-900/40 backdrop-blur-sm">
-          <button type="button" onClick={() => onPdf(locale)} className="px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-red transition-colors">
-            PDF {locale.toUpperCase()}
-          </button>
-          <button type="button" onClick={() => onDocx(locale)} className="border-l border-white/10 px-2.5 py-1.5 text-xs font-medium text-slate-300 hover:text-blaze-cyan transition-colors">
-            Word {locale.toUpperCase()}
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 const CURRENCY_SYMBOLS: Record<string, string> = {
   CNY: "¥",

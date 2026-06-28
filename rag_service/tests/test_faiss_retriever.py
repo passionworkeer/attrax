@@ -460,3 +460,123 @@ class TestErrorPropagation:
             results = built_retriever.search([0.0] * 9999, top_k=5)
         assert results == []
         assert any("dim" in r.message.lower() for r in caplog.records)
+
+
+# ---------------------------------------------------------------------------
+# 10. A (high-risk): parent-context expansion
+# ---------------------------------------------------------------------------
+
+class TestExpandToParent:
+    """``expand_to_parent`` resolves a child's parent + sibling chunks for
+    LLM context expansion. A4 ingested parent data into the index meta but
+    no retrieval-layer API exposed it; this closes that loop."""
+
+    def _build_parent_child_index(self):
+        """Return a FaissRetriever with a small parent/child chunk set.
+
+        Layout (used by every test in this class):
+          parent p1 ("Article 1 ...")
+            child c1a (parent_id=p1)
+            child c1b (parent_id=p1)
+          parent p2 ("Article 2 ...")
+            child c2a (parent_id=p2)
+          orphan c3 (no parent_id)
+        """
+        ret = FaissRetriever()
+        chunks = [
+            {"id": "p1", "chunk_type": "parent", "parent_id": None,
+             "content": "Article 1 full text"},
+            {"id": "c1a", "chunk_type": "child", "parent_id": "p1",
+             "content": "Article 1 first paragraph"},
+            {"id": "c1b", "chunk_type": "child", "parent_id": "p1",
+             "content": "Article 1 second paragraph"},
+            {"id": "p2", "chunk_type": "parent", "parent_id": None,
+             "content": "Article 2 full text"},
+            {"id": "c2a", "chunk_type": "child", "parent_id": "p2",
+             "content": "Article 2 first paragraph"},
+            {"id": "c3", "chunk_type": "child", "parent_id": None,
+             "content": "orphan chunk"},
+        ]
+        # Two-dim vectors so we can build the index cheaply.
+        vecs = [
+            [1.0, 0.0], [0.9, 0.1], [0.8, 0.2],
+            [0.0, 1.0], [0.1, 0.9], [0.5, 0.5],
+        ]
+        ret.build_index(chunks, vecs)
+        return ret
+
+    def test_expand_child_returns_parent_and_siblings(self):
+        """A child with parent_id expands to parent + sibling children."""
+        ret = self._build_parent_child_index()
+        child = next(c for c in ret.chunks if c["id"] == "c1a")
+        expanded = ret.expand_to_parent([child])
+
+        ids = {c["id"] for c in expanded}
+        # Original child preserved.
+        assert "c1a" in ids
+        # Parent surfaced.
+        assert "p1" in ids, "parent chunk must be expanded"
+        # Sibling child of same parent surfaced.
+        assert "c1b" in ids, "sibling child must be expanded"
+        # No leakage from other parents.
+        assert "p2" not in ids
+        assert "c2a" not in ids
+        assert "c3" not in ids
+
+    def test_expand_deduplicates_overlapping_children(self):
+        """Two children of the same parent expand without duplicating parent."""
+        ret = self._build_parent_child_index()
+        c1a = next(c for c in ret.chunks if c["id"] == "c1a")
+        c1b = next(c for c in ret.chunks if c["id"] == "c1b")
+        expanded = ret.expand_to_parent([c1a, c1b])
+
+        ids = [c["id"] for c in expanded]
+        # Each id appears exactly once.
+        assert len(ids) == len(set(ids)), "no duplicates"
+        # Parent appears once even though both children reference it.
+        assert ids.count("p1") == 1
+        # Both children preserved.
+        assert "c1a" in ids and "c1b" in ids
+
+    def test_expand_orphan_child_passes_through(self):
+        """A child without parent_id is returned unchanged."""
+        ret = self._build_parent_child_index()
+        orphan = next(c for c in ret.chunks if c["id"] == "c3")
+        expanded = ret.expand_to_parent([orphan])
+        assert len(expanded) == 1
+        assert expanded[0]["id"] == "c3"
+
+    def test_expand_parent_input_passes_through(self):
+        """A parent chunk (chunk_type=parent, no parent_id) passes through."""
+        ret = self._build_parent_child_index()
+        parent = next(c for c in ret.chunks if c["id"] == "p1")
+        expanded = ret.expand_to_parent([parent])
+        assert len(expanded) == 1
+        assert expanded[0]["id"] == "p1"
+
+    def test_expand_does_not_mutate_inputs(self):
+        """Input chunk dicts must not be modified."""
+        ret = self._build_parent_child_index()
+        child = next(c for c in ret.chunks if c["id"] == "c1a")
+        child_before = dict(child)
+        ret.expand_to_parent([child])
+        assert child == child_before
+
+    def test_expand_empty_input_returns_empty(self):
+        ret = self._build_parent_child_index()
+        assert ret.expand_to_parent([]) == []
+
+    def test_expand_mixed_children_from_different_parents(self):
+        """Children from different parents each expand their own family."""
+        ret = self._build_parent_child_index()
+        c1a = next(c for c in ret.chunks if c["id"] == "c1a")
+        c2a = next(c for c in ret.chunks if c["id"] == "c2a")
+        c3 = next(c for c in ret.chunks if c["id"] == "c3")
+        expanded = ret.expand_to_parent([c1a, c2a, c3])
+        ids = {c["id"] for c in expanded}
+        # c1a's family.
+        assert {"c1a", "p1", "c1b"} <= ids
+        # c2a's family.
+        assert {"c2a", "p2"} <= ids
+        # Orphan preserved.
+        assert "c3" in ids

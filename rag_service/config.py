@@ -11,6 +11,11 @@ _os.environ.pop("https_proxy", None)
 _os.environ["NO_PROXY"] = "*"
 
 
+def _parse_trusted_proxies(raw: str) -> list[str]:
+    """Parse comma-separated trusted proxy list into a normalized set."""
+    return [p.strip().lower() for p in raw.split(",") if p.strip()]
+
+
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
@@ -23,6 +28,27 @@ class Settings(BaseSettings):
     mimotalk_model: str = "mimo-v2.5"
 
     demo_mode: bool = False
+
+    # Trusted reverse-proxy IPs allowed to set X-Forwarded-For.
+    # Only requests whose socket peer is in this list will have XFF honored
+    # for client-IP extraction (rate limiting). Defaults to loopback only.
+    trusted_proxies: list[str] = _parse_trusted_proxies(
+        _os.environ.get("RAG_TRUSTED_PROXIES", "127.0.0.1,::1")
+    )
+
+    # Number of worker threads for the scan executor. Default 8 so the
+    # 8-market fan-out (EU/US/UK/CN/AU/SA/AE/JP/...) does not serialize
+    # behind a single in-flight scan; overridden via SCAN_WORKER_CONCURRENCY.
+    scan_worker_concurrency: int = int(
+        _os.environ.get("SCAN_WORKER_CONCURRENCY", "8")
+    )
+
+    # Optional shared secret for internal write endpoints (/scan,
+    # /scan-multipart, /profit-report). When set, requests must carry the
+    # header `X-Internal-Secret` with a matching value or receive 401.
+    # When unset (default), all endpoints are open — preserves local/dev
+    # backward compatibility. Production should set RAG_INTERNAL_SECRET.
+    rag_internal_secret: str = _os.environ.get("RAG_INTERNAL_SECRET", "")
 
     model_config = SettingsConfigDict(
         env_file=str(Path(__file__).parent / ".env"),

@@ -160,9 +160,22 @@ export interface ComplianceReportResult {
 
 export interface ScanStatus {
   sessionId: string;
-  status: "processing" | "ready" | "failed";
+  /**
+   * Lifecycle of a scan.
+   * - `processing`: scan in flight, progress increments.
+   * - `ready`: real RAG scan completed successfully.
+   * - `degraded`: RAG service unavailable / returned 5xx — the result field is
+   *   filled with demo data so the user still sees something, but it is NOT a
+   *   pass. `degradedReason` carries the error code and `result.source` is
+   *   `"fallback"`. UI MUST distinguish this from `ready` (Wave2 consumers rely
+   *   on this contract).
+   * - `failed`: scan threw, no result produced.
+   */
+  status: "processing" | "ready" | "degraded" | "failed";
   progress: number;
   stageText: string;
+  /** When status==="degraded", the RAG error code (e.g. RAG_SERVICE_UNAVAILABLE). */
+  degradedReason?: string;
   result?: ScanResult | ComplianceReportResult;
   profitReport?: ProfitReportResult;
   profitReports?: ProfitReportResult[];

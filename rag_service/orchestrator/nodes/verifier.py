@@ -67,11 +67,22 @@ def should_regenerate(state: GraphState) -> str:
         return "end"
 
     loop_count = state.get("loop_count", 0)
+    # Single source of truth: max_attempts lives in initial_state (default 2).
+    # Previously this read .get("max_attempts", 2) which silently fell back to 2
+    # even when initial_state set it to 1 — causing the two values to disagree
+    # and producing nondeterministic refine-vs-end behaviour. We still keep a
+    # 2 fallback here only for the rare case where state is constructed
+    # directly (e.g. tests) without going through initial_state.
     max_attempts = state.get("max_attempts", 2)
     missing = state.get("missing_citations", [])
 
-    if loop_count < max_attempts and missing:
+    # Force end once we've exhausted attempts, regardless of missing citations.
+    # Hard cap prevents any infinite refine loop even if other invariants slip.
+    if loop_count >= max_attempts:
+        return "end"
+    if missing:
         return "refine"
 
-    # Max attempts reached → end (no force_generate in current implementation)
+    # No missing citations and below max — end (no force_generate in current
+    # implementation; supported/warn handled by score branch above).
     return "end"

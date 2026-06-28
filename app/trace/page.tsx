@@ -1,68 +1,99 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AgentDecisionTree from "@/components/trace/AgentDecisionTree";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
+import { useSessionId } from "@/lib/hooks/useSessionId";
 
-export default function TracePage({ params }: { params: Promise<{ sessionId?: string }> }) {
-  const resolvedParams = use(params);
+interface TraceStats {
+  totalTime?: string;
+  steps?: number;
+  markets?: number;
+  score?: number;
+  grade?: string;
+  traceNodes?: unknown[];
+}
+
+/**
+ * P0.3: replaced the setTimeout(0)+window.location.search+sessionStorage
+ * triple hack with useSearchParams (via useSessionId). The page wraps the
+ * inner component in <Suspense> because useSearchParams suspends during
+ * streaming — required for Next.js App Router compliance.
+ */
+export default function TracePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="rounded-2xl border border-white/60 bg-white/85 px-6 py-4 text-muted-foreground shadow-sm backdrop-blur animate-pulse">
+            Loading…
+          </div>
+        </div>
+      }
+    >
+      <TracePageInner />
+    </Suspense>
+  );
+}
+
+function TracePageInner() {
   const router = useRouter();
-  const { t, locale: i18nLocale } = useTranslation();
-  const [mounted, setMounted] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-  const [sessionId, setSessionId] = useState("");
+  const { t, locale } = useTranslation();
+  const sessionId = useSessionId();
+
   const [loading, setLoading] = useState(true);
-  const [traceData, setTraceData] = useState<unknown>(null);
-  const locale = i18nLocale;
+  const [traceData, setTraceData] = useState<TraceStats | null>(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setIsClient(true);
-      setMounted(true);
-      const querySessionId = new URLSearchParams(window.location.search).get("sessionId");
-      const urlSessionId = resolvedParams?.sessionId;
-      const storageSessionId = sessionStorage.getItem("lastSessionId");
-      setSessionId(querySessionId || urlSessionId || storageSessionId || "");
-    }, 0);
-
-    return () => window.clearTimeout(timer);
-  }, [resolvedParams?.sessionId]);
-
-  useEffect(() => {
-    if (!sessionId || !isClient) return;
-
-    if (sessionId === "demo") return;
+    if (!sessionId) {
+      setLoading(false);
+      return;
+    }
+    if (sessionId === "demo") {
+      setLoading(false);
+      return;
+    }
 
     const token = sessionStorage.getItem(`scan-token:${sessionId}`);
     const authHeaders = token ? { Authorization: `Bearer ${token}` } : undefined;
 
+    let cancelled = false;
+
     // 从 API 获取真实 trace 数据
     fetch(`/api/trace/${sessionId}`, { cache: "no-store", headers: authHeaders })
-      .then(r => r.ok ? r.json() : null)
-      .then(rawData => {
-        const data = unwrapApiData<{ traceNodes?: unknown[] }>(rawData);
+      .then((r) => (r.ok ? r.json() : null))
+      .then((rawData) => {
+        if (cancelled) return;
+        const data = unwrapApiData<TraceStats>(rawData);
         if (data?.traceNodes) {
           setTraceData(data);
         }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        if (!cancelled) setLoading(false);
+      });
 
-    // 同时获取完整扫描结果
+    // 同时获取完整扫描结果，供 result 页面缓存复用
     fetch(`/api/scan/${sessionId}`, { cache: "no-store", headers: authHeaders })
-      .then(r => r.ok ? r.json() : null)
-      .then(rawPayload => {
+      .then((r) => (r.ok ? r.json() : null))
+      .then((rawPayload) => {
+        if (cancelled) return;
         const payload = unwrapApiData<{ result?: unknown }>(rawPayload);
         if (payload?.result) {
           sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(payload.result));
         }
       })
       .catch(() => {});
-  }, [sessionId, isClient]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [sessionId]);
 
   const handleBack = () => {
     if (sessionId) {
@@ -72,7 +103,19 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
     }
   };
 
-  if (!mounted || (sessionId && sessionId !== "demo" && loading)) {
+  // P0.5: distinguish real API stats from demo defaults so users aren't
+  // misled by silent fallback numbers. hasRealTrace means we got a
+  // non-empty payload from /api/trace.
+  const hasRealTrace = Boolean(traceData);
+  const totalTime = traceData?.totalTime
+    ? parseFloat(traceData.totalTime).toFixed(1)
+    : "8.8";
+  const steps = traceData?.steps ?? 9;
+  const markets = traceData?.markets ?? 4;
+  const score = traceData?.score ?? 85;
+  const grade = traceData?.grade ?? "B";
+
+  if (sessionId && sessionId !== "demo" && loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="rounded-2xl border border-white/60 bg-white/85 px-6 py-4 text-muted-foreground shadow-sm backdrop-blur animate-pulse">
@@ -81,14 +124,6 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
       </div>
     );
   }
-
-  // 从 traceData 提取统计信息
-  const stats = traceData as { totalTime?: string; steps?: number; markets?: number; regulations?: number; score?: number; grade?: string } | null;
-  const totalTime = stats?.totalTime ? parseFloat(stats.totalTime).toFixed(1) : "8.8";
-  const steps = stats?.steps || 9;
-  const markets = stats?.markets || 4;
-  const score = stats?.score || 85;
-  const grade = stats?.grade || "B";
 
   return (
     <div className="min-h-screen">
@@ -117,11 +152,18 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-blaze-red to-blaze-orange shadow-[0_0_20px_rgba(217,58,26,0.5)]">
                   <span className="text-2xl font-bold text-white">AI</span>
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex items-center gap-3">
                   <h1 className="text-3xl font-bold tracking-tight text-white max-sm:text-2xl">{t("trace.title")}</h1>
-                  <p className="text-sm text-slate-400">{t("trace.subtitle")}</p>
+                  {/* P0.5: explicit demo badge when we're showing fallback
+                      numbers rather than real telemetry. */}
+                  {!hasRealTrace && (
+                    <span className="inline-flex items-center rounded-full border border-blaze-cyan/40 bg-blaze-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blaze-cyan">
+                      Demo
+                    </span>
+                  )}
                 </div>
               </div>
+              <p className="mt-1 text-sm text-slate-400">{t("trace.subtitle")}</p>
             </div>
 
             {/* Stats */}
@@ -150,7 +192,7 @@ export default function TracePage({ params }: { params: Promise<{ sessionId?: st
           autoPlay={false}
           score={score}
           grade={grade}
-          traceNodes={traceData ? (traceData as { traceNodes?: unknown[] }).traceNodes : undefined}
+          traceNodes={traceData ? traceData.traceNodes : undefined}
         />
       </div>
 

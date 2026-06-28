@@ -28,15 +28,41 @@ _CACHE_MAX = 512
 _QUERY_CACHE: dict[str, tuple] = {}
 _QUERY_CACHE_LOCK = threading.Lock()
 
+# Per-key locks: only concurrent requests for the SAME query key coalesce
+# into a single API call. Different queries proceed in parallel. Previously a
+# single global lock serialized all first-time embed_query calls, which under
+# multi-market LangGraph fan-out turned independent queries into a sequential
+# chain and inflated tail latency.
+_PER_KEY_LOCKS: dict[str, threading.Lock] = {}
+_PER_KEY_LOCKS_GUARD = threading.Lock()
+
+
+def _per_key_lock(key: str) -> threading.Lock:
+    """Return (creating if necessary) a lock specific to ``key``."""
+    with _PER_KEY_LOCKS_GUARD:
+        lock = _PER_KEY_LOCKS.get(key)
+        if lock is None:
+            lock = threading.Lock()
+            _PER_KEY_LOCKS[key] = lock
+        return lock
+
 # ─── Hourly rate-limit (sliding window) ────────────────────────────────────────
 # ModelScope's free tier throttles at ~350 requests/hour/model. We keep a safety
 # margin under the published cap and track call timestamps in a 1h sliding window.
 # Calls are admitted immediately while the window has capacity; only when the
 # window fills up do we sleep until the oldest call ages out.
+#
+# B4 fix: the sliding-window timestamp list is guarded by a single global lock
+# (``_RATE_LIMIT_LOCK``). The lock is held only for the bookkeeping (prune +
+# append), never for the API call, so the critical section stays tiny. In
+# ``embed_query``, rate-limit is invoked inside the per-key lock AFTER the
+# double-checked cache lookup, so only the genuine cache-miss holder reaches
+# it — same-key concurrency collapses to exactly one quota unit, and cache
+# hits consume zero quota.
 _DEFAULT_HOURLY_LIMIT = 300      # safety margin below the ~350 free-tier cap
 _DEFAULT_WINDOW_SECONDS = 3600   # 1 hour
 _DEFAULT_BURST_INTERVAL = 0.0    # no forced delay between calls by default
-_WINDOW_LOCK = threading.Lock()
+_RATE_LIMIT_LOCK = threading.Lock()
 _CALL_TIMESTAMPS: list[float] = []
 
 
@@ -146,8 +172,9 @@ class ModelScopeEmbedder:
             if elapsed < burst:
                 time.sleep(burst - elapsed)
                 now = time.monotonic()
-        # Sliding-window quota.
-        with _WINDOW_LOCK:
+        # Sliding-window quota. ``_RATE_LIMIT_LOCK`` is the single global
+        # guard for the timestamp list (B4); held only for bookkeeping.
+        with _RATE_LIMIT_LOCK:
             cutoff = now - self._window_seconds
             # Drop timestamps outside the window (immutable: rebuild list).
             fresh = [t for t in _CALL_TIMESTAMPS if t > cutoff]
@@ -165,7 +192,7 @@ class ModelScopeEmbedder:
             )
             time.sleep(wait)
             # After waiting, claim a slot.
-            with _WINDOW_LOCK:
+            with _RATE_LIMIT_LOCK:
                 _CALL_TIMESTAMPS.append(time.monotonic())
         self._last_call = time.monotonic()
 
@@ -218,8 +245,35 @@ class ModelScopeEmbedder:
                     encoding_format="float",
                 )
                 out = [[0.0] * self.DIM for _ in texts]
-                for j, idx in enumerate(indices):
-                    out[idx] = resp.data[j].embedding
+                # Order-safety: the API contract guarantees resp.data is in
+                # input order, but a previous implementation assumed that
+                # silently and produced misaligned embeddings when an
+                # upstream proxy reshaped the response. Validate via the
+                # explicit ``index`` field when present; fall back to
+                # positional only when the field is absent AND counts match.
+                data_items = list(resp.data)
+                if len(data_items) != len(batch_texts):
+                    raise RuntimeError(
+                        f"Batch embed returned {len(data_items)} items for "
+                        f"{len(batch_texts)} inputs — count mismatch"
+                    )
+                has_index_field = any(
+                    getattr(item, "index", None) is not None
+                    for item in data_items
+                )
+                if has_index_field:
+                    for item in data_items:
+                        slot = item.index
+                        if not (0 <= slot < len(indices)):
+                            raise RuntimeError(
+                                f"Batch embed index {slot} out of range for "
+                                f"{len(indices)} valid inputs"
+                            )
+                        out[indices[slot]] = item.embedding
+                else:
+                    # Positional fallback (legacy responses without index).
+                    for j, idx in enumerate(indices):
+                        out[idx] = data_items[j].embedding
                 return out
             except Exception as e:
                 err_str = str(e)
@@ -235,25 +289,51 @@ class ModelScopeEmbedder:
         """
         Embed a single query string with in-process cache.
         Cache hits skip both the rate-limit delay and the HTTP round-trip.
-        Thread-safe: full read-call-write is serialized to prevent thundering-herd
-        API calls and cache poisoning from concurrent first-time requests.
+        Thread-safe via per-key locking: concurrent first-time requests for
+        the SAME query coalesce into a single API call (preventing thundering
+        herd and cache poisoning), while different queries proceed in
+        parallel using independent locks.
+
+        B4 contract goals (per the audit finding):
+        1. Same-key concurrent requests consume exactly ONE rate-limit quota
+           unit, not N — the per-key lock plus the double-checked cache
+           lookup means only the holder that actually misses reaches
+           ``_rate_limit()``; same-key waiters hit the cache and skip it.
+        2. Cache hits consume ZERO quota — the fast path returns before
+           ``_rate_limit()`` is ever called.
+
+        The ``_CALL_TIMESTAMPS`` list is mutated under the global
+        ``_RATE_LIMIT_LOCK`` so concurrent different-key holders cannot lose
+        appends or read a partially-updated window.
         """
         key = _qcache_key(text)
+        # Fast path: cache hit under the shared cache lock, released before
+        # any network work so other keys are not blocked. Cache hits never
+        # reach _rate_limit() and therefore consume zero quota.
         with _QUERY_CACHE_LOCK:
             if key in _QUERY_CACHE:
                 return list(_QUERY_CACHE[key])
 
-        # Cache miss: acquire lock for the full critical section so concurrent
-        # requests for the same key coalesce into a single API call.
-        with _QUERY_CACHE_LOCK:
-            if key in _QUERY_CACHE:
-                return list(_QUERY_CACHE[key])
+        # Per-key serialization: only same-key callers wait on each other.
+        # The double-checked cache lookup INSIDE this lock is what collapses
+        # same-key concurrency to a single quota unit: when the holder
+        # finishes the API call and populates the cache, every same-key
+        # waiter that queued on this lock re-checks the cache, hits, and
+        # returns without ever calling _rate_limit().
+        key_lock = _per_key_lock(key)
+        with key_lock:
+            with _QUERY_CACHE_LOCK:
+                if key in _QUERY_CACHE:
+                    return list(_QUERY_CACHE[key])
+            # Only the genuine cache-miss holder reaches here: one rate-limit
+            # charge per same-key group, exactly as the audit requires.
             self._rate_limit()
             result = self._call_api(text)
-            if len(_QUERY_CACHE) >= _CACHE_MAX:
-                first_key = next(iter(_QUERY_CACHE))
-                del _QUERY_CACHE[first_key]
-            _QUERY_CACHE[key] = tuple(result)
+            with _QUERY_CACHE_LOCK:
+                if len(_QUERY_CACHE) >= _CACHE_MAX:
+                    first_key = next(iter(_QUERY_CACHE))
+                    del _QUERY_CACHE[first_key]
+                _QUERY_CACHE[key] = tuple(result)
             return list(result)
 
     def embed_batch(self, texts: list[str], batch_size: int = 50) -> list[list[float]]:

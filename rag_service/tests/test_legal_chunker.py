@@ -107,3 +107,32 @@ def test_parent_child_relationship():
     # At least one child should have a parent_id
     children_with_parents = [c for c in result["child_chunks"] if c.get("parent_id")]
     assert len(children_with_parents) >= 0  # Either child has parent or is whole article
+
+
+def test_long_article_links_all_children_to_parent():
+    """Long Article splitting >10 children must link EVERY child to its parent.
+
+    Regression: the previous ``child_chunks[-10:]`` lookback linked only the
+    last 10 children of a segment; earlier children got ``parent_id=None``
+    forever, breaking Parent-Child context expansion.
+    """
+    # ~15000 estimated tokens ⇒ >10 flushes at the 600-token threshold.
+    sentence = "A moderately short sentence with enough words to count as several tokens of text. "
+    text = "Article 99\n" + sentence * 600
+    result = chunk_document(text, doc_name="REACH")
+
+    children = result["child_chunks"]
+    assert len(children) > 10, "test premise: must produce more than 10 children"
+
+    parent_ids = {p["id"] for p in result["parent_chunks"]}
+    for child in children:
+        assert child["parent_id"] is not None, (
+            f"child {child['id']} lost its parent_id (content head: "
+            f"{child['content'][:40]!r})"
+        )
+        assert child["parent_id"] in parent_ids, (
+            f"child {child['id']} parent_id {child['parent_id']} not in parent set"
+        )
+
+    # All children of this single-Article document should share ONE parent.
+    assert {c["parent_id"] for c in children} == {children[0]["parent_id"]}

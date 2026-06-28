@@ -16,13 +16,24 @@ export interface ProductImage {
   matchedRegulations?: string[];
 }
 
+// Interactive elements that should own their own arrow-key behavior. When one
+// of these is focused, the carousel must NOT hijack ArrowLeft/ArrowRight — this
+// is what previously broke result-page tables and form inputs.
+const INTERACTIVE_SELECTOR =
+  'input, textarea, select, [contenteditable="true"], [contenteditable=""], td, th, [role="gridcell"], [role="menuitem"], [role="menuitemradio"], [role="menuitemcheckbox"], [role="tab"]';
+
 /**
  * Image carousel with prev/next navigation, keyboard arrow support,
  * risk-region bbox overlay, thumbnail strip, and matched-regulations label.
+ *
+ * Arrow-key handlers are mounted globally but suppressed whenever an interactive
+ * element (form input, table cell, menu/tab item) is focused, so the carousel
+ * no longer swallows navigation keys that other widgets on the result page need.
  */
 export function ImageCarousel({ images }: { images: ProductImage[] }) {
   const { t } = useTranslation();
   const [current, setCurrent] = useState(0);
+
   const prev = useCallback(
     () => setCurrent((c) => (c > 0 ? c - 1 : images.length - 1)),
     [images.length],
@@ -34,8 +45,18 @@ export function ImageCarousel({ images }: { images: ProductImage[] }) {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") prev();
-      if (e.key === "ArrowRight") next();
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      const active = document.activeElement as Element | null;
+      if (active && active.closest(INTERACTIVE_SELECTOR)) {
+        return; // Let the focused interactive element handle the key.
+      }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        prev();
+      } else {
+        e.preventDefault();
+        next();
+      }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -45,7 +66,12 @@ export function ImageCarousel({ images }: { images: ProductImage[] }) {
   const regList = img.matchedRegulations?.join(", ");
 
   return (
-    <div className="space-y-3">
+    <div
+      role="group"
+      aria-roledescription="carousel"
+      aria-label={t("result.productImageAnalysis")}
+      className="space-y-3"
+    >
       {/* Main carousel */}
       <div className="relative rounded-2xl border border-white/10 bg-slate-900/40 overflow-hidden">
         <div className="relative aspect-[4/3] w-full">

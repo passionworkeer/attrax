@@ -75,24 +75,6 @@ def _smart_expand(query: str, product_type: str | None = None) -> str:
     return expanded
 
 
-def _is_relevant_chunk(chunk_text: str, product_type: str) -> bool:
-    """Check if a chunk is relevant to the product type."""
-    if not product_type or not chunk_text:
-        return True
-    # High-confidence negative signals: chunk mentions unrelated product family
-    NEGATIVE_SIGNALS = {
-        "充电宝": ["power bank", "移动电源", "便携式充电器"],
-        "耳机": ["充电宝", "移动电源", "power bank", "充电器"],
-    }
-    negatives = NEGATIVE_SIGNALS.get(product_type, [])
-    if negatives:
-        chunk_lower = chunk_text.lower()
-        for neg in negatives:
-            if neg in chunk_lower and product_type not in chunk_lower:
-                return False
-    return True
-
-
 def expand_synonyms(query: str) -> str:
     """Legacy expand — now delegates to smart expand."""
     product_type = _detect_product_type(query)

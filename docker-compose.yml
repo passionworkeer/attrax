@@ -12,6 +12,10 @@ services:
       NEXT_TELEMETRY_DISABLED: "1"
       RAG_SERVICE_URL: http://rag-service:8000
       DEMO_MODE: ${DEMO_MODE:-false}
+      # When RAG_INTERNAL_SECRET is set on rag-service, set the same value
+      # here so lib/pipeline/scan.ts sends the matching X-Internal-Secret
+      # header on /scan-multipart and /profit-report calls.
+      RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:-}
     volumes:
       - ./data/sessions:/app/data/sessions
       - ./public/uploads:/app/public/uploads
@@ -30,6 +34,10 @@ services:
     build:
       context: .
       dockerfile: rag_service/Dockerfile
+    # PRODUCTION: prefer NOT exposing the RAG service on the host. Keep it
+    # docker-network-only (remove the port mapping) and let the web service
+    # reach it via http://rag-service:8000. The 8001:8000 mapping is kept
+    # here for local debugging convenience.
     ports:
       - "${RAG_PORT:-8001}:8000"
     environment:
@@ -40,6 +48,11 @@ services:
       RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
       FAISS_INDEX_DIR: /app/data/faiss
       NO_PROXY: "*"
+      # PRODUCTION: set RAG_INTERNAL_SECRET to a strong random value, and
+      # set the same value on the `web` service (RAG_INTERNAL_SECRET env).
+      # When set, write endpoints (/scan, /scan-multipart, /profit-report)
+      # require header X-Internal-Secret to match. Leave empty for local/dev.
+      RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:-}
     volumes:
       - ./data/faiss:/app/data/faiss:ro
       - ./data/corpus/processed:/app/data/corpus/processed:ro

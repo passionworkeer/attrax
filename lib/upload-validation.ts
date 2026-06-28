@@ -9,6 +9,13 @@ export type UploadValidationError =
   | "DOCUMENT_TOO_LARGE"
   | "INVALID_FILE_SIGNATURE";
 
+// Upper bound for plain-text / HTML uploads. These types have no magic
+// signature to validate, so an attacker can submit arbitrarily large blobs.
+// Capping at 1 MB is well above realistic compliance documentation needs and
+// bounds both memory pressure and the surface for stored-XSS via later HTML
+// reflection.
+const MAX_TEXT_UPLOAD_BYTES = 1 * 1024 * 1024;
+
 const IMAGE_TYPES = new Map([
   ["image/jpeg", ["jpg", "jpeg"]],
   ["image/png", ["png"]],
@@ -48,7 +55,8 @@ function hasValidSignature(file: File, bytes: Uint8Array): boolean {
   }
   if (file.type === "application/pdf") return startsWith(bytes, [0x25, 0x50, 0x44, 0x46]);
   if (file.type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document" || file.type === "application/octet-stream") return isZip(bytes);
-  if (file.type === "text/html" || file.type === "text/plain") return true;
+  // text/html and text/plain are short-circuited in validateUploadFile
+  // (size cap) before reaching signature checks — there is no useful magic.
   return false;
 }
 
@@ -59,6 +67,18 @@ export async function validateUploadFile(file: File, kind: UploadKind): Promise<
   const types = kind === "image" ? IMAGE_TYPES : DOCUMENT_TYPES;
   if (!types.has(file.type) || !hasKnownExtension(file, types)) {
     return kind === "image" ? "UNSUPPORTED_IMAGE_TYPE" : "UNSUPPORTED_DOCUMENT_TYPE";
+  }
+
+  // Text/HTML have no signature to check; enforce a tighter size cap so the
+  // "return true" path cannot be abused with arbitrarily large blobs. Note:
+  // downstream code MUST sanitize any HTML before reflecting it back to the
+  // browser — this validator only bounds size, it does NOT make HTML safe.
+  // Reuses DOCUMENT_TOO_LARGE so callers that map UploadValidationError ->
+  // their own error code (e.g. scan route -> ScanErrorReason) do not need to
+  // gain a new variant.
+  if (file.type === "text/html" || file.type === "text/plain") {
+    if (file.size > MAX_TEXT_UPLOAD_BYTES) return "DOCUMENT_TOO_LARGE";
+    return null;
   }
 
   const bytes = new Uint8Array(await file.slice(0, 16).arrayBuffer());

@@ -135,11 +135,14 @@ class FaissRetriever:
 
         Handles non-ASCII paths (e.g. Chinese characters in Windows paths) by
         copying files to a temp location that the faiss C extension can open.
+        The temp dir is always cleaned up; previously the copies leaked on
+        every load and were left for the OS temp lifecycle to GC.
         """
         inst = cls(index_path=index_path, meta_path=meta_path)
 
         _index_path = index_path
         _meta_path = meta_path
+        tmp_dir: Optional[str] = None
 
         # Detect non-ASCII paths (faiss C extension can't open them on Windows)
         def has_non_ascii(s: str) -> bool:
@@ -158,18 +161,37 @@ class FaissRetriever:
             logger.info(f"Copied index files to temp location: {_index_path}")
 
         try:
-            inst.index = faiss.read_index(_index_path)
-        except Exception as e:
-            raise RuntimeError(
-                f"Failed to load faiss index from {_index_path}. "
-                f"Original path was {index_path}. Error: {e}"
-            ) from e
+            try:
+                inst.index = faiss.read_index(_index_path)
+            except Exception as e:
+                raise RuntimeError(
+                    f"Failed to load faiss index from {_index_path}. "
+                    f"Original path was {index_path}. Error: {e}"
+                ) from e
 
-        with open(_meta_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            # Support both old format (list) and new format (dict with dim)
-            inst.chunks = data.get("chunks", data) if isinstance(data, dict) else data
-            inst.dim = data.get("dim", DEFAULT_DIM) if isinstance(data, dict) else DEFAULT_DIM
+            # HNSW indices need an efSearch hint before search to trade recall
+            # vs. latency. Flat indices do not expose ``hnsw`` so this is a no-op
+            # for the default flat backend, keeping load semantics unchanged.
+            if hasattr(inst.index, "hnsw"):
+                ef_search = int(os.environ.get("FAISS_HNSW_EF_SEARCH", "64"))
+                inst.index.hnsw.efSearch = ef_search
+                logger.info(f"HNSW efSearch set to {ef_search}")
+
+            with open(_meta_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                # Support both old format (list) and new format (dict with dim)
+                inst.chunks = data.get("chunks", data) if isinstance(data, dict) else data
+                inst.dim = data.get("dim", DEFAULT_DIM) if isinstance(data, dict) else DEFAULT_DIM
+        finally:
+            # Always clean up the temp dir we created so repeated loads do
+            # not leak files. Best-effort: failures here are logged and
+            # swallowed because the index is already loaded (or the load
+            # error already raised) by this point.
+            if tmp_dir is not None:
+                try:
+                    shutil.rmtree(tmp_dir, ignore_errors=True)
+                except Exception as cleanup_err:  # pragma: no cover - best-effort
+                    logger.warning(f"Temp faiss dir cleanup failed: {cleanup_err}")
 
         logger.info(
             f"Loaded index from {index_path} "
@@ -179,3 +201,88 @@ class FaissRetriever:
 
     def __len__(self) -> int:
         return int(self.index.ntotal) if self.index else 0
+
+    # ─── A (high-risk): parent-context expansion ────────────────────────────
+    # The index mixes parent chunks (full Article/Section text, used for LLM
+    # context) and child chunks (300-500 token retrieval units). Retrieval
+    # surfaces children by score; the generator then expands a child to its
+    # parent + siblings so the LLM sees the surrounding legal context.
+    #
+    # Previously this expansion did not exist: A4 ingested parent_chunks into
+    # the index but no retrieval-layer API exposed them, so the parent data
+    # was effectively dead weight. ``expand_to_parent`` closes that loop.
+    # It is read-only and side-effect-free (returns new dicts); callers
+    # (generator node) decide whether/when to invoke it.
+
+    def expand_to_parent(self, child_chunks: list[dict]) -> list[dict]:
+        """Expand child chunks to their parent + sibling context.
+
+        For each child that carries a ``parent_id``, look up the parent
+        chunk and all other chunks sharing that ``parent_id`` (siblings)
+        from the loaded metadata, and return a de-duplicated, order-stable
+        list that includes the originals plus their expanded context.
+
+        Parent chunks themselves (``chunk_type == "parent"``) and chunks
+        without a ``parent_id`` pass through unchanged.
+
+        Args:
+            child_chunks: scored retrieval hits (typically the output of
+                ``search()``). Dicts are not mutated.
+
+        Returns:
+            A new list of chunk dicts. Each input child is preserved, and
+            for every child with a ``parent_id`` the matching parent chunk
+            (if present in the loaded metadata) and any sibling children
+            of the same parent are appended. De-duplicated by chunk ``id``
+            in stable insertion order.
+        """
+        if not child_chunks:
+            return []
+
+        # Index loaded metadata by id and by parent_id for O(1) lookups.
+        # ``self.chunks`` is the authoritative source: parent chunks live
+        # here alongside their children (build_faiss writes both into the
+        # meta JSON even when INCLUDE_PARENT_IN_INDEX=false keeps parents
+        # out of the FAISS vectors themselves).
+        by_id: dict[str, dict] = {}
+        by_parent: dict[str, list[dict]] = {}
+        for c in self.chunks:
+            cid = c.get("id")
+            if cid is not None:
+                by_id[cid] = c
+            pid = c.get("parent_id")
+            if pid:
+                by_parent.setdefault(pid, []).append(c)
+
+        # Parent chunks themselves are also retrievable by their own id so
+        # ``expand_to_parent`` on a parent input returns it unchanged.
+        for c in self.chunks:
+            if c.get("chunk_type") == "parent" and c.get("id") is not None:
+                # Already in by_id; nothing extra to do.
+                pass
+
+        seen: set[str] = set()
+        expanded: list[dict] = []
+
+        def _emit(chunk: dict) -> None:
+            cid = chunk.get("id")
+            key = cid if cid is not None else id(chunk)
+            if key in seen:
+                return
+            seen.add(key)
+            expanded.append(dict(chunk))
+
+        for child in child_chunks:
+            _emit(child)
+            pid = child.get("parent_id")
+            if not pid:
+                continue
+            # 1) The parent chunk itself (full Article/Section text).
+            parent = by_id.get(pid)
+            if parent is not None:
+                _emit(parent)
+            # 2) Sibling children of the same parent (surrounding context).
+            for sibling in by_parent.get(pid, []):
+                _emit(sibling)
+
+        return expanded

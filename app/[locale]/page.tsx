@@ -53,7 +53,7 @@ function HomeContent({ locale }: { locale: Locale }) {
           </div>
           <div className="rounded-xl bg-gray-50 p-4 text-center">
             <div className="text-2xl font-bold text-blaze-red">12M+</div>
-            <div className="text-sm text-gray-500">Characters</div>
+            <div className="text-sm text-gray-500">{t("charactersStat")}</div>
           </div>
           <div className="rounded-xl bg-gray-50 p-4 text-center">
             <div className="text-2xl font-bold text-blaze-red">5min</div>
@@ -62,7 +62,7 @@ function HomeContent({ locale }: { locale: Locale }) {
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link
-            href={`/${locale}/upload`}
+            href="/upload"
             className={cn(
               buttonVariants({ size: "lg" }),
               "bg-blaze-red px-6 text-white hover:bg-blaze-red/90"
@@ -71,7 +71,7 @@ function HomeContent({ locale }: { locale: Locale }) {
             {t("startScanning")}
           </Link>
           <Link
-            href={`/${locale}/regulations`}
+            href="/regulations"
             className={cn(buttonVariants({ size: "lg", variant: "outline" }), "px-6")}
           >
             {t("regulations.viewAll")}
