@@ -1111,6 +1111,12 @@
       "EMC",
       "toy_safety"
     ],
-    "charCount": 623748
+    "charCount": 623748,
+    "product_categories": [
+      "general_consumer_products"
+    ],
+    "productCategories": [
+      "general_consumer_products"
+    ]
   }
 }

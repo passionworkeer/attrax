@@ -1,0 +1,281 @@
+[
+  {
+    "id": "eu-rohs-hazardous-substances",
+    "query": "电子产品有害物质限制指令 RoHS 2011/65/EU 限制哪些重金属和阻燃剂",
+    "market": "EU",
+    "category": "electronics",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "conformity", "documentation"],
+    "expected_source_ids": ["eu-2011-65-rohs"]
+  },
+  {
+    "id": "eu-reach-registration",
+    "query": "欧盟 REACH 法规 (EC) No 1907/2006 化学品注册评估授权 SVHC 高关注物质",
+    "market": "EU",
+    "category": "chemicals",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "documentation", "market_surveillance"],
+    "expected_source_ids": ["eu-2006-1907-reach"]
+  },
+  {
+    "id": "eu-clp-classification-labelling",
+    "query": "CLP 法规 (EC) No 1272/2008 物质和混合物的分类标签和包装 GHS 象形图",
+    "market": "EU",
+    "category": "chemicals",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "labelling", "packaging"],
+    "expected_source_ids": ["eu-2008-1272-clp"]
+  },
+  {
+    "id": "eu-toy-safety-directive",
+    "query": "欧盟玩具安全指令 2009/48/EC 玩具化学机械物理安全要求 CE 标识",
+    "market": "EU",
+    "category": "toys",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "chemical", "mechanical", "testing"],
+    "expected_source_ids": ["eu-2009-48-toy-safety"]
+  },
+  {
+    "id": "eu-textile-labelling-fibre",
+    "query": "纺织品纤维名称和标签法规 (EU) No 1007/2011 成分标注要求",
+    "market": "EU",
+    "category": "textiles",
+    "risk": "labelling",
+    "regulatory_types": ["labelling"],
+    "expected_source_ids": ["eu-2011-1007-textile-labelling"]
+  },
+  {
+    "id": "eu-food-contact-materials",
+    "query": "食品接触材料和制品法规 (EC) No 1935/2004 迁移限量要求 厨具餐具",
+    "market": "EU",
+    "category": "food_contact",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "chemical"],
+    "expected_source_ids": ["eu-2004-1935-food-contact-materials"]
+  },
+  {
+    "id": "eu-batteries-regulation",
+    "query": "欧盟电池法规 (EU) 2023/1542 电池和废电池 可持续回收尽职调查 CE 充电宝锂电池",
+    "market": "EU",
+    "category": "batteries",
+    "risk": "battery",
+    "regulatory_types": ["battery", "sustainability", "documentation"],
+    "expected_source_ids": ["eu-2023-1542-batteries"]
+  },
+  {
+    "id": "eu-emc-directive",
+    "query": "电磁兼容指令 2014/30/EU EMC 电子设备电磁干扰合规要求",
+    "market": "EU",
+    "category": "electronics",
+    "risk": "EMC",
+    "regulatory_types": ["EMC", "conformity"],
+    "expected_source_ids": ["eu-2014-30-emc"]
+  },
+  {
+    "id": "eu-low-voltage-directive",
+    "query": "低电压指令 2014/35/EU LVD 50-1000V 电气设备安全要求 CE 认证",
+    "market": "EU",
+    "category": "electrical_equipment",
+    "risk": "product_safety",
+    "regulatory_types": ["conformity", "product_safety"],
+    "expected_source_ids": ["eu-2014-35-low-voltage"]
+  },
+  {
+    "id": "eu-weee-directive",
+    "query": "废弃电子电气设备指令 WEEE 2012/19/EU 回收处理分类标志",
+    "market": "EU",
+    "category": "waste_electrical",
+    "risk": "waste",
+    "regulatory_types": ["waste", "sustainability"],
+    "expected_source_ids": ["eu-2012-19-weee"]
+  },
+  {
+    "id": "eu-ecodesign-erp",
+    "query": "能耗产品生态设计指令 2009/125/EC ErP 能效要求 家电",
+    "market": "EU",
+    "category": "home_appliances",
+    "risk": "sustainability",
+    "regulatory_types": ["sustainability", "technical_standard", "conformity"],
+    "expected_source_ids": ["eu-2009-125-ecodesign-energy-related-products"]
+  },
+  {
+    "id": "eu-cosmetics-regulation",
+    "query": "欧盟化妆品法规 (EC) No 1223/2009 安全评估备案 CPNP 禁限用成分",
+    "market": "EU",
+    "category": "cosmetics",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "documentation"],
+    "expected_source_ids": ["eu-2009-1223-cosmetics"]
+  },
+  {
+    "id": "eu-packaging-waste",
+    "query": "欧盟包装和包装废弃物法规 (EU) 2025/40 可回收性回收率目标",
+    "market": "EU",
+    "category": "packaging",
+    "risk": "packaging",
+    "regulatory_types": ["packaging", "sustainability", "waste"],
+    "expected_source_ids": ["eu-2025-40-packaging-waste"]
+  },
+  {
+    "id": "eu-unfair-commercial-practices",
+    "query": "不公平商业行为指令 2005/29/UCP 绿色洗绿广告虚假宣传禁令",
+    "market": "EU",
+    "category": "general_consumer_products",
+    "risk": "labelling",
+    "regulatory_types": ["labelling"],
+    "expected_source_ids": ["eu-2005-29-unfair-commercial-practices"]
+  },
+  {
+    "id": "us-toy-safety-astm-f963",
+    "query": "美国玩具安全标准 ASTM F963 16 CFR Part 1250 CPSIA 儿童玩具强制要求",
+    "market": "US",
+    "category": "toys",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "testing", "mechanical"],
+    "expected_source_ids": ["us-16-cfr-1250-toy-safety"]
+  },
+  {
+    "id": "us-lead-paint-ban",
+    "query": "美国含铅油漆禁令 16 CFR Part 1303 儿童产品铅含量 90 ppm 涂层",
+    "market": "US",
+    "category": "children_products",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "product_safety"],
+    "expected_source_ids": ["us-16-cfr-1303-lead-paint"]
+  },
+  {
+    "id": "us-phthalates-ban",
+    "query": "美国邻苯二甲酸酯禁令 16 CFR Part 1307 儿童玩具和护理用品 DEHP DBP",
+    "market": "US",
+    "category": "children_products",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "product_safety"],
+    "expected_source_ids": ["us-16-cfr-1307-phthalates"]
+  },
+  {
+    "id": "us-button-coin-batteries",
+    "query": "美国纽扣电池吞咽危险安全标准 16 CFR Part 1263 Reese's Law 纽扣硬币电池",
+    "market": "US",
+    "category": "batteries",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "battery"],
+    "expected_source_ids": ["us-16-cfr-1263-button-coin-batteries"]
+  },
+  {
+    "id": "us-textile-flammability",
+    "query": "美国服装纺织品易燃性标准 16 CFR Part 1610 服装燃烧等级分类",
+    "market": "US",
+    "category": "textiles",
+    "risk": "flammability",
+    "regulatory_types": ["flammability", "product_safety"],
+    "expected_source_ids": ["us-16-cfr-1610-textile-flammability"]
+  },
+  {
+    "id": "us-childrens-sleepwear-flammability",
+    "query": "美国儿童睡衣易燃性标准 16 CFR Part 1615/1616 儿童睡衣阻燃要求",
+    "market": "US",
+    "category": "children_products",
+    "risk": "flammability",
+    "regulatory_types": ["flammability", "product_safety"],
+    "expected_source_ids": ["us-16-cfr-1615-childrens-sleepwear-0-6x", "us-16-cfr-1616-childrens-sleepwear-7-14"]
+  },
+  {
+    "id": "us-certificate-of-compliance",
+    "query": "美国产品合规证书 Children's Product Certificate CPC 16 CFR Part 1110",
+    "market": "US",
+    "category": "general_consumer_products",
+    "risk": "documentation",
+    "regulatory_types": ["documentation", "testing"],
+    "expected_source_ids": ["us-16-cfr-1110-certificates-compliance"]
+  },
+  {
+    "id": "us-testing-certification",
+    "query": "美国儿童产品测试和认证标签 16 CFR Part 1107 第三方测试实验室",
+    "market": "US",
+    "category": "children_products",
+    "risk": "testing",
+    "regulatory_types": ["testing", "documentation"],
+    "expected_source_ids": ["us-16-cfr-1107-testing-certification"]
+  },
+  {
+    "id": "us-small-parts",
+    "query": "美国儿童玩具小零件窒息危险禁令 16 CFR Part 1501 三岁以下儿童用品",
+    "market": "US",
+    "category": "children_products",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "mechanical"],
+    "expected_source_ids": ["us-16-cfr-1501-small-parts"]
+  },
+  {
+    "id": "us-textile-fiber-labeling",
+    "query": "美国纺织纤维产品识别法 16 CFR Part 303 纤维成分标签 Wool Fur 标识",
+    "market": "US",
+    "category": "textiles",
+    "risk": "labelling",
+    "regulatory_types": ["labelling"],
+    "expected_source_ids": ["us-16-cfr-303-textile-fiber-products-identification"]
+  },
+  {
+    "id": "uk-ukca-marking",
+    "query": "英国 UKCA 标识符合性评估和文件要求 脱欧后 conformity assessment",
+    "market": "UK",
+    "category": "general_consumer_products",
+    "risk": "conformity",
+    "regulatory_types": ["conformity", "documentation"],
+    "expected_source_ids": ["uk-ukca-conformity-assessment"]
+  },
+  {
+    "id": "uk-emc-regulations",
+    "query": "英国电磁兼容法规 2016 Electromagnetic Compatibility Regulations EMC",
+    "market": "UK",
+    "category": "electronics",
+    "risk": "EMC",
+    "regulatory_types": ["EMC", "conformity"],
+    "expected_source_ids": ["uk-emc-regulations-2016-original", "uk-emc-regulations-2016-gb"]
+  },
+  {
+    "id": "uk-toys-safety-regulations",
+    "query": "英国玩具安全法规 2011 Toys (Safety) Regulations CE UKCA 标识要求",
+    "market": "UK",
+    "category": "toys",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "chemical"],
+    "expected_source_ids": ["uk-toys-safety-regulations-2011-original", "uk-toys-safety-regulations-2011-gb"]
+  },
+  {
+    "id": "uk-electrical-equipment-safety",
+    "query": "英国电气设备安全法规 2016 Electrical Equipment (Safety) Regulations 低电压",
+    "market": "UK",
+    "category": "electrical_equipment",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "conformity"],
+    "expected_source_ids": ["uk-electrical-equipment-safety-regulations-2016-original", "uk-electrical-equipment-safety-regulations-2016-gb"]
+  },
+  {
+    "id": "uk-general-product-safety",
+    "query": "英国通用产品安全法规 2005 General Product Safety Regulations GPSR 消费品",
+    "market": "UK",
+    "category": "general_consumer_products",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "market_surveillance"],
+    "expected_source_ids": ["uk-general-product-safety-regulations-2005"]
+  },
+  {
+    "id": "uk-rohs-regulations",
+    "query": "英国 RoHS 法规 2012 电子电气设备有害物质限制 hazardous substances",
+    "market": "UK",
+    "category": "electronics",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "conformity"],
+    "expected_source_ids": ["uk-rohs-regulations-2012-original"]
+  },
+  {
+    "id": "uk-reach-compliance",
+    "query": "英国 REACH 化学品法规合规 How to comply with REACH chemical regulations",
+    "market": "UK",
+    "category": "chemicals",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "documentation"],
+    "expected_source_ids": ["uk-reach-compliance-guidance", "uk-reach-enforcement-regulations-2008-original"]
+  }
+]

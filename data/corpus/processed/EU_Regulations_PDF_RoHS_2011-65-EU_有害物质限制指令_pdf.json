@@ -179,6 +179,14 @@
       "EMC",
       "toy_safety"
     ],
-    "charCount": 73072
+    "charCount": 73072,
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "productCategories": [
+      "electronics",
+      "electrical_equipment"
+    ]
   }
 }

@@ -345,6 +345,12 @@
     "regulatoryTypes": [
       "chemical"
     ],
-    "charCount": 167131
+    "charCount": 167131,
+    "product_categories": [
+      "general_consumer_products"
+    ],
+    "productCategories": [
+      "general_consumer_products"
+    ]
   }
 }

@@ -333,6 +333,16 @@
       "EMC",
       "battery"
     ],
-    "charCount": 134809
+    "charCount": 134809,
+    "product_categories": [
+      "radio",
+      "electronics",
+      "telecommunications"
+    ],
+    "productCategories": [
+      "radio",
+      "electronics",
+      "telecommunications"
+    ]
   }
 }

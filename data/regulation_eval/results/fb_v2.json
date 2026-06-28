@@ -1,0 +1,2454 @@
+{
+  "summary": {
+    "generated_at": "2026-06-27T11:10:09+08:00",
+    "total_cases": 31,
+    "hits": 31,
+    "misses": [],
+    "hit_rate": 1.0,
+    "mrr": 0.8965064516129032,
+    "by_market": {
+      "EU": {
+        "total": 14,
+        "hits": 14,
+        "hit_rate": 1.0,
+        "mrr": 0.9642857142857143
+      },
+      "UK": {
+        "total": 7,
+        "hits": 7,
+        "hit_rate": 1.0,
+        "mrr": 0.8095285714285715
+      },
+      "US": {
+        "total": 10,
+        "hits": 10,
+        "hit_rate": 1.0,
+        "mrr": 0.8625
+      }
+    },
+    "by_category": {
+      "batteries": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "chemicals": {
+        "total": 3,
+        "hits": 3,
+        "hit_rate": 1.0,
+        "mrr": 0.8333333333333334
+      },
+      "children_products": {
+        "total": 5,
+        "hits": 5,
+        "hit_rate": 1.0,
+        "mrr": 0.825
+      },
+      "cosmetics": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "electrical_equipment": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "electronics": {
+        "total": 4,
+        "hits": 4,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "food_contact": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "general_consumer_products": {
+        "total": 4,
+        "hits": 4,
+        "hit_rate": 1.0,
+        "mrr": 0.666675
+      },
+      "home_appliances": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "packaging": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "textiles": {
+        "total": 3,
+        "hits": 3,
+        "hit_rate": 1.0,
+        "mrr": 0.8333333333333334
+      },
+      "toys": {
+        "total": 3,
+        "hits": 3,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "waste_electrical": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      }
+    },
+    "by_risk": {
+      "EMC": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "battery": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "chemical": {
+        "total": 8,
+        "hits": 8,
+        "hit_rate": 1.0,
+        "mrr": 0.828125
+      },
+      "conformity": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 0.1667
+      },
+      "documentation": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "flammability": {
+        "total": 2,
+        "hits": 2,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "labelling": {
+        "total": 3,
+        "hits": 3,
+        "hit_rate": 1.0,
+        "mrr": 0.8333333333333334
+      },
+      "packaging": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "product_safety": {
+        "total": 9,
+        "hits": 9,
+        "hit_rate": 1.0,
+        "mrr": 0.9444444444444444
+      },
+      "sustainability": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "testing": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      },
+      "waste": {
+        "total": 1,
+        "hits": 1,
+        "hit_rate": 1.0,
+        "mrr": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "eu-rohs-hazardous-substances",
+      "query": "电子产品有害物质限制指令 RoHS 2011/65/EU 限制哪些重金属和阻燃剂",
+      "market": "EU",
+      "category": "electronics",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "conformity",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "eu-2011-65-rohs"
+      ],
+      "returned_source_ids": [
+        "eu-2011-65-rohs",
+        "eu-2019-1020-market-surveillance",
+        "eu-2019-1021-persistent-organic-pollutants",
+        "eu-2011-83-consumer-rights",
+        "eu-2006-1907-reach",
+        "eu-2023-988-general-product-safety",
+        "eu-2024-1781-espr",
+        "eu-2011-10-plastic-food-contact",
+        "eu-2014-30-emc",
+        "eu-2014-35-low-voltage"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2019-1020-market-surveillance",
+          "doc_name": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "region": "EU",
+          "score": 0.2846824182618834
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.23711069853230968
+        },
+        {
+          "source_id": "eu-2011-83-consumer-rights",
+          "doc_name": "Directive 2011/83/EU on consumer rights",
+          "region": "EU",
+          "score": 0.21698831393316909
+        },
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.21267743992991775
+        },
+        {
+          "source_id": "eu-2023-988-general-product-safety",
+          "doc_name": "Regulation (EU) 2023/988 on general product safety",
+          "region": "EU",
+          "score": 0.21175477704000548
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.21124297905900694
+        },
+        {
+          "source_id": "eu-2011-10-plastic-food-contact",
+          "doc_name": "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+          "region": "EU",
+          "score": 0.3006300913417499
+        },
+        {
+          "source_id": "eu-2014-30-emc",
+          "doc_name": "Directive 2014/30/EU on electromagnetic compatibility",
+          "region": "EU",
+          "score": 0.20097469873638296
+        },
+        {
+          "source_id": "eu-2014-35-low-voltage",
+          "doc_name": "Directive 2014/35/EU on low voltage electrical equipment",
+          "region": "EU",
+          "score": 0.19468592998729356
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-reach-registration",
+      "query": "欧盟 REACH 法规 (EC) No 1907/2006 化学品注册评估授权 SVHC 高关注物质",
+      "market": "EU",
+      "category": "chemicals",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "documentation",
+        "market_surveillance"
+      ],
+      "expected_source_ids": [
+        "eu-2006-1907-reach"
+      ],
+      "returned_source_ids": [
+        "eu-2006-1907-reach",
+        "eu-2019-1021-persistent-organic-pollutants",
+        "eu-2009-1223-cosmetics",
+        "eu-2019-1020-market-surveillance"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.19075599074662938
+        },
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.15963928009614028
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.31957763069952716
+        },
+        {
+          "source_id": "eu-2009-1223-cosmetics",
+          "doc_name": "Regulation (EC) No 1223/2009 on cosmetic products",
+          "region": "EU",
+          "score": 0.27160882144694865
+        },
+        {
+          "source_id": "eu-2019-1020-market-surveillance",
+          "doc_name": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "region": "EU",
+          "score": 0.22018657203725428
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-clp-classification-labelling",
+      "query": "CLP 法规 (EC) No 1272/2008 物质和混合物的分类标签和包装 GHS 象形图",
+      "market": "EU",
+      "category": "chemicals",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "labelling",
+        "packaging"
+      ],
+      "expected_source_ids": [
+        "eu-2008-1272-clp"
+      ],
+      "returned_source_ids": [
+        "eu-2006-1907-reach",
+        "eu-2008-1272-clp",
+        "eu-2019-1021-persistent-organic-pollutants",
+        "eu-2023-1542-batteries",
+        "eu-2009-1223-cosmetics",
+        "eu-2011-10-plastic-food-contact",
+        "eu-2025-40-packaging-waste",
+        "eu-2024-1781-espr",
+        "eu-2017-1369-energy-labelling"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.45918129162386645
+        },
+        {
+          "source_id": "eu-2008-1272-clp",
+          "doc_name": "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+          "region": "EU",
+          "score": 0.35364946642262723
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.21803365999161708
+        },
+        {
+          "source_id": "eu-2023-1542-batteries",
+          "doc_name": "Regulation (EU) 2023/1542 concerning batteries and waste batteries",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2009-1223-cosmetics",
+          "doc_name": "Regulation (EC) No 1223/2009 on cosmetic products",
+          "region": "EU",
+          "score": 0.4818316760709686
+        },
+        {
+          "source_id": "eu-2011-10-plastic-food-contact",
+          "doc_name": "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+          "region": "EU",
+          "score": 0.4739847327250972
+        },
+        {
+          "source_id": "eu-2025-40-packaging-waste",
+          "doc_name": "Regulation (EU) 2025/40 on packaging and packaging waste",
+          "region": "EU",
+          "score": 0.3532929333064608
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.3474217366619917
+        },
+        {
+          "source_id": "eu-2017-1369-energy-labelling",
+          "doc_name": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "region": "EU",
+          "score": 0.29656382199504855
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.2878753397309378
+        }
+      ],
+      "hit": true,
+      "rank": 2,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "eu-toy-safety-directive",
+      "query": "欧盟玩具安全指令 2009/48/EC 玩具化学机械物理安全要求 CE 标识",
+      "market": "EU",
+      "category": "toys",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "chemical",
+        "mechanical",
+        "testing"
+      ],
+      "expected_source_ids": [
+        "eu-2009-48-toy-safety"
+      ],
+      "returned_source_ids": [
+        "eu-2009-48-toy-safety",
+        "eu-2006-1907-reach",
+        "eu-2023-988-general-product-safety",
+        "eu-2013-29-pyrotechnic-articles",
+        "eu-2016-426-gas-appliances",
+        "eu-2024-2847-cra",
+        "eu-2009-1223-cosmetics",
+        "eu-2024-2853-product-liability",
+        "eu-2024-1781-espr",
+        "eu-2014-35-low-voltage"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2009-48-toy-safety",
+          "doc_name": "Directive 2009/48/EC on the safety of toys",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.18706412973233838
+        },
+        {
+          "source_id": "eu-2023-988-general-product-safety",
+          "doc_name": "Regulation (EU) 2023/988 on general product safety",
+          "region": "EU",
+          "score": 0.2079675982257559
+        },
+        {
+          "source_id": "eu-2013-29-pyrotechnic-articles",
+          "doc_name": "Directive 2013/29/EU on pyrotechnic articles",
+          "region": "EU",
+          "score": 0.24812831132778826
+        },
+        {
+          "source_id": "eu-2016-426-gas-appliances",
+          "doc_name": "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+          "region": "EU",
+          "score": 0.22973327733483656
+        },
+        {
+          "source_id": "eu-2024-2847-cra",
+          "doc_name": "Regulation (EU) 2024/2847, Cyber Resilience Act",
+          "region": "EU",
+          "score": 0.1751201715791251
+        },
+        {
+          "source_id": "eu-2009-1223-cosmetics",
+          "doc_name": "Regulation (EC) No 1223/2009 on cosmetic products",
+          "region": "EU",
+          "score": 0.22945708026644154
+        },
+        {
+          "source_id": "eu-2024-2853-product-liability",
+          "doc_name": "Directive (EU) 2024/2853 on liability for defective products",
+          "region": "EU",
+          "score": 0.12388436318569622
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.22205734522146145
+        },
+        {
+          "source_id": "eu-2014-35-low-voltage",
+          "doc_name": "Directive 2014/35/EU on low voltage electrical equipment",
+          "region": "EU",
+          "score": 0.22130133271216648
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-textile-labelling-fibre",
+      "query": "纺织品纤维名称和标签法规 (EU) No 1007/2011 成分标注要求",
+      "market": "EU",
+      "category": "textiles",
+      "risk": "labelling",
+      "regulatory_types": [
+        "labelling"
+      ],
+      "expected_source_ids": [
+        "eu-2011-1007-textile-labelling"
+      ],
+      "returned_source_ids": [
+        "eu-2011-1007-textile-labelling",
+        "eu-2012-19-weee",
+        "eu-2011-83-consumer-rights",
+        "eu-2017-1369-energy-labelling"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2011-1007-textile-labelling",
+          "doc_name": "Regulation (EU) No 1007/2011 on textile fibre names and labelling",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2012-19-weee",
+          "doc_name": "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.459685264251476
+        },
+        {
+          "source_id": "eu-2011-83-consumer-rights",
+          "doc_name": "Directive 2011/83/EU on consumer rights",
+          "region": "EU",
+          "score": 0.45792900339216475
+        },
+        {
+          "source_id": "eu-2017-1369-energy-labelling",
+          "doc_name": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "region": "EU",
+          "score": 0.44449189948670476
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-food-contact-materials",
+      "query": "食品接触材料和制品法规 (EC) No 1935/2004 迁移限量要求 厨具餐具",
+      "market": "EU",
+      "category": "food_contact",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "chemical"
+      ],
+      "expected_source_ids": [
+        "eu-2004-1935-food-contact-materials"
+      ],
+      "returned_source_ids": [
+        "eu-2004-1935-food-contact-materials",
+        "eu-2011-10-plastic-food-contact",
+        "eu-2023-988-general-product-safety",
+        "eu-2024-1781-espr",
+        "eu-2006-1907-reach",
+        "eu-2019-1021-persistent-organic-pollutants",
+        "eu-2009-1223-cosmetics",
+        "eu-2016-426-gas-appliances"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2004-1935-food-contact-materials",
+          "doc_name": "Regulation (EC) No 1935/2004 on materials and articles intended to contact food",
+          "region": "EU",
+          "score": 0.08754508608645518
+        },
+        {
+          "source_id": "eu-2011-10-plastic-food-contact",
+          "doc_name": "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2011-10-plastic-food-contact",
+          "doc_name": "Commission Regulation (EU) No 10/2011 on plastic materials and articles intended to contact food",
+          "region": "EU",
+          "score": 0.061894620159265376
+        },
+        {
+          "source_id": "eu-2004-1935-food-contact-materials",
+          "doc_name": "Regulation (EC) No 1935/2004 on materials and articles intended to contact food",
+          "region": "EU",
+          "score": 0.4722558303485595
+        },
+        {
+          "source_id": "eu-2023-988-general-product-safety",
+          "doc_name": "Regulation (EU) 2023/988 on general product safety",
+          "region": "EU",
+          "score": 0.3439344981176215
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.2562873445388351
+        },
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.21835402959600936
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.21664791968060904
+        },
+        {
+          "source_id": "eu-2009-1223-cosmetics",
+          "doc_name": "Regulation (EC) No 1223/2009 on cosmetic products",
+          "region": "EU",
+          "score": 0.16674058712158416
+        },
+        {
+          "source_id": "eu-2016-426-gas-appliances",
+          "doc_name": "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+          "region": "EU",
+          "score": 0.1666699870108013
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-batteries-regulation",
+      "query": "欧盟电池法规 (EU) 2023/1542 电池和废电池 可持续回收尽职调查 CE 充电宝锂电池",
+      "market": "EU",
+      "category": "batteries",
+      "risk": "battery",
+      "regulatory_types": [
+        "battery",
+        "sustainability",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "eu-2023-1542-batteries"
+      ],
+      "returned_source_ids": [
+        "eu-2023-1542-batteries",
+        "eu-2022-2380-common-charger",
+        "eu-2024-1781-espr",
+        "eu-2023-1115-deforestation",
+        "eu-2005-29-unfair-commercial-practices",
+        "eu-2025-40-packaging-waste"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2023-1542-batteries",
+          "doc_name": "Regulation (EU) 2023/1542 concerning batteries and waste batteries",
+          "region": "EU",
+          "score": 0.4587059187202069
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.2000669214904377
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2023-1115-deforestation",
+          "doc_name": "Regulation (EU) 2023/1115 on deforestation-free products",
+          "region": "EU",
+          "score": 0.4072498690089734
+        },
+        {
+          "source_id": "eu-2005-29-unfair-commercial-practices",
+          "doc_name": "Directive 2005/29/EC concerning unfair business-to-consumer commercial practices",
+          "region": "EU",
+          "score": 0.40593956835450734
+        },
+        {
+          "source_id": "eu-2025-40-packaging-waste",
+          "doc_name": "Regulation (EU) 2025/40 on packaging and packaging waste",
+          "region": "EU",
+          "score": 0.391353179185027
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-emc-directive",
+      "query": "电磁兼容指令 2014/30/EU EMC 电子设备电磁干扰合规要求",
+      "market": "EU",
+      "category": "electronics",
+      "risk": "EMC",
+      "regulatory_types": [
+        "EMC",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "eu-2014-30-emc"
+      ],
+      "returned_source_ids": [
+        "eu-2014-30-emc",
+        "eu-2014-53-radio-equipment",
+        "eu-2014-35-low-voltage",
+        "eu-2019-1020-market-surveillance"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2014-30-emc",
+          "doc_name": "Directive 2014/30/EU on electromagnetic compatibility",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2014-53-radio-equipment",
+          "doc_name": "Directive 2014/53/EU on radio equipment",
+          "region": "EU",
+          "score": 0.33047376318087607
+        },
+        {
+          "source_id": "eu-2014-35-low-voltage",
+          "doc_name": "Directive 2014/35/EU on low voltage electrical equipment",
+          "region": "EU",
+          "score": 0.32155685120194266
+        },
+        {
+          "source_id": "eu-2019-1020-market-surveillance",
+          "doc_name": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "region": "EU",
+          "score": 0.30980333987829983
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-low-voltage-directive",
+      "query": "低电压指令 2014/35/EU LVD 50-1000V 电气设备安全要求 CE 认证",
+      "market": "EU",
+      "category": "electrical_equipment",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "conformity",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "eu-2014-35-low-voltage"
+      ],
+      "returned_source_ids": [
+        "eu-2014-35-low-voltage",
+        "eu-2014-30-emc",
+        "eu-2019-1020-market-surveillance",
+        "eu-2009-125-ecodesign-energy-related-products",
+        "eu-2011-65-rohs",
+        "eu-2014-31-non-automatic-weighing-instruments",
+        "eu-2014-68-pressure-equipment",
+        "eu-2016-426-gas-appliances",
+        "eu-2014-32-measuring-instruments",
+        "eu-2014-34-atex"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2014-35-low-voltage",
+          "doc_name": "Directive 2014/35/EU on low voltage electrical equipment",
+          "region": "EU",
+          "score": 0.44589437662611825
+        },
+        {
+          "source_id": "eu-2014-30-emc",
+          "doc_name": "Directive 2014/30/EU on electromagnetic compatibility",
+          "region": "EU",
+          "score": 0.3590967788711533
+        },
+        {
+          "source_id": "eu-2019-1020-market-surveillance",
+          "doc_name": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2009-125-ecodesign-energy-related-products",
+          "doc_name": "Directive 2009/125/EC establishing a framework for ecodesign requirements for energy-related products",
+          "region": "EU",
+          "score": 0.18504843978367022
+        },
+        {
+          "source_id": "eu-2011-65-rohs",
+          "doc_name": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.17991281431295503
+        },
+        {
+          "source_id": "eu-2014-31-non-automatic-weighing-instruments",
+          "doc_name": "Directive 2014/31/EU on non-automatic weighing instruments",
+          "region": "EU",
+          "score": 0.3616596379332431
+        },
+        {
+          "source_id": "eu-2014-68-pressure-equipment",
+          "doc_name": "Directive 2014/68/EU on pressure equipment",
+          "region": "EU",
+          "score": 0.3555397083259201
+        },
+        {
+          "source_id": "eu-2016-426-gas-appliances",
+          "doc_name": "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+          "region": "EU",
+          "score": 0.35099226988211424
+        },
+        {
+          "source_id": "eu-2014-32-measuring-instruments",
+          "doc_name": "Directive 2014/32/EU on measuring instruments",
+          "region": "EU",
+          "score": 0.3422192508714522
+        },
+        {
+          "source_id": "eu-2014-34-atex",
+          "doc_name": "Directive 2014/34/EU on equipment and protective systems for explosive atmospheres",
+          "region": "EU",
+          "score": 0.3191897346071335
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-weee-directive",
+      "query": "废弃电子电气设备指令 WEEE 2012/19/EU 回收处理分类标志",
+      "market": "EU",
+      "category": "waste_electrical",
+      "risk": "waste",
+      "regulatory_types": [
+        "waste",
+        "sustainability"
+      ],
+      "expected_source_ids": [
+        "eu-2012-19-weee"
+      ],
+      "returned_source_ids": [
+        "eu-2012-19-weee",
+        "eu-2022-2380-common-charger",
+        "eu-2019-1021-persistent-organic-pollutants",
+        "eu-2017-1369-energy-labelling"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2012-19-weee",
+          "doc_name": "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.18115720544844638
+        },
+        {
+          "source_id": "eu-2012-19-weee",
+          "doc_name": "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.32554515188988015
+        },
+        {
+          "source_id": "eu-2019-1021-persistent-organic-pollutants",
+          "doc_name": "Regulation (EU) 2019/1021 on persistent organic pollutants",
+          "region": "EU",
+          "score": 0.2722081147314466
+        },
+        {
+          "source_id": "eu-2017-1369-energy-labelling",
+          "doc_name": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "region": "EU",
+          "score": 0.24479217607957976
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-ecodesign-erp",
+      "query": "能耗产品生态设计指令 2009/125/EC ErP 能效要求 家电",
+      "market": "EU",
+      "category": "home_appliances",
+      "risk": "sustainability",
+      "regulatory_types": [
+        "sustainability",
+        "technical_standard",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "eu-2009-125-ecodesign-energy-related-products"
+      ],
+      "returned_source_ids": [
+        "eu-2009-125-ecodesign-energy-related-products",
+        "eu-2016-426-gas-appliances",
+        "eu-2017-1369-energy-labelling",
+        "eu-2012-19-weee",
+        "eu-2024-1781-espr",
+        "eu-2022-2380-common-charger",
+        "eu-2023-1542-batteries",
+        "eu-2019-1020-market-surveillance"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2009-125-ecodesign-energy-related-products",
+          "doc_name": "Directive 2009/125/EC establishing a framework for ecodesign requirements for energy-related products",
+          "region": "EU",
+          "score": 0.14523046737158454
+        },
+        {
+          "source_id": "eu-2016-426-gas-appliances",
+          "doc_name": "Regulation (EU) 2016/426 on appliances burning gaseous fuels",
+          "region": "EU",
+          "score": 0.14403610089258015
+        },
+        {
+          "source_id": "eu-2017-1369-energy-labelling",
+          "doc_name": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "region": "EU",
+          "score": 0.1311650078170062
+        },
+        {
+          "source_id": "eu-2012-19-weee",
+          "doc_name": "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.4792788445099504
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.4158169072370647
+        },
+        {
+          "source_id": "eu-2023-1542-batteries",
+          "doc_name": "Regulation (EU) 2023/1542 concerning batteries and waste batteries",
+          "region": "EU",
+          "score": 0.4081071315613094
+        },
+        {
+          "source_id": "eu-2019-1020-market-surveillance",
+          "doc_name": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "region": "EU",
+          "score": 0.384700800684779
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-cosmetics-regulation",
+      "query": "欧盟化妆品法规 (EC) No 1223/2009 安全评估备案 CPNP 禁限用成分",
+      "market": "EU",
+      "category": "cosmetics",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "eu-2009-1223-cosmetics"
+      ],
+      "returned_source_ids": [
+        "eu-2009-1223-cosmetics",
+        "eu-2006-1907-reach",
+        "eu-2019-1020-market-surveillance",
+        "eu-2024-1781-espr",
+        "eu-2009-48-toy-safety",
+        "eu-2024-2853-product-liability"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2009-1223-cosmetics",
+          "doc_name": "Regulation (EC) No 1223/2009 on cosmetic products",
+          "region": "EU",
+          "score": 0.36705832811067124
+        },
+        {
+          "source_id": "eu-2009-1223-cosmetics",
+          "doc_name": "Regulation (EC) No 1223/2009 on cosmetic products",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2006-1907-reach",
+          "doc_name": "Regulation (EC) No 1907/2006 concerning REACH",
+          "region": "EU",
+          "score": 0.23060619057797802
+        },
+        {
+          "source_id": "eu-2019-1020-market-surveillance",
+          "doc_name": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
+          "region": "EU",
+          "score": 0.3689678253018519
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.339495896398803
+        },
+        {
+          "source_id": "eu-2009-48-toy-safety",
+          "doc_name": "Directive 2009/48/EC on the safety of toys",
+          "region": "EU",
+          "score": 0.2761642999022171
+        },
+        {
+          "source_id": "eu-2024-2853-product-liability",
+          "doc_name": "Directive (EU) 2024/2853 on liability for defective products",
+          "region": "EU",
+          "score": 0.27528787499502
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-packaging-waste",
+      "query": "欧盟包装和包装废弃物法规 (EU) 2025/40 可回收性回收率目标",
+      "market": "EU",
+      "category": "packaging",
+      "risk": "packaging",
+      "regulatory_types": [
+        "packaging",
+        "sustainability",
+        "waste"
+      ],
+      "expected_source_ids": [
+        "eu-2025-40-packaging-waste"
+      ],
+      "returned_source_ids": [
+        "eu-2025-40-packaging-waste",
+        "eu-2023-1115-deforestation",
+        "eu-2012-19-weee",
+        "eu-2017-1369-energy-labelling",
+        "eu-2022-2380-common-charger",
+        "eu-2024-1781-espr"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2025-40-packaging-waste",
+          "doc_name": "Regulation (EU) 2025/40 on packaging and packaging waste",
+          "region": "EU",
+          "score": 0.3617252452682244
+        },
+        {
+          "source_id": "eu-2023-1115-deforestation",
+          "doc_name": "Regulation (EU) 2023/1115 on deforestation-free products",
+          "region": "EU",
+          "score": 0.2228213862574466
+        },
+        {
+          "source_id": "eu-2012-19-weee",
+          "doc_name": "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2017-1369-energy-labelling",
+          "doc_name": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "region": "EU",
+          "score": 0.4353143207593949
+        },
+        {
+          "source_id": "eu-2022-2380-common-charger",
+          "doc_name": "Directive (EU) 2022/2380, common charger amendment to RED",
+          "region": "EU",
+          "score": 0.39610311371562706
+        },
+        {
+          "source_id": "eu-2024-1781-espr",
+          "doc_name": "Regulation (EU) 2024/1781, Ecodesign for Sustainable Products",
+          "region": "EU",
+          "score": 0.3958981352796587
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "eu-unfair-commercial-practices",
+      "query": "不公平商业行为指令 2005/29/UCP 绿色洗绿广告虚假宣传禁令",
+      "market": "EU",
+      "category": "general_consumer_products",
+      "risk": "labelling",
+      "regulatory_types": [
+        "labelling"
+      ],
+      "expected_source_ids": [
+        "eu-2005-29-unfair-commercial-practices"
+      ],
+      "returned_source_ids": [
+        "eu-2005-29-unfair-commercial-practices",
+        "eu-2011-83-consumer-rights",
+        "eu-2008-1272-clp",
+        "eu-2011-1007-textile-labelling",
+        "eu-2025-40-packaging-waste",
+        "eu-2012-19-weee",
+        "eu-2017-1369-energy-labelling"
+      ],
+      "top_documents": [
+        {
+          "source_id": "eu-2005-29-unfair-commercial-practices",
+          "doc_name": "Directive 2005/29/EC concerning unfair business-to-consumer commercial practices",
+          "region": "EU",
+          "score": 0.3751275436181957
+        },
+        {
+          "source_id": "eu-2011-83-consumer-rights",
+          "doc_name": "Directive 2011/83/EU on consumer rights",
+          "region": "EU",
+          "score": 0.284331236769871
+        },
+        {
+          "source_id": "eu-2008-1272-clp",
+          "doc_name": "Regulation (EC) No 1272/2008 on classification, labelling and packaging of substances and mixtures",
+          "region": "EU",
+          "score": 0.07363670266864988
+        },
+        {
+          "source_id": "eu-2011-1007-textile-labelling",
+          "doc_name": "Regulation (EU) No 1007/2011 on textile fibre names and labelling",
+          "region": "EU",
+          "score": 0.5
+        },
+        {
+          "source_id": "eu-2025-40-packaging-waste",
+          "doc_name": "Regulation (EU) 2025/40 on packaging and packaging waste",
+          "region": "EU",
+          "score": 0.47786024971251706
+        },
+        {
+          "source_id": "eu-2012-19-weee",
+          "doc_name": "Directive 2012/19/EU on waste electrical and electronic equipment",
+          "region": "EU",
+          "score": 0.47139883862742754
+        },
+        {
+          "source_id": "eu-2017-1369-energy-labelling",
+          "doc_name": "Regulation (EU) 2017/1369 setting a framework for energy labelling",
+          "region": "EU",
+          "score": 0.23255046011371214
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-toy-safety-astm-f963",
+      "query": "美国玩具安全标准 ASTM F963 16 CFR Part 1250 CPSIA 儿童玩具强制要求",
+      "market": "US",
+      "category": "toys",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "testing",
+        "mechanical"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1250-toy-safety"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1250-toy-safety",
+        "us-16-cfr-1307-phthalates",
+        "us-16-cfr-1262-magnets",
+        "us-16-cfr-1263-button-coin-batteries",
+        "us-16-cfr-1500-hazardous-substances",
+        "us-consumer-product-safety-improvement-act-2008",
+        "us-16-cfr-1222-bedside-sleepers",
+        "us-16-cfr-1505-electrically-operated-toys",
+        "us-16-cfr-1215-infant-bath-seats",
+        "us-16-cfr-1303-lead-paint"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1250-toy-safety",
+          "doc_name": "16 CFR Part 1250, Safety Standard Mandating ASTM F963 for Toys",
+          "region": "US",
+          "score": 0.4980656285698897
+        },
+        {
+          "source_id": "us-16-cfr-1307-phthalates",
+          "doc_name": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+          "region": "US",
+          "score": 0.3984532359522552
+        },
+        {
+          "source_id": "us-16-cfr-1262-magnets",
+          "doc_name": "16 CFR Part 1262, Safety Standard for Magnets",
+          "region": "US",
+          "score": 0.3548478014085861
+        },
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.23403999763898498
+        },
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-consumer-product-safety-improvement-act-2008",
+          "doc_name": "Consumer Product Safety Improvement Act of 2008",
+          "region": "US",
+          "score": 0.20152176475573869
+        },
+        {
+          "source_id": "us-16-cfr-1222-bedside-sleepers",
+          "doc_name": "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "region": "US",
+          "score": 0.41838417567409436
+        },
+        {
+          "source_id": "us-16-cfr-1505-electrically-operated-toys",
+          "doc_name": "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "region": "US",
+          "score": 0.15201529730293087
+        },
+        {
+          "source_id": "us-16-cfr-1215-infant-bath-seats",
+          "doc_name": "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+          "region": "US",
+          "score": 0.4110728537773848
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.15084025465204806
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-lead-paint-ban",
+      "query": "美国含铅油漆禁令 16 CFR Part 1303 儿童产品铅含量 90 ppm 涂层",
+      "market": "US",
+      "category": "children_products",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1303-lead-paint"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1500-hazardous-substances",
+        "us-16-cfr-1505-electrically-operated-toys",
+        "us-16-cfr-1218-bassinets-cradles",
+        "us-consumer-product-safety-act",
+        "us-consumer-product-safety-improvement-act-2008",
+        "us-16-cfr-1221-play-yards",
+        "us-16-cfr-1220-non-full-size-baby-cribs",
+        "us-16-cfr-1303-lead-paint",
+        "us-40-cfr-770-formaldehyde-composite-wood",
+        "us-21-cfr-177-food-contact-polymers"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1505-electrically-operated-toys",
+          "doc_name": "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "region": "US",
+          "score": 0.3711050081445788
+        },
+        {
+          "source_id": "us-16-cfr-1218-bassinets-cradles",
+          "doc_name": "16 CFR Part 1218, Safety Standard for Bassinets and Cradles",
+          "region": "US",
+          "score": 0.29477805489234177
+        },
+        {
+          "source_id": "us-consumer-product-safety-act",
+          "doc_name": "Consumer Product Safety Act",
+          "region": "US",
+          "score": 0.2938143791204488
+        },
+        {
+          "source_id": "us-consumer-product-safety-improvement-act-2008",
+          "doc_name": "Consumer Product Safety Improvement Act of 2008",
+          "region": "US",
+          "score": 0.2768802443228451
+        },
+        {
+          "source_id": "us-16-cfr-1221-play-yards",
+          "doc_name": "16 CFR Part 1221, Safety Standard for Play Yards",
+          "region": "US",
+          "score": 0.2728014774512915
+        },
+        {
+          "source_id": "us-16-cfr-1220-non-full-size-baby-cribs",
+          "doc_name": "16 CFR Part 1220, Safety Standard for Non-Full-Size Baby Cribs",
+          "region": "US",
+          "score": 0.26590577788755376
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.3976370663674209
+        },
+        {
+          "source_id": "us-40-cfr-770-formaldehyde-composite-wood",
+          "doc_name": "40 CFR Part 770, Formaldehyde Standards for Composite Wood Products",
+          "region": "US",
+          "score": 0.3923371951125104
+        },
+        {
+          "source_id": "us-21-cfr-177-food-contact-polymers",
+          "doc_name": "21 CFR Part 177, Indirect Food Additives: Polymers",
+          "region": "US",
+          "score": 0.2675152762201756
+        }
+      ],
+      "hit": true,
+      "rank": 8,
+      "reciprocal_rank": 0.125
+    },
+    {
+      "id": "us-phthalates-ban",
+      "query": "美国邻苯二甲酸酯禁令 16 CFR Part 1307 儿童玩具和护理用品 DEHP DBP",
+      "market": "US",
+      "category": "children_products",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1307-phthalates"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1307-phthalates",
+        "us-consumer-product-safety-improvement-act-2008",
+        "us-16-cfr-1500-hazardous-substances",
+        "us-16-cfr-1222-bedside-sleepers",
+        "us-16-cfr-1223-infant-swings",
+        "us-16-cfr-1231-high-chairs",
+        "us-16-cfr-1215-infant-bath-seats",
+        "us-16-cfr-1229-infant-bouncer-seats",
+        "us-16-cfr-1216-infant-walkers",
+        "us-16-cfr-1227-carriages-strollers"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1307-phthalates",
+          "doc_name": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-consumer-product-safety-improvement-act-2008",
+          "doc_name": "Consumer Product Safety Improvement Act of 2008",
+          "region": "US",
+          "score": 0.18770674216279506
+        },
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.14011247327167398
+        },
+        {
+          "source_id": "us-16-cfr-1222-bedside-sleepers",
+          "doc_name": "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "region": "US",
+          "score": 0.1332430285172627
+        },
+        {
+          "source_id": "us-16-cfr-1223-infant-swings",
+          "doc_name": "16 CFR Part 1223, Safety Standard for Infant Swings",
+          "region": "US",
+          "score": 0.1304792606253351
+        },
+        {
+          "source_id": "us-16-cfr-1231-high-chairs",
+          "doc_name": "16 CFR Part 1231, Safety Standard for High Chairs",
+          "region": "US",
+          "score": 0.12992352849255231
+        },
+        {
+          "source_id": "us-16-cfr-1215-infant-bath-seats",
+          "doc_name": "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+          "region": "US",
+          "score": 0.12983137794098837
+        },
+        {
+          "source_id": "us-16-cfr-1229-infant-bouncer-seats",
+          "doc_name": "16 CFR Part 1229, Safety Standard for Infant Bouncer Seats",
+          "region": "US",
+          "score": 0.12983137794098837
+        },
+        {
+          "source_id": "us-16-cfr-1216-infant-walkers",
+          "doc_name": "16 CFR Part 1216, Safety Standard for Infant Walkers",
+          "region": "US",
+          "score": 0.12973936129308666
+        },
+        {
+          "source_id": "us-16-cfr-1227-carriages-strollers",
+          "doc_name": "16 CFR Part 1227, Safety Standard for Carriages and Strollers",
+          "region": "US",
+          "score": 0.1295557285140981
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-button-coin-batteries",
+      "query": "美国纽扣电池吞咽危险安全标准 16 CFR Part 1263 Reese's Law 纽扣硬币电池",
+      "market": "US",
+      "category": "batteries",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "battery"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1263-button-coin-batteries"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1263-button-coin-batteries",
+        "us-16-cfr-1500-hazardous-substances",
+        "us-16-cfr-1303-lead-paint",
+        "us-16-cfr-1219-full-size-baby-cribs",
+        "us-16-cfr-1700-poison-prevention-packaging",
+        "us-16-cfr-1220-non-full-size-baby-cribs",
+        "us-16-cfr-1222-bedside-sleepers",
+        "us-16-cfr-1262-magnets",
+        "us-16-cfr-1218-bassinets-cradles",
+        "us-16-cfr-1223-infant-swings"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.15841576769911014
+        },
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1303-lead-paint",
+          "doc_name": "16 CFR Part 1303, Ban of Lead-Containing Paint and Certain Consumer Products Bearing Lead-Containing Paint",
+          "region": "US",
+          "score": 0.4872958868251484
+        },
+        {
+          "source_id": "us-16-cfr-1219-full-size-baby-cribs",
+          "doc_name": "16 CFR Part 1219, Safety Standard for Full-Size Baby Cribs",
+          "region": "US",
+          "score": 0.4798861618071867
+        },
+        {
+          "source_id": "us-16-cfr-1700-poison-prevention-packaging",
+          "doc_name": "16 CFR Part 1700, Poison Prevention Packaging",
+          "region": "US",
+          "score": 0.4738634970311206
+        },
+        {
+          "source_id": "us-16-cfr-1220-non-full-size-baby-cribs",
+          "doc_name": "16 CFR Part 1220, Safety Standard for Non-Full-Size Baby Cribs",
+          "region": "US",
+          "score": 0.4644998100679433
+        },
+        {
+          "source_id": "us-16-cfr-1222-bedside-sleepers",
+          "doc_name": "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "region": "US",
+          "score": 0.4484447021375916
+        },
+        {
+          "source_id": "us-16-cfr-1262-magnets",
+          "doc_name": "16 CFR Part 1262, Safety Standard for Magnets",
+          "region": "US",
+          "score": 0.43993213172125467
+        },
+        {
+          "source_id": "us-16-cfr-1218-bassinets-cradles",
+          "doc_name": "16 CFR Part 1218, Safety Standard for Bassinets and Cradles",
+          "region": "US",
+          "score": 0.43548087660197776
+        },
+        {
+          "source_id": "us-16-cfr-1223-infant-swings",
+          "doc_name": "16 CFR Part 1223, Safety Standard for Infant Swings",
+          "region": "US",
+          "score": 0.4314930369010074
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-textile-flammability",
+      "query": "美国服装纺织品易燃性标准 16 CFR Part 1610 服装燃烧等级分类",
+      "market": "US",
+      "category": "textiles",
+      "risk": "flammability",
+      "regulatory_types": [
+        "flammability",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1610-textile-flammability"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1610-textile-flammability",
+        "us-16-cfr-1615-childrens-sleepwear-0-6x",
+        "us-16-cfr-1616-childrens-sleepwear-7-14",
+        "us-16-cfr-1633-mattresses-open-flame",
+        "us-16-cfr-1632-mattresses",
+        "us-16-cfr-1500-hazardous-substances",
+        "us-16-cfr-1262-magnets",
+        "us-16-cfr-1222-bedside-sleepers",
+        "us-16-cfr-1263-button-coin-batteries"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1610-textile-flammability",
+          "doc_name": "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
+          "doc_name": "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "region": "US",
+          "score": 0.37487481113560894
+        },
+        {
+          "source_id": "us-16-cfr-1616-childrens-sleepwear-7-14",
+          "doc_name": "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "region": "US",
+          "score": 0.3669811967763504
+        },
+        {
+          "source_id": "us-16-cfr-1633-mattresses-open-flame",
+          "doc_name": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+          "region": "US",
+          "score": 0.3276082818524015
+        },
+        {
+          "source_id": "us-16-cfr-1632-mattresses",
+          "doc_name": "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+          "region": "US",
+          "score": 0.28674046914223233
+        },
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.42284117228026163
+        },
+        {
+          "source_id": "us-16-cfr-1262-magnets",
+          "doc_name": "16 CFR Part 1262, Safety Standard for Magnets",
+          "region": "US",
+          "score": 0.4139255954896542
+        },
+        {
+          "source_id": "us-16-cfr-1222-bedside-sleepers",
+          "doc_name": "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "region": "US",
+          "score": 0.40239471392301235
+        },
+        {
+          "source_id": "us-16-cfr-1263-button-coin-batteries",
+          "doc_name": "16 CFR Part 1263, Safety Standard for Button Cell or Coin Batteries",
+          "region": "US",
+          "score": 0.39659865789210896
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-childrens-sleepwear-flammability",
+      "query": "美国儿童睡衣易燃性标准 16 CFR Part 1615/1616 儿童睡衣阻燃要求",
+      "market": "US",
+      "category": "children_products",
+      "risk": "flammability",
+      "regulatory_types": [
+        "flammability",
+        "product_safety"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1615-childrens-sleepwear-0-6x",
+        "us-16-cfr-1616-childrens-sleepwear-7-14"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1616-childrens-sleepwear-7-14",
+        "us-16-cfr-1615-childrens-sleepwear-0-6x"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1616-childrens-sleepwear-7-14",
+          "doc_name": "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
+          "doc_name": "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "region": "US",
+          "score": 0.4255790224074823
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-certificate-of-compliance",
+      "query": "美国产品合规证书 Children's Product Certificate CPC 16 CFR Part 1110",
+      "market": "US",
+      "category": "general_consumer_products",
+      "risk": "documentation",
+      "regulatory_types": [
+        "documentation",
+        "testing"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1110-certificates-compliance"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1110-certificates-compliance",
+        "us-16-cfr-1107-testing-certification",
+        "us-magnuson-moss-warranty-ftc-improvement-act",
+        "us-40-cfr-770-formaldehyde-composite-wood",
+        "us-16-cfr-1615-childrens-sleepwear-0-6x",
+        "us-16-cfr-1616-childrens-sleepwear-7-14",
+        "us-16-cfr-1700-poison-prevention-packaging",
+        "us-16-cfr-1505-electrically-operated-toys",
+        "us-16-cfr-1610-textile-flammability"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1110-certificates-compliance",
+          "doc_name": "16 CFR Part 1110, Certificates of Compliance",
+          "region": "US",
+          "score": 0.31784092070372194
+        },
+        {
+          "source_id": "us-16-cfr-1107-testing-certification",
+          "doc_name": "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+          "region": "US",
+          "score": 0.24054195487197655
+        },
+        {
+          "source_id": "us-16-cfr-1107-testing-certification",
+          "doc_name": "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-magnuson-moss-warranty-ftc-improvement-act",
+          "doc_name": "Magnuson-Moss Warranty-Federal Trade Commission Improvement Act",
+          "region": "US",
+          "score": 0.09500082579750319
+        },
+        {
+          "source_id": "us-40-cfr-770-formaldehyde-composite-wood",
+          "doc_name": "40 CFR Part 770, Formaldehyde Standards for Composite Wood Products",
+          "region": "US",
+          "score": 0.4127663253200233
+        },
+        {
+          "source_id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
+          "doc_name": "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "region": "US",
+          "score": 0.3339070062572353
+        },
+        {
+          "source_id": "us-16-cfr-1616-childrens-sleepwear-7-14",
+          "doc_name": "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "region": "US",
+          "score": 0.3337242532225936
+        },
+        {
+          "source_id": "us-16-cfr-1700-poison-prevention-packaging",
+          "doc_name": "16 CFR Part 1700, Poison Prevention Packaging",
+          "region": "US",
+          "score": 0.3092166890569327
+        },
+        {
+          "source_id": "us-16-cfr-1505-electrically-operated-toys",
+          "doc_name": "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "region": "US",
+          "score": 0.30153946398266546
+        },
+        {
+          "source_id": "us-16-cfr-1610-textile-flammability",
+          "doc_name": "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+          "region": "US",
+          "score": 0.3013612614882452
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-testing-certification",
+      "query": "美国儿童产品测试和认证标签 16 CFR Part 1107 第三方测试实验室",
+      "market": "US",
+      "category": "children_products",
+      "risk": "testing",
+      "regulatory_types": [
+        "testing",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1107-testing-certification"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1107-testing-certification",
+        "us-16-cfr-1615-childrens-sleepwear-0-6x",
+        "us-16-cfr-1505-electrically-operated-toys",
+        "us-16-cfr-1616-childrens-sleepwear-7-14",
+        "us-16-cfr-1700-poison-prevention-packaging",
+        "us-16-cfr-1633-mattresses-open-flame",
+        "us-16-cfr-1610-textile-flammability",
+        "us-16-cfr-1110-certificates-compliance",
+        "us-16-cfr-1632-mattresses",
+        "us-16-cfr-1631-small-carpets-rugs"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1107-testing-certification",
+          "doc_name": "16 CFR Part 1107, Testing and Labeling Pertaining to Product Certification",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1615-childrens-sleepwear-0-6x",
+          "doc_name": "16 CFR Part 1615, Standard for the Flammability of Children's Sleepwear: Sizes 0 Through 6X",
+          "region": "US",
+          "score": 0.25297121010726376
+        },
+        {
+          "source_id": "us-16-cfr-1505-electrically-operated-toys",
+          "doc_name": "16 CFR Part 1505, Requirements for Electrically Operated Toys or Other Electrically Operated Articles Intended for Use by Children",
+          "region": "US",
+          "score": 0.24728715334189946
+        },
+        {
+          "source_id": "us-16-cfr-1616-childrens-sleepwear-7-14",
+          "doc_name": "16 CFR Part 1616, Standard for the Flammability of Children's Sleepwear: Sizes 7 Through 14",
+          "region": "US",
+          "score": 0.24617209107060958
+        },
+        {
+          "source_id": "us-16-cfr-1700-poison-prevention-packaging",
+          "doc_name": "16 CFR Part 1700, Poison Prevention Packaging",
+          "region": "US",
+          "score": 0.2338505776511125
+        },
+        {
+          "source_id": "us-16-cfr-1633-mattresses-open-flame",
+          "doc_name": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
+          "region": "US",
+          "score": 0.3268699001403283
+        },
+        {
+          "source_id": "us-16-cfr-1610-textile-flammability",
+          "doc_name": "16 CFR Part 1610, Standard for the Flammability of Clothing Textiles",
+          "region": "US",
+          "score": 0.3162305299167522
+        },
+        {
+          "source_id": "us-16-cfr-1110-certificates-compliance",
+          "doc_name": "16 CFR Part 1110, Certificates of Compliance",
+          "region": "US",
+          "score": 0.30280762168739045
+        },
+        {
+          "source_id": "us-16-cfr-1632-mattresses",
+          "doc_name": "16 CFR Part 1632, Standard for the Flammability of Mattresses and Mattress Pads",
+          "region": "US",
+          "score": 0.2859788820476993
+        },
+        {
+          "source_id": "us-16-cfr-1631-small-carpets-rugs",
+          "doc_name": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
+          "region": "US",
+          "score": 0.2723180881113095
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-small-parts",
+      "query": "美国儿童玩具小零件窒息危险禁令 16 CFR Part 1501 三岁以下儿童用品",
+      "market": "US",
+      "category": "children_products",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "mechanical"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-1501-small-parts"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-1501-small-parts",
+        "us-16-cfr-1500-hazardous-substances",
+        "us-consumer-product-safety-act",
+        "us-16-cfr-1222-bedside-sleepers",
+        "us-16-cfr-1223-infant-swings",
+        "us-16-cfr-1231-high-chairs",
+        "us-16-cfr-1215-infant-bath-seats",
+        "us-16-cfr-1229-infant-bouncer-seats",
+        "us-16-cfr-1216-infant-walkers",
+        "us-16-cfr-1227-carriages-strollers"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-1501-small-parts",
+          "doc_name": "16 CFR Part 1501, Small Parts",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.40206733051411053
+        },
+        {
+          "source_id": "us-consumer-product-safety-act",
+          "doc_name": "Consumer Product Safety Act",
+          "region": "US",
+          "score": 0.26127925518959855
+        },
+        {
+          "source_id": "us-16-cfr-1222-bedside-sleepers",
+          "doc_name": "16 CFR Part 1222, Safety Standard for Bedside Sleepers",
+          "region": "US",
+          "score": 0.2582399596269707
+        },
+        {
+          "source_id": "us-16-cfr-1223-infant-swings",
+          "doc_name": "16 CFR Part 1223, Safety Standard for Infant Swings",
+          "region": "US",
+          "score": 0.2528834669325914
+        },
+        {
+          "source_id": "us-16-cfr-1231-high-chairs",
+          "doc_name": "16 CFR Part 1231, Safety Standard for High Chairs",
+          "region": "US",
+          "score": 0.25180639562064167
+        },
+        {
+          "source_id": "us-16-cfr-1215-infant-bath-seats",
+          "doc_name": "16 CFR Part 1215, Safety Standard for Infant Bath Seats",
+          "region": "US",
+          "score": 0.25162779749824615
+        },
+        {
+          "source_id": "us-16-cfr-1229-infant-bouncer-seats",
+          "doc_name": "16 CFR Part 1229, Safety Standard for Infant Bouncer Seats",
+          "region": "US",
+          "score": 0.25162779749824615
+        },
+        {
+          "source_id": "us-16-cfr-1216-infant-walkers",
+          "doc_name": "16 CFR Part 1216, Safety Standard for Infant Walkers",
+          "region": "US",
+          "score": 0.25144945889619263
+        },
+        {
+          "source_id": "us-16-cfr-1227-carriages-strollers",
+          "doc_name": "16 CFR Part 1227, Safety Standard for Carriages and Strollers",
+          "region": "US",
+          "score": 0.25109355793867233
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "us-textile-fiber-labeling",
+      "query": "美国纺织纤维产品识别法 16 CFR Part 303 纤维成分标签 Wool Fur 标识",
+      "market": "US",
+      "category": "textiles",
+      "risk": "labelling",
+      "regulatory_types": [
+        "labelling"
+      ],
+      "expected_source_ids": [
+        "us-16-cfr-303-textile-fiber-products-identification"
+      ],
+      "returned_source_ids": [
+        "us-16-cfr-300-wool-products-labeling",
+        "us-16-cfr-303-textile-fiber-products-identification",
+        "us-16-cfr-301-fur-products-labeling",
+        "us-16-cfr-1500-hazardous-substances"
+      ],
+      "top_documents": [
+        {
+          "source_id": "us-16-cfr-300-wool-products-labeling",
+          "doc_name": "16 CFR Part 300, Rules and Regulations Under the Wool Products Labeling Act of 1939",
+          "region": "US",
+          "score": 0.18126835266107427
+        },
+        {
+          "source_id": "us-16-cfr-303-textile-fiber-products-identification",
+          "doc_name": "16 CFR Part 303, Rules and Regulations Under the Textile Fiber Products Identification Act",
+          "region": "US",
+          "score": 0.20089851736939374
+        },
+        {
+          "source_id": "us-16-cfr-303-textile-fiber-products-identification",
+          "doc_name": "16 CFR Part 303, Rules and Regulations Under the Textile Fiber Products Identification Act",
+          "region": "US",
+          "score": 0.5
+        },
+        {
+          "source_id": "us-16-cfr-301-fur-products-labeling",
+          "doc_name": "16 CFR Part 301, Rules and Regulations Under the Fur Products Labeling Act",
+          "region": "US",
+          "score": 0.17287888441575444
+        },
+        {
+          "source_id": "us-16-cfr-301-fur-products-labeling",
+          "doc_name": "16 CFR Part 301, Rules and Regulations Under the Fur Products Labeling Act",
+          "region": "US",
+          "score": 0.38071623273784466
+        },
+        {
+          "source_id": "us-16-cfr-1500-hazardous-substances",
+          "doc_name": "16 CFR Part 1500, Hazardous Substances and Articles",
+          "region": "US",
+          "score": 0.29212922215290466
+        }
+      ],
+      "hit": true,
+      "rank": 2,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "uk-ukca-marking",
+      "query": "英国 UKCA 标识符合性评估和文件要求 脱欧后 conformity assessment",
+      "market": "UK",
+      "category": "general_consumer_products",
+      "risk": "conformity",
+      "regulatory_types": [
+        "conformity",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "uk-ukca-conformity-assessment"
+      ],
+      "returned_source_ids": [
+        "uk-product-safety-metrology-ukni-amendment-2020",
+        "uk-emc-regulations-2016-gb",
+        "uk-psti-security-requirements-regulations-2023-original",
+        "uk-radio-equipment-regulations-2017-gb",
+        "uk-toys-safety-regulations-2011-gb",
+        "uk-ukca-conformity-assessment",
+        "uk-electrical-equipment-safety-regulations-2016-gb",
+        "uk-pressure-equipment-safety-regulations-2016"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-product-safety-metrology-ukni-amendment-2020",
+          "doc_name": "The Product Safety and Metrology etc. (Amendment etc.) (UK(NI) Indication) (EU Exit) Regulations 2020",
+          "region": "UK",
+          "score": 0.1368397005630782
+        },
+        {
+          "source_id": "uk-emc-regulations-2016-gb",
+          "doc_name": "Electromagnetic Compatibility Regulations 2016: Great Britain",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-psti-security-requirements-regulations-2023-original",
+          "doc_name": "The Product Security and Telecommunications Infrastructure (Security Requirements for Relevant Connectable Products) Regulations 2023",
+          "region": "UK",
+          "score": 0.07099540452757631
+        },
+        {
+          "source_id": "uk-radio-equipment-regulations-2017-gb",
+          "doc_name": "Radio Equipment Regulations 2017: Great Britain",
+          "region": "UK",
+          "score": 0.4994969475248218
+        },
+        {
+          "source_id": "uk-toys-safety-regulations-2011-gb",
+          "doc_name": "Toys (Safety) Regulations 2011: Great Britain",
+          "region": "UK",
+          "score": 0.4989949368811192
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.4940668097291816
+        },
+        {
+          "source_id": "uk-electrical-equipment-safety-regulations-2016-gb",
+          "doc_name": "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+          "region": "UK",
+          "score": 0.4820738675801222
+        },
+        {
+          "source_id": "uk-pressure-equipment-safety-regulations-2016",
+          "doc_name": "The Pressure Equipment (Safety) Regulations 2016",
+          "region": "UK",
+          "score": 0.19898336062556754
+        }
+      ],
+      "hit": true,
+      "rank": 6,
+      "reciprocal_rank": 0.1667
+    },
+    {
+      "id": "uk-emc-regulations",
+      "query": "英国电磁兼容法规 2016 Electromagnetic Compatibility Regulations EMC",
+      "market": "UK",
+      "category": "electronics",
+      "risk": "EMC",
+      "regulatory_types": [
+        "EMC",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "uk-emc-regulations-2016-original",
+        "uk-emc-regulations-2016-gb"
+      ],
+      "returned_source_ids": [
+        "uk-emc-regulations-2016-original",
+        "uk-radio-equipment-regulations-2017-original",
+        "uk-emc-regulations-2016-gb",
+        "uk-product-safety-metrology-ukni-amendment-2020",
+        "uk-ukca-conformity-assessment",
+        "uk-radio-equipment-regulations-2017-gb"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-emc-regulations-2016-original",
+          "doc_name": "The Electromagnetic Compatibility Regulations 2016",
+          "region": "UK",
+          "score": 0.3243364595459196
+        },
+        {
+          "source_id": "uk-radio-equipment-regulations-2017-original",
+          "doc_name": "The Radio Equipment Regulations 2017",
+          "region": "UK",
+          "score": 0.2816602882501576
+        },
+        {
+          "source_id": "uk-emc-regulations-2016-gb",
+          "doc_name": "Electromagnetic Compatibility Regulations 2016: Great Britain",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-emc-regulations-2016-gb",
+          "doc_name": "Electromagnetic Compatibility Regulations 2016: Great Britain",
+          "region": "UK",
+          "score": 0.27640673426030193
+        },
+        {
+          "source_id": "uk-product-safety-metrology-ukni-amendment-2020",
+          "doc_name": "The Product Safety and Metrology etc. (Amendment etc.) (UK(NI) Indication) (EU Exit) Regulations 2020",
+          "region": "UK",
+          "score": 0.23456948156378346
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.2299479832393576
+        },
+        {
+          "source_id": "uk-radio-equipment-regulations-2017-gb",
+          "doc_name": "Radio Equipment Regulations 2017: Great Britain",
+          "region": "UK",
+          "score": 0.22664407977620704
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "uk-toys-safety-regulations",
+      "query": "英国玩具安全法规 2011 Toys (Safety) Regulations CE UKCA 标识要求",
+      "market": "UK",
+      "category": "toys",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "chemical"
+      ],
+      "expected_source_ids": [
+        "uk-toys-safety-regulations-2011-original",
+        "uk-toys-safety-regulations-2011-gb"
+      ],
+      "returned_source_ids": [
+        "uk-toys-safety-regulations-2011-gb",
+        "uk-ukca-conformity-assessment",
+        "uk-toys-safety-regulations-2011-original",
+        "uk-electrical-equipment-safety-regulations-2016-gb",
+        "uk-cosmetic-products-enforcement-regulations-2013-gb"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-toys-safety-regulations-2011-gb",
+          "doc_name": "Toys (Safety) Regulations 2011: Great Britain",
+          "region": "UK",
+          "score": 0.3611412970580829
+        },
+        {
+          "source_id": "uk-ukca-conformity-assessment",
+          "doc_name": "UKCA marking: conformity assessment and documentation",
+          "region": "UK",
+          "score": 0.3049909166506337
+        },
+        {
+          "source_id": "uk-toys-safety-regulations-2011-original",
+          "doc_name": "The Toys (Safety) Regulations 2011",
+          "region": "UK",
+          "score": 0.27476178271350077
+        },
+        {
+          "source_id": "uk-electrical-equipment-safety-regulations-2016-gb",
+          "doc_name": "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-cosmetic-products-enforcement-regulations-2013-gb",
+          "doc_name": "Regulation 2009/1223 and the Cosmetic Products Enforcement Regulations 2013: Great Britain",
+          "region": "UK",
+          "score": 0.43845741271111893
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "uk-electrical-equipment-safety",
+      "query": "英国电气设备安全法规 2016 Electrical Equipment (Safety) Regulations 低电压",
+      "market": "UK",
+      "category": "electrical_equipment",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "uk-electrical-equipment-safety-regulations-2016-original",
+        "uk-electrical-equipment-safety-regulations-2016-gb"
+      ],
+      "returned_source_ids": [
+        "uk-electrical-equipment-safety-regulations-2016-original",
+        "uk-electrical-equipment-safety-regulations-2016-gb",
+        "uk-consumer-protection-act-1987",
+        "uk-emc-regulations-2016-original",
+        "uk-simple-pressure-vessels-safety-regulations-2016",
+        "uk-pressure-equipment-safety-regulations-2016",
+        "uk-radio-equipment-regulations-2017-original"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-electrical-equipment-safety-regulations-2016-original",
+          "doc_name": "The Electrical Equipment (Safety) Regulations 2016",
+          "region": "UK",
+          "score": 0.40374422291378387
+        },
+        {
+          "source_id": "uk-electrical-equipment-safety-regulations-2016-gb",
+          "doc_name": "Electrical Equipment (Safety) Regulations 2016: Great Britain",
+          "region": "UK",
+          "score": 0.37143776778241583
+        },
+        {
+          "source_id": "uk-consumer-protection-act-1987",
+          "doc_name": "Consumer Protection Act 1987",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-emc-regulations-2016-original",
+          "doc_name": "The Electromagnetic Compatibility Regulations 2016",
+          "region": "UK",
+          "score": 0.3331207369500107
+        },
+        {
+          "source_id": "uk-simple-pressure-vessels-safety-regulations-2016",
+          "doc_name": "The Simple Pressure Vessels (Safety) Regulations 2016",
+          "region": "UK",
+          "score": 0.45610950501494024
+        },
+        {
+          "source_id": "uk-pressure-equipment-safety-regulations-2016",
+          "doc_name": "The Pressure Equipment (Safety) Regulations 2016",
+          "region": "UK",
+          "score": 0.4440442393775662
+        },
+        {
+          "source_id": "uk-radio-equipment-regulations-2017-original",
+          "doc_name": "The Radio Equipment Regulations 2017",
+          "region": "UK",
+          "score": 0.4421350029770716
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "uk-general-product-safety",
+      "query": "英国通用产品安全法规 2005 General Product Safety Regulations GPSR 消费品",
+      "market": "UK",
+      "category": "general_consumer_products",
+      "risk": "product_safety",
+      "regulatory_types": [
+        "product_safety",
+        "market_surveillance"
+      ],
+      "expected_source_ids": [
+        "uk-general-product-safety-regulations-2005"
+      ],
+      "returned_source_ids": [
+        "uk-product-safety-advice-businesses",
+        "uk-general-product-safety-regulations-2005",
+        "uk-toys-safety-regulations-2011-original",
+        "uk-consumer-protection-act-1987"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-product-safety-advice-businesses",
+          "doc_name": "Product safety advice for businesses",
+          "region": "UK",
+          "score": 0.47347576682993886
+        },
+        {
+          "source_id": "uk-general-product-safety-regulations-2005",
+          "doc_name": "The General Product Safety Regulations 2005",
+          "region": "UK",
+          "score": 0.3710740311601012
+        },
+        {
+          "source_id": "uk-toys-safety-regulations-2011-original",
+          "doc_name": "The Toys (Safety) Regulations 2011",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-consumer-protection-act-1987",
+          "doc_name": "Consumer Protection Act 1987",
+          "region": "UK",
+          "score": 0.27761286919093775
+        }
+      ],
+      "hit": true,
+      "rank": 2,
+      "reciprocal_rank": 0.5
+    },
+    {
+      "id": "uk-rohs-regulations",
+      "query": "英国 RoHS 法规 2012 电子电气设备有害物质限制 hazardous substances",
+      "market": "UK",
+      "category": "electronics",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "conformity"
+      ],
+      "expected_source_ids": [
+        "uk-rohs-regulations-2012-original"
+      ],
+      "returned_source_ids": [
+        "uk-rohs-regulations-2012-original"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-rohs-regulations-2012-original",
+          "doc_name": "The Restriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012",
+          "region": "UK",
+          "score": 0.5
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "id": "uk-reach-compliance",
+      "query": "英国 REACH 化学品法规合规 How to comply with REACH chemical regulations",
+      "market": "UK",
+      "category": "chemicals",
+      "risk": "chemical",
+      "regulatory_types": [
+        "chemical",
+        "documentation"
+      ],
+      "expected_source_ids": [
+        "uk-reach-compliance-guidance",
+        "uk-reach-enforcement-regulations-2008-original"
+      ],
+      "returned_source_ids": [
+        "uk-reach-compliance-guidance",
+        "uk-reach-enforcement-regulations-2008-original",
+        "uk-hse-svhc-overview",
+        "uk-weee-regulations-guidance",
+        "uk-rohs-regulations-2012-original",
+        "uk-psti-consumer-connectable-security",
+        "uk-cosmetic-products-enforcement-regulations-2013-gb",
+        "uk-cosmetic-products-enforcement-regulations-2013-original",
+        "uk-toys-safety-regulations-2011-original"
+      ],
+      "top_documents": [
+        {
+          "source_id": "uk-reach-compliance-guidance",
+          "doc_name": "How to comply with REACH chemical regulations",
+          "region": "UK",
+          "score": 0.5
+        },
+        {
+          "source_id": "uk-reach-enforcement-regulations-2008-original",
+          "doc_name": "The REACH Enforcement Regulations 2008",
+          "region": "UK",
+          "score": 0.28857143432425547
+        },
+        {
+          "source_id": "uk-hse-svhc-overview",
+          "doc_name": "Substances of very high concern overview",
+          "region": "UK",
+          "score": 0.28415160549157675
+        },
+        {
+          "source_id": "uk-weee-regulations-guidance",
+          "doc_name": "Regulations: waste electrical and electronic equipment",
+          "region": "UK",
+          "score": 0.29041759923452254
+        },
+        {
+          "source_id": "uk-rohs-regulations-2012-original",
+          "doc_name": "The Restriction of the Use of Certain Hazardous Substances in Electrical and Electronic Equipment Regulations 2012",
+          "region": "UK",
+          "score": 0.19669061317091574
+        },
+        {
+          "source_id": "uk-psti-consumer-connectable-security",
+          "doc_name": "Regulations: consumer connectable product security",
+          "region": "UK",
+          "score": 0.2599147573674437
+        },
+        {
+          "source_id": "uk-cosmetic-products-enforcement-regulations-2013-gb",
+          "doc_name": "Regulation 2009/1223 and the Cosmetic Products Enforcement Regulations 2013: Great Britain",
+          "region": "UK",
+          "score": 0.23488373107559957
+        },
+        {
+          "source_id": "uk-cosmetic-products-enforcement-regulations-2013-original",
+          "doc_name": "The Cosmetic Products Enforcement Regulations 2013",
+          "region": "UK",
+          "score": 0.229401534000102
+        },
+        {
+          "source_id": "uk-toys-safety-regulations-2011-original",
+          "doc_name": "The Toys (Safety) Regulations 2011",
+          "region": "UK",
+          "score": 0.21611198766856324
+        }
+      ],
+      "hit": true,
+      "rank": 1,
+      "reciprocal_rank": 1.0
+    }
+  ]
+}
