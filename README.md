@@ -113,7 +113,7 @@
 | 技术 | 版本 | 用途 |
 |------|------|------|
 | Python | 3.10+ | 后端语言 |
-| FastAPI | 0.109.0 | HTTP 服务框架 |
+| FastAPI | 0.115.6 | HTTP 服务框架 |
 | LangGraph | 1.1.6 | Agent 编排（Send fan-out 多市场并行） |
 | FAISS | 1.12.0 | 本地向量检索（IndexFlatIP） |
 | ModelScope Qwen3-Embedding | 0.6B | API Embedding（1024 维，生产路径） |
