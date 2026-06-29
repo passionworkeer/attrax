@@ -30,7 +30,7 @@
 - **框架**：FastAPI + LangGraph 1.1.6
 - **语言**：Python 3.10+
 - **向量检索**：FAISS（IndexFlatIP，1024 维）+ BM25（jieba 分词）
-- **Embedding**：ModelScope Qwen3-Embedding-0.6B（云端 API，1024 维）→ Ollama nomic-embed-text（本地 fallback，768 维）
+- **Embedding**：ModelScope Qwen3-Embedding-0.6B（云端 API，1024 维，生产唯一路径）。⚠️ Ollama embedder 代码存在但**未接入检索探测**（`hybrid_retriever._probe_embedders` 仅探测 ModelScope），ModelScope 不可用时直接降级到 BM25-only
 - **LLM**：MiniMax-M3（Anthropic SDK，端点 `https://api.minimaxi.com/anthropic/v1`）
 - **PDF 解析**：pdfplumber
 - **目录**：`rag_service/`（FastAPI 服务）、`data/`（语料和索引）
@@ -69,10 +69,9 @@
 | 模式 | 触发条件 | 行为 |
 |------|---------|------|
 | DEMO_MODE | `DEMO_MODE=true` 环境变量 | 使用 Mock 数据，无需 API Key |
-| Embedding 降级 | ModelScope API 不可用 | 降级到 Ollama（nomic-embed-text） |
-| BM25 Only | Ollama + ModelScope 均不可用 | 纯稀疏检索 |
-| NLI 降级 | NLI 模型不可用 | 降级为文本重叠法 |
-| RAG 服务不可用 | 无法连接 localhost:8001 | 前端自动降级到 Demo 模式 |
+| Embedding 降级 | ModelScope API 不可用 | 降级到 BM25-only（**无 Ollama 自动 fallback**，探测仅含 ModelScope） |
+| 引用验证 | 生产环境（NLI 模型未注入） | text-overlap 词重叠降级；`verification_mode` 字段 + `/health` 暴露真实模式 |
+| RAG 服务不可用 | 无法连接 localhost:8001 | 前端降级为 degraded 状态 + 红色横幅提示（sessionPayload 暴露 degradedReason，非静默 demo） |
 
 ### 前端调用 RAG 服务流程
 
@@ -177,7 +176,7 @@ attrax/
 │   ├── parser/                   # 文档解析
 │   │   ├── docx_parser.py
 │   │   └── html_parser.py
-│   ├── verify/citation_verifier.py  # NLI 引用验证（软门）
+│   ├── verify/citation_verifier.py  # 引用验证（生产 text-overlap 降级，NLI 未注入；verification_mode 暴露；无引用报告 coverage=0.0→REJECTED）
 │   ├── generate/
 │   │   ├── report_generator.py   # LLM 报告生成（Anthropic SDK）
 │   │   └── prebuilt_profit_data.py
@@ -325,7 +324,7 @@ const StartScanRequestSchema = z.object({
 |------|------|
 | `RAG_ALLOWED_ORIGINS` | CORS 白名单（逗号分隔） |
 | `FAISS_INDEX_DIR` | FAISS 索引目录覆盖（默认 `data/faiss/`） |
-| `SCAN_WORKER_CONCURRENCY` | 扫描 worker 并发数（默认 1） |
+| `SCAN_WORKER_CONCURRENCY` | 扫描 worker 并发数（默认 **8**，见 `config.py`；旧文档误写 1） |
 
 ---
 
@@ -339,6 +338,34 @@ const StartScanRequestSchema = z.object({
 | **cohere_embedder 默认未启用** | 切到 ModelScope + Ollama 路径 |
 | **requirements.txt 冗余** | `rag_service/requirements.txt` 含 500+ 条，核心仅 20 个 |
 | **无多语言报告** | 报告目前仅中文输出 |
+
+---
+
+## 最近修复（2026-06-29 对抗性审计后）
+
+> 5-agent 并行对抗性审计后修复 P0/P1。核心主题：消除"降级路径系统性制造虚假可信"（合规报告不再静默呈现降级/空内容为"成功"）。
+
+### 已修复（P0/P1）
+- **P0-1**：RAG/LLM 失败时前端显示红色 `DegradedBanner`（role=alert + aria-live）；`sessionPayload` 重新暴露 `degradedReason`
+- **P0-2**：无引用报告 `citation_coverage=0.0`→REJECTED（不再 `1.0` 自动满分过 PASS 门）
+- **P0-3**：引用验证诚实暴露 `verification_mode`（nli / text_overlap / unverified），verifier node 不再静默 PASS；main.py NLI 未注入时打 warning
+- **P0-4**：LLM 空串/失败时 status 写 `generation_failed`/`error`（不再 success）；`validationStatus` 标记 normalized/fallback/invalid
+- **P0-5**：新增 `test_graph_e2e.py`（9 用例）首次端到端覆盖 compiled graph（Send fan-out / refine 路由 / max_attempts / 失败路径）
+- **P0-6**：`RAG_INTERNAL_SECRET` 改 fail-closed（prod 空 secret 拒绝启动 / 非 prod 自动生成临时 secret，写入端点默认 401）
+- **P1-1**：`updateSession` 禁止覆盖 `accessTokenHash`；生产 `createSession` 强制必填
+- **P1-2**：`withWriteLock` 真串行化；`enqueueScan` 失败回滚 createSession + 返回 503
+- **P1-3**：`updateSession` 在 progress<100 时延长 `expiresAt`（长任务不再被 TTL 提前清除）
+- **P1-4**：`legal_chunks_meta.json`（345MB）改分片流式加载（峰值 ~800MB→~10MB/分片）；迁移工具 `FaissRetriever.split_meta_to_shards()`
+- **P1-5**：tmp 文件名加 randomBytes（防 EPERM 碰撞）；`/health`、`/ready` 收敛敏感字段 + privileged 守卫
+- **P1-6**：限流客户端指纹改多维度（可信IP > cookie > UA+accept-language+accept-encoding），消除 `daily:unknown` 全站共享
+- **P1-7**：评测集重建（移除 chunk 词生成查询的数据泄漏，24 条自然语言查询集覆盖 UK/AU/SA/AE/JP，faithfulness 改 key_facts checklist）
+- **P1-8**：本文件文档对齐（删 Ollama fallback 虚假宣称、NLI 验证宣传、SCAN_WORKER_CONCURRENCY=1）
+- **P2**：scan-queue job 改 side-car `.bin` 引用 + 配额（170MB/500MB）；新增 API 路由集成测试（不 mock 整库）
+
+### 已知遗留（需运维 / 单独任务）
+- **meta.json 分片迁移未执行**：加载器已就绪，运维需一次性跑 `FaissRetriever.split_meta_to_shards('data/faiss/legal_chunks_meta.json', 50)` 才能真正降 RAM 峰值
+- **限流迁 Redis / IndexFlatIP→HNSW / FastAPI 0.109 升级**：本次跳过（需基础设施 / 索引重建 / 全量回归），留 TODO
+- **agent_trace 乘法级复制风险（新发现 P1）**：Send() fan-out + refine 循环下 trace 指数增长（默认 max_attempts=2 安全；配置不当会 OOM 而非平滑触发 recursion_limit），待修
 
 ---
 
@@ -376,4 +403,4 @@ start-rag.bat                  # 仅启动 RAG 服务
 
 ---
 
-*最后更新：2026-06-20*
+*最后更新：2026-06-29*

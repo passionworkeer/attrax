@@ -171,7 +171,6 @@ def test_query_planner_node_preserves_existing_trace():
     existing = [{"node": "vision", "status": "success"}]
     state = {"query": "充电宝", "markets": ["EU"], "category": "electronics", "agent_trace": existing}
     out = query_planner_node(state)
-    # Original trace entry preserved + new query_planner entry appended.
-    assert out["agent_trace"][0] == existing[0]
-    assert out["agent_trace"][-1]["node"] == "query_planner"
-    assert len(out["agent_trace"]) == 2
+    # Node returns ONLY its new entry; the graph reducer accumulates existing (audit 2026-06-29).
+    assert len(out["agent_trace"]) == 1
+    assert out["agent_trace"][0]["node"] == "query_planner"

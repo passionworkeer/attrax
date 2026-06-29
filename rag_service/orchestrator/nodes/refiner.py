@@ -64,5 +64,5 @@ def refiner_node(state: GraphState) -> dict:
         "sub_queries": new_sub_queries,
         "query": refined_query,           # Update main query too
         "loop_count": next_loop_count,
-        "agent_trace": state.get("agent_trace", []) + [trace_entry],
+        "agent_trace": [trace_entry],
     }

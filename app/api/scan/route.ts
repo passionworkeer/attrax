@@ -1,7 +1,7 @@
 import { ulid } from "ulid";
 import { createHash } from "crypto";
 import { createMockComplianceReportResult, createMockProfitReport, createMockProfitReports } from "@/lib/mock/scan-result";
-import { createSession, updateSession } from "@/lib/pipeline/session-store";
+import { createSession, deleteSession, updateSession } from "@/lib/pipeline/session-store";
 import { enqueueScan } from "@/lib/pipeline/scan-queue";
 import { logUserActivity, saveUploadsForSession } from "@/lib/pipeline/upload-storage";
 import { ok, fail } from "@/lib/api-response";
@@ -293,13 +293,33 @@ export async function POST(request: Request) {
     }))
   );
 
-  enqueueScan(sessionId, {
-    images: imageData,
-    documents,
-    pdfs,
-    category: parsed.data.category as ProductCategory,
-    markets: parsed.data.markets,
-  });
+  // Enqueue + rollback: enqueueScan writes a job file to data/scan-queue and
+  // then drainQueue picks it up. If the write fails (quota exceeded, disk
+  // full, EPERM), the session would be orphaned: a poller would keep seeing
+  // status:"processing" forever because no worker is running the job. Roll
+  // back the session entirely and return 503 so the client surfaces a real
+  // error instead of hanging.
+  try {
+    enqueueScan(sessionId, {
+      images: imageData,
+      documents,
+      pdfs,
+      category: parsed.data.category as ProductCategory,
+      markets: parsed.data.markets,
+    });
+  } catch (error) {
+    console.error(`[scan] enqueueScan failed for ${sessionId}, rolling back session`, error);
+    deleteSession(sessionId);
+    return fail(
+      {
+        code: "SCAN_QUEUE_UNAVAILABLE",
+        reason: "SCAN_QUEUE_UNAVAILABLE",
+        message: "扫描队列暂时不可用，请稍后重试。",
+        messageEn: "Scan queue is temporarily unavailable. Please retry later.",
+      },
+      { status: 503 }
+    );
+  }
 
   // ── Audit trail ────────────────────────────────────────────────────────
   // Save the original uploads to disk so admins can review what each user

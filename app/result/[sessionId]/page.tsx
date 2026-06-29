@@ -12,6 +12,7 @@ import { useTranslation } from "@/lib/i18n";
 import { mockComplianceReportResult, mockProfitReport, mockProfitReports } from "@/lib/mock/scan-result";
 import { localizeComplianceReportResult, localizeProfitReportResult } from "@/lib/report-localization";
 import { SourceNotice } from "@/components/result/SourceNotice";
+import { DegradedBanner } from "@/components/result/DegradedBanner";
 import { LegacyResultView } from "@/components/result/LegacyResultView";
 import type { ScanResult, ScanStatus, ComplianceReportResult, ProfitReportResult } from "@/lib/types";
 
@@ -223,23 +224,19 @@ export default function ResultPage() {
           </div>
         </div>
 
-        {/* P0.2: degraded banner. Visible when the poller returned a degraded
-            status OR the result itself flagged source=fallback. Sits above
-            SourceNotice so the warning is unmissable. */}
-        {(isDegraded || (result && result.source === "fallback")) && (
-          <div
-            role="status"
-            aria-live="polite"
-            className="mt-6 rounded-2xl border border-amber-500/50 bg-amber-500/15 px-5 py-4 text-sm font-semibold text-amber-200 shadow-[0_0_24px_rgba(245,158,11,0.15)]"
-          >
-            {t("result.degradedBanner")}
-            {degradedReason ? (
-              <span className="ml-2 font-mono text-xs text-amber-300/80">
-                [{degradedReason}]
-              </span>
-            ) : null}
-          </div>
-        )}
+        {/* P0-1: unmissable red banner. Visible when the poller returned a
+            degraded status OR the result itself flagged source=fallback/demo.
+            Sits above SourceNotice so the warning is unmissable; the amber
+            SourceNotice is the secondary cue. The profit notice is shown when
+            the profit report shares the same fallback path (no per-result
+            `source` field on ProfitReportResult, so we infer from the session
+            degraded state). */}
+        <DegradedBanner
+          source={result?.source}
+          isDegraded={isDegraded}
+          degradedReason={degradedReason}
+          showProfitNotice={Boolean(visibleProfitReport) && (isDegraded || result?.source === "fallback" || result?.source === "demo")}
+        />
 
         {result ? <SourceNotice source={result.source} /> : null}
 

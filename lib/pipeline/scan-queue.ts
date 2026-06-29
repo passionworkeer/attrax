@@ -6,7 +6,24 @@ import { writeJsonAtomic } from "@/lib/pipeline/session-store";
 import { logUserActivity } from "@/lib/pipeline/upload-storage";
 
 const QUEUE_DIR = join(process.cwd(), "data", "scan-queue");
+/** Side-car directory for binary payloads (image/pdf bytes) referenced by job
+ *  files. Keeping buffers out of the JSON file stops a single 8-image scan from
+ *  writing a ~100 MB job file and exhausting disk under load. */
+const PAYLOAD_DIR = join(process.cwd(), "data", "scan-queue-payloads");
 const MAX_CONCURRENT_SCANS = Number.parseInt(process.env.SCAN_WORKER_CONCURRENCY ?? "1", 10);
+/** Per-job byte cap (images + pdfs). Defaults to 12 images × 10 MB + headroom
+ *  for PDFs. Oversized submissions are rejected at enqueue time so a single
+ *  scan can't exhaust disk. */
+const MAX_JOB_BYTES = Number.parseInt(
+  process.env.SCAN_MAX_JOB_BYTES ?? String(12 * 10 * 1024 * 1024 + 50 * 1024 * 1024),
+  10
+);
+/** Total bytes allowed across ALL queued + running jobs. Surplus submissions
+ *  are rejected with 503 so the queue can drain instead of growing unbounded. */
+const MAX_QUEUE_TOTAL_BYTES = Number.parseInt(
+  process.env.SCAN_MAX_QUEUE_BYTES ?? String(500 * 1024 * 1024),
+  10
+);
 /** Max retry attempts for a single job before it is marked permanently failed.
  *  Read lazily so test/runtime env changes take effect without a module reload. */
 function getMaxAttempts(): number {
@@ -42,8 +59,32 @@ type ScanJob = {
 };
 
 type SerializableRunScanInput = Omit<RunScanInput, "images" | "pdfs"> & {
-  images: Array<{ bufferBase64: string; originalName: string; mimeType: string }>;
-  pdfs?: Array<{ bufferBase64: string; name: string; mimeType: string }>;
+  images: Array<ImageRef>;
+  pdfs?: Array<PdfRef>;
+};
+
+/**
+ * Image reference. Backward-compatible:
+ * - `bufferBase64` (legacy): inline base64 bytes for old jobs on disk.
+ * - `path` + `sha256` + `bytes` (current): pointer into PAYLOAD_DIR. The
+ *   buffer lives on disk instead of bloating the JSON file.
+ * Either field set is sufficient for deserializeInput.
+ */
+type ImageRef = {
+  bufferBase64?: string;
+  path?: string;
+  sha256?: string;
+  bytes?: number;
+  originalName: string;
+  mimeType: string;
+};
+type PdfRef = {
+  bufferBase64?: string;
+  path?: string;
+  sha256?: string;
+  bytes?: number;
+  name: string;
+  mimeType: string;
 };
 
 declare global {
@@ -81,35 +122,119 @@ function listJobs(): ScanJob[] {
     .sort((a, b) => a.createdAt - b.createdAt);
 }
 
-function serializeInput(input: RunScanInput): SerializableRunScanInput {
+function ensurePayloadDir() {
+  if (!existsSync(PAYLOAD_DIR)) mkdirSync(PAYLOAD_DIR, { recursive: true });
+}
+
+function payloadPath(jobId: string, kind: "img" | "pdf", index: number): string {
+  return join(PAYLOAD_DIR, `${jobId}.${kind}.${index}.bin`);
+}
+
+/** Sum of image + pdf buffer bytes for the live RunScanInput (pre-serialize). */
+function inputByteSize(input: RunScanInput): number {
+  const images = input.images.reduce((sum, img) => sum + img.buffer.length, 0);
+  const pdfs = (input.pdfs ?? []).reduce((sum, pdf) => sum + pdf.buffer.length, 0);
+  return images + pdfs;
+}
+
+/** Bytes consumed by jobs currently in the queue (queued + running). Failed
+ *  jobs are skipped — their payloads are removed by markJobFailed. Used to
+ *  enforce MAX_QUEUE_TOTAL_BYTES so the queue can always drain. */
+function currentQueueBytes(): number {
+  let total = 0;
+  for (const job of listJobs()) {
+    if (job.state === "failed") continue;
+    for (const img of job.input.images ?? []) total += img.bytes ?? 0;
+    for (const pdf of job.input.pdfs ?? []) total += pdf.bytes ?? 0;
+  }
+  return total;
+}
+
+/** Remove the side-car payload files for a finished (success or permanently
+ *  failed) job. Best-effort: a missing file (already cleaned or never written
+ *  for legacy base64 jobs) is not an error. */
+function removeJobPayloads(job: ScanJob): void {
+  const paths: string[] = [];
+  for (let i = 0; i < job.input.images.length; i++) {
+    const p = job.input.images[i]?.path;
+    if (p) paths.push(p);
+  }
+  if (job.input.pdfs) {
+    for (let i = 0; i < job.input.pdfs.length; i++) {
+      const p = job.input.pdfs[i]?.path;
+      if (p) paths.push(p);
+    }
+  }
+  for (const p of paths) {
+    try {
+      unlinkSync(p);
+    } catch {
+      /* already gone or legacy base64 — fine */
+    }
+  }
+}
+
+function serializeInput(jobId: string, input: RunScanInput): SerializableRunScanInput {
+  // Write each buffer to a side-car file and store a reference. The job JSON
+  // stays small (~KB) regardless of how many MB the user uploaded.
+  ensurePayloadDir();
   return {
     ...input,
-    images: input.images.map((image) => ({
-      bufferBase64: image.buffer.toString("base64"),
-      originalName: image.originalName,
-      mimeType: image.mimeType,
-    })),
-    pdfs: input.pdfs?.map((pdf) => ({
-      bufferBase64: Buffer.from(pdf.buffer).toString("base64"),
-      name: pdf.name,
-      mimeType: pdf.mimeType,
-    })),
+    images: input.images.map((image, i) => {
+      const path = payloadPath(jobId, "img", i);
+      writeFileSyncBytes(path, image.buffer);
+      return {
+        path,
+        sha256: undefined,
+        bytes: image.buffer.length,
+        originalName: image.originalName,
+        mimeType: image.mimeType,
+      };
+    }),
+    pdfs: input.pdfs?.map((pdf, i) => {
+      const path = payloadPath(jobId, "pdf", i);
+      writeFileSyncBytes(path, pdf.buffer);
+      return {
+        path,
+        sha256: undefined,
+        bytes: pdf.buffer.length,
+        name: pdf.name,
+        mimeType: pdf.mimeType,
+      };
+    }),
   };
+}
+
+// Imported lazily so the test fs mock (which swaps unlinkSync) still sees the
+// same module shape — writeFileSync is re-exported by the mock spread.
+import { writeFileSync } from "fs";
+function writeFileSyncBytes(path: string, buffer: Buffer): void {
+  writeFileSync(path, buffer);
 }
 
 function deserializeInput(input: SerializableRunScanInput): RunScanInput {
   return {
     ...input,
-    images: input.images.map((image) => ({
-      buffer: Buffer.from(image.bufferBase64, "base64"),
-      originalName: image.originalName,
-      mimeType: image.mimeType,
-    })),
-    pdfs: input.pdfs?.map((pdf) => ({
-      buffer: Buffer.from(pdf.bufferBase64, "base64"),
-      name: pdf.name,
-      mimeType: pdf.mimeType,
-    })),
+    images: input.images.map((image) => {
+      const buffer = image.bufferBase64
+        ? Buffer.from(image.bufferBase64, "base64")
+        : Buffer.from(readFileSync(image.path ?? "", "utf-8")); // path is required when bufferBase64 absent
+      return {
+        buffer,
+        originalName: image.originalName,
+        mimeType: image.mimeType,
+      };
+    }),
+    pdfs: input.pdfs?.map((pdf) => {
+      const buffer = pdf.bufferBase64
+        ? Buffer.from(pdf.bufferBase64, "base64")
+        : Buffer.from(readFileSync(pdf.path ?? "", "utf-8"));
+      return {
+        buffer,
+        name: pdf.name,
+        mimeType: pdf.mimeType,
+      };
+    }),
   };
 }
 
@@ -119,16 +244,31 @@ export function enqueueScan(sessionId: string, input: RunScanInput): void {
     return;
   }
 
+  // Enforce size quotas BEFORE touching the filesystem so an oversized
+  // submission is reported back to the client (the route converts the thrown
+  // error into a 503 + session rollback) instead of being half-written.
+  const jobBytes = inputByteSize(input);
+  if (jobBytes > MAX_JOB_BYTES) {
+    throw new Error(`SCAN_JOB_TOO_LARGE: job payload ${jobBytes}B exceeds limit ${MAX_JOB_BYTES}B`);
+  }
+  const queuedBytes = currentQueueBytes();
+  if (queuedBytes + jobBytes > MAX_QUEUE_TOTAL_BYTES) {
+    throw new Error(
+      `SCAN_QUEUE_FULL: queue ${queuedBytes}B + new job ${jobBytes}B exceeds limit ${MAX_QUEUE_TOTAL_BYTES}B`
+    );
+  }
+
   ensureQueueDir();
+  const jobId = `${Date.now()}_${sessionId}`;
   const job: ScanJob = {
-    jobId: `${Date.now()}_${sessionId}`,
+    jobId,
     sessionId,
-    input: serializeInput(input),
+    input: serializeInput(jobId, input),
     createdAt: Date.now(),
     attempts: 0,
     state: "queued",
   };
-  writeJsonAtomic(jobPath(job.jobId), job);
+  writeJsonAtomic(jobPath(jobId), job);
   void drainQueue();
 }
 
@@ -208,6 +348,9 @@ function markJobFailed(job: ScanJob, reason: string): void {
       );
     }
   }
+  // Step 2b: drop the side-car payload files so disk doesn't accumulate
+  // orphaned buffers under PAYLOAD_DIR for permanently-failed jobs.
+  removeJobPayloads(job);
 
   // Step 3: surface the failure to polling clients via the session.
   updateSession(job.sessionId, {
@@ -296,13 +439,15 @@ async function executeScan(sessionId: string, input: RunScanInput): Promise<void
 async function executeJob(job: ScanJob): Promise<void> {
   try {
     await executeScan(job.sessionId, deserializeInput(job.input));
-    // Success — remove the job file so it isn't retried. Only delete here
-    // (after success); deletion before execution caused permanent job loss.
+    // Success — remove the job file AND its side-car payloads so neither is
+    // retried. Only delete here (after success); deletion before execution
+    // caused permanent job loss.
     try {
       unlinkSync(jobPath(job.jobId));
     } catch {
       /* already gone — fine */
     }
+    removeJobPayloads(job);
   } catch (error) {
     // executeScan already surfaced the failure to the session; if attempts
     // remain, leave the file on disk in `queued` state so drain retries it.

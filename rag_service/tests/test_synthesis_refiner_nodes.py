@@ -40,7 +40,7 @@ def test_synthesis_empty_docs_preserves_existing_trace():
     existing = [{"node": "retrieve", "status": "ok"}]
     out = synthesis_node({"documents": [], "agent_trace": existing})
     assert out["documents"] == []
-    assert out["agent_trace"] == existing
+    assert out["agent_trace"] == []  # empty-docs branch: no new entry; reducer keeps existing (audit 2026-06-29)
 
 
 def test_synthesis_stage1_dedup_by_chunk_id():
@@ -126,9 +126,9 @@ def test_synthesis_preserves_existing_trace():
     existing = [{"node": "retrieve", "status": "ok"}]
     docs = [_doc("c1", "RoHS", 0.9)]
     out = synthesis_node({"documents": docs, "agent_trace": existing})
-    assert out["agent_trace"][0] == existing[0]
-    assert out["agent_trace"][-1]["node"] == "synthesis"
-    assert len(out["agent_trace"]) == 2
+    # Node returns ONLY its new entry; the graph reducer accumulates existing (audit 2026-06-29).
+    assert len(out["agent_trace"]) == 1
+    assert out["agent_trace"][0]["node"] == "synthesis"
 
 
 def test_synthesis_cross_market_dedup_keeps_best_across_markets():
@@ -263,6 +263,6 @@ def test_refiner_preserves_existing_trace():
         "agent_trace": existing,
     }
     out = refiner_node(state)
-    assert out["agent_trace"][0] == existing[0]
-    assert out["agent_trace"][-1]["node"] == "query_refiner"
-    assert len(out["agent_trace"]) == 2
+    # Node returns ONLY its new entry; the graph reducer accumulates existing (audit 2026-06-29).
+    assert len(out["agent_trace"]) == 1
+    assert out["agent_trace"][0]["node"] == "query_refiner"

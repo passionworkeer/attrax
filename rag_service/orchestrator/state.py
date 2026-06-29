@@ -8,6 +8,12 @@ behaviour is overwrite: parallel branches (one per market) silently clobber
 each other's sub_queries, documents, and agent_trace entries — losing data and
 producing nondeterministic output. operator.add concatenates list contributions
 from every branch so multi-market results are preserved.
+
+NOTE (audit 2026-06-29): for agent_trace, nodes MUST return only their NEW
+entry (e.g. {"agent_trace": [entry]}), never the accumulated list. Returning
+state.get("agent_trace", []) + [entry] makes every fan-out branch re-append the
+pre-fan-out trace, and operator.add then multiplies those copies (observed
+32k+ entries at max_attempts=2). Nodes were fixed to return only new entries.
 """
 from typing import TypedDict, Annotated
 import operator
@@ -48,7 +54,7 @@ class GraphState(TypedDict, total=False):
     # === Output ===
     final_report: str
     status: str                                            # PASS | WARN | REJECTED
-    agent_trace: Annotated[list[dict], operator.add]       # Node execution trace, merged across branches
+    agent_trace: Annotated[list[dict], operator.add]       # Node execution trace; nodes return ONLY new entries (audit 2026-06-29)
 
 
 def initial_state(query: str, product: str, category: str,

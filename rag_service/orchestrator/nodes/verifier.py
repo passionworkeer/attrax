@@ -25,8 +25,24 @@ def verifier_node(state: GraphState) -> dict:
         return {"generation_score": "not_generated", "missing_citations": []}
 
     if not _verifier_instance:
-        # Fallback: skip verification, assume supported
-        return {"generation_score": "supported", "missing_citations": []}
+        # P0-3a: Previously this returned "supported", silently PASSing the
+        # report whenever no verifier was wired in. That hid the fact that no
+        # NLI / overlap check actually ran. Return an explicit "unverified"
+        # sentinel so downstream routing and traces cannot mistake the absence
+        # of verification for a positive verification result.
+        return {
+            "generation_score": "unverified",
+            "missing_citations": [],
+            "agent_trace": [{
+                "node": "verifier",
+                "status": "UNVERIFIED",
+                "verification_mode": "unavailable",
+                "attribution_score": 0.0,
+                "entailed": 0,
+                "contradicted": 0,
+                "error": "no_verifier_wired",
+            }],
+        }
 
     result = _verifier_instance.verify_citations(generation, documents)
 
@@ -48,9 +64,10 @@ def verifier_node(state: GraphState) -> dict:
     return {
         "generation_score": generation_score,
         "missing_citations": missing,
-        "agent_trace": state.get("agent_trace", []) + [{
+        "agent_trace": [{
             "node": "verifier",
             "status": result.status,
+            "verification_mode": result.verification_mode,
             "attribution_score": result.attribution_score,
             "entailed": result.entailed,
             "contradicted": result.contradicted,

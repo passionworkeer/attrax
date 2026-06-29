@@ -46,9 +46,28 @@ class Settings(BaseSettings):
     # Optional shared secret for internal write endpoints (/scan,
     # /scan-multipart, /profit-report). When set, requests must carry the
     # header `X-Internal-Secret` with a matching value or receive 401.
-    # When unset (default), all endpoints are open — preserves local/dev
-    # backward compatibility. Production should set RAG_INTERNAL_SECRET.
+    #
+    # FAIL-CLOSED policy (enforced at startup in main.lifespan):
+    #   - demo_mode=True            → lenient, open (dev/demo).
+    #   - non-demo + secret set     → gated (correct production posture).
+    #   - non-demo + secret empty   → service refuses to start when
+    #     app_env is production, otherwise an ephemeral secret is generated
+    #     so endpoints fail closed (401) instead of fail open. Setting
+    #     RAG_ALLOW_INSECURE=true is the only explicit opt-out to fail open.
     rag_internal_secret: str = _os.environ.get("RAG_INTERNAL_SECRET", "")
+
+    # Deployment environment marker. "production"/"prod" makes the missing
+    # internal-secret check fatal (the service refuses to start) instead of
+    # auto-generating an ephemeral secret. Reads ENV first, then NODE_ENV.
+    app_env: str = _os.environ.get(
+        "ENV", _os.environ.get("NODE_ENV", "")
+    ).strip().lower()
+
+    # Explicit opt-out of the fail-closed internal-secret policy. Only honor
+    # truthy string values. Leaves write endpoints OPEN with a loud warning.
+    allow_insecure: bool = _os.environ.get(
+        "RAG_ALLOW_INSECURE", ""
+    ).strip().lower() in ("1", "true", "yes", "on")
 
     model_config = SettingsConfigDict(
         env_file=str(Path(__file__).parent / ".env"),

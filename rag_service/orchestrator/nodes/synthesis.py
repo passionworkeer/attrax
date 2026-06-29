@@ -25,7 +25,7 @@ def synthesis_node(state: GraphState) -> dict:
     docs = state.get("documents", [])
 
     if not docs:
-        return {"documents": [], "agent_trace": state.get("agent_trace", [])}
+        return {"documents": [], "agent_trace": []}
 
     # ── Stage 1: per-market dedup by chunk id (original behaviour) ────────────
     seen_ids = set()
@@ -74,5 +74,5 @@ def synthesis_node(state: GraphState) -> dict:
     # No re-calculation needed here — preserves the value from upstream
     return {
         "documents": context_docs,
-        "agent_trace": state.get("agent_trace", []) + [trace_entry],
+        "agent_trace": [trace_entry],
     }

@@ -19,13 +19,52 @@ function buckets(): Map<string, Bucket> {
  *  IP+day combo otherwise lingers until process restart). */
 const EVICT_ABOVE_SIZE = 5000;
 
-/** Default salt mixed into the UA hash so the truncated client-id is not a
- *  pure function of public UA strings (which would let an attacker precompute
- *  collision tables). Overridable via RATE_LIMIT_CLIENT_ID_SALT. */
+/** Default salt mixed into the anonymous fingerprint so the truncated
+ *  client-id is not a pure function of public header strings (which would let
+ *  an attacker precompute collision tables). Overridable via
+ *  RATE_LIMIT_CLIENT_ID_SALT. */
 const DEFAULT_UA_SALT = "attrax-rate-limit-v1";
 
 function uaSalt(): string {
   return process.env.RATE_LIMIT_CLIENT_ID_SALT || DEFAULT_UA_SALT;
+}
+
+/**
+ * Request-shaping headers combined into the anonymous fingerprint. The
+ * User-Agent alone is trivially rotated (swap one header → fresh bucket →
+ * `DAILY_FREE_SCAN_LIMIT` bypass), so we mix in the other headers a real
+ * browser sends consistently. `X-Forwarded-For` / `X-Real-IP` are
+ * deliberately EXCLUDED: a spoofed forwarding header must never be able to
+ * shift an untrusted client's bucket (XFF-spoof hardening stays intact).
+ *
+ * Caveat (documented trade-off): every dimension here is still
+ * client-controlled, so a determined attacker who rotates *all* of them can
+ * still mint new buckets. Only the higher-priority tiers — a trusted proxy IP
+ * or a server-issued session cookie — provide a hard cap. This tier exists to
+ * raise the bar above "swap a single UA string" and to keep distinct browsers
+ * from colliding, NOT as a complete anti-DoS control.
+ */
+const FINGERPRINT_HEADERS = [
+  "user-agent",
+  "accept-language",
+  "accept-encoding",
+] as const;
+
+/**
+ * Build the multi-dimensional anonymous fingerprint, or `null` when none of
+ * the contributing headers are present (so the caller can collapse to the
+ * shared `unknown` bucket only as a genuine last resort). The raw header
+ * values are never returned — only a salted, truncated SHA-256 digest.
+ */
+function anonymousFingerprint(request: Request): string | null {
+  const parts = FINGERPRINT_HEADERS.map(
+    (name) => request.headers.get(name)?.trim() ?? ""
+  );
+  if (parts.every((value) => value === "")) return null;
+  const digest = createHash("sha256")
+    .update([uaSalt(), ...parts].join("::"))
+    .digest("hex");
+  return `ua:${digest.slice(0, 16)}`;
 }
 
 /**
@@ -55,19 +94,24 @@ function trustForwardedHeaders(): boolean {
 /**
  * Resolve a stable client identifier used as a rate-limit key.
  *
- * Priority chain (first non-empty wins):
- *   1. When `RATE_LIMIT_TRUST_XFF=true`: trusted `X-Real-IP`, then the
- *      leftmost `X-Forwarded-For` entry (only honored behind a trusted
- *      reverse proxy that overwrites these headers — see trustForwardedHeaders).
- *   2. The `session_id` / `sid` cookie (issued to returning users).
- *   3. A salted SHA-256 of the `User-Agent`, truncated to 16 hex chars. The
- *      raw UA is never stored; only the truncated digest becomes a bucket key.
- *   4. `"unknown"` — only reached when none of the above is present, so the
- *      shared fallback bucket stays a rare edge case instead of the default.
+ * Priority chain (first non-empty wins), strongest signal first:
+ *   1. Trusted real IP (only when `RATE_LIMIT_TRUST_XFF=true`): `X-Real-IP`,
+ *      then the leftmost `X-Forwarded-For` entry. This is the only tier a
+ *      client cannot self-mint; honored solely behind a trusted reverse proxy
+ *      that overwrites these headers (see trustForwardedHeaders). A Web
+ *      `Request` exposes no raw socket peer, so the proxy-set IP is the real
+ *      IP we can observe here.
+ *   2. The server-issued `session_id` / `sid` cookie — one bucket per browser
+ *      profile, available even when no trusted IP exists. This is what keeps
+ *      the no-IP case off the global `unknown` bucket (no whole-site exhaust).
+ *   3. A salted, multi-dimensional fingerprint (UA + Accept-Language +
+ *      Accept-Encoding, see anonymousFingerprint). UA is no longer the sole
+ *      dimension, so trivially rotating just the UA string is less effective.
+ *   4. `"unknown"` — only when NONE of the above headers/cookies exist, so the
+ *      shared fallback bucket is a rare edge case, never the default.
  *
- * The function never throws. The goal is that two distinct browser
- * fingerprints (e.g. different UAs) cannot share a daily cap when XFF is not
- * trusted — closing the previous "everyone is `unknown`" blast-radius hole.
+ * The function never throws. XFF/X-Real-IP are ignored entirely unless XFF is
+ * trusted, so a spoofed forwarding header can never reset an attacker's bucket.
  */
 export function resolveClientId(request: Request): string {
   if (trustForwardedHeaders()) {
@@ -79,6 +123,8 @@ export function resolveClientId(request: Request): string {
   }
 
   // Cookie header: prefer our own session markers over arbitrary cookies.
+  // Server-issued cookies give one bucket per browser even with no real IP,
+  // which is what prevents anonymous traffic collapsing into `daily:unknown`.
   const cookieHeader = request.headers.get("cookie") ?? "";
   if (cookieHeader) {
     for (const name of ["session_id", "sid"]) {
@@ -91,15 +137,10 @@ export function resolveClientId(request: Request): string {
     }
   }
 
-  // UA-based fingerprint. Salted + hashed so the bucket key is not a pure
-  // function of a public string, and never stored as raw UA.
-  const ua = request.headers.get("user-agent")?.trim();
-  if (ua) {
-    const digest = createHash("sha256")
-      .update(`${uaSalt()}::${ua}`)
-      .digest("hex");
-    return `ua:${digest.slice(0, 16)}`;
-  }
+  // Multi-dimensional anonymous fingerprint (salted; raw headers never stored).
+  // Returns null only when no contributing header is present.
+  const fingerprint = anonymousFingerprint(request);
+  if (fingerprint) return fingerprint;
 
   return "unknown";
 }

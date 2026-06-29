@@ -112,6 +112,9 @@ scripts/archive/
 # deepeval 评估产物（不纳入版本控制）
 .deepeval/
 
+# RAG eval 运行产物（评测结果 JSON，由 run_eval.py 生成）
+rag_service/eval/results/
+
 # ─── Python ──────────────────────────────────────────────────
 .venv/
 __pycache__/

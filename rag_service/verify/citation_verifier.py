@@ -36,6 +36,9 @@ class VerificationResult:
     status: str  # "PASS" | "WARN" | "REJECTED"
     claims: list[ClaimResult]
     details: list[dict]
+    # Honest disclosure of which verification engine actually ran:
+    # "nli" (DeBERTa NLI model available) or "text_overlap" (degraded fallback).
+    verification_mode: str = "text_overlap"
 
 
 # Compiled patterns for citation matching
@@ -151,6 +154,17 @@ class CitationVerifier:
         self.nli_model = nli_model
         self.embedder = embedder
         self._nli_available = nli_model is not None
+
+    @property
+    def verification_mode(self) -> str:
+        """Honest disclosure of the verification engine currently in use.
+
+        Returns "nli" when a real NLI model is available, otherwise
+        "text_overlap" (the degraded word-overlap path). Downstream callers
+        and users should treat text_overlap verdicts as weaker evidence than
+        NLI entailment.
+        """
+        return "nli" if self._nli_available else "text_overlap"
 
     def extract_citations(self, report: str) -> list[tuple[str, Optional[str]]]:
         """
@@ -349,6 +363,7 @@ class CitationVerifier:
                 status="REJECTED",
                 claims=[],
                 details=[{"error": "No source chunks provided"}],
+                verification_mode=self.verification_mode,
             )
 
         citations = self.extract_citations(report)
@@ -419,6 +434,12 @@ class CitationVerifier:
         total = len(all_results) or 1
 
         # Attribution score: (entailed / total) * citation_coverage
+        # P0-2: A report with zero citations has ZERO coverage. The previous
+        # behavior (citation_coverage=1.0 when no markers were extracted)
+        # rewarded LLM hallucinations that omit source markers: any claim that
+        # happened to overlap a chunk by >50% would sail past the 0.9 PASS
+        # gate without ever being tied to a specific source. "No citations"
+        # means "no verifiable attribution", not "perfect attribution".
         citation_count = len(citation_results)
         if citation_count > 0:
             cited_entailed = sum(
@@ -426,7 +447,7 @@ class CitationVerifier:
             )
             citation_coverage = cited_entailed / citation_count
         else:
-            citation_coverage = 1.0
+            citation_coverage = 0.0
 
         attribution_score = (entailed / total) * citation_coverage
 
@@ -453,6 +474,7 @@ class CitationVerifier:
                 {"claim": r.claim, "status": r.status, "evidence": r.evidence}
                 for r in all_results
             ],
+            verification_mode=self.verification_mode,
         )
 
 

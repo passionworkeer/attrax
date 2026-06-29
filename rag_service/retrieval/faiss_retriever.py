@@ -13,6 +13,7 @@ import os
 import shutil
 import tempfile
 from pathlib import Path
+from glob import escape as glob_escape
 from typing import Optional
 
 import faiss
@@ -137,28 +138,32 @@ class FaissRetriever:
         copying files to a temp location that the faiss C extension can open.
         The temp dir is always cleaned up; previously the copies leaked on
         every load and were left for the OS temp lifecycle to GC.
+
+        Note (P1-4): only the FAISS index (binary, opened by the faiss C
+        extension) needs the ASCII-temp copy. The metadata JSON is read via
+        Python's stdlib which handles Unicode paths natively, so we no longer
+        copy meta_path. This avoids a 345 MB copy on every startup in the
+        real deployment (data path contains non-ASCII chars).
         """
         inst = cls(index_path=index_path, meta_path=meta_path)
 
         _index_path = index_path
-        _meta_path = meta_path
         tmp_dir: Optional[str] = None
 
-        # Detect non-ASCII paths (faiss C extension can't open them on Windows)
+        # Detect non-ASCII paths (faiss C extension can't open them on Windows).
+        # Only the index file matters; the JSON is opened by Python directly.
         def has_non_ascii(s: str) -> bool:
             return any(ord(c) > 127 for c in s)
 
-        if has_non_ascii(index_path) or has_non_ascii(meta_path):
+        if has_non_ascii(index_path):
             tmp_dir = tempfile.mkdtemp(prefix="faiss_")
             logger.warning(
-                f"Non-ASCII path detected ({index_path}), "
-                f"copying index to temp dir {tmp_dir} for faiss C extension compatibility"
+                f"Non-ASCII index path detected ({index_path}), "
+                f"copying index only to temp dir {tmp_dir} for faiss C extension compatibility"
             )
             _index_path = os.path.join(tmp_dir, os.path.basename(index_path))
-            _meta_path = os.path.join(tmp_dir, os.path.basename(meta_path))
             shutil.copy2(index_path, _index_path)
-            shutil.copy2(meta_path, _meta_path)
-            logger.info(f"Copied index files to temp location: {_index_path}")
+            logger.info(f"Copied index file to temp location: {_index_path}")
 
         try:
             try:
@@ -177,11 +182,15 @@ class FaissRetriever:
                 inst.index.hnsw.efSearch = ef_search
                 logger.info(f"HNSW efSearch set to {ef_search}")
 
-            with open(_meta_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                # Support both old format (list) and new format (dict with dim)
-                inst.chunks = data.get("chunks", data) if isinstance(data, dict) else data
-                inst.dim = data.get("dim", DEFAULT_DIM) if isinstance(data, dict) else DEFAULT_DIM
+            # P1-4: prefer sharded metadata when the operator has split the
+            # 345 MB single-file meta into ordered shards (see
+            # ``FaissRetriever.split_meta_to_shards``). Shards load one file at
+            # a time, dropping each parsed+raw string before the next read so
+            # the transient peak is bounded by one shard (~tens of MB) instead
+            # of the whole 345 MB. Falls back to the legacy single-file load.
+            inst.chunks, shard_dim = cls._load_meta_chunks(meta_path)
+            if shard_dim:
+                inst.dim = shard_dim
         finally:
             # Always clean up the temp dir we created so repeated loads do
             # not leak files. Best-effort: failures here are logged and
@@ -201,6 +210,163 @@ class FaissRetriever:
 
     def __len__(self) -> int:
         return int(self.index.ntotal) if self.index else 0
+
+    # ─── P1-4: sharded metadata loading ──────────────────────────────────────
+    # Operators may split the 345 MB single-file ``legal_chunks_meta.json``
+    # into ordered shards ``legal_chunks_meta.00000.json`` … ``.NNNNN.json``
+    # next to the original file. When present, each shard is loaded and its
+    # parsed list concatenated in numeric order so ``self.chunks[i]`` keeps
+    # the same positional contract that ``search()`` relies on (FAISS row i).
+    #
+    # Each shard is read into a str, ``json.loads``-parsed, appended, then
+    # both the str and the per-shard list are released before the next file
+    # is opened — so the transient peak is bounded by ONE shard instead of
+    # the full 345 MB. With ~50 shards this caps the meta peak at ~10 MB +
+    # the steady-state parsed list, vs. ~800 MB peak for the eager single
+    # ``json.load`` path (raw bytes + CPython parser intermediate).
+    #
+    # Migration (no rebuild, no re-embedding): run
+    #   python -c "from rag_service.retrieval.faiss_retriever import \
+    # FaissRetriever as F; F.split_meta_to_shards('<meta_path>', <shards>)"
+    # then optionally delete or move aside the original meta file. The loader
+    # auto-detects shards vs. single-file on every load.
+
+    @staticmethod
+    def _list_meta_shards(meta_path: str) -> Optional[list[str]]:
+        """Return shard file paths in numeric order, or None when absent.
+
+        A "shard" sibling of ``meta_path`` matches
+        ``<stem>.<NNNNN>.json`` with 5-digit zero-padded numbering and lives
+        in the same directory. Returns None when zero shards exist so callers
+        fall back to the legacy single-file path.
+        """
+        p = Path(meta_path)
+        if not p.is_absolute():
+            p = p.resolve()
+        parent = p.parent
+        stem = p.stem  # e.g. "legal_chunks_meta" (without .json)
+        shards: list[tuple[int, str]] = []
+        for entry in parent.glob(f"{glob_escape(stem)}.*.json"):
+            suffix = entry.stem[len(stem) + 1:]
+            if suffix.isdigit():
+                shards.append((int(suffix), str(entry)))
+        if not shards:
+            return None
+        shards.sort(key=lambda t: t[0])
+        return [path for _, path in shards]
+
+    @classmethod
+    def _load_meta_chunks(
+        cls, meta_path: str
+    ) -> tuple[list[dict], Optional[int]]:
+        """Load chunk list + dim from either shards or the single meta file.
+
+        Returns (chunks, dim). ``dim`` is None when not present in the meta
+        (caller preserves its current ``self.dim`` in that case).
+        """
+        shards = cls._list_meta_shards(meta_path)
+        if shards:
+            return cls._load_meta_shards(shards)
+        return cls._load_meta_single(meta_path)
+
+    @classmethod
+    def _load_meta_single(
+        cls, meta_path: str
+    ) -> tuple[list[dict], Optional[int]]:
+        """Legacy single-file load. Mirrors the previous on-disk contract."""
+        with open(meta_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, dict):
+            chunks = data.get("chunks", data)
+            dim = data.get("dim")
+        else:
+            chunks = data
+            dim = None
+        return list(chunks), dim
+
+    @classmethod
+    def _load_meta_shards(
+        cls, shard_paths: list[str]
+    ) -> tuple[list[dict], Optional[int]]:
+        """Stream shards one at a time to bound transient memory.
+
+        Each shard is a JSON object ``{"dim": 1024, "chunks": [...]}``.
+        ``dim`` is taken from the first shard that defines it. Chunk order
+        across shards is the shard's numeric order, which preserves the
+        positional contract with the FAISS index rows.
+        """
+        chunks: list[dict] = []
+        dim: Optional[int] = None
+        total = len(shard_paths)
+        for i, path in enumerate(shard_paths, start=1):
+            # Read+parse+append then drop references before the next file.
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            shard_chunks = (
+                data.get("chunks", []) if isinstance(data, dict) else data
+            )
+            shard_dim = data.get("dim") if isinstance(data, dict) else None
+            if shard_dim is not None and dim is None:
+                dim = shard_dim
+            chunks.extend(shard_chunks)
+            logger.info(
+                f"Loaded meta shard {i}/{total}: {path} "
+                f"({len(shard_chunks)} chunks)"
+            )
+            del data, shard_chunks
+        logger.info(
+            f"Loaded all {total} meta shards: {len(chunks)} chunks total"
+        )
+        return chunks, dim
+
+    @staticmethod
+    def split_meta_to_shards(meta_path: str, num_shards: int = 50) -> list[str]:
+        """Split an existing single-file meta JSON into ordered shards.
+
+        One-shot migration helper for P1-4. No rebuild, no re-embedding: it
+        only re-saves the same chunk list into ``num_shards`` files named
+        ``<stem>.<NNNNN>.json`` next to the original. Preserves the chunk
+        order so the FAISS row->chunk positional contract is unchanged.
+
+        The original file is left untouched; delete it manually after
+        verifying the shards load correctly.
+
+        Returns the list of created shard paths in numeric order.
+        """
+        if num_shards <= 0:
+            raise ValueError("num_shards must be a positive integer")
+        with open(meta_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        dim = data.get("dim") if isinstance(data, dict) else None
+        chunks = data.get("chunks", []) if isinstance(data, dict) else data
+        total = len(chunks)
+        per = (total + num_shards - 1) // num_shards
+
+        stem = Path(meta_path).stem
+        out_dir = Path(meta_path).parent
+        created: list[str] = []
+        for i in range(num_shards):
+            start = i * per
+            end = min(start + per, total)
+            if start >= end:
+                break
+            shard_chunks = chunks[start:end]
+            shard_path = str(out_dir / f"{stem}.{i:05d}.json")
+            with open(shard_path, "w", encoding="utf-8") as out:
+                json.dump(
+                    {"dim": dim, "chunks": shard_chunks},
+                    out,
+                    ensure_ascii=False,
+                )
+            created.append(shard_path)
+            logger.info(
+                f"Wrote shard {shard_path}: {len(shard_chunks)} chunks "
+                f"([{start}:{end}])"
+            )
+        logger.info(
+            f"Split {meta_path} ({total} chunks) into {len(created)} shards"
+        )
+        return created
 
     # ─── A (high-risk): parent-context expansion ────────────────────────────
     # The index mixes parent chunks (full Article/Section text, used for LLM
