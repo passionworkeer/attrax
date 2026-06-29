@@ -51,11 +51,12 @@ INCLUDE_PARENT_IN_INDEX = os.environ.get(
     "INCLUDE_PARENT_IN_INDEX", "false"
 ).strip().lower() in ("1", "true", "yes", "on")
 
-# FAISS index backend. ``flat`` (default) keeps the long-running
-# IndexFlatIP path that the production index was built with; ``hnsw`` builds
-# an IndexHNSWFlat graph (M=32, efConstruction=200 defaults) for sub-linear
-# search. HNSW is opt-in because switching backends requires a full rebuild,
-# which burns ModelScope quota; the existing flat index stays load-bearing.
+# FAISS index backend. ``hnsw`` (default) builds an IndexHNSWFlat graph
+# (M=32, efConstruction=200) for sub-linear search. ``flat`` keeps the legacy
+# IndexFlatIP (exact, O(n)). HNSW is now the default because the production
+# index was converted to HNSW (see scripts/convert_faiss_to_hnsw.py) and
+# validated at recall@10 ≈ 99.96% on real chunk-vector queries vs flat at
+# efSearch=64. Set FAISS_INDEX_TYPE=flat to rebuild the old exact backend.
 # Defaults (env-overridable): FAISS_HNSW_M, FAISS_HNSW_EF_CONSTRUCTION,
 # FAISS_HNSW_EF_SEARCH (search-time, applied in faiss_retriever.load).
 
@@ -67,7 +68,7 @@ def _build_index_backend(dim: int, faiss_module):
     format and search semantics stay compatible across flat/hnsw: ``search``
     returns cosine-similarity scores regardless of backend.
     """
-    index_type = os.environ.get("FAISS_INDEX_TYPE", "flat").strip().lower()
+    index_type = os.environ.get("FAISS_INDEX_TYPE", "hnsw").strip().lower()
     if index_type == "hnsw":
         # Read live env so tests/CI can override per-invocation.
         m = int(os.environ.get("FAISS_HNSW_M", "32"))
@@ -374,7 +375,7 @@ def save_faiss(
 
     A (high-risk): parent chunks (``chunk_type == "parent"``) are always
     written to ``legal_chunks_meta.json`` so ``FaissRetriever.expand_to_parent``
-    can resolve them, but they are only added to the main FAISS IndexFlatIP
+    can resolve them, but they are only added to the main FAISS index
     when ``INCLUDE_PARENT_IN_INDEX=true``. Defaulting to false halves the
     on-disk index size without losing context-expansion capability, because
     retrieval scores children and expands to parent via meta lookup, never
@@ -403,7 +404,6 @@ def save_faiss(
                 f"(INCLUDE_PARENT_IN_INDEX=false); parent metadata still "
                 f"written to {faiss_dir / 'legal_chunks_meta.json'}"
             )
-
     vectors = [c["vector"] for c in index_chunks]
     if not vectors:
         logger.error("No vectors to save")

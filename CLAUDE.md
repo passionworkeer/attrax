@@ -27,9 +27,9 @@
 
 ### 后端 RAG 服务（Python）
 
-- **框架**：FastAPI + LangGraph 1.1.6
+- **框架**：FastAPI 0.115.6 + LangGraph 1.1.6
 - **语言**：Python 3.10+
-- **向量检索**：FAISS（IndexFlatIP，1024 维）+ BM25（jieba 分词）
+- **向量检索**：FAISS（IndexHNSWFlat，1024 维，M=32/efConstruction=200/efSearch=64）+ BM25（jieba 分词）。2026-06-29 由 IndexFlatIP 转换而来（`scripts/convert_faiss_to_hnsw.py`，无重新 embedding），真实查询 recall@10≈99.96%
 - **Embedding**：ModelScope Qwen3-Embedding-0.6B（云端 API，1024 维，生产唯一路径）。⚠️ Ollama embedder 代码存在但**未接入检索探测**（`hybrid_retriever._probe_embedders` 仅探测 ModelScope），ModelScope 不可用时直接降级到 BM25-only
 - **LLM**：MiniMax-M3（Anthropic SDK，端点 `https://api.minimaxi.com/anthropic/v1`）
 - **PDF 解析**：pdfplumber
@@ -362,9 +362,13 @@ const StartScanRequestSchema = z.object({
 - **P1-8**：本文件文档对齐（删 Ollama fallback 虚假宣称、NLI 验证宣传、SCAN_WORKER_CONCURRENCY=1）
 - **P2**：scan-queue job 改 side-car `.bin` 引用 + 配额（170MB/500MB）；新增 API 路由集成测试（不 mock 整库）
 
+### 基础设施迁移（2026-06-29，P2 续）
+- **IndexFlatIP→HNSW**：`scripts/convert_faiss_to_hnsw.py` 从现有 flat 索引重构 14495 个向量直接建 HNSW（M=32/efConstruction=200），**无重新 embedding、无 API 调用**（~1.5s）。真实 chunk-vector 查询 recall@10≈99.96%、self-recall@1≈99.6%（efSearch=64，对比 flat 基线）。`build_faiss.py` 默认后端改为 `hnsw`；flat 备份留 `legal_chunks.flat.index.bak`，需 `FAISS_INDEX_TYPE=flat` 才回退
+- **FastAPI 0.109 升级**：已落地至 `0.115.6`（`requirements-prod.txt` + Dockerfile + 安装环境均为 0.115.6，starlette 0.41.3）。全量 pytest 回归通过（327/328，唯一失败为预存在的 supplement manifest 文件大小断言，与本任务无关）。代码已用现代 API（`lifespan`/`@app.middleware`/`add_exception_handler`），无 0.109 残留兼容代码
+
 ### 已知遗留（需运维 / 单独任务）
 - **meta.json 分片迁移未执行**：加载器已就绪，运维需一次性跑 `FaissRetriever.split_meta_to_shards('data/faiss/legal_chunks_meta.json', 50)` 才能真正降 RAM 峰值
-- **限流迁 Redis / IndexFlatIP→HNSW / FastAPI 0.109 升级**：本次跳过（需基础设施 / 索引重建 / 全量回归），留 TODO
+- **限流迁 Redis**：用户确认短期用不到，留 TODO（IndexFlatIP→HNSW 与 FastAPI 0.109 升级已于上方完成）
 - **agent_trace 乘法级复制风险（新发现 P1）**：Send() fan-out + refine 循环下 trace 指数增长（默认 max_attempts=2 安全；配置不当会 OOM 而非平滑触发 recursion_limit），待修
 
 ---

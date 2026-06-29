@@ -23,7 +23,7 @@ Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
 
 | 组件 | 技术 | 说明 |
 |------|------|------|
-| HTTP 框架 | FastAPI 0.109 | ASGI 服务 |
+| HTTP 框架 | FastAPI 0.115.6 | ASGI 服务 |
 | LLM | mimoTalk (mimo-v2.5) | 报告生成 |
 | Embedding | ModelScope API | API-only embedding |
 | 向量检索 | FAISS | 本地向量索引 |

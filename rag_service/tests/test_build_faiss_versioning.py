@@ -370,8 +370,10 @@ def test_build_faiss_hnsw_builds_hnsw_index_and_search_works(tmp_path, monkeypat
     assert retriever.index.hnsw.efSearch == 32
 
 
-def test_build_faiss_flat_remains_default(tmp_path, monkeypatch):
-    """Default backend stays IndexFlatIP when FAISS_INDEX_TYPE is unset/flat."""
+def test_build_faiss_hnsw_is_default(tmp_path, monkeypatch):
+    """Default backend is now IndexHNSWFlat (production index converted to
+    HNSW and validated at recall@10 ≈ 99.96% vs flat). Set FAISS_INDEX_TYPE=flat
+    to opt back into the exact IndexFlatIP backend."""
     import faiss as _faiss
 
     monkeypatch.delenv("FAISS_INDEX_TYPE", raising=False)
@@ -383,9 +385,9 @@ def test_build_faiss_flat_remains_default(tmp_path, monkeypatch):
          "region": "EU", "content": "y", "vector": [0.0, 1.0]},
     ]
     build_faiss.save_faiss(chunks, dim=2, faiss_dir=tmp_path,
-                           build_info={"version_label": "flat-test"})
+                           build_info={"version_label": "default-test"})
 
     idx = _faiss.read_index(str(tmp_path / "legal_chunks.index"))
-    assert isinstance(idx, _faiss.IndexFlatIP), (
-        f"default backend must be IndexFlatIP, got {type(idx).__name__}"
+    assert isinstance(idx, _faiss.IndexHNSWFlat), (
+        f"default backend must be IndexHNSWFlat, got {type(idx).__name__}"
     )

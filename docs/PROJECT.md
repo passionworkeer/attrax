@@ -97,7 +97,7 @@
 | 技术 | 版本 | 选型理由 |
 |------|------|----------|
 | **Python** | 3.10+ | AI/ML 生态核心，LangGraph/jieba/FAISS 均为 Python-first |
-| **FastAPI** | 0.109 | 异步高性能，自动 Swagger 文档，Pydantic 深度集成 |
+| **FastAPI** | 0.115.6 | 异步高性能，自动 Swagger 文档，Pydantic 深度集成 |
 | **LangGraph** | 1.1.6 | 状态机 Agent 编排，支持条件分支/循环/Send 并行 |
 | **FAISS** | 1.12 | Facebook 开源向量索引，CPU 高效，Inner Product 索引 |
 | **jieba** | 0.42 | 中文 NLP 分词库，BM25 检索基础 |

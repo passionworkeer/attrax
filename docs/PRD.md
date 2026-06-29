@@ -580,7 +580,7 @@ Content-Type: multipart/form-data
 | UI 框架 | React | 19 |
 | 语言 | TypeScript | 5.x |
 | 样式 | Tailwind CSS | 4.x |
-| 后端框架 | FastAPI | 0.109+ |
+| 后端框架 | FastAPI | 0.115.6+ |
 | Python 版本 | Python | 3.10+ |
 | Agent 框架 | LangGraph | latest |
 | RAG 引擎 | FAISS + BM25 | - |
