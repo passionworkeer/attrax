@@ -176,8 +176,9 @@ class TestGeneratorNodeNormal:
 
         result = generator_module.generator_node(state)
 
-        assert len(result["agent_trace"]) == 2
-        trace = result["agent_trace"][1]
+        # Node returns ONLY its new entry; the graph reducer accumulates (audit 2026-06-29).
+        assert len(result["agent_trace"]) == 1
+        trace = result["agent_trace"][0]
         assert trace["node"] == "generate"
         assert trace["provider"] == "mimotalk"
         assert "chunks_count" in trace

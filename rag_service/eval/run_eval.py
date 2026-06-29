@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 """
-run_eval.py - P7 Evaluation Runner for rag-service.
+run_eval.py - Offline RAG evaluation runner for rag-service.
 
-Usage:
-    python eval/run_eval.py                        # Full run
-    python eval/run_eval.py --dry-run              # First 3 cases, no API calls
-    python eval/run_eval.py --html                 # Generate HTML report
-    python eval/run_eval.py --generate-tests       # Generate test_set.json only
-    python eval/run_eval.py --limit 20             # Run only first 20 cases
+Post P1-7 changes:
+- --generate-tests no longer derives queries from chunk text. It materializes
+  the independent natural-language golden set
+  (data/regulation_eval/natural_language_cases.json) into eval/test_set.json.
+  The legacy --corpus-dir flag is accepted but ignored to preserve CLI compat.
+- Dry-run no longer uses the ground_truth as the retrieved doc (that made
+  faithfulness trivially 1.0). Dry-run now reports retrieved_docs as an empty
+  list and a separate "no_retrieval" sentinel, so the metrics reflect the
+  absence of evidence rather than a self-covering loop.
+- Summary output explicitly labels the golden-set version, size, and covered
+  markets/categories so reports cannot be misread as production-readiness
+  claims.
 """
 import argparse
 import json
@@ -32,7 +38,7 @@ try:
 except ImportError:
     httpx = None
 
-from eval.metrics import generate_test_set, compute_all_metrics
+from eval.metrics import generate_test_set, compute_all_metrics, GOLDEN_SET_VERSION
 
 # ── Config ────────────────────────────────────────────────────────────────────
 
@@ -244,13 +250,17 @@ def _eval_case(
     q = case["question"]
     market = case["market"]
     gt = case["ground_truth_answer"]
+    key_facts = case.get("key_facts") or []
     start = time.time()
 
     if dry_run:
         resp = _mock_scan(q, market)
-        # In dry-run: use ground truth as pseudo-doc so metrics are meaningful
-        docs = [{"content": gt, "doc_name": case["source_document"]}]
-        agent_trace = []
+        # P1-7 fix: do NOT use the ground truth as a retrieved doc. In dry-run
+        # we have no real retrieval, so report an empty doc set — metrics then
+        # honestly reflect the absence of evidence instead of a self-covering
+        # loop that made faith == 1.0 trivially.
+        docs: list[dict] = []
+        agent_trace: list[dict] = []
     else:
         try:
             assert client is not None, "httpx not installed"
@@ -279,6 +289,7 @@ def _eval_case(
     metrics = compute_all_metrics(
         question=q, answer=answer,
         retrieved_docs=docs, ground_truth_answer=gt,
+        key_facts=key_facts,
     )
 
     return {
@@ -297,21 +308,31 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="RAG P7 Evaluation Runner")
     ap.add_argument("--dry-run", action="store_true", help="Use mock responses, no API calls")
     ap.add_argument("--html", action="store_true", help="Generate HTML report")
-    ap.add_argument("--generate-tests", action="store_true", help="Generate test_set.json and exit")
+    ap.add_argument("--generate-tests", action="store_true",
+                    help="Materialize the independent golden set into eval/test_set.json and exit")
     ap.add_argument("--limit", type=int, default=0, help="Limit number of test cases (0 = all)")
     ap.add_argument("--test-set", default="", help="Path to test_set.json")
-    ap.add_argument("--corpus-dir", default="", help="Path to processed corpus dir")
+    ap.add_argument("--golden-set", default="",
+                    help="Path to the independent natural-language golden set JSON "
+                         "(default: data/regulation_eval/natural_language_cases.json)")
+    ap.add_argument("--corpus-dir", default="",
+                    help="(deprecated, ignored — kept for CLI compatibility) "
+                         "Cases are never derived from corpus chunks post P1-7.")
     ap.add_argument("--output-dir", default="eval/results", help="Output directory for results")
     args = ap.parse_args()
 
     eval_dir = Path(__file__).parent
     test_set_path = Path(args.test_set) if args.test_set else eval_dir / "test_set.json"
+    golden_set_path = Path(args.golden_set) if args.golden_set else None
 
     # Generate tests if requested
     if args.generate_tests:
-        corpus = args.corpus_dir or str(eval_dir.parent / "data/corpus/processed")
-        print(f"{_C}[gen-tests] Generating from corpus: {corpus}{_RST}")
-        cases = generate_test_set(output_path=str(test_set_path), corpus_dir=corpus)
+        if args.corpus_dir:
+            print(f"{_Y}[WARN]{_RST} --corpus-dir is deprecated and ignored; "
+                  f"cases are sourced from the independent golden set only.")
+        print(f"{_C}[gen-tests] Materializing independent golden set "
+              f"(version={GOLDEN_SET_VERSION}){_RST}")
+        cases = generate_test_set(output_path=str(test_set_path), golden_set_path=golden_set_path)
         print(f"{_G}[OK]  {_RST}{len(cases)} test cases written to {test_set_path}")
         return
 
@@ -328,6 +349,13 @@ def main() -> None:
 
     print(f"{_C}[INFO]{_RST} Loaded {len(cases)} test cases from {test_set_path}")
     print(f"{_C}[INFO]{_RST} Mode: {'DRY-RUN (mock)' if args.dry_run else 'LIVE'}")
+    # Provenance banner: make the source/coverage of this eval explicit so
+    # results cannot be misread as a production-readiness claim.
+    markets = sorted({c.get("market", "?") for c in cases})
+    categories = sorted({c.get("category", "?") for c in cases})
+    print(f"{_C}[INFO]{_RST} Golden-set version: {GOLDEN_SET_VERSION}")
+    print(f"{_C}[INFO]{_RST} Markets covered ({len(markets)}): {', '.join(markets)}")
+    print(f"{_C}[INFO]{_RST} Categories covered ({len(categories)}): {', '.join(categories)}")
 
     # HTTP client
     base_url = _load_url()
@@ -378,8 +406,13 @@ def main() -> None:
         "elapsed_seconds": round(elapsed, 2),
         "mode": "dry-run" if args.dry_run else "live",
         "base_url": base_url,
+        "golden_set_version": GOLDEN_SET_VERSION,
+        "markets_covered": sorted({c.get("market", "?") for c in cases}),
+        "categories_covered": sorted({c.get("category", "?") for c in cases}),
         "success_rate": f"{len(ok_scores) / len(results):.1%}",
         "avg_faithfulness": round(sum(r["metrics"].get("faithfulness", {}).get("score", 0.0) for r in ok_scores) / len(ok_scores), 4) if ok_scores else 0.0,
+        "note": ("faithfulness is scored against an INDEPENDENT key_facts checklist, "
+                 "not against retrieved docs; dry-run reports empty retrieval."),
     }
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump({"summary": summary, "results": results}, f, ensure_ascii=False, indent=2)

@@ -85,6 +85,11 @@ async def lifespan(app: FastAPI):
 
     logger.info("Starting rag-service...")
 
+    # P0-6: fail-closed internal-secret policy. Must run before anything that
+    # would consume LLM/embedding quota. See _enforce_secret_policy for the
+    # exact dev/demo vs production matrix.
+    _enforce_secret_policy(settings)
+
     bm25 = BM25Retriever()
 
     # Pre-warm embedder at startup to avoid 3-8s probe delay on first query
@@ -118,7 +123,22 @@ async def lifespan(app: FastAPI):
     from rag_service.orchestrator.nodes import retriever as retriever_node
     retriever_node.set_retriever(_retriever)
     generator.set_generator(ReportGenerator(api_key=settings.mimotalk_api_key or None))
-    verifier.set_verifier(CitationVerifier())
+
+    # P0-3b: surface the NLI-degraded mode at startup. CitationVerifier() is
+    # constructed without an injected NLI model, so verification falls back to
+    # text-overlap matching (weaker grounding). Best-effort attribute probe —
+    # if a future change auto-loads NLI inside __init__, the warning is silent.
+    _cv = CitationVerifier()
+    _nli_loaded = any(
+        getattr(_cv, _attr, None) is not None
+        for _attr in ("nli_model", "nli", "_nli_model", "model")
+    )
+    if not _nli_loaded:
+        logger.warning(
+            "NLI verifier not loaded — citation verification degraded to "
+            "text-overlap mode"
+        )
+    verifier.set_verifier(_cv)
     vision_node_module.set_vision_analyzer(vision_node.VisionAnalyzer(settings.mimotalk_api_key or None))
 
     # ── Pre-warm embedding cache with common compliance queries ─────────────────
@@ -232,9 +252,13 @@ async def protect_requests(request: Request, call_next):
     # Shared-secret guard for internal write endpoints. When
     # settings.rag_internal_secret is set, /scan, /scan-multipart, and
     # /profit-report must carry header X-Internal-Secret with a matching
-    # value or receive 401. Unset (default) = open, preserving local/dev
-    # backward compatibility. GET /health and /ready are not in
-    # _RATE_LIMITED_PATHS and are therefore never gated.
+    # value or receive 401. P0-6 made this fail-closed: in non-demo,
+    # non-RAG_ALLOW_INSECURE deployments the secret is ALWAYS set at startup
+    # (explicitly by the operator or auto-generated), so the guard below is
+    # effective in production. The empty-secret fail-open case only survives
+    # for DEMO_MODE and explicit insecure opt-outs. GET /health and /ready
+    # are not in _RATE_LIMITED_PATHS and are therefore never write-gated;
+    # their detailed fields are filtered by _is_privileged instead.
     secret = settings.rag_internal_secret
     if secret and request.url.path in _RATE_LIMITED_PATHS:
         provided = request.headers.get("x-internal-secret", "")
@@ -321,31 +345,139 @@ def _current_embedding_provider() -> str:
         return "unknown"
 
 
-@app.get("/health")
-def health():
-    """Liveness probe — returns basic status. Used by /api/health on the frontend."""
-    faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
-    dense_mismatch = (
-        getattr(_retriever, "dense_dim_mismatch_count", 0) if _retriever else 0
+def _enforce_secret_policy(s: "settings.__class__") -> None:
+    """P0-6 fail-closed guard for RAG_INTERNAL_SECRET at startup.
+
+    Without this, an operator who forgets to set the secret leaves /scan,
+    /scan-multipart, and /profit-report wide open — anyone who can reach the
+    RAG port bypasses the frontend's rate limits and burns unbounded
+    LLM/embedding quota (cost DoS). The middleware's ``if secret and ...``
+    guard was fail-open precisely in that case.
+
+    Policy:
+      - demo_mode=True                       → lenient (dev/demo), no action.
+      - secret already set                   → production posture, no action.
+      - RAG_ALLOW_INSECURE=true              → explicit opt-out; warn loudly.
+      - non-demo + empty secret + production → RuntimeError (refuse to boot).
+      - non-demo + empty secret + non-prod   → auto-generate an ephemeral
+        secret so write endpoints fail closed (401) instead of open; printed
+        once so the operator can wire the frontend if needed.
+
+    Reads ENV/NODE_ENV via settings.app_env. Truthy demo_mode short-circuits
+    every check so local development and the test suite are unaffected.
+    """
+    if s.demo_mode:
+        return
+    if s.rag_internal_secret:
+        logger.info("Internal secret policy: configured (write endpoints gated).")
+        return
+    if s.allow_insecure:
+        logger.warning(
+            "SECURITY: RAG_ALLOW_INSECURE=true — internal write endpoints "
+            "(/scan, /scan-multipart, /profit-report) are OPEN. This is an "
+            "explicit operator opt-out and should only be used behind a "
+            "private network with equivalent auth at the edge."
+        )
+        return
+
+    is_prod = s.app_env in ("production", "prod")
+    if is_prod:
+        raise RuntimeError(
+            "Refusing to start: RAG_INTERNAL_SECRET is empty in production. "
+            "Set RAG_INTERNAL_SECRET (or DEMO_MODE=true, or "
+            "RAG_ALLOW_INSECURE=true to explicitly accept the risk) before "
+            "starting the service. Without it, internal write endpoints would "
+            "be open and bypass the frontend rate limit / auth."
+        )
+
+    # Non-prod, non-demo, no secret: fail closed by generating an ephemeral
+    # secret. Frontend calls without the header will now 401 — the operator
+    # sees this once in the logs and can copy the secret into RAG_INTERNAL_SECRET.
+    import secrets as _s
+    generated = _s.token_urlsafe(32)
+    s.rag_internal_secret = generated
+    logger.warning(
+        "SECURITY: RAG_INTERNAL_SECRET was empty — generated an EPHEMERAL "
+        "secret for this process. Write endpoints (/scan, /scan-multipart, "
+        "/profit-report) now require header 'X-Internal-Secret: <value>' "
+        "with this value. To wire the frontend, set RAG_INTERNAL_SECRET to a "
+        "fixed value in rag_service/.env and the frontend env, or set "
+        "DEMO_MODE=true for local dev. Ephemeral value: %s",
+        generated,
     )
-    return JSONResponse({
-        "status": "ok",
-        "version": app.version,
-        "demo_mode": settings.demo_mode,
-        "embedding_provider": _current_embedding_provider(),
-        "dense_dim_mismatch_count": dense_mismatch,
-    })
+
+
+def _is_privileged(request: Request) -> bool:
+    """Whether the caller may see detailed /health and /ready diagnostics.
+
+    P1-5: the unauthenticated probes previously leaked deployment details
+    (running mode, configured API keys, embedding provider, dim-mismatch
+    counters) that aid reconnaissance. Detailed fields are now returned only
+    when at least one of these holds:
+      - DEMO_MODE is on (local/dev/test — the test suite relies on this).
+      - A valid X-Internal-Secret header is present (operator/monitoring).
+      - The peer is loopback (operator SSH tunnel / sidecar scraping).
+      - RAG_ALLOW_INSECURE=true (explicit diagnostic opt-out).
+    Minimal fields used by the frontend (/health: status) and by k8s probes
+    (/ready: ready, checks, version) are ALWAYS returned so probes keep working
+    without credentials.
+    """
+    if settings.demo_mode or settings.allow_insecure:
+        return True
+    secret = settings.rag_internal_secret
+    if secret:
+        provided = request.headers.get("x-internal-secret", "")
+        if provided:
+            import hmac as _hmac
+            if _hmac.compare_digest(provided, secret):
+                return True
+    peer = (request.client.host if request.client else "") or ""
+    if peer in ("127.0.0.1", "::1", "localhost"):
+        return True
+    return False
+
+
+@app.get("/health")
+def health(request: Request):
+    """Liveness probe — minimal public surface (status only).
+
+    Frontend ``/api/health`` consumes only ``status`` (see
+    ``app/api/health/route.ts``). Detailed fields (demo_mode,
+    embedding_provider, dense_dim_mismatch_count, version) are gated behind
+    ``_is_privileged`` so an unauthenticated internet caller cannot probe
+    the deployment mode or embedding provider.
+    """
+    faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
+    status = "ok" if faiss_ok else "degraded"
+    body: dict = {"status": status}
+    if _is_privileged(request):
+        body.update({
+            "version": app.version,
+            "demo_mode": settings.demo_mode,
+            "embedding_provider": _current_embedding_provider(),
+            "dense_dim_mismatch_count": (
+                getattr(_retriever, "dense_dim_mismatch_count", 0)
+                if _retriever else 0
+            ),
+        })
+    return JSONResponse(body)
 
 
 @app.get("/ready")
-def ready():
+def ready(request: Request):
     """
     Readiness probe — checks all critical dependencies.
     Used by Kubernetes / load-balancer to decide whether to route traffic here.
 
+    P1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s
+    probes work without credentials (the test suite also asserts these).
+    Sensitive diagnostics (demo_mode, embedding_provider, embedding_status,
+    dense_dim_mismatch_count, warnings) are gated behind ``_is_privileged``.
+
     Embedding has a graceful-degradation path: if ModelScope is unavailable,
     the service falls back to Ollama, then to BM25-only. ModelScope key
-    absence therefore does NOT block readiness; it is reported as a warning.
+    absence therefore does NOT block readiness; it is reported as a warning
+    to privileged callers only.
     """
     modelscope_present = bool(settings.modelscope_api_key.strip())
     has_modelscope = settings.demo_mode or modelscope_present
@@ -362,27 +494,28 @@ def ready():
     gate_keys = ("faiss", "bm25", "mimotalk_api_key", "config_loaded")
     all_ok = all(checks[k] for k in gate_keys)
 
-    warnings = []
-    embedding_status = "ok"
-    if not has_modelscope:
-        warnings.append("modelscope_api_key missing — embedding degraded to ollama_fallback")
-        embedding_status = "ollama_fallback"
-
-    return JSONResponse(
-        {
-            "ready": all_ok,
-            "checks": checks,
+    body: dict = {
+        "ready": all_ok,
+        "checks": checks,
+        "version": app.version,
+    }
+    if _is_privileged(request):
+        warnings = []
+        embedding_status = "ok"
+        if not has_modelscope:
+            warnings.append("modelscope_api_key missing — embedding degraded to ollama_fallback")
+            embedding_status = "ollama_fallback"
+        body.update({
             "demo_mode": settings.demo_mode,
-            "version": app.version,
             "embedding_provider": _current_embedding_provider(),
             "embedding_status": embedding_status,
             "dense_dim_mismatch_count": (
-                getattr(_retriever, "dense_dim_mismatch_count", 0) if _retriever else 0
+                getattr(_retriever, "dense_dim_mismatch_count", 0)
+                if _retriever else 0
             ),
             "warnings": warnings,
-        },
-        status_code=200 if all_ok else 503,
-    )
+        })
+    return JSONResponse(body, status_code=200 if all_ok else 503)
 
 
 def _parse_markets(value: str) -> list[str]:

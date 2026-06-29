@@ -350,22 +350,34 @@ class ReportGenerator:
         chunks: list[dict],
         markdown_fallback: str = "",
     ) -> dict:
-        """Normalize model JSON keys and fill missing scenes conservatively."""
+        """Normalize model JSON keys and fill missing scenes conservatively.
+
+        P0-4: When the LLM JSON is missing required scenes (compliance report
+        empty, profit empty), we mark validationStatus="invalid" so the
+        downstream pipeline and UI cannot mistake a mock-filled package for a
+        successful LLM generation. A non-empty markdown_fallback (raw LLM
+        text) is downgraded to "fallback" rather than "invalid" because at
+        least the model produced usable prose.
+        """
         compliance = (
             package.get("complianceReport")
             or package.get("compliance_report")
             or package.get("report")
             or ""
         )
+        validation_errors: list[str] = []
+        used_markdown_fallback = False
         if not isinstance(compliance, str) or not compliance.strip():
             if markdown_fallback.strip():
                 compliance = markdown_fallback
+                used_markdown_fallback = True
                 logger.info(
                     "complianceReport missing in JSON; using raw LLM text as fallback (%d chars)",
                     len(compliance),
                 )
             else:
                 compliance = self._mock_report(product, market, query, error="合规报告为空，已使用保守模板。")
+                validation_errors.append("compliance_report_missing_from_llm_json")
 
         profit = package.get("profitReport") or package.get("profit_report") or {}
         if isinstance(profit, str):
@@ -374,6 +386,7 @@ class ReportGenerator:
             profit = {}
         if not isinstance(profit.get("markdown"), str) or not profit.get("markdown", "").strip():
             profit["markdown"] = self._fallback_profit_markdown(product, market, chunks)
+            validation_errors.append("profit_report_missing_from_llm_json")
 
         roadmap = package.get("roadmap") if isinstance(package.get("roadmap"), dict) else {}
         decision = package.get("decisionView") or package.get("decision_view") or {}
@@ -386,6 +399,16 @@ class ReportGenerator:
             "profitReport": {**fallback["profitReport"], **profit},
             "roadmap": {**fallback["roadmap"], **roadmap},
             "decisionView": {**fallback["decisionView"], **decision},
+            # Surface LLM JSON degradation honestly. Precedence:
+            #   invalid  — required scenes were missing and mock-filled
+            #   fallback — only the raw-text fallback path was used
+            #   (omitted) — let normalize_report_package pick the default
+            "auditMetadata": {
+                "validationStatus": "invalid" if validation_errors else (
+                    "fallback" if used_markdown_fallback else "normalized"
+                ),
+                "validationErrors": validation_errors,
+            },
         }
         return normalize_report_package(
             normalized,

@@ -1,0 +1,357 @@
+{
+  "version": "2026-06-29-natural-language-v1",
+  "description": "Independent natural-language eval set built to defeat data leakage. Queries describe user-uploaded product scenarios in plain language and MUST NOT contain regulation numbers/IDs/source_ids that also appear verbatim in chunk text. expected_source_ids are real FAISS source_ids (verified against data/faiss/legal_chunks_meta.json). key_facts are independent reference facts used for faithfulness scoring; they are NOT copied from any chunk text.",
+  "provenance": {
+    "author": "P1-7 remediation",
+    "ground_truth_source": "manually authored from product compliance domain knowledge; expected_source_ids cross-checked against data/faiss/legal_chunks_meta.json region/source_id listing",
+    "leakage_controls": [
+      "queries use natural product scenarios, not regulation numbers",
+      "expected_source_ids are decoupled identifiers, never appear in query text",
+      "key_facts are distilled reference facts, not chunk substrings",
+      "no query text is a rewrite of any chunk content"
+    ]
+  },
+  "coverage": {
+    "markets": ["EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"],
+    "categories": ["electronics", "toys", "battery", "textiles", "cosmetics", "children_products", "general_consumer_products"],
+    "note": "GCC sources are referenced by the SA toys case (sa-saso-gcc-children-toys-technical-regulation, gcc-gso-gmark-toys-guidance) since Saudi Arabia applies the GCC/GSO framework; GCC is not listed as a standalone query market."
+  },
+  "cases": [
+    {
+      "id": "eu-electronics-heavy-metals-toys",
+      "question": "我家塑料玩具有彩色涂层，想卖到欧洲，听说那边对涂层里的重金属管得很严，到底允不允许超一点？",
+      "market": "EU",
+      "category": "toys",
+      "risk": "chemical",
+      "regulatory_types": ["chemical", "product_safety"],
+      "expected_source_ids": ["eu-2006-1907-reach", "eu-2009-48-toy-safety"],
+      "key_facts": [
+        "欧盟对玩具涂层中的重金属有明确限值",
+        "铅镉汞六价铬等重金属在玩具涂层中受限",
+        "REACH 与玩具安全指令同时适用"
+      ]
+    },
+    {
+      "id": "eu-battery-power-bank",
+      "question": "我做的充电宝用的是锂电池，客户在欧洲，海关好像有专门针对这种带电产品的要求，我需要准备什么？",
+      "market": "EU",
+      "category": "battery",
+      "risk": "battery",
+      "regulatory_types": ["battery", "conformity", "sustainability"],
+      "expected_source_ids": ["eu-2023-1542-batteries"],
+      "key_facts": [
+        "欧盟有专门的电池法规管控含锂电池的产品",
+        "充电宝属于电池法规适用范围",
+        "需要 CE 标志和合规文件"
+      ]
+    },
+    {
+      "id": "eu-textile-fiber-label",
+      "question": "我做服装出口，听说欧盟对衣服上的成分标签有讲究，比如棉和涤纶的比例怎么标，哪里能查到要求？",
+      "market": "EU",
+      "category": "textiles",
+      "risk": "labelling",
+      "regulatory_types": ["labelling"],
+      "expected_source_ids": ["eu-2011-1007-textile-labelling"],
+      "key_facts": [
+        "欧盟对纺织品的纤维成分标注有专门法规",
+        "成分标签需要按纤维名称和比例标注",
+        "适用于出口欧盟的服装"
+      ]
+    },
+    {
+      "id": "eu-cosmetics-ingredients",
+      "question": "我的护肤品有香精和防腐剂，想上欧洲站，那边对化妆品里的禁用限用成分是怎么管的？",
+      "market": "EU",
+      "category": "cosmetics",
+      "risk": "chemical",
+      "regulatory_types": ["chemical", "documentation"],
+      "expected_source_ids": ["eu-2009-1223-cosmetics"],
+      "key_facts": [
+        "欧盟有化妆品专门法规管控成分",
+        "化妆品需要备案和安全评估",
+        "存在禁用和限用成分清单"
+      ]
+    },
+    {
+      "id": "eu-electronics-emc-wireless",
+      "question": "我的蓝牙音箱带 WiFi，发到欧洲被提醒要做电磁方面的测试，这测试主要是防什么的？",
+      "market": "EU",
+      "category": "electronics",
+      "risk": "EMC",
+      "regulatory_types": ["EMC", "conformity"],
+      "expected_source_ids": ["eu-2014-30-emc", "eu-2014-53-radio-equipment"],
+      "key_facts": [
+        "欧盟要求带无线功能的电子产品做电磁兼容测试",
+        "测试覆盖电磁骚扰和抗扰度",
+        "蓝牙 WiFi 设备还需要符合无线电设备要求"
+      ]
+    },
+    {
+      "id": "us-toys-children-heavy-metals",
+      "question": "我的儿童玩具要进美国市场，听说那边对小孩用的东西重金属和塑化剂查得特别严，具体卡哪些指标？",
+      "market": "US",
+      "category": "toys",
+      "risk": "chemical",
+      "regulatory_types": ["chemical", "product_safety"],
+      "expected_source_ids": ["us-16-cfr-1250-toy-safety", "us-16-cfr-1307-phthalates"],
+      "key_facts": [
+        "美国对儿童玩具有专门的安全标准",
+        "重金属含量和塑化剂是重点管控指标",
+        "需要第三方实验室检测"
+      ]
+    },
+    {
+      "id": "us-textile-flammability-clothing",
+      "question": "我卖的衣服想进美国，朋友说那边对服装能不能烧起来是有等级要求的，我怎么知道我的产品过不过关？",
+      "market": "US",
+      "category": "textiles",
+      "risk": "flammability",
+      "regulatory_types": ["flammability", "product_safety"],
+      "expected_source_ids": ["us-16-cfr-1610-textile-flammability"],
+      "key_facts": [
+        "美国对服装纺织品的燃烧性能有等级分类",
+        "服装需要符合易燃性标准",
+        "不同燃烧等级影响能否销售"
+      ]
+    },
+    {
+      "id": "us-battery-coin-cell",
+      "question": "我的小电器里用的是纽扣电池，担心小孩误吞的事，美国对这种产品有什么强制要求吗？",
+      "market": "US",
+      "category": "battery",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "battery"],
+      "expected_source_ids": ["us-16-cfr-1263-button-coin-batteries"],
+      "key_facts": [
+        "美国有专门针对纽扣电池的法规",
+        "原因是儿童误吞风险",
+        "产品需要符合特定安全标准"
+      ]
+    },
+    {
+      "id": "uk-toys-post-brexit",
+      "question": "脱欧之后英国对玩具的标识要求变了，我以前的 CE 标还能用吗？需要换成什么？",
+      "market": "UK",
+      "category": "toys",
+      "risk": "conformity",
+      "regulatory_types": ["product_safety", "conformity"],
+      "expected_source_ids": ["uk-toys-safety-regulations-2011-original", "uk-ukca-conformity-assessment"],
+      "key_facts": [
+        "脱欧后英国市场有专门的合格评定标识",
+        "玩具受英国玩具安全法规管控",
+        "CE 与 UKCA 标识在过渡期后适用规则不同"
+      ]
+    },
+    {
+      "id": "uk-electrical-safety",
+      "question": "我的小家电插电用的，电压不算高，卖到英国需不需要做什么安全方面的认证？",
+      "market": "UK",
+      "category": "electronics",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "conformity"],
+      "expected_source_ids": ["uk-electrical-equipment-safety-regulations-2016-original"],
+      "key_facts": [
+        "英国对电气设备有专门的安全法规",
+        "插电类小家电属于适用范围",
+        "需要符合性评估和安全文件"
+      ]
+    },
+    {
+      "id": "uk-cosmetics-post-brexit",
+      "question": "我的化妆品之前按欧盟要求备案过，现在想同时卖英国，英国的化妆品监管和欧盟一样吗？",
+      "market": "UK",
+      "category": "cosmetics",
+      "risk": "chemical",
+      "regulatory_types": ["chemical", "documentation"],
+      "expected_source_ids": ["uk-cosmetic-products-enforcement-regulations-2013-original"],
+      "key_facts": [
+        "英国脱欧后有独立的化妆品执法法规",
+        "与欧盟化妆品法规框架相近但不完全相同",
+        "需要在英国完成独立的合规流程"
+      ]
+    },
+    {
+      "id": "cn-ccc-electronics",
+      "question": "我的电子产品想进中国市场，听说有个强制认证标志必须贴，什么样的产品要申请？",
+      "market": "CN",
+      "category": "electronics",
+      "risk": "conformity",
+      "regulatory_types": ["conformity", "documentation"],
+      "expected_source_ids": ["cn-ccc-catalogue-scope-2023", "cn-compulsory-product-certification-management-regulations"],
+      "key_facts": [
+        "中国对列入目录的电子产品实施强制性认证",
+        "认证标志必须加贴在产品或包装上",
+        "不在目录内的产品可不申请"
+      ]
+    },
+    {
+      "id": "cn-rohs-electronics",
+      "question": "我的电子产品想卖国内，国内对里面有害物质有没有类似国外的限制规定？",
+      "market": "CN",
+      "category": "electronics",
+      "risk": "chemical",
+      "regulatory_types": ["chemical", "conformity"],
+      "expected_source_ids": ["cn-rohs-compliance-management-catalogue-2018"],
+      "key_facts": [
+        "中国有针对电器电子产品有害物质限制的管理办法",
+        "管理目录内的产品需要加贴标识并披露有害物质",
+        "限制的物质包括铅镉汞等"
+      ]
+    },
+    {
+      "id": "au-toys-children-36-months",
+      "question": "我家做的 toddler 玩具面向三岁以下小孩，出口澳大利亚的话那边对这类小宝宝玩具有什么强制要求？",
+      "market": "AU",
+      "category": "toys",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "mechanical"],
+      "expected_source_ids": ["au-toys-children-36-months-safety-standard-2023"],
+      "key_facts": [
+        "澳大利亚对三岁以下儿童玩具有专门的安全标准",
+        "强制要求覆盖机械物理性能",
+        "出口澳大利亚须符合该强制标准"
+      ]
+    },
+    {
+      "id": "au-button-coin-batteries",
+      "question": "我卖的家电遥控器里装的是纽扣电池，澳洲那边对这种容易被小孩拿到的小电池有什么规定？",
+      "market": "AU",
+      "category": "battery",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "battery"],
+      "expected_source_ids": ["au-button-coin-batteries-safety-standard-2020"],
+      "key_facts": [
+        "澳大利亚有针对纽扣电池的安全标准",
+        "原因是儿童误吞风险",
+        "含纽扣电池的产品须符合儿童安全防护要求"
+      ]
+    },
+    {
+      "id": "au-cosmetics-ingredients",
+      "question": "我的化妆品种类比较多，澳洲对化妆品里能用什么成分有没有公开的清单可以查？",
+      "market": "AU",
+      "category": "cosmetics",
+      "risk": "chemical",
+      "regulatory_types": ["chemical", "labelling"],
+      "expected_source_ids": ["au-cosmetics-ingredients-information-standard-2020"],
+      "key_facts": [
+        "澳大利亚对化妆品成分信息有专门标准",
+        "有可查询的成分清单",
+        "出口澳洲的化妆品须符合该标准"
+      ]
+    },
+    {
+      "id": "sa-toys-gcc",
+      "question": "我的儿童玩具想卖沙特，听说要先拿到一个海湾国家的认证标志，是什么流程？",
+      "market": "SA",
+      "category": "toys",
+      "risk": "conformity",
+      "regulatory_types": ["conformity", "product_safety"],
+      "expected_source_ids": ["sa-saso-gcc-children-toys-technical-regulation", "gcc-gso-gmark-toys-guidance"],
+      "key_facts": [
+        "沙特通过 SASO 体系管控玩具",
+        "海湾国家有统一的合格评定标志",
+        "玩具需取得相应认证后才能进入沙特市场"
+      ]
+    },
+    {
+      "id": "sa-electronics-low-voltage",
+      "question": "我的小家电是低压插电的，出口沙特的话那边对电气产品有什么技术要求？",
+      "market": "SA",
+      "category": "electronics",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "conformity"],
+      "expected_source_ids": ["sa-saso-low-voltage-electrical-equipment"],
+      "key_facts": [
+        "沙特对低压电气设备有专门的技术法规",
+        "通过 SASO 体系执行",
+        "电气产品进入沙特市场须符合该技术法规"
+      ]
+    },
+    {
+      "id": "sa-textiles-labeling",
+      "question": "我做的服装想出口沙特，那边对纺织品的标签和成分有什么强制要求吗？",
+      "market": "SA",
+      "category": "textiles",
+      "risk": "labelling",
+      "regulatory_types": ["labelling", "conformity"],
+      "expected_source_ids": ["sa-saso-textile-products-technical-regulation"],
+      "key_facts": [
+        "沙特对纺织产品有专门的技术法规",
+        "强制要求覆盖标签和成分",
+        "通过 SASO 体系执行"
+      ]
+    },
+    {
+      "id": "ae-conformity-certificate",
+      "question": "我的产品品类比较多，想出口阿联酋，那边好像要求做一种叫 ECAS 的合格证书，什么产品需要做？",
+      "market": "AE",
+      "category": "general_consumer_products",
+      "risk": "conformity",
+      "regulatory_types": ["conformity", "scope_classification"],
+      "expected_source_ids": ["ae-moiat-ecas-conformity-certificates"],
+      "key_facts": [
+        "阿联酋通过 ECAS 体系发放产品合格证书",
+        "覆盖被技术法规管控的多类产品",
+        "由 MOIAT 主管"
+      ]
+    },
+    {
+      "id": "ae-product-safety-manaa",
+      "question": "我卖日用品到阿联酋，听说那边有一个产品安全管控清单，我的产品在不在这里面怎么查？",
+      "market": "AE",
+      "category": "general_consumer_products",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "market_surveillance"],
+      "expected_source_ids": ["ae-moiat-manaa-product-safety"],
+      "key_facts": [
+        "阿联酋有产品安全管控清单",
+        "通过 MANAA 系统执行",
+        "由 MOIAT 主管市场监督"
+      ]
+    },
+    {
+      "id": "jp-electrical-appliance-pse",
+      "question": "我的小家电想进日本，听说日本对电器有一个 PSE 标志的要求，什么样的产品要做？",
+      "market": "JP",
+      "category": "electronics",
+      "risk": "conformity",
+      "regulatory_types": ["conformity", "product_safety"],
+      "expected_source_ids": ["jp-electrical-appliance-material-safety-act", "jp-jlt-electrical-appliances-materials-safety-act-2745"],
+      "key_facts": [
+        "日本通过电气用品安全法管控电器",
+        "符合条件的产品须加贴 PSE 标志",
+        "适用产品有专门的技术标准"
+      ]
+    },
+    {
+      "id": "jp-consumer-product-safety",
+      "question": "我做的生活日用品想进日本市场，日本对一般消费品的安全事故和召回是怎么管的？",
+      "market": "JP",
+      "category": "general_consumer_products",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "market_surveillance"],
+      "expected_source_ids": ["jp-consumer-product-safety-act", "jp-jlt-consumer-product-safety-act-2804"],
+      "key_facts": [
+        "日本有消费生活用品安全法",
+        "对特定产品实施安全事故和召回管控",
+        "通过主管省厅执行市场监督"
+      ]
+    },
+    {
+      "id": "jp-food-contact-kitchenware",
+      "question": "我做的餐具厨具接触到食物，出口日本的话那边对食品接触材料有什么卫生方面的要求？",
+      "market": "JP",
+      "category": "general_consumer_products",
+      "risk": "product_safety",
+      "regulatory_types": ["product_safety", "chemical"],
+      "expected_source_ids": ["jp-food-sanitation-act", "jp-jlt-food-sanitation-act-5024"],
+      "key_facts": [
+        "日本通过食品卫生法管控食品接触材料",
+        "餐具厨具属于适用范围",
+        "有卫生方面的强制要求"
+      ]
+    }
+  ]
+}

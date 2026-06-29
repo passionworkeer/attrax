@@ -118,5 +118,5 @@ def query_planner_node(state: GraphState) -> dict:
 
     return {
         "sub_queries": sub_queries,
-        "agent_trace": state.get("agent_trace", []) + [trace_entry],
+        "agent_trace": [trace_entry],
     }

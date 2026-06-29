@@ -371,7 +371,7 @@ def vision_analysis_node(state: dict) -> dict:
         if existing and existing.get("certifications"):
             logger.info("Vision node: using pre-computed vision_result from API")
             return {
-                "agent_trace": state.get("agent_trace", []) + [
+                "agent_trace": [
                     {"node": "vision", "status": "precomputed",
                      "certs": len(existing.get("certifications", [])),
                      "cert_summary": existing.get("cert_summary", "")}
@@ -380,7 +380,7 @@ def vision_analysis_node(state: dict) -> dict:
         logger.info("Vision node: no images provided, skipping")
         return {
             "vision_result": _empty_vision_result(),
-            "agent_trace": state.get("agent_trace", []) + [{"node": "vision", "status": "skipped", "duration_ms": 0}],
+            "agent_trace": [{"node": "vision", "status": "skipped", "duration_ms": 0}],
         }
 
     analyzer = _get_analyzer()
@@ -388,7 +388,7 @@ def vision_analysis_node(state: dict) -> dict:
         logger.warning("Vision analyzer not available, skipping")
         return {
             "vision_result": _empty_vision_result(),
-            "agent_trace": state.get("agent_trace", []) + [{"node": "vision", "status": "no_api_key"}],
+            "agent_trace": [{"node": "vision", "status": "no_api_key"}],
         }
 
     try:
@@ -408,11 +408,11 @@ def vision_analysis_node(state: dict) -> dict:
         return {
             "vision_result": vision_data,
             "query": combined,
-            "agent_trace": state.get("agent_trace", []) + [trace_entry],
+            "agent_trace": [trace_entry],
         }
     except Exception as e:
         logger.error(f"Vision node failed: {e}")
         return {
             "vision_result": _empty_vision_result(),
-            "agent_trace": state.get("agent_trace", []) + [{"node": "vision", "status": "error", "error": str(e)}],
+            "agent_trace": [{"node": "vision", "status": "error", "error": str(e)}],
         }

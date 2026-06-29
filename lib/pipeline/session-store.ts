@@ -1,4 +1,5 @@
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, unlinkSync, writeFileSync } from "fs";
+import { randomBytes } from "crypto";
 import { join } from "path";
 import { SESSION_CLEANUP_INTERVAL_MS, SESSION_TTL_MS } from "@/lib/constants";
 import { removeAllUploads, removeUploadsForSession } from "@/lib/pipeline/upload-storage";
@@ -104,7 +105,10 @@ function loadSessionFromFile(sessionId: string): StoredScanStatus | null {
 
 function writeJsonAtomicInternal(filePath: string, value: unknown): void {
   const serialized = JSON.stringify(value);
-  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.tmp`;
+  // Include crypto.randomBytes so two writers in the same millisecond (e.g.
+  // drain + a polling update under load) cannot collide on the tmp file name
+  // — on Windows that surfaces as EPERM during rename.
+  const tmpPath = `${filePath}.${process.pid}.${Date.now()}.${randomBytes(4).toString("hex")}.tmp`;
   try {
     writeFileSync(tmpPath, serialized, "utf-8");
   } catch (error) {
@@ -308,29 +312,47 @@ function recoverFromDiskIfEmpty(): void {
  * `store.get(sessionId)` and `persistSession(updated)`: the second writer's
  * stale `current` snapshot would overwrite the first writer's update.
  *
- * Implementation note: in Node.js the JS call stack is single-threaded, so
- * the only way to get a true race is `async` work interleaving — e.g.
- * `await loadSessionFromFile()` from a future async API. We use a Promise
- * chain so any later async writer waits for in-flight writers to finish
- * their synchronous update+persist section before reading. Today the chain
- * completes synchronously inside the then() callback, but if we ever move
- * persist to async (e.g. fs.promises), the chain keeps the invariant.
+ * Implementation: a real async mutex built on a promise chain + a `pending`
+ * flag. The flag detects re-entrant writes (a code bug that would bypass the
+ * lock) and is also the semaphore any future async writer will wait on. Today
+ * the read-modify-write section is synchronous — JS turns don't interleave
+ * inside sync code — so the chain resolves immediately. If persist ever moves
+ * to async fs, the chain below keeps the serialization invariant without any
+ * change at the call sites.
  */
 let writeChain: Promise<void> = Promise.resolve();
+let pending = false;
 
 function withWriteLock<T>(work: () => T): T {
-  // Synchronous critical section: the JS turn holding this stack frame
-  // completes before any .then() continuation runs.
-  const result = work();
-  // Chain a no-op so any future async writer awaits this turn.
-  writeChain = writeChain.then(
-    () => undefined,
-    () => undefined
-  );
-  return result;
+  if (pending) {
+    throw new Error(
+      "[session-store] withWriteLock re-entrant call detected — updateSession/createSession/deleteSession called inside another write. This is a bug: the inner call would bypass the lock and break read-modify-write atomicity."
+    );
+  }
+  pending = true;
+  try {
+    const result = work();
+    // Chain a no-op so any future async writer awaits this turn. Settled
+    // promises resolve on the next microtask, so the chain stays cheap.
+    writeChain = writeChain.then(
+      () => undefined,
+      () => undefined
+    );
+    return result;
+  } finally {
+    pending = false;
+  }
 }
 
 export function createSession(sessionId: string, accessTokenHash?: string): StoredScanStatus {
+  // Fail-closed: in production every session must have an access-token hash on
+  // creation, otherwise getSession can't enforce authentication and any caller
+  // can read another user's session. Demo/test/dev paths still pass no hash.
+  if (process.env.NODE_ENV === "production" && !accessTokenHash) {
+    throw new Error(
+      "[session-store] createSession requires an accessTokenHash in production; refusing to create an unauthenticated session."
+    );
+  }
   return withWriteLock(() => {
     getClearedSessionIds().delete(sessionId);
     cleanStaleFilesIfDue();
@@ -351,7 +373,10 @@ export function createSession(sessionId: string, accessTokenHash?: string): Stor
   });
 }
 
-export function updateSession(sessionId: string, patch: Partial<ScanStatus> & { accessTokenHash?: string }) {
+export function updateSession(
+  sessionId: string,
+  patch: Partial<ScanStatus> & { accessTokenHash?: string }
+) {
   withWriteLock(() => {
     const store = getStore();
     const current = store.get(sessionId) ?? loadSessionFromFile(sessionId);
@@ -360,15 +385,63 @@ export function updateSession(sessionId: string, patch: Partial<ScanStatus> & { 
       return;
     }
 
-    const updated: StoredScanStatus = {
+    // Strip the access-token hash from the patch. updateSession must NEVER
+    // overwrite `accessTokenHash`: a caller passing `{ accessTokenHash:
+    // undefined }` would otherwise clear the hash via the spread below and
+    // silently bypass session authentication. Only createSession() sets it,
+    // once, at session creation.
+    const { accessTokenHash: _stripped, ...patchWithoutHash } = patch;
+    void _stripped;
+
+    const now = Date.now();
+    const merged: StoredScanStatus = {
       ...current,
-      ...patch,
+      ...patchWithoutHash,
+      // Preserve the original hash — never let the spread overwrite it.
+      accessTokenHash: current.accessTokenHash,
       error: typeof patch.error === "string" ? patch.error : current.error,
-      updatedAt: Date.now(),
+      updatedAt: now,
     };
-    store.set(sessionId, updated);
-    scheduleExpiry(updated);
-    persistSession(updated);
+
+    // Long tasks (5–15 min RAG scans) outrun the default 1h TTL: a client
+    // polling during a slow scan could hit 404 before completion. While the
+    // scan is still in progress (progress<100) refresh the TTL on every
+    // update so the session stays live as long as the pipeline is making
+    // forward progress. Terminal updates (progress=100: ready/failed) keep
+    // the original expiry so completed sessions still expire on schedule.
+    if (typeof merged.progress === "number" && merged.progress < 100) {
+      merged.expiresAt = now + SESSION_TTL_MS;
+    }
+
+    store.set(sessionId, merged);
+    scheduleExpiry(merged);
+    persistSession(merged);
+  });
+}
+
+/**
+ * Hard-delete a session: drop it from the in-memory store, clear its expiry
+ * timer, and unlink the on-disk file + archived uploads. Used by /api/scan to
+ * roll back a session when enqueueScan fails after createSession has already
+ * run — otherwise the client would receive a 503 yet keep polling a session
+ * that has no queue job behind it, and "processing" would hang forever.
+ */
+export function deleteSession(sessionId: string): void {
+  if (!validateSessionId(sessionId)) return;
+  withWriteLock(() => {
+    const store = getStore();
+    const timers = getTimers();
+    const existing = store.get(sessionId);
+    store.delete(sessionId);
+    const timer = timers.get(sessionId);
+    if (timer) {
+      clearTimeout(timer);
+      timers.delete(sessionId);
+    }
+    removeSessionFile(sessionId);
+    if (existing) {
+      removeUploadsForSession(sessionId);
+    }
   });
 }
 

@@ -88,6 +88,32 @@ def _get_generator():
     return _generator_instance
 
 
+# Map a report package's auditMetadata.validationStatus to a trace status.
+# P0-4: "success" must mean the LLM actually produced a usable result;
+# fallback/invalid packages are downgraded so the orchestrator and UI do
+# not treat a mock-filled report as a clean generation.
+_PACKAGE_STATUS_TO_TRACE = {
+    "normalized": "success",
+    "fallback": "generation_failed",
+    "invalid": "generation_failed",
+}
+
+
+def _status_from_package(report_package: dict) -> str:
+    """Derive the trace status from the package's validationStatus.
+
+    Returns "success" only when the LLM produced a fully normalized package.
+    Falls back to "degraded" when no audit metadata is present (e.g. legacy
+    generate() path that returns plain markdown), which is honest about the
+    fact that we cannot confirm full structural validity.
+    """
+    if not isinstance(report_package, dict) or not report_package:
+        return "degraded"
+    audit = report_package.get("auditMetadata") or {}
+    validation_status = audit.get("validationStatus") if isinstance(audit, dict) else None
+    return _PACKAGE_STATUS_TO_TRACE.get(validation_status, "degraded")
+
+
 def generator_node(state: GraphState) -> dict:
     """Generate compliance report from retrieved documents."""
     import time
@@ -108,7 +134,7 @@ def generator_node(state: GraphState) -> dict:
         duration_ms = int((time.time() - start_time) * 1000)
         return {
             "generation": "错误：报告生成器未初始化",
-            "agent_trace": state.get("agent_trace", []) + [{
+            "agent_trace": [{
                 "node": "generate",
                 "provider": provider,
                 "status": "error",
@@ -163,6 +189,11 @@ def generator_node(state: GraphState) -> dict:
                     doc_context=doc_context,
                 )
                 generation = report_package.get("complianceReport", "") or "错误：报告内容为空"
+                # P0-4: Derive status from the package's own validationStatus
+                # instead of unconditionally writing "success". A fallback/
+                # invalid package means the LLM did not actually produce a
+                # usable result, even though no exception was raised.
+                status = _status_from_package(report_package)
             else:
                 report_package = {}
                 generation = generator.generate(
@@ -172,7 +203,9 @@ def generator_node(state: GraphState) -> dict:
                     chunks=documents,
                     doc_context=doc_context,
                 )
-            status = "success"
+                # Legacy path returns plain markdown without audit metadata;
+                # an empty body is the only unambiguous failure signal here.
+                status = "success" if generation and generation.strip() else "generation_failed"
         except Exception as e:
             generation = f"报告生成失败: {e}"
             status = "error"
@@ -189,7 +222,7 @@ def generator_node(state: GraphState) -> dict:
         "generation_length": len(generation),
         "duration_ms": duration_ms,
     }
-    agent_trace = state.get("agent_trace", []) + [trace_entry]
+    full_trace = state.get("agent_trace", []) + [trace_entry]  # full trace for report_package only
 
     if report_package:
         report_package = normalize_report_package(
@@ -200,14 +233,14 @@ def generator_node(state: GraphState) -> dict:
             query=query,
             chunks=documents,
             vision_result=state.get("vision_result", {}),
-            agent_trace=agent_trace,
+            agent_trace=full_trace,
             user_documents=user_docs,
             provider=provider or "",
         )
 
     result = {
         "generation": generation,
-        "agent_trace": agent_trace,
+        "agent_trace": [trace_entry],  # only new entry for reducer (audit 2026-06-29)
     }
     if report_package:
         result["report_package"] = report_package
