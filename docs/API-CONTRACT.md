@@ -343,10 +343,11 @@ interface EvidenceItem {
 
 1. 改 `rag_service/schemas/report_package.py` 或 `main.py`（Pydantic / FastAPI 自动重算 OpenAPI）
 2. 跑 `npm run codegen:openapi` —— 重新抓 `/openapi.json` 到 `lib/rag-client/openapi.snapshot.json`
+   > ⚠️ **手动步骤**——这不是 CI 自动跑的。需要 RAG 服务在 `RAG_SERVICE_URL`（默认 `http://localhost:8001`）可达时手动执行。脚本实现见 `scripts/capture-openapi.mjs`。
 3. 跑 `npm run codegen:rag-types` —— 重生 `lib/rag-client/types.gen.ts`
 4. 跑 `npm run test` —— 报告包契约测试应自动捕获漂移并 fail
 5. 同步更新 `docs/API-CONTRACT.md` §3/§4 与 `docs/MOCK-REAL-MAPPING.md`
-6. CI 步骤（详见 [`docs/DEVELOPMENT.md` §CI 契约校验](./DEVELOPMENT.md#ci-契约校验)）会校验 `openapi.snapshot.json` 与 `types.gen.ts` 一致
+6. CI 步骤（[`.github/workflows/ci.yml` §frontend → RAG contract check](../../.github/workflows/ci.yml)）会校验 `openapi.snapshot.json` 与 `types.gen.ts` 一致
 
 ---
 
