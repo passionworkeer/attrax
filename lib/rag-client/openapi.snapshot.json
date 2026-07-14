@@ -1,0 +1,897 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "火鹰合规 RAG Service",
+    "version": "0.3.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "description": "Liveness probe — returns basic status. Used by /api/health on the frontend.",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ready": {
+      "get": {
+        "summary": "Ready",
+        "description": "Readiness probe — checks all critical dependencies.\nUsed by Kubernetes / load-balancer to decide whether to route traffic here.",
+        "operationId": "ready_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scan": {
+      "post": {
+        "summary": "Scan",
+        "operationId": "scan_scan_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScanResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scan-multipart": {
+      "post": {
+        "summary": "Scan Multipart",
+        "operationId": "scan_multipart_scan_multipart_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_scan_multipart_scan_multipart_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScanResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profit-report": {
+      "post": {
+        "summary": "Profit Report",
+        "description": "生成合规成本与利润分析报告。\n\n接收产品类型和市场，从语料库检索相关文档，生成带完整成本表格的 markdown 报告。\n充电宝和乒乓球拍使用预置数据（无需 LLM 调用），其他产品尝试 LLM 填充。",
+        "operationId": "profit_report_profit_report_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfitReportRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfitReportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuditMetadata": {
+        "properties": {
+          "schemaVersion": {
+            "type": "string",
+            "title": "Schemaversion",
+            "default": "report-package/v1"
+          },
+          "generatedAt": {
+            "type": "string",
+            "title": "Generatedat"
+          },
+          "validationStatus": {
+            "type": "string",
+            "enum": [
+              "normalized",
+              "fallback",
+              "invalid"
+            ],
+            "title": "Validationstatus",
+            "default": "normalized"
+          },
+          "validationErrors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Validationerrors"
+          },
+          "provider": {
+            "type": "string",
+            "title": "Provider",
+            "default": ""
+          },
+          "traceNodeCount": {
+            "type": "integer",
+            "title": "Tracenodecount",
+            "default": 0
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "generatedAt"
+        ],
+        "title": "AuditMetadata"
+      },
+      "Body_scan_multipart_scan_multipart_post": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "default": ""
+          },
+          "product": {
+            "type": "string",
+            "title": "Product",
+            "default": ""
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "default": ""
+          },
+          "markets": {
+            "type": "string",
+            "title": "Markets",
+            "default": "[\"EU\"]"
+          },
+          "documents": {
+            "type": "string",
+            "title": "Documents",
+            "default": "[]"
+          },
+          "images": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Images",
+            "default": []
+          },
+          "pdfs": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Pdfs",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Body_scan_multipart_scan_multipart_post"
+      },
+      "DecisionNode": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "default": ""
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "default": ""
+          },
+          "labelEn": {
+            "type": "string",
+            "title": "Labelen",
+            "default": ""
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "pending"
+          },
+          "duration": {
+            "type": "string",
+            "title": "Duration",
+            "default": ""
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "reasoning": {
+            "type": "string",
+            "title": "Reasoning",
+            "default": ""
+          },
+          "reasoningEn": {
+            "type": "string",
+            "title": "Reasoningen",
+            "default": ""
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "DecisionNode"
+      },
+      "DecisionView": {
+        "properties": {
+          "summary": {
+            "type": "string",
+            "title": "Summary",
+            "default": ""
+          },
+          "keyFindings": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Keyfindings"
+          },
+          "recommendedAction": {
+            "type": "string",
+            "title": "Recommendedaction",
+            "default": ""
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/DecisionNode"
+            },
+            "type": "array",
+            "title": "Nodes"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "DecisionView"
+      },
+      "EvidenceBundles": {
+        "properties": {
+          "visual": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "type": "array",
+            "title": "Visual"
+          },
+          "retrieval": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "type": "array",
+            "title": "Retrieval"
+          },
+          "generation": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceItem"
+            },
+            "type": "array",
+            "title": "Generation"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "EvidenceBundles"
+      },
+      "EvidenceItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "layer": {
+            "type": "string",
+            "enum": [
+              "visual",
+              "retrieval",
+              "generation",
+              "audit"
+            ],
+            "title": "Layer"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": ""
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "default": ""
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "default": ""
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "id",
+          "layer"
+        ],
+        "title": "EvidenceItem"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ProductDossier": {
+        "properties": {
+          "product": {
+            "type": "string",
+            "title": "Product",
+            "default": ""
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "default": ""
+          },
+          "markets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Markets"
+          },
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "default": ""
+          },
+          "sourceCounts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "type": "object",
+            "title": "Sourcecounts"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "ProductDossier"
+      },
+      "ProfitReport": {
+        "properties": {
+          "markdown": {
+            "type": "string",
+            "title": "Markdown"
+          },
+          "keyConclusion": {
+            "type": "string",
+            "title": "Keyconclusion",
+            "default": ""
+          },
+          "premiumPct": {
+            "type": "string",
+            "title": "Premiumpct",
+            "default": ""
+          },
+          "breakevenUnits": {
+            "type": "string",
+            "title": "Breakevenunits",
+            "default": ""
+          },
+          "pricingStrategy": {
+            "type": "string",
+            "title": "Pricingstrategy",
+            "default": ""
+          },
+          "riskNote": {
+            "type": "string",
+            "title": "Risknote",
+            "default": ""
+          },
+          "conclusions": {
+            "type": "string",
+            "title": "Conclusions",
+            "default": ""
+          },
+          "references": {
+            "type": "string",
+            "title": "References",
+            "default": ""
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "markdown"
+        ],
+        "title": "ProfitReport"
+      },
+      "ProfitReportRequest": {
+        "properties": {
+          "product": {
+            "type": "string",
+            "title": "Product",
+            "default": ""
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "default": ""
+          },
+          "markets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Markets",
+            "default": [
+              "EU"
+            ]
+          }
+        },
+        "type": "object",
+        "title": "ProfitReportRequest"
+      },
+      "ProfitReportResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "report": {
+            "type": "string",
+            "title": "Report"
+          },
+          "product": {
+            "type": "string",
+            "title": "Product"
+          },
+          "market": {
+            "type": "string",
+            "title": "Market"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "report",
+          "product",
+          "market"
+        ],
+        "title": "ProfitReportResponse"
+      },
+      "ReportPackage": {
+        "properties": {
+          "productDossier": {
+            "$ref": "#/components/schemas/ProductDossier"
+          },
+          "complianceReport": {
+            "type": "string",
+            "title": "Compliancereport"
+          },
+          "profitReport": {
+            "$ref": "#/components/schemas/ProfitReport"
+          },
+          "roadmap": {
+            "$ref": "#/components/schemas/Roadmap"
+          },
+          "decisionView": {
+            "$ref": "#/components/schemas/DecisionView"
+          },
+          "evidenceBundles": {
+            "$ref": "#/components/schemas/EvidenceBundles"
+          },
+          "auditMetadata": {
+            "$ref": "#/components/schemas/AuditMetadata"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "productDossier",
+          "complianceReport",
+          "profitReport",
+          "roadmap",
+          "decisionView",
+          "evidenceBundles",
+          "auditMetadata"
+        ],
+        "title": "ReportPackage"
+      },
+      "Roadmap": {
+        "properties": {
+          "totalDays": {
+            "type": "integer",
+            "title": "Totaldays",
+            "default": 0
+          },
+          "totalCost": {
+            "type": "string",
+            "title": "Totalcost",
+            "default": ""
+          },
+          "progress": {
+            "type": "integer",
+            "title": "Progress",
+            "default": 0
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/RoadmapItem"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "Roadmap"
+      },
+      "RoadmapItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date",
+            "default": ""
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "default": ""
+          },
+          "titleEn": {
+            "type": "string",
+            "title": "Titleen",
+            "default": ""
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+            "default": ""
+          },
+          "descriptionEn": {
+            "type": "string",
+            "title": "Descriptionen",
+            "default": ""
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "default": "complete"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "default": "pending"
+          },
+          "estimatedDays": {
+            "type": "integer",
+            "title": "Estimateddays",
+            "default": 0
+          },
+          "cost": {
+            "type": "string",
+            "title": "Cost",
+            "default": ""
+          },
+          "documents": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Documents"
+          },
+          "documentsEn": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Documentsen"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "RoadmapItem"
+      },
+      "ScanRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "default": ""
+          },
+          "product": {
+            "type": "string",
+            "title": "Product",
+            "default": ""
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "default": ""
+          },
+          "markets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Markets",
+            "default": [
+              "EU"
+            ]
+          },
+          "vision_result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vision Result"
+          },
+          "images": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Images"
+          },
+          "documents": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Documents"
+          },
+          "pdfs": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pdfs"
+          }
+        },
+        "type": "object",
+        "title": "ScanRequest"
+      },
+      "ScanResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "report": {
+            "type": "string",
+            "title": "Report"
+          },
+          "agent_trace": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Agent Trace"
+          },
+          "loop_count": {
+            "type": "integer",
+            "title": "Loop Count"
+          },
+          "documents": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Documents"
+          },
+          "report_package": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ReportPackage"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "report",
+          "agent_trace",
+          "loop_count"
+        ],
+        "title": "ScanResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
