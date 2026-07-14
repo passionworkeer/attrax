@@ -19,7 +19,11 @@
     "test:pressure": "node tests/pressure/improved-load-test.js smoke",
     "test:pressure:load": "node tests/pressure/improved-load-test.js load",
     "test:rag": "node scripts/run-pytest.mjs",
-    "test:all": "npm run test && npm run test:e2e && npm run test:rag"
+    "test:all": "npm run test && npm run test:e2e && npm run test:rag",
+    "codegen:openapi": "node scripts/capture-openapi.mjs",
+    "codegen:rag-types": "openapi-typescript lib/rag-client/openapi.snapshot.json -o lib/rag-client/types.gen.ts",
+    "codegen": "npm run codegen:openapi && npm run codegen:rag-types",
+    "check:rag-contract": "npm run codegen:rag-types && git diff --exit-code lib/rag-client/types.gen.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.91.1",
@@ -61,6 +65,7 @@
     "eslint": "^9",
     "eslint-config-next": "^16.2.6",
     "jsdom": "^29.1.0",
+    "openapi-typescript": "^7.13.0",
     "playwright": "^1.59.1",
     "pm2": "^7.0.0",
     "tailwindcss": "^4",
