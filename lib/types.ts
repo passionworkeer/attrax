@@ -324,6 +324,24 @@ export interface ReportPackage {
     references?: string;
     referencesEn?: string;
     references_en?: string;
+    /**
+     * Optional free-form structured fields emitted by the RAG generator.
+     * The Pydantic side has no fixed schema for these (passed through with
+     * extra="allow"); when present, the frontend prefers them over
+     * buildProfitReportFromMarkdown's regex parsing.
+     *
+     * Recommended shape (consumed by `lib/pipeline/profit-report.ts`):
+     *   {
+     *     costComparison: {
+     *       barebone: CostSummary,
+     *       compliant: CostSummary,
+     *     },
+     *     breakeven: { units: number, currency: "USD" | "CNY" | ... },
+     *     pricing: { recommended: number, strategy: string },
+     *     risk: { bareboneExposure: number, compliantExposure: number },
+     *   }
+     */
+    structuredFields?: Record<string, unknown>;
   };
   profit_report?: ReportPackage["profitReport"] | string;
   roadmap?: GeneratedRoadmap;
