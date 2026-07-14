@@ -403,6 +403,10 @@ start-rag.bat                  # 仅启动 RAG 服务
 - `docs/RAG-ARCHITECTURE-v3.md` — RAG 技术架构详情（当前）
 - `docs/DOCUMENT-PIPELINE.md` — 语料库构建流程
 - `docs/PROJECT-STATUS.md` — 上线评估报告
+- `docs/API-CONTRACT.md` — RAG HTTP 端点契约（5 端点 + 错误码 + 鉴权 + 降级）
+- `docs/MOCK-REAL-MAPPING.md` — mock vs 真实 RAG 响应字段对照 + 漂移清单
+- `lib/rag-client/` — 前端 RAG 客户端层（`client.ts` / `errors.ts` / `response-schemas.ts` / `report-package-schema.ts`）
+- `lib/rag-client/openapi.snapshot.json` — 从运行中 RAG 服务抓取的 OpenAPI 规范（CI 会校验）
 - `docs/plans/ATTRAX_REMEDIATION_PLAN_2026-06-18.md` — 修复路线图
 
 ---
