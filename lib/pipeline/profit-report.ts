@@ -181,6 +181,84 @@ export function extractCostSummary(markdown: string): {
   return result;
 }
 
+/**
+ * Apply optional `structuredFields` from the RAG `profitReport` payload.
+ * When present, these override the values extracted by regex from the
+ * markdown. The RAG generator does not yet emit structuredFields
+ * (P0-15, see docs/MOCK-REAL-MAPPING.md §5), but the contract is in
+ * place so the frontend can adopt it without a breaking change.
+ *
+ * Expected shape (free-form, validated by `isStructuredProfitFields`):
+ *   {
+ *     costComparison: {
+ *       barebone: Partial<CostSummary>,
+ *       compliant: Partial<CostSummary>,
+ *     },
+ *     breakeven: { units: string | number, currency?: string },
+ *     pricing:   { strategy?: string, premiumPct?: string },
+ *     risk:      { bareboneExposure?: number, compliantExposure?: number },
+ *   }
+ */
+export interface StructuredProfitFields {
+  costComparison?: {
+    barebone?: Partial<CostSummary>;
+    compliant?: Partial<CostSummary>;
+  };
+  breakeven?: { units?: string | number; currency?: string };
+  pricing?: { strategy?: string; premiumPct?: string };
+  risk?: { bareboneExposure?: number; compliantExposure?: number };
+}
+
+function isRecord(v: unknown): v is Record<string, unknown> {
+  return typeof v === "object" && v !== null;
+}
+
+export function isStructuredProfitFields(v: unknown): v is StructuredProfitFields {
+  return isRecord(v);
+}
+
+function numFromStringOrNumber(v: unknown): number | undefined {
+  if (typeof v === "number" && Number.isFinite(v)) return v;
+  if (typeof v === "string") {
+    const n = Number(v.replace(/[, $¥€£]/g, ""));
+    return Number.isFinite(n) ? n : undefined;
+  }
+  return undefined;
+}
+
+export function applyStructuredProfitFields(
+  base: ProfitReportResult,
+  fields: StructuredProfitFields | undefined,
+): ProfitReportResult {
+  if (!fields) return base;
+
+  const cc = fields.costComparison;
+  const barebone = cc?.barebone ? { ...base.barebone, ...cc.barebone } : base.barebone;
+  const compliant = cc?.compliant ? { ...base.compliant, ...cc.compliant } : base.compliant;
+
+  const breakevenUnits =
+    fields.breakeven?.units !== undefined
+      ? String(fields.breakeven.units)
+      : base.breakevenUnits;
+  const pricingStrategy = fields.pricing?.strategy ?? base.pricingStrategy;
+  const premiumPct = fields.pricing?.premiumPct ?? base.premiumPct;
+  const bareboneRiskExposure =
+    fields.risk?.bareboneExposure ?? base.bareboneRiskExposure;
+  const compliantRiskExposure =
+    fields.risk?.compliantExposure ?? base.compliantRiskExposure;
+
+  return {
+    ...base,
+    barebone,
+    compliant,
+    breakevenUnits,
+    pricingStrategy,
+    premiumPct,
+    bareboneRiskExposure,
+    compliantRiskExposure,
+  };
+}
+
 export function buildProfitReportFromMarkdown(
   sessionId: string,
   markdown: string,
@@ -189,7 +267,7 @@ export function buildProfitReportFromMarkdown(
   overrides?: GeneratedReportPackage["profitReport"]
 ): ProfitReportResult {
   const extracted = extractCostSummary(markdown);
-  return {
+  const base: ProfitReportResult = {
     sessionId,
     productType,
     market,
@@ -209,4 +287,5 @@ export function buildProfitReportFromMarkdown(
     bareboneGpm: extracted.bareboneGpm,
     compliantGpm: extracted.compliantGpm,
   };
+  return applyStructuredProfitFields(base, overrides?.structuredFields);
 }
