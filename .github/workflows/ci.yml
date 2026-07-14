@@ -58,6 +58,13 @@ jobs:
         # Blocking gate. Catches type regressions before the unit suite runs.
         run: npm run typecheck
 
+      - name: RAG contract check
+        # Regenerate lib/rag-client/types.gen.ts from the pinned
+        # openapi.snapshot.json and fail the PR if the regenerated file
+        # differs from what's committed. Catches drift when the snapshot
+        # is updated without re-running `npm run codegen:rag-types`.
+        run: npm run codegen:rag-types && git diff --exit-code lib/rag-client/types.gen.ts
+
       - name: Unit tests
         run: npx vitest run --reporter=verbose
 
