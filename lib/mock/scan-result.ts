@@ -89,12 +89,48 @@ Use this product for internal sourcing and cost modeling in the short term, but 
 }
 
 function createMockReportPackage(): ReportPackage {
+  const now = nowIso();
   return {
+    productDossier: {
+      product: PRODUCT_NAME,
+      productName: PRODUCT_NAME,
+      productNameEn: PRODUCT_NAME_EN,
+      category: "electronics",
+      productCategory: "electronics",
+      markets: [...DEFAULT_MARKETS],
+      targetMarkets: [...DEFAULT_MARKETS],
+      query: "USB 智能加湿器 出口 EU+US 合规要求和认证",
+      summary: "USB 供电的小型家居加湿器，包含水箱、雾化片和塑料外壳。",
+      uploadedDocuments: ["产品规格书.pdf", "CE 证书草稿.docx"],
+      imageCount: 2,
+      documentCount: 2,
+      sourceCounts: {
+        retrievedChunks: 6,
+        userDocuments: 2,
+        visualItems: 1,
+      },
+    },
     complianceReport: buildComplianceReportZh(),
     complianceReportEn: buildComplianceReportEn(),
+    profitReport: {
+      // Pydantic requires `markdown`; the rest mirrors the lean scenario
+      // values from `buildProfitReport(sessionId, "lean")` so the contract
+      // test sees a fully-populated profit report instead of undefined.
+      markdown:
+        "## 方案 A：保守修复版：USB 智能加湿器 合规成本与利润分析\n\n" +
+        "### 一、成本对比\n\n| 成本项 | 裸奔模式 | 合规模式 |\n| --- | ---: | ---: |\n| BOM | $9.20 | $11.80 |\n| 总直接成本 | $15.95 | $19.63 |\n\n合规模式以 $29.99 上架，单台毛利 $7.46。",
+      keyConclusion: "保守修复版适合赶首批上架：单台成本增加约 $3.68，但风险敞口下降约 91%。",
+      premiumPct: "23%",
+      breakevenUnits: "545 台",
+      pricingStrategy: "以 $29.99 作为合规入门价，优先保住转化率和评价数量。",
+      riskNote: "裸奔模式在欧盟平台审核中容易被要求补证；小批量也可能触发仓储冻结。",
+      conclusions: "建议把证书、标签、EPR 和测试报告做成 SKU 级台账。",
+      references: "- EU GPSR (EU) 2023/988\n- LVD 2014/35/EU",
+    },
     decisionView: {
-      verdict: "REJECTED",
-      riskLevel: "HIGH",
+      // `verdict` and `riskLevel` are NOT part of the Pydantic schema; we put
+      // them on the first node's metadata so the mock stays contract-compliant
+      // while the UI can still display the demo verdict.
       summary:
         "AI 决策链路基于图片、法规检索和成本影响综合判断：当前资料不足以支持欧盟/美国正式上架，应先完成证据补齐和小批量复核。",
       summaryEn:
@@ -127,6 +163,7 @@ function createMockReportPackage(): ReportPackage {
           confidence: 0.91,
           reasoning: "图片中可见铭牌信息不完整，包装安全标识不足。",
           reasoningEn: "Images show incomplete nameplate information and insufficient packaging safety marks.",
+          metadata: { verdict: "REJECTED", riskLevel: "HIGH" },
         },
         {
           id: "retriever",
@@ -237,6 +274,70 @@ function createMockReportPackage(): ReportPackage {
           documentsEn: ["Listing copy", "Certificate archive", "EPR IDs"],
         },
       ],
+    },
+    evidenceBundles: {
+      visual: [
+        {
+          id: "visual:result",
+          layer: "visual",
+          source: "vision_result",
+          title: PRODUCT_NAME,
+          content: "USB 供电小型家居加湿器，含水箱、雾化片和塑料外壳。",
+          metadata: { product: PRODUCT_NAME, category: "electronics" },
+        },
+      ],
+      retrieval: [
+        {
+          id: "retrieval:1",
+          layer: "retrieval",
+          source: "EU GPSR (EU) 2023/988",
+          title: "Art. 9",
+          content: "产品页面、包装和说明书应提供制造商/责任人、产品识别、安全警示和可追溯信息。",
+          metadata: { market: "EU", product: "electronics", score: 0.86 },
+        },
+        {
+          id: "retrieval:2",
+          layer: "retrieval",
+          source: "LVD 2014/35/EU",
+          title: "Annex I",
+          content: "电气产品应证明结构、电源、温升、绝缘和用户可接触部件满足基本安全要求。",
+          metadata: { market: "EU", product: "electronics", score: 0.83 },
+        },
+        {
+          id: "user_doc:1",
+          layer: "retrieval",
+          source: "user_document",
+          title: "产品规格书.pdf",
+          content: "产品参数与外观信息（占位）。",
+          metadata: { mime_type: "application/pdf" },
+        },
+      ],
+      generation: [
+        {
+          id: "generation:compliance_report",
+          layer: "generation",
+          source: "report_generator",
+          title: "Compliance report draft",
+          content: "占位：完整正文见 complianceReport 顶层字段。",
+          metadata: { characterCount: 0 },
+        },
+        {
+          id: "audit:trace:1",
+          layer: "audit",
+          source: "vision",
+          title: "MOCK",
+          content: "图片中可见铭牌信息不完整，包装安全标识不足。",
+          metadata: { node: "vision", status: "MOCK", duration_ms: 0, score: 0.7 },
+        },
+      ],
+    },
+    auditMetadata: {
+      schemaVersion: "report-package/v1",
+      generatedAt: now,
+      validationStatus: "normalized",
+      validationErrors: [],
+      provider: "mock",
+      traceNodeCount: 4,
     },
   };
 }
