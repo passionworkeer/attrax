@@ -447,9 +447,11 @@ def health(request: Request):
     ``_is_privileged`` so an unauthenticated internet caller cannot probe
     the deployment mode or embedding provider.
     """
-    faiss_ok = _retriever is not None and _retriever.faiss_retriever is not None
-    status = "ok" if faiss_ok else "degraded"
-    body: dict = {"status": status}
+    # Liveness answers only whether this process can serve HTTP. Dependency
+    # state belongs to /ready; coupling it here made a healthy process look
+    # dead whenever the optional FAISS index was not mounted (for example in
+    # BM25-only or test deployments).
+    body: dict = {"status": "ok"}
     if _is_privileged(request):
         body.update({
             "version": app.version,

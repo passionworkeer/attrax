@@ -277,5 +277,32 @@
     "risk": "chemical",
     "regulatory_types": ["chemical", "documentation"],
     "expected_source_ids": ["uk-reach-compliance-guidance", "uk-reach-enforcement-regulations-2008-original"]
+  },
+  {
+    "id": "cn-electronics-rohs",
+    "query": "中国电子电气产品中有害物质限制使用和标识需要满足哪些要求",
+    "market": "CN",
+    "category": "electronics",
+    "risk": "chemical",
+    "regulatory_types": ["chemical", "labelling", "conformity"],
+    "expected_source_ids": ["cn-rohs-hazardous-substances-electrical-electronic-products"]
+  },
+  {
+    "id": "ca-toy-safety",
+    "query": "加拿大儿童玩具进入市场前需要满足哪些机械和化学安全要求",
+    "market": "CA",
+    "category": "toys",
+    "risk": "product_safety",
+    "regulatory_types": ["product_safety", "chemical", "mechanical"],
+    "expected_source_ids": ["ca-toys-regulations-sor-2011-17"]
+  },
+  {
+    "id": "nz-childrens-nightwear-flammability",
+    "query": "新西兰儿童睡衣销售时需要遵守哪些阻燃和安全标签标准",
+    "market": "NZ",
+    "category": "children_products",
+    "risk": "flammability",
+    "regulatory_types": ["flammability", "product_safety", "labelling"],
+    "expected_source_ids": ["nz-product-safety-childrens-nightwear-standard"]
   }
 ]

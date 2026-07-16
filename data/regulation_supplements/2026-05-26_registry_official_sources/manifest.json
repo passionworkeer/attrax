@@ -925,8 +925,8 @@
       "file_stats": [
         {
           "file": "raw/uk/UK_packaging_epr_who_is_affected.html",
-          "bytes": 147204,
-          "sha256": "23ca74055458fc0a2a4f104d0c54cdc27895d475c81c6cd84d1a7f7a96e2af89"
+          "bytes": 147178,
+          "sha256": "ce044edc5fa6e86457523b0778b0d703841de0c936bdf99b6301cedfb53c8b2e"
         }
       ],
       "source_version": {
@@ -964,8 +964,8 @@
       "file_stats": [
         {
           "file": "raw/uk/UK_reach_compliance_guidance.html",
-          "bytes": 87719,
-          "sha256": "7fd1d182f610c198e3a9ee05e00eeb8a8244534a7502ec2fa82dd5f023ed96d9"
+          "bytes": 87716,
+          "sha256": "173ae8a89ab6d9eb4c119f4462e05b02d762d19dd847acc0c86427ac4ba31731"
         }
       ],
       "source_version": {

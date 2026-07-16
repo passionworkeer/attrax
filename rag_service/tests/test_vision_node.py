@@ -644,7 +644,7 @@ class TestVisionAnalysisNode:
         assert result["agent_trace"][-1]["status"] == "error"
 
     @patch("rag_service.orchestrator.nodes.vision._get_analyzer")
-    def test_agent_trace_accumulates(self, mock_get_analyzer):
+    def test_agent_trace_returns_only_new_entry(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = "test-key"
         mock_analyzer.analyze_images.return_value = {
@@ -663,9 +663,10 @@ class TestVisionAnalysisNode:
             "agent_trace": [{"node": "other", "status": "done"}],
         }
         result = vision_analysis_node(state)
-        assert len(result["agent_trace"]) == 2
-        assert result["agent_trace"][0]["node"] == "other"
-        assert result["agent_trace"][1]["node"] == "vision"
+        # LangGraph's reducer owns accumulation. A node must return only its
+        # new entry or Send() fan-out duplicates the existing trace.
+        assert len(result["agent_trace"]) == 1
+        assert result["agent_trace"][0]["node"] == "vision"
 
 
 # ─────────────────────────────────────────────

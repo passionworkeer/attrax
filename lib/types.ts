@@ -409,6 +409,7 @@ export interface GeneratedDecisionNode {
   reasoning?: string;
   reasoningEn?: string;
   reasoning_en?: string;
+  metadata?: Record<string, unknown>;
 }
 
 export interface CostSummary {

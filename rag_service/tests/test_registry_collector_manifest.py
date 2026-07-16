@@ -1,3 +1,4 @@
+import hashlib
 import json
 from pathlib import Path
 
@@ -38,9 +39,24 @@ def test_registry_supplement_references_existing_files_with_hashes():
             referenced_files.add(rel_path)
             raw_path = SUPPLEMENT_DIR / rel_path
             assert raw_path.exists(), raw_path
-            assert raw_path.stat().st_size == stat["bytes"]
+            raw = raw_path.read_bytes()
+            # Git may materialize XML/RDF sources with CRLF on Windows even
+            # though the manifest was produced from the canonical LF bytes.
+            # Accept that one reversible transport conversion, but continue
+            # to reject every other byte or digest change.
+            canonical = raw.replace(b"\r\n", b"\n")
+            candidates = (raw, canonical)
+            assert stat["bytes"] in {len(value) for value in candidates}, (
+                raw_path,
+                stat["bytes"],
+                len(raw),
+                len(canonical),
+            )
             assert stat["bytes"] > 128
             assert len(stat["sha256"]) == 64
+            assert stat["sha256"] in {
+                hashlib.sha256(value).hexdigest() for value in candidates
+            }, raw_path
 
     assert len(referenced_files) == manifest["summary"]["raw_files"]
 
