@@ -1,0 +1,237 @@
+"""Stable v1 API consumed by any replacement frontend."""
+
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+from typing import Annotated, Any
+
+from fastapi import APIRouter, File, Form, Request, UploadFile
+from fastapi.responses import Response
+
+from rag_service.api.dependencies import bearer_token, get_scan_service
+from rag_service.api.models import ApiEnvelope, CreatedScanData, failure, success
+from rag_service.application.scans import (
+    ScanNotFound,
+    ScanSubmission,
+    ScanUnauthorized,
+    SubmittedUpload,
+)
+
+
+router = APIRouter(prefix="/api/v1", tags=["public-v1"])
+
+MAX_IMAGE_FILES = 8
+MAX_DOCUMENT_FILES = 5
+MAX_IMAGE_SIZE = 10 * 1024 * 1024
+MAX_DOCUMENT_SIZE = 15 * 1024 * 1024
+MAX_TEXT_SIZE = 1 * 1024 * 1024
+
+_IMAGE_TYPES = {
+    "image/jpeg": ({".jpg", ".jpeg"}, (b"\xff\xd8\xff",)),
+    "image/png": ({".png"}, (b"\x89PNG",)),
+    "image/webp": ({".webp"}, (b"RIFF",)),
+}
+_DOCUMENT_TYPES = {
+    "application/pdf": {".pdf"},
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document": {".docx"},
+    "application/octet-stream": {".docx"},
+    "text/plain": {".txt"},
+    "text/html": {".html", ".htm"},
+}
+_SESSION_ID = re.compile(r"^scan_[A-Za-z0-9_-]{1,64}$")
+
+
+def _parse_markets(raw: str) -> list[str]:
+    try:
+        parsed = json.loads(raw)
+        if isinstance(parsed, list):
+            values = [str(item).strip().upper() for item in parsed]
+        else:
+            values = []
+    except (TypeError, ValueError):
+        values = [item.strip().upper() for item in raw.split(",")]
+    return [value for value in values if re.fullmatch(r"[A-Z0-9_-]{2,12}", value)]
+
+
+def _valid_signature(content_type: str, content: bytes) -> bool:
+    if content_type == "image/webp":
+        return content.startswith(b"RIFF") and content[8:12] == b"WEBP"
+    if content_type == "application/pdf":
+        return content.startswith(b"%PDF")
+    if content_type in {
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/octet-stream",
+    }:
+        return content.startswith((b"PK\x03\x04", b"PK\x05\x06"))
+    if content_type in {"text/plain", "text/html"}:
+        return True
+    signatures = _IMAGE_TYPES.get(content_type, (set(), ()))[1]
+    return any(content.startswith(signature) for signature in signatures)
+
+
+async def _read_uploads(
+    request: Request,
+    images: list[UploadFile],
+    documents: list[UploadFile],
+) -> tuple[list[SubmittedUpload] | None, Response | None]:
+    if not images:
+        return None, failure(request, "IMAGE_REQUIRED", "At least one image is required", 400)
+    if len(images) > MAX_IMAGE_FILES:
+        return None, failure(request, "TOO_MANY_IMAGES", "Too many images", 400)
+    if len(documents) > MAX_DOCUMENT_FILES:
+        return None, failure(request, "TOO_MANY_DOCUMENTS", "Too many documents", 400)
+
+    submitted: list[SubmittedUpload] = []
+    for kind, files, allowed, size_limit in (
+        ("image", images, _IMAGE_TYPES, MAX_IMAGE_SIZE),
+        ("document", documents, _DOCUMENT_TYPES, MAX_DOCUMENT_SIZE),
+    ):
+        for upload in files:
+            name = upload.filename or "upload"
+            content_type = (upload.content_type or "").lower()
+            suffix = Path(name).suffix.lower()
+            extensions = (
+                allowed.get(content_type, (set(), ()))[0]
+                if kind == "image"
+                else allowed.get(content_type, set())
+            )
+            if content_type not in allowed or suffix not in extensions:
+                return None, failure(request, "INVALID_FILE_TYPE", "Unsupported file type", 400)
+            content = await upload.read()
+            effective_limit = MAX_TEXT_SIZE if content_type in {"text/plain", "text/html"} else size_limit
+            if len(content) > effective_limit:
+                return None, failure(request, "FILE_TOO_LARGE", "Uploaded file is too large", 413)
+            if not _valid_signature(content_type, content):
+                return None, failure(request, "INVALID_FILE_SIGNATURE", "File content does not match its type", 400)
+            submitted.append(
+                SubmittedUpload(
+                    kind=kind,
+                    name=name,
+                    content_type=content_type,
+                    content=content,
+                )
+            )
+    return submitted, None
+
+
+def _session_and_token(request: Request, session_id: str):
+    if not _SESSION_ID.fullmatch(session_id):
+        return None, None, failure(request, "NOT_FOUND", "Scan session not found", 404)
+    token = bearer_token(request)
+    if token is None:
+        return None, None, failure(request, "UNAUTHORIZED", "Bearer token is required", 401)
+    return get_scan_service(request), token, None
+
+
+def _read_session(request: Request, session_id: str):
+    service, token, denied = _session_and_token(request, session_id)
+    if denied:
+        return None, None, denied
+    try:
+        return service, service.get_scan(session_id, token), None
+    except ScanUnauthorized:
+        return None, None, failure(request, "UNAUTHORIZED", "Invalid scan access token", 401)
+    except ScanNotFound:
+        return None, None, failure(request, "NOT_FOUND", "Scan session not found", 404)
+
+
+@router.post("/scans", response_model=ApiEnvelope[CreatedScanData], status_code=202)
+async def create_scan(
+    request: Request,
+    query: Annotated[str, Form()] = "",
+    product: Annotated[str, Form()] = "",
+    category: Annotated[str, Form()] = "electronics",
+    markets: Annotated[str, Form()] = '["EU"]',
+    images: Annotated[list[UploadFile], File()] = [],
+    documents: Annotated[list[UploadFile], File()] = [],
+):
+    if not query.strip() or len(query) > 2_000 or len(product) > 500 or len(category) > 100:
+        return failure(request, "INVALID_REQUEST", "Invalid scan fields", 400)
+    parsed_markets = _parse_markets(markets)
+    if not parsed_markets:
+        return failure(request, "INVALID_REQUEST", "At least one valid market is required", 400)
+    uploads, upload_error = await _read_uploads(request, images, documents)
+    if upload_error:
+        return upload_error
+    try:
+        created = await get_scan_service(request).create_scan(
+            ScanSubmission(
+                query=query.strip(),
+                product=product.strip(),
+                category=category.strip(),
+                markets=parsed_markets,
+                uploads=uploads or [],
+            )
+        )
+    except Exception:
+        return failure(request, "SCAN_QUEUE_UNAVAILABLE", "Scan queue is unavailable", 503)
+    return success(
+        request,
+        {
+            "sessionId": created.session_id,
+            "accessToken": created.access_token,
+            "status": created.status,
+            "pollUrl": created.poll_url,
+        },
+        202,
+    )
+
+
+@router.get("/scans/{session_id}", response_model=ApiEnvelope[dict[str, Any]])
+def get_scan(request: Request, session_id: str):
+    _, session, denied = _read_session(request, session_id)
+    return denied or success(request, session)
+
+
+@router.get("/scans/{session_id}/roadmap", response_model=ApiEnvelope[dict[str, Any]])
+def get_roadmap(request: Request, session_id: str):
+    _, session, denied = _read_session(request, session_id)
+    if denied:
+        return denied
+    if session["status"] == "processing":
+        return failure(request, "NOT_READY", "Scan result is not ready", 409)
+    result = session.get("result") or {}
+    package = result.get("reportPackage") or {}
+    roadmap = package.get("roadmap")
+    if not isinstance(roadmap, dict):
+        return failure(request, "NOT_FOUND", "Roadmap not available", 404)
+    return success(request, roadmap)
+
+
+@router.get("/scans/{session_id}/trace", response_model=ApiEnvelope[list[dict[str, Any]]])
+def get_trace(request: Request, session_id: str):
+    _, session, denied = _read_session(request, session_id)
+    if denied:
+        return denied
+    if session["status"] == "processing":
+        return failure(request, "NOT_READY", "Scan result is not ready", 409)
+    trace = (session.get("result") or {}).get("agentTrace") or []
+    return success(request, trace)
+
+
+@router.delete("/scans/{session_id}", status_code=204)
+def delete_scan(request: Request, session_id: str):
+    service, token, denied = _session_and_token(request, session_id)
+    if denied:
+        return denied
+    try:
+        service.delete_scan(session_id, token)
+    except ScanUnauthorized:
+        return failure(request, "UNAUTHORIZED", "Invalid scan access token", 401)
+    except ScanNotFound:
+        return failure(request, "NOT_FOUND", "Scan session not found", 404)
+    return Response(status_code=204)
+
+
+@router.get("/health", response_model=ApiEnvelope[dict[str, Any]])
+def health(request: Request):
+    return success(request, {"status": "ok", "version": request.app.version})
+
+
+@router.get("/ready", response_model=ApiEnvelope[dict[str, Any]])
+def ready(request: Request):
+    provider = getattr(request.app.state, "readiness_provider", None)
+    data = provider() if callable(provider) else {"ready": hasattr(request.app.state, "scan_service")}
+    return success(request, data, 200 if data.get("ready") else 503)
