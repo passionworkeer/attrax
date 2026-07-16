@@ -24,18 +24,11 @@ _PROFIT_TIMEOUT_SECS = 60
 _MAX_BODY_SIZE_BYTES = 50 * 1024 * 1024
 _RATE_LIMIT_WINDOW_SECS = 60
 _RATE_LIMIT_MAX_REQUESTS = 30
-_ALLOWED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        "RAG_ALLOWED_ORIGINS",
-        "http://localhost:3000,http://127.0.0.1:3000",
-    ).split(",")
-    if origin.strip()
-]
 _MAX_IMAGE_SIZE_BYTES = 10 * 1024 * 1024
 _MAX_PDF_SIZE_BYTES = 15 * 1024 * 1024
 _ALLOWED_IMAGE_TYPES = {"image/jpeg", "image/png", "image/webp"}
-_RATE_LIMITED_PATHS = {"/scan", "/scan-multipart", "/profit-report"}
+_INTERNAL_WRITE_PATHS = {"/scan", "/scan-multipart", "/profit-report"}
+_RATE_LIMITED_PATHS = _INTERNAL_WRITE_PATHS | {"/api/v1/scans"}
 _rate_limit_hits: dict[str, deque] = {}
 _rate_limit_lock = asyncio.Lock()
 
@@ -60,6 +53,9 @@ from rag_service.retrieval.bm25_retriever import BM25Retriever
 from rag_service.generate.report_generator import ReportGenerator
 from rag_service.verify.citation_verifier import CitationVerifier
 from rag_service.orchestrator.nodes import vision as vision_node
+from rag_service.api.v1 import router as public_v1_router
+from rag_service.application.scans import ScanService
+from rag_service.infrastructure.file_backend import FileBackend
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -166,6 +162,16 @@ async def lifespan(app: FastAPI):
     else:
         logger.info("Query pre-warming skipped: no embedder available")
 
+    # Compose the frontend-independent application service only after the RAG
+    # dependencies are initialized. The service persists jobs before spawning
+    # them, so resume_pending safely recovers work after a process restart.
+    app.state.scan_service = ScanService(
+        FileBackend(settings.runtime_data_dir),
+        runner=_run_public_scan_payload,
+    )
+    app.state.readiness_provider = _readiness_snapshot
+    app.state.scan_service.resume_pending()
+
     logger.info("rag-service ready")
     yield
     logger.info("rag-service shutting down")
@@ -175,11 +181,12 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="火鹰合规 RAG Service", version="0.3.0", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_ALLOWED_ORIGINS,
+    allow_origins=settings.allowed_origins,
     allow_credentials=False,
     allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type"],
+    allow_headers=["Content-Type", "Authorization", "X-Request-Id"],
 )
+app.include_router(public_v1_router)
 
 
 def _client_ip(request: Request) -> str:
@@ -260,7 +267,7 @@ async def protect_requests(request: Request, call_next):
     # are not in _RATE_LIMITED_PATHS and are therefore never write-gated;
     # their detailed fields are filtered by _is_privileged instead.
     secret = settings.rag_internal_secret
-    if secret and request.url.path in _RATE_LIMITED_PATHS:
+    if secret and request.url.path in _INTERNAL_WRITE_PATHS:
         provided = request.headers.get("x-internal-secret", "")
         # Use hmac.compare_digest to avoid timing-attack leakage.
         import hmac as _hmac
@@ -481,26 +488,9 @@ def ready(request: Request):
     absence therefore does NOT block readiness; it is reported as a warning
     to privileged callers only.
     """
-    modelscope_present = bool(settings.modelscope_api_key.strip())
-    has_modelscope = settings.demo_mode or modelscope_present
-
-    # Hard gates: FAISS index and LLM key are required for any useful output.
-    checks = {
-        "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
-        "bm25": _retriever is not None,
-        "mimotalk_api_key": settings.demo_mode or bool(settings.mimotalk_api_key.strip()),
-        # Informational only — not part of readiness gate (Ollama fallback exists).
-        "modelscope_api_key": has_modelscope,
-        "config_loaded": True,
-    }
-    gate_keys = ("faiss", "bm25", "mimotalk_api_key", "config_loaded")
-    all_ok = all(checks[k] for k in gate_keys)
-
-    body: dict = {
-        "ready": all_ok,
-        "checks": checks,
-        "version": app.version,
-    }
+    body = _readiness_snapshot()
+    all_ok = body["ready"]
+    has_modelscope = body["checks"]["modelscope_api_key"]
     if _is_privileged(request):
         warnings = []
         embedding_status = "ok"
@@ -518,6 +508,25 @@ def ready(request: Request):
             "warnings": warnings,
         })
     return JSONResponse(body, status_code=200 if all_ok else 503)
+
+
+def _readiness_snapshot() -> dict:
+    """Return non-sensitive readiness fields shared by legacy and v1 APIs."""
+    has_modelscope = settings.demo_mode or bool(settings.modelscope_api_key.strip())
+    checks = {
+        "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
+        "bm25": _retriever is not None,
+        "mimotalk_api_key": settings.demo_mode or bool(settings.mimotalk_api_key.strip()),
+        "modelscope_api_key": has_modelscope,
+        "config_loaded": True,
+        "scan_service": hasattr(app.state, "scan_service"),
+    }
+    gate_keys = ("faiss", "bm25", "mimotalk_api_key", "config_loaded", "scan_service")
+    return {
+        "ready": all(checks[key] for key in gate_keys),
+        "checks": checks,
+        "version": app.version,
+    }
 
 
 def _parse_markets(value: str) -> list[str]:
@@ -694,6 +703,36 @@ async def _run_scan_request(req: ScanRequest) -> ScanResponse:
         loop_count=result["loop_count"],
         documents=display_docs[:DISPLAY_DOC_CAP],
         report_package=result.get("report_package") or None,
+    )
+
+
+async def _run_public_scan_payload(payload: dict) -> ScanResponse:
+    """Adapt stored application payloads to the existing RAG request model."""
+    images = [
+        {
+            "buffer": base64.b64encode(item["buffer"]).decode("ascii"),
+            "mime_type": item["mimeType"],
+            "name": item["name"],
+        }
+        for item in payload.get("images", [])
+    ]
+    pdfs = [
+        {
+            "buffer": base64.b64encode(item["buffer"]).decode("ascii"),
+            "name": item["name"],
+        }
+        for item in payload.get("pdfs", [])
+    ]
+    return await _run_scan_request(
+        ScanRequest(
+            query=payload.get("query", ""),
+            product=payload.get("product", ""),
+            category=payload.get("category", ""),
+            markets=payload.get("markets", ["EU"]),
+            images=images,
+            documents=payload.get("documents", []),
+            pdfs=pdfs,
+        )
     )
 
 

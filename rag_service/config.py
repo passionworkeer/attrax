@@ -16,6 +16,11 @@ def _parse_trusted_proxies(raw: str) -> list[str]:
     return [p.strip().lower() for p in raw.split(",") if p.strip()]
 
 
+def _parse_origins(raw: str) -> list[str]:
+    """Parse an explicit comma-separated browser origin allowlist."""
+    return [origin.strip().rstrip("/") for origin in raw.split(",") if origin.strip()]
+
+
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
@@ -28,6 +33,22 @@ class Settings(BaseSettings):
     mimotalk_model: str = "mimo-v2.5"
 
     demo_mode: bool = False
+
+    # Persistent state owned by the standalone API (sessions/jobs/uploads).
+    runtime_data_dir: Path = Path(
+        _os.environ.get(
+            "ATTRAX_RUNTIME_DIR",
+            str(Path(__file__).parent.parent / "data" / "backend"),
+        )
+    )
+
+    # Browser clients call FastAPI directly after frontend replacement.
+    allowed_origins: list[str] = _parse_origins(
+        _os.environ.get(
+            "RAG_ALLOWED_ORIGINS",
+            "http://localhost:3000,http://127.0.0.1:3000",
+        )
+    )
 
     # Trusted reverse-proxy IPs allowed to set X-Forwarded-For.
     # Only requests whose socket peer is in this list will have XFF honored
