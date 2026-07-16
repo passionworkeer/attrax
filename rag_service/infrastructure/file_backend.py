@@ -117,6 +117,14 @@ class FileBackend:
                 uploads.append(StoredUpload.model_validate_json(path.read_text(encoding="utf-8")))
         return uploads
 
+    def get_upload(self, session_id: str, upload_id: str) -> StoredUpload | None:
+        safe_upload = self._id(upload_id)
+        path = self.uploads_dir / self._id(session_id) / f"{safe_upload}.json"
+        with self._lock:
+            if not path.exists():
+                return None
+            return StoredUpload.model_validate_json(path.read_text(encoding="utf-8"))
+
     def save_job(self, job: ScanJob) -> None:
         with self._lock:
             self._write_json_atomic(self._job_path(job.job_id), job.model_dump(mode="json"))
