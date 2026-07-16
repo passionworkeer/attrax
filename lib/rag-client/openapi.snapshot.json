@@ -5,10 +5,271 @@
     "version": "0.3.0"
   },
   "paths": {
+    "/api/v1/scans": {
+      "post": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Create Scan",
+        "operationId": "create_scan_api_v1_scans_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_create_scan_api_v1_scans_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_CreatedScanData_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scans/{session_id}": {
+      "get": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Get Scan",
+        "operationId": "get_scan_api_v1_scans__session_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_dict_str__Any__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Delete Scan",
+        "operationId": "delete_scan_api_v1_scans__session_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scans/{session_id}/roadmap": {
+      "get": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Get Roadmap",
+        "operationId": "get_roadmap_api_v1_scans__session_id__roadmap_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_dict_str__Any__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scans/{session_id}/trace": {
+      "get": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Get Trace",
+        "operationId": "get_trace_api_v1_scans__session_id__trace_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_list_dict_str__Any___"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/health": {
+      "get": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Health",
+        "operationId": "health_api_v1_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_dict_str__Any__"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/ready": {
+      "get": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Ready",
+        "operationId": "ready_api_v1_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_dict_str__Any__"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/health": {
       "get": {
         "summary": "Health",
-        "description": "Liveness probe — returns basic status. Used by /api/health on the frontend.",
+        "description": "Liveness probe — minimal public surface (status only).\n\nFrontend ``/api/health`` consumes only ``status`` (see\n``app/api/health/route.ts``). Detailed fields (demo_mode,\nembedding_provider, dense_dim_mismatch_count, version) are gated behind\n``_is_privileged`` so an unauthenticated internet caller cannot probe\nthe deployment mode or embedding provider.",
         "operationId": "health_health_get",
         "responses": {
           "200": {
@@ -25,7 +286,7 @@
     "/ready": {
       "get": {
         "summary": "Ready",
-        "description": "Readiness probe — checks all critical dependencies.\nUsed by Kubernetes / load-balancer to decide whether to route traffic here.",
+        "description": "Readiness probe — checks all critical dependencies.\nUsed by Kubernetes / load-balancer to decide whether to route traffic here.\n\nP1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s\nprobes work without credentials (the test suite also asserts these).\nSensitive diagnostics (demo_mode, embedding_provider, embedding_status,\ndense_dim_mismatch_count, warnings) are gated behind ``_is_privileged``.\n\nEmbedding has a graceful-degradation path: if ModelScope is unavailable,\nthe service falls back to Ollama, then to BM25-only. ModelScope key\nabsence therefore does NOT block readiness; it is reported as a warning\nto privileged callers only.",
         "operationId": "ready_ready_get",
         "responses": {
           "200": {
@@ -156,6 +417,158 @@
   },
   "components": {
     "schemas": {
+      "ApiEnvelope_CreatedScanData_": {
+        "properties": {
+          "data": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CreatedScanData"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApiError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "error",
+          "meta"
+        ],
+        "title": "ApiEnvelope[CreatedScanData]"
+      },
+      "ApiEnvelope_dict_str__Any__": {
+        "properties": {
+          "data": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApiError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "error",
+          "meta"
+        ],
+        "title": "ApiEnvelope[dict[str, Any]]"
+      },
+      "ApiEnvelope_list_dict_str__Any___": {
+        "properties": {
+          "data": {
+            "anyOf": [
+              {
+                "items": {
+                  "additionalProperties": true,
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Data"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApiError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "error",
+          "meta"
+        ],
+        "title": "ApiEnvelope[list[dict[str, Any]]]"
+      },
+      "ApiError": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "details": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ApiError"
+      },
+      "ApiMeta": {
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "title": "Requestid"
+          }
+        },
+        "type": "object",
+        "required": [
+          "requestId"
+        ],
+        "title": "ApiMeta"
+      },
       "AuditMetadata": {
         "properties": {
           "schemaVersion": {
@@ -201,6 +614,50 @@
           "generatedAt"
         ],
         "title": "AuditMetadata"
+      },
+      "Body_create_scan_api_v1_scans_post": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "default": ""
+          },
+          "product": {
+            "type": "string",
+            "title": "Product",
+            "default": ""
+          },
+          "category": {
+            "type": "string",
+            "title": "Category",
+            "default": "electronics"
+          },
+          "markets": {
+            "type": "string",
+            "title": "Markets",
+            "default": "[\"EU\"]"
+          },
+          "images": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Images",
+            "default": []
+          },
+          "documents": {
+            "items": {
+              "type": "string",
+              "contentMediaType": "application/octet-stream"
+            },
+            "type": "array",
+            "title": "Documents",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Body_create_scan_api_v1_scans_post"
       },
       "Body_scan_multipart_scan_multipart_post": {
         "properties": {
@@ -250,6 +707,34 @@
         },
         "type": "object",
         "title": "Body_scan_multipart_scan_multipart_post"
+      },
+      "CreatedScanData": {
+        "properties": {
+          "sessionId": {
+            "type": "string",
+            "title": "Sessionid"
+          },
+          "accessToken": {
+            "type": "string",
+            "title": "Accesstoken"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "pollUrl": {
+            "type": "string",
+            "title": "Pollurl"
+          }
+        },
+        "type": "object",
+        "required": [
+          "sessionId",
+          "accessToken",
+          "status",
+          "pollUrl"
+        ],
+        "title": "CreatedScanData"
       },
       "DecisionNode": {
         "properties": {
@@ -891,6 +1376,12 @@
           "type"
         ],
         "title": "ValidationError"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }

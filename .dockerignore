@@ -21,6 +21,7 @@ next-env.d.ts
 public/uploads
 data/sessions
 data/scan-queue
+data/backend
 data/faiss
 data/faiss_versions
 data/analysis

@@ -1,4 +1,4 @@
-import { mkdtempSync, mkdirSync, writeFileSync } from 'node:fs'
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
@@ -24,6 +24,7 @@ describe('deployment preflight', () => {
 MIMOTALK_API_KEY=mimo-key
 MODELSCOPE_API_KEY=modelscope-key
 DEMO_MODE=false
+RAG_ALLOWED_ORIGINS=https://frontend.example.com
 `)
 
     const result = validateDeployment(root)
@@ -38,6 +39,7 @@ DEMO_MODE=false
 MIMOTALK_API_KEY=
 MODELSCOPE_API_KEY=
 DEMO_MODE=false
+RAG_ALLOWED_ORIGINS=https://frontend.example.com
 `)
 
     const result = validateDeployment(root)
@@ -53,6 +55,7 @@ DEMO_MODE=false
 MIMOTALK_API_KEY=your_mimotalk_api_key
 MODELSCOPE_API_KEY=your_modelscope_api_key
 DEMO_MODE=false
+RAG_ALLOWED_ORIGINS=https://frontend.example.com
 `)
 
     const result = validateDeployment(root)
@@ -60,5 +63,28 @@ DEMO_MODE=false
     expect(result.ok).toBe(false)
     expect(result.errors).toContain('MIMOTALK_API_KEY still contains the production example placeholder.')
     expect(result.errors).toContain('MODELSCOPE_API_KEY still contains the production example placeholder.')
+  })
+
+  it('requires an explicit browser origin for a production standalone backend', async () => {
+    const { validateDeployment } = await import('../../scripts/preflight-deploy.mjs')
+    const root = makeDeployRoot(`
+MIMOTALK_API_KEY=mimo-key
+MODELSCOPE_API_KEY=modelscope-key
+DEMO_MODE=false
+`)
+
+    const result = validateDeployment(root)
+
+    expect(result.ok).toBe(false)
+    expect(result.errors).toContain('RAG_ALLOWED_ORIGINS is required for direct browser access in production.')
+  })
+
+  it('keeps standalone backend runtime state on a writable Docker volume', () => {
+    const compose = readFileSync(join(process.cwd(), 'docker-compose.yml'), 'utf8')
+    const dockerfile = readFileSync(join(process.cwd(), 'rag_service', 'Dockerfile'), 'utf8')
+
+    expect(compose).toContain('ATTRAX_RUNTIME_DIR: /app/data/backend')
+    expect(compose).toContain('./data/backend:/app/data/backend')
+    expect(dockerfile).toContain('/app/data/backend')
   })
 })

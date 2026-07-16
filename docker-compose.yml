@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   web:
     build:
@@ -47,6 +45,7 @@ services:
       MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
       RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
       FAISS_INDEX_DIR: /app/data/faiss
+      ATTRAX_RUNTIME_DIR: /app/data/backend
       NO_PROXY: "*"
       # PRODUCTION: set RAG_INTERNAL_SECRET to a strong random value, and
       # set the same value on the `web` service (RAG_INTERNAL_SECRET env).
@@ -56,6 +55,7 @@ services:
     volumes:
       - ./data/faiss:/app/data/faiss:ro
       - ./data/corpus/processed:/app/data/corpus/processed:ro
+      - ./data/backend:/app/data/backend
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/ready"]

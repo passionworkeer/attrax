@@ -140,6 +140,11 @@ def test_v1_health_ready_and_openapi_are_frontend_consumable(tmp_path):
         assert ready.json()["data"]["ready"] is True
         assert "/api/v1/scans" in schema["paths"]
         assert "/api/v1/scans/{session_id}" in schema["paths"]
+        assert "HTTPBearer" in schema["components"]["securitySchemes"]
+        assert schema["paths"]["/api/v1/scans/{session_id}"]["get"]["security"] == [
+            {"HTTPBearer": []}
+        ]
+        assert "security" not in schema["paths"]["/api/v1/scans"]["post"]
 
 
 def test_production_app_mounts_the_public_v1_contract():

@@ -1,8 +1,12 @@
 """Small public API dependencies without infrastructure knowledge."""
 
 from fastapi import Request
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
 from rag_service.application.scans import ScanService
+
+
+bearer_scheme = HTTPBearer(auto_error=False)
 
 
 def get_scan_service(request: Request) -> ScanService:
@@ -12,9 +16,8 @@ def get_scan_service(request: Request) -> ScanService:
     return service
 
 
-def bearer_token(request: Request) -> str | None:
-    authorization = request.headers.get("authorization", "")
-    scheme, separator, token = authorization.partition(" ")
-    if not separator or scheme.lower() != "bearer" or not token.strip():
+def bearer_token(credentials: HTTPAuthorizationCredentials | None) -> str | None:
+    if credentials is None or credentials.scheme.lower() != "bearer":
         return None
-    return token.strip()
+    token = credentials.credentials.strip()
+    return token or None
