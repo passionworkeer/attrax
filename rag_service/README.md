@@ -1,5 +1,7 @@
 # 火鹰合规 RAG Service
 
+新前端不再需要 Next.js BFF。公开 `/api/v1`、Bearer 轮询流程、错误码和生成类型方式见 [`docs/FRONTEND-BACKEND-INTEGRATION.md`](../docs/FRONTEND-BACKEND-INTEGRATION.md)。旧 `/scan` 与 `/scan-multipart` 仅为迁移兼容接口。
+
 Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
 
 ## 架构

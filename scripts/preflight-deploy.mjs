@@ -76,6 +76,11 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
     } else if (isExamplePlaceholder(env.MODELSCOPE_API_KEY)) {
       errors.push("MODELSCOPE_API_KEY still contains the production example placeholder.");
     }
+    if (!hasValue(env.RAG_ALLOWED_ORIGINS)) {
+      errors.push("RAG_ALLOWED_ORIGINS is required for direct browser access in production.");
+    } else if (env.RAG_ALLOWED_ORIGINS.split(",").some((origin) => origin.trim() === "*")) {
+      errors.push("RAG_ALLOWED_ORIGINS must not contain * in production.");
+    }
   }
 
   for (const relativePath of REQUIRED_DATA_PATHS) {

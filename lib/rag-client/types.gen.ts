@@ -4,6 +4,109 @@
  */
 
 export interface paths {
+    "/api/v1/scans": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Scan */
+        post: operations["create_scan_api_v1_scans_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/scans/{session_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Scan */
+        get: operations["get_scan_api_v1_scans__session_id__get"];
+        put?: never;
+        post?: never;
+        /** Delete Scan */
+        delete: operations["delete_scan_api_v1_scans__session_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/scans/{session_id}/roadmap": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Roadmap */
+        get: operations["get_roadmap_api_v1_scans__session_id__roadmap_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/scans/{session_id}/trace": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Trace */
+        get: operations["get_trace_api_v1_scans__session_id__trace_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Health */
+        get: operations["health_api_v1_health_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ready": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Ready */
+        get: operations["ready_api_v1_ready_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/health": {
         parameters: {
             query?: never;
@@ -13,7 +116,13 @@ export interface paths {
         };
         /**
          * Health
-         * @description Liveness probe — returns basic status. Used by /api/health on the frontend.
+         * @description Liveness probe — minimal public surface (status only).
+         *
+         *     Frontend ``/api/health`` consumes only ``status`` (see
+         *     ``app/api/health/route.ts``). Detailed fields (demo_mode,
+         *     embedding_provider, dense_dim_mismatch_count, version) are gated behind
+         *     ``_is_privileged`` so an unauthenticated internet caller cannot probe
+         *     the deployment mode or embedding provider.
          */
         get: operations["health_health_get"];
         put?: never;
@@ -35,6 +144,16 @@ export interface paths {
          * Ready
          * @description Readiness probe — checks all critical dependencies.
          *     Used by Kubernetes / load-balancer to decide whether to route traffic here.
+         *
+         *     P1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s
+         *     probes work without credentials (the test suite also asserts these).
+         *     Sensitive diagnostics (demo_mode, embedding_provider, embedding_status,
+         *     dense_dim_mismatch_count, warnings) are gated behind ``_is_privileged``.
+         *
+         *     Embedding has a graceful-degradation path: if ModelScope is unavailable,
+         *     the service falls back to Ollama, then to BM25-only. ModelScope key
+         *     absence therefore does NOT block readiness; it is reported as a warning
+         *     to privileged callers only.
          */
         get: operations["ready_ready_get"];
         put?: never;
@@ -106,6 +225,46 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** ApiEnvelope[CreatedScanData] */
+        ApiEnvelope_CreatedScanData_: {
+            data: components["schemas"]["CreatedScanData"] | null;
+            error: components["schemas"]["ApiError"] | null;
+            meta: components["schemas"]["ApiMeta"];
+        };
+        /** ApiEnvelope[dict[str, Any]] */
+        ApiEnvelope_dict_str__Any__: {
+            /** Data */
+            data: {
+                [key: string]: unknown;
+            } | null;
+            error: components["schemas"]["ApiError"] | null;
+            meta: components["schemas"]["ApiMeta"];
+        };
+        /** ApiEnvelope[list[dict[str, Any]]] */
+        ApiEnvelope_list_dict_str__Any___: {
+            /** Data */
+            data: {
+                [key: string]: unknown;
+            }[] | null;
+            error: components["schemas"]["ApiError"] | null;
+            meta: components["schemas"]["ApiMeta"];
+        };
+        /** ApiError */
+        ApiError: {
+            /** Code */
+            code: string;
+            /** Message */
+            message: string;
+            /** Details */
+            details?: {
+                [key: string]: unknown;
+            } | null;
+        };
+        /** ApiMeta */
+        ApiMeta: {
+            /** Requestid */
+            requestId: string;
+        };
         /** AuditMetadata */
         AuditMetadata: {
             /**
@@ -135,6 +294,39 @@ export interface components {
             traceNodeCount: number;
         } & {
             [key: string]: unknown;
+        };
+        /** Body_create_scan_api_v1_scans_post */
+        Body_create_scan_api_v1_scans_post: {
+            /**
+             * Query
+             * @default
+             */
+            query: string;
+            /**
+             * Product
+             * @default
+             */
+            product: string;
+            /**
+             * Category
+             * @default electronics
+             */
+            category: string;
+            /**
+             * Markets
+             * @default ["EU"]
+             */
+            markets: string;
+            /**
+             * Images
+             * @default []
+             */
+            images: string[];
+            /**
+             * Documents
+             * @default []
+             */
+            documents: string[];
         };
         /** Body_scan_multipart_scan_multipart_post */
         Body_scan_multipart_scan_multipart_post: {
@@ -173,6 +365,17 @@ export interface components {
              * @default []
              */
             pdfs: string[];
+        };
+        /** CreatedScanData */
+        CreatedScanData: {
+            /** Sessionid */
+            sessionId: string;
+            /** Accesstoken */
+            accessToken: string;
+            /** Status */
+            status: string;
+            /** Pollurl */
+            pollUrl: string;
         };
         /** DecisionNode */
         DecisionNode: {
@@ -555,6 +758,201 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    create_scan_api_v1_scans_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_create_scan_api_v1_scans_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_CreatedScanData_"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_scan_api_v1_scans__session_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_dict_str__Any__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_scan_api_v1_scans__session_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_roadmap_api_v1_scans__session_id__roadmap_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_dict_str__Any__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_trace_api_v1_scans__session_id__trace_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_list_dict_str__Any___"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    health_api_v1_health_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_dict_str__Any__"];
+                };
+            };
+        };
+    };
+    ready_api_v1_ready_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_dict_str__Any__"];
+                };
+            };
+        };
+    };
     health_health_get: {
         parameters: {
             query?: never;

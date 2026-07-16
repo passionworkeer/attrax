@@ -7,10 +7,11 @@ import re
 from pathlib import Path
 from typing import Annotated, Any
 
-from fastapi import APIRouter, File, Form, Request, UploadFile
+from fastapi import APIRouter, Depends, File, Form, Request, UploadFile
 from fastapi.responses import Response
+from fastapi.security import HTTPAuthorizationCredentials
 
-from rag_service.api.dependencies import bearer_token, get_scan_service
+from rag_service.api.dependencies import bearer_scheme, bearer_token, get_scan_service
 from rag_service.api.models import ApiEnvelope, CreatedScanData, failure, success
 from rag_service.application.scans import (
     ScanNotFound,
@@ -116,17 +117,25 @@ async def _read_uploads(
     return submitted, None
 
 
-def _session_and_token(request: Request, session_id: str):
+def _session_and_token(
+    request: Request,
+    session_id: str,
+    credentials: HTTPAuthorizationCredentials | None,
+):
     if not _SESSION_ID.fullmatch(session_id):
         return None, None, failure(request, "NOT_FOUND", "Scan session not found", 404)
-    token = bearer_token(request)
+    token = bearer_token(credentials)
     if token is None:
         return None, None, failure(request, "UNAUTHORIZED", "Bearer token is required", 401)
     return get_scan_service(request), token, None
 
 
-def _read_session(request: Request, session_id: str):
-    service, token, denied = _session_and_token(request, session_id)
+def _read_session(
+    request: Request,
+    session_id: str,
+    credentials: HTTPAuthorizationCredentials | None,
+):
+    service, token, denied = _session_and_token(request, session_id, credentials)
     if denied:
         return None, None, denied
     try:
@@ -180,14 +189,22 @@ async def create_scan(
 
 
 @router.get("/scans/{session_id}", response_model=ApiEnvelope[dict[str, Any]])
-def get_scan(request: Request, session_id: str):
-    _, session, denied = _read_session(request, session_id)
+def get_scan(
+    request: Request,
+    session_id: str,
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)],
+):
+    _, session, denied = _read_session(request, session_id, credentials)
     return denied or success(request, session)
 
 
 @router.get("/scans/{session_id}/roadmap", response_model=ApiEnvelope[dict[str, Any]])
-def get_roadmap(request: Request, session_id: str):
-    _, session, denied = _read_session(request, session_id)
+def get_roadmap(
+    request: Request,
+    session_id: str,
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)],
+):
+    _, session, denied = _read_session(request, session_id, credentials)
     if denied:
         return denied
     if session["status"] == "processing":
@@ -201,8 +218,12 @@ def get_roadmap(request: Request, session_id: str):
 
 
 @router.get("/scans/{session_id}/trace", response_model=ApiEnvelope[list[dict[str, Any]]])
-def get_trace(request: Request, session_id: str):
-    _, session, denied = _read_session(request, session_id)
+def get_trace(
+    request: Request,
+    session_id: str,
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)],
+):
+    _, session, denied = _read_session(request, session_id, credentials)
     if denied:
         return denied
     if session["status"] == "processing":
@@ -212,8 +233,12 @@ def get_trace(request: Request, session_id: str):
 
 
 @router.delete("/scans/{session_id}", status_code=204)
-def delete_scan(request: Request, session_id: str):
-    service, token, denied = _session_and_token(request, session_id)
+def delete_scan(
+    request: Request,
+    session_id: str,
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)],
+):
+    service, token, denied = _session_and_token(request, session_id, credentials)
     if denied:
         return denied
     try:

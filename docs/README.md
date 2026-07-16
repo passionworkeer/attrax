@@ -1,5 +1,7 @@
 # 火鹰合规 - 文档索引
 
+- [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md)：新前端接入独立 FastAPI 后端的唯一入口。
+
 > 最后更新：2026-06-21（16 轮安全加固后）
 
 ## 🎯 入口

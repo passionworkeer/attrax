@@ -1,5 +1,7 @@
 # API 契约：RAG Service
 
+> 新前端接入请只使用版本化 `/api/v1`，完整流程见 [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md)。本文件后续章节保留旧接口契约，供现有 Next.js 迁移期兼容。
+
 > 版本基线：FastAPI 自动生成于 `rag_service/main.py`，**OpenAPI 规范文件**在 [`lib/rag-client/openapi.snapshot.json`](../lib/rag-client/openapi.snapshot.json)（CI 会校验它与代码生成的一致性）。
 >
 > 在线访问：启动 RAG 服务后访问 [`/openapi.json`](http://localhost:8001/openapi.json) 和 [`/docs`](http://localhost:8001/docs)。
