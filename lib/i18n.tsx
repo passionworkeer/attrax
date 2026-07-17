@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { translations } from "./i18n/translations";
+import { useOptionalBlazeLocale } from "@/components/blaze-hawks/locale";
 
 export type Locale = "zh" | "en";
 
@@ -23,22 +24,28 @@ function detectInitialLocale(): Locale {
 }
 
 export function TranslationProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>("zh");
+  const blazeLocale = useOptionalBlazeLocale();
+  const [standaloneLocale, setStandaloneLocale] = useState<Locale>("zh");
+  const locale = blazeLocale?.locale ?? standaloneLocale;
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setLocale(detectInitialLocale());
+      if (!blazeLocale) setStandaloneLocale(detectInitialLocale());
     }, 0);
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [blazeLocale]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
 
   const handleSetLocale = (newLocale: Locale) => {
-    setLocale(newLocale);
-    localStorage.setItem("locale", newLocale);
+    if (blazeLocale) {
+      blazeLocale.setLocale(newLocale);
+    } else {
+      setStandaloneLocale(newLocale);
+      localStorage.setItem("locale", newLocale);
+    }
   };
 
   const t = (key: string, params?: Record<string, string | number>): string => {

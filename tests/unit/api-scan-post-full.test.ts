@@ -270,7 +270,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const { POST } = await import("@/app/api/scan/route");
       for (let i = 0; i < 3; i++) {
         mockCreateScan.mockResolvedValueOnce({
-          sessionId: `scan_${i}_${Math.random()}`,
+          sessionId: `scan_unique_${i}`,
           accessToken: "tok",
           status: "processing",
           pollUrl: "/api/v1/scans/x",

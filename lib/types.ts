@@ -63,6 +63,7 @@ export interface ImageAsset {
   thumbnail: string;
   width: number;
   height: number;
+  fileName?: string;
   angleHint?:
     | "front"
     | "back"
@@ -147,6 +148,8 @@ export interface ScanResult {
   checklist: ChecklistItem[];
   generatedAt: string;
   financialSummary?: FinancialSummary;
+  /** Raw, validated-at-the-boundary backend package for report-only views. */
+  reportPackage?: ReportPackage;
   modelInfo?: {
     visionProvider: "claude" | "openai" | "gemini" | "minimax" | "mock";
     latencyMs: number;

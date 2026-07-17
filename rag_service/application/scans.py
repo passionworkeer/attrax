@@ -171,7 +171,22 @@ class ScanService:
         return session
 
     def get_scan(self, session_id: str, access_token: str) -> dict[str, Any]:
-        return self._authorized_session(session_id, access_token).public_data()
+        public = self._authorized_session(session_id, access_token).public_data()
+        assets: list[dict[str, Any]] = []
+        kind_indexes = {"image": 0, "document": 0}
+        for upload in self.backend.list_uploads(session_id):
+            assets.append(
+                {
+                    "kind": upload.kind,
+                    "index": kind_indexes[upload.kind],
+                    "name": upload.original_name,
+                    "contentType": upload.content_type,
+                    "size": upload.size,
+                }
+            )
+            kind_indexes[upload.kind] += 1
+        public["assets"] = assets
+        return public
 
     def get_image_asset(
         self,

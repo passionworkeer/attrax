@@ -86,14 +86,17 @@ export default function ProfitPage() {
           const payload: ScanStatus = await response.json();
           if (payload.status === "ready" && payload.result) {
             const resultPayload = payload.result;
+            if (!Array.isArray(resultPayload.images)) {
+              throw new Error(
+                locale === "zh"
+                  ? "后端返回了不兼容的利润结果格式。"
+                  : "The backend returned an incompatible profit result shape."
+              );
+            }
             sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(resultPayload));
             startTransition(() => {
               setLoadError(null);
-              if ("financialSummary" in resultPayload) {
-                setResult(resultPayload);
-              } else {
-                setResult(mockScanResult);
-              }
+              setResult(resultPayload as ScanResult);
             });
             return;
           }
@@ -181,7 +184,47 @@ export default function ProfitPage() {
 
   const financialSummary = result.financialSummary;
   if (!financialSummary) {
-    return null;
+    const profitReport = result.reportPackage?.profitReport;
+    const reportText =
+      (locale === "en" ? profitReport?.markdownEn : undefined) ??
+      profitReport?.markdown ??
+      (locale === "zh"
+        ? "后端未返回结构化成本字段，无法可靠计算单件利润和整改预算。"
+        : "The backend did not return structured cost fields, so unit margin and remediation budget cannot be calculated reliably.");
+    return (
+      <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
+        <CompliPilotFlowBackdrop tone="bright" />
+        <div className="relative z-10">
+          <CompliPilotFlowHeader
+            backHref={`/result/${sessionId}`}
+            backLabel={locale === "zh" ? "返回结果页" : "Back to result"}
+            flowTitle={locale === "zh" ? "成本影响分析" : "Cost Impact Analysis"}
+            flowSubtitle={locale === "zh" ? "真实后端报告 · 结构化数据待补" : "Real backend report · structured data pending"}
+            primaryHref={`/result/${sessionId}`}
+            primaryLabel={locale === "zh" ? "查看合规结果" : "View compliance result"}
+            statusLabel={locale === "zh" ? "数据不完整" : "Incomplete data"}
+            tone="bright"
+          />
+          <section className="mx-auto w-full max-w-5xl px-6 pt-8">
+            <div className="blaze-panel p-8">
+              <SectionEyebrow>{locale === "zh" ? "真实后端输出" : "Real backend output"}</SectionEyebrow>
+              <h1 className="mt-3 text-3xl font-semibold text-white">
+                {locale === "zh" ? "利润页没有使用演示数据替代" : "No demo figures were substituted"}
+              </h1>
+              <p className="mt-4 text-sm leading-7 text-white/64">
+                {locale === "zh"
+                  ? "当前报告来自本次扫描，但后端尚未提供成本明细、售价、销量和风险金额等结构化字段。"
+                  : "This report belongs to the current scan, but the backend has not provided structured costs, price, volume, or exposure values."}
+              </p>
+              <pre className="mt-6 whitespace-pre-wrap rounded-2xl border border-white/10 bg-black/20 p-5 text-sm leading-7 text-white/72">
+                {reportText}
+              </pre>
+            </div>
+          </section>
+          <CompliPilotFlowFooter sessionId={sessionId} tone="bright" />
+        </div>
+      </main>
+    );
   }
 
   const costRows = financialSummary.costBreakdown.map((row) => ({

@@ -127,6 +127,7 @@ export const ScanResultSchema = z.object({
   riskPoints: z.array(RiskPointSchema),
   checklist: z.array(ChecklistItemSchema),
   generatedAt: z.string().datetime(),
+  reportPackage: z.unknown().optional(),
   modelInfo: z
     .object({
       visionProvider: z.enum(["claude", "openai", "gemini", "minimax", "mock"]),

@@ -60,6 +60,15 @@ def test_service_runs_job_persists_ready_result_and_stores_only_token_hash(tmp_p
         assert public["status"] == "ready"
         assert public["result"]["complianceStatus"] == "PASS"
         assert public["result"]["reportPackage"]["roadmap"]["items"][0]["id"] == "step-1"
+        assert public["assets"] == [
+            {
+                "kind": "image",
+                "index": 0,
+                "name": "front.png",
+                "contentType": "image/png",
+                "size": len(PNG),
+            }
+        ]
         assert seen[0]["images"][0]["buffer"] == PNG
         assert backend.list_recoverable_jobs() == []
 
