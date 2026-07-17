@@ -1,0 +1,74 @@
+.page {
+  --upload-ink: #073b54;
+  --upload-muted: rgba(7, 59, 84, .64);
+}
+
+.page :global(.blaze-panel) {
+  border-color: rgba(255, 255, 255, .7) !important;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(255, 255, 255, .42), transparent 34%),
+    linear-gradient(145deg, rgba(244, 253, 255, .68), rgba(204, 239, 247, .38)) !important;
+  box-shadow:
+    0 28px 80px rgba(8, 82, 126, .15),
+    inset 0 1px 0 rgba(255, 255, 255, .9),
+    inset 0 -1px 0 rgba(126, 223, 239, .18) !important;
+  backdrop-filter: blur(28px) saturate(138%) !important;
+}
+
+.page :global(.blaze-panel-soft) {
+  border-color: rgba(255, 255, 255, .56) !important;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, .36), rgba(215, 245, 249, .2)),
+    rgba(218, 246, 250, .24) !important;
+  box-shadow:
+    0 18px 54px rgba(7, 81, 122, .09),
+    inset 0 1px 0 rgba(255, 255, 255, .72) !important;
+}
+
+.page :global(.blaze-panel)::before,
+.page :global(.blaze-panel-soft)::before {
+  opacity: .3 !important;
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgba(255, 255, 255, .08) 47%,
+    rgba(255, 255, 255, .34) 50%,
+    transparent 60%
+  ) !important;
+}
+
+.page :global(.blaze-panel) :global(.text-white),
+.page :global(.blaze-panel-soft) :global(.text-white) {
+  color: var(--upload-ink) !important;
+}
+
+.page :global(.blaze-panel) :global([class*="text-white/"]),
+.page :global(.blaze-panel-soft) :global([class*="text-white/"]) {
+  color: var(--upload-muted) !important;
+}
+
+.page :global(.blaze-panel) :global([class*="border-white/"]),
+.page :global(.blaze-panel-soft) :global([class*="border-white/"]) {
+  border-color: rgba(255, 255, 255, .46) !important;
+}
+
+.page :global(.blaze-panel) :global([class*="bg-white/"]),
+.page :global(.blaze-panel-soft) :global([class*="bg-white/"]) {
+  background-color: rgba(255, 255, 255, .23) !important;
+}
+
+.previewStage :global(.text-white),
+.previewStage :global([class*="text-white/"]) {
+  color: rgba(255, 255, 255, .9) !important;
+}
+
+.previewStage :global([class*="border-white/"]) {
+  border-color: rgba(255, 255, 255, .24) !important;
+}
+
+@media (max-width: 720px) {
+  .page :global(.blaze-panel) {
+    background:
+      linear-gradient(150deg, rgba(244, 253, 255, .76), rgba(204, 239, 247, .48)) !important;
+  }
+}

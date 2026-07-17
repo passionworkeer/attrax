@@ -1,331 +1,340 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { useBlazeLocale } from "@/components/blaze-hawks/locale";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { GlowPill, SectionEyebrow } from "@/components/blaze-hawks/ui";
 import {
-  RefreshCw,
-  CheckCircle2,
-  Circle,
-  Cpu,
-  Zap,
-  FileSearch,
-  Lightbulb,
-  AlertTriangle,
-  Flame,
-} from "lucide-react";
+  CompliPilotFlowBackdrop,
+  CompliPilotFlowFooter,
+  CompliPilotFlowHeader,
+} from "@/components/complipilot/flow-shell";
+import { getCompliPilotCopy } from "@/lib/complipilot/copy";
 import { useScanPolling } from "@/lib/hooks/useScanPolling";
-import { useTranslation } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
+import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
-interface Stage {
-  id: string;
-  icon: React.ReactNode;
-  label: string;
-  labelEn: string;
-  threshold: number;
+function readStoredAccessToken(sessionId: string): string | null {
+  try {
+    const value = sessionStorage.getItem(`scan-token:${sessionId}`);
+    return value && value.trim() ? value.trim() : null;
+  } catch {
+    return null;
+  }
 }
 
-const STAGES: Stage[] = [
-  { id: "uploading", icon: <Circle className="h-4 w-4" />, label: "上传产品", labelEn: "Product uploaded", threshold: 0 },
-  { id: "vision", icon: <Cpu className="h-4 w-4" />, label: "AI 视觉识别", labelEn: "AI vision recognition", threshold: 15 },
-  { id: "disassembly", icon: <Zap className="h-4 w-4" />, label: "结构智能拆解", labelEn: "Structural disassembly", threshold: 35 },
-  { id: "retrieval", icon: <FileSearch className="h-4 w-4" />, label: "法规条款检索", labelEn: "Compliance retrieval", threshold: 55 },
-  { id: "risk", icon: <AlertTriangle className="h-4 w-4" />, label: "风险智能匹配", labelEn: "Risk matching", threshold: 75 },
-  { id: "synthesis", icon: <Lightbulb className="h-4 w-4" />, label: "报告生成", labelEn: "Report generation", threshold: 90 },
-];
+function getActiveIndex(progress: number) {
+  if (progress >= 85) {
+    return 3;
+  }
+  if (progress >= 55) {
+    return 2;
+  }
+  if (progress >= 25) {
+    return 1;
+  }
+  return 0;
+}
+
+function localizeStageText(
+  locale: "zh" | "en",
+  stageKey: string | undefined,
+  fallback: string | undefined
+) {
+  const localized =
+    locale === "zh"
+      ? {
+          queued: "准备中…",
+          vision: "识别铭牌与认证标识…",
+          retrieval: "匹配多市场法规库…",
+          report: "生成合规报告与路线图…",
+          done: "完成",
+          failed: "扫描失败",
+        }
+      : {
+          queued: "Preparing…",
+          vision: "Detecting labels and certification marks…",
+          retrieval: "Searching multi-market rule libraries…",
+          report: "Generating compliance reports and roadmap…",
+          done: "Done",
+          failed: "Scan failed",
+        };
+
+  if (stageKey && stageKey in localized) {
+    return localized[stageKey as keyof typeof localized];
+  }
+
+  return fallback;
+}
 
 export default function BurningPage() {
   const router = useRouter();
+  const { locale } = useBlazeLocale();
+  const copy = getCompliPilotCopy(locale);
   const params = useParams<{ sessionId: string }>();
-  const sessionId = Array.isArray(params.sessionId) ? params.sessionId[0] : params.sessionId;
-  const { status, displayProgress } = useScanPolling(sessionId);
-  // P0.2: both `ready` (real RAG) and `degraded` (RAG-unavailable fallback)
-  // carry a result the result page can render. Treat them symmetrically for
-  // the completion flash + redirect so degraded scans don't get stuck here.
-  const terminal = status?.status;
-  const hasResult = Boolean(status?.result);
-  const completing = (terminal === "ready" || terminal === "degraded") && hasResult;
-  const { t } = useTranslation();
-  const [mounted, setMounted] = useState(false);
+  const sessionId = params.sessionId;
+  const isDemoSession = sessionId === "demo";
+  // Read the access token directly from sessionStorage on every render.
+  // useScanPolling is keyed on sessionId, so the hook's effect re-fires when
+  // sessionId changes and re-reads the token. sessionStorage is cheap and
+  // synchronous; caching it in state would just mirror the same value with
+  // a cascading render.
+  const accessToken = isDemoSession ? null : readStoredAccessToken(sessionId);
+  const status = useScanPolling(sessionId, accessToken);
+  const displayStatus = isDemoSession
+    ? {
+        sessionId,
+        status: "processing",
+        progress: 58,
+        stageText: locale === "zh" ? "正在匹配多市场法规库…" : "Matching multi-market rule libraries...",
+        stageKey: "retrieval" as const,
+      }
+    : status;
+  const progress = displayStatus?.progress ?? 8;
+  const activeIndex = getActiveIndex(progress);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if ((status?.status === "ready" || status?.status === "degraded") && status.result) {
+    if (!isDemoSession && status?.status === "ready" && status.result) {
       sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
-      setTimeout(() => router.push(`/result/${sessionId}`), 800);
+      router.push(`/result/${sessionId}`);
     }
-  }, [router, sessionId, status]);
-
-  function handleRetry() {
-    router.push("/upload");
-  }
-
-  // Derive current step from progress
-  const currentStepIndex = useMemo(() => {
-    return STAGES.findIndex((s) => displayProgress < s.threshold) === -1
-      ? STAGES.length - 1
-      : STAGES.findIndex((s) => displayProgress < s.threshold);
-  }, [displayProgress]);
-
-  const stageLabel = status?.stageText ?? t("animation.waitingForTask");
-  const isFailed = status?.status === "failed";
+  }, [isDemoSession, router, sessionId, status]);
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] flex text-white">
-      {/* Screen flash on completion */}
-      <AnimatePresence>
-        {completing && (
-          <motion.div
-            key="flash"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="pointer-events-none fixed inset-0 z-50 flex items-center justify-center bg-blaze-red/20 backdrop-blur-sm"
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 1.1, opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="flex flex-col items-center gap-3"
-            >
-              <div className="text-6xl drop-shadow-[0_0_30px_rgba(217,58,26,0.8)]">&#128293;</div>
-              <p className="text-xl font-bold text-white text-glow">{t("burning.scanComplete")}</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
+      <CompliPilotFlowBackdrop tone="bright" />
+      <CompliPilotFlowHeader
+        backHref="/upload"
+        backLabel={locale === "zh" ? "返回上传页" : "Back to upload"}
+        flowTitle={locale === "zh" ? "AI 合规扫描中" : "AI Compliance Scan"}
+        flowSubtitle={locale === "zh" ? "识别产品信息 · 检索目标市场法规 · 生成解释结论" : "Recognize · retrieve regulations · explain"}
+        primaryHref="/upload"
+        primaryLabel={locale === "zh" ? "重新上传" : "Upload again"}
+        secondaryHref="/result/demo"
+        secondaryLabel={locale === "zh" ? "查看演示结果" : "View demo result"}
+        statusLabel={isDemoSession ? "00:02" : `${progress}%`}
+        tone="bright"
+      />
 
-      {/* Left sidebar: V-12 EX-ENGINE panel */}
-      <aside className="w-72 shrink-0 hidden lg:flex flex-col border-r border-white/10 bg-slate-950/80 backdrop-blur-xl">
-        <div className="px-6 pt-6 pb-8 border-b border-white/10">
-          <h1 className="font-display-xl text-3xl font-black italic text-blaze-red tracking-tighter">
-            ATTRAX
-          </h1>
-          <p className="label-caps text-[10px] text-slate-400 mt-1">V-12 EX-ENGINE</p>
-        </div>
+      <section className="mx-auto grid min-h-[960px] w-full max-w-7xl gap-6 px-6 pt-6 lg:grid-cols-[320px_1fr] xl:grid-cols-[340px_1fr]">
+        <aside className="blaze-panel p-5 sm:p-6">
+          <SectionEyebrow>Step 02</SectionEyebrow>
+          <h1 className="mt-3 text-[26px] font-semibold leading-tight text-white xl:text-3xl">{copy.burning.title}</h1>
+          <p className="mt-3 text-sm leading-7 text-white/58">
+            {copy.burning.body}
+          </p>
 
-        <nav className="flex-grow py-6 flex flex-col">
-          {[
-            { label: t("burning.sidebar.scan"), icon: "scan", active: false },
-            { label: t("burning.sidebar.disassembly"), icon: "disassembly", active: true },
-            { label: t("burning.sidebar.analysis"), icon: "analysis", active: false },
-            { label: t("burning.sidebar.heatmap"), icon: "heatmap", active: false },
-            { label: t("burning.sidebar.export"), icon: "export", active: false },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className={`flex items-center gap-3 px-6 py-3.5 text-sm font-medium transition-all ${
-                item.active
-                  ? "bg-blaze-red/15 text-blaze-red border-l-4 border-blaze-red"
-                  : "text-slate-500 opacity-70 hover:opacity-100 hover:bg-white/5"
-              }`}
-            >
-              <Zap className="h-4 w-4" />
-              {item.label}
+          <div className="mt-6 flex items-center justify-between">
+            {copy.burning.analysisSteps.map((step, index) => {
+              const state = index < activeIndex ? "done" : index === activeIndex ? "active" : "queued";
+              return (
+                <div key={step.title} className="flex flex-1 items-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className={`flex size-8 items-center justify-center rounded-full border text-xs font-bold ${
+                        state === "active"
+                          ? "border-[var(--blaze-orange)] bg-[rgba(255,143,57,0.2)] text-[var(--blaze-orange)] shadow-[0_0_12px_rgba(255,143,57,0.3)]"
+                          : state === "done"
+                            ? "border-[var(--blaze-orange)] bg-[var(--blaze-orange)] text-[#0d1730]"
+                            : "border-white/10 bg-[rgba(13,19,36,0.6)] text-white/40"
+                      }`}
+                    >
+                      {state === "done" ? "✓" : index + 1}
+                    </div>
+                    <span className={`text-xs font-semibold ${state === "active" ? "text-white" : state === "done" ? "text-white/70" : "text-white/40"}`}>
+                      {step.title}
+                    </span>
+                  </div>
+                  {index < copy.burning.analysisSteps.length - 1 ? (
+                    <div className="mx-1 mb-5 h-px flex-1 bg-white/10" />
+                  ) : null}
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="mt-6 flex items-center gap-4">
+            <div className="relative size-28">
+              <svg className="size-full -rotate-90" viewBox="0 0 100 100">
+                <circle
+                  cx="50" cy="50" r="45"
+                  fill="none"
+                  stroke="rgba(255,255,255,0.08)"
+                  strokeWidth="4"
+                />
+                <circle
+                  cx="50" cy="50" r="45"
+                  fill="none"
+                  stroke="var(--blaze-orange)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 45}`}
+                  strokeDashoffset={`${2 * Math.PI * 45 * (1 - progress / 100)}`}
+                  className="transition-[stroke-dashoffset] duration-500"
+                  style={{ filter: "drop-shadow(0 0 6px rgba(255,143,57,0.4))" }}
+                />
+              </svg>
+              <div className="absolute inset-0 grid place-items-center text-center">
+                <div>
+                  <div className="font-mono text-2xl font-bold text-white">{progress}%</div>
+                  <div className="text-xs uppercase tracking-[0.18em] text-white/42">{copy.burning.progress}</div>
+                </div>
+              </div>
             </div>
-          ))}
-        </nav>
-
-        <div className="px-6 pb-8 mt-auto space-y-6">
-          <div>
-            <h2 className="text-lg font-semibold text-white mb-2">
-              {t("burning.aiAnalyzing")}
-            </h2>
-            <div className="inline-block text-blaze-red label-caps text-[10px] bg-blaze-red/10 px-3 py-1 rounded-full mb-4">
-              {t("burning.step2Tag")}
+            <div className="space-y-2">
+              <GlowPill>Session · {sessionId.slice(0, 16)}</GlowPill>
+              <p className="text-sm text-white/64">
+                {localizeStageText(locale, displayStatus?.stageKey, displayStatus?.stageText) ??
+                  copy.burning.waiting}
+              </p>
             </div>
-            <ul className="space-y-2.5 data-mono text-xs">
-              {STAGES.map((stage, idx) => {
-                const isDone = displayProgress >= stage.threshold + 5 || (idx < currentStepIndex) || completing;
-                const isCurrent = idx === currentStepIndex && !isFailed;
-                return (
-                  <li
-                    key={stage.id}
-                    className={`flex items-center gap-2 ${
-                      isCurrent ? "text-blaze-red" : isDone ? "text-slate-300" : "text-slate-500 opacity-50"
-                    }`}
+          </div>
+
+          <div className="mt-6 space-y-3">
+            {copy.burning.analysisSteps.map((step, index) => {
+              const state =
+                index < activeIndex ? "done" : index === activeIndex ? "active" : "queued";
+              return (
+                <div
+                  key={`${index}-${step.title}`}
+                  className={`rounded-[22px] border px-4 py-4 ${
+                    state === "active"
+                      ? "border-[rgba(255,143,57,0.36)] bg-[rgba(255,143,57,0.14)]"
+                      : state === "done"
+                        ? "border-white/10 bg-white/7"
+                        : "border-white/8 bg-white/4"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-semibold text-white">{step.title}</p>
+                    <span className="text-xs uppercase tracking-[0.18em] text-white/38">
+                      {state === "done"
+                        ? locale === "zh"
+                          ? "完成"
+                          : "done"
+                        : state === "active"
+                          ? locale === "zh"
+                            ? "进行中"
+                            : "live"
+                          : locale === "zh"
+                            ? "等待"
+                            : "wait"}
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-6 text-white/54">{step.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </aside>
+
+        <section className="blaze-panel min-h-[820px] p-5 sm:p-6">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <SectionEyebrow>Exploded Stage</SectionEyebrow>
+              <h2 className="mt-3 text-3xl font-semibold text-white">{copy.burning.preview}</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-white/58">
+                {copy.burning.stageNote}
+              </p>
+            </div>
+            <GlowPill>{copy.burning.marketsPill}</GlowPill>
+          </div>
+
+          <div className="mt-6 space-y-4">
+            <div className="rounded-[28px] border border-white/8 bg-[linear-gradient(135deg,rgba(255,151,45,0.12),rgba(39,93,164,0.12))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <div data-flow-dark className="relative aspect-square overflow-hidden rounded-[26px] border border-white/8 bg-[#101b31] sm:aspect-[1.34/1] xl:aspect-[1.58/1]">
+                <Image
+                  src="/mock-fixtures/compliance-exploded-scan-stage.png"
+                  alt={locale === "zh" ? "AI 合规扫描拆解视图" : "AI compliance exploded scan"}
+                  fill
+                  sizes="(min-width: 1280px) 66vw, (min-width: 768px) 72vw, 92vw"
+                  className="object-cover"
+                  priority
+                />
+                {[
+                  { left: "36%", top: "34%", delay: "0s" },
+                  { left: "61%", top: "46%", delay: "0.4s" },
+                  { left: "42%", top: "78%", delay: "0.7s" },
+                ].map((flame) => (
+                  <span
+                    key={`${flame.left}-${flame.top}`}
+                    className="absolute size-8 rounded-full bg-[radial-gradient(circle,rgba(255,222,150,0.95),rgba(255,135,48,0.84)_46%,rgba(239,90,49,0)_72%)] blur-[0.2px]"
+                    style={{
+                      left: flame.left,
+                      top: flame.top,
+                      animation: `blaze-float 2.2s ease-in-out ${flame.delay} infinite`,
+                    }}
                   >
-                    {isCurrent && !isDone ? (
-                      <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                    ) : isDone ? (
-                      <CheckCircle2 className="h-3.5 w-3.5 text-blaze-red" />
-                    ) : (
-                      <Circle className="h-3.5 w-3.5" />
-                    )}
-                    <span>{stage.label}</span>
-                  </li>
-                );
-              })}
-            </ul>
+                    <span className="absolute inset-[18%] rounded-full bg-[rgba(255,238,180,0.8)] blur-[1px]" />
+                  </span>
+                ))}
+
+                {/* Component labels */}
+                {[
+                  { label: locale === "zh" ? "外壳" : "Casing", left: "56%", top: "18%", color: "border-[var(--blaze-orange)]" },
+                  { label: locale === "zh" ? "主板" : "Motherboard", left: "32%", top: "43%", color: "border-[#4CC9F0]" },
+                  { label: locale === "zh" ? "电池" : "Battery Cells", left: "62%", top: "61%", color: "border-[#4CC9F0]" },
+                ].map((comp) => (
+                  <div
+                    key={comp.label}
+                    className={`absolute rounded-lg border-l-2 ${comp.color} bg-[rgba(9,15,29,0.8)] px-3 py-1.5 text-xs font-mono text-white/80 backdrop-blur-sm`}
+                    style={{ left: comp.left, top: comp.top }}
+                  >
+                    {comp.label}
+                  </div>
+                ))}
+
+                <div className="absolute inset-x-6 bottom-5 hidden rounded-full border border-white/10 bg-[rgba(9,15,29,0.82)] px-4 py-2 text-center text-xs text-white/58 backdrop-blur sm:block">
+                  {copy.burning.autoJump}
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden gap-3 xl:grid xl:grid-cols-3">
+              {copy.burning.insightCards.map((card) => (
+                <article key={card.title} className="blaze-panel-soft p-4">
+                  <p className="text-sm font-semibold text-white">{card.title}</p>
+                  <p className="mt-2 text-xs leading-6 text-white/56">{card.body}</p>
+                </article>
+              ))}
+            </div>
+            <article className="blaze-panel-soft p-4">
+              <SectionEyebrow>{copy.burning.currentStage}</SectionEyebrow>
+              <p className="mt-3 text-sm leading-7 text-white/62">
+                {copy.burning.currentSessionLabel}{" "}
+                <span className="font-mono text-white">{sessionId}</span>
+              </p>
+              <p className="mt-2 text-sm leading-7 text-white/62">
+                {copy.burning.stageNote}
+              </p>
+            </article>
           </div>
 
-          {/* Progress ring */}
-          <div className="relative w-40 h-40 mx-auto flex items-center justify-center">
-            <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-              <circle
-                cx="50"
-                cy="50"
-                r="45"
-                fill="transparent"
-                stroke="currentColor"
-                strokeWidth="4"
-                className="text-slate-700"
-              />
-              <circle
-                cx="50"
-                cy="50"
-                r="45"
-                fill="transparent"
-                stroke="currentColor"
-                strokeWidth="4"
-                strokeDasharray="282.743"
-                strokeDashoffset={282.743 - (282.743 * displayProgress) / 100}
-                strokeLinecap="round"
-                className="text-blaze-red drop-shadow-[0_0_8px_rgba(217,58,26,0.6)]"
-              />
-            </svg>
-            <div className="absolute flex flex-col items-center justify-center">
-              <span className="data-mono text-2xl font-bold text-white">
-                {displayProgress}%
-              </span>
-              <span className="text-[10px] text-slate-500 uppercase tracking-widest mt-1">
-                {mounted ? (stageLabel.length > 20 ? stageLabel.slice(0, 20) + "…" : stageLabel) : t("burning.processing")}
-              </span>
+          {displayStatus?.status === "failed" ? (
+            <div className="mt-6 rounded-[26px] border border-[rgba(248,115,96,0.36)] bg-[rgba(248,115,96,0.1)] p-5">
+              <p className="text-sm text-[#ffd9d1]">{status?.error ?? copy.burning.failed}</p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <Button size="lg" className="rounded-full" onClick={() => router.push("/upload")}>
+                  {copy.burning.retry}
+                </Button>
+                <Link
+                  href="/result/demo"
+                  className={cn(
+                    buttonVariants({ size: "lg", variant: "outline" }),
+                    "rounded-full border-white/12 bg-white/4 text-white hover:bg-white/10"
+                  )}
+                >
+                  {copy.burning.showDemo}
+                </Link>
+              </div>
             </div>
-          </div>
-
-          {isFailed ? (
-            <button
-              type="button"
-              onClick={handleRetry}
-              className="w-full bg-blaze-red hover:bg-blaze-red/90 text-white font-bold text-sm py-3 rounded-lg shadow-[0_0_20px_rgba(217,58,26,0.5)] transition-all active:scale-95 border border-white/20"
-            >
-              {t("result.reupload")}
-            </button>
-          ) : (
-            <div className="w-full bg-slate-800/50 border border-white/10 text-slate-400 font-bold text-sm py-3 rounded-lg text-center data-mono">
-              {t("burning.autoRunning")}
-            </div>
-          )}
-        </div>
-      </aside>
-
-      {/* Main: 3D Disassembly Canvas */}
-      <main className="flex-1 relative bg-[#0b0f11] flex items-center justify-center overflow-hidden">
-        {/* Background glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div
-            className="absolute inset-0 opacity-30"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 50% 50%, rgba(76,201,240,0.1) 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          />
-        </div>
-
-        {/* 3D Placeholder visualization */}
-        <div className="relative w-[min(800px,80vw)] h-[min(800px,80vw)] flex items-center justify-center">
-          {/* Central product silhouette */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative w-72 h-72 rounded-3xl border-2 border-dashed border-blaze-cyan/30 flex items-center justify-center bg-blaze-cyan/5 backdrop-blur-sm">
-              <Cpu className="h-24 w-24 text-blaze-cyan/40" />
-              <div className="absolute inset-0 rounded-3xl border border-blaze-cyan/20 animate-pulse" />
-            </div>
-          </div>
-
-          {/* Floating component cards - exploded view */}
-          <ComponentLabel
-            position="top-1/4 left-[8%]"
-            color="blaze-red"
-            label={t("burning.components.casing")}
-            glow
-          />
-          <ComponentLabel
-            position="top-[18%] right-[10%]"
-            color="blaze-cyan"
-            label={t("burning.components.battery")}
-          />
-          <ComponentLabel
-            position="bottom-[28%] left-[15%]"
-            color="blaze-cyan"
-            label={t("burning.components.motherboard")}
-          />
-          <ComponentLabel
-            position="bottom-[18%] right-[8%]"
-            color="blaze-orange"
-            label={t("burning.components.label")}
-          />
-          <ComponentLabel
-            position="top-[55%] left-[42%]"
-            color="blaze-gold"
-            label={t("burning.components.packaging")}
-          />
-        </div>
-
-        {/* Bottom-center status badge */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex items-center gap-2 rounded-full bg-black/60 border border-white/20 px-5 py-2.5 backdrop-blur-md">
-          <Flame className="h-4 w-4 text-blaze-red animate-pulse" />
-          <span className="text-sm font-semibold text-white data-mono">
-            {mounted ? stageLabel : t("burning.processing")}
-          </span>
-        </div>
-      </main>
-    </div>
-  );
-}
-
-function ComponentLabel({
-  position,
-  color,
-  label,
-  glow = false,
-}: {
-  position: string;
-  color: string;
-  label: string;
-  glow?: boolean;
-}) {
-  const colorMap: Record<string, { border: string; text: string; shadow: string }> = {
-    "blaze-red": {
-      border: "border-l-blaze-red",
-      text: "text-blaze-red",
-      shadow: "shadow-[0_0_15px_rgba(217,58,26,0.4)]",
-    },
-    "blaze-cyan": {
-      border: "border-l-blaze-cyan",
-      text: "text-blaze-cyan",
-      shadow: "shadow-[0_0_15px_rgba(76,201,240,0.4)]",
-    },
-    "blaze-orange": {
-      border: "border-l-blaze-orange",
-      text: "text-blaze-orange",
-      shadow: "shadow-[0_0_15px_rgba(255,138,31,0.4)]",
-    },
-    "blaze-gold": {
-      border: "border-l-blaze-gold",
-      text: "text-blaze-gold",
-      shadow: "shadow-[0_0_15px_rgba(255,210,63,0.4)]",
-    },
-  };
-  const c = colorMap[color] ?? colorMap["blaze-cyan"];
-  return (
-    <div
-      className={`absolute ${position} glass-panel px-3 py-1.5 rounded data-mono text-xs text-white border-l-2 ${c.border} ${glow ? c.shadow : ""} z-10`}
-    >
-      {label}
-    </div>
+          ) : null}
+        </section>
+      </section>
+      <CompliPilotFlowFooter sessionId={sessionId} tone="bright" />
+    </main>
   );
 }

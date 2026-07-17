@@ -193,3 +193,787 @@
   .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
   .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
 }
+
+/* ============================================================
+ * Blaze Hawks handoff tokens (merged 2026-07-17, branch feat/handoff-backend-wireup)
+ * Source: guihang-ai-backend-handoff-20260717/app/globals.css
+ * Do NOT modify the @theme block above; if conflicts arise, handoff tokens
+ * take the lower-cascade position so mainline tokens still win.
+ * ============================================================ */
+
+/* CompliPilot flow theme: preserves the working Blaze flow components while
+   replacing their visual language with the approved ocean / liquid-glass brand. */
+.complipilot-flow {
+  --blaze-orange: #a9fff0;
+  --blaze-red: #46cfe2;
+  position: relative;
+  isolation: isolate;
+  background: transparent !important;
+  color: #f5fdff;
+}
+
+.complipilot-flow::before {
+  display: none !important;
+}
+
+.complipilot-flow .blaze-panel {
+  border-color: rgba(220, 249, 255, 0.2) !important;
+  background:
+    radial-gradient(circle at 88% 0%, rgba(157, 255, 240, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(5, 48, 82, 0.7), rgba(2, 24, 49, 0.72)) !important;
+  box-shadow:
+    0 26px 80px rgba(0, 21, 45, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(133, 238, 247, 0.05) !important;
+  backdrop-filter: blur(24px) saturate(145%) !important;
+}
+
+.complipilot-flow .blaze-panel-soft {
+  border-color: rgba(220, 249, 255, 0.16) !important;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.035)),
+    rgba(4, 40, 70, 0.48) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    0 16px 44px rgba(0, 21, 45, 0.14) !important;
+  backdrop-filter: blur(18px) saturate(135%) !important;
+}
+
+.complipilot-flow .blaze-panel::before,
+.complipilot-flow .blaze-panel-soft::before {
+  background: linear-gradient(
+    110deg,
+    transparent 38%,
+    rgba(116, 224, 244, 0.06) 47%,
+    rgba(176, 255, 241, 0.08) 50%,
+    transparent 60%
+  ) !important;
+}
+
+.complipilot-flow .blaze-panel::after,
+.complipilot-flow .blaze-panel-soft::after {
+  background:
+    linear-gradient(90deg, transparent, rgba(163, 246, 255, 0.065), transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent 34%) !important;
+}
+
+.complipilot-flow .blaze-preview-frame,
+.complipilot-flow .blaze-preview-canvas {
+  border-color: rgba(211, 248, 255, 0.15) !important;
+  background:
+    linear-gradient(145deg, rgba(112, 226, 239, 0.08), rgba(5, 35, 65, 0.18)),
+    rgba(2, 25, 50, 0.72) !important;
+}
+
+.complipilot-flow .blaze-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #d4fff7 55%, #81ecf2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.complipilot-flow a:focus-visible,
+.complipilot-flow button:focus-visible,
+.complipilot-flow input:focus-visible,
+.complipilot-flow select:focus-visible {
+  outline: 2px solid rgba(169, 255, 240, 0.9);
+  outline-offset: 3px;
+}
+
+/* Keep the cross-page Blaze skin outside Tailwind layers so dev pruning cannot drop it. */
+.blaze-experience .blaze-panel {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(255, 158, 61, 0.075), transparent 33%),
+    linear-gradient(180deg, rgba(10, 17, 31, 0.78), rgba(7, 14, 27, 0.68)),
+    linear-gradient(135deg, rgba(104, 183, 255, 0.055), rgba(255, 158, 61, 0.035));
+  border-color: rgba(156, 190, 238, 0.13);
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055),
+    inset 0 0 0 1px rgba(255, 158, 61, 0.026);
+  backdrop-filter: blur(24px) saturate(128%);
+}
+
+.blaze-experience .blaze-panel-soft {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(255, 158, 61, 0.085), transparent 28%),
+    linear-gradient(180deg, rgba(12, 19, 35, 0.58), rgba(8, 14, 27, 0.48)),
+    linear-gradient(135deg, rgba(104, 183, 255, 0.04), rgba(255, 158, 61, 0.032));
+  border-color: rgba(156, 190, 238, 0.12);
+  box-shadow:
+    0 18px 64px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  backdrop-filter: blur(18px) saturate(125%);
+}
+
+.blaze-experience .blaze-panel::before,
+.blaze-experience .blaze-panel-soft::before {
+  content: "";
+  position: absolute;
+  inset: -42% -54%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      110deg,
+      transparent 38%,
+      rgba(104, 183, 255, 0.065) 47%,
+      rgba(255, 158, 61, 0.07) 50%,
+      transparent 60%
+    );
+  opacity: 0.5;
+  transform: translateX(-24%) rotate(-7deg);
+  animation: blaze-panel-scan 12s ease-in-out infinite;
+}
+
+.blaze-experience .blaze-panel-soft::before {
+  opacity: 0.36;
+  animation-duration: 14s;
+}
+
+.blaze-experience .blaze-panel::after,
+.blaze-experience .blaze-panel-soft::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(90deg, transparent, rgba(104, 183, 255, 0.052), transparent),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%);
+  mask-image: linear-gradient(180deg, black, transparent 82%);
+  opacity: 0.58;
+}
+
+.blaze-experience .blaze-panel > :not([class*="z-"]):not(.absolute),
+.blaze-experience .blaze-panel-soft > :not([class*="z-"]):not(.absolute) {
+  position: relative;
+  z-index: 1;
+}
+
+.blaze-experience .blaze-panel-soft:hover {
+  border-color: rgba(255, 158, 61, 0.2);
+  box-shadow:
+    0 22px 72px rgba(0, 0, 0, 0.25),
+    0 0 34px rgba(255, 158, 61, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blaze-experience .blaze-panel::before,
+  .blaze-experience .blaze-panel-soft::before {
+    animation: none;
+  }
+}
+
+@layer utilities {
+  .blaze-home {
+    position: relative;
+    isolation: isolate;
+    background:
+      linear-gradient(180deg, rgba(9, 17, 31, 0) 0%, rgba(9, 25, 45, 0.48) 44%, rgba(8, 16, 30, 0.96) 100%),
+      linear-gradient(124deg, rgba(20, 63, 108, 0.42) 0%, rgba(9, 17, 31, 0) 38%, rgba(255, 126, 44, 0.08) 72%, rgba(9, 17, 31, 0) 100%),
+      #08101e;
+  }
+
+  .blaze-flow {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(ellipse 74% 42% at 72% 14%, rgba(255, 158, 61, 0.1), transparent 62%),
+      radial-gradient(ellipse 86% 48% at 18% 34%, rgba(47, 113, 185, 0.26), transparent 70%),
+      linear-gradient(180deg, #0a1425 0%, #0b2440 42%, #081526 72%, #07101d 100%);
+  }
+
+  .blaze-flow::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 18%),
+      linear-gradient(112deg, transparent 0%, rgba(255, 158, 61, 0.08) 28%, transparent 52%),
+      repeating-linear-gradient(90deg, transparent 0 114px, rgba(255, 255, 255, 0.025) 115px, transparent 116px 228px);
+    opacity: 0.86;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.72) 74%, transparent 100%);
+  }
+
+  .blaze-atmosphere {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(255, 158, 61, 0.06), transparent 24%, rgba(74, 132, 206, 0.09) 72%, transparent),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 22%);
+  }
+
+  .blaze-atmosphere-flow {
+    background:
+      radial-gradient(ellipse 62% 32% at 50% 24%, rgba(104, 183, 255, 0.12), transparent 70%),
+      linear-gradient(94deg, rgba(255, 158, 61, 0.045), transparent 30%, rgba(74, 132, 206, 0.12) 74%, transparent),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 30%);
+  }
+
+  .blaze-atmosphere::before {
+    content: "";
+    position: absolute;
+    left: -20%;
+    top: 10%;
+    width: 140%;
+    height: 34rem;
+    background:
+      linear-gradient(100deg, transparent 0%, rgba(255, 158, 61, 0.05) 28%, rgba(104, 183, 255, 0.07) 52%, transparent 78%);
+    filter: blur(26px);
+    transform: rotate(-7deg);
+    animation: blaze-field-drift 18s ease-in-out infinite alternate;
+  }
+
+  .blaze-atmosphere::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(8, 16, 30, 0) 0%, rgba(15, 43, 76, 0.34) 48%, rgba(8, 16, 30, 0) 78%),
+      repeating-linear-gradient(118deg, transparent 0 46px, rgba(255, 255, 255, 0.028) 47px, transparent 48px 120px);
+    opacity: 0.72;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.78) 70%, transparent 100%);
+  }
+
+  .blaze-atmosphere-grid {
+    position: absolute;
+    inset: -20% -10%;
+    background-image:
+      linear-gradient(rgba(137, 178, 228, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(137, 178, 228, 0.05) 1px, transparent 1px);
+    background-size: 72px 72px;
+    transform: perspective(900px) rotateX(58deg) translateY(2%);
+    transform-origin: 50% 0%;
+    opacity: 0.28;
+    animation: blaze-grid-drift 24s linear infinite;
+  }
+
+  .blaze-atmosphere-flow .blaze-atmosphere-grid {
+    inset: -16% -14%;
+    background-size: 56px 56px;
+    opacity: 0.34;
+    transform: perspective(900px) rotateX(54deg) translateY(-3%);
+  }
+
+  .blaze-atmosphere-scan {
+    position: absolute;
+    left: -12%;
+    top: 18%;
+    width: 124%;
+    height: 14rem;
+    background:
+      linear-gradient(90deg, transparent, rgba(255, 158, 61, 0.12), rgba(104, 183, 255, 0.08), transparent);
+    filter: blur(18px);
+    transform: rotate(-8deg);
+    animation: blaze-scan-sweep 8.5s ease-in-out infinite;
+  }
+
+  .blaze-atmosphere-flow .blaze-atmosphere-scan {
+    top: 5%;
+    height: 18rem;
+    background:
+      linear-gradient(90deg, transparent, rgba(104, 183, 255, 0.1), rgba(255, 158, 61, 0.12), transparent);
+    filter: blur(24px);
+    animation-duration: 9.5s;
+  }
+
+  .blaze-atmosphere-heat {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 28% at 62% 20%, rgba(255, 128, 47, 0.14), transparent 68%),
+      radial-gradient(ellipse 92% 36% at 50% 64%, rgba(31, 86, 145, 0.22), transparent 72%);
+    opacity: 0.82;
+    animation: blaze-heat-breathe 12s ease-in-out infinite alternate;
+  }
+
+  .blaze-atmosphere-flow .blaze-atmosphere-heat {
+    background:
+      radial-gradient(ellipse 54% 22% at 76% 15%, rgba(255, 128, 47, 0.16), transparent 68%),
+      radial-gradient(ellipse 74% 30% at 36% 46%, rgba(31, 96, 160, 0.28), transparent 72%),
+      radial-gradient(ellipse 70% 28% at 62% 82%, rgba(11, 36, 67, 0.58), transparent 72%);
+    opacity: 0.92;
+  }
+
+  .blaze-atmosphere-rail {
+    position: absolute;
+    left: -18%;
+    width: 138%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 190, 116, 0.38), rgba(104, 183, 255, 0.18), transparent);
+    opacity: 0.42;
+    transform: rotate(-8deg);
+    box-shadow: 0 0 24px rgba(255, 158, 61, 0.16);
+  }
+
+  .blaze-atmosphere-rail-one {
+    top: 30%;
+    animation: blaze-rail-slide 11s ease-in-out infinite;
+  }
+
+  .blaze-atmosphere-rail-two {
+    top: 58%;
+    opacity: 0.26;
+    animation: blaze-rail-slide 14s ease-in-out 1.2s infinite reverse;
+  }
+
+  .blaze-atmosphere-flow .blaze-atmosphere-rail-one {
+    top: 18%;
+  }
+
+  .blaze-atmosphere-flow .blaze-atmosphere-rail-two {
+    top: 44%;
+  }
+
+  .blaze-hero-sweep {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(122deg, rgba(255, 158, 61, 0.13), rgba(255, 158, 61, 0) 28%),
+      linear-gradient(286deg, rgba(104, 183, 255, 0.13), rgba(104, 183, 255, 0) 34%);
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 80%);
+    opacity: 0.76;
+    animation: blaze-field-drift 16s ease-in-out infinite alternate;
+  }
+
+  .blaze-panel {
+    background:
+      linear-gradient(180deg, rgba(15, 26, 51, 0.95), rgba(11, 20, 38, 0.92));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.36),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border-radius: 28px;
+    backdrop-filter: blur(18px);
+  }
+
+  .blaze-panel-soft {
+    background:
+      linear-gradient(180deg, rgba(17, 29, 55, 0.84), rgba(12, 22, 40, 0.82));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    border-radius: 24px;
+  }
+
+  .blaze-home .blaze-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 8% 0%, rgba(255, 158, 61, 0.08), transparent 32%),
+      linear-gradient(180deg, rgba(10, 17, 31, 0.74), rgba(7, 14, 27, 0.66)),
+      linear-gradient(135deg, rgba(104, 183, 255, 0.06), rgba(255, 158, 61, 0.04));
+    border-color: rgba(156, 190, 238, 0.13);
+    box-shadow:
+      0 28px 90px rgba(0, 0, 0, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.055),
+      inset 0 0 0 1px rgba(255, 158, 61, 0.025);
+    backdrop-filter: blur(24px) saturate(128%);
+  }
+
+  .blaze-home .blaze-panel-soft {
+    background:
+      radial-gradient(circle at 84% 18%, rgba(255, 158, 61, 0.09), transparent 26%),
+      linear-gradient(180deg, rgba(12, 19, 35, 0.56), rgba(8, 14, 27, 0.46)),
+      linear-gradient(135deg, rgba(104, 183, 255, 0.045), rgba(255, 158, 61, 0.035));
+    border-color: rgba(156, 190, 238, 0.12);
+    box-shadow:
+      0 18px 64px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(18px) saturate(125%);
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .blaze-home .blaze-panel-soft:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 158, 61, 0.2);
+    box-shadow:
+      0 22px 72px rgba(0, 0, 0, 0.25),
+      0 0 34px rgba(255, 158, 61, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.055);
+  }
+
+  .blaze-home-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blaze-home-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(120deg, rgba(255, 158, 61, 0.08), transparent 32%, rgba(104, 183, 255, 0.055)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 42%);
+    background-size: 170% 170%, auto;
+    opacity: 0.72;
+    animation: blaze-card-lumen 8s ease-in-out infinite alternate;
+  }
+
+  .blaze-home-card::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    pointer-events: none;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.035);
+    mask-image: linear-gradient(135deg, black, transparent 62%);
+  }
+
+  .blaze-home-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .blaze-home-icon {
+    border: 1px solid rgba(255, 255, 255, 0.095);
+    background:
+      radial-gradient(circle at 50% 20%, rgba(255, 158, 61, 0.18), transparent 58%),
+      rgba(255, 255, 255, 0.055);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 12px 36px rgba(0, 0, 0, 0.18);
+  }
+
+  .blaze-home-inset {
+    border: 1px solid rgba(156, 190, 238, 0.105);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.025)),
+      rgba(6, 12, 23, 0.18);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 14px 36px rgba(0, 0, 0, 0.1);
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease;
+  }
+
+  .blaze-home-inset:hover {
+    border-color: rgba(255, 158, 61, 0.18);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.064), rgba(255, 255, 255, 0.03)),
+      rgba(10, 18, 33, 0.24);
+    transform: translateY(-1px);
+  }
+
+  .blaze-burn-step-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 768px) {
+    .blaze-burn-step-card {
+      min-height: 214px;
+      margin-top: 3px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .blaze-burn-logic-panel {
+      min-height: 435px;
+    }
+  }
+
+  .blaze-home-plan {
+    display: block;
+    width: 100%;
+    appearance: none;
+    cursor: pointer;
+    background:
+      linear-gradient(180deg, rgba(13, 20, 37, 0.58), rgba(8, 14, 26, 0.5));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 18px 64px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(18px) saturate(125%);
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      transform 180ms ease,
+      background 180ms ease;
+  }
+
+  .blaze-home-plan:hover,
+  .blaze-home-plan:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(255, 158, 61, 0.28);
+    box-shadow:
+      0 22px 76px rgba(0, 0, 0, 0.24),
+      0 0 38px rgba(255, 158, 61, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    outline: none;
+  }
+
+  .blaze-home-plan-active {
+    border-color: rgba(255, 158, 61, 0.42);
+    box-shadow:
+      0 24px 82px rgba(0, 0, 0, 0.28),
+      0 0 46px rgba(255, 158, 61, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+
+  .blaze-home-plan-muted {
+    border-color: rgba(156, 190, 238, 0.1);
+  }
+
+  .blaze-home-plan-featured {
+    background:
+      radial-gradient(circle at 18% 0%, rgba(255, 158, 61, 0.17), transparent 38%),
+      linear-gradient(180deg, rgba(39, 31, 42, 0.72), rgba(12, 18, 34, 0.62));
+    box-shadow:
+      0 18px 74px rgba(255, 120, 41, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .blaze-plan-action {
+    border: 1px solid rgba(156, 190, 238, 0.12);
+    background:
+      linear-gradient(135deg, rgba(255, 158, 61, 0.09), transparent 36%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.024));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 18px 54px rgba(0, 0, 0, 0.18);
+  }
+
+  .blaze-home-kinetic::before {
+    content: "";
+    position: absolute;
+    inset: -42% -54%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        110deg,
+        transparent 38%,
+        rgba(104, 183, 255, 0.075) 47%,
+        rgba(255, 158, 61, 0.075) 50%,
+        transparent 60%
+      );
+    opacity: 0.55;
+    transform: translateX(-24%) rotate(-7deg);
+    animation: blaze-panel-scan 11s ease-in-out infinite;
+  }
+
+  .blaze-home-kinetic::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(90deg, transparent, rgba(104, 183, 255, 0.06), transparent),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 34%);
+    mask-image: linear-gradient(180deg, black, transparent 82%);
+    opacity: 0.62;
+  }
+
+  .blaze-home-kinetic > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .blaze-home .blaze-preview-frame {
+    border: 1px solid rgba(156, 190, 238, 0.12);
+    background:
+      radial-gradient(circle at 18% 0%, rgba(255, 158, 61, 0.12), transparent 42%),
+      linear-gradient(180deg, rgba(7, 13, 25, 0.88), rgba(10, 17, 31, 0.74));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.045),
+      0 26px 70px rgba(0, 0, 0, 0.26);
+  }
+
+  .blaze-home .blaze-preview-canvas {
+    background:
+      linear-gradient(135deg, rgba(255, 158, 61, 0.08), rgba(104, 183, 255, 0.06)),
+      rgba(8, 14, 26, 0.72);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.035),
+      inset 0 -70px 96px rgba(6, 13, 25, 0.48);
+  }
+
+  .blaze-kicker {
+    background: linear-gradient(135deg, rgba(255, 162, 77, 0.18), rgba(239, 90, 49, 0.06));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+  }
+
+  .blaze-gradient-text {
+    background: linear-gradient(135deg, #fff6ef 0%, #ffbe74 52%, #ff8d39 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .blaze-divider {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  @keyframes blaze-float {
+    0%,
+    100% {
+      transform: translateY(0px) scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: translateY(-8px) scale(1.05);
+      opacity: 1;
+    }
+  }
+
+  @keyframes blaze-field-drift {
+    from {
+      transform: translate3d(-1.5%, -0.5%, 0) rotate(-7deg);
+    }
+    to {
+      transform: translate3d(1.5%, 1%, 0) rotate(-7deg);
+    }
+  }
+
+  @keyframes blaze-grid-drift {
+    from {
+      background-position: 0 0, 0 0;
+    }
+    to {
+      background-position: 144px 72px, 144px 72px;
+    }
+  }
+
+  @keyframes blaze-scan-sweep {
+    0%,
+    100% {
+      transform: translateY(-22%) rotate(-8deg);
+      opacity: 0.26;
+    }
+    45% {
+      transform: translateY(120%) rotate(-8deg);
+      opacity: 0.68;
+    }
+  }
+
+  @keyframes blaze-heat-breathe {
+    from {
+      opacity: 0.58;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0.9;
+      transform: scale(1.03);
+    }
+  }
+
+  @keyframes blaze-rail-slide {
+    0%,
+    100% {
+      transform: translateX(-7%) rotate(-8deg);
+    }
+    50% {
+      transform: translateX(7%) rotate(-8deg);
+    }
+  }
+
+  @keyframes blaze-card-lumen {
+    from {
+      background-position: 0% 0%, 0 0;
+    }
+    to {
+      background-position: 100% 35%, 0 0;
+    }
+  }
+
+  @keyframes blaze-panel-scan {
+    0%,
+    100% {
+      transform: translateX(-24%) rotate(-7deg);
+      opacity: 0.22;
+    }
+    48% {
+      transform: translateX(24%) rotate(-7deg);
+      opacity: 0.58;
+    }
+  }
+
+  .corner-marks::before,
+  .corner-marks::after,
+  .corner-marks > span:first-of-type::before,
+  .corner-marks > span:first-of-type::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: rgba(255, 255, 255, 0.5);
+    border-style: solid;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .corner-marks::before {
+    top: 12px;
+    left: 12px;
+    border-width: 2px 0 0 2px;
+  }
+
+  .corner-marks::after {
+    top: 12px;
+    right: 12px;
+    border-width: 2px 2px 0 0;
+  }
+
+  .corner-marks > span:first-of-type::before {
+    bottom: 12px;
+    left: 12px;
+    border-width: 0 0 2px 2px;
+  }
+
+  .corner-marks > span:first-of-type::after {
+    bottom: 12px;
+    right: 12px;
+    border-width: 0 2px 2px 0;
+  }
+
+  .scanline::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.025) 3px,
+      rgba(255, 255, 255, 0.025) 4px
+    );
+    border-radius: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blaze-atmosphere::before,
+    .blaze-atmosphere-grid,
+    .blaze-atmosphere-scan,
+    .blaze-atmosphere-heat,
+    .blaze-atmosphere-rail,
+    .blaze-hero-sweep,
+    .blaze-home-card::before,
+    .blaze-home-kinetic::before,
+    .blaze-experience .blaze-panel::before,
+    .blaze-experience .blaze-panel-soft::before {
+      animation: none;
+    }
+  }
+}

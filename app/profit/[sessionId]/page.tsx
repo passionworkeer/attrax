@@ -1,0 +1,646 @@
+"use client";
+
+import Link from "next/link";
+import { startTransition, useEffect, useState } from "react";
+import {
+  Download,
+  Gavel,
+  ShieldAlert,
+  TrendingUp,
+  Truck,
+  XCircle,
+} from "lucide-react";
+import { useParams } from "next/navigation";
+import { useBlazeLocale } from "@/components/blaze-hawks/locale";
+import { buttonVariants } from "@/components/ui/button";
+import { SectionEyebrow } from "@/components/blaze-hawks/ui";
+import {
+  CompliPilotFlowBackdrop,
+  CompliPilotFlowFooter,
+  CompliPilotFlowHeader,
+} from "@/components/complipilot/flow-shell";
+import { mockScanResult } from "@/lib/mock/blaze-scan-result";
+import type { ScanResult, ScanStatus } from "@/lib/types";
+import { cn } from "@/lib/utils";
+import brightFlow from "@/components/complipilot/bright-flow.module.css";
+import profitStyles from "../profit.module.css";
+
+function readStoredAccessToken(sessionId: string): string | null {
+  try {
+    const value = sessionStorage.getItem(`scan-token:${sessionId}`);
+    return value && value.trim() ? value.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
+export default function ProfitPage() {
+  const { locale } = useBlazeLocale();
+  const params = useParams<{ sessionId: string }>();
+  const sessionId = params.sessionId;
+  const isDemoSession = sessionId === "demo";
+  const [profitMode, setProfitMode] = useState<"bare" | "compliant">("compliant");
+  const [result, setResult] = useState<ScanResult | null>(
+    isDemoSession ? mockScanResult : null
+  );
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!sessionId || isDemoSession) {
+      return;
+    }
+
+    const cached = sessionStorage.getItem(`scan:${sessionId}`);
+    if (cached) {
+      try {
+        const cachedResult = JSON.parse(cached) as ScanResult;
+        startTransition(() => {
+          setResult(cachedResult);
+        });
+        return;
+      } catch {
+        sessionStorage.removeItem(`scan:${sessionId}`);
+      }
+    }
+
+    let cancelled = false;
+
+    async function loadResult() {
+      try {
+        while (!cancelled) {
+          const accessToken = readStoredAccessToken(sessionId);
+          const headers: Record<string, string> = {};
+          if (accessToken) {
+            headers.Authorization = `Bearer ${accessToken}`;
+          }
+          const response = await fetch(`/api/scan/${sessionId}`, {
+            cache: "no-store",
+            headers,
+          });
+          if (!response.ok) {
+            throw new Error(
+              locale === "zh" ? "扫描会话不存在或已过期。" : "The scan session is missing or expired."
+            );
+          }
+
+          const payload: ScanStatus = await response.json();
+          if (payload.status === "ready" && payload.result) {
+            const resultPayload = payload.result;
+            sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(resultPayload));
+            startTransition(() => {
+              setLoadError(null);
+              if ("financialSummary" in resultPayload) {
+                setResult(resultPayload);
+              } else {
+                setResult(mockScanResult);
+              }
+            });
+            return;
+          }
+
+          if (payload.status === "failed") {
+            throw new Error(
+              payload.error ??
+                (locale === "zh" ? "扫描失败，暂时无法生成成本分析。" : "The scan failed, so cost analysis is unavailable.")
+            );
+          }
+
+          await new Promise((resolve) => setTimeout(resolve, 900));
+        }
+      } catch (error) {
+        if (!cancelled) {
+          startTransition(() => {
+            setLoadError(
+              error instanceof Error
+                ? error.message
+                : locale === "zh"
+                  ? "成本分析加载失败，请重新检测。"
+                  : "Cost analysis failed to load. Please scan again."
+            );
+          });
+        }
+      }
+    }
+
+    loadResult();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isDemoSession, locale, sessionId]);
+
+  if (!result) {
+    return (
+      <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
+        <CompliPilotFlowBackdrop tone="bright" />
+        <div className="relative z-10">
+          <CompliPilotFlowHeader
+            backHref="/upload"
+            backLabel={locale === "zh" ? "返回上传页" : "Back to upload"}
+            flowTitle={locale === "zh" ? "成本影响分析" : "Cost Impact Analysis"}
+            flowSubtitle={locale === "zh" ? "整改预算 · 风险暴露 · 上架决策" : "Budget · exposure · launch decision"}
+            primaryHref="/upload"
+            primaryLabel={locale === "zh" ? "重新检测" : "Scan again"}
+            statusLabel={
+              loadError
+                ? locale === "zh" ? "无法加载" : "Unavailable"
+                : locale === "zh" ? "加载中" : "Loading"
+            }
+            tone="bright"
+          />
+          <section className="mx-auto w-full max-w-5xl px-6 pt-8">
+            <div className="blaze-panel p-8">
+              <SectionEyebrow>Cost Impact</SectionEyebrow>
+              <h1 className="mt-3 text-3xl font-semibold text-white">
+                {loadError
+                  ? locale === "zh" ? "暂时无法打开成本分析" : "Cost analysis is unavailable"
+                  : locale === "zh" ? "正在读取扫描结果" : "Loading scan result"}
+              </h1>
+              <p className="mt-4 text-sm leading-7 text-white/60">
+                {loadError ??
+                  (locale === "zh"
+                    ? "扫描完成后会自动展示整改成本、利润变化和风险暴露。"
+                    : "Remediation cost, margin changes, and exposure will appear when the scan completes.")}
+              </p>
+              <Link
+                href="/upload"
+                className={cn(buttonVariants({ size: "lg" }), "mt-6 rounded-full")}
+              >
+                {locale === "zh" ? "返回重新检测" : "Return and scan again"}
+              </Link>
+            </div>
+          </section>
+          <CompliPilotFlowFooter tone="bright" />
+        </div>
+      </main>
+    );
+  }
+
+  const displayName =
+    locale === "en" ? result.productNameEn ?? result.productName : result.productName;
+
+  const financialSummary = result.financialSummary;
+  if (!financialSummary) {
+    return null;
+  }
+
+  const costRows = financialSummary.costBreakdown.map((row) => ({
+    label: locale === "en" ? row.labelEn ?? row.label : row.label,
+    amount: row.amount,
+    detail: locale === "en" ? row.detailEn ?? row.detail : row.detail,
+  }));
+  const riskExposureItems =
+    locale === "en"
+      ? financialSummary.riskExposureItemsEn ??
+        financialSummary.riskExposureItems
+      : financialSummary.riskExposureItems;
+
+  const riskHeadings =
+    locale === "zh"
+      ? {
+          title: "合规整改成本与风险影响",
+          subtitle: `${result.targetMarkets.join("+")} 市场 · ${displayName} · ${financialSummary.targetVolumeLabel}`,
+          riskTitle: "不合规最高风险",
+          exportProfit: "导出成本影响表",
+          exportCompliance: "生成完整合规报告",
+          back: "返回结果页",
+          monthly: "合规后预估月度净收益",
+          heroic: "未整改预估单件收益",
+          trueNet: "合规后单件净收益",
+          complianceCost: "单产品合规总成本",
+          breakdown: "全链路成本明细",
+          visual: "成本影响看板",
+          tableHeaders: ["项目", "金额", "说明"],
+          modeTitle: "整改前后对比",
+          unlock: "返回合规报告",
+        }
+      : {
+          title: "Compliance Cost and Risk Impact",
+          subtitle: `${result.targetMarkets.join("+")} market · ${displayName} · ${financialSummary.targetVolumeLabelEn ?? financialSummary.targetVolumeLabel}`,
+          riskTitle: "Maximum Risk Exposure",
+          exportProfit: "Export Cost Impact Sheet",
+          exportCompliance: "Generate Full Compliance Report",
+          back: "Back to result page",
+          monthly: "Estimated Monthly Net",
+          heroic: "Estimated Net Before Remediation",
+          trueNet: "Net After Compliance",
+          complianceCost: "Compliance Cost",
+          breakdown: "Full-Chain Cost Breakdown",
+          visual: "Cost Impact Board",
+          tableHeaders: ["Item", "Amount", "Detail"],
+          modeTitle: "Before / After Remediation",
+          unlock: "Back to Compliance Report",
+        };
+  const modeCards =
+    locale === "zh"
+      ? [
+          {
+            id: "bare" as const,
+            title: "裸奔出海",
+            value: financialSummary.estimatedHeroicProfit,
+            body: "不补认证、不补标签，短期利润看起来更高，但风险会直接吞掉整批货。",
+          },
+          {
+            id: "compliant" as const,
+            title: "合规后出海",
+            value: financialSummary.trueNetProfit,
+            body: "先承担合规成本，把认证、说明书和平台审核链路闭环后再进入目标市场。",
+          },
+        ]
+      : [
+          {
+            id: "bare" as const,
+            title: "Launch Bare",
+            value: financialSummary.estimatedHeroicProfit,
+            body: "Skip marks and labels for short-term margin, but the exposure can swallow the whole batch.",
+          },
+          {
+            id: "compliant" as const,
+            title: "Launch Compliant",
+            value: financialSummary.trueNetProfit,
+            body: "Absorb compliance cost first, close marks, manuals, and marketplace review before launch.",
+          },
+        ];
+  const activeMode = modeCards.find((mode) => mode.id === profitMode) ?? modeCards[1];
+  const metrics =
+    profitMode === "bare"
+      ? [
+          {
+            label: riskHeadings.heroic,
+            value: financialSummary.estimatedHeroicProfit,
+            tone: "text-[#10B981]",
+            unit: locale === "zh" ? "/单个产品" : "/unit",
+          },
+          {
+            label: locale === "zh" ? "表面合规成本" : "Visible compliance cost",
+            value: "¥0",
+            tone: "text-white",
+            unit: locale === "zh" ? "/单个产品" : "/unit",
+          },
+          {
+            label: locale === "zh" ? "最高风险暴露" : "Maximum exposure",
+            value: locale === "zh" ? "¥180万" : "¥1.8M",
+            tone: "text-[var(--blaze-orange)]",
+            unit: locale === "zh" ? "单日上限" : "daily max",
+          },
+          {
+            label: locale === "zh" ? "AI 决策" : "AI decision",
+            value: locale === "zh" ? "先整改" : "Fix first",
+            tone: "text-[#f97360]",
+            unit: "",
+          },
+        ]
+      : [
+          {
+            label: riskHeadings.heroic,
+            value: financialSummary.estimatedHeroicProfit,
+            tone: "text-[#10B981]",
+            unit: locale === "zh" ? "/单个产品" : "/unit",
+          },
+          {
+            label: riskHeadings.trueNet,
+            value: financialSummary.trueNetProfit,
+            tone: "text-white",
+            unit: locale === "zh" ? "/单个产品" : "/unit",
+          },
+          {
+            label: riskHeadings.complianceCost,
+            value: financialSummary.complianceCost,
+            tone: "text-[var(--blaze-orange)]",
+            unit: locale === "zh" ? "/单个产品" : "/unit",
+          },
+          {
+            label: riskHeadings.monthly,
+            value: financialSummary.monthlyNetProfit,
+            tone: "text-[#4CC9F0]",
+            unit: locale === "zh" ? "/月" : "/month",
+          },
+        ];
+  const finalProfitValue =
+    profitMode === "bare"
+      ? financialSummary.estimatedHeroicProfit
+      : financialSummary.trueNetProfit;
+  const retailBaseline = 128;
+  const chainPalette = ["#3fb5c8", "#54c9d6", "#71d9db", "#8ae6df", "#63bfd5", "#87b7cf"];
+  let runningBalance = retailBaseline;
+  const chainCostRows = costRows.map((row, rowIndex) => {
+    const sourceAmount = parseFloat(row.amount.replace(/[^\d.]/g, "")) || 0;
+    const amount = profitMode === "bare" && rowIndex === 3 ? 0 : sourceAmount;
+    runningBalance -= amount;
+    return {
+      ...row,
+      amount,
+      displayAmount: amount === sourceAmount ? row.amount : "¥0.00",
+      share: Math.max((amount / retailBaseline) * 100, 0),
+      remaining: Math.max(runningBalance, 0),
+      color: chainPalette[rowIndex % chainPalette.length],
+    };
+  });
+  const totalChainCost = chainCostRows.reduce((sum, row) => sum + row.amount, 0);
+  const finalProfitNumber = Math.max(retailBaseline - totalChainCost, 0);
+  const finalProfitShare = (finalProfitNumber / retailBaseline) * 100;
+  const breakEvenBuffer = Math.max(finalProfitNumber - 8, 0);
+  const dominantCost = chainCostRows.reduce((largest, row) => row.amount > largest.amount ? row : largest, chainCostRows[0]);
+
+  return (
+    <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
+      <CompliPilotFlowBackdrop tone="bright" />
+
+      <div className="relative z-10">
+        <CompliPilotFlowHeader
+          backHref={`/result/${sessionId}`}
+          backLabel={locale === "zh" ? "返回结果页" : "Back to result"}
+          flowTitle={locale === "zh" ? "成本影响分析" : "Cost Impact Analysis"}
+          flowSubtitle={locale === "zh" ? "整改预算 · 风险暴露 · 上架决策" : "Budget · exposure · launch decision"}
+          primaryHref={`/result/${sessionId}#reports`}
+          primaryLabel={locale === "zh" ? "返回合规报告" : "Back to report"}
+          secondaryHref="/upload"
+          secondaryLabel={locale === "zh" ? "重新检测" : "Scan again"}
+          tone="bright"
+        />
+
+      <section className="mx-auto w-full max-w-7xl px-6 pt-6">
+        <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <SectionEyebrow>{locale === "zh" ? "成本影响" : "Cost Impact"}</SectionEyebrow>
+            <h1 className="mt-2 text-3xl font-semibold text-[#073b54] sm:text-4xl">{riskHeadings.title}</h1>
+            <p className="mt-2 text-sm leading-7 text-[#073b54]/64">{riskHeadings.subtitle}</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {modeCards.map((mode) => {
+              const selected = mode.id === profitMode;
+              return (
+                <button
+                  key={mode.id}
+                  type="button"
+                  onClick={() => setProfitMode(mode.id)}
+                  className={cn(
+                    "rounded-full border px-4 py-2 text-sm font-medium transition",
+                    selected
+                      ? "border-[#073b54]/55 bg-[rgba(255,143,57,0.15)] font-semibold text-[#073b54] shadow-[0_12px_34px_rgba(255,120,41,0.12)]"
+                      : "border-[#073b54]/30 bg-white/5 text-[#073b54]/75 hover:border-[#073b54]/55 hover:bg-white/10 hover:text-[#073b54]"
+                  )}
+                >
+                  {mode.title} · {mode.value}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {metrics.map((metric, index) => {
+            const featured = index === 1;
+            const borderColor = [
+              "border-[#10B981]/30",
+              "border-[rgba(255,143,57,0.5)]",
+              "border-[#F4A261]/30",
+              "border-[#4CC9F0]/30",
+            ][index] ?? "border-white/10";
+            const glowBg = [
+              "bg-[#10B981]/5",
+              "bg-[rgba(255,143,57,0.08)]",
+              "bg-[#F4A261]/5",
+              "bg-[#4CC9F0]/5",
+            ][index] ?? "";
+            return (
+              <div
+                key={metric.label}
+                className={cn(
+                  "group relative blaze-panel-soft flex min-h-[138px] flex-col justify-between overflow-hidden border p-6 transition-all duration-300 hover:-translate-y-0.5",
+                  borderColor,
+                  featured ? "shadow-[0_0_30px_rgba(255,120,41,0.16)] ring-1 ring-[rgba(255,143,57,0.18)]" : ""
+                )}
+              >
+                <div
+                  className={cn(
+                    "absolute inset-0 transition-opacity duration-300",
+                    glowBg,
+                    featured ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  )}
+                />
+                <div className="relative z-10 flex items-start justify-between gap-3">
+                  <p className="text-xs uppercase tracking-[0.22em] text-white/40">{metric.label}</p>
+                  {featured ? (
+                    <span className="shrink-0 rounded-full border border-[rgba(255,143,57,0.24)] bg-[rgba(255,143,57,0.1)] px-2.5 py-1 text-[10px] font-bold text-[var(--blaze-orange)]">
+                      {locale === "zh" ? "核心结果" : "Core Result"}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="relative z-10 mt-5 flex items-baseline gap-2">
+                  <span className={`font-mono text-[36px] font-bold leading-none ${metric.tone}`}>
+                    {metric.value}
+                  </span>
+                  {metric.unit ? (
+                    <span className="pb-1 text-xs text-white/40">{metric.unit}</span>
+                  ) : null}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <section className="blaze-panel mt-6 p-5 sm:p-7">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <SectionEyebrow>{locale === "zh" ? "PAGE 05 · 数据驱动" : "PAGE 05 · Data driven"}</SectionEyebrow>
+              <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">{riskHeadings.breakdown}</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-white/60">
+                {locale === "zh"
+                  ? "从售价开始，逐项扣除采购、物流、平台、合规、营销与退货成本，实时计算最终净利润。"
+                  : "Start from retail price, deduct procurement, logistics, marketplace, compliance, marketing, and returns to calculate final net profit."}
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <span className="rounded-full border border-white/10 bg-white/7 px-4 py-2 text-sm text-white/64">
+                {locale === "zh" ? `售价基线 ¥${retailBaseline}` : `Retail baseline ¥${retailBaseline}`}
+              </span>
+              <span className="rounded-full border border-[rgba(73,190,205,0.28)] bg-[rgba(211,247,249,0.14)] px-4 py-2 text-sm text-white/74">
+                {activeMode.title}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-3">
+            {[
+              { label: locale === "zh" ? "售价基线" : "Retail", value: `¥${retailBaseline}` },
+              { label: locale === "zh" ? "全链路成本" : "Chain cost", value: `¥${totalChainCost.toFixed(0)}` },
+              { label: locale === "zh" ? "最终净利润" : "Final net", value: finalProfitValue },
+            ].map((metric, metricIndex) => (
+              <div key={metric.label} className="rounded-[20px] border border-white/10 bg-white/[0.055] p-4">
+                <p className="text-xs text-white/42">{metric.label}</p>
+                <p className={cn("mt-2 font-mono text-2xl font-semibold", metricIndex === 2 ? "text-[#168096]" : "text-white")}>{metric.value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4 grid gap-3 lg:grid-cols-[1.35fr_0.8fr_0.85fr]">
+            <div className="flex items-center gap-4 rounded-[20px] border border-[rgba(83,205,211,0.24)] bg-[linear-gradient(135deg,rgba(114,224,218,0.13),rgba(255,255,255,0.045))] p-4">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/8 text-[#168096]">
+                <TrendingUp className="size-5" />
+              </span>
+              <div>
+                <p className="text-xs uppercase tracking-[0.16em] text-white/42">{locale === "zh" ? "AI 利润判断" : "AI margin signal"}</p>
+                <p className="mt-1.5 text-sm font-semibold leading-6 text-white">
+                  {locale === "zh"
+                    ? `每售出 1 件保留 ¥${finalProfitNumber.toFixed(0)}，当前利润结构${finalProfitShare >= 10 ? "接近健康线" : "仍需谨慎"}。`
+                    : `Each sale retains ¥${finalProfitNumber.toFixed(0)}; the current margin is ${finalProfitShare >= 10 ? "near the healthy range" : "still fragile"}.`}
+                </p>
+              </div>
+            </div>
+            <div className="rounded-[20px] border border-white/10 bg-white/[0.05] p-4">
+              <p className="text-xs text-white/42">{locale === "zh" ? "距 ¥8 利润底线" : "Above ¥8 margin floor"}</p>
+              <p className="mt-2 font-mono text-xl font-semibold text-[#168096]">+¥{breakEvenBuffer.toFixed(0)}</p>
+            </div>
+            <div className="rounded-[20px] border border-white/10 bg-white/[0.05] p-4">
+              <p className="text-xs text-white/42">{locale === "zh" ? "最大成本来源" : "Largest cost driver"}</p>
+              <p className="mt-2 truncate text-sm font-semibold text-white">{dominantCost.label}</p>
+              <p className="mt-1 font-mono text-xs text-[#227f95]">¥{dominantCost.amount.toFixed(0)} · {dominantCost.share.toFixed(1)}%</p>
+            </div>
+          </div>
+
+          <div className="mt-7">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-white">{locale === "zh" ? "成本节点流" : "Cost flow"}</p>
+              <p className="text-xs text-white/44">{locale === "zh" ? "节点宽度按售价占比计算" : "Node bars reflect share of retail"}</p>
+            </div>
+            <div className={cn("mt-4 h-1.5 rounded-full bg-[rgba(65,168,194,0.16)]", profitStyles.flowRail)} />
+            <div className="mt-4 grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+              {chainCostRows.map((row, rowIndex) => (
+                <article
+                  key={row.label}
+                  className={cn("rounded-[20px] border border-white/10 bg-white/[0.055] p-4", profitStyles.chainNode)}
+                  style={{ animationDelay: `${rowIndex * 90}ms` }}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="flex size-8 items-center justify-center rounded-full border border-white/10 bg-white/7 font-mono text-[11px] text-white/58">0{rowIndex + 1}</span>
+                    <span className="font-mono text-xs font-semibold text-[#227f95]">{row.share.toFixed(1)}%</span>
+                  </div>
+                  <h3 className="mt-3 text-sm font-semibold text-white">{row.label}</h3>
+                  <p className="mt-1 line-clamp-2 min-h-10 text-xs leading-5 text-white/48">{row.detail}</p>
+                  <div className="mt-3 flex items-end justify-between gap-2">
+                    <p className="font-mono text-xl font-semibold text-white">{row.displayAmount}</p>
+                    <div className="text-right">
+                      <p className="text-[10px] text-white/36">{locale === "zh" ? "扣后余额" : "Balance"}</p>
+                      <p className="font-mono text-xs font-semibold text-[#227f95]">¥{row.remaining.toFixed(0)}</p>
+                    </div>
+                  </div>
+                  <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/[0.07]">
+                    <div
+                      className={cn("h-full rounded-full", profitStyles.costBar)}
+                      style={{ width: `${Math.max(row.share, row.amount > 0 ? 4 : 0)}%`, backgroundColor: row.color, animationDelay: `${240 + rowIndex * 90}ms` }}
+                    />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-7 border-t border-white/10 pt-6">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p className="text-sm font-semibold text-white">{locale === "zh" ? "售价分配结果" : "Retail allocation"}</p>
+                <p className="mt-1 text-xs text-white/45">{locale === "zh" ? "每一段代表售价中被对应成本或利润占用的比例" : "Each segment shows how retail value is consumed by cost or profit."}</p>
+              </div>
+              <p className="font-mono text-sm font-semibold text-[#168096]">{locale === "zh" ? "净利率" : "Net margin"} {finalProfitShare.toFixed(1)}%</p>
+            </div>
+            <div className="mt-4 flex h-12 overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.04] p-1.5">
+              {chainCostRows.map((row, rowIndex) => (
+                row.share > 0 ? (
+                  <div
+                    key={row.label}
+                    title={`${row.label} ${row.displayAmount}`}
+                    className={cn("h-full first:rounded-l-[12px]", profitStyles.stackSegment)}
+                    style={{ width: `${row.share}%`, backgroundColor: row.color, animationDelay: `${rowIndex * 80}ms` }}
+                  />
+                ) : null
+              ))}
+              <div
+                title={`${locale === "zh" ? "最终净利润" : "Final net"} ${finalProfitValue}`}
+                className={cn("h-full rounded-r-[12px] bg-[linear-gradient(135deg,#8cf0df,#42bfd0)]", profitStyles.stackSegment)}
+                style={{ width: `${finalProfitShare}%`, animationDelay: "560ms" }}
+              />
+            </div>
+            <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+              {chainCostRows.map((row) => (
+                <span key={row.label} className="inline-flex items-center gap-1.5 text-xs text-white/48">
+                  <span className="size-2 rounded-full" style={{ backgroundColor: row.color }} />
+                  {row.label} {row.displayAmount}
+                </span>
+              ))}
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#168096]">
+                <span className="size-2 rounded-full bg-[#62d8d5]" />
+                {locale === "zh" ? "最终净利润" : "Final net"} {finalProfitValue}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-7 border-t border-white/10 pt-6">
+            <div className="mb-4 flex items-center gap-3">
+              <ShieldAlert className="size-5 text-[#b95a50]" />
+              <h3 className="text-lg font-semibold text-white">{riskHeadings.riskTitle}</h3>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {riskExposureItems.map((item, itemIndex) => {
+                const riskIcons = [Gavel, XCircle, ShieldAlert, Gavel];
+                const Icon = riskIcons[itemIndex % riskIcons.length];
+                return (
+                  <div key={item} className="flex items-start gap-3 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
+                    <Icon className="mt-0.5 size-5 shrink-0 text-[#b95a50]" />
+                    <span className="text-sm font-semibold leading-6 text-white">{item}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+          <a
+            href={`/api/report/${sessionId}/profit?format=pdf&lang=${locale}`}
+            download
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "flex-1 rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] text-white"
+            )}
+          >
+            <Download className="size-4" />
+            {riskHeadings.exportProfit}
+          </a>
+          <a
+            href={`/api/report/${sessionId}/compliance?format=pdf&lang=${locale}`}
+            download
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "lg" }),
+              "flex-1 rounded-full border border-white/12 bg-white/6 text-white hover:bg-white/10"
+            )}
+          >
+            <Truck className="size-4" />
+            {riskHeadings.exportCompliance}
+          </a>
+          <Link
+            href="/pricing"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "lg" }),
+              "flex-1 rounded-full border border-white/12 bg-white/6 text-white hover:bg-white/10"
+            )}
+          >
+            <TrendingUp className="size-4" />
+            {locale === "zh" ? "查看产品方案" : "View product plans"}
+          </Link>
+        </div>
+
+        <div className="mt-8 text-center">
+          <Link
+            href={`/result/${sessionId}`}
+            className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm text-white/56 transition hover:border-[var(--blaze-orange)] hover:text-[var(--blaze-orange)]"
+          >
+            <span>{riskHeadings.back}</span>
+          </Link>
+        </div>
+      </section>
+        <CompliPilotFlowFooter sessionId={sessionId} tone="bright" />
+      </div>
+    </main>
+  );
+}
