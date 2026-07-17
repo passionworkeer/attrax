@@ -192,6 +192,24 @@ export function buildProfitReport(result: ScanResult, locale: BlazeReportLocale)
   const localized = localizeResult(result, locale);
   const totalCritical = localized.riskPoints.filter((risk) => risk.severity === "critical").length;
   const totalWarning = localized.riskPoints.filter((risk) => risk.severity === "warning").length;
+  const financial = localized.financialSummary;
+
+  if (!financial) {
+    const packaged = localized.reportPackage?.profitReport;
+    const packagedText =
+      (locale === "en" ? packaged?.markdownEn ?? packaged?.markdown_en : undefined) ??
+      packaged?.markdown ??
+      (typeof localized.reportPackage?.profit_report === "string"
+        ? localized.reportPackage.profit_report
+        : undefined);
+    if (packagedText?.trim()) {
+      return packagedText.trim();
+    }
+
+    return locale === "en"
+      ? `# CompliPilot · Compliance Cost Impact Report\n\nProduct name: ${localized.productName ?? "Untitled product"}\nTarget markets: ${marketList(localized)}\n\n## Financial data not available\n\nThe backend did not provide price, bill of materials, sales volume, compliance costs, or other structured financial inputs. No profit figures were estimated.`
+      : `# 规航AI · 合规成本影响报告\n\n产品名称: ${localized.productName ?? "未命名产品"}\n目标市场: ${marketList(localized)}\n\n## 财务数据暂不可用\n\n后端未提供售价、物料成本、销量、合规成本等结构化财务输入，因此本报告不估算利润数字。`;
+  }
 
   if (locale === "en") {
     return `# CompliPilot · Compliance Cost Impact / AI Decision Report
@@ -208,10 +226,10 @@ Risk mix: ${totalCritical} critical / ${totalWarning} warning
 
 ## Cost and profit hints
 
-- Estimated heroic margin: ¥27 / unit
-- Real profit after compliance: ¥12 / unit
-- Per-platform compliance cost: ¥15 / unit
-- Estimated monthly loss: ¥12000
+- Estimated pre-remediation return: ${financial.estimatedHeroicProfit}
+- Net return after compliance: ${financial.trueNetProfit}
+- Compliance cost: ${financial.complianceCost}
+- Monthly net return: ${financial.monthlyNetProfit}
 
 ## Why remediation comes first
 
@@ -241,10 +259,10 @@ ${localized.riskPoints
 
 ## 成本与利润提示
 
-- 神勇出海预估利润: ¥27 / 件
-- 合规后真实利润: ¥12 / 件
-- 单平台合规成本: ¥15 / 件
-- 预估月损失利润: ¥12000
+- 整改前预估收益: ${financial.estimatedHeroicProfit}
+- 合规后净收益: ${financial.trueNetProfit}
+- 合规成本: ${financial.complianceCost}
+- 月度净收益: ${financial.monthlyNetProfit}
 
 ## 为什么先整改
 
