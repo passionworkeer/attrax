@@ -84,9 +84,14 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
   });
 
   describe("Result structure variations", () => {
-    it("passes through all compliance statuses from v1", async () => {
-      const statuses = ["PASS", "WARN", "REJECTED", "UNKNOWN"];
-      for (const complianceStatus of statuses) {
+    it("maps backend compliance statuses to the new frontend score contract", async () => {
+      const statuses = [
+        ["PASS", 90, "A"],
+        ["WARN", 65, "C"],
+        ["REJECTED", 35, "D"],
+        ["UNKNOWN", 50, "C"],
+      ] as const;
+      for (const [complianceStatus, complianceScore, scoreGrade] of statuses) {
         mockGetScan.mockReset();
         mockGetScan.mockResolvedValue(
           sessionFixture({
@@ -113,11 +118,13 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
         const body = await res.json();
 
         expect(res.status).toBe(200);
-        expect(body.result.complianceStatus).toBe(complianceStatus);
+        expect(body.result.complianceScore).toBe(complianceScore);
+        expect(body.result.scoreGrade).toBe(scoreGrade);
+        expect(body.result.source).toBe("real");
       }
     });
 
-    it("passes through agentTrace and retrievedChunks in result", async () => {
+    it("derives visible risk citations from backend trace package and chunks", async () => {
       mockGetScan.mockResolvedValue(
         sessionFixture({
           status: "ready",
@@ -134,6 +141,14 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
             retrievedChunks: [
               { regId: "EU-CE-LVD", docName: "LVD", articleNo: "Art. 4", region: "EU", score: 0.95 },
             ],
+            reportPackage: {
+              decisionView: {
+                nodes: [
+                  { id: "risk-1", label: "LVD evidence", reasoning: "Missing evidence", status: "warning" },
+                ],
+              },
+              roadmap: { items: [] },
+            },
           },
         }),
       );
@@ -148,9 +163,9 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
       const body = await res.json();
 
       expect(res.status).toBe(200);
-      expect(body.result.agentTrace).toHaveLength(2);
-      expect(body.result.retrievedChunks).toHaveLength(1);
-      expect(body.result.retrievedChunks[0]).toHaveProperty("regId");
+      expect(body.result.riskPoints).toHaveLength(1);
+      expect(body.result.riskPoints[0].regulations).toHaveLength(1);
+      expect(body.result.riskPoints[0].regulations[0]).toHaveProperty("regId", "EU-CE-LVD");
     });
   });
 

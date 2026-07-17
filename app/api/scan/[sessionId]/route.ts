@@ -24,6 +24,7 @@ import {
   isDemoSession,
   V1EnvelopeError,
 } from "@/lib/rag-client/v1-adapter";
+import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
 import { ok, fail } from "@/lib/api-response";
 import { createMockComplianceReportResult } from "@/lib/mock/scan-result";
 import type { ScanStatus } from "@/lib/types";
@@ -94,7 +95,8 @@ export async function GET(
       progress: data.progress,
       stageText: data.stageText,
       stageKey: inferStageKey(data.stageText, data.status),
-      result: (data.result as unknown as ScanStatus["result"]) ?? undefined,
+      result: normalizeV1ScanResult(data),
+      degradedReason: data.status === "degraded" ? data.error ?? "BACKEND_DEGRADED" : undefined,
       error: data.error ?? undefined,
     };
     return ok(payload);
@@ -122,7 +124,7 @@ function inferStageKey(
   stageText: string,
   status: string,
 ): ScanStatus["stageKey"] {
-  if (status === "ready") return "done";
+  if (status === "ready" || status === "degraded") return "done";
   if (status === "failed") return "failed";
   const text = stageText.toLowerCase();
   if (text.includes("vision") || text.includes("identify")) return "vision";

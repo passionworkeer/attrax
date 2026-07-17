@@ -6,12 +6,17 @@
  * through mocked fetch tests.
  */
 import { describe, it, expect } from "vitest";
-import { failedStatus, isScanStatusLike } from "@/lib/hooks/useScanPolling";
+import {
+  failedStatus,
+  isDisplayableTerminalStatus,
+  isScanStatusLike,
+} from "@/lib/hooks/useScanPolling";
 
 describe("isScanStatusLike", () => {
-  it("accepts processing/ready/failed status", () => {
+  it("accepts every backend scan status", () => {
     expect(isScanStatusLike({ status: "processing" })).toBe(true);
     expect(isScanStatusLike({ status: "ready" })).toBe(true);
+    expect(isScanStatusLike({ status: "degraded" })).toBe(true);
     expect(isScanStatusLike({ status: "failed" })).toBe(true);
   });
 
@@ -78,5 +83,14 @@ describe("failedStatus", () => {
     const msg = "Failed to fetch: TypeError: network unreachable (at 2026-06-26T10:00:00Z)";
     const status = failedStatus("scan_x", msg);
     expect(status.error).toBe(msg);
+  });
+});
+
+describe("isDisplayableTerminalStatus", () => {
+  it("routes ready and degraded results out of the burning page", () => {
+    expect(isDisplayableTerminalStatus("ready")).toBe(true);
+    expect(isDisplayableTerminalStatus("degraded")).toBe(true);
+    expect(isDisplayableTerminalStatus("processing")).toBe(false);
+    expect(isDisplayableTerminalStatus("failed")).toBe(false);
   });
 });

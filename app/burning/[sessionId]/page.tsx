@@ -13,7 +13,10 @@ import {
   CompliPilotFlowHeader,
 } from "@/components/complipilot/flow-shell";
 import { getCompliPilotCopy } from "@/lib/complipilot/copy";
-import { useScanPolling } from "@/lib/hooks/useScanPolling";
+import {
+  isDisplayableTerminalStatus,
+  useScanPolling,
+} from "@/lib/hooks/useScanPolling";
 import { cn } from "@/lib/utils";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
@@ -83,7 +86,7 @@ export default function BurningPage() {
   // synchronous; caching it in state would just mirror the same value with
   // a cascading render.
   const accessToken = isDemoSession ? null : readStoredAccessToken(sessionId);
-  const status = useScanPolling(sessionId, accessToken);
+  const { status, displayProgress } = useScanPolling(sessionId, accessToken);
   const displayStatus = isDemoSession
     ? {
         sessionId,
@@ -93,11 +96,16 @@ export default function BurningPage() {
         stageKey: "retrieval" as const,
       }
     : status;
-  const progress = displayStatus?.progress ?? 8;
+  const progress = isDemoSession ? displayStatus?.progress ?? 8 : displayProgress || 8;
   const activeIndex = getActiveIndex(progress);
 
   useEffect(() => {
-    if (!isDemoSession && status?.status === "ready" && status.result) {
+    if (
+      !isDemoSession &&
+      status &&
+      isDisplayableTerminalStatus(status.status) &&
+      status.result
+    ) {
       sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
       router.push(`/result/${sessionId}`);
     }

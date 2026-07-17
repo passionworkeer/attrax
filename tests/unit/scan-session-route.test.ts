@@ -174,7 +174,9 @@ describe("GET /api/scan/[sessionId]", () => {
       expect(body.sessionId).toBe("scan_real123");
       expect(body.status).toBe("ready");
       expect(body.progress).toBe(100);
-      expect(body.result.complianceStatus).toBe("WARN");
+      expect(body.result.complianceScore).toBe(65);
+      expect(body.result.scoreGrade).toBe("C");
+      expect(body.result.source).toBe("real");
     });
 
     it("returns processing state correctly", async () => {

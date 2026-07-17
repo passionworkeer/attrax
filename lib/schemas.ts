@@ -129,7 +129,7 @@ export const ScanResultSchema = z.object({
   generatedAt: z.string().datetime(),
   modelInfo: z
     .object({
-      visionProvider: z.enum(["claude", "openai", "gemini", "mock"]),
+      visionProvider: z.enum(["claude", "openai", "gemini", "minimax", "mock"]),
       latencyMs: z.number().nonnegative(),
     })
     .optional(),
@@ -177,7 +177,7 @@ export const ComplianceReportResultSchema = z.object({
 
 export const ScanStatusSchema = z.object({
   sessionId: z.string().min(1),
-  status: z.enum(["processing", "ready", "failed"]),
+  status: z.enum(["processing", "ready", "degraded", "failed"]),
   progress: z.number().min(0).max(100),
   stageText: z.string(),
   result: z.union([ScanResultSchema, ComplianceReportResultSchema]).optional(),

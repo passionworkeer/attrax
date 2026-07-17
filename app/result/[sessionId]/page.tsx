@@ -264,7 +264,10 @@ export default function ResultPage() {
           }
 
           const payload: ScanStatus = await response.json();
-          if (payload.status === "ready" && payload.result) {
+          if (
+            (payload.status === "ready" || payload.status === "degraded") &&
+            payload.result
+          ) {
             const resultPayload = payload.result;
             sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(resultPayload));
             startTransition(() => {
@@ -272,10 +275,20 @@ export default function ResultPage() {
                 setResult(resultPayload);
                 setSelectedRiskId(resultPayload.riskPoints?.[0]?.riskId ?? null);
               } else {
-                setResult(mockScanResult);
-                setSelectedRiskId(mockScanResult.riskPoints[0]?.riskId ?? null);
+                setResult(resultPayload as ScanResult);
+                setSelectedRiskId(
+                  "riskPoints" in resultPayload
+                    ? resultPayload.riskPoints?.[0]?.riskId ?? null
+                    : null,
+                );
               }
-              setMessage(copy.result.loaded);
+              setMessage(
+                payload.status === "degraded"
+                  ? locale === "zh"
+                    ? "后端返回了明确标记的降级结果。"
+                    : "The backend returned an explicitly degraded result."
+                  : copy.result.loaded,
+              );
             });
             return;
           }
@@ -348,13 +361,46 @@ export default function ResultPage() {
     );
   }
 
+  if (result.riskPoints.length === 0) {
+    return (
+      <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
+        <CompliPilotFlowBackdrop tone="bright" />
+        <div className="relative z-10">
+          <CompliPilotFlowHeader
+            backHref="/upload"
+            backLabel={locale === "zh" ? "返回上传页" : "Back to upload"}
+            flowTitle={locale === "zh" ? "合规检测结果" : "Compliance Result"}
+            flowSubtitle={locale === "zh" ? "真实后端结果 · 未伪造风险项" : "Backend result · no synthetic risks"}
+            primaryHref="/upload"
+            primaryLabel={locale === "zh" ? "重新检测" : "Scan again"}
+            statusLabel={result.source === "fallback" ? "DEGRADED" : "INCOMPLETE"}
+            tone="bright"
+          />
+          <section className="mx-auto w-full max-w-5xl px-6 pt-8">
+            <div className="blaze-panel p-8">
+              <SectionEyebrow>{result.source === "fallback" ? "Degraded" : "Incomplete"}</SectionEyebrow>
+              <h1 className="mt-3 text-3xl font-semibold text-white">
+                {locale === "zh" ? "后端未返回可展示的风险证据" : "No displayable risk evidence was returned"}
+              </h1>
+              <p className="mt-4 text-sm leading-7 text-white/60">
+                {locale === "zh"
+                  ? "页面不会用 Mock 数据替换真实结果。请检查检索库、模型响应和报告包中的 decisionView。"
+                  : "The page will not replace this response with mock data. Check retrieval, model output, and reportPackage.decisionView."}
+              </p>
+            </div>
+          </section>
+        </div>
+      </main>
+    );
+  }
+
   const criticalCount = result.riskPoints.filter((item) => item.severity === "critical").length;
   const financialSummary = result.financialSummary ?? {
-    estimatedHeroicProfit: "¥0",
-    trueNetProfit: "¥0",
-    complianceCost: "¥0",
-    monthlyNetProfit: "¥0",
-    targetVolumeLabel: "—",
+    estimatedHeroicProfit: "—",
+    trueNetProfit: "—",
+    complianceCost: "—",
+    monthlyNetProfit: "—",
+    targetVolumeLabel: locale === "zh" ? "后端未提供" : "Not provided",
     riskExposureItems: [],
     costBreakdown: [],
   };
