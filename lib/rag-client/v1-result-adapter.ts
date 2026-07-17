@@ -67,6 +67,17 @@ function scoreFor(status: string): { score: number; grade: ScoreGrade } {
   }
 }
 
+function resultScore(result: UnknownRecord, status: string): { score: number; grade: ScoreGrade } {
+  const fallback = scoreFor(status);
+  const rawScore = number(result.complianceScore, fallback.score);
+  const score = Math.max(0, Math.min(100, rawScore));
+  const rawGrade = text(result.scoreGrade).toUpperCase();
+  const grade = (["A", "B", "C", "D"] as const).includes(rawGrade as ScoreGrade)
+    ? (rawGrade as ScoreGrade)
+    : fallback.grade;
+  return { score, grade };
+}
+
 function severityFor(status: string): Severity {
   const normalized = status.toLowerCase();
   if (["failed", "blocked", "rejected", "critical"].includes(normalized)) {
@@ -149,7 +160,7 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
   const result = record(session.result);
   const reportPackage = record(result.reportPackage);
   const complianceStatus = text(result.complianceStatus, "UNKNOWN");
-  const score = scoreFor(complianceStatus);
+  const score = resultScore(result, complianceStatus);
   const generatedAt = text(
     record(reportPackage.auditMetadata).generatedAt,
     session.updatedAt,

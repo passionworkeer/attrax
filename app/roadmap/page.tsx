@@ -44,16 +44,14 @@ function RoadmapPageInner() {
   const { t, locale } = useTranslation();
   const sessionId = useSessionId();
 
-  const [loading, setLoading] = useState(true);
+  const [settledSessionId, setSettledSessionId] = useState("");
   const [roadmapData, setRoadmapData] = useState<RoadmapData | null>(null);
 
   useEffect(() => {
     if (!sessionId) {
-      setLoading(false);
       return;
     }
     if (sessionId === "demo") {
-      setLoading(false);
       return;
     }
 
@@ -71,10 +69,10 @@ function RoadmapPageInner() {
         if (data?.items) {
           setRoadmapData(data);
         }
-        setLoading(false);
+        setSettledSessionId(sessionId);
       })
       .catch(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setSettledSessionId(sessionId);
       });
 
     // 同时获取完整扫描结果，供 result 页面缓存复用
@@ -115,7 +113,7 @@ function RoadmapPageInner() {
   // 使用 API 数据或共享默认数据（P1.8: lib/mock/roadmap.ts）
   const items = roadmapData?.items ?? getDefaultRoadmapItems();
 
-  if (sessionId && sessionId !== "demo" && loading) {
+  if (sessionId && sessionId !== "demo" && settledSessionId !== sessionId) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="rounded-2xl border border-white/60 bg-white/85 px-6 py-4 text-muted-foreground shadow-sm backdrop-blur animate-pulse">

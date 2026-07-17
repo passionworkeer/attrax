@@ -68,16 +68,14 @@ function RoadmapSessionPageInner({
 
   const sessionId = useSessionId(paramSessionId);
 
-  const [loading, setLoading] = useState(true);
+  const [settledSessionId, setSettledSessionId] = useState("");
   const [roadmapData, setRoadmapData] = useState<RoadmapData | null>(null);
 
   useEffect(() => {
     if (!sessionId) {
-      setLoading(false);
       return;
     }
     if (sessionId === "demo") {
-      setLoading(false);
       return;
     }
 
@@ -95,10 +93,10 @@ function RoadmapSessionPageInner({
         if (data?.items) {
           setRoadmapData(data);
         }
-        setLoading(false);
+        setSettledSessionId(sessionId);
       })
       .catch(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setSettledSessionId(sessionId);
       });
 
     // Prefetch scan result into sessionStorage for the result page
@@ -135,7 +133,7 @@ function RoadmapSessionPageInner({
 
   const items = roadmapData?.items ?? getDefaultRoadmapItems();
 
-  if (sessionId && sessionId !== "demo" && loading) {
+  if (sessionId && sessionId !== "demo" && settledSessionId !== sessionId) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="rounded-2xl border border-white/60 bg-white/85 px-6 py-4 text-muted-foreground shadow-sm backdrop-blur animate-pulse">

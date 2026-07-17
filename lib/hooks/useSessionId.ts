@@ -35,6 +35,7 @@ export function useSessionId(
   // window.sessionStorage here is safe because effects don't run on the
   // server. The dependency array covers both query and param changes.
   useEffect(() => {
+    let cancelled = false;
     const fromQuery = searchParams?.get("sessionId") || "";
     const fromParams = paramsSessionId || "";
     const fromStorage =
@@ -42,7 +43,12 @@ export function useSessionId(
         ? window.sessionStorage.getItem("lastSessionId") || ""
         : "";
     const resolved = fromQuery || fromParams || fromStorage;
-    setSessionId(resolved);
+    queueMicrotask(() => {
+      if (!cancelled) setSessionId(resolved);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, [searchParams, paramsSessionId]);
 
   // Mirror the old behavior of persisting the active sessionId so other

@@ -45,16 +45,14 @@ function TracePageInner() {
   const { t, locale } = useTranslation();
   const sessionId = useSessionId();
 
-  const [loading, setLoading] = useState(true);
+  const [settledSessionId, setSettledSessionId] = useState("");
   const [traceData, setTraceData] = useState<TraceStats | null>(null);
 
   useEffect(() => {
     if (!sessionId) {
-      setLoading(false);
       return;
     }
     if (sessionId === "demo") {
-      setLoading(false);
       return;
     }
 
@@ -72,10 +70,10 @@ function TracePageInner() {
         if (data?.traceNodes) {
           setTraceData(data);
         }
-        setLoading(false);
+        setSettledSessionId(sessionId);
       })
       .catch(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) setSettledSessionId(sessionId);
       });
 
     // 同时获取完整扫描结果，供 result 页面缓存复用
@@ -115,7 +113,7 @@ function TracePageInner() {
   const score = traceData?.score ?? 85;
   const grade = traceData?.grade ?? "B";
 
-  if (sessionId && sessionId !== "demo" && loading) {
+  if (sessionId && sessionId !== "demo" && settledSessionId !== sessionId) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="rounded-2xl border border-white/60 bg-white/85 px-6 py-4 text-muted-foreground shadow-sm backdrop-blur animate-pulse">
