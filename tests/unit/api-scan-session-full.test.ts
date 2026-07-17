@@ -1,370 +1,57 @@
 /**
- * Additional unit tests for GET /api/scan/[sessionId] to ensure full coverage.
- * Tests edge cases and error scenarios.
+ * Extended unit tests for GET /api/scan/[sessionId] (handoff BFF).
+ *
+ * Now that the route forwards to /api/v1/scans/{id} via the v1 adapter, these
+ * tests cover the contract the pages consume: the demo short-circuit,
+ * status/progress mapping, error surfacing, and demo-vs-real precedence.
  *
  * Run with: npm run test -- tests/unit/api-scan-session-full.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-// Mock the session store before importing
-const mockSessions = new Map<string, Record<string, unknown>>();
-
-vi.mock("@/lib/pipeline/session-store", () => ({
-  getSession: vi.fn((id: string) => mockSessions.get(id) ?? undefined),
+const { mockGetScan } = vi.hoisted(() => ({
+  mockGetScan: vi.fn(),
 }));
 
-vi.mock("@/lib/mock/scan-result", () => ({
-  createMockScanResult: vi.fn((id: string) => ({
-    sessionId: id,
-    scanTime: "2026-05-13T10:00:00.000Z",
-    productCategory: "electronics",
-    productName: "测试产品",
-    targetMarkets: ["EU", "US"],
-    complianceScore: 85,
-    scoreGrade: "B",
-    complianceReport: "## 合规报告\n测试内容",
-    complianceStatus: "PASS",
-    agentTrace: [
-      { node: "vision", status: "PASS", duration_ms: 3200, score: 0.95 },
-      { node: "retriever", status: "PASS", duration_ms: 1800, docs_retrieved: 10 },
-      { node: "generate", status: "PASS", duration_ms: 2100, score: 0.88 },
-    ],
-    loopCount: 1,
-    retrievedChunks: [
-      { regId: "EU-CE-2014/35/EU", docName: "低压指令", articleNo: "Art. 4", region: "EU", score: 0.93 },
-    ],
-    documents: [],
-    generatedAt: "2026-05-13T10:00:00.000Z",
-    modelInfo: { ragProvider: "mimotalk", latencyMs: 7100 },
-  })),
-  createMockComplianceReportResult: vi.fn((id: string) => ({
-    sessionId: id,
-    complianceScore: 85,
-    scoreGrade: "B",
-    complianceReport: "## 鍚堣鎶ュ憡\n娴嬭瘯鍐呭",
-    complianceStatus: "PASS",
-    agentTrace: [],
-    retrievedChunks: [],
-    targetMarkets: ["EU", "US"],
-  })),
-  createMockProfitReport: vi.fn((id: string) => ({
-    sessionId: id,
-    productType: "测试产品",
-    market: "EU",
-    report: "## 利润报告",
-    barebone: { bom: 10, packaging: 1, cert: 0.5, epr: 0.3, logistics: 5, asp: 25, gp: 8.2 },
-    compliant: { bom: 15, packaging: 1.5, cert: 1, epr: 0.5, logistics: 5, asp: 45, gp: 22 },
-    bareboneRiskExposure: 30,
-    compliantRiskExposure: 0,
-    keyConclusion: "合规模式净利润显著高于裸奔模式",
-    generatedAt: "2026-05-13T10:00:00.000Z",
-  })),
-  createMockProfitReports: vi.fn((id: string) => [
-    {
-      sessionId: id,
-      productType: "测试产品",
-      market: "EU",
-      report: "## 利润报告",
-      barebone: { bom: 10, packaging: 1, cert: 0.5, epr: 0.3, logistics: 5, asp: 25, gp: 8.2 },
-      compliant: { bom: 15, packaging: 1.5, cert: 1, epr: 0.5, logistics: 5, asp: 45, gp: 22 },
-      bareboneRiskExposure: 30,
-      compliantRiskExposure: 0,
-      keyConclusion: "合规模式净利润显著高于裸奔模式",
-      generatedAt: "2026-05-13T10:00:00.000Z",
-    },
-  ]),
-}));
+vi.mock("@/lib/rag-client/v1-adapter", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/rag-client/v1-adapter")>(
+    "@/lib/rag-client/v1-adapter",
+  );
+  return {
+    ...actual,
+    getScan: mockGetScan,
+  };
+});
+
+function sessionFixture(overrides: Partial<{
+  sessionId: string;
+  status: string;
+  progress: number;
+  stageText: string;
+  result: Record<string, unknown> | null;
+  error: string | null;
+}> = {}) {
+  return {
+    sessionId: overrides.sessionId ?? "scan_x",
+    status: overrides.status ?? "processing",
+    progress: overrides.progress ?? 0,
+    stageText: overrides.stageText ?? "...",
+    category: "electronics",
+    markets: ["EU"],
+    createdAt: "2026-07-17T00:00:00Z",
+    updatedAt: "2026-07-17T00:01:00Z",
+    result: overrides.result ?? null,
+    error: overrides.error ?? null,
+  };
+}
 
 describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
   beforeEach(() => {
-    mockSessions.clear();
-  });
-
-  describe("Session status variations", () => {
-    it("handles session with pending status", async () => {
-      mockSessions.set("scan_pending", {
-        sessionId: "scan_pending",
-        status: "pending",
-        progress: 0,
-        stageText: "等待中...",
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_pending");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_pending" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.status).toBe("pending");
-      expect(body.progress).toBe(0);
-    });
-
-    it("handles session with all score grades", async () => {
-      const grades = ["A", "B", "C", "D", "F"];
-
-      for (const grade of grades) {
-        mockSessions.clear();
-        mockSessions.set(`scan_grade_${grade}`, {
-          sessionId: `scan_grade_${grade}`,
-          status: "ready",
-          progress: 100,
-          stageText: "完成",
-          result: {
-            sessionId: `scan_grade_${grade}`,
-            complianceScore: grade === "A" ? 95 : grade === "B" ? 85 : grade === "C" ? 65 : grade === "D" ? 45 : 25,
-            scoreGrade: grade,
-            complianceStatus: grade === "A" ? "PASS" : grade === "B" ? "PASS" : "WARN",
-            agentTrace: [],
-            retrievedChunks: [],
-          },
-        });
-
-        const { GET } = await import("@/app/api/scan/[sessionId]/route");
-        const req = new Request(`http://localhost/api/scan/scan_grade_${grade}`);
-        const ctx = { params: Promise.resolve({ sessionId: `scan_grade_${grade}` }) };
-
-        const res = await GET(req, ctx);
-        const body = await res.json();
-
-        expect(res.status).toBe(200);
-        expect(body.result.scoreGrade).toBe(grade);
-      }
-    });
-  });
-
-  describe("Result structure variations", () => {
-    it("handles result with all compliance statuses", async () => {
-      const statuses = ["PASS", "WARN", "FAIL", "UNKNOWN"];
-
-      for (const status of statuses) {
-        mockSessions.clear();
-        mockSessions.set(`scan_status_${status}`, {
-          sessionId: `scan_status_${status}`,
-          status: "ready",
-          progress: 100,
-          stageText: status === "PASS" ? "通过" : status === "WARN" ? "警告" : "未通过",
-          result: {
-            sessionId: `scan_status_${status}`,
-            complianceScore: status === "PASS" ? 90 : status === "WARN" ? 60 : status === "FAIL" ? 30 : 50,
-            scoreGrade: "B",
-            complianceStatus: status,
-            agentTrace: [],
-            retrievedChunks: [],
-          },
-        });
-
-        const { GET } = await import("@/app/api/scan/[sessionId]/route");
-        const req = new Request(`http://localhost/api/scan/scan_status_${status}`);
-        const ctx = { params: Promise.resolve({ sessionId: `scan_status_${status}` }) };
-
-        const res = await GET(req, ctx);
-        const body = await res.json();
-
-        expect(res.status).toBe(200);
-        expect(body.result.complianceStatus).toBe(status);
-      }
-    });
-
-    it("handles result with agentTrace containing various nodes", async () => {
-      mockSessions.set("scan_all_nodes", {
-        sessionId: "scan_all_nodes",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_all_nodes",
-          complianceScore: 85,
-          scoreGrade: "B",
-          complianceStatus: "PASS",
-          agentTrace: [
-            { node: "vision", status: "PASS", duration_ms: 1000, score: 0.9 },
-            { node: "query_planner", status: "PASS", duration_ms: 500 },
-            { node: "retriever", status: "PASS", duration_ms: 2000, docs_retrieved: 15 },
-            { node: "synthesis", status: "PASS", duration_ms: 1500 },
-            { node: "generate", status: "PASS", duration_ms: 3000, score: 0.85 },
-            { node: "verify", status: "PASS", duration_ms: 1000, score: 0.95 },
-            { node: "refine", status: "PASS", duration_ms: 800 },
-            { node: "fan_out", status: "PASS", duration_ms: 500 },
-          ],
-          retrievedChunks: [],
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_all_nodes");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_all_nodes" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.result.agentTrace).toHaveLength(8);
-    });
-
-    it("handles result with detailed retrievedChunks", async () => {
-      mockSessions.set("scan_chunks", {
-        sessionId: "scan_chunks",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_chunks",
-          complianceScore: 85,
-          scoreGrade: "B",
-          complianceStatus: "PASS",
-          agentTrace: [],
-          retrievedChunks: [
-            { regId: "EU-CE-LVD", docName: "低压指令", articleNo: "Art. 4", region: "EU", score: 0.95 },
-            { regId: "EU-CE-EMC", docName: "电磁兼容指令", articleNo: "Art. 2", region: "EU", score: 0.92 },
-            { regId: "EU-REACH", docName: "REACH 法规", articleNo: "Art. 33", region: "EU", score: 0.88 },
-            { regId: "US-FCC", docName: "FCC 认证", articleNo: "Part 15", region: "US", score: 0.90 },
-            { regId: "US-UL", docName: "UL 安全标准", articleNo: "UL 60950", region: "US", score: 0.85 },
-          ],
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_chunks");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_chunks" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.result.retrievedChunks).toHaveLength(5);
-      expect(body.result.retrievedChunks[0]).toHaveProperty("regId");
-      expect(body.result.retrievedChunks[0]).toHaveProperty("docName");
-      expect(body.result.retrievedChunks[0]).toHaveProperty("articleNo");
-      expect(body.result.retrievedChunks[0]).toHaveProperty("region");
-      expect(body.result.retrievedChunks[0]).toHaveProperty("score");
-    });
-  });
-
-  describe("Profit report handling", () => {
-    it("returns session with profitReport when available", async () => {
-      mockSessions.set("scan_with_profit", {
-        sessionId: "scan_with_profit",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_with_profit",
-          complianceScore: 85,
-          scoreGrade: "B",
-          complianceStatus: "PASS",
-          agentTrace: [],
-          retrievedChunks: [],
-        },
-        profitReport: {
-          sessionId: "scan_with_profit",
-          productType: "蓝牙耳机",
-          market: "EU",
-          report: "## 利润分析报告",
-          barebone: { bom: 10, packaging: 1, cert: 0.5, epr: 0.3, logistics: 5, asp: 25, gp: 8.2 },
-          compliant: { bom: 15, packaging: 1.5, cert: 1, epr: 0.5, logistics: 5, asp: 45, gp: 22 },
-          bareboneRiskExposure: 30,
-          compliantRiskExposure: 0,
-          keyConclusion: "合规模式净利润更高",
-          generatedAt: "2026-05-13T10:00:00.000Z",
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_with_profit");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_with_profit" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.profitReport).toBeDefined();
-      expect(body.profitReport.productType).toBe("蓝牙耳机");
-      expect(body.profitReport.keyConclusion).toBe("合规模式净利润更高");
-    });
-
-    it("returns session without profitReport when not available", async () => {
-      mockSessions.set("scan_no_profit", {
-        sessionId: "scan_no_profit",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_no_profit",
-          complianceScore: 85,
-          scoreGrade: "B",
-          complianceStatus: "PASS",
-          agentTrace: [],
-          retrievedChunks: [],
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_no_profit");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_no_profit" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.profitReport).toBeUndefined();
-    });
-  });
-
-  describe("Error field handling", () => {
-    it("returns error field when present", async () => {
-      mockSessions.set("scan_with_error", {
-        sessionId: "scan_with_error",
-        status: "failed",
-        progress: 30,
-        stageText: "处理失败",
-        error: "IMAGE_PROCESSING_FAILED",
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_with_error");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_with_error" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.error).toBe("IMAGE_PROCESSING_FAILED");
-    });
-
-    it("handles various error codes", async () => {
-      const errorCodes = [
-        "RAG_SERVICE_UNAVAILABLE",
-        "IMAGE_PROCESSING_FAILED",
-        "TIMEOUT",
-        "INVALID_IMAGE_FORMAT",
-        "DOCUMENT_PARSING_FAILED",
-      ];
-
-      for (const errorCode of errorCodes) {
-        mockSessions.clear();
-        mockSessions.set(`scan_err_${errorCode}`, {
-          sessionId: `scan_err_${errorCode}`,
-          status: "failed",
-          error: errorCode,
-        });
-
-        const { GET } = await import("@/app/api/scan/[sessionId]/route");
-        const req = new Request(`http://localhost/api/scan/scan_err_${errorCode}`);
-        const ctx = { params: Promise.resolve({ sessionId: `scan_err_${errorCode}` }) };
-
-        const res = await GET(req, ctx);
-        const body = await res.json();
-
-        expect(res.status).toBe(200);
-        expect(body.error).toBe(errorCode);
-      }
-    });
+    mockGetScan.mockReset();
   });
 
   describe("Demo session edge cases", () => {
-    it("handles demo session correctly", async () => {
+    it("demo session returns a complete mock ScanStatus", async () => {
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
       const req = new Request("http://localhost/api/scan/demo");
       const ctx = { params: Promise.resolve({ sessionId: "demo" }) };
@@ -381,15 +68,9 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
       expect(body.result.complianceScore).toBeDefined();
     });
 
-    it("demo session takes precedence over store lookup", async () => {
-      // Even if there's a real session with id "demo", demo mode should return mock result
-      mockSessions.set("demo", {
-        sessionId: "demo",
-        status: "processing",
-        progress: 50,
-        stageText: "处理中",
-      });
-
+    it("demo short-circuit takes precedence even when v1 would 404", async () => {
+      // Adapter is intentionally not set up to return anything; demo must
+      // short-circuit BEFORE we ever call into v1.
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
       const req = new Request("http://localhost/api/scan/demo");
       const ctx = { params: Promise.resolve({ sessionId: "demo" }) };
@@ -397,200 +78,218 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
       const res = await GET(req, ctx);
       const body = await res.json();
 
-      // Should return demo mock, not the processing session
       expect(body.status).toBe("ready");
-      expect(body.progress).toBe(100);
+      expect(mockGetScan).not.toHaveBeenCalled();
     });
   });
 
-  describe("Session with model info", () => {
-    it("includes model info in result", async () => {
-      mockSessions.set("scan_model_info", {
-        sessionId: "scan_model_info",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_model_info",
-          complianceScore: 88,
-          scoreGrade: "B",
-          complianceStatus: "PASS",
-          agentTrace: [],
-          retrievedChunks: [],
-          modelInfo: {
-            ragProvider: "mimotalk",
-            latencyMs: 8500,
-            modelName: "mimo-v2.5",
-          },
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_model_info");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_model_info" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.result.modelInfo).toBeDefined();
-      expect(body.result.modelInfo.ragProvider).toBe("mimotalk");
-      expect(body.result.modelInfo.latencyMs).toBe(8500);
-    });
-  });
-
-  describe("Market variations", () => {
-    it("handles single market", async () => {
-      mockSessions.set("scan_single_market", {
-        sessionId: "scan_single_market",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_single_market",
-          complianceScore: 90,
-          scoreGrade: "A",
-          complianceStatus: "PASS",
-          targetMarkets: ["JP"],
-          agentTrace: [],
-          retrievedChunks: [],
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_single_market");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_single_market" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.result.targetMarkets).toEqual(["JP"]);
-    });
-
-    it("handles multiple markets", async () => {
-      mockSessions.set("scan_multi_market", {
-        sessionId: "scan_multi_market",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_multi_market",
-          complianceScore: 75,
-          scoreGrade: "C",
-          complianceStatus: "WARN",
-          targetMarkets: ["EU", "US", "UK", "CN", "AU"],
-          agentTrace: [],
-          retrievedChunks: [],
-        },
-      });
-
-      const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_multi_market");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_multi_market" }) };
-
-      const res = await GET(req, ctx);
-      const body = await res.json();
-
-      expect(res.status).toBe(200);
-      expect(body.result.targetMarkets).toHaveLength(5);
-    });
-  });
-
-  describe("Product category variations", () => {
-    it("handles all product categories", async () => {
-      const categories = ["electronics", "appliance", "3c", "toy", "home", "other"];
-
-      for (const category of categories) {
-        mockSessions.clear();
-        mockSessions.set(`scan_cat_${category}`, {
-          sessionId: `scan_cat_${category}`,
-          status: "ready",
-          progress: 100,
-          stageText: "完成",
-          result: {
-            sessionId: `scan_cat_${category}`,
-            productCategory: category,
-            complianceScore: 85,
-            scoreGrade: "B",
-            complianceStatus: "PASS",
-            agentTrace: [],
-            retrievedChunks: [],
-          },
-        });
+  describe("Result structure variations", () => {
+    it("passes through all compliance statuses from v1", async () => {
+      const statuses = ["PASS", "WARN", "REJECTED", "UNKNOWN"];
+      for (const complianceStatus of statuses) {
+        mockGetScan.mockReset();
+        mockGetScan.mockResolvedValue(
+          sessionFixture({
+            status: "ready",
+            progress: 100,
+            result: {
+              sessionId: "scan_x",
+              complianceScore: 80,
+              scoreGrade: "B",
+              complianceStatus,
+              agentTrace: [],
+              retrievedChunks: [],
+            },
+          }),
+        );
 
         const { GET } = await import("@/app/api/scan/[sessionId]/route");
-        const req = new Request(`http://localhost/api/scan/scan_cat_${category}`);
-        const ctx = { params: Promise.resolve({ sessionId: `scan_cat_${category}` }) };
+        const req = new Request("http://localhost/api/scan/scan_x", {
+          headers: { authorization: "Bearer t" },
+        });
+        const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
 
         const res = await GET(req, ctx);
         const body = await res.json();
 
         expect(res.status).toBe(200);
-        expect(body.result.productCategory).toBe(category);
+        expect(body.result.complianceStatus).toBe(complianceStatus);
       }
+    });
+
+    it("passes through agentTrace and retrievedChunks in result", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({
+          status: "ready",
+          progress: 100,
+          result: {
+            sessionId: "scan_chunks",
+            complianceScore: 85,
+            scoreGrade: "B",
+            complianceStatus: "PASS",
+            agentTrace: [
+              { node: "vision", duration_ms: 1000 },
+              { node: "retriever", duration_ms: 2000 },
+            ],
+            retrievedChunks: [
+              { regId: "EU-CE-LVD", docName: "LVD", articleNo: "Art. 4", region: "EU", score: 0.95 },
+            ],
+          },
+        }),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_chunks", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_chunks" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      expect(body.result.agentTrace).toHaveLength(2);
+      expect(body.result.retrievedChunks).toHaveLength(1);
+      expect(body.result.retrievedChunks[0]).toHaveProperty("regId");
     });
   });
 
-  describe("Loop count variations", () => {
-    it("handles zero loops", async () => {
-      mockSessions.set("scan_zero_loops", {
-        sessionId: "scan_zero_loops",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_zero_loops",
-          complianceScore: 95,
-          scoreGrade: "A",
-          complianceStatus: "PASS",
-          loopCount: 0,
-          agentTrace: [
-            { node: "vision", status: "PASS", duration_ms: 1000 },
-            { node: "retriever", status: "PASS", duration_ms: 2000 },
-            { node: "generate", status: "PASS", duration_ms: 1500 },
-          ],
-          retrievedChunks: [],
-        },
-      });
+  describe("stageKey inference", () => {
+    it("infers stageKey=retrieval from stageText containing 'retriev'", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({ status: "processing", stageText: "matching retrieval..." }),
+      );
 
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_zero_loops");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_zero_loops" }) };
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
 
       const res = await GET(req, ctx);
       const body = await res.json();
 
-      expect(res.status).toBe(200);
-      expect(body.result.loopCount).toBe(0);
+      expect(body.stageKey).toBe("retrieval");
     });
 
-    it("handles multiple loops", async () => {
-      mockSessions.set("scan_multi_loops", {
-        sessionId: "scan_multi_loops",
-        status: "ready",
-        progress: 100,
-        stageText: "完成",
-        result: {
-          sessionId: "scan_multi_loops",
-          complianceScore: 70,
-          scoreGrade: "C",
-          complianceStatus: "WARN",
-          loopCount: 5,
-          agentTrace: [],
-          retrievedChunks: [],
-        },
-      });
+    it("infers stageKey=vision from stageText containing 'vision'", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({ status: "processing", stageText: "running vision model" }),
+      );
 
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_multi_loops");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_multi_loops" }) };
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(body.stageKey).toBe("vision");
+    });
+
+    it("infers stageKey=failed when status is failed", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({ status: "failed", error: "RAG_SERVICE_TIMEOUT" }),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(body.stageKey).toBe("failed");
+    });
+
+    it("falls back to stageKey=queued for unrecognized stageText", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({ status: "processing", stageText: "warming up" }),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(body.stageKey).toBe("queued");
+    });
+  });
+
+  describe("Error surfacing", () => {
+    it("returns error field when present in v1 response", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({ status: "failed", error: "IMAGE_PROCESSING_FAILED" }),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
 
       const res = await GET(req, ctx);
       const body = await res.json();
 
       expect(res.status).toBe(200);
-      expect(body.result.loopCount).toBe(5);
+      expect(body.error).toBe("IMAGE_PROCESSING_FAILED");
+      expect(body.status).toBe("failed");
+    });
+
+    it("returns the v1 4xx status code (e.g. 404, 401) verbatim", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockGetScan.mockRejectedValue(
+        new V1EnvelopeError("NOT_FOUND", "not found", 404, "req-1"),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_missing", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_missing" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(404);
+    });
+  });
+
+  describe("Auth precedence", () => {
+    it("returns 401 when neither Bearer header nor ?token= query is present", async () => {
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(401);
+      expect(mockGetScan).not.toHaveBeenCalled();
+    });
+
+    it("accepts empty Authorization header by falling through to ?token= check", async () => {
+      mockGetScan.mockResolvedValue(sessionFixture({ status: "processing" }));
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x?token=via-query", {
+        headers: { authorization: "" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(200);
+      expect(mockGetScan).toHaveBeenCalledWith({
+        sessionId: "scan_x",
+        accessToken: "via-query",
+      });
     });
   });
 });
