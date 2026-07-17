@@ -8,7 +8,7 @@ import os
 import json
 import logging
 import re
-from typing import Optional
+from typing import Callable, Optional
 
 import jieba
 from rank_bm25 import BM25Okapi
@@ -68,6 +68,27 @@ def _tokenize(text: str) -> list[str]:
     return tokens
 
 
+def _fast_tokenize(text: str) -> list[str]:
+    """Low-overhead tokenizer for cold-start corpus fallback.
+
+    English identifiers/words and CJK unigrams preserve exact sparse recall
+    without paying jieba segmentation cost across the whole source corpus.
+    """
+    text = text or ""
+    latin = [
+        token.lower()
+        for token in re.findall(r"[A-Za-z0-9][A-Za-z0-9.+_-]*", text)
+        if token.lower() not in _STOP_TOKENS
+    ]
+    cjk = [
+        char
+        for match in _CJK_RE.finditer(text)
+        for char in match.group(0)
+        if char not in _CJK_STOP_CHARS
+    ]
+    return latin + cjk
+
+
 class BM25Retriever:
     """
     BM25 sparse retriever with jieba tokenization.
@@ -76,11 +97,12 @@ class BM25Retriever:
     Only the query is tokenized per search call.
     """
 
-    def __init__(self):
+    def __init__(self, tokenizer: Callable[[str], list[str]] | None = None):
         self.chunks: list[dict] = []
         self.bm25: Optional[BM25Okapi] = None
         self.chunk_id_to_doc: dict[str, dict] = {}
         self._tokenized_chunks: list[list[str]] = []
+        self._tokenizer = tokenizer or _tokenize
 
     def build_index(self, chunks: list[dict]):
         """Build BM25 index from chunks. Each chunk needs 'content' and 'id'.
@@ -94,7 +116,7 @@ class BM25Retriever:
 
         # Tokenize corpus ONCE and cache — avoids re-tokenizing thousands of
         # chunks on every search call (was ~50ms overhead per search before).
-        tokenized = [_tokenize(_chunk_search_text(chunk)) for chunk in chunks]
+        tokenized = [self._tokenizer(_chunk_search_text(chunk)) for chunk in chunks]
         self._tokenized_chunks = tokenized
 
         self.bm25 = BM25Okapi(tokenized, k1=1.2, b=0.75)
@@ -106,7 +128,7 @@ class BM25Retriever:
             logger.warning("BM25 index not built")
             return []
 
-        query_tokens = _tokenize(query)
+        query_tokens = self._tokenizer(query)
         if not query_tokens:
             return []
 
@@ -162,9 +184,13 @@ class BM25Retriever:
             }, f)
 
     @classmethod
-    def from_chunks(cls, chunks: list[dict]) -> "BM25Retriever":
+    def from_chunks(
+        cls,
+        chunks: list[dict],
+        tokenizer: Callable[[str], list[str]] | None = None,
+    ) -> "BM25Retriever":
         """Build BM25 retriever from chunks."""
-        retriever = cls()
+        retriever = cls(tokenizer=tokenizer)
         retriever.build_index(chunks)
         return retriever
 

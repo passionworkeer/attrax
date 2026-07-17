@@ -12,7 +12,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 from rag_service.retrieval.fusion import rrf_fuse, normalize_scores
-from rag_service.retrieval.bm25_retriever import BM25Retriever, _tokenize
+from rag_service.retrieval.bm25_retriever import BM25Retriever, _fast_tokenize, _tokenize
 from rag_service.retrieval.must_check import (
     get_must_check_regulations,
     apply_must_check,
@@ -139,6 +139,13 @@ def test_tokenize_mixed_cjk_and_ascii():
     # Should contain both ascii (rohs) and CJK unigrams (铅, 限, etc.)
     assert "rohs" in tokens
     assert any(t for t in tokens if "一" <= t[0] <= "鿿")
+
+
+def test_fast_tokenize_keeps_ascii_terms_and_cjk_unigrams():
+    tokens = _fast_tokenize("RoHS 铅含量限制 Article 4")
+    assert "rohs" in tokens
+    assert "article" in tokens
+    assert "铅" in tokens
 
 
 # ── must_check edge cases ────────────────────────────────────────────────────

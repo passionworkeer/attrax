@@ -49,13 +49,14 @@ from rag_service.orchestrator.graph import run_compliance_graph
 from rag_service.retrieval.faiss_retriever import FaissRetriever
 from rag_service.schemas.report_package import ReportPackage
 from rag_service.retrieval.hybrid_retriever import HybridRetriever
-from rag_service.retrieval.bm25_retriever import BM25Retriever
+from rag_service.retrieval.bm25_retriever import BM25Retriever, _fast_tokenize
 from rag_service.generate.report_generator import ReportGenerator
 from rag_service.verify.citation_verifier import CitationVerifier
 from rag_service.orchestrator.nodes import vision as vision_node
 from rag_service.api.v1 import router as public_v1_router
 from rag_service.application.scans import ScanService
 from rag_service.infrastructure.file_backend import FileBackend
+from rag_service.retrieval.corpus_loader import load_bm25_chunks_from_corpus
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -109,6 +110,12 @@ async def lifespan(app: FastAPI):
     _retriever = HybridRetriever(bm25=bm25, faiss_retriever=faiss_ret)
 
     chunks = faiss_ret.chunks if faiss_ret else []
+    if not chunks:
+        chunks = load_bm25_chunks_from_corpus(_APP_ROOT / "data" / "corpus" / "processed")
+        if chunks:
+            bm25 = BM25Retriever(tokenizer=_fast_tokenize)
+
+    _retriever = HybridRetriever(bm25=bm25, faiss_retriever=faiss_ret)
     if chunks:
         _retriever.load_chunks(chunks)
         logger.info(f"BM25 index built with {len(chunks)} chunks")
@@ -515,13 +522,17 @@ def _readiness_snapshot() -> dict:
     has_modelscope = settings.demo_mode or bool(settings.modelscope_api_key.strip())
     checks = {
         "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
-        "bm25": _retriever is not None,
+        "bm25": bool(
+            _retriever is not None
+            and getattr(_retriever, "_chunks_loaded", False)
+            and getattr(_retriever, "_chunks", [])
+        ),
         "minimax_api_key": settings.demo_mode or bool(settings.effective_minimax_api_key.strip()),
         "modelscope_api_key": has_modelscope,
         "config_loaded": True,
         "scan_service": hasattr(app.state, "scan_service"),
     }
-    gate_keys = ("faiss", "bm25", "minimax_api_key", "config_loaded", "scan_service")
+    gate_keys = ("bm25", "minimax_api_key", "config_loaded", "scan_service")
     return {
         "ready": all(checks[key] for key in gate_keys),
         "checks": checks,
