@@ -34,7 +34,7 @@ describe("GET /api/trace/[sessionId]", () => {
   });
 
   describe("Scenario 1: Session not found", () => {
-    it("returns 404 with NOT_FOUND error code", async () => {
+    it("returns 401 before probing an unknown real session", async () => {
       const { GET } = await import("@/app/api/trace/[sessionId]/route");
       const req = new Request("http://localhost/api/trace/scan_nonexistent");
       const ctx = { params: Promise.resolve({ sessionId: "scan_nonexistent" }) };
@@ -42,10 +42,10 @@ describe("GET /api/trace/[sessionId]", () => {
       const res = await GET(req, ctx);
       const body = await res.json();
 
-      expect(res.status).toBe(404);
+      expect(res.status).toBe(401);
       expect(body.error).toBeDefined();
-      expect(body.error.code).toBe("NOT_FOUND");
-      expect(body.error.message).toContain("未找到");
+      expect(body.error.code).toBe("UNAUTHORIZED");
+      expect(body.error.message).toContain("access token");
     });
   });
 

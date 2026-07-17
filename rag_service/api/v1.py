@@ -232,6 +232,33 @@ def get_trace(
     return success(request, trace)
 
 
+@router.get("/scans/{session_id}/assets/{index}")
+def get_asset(
+    request: Request,
+    session_id: str,
+    index: int,
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)],
+):
+    service, token, denied = _session_and_token(request, session_id, credentials)
+    if denied:
+        return denied
+    try:
+        upload, content = service.get_image_asset(session_id, token, index)
+    except ScanUnauthorized:
+        return failure(request, "UNAUTHORIZED", "Invalid scan access token", 401)
+    except ScanNotFound:
+        return failure(request, "NOT_FOUND", "Scan asset not found", 404)
+
+    return Response(
+        content=content,
+        media_type=upload.content_type,
+        headers={
+            "Cache-Control": "private, max-age=3600",
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
+
+
 @router.delete("/scans/{session_id}", status_code=204)
 def delete_scan(
     request: Request,

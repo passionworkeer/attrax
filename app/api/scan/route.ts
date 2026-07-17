@@ -15,6 +15,7 @@
 import { NextResponse } from "next/server";
 import { createScan, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { ok } from "@/lib/api-response";
+import { backendSessionCookie } from "@/app/api/backend-session-access";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -168,7 +169,7 @@ export async function POST(request: Request): Promise<Response> {
     // (`/api/scan/{id}`) so existing client code keeps working unchanged.
     // `accessToken` is also returned so callers can opt-in to send it as a
     // Bearer header on subsequent polls (see GET route).
-    return ok(
+    const response = ok(
       {
         sessionId: created.sessionId,
         accessToken: created.accessToken,
@@ -177,6 +178,11 @@ export async function POST(request: Request): Promise<Response> {
       },
       { status: 202 },
     );
+    response.headers.append(
+      "Set-Cookie",
+      backendSessionCookie(created.sessionId, created.accessToken),
+    );
+    return response;
   } catch (err) {
     if (err instanceof V1EnvelopeError) {
       // Surface envelope-level errors with their original HTTP status when

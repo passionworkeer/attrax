@@ -14,7 +14,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 from rag_service.application.ports import ScanBackend, ScanRunner
-from rag_service.domain.scans import ScanJob, ScanSession
+from rag_service.domain.scans import ScanJob, ScanSession, StoredUpload
 from rag_service.parser.docx_parser import _escape_prompt_injection, parse_docx
 
 
@@ -172,6 +172,34 @@ class ScanService:
 
     def get_scan(self, session_id: str, access_token: str) -> dict[str, Any]:
         return self._authorized_session(session_id, access_token).public_data()
+
+    def get_image_asset(
+        self,
+        session_id: str,
+        access_token: str,
+        index: int,
+    ) -> tuple[StoredUpload, bytes]:
+        """Return one authorized image without accepting a filesystem path."""
+        self._authorized_session(session_id, access_token)
+        images = [
+            upload
+            for upload in self.backend.list_uploads(session_id)
+            if upload.kind == "image"
+        ]
+        if index < 0 or index >= len(images):
+            raise ScanNotFound(f"asset:{index}")
+
+        upload = images[index]
+        path = Path(upload.path).resolve()
+        if path.name != upload.stored_name or path.parent.name != session_id:
+            raise ScanNotFound(f"asset:{index}")
+        try:
+            content = path.read_bytes()
+        except OSError as exc:
+            raise ScanNotFound(f"asset:{index}") from exc
+        if hashlib.sha256(content).hexdigest() != upload.sha256:
+            raise ScanNotFound(f"asset:{index}")
+        return upload, content
 
     def delete_scan(self, session_id: str, access_token: str) -> None:
         self._authorized_session(session_id, access_token)

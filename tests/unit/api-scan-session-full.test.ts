@@ -289,9 +289,7 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
       expect(mockGetScan).not.toHaveBeenCalled();
     });
 
-    it("accepts empty Authorization header by falling through to ?token= check", async () => {
-      mockGetScan.mockResolvedValue(sessionFixture({ status: "processing" }));
-
+    it("does not fall through to query-string tokens", async () => {
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
       const req = new Request("http://localhost/api/scan/scan_x?token=via-query", {
         headers: { authorization: "" },
@@ -300,11 +298,8 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
 
       const res = await GET(req, ctx);
 
-      expect(res.status).toBe(200);
-      expect(mockGetScan).toHaveBeenCalledWith({
-        sessionId: "scan_x",
-        accessToken: "via-query",
-      });
+      expect(res.status).toBe(401);
+      expect(mockGetScan).not.toHaveBeenCalled();
     });
   });
 });
