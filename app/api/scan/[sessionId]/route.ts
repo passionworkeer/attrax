@@ -32,28 +32,6 @@ import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access"
 
 export const runtime = "nodejs";
 
-function extractAccessToken(request: Request): string | null {
-  // 1) Bearer header — the preferred path.
-  const auth = request.headers.get("authorization");
-  if (auth) {
-    const m = /^Bearer\s+(.+)$/i.exec(auth);
-    if (m && m[1].trim()) return m[1].trim();
-  }
-  // 2) ?token= query param — opt-in fallback for callers that can't set
-  //    custom headers. Documented risk: query strings are commonly logged;
-  //    this is a BFF-internal trust boundary so the token was already
-  //    issued by us, but pages SHOULD migrate to Bearer headers as soon as
-  //    they persist the token.
-  try {
-    const url = new URL(request.url);
-    const t = url.searchParams.get("token");
-    if (t && t.trim()) return t.trim();
-  } catch {
-    /* unparseable URL — ignore */
-  }
-  return null;
-}
-
 export async function GET(
   request: Request,
   context: { params: Promise<{ sessionId: string }> },
@@ -133,4 +111,3 @@ function inferStageKey(
   if (text.includes("generat") || text.includes("report")) return "report";
   return "queued";
 }
-
