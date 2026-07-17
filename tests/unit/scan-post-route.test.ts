@@ -1,97 +1,29 @@
 // @vitest-environment node
 
 /**
- * Unit tests for POST /api/scan route.
+ * Unit tests for POST /api/scan (handoff BFF).
+ *
+ * The route is now a thin forwarder to FastAPI /api/v1/scans via
+ * `lib/rag-client/v1-adapter`. We mock the adapter module directly so the
+ * tests stay hermetic and don't need a running RAG service.
+ *
  * Run with: npx vitest run tests/unit/scan-post-route.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-type RunScanOptions = {
-  images: Array<Record<string, unknown>>;
-  documents: Array<Record<string, unknown> & { mimeType: string; text: string }>;
-  pdfs: Array<Record<string, unknown> & { mimeType: string }>;
-  category: string;
-  markets: string[];
-};
-type RunScanMock = (sessionId: string, opts: RunScanOptions) => Promise<void>;
-
-// Hoisted mocks — must be declared before vi.mock calls
-const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions } = vi.hoisted(
-  () => ({
-    mockRunScan: vi.fn<RunScanMock>(() => Promise.resolve()),
-    mockSessions: new Map<string, Record<string, unknown>>(),
-    mockCreateSession: vi.fn((id: string) => {
-      mockSessions.set(id, { sessionId: id, status: "processing", progress: 0, stageText: "准备中…" });
-      return mockSessions.get(id)!;
-    }),
-    mockUpdateSession: vi.fn((id: string, patch: Record<string, unknown>) => {
-      const current = mockSessions.get(id);
-      if (current) mockSessions.set(id, { ...current, ...patch });
-    }),
-  })
-);
-
-vi.mock("@/lib/pipeline/scan-queue", () => ({
-  enqueueScan: (sessionId: string, opts: RunScanOptions) => {
-    void mockRunScan(sessionId, opts);
-  },
+const { mockCreateScan } = vi.hoisted(() => ({
+  mockCreateScan: vi.fn(),
 }));
 
-vi.mock("@/lib/pipeline/scan", () => ({
-  runScan: mockRunScan,
-}));
-
-vi.mock("@/lib/pipeline/session-store", () => ({
-  createSession: mockCreateSession,
-  updateSession: mockUpdateSession,
-  getSession: vi.fn((id: string) => mockSessions.get(id)),
-}));
-
-vi.mock("@/lib/mock/scan-result", () => ({
-  createMockScanResult: vi.fn((id: string) => ({
-    sessionId: id,
-    complianceScore: 72,
-    scoreGrade: "B",
-  })),
-  createMockComplianceReportResult: vi.fn((id: string) => ({
-    sessionId: id,
-    complianceScore: 72,
-    scoreGrade: "B",
-    complianceStatus: "WARN",
-    report: "## 合规报告",
-    agentTrace: [],
-    retrievedChunks: [],
-    targetMarkets: ["EU"],
-  })),
-  createMockProfitReport: vi.fn((id: string) => ({
-    sessionId: id,
-    reportType: "profit" as const,
-    productType: "充电宝",
-    market: "EU",
-    report: "## 利润报告\n\n成本对比...",
-    barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6, asp: 19.99, gp: 0.71 },
-    compliant: { bom: 13.5, packaging: 0.65, cert: 0.45, epr: 0.35, logistics: 6, asp: 39.99, gp: 11.48 },
-    bareboneRiskExposure: 25,
-    compliantRiskExposure: 0,
-    keyConclusion: "合规模式期望利润显著高于裸奔模式",
-    generatedAt: new Date().toISOString(),
-  })),
-  createMockProfitReports: vi.fn((id: string) => [
-    {
-      sessionId: id,
-      reportType: "profit" as const,
-      productType: "充电宝",
-      market: "EU",
-      report: "## 利润报告\n\n成本对比...",
-      barebone: { bom: 9.2, packaging: 0.25, cert: 0.05, epr: 0, logistics: 6, asp: 19.99, gp: 0.71 },
-      compliant: { bom: 13.5, packaging: 0.65, cert: 0.45, epr: 0.35, logistics: 6, asp: 39.99, gp: 11.48 },
-      bareboneRiskExposure: 25,
-      compliantRiskExposure: 0,
-      keyConclusion: "合规模式期望利润显著高于裸奔模式",
-      generatedAt: new Date().toISOString(),
-    },
-  ]),
-}));
+vi.mock("@/lib/rag-client/v1-adapter", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/rag-client/v1-adapter")>(
+    "@/lib/rag-client/v1-adapter",
+  );
+  return {
+    ...actual,
+    createScan: mockCreateScan,
+  };
+});
 
 // Helper: create a minimal JPEG buffer
 function minimalJpeg(): Uint8Array {
@@ -111,7 +43,7 @@ function makeFile(name: string, type = "image/jpeg"): File {
 }
 
 function buildFormData(
-  opts: { images?: File[]; documents?: File[]; category?: string; markets?: string } = {}
+  opts: { images?: File[]; documents?: File[]; category?: string; markets?: string } = {},
 ): FormData {
   const fd = new FormData();
   for (const img of opts.images ?? [makeFile("test.jpg")]) {
@@ -127,12 +59,13 @@ function buildFormData(
 
 describe("POST /api/scan", () => {
   beforeEach(() => {
-    mockSessions.clear();
-    mockRunScan.mockClear();
-    mockCreateSession.mockClear();
-    mockUpdateSession.mockClear();
-    vi.useFakeTimers();
-    process.env.DEMO_MODE = "false";
+    mockCreateScan.mockReset();
+    mockCreateScan.mockResolvedValue({
+      sessionId: "scan_abc123",
+      accessToken: "tok_test",
+      status: "processing",
+      pollUrl: "/api/v1/scans/scan_abc123",
+    });
   });
 
   it("returns 202 with sessionId for valid image upload", async () => {
@@ -142,36 +75,48 @@ describe("POST /api/scan", () => {
 
     expect(res.status).toBe(202);
     const body = await res.json();
-    expect(body.sessionId).toMatch(/^scan_[A-Z0-9]+$/);
+    expect(body.sessionId).toMatch(/^scan_/);
     expect(body.status).toBe("processing");
     expect(body.pollUrl).toContain(body.sessionId);
   });
 
-  it("creates a session in the store", async () => {
+  it("returns accessToken alongside sessionId so callers can send Bearer header on subsequent polls", async () => {
     const { POST } = await import("@/app/api/scan/route");
     const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
     const res = await POST(req);
     const body = await res.json();
 
-    // createSession is now called atomically WITH the access-token hash so
-    // there's no window where a concurrent poller can read a hashless session.
-    expect(mockCreateSession).toHaveBeenCalledWith(body.sessionId, expect.any(String));
-    const session = mockSessions.get(body.sessionId);
-    expect(session).toBeDefined();
-    expect(session!.status).toBe("processing");
+    expect(body.accessToken).toBe("tok_test");
   });
 
-  it("calls runScan with correct arguments", async () => {
+  it("remaps the v1 pollUrl to the Next.js BFF route /api/scan/{id}", async () => {
+    mockCreateScan.mockResolvedValue({
+      sessionId: "scan_xyz",
+      accessToken: "tok",
+      status: "processing",
+      pollUrl: "/api/v1/scans/scan_xyz",
+    });
+    const { POST } = await import("@/app/api/scan/route");
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+    const res = await POST(req);
+    const body = await res.json();
+
+    expect(body.pollUrl).toBe("/api/scan/scan_xyz");
+  });
+
+  it("forwards the createScan input with images, category, and markets", async () => {
     const { POST } = await import("@/app/api/scan/route");
     const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
     await POST(req);
 
-    expect(mockRunScan).toHaveBeenCalledTimes(1);
-    const [sessionId, opts] = mockRunScan.mock.calls[0];
-    expect(sessionId).toMatch(/^scan_/);
-    expect(opts.category).toBe("electronics");
-    expect(opts.markets).toEqual(["EU", "US"]);
-    expect(opts.images).toHaveLength(1);
+    expect(mockCreateScan).toHaveBeenCalledTimes(1);
+    const [input] = mockCreateScan.mock.calls[0];
+    expect(input.category).toBe("electronics");
+    expect(input.markets).toEqual(["EU", "US"]);
+    expect(input.images).toHaveLength(1);
+    expect(input.images[0].buffer).toBeInstanceOf(Buffer);
+    expect(input.images[0].mimeType).toBe("image/jpeg");
+    expect(typeof input.images[0].originalName).toBe("string");
   });
 
   it("returns 400 when no images provided", async () => {
@@ -183,15 +128,7 @@ describe("POST /api/scan", () => {
     expect(res.status).toBe(400);
     const body = await res.json();
     expect(body.error).toBeDefined();
-  });
-
-  it("returns 400 when category is invalid", async () => {
-    const { POST } = await import("@/app/api/scan/route");
-    const fd = buildFormData({ category: "invalid_category_xyz" });
-    const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
-    const res = await POST(req);
-
-    expect(res.status).toBe(400);
+    expect(mockCreateScan).not.toHaveBeenCalled();
   });
 
   it("parses comma-separated markets correctly", async () => {
@@ -200,9 +137,8 @@ describe("POST /api/scan", () => {
     const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
     await POST(req);
 
-    expect(mockRunScan).toHaveBeenCalledTimes(1);
-    const [, opts] = mockRunScan.mock.calls[0];
-    expect(opts.markets).toEqual(["EU", "UK", "US"]);
+    const [input] = mockCreateScan.mock.calls[0];
+    expect(input.markets).toEqual(["EU", "UK", "US"]);
   });
 
   it("accepts multiple images", async () => {
@@ -212,27 +148,100 @@ describe("POST /api/scan", () => {
     const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
     await POST(req);
 
-    expect(mockRunScan).toHaveBeenCalledTimes(1);
-    const [, opts] = mockRunScan.mock.calls[0];
-    expect(opts.images).toHaveLength(3);
+    const [input] = mockCreateScan.mock.calls[0];
+    expect(input.images).toHaveLength(3);
   });
 
-  it("demo mode does not call runScan and schedules simulation", async () => {
-    process.env.DEMO_MODE = "true";
+  it("maps V1EnvelopeError to its httpStatus", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScan.mockRejectedValueOnce(
+      new V1EnvelopeError("INVALID_REQUEST", "bad markets", 400, "req-1"),
+    );
+
     const { POST } = await import("@/app/api/scan/route");
     const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
     const res = await POST(req);
+
+    expect(res.status).toBe(400);
     const body = await res.json();
+    expect(body.error.code).toBe("INVALID_REQUEST");
+    expect(body.error.message).toBe("bad markets");
+  });
 
-    expect(res.status).toBe(202);
-    expect(body.sessionId).toMatch(/^scan_/);
-    expect(mockRunScan).not.toHaveBeenCalled();
+  it("collapses infrastructure errors (5xx) to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScan.mockRejectedValueOnce(
+      new V1EnvelopeError("RAG_SERVICE_UNAVAILABLE", "boom", 503, null),
+    );
 
-    // Advance timers to let demo simulation complete
-    await vi.advanceTimersByTimeAsync(5000);
-    const session = mockSessions.get(body.sessionId);
-    expect(session!.status).toBe("ready");
-    expect(session!.progress).toBe(100);
-    expect(session!.result).toBeDefined();
+    const { POST } = await import("@/app/api/scan/route");
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+    const res = await POST(req);
+
+    expect(res.status).toBe(502);
+    const body = await res.json();
+    expect(body.error.code).toBe("RAG_SERVICE_UNAVAILABLE");
+  });
+
+  it("maps non-V1EnvelopeError to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+    mockCreateScan.mockRejectedValueOnce(new Error("network"));
+
+    const { POST } = await import("@/app/api/scan/route");
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+    const res = await POST(req);
+
+    expect(res.status).toBe(502);
+  });
+
+  it("returns 400 for image over 12MB", async () => {
+    const { POST } = await import("@/app/api/scan/route");
+    // 13MB JPEG
+    const big = new Uint8Array(13 * 1024 * 1024);
+    big[0] = 0xff;
+    big[1] = 0xd8;
+    big[2] = 0xff;
+    const arrBuf = new ArrayBuffer(big.byteLength);
+    new Uint8Array(arrBuf).set(big);
+    const bigFile = new File([arrBuf], "huge.jpg", { type: "image/jpeg" });
+
+    const fd = new FormData();
+    fd.append("images", bigFile);
+    fd.append("category", "electronics");
+    fd.append("markets", "EU,US");
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error.code).toBe("IMAGE_TOO_LARGE");
+    expect(mockCreateScan).not.toHaveBeenCalled();
+  });
+
+  it("returns 400 for image with unsupported mime type", async () => {
+    const { POST } = await import("@/app/api/scan/route");
+    const gif = new File([new Uint8Array([0, 0, 0])], "anim.gif", { type: "image/gif" });
+
+    const fd = new FormData();
+    fd.append("images", gif);
+    fd.append("category", "electronics");
+    fd.append("markets", "EU,US");
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error.code).toBe("UNSUPPORTED_IMAGE_TYPE");
+    expect(mockCreateScan).not.toHaveBeenCalled();
+  });
+
+  it("rejects more than 8 images", async () => {
+    const { POST } = await import("@/app/api/scan/route");
+    const images = Array.from({ length: 9 }, (_, i) => makeFile(`img-${i}.jpg`));
+    const fd = buildFormData({ images });
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    expect(mockCreateScan).not.toHaveBeenCalled();
   });
 });

@@ -1,78 +1,35 @@
 /**
- * Unit tests for the Next.js /api/scan/[sessionId] route (GET).
+ * Unit tests for the Next.js /api/scan/[sessionId] route (GET, handoff BFF).
+ *
+ * The route forwards to FastAPI /api/v1/scans/{id} via the v1 adapter. We
+ * mock the adapter so tests stay hermetic. Demo short-circuit and auth
+ * (Bearer header + ?token= fallback) are exercised here.
+ *
  * Run with: npx vitest run tests/unit/scan-session-route.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-// Mock the session store before importing
-const mockSessions = new Map<string, Record<string, unknown>>();
-
-vi.mock("@/lib/pipeline/session-store", () => ({
-  getSession: vi.fn((id: string) => mockSessions.get(id) ?? undefined),
+const { mockGetScan } = vi.hoisted(() => ({
+  mockGetScan: vi.fn(),
 }));
 
-vi.mock("@/lib/mock/scan-result", () => ({
-  createMockScanResult: vi.fn((id: string) => ({
-    sessionId: id,
-    scanTime: "2026-04-27T10:00:00.000Z",
-    productCategory: "electronics",
-    targetMarkets: ["EU", "US"],
-    complianceScore: 72,
-    scoreGrade: "B",
-    complianceReport: "## 合规报告\n测试报告内容",
-    complianceStatus: "PASS",
-    agentTrace: [{ node: "retrieve", docs_retrieved: 10 }],
-    loopCount: 0,
-    retrievedChunks: [],
-    documents: [],
-    generatedAt: "2026-04-27T10:00:00.000Z",
-    modelInfo: { ragProvider: "mimotalk", latencyMs: 500 },
-  })),
-  createMockComplianceReportResult: vi.fn((id: string) => ({
-    sessionId: id,
-    complianceScore: 72,
-    scoreGrade: "B",
-    complianceReport: "## 鍚堣鎶ュ憡\n娴嬭瘯鎶ュ憡鍐呭",
-    complianceStatus: "PASS",
-    agentTrace: [],
-    retrievedChunks: [],
-    targetMarkets: ["EU", "US"],
-  })),
-  createMockProfitReport: vi.fn((id: string) => ({
-    sessionId: id,
-    productType: "测试产品",
-    market: "EU",
-    report: "## 利润报告",
-    barebone: { bom: 10, packaging: 1, cert: 0.5, epr: 0.3, logistics: 5, asp: 25, gp: 8.2 },
-    compliant: { bom: 15, packaging: 1.5, cert: 1, epr: 0.5, logistics: 5, asp: 45, gp: 22 },
-    bareboneRiskExposure: 30,
-    compliantRiskExposure: 0,
-    keyConclusion: "合规模式净利润显著高于裸奔模式",
-    generatedAt: "2026-04-27T10:00:00.000Z",
-  })),
-  createMockProfitReports: vi.fn((id: string) => [
-    {
-      sessionId: id,
-      productType: "测试产品",
-      market: "EU",
-      report: "## 利润报告",
-      barebone: { bom: 10, packaging: 1, cert: 0.5, epr: 0.3, logistics: 5, asp: 25, gp: 8.2 },
-      compliant: { bom: 15, packaging: 1.5, cert: 1, epr: 0.5, logistics: 5, asp: 45, gp: 22 },
-      bareboneRiskExposure: 30,
-      compliantRiskExposure: 0,
-      keyConclusion: "合规模式净利润显著高于裸奔模式",
-      generatedAt: "2026-04-27T10:00:00.000Z",
-    },
-  ]),
-}));
+vi.mock("@/lib/rag-client/v1-adapter", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/rag-client/v1-adapter")>(
+    "@/lib/rag-client/v1-adapter",
+  );
+  return {
+    ...actual,
+    getScan: mockGetScan,
+  };
+});
 
 describe("GET /api/scan/[sessionId]", () => {
   beforeEach(() => {
-    mockSessions.clear();
+    mockGetScan.mockReset();
   });
 
   describe("demo session", () => {
-    it("returns mock result for demo sessionId", async () => {
+    it("returns mock result for demo sessionId without calling v1 adapter", async () => {
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
       const req = new Request("http://localhost/api/scan/demo");
       const ctx = { params: Promise.resolve({ sessionId: "demo" }) };
@@ -84,37 +41,130 @@ describe("GET /api/scan/[sessionId]", () => {
       expect(body.sessionId).toBe("demo");
       expect(body.status).toBe("ready");
       expect(body.result).toBeDefined();
-      expect(body.result.complianceScore).toBe(72);
+      expect(mockGetScan).not.toHaveBeenCalled();
     });
   });
 
-  describe("real session", () => {
-    it("returns session data when found", async () => {
-      mockSessions.set("scan_real123", {
+  describe("auth", () => {
+    it("returns 401 when no token is provided (neither header nor query)", async () => {
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_abc");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(401);
+      expect(mockGetScan).not.toHaveBeenCalled();
+    });
+
+    it("accepts Bearer header token", async () => {
+      mockGetScan.mockResolvedValueOnce({
+        sessionId: "scan_abc",
+        status: "processing",
+        progress: 50,
+        stageText: "匹配中",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
+        result: null,
+        error: null,
+      });
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_abc", {
+        headers: { authorization: "Bearer my-token" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+      await GET(req, ctx);
+
+      expect(mockGetScan).toHaveBeenCalledWith({
+        sessionId: "scan_abc",
+        accessToken: "my-token",
+      });
+    });
+
+    it("accepts ?token= query param as opt-in fallback", async () => {
+      mockGetScan.mockResolvedValueOnce({
+        sessionId: "scan_abc",
+        status: "ready",
+        progress: 100,
+        stageText: "complete",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
+        result: {},
+        error: null,
+      });
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_abc?token=query-token");
+      const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+      await GET(req, ctx);
+
+      expect(mockGetScan).toHaveBeenCalledWith({
+        sessionId: "scan_abc",
+        accessToken: "query-token",
+      });
+    });
+
+    it("prefers Bearer header over ?token= query param", async () => {
+      mockGetScan.mockResolvedValueOnce({
+        sessionId: "scan_abc",
+        status: "ready",
+        progress: 100,
+        stageText: "complete",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
+        result: {},
+        error: null,
+      });
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request(
+        "http://localhost/api/scan/scan_abc?token=query-token",
+        { headers: { authorization: "Bearer header-token" } },
+      );
+      const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+      await GET(req, ctx);
+
+      expect(mockGetScan).toHaveBeenCalledWith({
+        sessionId: "scan_abc",
+        accessToken: "header-token",
+      });
+    });
+  });
+
+  describe("happy path", () => {
+    it("returns session data when found and authenticated", async () => {
+      mockGetScan.mockResolvedValueOnce({
         sessionId: "scan_real123",
         status: "ready",
         progress: 100,
         stageText: "完成",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
         result: {
           sessionId: "scan_real123",
-          scanTime: "2026-04-27T10:00:00.000Z",
-          productCategory: "electronics",
-          targetMarkets: ["EU"],
           complianceScore: 55,
           scoreGrade: "C",
-          complianceReport: "## 合规要求",
           complianceStatus: "WARN",
-          agentTrace: [],
-          loopCount: 2,
-          retrievedChunks: [],
-          documents: [],
-          generatedAt: "2026-04-27T10:00:00.000Z",
-          modelInfo: { ragProvider: "mimotalk", latencyMs: 8000 },
         },
+        error: null,
       });
 
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_real123");
+      const req = new Request("http://localhost/api/scan/scan_real123", {
+        headers: { authorization: "Bearer t" },
+      });
       const ctx = { params: Promise.resolve({ sessionId: "scan_real123" }) };
 
       const res = await GET(req, ctx);
@@ -125,19 +175,26 @@ describe("GET /api/scan/[sessionId]", () => {
       expect(body.status).toBe("ready");
       expect(body.progress).toBe(100);
       expect(body.result.complianceStatus).toBe("WARN");
-      expect(body.result.complianceScore).toBe(55);
     });
 
     it("returns processing state correctly", async () => {
-      mockSessions.set("scan_processing", {
+      mockGetScan.mockResolvedValueOnce({
         sessionId: "scan_processing",
         status: "processing",
         progress: 45,
-        stageText: "匹配法规库...",
+        stageText: "匹配法规库",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
+        result: null,
+        error: null,
       });
 
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_processing");
+      const req = new Request("http://localhost/api/scan/scan_processing", {
+        headers: { authorization: "Bearer t" },
+      });
       const ctx = { params: Promise.resolve({ sessionId: "scan_processing" }) };
 
       const res = await GET(req, ctx);
@@ -146,20 +203,86 @@ describe("GET /api/scan/[sessionId]", () => {
       expect(res.status).toBe(200);
       expect(body.status).toBe("processing");
       expect(body.progress).toBe(45);
-      expect(body.stageText).toBe("匹配法规库...");
     });
 
-    it("returns 404 when session not found", async () => {
+    it("infers stageKey=done when status is ready", async () => {
+      mockGetScan.mockResolvedValueOnce({
+        sessionId: "scan_xyz",
+        status: "ready",
+        progress: 100,
+        stageText: "完成",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
+        result: null,
+        error: null,
+      });
+
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
-      const req = new Request("http://localhost/api/scan/scan_nonexistent");
-      const ctx = { params: Promise.resolve({ sessionId: "scan_nonexistent" }) };
+      const req = new Request("http://localhost/api/scan/scan_xyz", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_xyz" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(body.stageKey).toBe("done");
+    });
+  });
+
+  describe("error mapping", () => {
+    it("returns 404 when v1 returns NOT_FOUND", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockGetScan.mockRejectedValueOnce(
+        new V1EnvelopeError("NOT_FOUND", "not found", 404, null),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_missing", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_missing" }) };
 
       const res = await GET(req, ctx);
       const body = await res.json();
 
       expect(res.status).toBe(404);
       expect(body.error.code).toBe("NOT_FOUND");
-      expect(body.error.message).toContain("未找到");
+    });
+
+    it("returns 401 when v1 returns UNAUTHORIZED", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockGetScan.mockRejectedValueOnce(
+        new V1EnvelopeError("UNAUTHORIZED", "bad token", 401, null),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_abc", {
+        headers: { authorization: "Bearer wrong" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+      const res = await GET(req, ctx);
+
+      expect(res.status).toBe(401);
+    });
+
+    it("returns 502 when the v1 fetch throws a non-V1 error", async () => {
+      mockGetScan.mockRejectedValueOnce(new Error("network down"));
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_abc", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(502);
+      expect(body.error.code).toBe("RAG_SERVICE_UNAVAILABLE");
     });
   });
 });

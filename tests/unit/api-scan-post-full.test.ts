@@ -1,105 +1,29 @@
 // @vitest-environment node
 
 /**
- * Additional unit tests for POST /api/scan to cover remaining code paths.
- * Tests document processing, PDF handling, DOCX handling, and error scenarios.
+ * Extended unit tests for POST /api/scan (handoff BFF).
+ *
+ * Now that the route is a thin forwarder to FastAPI /api/v1/scans via
+ * `lib/rag-client/v1-adapter`, these tests cover edge cases at the seam:
+ * file validation, count limits, FormData parse failures, and error mapping.
  *
  * Run with: npm run test -- tests/unit/api-scan-post-full.test.ts
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-type RunScanOptions = {
-  images: Array<Record<string, unknown>>;
-  documents: Array<Record<string, unknown> & { mimeType: string; text: string }>;
-  pdfs: Array<Record<string, unknown> & { mimeType: string }>;
-  category: string;
-  markets: string[];
-};
-type RunScanMock = (sessionId: string, opts: RunScanOptions) => Promise<void>;
-
-// Hoisted mocks
-const { mockRunScan, mockCreateSession, mockUpdateSession, mockSessions, mockExtractRawText } = vi.hoisted(
-  () => ({
-    mockRunScan: vi.fn<RunScanMock>(() => Promise.resolve()),
-    mockSessions: new Map<string, Record<string, unknown>>(),
-    mockExtractRawText: vi.fn(() =>
-      Promise.resolve({
-        value: "",
-      })
-    ),
-    mockCreateSession: vi.fn((id: string) => {
-      mockSessions.set(id, {
-        sessionId: id,
-        status: "processing",
-        progress: 0,
-        stageText: "准备中…",
-      });
-      return mockSessions.get(id)!;
-    }),
-    mockUpdateSession: vi.fn((id: string, patch: Record<string, unknown>) => {
-      const current = mockSessions.get(id);
-      if (current) mockSessions.set(id, { ...current, ...patch });
-    }),
-  })
-);
-
-vi.mock("@/lib/pipeline/scan-queue", () => ({
-  enqueueScan: (sessionId: string, opts: RunScanOptions) => {
-    void mockRunScan(sessionId, opts).catch((error: unknown) => {
-      mockUpdateSession(sessionId, {
-        status: "failed",
-        progress: 100,
-        stageText: "扫描失败，请稍后重试。",
-        error: error instanceof Error ? error.message : "SCAN_FAILED",
-      });
-    });
-  },
+const { mockCreateScan } = vi.hoisted(() => ({
+  mockCreateScan: vi.fn(),
 }));
 
-vi.mock("@/lib/pipeline/scan", () => ({
-  runScan: mockRunScan,
-}));
-
-vi.mock("@/lib/pipeline/session-store", () => ({
-  createSession: mockCreateSession,
-  updateSession: mockUpdateSession,
-  getSession: vi.fn((id: string) => mockSessions.get(id)),
-}));
-
-vi.mock("@/lib/mock/scan-result", () => ({
-  createMockScanResult: vi.fn((id: string) => ({
-    sessionId: id,
-    complianceScore: 85,
-    scoreGrade: "B",
-    complianceStatus: "PASS",
-  })),
-  createMockComplianceReportResult: vi.fn((id: string) => ({
-    sessionId: id,
-    complianceScore: 85,
-    scoreGrade: "B",
-    complianceStatus: "PASS",
-    report: "## 合规报告",
-    agentTrace: [],
-    retrievedChunks: [],
-    targetMarkets: ["EU"],
-  })),
-  createMockProfitReport: vi.fn((id: string) => ({
-    sessionId: id,
-    reportType: "profit" as const,
-    productType: "测试产品",
-    market: "EU",
-    report: "## 利润报告",
-    barebone: { bom: 10, packaging: 1, cert: 0.5, epr: 0.3, logistics: 5, asp: 25, gp: 8.2 },
-    bareboneRiskExposure: 30,
-    compliantRiskExposure: 0,
-    keyConclusion: "合规模式净利润显著高于裸奔模式",
-    generatedAt: new Date().toISOString(),
-  })),
-}));
-
-vi.mock("mammoth", () => ({
-  extractRawText: mockExtractRawText,
-}));
+vi.mock("@/lib/rag-client/v1-adapter", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/rag-client/v1-adapter")>(
+    "@/lib/rag-client/v1-adapter",
+  );
+  return {
+    ...actual,
+    createScan: mockCreateScan,
+  };
+});
 
 // Helper: create a minimal JPEG buffer
 function minimalJpeg(): Uint8Array {
@@ -108,37 +32,12 @@ function minimalJpeg(): Uint8Array {
   ]);
 }
 
-// Helper: create a minimal PDF buffer
 function minimalPdf(): Uint8Array {
   return new Uint8Array([
-    0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, // %PDF-1.4
-    0x0a, 0x25, 0xc7, 0xec, 0x8f, 0xa2, 0x0a, 0x31, 0x20, 0x30, 0x20, 0x6f, 0x62, 0x6a,
-    0x0a, 0x3c, 0x3c, 0x0a, 0x2f, 0x54, 0x79, 0x70, 0x65, 0x20, 0x2f, 0x43, 0x61, 0x74,
-    0x61, 0x6c, 0x6f, 0x67, 0x0a, 0x3e, 0x3e, 0x0a, 0x65, 0x6e, 0x64, 0x6f, 0x62, 0x6a,
-    0x0a, 0x78, 0x0a, 0x25, 0xe2, 0xe3, 0xcf, 0xd3, 0x0a,
+    0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xc7, 0xec, 0x8f, 0xa2, 0x0a,
   ]);
 }
 
-// Helper: create a minimal DOCX buffer (ZIP with minimal content)
-function minimalDocx(): Uint8Array {
-  // Minimal valid DOCX structure (ZIP with [Content_Types].xml)
-  const header = new Uint8Array([
-    0x50, 0x4b, 0x03, 0x04, // Local file header signature
-    0x14, 0x00, // version needed
-    0x00, 0x00, // general purpose bit flag
-    0x00, 0x00, // compression method (stored)
-    0x00, 0x00, // last mod time
-    0x00, 0x00, // last mod date
-    0x00, 0x00, 0x00, 0x00, // crc-32
-    0x00, 0x00, 0x00, 0x00, // compressed size
-    0x00, 0x00, 0x00, 0x00, // uncompressed size
-    0x10, 0x00, // file name length
-    0x00, 0x00, // extra field length
-  ]);
-  return header;
-}
-
-// Helper: create a text file
 function minimalText(content: string): Uint8Array {
   return new TextEncoder().encode(content);
 }
@@ -159,7 +58,7 @@ function buildFormData(
     documents?: File[];
     category?: string;
     markets?: string;
-  } = {}
+  } = {},
 ): FormData {
   const fd = new FormData();
   for (const img of opts.images ?? [makeFile("test.jpg")]) {
@@ -173,49 +72,23 @@ function buildFormData(
   return fd;
 }
 
-describe("POST /api/scan - Document Processing Coverage", () => {
+describe("POST /api/scan - Validation and Error Coverage", () => {
   beforeEach(() => {
-    mockSessions.clear();
-    mockRunScan.mockClear();
-    mockCreateSession.mockClear();
-    mockUpdateSession.mockClear();
-    mockExtractRawText.mockReset();
-    mockExtractRawText.mockResolvedValue({ value: "" });
-    vi.useFakeTimers();
-    process.env.DEMO_MODE = "false";
+    mockCreateScan.mockReset();
+    mockCreateScan.mockResolvedValue({
+      sessionId: "scan_test",
+      accessToken: "tok",
+      status: "processing",
+      pollUrl: "/api/v1/scans/scan_test",
+    });
   });
 
   afterEach(() => {
-    vi.useRealTimers();
-    vi.unstubAllEnvs();
-    globalThis.__rateLimitBuckets = undefined;
-    process.env.DEMO_MODE = "false";
+    vi.restoreAllMocks();
   });
 
-  describe("PDF file processing", () => {
-    it("processes PDF files for multipart forwarding", async () => {
-      const pdfFile = makeFile("test.pdf", "application/pdf", minimalPdf());
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: [pdfFile] }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-      expect(mockRunScan).toHaveBeenCalledTimes(1);
-
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.pdfs).toBeDefined();
-      expect(opts.pdfs).toHaveLength(1);
-      // In Node.js test environment, File.name may be "blob" - just verify PDF is processed
-      expect(opts.pdfs[0].mimeType).toBe("application/pdf");
-      expect(opts.pdfs[0].buffer).toBeInstanceOf(Buffer);
-    });
-
-    it("processes PDF files by extension", async () => {
-      // File with PDF mime type - this should be processed as PDF
+  describe("Document forwarding", () => {
+    it("forwards PDF document files to v1", async () => {
       const pdfFile = makeFile("manual.pdf", "application/pdf", minimalPdf());
 
       const { POST } = await import("@/app/api/scan/route");
@@ -226,15 +99,14 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      expect(mockRunScan).toHaveBeenCalledTimes(1);
-
-      const [, opts] = mockRunScan.mock.calls[0];
-      // Files with application/pdf mime type should be processed as PDFs
-      expect(opts.pdfs.some((p: { mimeType: string }) => p.mimeType === "application/pdf")).toBeTruthy();
+      const [input] = mockCreateScan.mock.calls[0];
+      expect(input.documents).toHaveLength(1);
+      expect(input.documents[0].mimeType).toBe("application/pdf");
+      expect(input.documents[0].buffer).toBeInstanceOf(Buffer);
     });
 
-    it("processes multiple PDF files", async () => {
-      const pdfFiles = [
+    it("forwards multiple PDF files", async () => {
+      const pdfs = [
         makeFile("doc1.pdf", "application/pdf", minimalPdf()),
         makeFile("doc2.pdf", "application/pdf", minimalPdf()),
       ];
@@ -242,212 +114,51 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       const { POST } = await import("@/app/api/scan/route");
       const req = new Request("http://localhost/api/scan", {
         method: "POST",
-        body: buildFormData({ documents: pdfFiles }),
+        body: buildFormData({ documents: pdfs }),
       });
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.pdfs).toHaveLength(2);
-    });
-  });
-
-  describe("DOCX file processing", () => {
-    it("processes DOCX files with correct mime type", async () => {
-      const docxFile = makeFile(
-        "document.docx",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        minimalDocx()
-      );
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: [docxFile] }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-      expect(mockRunScan).toHaveBeenCalledTimes(1);
-
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.documents).toBeDefined();
+      const [input] = mockCreateScan.mock.calls[0];
+      expect(input.documents).toHaveLength(2);
     });
 
-    it("processes DOCX files by extension", async () => {
-      const docxFile = makeFile("manual.docx", "application/octet-stream", minimalDocx());
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: [docxFile] }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.documents).toBeDefined();
-    });
-
-    it("handles DOCX mammoth extraction failures gracefully", async () => {
-      mockExtractRawText.mockRejectedValueOnce(new Error("broken docx"));
-      const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-      const docxFile = makeFile(
-        "doc.docx",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        minimalDocx()
-      );
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: [docxFile] }),
-      });
-      const res = await POST(req);
-
-      // Should succeed even if mammoth extraction fails
-      expect(res.status).toBe(202);
-      expect(warnSpy).toHaveBeenCalledWith(
-        expect.stringContaining("mammoth extraction failed for"),
-        expect.any(Error)
-      );
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.documents[0].text).toBe("");
-      warnSpy.mockRestore();
-    });
-
-    it("processes DOCX with mammoth successful extraction", async () => {
-      mockExtractRawText.mockResolvedValue({
-        value: "This is extracted DOCX content about compliance requirements.",
-      });
-
-      const docxFile = makeFile(
-        "compliance.docx",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        minimalDocx()
-      );
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: [docxFile] }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-    });
-  });
-
-  describe("Text file processing", () => {
-    it("processes plain text files", async () => {
-      const textFile = makeFile(
-        "readme.txt",
+    it("forwards plain text files", async () => {
+      const txt = makeFile(
+        "notes.txt",
         "text/plain",
-        minimalText("这是一份合规文档")
+        minimalText("这是一份合规文档"),
       );
 
       const { POST } = await import("@/app/api/scan/route");
       const req = new Request("http://localhost/api/scan", {
         method: "POST",
-        body: buildFormData({ documents: [textFile] }),
+        body: buildFormData({ documents: [txt] }),
       });
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      expect(mockRunScan).toHaveBeenCalledTimes(1);
-
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.documents).toBeDefined();
+      const [input] = mockCreateScan.mock.calls[0];
+      expect(input.documents).toHaveLength(1);
     });
 
-    it("limits text content to 5000 characters", async () => {
-      const longText = "a".repeat(10000);
-      const textFile = makeFile(
-        "long.txt",
-        "text/plain",
-        minimalText(longText)
-      );
+    it("forwards multiple images", async () => {
+      const images = [makeFile("front.jpg"), makeFile("back.jpg")];
 
       const { POST } = await import("@/app/api/scan/route");
       const req = new Request("http://localhost/api/scan", {
         method: "POST",
-        body: buildFormData({ documents: [textFile] }),
+        body: buildFormData({ images, documents: [makeFile("doc.pdf", "application/pdf", minimalPdf())] }),
       });
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      const doc = opts.documents[0];
-      expect(doc.text.length).toBeLessThanOrEqual(5000);
+      const [input] = mockCreateScan.mock.calls[0];
+      expect(input.images).toHaveLength(2);
+      expect(input.documents).toHaveLength(1);
     });
 
-    it("handles text extraction errors gracefully", async () => {
-      // Create a file that throws on text() call
-      const errorFile = new File([], "error.txt", { type: "text/plain" });
-      // Override arrayBuffer to simulate error
-      Object.defineProperty(errorFile, "text", {
-        value: vi.fn().mockRejectedValue(new Error("Text extraction failed")),
-        writable: true,
-      });
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: [errorFile] }),
-      });
-      const res = await POST(req);
-
-      // Should succeed with empty text
-      expect(res.status).toBe(202);
-    });
-  });
-
-  describe("Mixed document processing", () => {
-    it("processes PDF, DOCX, and text files together", async () => {
-      const docs = [
-        makeFile("doc.pdf", "application/pdf", minimalPdf()),
-        makeFile("report.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", minimalDocx()),
-        makeFile("notes.txt", "text/plain", minimalText("一些笔记")),
-      ];
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ documents: docs }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.pdfs).toHaveLength(1);
-      expect(opts.documents).toBeDefined();
-    });
-  });
-
-  describe("Image processing with documents", () => {
-    it("processes images and documents in parallel", async () => {
-      const images = [
-        makeFile("front.jpg"),
-        makeFile("back.jpg"),
-      ];
-      const docs = [
-        makeFile("manual.pdf", "application/pdf", minimalPdf()),
-      ];
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ images, documents: docs }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      expect(opts.images).toHaveLength(2);
-      expect(opts.pdfs).toHaveLength(1);
-    });
-
-    it("includes original name and mime type for images", async () => {
+    it("captures originalName and mimeType on every image", async () => {
       const image = makeFile("product-photo.jpg", "image/jpeg");
 
       const { POST } = await import("@/app/api/scan/route");
@@ -458,98 +169,13 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [, opts] = mockRunScan.mock.calls[0];
-      // In Node.js test environment, File.name may be "blob" - just verify image is processed
-      expect(opts.images[0].mimeType).toBe("image/jpeg");
-    });
-
-    it("rejects images without mime type", async () => {
-      const image = new File([toArrayBuffer(minimalJpeg())], "photo.noext", { type: "" });
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ images: [image] }),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(400);
-      expect(mockRunScan).not.toHaveBeenCalled();
+      const [input] = mockCreateScan.mock.calls[0];
+      expect(input.images[0].mimeType).toBe("image/jpeg");
+      expect(typeof input.images[0].originalName).toBe("string");
     });
   });
 
-  describe("runScan error handling", () => {
-    it("catches runScan errors and updates session to failed status", async () => {
-      mockRunScan.mockImplementation(() =>
-        Promise.reject(new Error("RAG service unavailable"))
-      );
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData(),
-      });
-      const res = await POST(req);
-
-      // Request should still return 202 (async operation)
-      expect(res.status).toBe(202);
-
-      // Wait for async error to be caught
-      await vi.advanceTimersByTimeAsync(100);
-
-      // Session should be updated to failed
-      expect(mockUpdateSession).toHaveBeenCalled();
-      const lastCall = mockUpdateSession.mock.calls[mockUpdateSession.mock.calls.length - 1];
-      expect(lastCall[1].status).toBe("failed");
-      expect(lastCall[1].error).toBe("RAG service unavailable");
-    });
-
-    it("handles non-Error objects in catch block", async () => {
-      mockRunScan.mockImplementation(() =>
-        Promise.reject("string error")
-      );
-
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData(),
-      });
-      const res = await POST(req);
-
-      expect(res.status).toBe(202);
-
-      await vi.advanceTimersByTimeAsync(100);
-
-      const lastCall = mockUpdateSession.mock.calls[mockUpdateSession.mock.calls.length - 1];
-      expect(lastCall[1].error).toBe("SCAN_FAILED"); // Localized by the client
-    });
-  });
-
-  describe("Input validation edge cases", () => {
-    it("returns 429 when the scan endpoint rate limit is exceeded", async () => {
-      vi.stubEnv("NODE_ENV", "production");
-      globalThis.__rateLimitBuckets = new Map();
-      const { POST } = await import("@/app/api/scan/route");
-      const { API_SCAN_RATE_LIMIT } = await import("@/lib/constants");
-
-      let res: Response | undefined;
-      for (let i = 0; i <= API_SCAN_RATE_LIMIT; i++) {
-        res = await POST(
-          new Request("http://localhost/api/scan", {
-            method: "POST",
-            body: buildFormData(),
-            headers: { "x-forwarded-for": "203.0.113.9" },
-          })
-        );
-      }
-
-      expect(res?.status).toBe(429);
-      await expect(res?.json()).resolves.toMatchObject({
-        success: false,
-        error: { code: "RATE_LIMITED", reason: "RATE_LIMITED" },
-      });
-    });
-
+  describe("Input validation", () => {
     it("returns 400 when FormData parsing throws", async () => {
       const { POST } = await import("@/app/api/scan/route");
       const req = {
@@ -560,135 +186,150 @@ describe("POST /api/scan - Document Processing Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(400);
-      await expect(res.json()).resolves.toMatchObject({
-        success: false,
-        error: { code: "BAD_INPUT", reason: "INVALID_REQUEST" },
-      });
+      expect(mockCreateScan).not.toHaveBeenCalled();
     });
 
-    it("rejects image uploads over the file-count limit", async () => {
+    it("rejects uploads with no images", async () => {
       const { POST } = await import("@/app/api/scan/route");
-      const { MAX_IMAGE_FILES } = await import("@/lib/constants");
-      const images = Array.from({ length: MAX_IMAGE_FILES + 1 }, (_, index) =>
-        makeFile(`photo-${index}.jpg`)
-      );
-
-      const res = await POST(
-        new Request("http://localhost/api/scan", {
-          method: "POST",
-          body: buildFormData({ images }),
-        })
-      );
-
-      expect(res.status).toBe(400);
-      await expect(res.json()).resolves.toMatchObject({
-        error: { code: "BAD_INPUT", reason: "TOO_MANY_IMAGES" },
-      });
-      expect(mockRunScan).not.toHaveBeenCalled();
-    });
-
-    it("rejects documents with invalid file signatures", async () => {
-      const { POST } = await import("@/app/api/scan/route");
-      const invalidPdf = makeFile("manual.pdf", "application/pdf", minimalJpeg());
-
-      const res = await POST(
-        new Request("http://localhost/api/scan", {
-          method: "POST",
-          body: buildFormData({ documents: [invalidPdf] }),
-        })
-      );
-
-      expect(res.status).toBe(400);
-      await expect(res.json()).resolves.toMatchObject({
-        error: { code: "BAD_INPUT", reason: "INVALID_FILE_SIGNATURE" },
-      });
-      expect(mockRunScan).not.toHaveBeenCalled();
-    });
-
-    it("rejects invalid category", async () => {
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData({ category: "invalid_category" }),
-      });
+      const fd = buildFormData({ images: [] });
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
       const res = await POST(req);
 
       expect(res.status).toBe(400);
-      const body = await res.json();
-      expect(body.error.code).toBe("BAD_INPUT");
+      expect(mockCreateScan).not.toHaveBeenCalled();
     });
 
-    it("handles malformed FormData gracefully", async () => {
-      // Simulating FormData parsing failure
+    it("rejects more than MAX_IMAGE_FILES images", async () => {
       const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: "not form data",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const images = Array.from({ length: 9 }, (_, i) => makeFile(`img-${i}.jpg`));
+      const fd = buildFormData({ images });
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
       const res = await POST(req);
 
-      // The implementation catches formData parsing errors
-      // If formData parsing fails, it should return BAD_INPUT
-      expect([400, 500]).toContain(res.status);
+      expect(res.status).toBe(400);
+      expect(mockCreateScan).not.toHaveBeenCalled();
     });
-  });
 
-  describe("Schema validation edge cases", () => {
-    it("handles schema validation failure due to invalid imageCount", async () => {
-      // The StartScanRequestSchema requires imageCount >= 1
-      // This is already tested via the empty images case
+    it("rejects unsupported image mime type", async () => {
       const { POST } = await import("@/app/api/scan/route");
+      const gif = makeFile("anim.gif", "image/gif");
+
       const fd = new FormData();
+      fd.append("images", gif);
       fd.append("category", "electronics");
       fd.append("markets", "EU,US");
-      // No images appended - should trigger BAD_INPUT
-
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: fd,
-      });
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
       const res = await POST(req);
+
       expect(res.status).toBe(400);
-      const body = await res.json();
-      expect(body.error.code).toBe("BAD_INPUT");
+      expect(mockCreateScan).not.toHaveBeenCalled();
+    });
+
+    it("accepts all valid product categories", async () => {
+      const { POST } = await import("@/app/api/scan/route");
+      const categories = ["electronics", "appliance", "3c", "toy", "home", "other"];
+      for (const category of categories) {
+        mockCreateScan.mockClear();
+        const req = new Request("http://localhost/api/scan", {
+          method: "POST",
+          body: buildFormData({ category }),
+        });
+        const res = await POST(req);
+
+        expect(res.status).toBe(202);
+        const [input] = mockCreateScan.mock.calls[0];
+        expect(input.category).toBe(category);
+      }
     });
   });
 
-  describe("Session creation", () => {
-    it("creates session before running scan", async () => {
-      const { POST } = await import("@/app/api/scan/route");
-      const req = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData(),
+  describe("Response shape", () => {
+    it("returns sessionId, status, pollUrl, and accessToken at top level (ok() spread)", async () => {
+      mockCreateScan.mockResolvedValueOnce({
+        sessionId: "scan_unique",
+        accessToken: "tok_unique",
+        status: "processing",
+        pollUrl: "/api/v1/scans/scan_unique",
       });
-      await POST(req);
 
-      expect(mockCreateSession).toHaveBeenCalledTimes(1);
-      expect(mockCreateSession).toHaveBeenCalledBefore(mockRunScan);
+      const { POST } = await import("@/app/api/scan/route");
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+      const res = await POST(req);
+      const body = await res.json();
+
+      // Top-level fields (legacy page contract)
+      expect(body.sessionId).toBe("scan_unique");
+      expect(body.status).toBe("processing");
+      expect(body.pollUrl).toBe("/api/scan/scan_unique"); // remapped from /api/v1/...
+      expect(body.accessToken).toBe("tok_unique");
+      expect(body.success).toBe(true);
     });
 
-    it("generates unique session IDs", async () => {
+    it("returns unique sessionId per request", async () => {
+      const ids = new Set<string>();
       const { POST } = await import("@/app/api/scan/route");
+      for (let i = 0; i < 3; i++) {
+        mockCreateScan.mockResolvedValueOnce({
+          sessionId: `scan_${i}_${Math.random()}`,
+          accessToken: "tok",
+          status: "processing",
+          pollUrl: "/api/v1/scans/x",
+        });
+        const req = new Request("http://localhost/api/scan", {
+          method: "POST",
+          body: buildFormData(),
+        });
+        const res = await POST(req);
+        const body = await res.json();
+        ids.add(body.sessionId);
+      }
+      expect(ids.size).toBe(3);
+    });
+  });
 
-      const req1 = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData(),
-      });
-      const res1 = await POST(req1);
-      const body1 = await res1.json();
+  describe("V1EnvelopeError mapping", () => {
+    it("4xx envelope errors map to their httpStatus", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockCreateScan.mockRejectedValueOnce(
+        new V1EnvelopeError("INVALID_MARKET", "unknown market XX", 400, "req-x"),
+      );
 
-      mockCreateSession.mockClear();
-      const req2 = new Request("http://localhost/api/scan", {
-        method: "POST",
-        body: buildFormData(),
-      });
-      const res2 = await POST(req2);
-      const body2 = await res2.json();
+      const { POST } = await import("@/app/api/scan/route");
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+      const res = await POST(req);
+      const body = await res.json();
 
-      expect(body1.sessionId).not.toBe(body2.sessionId);
+      expect(res.status).toBe(400);
+      expect(body.error.code).toBe("INVALID_MARKET");
+    });
+
+    it("5xx envelope errors collapse to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockCreateScan.mockRejectedValueOnce(
+        new V1EnvelopeError("RAG_SERVICE_UNAVAILABLE", "down", 503, null),
+      );
+
+      const { POST } = await import("@/app/api/scan/route");
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+      const res = await POST(req);
+
+      expect(res.status).toBe(502);
+    });
+
+    it("RAG_SERVICE_TIMEOUT from adapter is treated as infrastructure failure (502)", async () => {
+      // v1 adapter returns 504 for upstream timeouts, but the BFF collapses
+      // all 5xx upstream errors to 502 (Bad Gateway) since the client is
+      // talking to a BFF, not directly to the RAG service.
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockCreateScan.mockRejectedValueOnce(
+        new V1EnvelopeError("RAG_SERVICE_TIMEOUT", "slow", 504, null),
+      );
+
+      const { POST } = await import("@/app/api/scan/route");
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
+      const res = await POST(req);
+
+      expect(res.status).toBe(502);
     });
   });
 });

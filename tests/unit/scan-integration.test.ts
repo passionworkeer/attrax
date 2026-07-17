@@ -1,90 +1,46 @@
 // @vitest-environment node
 /**
- * scan-integration.test.ts — TRUE integration test for POST /api/scan.
+ * scan-integration.test.ts — TRUE integration test for POST /api/scan (handoff).
  *
- * AUDIT CONTEXT (P2, "测试假绿"):
- *   tests/unit/api-scan-post-full.test.ts mocks ALL four core pipeline modules
- *   (scan-queue, scan, session-store, mock/scan-result) at once, so the real
- *   wiring between the route handler and the persistence layer has NEVER been
- *   exercised. "The first real user = the first integration test."
+ * After the v1-adapter rewire, this route is a thin forwarder to FastAPI
+ * `/api/v1/scans` (no local pipeline). This test exercises:
+ *   1. The route handler actually calls the v1-adapter with multipart body
+ *   2. The BFF returns the wire-shape the upload page reads
+ *      (`{ sessionId, status, pollUrl, accessToken }`)
+ *   3. Validation rejections don't trigger any adapter call
+ *   4. V1 envelope errors propagate to the client with their HTTP status
  *
- * What this file does differently:
- *   - Does NOT mock session-store, scan-queue, scan, or session-auth. Those
- *     run for real.
- *   - Mocks ONLY the outermost boundary: global.fetch (the call into the RAG
- *     service) and mammoth (an optional doc-parsing dep). Everything inside
- *     the route → session-store → scan-queue → scan → fetch chain is real.
- *   - Redirects process.cwd() to a temp dir BEFORE importing the route, so
- *     real session files, queue job files, and archived uploads land on disk
- *     under tmp — then asserts they really exist and have the right shape.
+ * The seam we mock is `lib/rag-client/v1-adapter` — that's the single
+ * forwarder the route uses. Everything inside the route handler is real
+ * (form parsing, validation, multipart assembly, response shaping).
  *
  * Run with: npx vitest run tests/unit/scan-integration.test.ts
  */
-import { describe, it, expect, afterAll, beforeEach, afterEach, vi } from "vitest";
-import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from "fs";
-import { tmpdir } from "os";
-import { join } from "path";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-// ── Temp data root ──────────────────────────────────────────────────────────
-// session-store / scan-queue / upload-storage compute their dirs ONCE at module
-// load via process.cwd(). Spy on process.cwd BEFORE any of those modules load
-// so the constants pick up the temp root. This MUST run at top level (not in
-// beforeAll): vitest evaluates top-level `await import(...)` during test-file
-// collection, which happens BEFORE beforeAll hooks fire, so a beforeAll spy
-// would be installed too late and the dir constants would point at the real cwd.
-const tmpRoot = mkdtempSync(join(tmpdir(), "attrax-scan-int-"));
-vi.spyOn(process, "cwd").mockReturnValue(tmpRoot);
-
-afterAll(() => {
-  vi.restoreAllMocks();
-  // process.cwd is restored by restoreAllMocks; now it's safe to remove tmp.
-  try {
-    rmSync(tmpRoot, { recursive: true, force: true });
-  } catch {
-    /* best-effort */
-  }
-});
-
-// Mock ONLY the outermost boundary. fetch is the seam between the Next.js
-// pipeline and the RAG service — mocking it is the legitimate integration
-// boundary. Everything else (session-store, scan-queue, scan) runs unmocked.
-const validRagResponse = {
-  status: "PASS" as const,
-  report: "## 合规报告\n产品需 CE 标志 [REACH Article 22]",
-  agent_trace: [{ node: "vision" }, { node: "generate" }],
-  loop_count: 0,
-  documents: [
-    {
-      id: "c1",
-      doc_name: "REACH (EC) 1907/2006",
-      article_no: "Article 22",
-      region: "EU",
-      score: 0.9,
-    },
-  ],
-};
-
-const fetchMock = vi.fn();
-vi.stubGlobal("fetch", fetchMock);
-
-// mammoth is an optional DOCX parser; the integration test doesn't upload
-// DOCX so it never runs, but stub it so the route's dynamic import resolves
-// without touching the real package.
-vi.mock("mammoth", () => ({
-  extractRawText: vi.fn().mockResolvedValue({ value: "" }),
+// Mock ONLY the v1-adapter boundary. Everything inside the route handler
+// (form parsing, validation, multipart assembly, response shaping) is real.
+const { mockCreateScan, mockGetScan } = vi.hoisted(() => ({
+  mockCreateScan: vi.fn(),
+  mockGetScan: vi.fn(),
 }));
 
-// ── Import the route (and real pipeline modules) AFTER cwd + fetch are set ──
-//   Because vitest isolates module registries per test file, these modules see
-//   the spied process.cwd at import time → their dir constants point at tmpRoot.
-//   We must NOT also mock these — the whole point is to exercise the real path.
+vi.mock("@/lib/rag-client/v1-adapter", async () => {
+  const actual = await vi.importActual<typeof import("@/lib/rag-client/v1-adapter")>(
+    "@/lib/rag-client/v1-adapter",
+  );
+  return {
+    ...actual,
+    createScan: mockCreateScan,
+    getScan: mockGetScan,
+  };
+});
+
 const { POST } = await import("@/app/api/scan/route");
-const { getSession, clearStore } = await import("@/lib/pipeline/session-store");
-const { verifyAccessToken } = await import("@/lib/pipeline/session-auth");
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
-// Minimal valid JPEG bytes (passes validateUploadFile signature check).
+// Minimal valid JPEG bytes (passes the route's image mime-type check).
 function minimalJpeg(): Uint8Array {
   return new Uint8Array([
     0xff, 0xd8, 0xff, 0xe0, 0x00, 0x01, 0x4a, 0x46, 0x49, 0x46, 0x00, 0x01, 0xff, 0xd9,
@@ -111,151 +67,93 @@ function buildFormData(opts: { images?: File[]; category?: string; markets?: str
   return fd;
 }
 
-/** Drain the microtask + macrotask queue so async drainQueue / runScan settle. */
-function flushAsync(ms = 50): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 // ── Tests ───────────────────────────────────────────────────────────────────
 
-describe("POST /api/scan — real integration (no pipeline mocks)", () => {
+describe("POST /api/scan — handoff BFF (no v1 network)", () => {
   beforeEach(() => {
-    fetchMock.mockReset();
-    // Default: RAG service reachable → returns a valid PASS response.
-    fetchMock.mockResolvedValue(
-      new Response(JSON.stringify(validRagResponse), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      })
-    );
+    mockCreateScan.mockReset();
+    mockGetScan.mockReset();
+    // Default: v1 returns a valid CreatedScanData response.
+    mockCreateScan.mockResolvedValue({
+      sessionId: "scan_test123",
+      accessToken: "tok_test",
+      status: "processing",
+      pollUrl: "/api/v1/scans/scan_test123",
+    });
   });
 
   afterEach(() => {
-    clearStore();
-    globalThis.__rateLimitBuckets = undefined;
+    vi.restoreAllMocks();
   });
 
-  it("writes a real session JSON file to disk and returns a valid token", async () => {
+  it("returns 202 with sessionId, accessToken, and a remapped pollUrl", async () => {
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
       body: buildFormData(),
     });
     const res = await POST(req);
 
-    // 202 Accepted — the route hands off to the async queue.
     expect(res.status).toBe(202);
     const body = await res.json();
     expect(body.success).toBe(true);
-    const { sessionId, accessToken } = body.data;
-
-    expect(sessionId).toMatch(/^scan_/);
-    expect(typeof accessToken).toBe("string");
-    expect(accessToken.length).toBeGreaterThan(0);
-
-    // ── Real disk write: the session JSON file exists under tmpRoot.
-    const sessionFile = join(tmpRoot, "data", "sessions", `${sessionId}.json`);
-    expect(existsSync(sessionFile)).toBe(true);
-
-    // The persisted session carries the access-token hash, NOT the raw token.
-    const persisted = JSON.parse(readFileSync(sessionFile, "utf-8"));
-    expect(persisted.sessionId).toBe(sessionId);
-    expect(persisted.accessTokenHash).toBeTruthy();
-    expect(persisted.accessTokenHash).not.toBe(accessToken);
-
-    // verifyAccessToken is the real (timing-safe) check the poll route uses.
-    expect(verifyAccessToken(accessToken, persisted.accessTokenHash)).toBe(true);
-    expect(verifyAccessToken("wrong-token", persisted.accessTokenHash)).toBe(false);
-
-    // In-memory store mirrors disk.
-    const inMemory = getSession(sessionId);
-    expect(inMemory?.sessionId).toBe(sessionId);
+    expect(body.sessionId).toBe("scan_test123");
+    expect(body.accessToken).toBe("tok_test");
+    expect(body.status).toBe("processing");
+    // CRITICAL: pollUrl is remapped from /api/v1/scans/{id} to /api/scan/{id}
+    // so the upload page keeps using the BFF route.
+    expect(body.pollUrl).toBe("/api/scan/scan_test123");
   });
 
-  it("runs the full pipeline through to a real scan result on disk", async () => {
+  it("forwards images, category, and markets to the v1 adapter", async () => {
+    const images = [makeImage("front.jpg"), makeImage("back.jpg")];
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
-      body: buildFormData(),
+      body: buildFormData({ images, category: "toy", markets: "EU,US,UK" }),
     });
-    const res = await POST(req);
-    const { sessionId } = (await res.json()).data;
+    await POST(req);
 
-    // Let the async executeScan → runScan → fetch chain settle.
-    await flushAsync(100);
-
-    const sessionFile = join(tmpRoot, "data", "sessions", `${sessionId}.json`);
-    const persisted = JSON.parse(readFileSync(sessionFile, "utf-8"));
-
-    // ── The real scan.ts ran: status flipped from "processing" to "ready",
-    //    a ComplianceReportResult with source: "real" was persisted, and the
-    //    RAG fetch was actually called (not bypassed via a mock module).
-    expect(persisted.status).toBe("ready");
-    expect(persisted.result).toBeTruthy();
-    expect(persisted.result.source).toBe("real");
-    expect(persisted.result.targetMarkets).toEqual(["EU", "US"]);
-    expect(persisted.result.complianceReport).toContain("合规报告");
-    // scan.ts drives the real HTTP boundary — the /scan-multipart call always
-    // fires (plus a /profit-report call when the package lacks profit markdown,
-    // so we assert on the first call's URL rather than an exact count).
-    expect(fetchMock).toHaveBeenCalled();
-    const firstUrl = String(fetchMock.mock.calls[0][0]);
-    expect(firstUrl).toContain("/scan-multipart");
+    expect(mockCreateScan).toHaveBeenCalledTimes(1);
+    const [input] = mockCreateScan.mock.calls[0];
+    expect(input.images).toHaveLength(2);
+    expect(input.images[0].originalName).toBe("front.jpg");
+    expect(input.images[0].mimeType).toBe("image/jpeg");
+    expect(input.images[0].buffer).toBeInstanceOf(Buffer);
+    expect(input.category).toBe("toy");
+    expect(input.markets).toEqual(["EU", "US", "UK"]);
   });
 
-  it("degrades the session (not crashes) when the RAG service is unreachable", async () => {
-    fetchMock.mockReset();
-    fetchMock.mockRejectedValue(new Error("ECONNREFUSED"));
+  it("surfaces v1 4xx errors with their original HTTP status (validation passthrough)", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScan.mockRejectedValueOnce(
+      new V1EnvelopeError("INVALID_MARKET", "unknown market XX", 400, "req-1"),
+    );
+
+    const req = new Request("http://localhost/api/scan", {
+      method: "POST",
+      body: buildFormData({ markets: "XX" }),
+    });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error.code).toBe("INVALID_MARKET");
+  });
+
+  it("collapses v1 5xx / network errors to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+    mockCreateScan.mockRejectedValueOnce(new Error("ECONNREFUSED"));
 
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
       body: buildFormData(),
     });
     const res = await POST(req);
-    expect(res.status).toBe(202);
-    const { sessionId } = (await res.json()).data;
 
-    await flushAsync(100);
-
-    const sessionFile = join(tmpRoot, "data", "sessions", `${sessionId}.json`);
-    const persisted = JSON.parse(readFileSync(sessionFile, "utf-8"));
-
-    // ── scan.ts catch path: status "degraded" with an error code + fallback
-    //    result so the UI still renders. This is the integration-level guarantee
-    //    that a RAG outage surfaces to the client instead of a hung session.
-    expect(persisted.status).toBe("degraded");
-    expect(persisted.degradedReason).toBe("RAG_SERVICE_UNAVAILABLE");
-    expect(persisted.result).toBeTruthy();
-    expect(persisted.result.source).toBe("fallback");
-    expect(persisted.error).toBe("RAG_SERVICE_UNAVAILABLE");
+    expect(res.status).toBe(502);
+    const body = await res.json();
+    expect(body.error.code).toBe("RAG_SERVICE_UNAVAILABLE");
   });
 
-  it("archives the uploaded image to disk under data/uploads/{sessionId}", async () => {
-    const image = makeImage("front-photo.jpg");
-    const req = new Request("http://localhost/api/scan", {
-      method: "POST",
-      body: buildFormData({ images: [image] }),
-    });
-    const res = await POST(req);
-    const { sessionId } = (await res.json()).data;
-
-    // upload-storage writes synchronously inside the route, so no flush needed.
-    const uploadDir = join(tmpRoot, "data", "uploads", sessionId);
-    expect(existsSync(uploadDir)).toBe(true);
-    const archived = readdirSync(uploadDir);
-    expect(archived.length).toBe(1);
-    // savedAs pattern: {sha12}_{sanitizedOriginal}
-    expect(archived[0]).toMatch(/front-photo\.jpg$/);
-
-    // The session file records the upload metadata (sha256, size, kind).
-    const sessionFile = join(tmpRoot, "data", "sessions", `${sessionId}.json`);
-    const persisted = JSON.parse(readFileSync(sessionFile, "utf-8"));
-    expect(Array.isArray(persisted.uploads)).toBe(true);
-    expect(persisted.uploads.length).toBe(1);
-    expect(persisted.uploads[0].kind).toBe("image");
-    expect(persisted.uploads[0].originalName).toBe("front-photo.jpg");
-    expect(persisted.uploads[0].sha256).toMatch(/^[0-9a-f]{64}$/);
-  });
-
-  it("rejects requests with no images at the validation layer (no session created)", async () => {
+  it("rejects requests with no images at the validation layer (no adapter call)", async () => {
     const fd = new FormData();
     fd.append("category", "electronics");
     fd.append("markets", "EU");
@@ -265,91 +163,113 @@ describe("POST /api/scan — real integration (no pipeline mocks)", () => {
     expect(res.status).toBe(400);
     const body = await res.json();
     expect(body.success).toBe(false);
-    expect(body.error.reason).toBe("UPLOAD_AT_LEAST_ONE_IMAGE");
-
-    // No fetch call should have been made — validation short-circuits before scan.
-    expect(fetchMock).not.toHaveBeenCalled();
-    // And no session file should exist.
-    const sessionsDir = join(tmpRoot, "data", "sessions");
-    if (existsSync(sessionsDir)) {
-      const files = readdirSync(sessionsDir).filter((f) => f.endsWith(".json"));
-      expect(files.length).toBe(0);
-    }
-  });
-});
-
-// ── Queue-file integration (production NODE_ENV path) ───────────────────────
-// enqueueScan only writes a durable job file when NODE_ENV !== "test". This
-// separate describe block flips NODE_ENV and exercises the real on-disk queue.
-describe("POST /api/scan — real scan-queue job file (production path)", () => {
-  const originalNodeEnv = process.env.NODE_ENV;
-
-  beforeEach(() => {
-    fetchMock.mockReset();
-    // RAG fetch resolves ok() but its .json() never settles, so runScan suspends
-    // mid-flight. That lets us observe the job file on disk in "running" state
-    // before executeJob unlinks it on success.
-    fetchMock.mockResolvedValue(
-      new Response(JSON.stringify(validRagResponse), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      })
-    );
-    process.env.NODE_ENV = "production";
-    // Force re-import of scan-queue so its top-level `if (NODE_ENV !== 'test')`
-    // drainQueue bootstrap runs with the production env. The route module is
-    // already imported, but enqueueScan re-reads process.env.NODE_ENV at call
-    // time, so flipping the env is enough to take the queue-file branch.
-    vi.resetModules();
+    expect(body.error.code).toBe("BAD_INPUT");
+    expect(mockCreateScan).not.toHaveBeenCalled();
   });
 
-  afterEach(async () => {
-    process.env.NODE_ENV = originalNodeEnv;
-    await flushAsync(50);
-    vi.resetModules();
-    clearStore();
-    globalThis.__rateLimitBuckets = undefined;
-  });
-
-  it("writes a durable job JSON to data/scan-queue/ and drains it through runScan", async () => {
-    const { POST: freshPOST } = await import("@/app/api/scan/route");
+  it("forwards documents when supplied alongside images", async () => {
+    const fd = buildFormData();
+    // Minimal valid PDF (just the header so the mime-type check passes).
+    const pdfBytes = new Uint8Array([
+      0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xc7, 0xec, 0x8f, 0xa2, 0x0a,
+    ]);
+    const pdfBuffer = new ArrayBuffer(pdfBytes.byteLength);
+    new Uint8Array(pdfBuffer).set(pdfBytes);
+    fd.append("documents", new File([pdfBuffer], "manual.pdf", { type: "application/pdf" }));
 
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
-      body: buildFormData(),
+      body: fd,
     });
-    const res = await freshPOST(req);
+    const res = await POST(req);
+
     expect(res.status).toBe(202);
-    const { sessionId } = (await res.json()).data;
+    const [input] = mockCreateScan.mock.calls[0];
+    expect(input.documents).toHaveLength(1);
+    expect(input.documents[0].mimeType).toBe("application/pdf");
+  });
+});
 
-    // ── Real scan-queue path: a job JSON file was written to the queue dir.
-    //    (In the test-NODE_ENV path enqueueScan skips this entirely, which is
-    //    exactly the coverage gap this assertion locks down.)
-    const queueDir = join(tmpRoot, "data", "scan-queue");
-    expect(existsSync(queueDir)).toBe(true);
-    const jobFiles = readdirSync(queueDir).filter((f) => f.endsWith(".json"));
-    expect(jobFiles.length).toBeGreaterThanOrEqual(1);
+describe("GET /api/scan/[sessionId] — handoff BFF (no v1 network)", () => {
+  beforeEach(() => {
+    mockCreateScan.mockReset();
+    mockGetScan.mockReset();
+  });
 
-    const job = JSON.parse(readFileSync(join(queueDir, jobFiles[0]), "utf-8"));
-    expect(job.sessionId).toBe(sessionId);
-    expect(job.input).toBeTruthy();
-    // Serialized input shape: images carry a side-car `path` + `bytes`
-    // reference (buffers live in data/scan-queue-payloads, not the JSON), so
-    // the job file stays small regardless of upload size. The .bin payload
-    // file itself was written to disk.
-    expect(Array.isArray(job.input.images)).toBe(true);
-    expect(job.input.images[0].path).toBeTruthy();
-    expect(typeof job.input.images[0].bytes).toBe("number");
-    expect(job.input.images[0].originalName).toBeTruthy();
-    expect(existsSync(job.input.images[0].path)).toBe(true);
+  it("demo short-circuits without calling the adapter", async () => {
+    const { GET } = await import("@/app/api/scan/[sessionId]/route");
+    const req = new Request("http://localhost/api/scan/demo");
+    const ctx = { params: Promise.resolve({ sessionId: "demo" }) };
 
-    // Let the drain + runScan finish so the job is unlinked and the session
-    // lands in a terminal state — proves the full queue→worker→scan chain ran.
-    await flushAsync(200);
+    const res = await GET(req, ctx);
+    const body = await res.json();
 
-    const sessionFile = join(tmpRoot, "data", "sessions", `${sessionId}.json`);
-    const persisted = JSON.parse(readFileSync(sessionFile, "utf-8"));
-    expect(["ready", "degraded", "failed"]).toContain(persisted.status);
-    expect(fetchMock).toHaveBeenCalled();
+    expect(res.status).toBe(200);
+    expect(body.sessionId).toBe("demo");
+    expect(body.status).toBe("ready");
+    expect(mockGetScan).not.toHaveBeenCalled();
+  });
+
+  it("returns 401 when no token is supplied", async () => {
+    const { GET } = await import("@/app/api/scan/[sessionId]/route");
+    const req = new Request("http://localhost/api/scan/scan_abc");
+    const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+    const res = await GET(req, ctx);
+
+    expect(res.status).toBe(401);
+    expect(mockGetScan).not.toHaveBeenCalled();
+  });
+
+  it("forwards sessionId + Bearer token to v1 and returns the mapped status", async () => {
+    mockGetScan.mockResolvedValueOnce({
+      sessionId: "scan_abc",
+      status: "ready",
+      progress: 100,
+      stageText: "完成",
+      category: "electronics",
+      markets: ["EU"],
+      createdAt: "2026-07-17T00:00:00Z",
+      updatedAt: "2026-07-17T00:01:00Z",
+      result: { sessionId: "scan_abc", complianceScore: 85, scoreGrade: "B" },
+      error: null,
+    });
+
+    const { GET } = await import("@/app/api/scan/[sessionId]/route");
+    const req = new Request("http://localhost/api/scan/scan_abc", {
+      headers: { authorization: "Bearer tok_abc" },
+    });
+    const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
+
+    const res = await GET(req, ctx);
+    const body = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(body.sessionId).toBe("scan_abc");
+    expect(body.status).toBe("ready");
+    expect(body.result.complianceScore).toBe(85);
+    expect(mockGetScan).toHaveBeenCalledWith({
+      sessionId: "scan_abc",
+      accessToken: "tok_abc",
+    });
+  });
+
+  it("maps v1 NOT_FOUND to 404 with NOT_FOUND code", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockGetScan.mockRejectedValueOnce(
+      new V1EnvelopeError("NOT_FOUND", "no such session", 404, "req-x"),
+    );
+
+    const { GET } = await import("@/app/api/scan/[sessionId]/route");
+    const req = new Request("http://localhost/api/scan/scan_missing", {
+      headers: { authorization: "Bearer t" },
+    });
+    const ctx = { params: Promise.resolve({ sessionId: "scan_missing" }) };
+
+    const res = await GET(req, ctx);
+    const body = await res.json();
+
+    expect(res.status).toBe(404);
+    expect(body.error.code).toBe("NOT_FOUND");
   });
 });
