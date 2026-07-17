@@ -1,0 +1,683 @@
+import type { BlazeLocale } from "@/components/blaze-hawks/locale";
+
+export const blazeCopy = {
+  zh: {
+    nav: {
+      product: "产品方案",
+      demo: "Demo 演示",
+      challenge: "赛题匹配",
+      partners: "合作资源",
+    },
+    header: {
+      primary: "立即体验 Demo",
+      secondary: "查看 Demo",
+    },
+    footer: {
+      links1: ["产品方案", "Demo 演示"],
+      links2: ["赛道匹配", "落地规划"],
+      links3: ["合作资源", "联系我们"],
+      copyright: "© 2024 Blaze Hawks. Engineered for High-Velocity Precision.",
+    },
+    home: {
+      eyebrow: "LEC AI 深度驱动 · 英国 48 家集团战略合作",
+      titlePrimary: "想出海？先烧毁！",
+      titleSecondary: "Burn Before You Fly.",
+      body:
+        "以合规智能为入口，覆盖选品、合规、增长、履约与风控全链路。先上传几张产品图片，把会吞掉利润的风险点直接点亮，再决定要不要真正进入欧洲市场。",
+      bodySecondary:
+        "我们把多角度图片、2.5D 模型、火焰热点、法规解释和利润看板整合成一条完整的端体验链路，同时兼顾路演展示与正式产品落地。",
+      ctaPrimary: "拍一张，看看你能赚多少钱",
+      ctaSecondary: "查看完整 Demo",
+      ctaDownload: "下载参赛计划书",
+      summaryCards: [
+        {
+          title: "法规库持续更新",
+          value: "86 份官方法规文件",
+          body: "覆盖欧盟、美国、英国与更多目标市场，报告里直接带法规引用。",
+        },
+        {
+          title: "视觉识别直达风险",
+          value: "3 张图就能起扫",
+          body: "识别铭牌、接口、警示、包装与说明书，先把风险热点点亮。",
+        },
+        {
+          title: "利润结果可视化",
+          value: "月损益一眼看清",
+          body: "把整改成本、平台损耗和可上架净利放在同一张面板里。",
+        },
+        {
+          title: "报告可以交付",
+          value: "Markdown / 路线图导出",
+          body: "不只讲法规，更给整改顺序、材料清单和市场上线建议。",
+        },
+      ],
+      burnLogicTitle: "先判断风险值不值得烧，再决定要不要去做认证。",
+      burnLogicSteps: [
+        "上传几张真实产品图，自动识别品类、接口、铭牌和包装。",
+        "并行检索多市场法规库，汇总会影响上架与利润的风险点。",
+        "给出整改顺序、预计成本、导出报告和出海净利变化。",
+      ],
+      sessionBriefTitle: "从拍照到出海决策的一屏链路",
+      sessionBriefBody:
+        "围绕产品图像、风险热区、利润测算和报告交付，把首轮合规判断压缩到可演示、可复核的工作流。",
+      sessionBriefBullets: [
+        "产品图像进入后，系统会先识别主体、接口、铭牌、包装和警示信息。",
+        "风险点以火焰热点呈现在产品底图上，方便业务和法务共同复核。",
+        "利润、整改顺序和导出报告同步生成，直接支撑是否进入目标市场的判断。",
+      ],
+      plansPill: "合规扫描 + 利润测算 + 路线图导出",
+      architectureTitle: "前端、Agentic RAG 与法规验证拼在一起",
+      architectureBody:
+        "底层由多市场法规库、混合检索和引用校验支撑，让前端看到的每个风险点都能回到法规依据、整改材料和成本影响。",
+    },
+    productPreview: {
+      heroPreview: "Hero Preview",
+      targetMarket: "目标市场",
+      riskHotspots: "风险热点",
+      netProfit: "真实净利",
+    },
+    upload: {
+      step: "Step 01",
+      title: "上传产品，开始扫描",
+      body:
+        "先上传一组清晰的正面、铭牌、接口与包装图片，系统会生成一版可交互的风险预告。",
+      dropTitle: "拖拽或点击上传产品实拍图",
+      dropBody:
+        "先上传一张最清晰的正面图，然后再补一张铭牌或接口细节照，系统就能生成整体验证预告。",
+      empty: "还没有上传图片。建议至少准备：正面图、接口图、铭牌图。",
+      markets: "目标市场",
+      category: "产品品类",
+      submit: "开始烧毁 · 智能分析",
+      preview: "拍摄预览与输出预告",
+      preset: "预制体验数据",
+      steps: ["1. 上传产品", "2. 智能拆解", "3. 风险识别", "4. 利润测算"],
+      previewPill: "3C 电子",
+      previewInstruction: "请将产品平放，尽量保留完整轮廓与关键按键信息",
+      previewAutoJump:
+        "上传完成后，系统会进入 3D 拆解页，再自动跳转到火焰风险和利润结果页。",
+      presetBadge: "先看 demo",
+      insightCards: [
+        {
+          title: "结构识别",
+          body: "识别主体、接口、包装与警示位置，建立可追溯的产品视图。",
+        },
+        {
+          title: "热点定价",
+          body: "不同风险点会压缩不同幅度的利润空间，先看到再决定要不要出海。",
+        },
+        {
+          title: "利润看板",
+          body: "直接给出成本、整改费用和目标市场利润变化，不再只停在法规说明。",
+        },
+      ],
+      presets: [
+        {
+          title: "65W 快充充电器",
+          count: "4 个热点",
+          summary: "适合拿来演示无 CE、标签缺漏和多市场法规一键联动的风险结果。",
+        },
+        {
+          title: "桌面加湿器",
+          count: "3 个热点",
+          summary: "适合展示包装、说明书和多语言警示缺失如何影响跨境电商上架。",
+        },
+        {
+          title: "儿童积木玩具",
+          count: "5 个热点",
+          summary: "适合玩具类产品的 EN71 / CPSIA 合规提示与路线图输出。",
+        },
+      ],
+      marketLabels: {
+        EU: "欧盟",
+        US: "美国",
+        UK: "英国",
+        CN: "中国",
+        JP: "日本",
+        KR: "韩国",
+        AU: "澳洲",
+        CA: "加拿大",
+        SG: "新加坡",
+        AE: "阿联酋",
+        SA: "沙特",
+        MX: "墨西哥",
+        BR: "巴西",
+        DE: "德国",
+        FR: "法国",
+        IT: "意大利",
+      },
+      marketHints: {
+        EU: "CE / GPSR / RoHS",
+        US: "FCC / CPSIA / UL",
+        UK: "UKCA / WEEE",
+        CN: "CCC / GB 标准",
+        JP: "PSE / PSC / JIS",
+        KR: "KC / KCC",
+        AU: "RCM / ACL",
+        CA: "ICES / CSA",
+        SG: "CPSR / IMDA",
+        AE: "ECAS / RoHS",
+        SA: "SASO / SABER",
+        MX: "NOM / IFETEL",
+        BR: "INMETRO / ANATEL",
+        DE: "ProdSG / VerpackG",
+        FR: "AGEC / Triman",
+        IT: "RAEE / CE",
+      },
+      categoryLabels: {
+        electronics: "3C 电子",
+        appliance: "家电",
+        toy: "玩具",
+        home: "家居",
+        other: "其他",
+      },
+    },
+    burning: {
+      title: "AI 正在拆解你的产品",
+      body:
+        "系统会先用上传图片做一个临时扫描页，再把重点风险、法规引用和利润提示并排点亮。",
+      progress: "进度",
+      preview: "3D 爆炸拆解页",
+      currentStage: "当前阶段",
+      autoJump: "正在生成火焰热点与利润预估，完成后会自动跳到完整风险结果页。",
+      primaryLabel: "重新上传",
+      secondaryLabel: "查看 Demo",
+      waiting: "等待任务启动…",
+      marketsPill: "欧盟 + 英国",
+      currentSessionLabel: "当前会话：",
+      stageNote: "这一步把上传图片整理为 2.5D 拆解舞台，让产品、火焰热点和法规检索进度同时可见。",
+      retry: "重新上传",
+      showDemo: "查看 Demo",
+      failed: "扫描失败。",
+      insightCards: [
+        {
+          title: "结构识别",
+          body: "识别主体、接口、包装与警示位置，建立可追溯的产品视图。",
+        },
+        {
+          title: "热点定价",
+          body: "不同风险点会压缩不同幅度的利润空间，先看到再决定要不要出海。",
+        },
+        {
+          title: "利润看板",
+          body: "直接给出成本、整改费用和目标市场利润变化，不再只停在法规说明。",
+        },
+      ],
+      analysisSteps: [
+        {
+          title: "上传产品",
+          description: "读取多角度图片并建立产品素材视图。",
+        },
+        {
+          title: "智能拆解",
+          description: "识别型号、接口、铭牌、包装与警示信息。",
+        },
+        {
+          title: "风险识别",
+          description: "结合多市场法规库生成风险点与法规引用。",
+        },
+        {
+          title: "利润测算",
+          description: "输出整改成本、时间预估与报告导出项。",
+        },
+      ],
+    },
+    result: {
+      title: "真实分析",
+      summary:
+        "已根据上传图片完成视觉分析，并映射到可交互的 2.5D 风险热区。风险、整改建议与利润结果已经生成完毕。",
+      sessionBrief: "一页完成风险、利润和交付判断",
+      sessionBriefBody:
+        "结果页把视觉风险、整改建议、利润变化和报告导出放在同一条决策链路里，便于展示、复核和交付。",
+      riskOverview: "热点总览",
+      roadmap: "推荐整改排期",
+      export: "合规报告可导出下载",
+      preview: "导出报告预览",
+      interactive: "动态计价 + 火焰可视化",
+      clickHotspot: "点击热点查看详情",
+      hotspotDetail: "热点详情",
+      generated: "生成时间",
+      reportUse: "报告用途",
+      deliveryFit: "交付感对齐",
+      liveExport: "导出文件可复核",
+      primaryLabel: "重新上传",
+      secondaryLabel: "返回首页",
+      loading: "扫描结果加载中",
+      loadingMessage: "正在加载扫描结果…",
+      restored: "已从会话缓存恢复结果。",
+      notFound: "未找到对应扫描结果。",
+      loaded: "结果已从接口载入。",
+      failed: "扫描失败。",
+      processing: "扫描仍在处理中，请稍后刷新或返回加载页。",
+      marketSuffix: "市场",
+      hotspotsCountSuffix: "个热点",
+      metricLabels: [
+        "神勇出海预估利润",
+        "合规后真实利润",
+        "单平台合规成本",
+        "预估月损失利润",
+      ],
+      briefBullets: [
+        "合规重点：{critical} 个高危，{warning} 个警告，当前得分 {score} / {grade}",
+        "场景建议：先完成 CE / UKCA、输入输出规格和多语言警示的整改，再进入实验室阶段。",
+        "建议报价：{retail}，优先把合规成本作为首批试销的价格底线。",
+      ],
+      interactiveBody:
+        "用真实产品底图讲清楚每个风险点，风险标签、火焰等级和整改成本都在同一屏里完成解释。",
+      riskLabel: "风险",
+      confidenceShort: "置信",
+      confidence: "置信",
+      flameLevel: "火焰等级",
+      source: "法规源",
+      recommendedFix: "整改建议：",
+      remediationCost: "整改成本",
+      unknownCost: "待确认",
+      roadmapHeaders: ["阶段", "时间", "负责人", "产出"],
+      unknownTime: "时间待估",
+      unknownCostLong: "成本待估",
+      materials: "材料：",
+      exportBody:
+        "报告可按合规总报告、路线图和利润测算拆分导出，便于复制、分享和交给不同角色继续执行。",
+      exportSupport: "支持 PDF / DOCX / 文本导出",
+      brandMark: "品牌标识",
+      brandMarkBody:
+        "ZGA 字样位于正面中央偏下，产品品牌识别度较低，建议和型号、认证信息一起归位。",
+      complianceGap: "合规差额",
+      complianceGapBody:
+        "当前预计每个产品多付出 {cost} 的合规成本，完成后才能把风险热点压回可控区间。",
+      profitRecovery: "利润恢复",
+      profitRecoveryBody:
+        "这批整改完成后，建议把 Listing 主图、卖点文案和说明书一起上线，避免利润恢复后再被平台退回。",
+      previewBody:
+        "导出前可以先查看报告结构、关键结论和指标口径，避免只拿到文件名却看不清交付内容。",
+      findings: "关键发现",
+    },
+    plans: {
+      title: "解锁完整出海方案",
+      body:
+        "完整合规报告、利润测算表、整改方案与认证绿色通道都放在同一条商业闭环里。",
+      heroSubtext: "完整合规报告、利润测算表、整改方案与认证绿色通道",
+      back: "返回利润结果页",
+      trust: "已服务 1000+ 出海企业 | 英国 48 家集团官方合作 | LEC AI 技术深度支持",
+      cards: [
+        {
+          title: "单次解锁",
+          price: "¥99",
+          unit: "/ 次",
+          badge: "按次交付",
+          features: [
+            "单个 SKU 完整合规报告",
+            "利润测算表导出",
+            "风险整改建议",
+            "7 天扫描历史保留",
+          ],
+        },
+        {
+          title: "月度会员",
+          price: "¥299",
+          unit: "/ 月",
+          badge: "官方推荐",
+          features: [
+            "每月 10 个 SKU 完整报告",
+            "不限次产品扫描",
+            "法规更新提醒",
+            "认证绿色通道",
+          ],
+        },
+        {
+          title: "年度会员",
+          price: "¥2399",
+          unit: "/ 年",
+          badge: "企业常用",
+          features: [
+            "每年 180 个 SKU 完整报告",
+            "专家人工复核 1 次",
+            "企业级多人协作",
+            "优先体验新功能",
+          ],
+        },
+      ],
+    },
+  },
+  en: {
+    nav: {
+      product: "Product",
+      demo: "Demo Flow",
+      challenge: "Templates",
+      partners: "Partners",
+    },
+    header: {
+      primary: "Try the Demo",
+      secondary: "View Demo",
+    },
+    footer: {
+      links1: ["Product Solutions", "Demo"],
+      links2: ["Track Matching", "Landing Planning"],
+      links3: ["Partnerships", "Contact Us"],
+      copyright: "© 2024 Blaze Hawks. Engineered for High-Velocity Precision.",
+    },
+    home: {
+      eyebrow: "Deeply driven by LEC AI · Strategic cooperation with 48 UK groups",
+      titlePrimary: "Thinking of Going Abroad?",
+      titleSecondary: "Burn it Down first!",
+      body:
+        "Using compliance intelligence as the entry point, Blaze Hawks covers sourcing, compliance, growth, fulfillment, and risk control. Upload a few product photos, light up the risks that can swallow margin, then decide whether to enter Europe for real.",
+      bodySecondary:
+        "Multi-angle images, 2.5D modeling, fire hotspots, legal explanations, and the profit board form one complete end-to-end demo chain for roadshows and product landing.",
+      ctaPrimary: "Upload a few shots and reveal your real margin",
+      ctaSecondary: "See the Full Demo",
+      ctaDownload: "Download Entry Plan",
+      summaryCards: [
+        {
+          title: "Regulation Coverage",
+          value: "86 official rule files",
+          body: "Covers EU, US, UK, and more export markets with direct citations in every report.",
+        },
+        {
+          title: "Vision Finds Risk Fast",
+          value: "Start with 3 photos",
+          body: "Detects nameplates, ports, warnings, packaging, and manuals to light up hotspots early.",
+        },
+        {
+          title: "Margin Impact Visible",
+          value: "Read monthly loss at a glance",
+          body: "Puts remediation cost, platform friction, and viable net profit into one panel.",
+        },
+        {
+          title: "Reports Feel Deliverable",
+          value: "Markdown / roadmap export",
+          body: "Not just rule explanations but remediation order, material checklists, and launch advice.",
+        },
+      ],
+      burnLogicTitle: "Judge whether the risk is worth burning through before paying for certification.",
+      burnLogicSteps: [
+        "Upload real product shots and auto-detect category, ports, nameplate, and packaging.",
+        "Search multiple market rule libraries in parallel and surface the issues that hurt listing and margin.",
+        "Return a remediation sequence, estimated cost, exportable reports, and the real net margin shift.",
+      ],
+      sessionBriefTitle: "One screen from product shots to market-entry decision",
+      sessionBriefBody:
+        "Product images, risk hotspots, margin calculation, and report delivery are compressed into one reviewable workflow for the first compliance decision.",
+      sessionBriefBullets: [
+        "The system reads product body, ports, nameplates, packaging, and warning information from uploaded images.",
+        "Fire hotspots sit on top of the product canvas so business and legal teams can review the same evidence.",
+        "Margin impact, remediation order, and exportable reports are generated together for go-to-market decisions.",
+      ],
+      plansPill: "Compliance scan + margin math + roadmap export",
+      architectureTitle: "Frontend, Agentic RAG, and citation validation in one product loop",
+      architectureBody:
+        "Multi-market rule libraries, hybrid retrieval, and citation checks support each visible hotspot with a legal basis, remediation path, and cost impact.",
+    },
+    productPreview: {
+      heroPreview: "Hero Preview",
+      targetMarket: "Target Market",
+      riskHotspots: "Risk Hotspots",
+      netProfit: "True Net",
+    },
+    upload: {
+      step: "Step 01",
+      title: "Upload the product and start scanning",
+      body:
+        "Upload a clean set of front, nameplate, port, and packaging photos to build an interactive compliance preview.",
+      dropTitle: "Drag or click to upload real product photos",
+      dropBody:
+        "Start with the clearest front shot, then add one nameplate or port detail shot to generate a complete pre-check view.",
+      empty: "No images uploaded yet. Recommended minimum: front, port, and nameplate shots.",
+      markets: "Target markets",
+      category: "Product category",
+      submit: "Start Burn · Smart Analysis",
+      preview: "Shot preview and output forecast",
+      preset: "Preset experience data",
+      steps: ["1. Upload shots", "2. Smart breakdown", "3. Risk detection", "4. Margin estimate"],
+      previewPill: "3C electronics",
+      previewInstruction: "Lay the product flat and keep the full outline plus key labels visible",
+      previewAutoJump:
+        "After upload, the system enters the 3D breakdown stage and then jumps to risk hotspots and margin results.",
+      presetBadge: "demo first",
+      insightCards: [
+        {
+          title: "Structure Recognition",
+          body: "Detect the main body, ports, packaging, and warnings to build a traceable product view.",
+        },
+        {
+          title: "Hotspot Pricing",
+          body: "Different risks compress margin differently, so you can decide whether the market is still worth entering.",
+        },
+        {
+          title: "Margin Board",
+          body: "Shows remediation cost and market margin shift directly instead of stopping at legal explanation.",
+        },
+      ],
+      presets: [
+        {
+          title: "65W Fast Charger",
+          count: "4 hotspots",
+          summary: "Best for showing missing CE, label gaps, and multi-market rule linkage in one result.",
+        },
+        {
+          title: "Desktop Humidifier",
+          count: "3 hotspots",
+          summary: "Good for packaging, manual, and multilingual warning gaps in cross-border listing reviews.",
+        },
+        {
+          title: "Kids Building Blocks",
+          count: "5 hotspots",
+          summary: "Good for EN71 / CPSIA toy compliance prompts and roadmap output.",
+        },
+      ],
+      marketLabels: {
+        EU: "EU",
+        US: "US",
+        UK: "UK",
+        CN: "CN",
+        JP: "JP",
+        KR: "KR",
+        AU: "AU",
+        CA: "CA",
+        SG: "SG",
+        AE: "AE",
+        SA: "SA",
+        MX: "MX",
+        BR: "BR",
+        DE: "DE",
+        FR: "FR",
+        IT: "IT",
+      },
+      marketHints: {
+        EU: "CE / GPSR / RoHS",
+        US: "FCC / CPSIA / UL",
+        UK: "UKCA / WEEE",
+        CN: "CCC / GB standards",
+        JP: "PSE / PSC / JIS",
+        KR: "KC / KCC",
+        AU: "RCM / ACL",
+        CA: "ICES / CSA",
+        SG: "CPSR / IMDA",
+        AE: "ECAS / RoHS",
+        SA: "SASO / SABER",
+        MX: "NOM / IFETEL",
+        BR: "INMETRO / ANATEL",
+        DE: "ProdSG / VerpackG",
+        FR: "AGEC / Triman",
+        IT: "RAEE / CE",
+      },
+      categoryLabels: {
+        electronics: "3C electronics",
+        appliance: "Appliance",
+        toy: "Toy",
+        home: "Home",
+        other: "Other",
+      },
+    },
+    burning: {
+      title: "AI is dismantling your product",
+      body:
+        "The system first builds a temporary scan view from the uploaded images, then lights up risk, citation, and margin hints side by side.",
+      progress: "Progress",
+      preview: "3D Exploded Breakdown",
+      currentStage: "Current stage",
+      autoJump: "Generating fire hotspots and profit estimates. You will be taken to the full result page automatically.",
+      primaryLabel: "Upload again",
+      secondaryLabel: "View Demo",
+      waiting: "Waiting for the task to start...",
+      marketsPill: "EU + UK",
+      currentSessionLabel: "Session:",
+      stageNote: "This stage turns uploaded shots into a 2.5D breakdown surface where product evidence, hotspots, and rule retrieval progress stay visible together.",
+      retry: "Upload again",
+      showDemo: "View Demo",
+      failed: "Scan failed.",
+      insightCards: [
+        {
+          title: "Structure Recognition",
+          body: "Detect the main body, ports, packaging, and warnings to build a traceable product view.",
+        },
+        {
+          title: "Hotspot Pricing",
+          body: "Different risks compress margin differently, so you can decide whether the market is still worth entering.",
+        },
+        {
+          title: "Margin Board",
+          body: "Shows remediation cost and market margin shift directly instead of stopping at legal explanation.",
+        },
+      ],
+      analysisSteps: [
+        {
+          title: "Upload shots",
+          description: "Read multi-angle images and build the base product view.",
+        },
+        {
+          title: "Smart breakdown",
+          description: "Detect model, ports, nameplate, packaging, and warning signals.",
+        },
+        {
+          title: "Risk detection",
+          description: "Generate hotspots and citations against multi-market regulation sets.",
+        },
+        {
+          title: "Margin estimate",
+          description: "Return remediation cost, timing, and export-ready report outputs.",
+        },
+      ],
+    },
+    result: {
+      title: "Live Analysis",
+      summary:
+        "The uploaded images have been analyzed and mapped into an interactive 2.5D risk canvas. Risks, fixes, and profit impacts are ready.",
+      sessionBrief: "Risk, margin, and delivery decisions in one page",
+      sessionBriefBody:
+        "The result page links visual risks, fixes, margin impact, and report exports into one decision chain for review and delivery.",
+      riskOverview: "Risk hotspots",
+      roadmap: "Recommended remediation timeline",
+      export: "Compliance reports ready to export",
+      preview: "Report preview",
+      interactive: "Dynamic pricing + flame visualization",
+      clickHotspot: "Select a hotspot for detail",
+      hotspotDetail: "Hotspot detail",
+      generated: "Generated",
+      reportUse: "Best for",
+      deliveryFit: "Delivery feel",
+      liveExport: "Exports are reviewable",
+      primaryLabel: "Upload again",
+      secondaryLabel: "Back home",
+      loading: "Loading result",
+      loadingMessage: "Loading scan result...",
+      restored: "Recovered the result from session cache.",
+      notFound: "No matching scan result was found.",
+      loaded: "Loaded the result from the API.",
+      failed: "Scan failed.",
+      processing: "The scan is still processing. Refresh later or return to the loading page.",
+      marketSuffix: "market",
+      hotspotsCountSuffix: "hotspots",
+      metricLabels: [
+        "Estimated heroic margin",
+        "Real profit after compliance",
+        "Per-platform compliance cost",
+        "Estimated monthly loss",
+      ],
+      briefBullets: [
+        "Compliance focus: {critical} critical, {warning} warning, current score {score} / {grade}",
+        "Recommended path: finish CE / UKCA, input-output spec, and multilingual warning fixes before lab work.",
+        "Suggested price: {retail}; treat compliance cost as the floor for first-batch testing.",
+      ],
+      interactiveBody:
+        "One real product canvas explains each hotspot, confidence band, and fix cost in a single frame.",
+      riskLabel: "Risk",
+      confidenceShort: "Conf.",
+      confidence: "Confidence",
+      flameLevel: "Flame Level",
+      source: "Source",
+      recommendedFix: "Recommended fix:",
+      remediationCost: "Fix cost",
+      unknownCost: "TBD",
+      roadmapHeaders: ["Phase", "Time", "Owner", "Output"],
+      unknownTime: "Time TBD",
+      unknownCostLong: "Cost TBD",
+      materials: "Materials:",
+      exportBody:
+        "Reports can be exported as compliance summaries, remediation roadmaps, and profit calculations for each delivery role.",
+      exportSupport: "Supports PDF / DOCX / text export",
+      brandMark: "Brand mark",
+      brandMarkBody:
+        "The ZGA mark sits low on the front face and reads weakly as a brand signal. It should be aligned with model and certification info.",
+      complianceGap: "Compliance gap",
+      complianceGapBody:
+        "The current estimate adds {cost} of compliance cost per product before risk hotspots fall back into a controlled zone.",
+      profitRecovery: "Profit recovery",
+      profitRecoveryBody:
+        "Once the fixes land, update listing imagery, selling points, and manuals together so regained margin is not lost again in review.",
+      previewBody:
+        "Preview the report structure, key conclusions, and metric logic before export so delivery is clear before the file leaves the page.",
+      findings: "Key findings",
+    },
+    plans: {
+      title: "Unlock the full market-entry plan",
+      body:
+        "Complete compliance reports, profit sheets, remediation plans, and certification support in one business loop.",
+      heroSubtext:
+        "Compliance reports + profit sheets + remediation plans + certification support",
+      back: "Back to Profit Results",
+      trust: "Serving 1000+ global merchants | Official UK Group 48 partnership | Powered by LEC AI",
+      cards: [
+        {
+          title: "Single unlock",
+          price: "¥99",
+          unit: "/ run",
+          badge: "pay as you go",
+          features: [
+            "One complete SKU report",
+            "Profit sheet export",
+            "Risk remediation advice",
+            "7-day scan history",
+          ],
+        },
+        {
+          title: "Monthly member",
+          price: "¥299",
+          unit: "/ month",
+          badge: "recommended",
+          features: [
+            "10 complete SKU reports/mo",
+            "Unlimited product scans",
+            "Regulation update reminders",
+            "Certification fast lane",
+          ],
+        },
+        {
+          title: "Annual member",
+          price: "¥2399",
+          unit: "/ year",
+          badge: "team plan",
+          features: [
+            "180 complete SKU reports/year",
+            "One expert manual review",
+            "Enterprise collaboration",
+            "Early access to new features",
+          ],
+        },
+      ],
+    },
+  },
+} satisfies Record<BlazeLocale, unknown>;
+
+export function getBlazeCopy(locale: BlazeLocale) {
+  return blazeCopy[locale];
+}
