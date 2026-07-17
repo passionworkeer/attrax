@@ -48,10 +48,12 @@ def test_ready_endpoint_reports_dependency_checks(client):
 def test_ready_endpoint_reports_required_api_keys(client):
     """Production readiness reports API-only LLM and embedding configuration."""
     previous_demo_mode = settings.demo_mode
+    previous_minimax = settings.minimax_api_key
     previous_mimotalk = settings.mimotalk_api_key
     previous_modelscope = settings.modelscope_api_key
     previous_retriever = main_module._retriever
     settings.demo_mode = False
+    settings.minimax_api_key = ""
     settings.mimotalk_api_key = ""
     settings.modelscope_api_key = ""
 
@@ -63,13 +65,14 @@ def test_ready_endpoint_reports_required_api_keys(client):
         resp = client.get("/ready")
     finally:
         settings.demo_mode = previous_demo_mode
+        settings.minimax_api_key = previous_minimax
         settings.mimotalk_api_key = previous_mimotalk
         settings.modelscope_api_key = previous_modelscope
         main_module._retriever = previous_retriever
 
     assert resp.status_code == 503
     data = resp.json()
-    assert data["checks"]["mimotalk_api_key"] is False
+    assert data["checks"]["minimax_api_key"] is False
     assert data["checks"]["modelscope_api_key"] is False
 
 

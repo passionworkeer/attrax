@@ -66,10 +66,11 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
   const demoMode = String(env.DEMO_MODE ?? "false").toLowerCase() === "true";
 
   if (!demoMode) {
-    if (!hasValue(env.MIMOTALK_API_KEY)) {
-      errors.push("MIMOTALK_API_KEY is required when DEMO_MODE is not true.");
-    } else if (isExamplePlaceholder(env.MIMOTALK_API_KEY)) {
-      errors.push("MIMOTALK_API_KEY still contains the production example placeholder.");
+    const minimaxApiKey = env.MINIMAX_API_KEY || env.MIMOTALK_API_KEY;
+    if (!hasValue(minimaxApiKey)) {
+      errors.push("MINIMAX_API_KEY is required when DEMO_MODE is not true.");
+    } else if (isExamplePlaceholder(minimaxApiKey)) {
+      errors.push("MINIMAX_API_KEY still contains the production example placeholder.");
     }
     if (!hasValue(env.MODELSCOPE_API_KEY)) {
       errors.push("MODELSCOPE_API_KEY is required when DEMO_MODE is not true.");

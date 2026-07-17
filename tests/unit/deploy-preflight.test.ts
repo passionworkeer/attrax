@@ -21,7 +21,7 @@ describe('deployment preflight', () => {
   it('accepts a complete API-only production deployment root', async () => {
     const { validateDeployment } = await import('../../scripts/preflight-deploy.mjs')
     const root = makeDeployRoot(`
-MIMOTALK_API_KEY=mimo-key
+MINIMAX_API_KEY=minimax-key
 MODELSCOPE_API_KEY=modelscope-key
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
@@ -36,7 +36,7 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
   it('requires both LLM and embedding API keys when demo mode is disabled', async () => {
     const { validateDeployment } = await import('../../scripts/preflight-deploy.mjs')
     const root = makeDeployRoot(`
-MIMOTALK_API_KEY=
+MINIMAX_API_KEY=
 MODELSCOPE_API_KEY=
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
@@ -45,14 +45,14 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     const result = validateDeployment(root)
 
     expect(result.ok).toBe(false)
-    expect(result.errors).toContain('MIMOTALK_API_KEY is required when DEMO_MODE is not true.')
+    expect(result.errors).toContain('MINIMAX_API_KEY is required when DEMO_MODE is not true.')
     expect(result.errors).toContain('MODELSCOPE_API_KEY is required when DEMO_MODE is not true.')
   })
 
   it('rejects untouched placeholder API keys', async () => {
     const { validateDeployment } = await import('../../scripts/preflight-deploy.mjs')
     const root = makeDeployRoot(`
-MIMOTALK_API_KEY=your_mimotalk_api_key
+MINIMAX_API_KEY=your_minimax_api_key
 MODELSCOPE_API_KEY=your_modelscope_api_key
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
@@ -61,14 +61,14 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     const result = validateDeployment(root)
 
     expect(result.ok).toBe(false)
-    expect(result.errors).toContain('MIMOTALK_API_KEY still contains the production example placeholder.')
+    expect(result.errors).toContain('MINIMAX_API_KEY still contains the production example placeholder.')
     expect(result.errors).toContain('MODELSCOPE_API_KEY still contains the production example placeholder.')
   })
 
   it('requires an explicit browser origin for a production standalone backend', async () => {
     const { validateDeployment } = await import('../../scripts/preflight-deploy.mjs')
     const root = makeDeployRoot(`
-MIMOTALK_API_KEY=mimo-key
+MINIMAX_API_KEY=minimax-key
 MODELSCOPE_API_KEY=modelscope-key
 DEMO_MODE=false
 `)
@@ -77,6 +77,18 @@ DEMO_MODE=false
 
     expect(result.ok).toBe(false)
     expect(result.errors).toContain('RAG_ALLOWED_ORIGINS is required for direct browser access in production.')
+  })
+
+  it('accepts the legacy MIMOTALK_API_KEY alias during migration', async () => {
+    const { validateDeployment } = await import('../../scripts/preflight-deploy.mjs')
+    const root = makeDeployRoot(`
+MIMOTALK_API_KEY=legacy-key
+MODELSCOPE_API_KEY=modelscope-key
+DEMO_MODE=false
+RAG_ALLOWED_ORIGINS=https://frontend.example.com
+`)
+
+    expect(validateDeployment(root).ok).toBe(true)
   })
 
   it('keeps standalone backend runtime state on a writable Docker volume', () => {

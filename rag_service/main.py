@@ -118,7 +118,7 @@ async def lifespan(app: FastAPI):
     from rag_service.orchestrator.nodes import verifier
     from rag_service.orchestrator.nodes import retriever as retriever_node
     retriever_node.set_retriever(_retriever)
-    generator.set_generator(ReportGenerator(api_key=settings.mimotalk_api_key or None))
+    generator.set_generator(ReportGenerator(api_key=settings.effective_minimax_api_key or None))
 
     # P0-3b: surface the NLI-degraded mode at startup. CitationVerifier() is
     # constructed without an injected NLI model, so verification falls back to
@@ -135,7 +135,7 @@ async def lifespan(app: FastAPI):
             "text-overlap mode"
         )
     verifier.set_verifier(_cv)
-    vision_node_module.set_vision_analyzer(vision_node.VisionAnalyzer(settings.mimotalk_api_key or None))
+    vision_node_module.set_vision_analyzer(vision_node.VisionAnalyzer(settings.effective_minimax_api_key or None))
 
     # ── Pre-warm embedding cache with common compliance queries ─────────────────
     # Embedding these at startup populates the LRU cache so the first real user
@@ -516,12 +516,12 @@ def _readiness_snapshot() -> dict:
     checks = {
         "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
         "bm25": _retriever is not None,
-        "mimotalk_api_key": settings.demo_mode or bool(settings.mimotalk_api_key.strip()),
+        "minimax_api_key": settings.demo_mode or bool(settings.effective_minimax_api_key.strip()),
         "modelscope_api_key": has_modelscope,
         "config_loaded": True,
         "scan_service": hasattr(app.state, "scan_service"),
     }
-    gate_keys = ("faiss", "bm25", "mimotalk_api_key", "config_loaded", "scan_service")
+    gate_keys = ("faiss", "bm25", "minimax_api_key", "config_loaded", "scan_service")
     return {
         "ready": all(checks[key] for key in gate_keys),
         "checks": checks,
@@ -620,11 +620,11 @@ async def _run_scan_request(req: ScanRequest) -> ScanResponse:
     if settings.demo_mode:
         return ScanResponse(
             status="DEMO",
-            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MIMOTALK_API_KEY`。\n\n参考文档：`.env.example` 或 `rag_service/.env`",
+            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MINIMAX_API_KEY`。\n\n参考文档：`.env.example` 或 `rag_service/.env`",
             agent_trace=[{
                 "node": "demo",
                 "status": "DEMO",
-                "message": "demo mode active — configure MIMOTALK_API_KEY for full service",
+                "message": "demo mode active — configure MINIMAX_API_KEY for full service",
             }],
             loop_count=0,
         )
@@ -779,7 +779,7 @@ async def profit_report(req: ProfitReportRequest):
     if settings.demo_mode:
         return ProfitReportResponse(
             status="DEMO",
-            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MIMOTALK_API_KEY`。",
+            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MINIMAX_API_KEY`。",
             product=product_type,
             market=market,
         )
@@ -810,7 +810,7 @@ async def profit_report(req: ProfitReportRequest):
                     pass
             chunks = _normalize_chunks(retrieved)
 
-        gen = ReportGenerator(api_key=settings.mimotalk_api_key or None)
+        gen = ReportGenerator(api_key=settings.effective_minimax_api_key or None)
         return gen.generate_profit_report(
             product_type=product_type,
             market=market,

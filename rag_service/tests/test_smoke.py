@@ -7,12 +7,12 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 
 def test_config_imports():
-    """Config loads with mimoTalk settings."""
+    """Config loads with MiniMax settings and legacy aliases."""
     from config import Settings
-    s = Settings(mimotalk_api_key="test-key")
-    assert s.mimotalk_api_key == "test-key"
-    assert s.mimotalk_base_url == "https://token-plan-sgp.xiaomimimo.com/anthropic/v1"
-    assert s.mimotalk_model == "mimo-v2.5"
+    s = Settings(minimax_api_key="test-key", _env_file=None)
+    assert s.effective_minimax_api_key == "test-key"
+    assert s.effective_minimax_base_url == "https://api.minimaxi.com/anthropic/v1"
+    assert s.effective_minimax_model == "MiniMax-M3"
 
 
 def test_state_imports():

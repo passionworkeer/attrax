@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-vision.py - Vision analysis node using mimoTalk (mimo-v2.5)
+vision.py - Vision analysis node using MiniMax-M3
 
 Analyzes uploaded product images to extract:
 - Product type and category
@@ -82,25 +82,21 @@ def _get_analyzer():
     global _analyzer_instance, _is_injected
     if _analyzer_instance is None and not _is_injected:
         from rag_service.config import settings
-        _analyzer_instance = VisionAnalyzer(settings.mimotalk_api_key or None)
+        _analyzer_instance = VisionAnalyzer(settings.effective_minimax_api_key or None)
     return _analyzer_instance
 
 
 # ── VisionAnalyzer ────────────────────────────────────────────────────────
 
 class VisionAnalyzer:
-    """Vision analysis using mimoTalk mimo-v2.5 multi-modal API."""
+    """Vision analysis using the MiniMax Anthropic-compatible API."""
 
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or os.environ.get("MIMOTALK_API_KEY", "")
-        self.base_url = os.environ.get(
-            "MIMOTALK_BASE_URL",
-            "https://token-plan-sgp.xiaomimimo.com/anthropic/v1"
-        )
-        self.model = os.environ.get("MIMOTALK_MODEL", "mimo-v2.5")
+        from rag_service.config import resolve_minimax_config
+        self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
 
     def _call_mimotalk(self, messages: list[dict], max_tokens: int = 512) -> str:
-        """Call mimoTalk /messages endpoint.
+        """Call the MiniMax Anthropic-compatible /messages endpoint.
 
         Retries up to 3 times on network/timeout class errors with exponential
         backoff (1s, 2s). HTTPError (4xx/5xx) is a business-level failure and

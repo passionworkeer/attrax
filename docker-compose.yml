@@ -39,9 +39,10 @@ services:
     ports:
       - "${RAG_PORT:-8001}:8000"
     environment:
+      MINIMAX_API_KEY: ${MINIMAX_API_KEY:-}
+      MINIMAX_BASE_URL: ${MINIMAX_BASE_URL:-https://api.minimaxi.com/anthropic/v1}
+      MINIMAX_MODEL: ${MINIMAX_MODEL:-MiniMax-M3}
       MIMOTALK_API_KEY: ${MIMOTALK_API_KEY:-}
-      MIMOTALK_BASE_URL: ${MIMOTALK_BASE_URL:-https://token-plan-sgp.xiaomimimo.com/anthropic/v1}
-      MIMOTALK_MODEL: ${MIMOTALK_MODEL:-mimo-v2.5}
       MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
       RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
       FAISS_INDEX_DIR: /app/data/faiss

@@ -248,9 +248,9 @@ cp .env.local.example .env.local
 
 ```env
 # MiniMax-M3（主要 LLM，用于 Vision 分析 + 报告生成）
-MIMOTALK_API_KEY=your_minimax_api_key
-MIMOTALK_BASE_URL=https://api.minimaxi.com/anthropic/v1
-MIMOTALK_MODEL=MiniMax-M3
+MINIMAX_API_KEY=your_minimax_api_key
+MINIMAX_BASE_URL=https://api.minimaxi.com/anthropic/v1
+MINIMAX_MODEL=MiniMax-M3
 
 # ModelScope API（生产 Embedding 路径）
 MODELSCOPE_API_KEY=your_modelscope_api_key
@@ -647,16 +647,15 @@ RAG Service 返回 `status` (PASS/WARN/REJECTED) → 前端映射为评分：
 
 | 变量 | 默认值 | 必填 | 说明 |
 |------|--------|------|------|
-| `MIMOTALK_API_KEY` | - | 是 | MiniMax-M3 LLM API Key |
-| `MIMOTALK_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | MiniMax-M3 端点 |
-| `MIMOTALK_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
+| `MINIMAX_API_KEY` | - | 是 | MiniMax-M3 LLM API Key（兼容旧变量名） |
+| `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | MiniMax-M3 端点 |
+| `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
 | `MODELSCOPE_API_KEY` | - | 是（非 Demo） | ModelScope Embedding API Key |
 | `OLLAMA_BASE_URL` | `http://localhost:11434` | 否 | Ollama 地址 |
 | `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | 否 | Ollama Embedding 模型 |
 | `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址 |
 | `DEMO_MODE` | `false` | 否 | Demo 模式（使用 Mock 数据，无需 API Key） |
 | `DAILY_FREE_SCAN_LIMIT` | `3` | 否 | 每日免费扫描次数 |
-| `VISION_PROVIDER` | `mimo` | 否 | Vision AI 提供商 |
 
 ---
 
