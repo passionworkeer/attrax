@@ -26,7 +26,7 @@ Agentic RAG 合规扫描后端服务，基于 FastAPI + LangGraph。
 | 组件 | 技术 | 说明 |
 |------|------|------|
 | HTTP 框架 | FastAPI 0.115.6 | ASGI 服务 |
-| LLM | mimoTalk (mimo-v2.5) | 报告生成 |
+| LLM | MiniMax-M3 | 报告生成与视觉分析 |
 | Embedding | ModelScope API | API-only embedding |
 | 向量检索 | FAISS | 本地向量索引 |
 | 稀疏检索 | BM25 + jieba | 中文分词 |
@@ -49,7 +49,7 @@ cp rag_service/.env.example rag_service/.env
 ```
 
 必需配置：
-- `MIMOTALK_API_KEY` — mimoTalk LLM（报告生成）
+- `MINIMAX_API_KEY` — MiniMax-M3（报告生成与视觉分析；兼容旧 `MIMOTALK_API_KEY`）
 - `MODELSCOPE_API_KEY` — ModelScope API embedding
 
 ### 3. 准备 FAISS 索引

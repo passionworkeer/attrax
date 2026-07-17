@@ -28,9 +28,33 @@ class Settings(BaseSettings):
     modelscope_api_key: str = ""
 
     # mimoTalk (primary LLM — required)
+    # MiniMax-M3 via its Anthropic-compatible endpoint. MIMOTALK_* remains a
+    # read-only compatibility alias for existing deployments.
+    minimax_api_key: str = ""
+    minimax_base_url: str = "https://api.minimaxi.com/anthropic/v1"
+    minimax_model: str = "MiniMax-M3"
+
     mimotalk_api_key: str = ""
-    mimotalk_base_url: str = "https://token-plan-sgp.xiaomimimo.com/anthropic/v1"
-    mimotalk_model: str = "mimo-v2.5"
+    mimotalk_base_url: str = ""
+    mimotalk_model: str = ""
+
+    @property
+    def effective_minimax_api_key(self) -> str:
+        return self.minimax_api_key or self.mimotalk_api_key
+
+    @property
+    def effective_minimax_base_url(self) -> str:
+        default = "https://api.minimaxi.com/anthropic/v1"
+        if _os.environ.get("MINIMAX_BASE_URL") or self.minimax_base_url != default:
+            return self.minimax_base_url
+        return self.mimotalk_base_url or default
+
+    @property
+    def effective_minimax_model(self) -> str:
+        default = "MiniMax-M3"
+        if _os.environ.get("MINIMAX_MODEL") or self.minimax_model != default:
+            return self.minimax_model
+        return self.mimotalk_model or default
 
     demo_mode: bool = False
 
@@ -105,6 +129,16 @@ settings = Settings()
 # configured". In Docker, env vars are pre-set, so setdefault is a no-op.
 import os as _bridge
 _bridge.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
-_bridge.environ.setdefault("MIMOTALK_API_KEY", settings.mimotalk_api_key)
-_bridge.environ.setdefault("MIMOTALK_BASE_URL", settings.mimotalk_base_url)
-_bridge.environ.setdefault("MIMOTALK_MODEL", settings.mimotalk_model)
+_bridge.environ.setdefault("MINIMAX_API_KEY", settings.effective_minimax_api_key)
+_bridge.environ.setdefault("MINIMAX_BASE_URL", settings.effective_minimax_base_url)
+_bridge.environ.setdefault("MINIMAX_MODEL", settings.effective_minimax_model)
+
+
+def resolve_minimax_config(api_key: str | None = None) -> tuple[str, str, str]:
+    """Resolve current process settings, preferring MINIMAX_* over aliases."""
+    current = Settings(_env_file=None)
+    return (
+        api_key or current.effective_minimax_api_key,
+        current.effective_minimax_base_url,
+        current.effective_minimax_model,
+    )

@@ -303,16 +303,15 @@ const StartScanRequestSchema = z.object({
 
 | 变量 | 默认值 | 必填 | 说明 |
 |------|--------|------|------|
-| `MIMOTALK_API_KEY` | - | 是 | LLM API Key（MiniMax-M3） |
-| `MIMOTALK_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
-| `MIMOTALK_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
+| `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`） |
+| `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
+| `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
 | `MODELSCOPE_API_KEY` | - | 是（非 Demo） | ModelScope Embedding API Key |
 | `OLLAMA_BASE_URL` | `http://localhost:11434` | 否 | Ollama 地址 |
 | `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | 否 | Ollama Embedding 模型 |
 | `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址 |
 | `DEMO_MODE` | `false` | 否 | Demo 模式（Mock 数据，无需 API Key） |
 | `DAILY_FREE_SCAN_LIMIT` | `3` | 否 | 每日免费扫描次数 |
-| `VISION_PROVIDER` | `mimo` | 否 | Vision AI 提供商 |
 
 ### RAG 服务（`rag_service/.env`）
 

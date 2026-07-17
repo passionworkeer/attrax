@@ -13,17 +13,18 @@ def test_import():
 
 def test_instantiate_without_key(monkeypatch):
     """Can create instance without API key (env var cleared)."""
+    monkeypatch.delenv("MINIMAX_API_KEY", raising=False)
     monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
     gen = ReportGenerator()
     assert gen.api_key == ""
-    assert gen.provider == "mimotalk"
+    assert gen.provider == "minimax"
 
 
 def test_instantiate_with_key():
     """Can create instance with explicit API key."""
     gen = ReportGenerator(api_key="sk-test-key-123")
     assert gen.api_key == "sk-test-key-123"
-    assert gen.provider == "mimotalk"
+    assert gen.provider == "minimax"
 
 
 def test_generate_empty_chunks(monkeypatch):

@@ -75,7 +75,7 @@ def _get_generator():
         from rag_service.config import settings
         from rag_service.generate.report_generator import ReportGenerator
 
-        api_key = settings.mimotalk_api_key or None
+        api_key = settings.effective_minimax_api_key or None
         if not api_key:
             _is_injected = True  # do not re-check env on every call
             return None

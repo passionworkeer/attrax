@@ -2,7 +2,7 @@
 """
 report_generator.py - Compliance report generator (mimoTalk only)
 
-唯一 LLM：mimoTalk mimo-v2.5
+唯一 LLM：MiniMax-M3（Anthropic 兼容接口）
 - 超时/失败 → 返回 mock 结构化报告，不降级到其他 provider
 """
 import os
@@ -247,15 +247,12 @@ class ReportGenerator:
     supports_report_package = True
 
     def __init__(self, api_key: str | None = None):
-        self.api_key = api_key or os.environ.get("MIMOTALK_API_KEY", "")
-        self.base_url = os.environ.get(
-            "MIMOTALK_BASE_URL", "https://token-plan-sgp.xiaomimimo.com/anthropic/v1"
-        )
-        self.model = os.environ.get("MIMOTALK_MODEL", "mimo-v2.5")
+        from rag_service.config import resolve_minimax_config
+        self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
 
     @property
     def provider(self) -> str:
-        return "mimotalk"
+        return "minimax"
 
     def generate_report_package(
         self,
@@ -903,7 +900,7 @@ class ReportGenerator:
 2. 合规模式净利润约 $26.60/台，显著优于裸奔模式。
 3. 合规是结构性竞争优势，建议尽早投入。
 
-> 💡 此为降级 mock 报告，请配置 MIMOTALK_API_KEY 获取精确数据。
+> 💡 此为降级 mock 报告，请配置 MINIMAX_API_KEY 获取精确数据。
 """
 
     def generate_with_metadata(self, query: str, chunks: list[dict]) -> dict:
