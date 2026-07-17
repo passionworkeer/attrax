@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
-import { BlazeHeader } from "@/components/blaze-hawks/ui";
 import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import PageTransition from "@/components/PageTransition";
-import { TranslationProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -20,19 +17,10 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Attrax · Think Before You Expand",
-  description: "AI-powered compliance risk scanning for cross-border e-commerce",
+  title: "规航AI · 先合规，再出海",
+  description: "上传真实产品图片，识别目标市场并生成可追溯、可解释的全球合规航线。",
 };
 
-// NOTE(P1.7): `<html lang>` starts as the default "zh" for SSR; once the
-// client mounts, TranslationProvider's useEffect syncs
-// `document.documentElement.lang` to the user's resolved locale (zh/en,
-// from localStorage / navigator.language). Cookie-based SSR locale is out
-// of scope for this pass — see lib/i18n.tsx:detectInitialLocale.
-// CSP nonce: no explicit work here. middleware.ts sets `x-nonce` on each
-// request; Next.js auto-stamps that nonce onto its own inline hydration
-// scripts (no manual <Script nonce> needed because this layout does not emit
-// any client-script tags directly).
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,20 +28,13 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="zh"
+      lang="zh-CN"
       data-scroll-behavior="smooth"
-      className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased dark`}
+      className={`${manrope.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         <BlazeLocaleProvider>
-          <TranslationProvider>
-            <TooltipProvider>
-              <BlazeHeader variant="site" />
-              <div className="pt-20">
-                <PageTransition>{children}</PageTransition>
-              </div>
-            </TooltipProvider>
-          </TranslationProvider>
+          <TooltipProvider>{children}</TooltipProvider>
         </BlazeLocaleProvider>
       </body>
     </html>

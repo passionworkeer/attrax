@@ -14,18 +14,12 @@ const securityHeaders = [
   //     framer-motion / shadcn-ui do not require eval in their production
   //     paths (verified via build + smoke-checking report render/export +
   //     scan flow).
-  //   - 'unsafe-inline' removed: Content-Security-Policy is now generated
-  //     per-request in middleware.ts with a fresh nonce
-  //     (`script-src 'self' 'nonce-<random>' 'strict-dynamic'`), so Next.js
-  //     hydration + inline runtime scripts get the nonce auto-stamped.
-  //     Keeping CSP out of next.config.ts avoids a static 'unsafe-inline'
-  //     fallback overriding the per-request nonce header.
-  // If a future dependency reintroduces an inline/eval requirement, scope it
-  // behind a nonce rather than re-adding 'unsafe-inline'/'unsafe-eval'.
+  //   - Next.js hydration currently needs inline bootstrap scripts. The
+  //     deterministic middleware CSP permits only those inline scripts and
+  //     same-origin external scripts. A per-request nonce is intentionally
+  //     avoided because it conflicts with cached/static page output.
   //
-  // Note: the Content-Security-Policy header is intentionally NOT in this
-  // static list; it is owned by middleware.ts (see generateCsp below) so that
-  // a per-request nonce can be injected.
+  // Note: middleware.ts owns the Content-Security-Policy header.
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "X-Frame-Options", value: "DENY" },
