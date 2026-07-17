@@ -9,17 +9,13 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-mono-stack);
-  --font-heading: var(--font-inter);
-  --font-label: var(--font-label-stack);
+  --font-heading: var(--font-space-grotesk);
   --color-blaze-red: var(--blaze-red);
   --color-blaze-orange: var(--blaze-orange);
   --color-blaze-gold: var(--blaze-gold);
   --color-blaze-dark: var(--blaze-dark);
   --color-blaze-surface: var(--blaze-surface);
   --color-blaze-ink: var(--blaze-ink);
-  --color-blaze-cyan: var(--blaze-cyan);
-  --color-blaze-glass: var(--blaze-glass);
-  --color-blaze-glass-strong: var(--blaze-glass-strong);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -57,149 +53,6 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 }
-
-:root {
-  --font-inter: "Inter", "Segoe UI", Arial, "Helvetica Neue", sans-serif;
-  --font-mono-stack: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  --font-label-stack: "Space Grotesk", "Inter", system-ui, sans-serif;
-
-  --blaze-red: #d93a1a;
-  --blaze-red-bright: #ff5625;
-  --blaze-orange: #ff8a1f;
-  --blaze-gold: #ffd23f;
-  --blaze-dark: #1a1a2e;
-  --blaze-deep: #0b0f11;
-  --blaze-surface: #16213e;
-  --blaze-ink: #e5e2e1;
-  --blaze-cyan: #4cc9f0;
-  --blaze-glass: rgba(22, 33, 62, 0.7);
-  --blaze-glass-strong: rgba(22, 33, 62, 0.85);
-
-  --background: #0b0f11;
-  --foreground: #e5e2e1;
-  --card: rgba(22, 33, 62, 0.7);
-  --card-foreground: #e5e2e1;
-  --popover: #16213e;
-  --popover-foreground: #e5e2e1;
-  --primary: #d93a1a;
-  --primary-foreground: #fff7f3;
-  --secondary: #16213e;
-  --secondary-foreground: #e5e2e1;
-  --muted: #1a1f2e;
-  --muted-foreground: #9ca3af;
-  --accent: #d93a1a;
-  --accent-foreground: #fff7f3;
-  --destructive: #b91c1c;
-  --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.06);
-  --ring: rgba(217, 58, 26, 0.55);
-  --chart-1: #d93a1a;
-  --chart-2: #ff8a1f;
-  --chart-3: #4cc9f0;
-  --chart-4: #ffd23f;
-  --chart-5: #9ca3af;
-  --radius: 0.625rem;
-  --sidebar: rgba(15, 23, 42, 0.95);
-  --sidebar-foreground: #e5e2e1;
-  --sidebar-primary: #d93a1a;
-  --sidebar-primary-foreground: #fff7f3;
-  --sidebar-accent: #1a1f2e;
-  --sidebar-accent-foreground: #e5e2e1;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: rgba(217, 58, 26, 0.55);
-}
-
-@layer base {
-  html {
-    @apply font-sans;
-    scroll-behavior: smooth;
-    color-scheme: dark;
-  }
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-    background-color: #0b0f11;
-    background-image:
-      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217, 58, 26, 0.12), transparent 60%),
-      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(76, 201, 240, 0.05), transparent 60%),
-      radial-gradient(ellipse 50% 50% at 0% 80%, rgba(217, 58, 26, 0.05), transparent 60%);
-    background-attachment: fixed;
-  }
-}
-
-@layer utilities {
-  /* Dark glass surface used by hero / cards across the app */
-  .glass-panel {
-    background-color: rgba(22, 33, 62, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-  }
-  .glass-panel-strong {
-    background-color: rgba(22, 33, 62, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .glass-input {
-    background-color: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-  .glow-red {
-    box-shadow: 0 0 20px rgba(217, 58, 26, 0.45);
-  }
-  .glow-red-strong {
-    box-shadow: 0 0 35px rgba(217, 58, 26, 0.6), 0 0 80px rgba(217, 58, 26, 0.3);
-  }
-  .glow-cyan {
-    box-shadow: 0 0 15px rgba(76, 201, 240, 0.35);
-  }
-  .text-glow {
-    text-shadow: 0 0 12px rgba(217, 58, 26, 0.55);
-  }
-  .text-glow-cyan {
-    text-shadow: 0 0 10px rgba(76, 201, 240, 0.6);
-  }
-  /* Subtle fire divider */
-  .flame-divider {
-    background: linear-gradient(to top, rgba(217, 58, 26, 0.4), transparent);
-    filter: blur(2px);
-  }
-  /* Technical label: uppercase Space Grotesk */
-  .label-caps {
-    font-family: var(--font-label-stack);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-  }
-  /* Data: JetBrains Mono */
-  .data-mono {
-    font-family: var(--font-mono-stack);
-    letter-spacing: 0.02em;
-  }
-  /* HUD corner marks */
-  .corner-mark {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-color: rgba(255, 255, 255, 0.5);
-    border-style: solid;
-  }
-  .corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-  .corner-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
-  .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-  .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-}
-
-/* ============================================================
- * Blaze Hawks handoff tokens (merged 2026-07-17, branch feat/handoff-backend-wireup)
- * Source: guihang-ai-backend-handoff-20260717/app/globals.css
- * Do NOT modify the @theme block above; if conflicts arise, handoff tokens
- * take the lower-cascade position so mainline tokens still win.
- * ============================================================ */
 
 /* CompliPilot flow theme: preserves the working Blaze flow components while
    replacing their visual language with the approved ocean / liquid-glass brand. */
@@ -277,6 +130,86 @@
 .complipilot-flow select:focus-visible {
   outline: 2px solid rgba(169, 255, 240, 0.9);
   outline-offset: 3px;
+}
+
+:root {
+  --font-mono-stack: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-space-grotesk: "Space Grotesk", "Manrope", sans-serif;
+  --blaze-red: #ef5a31;
+  --blaze-orange: #ff9e3d;
+  --blaze-gold: #f5c86b;
+  --blaze-dark: #08101e;
+  --blaze-surface: #121f3b;
+  --blaze-ink: #f8efe6;
+  --background: #08101e;
+  --foreground: #f8efe6;
+  --card: #101b31;
+  --card-foreground: #f8efe6;
+  --popover: #101b31;
+  --popover-foreground: #f8efe6;
+  --primary: #ff8d39;
+  --primary-foreground: #fff6ef;
+  --secondary: #192846;
+  --secondary-foreground: #f4dfd0;
+  --muted: #13203a;
+  --muted-foreground: #9ca8c4;
+  --accent: #18294b;
+  --accent-foreground: #f4dfd0;
+  --destructive: #f97360;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: rgba(255, 255, 255, 0.09);
+  --ring: rgba(255, 141, 57, 0.4);
+  --chart-1: #ff8d39;
+  --chart-2: #f5c86b;
+  --chart-3: #68b7ff;
+  --chart-4: #6c7cff;
+  --chart-5: #96a6d3;
+  --radius: 0.625rem;
+  --sidebar: #0b1527;
+  --sidebar-foreground: #f8efe6;
+  --sidebar-primary: #ff8d39;
+  --sidebar-primary-foreground: #fff7f3;
+  --sidebar-accent: #162542;
+  --sidebar-accent-foreground: #f4dfd0;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: rgba(255, 141, 57, 0.4);
+}
+
+@layer base {
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      linear-gradient(116deg, rgba(50, 89, 146, 0.26) 0%, rgba(8, 16, 30, 0) 34%),
+      linear-gradient(238deg, rgba(255, 127, 48, 0.1) 0%, rgba(8, 16, 30, 0) 32%),
+      linear-gradient(180deg, #0a111f 0%, #071524 34%, #09223d 62%, #08101e 100%);
+    letter-spacing: 0;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 82%);
+    opacity: 0.26;
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
 }
 
 /* Keep the cross-page Blaze skin outside Tailwind layers so dev pruning cannot drop it. */
@@ -805,6 +738,89 @@
     box-shadow:
       inset 0 0 0 1px rgba(255, 255, 255, 0.035),
       inset 0 -70px 96px rgba(6, 13, 25, 0.48);
+  }
+
+  .blaze-experience .blaze-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 10% 0%, rgba(255, 158, 61, 0.075), transparent 33%),
+      linear-gradient(180deg, rgba(10, 17, 31, 0.78), rgba(7, 14, 27, 0.68)),
+      linear-gradient(135deg, rgba(104, 183, 255, 0.055), rgba(255, 158, 61, 0.035));
+    border-color: rgba(156, 190, 238, 0.13);
+    box-shadow:
+      0 28px 90px rgba(0, 0, 0, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.055),
+      inset 0 0 0 1px rgba(255, 158, 61, 0.026);
+    backdrop-filter: blur(24px) saturate(128%);
+  }
+
+  .blaze-experience .blaze-panel-soft {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 84% 18%, rgba(255, 158, 61, 0.085), transparent 28%),
+      linear-gradient(180deg, rgba(12, 19, 35, 0.58), rgba(8, 14, 27, 0.48)),
+      linear-gradient(135deg, rgba(104, 183, 255, 0.04), rgba(255, 158, 61, 0.032));
+    border-color: rgba(156, 190, 238, 0.12);
+    box-shadow:
+      0 18px 64px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.045);
+    backdrop-filter: blur(18px) saturate(125%);
+  }
+
+  .blaze-experience .blaze-panel::before,
+  .blaze-experience .blaze-panel-soft::before {
+    content: "";
+    position: absolute;
+    inset: -42% -54%;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        110deg,
+        transparent 38%,
+        rgba(104, 183, 255, 0.065) 47%,
+        rgba(255, 158, 61, 0.07) 50%,
+        transparent 60%
+      );
+    opacity: 0.5;
+    transform: translateX(-24%) rotate(-7deg);
+    animation: blaze-panel-scan 12s ease-in-out infinite;
+  }
+
+  .blaze-experience .blaze-panel-soft::before {
+    opacity: 0.36;
+    animation-duration: 14s;
+  }
+
+  .blaze-experience .blaze-panel::after,
+  .blaze-experience .blaze-panel-soft::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background:
+      linear-gradient(90deg, transparent, rgba(104, 183, 255, 0.052), transparent),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 34%);
+    mask-image: linear-gradient(180deg, black, transparent 82%);
+    opacity: 0.58;
+  }
+
+  .blaze-experience .blaze-panel > :not([class*="z-"]):not(.absolute),
+  .blaze-experience .blaze-panel-soft > :not([class*="z-"]):not(.absolute) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .blaze-experience .blaze-panel-soft:hover {
+    border-color: rgba(255, 158, 61, 0.2);
+    box-shadow:
+      0 22px 72px rgba(0, 0, 0, 0.25),
+      0 0 34px rgba(255, 158, 61, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.055);
   }
 
   .blaze-kicker {

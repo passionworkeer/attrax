@@ -1,6 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { appendFileSync } from "fs";
-import { randomUUID } from "crypto";
 
 const REQUEST_LOG_PATH =
   process.env.REQUEST_LOG_PATH ?? "/opt/attrax/logs/requests.log";
@@ -27,31 +26,16 @@ function isApiRoute(pathname: string): boolean {
 }
 
 /**
- * Generate a per-request CSP nonce. We use crypto.randomUUID (stable across
- * Node.js middleware runtime) and strip the dashes so the value matches the
- * base64-like charset browsers expect inside `nonce="..."`. The nonce is
- * emitted both on the request (as `x-nonce`, so Next.js auto-stamps it on
- * hydration inline scripts — see Next.js docs "Nonces for SSR / Middleware")
- * and on the response Content-Security-Policy header.
+ * Keep this policy deterministic. Per-request nonces force Next.js pages to
+ * render dynamically, while cached/static HTML can retain scripts generated
+ * with a different nonce. Next.js hydration currently emits inline bootstrap
+ * scripts, so production pages require unsafe-inline until those scripts can
+ * be hashed at build time.
  */
-function generateNonce(): string {
-  return randomUUID().replaceAll("-", "");
-}
-
-/**
- * Build a Content-Security-Policy header value mirroring the previous static
- * CSP from next.config.ts, with `script-src` switched from 'unsafe-inline'
- * to a per-request nonce + 'strict-dynamic'. Every non-script directive is
- * preserved verbatim (default-src/style-src/connect-src/img-src/font-src/
- * frame-ancestors/base-uri/form-action) so we do not regress the existing
- * posture. style-src keeps 'unsafe-inline' because Next.js injects inline
- * style attributes (e.g. framer-motion, Tailwind JIT) that are not
- * nonce-stampable.
- */
-function buildCsp(nonce: string): string {
+function buildCsp(): string {
   const parts = [
     `default-src 'self'`,
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
+    `script-src 'self' 'unsafe-inline'`,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' blob: data:`,
     `font-src 'self' data:`,
@@ -114,30 +98,8 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Generate a per-request nonce and stamp it onto the request so Next.js
-  // auto-applies it to inline hydration scripts (server-rendered HTML).
-  // The same nonce is reflected in the response CSP header below.
-  const nonce = generateNonce();
-
-  // Build the response and apply (a) the request nonce — so Next.js stamps
-  // it onto hydration inline scripts during render — and (b) the nonce-bound
-  // Content-Security-Policy response header. Both are required for the nonce
-  // to take effect: the request header lets the framework emit
-  // `<script nonce="...">` for its own inline scripts, and the response CSP
-  // header tells the browser to only honor scripts carrying that nonce.
-  // Per Next.js docs, we clone the incoming headers into a fresh Headers
-  // object, set `x-nonce`, and forward via NextResponse.next's `request`
-  // rewrite — Next.js picks up that header during SSR and stamps it onto the
-  // inline hydration scripts it emits.
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-nonce", nonce);
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
-  response.headers.set("x-nonce", nonce);
-  response.headers.set("Content-Security-Policy", buildCsp(nonce));
+  const response = NextResponse.next();
+  response.headers.set("Content-Security-Policy", buildCsp());
   return response;
 }
 
