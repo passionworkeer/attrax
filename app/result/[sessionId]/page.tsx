@@ -567,6 +567,7 @@ export default function ResultPage() {
                     sizes="(min-width: 1280px) 62vw, (min-width: 768px) 92vw, 94vw"
                     className="object-cover"
                     priority
+                    unoptimized={riskCanvasImage.url.startsWith("/api/")}
                   />
                 ) : null}
 
