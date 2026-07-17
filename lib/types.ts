@@ -1,4 +1,43 @@
-export type Market = "EU" | "US" | "UK" | "CN" | "AU" | "SA" | "AE";
+export const MARKET_IDS = [
+  "EU",
+  "US",
+  "UK",
+  "CN",
+  "AU",
+  "SA",
+  "AE",
+  "JP",
+  "KR",
+  "CA",
+  "SG",
+  "MX",
+  "BR",
+  "DE",
+  "FR",
+  "IT",
+] as const;
+
+export type AppLocale = "zh" | "en";
+
+import type { FinancialSummary } from "@/lib/types.blaze-hawks";
+
+export type Market =
+  | "EU"
+  | "US"
+  | "UK"
+  | "CN"
+  | "AU"
+  | "SA"
+  | "AE"
+  | "JP"
+  | "KR"
+  | "CA"
+  | "SG"
+  | "MX"
+  | "BR"
+  | "DE"
+  | "FR"
+  | "IT";
 export type ProductCategory =
   | "electronics"
   | "appliance"
@@ -9,6 +48,7 @@ export type ProductCategory =
 export type FlameLevel = 1 | 2 | 3;
 export type Severity = "critical" | "warning" | "info";
 export type ScoreGrade = "A" | "B" | "C" | "D";
+export type { FinancialSummary, CostBreakdownItem } from "@/lib/types.blaze-hawks";
 
 export interface BoundingBox {
   x: number;
@@ -97,6 +137,7 @@ export interface ScanResult {
   productCategory: ProductCategory;
   productName?: string;
   productNameEn?: string;
+  requestedLocale?: AppLocale;
   targetMarkets: Market[];
   complianceScore: number;
   scoreGrade: ScoreGrade;
@@ -105,6 +146,7 @@ export interface ScanResult {
   riskPoints: RiskPoint[];
   checklist: ChecklistItem[];
   generatedAt: string;
+  financialSummary?: FinancialSummary;
   modelInfo?: {
     visionProvider: "claude" | "openai" | "gemini" | "mock";
     latencyMs: number;
@@ -174,6 +216,7 @@ export interface ScanStatus {
   status: "processing" | "ready" | "degraded" | "failed";
   progress: number;
   stageText: string;
+  stageKey?: "queued" | "vision" | "retrieval" | "report" | "done" | "failed";
   /** When status==="degraded", the RAG error code (e.g. RAG_SERVICE_UNAVAILABLE). */
   degradedReason?: string;
   result?: ScanResult | ComplianceReportResult;

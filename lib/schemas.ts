@@ -1,6 +1,7 @@
 import { z } from "zod";
+import { MARKET_IDS } from "@/lib/types";
 
-export const MarketSchema = z.enum(["EU", "US", "UK", "CN", "AU", "SA", "AE"]);
+export const MarketSchema = z.enum(MARKET_IDS);
 export const ProductCategorySchema = z.enum([
   "electronics",
   "appliance",
@@ -205,4 +206,27 @@ export const StartScanRequestSchema = z.object({
   markets: z.array(MarketSchema).min(1).default(["EU", "US"]),
   imageCount: z.number().int().min(1).max(8),
   documentCount: z.number().int().min(0).max(5).default(0),
+});
+
+// ----- Blaze Hawks-specific visual report shapes (lib/types.blaze-hawks.ts) -----
+
+export const CostBreakdownItemSchema = z.object({
+  itemId: z.string().min(1),
+  label: z.string().min(1),
+  labelEn: z.string().optional(),
+  amount: z.string().min(1),
+  detail: z.string().min(1),
+  detailEn: z.string().optional(),
+});
+
+export const FinancialSummarySchema = z.object({
+  estimatedHeroicProfit: z.string().min(1),
+  trueNetProfit: z.string().min(1),
+  complianceCost: z.string().min(1),
+  monthlyNetProfit: z.string().min(1),
+  targetVolumeLabel: z.string().min(1),
+  targetVolumeLabelEn: z.string().optional(),
+  riskExposureItems: z.array(z.string()),
+  riskExposureItemsEn: z.array(z.string()).optional(),
+  costBreakdown: z.array(CostBreakdownItemSchema),
 });
