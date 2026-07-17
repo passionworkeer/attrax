@@ -276,6 +276,75 @@ export async function getScan(input: GetScanInput): Promise<V1SessionData> {
   return unwrapV1Envelope(envelope);
 }
 
+export interface SessionResourceInput {
+  sessionId: string;
+  accessToken: string;
+}
+
+async function getSessionResource<T>(
+  input: SessionResourceInput,
+  suffix: string,
+): Promise<T> {
+  const baseUrl = getRagServiceUrl();
+  const url = `${baseUrl}${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/${suffix}`;
+  let resp: Response;
+  try {
+    resp = await fetchWithTimeout(
+      url,
+      { method: "GET", headers: buildAuthHeaders(input.accessToken) },
+      V1_SCAN_GET_TIMEOUT_MS,
+    );
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    throw new V1EnvelopeError(
+      err instanceof Error && err.name === "AbortError" ? "RAG_SERVICE_TIMEOUT" : "RAG_SERVICE_UNAVAILABLE",
+      message || "RAG service unreachable",
+      err instanceof Error && err.name === "AbortError" ? 504 : 502,
+      null,
+    );
+  }
+  if (!resp.ok) {
+    const code = resp.status === 401 ? "UNAUTHORIZED" : resp.status === 404 ? "NOT_FOUND" : `RAG_SERVICE_HTTP_${resp.status}`;
+    throw new V1EnvelopeError(code, `HTTP ${resp.status}`, resp.status, requestIdFromResponse(resp));
+  }
+  return unwrapV1Envelope(await parseEnvelope<T>(resp));
+}
+
+export function getRoadmap(input: SessionResourceInput): Promise<Record<string, unknown>> {
+  return getSessionResource(input, "roadmap");
+}
+
+export function getTrace(input: SessionResourceInput): Promise<Array<Record<string, unknown>>> {
+  return getSessionResource(input, "trace");
+}
+
+export interface GetScanAssetInput extends SessionResourceInput {
+  index: number;
+}
+
+export async function getScanAsset(
+  input: GetScanAssetInput,
+): Promise<{ bytes: Uint8Array; contentType: string }> {
+  if (!Number.isInteger(input.index) || input.index < 0) {
+    throw new V1EnvelopeError("NOT_FOUND", "Invalid asset index", 404, null);
+  }
+  const baseUrl = getRagServiceUrl();
+  const url = `${baseUrl}${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/assets/${input.index}`;
+  const resp = await fetchWithTimeout(
+    url,
+    { method: "GET", headers: buildAuthHeaders(input.accessToken) },
+    V1_SCAN_GET_TIMEOUT_MS,
+  );
+  if (!resp.ok) {
+    const code = resp.status === 401 ? "UNAUTHORIZED" : resp.status === 404 ? "NOT_FOUND" : `RAG_SERVICE_HTTP_${resp.status}`;
+    throw new V1EnvelopeError(code, `HTTP ${resp.status}`, resp.status, requestIdFromResponse(resp));
+  }
+  return {
+    bytes: new Uint8Array(await resp.arrayBuffer()),
+    contentType: resp.headers.get("content-type") || "application/octet-stream",
+  };
+}
+
 // --- Demo short-circuit -----------------------------------------------------
 
 export function isDemoSession(sessionId: string): boolean {

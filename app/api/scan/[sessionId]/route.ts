@@ -28,6 +28,7 @@ import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
 import { ok, fail } from "@/lib/api-response";
 import { createMockComplianceReportResult } from "@/lib/mock/scan-result";
 import type { ScanStatus } from "@/lib/types";
+import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 
 export const runtime = "nodejs";
 
@@ -74,7 +75,7 @@ export async function GET(
     return ok(demoStatus);
   }
 
-  const accessToken = extractAccessToken(request);
+  const accessToken = backendAccessTokenFromRequest(request, sessionId);
   if (!accessToken) {
     return fail(
       { code: "UNAUTHORIZED", message: "Missing access token" },
@@ -132,3 +133,4 @@ function inferStageKey(
   if (text.includes("generat") || text.includes("report")) return "report";
   return "queued";
 }
+

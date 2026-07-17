@@ -5,6 +5,8 @@ import { requireSessionAccess } from "@/app/api/session-access";
 import { SessionIdSchema } from "@/lib/schemas";
 import { englishText } from "@/lib/report-localization";
 import type { ComplianceReportResult, ReportPackage } from "@/lib/types";
+import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
+import { getRoadmap, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 
 export const runtime = "nodejs";
 
@@ -43,10 +45,19 @@ export async function GET(
 
   const session = getSession(sessionId);
   if (!session) {
-    return fail(
-      { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") },
-      { status: 404 }
-    );
+    const accessToken = backendAccessTokenFromRequest(request, sessionId);
+    if (!accessToken) {
+      return fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 });
+    }
+    try {
+      const roadmap = await getRoadmap({ sessionId, accessToken });
+      return ok({ sessionId, ...roadmap });
+    } catch (error) {
+      if (error instanceof V1EnvelopeError) {
+        return fail({ code: error.code, message: error.message }, { status: error.httpStatus });
+      }
+      return fail({ code: "RAG_SERVICE_UNAVAILABLE", message: "RAG service unavailable" }, { status: 502 });
+    }
   }
 
   const denied = requireSessionAccess(request, session);

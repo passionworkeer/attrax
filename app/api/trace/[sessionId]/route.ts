@@ -4,6 +4,9 @@ import { ok, fail } from "@/lib/api-response";
 import { requireSessionAccess } from "@/app/api/session-access";
 import { SessionIdSchema } from "@/lib/schemas";
 import type { ComplianceReportResult, ReportPackage } from "@/lib/types";
+import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
+import { getScan, getTrace, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
 
 export const runtime = "nodejs";
 
@@ -51,10 +54,62 @@ export async function GET(
 
   const session = getSession(sessionId);
   if (!session) {
-    return fail(
-      { code: "NOT_FOUND", message: serverT("errors.sessionNotFound", "zh") },
-      { status: 404 }
-    );
+    const accessToken = backendAccessTokenFromRequest(request, sessionId);
+    if (!accessToken) {
+      return fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 });
+    }
+    try {
+      const [trace, upstreamSession] = await Promise.all([
+        getTrace({ sessionId, accessToken }),
+        getScan({ sessionId, accessToken }),
+      ]);
+      const normalized = normalizeV1ScanResult(upstreamSession);
+      const traceNodes = trace.map((entry, index) => {
+        const node = String(entry.node ?? `step-${index + 1}`);
+        const durationMs = typeof entry.duration_ms === "number"
+          ? entry.duration_ms
+          : typeof entry.duration === "number"
+            ? entry.duration
+            : 0;
+        return {
+          ..._getNodeLabels(node),
+          id: node,
+          type: node,
+          icon: "📊",
+          status: typeof entry.status === "string" ? entry.status.toLowerCase() : "pending",
+          duration: `${durationMs / 1000}s`,
+          confidence: typeof entry.score === "number" ? entry.score : 0,
+        };
+      });
+      const totalTime = trace.reduce((total, entry) => {
+        const duration = typeof entry.duration_ms === "number"
+          ? entry.duration_ms
+          : typeof entry.duration === "number"
+            ? entry.duration
+            : 0;
+        return total + duration;
+      }, 0) / 1000;
+      const rawResult = upstreamSession.result ?? {};
+      const retrievedChunks = Array.isArray(rawResult.retrievedChunks)
+        ? rawResult.retrievedChunks
+        : [];
+      return ok({
+        sessionId,
+        totalTime: totalTime.toFixed(1),
+        steps: trace.length,
+        markets: upstreamSession.markets.length,
+        regulations: retrievedChunks.length,
+        score: normalized?.complianceScore ?? 0,
+        grade: normalized?.scoreGrade ?? "C",
+        traceNodes,
+        retrievedChunks,
+      });
+    } catch (error) {
+      if (error instanceof V1EnvelopeError) {
+        return fail({ code: error.code, message: error.message }, { status: error.httpStatus });
+      }
+      return fail({ code: "RAG_SERVICE_UNAVAILABLE", message: "RAG service unavailable" }, { status: 502 });
+    }
   }
 
   const denied = requireSessionAccess(request, session);

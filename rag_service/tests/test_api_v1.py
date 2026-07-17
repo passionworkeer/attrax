@@ -110,6 +110,26 @@ def test_poll_requires_bearer_token_and_uses_error_envelope(tmp_path):
         poll_ready(client, session_id, token)
 
 
+def test_uploaded_asset_requires_session_token_and_returns_original_bytes(tmp_path):
+    with TestClient(build_app(tmp_path)) as client:
+        session_id, token, _ = create_scan(client)
+        url = f"/api/v1/scans/{session_id}/assets/0"
+
+        missing = client.get(url)
+        asset = client.get(url, headers={"Authorization": f"Bearer {token}"})
+        out_of_range = client.get(
+            f"/api/v1/scans/{session_id}/assets/99",
+            headers={"Authorization": f"Bearer {token}"},
+        )
+
+        assert missing.status_code == 401
+        assert asset.status_code == 200
+        assert asset.content == PNG
+        assert asset.headers["content-type"] == "image/png"
+        assert asset.headers["x-content-type-options"] == "nosniff"
+        assert out_of_range.status_code == 404
+
+
 def test_create_rejects_invalid_signature_and_too_many_files(tmp_path):
     with TestClient(build_app(tmp_path)) as client:
         invalid = client.post(

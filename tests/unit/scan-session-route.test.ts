@@ -85,29 +85,42 @@ describe("GET /api/scan/[sessionId]", () => {
       });
     });
 
-    it("accepts ?token= query param as opt-in fallback", async () => {
-      mockGetScan.mockResolvedValueOnce({
-        sessionId: "scan_abc",
-        status: "ready",
-        progress: 100,
-        stageText: "complete",
-        category: "electronics",
-        markets: ["EU"],
-        createdAt: "2026-07-17T00:00:00Z",
-        updatedAt: "2026-07-17T00:01:00Z",
-        result: {},
-        error: null,
-      });
-
+    it("rejects ?token= query params to keep tokens out of access logs", async () => {
       const { GET } = await import("@/app/api/scan/[sessionId]/route");
       const req = new Request("http://localhost/api/scan/scan_abc?token=query-token");
       const ctx = { params: Promise.resolve({ sessionId: "scan_abc" }) };
 
-      await GET(req, ctx);
+      const response = await GET(req, ctx);
 
+      expect(response.status).toBe(401);
+      expect(mockGetScan).not.toHaveBeenCalled();
+    });
+
+    it("accepts the HttpOnly BFF session cookie", async () => {
+      mockGetScan.mockResolvedValueOnce({
+        sessionId: "scan_abc",
+        status: "processing",
+        progress: 10,
+        stageText: "processing",
+        category: "electronics",
+        markets: ["EU"],
+        createdAt: "2026-07-17T00:00:00Z",
+        updatedAt: "2026-07-17T00:01:00Z",
+        result: null,
+        error: null,
+      });
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const response = await GET(
+        new Request("http://localhost/api/scan/scan_abc", {
+          headers: { cookie: "attrax_scan_scan_abc=cookie-token" },
+        }),
+        { params: Promise.resolve({ sessionId: "scan_abc" }) },
+      );
+
+      expect(response.status).toBe(200);
       expect(mockGetScan).toHaveBeenCalledWith({
         sessionId: "scan_abc",
-        accessToken: "query-token",
+        accessToken: "cookie-token",
       });
     });
 

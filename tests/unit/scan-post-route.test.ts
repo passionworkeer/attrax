@@ -87,6 +87,8 @@ describe("POST /api/scan", () => {
     const body = await res.json();
 
     expect(body.accessToken).toBe("tok_test");
+    expect(res.headers.get("set-cookie")).toContain("HttpOnly");
+    expect(res.headers.get("set-cookie")).toContain("attrax_scan_scan_abc123");
   });
 
   it("remaps the v1 pollUrl to the Next.js BFF route /api/scan/{id}", async () => {
