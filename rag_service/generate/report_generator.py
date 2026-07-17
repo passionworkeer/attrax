@@ -260,7 +260,7 @@ class ReportGenerator:
         product: str,
         market: str,
         chunks: list[dict],
-        max_tokens: int = 8192,
+        max_tokens: int = 4096,
         doc_context: str = "",
     ) -> dict:
         """
@@ -290,7 +290,10 @@ class ReportGenerator:
             f"用户问题：{query}\n"
             f"{doc_section}\n"
             "请基于上述证据一次性生成四个场景内容：合规报告、成本利润报告、合规排期路线图、AI 决策视图。"
-            "输出必须是可解析 JSON。"
+            "输出必须是可解析 JSON，不要使用 Markdown 代码围栏。"
+            "为避免响应截断：整个 JSON 控制在 7000 个字符以内，"
+            "complianceReport 与 profitReport.markdown 各不超过 1200 个汉字，"
+            "roadmap.items 最多 5 项，decisionView.nodes 最多 6 项；优先保证所有 JSON 字段闭合。"
         )
 
         try:

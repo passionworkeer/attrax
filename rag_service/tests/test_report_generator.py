@@ -90,3 +90,25 @@ def test_generate_report_package_fallback_is_validated(monkeypatch):
     assert validated.productDossier.product == "Power bank"
     assert validated.evidenceBundles.generation
     assert validated.auditMetadata.schemaVersion == "report-package/v1"
+
+
+def test_generate_report_package_caps_default_output_for_interactive_latency(monkeypatch):
+    gen = ReportGenerator(api_key="configured")
+    seen = {}
+
+    def fake_generate(system, prompt, max_tokens):
+        seen["max_tokens"] = max_tokens
+        seen["prompt"] = prompt
+        return "{}"
+
+    monkeypatch.setattr(gen, "_generate_mimotalk", fake_generate)
+    gen.generate_report_package(
+        query="Check charger",
+        product="USB charger",
+        market="EU",
+        chunks=[{"id": "r1", "content": "Article 1 safety", "doc_name": "LVD"}],
+    )
+
+    assert seen["max_tokens"] == 4096
+    assert "7000 个字符以内" in seen["prompt"]
+    assert "优先保证所有 JSON 字段闭合" in seen["prompt"]
