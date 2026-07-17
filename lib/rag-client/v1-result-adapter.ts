@@ -38,6 +38,11 @@ function text(value: unknown, fallback = ""): string {
   return typeof value === "string" && value.trim() ? value.trim() : fallback;
 }
 
+function excerpt(value: unknown, fallback: string, maxLength = 600): string {
+  const content = text(value, fallback);
+  return content.length <= maxLength ? content : `${content.slice(0, maxLength - 1)}…`;
+}
+
 function number(value: unknown, fallback = 0): number {
   return typeof value === "number" && Number.isFinite(value) ? value : fallback;
 }
@@ -96,7 +101,10 @@ function regulationFromChunk(chunk: UnknownRecord, index: number): RegulationRef
     code: text(chunk.articleNo, text(chunk.code, "Source")),
     name: text(chunk.docName, text(chunk.title, "Regulatory source")),
     market,
-    summary: text(chunk.summary, text(chunk.content, "Backend-retrieved regulatory evidence")),
+    summary: excerpt(
+      chunk.summary,
+      excerpt(chunk.content, "Backend-retrieved regulatory evidence"),
+    ),
     sourceUrl: text(chunk.url, "#"),
     severity: "info",
   };

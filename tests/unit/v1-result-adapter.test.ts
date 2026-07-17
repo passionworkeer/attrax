@@ -36,6 +36,7 @@ function session(overrides: Partial<V1SessionData> = {}): V1SessionData {
           region: "EU",
           score: 0.91,
           url: "https://eur-lex.europa.eu/",
+          content: "A".repeat(2_000),
         },
       ],
       reportPackage: {
@@ -88,6 +89,7 @@ describe("normalizeV1ScanResult", () => {
       description: "输入输出参数缺失",
     });
     expect(result?.riskPoints[0].regulations[0].code).toBe("Article 5");
+    expect(result?.riskPoints[0].regulations[0].summary.length).toBeLessThanOrEqual(600);
     expect(result?.checklist[0]).toMatchObject({
       itemId: "label-fix",
       title: "补齐输入输出标识",
@@ -120,6 +122,7 @@ describe("normalizeV1ScanResult", () => {
     const profitSource = await readFile("app/profit/[sessionId]/page.tsx", "utf8");
 
     expect(source).not.toContain("setResult(mockScanResult)");
+    expect(source).toContain('unoptimized={riskCanvasImage.url.startsWith("/api/")}');
     expect(profitSource).not.toContain("setResult(mockScanResult)");
   });
 });
