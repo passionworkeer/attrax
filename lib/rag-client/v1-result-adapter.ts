@@ -73,7 +73,19 @@ function scoreFor(status: string): { score: number; grade: ScoreGrade } {
 }
 
 function resultScore(result: UnknownRecord, status: string): { score: number; grade: ScoreGrade } {
-  const fallback = scoreFor(status);
+  // Status-driven score is authoritative when the backend reports an explicit
+  // complianceStatus (PASS/WARN/REJECTED/UNKNOWN — all four map to a stable
+  // grade mapping the pages depend on).
+  if (typeof status === "string" && status.length > 0) {
+    const upper = status.toUpperCase();
+    if (["PASS", "WARN", "REJECTED", "UNKNOWN"].includes(upper)) {
+      return scoreFor(upper);
+    }
+  }
+  // Otherwise (complianceStatus field absent) the backend's complianceScore /
+  // scoreGrade win — this covers demo / cold-start / legacy integrations
+  // that compute their own score without an explicit status.
+  const fallback = scoreFor("UNKNOWN");
   const rawScore = number(result.complianceScore, fallback.score);
   const score = Math.max(0, Math.min(100, rawScore));
   const rawGrade = text(result.scoreGrade).toUpperCase();
@@ -167,7 +179,11 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
 
   const result = record(session.result);
   const reportPackage = record(result.reportPackage);
-  const complianceStatus = text(result.complianceStatus, "UNKNOWN");
+  const complianceStatusRaw = result.complianceStatus;
+  const complianceStatus =
+    typeof complianceStatusRaw === "string" && complianceStatusRaw.length > 0
+      ? complianceStatusRaw
+      : "";
   const score = resultScore(result, complianceStatus);
   const generatedAt = text(
     record(reportPackage.auditMetadata).generatedAt,
