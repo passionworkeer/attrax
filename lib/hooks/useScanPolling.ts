@@ -1,30 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { unwrapApiData } from "@/lib/api-response";
 import type { ScanStatus } from "@/lib/types";
+import {
+  POLL_INITIAL_INTERVAL_MS,
+  POLL_MAX_DURATION_MS,
+  POLL_MAX_INTERVAL_MS,
+} from "@/lib/constants";
 
-const TOKEN_STORAGE_PREFIX = "scan-token:";
-
-function readStoredToken(sessionId: string): string | null {
-  try {
-    const value = sessionStorage.getItem(TOKEN_STORAGE_PREFIX + sessionId);
-    return value && value.trim() ? value.trim() : null;
-  } catch {
-    return null;
-  }
+/** @internal Exported for unit tests only — not part of the public hook API. */
+export function failedStatus(sessionId: string, error: string): ScanStatus {
+  return {
+    sessionId,
+    status: "failed",
+    progress: 0,
+    stageText: "",
+    error,
+  };
 }
 
-function readQueryToken(): string | null {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const t = params.get("token");
-    return t && t.trim() ? t.trim() : null;
-  } catch {
-    return null;
-  }
+/** @internal Exported for unit tests only — not part of the public hook API. */
+export function isScanStatusLike(value: unknown): value is ScanStatus {
+  if (!value || typeof value !== "object") return false;
+
+  const status = (value as { status?: unknown }).status;
+  // Includes `degraded` (RAG unavailable fallback) so the poller surfaces the
+  // fallback result instead of treating the payload as invalid and polling
+  // until timeout. See lib/types.ts ScanStatus for the full contract.
+  return (
+    status === "processing" ||
+    status === "ready" ||
+    status === "degraded" ||
+    status === "failed"
+  );
+}
+
+export function isDisplayableTerminalStatus(status: ScanStatus["status"]): boolean {
+  return status === "ready" || status === "degraded";
 }
 
 export function useScanPolling(
@@ -32,86 +45,97 @@ export function useScanPolling(
   accessToken?: string | null,
 ) {
   const [status, setStatus] = useState<ScanStatus | null>(null);
+  const [displayProgress, setDisplayProgress] = useState(0);
+  const targetProgressRef = useRef(0);
 
   useEffect(() => {
-    if (!sessionId) {
-      return;
-    }
+    let rafId: number;
+    const tick = () => {
+      setDisplayProgress((prev) => {
+        const target = targetProgressRef.current;
+        const diff = target - prev;
+        if (Math.abs(diff) < 0.15) return target;
+        return prev + diff * 0.12;
+      });
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  useEffect(() => {
+    if (!sessionId) return;
 
     let cancelled = false;
 
     async function poll() {
-      try {
-        while (!cancelled) {
-          // Token resolution (BFF accessToken handshake):
-          //   1. accessToken argument (preferred — never logged)
-          //   2. sessionStorage under "scan-token:<sessionId>" (page-persisted)
-          //   3. ?token= query param (opt-in fallback for clients that can't
-          //      set custom headers). When none of these is available, the
-          //      server will reject with 401; we surface one warn so the
-          //      handshake gap is obvious during dev instead of silent fail.
-          const headers: Record<string, string> = {};
-          let queryToken: string | null = null;
+      let intervalMs = POLL_INITIAL_INTERVAL_MS;
+      const startedAt = Date.now();
 
-          if (sessionId !== "demo") {
-            const tokenFromArg = accessToken?.trim();
-            const tokenFromStorage = tokenFromArg ? null : readStoredToken(sessionId);
-            const resolvedToken = tokenFromArg || tokenFromStorage;
-
-            if (resolvedToken) {
-              headers.Authorization = `Bearer ${resolvedToken}`;
-            } else {
-              queryToken = readQueryToken();
-              if (!queryToken) {
-                console.warn(
-                  `[useScanPolling] No accessToken resolved for sessionId=${sessionId}; ` +
-                    "Authorization header missing, ?token= fallback not present."
-                );
-              }
-            }
-          }
-
-          const url = queryToken
-            ? `/api/scan/${sessionId}?token=${encodeURIComponent(queryToken)}`
-            : `/api/scan/${sessionId}`;
-
-          const response = await fetch(url, {
+      while (!cancelled) {
+        let response: Response;
+        try {
+          const token =
+            accessToken?.trim() ||
+            sessionStorage.getItem(`scan-token:${sessionId}`)?.trim();
+          response = await fetch(`/api/scan/${sessionId}`, {
             cache: "no-store",
-            headers,
+            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
           });
-
-          if (!response.ok) {
-            setStatus({
-              sessionId,
-              status: "failed",
-              progress: 0,
-              stageText: "",
-              stageKey: "failed",
-              error: "会话已失效",
-            });
-            return;
+        } catch (error) {
+          if (!cancelled) {
+            setStatus(
+              failedStatus(
+                sessionId,
+                error instanceof Error ? error.message : "Scan request failed."
+              )
+            );
           }
-
-          const data: ScanStatus = await response.json();
-          setStatus(data);
-
-          if (data.status !== "processing") {
-            return;
-          }
-
-          await new Promise((resolve) => setTimeout(resolve, 1000));
+          return;
         }
-      } catch {
+
+        if (!response.ok) {
+          if (!cancelled) {
+            setStatus(failedStatus(sessionId, "Scan session expired."));
+          }
+          return;
+        }
+
+        let rawData: unknown;
+        try {
+          rawData = await response.json();
+        } catch {
+          rawData = null;
+        }
+
+        const data = unwrapApiData<ScanStatus>(rawData);
+
+        if (!isScanStatusLike(data)) {
+          if (!cancelled) {
+            setStatus(failedStatus(sessionId, "Invalid scan response."));
+          }
+          return;
+        }
+
+        targetProgressRef.current = data.progress ?? 0;
         if (!cancelled) {
-          setStatus({
-            sessionId,
-            status: "failed",
-            progress: 0,
-            stageText: "连接本地扫描服务失败",
-            stageKey: "failed",
-            error: "连接本地扫描服务失败，请确认服务运行后重试。",
-          });
+          setStatus(data);
         }
+
+        if (data.status !== "processing") {
+          return;
+        }
+
+        if (Date.now() - startedAt > POLL_MAX_DURATION_MS) {
+          if (!cancelled) {
+            setStatus(failedStatus(sessionId, "Scan timed out."));
+          }
+          return;
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, intervalMs));
+        intervalMs = Math.min(intervalMs * 1.5, POLL_MAX_INTERVAL_MS);
       }
     }
 
@@ -122,5 +146,5 @@ export function useScanPolling(
     };
   }, [sessionId, accessToken]);
 
-  return status;
+  return { status, displayProgress: Math.round(displayProgress) };
 }

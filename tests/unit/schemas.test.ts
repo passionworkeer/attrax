@@ -25,12 +25,12 @@ describe('MarketSchema', () => {
     expect(MarketSchema.parse('AU')).toBe('AU')
     expect(MarketSchema.parse('SA')).toBe('SA')
     expect(MarketSchema.parse('AE')).toBe('AE')
+    expect(MarketSchema.parse('JP')).toBe('JP')
+    expect(MarketSchema.parse('BR')).toBe('BR')
   })
 
   it('rejects invalid markets', () => {
     expect(() => MarketSchema.parse('XX')).toThrow()
-    expect(() => MarketSchema.parse('JP')).toThrow()
-    expect(() => MarketSchema.parse('BR')).toThrow()
     expect(() => MarketSchema.parse('')).toThrow()
   })
 })

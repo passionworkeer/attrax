@@ -148,7 +148,7 @@ export interface ScanResult {
   generatedAt: string;
   financialSummary?: FinancialSummary;
   modelInfo?: {
-    visionProvider: "claude" | "openai" | "gemini" | "mock";
+    visionProvider: "claude" | "openai" | "gemini" | "minimax" | "mock";
     latencyMs: number;
   };
   source?: "real" | "fallback" | "demo";
