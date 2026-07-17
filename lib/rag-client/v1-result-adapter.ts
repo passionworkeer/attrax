@@ -6,6 +6,7 @@ import {
   type ProductCategory,
   type RegulationRef,
   type RiskPoint,
+  type ReportPackage,
   type ScanResult,
   type ScoreGrade,
   type Severity,
@@ -162,11 +163,21 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     targetMarkets: markets(result.targetMarkets, session.markets),
     complianceScore: score.score,
     scoreGrade: score.grade,
-    images: [],
+    images: (session.assets ?? [])
+      .filter((asset) => asset.kind === "image")
+      .map((asset) => ({
+        imageId: `${session.sessionId}-image-${asset.index}`,
+        url: `/api/scan/${session.sessionId}/asset/${asset.index}`,
+        thumbnail: `/api/scan/${session.sessionId}/asset/${asset.index}`,
+        width: 0,
+        height: 0,
+        fileName: asset.name,
+      })),
     documents: [],
     riskPoints: buildRisks(result, reportPackage),
     checklist: buildChecklist(reportPackage),
     generatedAt,
+    reportPackage: result.reportPackage as ReportPackage | undefined,
     modelInfo: {
       visionProvider: "minimax",
       latencyMs: 0,

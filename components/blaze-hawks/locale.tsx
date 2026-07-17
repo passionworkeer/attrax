@@ -76,3 +76,8 @@ export function useBlazeLocale() {
   }
   return context;
 }
+
+/** Allows compatibility providers to share the new frontend locale when present. */
+export function useOptionalBlazeLocale() {
+  return useContext(BlazeLocaleContext);
+}

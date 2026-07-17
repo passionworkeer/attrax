@@ -13,6 +13,15 @@ function session(overrides: Partial<V1SessionData> = {}): V1SessionData {
     markets: ["EU"],
     createdAt: "2026-07-17T08:00:00Z",
     updatedAt: "2026-07-17T08:01:00Z",
+    assets: [
+      {
+        kind: "image",
+        index: 0,
+        name: "front.png",
+        contentType: "image/png",
+        size: 1024,
+      },
+    ],
     result: {
       sessionId: "scan_real1",
       productName: "USB charger",
@@ -84,6 +93,14 @@ describe("normalizeV1ScanResult", () => {
       title: "补齐输入输出标识",
       estimatedCost: "¥500",
     });
+    expect(result?.images).toEqual([
+      expect.objectContaining({
+        imageId: "scan_real1-image-0",
+        url: "/api/scan/scan_real1/asset/0",
+        fileName: "front.png",
+      }),
+    ]);
+    expect(result?.reportPackage?.auditMetadata?.provider).toBe("minimax");
     expect(result?.financialSummary).toBeUndefined();
   });
 
@@ -100,7 +117,9 @@ describe("normalizeV1ScanResult", () => {
 
   it("does not silently replace a real session with the demo fixture", async () => {
     const source = await readFile("app/result/[sessionId]/page.tsx", "utf8");
+    const profitSource = await readFile("app/profit/[sessionId]/page.tsx", "utf8");
 
     expect(source).not.toContain("setResult(mockScanResult)");
+    expect(profitSource).not.toContain("setResult(mockScanResult)");
   });
 });

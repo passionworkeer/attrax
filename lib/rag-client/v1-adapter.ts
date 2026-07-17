@@ -38,6 +38,13 @@ export interface V1SessionData {
   updatedAt: string; // ISO 8601
   result: Record<string, unknown> | null;
   error: string | null;
+  assets?: Array<{
+    kind: "image" | "document";
+    index: number;
+    name: string;
+    contentType: string;
+    size: number;
+  }>;
 }
 
 export interface V1Envelope<T> {

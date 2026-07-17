@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Space_Grotesk } from "next/font/google";
 import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { TranslationProvider } from "@/lib/i18n";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -34,7 +35,9 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         <BlazeLocaleProvider>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TranslationProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+          </TranslationProvider>
         </BlazeLocaleProvider>
       </body>
     </html>
