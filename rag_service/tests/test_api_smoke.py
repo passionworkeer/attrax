@@ -76,6 +76,30 @@ def test_ready_endpoint_reports_required_api_keys(client):
     assert data["checks"]["modelscope_api_key"] is False
 
 
+def test_readiness_accepts_populated_bm25_when_faiss_is_unavailable(client):
+    previous_demo_mode = settings.demo_mode
+    previous_minimax = settings.minimax_api_key
+    previous_retriever = main_module._retriever
+    settings.demo_mode = False
+    settings.minimax_api_key = "configured"
+
+    class SparseReadyRetriever:
+        faiss_retriever = None
+        _chunks_loaded = True
+        _chunks = [{"id": "rule-1"}]
+
+    main_module._retriever = SparseReadyRetriever()
+    try:
+        resp = client.get("/ready")
+    finally:
+        settings.demo_mode = previous_demo_mode
+        settings.minimax_api_key = previous_minimax
+        main_module._retriever = previous_retriever
+
+    assert resp.status_code == 200
+    assert resp.json()["checks"]["faiss"] is False
+
+
 def test_parse_markets_accepts_json_array():
     """Multipart form market values preserve JSON array entries."""
     assert _parse_markets('["EU","US"]') == ["EU", "US"]

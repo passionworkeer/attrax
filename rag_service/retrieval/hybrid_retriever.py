@@ -25,7 +25,7 @@ from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
-from rag_service.retrieval.bm25_retriever import BM25Retriever
+from rag_service.retrieval.bm25_retriever import BM25Retriever, _fast_tokenize
 from rag_service.retrieval.faiss_retriever import FaissRetriever
 from rag_service.retrieval.fusion import rrf_fuse
 from rag_service.retrieval.metadata_filter import attach_metadata_fields, filter_chunks
@@ -565,7 +565,7 @@ def _get_or_build_filter_bm25(chunks: list[dict]) -> BM25Retriever:
             bm25, _ = entry
             _FILTER_BM25_CACHE.move_to_end(sig)
             return bm25
-    bm25 = BM25Retriever()
+    bm25 = BM25Retriever(tokenizer=_fast_tokenize if chunks and chunks[0].get("_fast_sparse") else None)
     bm25.build_index(chunks)
     with _FILTER_BM25_LOCK:
         _FILTER_BM25_CACHE[sig] = (bm25, time.monotonic())
