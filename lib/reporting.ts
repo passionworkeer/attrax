@@ -311,13 +311,3 @@ export function getTextReportPayload(
       };
   }
 }
-
-export function getBinaryFilename(reportType: BlazeReportType, result: ScanResult, format: "pdf" | "docx") {
-  const prefix =
-    reportType === "compliance"
-      ? "ComplianceReport"
-      : reportType === "roadmap"
-        ? "ComplianceRoadmap"
-        : "CostProfitAnalysis";
-  return `${prefix}_${result.sessionId}.${format}`;
-}

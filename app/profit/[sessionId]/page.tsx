@@ -3,11 +3,9 @@
 import Link from "next/link";
 import { startTransition, useEffect, useState } from "react";
 import {
-  Download,
   Gavel,
   ShieldAlert,
   TrendingUp,
-  Truck,
   XCircle,
 } from "lucide-react";
 import { useParams } from "next/navigation";
@@ -22,6 +20,7 @@ import {
 import { mockScanResult } from "@/lib/mock/blaze-scan-result";
 import type { ScanResult, ScanStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { ProfitExportPanel } from "./profit-export-panel";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 import profitStyles from "../profit.module.css";
 
@@ -639,28 +638,13 @@ export default function ProfitPage() {
         </section>
 
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-          <a
-            href={`/api/report/${sessionId}/profit?format=pdf&lang=${locale}`}
-            download
-            className={cn(
-              buttonVariants({ size: "lg" }),
-              "flex-1 rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] text-white"
-            )}
-          >
-            <Download className="size-4" />
-            {riskHeadings.exportProfit}
-          </a>
-          <a
-            href={`/api/report/${sessionId}/compliance?format=pdf&lang=${locale}`}
-            download
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "lg" }),
-              "flex-1 rounded-full border border-white/12 bg-white/6 text-white hover:bg-white/10"
-            )}
-          >
-            <Truck className="size-4" />
-            {riskHeadings.exportCompliance}
-          </a>
+          <ProfitExportPanel
+            result={result}
+            locale={locale}
+            primaryLabel={riskHeadings.exportProfit}
+            secondaryLabel={riskHeadings.exportCompliance}
+            className="flex-1"
+          />
           <Link
             href="/pricing"
             className={cn(
