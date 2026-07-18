@@ -78,8 +78,7 @@ export default function UploadPage() {
   const copy = getCompliPilotCopy(locale);
   const [files, setFiles] = useState<Array<File | null>>([]);
   const [previewUrls, setPreviewUrls] = useState<Array<string | null>>([]);
-  const uploadInputRef = useRef<HTMLInputElement | null>(null);
-  const pendingUploadSlotRef = useRef<number | null>(null);
+  const bulkUploadInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedMarkets, setSelectedMarkets] = useState<Market[]>(["EU", "UK"]);
   const [category, setCategory] = useState<ProductCategory>("electronics");
   const [selectedPresetIndex, setSelectedPresetIndex] = useState(0);
@@ -384,27 +383,12 @@ export default function UploadPage() {
     await submitScan(formData);
   }
 
-  async function startPresetDemo(presetIndex = selectedPresetIndex) {
+  function startPresetDemo(presetIndex = selectedPresetIndex) {
     const preset = presetConfigs[presetIndex] ?? presetConfigs[0];
     setSelectedPresetIndex(presetIndex);
     setCategory(preset.category);
     setSelectedMarkets(preset.markets);
-
-    const formData = new FormData();
-    Array.from({ length: REQUIRED_UPLOAD_SLOTS }).forEach((_, index) => {
-      formData.append(
-        "images",
-        new File([`blaze-hawks-demo-${index + 1}`], `preset-shot-${index + 1}.png`, {
-          type: "image/png",
-        })
-      );
-    });
-    formData.append("category", preset.category);
-    formData.append("markets", preset.markets.join(","));
-    formData.append("locale", locale);
-    formData.append("preset", "true");
-
-    await submitScan(formData);
+    router.push("/result/demo");
   }
 
   return (
@@ -462,17 +446,13 @@ export default function UploadPage() {
             </div>
 
             <label
-              htmlFor="blaze-upload-input"
+              htmlFor="blaze-bulk-upload-input"
               role="button"
               tabIndex={0}
-              onClick={() => {
-                pendingUploadSlotRef.current = null;
-              }}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
                   event.preventDefault();
-                  pendingUploadSlotRef.current = null;
-                  uploadInputRef.current?.click();
+                  bulkUploadInputRef.current?.click();
                 }
               }}
               onDragEnter={(event) => {
@@ -488,7 +468,6 @@ export default function UploadPage() {
               onDrop={(event) => {
                 event.preventDefault();
                 setDragActive(false);
-                pendingUploadSlotRef.current = null;
                 handleFiles(Array.from(event.dataTransfer.files));
               }}
               className={`mt-5 flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-[26px] border border-dashed px-5 py-7 text-center transition ${
@@ -510,23 +489,16 @@ export default function UploadPage() {
               </p>
             </label>
             <input
-              ref={uploadInputRef}
-              id="blaze-upload-input"
+              ref={bulkUploadInputRef}
+              id="blaze-bulk-upload-input"
               type="file"
               multiple
+              aria-label={locale === "zh" ? "批量上传产品图片" : "Upload product images in bulk"}
               accept="image/jpeg,image/png,image/webp"
               className="sr-only"
               onChange={(event) => {
                 const selectedFiles = Array.from(event.currentTarget.files ?? []);
-                const targetSlot = pendingUploadSlotRef.current;
-                pendingUploadSlotRef.current = null;
-
-                if (targetSlot === null) {
-                  handleFiles(selectedFiles);
-                } else {
-                  handleSlotFile(targetSlot, selectedFiles[0]);
-                }
-
+                handleFiles(selectedFiles);
                 event.currentTarget.value = "";
               }}
             />
@@ -595,15 +567,29 @@ export default function UploadPage() {
                             <X className="size-3.5" />
                           </button>
                         ) : (
-                          <label
-                            htmlFor="blaze-upload-input"
-                            onClick={() => {
-                              pendingUploadSlotRef.current = index;
-                            }}
-                            className="cursor-pointer rounded-full border border-white/42 bg-white/22 px-2.5 py-1.5 text-xs text-white/58 transition hover:bg-white/38 hover:text-white"
-                          >
-                            {locale === "zh" ? "添加" : "Add"}
-                          </label>
+                          <>
+                            <label
+                              htmlFor={`blaze-upload-slot-${index}`}
+                              className="cursor-pointer rounded-full border border-white/42 bg-white/22 px-2.5 py-1.5 text-xs text-white/58 transition hover:bg-white/38 hover:text-white"
+                            >
+                              {locale === "zh" ? "添加" : "Add"}
+                            </label>
+                            <input
+                              id={`blaze-upload-slot-${index}`}
+                              type="file"
+                              aria-label={
+                                locale === "zh"
+                                  ? `上传到${slot.title}槽位`
+                                  : `Upload to ${slot.title} slot`
+                              }
+                              accept="image/jpeg,image/png,image/webp"
+                              className="sr-only"
+                              onChange={(event) => {
+                                handleSlotFile(index, event.currentTarget.files?.[0]);
+                                event.currentTarget.value = "";
+                              }}
+                            />
+                          </>
                         )}
                       </div>
                       <div className="mt-3 flex items-center gap-1.5">
