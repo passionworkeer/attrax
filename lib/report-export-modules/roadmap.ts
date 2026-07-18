@@ -3,6 +3,7 @@ import { Document, HeadingLevel, Packer, Paragraph, Table, TextRun } from "docx"
 import type { Locale } from "./shared";
 import {
   docxTable,
+  downloadBlob,
   embedFont,
   mkBullet,
   mkSectionH,
@@ -240,7 +241,8 @@ export async function downloadRoadmapReportAsPdf(content: RoadmapContent, locale
     notes.forEach((note) => pdfBullet(doc, y, margin, pageWidth, pageHeight, note));
 
     addPdfFooter(doc, pageWidth, pageHeight, L);
-    doc.save(L === "zh" ? `合规路线图报告_${content.sessionId}.pdf` : `ComplianceRoadmap_${content.sessionId}.pdf`);
+    const filename = L === "zh" ? `合规路线图报告_${content.sessionId}.pdf` : `ComplianceRoadmap_${content.sessionId}.pdf`;
+    downloadBlob(doc.output("blob"), filename);
   } catch (error) {
     throw new Error(
       `Failed to export roadmap PDF report: ${error instanceof Error ? error.message : String(error)}`,
@@ -316,14 +318,8 @@ export async function downloadRoadmapReportAsDocx(content: RoadmapContent, local
   });
 
   const blob = await Packer.toBlob(doc);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = L === "zh" ? `合规路线图报告_${content.sessionId}.docx` : `ComplianceRoadmap_${content.sessionId}.docx`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const filename = L === "zh" ? `合规路线图报告_${content.sessionId}.docx` : `ComplianceRoadmap_${content.sessionId}.docx`;
+  downloadBlob(blob, filename);
   } catch (error) {
     throw new Error(
       `Failed to export roadmap DOCX report: ${error instanceof Error ? error.message : String(error)}`,

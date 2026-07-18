@@ -18,6 +18,7 @@ import type { Locale } from "./shared";
 import {
   complianceStatusLabel,
   docxTable,
+  downloadBlob,
   embedFont,
   marketLabel,
   mkSectionH,
@@ -170,7 +171,7 @@ export async function downloadReportAsPdf(input: ComplianceReportResult, locale?
     const filenameBase = L === "zh"
       ? `合规报告_${result.sessionId}_${result.complianceStatus}.pdf`
       : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.pdf`;
-    doc.save(filenameBase);
+    downloadBlob(doc.output("blob"), filenameBase);
   } catch (error) {
     throw new Error(
       `Failed to export compliance PDF report: ${error instanceof Error ? error.message : String(error)}`,
@@ -303,16 +304,10 @@ export async function downloadReportAsDocx(input: ComplianceReportResult, locale
   });
 
   const blob = await Packer.toBlob(doc);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = L === "zh"
-      ? `合规报告_${result.sessionId}_${result.complianceStatus}.docx`
-      : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.docx`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const filename = L === "zh"
+    ? `合规报告_${result.sessionId}_${result.complianceStatus}.docx`
+    : `ComplianceReport_${result.sessionId}_${result.complianceStatus}.docx`;
+  downloadBlob(blob, filename);
   } catch (error) {
     throw new Error(
       `Failed to export compliance DOCX report: ${error instanceof Error ? error.message : String(error)}`,

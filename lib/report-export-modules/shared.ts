@@ -34,6 +34,36 @@ export function yieldToMainThread(): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, 0));
 }
 
+/**
+ * Trigger a browser download for a Blob by appending an <a download> to the
+ * document, clicking it, and removing it. We intentionally avoid the path
+ * that `jsPDF.save()` takes (detached anchor + setTimeout click), because
+ * Chromium on stricter origins / CSP configurations surfaces the user's
+ * "无法从网站提取文件" / "Failed - Network error" error in that case.
+ *
+ * Appending the element to the DOM before clicking is the workaround
+ * recommended by the FileSaver.js / download attribute spec.
+ */
+export function downloadBlob(blob: Blob, filename: string): void {
+  if (typeof document === "undefined" || typeof URL === "undefined") {
+    // Non-browser caller (e.g. unit test). Silently no-op.
+    return;
+  }
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.rel = "noopener";
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  // Defer cleanup so Chromium has time to read out the blob URL.
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 0);
+}
+
 // Module-level cache of the font's base64 string. We keep both:
 //   - `cachedFontBase64`: a shared Promise so production never re-fetches
 //     the ~10MB font file twice in a session.
