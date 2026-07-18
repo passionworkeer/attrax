@@ -6,6 +6,7 @@ import asyncio
 import hashlib
 import hmac
 import secrets
+import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
@@ -237,9 +238,19 @@ class ScanService:
             self.backend.delete_job(job.job_id)
             return
         self.backend.save_session(session.transition(progress=10, stage_text="processing"))
+        # 后台心跳任务:每 2 秒把 progress 从 10 推到 90 (避免前端卡在 10%)
+        # 单调递增,真实进度由最终 status=ready/degraded 触发到 100。
+        heartbeat_task = asyncio.create_task(
+            self._progress_heartbeat(job.session_id, started_at=time.monotonic())
+        )
         try:
             payload = self._build_runner_payload(job)
             raw = await self.runner(payload)
+            heartbeat_task.cancel()
+            try:
+                await heartbeat_task
+            except asyncio.CancelledError:
+                pass
             current = self.backend.get_session(job.session_id)
             if current is None:
                 return
@@ -258,9 +269,31 @@ class ScanService:
                 {"event": "scan_completed", "sessionId": job.session_id, "status": status}
             )
         except asyncio.CancelledError:
+            heartbeat_task.cancel()
             raise
-        except Exception:
-            self._mark_failed(job, "SCAN_FAILED")
+        except Exception as e:
+            heartbeat_task.cancel()
+            self._mark_failed(job, f"SCAN_FAILED: {e!r}"[:200])
+
+    async def _progress_heartbeat(self, session_id: str, started_at: float) -> None:
+        """单调推进 session.progress, 直到 cancelled 或 progress >= 90。
+
+        真实进度到 100 由最终的 status=ready/degraded 触发。10 → 90 区间内每 2s +2% ,
+        让前端 polling 时一直能看到动起来,而不是卡在 10%。
+        """
+        try:
+            while True:
+                await asyncio.sleep(2.0)
+                cur = self.backend.get_session(session_id)
+                if cur is None or cur.status != "processing":
+                    return
+                # 10% + (2%/2s * elapsed) 上限 90%
+                elapsed = time.monotonic() - started_at
+                projected = min(90, 10 + int(elapsed))
+                if projected > (cur.progress or 0):
+                    self.backend.save_session(cur.transition(progress=projected))
+        except asyncio.CancelledError:
+            return
 
     def _mark_failed(self, job: ScanJob, reason: str) -> None:
         failed_job = job.model_copy(
