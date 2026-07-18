@@ -39,6 +39,7 @@ class GraphState(TypedDict, total=False):
     report_package: dict                                   # Four-scene generated content package
     relevance_score: str                                   # "relevant" | "not_relevant"
     generation_score: str                                  # "supported" | "not_supported"
+    verification_mode: str                                 # "nli" | "text_overlap" | "unavailable"
     missing_citations: list[str]                           # Unverified citations
     loop_count: int                                        # Retry counter
 
@@ -76,6 +77,7 @@ def initial_state(query: str, product: str, category: str,
         report_package={},
         relevance_score="",
         generation_score="",
+        verification_mode="unavailable",
         missing_citations=[],
         loop_count=0,
         max_attempts=2,

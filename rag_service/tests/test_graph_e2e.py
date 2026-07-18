@@ -67,7 +67,11 @@ def _pass_verifier() -> MagicMock:
     return ver
 
 
-def _warn_verifier_with_missing(missing_claim: str) -> MagicMock:
+def _warn_verifier_with_missing(
+    missing_claim: str,
+    *,
+    verification_mode: str = "nli",
+) -> MagicMock:
     """A verifier that returns WARN with an unverified claim.
 
     Drives should_regenerate → "refine" (missing citations + loop < max_attempts).
@@ -77,6 +81,7 @@ def _warn_verifier_with_missing(missing_claim: str) -> MagicMock:
         total_claims=1, entailed=0, contradicted=0, neutral=0, unverified=1,
         attribution_score=0.1, status="WARN", claims=[],
         details=[{"claim": missing_claim, "status": "UNVERIFIED", "evidence": None}],
+        verification_mode=verification_mode,
     )
     return ver
 
@@ -289,6 +294,27 @@ class TestRefineRouting:
         # loop_count was incremented by the refiner (immutable: returns new value).
         assert result.get("loop_count") >= 1
         assert result.get("generation_score") == "not_supported"
+
+    def test_degraded_verifier_skips_corrective_generation(
+        self, compiled, base_initial_state
+    ):
+        """text_overlap is disclosed but cannot trigger a costly retry loop."""
+        base_initial_state["markets"] = ["EU"]
+        generator = _make_generator("## 报告\n引用能力降级。")
+        generator_module.set_generator(generator)
+        retriever_module.set_retriever(_make_retriever())
+        verifier_module.set_verifier(
+            _warn_verifier_with_missing(
+                "REACH Article 99", verification_mode="text_overlap"
+            )
+        )
+
+        result = compiled.invoke(base_initial_state, config={"recursion_limit": 50})
+
+        assert _trace_node_names(result).count("generate") == 1
+        assert _trace_node_names(result).count("query_refiner") == 0
+        assert result["loop_count"] == 0
+        assert result["verification_mode"] == "text_overlap"
 
 
 # ── 4. max_attempts cap: refine loop terminates, never infinite ──────────────
