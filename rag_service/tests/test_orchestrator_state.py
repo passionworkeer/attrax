@@ -108,11 +108,24 @@ def test_should_regenerate_forces_end_when_loop_count_reaches_max():
 def test_should_regenerate_refines_when_below_max_and_missing():
     state = {
         "generation_score": "not_supported",
+        "verification_mode": "nli",
         "loop_count": 1,
         "max_attempts": 2,
         "missing_citations": ["Article 9"],
     }
     assert should_regenerate(state) == "refine"
+
+
+def test_should_regenerate_ends_when_verification_is_degraded():
+    """A weak fallback must not drive expensive corrective generations."""
+    state = {
+        "generation_score": "not_supported",
+        "verification_mode": "text_overlap",
+        "loop_count": 0,
+        "max_attempts": 2,
+        "missing_citations": ["Article 9"],
+    }
+    assert should_regenerate(state) == "end"
 
 
 def test_should_regenerate_ends_on_supported_score():

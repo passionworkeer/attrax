@@ -4,11 +4,14 @@ verifier.py - Citation verification node
 
 Wraps CitationVerifier and updates state with generation_score + missing_citations.
 """
+import logging
+
 from rag_service.orchestrator.state import GraphState
 from rag_service.verify.citation_verifier import CitationVerifier
 
 
 _verifier_instance = None
+logger = logging.getLogger(__name__)
 
 
 def set_verifier(verifier: CitationVerifier):
@@ -32,6 +35,7 @@ def verifier_node(state: GraphState) -> dict:
         # of verification for a positive verification result.
         return {
             "generation_score": "unverified",
+            "verification_mode": "unavailable",
             "missing_citations": [],
             "agent_trace": [{
                 "node": "verifier",
@@ -63,6 +67,7 @@ def verifier_node(state: GraphState) -> dict:
 
     return {
         "generation_score": generation_score,
+        "verification_mode": result.verification_mode,
         "missing_citations": missing,
         "agent_trace": [{
             "node": "verifier",
@@ -81,6 +86,22 @@ def should_regenerate(state: GraphState) -> str:
 
     # Map generation_score to routing decision
     if score in ("supported", "PASS", "ENTAILED"):
+        return "end"
+
+    # Corrective retrieval/generation is evidence-driven and only useful when
+    # a full NLI verifier can judge whether the new draft improved. The
+    # text-overlap fallback is intentionally disclosed as degraded; in
+    # production it cannot reliably tokenize Chinese claims or match every
+    # citation form, so using it to drive retries caused three sequential LLM
+    # generations with the same rejected verdict. Preserve that verdict, but
+    # do not spend two more model calls on an unmeasurable correction loop.
+    verification_mode = state.get("verification_mode", "unavailable")
+    if verification_mode != "nli":
+        logger.info(
+            "Skipping corrective generation: verification_mode=%s score=%s",
+            verification_mode,
+            score or "unknown",
+        )
         return "end"
 
     loop_count = state.get("loop_count", 0)
