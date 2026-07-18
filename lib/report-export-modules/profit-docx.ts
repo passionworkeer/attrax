@@ -15,6 +15,7 @@ import { localizeProfitReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
   docxTable,
+  downloadBlob,
   mkBullet,
   mkSectionH,
   parseMarkdownToDocx,
@@ -220,14 +221,8 @@ export async function downloadProfitReportAsDocx(input: ProfitReportResult, loca
   });
 
   const blob = await Packer.toBlob(doc);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = L === "zh" ? `成本利润分析报告_${result.sessionId}.docx` : `CostProfitAnalysisReport_${result.sessionId}.docx`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const filename = L === "zh" ? `成本利润分析报告_${result.sessionId}.docx` : `CostProfitAnalysisReport_${result.sessionId}.docx`;
+  downloadBlob(blob, filename);
   } catch (error) {
     throw new Error(
       `Failed to export profit DOCX report: ${error instanceof Error ? error.message : String(error)}`,

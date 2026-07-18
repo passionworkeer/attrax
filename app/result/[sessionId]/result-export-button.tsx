@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
-import { buildProfitReportFromMarkdown } from "@/lib/pipeline/profit-report";
+import { buildProfitReportFromScanResult } from "@/lib/pipeline/profit-report";
 import {
   downloadProfitReportAsDocx,
   downloadProfitReportAsPdf,
@@ -73,15 +73,8 @@ export function ResultExportButton({
     if (reportType !== "profit") return;
     setBusy(true);
     try {
-      const md = result.reportPackage?.profitReport?.markdown;
-      if (!md) return;
-      const exportable = buildProfitReportFromMarkdown(
-        result.sessionId,
-        md,
-        result.productName ?? (locale === "zh" ? "产品" : "Product"),
-        result.targetMarkets[0] ?? (locale === "zh" ? "目标市场" : "Target market"),
-        result.reportPackage?.profitReport,
-      );
+      const exportable = buildProfitReportFromScanResult(result, locale);
+      if (!exportable) return;
       if (format === "pdf") {
         await downloadProfitReportAsPdf(exportable, locale);
       } else {
@@ -94,7 +87,7 @@ export function ResultExportButton({
 
   const noClientExport = reportType === "roadmap";
   const profitNoData =
-    reportType === "profit" && !result.reportPackage?.profitReport?.markdown;
+    reportType === "profit" && !buildProfitReportFromScanResult(result, locale);
 
   const disabled = noClientExport || profitNoData || busy;
 

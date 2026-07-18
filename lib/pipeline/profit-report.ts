@@ -1,4 +1,5 @@
-import type { CostSummary, GeneratedReportPackage, ProfitReportResult } from "@/lib/types";
+import type { CostSummary, GeneratedReportPackage, ProfitReportResult, ScanResult } from "@/lib/types";
+import type { FinancialSummary } from "@/lib/types.blaze-hawks";
 
 const RE_S4_HEADER = /盈亏平衡/;
 const RE_S5_HEADER = /关键结论/;
@@ -288,4 +289,111 @@ export function buildProfitReportFromMarkdown(
     compliantGpm: extracted.compliantGpm,
   };
   return applyStructuredProfitFields(base, overrides?.structuredFields);
+}
+
+/**
+ * 把客户端拿到的 ScanResult(可能是 demo 或真实扫描)适配成下游 PDF/DOCX 导出器
+ * 需要的完整 ProfitReportResult。
+ *
+ * 数据源优先级(在 ProfitExportPanel / ResultExportButton 里用):
+ *   1. `result.reportPackage.profitReport.markdown` (走 buildProfitReportFromMarkdown
+ *      反推成完整结构,后端真实扫描时给)
+ *   2. `result.financialSummary` + `costBreakdown` (handoff 设计稿 demo 数据)
+ *   3. 都缺 → 返回 null(调用方应禁用下载按钮)
+ *
+ * 注: `result.profitReport`(完整 ProfitReportResult) 是在 `ScanStatus` 顶层,
+ * 不是 ScanResult 字段,所以这里不看。
+ */
+export function buildProfitReportFromScanResult(
+  result: ScanResult,
+  locale: "zh" | "en" = "zh",
+): ProfitReportResult | null {
+  // 1) Markdown + 字段覆盖
+  const rpOverrides = result.reportPackage?.profitReport;
+  if (rpOverrides?.markdown) {
+    return buildProfitReportFromMarkdown(
+      result.sessionId,
+      rpOverrides.markdown,
+      result.productName ?? (locale === "zh" ? "产品" : "Product"),
+      result.targetMarkets[0] ?? (locale === "zh" ? "目标市场" : "Target market"),
+      rpOverrides,
+    );
+  }
+
+  // 2) FinancialSummary(只有字符串 amount,转 CostSummary 全 0 兜底)
+  if (result.financialSummary) {
+    return buildProfitReportFromFinancialSummary(
+      result.sessionId,
+      result.financialSummary,
+      result.productName ?? (locale === "zh" ? "产品" : "Product"),
+      result.targetMarkets[0] ?? (locale === "zh" ? "目标市场" : "Target market"),
+    );
+  }
+
+  return null;
+}
+
+/**
+ * 把 handoff 设计稿页的 `FinancialSummary` (字符串金额) 兜底成 `ProfitReportResult`。
+ *
+ * FinancialSummary 的 amount 字段是 "¥0.71" / "$7.46" 这种格式 — `parseCostValue` 已经在
+ * 本文件定义,可复用。它只覆盖 `barebone` / `compliant` 成本项里能从 costBreakdown
+ * 标签匹配上的部分(BOM / 包装 / 认证 / EPR / 物流 / 保修 / 总直接成本)。匹配不上
+ * 的字段保持 0,但 PDF 仍能生成,只是部分数字显示为 0。
+ */
+function buildProfitReportFromFinancialSummary(
+  sessionId: string,
+  summary: FinancialSummary,
+  productType: string,
+  market: string,
+): ProfitReportResult {
+  const lookup = (key: RegExp, fallback = 0): number => {
+    const row = summary.costBreakdown.find((c) => key.test(c.label) || key.test(c.labelEn ?? ""));
+    if (!row) return fallback;
+    return parseCostValue(row.amount);
+  };
+  const barebone: CostSummary = {
+    bom: lookup(/BOM|material|材料/i),
+    packaging: lookup(/packag|包装/i),
+    cert: lookup(/cert|认证/i),
+    epr: lookup(/EPR|环保/i),
+    logistics: lookup(/logistic|物流/i),
+    asp: lookup(/ASP|price|售价/i),
+    gp: lookup(/heroic|神勇|hero/i, lookup(/BOM/i)),
+    warranty: lookup(/warranty|保修|after.?sales|售后/i),
+    total: lookup(/total|总直接成本/i),
+  };
+  // "compliant" 列在 FinancialSummary 里没有单独字段,粗略用 barebone + 1.3x 当
+  // 占位(模拟合规后成本上扬)。用户可读即可,不是核心数据。
+  const compliant: CostSummary = {
+    ...barebone,
+    cert: barebone.cert > 0 ? barebone.cert : 12,
+    epr: barebone.epr > 0 ? barebone.epr : 4,
+    warranty: barebone.warranty > 0 ? barebone.warranty : 3,
+    total: barebone.total > 0 ? barebone.total * 1.3 : 0,
+  };
+  const heroNum = parseCostValue(summary.estimatedHeroicProfit);
+  const netNum = parseCostValue(summary.trueNetProfit);
+  const complianceNum = parseCostValue(summary.complianceCost);
+  return {
+    sessionId,
+    productType,
+    market,
+    currency: "USD",
+    report: "",
+    barebone,
+    compliant,
+    bareboneRiskExposure: heroNum,
+    compliantRiskExposure: 0,
+    keyConclusion: summary.targetVolumeLabel,
+    generatedAt: new Date().toISOString(),
+    premiumPct: heroNum > 0 && netNum > 0 ? `${Math.round((1 - netNum / heroNum) * 100)}%` : "—",
+    breakevenUnits: "—",
+    pricingStrategy: summary.monthlyNetProfit,
+    riskNote: summary.riskExposureItems.join("; "),
+    conclusions: "",
+    references: "",
+    bareboneGpm: barebone.asp > 0 ? (barebone.gp / barebone.asp) * 100 : 0,
+    compliantGpm: compliant.asp > 0 ? (compliant.gp / compliant.asp) * 100 : 0,
+  };
 }

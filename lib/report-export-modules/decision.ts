@@ -3,6 +3,7 @@ import { Document, HeadingLevel, Packer, Paragraph, Table, TextRun } from "docx"
 import type { Locale } from "./shared";
 import {
   docxTable,
+  downloadBlob,
   embedFont,
   mkBullet,
   mkSectionH,
@@ -241,7 +242,8 @@ export async function downloadDecisionReportAsPdf(content: DecisionContent, loca
 
     addPdfFooter(doc, pageWidth, pageHeight, L);
 
-    doc.save(L === "zh" ? `AI决策报告_${content.sessionId}.pdf` : `AIDecisionReport_${content.sessionId}.pdf`);
+    const filename = L === "zh" ? `AI决策报告_${content.sessionId}.pdf` : `AIDecisionReport_${content.sessionId}.pdf`;
+    downloadBlob(doc.output("blob"), filename);
   } catch (error) {
     throw new Error(
       `Failed to export decision PDF report: ${error instanceof Error ? error.message : String(error)}`,
@@ -302,14 +304,8 @@ export async function downloadDecisionReportAsDocx(content: DecisionContent, loc
   });
 
   const blob = await Packer.toBlob(doc);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = L === "zh" ? `AI决策报告_${content.sessionId}.docx` : `AIDecisionReport_${content.sessionId}.docx`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const filename = L === "zh" ? `AI决策报告_${content.sessionId}.docx` : `AIDecisionReport_${content.sessionId}.docx`;
+  downloadBlob(blob, filename);
   } catch (error) {
     throw new Error(
       `Failed to export decision DOCX report: ${error instanceof Error ? error.message : String(error)}`,

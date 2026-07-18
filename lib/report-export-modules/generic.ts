@@ -1,7 +1,7 @@
 import { Document, HeadingLevel, Packer, Paragraph, TextRun } from "docx";
 import { jsPDF } from "jspdf";
 import type { Locale } from "./shared";
-import { embedFont, parseMarkdownToDocx, renderMarkdownPdf, resolveLocale, yieldToMainThread } from "./shared";
+import { embedFont, downloadBlob, parseMarkdownToDocx, renderMarkdownPdf, resolveLocale, yieldToMainThread } from "./shared";
 
 type GenericReport = {
   sessionId: string;
@@ -56,7 +56,7 @@ export async function downloadGenericReportAsPdf(report: GenericReport, locale?:
       doc.text(`${reportTitle(report, L)} · ${i}/${pageCount}`, pageWidth / 2, pageHeight - 8, { align: "center" });
     }
 
-    doc.save(L === "en" ? `${report.filenameEn}.pdf` : `${report.filename}.pdf`);
+    downloadBlob(doc.output("blob"), L === "en" ? `${report.filenameEn}.pdf` : `${report.filename}.pdf`);
   } catch (error) {
     throw new Error(
       `Failed to export PDF report: ${error instanceof Error ? error.message : String(error)}`,
@@ -93,14 +93,7 @@ export async function downloadGenericReportAsDocx(report: GenericReport, locale?
     });
 
     const blob = await Packer.toBlob(doc);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = L === "en" ? `${report.filenameEn}.docx` : `${report.filename}.docx`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    downloadBlob(blob, L === "en" ? `${report.filenameEn}.docx` : `${report.filename}.docx`);
   } catch (error) {
     throw new Error(
       `Failed to export DOCX report: ${error instanceof Error ? error.message : String(error)}`,

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Download, Truck } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
-import { buildProfitReportFromMarkdown } from "@/lib/pipeline/profit-report";
+import { buildProfitReportFromScanResult } from "@/lib/pipeline/profit-report";
 import { downloadProfitReportAsDocx, downloadProfitReportAsPdf } from "@/lib/report-download";
 import type { ScanResult } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -41,16 +41,7 @@ export function ProfitExportPanel({
 }) {
   const [busy, setBusy] = useState<null | "pdf-zh" | "pdf-en" | "docx-zh" | "docx-en">(null);
 
-  const profitMd = result.reportPackage?.profitReport?.markdown;
-  const exportable =
-    !!profitMd &&
-    buildProfitReportFromMarkdown(
-      result.sessionId,
-      profitMd,
-      result.productName ?? (locale === "zh" ? "产品" : "Product"),
-      result.targetMarkets[0] ?? (locale === "zh" ? "目标市场" : "Target market"),
-      result.reportPackage?.profitReport,
-    );
+  const exportable = buildProfitReportFromScanResult(result, locale);
 
   const handle = async (format: "pdf" | "docx", dlLocale: "zh" | "en") => {
     if (!exportable) return;

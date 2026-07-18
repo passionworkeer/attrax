@@ -3,6 +3,7 @@ import type { ProfitReportResult } from "@/lib/types";
 import { localizeProfitReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
+  downloadBlob,
   embedFont,
   pdfBullet,
   pdfDrawTable,
@@ -226,7 +227,7 @@ export async function downloadProfitReportAsPdf(input: ProfitReportResult, local
       );
     }
 
-    doc.save(L === "zh" ? `成本利润分析报告_${result.sessionId}.pdf` : `CostProfitAnalysisReport_${result.sessionId}.pdf`);
+    downloadBlob(doc.output("blob"), L === "zh" ? `成本利润分析报告_${result.sessionId}.pdf` : `CostProfitAnalysisReport_${result.sessionId}.pdf`);
   } catch (error) {
     throw new Error(
       `Failed to export profit PDF report: ${error instanceof Error ? error.message : String(error)}`,
