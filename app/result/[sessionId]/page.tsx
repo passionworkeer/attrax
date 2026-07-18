@@ -22,6 +22,7 @@ import {
 import { mockScanResult } from "@/lib/mock/blaze-scan-result";
 import type { ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { ResultExportButton } from "./result-export-button";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
 function readStoredAccessToken(sessionId: string): string | null {
@@ -823,14 +824,13 @@ export default function ResultPage() {
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {file.formats.map((format) => (
-                        <a
+                        <ResultExportButton
                           key={`${file.reportType}-${format}`}
-                          href={`/api/report/${sessionId}/${file.reportType}?format=${format}&lang=${locale}`}
-                          download
-                          className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "rounded-full border border-white/10 bg-white/7 text-white hover:bg-white/12")}
-                        >
-                          {format.toUpperCase()} <MoveRight className="size-3.5" />
-                        </a>
+                          result={result}
+                          reportType={file.reportType}
+                          format={format}
+                          locale={locale}
+                        />
                       ))}
                     </div>
                   </div>
