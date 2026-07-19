@@ -461,3 +461,99 @@ export function createMockScanResult(
 }
 
 export const mockScanResult = createMockScanResult("demo");
+
+/**
+ * Client-safe (no fs/path imports) markdown builder for the home-page demo
+ * "65W 充电宝" product. Mirrors `lib/reporting.ts.buildComplianceReport`'s
+ * `isDemoCharger` branch, but kept here so the client bundle (`page.tsx` is
+ * `"use client"`) can synthesize the `ComplianceReportResult.complianceReport`
+ * field without pulling in server-only modules.
+ *
+ * Server callers (`/api/report/demo/compliance?format=md`) use the same
+ * content via `lib/reporting.ts.buildComplianceReport`; the two paths
+ * intentionally diverge in environment but share the same string template.
+ */
+function joinRuleZh(rp: RiskPoint): string {
+  return [
+    `${rp.title} — ${rp.description}`,
+    `  · 证据: ${rp.regulations.map((r) => `${r.market}·${r.code}`).join(" / ")}`,
+    `  · 整改: ${rp.recommendedAction}${rp.estimatedFixCost ? ` (预计 ${rp.estimatedFixCost})` : ""}`,
+  ].join("\n");
+}
+function joinRuleEn(rp: RiskPoint): string {
+  return [
+    `${rp.titleEn ?? rp.title} — ${rp.descriptionEn ?? rp.description}`,
+    `  · Citations: ${rp.regulations.map((r) => `${r.market}·${r.code}`).join(" / ")}`,
+    `  · Remediation: ${rp.recommendedActionEn ?? rp.recommendedAction}${rp.estimatedFixCost ? ` (Est. ${rp.estimatedFixCost})` : ""}`,
+  ].join("\n");
+}
+
+export function mockComplianceReportMarkdown(result: ScanResult, locale: "zh" | "en"): string {
+  const product = result.productName ?? "65W 快充充电器";
+  const markets = result.targetMarkets.join(" / ");
+  const rules = result.riskPoints.map((rp, i) =>
+    (locale === "en" ? joinRuleEn(rp) : joinRuleZh(rp)).replace(/^/, `${i + 1}. `)
+  ).join("\n\n");
+  if (locale === "en") {
+    return `# CompliPilot · Compliance Scan Report — 65W Charger (Demo)
+
+> This report evaluates **${product}** (65W GaN USB-PD fast charger) for the target markets **${markets}**, based on multimodal analysis of 3 product images (front, side, packaging) and a two-level EU + UK regulation corpus (CE-RED / LVD / EMC / RoHS / GPSR / UKCA / EMC-2016 / EPR).
+
+## 1. Headline
+
+- **Score**: ${result.complianceScore} / ${result.scoreGrade}
+- **Verdict**: Do **not** launch into ${markets} yet. Until CE marks, nameplate data, multilingual packaging warnings, and listing evidence are closed, EU/UK market entry will trip listing rejection, customs hold, and recall channels in parallel.
+
+## 2. Risk and citations
+
+${rules}
+
+## 3. Remediation timeline (see full roadmap report)
+
+| Phase | Window | Deliverable | Owner |
+| --- | --- | --- | --- |
+| Document freeze | Days 1-2 | Spec / BOM / adapter / shell material | Product / Procurement |
+| Label & packaging remediation | Days 3-7 | Nameplate CE/UKCA marks, multilingual warnings, recycling mark | Design / Compliance |
+| LVD / EMC pre-scan | Weeks 1-2 | Temperature-rise / drop / abnormal / waterproof report | Lab |
+| Formal certification | Weeks 3-5 | CE tech file, DoC, RoHS/REACH | Lab / Compliance |
+| Listing review | Week 5 | Listing copy / hero image / cert archive / EPR ID | Ops / Legal |
+
+---
+Generated at: ${result.generatedAt}
+Score scale: 100 max, A≥85 / B≥70 / C≥55 / D<55
+`;
+  }
+  return `# 规航AI · 合规扫描报告 · 充电宝原型 (65W)
+
+> 本报告针对产品 **${product}**(65W GaN USB-PD 快充)的目标市场
+> **${markets}** 给出端到端的合规风险评估与整改路径。
+> 报告基于以下 3 张产品图片(正面 / 侧面 / 包装)的多模态识别结果,
+> 并联动了欧盟 + 英国两级法规知识库(CE-RED / LVD / EMC / RoHS /
+> GPSR / UKCA / EMC-2016 / EPR)。
+
+## 1. 总体判断
+
+- **合规等级**: ${result.complianceScore} / ${result.scoreGrade}
+- **结论**: 当前状态 **不建议直接上架** ${markets}。在 CE 标志、铭牌信息、
+  包装多语言警示与平台审核资料四项闭环之前,进入欧盟/英国销售会同时触发
+  平台审核拒绝 + 海关扣留 + 抽检召回三种风险链路。
+
+## 2. 关键风险与法规引用
+
+${rules}
+
+## 3. 整改路线图概览
+
+| 阶段 | 时间 | 关键产出 | 责任方 |
+| --- | --- | --- | --- |
+| 资料冻结 | 第 1-2 天 | 规格书 / BOM / 适配器规格 / 外壳材料锁定 | 产品 / 采购 |
+| 标签包装整改 | 第 3-7 天 | 铭牌 CE/UKCA 标志、说明书多语言警示、回收标识 | 设计 / 合规 |
+| LVD / EMC 预扫 | 第 1-2 周 | 温升 / 跌落 / 异常工作 / 防水结构报告 | 实验室 |
+| 正式认证 | 第 3-5 周 | CE 技术文件包、DoC、RoHS/REACH 报告 | 实验室 / 合规 |
+| 上架复核 | 第 5 周 | listing 文案 / 主图 / 证书归档 / EPR 编号 | 运营 / 法务 |
+
+---
+报告生成时间: ${result.generatedAt}
+合规评分体系: 满分 100,A≥85 / B≥70 / C≥55 / D<55
+`;
+}
