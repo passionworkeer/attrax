@@ -90,12 +90,22 @@ const Roadmap = z
   })
   .passthrough();
 
+const DecisionNodeSeverity = z.enum(["critical", "high", "medium", "info"]);
+const DecisionViewRiskLevel = z.enum(["CRITICAL", "HIGH", "MEDIUM", "LOW"]);
+const DecisionViewVerdict = z.enum(["PASS", "WARN", "REJECTED", "UNKNOWN"]);
+
 const DecisionNode = z
   .object({
     id: z.string(),
     type: z.string().optional().default(""),
     label: z.string().optional().default(""),
     labelEn: z.string().optional().default(""),
+    // severity is the *risk level* (critical/high/medium/info) — distinct from
+    // `status` (pipeline execution state: success/pending/running/error).
+    // The frontend derives riskPoints[].severity from this field; falling back
+    // to `status` string-matching was the source of the "REJECTED with no
+    // critical risks" mismatch.
+    severity: DecisionNodeSeverity.optional().default("info"),
     status: z.string().optional().default("pending"),
     duration: z.string().optional().default(""),
     confidence: z.number().nullable().optional(),
@@ -106,6 +116,12 @@ const DecisionNode = z
 
 const DecisionView = z
   .object({
+    // Top-level verdict (PASS/WARN/REJECTED/UNKNOWN) is the authoritative
+    // compliance status. riskLevel (CRITICAL/HIGH/MEDIUM/LOW) is the rolled-up
+    // risk across nodes. Both were previously only present via .passthrough()
+    // on the LLM/mocked payloads — making them explicit enforces contract.
+    verdict: DecisionViewVerdict.optional().default("UNKNOWN"),
+    riskLevel: DecisionViewRiskLevel.optional().default("LOW"),
     summary: z.string().optional().default(""),
     keyFindings: z.array(z.string()).optional().default([]),
     recommendedAction: z.string().optional().default(""),

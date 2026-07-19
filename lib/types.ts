@@ -449,6 +449,9 @@ export interface GeneratedDecisionNode {
   labelEn?: string;
   label_en?: string;
   icon?: string;
+  // severity is the per-node risk level (critical/high/medium/info). distinct
+  // from `status` (pipeline execution state: success/pending/running/error).
+  severity?: "critical" | "high" | "medium" | "info";
   status?: string;
   duration?: string;
   confidence?: number;
