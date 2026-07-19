@@ -79,7 +79,7 @@ export function CompliPilotHome() {
             >
               {isZh ? "能做什么" : "Capabilities"}
             </button>
-            <Link className={styles.navTextLink} href="/upload">
+            <Link className={styles.navTextLink} href="/result/demo">
               {isZh ? "演示流程" : "Demo flow"}
             </Link>
             <Link className={styles.navTextLink} href="/pricing">
@@ -219,7 +219,7 @@ export function CompliPilotHome() {
             </p>
             <div className={styles.aboutActions}>
               <button type="button" onClick={() => setDialog("capabilities")}>{isZh ? "查看能做什么" : "View capabilities"}</button>
-              <Link href="/upload">{isZh ? "体验合规检测" : "Try compliance scan"}</Link>
+              <Link href="/result/demo">{isZh ? "体验合规检测" : "Try compliance scan"}</Link>
             </div>
           </section>
         </div>
@@ -262,7 +262,9 @@ export function CompliPilotHome() {
             <Link className={`${styles.primary} ${styles.liquid}`} href="/upload">
               {isZh ? "开始合规检测" : "Start compliance scan"}
             </Link>
-            <Link className={styles.secondary} href="/upload">
+            {/* Demo entry: jump directly to the prebuilt /result/demo page
+                rather than /upload, which previously forced an extra tab. */}
+            <Link className={styles.secondary} href="/result/demo">
               {isZh ? "查看 60 秒演示" : "Watch the 60-sec demo"}
             </Link>
           </div>
