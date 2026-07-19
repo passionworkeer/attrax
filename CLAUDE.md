@@ -366,9 +366,20 @@ const StartScanRequestSchema = z.object({
 - **FastAPI 0.109 升级**：已落地至 `0.115.6`（`requirements-prod.txt` + Dockerfile + 安装环境均为 0.115.6，starlette 0.41.3）。全量 pytest 回归通过（327/328，唯一失败为预存在的 supplement manifest 文件大小断言，与本任务无关）。代码已用现代 API（`lifespan`/`@app.middleware`/`add_exception_handler`），无 0.109 残留兼容代码
 
 ### 已知遗留（需运维 / 单独任务）
-- **meta.json 分片迁移未执行**：加载器已就绪，运维需一次性跑 `FaissRetriever.split_meta_to_shards('data/faiss/legal_chunks_meta.json', 50)` 才能真正降 RAM 峰值
-- **限流迁 Redis**：用户确认短期用不到，留 TODO（IndexFlatIP→HNSW 与 FastAPI 0.109 升级已于上方完成）
-- **agent_trace 乘法级复制风险（新发现 P1）**：Send() fan-out + refine 循环下 trace 指数增长（默认 max_attempts=2 安全；配置不当会 OOM 而非平滑触发 recursion_limit），待修
+- **限流迁 Redis**：用户确认短期用不到，留 TODO
+- **rag-service 单 worker 扫字段内存在 700MB~960MB 之间波动**：单 worker 串行处理扫描时，多市场 BM25 索引构建会推高 RSS 到 ~960MB。已通过 `ecosystem.config.cjs` 把 `max_memory_restart` 从 900M 调到 1300M（留 300MB 给 nextjs+系统，超出走 swap）解决。但单 worker 仍是瓶颈：并发扫描会串行等待。后续若加并发，需先扩容内存或拆 worker
+- **agent_trace 乘法级复制风险**：Send() fan-out + refine 循环下 trace 指数增长（默认 max_attempts=2 安全；配置不当会 OOM 而非平滑触发 recursion_limit），待修
+
+### 2026-07-18 事故 + 修复
+- **症状**：服务器 load 飙到 111、可用内存 58MB、sshd banner 60s 等不到（"Exceeded MaxStartups"只是症状）；公网 HTTPS 502；前端疯狂 400 Bad Request（`Failed to find Server Action`，BUILD_ID 与浏览器不匹配）
+- **真根因（2 层）**：
+  1. 前端 BUILD_ID 旧（`xeMxi3QS...`），浏览器 Server Action ID 与新版不匹配 → 扫描提交 400 + 反复重试
+  2. rag-service `--workers 1` + 扫描 280s 超时（LLM `json.loads failed` 反复重试 → 单 worker 被卡 + 内存涨到 960MB）→ `max_memory_restart: 900M` 过低 → pm2 频繁重启 → meta.json 95MB 未分片全量加载加剧崩溃循环
+- **部署修复**：上传修复 commit `dd6cbf5` → 正确部署包（含 static，重打）→ BUILD_ID 更新为 `mDqQgaYI9r6HRqiCd-cXr` → Server Action 错误清零
+- **运维修复（已落地）**：
+  - **meta.json 95MB 分片完成**：`FaissRetriever.split_meta_to_shards('data/faiss/legal_chunks_meta.json', 50)` → 50 分片各 ~3MB，加载器自动识别，逐片加载（峰值从一次性全量降到单分片），原 95MB 保留作 fallback
+  - **max_memory_restart: 900M → 1300M**（rag-service，留 300MB 给 nextjs+系统，超出走 4GB swap）
+- **未混淆**：限流不是原因（日志 0 条 429）。限流客户端指纹 P1-6 已升级多维度
 
 ---
 
