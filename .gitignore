@@ -138,3 +138,4 @@ embedding_cache/
 
 # ─── Nested local repository copy ────────────────────────────
 attrax/
+# 2026-07-19: explicitly exclude handoff design snapshot (850MB on disk only).规航AI-源码-后端联调-20260717/
