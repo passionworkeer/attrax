@@ -69,6 +69,26 @@ if [ "$CSS_COUNT" -lt 2 ] || [ "$MEDIA_COUNT" -lt 5 ]; then
 fi
 log "stage 校验通过: css=$CSS_COUNT media=$MEDIA_COUNT public=$(ls "${STANDALONE}/public" | wc -l) 项"
 
+# === [3.5] 写 .deployed 部署标识(随包走 → /opt/attrax/.next/standalone/.deployed) ===
+# 治本:以后线上 `cat .deployed` 就能对账到 commit/build_id,
+# 不再需要每次手动维护 docs/SERVER-VERSION.md 的版本块。
+COMMIT_FULL="$(git -C "$PROJECT_ROOT" rev-parse HEAD 2>/dev/null || echo unknown)"
+COMMIT_SHORT="$(git -C "$PROJECT_ROOT" rev-parse --short HEAD 2>/dev/null || echo unknown)"
+BRANCH="$(git -C "$PROJECT_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo unknown)"
+UPSTREAM="$(git -C "$PROJECT_ROOT" rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || echo unknown)"
+BID="$(cat "${STANDALONE}/.next/BUILD_ID")"
+cat > "${STANDALONE}/.deployed" <<EOF
+# Attrax 部署标识 — 由 build-deploy-tarball.sh 写入,apply-upload-fix.sh 解包后落地
+# 对账: ssh attrax 'cat /opt/attrax/.next/standalone/.deployed'
+commit=${COMMIT_SHORT}
+commit_full=${COMMIT_FULL}
+build_id=${BID}
+branch=${BRANCH}
+ref=${UPSTREAM}
+built_at=$(date -Iseconds)
+EOF
+log ".deployed: commit=${COMMIT_SHORT} build_id=${BID} ref=${UPSTREAM}"
+
 # === [5] 打包(把整个 standalone 连同已 stage 的 static/public 一起)===
 log "=== [5] 打包 -> ${TARBALL} ==="
 # 在 .next/ 下打包,使 tar 内路径以 standalone/ 开头(apply-upload-fix.sh 解包到 .next/)

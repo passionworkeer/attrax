@@ -138,7 +138,9 @@ embedding_cache/
 
 # ─── Nested local repository copy ────────────────────────────
 attrax/
-# 2026-07-19: explicitly exclude handoff design snapshot (850MB on disk only).规航AI-源码-后端联调-20260717/
+# 2026-07-19: explicitly exclude handoff design snapshot (850MB on disk only).
+#   此 pattern 原本误嵌在注释行内 + 被 stray CR 污染,从未生效(git status 一直显示该目录为 ??)。
+规航AI-源码-后端联调-20260717/
 
 # 2026-07-19: throwaway 7/18 over-load debug probes — keep on disk but
 # do not commit. Replaced by ops/deploy scripts (apply-upload-fix.sh) +
@@ -156,3 +158,4 @@ dev-hydrate.js
 inspect-*.js
 verify-*.js
 demo-after-hydrate.png
+scripts/check-react-418.mjs
