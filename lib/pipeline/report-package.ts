@@ -8,6 +8,36 @@ function normalizeStringArray(value: unknown): string[] | undefined {
   return Array.isArray(value) ? value.map(String) : undefined;
 }
 
+// Decision node severity is an enum; coerce from any string but reject junk by
+// falling back to "info" instead of throwing — this keeps LLM JSON degradation
+// non-fatal for downstream UI.
+const SEVERITY_VALUES = ["critical", "high", "medium", "info"] as const;
+type Severity = (typeof SEVERITY_VALUES)[number];
+function normalizeSeverity(value: unknown): Severity {
+  const raw = typeof value === "string" ? value.toLowerCase() : "";
+  return (SEVERITY_VALUES as readonly string[]).includes(raw)
+    ? (raw as Severity)
+    : "info";
+}
+
+const VERDICT_VALUES = ["PASS", "WARN", "REJECTED", "UNKNOWN"] as const;
+type Verdict = (typeof VERDICT_VALUES)[number];
+function normalizeVerdict(value: unknown): Verdict {
+  const raw = typeof value === "string" ? value.toUpperCase() : "";
+  return (VERDICT_VALUES as readonly string[]).includes(raw)
+    ? (raw as Verdict)
+    : "UNKNOWN";
+}
+
+const RISK_LEVEL_VALUES = ["CRITICAL", "HIGH", "MEDIUM", "LOW"] as const;
+type RiskLevel = (typeof RISK_LEVEL_VALUES)[number];
+function normalizeRiskLevel(value: unknown): RiskLevel {
+  const raw = typeof value === "string" ? value.toUpperCase() : "";
+  return (RISK_LEVEL_VALUES as readonly string[]).includes(raw)
+    ? (raw as RiskLevel)
+    : "LOW";
+}
+
 export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | undefined {
   if (!isRecord(raw)) return undefined;
 
@@ -190,6 +220,8 @@ export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | u
       : undefined,
     decisionView: decisionRecord
       ? {
+          verdict: normalizeVerdict(decisionRecord.verdict),
+          riskLevel: normalizeRiskLevel(decisionRecord.riskLevel ?? decisionRecord.risk_level),
           summary: typeof decisionRecord.summary === "string" ? decisionRecord.summary : undefined,
           summaryEn:
             typeof decisionRecord.summaryEn === "string"
@@ -224,6 +256,21 @@ export function normalizeReportPackage(raw: unknown): GeneratedReportPackage | u
                   ? node.label_en
                   : undefined,
               icon: typeof node.icon === "string" ? node.icon : undefined,
+              severity: (() => {
+                const explicit = normalizeSeverity(
+                  node.severity ?? (isRecord(node.metadata) ? node.metadata.riskLevel : undefined),
+                );
+                // Frontend fallback for older payloads where the LLM did not
+                // emit a severity. The pipeline `status` field doubles as
+                // an emergency risk signal: error → critical, pending →
+                // medium, success → keep the existing (likely info) default.
+                // This keeps a failing vision/retrieval step from being
+                // silently downgraded to "everything looks fine".
+                const status = typeof node.status === "string" ? node.status.toLowerCase() : "";
+                if (status === "error" && explicit === "info") return "critical" as Severity;
+                if (status === "pending" && explicit === "info") return "medium" as Severity;
+                return explicit;
+              })(),
               status: typeof node.status === "string" ? node.status : undefined,
               duration: typeof node.duration === "string" ? node.duration : undefined,
               confidence: typeof node.confidence === "number" ? node.confidence : undefined,

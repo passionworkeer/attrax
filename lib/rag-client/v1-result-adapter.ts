@@ -59,33 +59,69 @@ function productCategory(value: unknown): ProductCategory {
   return PRODUCT_CATEGORIES.has(candidate) ? candidate : "other";
 }
 
-function scoreFor(status: string): { score: number; grade: ScoreGrade } {
-  switch (status.toUpperCase()) {
-    case "PASS":
-      return { score: 90, grade: "A" };
-    case "WARN":
-      return { score: 65, grade: "C" };
-    case "REJECTED":
+// Severity → numeric rank used to roll up the highest-risk rule across the
+// risk set. Mirrored in rollupSeverityForScore() below; keep them in sync.
+const SEVERITY_RANK: Record<Severity, number> = {
+  critical: 4,
+  warning: 3,
+  info: 1,
+};
+// Same rank table for the LLM's per-node severity field (a 4-level system
+// rather than the UI's 3-level Severity type).
+const NODE_SEVERITY_RANK: Record<string, number> = {
+  critical: 4,
+  high: 4, // rolled-up "high" maps to the same penalty as "critical" for score
+  medium: 2,
+  info: 1,
+};
+
+function rollupSeverityForScore(
+  riskPoints: RiskPoint[],
+  decisionViewRiskLevel: string | undefined,
+): Severity {
+  // Prefer the decisionView's rolled-up riskLevel if the backend supplied it.
+  const rk = NODE_SEVERITY_RANK[decisionViewRiskLevel?.toLowerCase() ?? ""];
+  if (typeof rk === "number") {
+    if (rk >= 4) return "critical";
+    if (rk >= 2) return "warning"; // "warning" is the type slot above "info"
+    return "info";
+  }
+  // Else, infer from per-risk severities (max wins).
+  let bestRank = 0;
+  for (const rp of riskPoints) {
+    const rank = SEVERITY_RANK[rp.severity] ?? 0;
+    if (rank > bestRank) bestRank = rank;
+  }
+  if (bestRank >= 4) return "critical";
+  if (bestRank >= 3) return "warning";
+  return "info";
+}
+
+function scoreFor(rollup: Severity): { score: number; grade: ScoreGrade } {
+  switch (rollup) {
+    case "critical":
       return { score: 35, grade: "D" };
+    case "warning":
+      return { score: 65, grade: "C" };
+    case "info":
     default:
-      return { score: 50, grade: "C" };
+      return { score: 90, grade: "A" };
   }
 }
 
+// Backwards-compatible legacy lookup: keeps the previous behavior — explicit
+// status string wins over derived rollup — for sessions where the backend only
+// emits complianceStatus without riskPoints (legacy/demode).
 function resultScore(result: UnknownRecord, status: string): { score: number; grade: ScoreGrade } {
-  // Status-driven score is authoritative when the backend reports an explicit
-  // complianceStatus (PASS/WARN/REJECTED/UNKNOWN — all four map to a stable
-  // grade mapping the pages depend on).
   if (typeof status === "string" && status.length > 0) {
     const upper = status.toUpperCase();
     if (["PASS", "WARN", "REJECTED", "UNKNOWN"].includes(upper)) {
-      return scoreFor(upper);
+      return scoreFor(
+        upper === "PASS" ? "info" : upper === "WARN" ? "warning" : upper === "REJECTED" ? "critical" : "info",
+      );
     }
   }
-  // Otherwise (complianceStatus field absent) the backend's complianceScore /
-  // scoreGrade win — this covers demo / cold-start / legacy integrations
-  // that compute their own score without an explicit status.
-  const fallback = scoreFor("UNKNOWN");
+  const fallback = scoreFor("info");
   const rawScore = number(result.complianceScore, fallback.score);
   const score = Math.max(0, Math.min(100, rawScore));
   const rawGrade = text(result.scoreGrade).toUpperCase();
@@ -95,14 +131,14 @@ function resultScore(result: UnknownRecord, status: string): { score: number; gr
   return { score, grade };
 }
 
-function severityFor(status: string): Severity {
-  const normalized = status.toLowerCase();
-  if (["failed", "blocked", "rejected", "critical"].includes(normalized)) {
-    return "critical";
-  }
-  if (["warning", "warn", "pending", "review"].includes(normalized)) {
-    return "warning";
-  }
+// New severityFor: read per-node severity (a real enum) directly from the
+// payload. The old logic that string-matched `node.status` is gone — status is
+// pipeline state, severity is risk level. Two different things.
+function severityFor(nodeSeverity: unknown): Severity {
+  const raw = typeof nodeSeverity === "string" ? nodeSeverity.toLowerCase() : "";
+  if (raw === "critical") return "critical";
+  if (raw === "high") return "critical"; // rolled up: "high" → UI severity critical
+  if (raw === "medium" || raw === "warning") return "warning";
   return "info";
 }
 
@@ -128,7 +164,9 @@ function buildRisks(result: UnknownRecord, reportPackage: UnknownRecord): RiskPo
   const regulations = records(result.retrievedChunks).map(regulationFromChunk);
 
   return nodes.map((node, index) => {
-    const severity = severityFor(text(node.status));
+    // Read node.severity (real risk enum) — distinct from node.status which
+    // is pipeline execution state. Falls back to "info" for older payloads.
+    const severity = severityFor(node.severity);
     const confidence = Math.max(0, Math.min(1, number(node.confidence, 0)));
     return {
       riskId: text(node.id, `risk-${index + 1}`),
@@ -184,7 +222,22 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     typeof complianceStatusRaw === "string" && complianceStatusRaw.length > 0
       ? complianceStatusRaw
       : "";
-  const score = resultScore(result, complianceStatus);
+
+  // Build risks FIRST so the score can be rolled up from them. The previous
+  // version computed score from `complianceStatus` alone, which caused the
+  // "REJECTED with no critical riskPoint" bug.
+  const riskPoints = buildRisks(result, reportPackage);
+  const decisionView = record(reportPackage.decisionView);
+  const decisionRiskLevel = text(decisionView.riskLevel);
+
+  // Derive a rollup. If we have *any* riskPoints OR an explicit riskLevel,
+  // use the rollup (matches the risk distribution the page renders). Only
+  // fall back to legacy `complianceStatus` when both are absent.
+  const score =
+    riskPoints.length > 0 || decisionRiskLevel
+      ? scoreFor(rollupSeverityForScore(riskPoints, decisionRiskLevel))
+      : resultScore(result, complianceStatus);
+
   const generatedAt = text(
     record(reportPackage.auditMetadata).generatedAt,
     session.updatedAt,
@@ -209,7 +262,7 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
         fileName: asset.name,
       })),
     documents: [],
-    riskPoints: buildRisks(result, reportPackage),
+    riskPoints,
     checklist: buildChecklist(reportPackage),
     generatedAt,
     reportPackage: result.reportPackage as ReportPackage | undefined,
