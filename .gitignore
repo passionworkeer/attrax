@@ -139,3 +139,12 @@ embedding_cache/
 # ─── Nested local repository copy ────────────────────────────
 attrax/
 # 2026-07-19: explicitly exclude handoff design snapshot (850MB on disk only).规航AI-源码-后端联调-20260717/
+
+# 2026-07-19: throwaway 7/18 over-load debug probes — keep on disk but
+# do not commit. Replaced by ops/deploy scripts (apply-upload-fix.sh) +
+# health checks in apply-upload-fix.sh itself.
+scripts/organize-and-test.sh
+scripts/probe.sh
+scripts/probe-v2.sh
+scripts/start-build.sh
+scripts/wrap-organize.sh
