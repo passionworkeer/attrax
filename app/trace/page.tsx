@@ -47,6 +47,10 @@ function TracePageInner() {
 
   const [settledSessionId, setSettledSessionId] = useState("");
   const [traceData, setTraceData] = useState<TraceStats | null>(null);
+  // B-1: track API failure (vs. the previous silent fallback that rendered
+  // Demo numbers as if the scan had succeeded). surfaced as a banner rather
+  // than letting `hasRealTrace === false` quietly fall through.
+  const [loadFailed, setLoadFailed] = useState(false);
 
   useEffect(() => {
     if (!sessionId) {
@@ -63,17 +67,25 @@ function TracePageInner() {
 
     // 从 API 获取真实 trace 数据
     fetch(`/api/trace/${sessionId}`, { cache: "no-store", headers: authHeaders })
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((rawData) => {
         if (cancelled) return;
         const data = unwrapApiData<TraceStats>(rawData);
         if (data?.traceNodes) {
           setTraceData(data);
+        } else {
+          // 200 OK but envelope says success=false or empty payload — treat as failure.
+          setLoadFailed(true);
         }
         setSettledSessionId(sessionId);
       })
       .catch(() => {
-        if (!cancelled) setSettledSessionId(sessionId);
+        if (cancelled) return;
+        setLoadFailed(true);
+        setSettledSessionId(sessionId);
       });
 
     // 同时获取完整扫描结果，供 result 页面缓存复用
@@ -137,6 +149,17 @@ function TracePageInner() {
           {t("trace.backToResult")}
         </button>
       </div>
+
+      {/* B-1: explicit failure banner so the Demo badge isn't the only signal */}
+      {loadFailed && !hasRealTrace && (
+        <div role="alert" className="mx-auto mt-4 max-w-6xl px-6">
+          <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-5 py-3 text-sm text-red-200">
+            {locale === "zh"
+              ? "Trace 数据加载失败，以下展示的是 Demo 默认值，不是本次扫描的真实数据。"
+              : "Trace data failed to load. The values below are Demo defaults, not real scan data."}
+          </div>
+        </div>
+      )}
 
       {/* Hero Header */}
       <div className="mx-6 mt-6 glass-panel rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">

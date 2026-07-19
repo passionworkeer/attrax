@@ -46,6 +46,8 @@ function RoadmapPageInner() {
 
   const [settledSessionId, setSettledSessionId] = useState("");
   const [roadmapData, setRoadmapData] = useState<RoadmapData | null>(null);
+  // B-1: distinguish "loaded defaults" from "API actually failed".
+  const [loadFailed, setLoadFailed] = useState(false);
 
   useEffect(() => {
     if (!sessionId) {
@@ -62,17 +64,24 @@ function RoadmapPageInner() {
 
     // 从 API 获取真实路线图数据
     fetch(`/api/roadmap/${sessionId}`, { cache: "no-store", headers: authHeaders })
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((rawData) => {
         if (cancelled) return;
         const data = unwrapApiData<{ items?: RoadmapItem[] }>(rawData);
         if (data?.items) {
           setRoadmapData(data);
+        } else {
+          setLoadFailed(true);
         }
         setSettledSessionId(sessionId);
       })
       .catch(() => {
-        if (!cancelled) setSettledSessionId(sessionId);
+        if (cancelled) return;
+        setLoadFailed(true);
+        setSettledSessionId(sessionId);
       });
 
     // 同时获取完整扫描结果，供 result 页面缓存复用
@@ -137,6 +146,17 @@ function RoadmapPageInner() {
           {t("roadmap.backToResult")}
         </button>
       </div>
+
+      {/* B-1: failure banner — Demo badge alone is too quiet */}
+      {loadFailed && !hasRealRoadmap && (
+        <div role="alert" className="mx-auto mt-4 max-w-6xl px-6">
+          <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-5 py-3 text-sm text-red-200">
+            {locale === "zh"
+              ? "路线图数据加载失败，以下展示的是 Demo 默认值，不是本次扫描的真实路线图。"
+              : "Roadmap data failed to load. The items below are Demo defaults, not the real scan roadmap."}
+          </div>
+        </div>
+      )}
 
       {/* Hero Header */}
       <div className="mx-6 mt-6 glass-panel rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
