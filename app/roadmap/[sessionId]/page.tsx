@@ -264,7 +264,7 @@ function RoadmapSessionPageInner({
               onDocx={async (dlLocale) => downloadRoadmapReportAsDocx(buildRoadmapContent(dlLocale), dlLocale)}
             />
             <a
-              href={`/api/report/${sessionId ?? "demo"}/roadmap?format=csv&lang=${locale}`}
+              href={`/api/report/${sessionId || "demo"}/roadmap?format=csv&lang=${locale}`}
               download
               className={cn(
                 buttonVariants({ variant: "ghost", size: "sm" }),
