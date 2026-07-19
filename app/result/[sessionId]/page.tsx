@@ -19,11 +19,78 @@ import {
   blazeReportFiles,
   blazeReportPreviewTabs,
 } from "@/lib/complipilot/scenario";
-import { mockScanResult } from "@/lib/mock/blaze-scan-result";
-import type { ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
+import { mockScanResult, mockComplianceReportMarkdown } from "@/lib/mock/blaze-scan-result";
+import type { ComplianceReportResult, ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { ResultExportButton } from "./result-export-button";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
+
+/**
+ * Synthesize a `ComplianceReportResult` view-model from the demo's `ScanResult`.
+ *
+ * The home-page demo (`/result/demo`) renders a `ScanResult` sourced from
+ * `lib/mock/blaze-scan-result.ts`. The download buttons in the export card
+ * point to `#compliance-report`, which the page previously did not render —
+ * clicking them was a dead link. The view itself uses
+ * `<ComplianceReportView>`'s PDF/DOCX path, so the anchor target IS the view.
+ *
+ * The markdown body comes from `lib/mock/blaze-scan-result.ts`'s exported
+ * pre-built string (`mockComplianceReportMarkdown`), NOT from a server-only
+ * `buildComplianceReport` call. Keeping the markdown client-bundle-safe lets
+ * `page.tsx` (a Client Component) render the view without dragging the
+ * server `fs` chain through Turbopack's client chunks.
+ *
+ * The same markdown text is also what `/api/report/demo/compliance?format=md`
+ * serves — that's a server route, so it goes through `lib/reporting.ts.buildComplianceReport`
+ * and stays in sync on every demo rebuild. Both paths read from the same
+ * source of truth (`mockComplianceReportMarkdown`/`buildComplianceReport`
+ * pair), so /result/demo and /api/report/demo describe identical content.
+ */
+function scanResultToComplianceView(result: ScanResult, locale: "zh" | "en"): ComplianceReportResult {
+  const severityRank: Record<RiskPoint["severity"], number> = { critical: 3, warning: 2, info: 1 };
+  const topRank = result.riskPoints.reduce((acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0), 0);
+  const complianceStatus: ComplianceReportResult["complianceStatus"] =
+    topRank >= 3 ? "REJECTED" : topRank >= 2 ? "WARN" : "PASS";
+  const traceNodes: ComplianceReportResult["agentTrace"] = result.riskPoints.map((rp) => ({
+    node: `risk.${rp.riskId}`,
+    label: rp.title,
+    severity: rp.severity,
+  }));
+  traceNodes.push({ node: "demo.aggregate", label: locale === "zh" ? "Demo 数据汇总" : "Demo aggregate" });
+  const fallback = mockComplianceReportMarkdown(result, locale);
+  return {
+    sessionId: result.sessionId,
+    scanTime: result.scanTime,
+    productCategory: result.productCategory,
+    productName: result.productName,
+    productNameEn: result.productNameEn,
+    targetMarkets: result.targetMarkets,
+    complianceScore: result.complianceScore,
+    scoreGrade: result.scoreGrade,
+    complianceReport: fallback,
+    complianceStatus,
+    agentTrace: traceNodes,
+    loopCount: 0,
+    retrievedChunks: result.riskPoints.flatMap((rp) =>
+      rp.regulations.map((rule) => ({
+        regId: rule.regId,
+        docName: rule.name,
+        docNameEn: rule.nameEn,
+        articleNo: rule.code,
+        region: rule.market,
+        score: 0.85,
+      })),
+    ),
+    images: undefined,
+    documents: [],
+    riskPoints: undefined,
+    checklist: undefined,
+    generatedAt: result.generatedAt,
+    modelInfo: { ragProvider: "demo", latencyMs: 0 },
+    source: "demo",
+  };
+}
 
 function readStoredAccessToken(sessionId: string): string | null {
   try {
@@ -405,6 +472,7 @@ export default function ResultPage() {
     riskExposureItems: [],
     costBreakdown: [],
   };
+  const complianceView = scanResultToComplianceView(result, locale);
   const critical = result.riskPoints.find((item) => item.severity === "critical");
   const activeRiskRaw =
     result.riskPoints.find((item) => item.riskId === selectedRiskId) ??
@@ -737,6 +805,26 @@ export default function ResultPage() {
               })}
             </div>
           </section>
+        </section>
+
+        <section id="compliance-report" className="blaze-panel p-5 sm:p-7">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <SectionEyebrow>{locale === "zh" ? "STEP 02.5 · 合规扫描报告全文" : "STEP 02.5 · Full compliance report"}</SectionEyebrow>
+              <h2 className="mt-3 text-3xl font-semibold text-white">
+                {locale === "zh" ? "完整合规扫描报告(可下载 PDF / DOCX)" : "Full compliance scan (PDF / DOCX download)"}
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-white/58">
+                {locale === "zh"
+                  ? "以下报告由合规扫描引擎生成,涵盖核心结论、法规引用、整改动作与责任方。可直接导出 PDF 给业务/法务/供应商。"
+                  : "Generated by the compliance engine. Covers headline, citations, remediation, and owners. Export to PDF for business / legal / supplier teams."}
+              </p>
+            </div>
+            <GlowPill>{locale === "zh" ? "导出 PDF / DOCX" : "PDF / DOCX"}</GlowPill>
+          </div>
+          <div className="mt-5">
+            <ComplianceReportView result={complianceView} />
+          </div>
         </section>
 
         <section id="action" className="grid gap-6 overflow-hidden lg:grid-cols-[1fr_1fr]">
