@@ -35,9 +35,9 @@ describe("SiteHeader", () => {
     mockedUsePathname.mockReturnValue("/");
   });
 
-  it("renders the Attrax brand link with localized subtitle", () => {
+  it("renders the CompliPilot brand link with localized subtitle", () => {
     renderInProvider(<SiteHeader />);
-    expect(screen.getByText("Attrax")).toBeInTheDocument();
+    expect(screen.getByText("规航AI")).toBeInTheDocument();
     // Default zh locale -> 合规引擎
     expect(screen.getByText("合规引擎")).toBeInTheDocument();
   });

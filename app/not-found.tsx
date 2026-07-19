@@ -20,7 +20,7 @@ export default function NotFound() {
           Lost in the smoke.
         </h1>
         <p className="text-sm leading-relaxed text-slate-400 mb-8">
-          The page you tried to reach does not exist on Attrax. It may have
+          The page you tried to reach does not exist on CompliPilot. It may have
           been moved, renamed, or the URL is mistyped.
         </p>
 

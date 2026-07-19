@@ -6,7 +6,7 @@ test.describe('Upload Page E2E', () => {
   })
 
   test('upload page loads successfully', async ({ page }) => {
-    await expect(page).toHaveTitle(/火鹰合规|Blaze Hawks/)
+    await expect(page).toHaveTitle(/规航AI|CompliPilot/)
   })
 
   test('displays product images section', async ({ page }) => {

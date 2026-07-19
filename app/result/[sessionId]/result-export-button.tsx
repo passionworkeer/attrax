@@ -6,7 +6,11 @@ import { buildProfitReportFromScanResult } from "@/lib/pipeline/profit-report";
 import {
   downloadProfitReportAsDocx,
   downloadProfitReportAsPdf,
+  downloadRoadmapReportAsDocx,
+  downloadRoadmapReportAsPdf,
 } from "@/lib/report-download";
+import type { RoadmapContent } from "@/lib/report-export-modules/roadmap";
+import { getDefaultRoadmapItems } from "@/lib/mock/roadmap";
 import type { ScanResult } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -18,13 +22,62 @@ import { cn } from "@/lib/utils";
  * 但 standalone 容器没 `python` 命令且 handoff 分支也没跟踪那个脚本,
  * 结果 500。
  *
- * 现在:
+ * 现在(mid-2026-07 改进):
  * - `md` / `csv` → 走 `/api/report/...?format=md|csv`(API 文本分支本来就 200)
+ * - `pdf` / `docx` + `compliance` → 跳转到 `/result/{sessionId}` 内的
+ *   `#compliance-report` section,那里 `<ComplianceReportView>` 已经挂好
+ *   `downloadReportAsPdf` / `downloadReportAsDocx`
  * - `pdf` / `docx` + `profit` → 客户端用 jspdf / docx 生成
- * - `pdf` / `docx` + `compliance` → 跳转到 `/result/{sessionId}` 内的 client view
- *   (那里 ComplianceReportView 已经在用 downloadReportAsPdf/Docx,工作良好)
- * - `pdf` / `docx` + `roadmap` → 暂无 client 适配,按钮 disabled + tooltip 提示
+ *   (通过 `buildProfitReportFromScanResult` 把 `ScanResult` 适配为
+ *   `ProfitReportResult`,走 `ELECTRONICS_FINANCIAL.costBreakdown` 兜底)
+ * - `pdf` / `docx` + `roadmap` → 客户端 `downloadRoadmapReportAsPdf/Docx`
+ *   `RoadmapContent` 直接由 `getDefaultRoadmapItems()` 提供(demo 默认
+ *   7 阶段,真扫描用 `result.reportPackage.roadmap.items`,前置未上传时
+ *   兜底)
  */
+
+function buildRoadmapContent(result: ScanResult, locale: "zh" | "en"): RoadmapContent {
+  // 真扫描结果在 `result.reportPackage.roadmap.items` 已经有完整数据;
+  // demo / 非 reportPackage 路径用 `lib/mock/roadmap.getDefaultRoadmapItems()` 兜底
+  const fromPackage = result.reportPackage?.roadmap?.items?.length
+    ? result.reportPackage.roadmap.items.map((item) => ({
+        title: item.title ?? item.titleEn ?? "",
+        titleEn: item.titleEn ?? item.title_en,
+        description: item.description,
+        descriptionEn: item.descriptionEn ?? item.description_en,
+        cost: item.cost,
+        days: item.estimatedDays ?? item.estimated_days,
+        status: item.status,
+        documents: item.documents,
+        documentsEn: item.documentsEn ?? item.documents_en,
+      }))
+    : null;
+
+  const items =
+    fromPackage ??
+    getDefaultRoadmapItems().map((item) => ({
+      title: locale === "en" ? item.titleEn : item.title,
+      titleEn: item.titleEn,
+      description: locale === "en" ? item.descriptionEn : item.description,
+      descriptionEn: item.descriptionEn,
+      cost: item.cost,
+      days: item.estimatedDays,
+      status: item.status,
+      documents: item.documents,
+      documentsEn: item.documentsEn,
+    }));
+
+  return {
+    sessionId: result.sessionId,
+    currentStatus: result.reportPackage?.auditMetadata?.validationStatus,
+    currentStatusEn: result.reportPackage?.auditMetadata?.validationStatus,
+    totalDays: result.reportPackage?.roadmap?.totalDays,
+    totalCost: result.reportPackage?.roadmap?.totalCost,
+    progress: result.reportPackage?.roadmap?.progress,
+    items,
+  };
+}
+
 export function ResultExportButton({
   result,
   reportType,
@@ -54,7 +107,7 @@ export function ResultExportButton({
     );
   }
 
-  // PDF / DOCX — compliance 跳到页内 client view,profit 客户端生成,roadmap disabled
+  // PDF / DOCX — compliance 跳到页内 client view
   if (reportType === "compliance") {
     return (
       <a
@@ -70,37 +123,42 @@ export function ResultExportButton({
   }
 
   const onClick = async () => {
-    if (reportType !== "profit") return;
     setBusy(true);
     try {
-      const exportable = buildProfitReportFromScanResult(result, locale);
-      if (!exportable) return;
-      if (format === "pdf") {
-        await downloadProfitReportAsPdf(exportable, locale);
-      } else {
-        await downloadProfitReportAsDocx(exportable, locale);
+      if (reportType === "profit") {
+        const exportable = buildProfitReportFromScanResult(result, locale);
+        if (!exportable) return;
+        if (format === "pdf") {
+          await downloadProfitReportAsPdf(exportable, locale);
+        } else {
+          await downloadProfitReportAsDocx(exportable, locale);
+        }
+        return;
+      }
+      if (reportType === "roadmap") {
+        const content = buildRoadmapContent(result, locale);
+        if (format === "pdf") {
+          await downloadRoadmapReportAsPdf(content, locale);
+        } else {
+          await downloadRoadmapReportAsDocx(content, locale);
+        }
+        return;
       }
     } finally {
       setBusy(false);
     }
   };
 
-  const noClientExport = reportType === "roadmap";
   const profitNoData =
     reportType === "profit" && !buildProfitReportFromScanResult(result, locale);
 
-  const disabled = noClientExport || profitNoData || busy;
+  const disabled = profitNoData || busy;
 
-  const tooltip =
-    noClientExport
-      ? locale === "zh"
-        ? "路线图暂不支持 PDF/Word 导出,请使用 CSV"
-        : "Roadmap PDF/Word export is not yet supported; use CSV."
-      : profitNoData
-        ? locale === "zh"
-          ? "缺少利润报告 markdown,无法导出"
-          : "Missing profit report markdown; export is unavailable."
-        : undefined;
+  const tooltip = profitNoData
+    ? locale === "zh"
+      ? "缺少利润报告 markdown,无法导出"
+      : "Missing profit report markdown; export is unavailable."
+    : undefined;
 
   return (
     <button

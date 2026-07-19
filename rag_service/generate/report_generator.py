@@ -524,7 +524,11 @@ class ReportGenerator:
             },
             "decisionView": {
                 "verdict": "WARN",
-                "riskLevel": "HIGH",
+                # riskLevel 同 REPORT_PACKAGE_SYSTEM_PROMPT 风险等级契约:
+                # = nodes[].severity 最大值。fallback 没真证据,vision/retriever/generate
+                # 默认都是 info,而非硬编码 critical/high/medium,否则前端会把它 rollup 成
+                # critical→35/D,与"零高危"自相矛盾(a2235dd 已修前端解耦,这里跟着改)。
+                "riskLevel": "LOW",
                 "summary": "系统先识别产品，再检索目标市场法规，最后生成合规、利润和执行路线图。",
                 "keyFindings": [
                     "产品识别结果决定检索关键词和适用法规范围。",
@@ -539,7 +543,7 @@ class ReportGenerator:
                         "label": "产品视觉识别",
                         "labelEn": "Product vision analysis",
                         "status": "success",
-                        "severity": "critical",
+                        "severity": "info",
                         "duration": "0s",
                         "confidence": 0.8,
                         "reasoning": "从图片中提取产品类型、核心特征和可见认证标志。",
@@ -551,7 +555,7 @@ class ReportGenerator:
                         "label": "法规与成本语料检索",
                         "labelEn": "Regulation and cost retrieval",
                         "status": "success",
-                        "severity": "high",
+                        "severity": "info",
                         "duration": "0s",
                         "confidence": 0.75,
                         "reasoning": "使用目标市场和产品特征召回相关法规、认证和成本片段。",
@@ -563,7 +567,7 @@ class ReportGenerator:
                         "label": "四场景内容生成",
                         "labelEn": "Four-scene content generation",
                         "status": "success",
-                        "severity": "medium",
+                        "severity": "info",
                         "duration": "0s",
                         "confidence": 0.78,
                         "reasoning": "一次生成合规报告、成本利润、排期路线图和决策解释。",

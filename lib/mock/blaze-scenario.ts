@@ -123,7 +123,7 @@ export const blazeRoadmapRows = [
   {
     phase: "预测复核",
     time: "第 1 周",
-    owner: "火鹰合规",
+    owner: "规航AI",
     output: "法规比对、利润回算、风险热区确认",
   },
   {
@@ -198,7 +198,7 @@ export const blazeReportPreviewTabs = [
   {
     value: "compliance",
     label: "合规总报告",
-    title: "火鹰合规 · 合规扫描报告",
+    title: "规航AI · 合规扫描报告",
     subtitle: "这份报告适合交给法务、运营或供应商做第一次整改同步。",
     leftMetric: { label: "基础模式", value: "$1", hint: "风险模式 $6800" },
     rightMetric: { label: "合规模式", value: "$7", hint: "风险模式 $6000" },

@@ -14,12 +14,12 @@ import { expect, test } from "@playwright/test";
  */
 test.describe("404 品牌页", () => {
   test("访问不存在路由落到品牌化 404", async ({ page }) => {
-    await page.goto("/this-route-does-not-exist-anywhere-attrax");
+    await page.goto("/this-route-does-not-exist-anywhere-complipilot");
 
     // 品牌关键元素
     await expect(page.getByText("404 · Not found")).toBeVisible();
     await expect(page.getByRole("heading", { name: "Lost in the smoke." })).toBeVisible();
-    await expect(page.getByText(/Attrax/)).toBeVisible();
+    await expect(page.getByText(/CompliPilot/)).toBeVisible();
 
     // CTA 链接存在
     await expect(page.getByRole("link", { name: /Back to home/i })).toBeVisible();
@@ -30,7 +30,7 @@ test.describe("404 品牌页", () => {
   });
 
   test("404 页 Back to home 跳转首页", async ({ page }) => {
-    await page.goto("/nope-attrax-404-test");
+    await page.goto("/nope-complipilot-404-test");
     const homeLink = page.getByRole("link", { name: /Back to home/i });
     await expect(homeLink).toBeVisible();
     await homeLink.click();
@@ -38,7 +38,7 @@ test.describe("404 品牌页", () => {
   });
 
   test("404 页 Browse regulations 跳转法规页", async ({ page }) => {
-    await page.goto("/nope-attrax-404-test");
+    await page.goto("/nope-complipilot-404-test");
     const regLink = page.getByRole("link", { name: /Browse regulations/i });
     await expect(regLink).toBeVisible();
     await regLink.click();

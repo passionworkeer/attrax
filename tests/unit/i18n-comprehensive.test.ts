@@ -52,7 +52,7 @@ describe('i18n getTranslations', () => {
 
   it('contains home page translations', () => {
     const translations = getTranslations()
-    expect(translations.home.title).toBe('火鹰合规')
+    expect(translations.home.title).toBe('规航AI')
     expect(translations.home.subtitle).toBe('想出海？先烧毁！')
     expect(translations.home.description).toBe('AI驱动的跨境电商合规风险智能扫描平台')
   })
