@@ -116,6 +116,9 @@ export default function RegulationsPage() {
   const [regulations, setRegulations] = useState<RegulationUpdate[]>([]);
   const [meta, setMeta] = useState<RegulationsMeta>(fallbackMeta);
   const [loading, setLoading] = useState(true);
+  // B-2: distinguish "no results for this filter" from "API failed". Without
+  // this the user saw an empty Filter icon and assumed nothing matched.
+  const [loadFailed, setLoadFailed] = useState(false);
   const [search, setSearch] = useState("");
   // Defer the search so that fast typing does not block the input or the
   // server filter. useEffect below watches `deferredSearch` and the fetch
@@ -130,6 +133,7 @@ export default function RegulationsPage() {
 
     const fetchRegulations = async () => {
       setLoading(true);
+      setLoadFailed(false);
       try {
         const params = new URLSearchParams({ limit: "50" });
         if (deferredSearch) params.set("search", deferredSearch);
@@ -138,15 +142,23 @@ export default function RegulationsPage() {
         const response = await fetch(`/api/regulations/updates?${params.toString()}`, {
           signal: controller.signal,
         });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
         const data = await response.json();
 
         if (data.success) {
           setRegulations(data.data);
           setMeta(data.meta ?? fallbackMeta);
+        } else {
+          // 200 OK but envelope success=false — surface as failure rather
+          // than silently keeping the previous list (or empty list).
+          setLoadFailed(true);
         }
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") return;
         console.error("Failed to fetch regulations:", error);
+        setLoadFailed(true);
       } finally {
         if (!controller.signal.aborted) {
           setLoading(false);
@@ -283,6 +295,19 @@ export default function RegulationsPage() {
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-blaze-red border-t-transparent" />
+          </div>
+        ) : loadFailed ? (
+          // B-2: distinguish from "no results" empty state — API truly failed.
+          <div role="alert" className="flex flex-col items-center justify-center glass-panel rounded-2xl py-16 text-center">
+            <AlertTriangle className="mb-4 h-12 w-12 text-red-400" />
+            <p className="mb-2 text-lg font-medium text-white">
+              {locale === "zh" ? "法规加载失败" : "Failed to load regulations"}
+            </p>
+            <p className="max-w-md text-sm text-slate-400">
+              {locale === "zh"
+                ? "无法从服务器获取最新法规列表，请稍后重试或刷新页面。"
+                : "Could not reach the regulation updates service. Try again or refresh the page."}
+            </p>
           </div>
         ) : regulations.length > 0 ? (
           <div className="space-y-4">
