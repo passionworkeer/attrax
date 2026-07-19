@@ -1,32 +1,35 @@
-# 服务器版本对账 — 2026-07-18
+# 服务器版本对账 — 2026-07-19
 
 > 服务器 `120.77.36.107` 当前跑的是哪份代码?跟哪个 git ref 一致?
 > 改了之后怎么知道已经同步?出问题时怎么回到上一个状态?
 
 ## 1. 当前线上版本
 
+> **2026-07-19 22:56 重新核对**(SSH 实地 cat BUILD_ID + 与本地 build 产物逐字比对)。
+> 之前的版本块已严重滞后(停在 `db3a54b` / `7e7bc95`),实际线上今天 21:14 已部署到 `83890ae`。
+
 | 项 | 值 |
 |---|---|
 | 服务器 | `admin@120.77.36.107` (ssh 端口默认 22, ed25519 密钥) |
 | 部署目录 | `/opt/attrax/` |
-| PM2 nextjs PID | `255979` (每次重启会变) |
-| PM2 rag-service PID | `243479` (本次部署时已 8h uptime,本次未重启) |
-| 当前 BUILD_ID | `E8R5GGlcbH9UZoNgsFsmq` |
-| 对应 commit | `db3a54b` (codex/backend-decoupling) |
+| 当前 BUILD_ID | `ekmjiomccTcAos50wKnTw` |
+| 对应 commit | `83890ae` (codex/backend-decoupling) |
 | 对应 git ref | `origin/codex/backend-decoupling` |
-| 上一个 BUILD_ID(回滚点) | `6vo9eDne-1LDAgD903V2c` |
-| 上一个对应 commit | `7e7bc95` (PDF/DOCX 浏览器端导出,首次) |
-| 当前 commit message | `fix(frontend): 修复浏览器端 PDF/DOCX 下载真正失败的两个根因` |
+| 部署标识文件 | `/opt/attrax/.next/standalone/.deployed` (本次手动补建;以后由 `build-deploy-tarball.sh` 自动写,见 §6) |
+| 上一版 BUILD_ID(回滚点) | `iBsTDSbzM6t_M2T54ZhYv` (apply 脚本备份 `.next/standalone-pre-r1-20260719-210313`) |
+| 当前 commit message | `fix(deploy): standalone 部署补 static+public staging,根治整站 CSS 404 裸奔` |
 
 ## 2. git ref 关系图
 
 ```
 origin/codex/backend-decoupling
-└── 7e7bc95 (上一版: 浏览器端 PDF/DOCX 导出)
-    └── db3a54b (当前: 修复 detached anchor + fonts/ 缺失 + financialSummary 兜底)
-        ↑
-        └── 现在服务器上的 /opt/attrax 跟这个 commit 完全一致(源码)
-            但 .next/standalone 是本地新 build (BUILD_ID E8R5GGlcbH9UZoNgsFsmq)
+└── db3a54b (旧版:7-18 PDF/DOCX 浏览器端导出修复)
+    └── ...(7-18 ~ 7-19 的 demo 场景 / 品牌统一 / 35D 评分解耦 / 7-18 过载事故修复 / standalone 部署修复 等 9 个 commit)...
+        └── 83890ae (当前线上:standalone 部署补 static+public staging,根治整站 CSS 404 裸奔)
+            ↑
+            └── 服务器 /opt/attrax/.next/standalone 源码 = 这个 commit
+                BUILD_ID = ekmjiomccTcAos50wKnTw (本地 2026-07-19 21:14 build)
+                标识文件 /opt/attrax/.next/standalone/.deployed 已补建
 ```
 
 > 服务器 `/opt/attrax` 不是 git repo (tarball 部署)。
@@ -38,17 +41,21 @@ origin/codex/backend-decoupling
 ### 3.1 在线检查(必跑)
 
 ```bash
+# 0. 最快对账:读 .deployed 标识(一次拿到 commit + BUILD_ID + ref)
+ssh admin@120.77.36.107 'cat /opt/attrax/.next/standalone/.deployed'
+# 期望: commit=83890ae / build_id=ekmjiomccTcAos50wKnTw / ref=origin/codex/backend-decoupling
+
 # 1. 服务器 BUILD_ID
 ssh admin@120.77.36.107 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
-# 期望: E8R5GGlcbH9UZoNgsFsmq
+# 期望: ekmjiomccTcAos50wKnTw
 
 # 2. 本地仓 HEAD commit
 git -C D:/Data/Desktop/attrax rev-parse HEAD
-# 期望: db3a54b... (完整 hash)
+# 期望: 83890ae... (完整 hash)
 
 # 3. BUILD_ID ↔ commit 一致
-git -C D:/Data/Desktop/attrax log --all --oneline | grep db3a54b
-# 期望: 能找到 db3a54b fix(frontend): 修复浏览器端 PDF/DOCX 下载真正失败的两个根因
+git -C D:/Data/Desktop/attrax log --all --oneline | grep 83890ae
+# 期望: 能找到 83890ae fix(deploy): standalone 部署补 static+public staging,根治整站 CSS 404 裸奔
 
 # 4. 关键 API 行为
 curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:3000/api/health
@@ -160,7 +167,7 @@ ssh admin@120.77.36.107 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
 - [ ] `scripts/organize-and-test.sh` 里的 `EXPECTED="8yIFraqxGih3H_gxvEx8i"` 硬编码需要改成从仓 HEAD 推算(或单独维护一个 `EXPECTED_BUILD_ID` env)
 - [ ] 本仓 README 增加"如何把本地代码同步到服务器"标准流程(目前只有 `docs/DEPLOY-CHECKLIST.md` 略提到,需要展开)
 - [ ] 删 `docs/E2E-REPORT-20260718.md` 里过时的 polling 500 描述(那是已知遗留,不该再列在"未完成")
-- [ ] 服务器没有 git,部署时无法做 `git rev-parse HEAD` 自动校验 → 推荐在 `/opt/attrax/.deployed` 写一个 `commit=<hash>` 的标识文件,部署脚本自动写入
+- [x] ~~服务器没有 git,部署时无法做 `git rev-parse HEAD` 自动校验~~ → **已完成 (2026-07-19)**:`build-deploy-tarball.sh` 在 stage 阶段自动写 `.deployed`(commit / commit_full / build_id / branch / ref / built_at),`apply-upload-fix.sh` 解包后落地到 `/opt/attrax/.next/standalone/.deployed`。当前线上版本已手动补建。以后对账 `cat .deployed` 即可,不必再手动维护本文档版本块。
 
 ## 7. 已知遗留(跟本次修复无关)
 
@@ -174,5 +181,6 @@ ssh admin@120.77.36.107 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
 ---
 
 *文档创建于 2026-07-18 14:30 CST*
-*当前 commit: 7e7bc95 (origin/codex/backend-decoupling)*
-*对应 BUILD_ID: 6vo9eDne-1LDAgD903V2c*
+*2026-07-19 22:56 CST 重新核对更新(SSH 实地校验)*
+*当前 commit: 83890ae (origin/codex/backend-decoupling)*
+*对应 BUILD_ID: ekmjiomccTcAos50wKnTw*
