@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { startTransition, useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { CircleAlert, CircleDollarSign, Download, FileStack, MoveRight, ScanLine } from "lucide-react";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
 import { buttonVariants } from "@/components/ui/button";
@@ -19,7 +19,7 @@ import {
   blazeReportFiles,
   blazeReportPreviewTabs,
 } from "@/lib/complipilot/scenario";
-import { mockScanResult, mockComplianceReportMarkdown } from "@/lib/mock/blaze-scan-result";
+import { createMockScanResult, mockComplianceReportMarkdown, mockScanResult } from "@/lib/mock/blaze-scan-result";
 import type { ComplianceReportResult, ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
@@ -279,13 +279,26 @@ function getPreviewBullets(
 
 export default function ResultPage() {
   const params = useParams<{ sessionId: string }>();
+  const search = useSearchParams();
   const { locale } = useBlazeLocale();
   const copy = getCompliPilotCopy(locale);
   const sessionId = params.sessionId;
+  const presetKey = search?.get("preset") ?? "";
+  const presetCategory: ProductCategory | null =
+    presetKey === "humidifier"
+      ? "appliance"
+      : presetKey === "toy"
+        ? "toy"
+        : presetKey === "charger"
+          ? "electronics"
+          : null;
   const isDemoSession = sessionId === "demo";
-  const [result, setResult] = useState<ScanResult | null>(
-    isDemoSession ? mockScanResult : null
-  );
+  const demoResult = isDemoSession
+    ? presetCategory
+      ? createMockScanResult("demo", { category: presetCategory })
+      : mockScanResult
+    : null;
+  const [result, setResult] = useState<ScanResult | null>(demoResult);
   const [message, setMessage] = useState(copy.result.loadingMessage);
   const [selectedRiskId, setSelectedRiskId] = useState<string | null>(null);
   const displayMessage = message;
@@ -918,6 +931,7 @@ export default function ResultPage() {
                           reportType={file.reportType}
                           format={format}
                           locale={locale}
+                          presetKey={isDemoSession ? (presetKey as "charger" | "humidifier" | "toy") : undefined}
                         />
                       ))}
                     </div>

@@ -83,19 +83,24 @@ export function ResultExportButton({
   reportType,
   format,
   locale,
+  presetKey,
 }: {
   result: ScanResult;
   reportType: "compliance" | "roadmap" | "profit";
   format: "pdf" | "docx" | "md" | "csv";
   locale: "zh" | "en";
+  // Mid-2026-07:`?preset=charger|humidifier|toy` 让 /api/report/demo/... 切到
+  // 不同 scenario(避免 demo 页面按钮永远下载 65W 充电器的报告)。
+  presetKey?: "charger" | "humidifier" | "toy";
 }) {
   const [busy, setBusy] = useState(false);
+  const presetQuery = presetKey ? `&preset=${presetKey}` : "";
 
   // 文本格式直接走 API 路径(本来就 200)
   if (format === "md" || format === "csv") {
     return (
       <a
-        href={`/api/report/${result.sessionId}/${reportType}?format=${format}&lang=${locale}`}
+        href={`/api/report/${result.sessionId}/${reportType}?format=${format}&lang=${locale}${presetQuery}`}
         download
         className={cn(
           buttonVariants({ variant: "ghost", size: "sm" }),
