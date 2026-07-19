@@ -15,7 +15,7 @@ const controlledRAF = vi.fn((callback: FrameRequestCallback) => {
 });
 
 function advanceAnimationFrame() {
-  vi.advanceTimersByTime(16);
+  vi.advanceTimersByTimeAsync(16);
 }
 
 function runAnimationFrames(count: number) {
@@ -102,7 +102,7 @@ describe("useScanPolling", () => {
 
       // Trigger useEffect
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(fetchSpy).toHaveBeenCalled();
@@ -123,7 +123,7 @@ describe("useScanPolling", () => {
       const { result } = renderHook(() => useScanPolling("s1"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(result.current?.status?.status).toBe("processing");
@@ -140,7 +140,7 @@ describe("useScanPolling", () => {
       const { result } = renderHook(() => useScanPolling("not_found"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(result.current?.status?.status).toBe("failed");
@@ -220,21 +220,15 @@ describe("useScanPolling", () => {
       vi.stubGlobal("fetch", fetchSpy);
 
       renderHook(() => useScanPolling("s1"));
-
-      // First poll
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
-      await act(async () => {
-        vi.advanceTimersByTime(850); // POLL_INTERVAL_MS
-      });
+      // First poll done
+      expect(callCount).toBe(1);
 
       // Second poll
       await act(async () => {
-        vi.advanceTimersByTime(1);
-      });
-      await act(async () => {
-        vi.advanceTimersByTime(850);
+        vi.advanceTimersByTimeAsync(2000); // POLL_INTERVAL_MS
       });
 
       expect(callCount).toBeGreaterThanOrEqual(2);
@@ -259,22 +253,17 @@ describe("useScanPolling", () => {
       vi.stubGlobal("fetch", fetchSpy);
 
       renderHook(() => useScanPolling("s1"));
-
-      // First poll - returns processing
-      await act(async () => {
-        vi.advanceTimersByTime(1);
-      });
-
+      await flushInitialPoll();
       expect(callCount).toBe(1);
 
       // Wait for next poll interval
       await act(async () => {
-        vi.advanceTimersByTime(850);
+        vi.advanceTimersByTimeAsync(2000);
       });
 
       // Second poll - returns ready, polling should stop
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(callCount).toBe(2);
@@ -282,7 +271,7 @@ describe("useScanPolling", () => {
 
       // Try to trigger more polling
       await act(async () => {
-        vi.advanceTimersByTime(2000);
+        vi.advanceTimersByTimeAsync(2000);
       });
 
       // Should still be 2 calls since polling stopped
@@ -307,25 +296,18 @@ describe("useScanPolling", () => {
       vi.stubGlobal("fetch", fetchSpy);
 
       renderHook(() => useScanPolling("s1"));
-
-      // First poll
-      await act(async () => {
-        vi.advanceTimersByTime(1);
-      });
+      await flushInitialPoll();
 
       // Wait for next poll
       await act(async () => {
-        vi.advanceTimersByTime(850);
-      });
-      await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(2000);
       });
 
       expect(callCount).toBe(2);
 
       // Try to trigger more polling
       await act(async () => {
-        vi.advanceTimersByTime(2000);
+        vi.advanceTimersByTimeAsync(2000);
       });
 
       // Should still be 2 calls
@@ -350,7 +332,7 @@ describe("useScanPolling", () => {
 
       // Trigger initial poll
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       // Run RAF callbacks multiple times to animate
@@ -377,7 +359,7 @@ describe("useScanPolling", () => {
       const { result } = renderHook(() => useScanPolling("s1"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       // Initial displayProgress should be 0
@@ -407,7 +389,7 @@ describe("useScanPolling", () => {
       const { result } = renderHook(() => useScanPolling("s1"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       // Run animation until settled
@@ -451,14 +433,14 @@ describe("useScanPolling", () => {
       const { unmount } = renderHook(() => useScanPolling("s1"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       const callCountBefore = fetchSpy.mock.calls.length;
       unmount();
 
       await act(async () => {
-        vi.advanceTimersByTime(2000);
+        vi.advanceTimersByTimeAsync(2000);
       });
 
       expect(fetchSpy.mock.calls.length).toBe(callCountBefore);
@@ -495,7 +477,7 @@ describe("useScanPolling", () => {
       renderHook(() => useScanPolling("test123"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(fetchSpy).toHaveBeenCalledWith(
@@ -619,7 +601,7 @@ describe("useScanPolling", () => {
       const { result } = renderHook(() => useScanPolling("s1"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(result.current?.status).toBeDefined();
@@ -636,7 +618,7 @@ describe("useScanPolling", () => {
       const { result } = renderHook(() => useScanPolling("s1"));
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       // Should handle gracefully
@@ -661,7 +643,7 @@ describe("useScanPolling", () => {
       );
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       expect(fetchSpy).toHaveBeenCalledWith(
@@ -673,7 +655,7 @@ describe("useScanPolling", () => {
       rerender({ id: "session2" });
 
       await act(async () => {
-        vi.advanceTimersByTime(1);
+        vi.advanceTimersByTimeAsync(1);
       });
 
       // Should have polled with new session

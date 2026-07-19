@@ -132,7 +132,12 @@ export function buildComplianceReport(result: ScanResult, locale: BlazeReportLoc
   // 且用的是 Blaze Hawks electronics 场景(productName 以 "ZGA" 开头)。
   const isDemoCharger = result.sessionId === "demo" && /^ZGA/.test(localized.productName ?? "");
   if (isDemoCharger) {
-    return locale === "en" ? DEMO_CHARGER_REPORT_EN : DEMO_CHARGER_REPORT_ZH
+    // 注意运算符优先级:`.replace` (17) 高于 `?:` (4)。之前写成
+    // `locale === "en" ? EN : ZH.replace(...)` 时整条 replace 链只绑定到 ZH,
+    // EN 分支直接返回带 {{PRODUCT}}/{{SCORE}} 等占位符的原模板(废文本)。
+    // 先选模板再统一替换,两分支都走占位符填充。
+    const demoTpl = locale === "en" ? DEMO_CHARGER_REPORT_EN : DEMO_CHARGER_REPORT_ZH;
+    return demoTpl
       .replace("{{PRODUCT}}", localized.productName ?? "ZGA 便携式充电器")
       .replace("{{MARKETS}}", marketList(localized))
       .replace("{{SCORE}}", String(localized.complianceScore))
@@ -342,6 +347,34 @@ export function buildProfitReport(result: ScanResult, locale: BlazeReportLocale)
   const financial: ScanResult["financialSummary"] = localized.financialSummary;
   // Capture for the strict-mode narrowing inside the `if (isDemoCharger)` block.
   const summary: NonNullable<typeof financial> | undefined = financial ?? undefined;
+
+  // 真实 RAG 路径:后端若返回了 profitReport.markdown(后端 LLM 生成的
+  // 成本/利润叙述),优先透传 — 避免本地模板覆盖后端真实分析。
+  const backendMarkdown = (result.reportPackage?.profitReport as { markdown?: string } | undefined)?.markdown;
+  if (backendMarkdown && backendMarkdown.trim().length > 0 && !financial) {
+    return backendMarkdown;
+  }
+  // 既无 financialSummary 也无 backend markdown:显式说明数据不可用,
+  // 不要伪造金额(commit 3e5259e 删正则 fallback 后的兜底)。
+  if (!financial && !backendMarkdown) {
+    return locale === "en"
+      ? `# CompliPilot · Compliance Cost Impact / AI Decision Report
+
+Product name: ${localized.productName ?? "Untitled product"}
+Target markets: ${marketList(localized)}
+Risk mix: ${totalCritical} critical / ${totalWarning} warning
+
+**Cost figures are not available for this session** — backend did not return structured financial fields. Re-run the scan with a clear selling price and target volume to populate the cost breakdown.
+`
+      : `# 规航AI · 合规成本影响 / AI 决策报告
+
+产品名称: ${localized.productName ?? "未命名产品"}
+目标市场: ${marketList(localized)}
+风险结构: ${totalCritical} 个高危 / ${totalWarning} 个警告
+
+**本会话的成本数字暂不可用** —— 后端未返回结构化财务字段。请提供明确的售价与目标销量后重新扫描,以补全成本拆解。
+`;
+  }
 
   // Demo 65W 充电宝专用 markdown:与合规章呼应,直接给出 BOM/包装/认证/EPR/
   // 物流单价与合规前后净利对比,而不是泛泛"财务数据"。和合规章走同一份

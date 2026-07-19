@@ -128,9 +128,11 @@ function createMockReportPackage(): ReportPackage {
       references: "- EU GPSR (EU) 2023/988\n- LVD 2014/35/EU",
     },
     decisionView: {
-      // `verdict` and `riskLevel` are NOT part of the Pydantic schema; we put
-      // them on the first node's metadata so the mock stays contract-compliant
-      // while the UI can still display the demo verdict.
+      // verdict / riskLevel 是 decisionView 顶层一等字段(前端 schema 9c6a76f
+      // 已提升,真实后端 report_generator 也在顶层产出)。之前误塞 nodes[0].metadata
+      // 导致 UI 显示 UNKNOWN —— 已修正。每个 node 自带 severity(risk 派生源)。
+      verdict: "REJECTED",
+      riskLevel: "HIGH",
       summary:
         "AI 决策链路基于图片、法规检索和成本影响综合判断：当前资料不足以支持欧盟/美国正式上架，应先完成证据补齐和小批量复核。",
       summaryEn:
@@ -158,12 +160,12 @@ function createMockReportPackage(): ReportPackage {
           label: "视觉识别",
           labelEn: "Visual Recognition",
           icon: "eye",
+          severity: "high",
           status: "MOCK",
           duration: "0.0s",
           confidence: 0.91,
           reasoning: "图片中可见铭牌信息不完整，包装安全标识不足。",
           reasoningEn: "Images show incomplete nameplate information and insufficient packaging safety marks.",
-          metadata: { verdict: "REJECTED", riskLevel: "HIGH" },
         },
         {
           id: "retriever",
@@ -171,6 +173,7 @@ function createMockReportPackage(): ReportPackage {
           label: "法规检索",
           labelEn: "Regulatory Retrieval",
           icon: "search",
+          severity: "medium",
           status: "FALLBACK",
           duration: "0.0s",
           confidence: 0.86,
@@ -183,6 +186,7 @@ function createMockReportPackage(): ReportPackage {
           label: "报告生成",
           labelEn: "Report Generation",
           icon: "file",
+          severity: "medium",
           status: "MOCK",
           duration: "0.0s",
           confidence: 0.68,
@@ -195,6 +199,7 @@ function createMockReportPackage(): ReportPackage {
           label: "保守校验",
           labelEn: "Conservative Verification",
           icon: "shield",
+          severity: "high",
           status: "WARN",
           duration: "0.0s",
           confidence: 0.62,

@@ -65,6 +65,7 @@ const SEVERITY_RANK: Record<Severity, number> = {
   critical: 4,
   warning: 3,
   info: 1,
+  unknown: 0,
 };
 // Same rank table for the LLM's per-node severity field (a 4-level system
 // rather than the UI's 3-level Severity type).
@@ -104,8 +105,11 @@ function scoreFor(rollup: Severity): { score: number; grade: ScoreGrade } {
     case "warning":
       return { score: 65, grade: "C" };
     case "info":
-    default:
       return { score: 90, grade: "A" };
+    case "unknown":
+    default:
+      // 中性档:后端返回 UNKNOWN(不知道合不合规)时不应给绿色 90/A 误导用户放行。
+      return { score: 50, grade: "C" };
   }
 }
 
@@ -116,8 +120,10 @@ function resultScore(result: UnknownRecord, status: string): { score: number; gr
   if (typeof status === "string" && status.length > 0) {
     const upper = status.toUpperCase();
     if (["PASS", "WARN", "REJECTED", "UNKNOWN"].includes(upper)) {
+      // UNKNOWN 走中性 50/C(别给绿色 90/A 误导合规放行)。
+      if (upper === "UNKNOWN") return scoreFor("unknown");
       return scoreFor(
-        upper === "PASS" ? "info" : upper === "WARN" ? "warning" : upper === "REJECTED" ? "critical" : "info",
+        upper === "PASS" ? "info" : upper === "WARN" ? "warning" : "critical",
       );
     }
   }
@@ -139,6 +145,7 @@ function severityFor(nodeSeverity: unknown): Severity {
   if (raw === "critical") return "critical";
   if (raw === "high") return "critical"; // rolled up: "high" → UI severity critical
   if (raw === "medium" || raw === "warning") return "warning";
+  if (raw === "unknown") return "unknown";
   return "info";
 }
 

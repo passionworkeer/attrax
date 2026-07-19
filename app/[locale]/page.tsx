@@ -29,7 +29,7 @@ function HomeContent({ locale }: { locale: Locale }) {
     <main className="flex min-h-screen items-center justify-center px-6 py-16">
       <section className="mx-auto flex w-full max-w-3xl flex-col items-center gap-8 rounded-4xl border border-white/60 bg-white/80 px-8 py-12 text-center shadow-[0_30px_120px_rgba(26,26,46,0.12)] backdrop-blur">
         <p className="text-sm font-medium uppercase tracking-[0.28em] text-blaze-red/80">
-          Blaze Hawks
+          {locale === "en" ? "CompliPilot" : "规航AI"}
         </p>
         <div className="space-y-4">
           <h1 className="text-4xl font-semibold tracking-tight text-balance text-foreground sm:text-6xl">

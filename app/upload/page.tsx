@@ -395,14 +395,15 @@ export default function UploadPage() {
   }
 
   function startPresetDemo(presetIndex = selectedPresetIndex) {
-    // B-3 note: 跳到 /result/demo 时附带 `?preset=` query,让结果页用
-    // createMockScanResult(sessionId, { category }) 切到对应场景
-    // (electronics / appliance / toy),而所有 demo 路径都共享同一条下载 /
-    // preview 链路。
-    void presetIndex;
+    // B-3 note: 跳到 /result/demo 时附带 `?preset=` + `?markets=` query,让结果页
+    // 用 createMockScanResult(sessionId, { category, markets }) 切到对应场景
+    // (electronics/appliance/toy)并带上该场景的目标市场。之前只传 preset、markets
+    // 落回默认 EU/UK,导致 humidifier/toy 明明选了 EU/US 却显示 EU/UK,toy 还丢了
+    // US-CPSIA-TOY 法规。
     const presetKeys = ["charger", "humidifier", "toy"] as const;
     const key = presetKeys[presetIndex] ?? "charger";
-    router.push(`/result/demo?preset=${key}`);
+    const preset = presetConfigs[presetIndex] ?? presetConfigs[0];
+    router.push(`/result/demo?preset=${key}&markets=${preset.markets.join(",")}`);
   }
 
   return (

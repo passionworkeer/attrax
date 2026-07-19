@@ -58,6 +58,7 @@ function session(overrides: Partial<V1SessionData> = {}): V1SessionData {
               id: "risk-label",
               label: "铭牌信息不完整",
               reasoning: "输入输出参数缺失",
+              severity: "medium",
               status: "warning",
               confidence: 0.86,
             },

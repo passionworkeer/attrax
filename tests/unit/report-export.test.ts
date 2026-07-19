@@ -35,6 +35,7 @@ const jsPDFMethods = vi.hoisted(() => {
     setFillColor: vi.fn(), setLineWidth: vi.fn(), text: vi.fn(),
     rect: vi.fn(),  // Used by pdfDrawTable for table cells
     splitTextToSize: vi.fn((t: string) => t.split('\n')), save: vi.fn(),
+    output: vi.fn(() => ({})),  // 实现走 doc.output("blob") → downloadBlob,返回 blob-like
     internal: {
       pageSize: {
         getWidth: vi.fn(() => 210), getHeight: vi.fn(() => 297),
@@ -93,7 +94,7 @@ vi.mock('docx', () => ({
 
 // ─── DOM mocks (hoisted so they are ready before vi.mock factories run) ───────
 const mockAnchorRef = vi.hoisted(
-  () => ({ current: { href: '', download: '', click: vi.fn(), remove: vi.fn() } })
+  () => ({ current: { href: '', download: '', click: vi.fn(), remove: vi.fn(), style: { display: '' } } })
 )
 
 vi.stubGlobal('URL', {
@@ -379,7 +380,7 @@ describe('downloadReportAsPdf', () => {
 
   it('saves file with format: 合规报告_{sessionId}_{status}.pdf', async () => {
     await downloadReportAsPdf(makeResult())
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('合规报告_sess_abc123_PASS.pdf')
+    expect(mockAnchorRef.current.download).toBe('合规报告_sess_abc123_PASS.pdf')
   })
 
   it('writes the compliance score as large text', async () => {
@@ -485,6 +486,7 @@ describe('downloadReportAsDocx', () => {
 
   it('appends anchor to body, clicks, then removes it', async () => {
     await downloadReportAsDocx(makeResult())
+    await new Promise((r) => setTimeout(r, 0))  // downloadBlob 用 setTimeout(0) 异步清理
     expect(document.body.appendChild).toHaveBeenCalledWith(mockAnchorRef.current)
     expect(mockAnchorRef.current.click).toHaveBeenCalled()
     expect(document.body.removeChild).toHaveBeenCalledWith(mockAnchorRef.current)
@@ -492,6 +494,7 @@ describe('downloadReportAsDocx', () => {
 
   it('revokes the object URL after triggering download', async () => {
     await downloadReportAsDocx(makeResult())
+    await new Promise((r) => setTimeout(r, 0))  // flush setTimeout(0) 后 revokeObjectURL 才执行
     expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:http://localhost/mock-blob')
   })
 
@@ -606,7 +609,7 @@ describe('downloadDecisionReport exports', () => {
 
     expect(jsPDFMethods.roundedRect).toHaveBeenCalled()
     expect(jsPDFMethods.splitTextToSize).toHaveBeenCalled()
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('AIDecisionReport_decision_001.pdf')
+    expect(mockAnchorRef.current.download).toBe('AIDecisionReport_decision_001.pdf')
   })
 
   it('creates decision docx with summary, findings, action, and node evidence', async () => {
@@ -644,7 +647,7 @@ describe('downloadRoadmapReport exports', () => {
 
     expect(jsPDFMethods.rect).toHaveBeenCalled()
     expect(jsPDFMethods.roundedRect).toHaveBeenCalled()
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('ComplianceRoadmap_roadmap_001.pdf')
+    expect(mockAnchorRef.current.download).toBe('ComplianceRoadmap_roadmap_001.pdf')
   })
 
   it('adds pages for long roadmap PDF step lists', async () => {
@@ -838,13 +841,13 @@ describe('downloadProfitReportAsPdf', () => {
   it('saves with Chinese filename when locale is zh', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'zh' : null)
     await downloadProfitReportAsPdf(makeProfitResult())
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('成本利润分析报告_sess_profit_001.pdf')
+    expect(mockAnchorRef.current.download).toBe('成本利润分析报告_sess_profit_001.pdf')
   })
 
   it('saves with English filename when locale is en', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'en' : null)
     await downloadProfitReportAsPdf(makeProfitResult())
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('CostProfitAnalysisReport_sess_profit_001.pdf')
+    expect(mockAnchorRef.current.download).toBe('CostProfitAnalysisReport_sess_profit_001.pdf')
   })
 
   it('handles zero risk exposure correctly', async () => {
@@ -861,7 +864,7 @@ describe('downloadProfitReportAsPdf', () => {
       premiumPct: undefined,
       breakevenUnits: undefined,
     }))
-    expect(jsPDFMethods.save).toHaveBeenCalled()
+    expect(jsPDFMethods.output).toHaveBeenCalled()
   })
 
   it('handles keyConclusion fallback when conclusions is empty', async () => {
@@ -907,8 +910,8 @@ describe('downloadProfitReportAsDocx', () => {
     const firstTextRun = firstChild.children[0]
     expect(firstTextRun).toBeDefined()
     expect(firstTextRun.text).toBeDefined()
-    // The profitTitle in Chinese is "火鹰合规 · 合规成本与利润分析报告"
-    expect(firstTextRun.text).toContain('火鹰')
+    // profitTitle 中文经品牌名替换(火鹰合规→规航AI)后是"规航AI · 合规成本与利润分析报告"
+    expect(firstTextRun.text).toContain('规航AI')
   })
 
   it('creates summary cards table for barebone vs compliant', async () => {
@@ -986,6 +989,7 @@ describe('downloadProfitReportAsDocx', () => {
 
   it('appends anchor to body, clicks, then removes it', async () => {
     await downloadProfitReportAsDocx(makeProfitResult())
+    await new Promise((r) => setTimeout(r, 0))  // downloadBlob 用 setTimeout(0) 异步清理
     expect(document.body.appendChild).toHaveBeenCalledWith(mockAnchorRef.current)
     expect(mockAnchorRef.current.click).toHaveBeenCalled()
     expect(document.body.removeChild).toHaveBeenCalledWith(mockAnchorRef.current)
@@ -993,6 +997,7 @@ describe('downloadProfitReportAsDocx', () => {
 
   it('revokes the object URL after triggering download', async () => {
     await downloadProfitReportAsDocx(makeProfitResult())
+    await new Promise((r) => setTimeout(r, 0))  // flush setTimeout(0) 后 revokeObjectURL 才执行
     expect(URL.revokeObjectURL).toHaveBeenCalledWith('blob:http://localhost/mock-blob')
   })
 
@@ -1059,14 +1064,14 @@ describe('Locale detection (via export functions)', () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'zh' : null)
     await downloadReportAsPdf(makeResult())
     // Chinese filename format should be used
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('合规报告_sess_abc123_PASS.pdf')
+    expect(mockAnchorRef.current.download).toBe('合规报告_sess_abc123_PASS.pdf')
   })
 
   it('uses localStorage locale when set to en', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'en' : null)
     await downloadReportAsPdf(makeResult())
     // English filename format should be used
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('ComplianceReport_sess_abc123_PASS.pdf')
+    expect(mockAnchorRef.current.download).toBe('ComplianceReport_sess_abc123_PASS.pdf')
   })
 
   it('falls back to zh when localStorage has no locale and browser is zh', async () => {
@@ -1076,7 +1081,7 @@ describe('Locale detection (via export functions)', () => {
       writable: true,
     })
     await downloadReportAsPdf(makeResult())
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('合规报告_sess_abc123_PASS.pdf')
+    expect(mockAnchorRef.current.download).toBe('合规报告_sess_abc123_PASS.pdf')
   })
 
   it('falls back to en when localStorage has no locale and browser is en', async () => {
@@ -1086,7 +1091,7 @@ describe('Locale detection (via export functions)', () => {
       writable: true,
     })
     await downloadReportAsPdf(makeResult())
-    expect(jsPDFMethods.save).toHaveBeenCalledWith('ComplianceReport_sess_abc123_PASS.pdf')
+    expect(mockAnchorRef.current.download).toBe('ComplianceReport_sess_abc123_PASS.pdf')
   })
 })
 

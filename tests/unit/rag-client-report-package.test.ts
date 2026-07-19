@@ -43,21 +43,21 @@ describe("mock report package contract", () => {
     expect(pkg.evidenceBundles.retrieval.length).toBeGreaterThan(0);
   });
 
-  it("decision verdict/riskLevel live on node metadata, not on decisionView", () => {
-    // The Pydantic schema has no `verdict` / `riskLevel` on decisionView;
-    // the mock must surface them via `nodes[*].metadata` so the contract
-    // stays valid. Frontend UI should look there for demo verdict.
+  it("decision verdict/riskLevel live on decisionView top level, nodes carry severity", () => {
+    // verdict / riskLevel are first-class on decisionView (frontend schema
+    // 9c6a76f promoted them; the real backend emits them at top level too).
+    // Each node carries its own `severity` (critical/high/medium/info). The
+    // previous assertion expected them on nodes[*].metadata, which the UI
+    // normalizer never reads — that direction was wrong.
     const mockResult = createMockComplianceReportResult("test-session");
     const outcome = validateReportPackage(mockResult.reportPackage);
     expect(outcome.ok).toBe(true);
     const dv = outcome.data!.decisionView;
-    // strict schema would reject extra fields if we didn't use passthrough;
-    // we keep passthrough so legacy keys still pass — but we assert the
-    // canonical location is populated.
+    expect(dv.verdict).toBe("REJECTED");
+    expect(dv.riskLevel).toBe("HIGH");
     const visionNode = dv.nodes.find((n) => n.id === "vision");
     expect(visionNode).toBeDefined();
-    expect((visionNode as { metadata?: Record<string, unknown> }).metadata?.verdict).toBe("REJECTED");
-    expect((visionNode as { metadata?: Record<string, unknown> }).metadata?.riskLevel).toBe("HIGH");
+    expect(visionNode?.severity).toBe("high");
   });
 });
 

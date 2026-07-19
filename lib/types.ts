@@ -46,7 +46,7 @@ export type ProductCategory =
   | "home"
   | "other";
 export type FlameLevel = 1 | 2 | 3;
-export type Severity = "critical" | "warning" | "info";
+export type Severity = "critical" | "warning" | "info" | "unknown";
 export type ScoreGrade = "A" | "B" | "C" | "D";
 export type { FinancialSummary, CostBreakdownItem } from "@/lib/types.blaze-hawks";
 
