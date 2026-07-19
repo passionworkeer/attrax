@@ -27,7 +27,7 @@ export const translations = {
       en: "English",
     },
     home: {
-      title: "火鹰合规",
+      title: "规航AI",
       subtitle: "想出海？先烧毁！",
       subtitleLead: "想出海？", // P1: replaces subtitle.split("？") in app/page.tsx
       subtitleHighlight: "先烧毁！",
@@ -319,13 +319,13 @@ export const translations = {
 
     // 报告导出
     report: {
-      title: "火鹰合规 · 合规扫描报告",
-      profitTitle: "火鹰合规 · 合规成本与利润分析报告",
+      title: "规航AI · 合规扫描报告",
+      profitTitle: "规航AI · 合规成本与利润分析报告",
       costProfitReport: "合规成本与利润分析报告",
       sessionId: "会话 ID",
       generatedAt: "生成时间",
-      brand: "火鹰合规 Blaze Hawks",
-      footer: "火鹰合规报告",
+      brand: "规航AI CompliPilot",
+      footer: "规航AI 合规报告",
       comprehensiveScore: "综合评分",
       costComparison: "一、成本对比明细",
       revenueComparison: "二、收益对比",
@@ -409,7 +409,7 @@ export const translations = {
       en: "English",
     },
     home: {
-      title: "Blaze Hawks",
+      title: "CompliPilot",
       subtitle: "Think Before You Expand",
       subtitleLead: "Expand globally?",
       subtitleHighlight: "Burn first.",
@@ -701,13 +701,13 @@ export const translations = {
 
     // Report export
     report: {
-      title: "Blaze Hawks · Compliance Scan Report",
-      profitTitle: "Blaze Hawks · Compliance Cost & Profit Analysis Report",
+      title: "CompliPilot · Compliance Scan Report",
+      profitTitle: "CompliPilot · Compliance Cost & Profit Analysis Report",
       costProfitReport: "Compliance Cost & Profit Analysis Report",
       sessionId: "Session ID",
       generatedAt: "Generated at",
-      brand: "Blaze Hawks",
-      footer: "Blaze Hawks Compliance Report",
+      brand: "CompliPilot",
+      footer: "CompliPilot Compliance Report",
       comprehensiveScore: "Comprehensive Score",
       costComparison: "I. Cost Comparison Details",
       revenueComparison: "II. Revenue Comparison",

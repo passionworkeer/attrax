@@ -213,7 +213,7 @@ describe('server i18n utilities', () => {
   })
 
   it('replaces template params in fallback or translated strings', () => {
-    expect(serverT('Hello {name}', 'en', { name: 'Attrax' })).toBe('Hello Attrax')
+    expect(serverT('Hello {name}', 'en', { name: 'CompliPilot' })).toBe('Hello CompliPilot')
   })
 
   it('exports scan stage text for both supported locales', () => {

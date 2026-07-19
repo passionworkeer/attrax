@@ -50,8 +50,8 @@ export default function SiteHeader() {
             <Flame className="h-5 w-5 text-white" strokeWidth={2.5} fill="white" />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="text-lg font-black italic tracking-tighter text-white uppercase">
-              Attrax
+            <span className="text-lg font-black italic tracking-tighter text-white">
+              {locale === "en" ? "CompliPilot" : "规航AI"}
             </span>
             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-blaze-red/80">
               {locale === "en" ? "Compliance Engine" : "合规引擎"}

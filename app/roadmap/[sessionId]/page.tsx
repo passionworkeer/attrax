@@ -4,11 +4,17 @@ import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ComplianceTimeline from "@/components/trace/ComplianceTimeline";
 import { buttonVariants } from "@/components/ui/button";
+import { DownloadButtons } from "@/components/result/DownloadButtons";
 import { cn } from "@/lib/utils";
 import { unwrapApiData } from "@/lib/api-response";
 import { useTranslation } from "@/lib/i18n";
 import { useSessionId } from "@/lib/hooks/useSessionId";
 import { getDefaultRoadmapItems, type RoadmapItem } from "@/lib/mock/roadmap";
+import {
+  downloadRoadmapReportAsDocx,
+  downloadRoadmapReportAsPdf,
+} from "@/lib/report-download";
+import type { RoadmapContent } from "@/lib/report-export-modules/roadmap";
 
 interface RoadmapData {
   product?: string;
@@ -143,6 +149,31 @@ function RoadmapSessionPageInner({
 
   const items = roadmapData?.items ?? getDefaultRoadmapItems();
 
+  // 把当前渲染中的 items 适配成 PDF/DOCX 客户端导出需要的 RoadmapContent。
+  // 真实 API(/api/roadmap/[sessionId])返回的 items 已是 camelCase,可以直接复用;
+  // demo / fallback 走 getDefaultRoadmapItems() 也要做一次中英文按 locale 拆。
+  function buildRoadmapContent(dlLocale: "zh" | "en"): RoadmapContent {
+    return {
+      sessionId: sessionId ?? "demo",
+      currentStatus: hasRealRoadmap ? "REJECTED" : "WARN",
+      currentStatusEn: hasRealRoadmap ? "REJECTED" : "WARN",
+      totalDays,
+      totalCost,
+      progress,
+      items: items.map((item) => ({
+        title: dlLocale === "en" ? item.titleEn : item.title,
+        titleEn: item.titleEn,
+        description: dlLocale === "en" ? item.descriptionEn : item.description,
+        descriptionEn: item.descriptionEn,
+        cost: item.cost,
+        days: item.estimatedDays,
+        status: item.status,
+        documents: item.documents,
+        documentsEn: item.documentsEn,
+      })),
+    };
+  }
+
   if (sessionId && sessionId !== "demo" && settledSessionId !== sessionId) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -222,6 +253,26 @@ function RoadmapSessionPageInner({
                 <div className="text-xs text-slate-400">{t("roadmap.progress")}</div>
               </div>
             </div>
+          </div>
+          <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-white/10 pt-4">
+            <span className="text-xs uppercase tracking-[0.2em] text-white/45">
+              {locale === "zh" ? "可下载文件" : "Download files"}
+            </span>
+            <DownloadButtons
+              label={t("roadmap.title")}
+              onPdf={async (dlLocale) => downloadRoadmapReportAsPdf(buildRoadmapContent(dlLocale), dlLocale)}
+              onDocx={async (dlLocale) => downloadRoadmapReportAsDocx(buildRoadmapContent(dlLocale), dlLocale)}
+            />
+            <a
+              href={`/api/report/${sessionId ?? "demo"}/roadmap?format=csv&lang=${locale}`}
+              download
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "sm" }),
+                "rounded-full border border-white/10 bg-white/7 text-white hover:bg-white/12",
+              )}
+            >
+              CSV {locale.toUpperCase()}
+            </a>
           </div>
         </div>
       </div>
