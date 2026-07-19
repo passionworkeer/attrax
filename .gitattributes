@@ -1,0 +1,7 @@
+# Enforce LF in source. Edit on Windows with autocrlf=false or an
+# editor that respects .gitattributes (VS Code "Files: Eol" = \n).
+* text=auto eol=lf
+*.png binary
+*.ico binary
+*.ttf binary
+*.mp4 binary
