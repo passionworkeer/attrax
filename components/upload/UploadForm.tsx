@@ -7,6 +7,24 @@ import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
 import type { Market as ScanMarket, ProductCategory } from "@/lib/types";
 
+/**
+ * @deprecated Do not re-enable or import into a page.
+ *
+ * This component is a legacy upload widget superseded by the page-level
+ * implementation in `app/upload/page.tsx` (commit `dd6cbf5 fix(upload):
+ * separate image entry points`). The old version depended on a shared
+ * `<input type="file">` ref pattern where the bulk upload and category
+ * upload entries collided, causing "string did not match the expected
+ * pattern" / Server Action mismatches and silently dropped multi-file
+ * selections on iOS / mobile photo pickers. The replacement uses three
+ * independent `blaze-upload-slot-{0,1,2}` inputs plus one bulk
+ * `blaze-bulk-upload-input` and never shares refs.
+ *
+ * Kept around only so the unit tests in `tests/unit/upload-form.test.tsx`
+ * keep compiling. If you need a reusable upload form, copy the slot
+ * structure from `app/upload/page.tsx` rather than reaching for this file.
+ */
+
 // Module-level cache shared across all LocalImageCarousel instances on the
 // page. Object URLs are keyed by stable file identity (name+size+lastModified)
 // so appending a file does NOT revoke-and-recreate URLs for existing files

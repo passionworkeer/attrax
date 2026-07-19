@@ -72,6 +72,17 @@ const presetConfigs: Array<{
   },
 ];
 
+/**
+ * NOTE (B-3): the preset selection chips below ONLY change the preview image
+ * shown while the user has not uploaded yet, then `router.push("/result/demo")`
+ * navigates to the prebuilt demo result page — it does NOT submit a scan.
+ * The primary "Start scan" button is the only way to actually run an upload
+ * through `/api/scan`. The header's "查看预制 Demo" link is a plain anchor
+ * that skips this page entirely. Do NOT add Server Actions or form submissions
+ * here: dd6cbf5 deliberately removed that path (the legacy `formData.append(
+ * "preset", "true")` approach broke uploads; see the commit message).
+ */
+
 export default function UploadPage() {
   const router = useRouter();
   const { locale } = useBlazeLocale();
@@ -384,10 +395,11 @@ export default function UploadPage() {
   }
 
   function startPresetDemo(presetIndex = selectedPresetIndex) {
-    const preset = presetConfigs[presetIndex] ?? presetConfigs[0];
-    setSelectedPresetIndex(presetIndex);
-    setCategory(preset.category);
-    setSelectedMarkets(preset.markets);
+    // B-3 note: this only navigates to /result/demo. We intentionally do NOT
+    // setCategory / setSelectedMarkets — router.push leaves the page
+    // immediately, those setState calls would have no effect, and the legacy
+    // "form submit with preset=true" path was removed in dd6cbf5.
+    void presetIndex; // referenced only for the default parameter above
     router.push("/result/demo");
   }
 
