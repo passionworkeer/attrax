@@ -90,7 +90,7 @@ describe('i18n t function', () => {
 
   it('translates nested key', () => {
     const result = t('home.title')
-    expect(result).toBe('火鹰合规')
+    expect(result).toBe('规航AI')
   })
 
   it('supports locale parameter', () => {

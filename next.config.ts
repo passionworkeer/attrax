@@ -47,6 +47,12 @@ const nextConfig: NextConfig = {
 
   // Image optimization
   images: {
+    // standalone 生产部署下 image optimizer 读 public 图返回 null,
+    // 导致 /complipilot/* 和 /mock-fixtures/* 等图全部破图(nextjs err log
+    // 刷屏 "isn't a valid image ... received null")。standalone server 不
+    // 自带可用的 sharp optimizer,直接关掉优化,图片由静态服务原样返回。
+    // 本项目图片都是小图(logo / demo 预设图 / canvas),不压缩无损。
+    unoptimized: true,
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],

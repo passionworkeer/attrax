@@ -102,7 +102,9 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
               complianceScore: 80,
               scoreGrade: "B",
               complianceStatus,
-              agentTrace: [],
+              // a2235dd 解耦后前端从 node.severity 派生分数;fixture 给个
+              // representative node 让 rollup 不回退到 UNKNOWN→info 90/A。
+              agentTrace: [{ node: "synthesis", severity: "medium" }],
               retrievedChunks: [],
             },
           }),

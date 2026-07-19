@@ -34,6 +34,7 @@ interface AgentTraceEntry {
   node: string;
   status?: string;
   duration_ms?: number;
+  durationMs?: number;
   duration?: number;
   score?: number;
   docs_retrieved?: number;
@@ -66,11 +67,7 @@ export async function GET(
       const normalized = normalizeV1ScanResult(upstreamSession);
       const traceNodes = trace.map((entry, index) => {
         const node = String(entry.node ?? `step-${index + 1}`);
-        const durationMs = typeof entry.duration_ms === "number"
-          ? entry.duration_ms
-          : typeof entry.duration === "number"
-            ? entry.duration
-            : 0;
+        const durationMs = _traceDurationMs(entry);
         return {
           ..._getNodeLabels(node),
           id: node,
@@ -81,14 +78,7 @@ export async function GET(
           confidence: typeof entry.score === "number" ? entry.score : 0,
         };
       });
-      const totalTime = trace.reduce((total, entry) => {
-        const duration = typeof entry.duration_ms === "number"
-          ? entry.duration_ms
-          : typeof entry.duration === "number"
-            ? entry.duration
-            : 0;
-        return total + duration;
-      }, 0) / 1000;
+      const totalTime = trace.reduce((total, entry) => total + _traceDurationMs(entry), 0) / 1000;
       const rawResult = upstreamSession.result ?? {};
       const retrievedChunks = Array.isArray(rawResult.retrievedChunks)
         ? rawResult.retrievedChunks
@@ -130,9 +120,7 @@ export async function GET(
   const decisionView = _getDecisionView(_getReportPackage(result));
 
   // Extract execution stats
-  const totalTime = agentTrace.reduce((acc, entry) => {
-    return acc + (entry.duration_ms ?? entry.duration ?? 0);
-  }, 0) / 1000;
+  const totalTime = agentTrace.reduce((acc, entry) => acc + _traceDurationMs(entry), 0) / 1000;
 
   const steps = agentTrace.length;
 
@@ -162,7 +150,7 @@ export async function GET(
         type: entry.node,
         icon: "📊",
         status: entry.status?.toLowerCase() || "pending",
-        duration: `${((entry.duration_ms ?? entry.duration) ?? 0) / 1000}s`,
+        duration: `${_traceDurationMs(entry) / 1000}s`,
         confidence: entry.score || 0,
       }));
 
@@ -193,6 +181,16 @@ function _getNodeLabels(node: string): { label: string; labelEn: string } {
     fan_out: { label: "并行检索", labelEn: "Parallel Retrieval" },
   };
   return labels[node] || { label: node, labelEn: node };
+}
+
+// 读取 agent_trace 条目的耗时(毫秒)。后端 `_camelize` 已把 duration_ms 转成
+// durationMs(v1/生产路径);legacy 内存会话仍是 snake_case duration_ms。三者依次
+// 兜底,最终 0 —— 之前只读 duration_ms 导致 v1 路径 trace 耗时全显示 0.0s。
+// 参数兼容两种 entry 形状:v1 路径(Record<string,unknown>) 与内存会话(AgentTraceEntry)。
+function _traceDurationMs(entry: AgentTraceEntry | Record<string, unknown>): number {
+  const record = entry as Record<string, unknown>;
+  const v = record.durationMs ?? record.duration_ms ?? record.duration;
+  return typeof v === "number" ? v : 0;
 }
 
 const HAN_TEXT_RE = /\p{Script=Han}/u;

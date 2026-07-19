@@ -20,7 +20,7 @@ import {
   blazeReportPreviewTabs,
 } from "@/lib/complipilot/scenario";
 import { createMockScanResult, mockComplianceReportMarkdown, mockScanResult } from "@/lib/mock/blaze-scan-result";
-import type { ComplianceReportResult, ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
+import type { ComplianceReportResult, Market, ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { ResultExportButton } from "./result-export-button";
@@ -48,7 +48,7 @@ import brightFlow from "@/components/complipilot/bright-flow.module.css";
  * pair), so /result/demo and /api/report/demo describe identical content.
  */
 function scanResultToComplianceView(result: ScanResult, locale: "zh" | "en"): ComplianceReportResult {
-  const severityRank: Record<RiskPoint["severity"], number> = { critical: 3, warning: 2, info: 1 };
+  const severityRank: Record<RiskPoint["severity"], number> = { critical: 3, warning: 2, info: 1, unknown: 0 };
   const topRank = result.riskPoints.reduce((acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0), 0);
   const complianceStatus: ComplianceReportResult["complianceStatus"] =
     topRank >= 3 ? "REJECTED" : topRank >= 2 ? "WARN" : "PASS";
@@ -292,10 +292,16 @@ export default function ResultPage() {
         : presetKey === "charger"
           ? "electronics"
           : null;
+  // preset demo 选了哪些市场(upload 页 startPresetDemo 带过来的 markets query)。
+  // 不传则 createMockScanResult 用默认 EU/UK。
+  const presetMarketsRaw = search?.get("markets") ?? "";
+  const presetMarkets: Market[] | undefined = presetMarketsRaw
+    ? (presetMarketsRaw.split(",").filter(Boolean) as Market[])
+    : undefined;
   const isDemoSession = sessionId === "demo";
   const demoResult = isDemoSession
     ? presetCategory
-      ? createMockScanResult("demo", { category: presetCategory })
+      ? createMockScanResult("demo", { category: presetCategory, markets: presetMarkets })
       : mockScanResult
     : null;
   const [result, setResult] = useState<ScanResult | null>(demoResult);

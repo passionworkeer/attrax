@@ -60,7 +60,7 @@ describe("upload page entry points", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "直接演示" }));
 
-    await waitFor(() => expect(push).toHaveBeenCalledWith("/result/demo"));
+    await waitFor(() => expect(push).toHaveBeenCalledWith(expect.stringContaining("/result/demo?preset=charger")));
     expect(fetch).not.toHaveBeenCalled();
   });
 });
