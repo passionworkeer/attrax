@@ -71,6 +71,19 @@ REPORT_PACKAGE_SYSTEM_PROMPT = """你是跨境电商合规与商业化专家。�
 4. 合规报告中的事实需要标注来源，格式为 [法规名称/条款]。
 5. 直接输出 JSON，不要输出 Markdown 代码围栏，不要附加解释。
 
+风险等级契约（决定前端得分展示，**必须**遵守）：
+- `decisionView.verdict`：四个枚举的字符串之一，PASS/WARN/REJECTED/UNKNOWN。
+- `decisionView.riskLevel`：四个枚举的字符串之一，CRITICAL/HIGH/MEDIUM/LOW。
+- `decisionView.nodes[].severity`：四个枚举的字符串之一，critical/high/medium/info。这是每个节点对整体风险的贡献——风险等级规则：
+    * critical — 节点证据已构成上市阻断（例如缺 CE/UKCA、铭牌缺失、电池产品不合规等）
+    * high — 节点证据构成高风险缺口（认证不全、技术文档缺失、警告标签不足）
+    * medium — 节点证据需要二次审视（与具体类目对应法规有差异、备案未提交）
+    * info — 节点证据属于流程性提醒（已识别、已检索、已合成），没有具体风险
+- `decisionView.riskLevel` 必须等于 nodes 中所有 severity 的最大值；只要任一节点是 critical 或 high，决策层 riskLevel 必须是 CRITICAL/HIGH；全 info 时才是 LOW。
+- vision 节点如果发现图片不清晰 / 找不到铭牌 / 没有强制标志，severity 默认 critical。
+- retriever 节点如果召回 0 条相关法规、或仅召回通用条款，severity 默认 high。
+- generate 节点（产生 LLM 文本）如果 complianceReport 中的事实无来源 [法规/条款] 引用，severity 默认 medium。
+
 JSON 结构必须是：
 {
   "complianceReport": "markdown string",
@@ -106,6 +119,8 @@ JSON 结构必须是：
     ]
   },
   "decisionView": {
+    "verdict": "PASS|WARN|REJECTED|UNKNOWN",
+    "riskLevel": "CRITICAL|HIGH|MEDIUM|LOW",
     "summary": "string",
     "keyFindings": ["string"],
     "recommendedAction": "string",
@@ -115,6 +130,7 @@ JSON 结构必须是：
         "type": "vision|query_planner|retriever|synthesis|generate|verify",
         "label": "中文节点名",
         "labelEn": "English node label",
+        "severity": "critical|high|medium|info",
         "status": "success|pending|running|error",
         "duration": "1.2s",
         "confidence": 0.86,
@@ -507,6 +523,8 @@ class ReportGenerator:
                 ],
             },
             "decisionView": {
+                "verdict": "WARN",
+                "riskLevel": "HIGH",
                 "summary": "系统先识别产品，再检索目标市场法规，最后生成合规、利润和执行路线图。",
                 "keyFindings": [
                     "产品识别结果决定检索关键词和适用法规范围。",
@@ -521,6 +539,7 @@ class ReportGenerator:
                         "label": "产品视觉识别",
                         "labelEn": "Product vision analysis",
                         "status": "success",
+                        "severity": "critical",
                         "duration": "0s",
                         "confidence": 0.8,
                         "reasoning": "从图片中提取产品类型、核心特征和可见认证标志。",
@@ -532,6 +551,7 @@ class ReportGenerator:
                         "label": "法规与成本语料检索",
                         "labelEn": "Regulation and cost retrieval",
                         "status": "success",
+                        "severity": "high",
                         "duration": "0s",
                         "confidence": 0.75,
                         "reasoning": "使用目标市场和产品特征召回相关法规、认证和成本片段。",
@@ -543,6 +563,7 @@ class ReportGenerator:
                         "label": "四场景内容生成",
                         "labelEn": "Four-scene content generation",
                         "status": "success",
+                        "severity": "medium",
                         "duration": "0s",
                         "confidence": 0.78,
                         "reasoning": "一次生成合规报告、成本利润、排期路线图和决策解释。",
