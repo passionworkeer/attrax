@@ -395,12 +395,14 @@ export default function UploadPage() {
   }
 
   function startPresetDemo(presetIndex = selectedPresetIndex) {
-    // B-3 note: this only navigates to /result/demo. We intentionally do NOT
-    // setCategory / setSelectedMarkets — router.push leaves the page
-    // immediately, those setState calls would have no effect, and the legacy
-    // "form submit with preset=true" path was removed in dd6cbf5.
-    void presetIndex; // referenced only for the default parameter above
-    router.push("/result/demo");
+    // B-3 note: 跳到 /result/demo 时附带 `?preset=` query,让结果页用
+    // createMockScanResult(sessionId, { category }) 切到对应场景
+    // (electronics / appliance / toy),而所有 demo 路径都共享同一条下载 /
+    // preview 链路。
+    void presetIndex;
+    const presetKeys = ["charger", "humidifier", "toy"] as const;
+    const key = presetKeys[presetIndex] ?? "charger";
+    router.push(`/result/demo?preset=${key}`);
   }
 
   return (

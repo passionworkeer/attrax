@@ -1,11 +1,24 @@
 import { createMockScanResult as createBlazeMockScanResult, mockScanResult as blazeMockScanResult } from "@/lib/mock/blaze-scan-result";
 import { createMockScanResult } from "@/lib/mock/scan-result";
 import { getSession } from "@/lib/pipeline/session-store";
-import type { ChecklistItem, RegulationRef, RiskPoint, ScanResult } from "@/lib/types";
+import type { ChecklistItem, ProductCategory, RegulationRef, RiskPoint, ScanResult } from "@/lib/types";
 
 export type BlazeReportType = "compliance" | "roadmap" | "profit";
 export type BlazeExportFormat = "md" | "csv" | "pdf" | "docx";
 export type BlazeReportLocale = "zh" | "en";
+
+function presetCategoryFromKey(key: string | null | undefined): ProductCategory | null {
+  switch (key) {
+    case "humidifier":
+      return "appliance";
+    case "toy":
+      return "toy";
+    case "charger":
+      return "electronics";
+    default:
+      return null;
+  }
+}
 
 /**
  * Returns the scan result for the given session, used by the report export
@@ -21,6 +34,7 @@ export type BlazeReportLocale = "zh" | "en";
 export function getResultForReport(
   sessionId: string,
   backendResult?: ScanResult,
+  options: { preset?: string | null } = {},
 ): ScanResult | null {
   if (backendResult) {
     return backendResult;
@@ -30,6 +44,15 @@ export function getResultForReport(
     // export describe identical content. The Blaze result carries the demo
     // product image, 65W charger risk profile, and full cost/financial
     // summary that the profit PDF builder expects.
+    //
+    // Mid-2026-07:`?preset=charger|humidifier|toy` query 切到不同 scenario
+    // (electronics / appliance / toy),共用 5 个 scenarioMap 里的 baseScore
+    // 与 financialSummary 子集;无 query 时保留 65W 充电器为默认(向后兼容
+    // /result/demo 的现有书签)。
+    const presetCategory = presetCategoryFromKey(options.preset ?? null);
+    if (presetCategory) {
+      return createBlazeMockScanResult("demo", { category: presetCategory }) ?? blazeMockScanResult;
+    }
     return createBlazeMockScanResult("demo") ?? blazeMockScanResult;
   }
 

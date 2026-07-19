@@ -42,7 +42,7 @@ export async function GET(
     );
   }
 
-  let result = sessionId === "demo" ? getResultForReport(sessionId) : null;
+  let result = sessionId === "demo" ? getResultForReport(sessionId, undefined, { preset: searchParams.get("preset") }) : null;
   if (sessionId !== "demo") {
     const accessToken = backendAccessTokenFromRequest(request, sessionId);
     if (!accessToken) {
