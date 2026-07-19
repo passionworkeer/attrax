@@ -295,7 +295,53 @@ const scenarioMap: Record<ProductCategory, Scenario> = {
     productCategory: "appliance",
     baseScore: 52,
     images: scenarioImages.appliance,
-    risks: [],
+    risks: [
+      {
+        title: "铭牌缺少 CE / 责任人和批次追溯",
+        titleEn: "Nameplate missing CE / responsible person / batch traceability",
+        description:
+          "外壳与底视图未见明确 CE 标识、欧盟责任人信息和批次追溯码,欧盟/英国上架、补审与售后追溯都会被卡。",
+        descriptionEn:
+          "No CE mark, EU responsible-person data or batch traceability code visible on the shell or base view; EU/UK listing, audit and after-sales traceability all get blocked.",
+        severity: "critical",
+        flameLevel: 1,
+        confidence: 0.92,
+        imageId: "img_02",
+        bbox: { x: 0.32, y: 0.5, w: 0.28, h: 0.18 },
+        regulations: [
+          {
+            regId: "EU-CE-MARK-APPLIANCE",
+            code: "CE",
+            name: "CE 标识与适用于家电的合格评定",
+            nameEn: "CE Marking and conformity for appliances",
+            market: "EU",
+            summary: "家电进入欧盟需要合格评定、DoC、铭牌版式与责任人信息。",
+            summaryEn:
+              "Appliances entering the EU require a conformity assessment, DoC, nameplate layout and responsible-person data.",
+            sourceUrl: "https://eur-lex.europa.eu/",
+            severity: "critical",
+          },
+          {
+            regId: "EU-LVD-2014/35/EU",
+            code: "LVD",
+            name: "低电压指令(适用于带 USB / 雾化片的家电)",
+            nameEn: "Low Voltage Directive (covers USB / atomiser appliances)",
+            market: "EU",
+            summary: "电源 / 雾化片 / 水箱组合需温升、跌落、异常工作测试证据。",
+            summaryEn:
+              "Power / atomiser / tank combinations need temperature-rise, drop and abnormal-operation evidence.",
+            sourceUrl: "https://eur-lex.europa.eu/",
+            severity: "warning",
+          },
+        ],
+        recommendedAction:
+          "补齐 CE 标志、欧盟责任人、批次追溯码与多语言说明书,先送检再做小批量试销。",
+        recommendedActionEn:
+          "Add the CE mark, EU responsible-person details, batch traceability and multilingual manual, then run lab tests before a small pilot sale.",
+        estimatedFixCost: "¥6,500",
+        markets: ["EU", "UK"],
+      },
+    ],
     checklist: [],
     financialSummary: APPLIANCE_FINANCIAL,
   },
@@ -315,7 +361,53 @@ const scenarioMap: Record<ProductCategory, Scenario> = {
     productCategory: "toy",
     baseScore: 58,
     images: scenarioImages.toy,
-    risks: [],
+    risks: [
+      {
+        title: "包装缺 EN71 警告语与年龄标识",
+        titleEn: "Packaging missing EN71 warnings and age grading",
+        description:
+          "儿童积木外包装未体现 EN71 / ASTM F963 多语言警告语、年龄段标识和小零件警示,欧盟与美国跨境抽检都可能触发表单补交。",
+        descriptionEn:
+          "Toy packaging lacks EN71 / ASTM F963 multilingual warnings, age grading and small-parts cautioning; EU and US cross-border sampling can trigger evidence requests.",
+        severity: "critical",
+        flameLevel: 1,
+        confidence: 0.9,
+        imageId: "img_03",
+        bbox: { x: 0.12, y: 0.2, w: 0.32, h: 0.22 },
+        regulations: [
+          {
+            regId: "EU-EN71-TOY",
+            code: "EN71",
+            name: "欧盟玩具安全指令与 EN71 测试",
+            nameEn: "EU Toy Safety Directive and EN71 testing",
+            market: "EU",
+            summary: "玩具进入欧盟需要 EN71 测试 + 多语言警告 + 责任人 + 批次追溯。",
+            summaryEn:
+              "Toys entering the EU require EN71 testing, multilingual warnings, responsible-person details and batch traceability.",
+            sourceUrl: "https://eur-lex.europa.eu/",
+            severity: "critical",
+          },
+          {
+            regId: "US-CPSIA-TOY",
+            code: "CPSIA",
+            name: "美国消费品安全改进法",
+            nameEn: "US Consumer Product Safety Improvement Act",
+            market: "US",
+            summary: "美国上架需 CPSIA 测试报告 + 第三方认证证书。",
+            summaryEn:
+              "US listing requires CPSIA test reports and third-party certification certificates.",
+            sourceUrl: "https://www.cpsc.gov/",
+            severity: "warning",
+          },
+        ],
+        recommendedAction:
+          "重新设计包装,补 EN/DE/FR/ES/IT 五语警示与年龄标识,并锁定第三方实验室。",
+        recommendedActionEn:
+          "Redesign the packaging with EN/DE/FR/ES/IT warnings and age grading, and lock in a third-party lab.",
+        estimatedFixCost: "¥3,800",
+        markets: ["EU", "US"],
+      },
+    ],
     checklist: [],
     financialSummary: TOY_FINANCIAL,
   },
@@ -494,15 +586,26 @@ export function mockComplianceReportMarkdown(result: ScanResult, locale: "zh" | 
   const rules = result.riskPoints.map((rp, i) =>
     (locale === "en" ? joinRuleEn(rp) : joinRuleZh(rp)).replace(/^/, `${i + 1}. `)
   ).join("\n\n");
+  // 不同 demo 场景给到不同的法规知识库子集标签(避免所有 preset 都说 CE-RED)
+  const corpusZh = /加湿器|雾化|H3/.test(product)
+    ? "EMC / 电气安全(USB + 雾化片) / GPSR / WEEE / 包装回收标识"
+    : /积木|Blocko|玩具/.test(product)
+      ? "玩具安全(EN71) / CPSIA / ASTM F963 / 警告语 / 追溯标识"
+      : "CE-RED / LVD / EMC / RoHS / GPSR / UKCA / EMC-2016 / EPR";
+  const corpusEn = /加湿器|雾化|H3/.test(product)
+    ? "EMC / Electrical Safety (USB + atomiser) / GPSR / WEEE / packaging recycling marks"
+    : /积木|Blocko|toy|Blocks/i.test(product)
+      ? "Toy Safety (EN71) / CPSIA / ASTM F963 / multilingual warnings / traceability"
+      : "CE-RED / LVD / EMC / RoHS / GPSR / UKCA / EMC-2016 / EPR";
   if (locale === "en") {
-    return `# CompliPilot · Compliance Scan Report — 65W Charger (Demo)
+    return `# CompliPilot · Compliance Scan Report — ${product} (Demo)
 
-> This report evaluates **${product}** (65W GaN USB-PD fast charger) for the target markets **${markets}**, based on multimodal analysis of 3 product images (front, side, packaging) and a two-level EU + UK regulation corpus (CE-RED / LVD / EMC / RoHS / GPSR / UKCA / EMC-2016 / EPR).
+> This report evaluates **${product}** for the target markets **${markets}**, based on multimodal analysis of 3 product images (front, side, packaging) and a regulation corpus covering **${corpusEn}**.
 
 ## 1. Headline
 
 - **Score**: ${result.complianceScore} / ${result.scoreGrade}
-- **Verdict**: Do **not** launch into ${markets} yet. Until CE marks, nameplate data, multilingual packaging warnings, and listing evidence are closed, EU/UK market entry will trip listing rejection, customs hold, and recall channels in parallel.
+- **Verdict**: Do **not** launch into ${markets} yet. Until the hotspots below are closed, market entry will trigger listing rejection, customs hold, and recall channels in parallel.
 
 ## 2. Risk and citations
 
@@ -513,9 +616,9 @@ ${rules}
 | Phase | Window | Deliverable | Owner |
 | --- | --- | --- | --- |
 | Document freeze | Days 1-2 | Spec / BOM / adapter / shell material | Product / Procurement |
-| Label & packaging remediation | Days 3-7 | Nameplate CE/UKCA marks, multilingual warnings, recycling mark | Design / Compliance |
-| LVD / EMC pre-scan | Weeks 1-2 | Temperature-rise / drop / abnormal / waterproof report | Lab |
-| Formal certification | Weeks 3-5 | CE tech file, DoC, RoHS/REACH | Lab / Compliance |
+| Label & packaging remediation | Days 3-7 | Nameplate marks, multilingual warnings, recycling mark | Design / Compliance |
+| Lab pre-scan | Weeks 1-2 | Lab pre-scan report for the relevant directive(s) | Lab |
+| Formal certification | Weeks 3-5 | Tech file, DoC, RoHS / REACH | Lab / Compliance |
 | Listing review | Week 5 | Listing copy / hero image / cert archive / EPR ID | Ops / Legal |
 
 ---
@@ -523,19 +626,17 @@ Generated at: ${result.generatedAt}
 Score scale: 100 max, A≥85 / B≥70 / C≥55 / D<55
 `;
   }
-  return `# 规航AI · 合规扫描报告 · 充电宝原型 (65W)
+  return `# 规航AI · 合规扫描报告 · ${product} (Demo)
 
-> 本报告针对产品 **${product}**(65W GaN USB-PD 快充)的目标市场
+> 本报告针对产品 **${product}** 的目标市场
 > **${markets}** 给出端到端的合规风险评估与整改路径。
 > 报告基于以下 3 张产品图片(正面 / 侧面 / 包装)的多模态识别结果,
-> 并联动了欧盟 + 英国两级法规知识库(CE-RED / LVD / EMC / RoHS /
-> GPSR / UKCA / EMC-2016 / EPR)。
+> 并联动了法规知识库:**${corpusZh}**。
 
 ## 1. 总体判断
 
 - **合规等级**: ${result.complianceScore} / ${result.scoreGrade}
-- **结论**: 当前状态 **不建议直接上架** ${markets}。在 CE 标志、铭牌信息、
-  包装多语言警示与平台审核资料四项闭环之前,进入欧盟/英国销售会同时触发
+- **结论**: 当前状态 **不建议直接上架** ${markets}。在下面 4 件事闭环之前,进入目标市场销售会同时触发
   平台审核拒绝 + 海关扣留 + 抽检召回三种风险链路。
 
 ## 2. 关键风险与法规引用
@@ -547,9 +648,9 @@ ${rules}
 | 阶段 | 时间 | 关键产出 | 责任方 |
 | --- | --- | --- | --- |
 | 资料冻结 | 第 1-2 天 | 规格书 / BOM / 适配器规格 / 外壳材料锁定 | 产品 / 采购 |
-| 标签包装整改 | 第 3-7 天 | 铭牌 CE/UKCA 标志、说明书多语言警示、回收标识 | 设计 / 合规 |
-| LVD / EMC 预扫 | 第 1-2 周 | 温升 / 跌落 / 异常工作 / 防水结构报告 | 实验室 |
-| 正式认证 | 第 3-5 周 | CE 技术文件包、DoC、RoHS/REACH 报告 | 实验室 / 合规 |
+| 标签包装整改 | 第 3-7 天 | 铭牌相关标志、说明书多语言警示、回收标识 | 设计 / 合规 |
+| 实验室预扫 | 第 1-2 周 | 适用指令的预扫 + 异常工作测试报告 | 实验室 |
+| 正式认证 | 第 3-5 周 | 技术文件包、DoC、RoHS/REACH 报告 | 实验室 / 合规 |
 | 上架复核 | 第 5 周 | listing 文案 / 主图 / 证书归档 / EPR 编号 | 运营 / 法务 |
 
 ---
