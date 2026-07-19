@@ -9,7 +9,7 @@ module.exports = {
       env: {
         PYTHONUNBUFFERED: "1",
       },
-      max_memory_restart: "900M",
+      max_memory_restart: "1300M",
       out_file: "/var/log/attrax-rag.log",
       error_file: "/var/log/attrax-rag.err.log",
     },
