@@ -148,3 +148,11 @@ scripts/probe.sh
 scripts/probe-v2.sh
 scripts/start-build.sh
 scripts/wrap-organize.sh
+.gstack/
+demo-e2e.js
+check-hydrate*.js
+diff-ssr-csr.js
+dev-hydrate.js
+inspect-*.js
+verify-*.js
+demo-after-hydrate.png
