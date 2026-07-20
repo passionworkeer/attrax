@@ -1,35 +1,36 @@
-# 服务器版本对账 — 2026-07-19
+# 服务器版本对账 — 2026-07-20
 
 > 服务器 `203.0.113.10` 当前跑的是哪份代码?跟哪个 git ref 一致?
 > 改了之后怎么知道已经同步?出问题时怎么回到上一个状态?
 
 ## 1. 当前线上版本
 
-> **2026-07-19 22:56 重新核对**(SSH 实地 cat BUILD_ID + 与本地 build 产物逐字比对)。
-> 之前的版本块已严重滞后(停在 `db3a54b` / `7e7bc95`),实际线上今天 21:14 已部署到 `83890ae`。
+> **2026-07-20 10:07 重新核对**(SSH 实地 `cat .deployed` + 端到端真实扫描测试)。
+> `.deployed` 治本机制上线后,`cat /opt/attrax/.next/standalone/.deployed` 一次拿到 commit + BUILD_ID + ref,无需手动维护本文版本块(治本 `edb2431` 落地的设计)。
 
 | 项 | 值 |
 |---|---|
 | 服务器 | `admin@203.0.113.10` (ssh 端口默认 22, ed25519 密钥) |
 | 部署目录 | `/opt/attrax/` |
-| 当前 BUILD_ID | `ekmjiomccTcAos50wKnTw` |
-| 对应 commit | `83890ae` (codex/backend-decoupling) |
+| 当前 BUILD_ID | `XCbWYaXVfxE-6IUMnjs_c` |
+| 对应 commit | `f167767` (codex/backend-decoupling) |
 | 对应 git ref | `origin/codex/backend-decoupling` |
-| 部署标识文件 | `/opt/attrax/.next/standalone/.deployed` (本次手动补建;以后由 `build-deploy-tarball.sh` 自动写,见 §6) |
-| 上一版 BUILD_ID(回滚点) | `iBsTDSbzM6t_M2T54ZhYv` (apply 脚本备份 `.next/standalone-pre-r1-20260719-210313`) |
-| 当前 commit message | `fix(deploy): standalone 部署补 static+public staging,根治整站 CSS 404 裸奔` |
+| 部署标识文件 | `/opt/attrax/.next/standalone/.deployed` (`build-deploy-tarball.sh` 自动写入,见 §6) |
+| 上一版 BUILD_ID(回滚点) | `8MPBvunubBpYuqCrC_gW4` (apply 备份 `.next/standalone-pre-fix-20260720-100726`) |
+| 当前 commit message | `feat(trace): 加 /trace/[sessionId] 路径参数版 + CHANGELOG` |
+| 端到端验证(7-20 上午) | 65W 充电器图 POST /api/scan → 11 次轮询 55 秒 → status=ready, score=35/D(charger 缺图高危),全链路工作 |
 
 ## 2. git ref 关系图
 
 ```
 origin/codex/backend-decoupling
-└── db3a54b (旧版:7-18 PDF/DOCX 浏览器端导出修复)
-    └── ...(7-18 ~ 7-19 的 demo 场景 / 品牌统一 / 35D 评分解耦 / 7-18 过载事故修复 / standalone 部署修复 等 9 个 commit)...
-        └── 83890ae (当前线上:standalone 部署补 static+public staging,根治整站 CSS 404 裸奔)
+└── 83890ae (上一版:standalone 部署补 static+public staging,根治整站 CSS 404 裸奔)
+    └── 6bce766 (修 8 个用户可见 bug + 93 CI 测试债 → 0;npm run build ✓,npx vitest run 943/943 ✓;详见 CHANGELOG.md)
+        └── f167767 (当前:加 /trace/[sessionId] 路径参数版 + CHANGELOG.md)
             ↑
             └── 服务器 /opt/attrax/.next/standalone 源码 = 这个 commit
-                BUILD_ID = ekmjiomccTcAos50wKnTw (本地 2026-07-19 21:14 build)
-                标识文件 /opt/attrax/.next/standalone/.deployed 已补建
+                BUILD_ID = XCbWYaXVfxE-6IUMnjs_c (本地 2026-07-20 10:06 build)
+                标识文件 /opt/attrax/.next/standalone/.deployed 自动写入(.deployed 治本机制落地)
 ```
 
 > 服务器 `/opt/attrax` 不是 git repo (tarball 部署)。
@@ -182,5 +183,7 @@ ssh admin@203.0.113.10 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
 
 *文档创建于 2026-07-18 14:30 CST*
 *2026-07-19 22:56 CST 重新核对更新(SSH 实地校验)*
-*当前 commit: 83890ae (origin/codex/backend-decoupling)*
-*对应 BUILD_ID: ekmjiomccTcAos50wKnTw*
+*2026-07-20 10:08 CST 重新核对(SSH cat .deployed + 端到端真实扫描测试)*
+*当前 commit: f167767 (origin/codex/backend-decoupling)*
+*对应 BUILD_ID: XCbWYaXVfxE-6IUMnjs_c*
+*标识文件 /opt/attrax/.next/standalone/.deployed 已自动落地(治本机制)
