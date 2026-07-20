@@ -220,6 +220,8 @@ export interface ScanStatus {
   progress: number;
   stageText: string;
   stageKey?: "queued" | "vision" | "retrieval" | "report" | "done" | "failed";
+  /** Number of uploaded product images available through the scan asset API. */
+  imageCount?: number;
   /** When status==="degraded", the RAG error code (e.g. RAG_SERVICE_UNAVAILABLE). */
   degradedReason?: string;
   result?: ScanResult | ComplianceReportResult;
