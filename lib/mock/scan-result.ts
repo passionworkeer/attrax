@@ -1,4 +1,4 @@
-import type { ComplianceReportResult, ProfitReportResult, ReportPackage, ScanResult } from "@/lib/types";
+import type { ComplianceReportResult, ProductCategory, ProfitReportResult, ReportPackage, ScanResult, ScoreGrade } from "@/lib/types";
 
 const PRODUCT_NAME = "USB 智能加湿器";
 const PRODUCT_NAME_EN = "USB Smart Humidifier";
@@ -347,18 +347,33 @@ function createMockReportPackage(): ReportPackage {
   };
 }
 
-export function createMockScanResult(sessionId = "demo"): ScanResult {
+export function createMockScanResult(
+  sessionId = "demo",
+  category: ProductCategory = "electronics",
+): ScanResult {
   const now = nowIso();
+  // 2026-07-20: 与 createMockComplianceReportResult 同步按 category 给分数
+  // (charger 45/D / humidifier 65/C / toy 50/C),避免 45/D 写死,demo
+  // 路径有梯度。
+  const scoreByCategory: Record<ProductCategory, { score: number; grade: ScoreGrade; name: string; nameEn: string }> = {
+    electronics: { score: 45, grade: "D", name: "ZGA 便携式充电器", nameEn: "ZGA Portable Charger" },
+    appliance:   { score: 65, grade: "C", name: "USB 智能加湿器",   nameEn: "USB Smart Humidifier" },
+    "3c":        { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    toy:         { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    home:        { score: 70, grade: "B", name: "Aurora 桌面香薰灯", nameEn: "Aurora Aromatherapy Lamp" },
+    other:       { score: 60, grade: "B", name: "通用 SKU",         nameEn: "Generic SKU" },
+  };
+  const profile = scoreByCategory[category] ?? scoreByCategory.electronics;
 
   return {
     sessionId,
     scanTime: now,
-    productCategory: "electronics",
-    productName: PRODUCT_NAME,
-    productNameEn: PRODUCT_NAME_EN,
+    productCategory: category,
+    productName: profile.name,
+    productNameEn: profile.nameEn,
     targetMarkets: [...DEFAULT_MARKETS],
-    complianceScore: 45,
-    scoreGrade: "D",
+    complianceScore: profile.score,
+    scoreGrade: profile.grade,
     images: [
       {
         imageId: "img_01",
@@ -549,17 +564,34 @@ export function createMockScanResult(sessionId = "demo"): ScanResult {
   };
 }
 
-export function createMockComplianceReportResult(sessionId = "demo"): ComplianceReportResult {
+export function createMockComplianceReportResult(
+  sessionId = "demo",
+  category: ProductCategory = "electronics",
+): ComplianceReportResult {
   const now = nowIso();
+  // 2026-07-20: 不同 preset 给不同分数(之前 45/D 写死,demo 路径无梯度)。
+  // 复用 lib/mock/blaze-scan-result 的 scenarioMap 设计 —— 但本函数已被
+  // result page 不再走(scan-result.ts 是历史 mock,blaze-scan-result.ts 是
+  // 当前 result page 用的),保留此函数仅给遗留 BFF 路径(/api/scan/demo
+  // isDemoSession 短路),修这个让 dead path 也有合理 demo 分数。
+  const scoreByCategory: Record<ProductCategory, { score: number; grade: ScoreGrade; name: string; nameEn: string }> = {
+    electronics: { score: 45, grade: "D", name: "ZGA 便携式充电器", nameEn: "ZGA Portable Charger" },
+    appliance:   { score: 65, grade: "C", name: "USB 智能加湿器",   nameEn: "USB Smart Humidifier" },
+    "3c":        { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    toy:         { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    home:        { score: 70, grade: "B", name: "Aurora 桌面香薰灯", nameEn: "Aurora Aromatherapy Lamp" },
+    other:       { score: 60, grade: "B", name: "通用 SKU",         nameEn: "Generic SKU" },
+  };
+  const profile = scoreByCategory[category] ?? scoreByCategory.electronics;
   return {
     sessionId,
     scanTime: now,
-    productCategory: "electronics",
-    productName: PRODUCT_NAME,
-    productNameEn: PRODUCT_NAME_EN,
+    productCategory: category,
+    productName: profile.name,
+    productNameEn: profile.nameEn,
     targetMarkets: [...DEFAULT_MARKETS],
-    complianceScore: 45,
-    scoreGrade: "D",
+    complianceScore: profile.score,
+    scoreGrade: profile.grade,
     complianceReport: buildComplianceReportZh(),
     complianceReportEn: buildComplianceReportEn(),
     complianceStatus: "REJECTED",

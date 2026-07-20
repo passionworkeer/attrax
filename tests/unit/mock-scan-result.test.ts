@@ -21,7 +21,17 @@ describe("Mock Scan Result", () => {
 
     it("contains product name", () => {
       const result = createMockScanResult();
-      expect(result.productName).toBe("USB 智能加湿器");
+      // 2026-07-20: 默认 category=electronics → ZGA 便携式充电器(写死 45/D);
+      // 之前默认"USB 智能加湿器"是因为 createMockScanResult 不接 category
+      // 硬编码 humidifier mock,现在按 category 给分数 + productName。
+      expect(result.productName).toBe("ZGA 便携式充电器");
+    });
+
+    it("gives different score per category (no longer hardcoded 45/D)", () => {
+      expect(createMockScanResult("s1", "electronics").scoreGrade).toBe("D");
+      expect(createMockScanResult("s1", "appliance").scoreGrade).toBe("C");
+      expect(createMockScanResult("s1", "toy").complianceScore).toBe(50);
+      expect(createMockScanResult("s1", "home").scoreGrade).toBe("B");
     });
 
     it("contains target markets", () => {
