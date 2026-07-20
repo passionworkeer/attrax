@@ -74,6 +74,7 @@ export async function GET(
       progress: data.progress,
       stageText: data.stageText,
       stageKey: inferStageKey(data.stageText, data.status),
+      imageCount: (data.assets ?? []).filter((asset) => asset.kind === "image").length,
       result: normalizeV1ScanResult(data),
       degradedReason: data.status === "degraded" ? data.error ?? "BACKEND_DEGRADED" : undefined,
       error: data.error ?? undefined,
