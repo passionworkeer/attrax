@@ -69,10 +69,17 @@ const SEVERITY_RANK: Record<Severity, number> = {
 };
 // Same rank table for the LLM's per-node severity field (a 4-level system
 // rather than the UI's 3-level Severity type).
+//   2026-07-20: 把 `high:4` 改为 `high:3`,避免后端 riskLevel=HIGH(比如 vision
+//   节点看到图但部分标志不清晰)被一次性打到 35/D。后端 vision 默认把
+//   "图不清晰"判 HIGH(见 rag_service/generate/report_generator.py:84),但
+//   这只是"无铭牌图"的中等风险,不该等同于 critical。前端 rollup 信任
+//   riskLevel,所以这里把 high 拉低到 warning 级(65/C);同时加 `low:0`
+//   让 LOW riskLevel 走 fallback(riskPoints 路径)而不是 undefined。
 const NODE_SEVERITY_RANK: Record<string, number> = {
   critical: 4,
-  high: 4, // rolled-up "high" maps to the same penalty as "critical" for score
+  high: 3,
   medium: 2,
+  low: 0,
   info: 1,
 };
 
