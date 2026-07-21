@@ -305,6 +305,16 @@ export default function ProfitPage() {
           },
         ];
   const activeMode = modeCards.find((mode) => mode.id === profitMode) ?? modeCards[1];
+  // Caveat: the bare "heroic" figure is the naive ASP − total; we never subtract
+  // expected penalty. Render that explicitly so the reader doesn't take "barebone
+  // net > compliant net" at face value. See lib/pipeline/profit-report.ts for
+  // the source formula (no expected-loss adjustment on either side).
+  const bareRiskCaveat =
+    profitMode === "bare"
+      ? locale === "zh"
+        ? "↑ 此数未扣除期望风险敞口（潜在罚款 / 扣押 / 召回）"
+        : "↑ Does not deduct expected risk exposure (potential fines, seizure, recall)"
+      : null;
   const metrics =
     profitMode === "bare"
       ? [
@@ -478,6 +488,14 @@ export default function ProfitPage() {
                     <span className="pb-1 text-xs text-white/40">{metric.unit}</span>
                   ) : null}
                 </div>
+                {bareRiskCaveat && index === 0 ? (
+                  <p
+                    className="relative z-10 mt-2 text-[11px] font-medium leading-5 text-[#ff5a4d]"
+                    data-testid="profit-bare-risk-caveat"
+                  >
+                    {bareRiskCaveat}
+                  </p>
+                ) : null}
               </div>
             );
           })}

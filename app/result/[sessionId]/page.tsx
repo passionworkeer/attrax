@@ -24,6 +24,7 @@ import type { ComplianceReportResult, Market, ProductCategory, RiskPoint, ScanRe
 import { cn } from "@/lib/utils";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { ResultExportButton } from "./result-export-button";
+import { synthesizeFinancialSummaryIfMissing } from "@/lib/pipeline/profit-report";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
 /**
@@ -482,7 +483,12 @@ export default function ResultPage() {
   }
 
   const criticalCount = result.riskPoints.filter((item) => item.severity === "critical").length;
-  const financialSummary = result.financialSummary ?? {
+  // Same synthesis path as /profit/[sessionId]: real backend RAG responses
+  // carry profit data only in reportPackage.profitReport.markdown. Calling
+  // synthesizeFinancialSummaryIfMissing lets the result page surface a
+  // populated summary tile rather than "—" placeholders for those scans.
+  const synthesizedSummary = synthesizeFinancialSummaryIfMissing(result, locale);
+  const financialSummary = result.financialSummary ?? synthesizedSummary ?? {
     estimatedHeroicProfit: "—",
     trueNetProfit: "—",
     complianceCost: "—",
@@ -598,6 +604,57 @@ export default function ResultPage() {
               </div>
             </aside>
           </div>
+          {/*
+            Compact profit summary strip. Lives inside #overview so the verdict
+            and the profit signal stay attached. The full panel (cost breakdown,
+            risk cards, breakeven, decision flow) is on /profit/[sessionId].
+            When financialSummary is the un-synthesized fallback (`—`), the
+            strip hides itself instead of rendering noise.
+          */}
+          {financialSummary.trueNetProfit !== "—" ? (
+            <div
+              data-testid="result-profit-summary-strip"
+              className="mt-6 flex flex-wrap items-center gap-4 rounded-[22px] border border-[rgba(255,90,77,0.32)] bg-[linear-gradient(135deg,rgba(255,90,77,0.10),rgba(255,255,255,0.04))] px-5 py-4"
+            >
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[rgba(255,90,77,0.4)] bg-[rgba(255,90,77,0.18)] text-[#ff5a4d]">
+                <CircleAlert className="size-4" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ff5a4d]">
+                  {locale === "zh" ? "利润风险提示" : "Profit risk note"}
+                </p>
+                <p className="mt-1 text-sm leading-6 text-white/82">
+                  {locale === "zh" ? (
+                    <>
+                      <span className="font-mono font-semibold text-white">{displayProductName}</span> 整改后单件净利约{" "}
+                      <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>，
+                      合规预算 <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>，
+                      高危风险下日均罚款 <span className="font-mono font-semibold text-[#ff8a6a]">¥180 万上限</span>。
+                    </>
+                  ) : (
+                    <>
+                      After remediation, per-unit net is about{" "}
+                      <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>,
+                      compliance budget is{" "}
+                      <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>,
+                      and the daily fine ceiling for critical risks is{" "}
+                      <span className="font-mono font-semibold text-[#ff8a6a]">¥1.8M max</span>.
+                    </>
+                  )}
+                </p>
+              </div>
+              <Link
+                href={`/profit/${sessionId}`}
+                className={cn(
+                  buttonVariants({ size: "sm" }),
+                  "shrink-0 rounded-full border border-[rgba(255,90,77,0.45)] bg-[rgba(255,90,77,0.18)] text-white hover:bg-[rgba(255,90,77,0.28)]"
+                )}
+              >
+                {locale === "zh" ? "查看完整利润报告" : "Full profit report"}
+                <MoveRight className="size-4" />
+              </Link>
+            </div>
+          ) : null}
         </section>
         <nav aria-label={locale === "zh" ? "结果阅读顺序" : "Result reading order"} className="blaze-panel grid gap-3 p-2 sm:grid-cols-3">
           {[
