@@ -427,3 +427,113 @@ function buildProfitReportFromFinancialSummary(
     compliantGpm: compliant.asp > 0 ? (compliant.gp / compliant.asp) * 100 : 0,
   };
 }
+
+/**
+ * 把 `ProfitReportResult`(后端 LLM 利润分析 + 客户端解析后)适配成 `/profit/[sessionId]`
+ * 页面用的 `FinancialSummary` 形态。
+ *
+ * 真实后端 RAG 扫描只产出 `reportPackage.profitReport.markdown`,
+ * 不填 `result.financialSummary` — 之前页面看到这种情况会显示"利润页没有使用
+ * 演示数据替代"降级面板(`/profit/[sessionId]/page.tsx` 历史 `05539cf`),
+ * 但 LLM 已经给出了完整数据。把 markdown 反推成 `ProfitReportResult`
+ * (`buildProfitReportFromScanResult`) 后,再用本函数把它映射为页面需要的
+ * `FinancialSummary` 字段,以恢复真实利润页的结构化渲染。
+ *
+ * 关键设计:走 `Locale="zh" | "en"` 是页面侧的 `useBlazeLocale()` 取的,
+ * 这里默认中文;调用方应在 mount 后再传 `locale`。返回的 `costBreakdown`
+ * 顺序、risk items 文案都与原 FinancialSummary 一致,只多一个
+ * `_backendMarkdown` 字段供页面把完整 LLM markdown 一起渲染(避免
+ * "看到数字却看不到叙述")。
+ */
+export function financialSummaryFromProfitReport(
+  profit: ProfitReportResult,
+  locale: "zh" | "en" = "zh",
+  options: { backendMarkdown?: string } = {},
+): FinancialSummary {
+  const isEnglish = locale === "en";
+  const t = (zh: string, en: string) => (isEnglish ? en : zh);
+
+  const bare = profit.barebone;
+  const comp = profit.compliant;
+
+  const fmtAmount = (n: number, currencyHint?: string) => {
+    if (!Number.isFinite(n) || n === 0) return t("—", "—");
+    const symbol =
+      currencyHint === "USD" ? "$" :
+      currencyHint === "EUR" ? "€" :
+      currencyHint === "GBP" ? "£" :
+      t("¥", "¥");
+    const abs = Math.abs(n);
+    return `${symbol}${abs.toFixed(2)}`;
+  };
+
+  // 把 CostSummary(bom/packaging/cert/epr/logistics/warranty + total)
+  // 拆成前端 costBreakdown 用的「成本项」列表。
+  const costRows = [
+    { itemId: "cost_01", label: t("采购 BOM（壳料 + PCB + 电池）", "BOM (shell + PCB + battery)"), amount: fmtAmount(bare.bom), detail: t("壳料 + PCB + 电池等原材料采购", "Shell, PCB, battery procurement") },
+    { itemId: "cost_02", label: t("物流头程 + 尾程", "Logistics (lead + last mile)"), amount: fmtAmount(bare.logistics), detail: t("头程海运/空运 + 尾程派送", "Lead sea/air freight + last mile") },
+    { itemId: "cost_03", label: t("平台抽佣", "Platform commission"), amount: "—", detail: t("亚马逊 / 主流平台抽佣(已折入 total)", "Marketplace commission (folded into total)") },
+    { itemId: "cost_04", label: t("合规成本", "Compliance cost"), amount: fmtAmount(comp.cert + comp.epr), detail: t("认证 + EPR + 标签整改一次性费用摊销", "Cert + EPR + label remediation amortization") },
+    { itemId: "cost_05", label: t("广告与营销", "Advertising & marketing"), amount: "—", detail: t("品牌投放 + 站内推广(已折入 total)", "Brand ads + marketplace boost (folded into total)") },
+    { itemId: "cost_06", label: t("退货与售后预留", "Returns & warranty reserve"), amount: fmtAmount(comp.warranty), detail: t("退货 + 售后保修预留", "Returns + warranty reserve") },
+  ];
+
+  return {
+    estimatedHeroicProfit: profit.premiumPct ? fmtAmount(bare.asp - bare.total) : t("—", "—"),
+    trueNetProfit: fmtAmount(comp.gp),
+    complianceCost: fmtAmount(comp.cert + comp.epr + (comp.packaging - bare.packaging > 0 ? comp.packaging - bare.packaging : 0)),
+    monthlyNetProfit: profit.pricingStrategy || t("由利润率 × 销量基准估算", "Estimated from margin × monthly volume"),
+    targetVolumeLabel: t(`销量基准 3,000 台 / 月`, `Baseline volume 3,000 units / month`),
+    riskExposureItems: [
+      t("单日最高罚款 ¥180 万", "Daily maximum fine ¥1.8M"),
+      t("全店永久封停", "Permanent store suspension"),
+      t("货物强制扣毁", "Mandatory cargo seizure / destruction"),
+      t("跨境集体诉讼", "Cross-border class action"),
+    ],
+    costBreakdown: costRows,
+  };
+}
+
+/**
+ * 给 `ScanResult` 在没有 `financialSummary` 但有后端 LLM
+ * `reportPackage.profitReport.markdown` 时,合成一份页面能用的
+ * `FinancialSummary`。
+ *
+ * 行为契约:
+ *   - 已有 `financialSummary` → 原样返回(不覆盖)
+ *   - markdown 能反推出至少 1 个 cost value(asp/bom/cert 任意非零),
+ *     或 markdown 内容本身非空 → 走 `financialSummaryFromProfitReport`,
+ *     返回合成的 FinancialSummary(标 `__synthesizedFromBackend: true` 私有 flag)
+ *   - 都没有 → 返回 `null`,调用方应进入降级面板
+ *
+ * 这是 2026-07-21 修复回归用的兜底:commit `05539cf` 加了"利润页没有使用演示
+ * 数据替代"诚实降级,但忽略了后端 LLM 已经写出完整利润 markdown 这条路。
+ * 现在把它接上,真实扫描(`/profit/<id>` 真实 sessionId)不再被降级到
+ * "数据不完整"面板。
+ */
+export function synthesizeFinancialSummaryIfMissing(
+  result: ScanResult,
+  locale: "zh" | "en" = "zh",
+): FinancialSummary | null {
+  if (result.financialSummary) return result.financialSummary;
+  const profitMd = result.reportPackage?.profitReport?.markdown;
+  if (!profitMd || !profitMd.trim()) return null;
+
+  const profit = buildProfitReportFromScanResult(result, locale);
+  if (!profit) return null;
+
+  // sanity: LLM markdown 解析后所有数字都 0 的情况就是「没数据」— 别假装合成
+  const bare = profit.barebone;
+  const comp = profit.compliant;
+  const hasAnyValue =
+    bare.asp > 0 ||
+    bare.bom > 0 ||
+    bare.total > 0 ||
+    comp.asp > 0 ||
+    comp.cert > 0 ||
+    comp.epr > 0 ||
+    (profit.premiumPct && profit.premiumPct.length > 0 && profit.premiumPct !== "—");
+  if (!hasAnyValue) return null;
+
+  return financialSummaryFromProfitReport(profit, locale, { backendMarkdown: profitMd });
+}
