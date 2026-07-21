@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { GlowPill, SectionEyebrow } from "@/components/blaze-hawks/ui";
@@ -12,7 +11,12 @@ import {
   CompliPilotFlowFooter,
   CompliPilotFlowHeader,
 } from "@/components/complipilot/flow-shell";
+import { ScanImageStage } from "@/components/complipilot/scan-image-stage";
 import { getCompliPilotCopy } from "@/lib/complipilot/copy";
+import {
+  resolveScanStageImages,
+  type ScanStagePreset,
+} from "@/lib/complipilot/scan-stage";
 import {
   isDisplayableTerminalStatus,
   useScanPolling,
@@ -29,6 +33,24 @@ function readStoredAccessToken(sessionId: string): string | null {
   }
 }
 
+function readStoredImageCount(sessionId: string): number {
+  try {
+    const value = Number.parseInt(
+      sessionStorage.getItem(`scan-image-count:${sessionId}`) ?? "",
+      10
+    );
+    return Number.isFinite(value) ? Math.min(Math.max(value, 0), 3) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function parsePreset(value: string | null): ScanStagePreset {
+  if (value === "humidifier" || value === "toy") {
+    return value;
+  }
+  return "charger";
+}
 function getActiveIndex(progress: number) {
   if (progress >= 85) {
     return 3;
@@ -75,11 +97,14 @@ function localizeStageText(
 
 export default function BurningPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { locale } = useBlazeLocale();
   const copy = getCompliPilotCopy(locale);
   const params = useParams<{ sessionId: string }>();
   const sessionId = params.sessionId;
   const isDemoSession = sessionId === "demo";
+  const preset = isDemoSession ? parsePreset(searchParams.get("preset")) : null;
+  const demoMarkets = searchParams.get("markets") ?? "EU,US";
   // Read the access token directly from sessionStorage on every render.
   // useScanPolling is keyed on sessionId, so the hook's effect re-fires when
   // sessionId changes and re-reads the token. sessionStorage is cheap and
@@ -98,6 +123,14 @@ export default function BurningPage() {
     : status;
   const progress = isDemoSession ? displayStatus?.progress ?? 8 : displayProgress || 8;
   const activeIndex = getActiveIndex(progress);
+  const imageCount = isDemoSession
+    ? 1
+    : status?.imageCount || readStoredImageCount(sessionId);
+  const stageImages = resolveScanStageImages({
+    sessionId,
+    imageCount,
+    preset,
+  });
 
   useEffect(() => {
     if (
@@ -110,6 +143,19 @@ export default function BurningPage() {
       router.push(`/result/${sessionId}`);
     }
   }, [isDemoSession, router, sessionId, status]);
+  useEffect(() => {
+    if (!isDemoSession) {
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      router.push(
+        `/result/demo?preset=${preset ?? "charger"}&markets=${encodeURIComponent(demoMarkets)}`
+      );
+    }, 5200);
+
+    return () => window.clearTimeout(timer);
+  }, [demoMarkets, isDemoSession, preset, router]);
 
   return (
     <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
@@ -252,54 +298,12 @@ export default function BurningPage() {
           </div>
 
           <div className="mt-6 space-y-4">
-            <div className="rounded-[28px] border border-white/8 bg-[linear-gradient(135deg,rgba(255,151,45,0.12),rgba(39,93,164,0.12))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-              <div data-flow-dark className="relative aspect-square overflow-hidden rounded-[26px] border border-white/8 bg-[#101b31] sm:aspect-[1.34/1] xl:aspect-[1.58/1]">
-                <Image
-                  src="/mock-fixtures/compliance-exploded-scan-stage.png"
-                  alt={locale === "zh" ? "AI 合规扫描拆解视图" : "AI compliance exploded scan"}
-                  fill
-                  sizes="(min-width: 1280px) 66vw, (min-width: 768px) 72vw, 92vw"
-                  className="object-cover"
-                  priority
-                />
-                {[
-                  { left: "36%", top: "34%", delay: "0s" },
-                  { left: "61%", top: "46%", delay: "0.4s" },
-                  { left: "42%", top: "78%", delay: "0.7s" },
-                ].map((flame) => (
-                  <span
-                    key={`${flame.left}-${flame.top}`}
-                    className="absolute size-8 rounded-full bg-[radial-gradient(circle,rgba(255,222,150,0.95),rgba(255,135,48,0.84)_46%,rgba(239,90,49,0)_72%)] blur-[0.2px]"
-                    style={{
-                      left: flame.left,
-                      top: flame.top,
-                      animation: `blaze-float 2.2s ease-in-out ${flame.delay} infinite`,
-                    }}
-                  >
-                    <span className="absolute inset-[18%] rounded-full bg-[rgba(255,238,180,0.8)] blur-[1px]" />
-                  </span>
-                ))}
-
-                {/* Component labels */}
-                {[
-                  { label: locale === "zh" ? "外壳" : "Casing", left: "56%", top: "18%", color: "border-[var(--blaze-orange)]" },
-                  { label: locale === "zh" ? "主板" : "Motherboard", left: "32%", top: "43%", color: "border-[#4CC9F0]" },
-                  { label: locale === "zh" ? "电池" : "Battery Cells", left: "62%", top: "61%", color: "border-[#4CC9F0]" },
-                ].map((comp) => (
-                  <div
-                    key={comp.label}
-                    className={`absolute rounded-lg border-l-2 ${comp.color} bg-[rgba(9,15,29,0.8)] px-3 py-1.5 text-xs font-mono text-white/80 backdrop-blur-sm`}
-                    style={{ left: comp.left, top: comp.top }}
-                  >
-                    {comp.label}
-                  </div>
-                ))}
-
-                <div className="absolute inset-x-6 bottom-5 hidden rounded-full border border-white/10 bg-[rgba(9,15,29,0.82)] px-4 py-2 text-center text-xs text-white/58 backdrop-blur sm:block">
-                  {copy.burning.autoJump}
-                </div>
-              </div>
-            </div>
+            <ScanImageStage
+              images={stageImages}
+              progress={progress}
+              locale={locale}
+              isPreset={isDemoSession}
+            />
 
             <div className="hidden gap-3 xl:grid xl:grid-cols-3">
               {copy.burning.insightCards.map((card) => (
