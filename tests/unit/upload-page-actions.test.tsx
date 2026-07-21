@@ -55,12 +55,12 @@ describe("upload page entry points", () => {
     expect(screen.getByRole("button", { name: /开始检测/ })).toBeEnabled();
   });
 
-  it("opens the preset result directly without creating a scan", async () => {
+  it("opens the preset scan stage without creating a backend scan", async () => {
     render(<UploadPage />);
 
     fireEvent.click(screen.getByRole("button", { name: "直接演示" }));
 
-    await waitFor(() => expect(push).toHaveBeenCalledWith(expect.stringContaining("/result/demo?preset=charger")));
+    await waitFor(() => expect(push).toHaveBeenCalledWith(expect.stringContaining("/burning/demo?preset=charger")));
     expect(fetch).not.toHaveBeenCalled();
   });
 });

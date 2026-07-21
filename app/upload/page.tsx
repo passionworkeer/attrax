@@ -359,6 +359,15 @@ export default function UploadPage() {
         }
       }
 
+      try {
+        sessionStorage.setItem(
+          `scan-image-count:${startPayload.sessionId}`,
+          String(formData.getAll("images").length),
+        );
+      } catch {
+        // The polling response also exposes imageCount for reload recovery.
+      }
+
       router.push(`/burning/${startPayload.sessionId}`);
     } catch (caughtError) {
       setError(
@@ -403,7 +412,7 @@ export default function UploadPage() {
     const presetKeys = ["charger", "humidifier", "toy"] as const;
     const key = presetKeys[presetIndex] ?? "charger";
     const preset = presetConfigs[presetIndex] ?? presetConfigs[0];
-    router.push(`/result/demo?preset=${key}&markets=${preset.markets.join(",")}`);
+    router.push(`/burning/demo?preset=${key}&markets=${preset.markets.join(",")}`);
   }
 
   return (
