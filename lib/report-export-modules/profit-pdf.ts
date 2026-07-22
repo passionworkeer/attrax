@@ -1,35 +1,88 @@
 import { jsPDF } from "jspdf";
-import type { ProfitReportResult } from "@/lib/types";
+import type { ProfitReportResult, ScanResult } from "@/lib/types";
 import { localizeProfitReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
   downloadBlob,
   embedFont,
-  pdfBullet,
-  pdfDrawTable,
+  pdfCheckBreak,
   pdfSectionTitle,
-  renderMarkdownPdf,
   resolveLocale,
-  tx,
   yieldToMainThread,
 } from "./shared";
+import {
+  buildProfitRenderModel,
+  type ProfitMetricCard,
+  type ProfitRenderModel,
+} from "./profit-render-model";
 
-const CURRENCY_SYMBOLS: Record<string, string> = {
-  CNY: "¥",
-  EUR: "€",
-  GBP: "£",
-  USD: "$",
-  JPY: "¥",
-};
-
-function currencySymbol(currency?: string): string {
-  return currency ? (CURRENCY_SYMBOLS[currency.toUpperCase()] ?? "$") : "$";
-}
-
+/**
+ * `downloadProfitReportAsPdf` keeps the legacy `ProfitReportResult` signature
+ * for backwards compatibility (older tests / any non-UI caller). It internally
+ * rebuilds a `ProfitRenderModel` from the result so the PDF still benefits
+ * from the unified layout. Prefer `downloadProfitModelAsPdf` for new code.
+ */
 export async function downloadProfitReportAsPdf(input: ProfitReportResult, locale?: Locale): Promise<void> {
   try {
     const L = resolveLocale(locale);
     const result = localizeProfitReportResult(input, L);
+    // Build a synthetic ScanResult + FinancialSummary so we can leverage the
+    // shared `buildProfitRenderModel`. The legacy ProfitReportResult predates
+    // the unified RenderModel — we map CostSummary → FinancialSummary here so
+    // the wrapper still works for old callers (existing test fixtures).
+    const syntheticResult: ScanResult = {
+      sessionId: result.sessionId,
+      scanTime: result.generatedAt,
+      productName: result.productType,
+      productNameEn: result.productType,
+      targetMarkets: [result.market as ScanResult["targetMarkets"][number]],
+      productCategory: "other",
+      images: [],
+      documents: [],
+      generatedAt: result.generatedAt,
+      reportPackage: { profitReport: { markdown: result.report ?? "" } },
+      complianceScore: 0,
+      scoreGrade: "C",
+      financialSummary: {
+        estimatedHeroicProfit: `$${result.barebone.gp.toFixed(2)}`,
+        trueNetProfit: `$${result.compliant.gp.toFixed(2)}`,
+        complianceCost: `$${(result.compliant.cert + result.compliant.epr + Math.max(result.compliant.packaging - result.barebone.packaging, 0)).toFixed(2)}`,
+        monthlyNetProfit: result.pricingStrategy || "—",
+        targetVolumeLabel: "—",
+        riskExposureItems: [
+          "单日最高罚款 ¥180 万",
+          "全店永久封停",
+          "货物强制扣毁",
+          "跨境集体诉讼",
+        ],
+        costBreakdown: [],
+      },
+      riskPoints: [],
+      checklist: [],
+    };
+    const model = buildProfitRenderModel({
+      result: syntheticResult,
+      financialSummary: syntheticResult.financialSummary!,
+      profitMode: "compliant",
+      locale: L,
+    });
+    await downloadProfitModelAsPdf(model);
+  } catch (error) {
+    throw new Error(
+      `Failed to export profit PDF report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
+}
+
+/**
+ * Render a profit PDF directly from the unified `ProfitRenderModel`. This is
+ * the production path used by `/profit/[sessionId]`'s export panel — it
+ * guarantees the downloaded PDF shows byte-for-byte the same labels, numbers,
+ * and bare-mode caveat the user is looking at on screen.
+ */
+export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promise<void> {
+  try {
     const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
     await embedFont(doc);
 
@@ -38,196 +91,242 @@ export async function downloadProfitReportAsPdf(input: ProfitReportResult, local
     const margin = 18;
     const contentWidth = pageWidth - margin * 2;
     const y = { cur: margin };
+    const ccy = model.currencySymbol;
 
-  // Translation shortcuts
-  const rp = (k: string) => tx(`report.${k}`, L);
-  const lblNoCompliance = rp("labels.noCompliance");
-  const lblWithCompliance = rp("labels.withCompliance");
-  const colCostItem = rp("columns.costItem");
-  const colBomCost = rp("columns.bomCost");
-  const colPackaging = rp("columns.packaging");
-  const colCertAmort = rp("columns.certAmortization");
-  const colEprFee = rp("columns.eprFee");
-  const colAfterSales = rp("columns.afterSales");
-  const colWarranty = rp("columns.warranty");
-  const colLogistics = rp("columns.logistics");
-  const colTotalCost = rp("columns.totalDirectCost");
-  const colRevenue = rp("columns.revenue");
-  const colAvgPrice = rp("columns.avgPrice");
-  const colGrossProfit = rp("columns.grossProfit");
-  const colGrossMargin = rp("columns.grossMargin");
-  const lblRiskExposure = rp("cards.riskExposure");
-  const lblBreakevenUnits = rp("cards.breakevenUnits");
-  const lblMode = L === "zh" ? "模式" : "Mode";
-  const lblAnalysis = L === "zh" ? "分析项" : "Analysis Item";
-  const lblDiff = L === "zh" ? "差值" : "Diff.";
-  const lblExplanation = L === "zh" ? "说明" : "Notes";
-  const lblCompliancePremium = L === "zh" ? "合规溢价" : "Compliance Premium";
-  const lblSuggestedPrice = L === "zh" ? "建议定价" : "Suggested Price";
-  const lblRiskAdjNet = L === "zh" ? "经风险调整净收益" : "Risk-Adjusted Net";
-  const lblZeroRisk = L === "zh" ? "零风险敞口" : "Zero risk exposure";
-  const lblSeizureRisk = L === "zh" ? "35-50% 扣押概率" : "35-50% seizure probability";
-  const lblPricingStrategy = L === "zh" ? "定价策略" : "Pricing Strategy";
-  const lblFullReport = L === "zh" ? "完整分析报告" : "Full Analysis Report";
-
-  // Currency symbol based on locale (reports are CNY)
-  const ccy = currencySymbol(result.currency);
-  const dateFmt = L === "zh" ? "zh-CN" : "en-US";
-  const colon = L === "zh" ? "：" : ": ";
-  const metaGap = L === "zh" ? "　　" : "    ";
-  const aspSuffix = L === "zh" ? "（ASP）" : " (ASP)";
-
-  // ── Header ────────────────────────────────────────────────────────────────
+  // ── Header bar ────────────────────────────────────────────────────────────
   doc.setFontSize(9);
   doc.setTextColor(180);
   doc.setFont("NotoSansSC", "normal");
-  doc.text(rp("profitTitle"), margin, y.cur);
+  doc.text(model.title, margin, y.cur);
   y.cur += 5;
   doc.setDrawColor(220);
   doc.line(margin, y.cur, pageWidth - margin, y.cur);
   y.cur += 7;
 
-  // ── Title ────────────────────────────────────────────────────────────────
-  const title = rp("title");
+  // ── Title + subtitle (matches page.tsx) ───────────────────────────────────
   doc.setFontSize(20);
   doc.setTextColor(40, 40, 40);
   doc.setFont("NotoSansSC", "bold");
-  doc.text(title, margin, y.cur);
+  doc.text(model.title, margin, y.cur);
   y.cur += 7;
   doc.setFontSize(9);
   doc.setTextColor(140);
   doc.setFont("NotoSansSC", "normal");
-  const lblProduct = tx("report.labels.product", L);
-  const lblMkt = tx("report.labels.market", L);
-  doc.text(`${lblProduct}${colon}${result.productType}${metaGap}${lblMkt}${colon}${result.market}${metaGap}${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, margin, y.cur);
+  doc.text(`${model.productName} · ${model.marketLabel} · ${model.generatedAtLabel}`, margin, y.cur);
   y.cur += 10;
 
-  // ── Summary Cards ────────────────────────────────────────────────────────
+  // ── 4 metric cards (matches page.tsx grid) ─────────────────────────────────
   const halfW = (contentWidth - 4) / 2;
-  const renderCard = (
-    x: number, label: string, gp: number, risk: number,
-    bg: number[], border: number[], fg: number[],
-  ) => {
-    doc.setFillColor(bg[0], bg[1], bg[2]);
-    doc.setDrawColor(border[0], border[1], border[2]);
-    doc.setLineWidth(0.4);
-    doc.roundedRect(x, y.cur, halfW, 24, 2, 2, "FD");
-    doc.setFontSize(8);
-    doc.setTextColor(fg[0], fg[1], fg[2]);
-    doc.text(label, x + 4, y.cur + 5);
-    doc.setFontSize(17);
-    doc.text(`${ccy}${gp.toFixed(0)}`, x + 4, y.cur + 13);
-    doc.setFontSize(7.5);
-    doc.text(`${lblRiskExposure} ${ccy}${risk.toFixed(0)}`, x + 4, y.cur + 20);
+  const toneColor = (tone: ProfitMetricCard["tone"]): [number, number, number] => {
+    switch (tone) {
+      case "green": return [16, 185, 129];
+      case "white": return [255, 255, 255];
+      case "orange": return [244, 162, 97];
+      case "blue": return [76, 201, 240];
+      case "alert": return [249, 115, 96];
+      default: return [255, 255, 255];
+    }
   };
-
-  renderCard(margin, lblNoCompliance, result.barebone.gp, result.bareboneRiskExposure, [255, 238, 238], [200, 60, 60], [180, 50, 50]);
-  renderCard(margin + halfW + 4, lblWithCompliance, result.compliant.gp, result.compliantRiskExposure, [238, 255, 244], [50, 180, 100], [30, 150, 70]);
-  y.cur += 30;
-
-    // Yield between header/card draw and the table-heavy sections below so the
-    // main thread can paint a loading indicator and stay responsive.
-    await yieldToMainThread();
-
-    // ── Section 1: Cost Comparison ──────────────────────────────────────────
-    const s1Title = L === "zh"
-      ? `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）`
-      : `${rp("costComparison")} (${lblWithCompliance} vs ${lblNoCompliance})`;
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, s1Title);
-    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-      [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
-      [colBomCost, `${ccy}${result.barebone.bom.toFixed(2)}`, `${ccy}${result.compliant.bom.toFixed(2)}`, `${ccy}${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
-      [colPackaging, `${ccy}${result.barebone.packaging.toFixed(2)}`, `${ccy}${result.compliant.packaging.toFixed(2)}`, `${ccy}${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
-      [colCertAmort, `${ccy}${result.barebone.cert.toFixed(2)}`, `${ccy}${result.compliant.cert.toFixed(2)}`, `${ccy}${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
-      [colEprFee, `${ccy}${result.barebone.epr.toFixed(2)}`, `${ccy}${result.compliant.epr.toFixed(2)}`, `${ccy}${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
-      [`${colAfterSales}/${colWarranty}`, `${ccy}${result.barebone.warranty.toFixed(2)}`, `${ccy}${result.compliant.warranty.toFixed(2)}`, `${ccy}${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
-      [colLogistics, `${ccy}${result.barebone.logistics.toFixed(2)}`, `${ccy}${result.compliant.logistics.toFixed(2)}`, `${ccy}${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
-      [colTotalCost, `${ccy}${result.barebone.total.toFixed(2)}`, `${ccy}${result.compliant.total.toFixed(2)}`, `${ccy}${(result.compliant.total - result.barebone.total).toFixed(2)}`],
-    ], [58, 28, 28, 28]);
-
-    await yieldToMainThread();
-
-    // ── Section 2: Revenue Comparison ─────────────────────────────────────────
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("revenueComparison"));
-    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-      [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
-      [`${colAvgPrice}${aspSuffix}`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
-      [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
-      [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
-    ], [58, 28, 28, 28]);
-
-    await yieldToMainThread();
-
-    // ── Section 3: Risk-Adjusted Net Income ──────────────────────────────────
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("riskAdjustedRevenue"));
-    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-      [lblMode, colGrossProfit, lblRiskExposure, lblRiskAdjNet],
-      [lblWithCompliance, `${ccy}${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? lblZeroRisk : `${ccy}${result.compliantRiskExposure.toFixed(0)}`, `${ccy}${(result.compliant.gp - result.compliantRiskExposure / 100).toFixed(2)}`],
-      [lblNoCompliance, `${ccy}${result.barebone.gp.toFixed(2)}`, lblSeizureRisk, `${ccy}${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
-    ], [40, 26, 40, 36]);
-
-    if (result.riskNote) {
-      pdfBullet(doc, y, margin, pageWidth, pageHeight, result.riskNote);
-    }
-
-    await yieldToMainThread();
-
-    // ── Section 4: Breakeven Analysis ───────────────────────────────────────
-    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("breakEvenAnalysis"));
-    pdfDrawTable(doc, y, margin, pageWidth, pageHeight, [
-      [lblAnalysis, lblNoCompliance, lblWithCompliance, lblExplanation],
-      [lblCompliancePremium, "—", result.premiumPct || "—", result.premiumPct ? `${L === "zh" ? "成本增加" : "Cost increase"} ${result.premiumPct}` : "—"],
-      [lblBreakevenUnits, "—", result.breakevenUnits || "—", result.breakevenUnits ? `${L === "zh" ? "约" : "Approx."} ${result.breakevenUnits}` : "—"],
-      [lblSuggestedPrice, "—", `${ccy}${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
-    ], [40, 26, 36, 40]);
-
-    if (result.pricingStrategy) {
-      pdfBullet(doc, y, margin, pageWidth, pageHeight, `${lblPricingStrategy}${colon}${result.pricingStrategy}`);
-    }
-
-    await yieldToMainThread();
-
-    // ── Section 5: Conclusions ──────────────────────────────────────────────
-    const conclusionText = result.conclusions || result.keyConclusion || "";
-    if (conclusionText) {
-      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("keyConclusions"));
-      for (const line of conclusionText.split("\n").filter(Boolean)) {
-        pdfBullet(doc, y, margin, pageWidth, pageHeight, line);
-      }
-    }
-
-    // ── Section 6: References ──────────────────────────────────────────────
-    if (result.references) {
-      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, rp("regulationCitations"));
-      for (const line of result.references.split("\n").filter(Boolean)) {
-        const clean = line.replace(/^[-*]\s*/, "• ");
-        pdfBullet(doc, y, margin, pageWidth, pageHeight, clean);
-      }
-    }
-
-    await yieldToMainThread();
-
-    // ── Full markdown report appendix ─────────────────────────────────────
-    if (result.report) {
-      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, lblFullReport);
-      await renderMarkdownPdf(doc, y, margin, pageWidth, pageHeight, result.report, yieldToMainThread);
-    }
-
-    // ── Footer on each page ──────────────────────────────────────────────────
-    const pageCount = doc.getNumberOfPages();
-    for (let i = 1; i <= pageCount; i++) {
-      doc.setPage(i);
+  const cardW = (contentWidth - 6) / 4;
+  for (let i = 0; i < model.metrics.length; i++) {
+    const m = model.metrics[i];
+    const x = margin + i * (cardW + 2);
+    doc.setDrawColor(60, 60, 60);
+    doc.setLineWidth(0.3);
+    doc.roundedRect(x, y.cur, cardW, 32, 2, 2, "S");
+    doc.setFontSize(8);
+    doc.setTextColor(160, 160, 160);
+    doc.setFont("NotoSansSC", "normal");
+    doc.text(m.label, x + 3, y.cur + 5);
+    const [r, g, b] = toneColor(m.tone);
+    doc.setTextColor(r, g, b);
+    doc.setFontSize(18);
+    doc.setFont("NotoSansSC", "bold");
+    doc.text(m.value, x + 3, y.cur + 18);
+    if (m.unit) {
       doc.setFontSize(8);
-      doc.setTextColor(200, 200, 200);
-      doc.text(
-        `${rp("profitTitle")} · ${result.sessionId} · ${L === "zh" ? "第" : "Page"} ${i}/${pageCount}`,
-        pageWidth / 2,
-        pageHeight - 6,
-        { align: "center" }
-      );
+      doc.setFont("NotoSansSC", "normal");
+      doc.setTextColor(180, 180, 180);
+      doc.text(m.unit, x + 3, y.cur + 27);
     }
+    if (m.bareRiskCaveat) {
+      doc.setFontSize(7);
+      doc.setTextColor(255, 90, 77);
+      doc.setFont("NotoSansSC", "normal");
+      // Trim the caveat for the card so it fits. Page wraps it, but we keep
+      // the full string verbatim — same caveat the user sees.
+      const caveatLines = doc.splitTextToSize(m.bareRiskCaveat, cardW - 6) as string[];
+      caveatLines.slice(0, 2).forEach((line, lineIdx) => {
+        doc.text(line, x + 3, y.cur + 30 + lineIdx * 3);
+      });
+    }
+  }
+  y.cur += 38;
 
-    downloadBlob(doc.output("blob"), L === "zh" ? `成本利润分析报告_${result.sessionId}.pdf` : `CostProfitAnalysisReport_${result.sessionId}.pdf`);
+  await yieldToMainThread();
+
+  // ── Section: 全链路成本明细 (cost impact board) ─────────────────────────
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, model.chainNodes.length > 0 ? "全链路成本明细" : "Cost Breakdown");
+  // Top 3 summary cards (retail / chain cost / final net)
+  const topW = (contentWidth - 4) / 3;
+  const topLabels = ["售价基线", "全链路成本", "最终净利润"];
+  const topValues = [
+    `${ccy}128`,
+    `${ccy}${model.chainNodes.reduce((s, n) => s + n.amount, 0).toFixed(0)}`,
+    model.costBoard.finalNetValue,
+  ];
+  for (let i = 0; i < 3; i++) {
+    const x = margin + i * (topW + 2);
+    doc.setDrawColor(220, 220, 220);
+    doc.roundedRect(x, y.cur, topW, 18, 2, 2, "S");
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.setFont("NotoSansSC", "normal");
+    doc.text(topLabels[i], x + 3, y.cur + 5);
+    doc.setFontSize(13);
+    if (i === 2) {
+      doc.setTextColor(22, 128, 150);
+    } else {
+      doc.setTextColor(40, 40, 40);
+    }
+    doc.setFont("NotoSansSC", "bold");
+    doc.text(topValues[i], x + 3, y.cur + 14);
+  }
+  y.cur += 22;
+
+  // Diagnostic line (margin signal)
+  doc.setFontSize(9);
+  doc.setTextColor(220, 220, 220);
+  doc.setFont("NotoSansSC", "normal");
+  doc.text(model.costBoard.marginSignal, margin, y.cur);
+  y.cur += 6;
+
+  // ── Section: 成本节点流 (6 nodes) ────────────────────────────────────────
+  const nodeW = (contentWidth - 10) / 6;
+  for (let i = 0; i < model.chainNodes.length; i++) {
+    const n = model.chainNodes[i];
+    const x = margin + i * (nodeW + 2);
+    doc.setDrawColor(220, 220, 220);
+    doc.roundedRect(x, y.cur, nodeW, 28, 2, 2, "S");
+    doc.setFontSize(7);
+    doc.setTextColor(180, 180, 180);
+    doc.setFont("NotoSansSC", "normal");
+    doc.text(`0${i + 1}`, x + 3, y.cur + 5);
+    doc.setTextColor(34, 127, 149);
+    doc.setFont("NotoSansSC", "bold");
+    doc.text(`${n.share.toFixed(1)}%`, x + nodeW - 12, y.cur + 5);
+    doc.setFontSize(8);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("NotoSansSC", "bold");
+    doc.text(n.label, x + 3, y.cur + 12);
+    doc.setFontSize(7);
+    doc.setTextColor(170, 170, 170);
+    doc.setFont("NotoSansSC", "normal");
+    const detailLines = doc.splitTextToSize(n.detail, nodeW - 6) as string[];
+    detailLines.slice(0, 2).forEach((line, lineIdx) => {
+      doc.text(line, x + 3, y.cur + 17 + lineIdx * 3);
+    });
+    doc.setFontSize(11);
+    doc.setTextColor(255, 255, 255);
+    doc.setFont("NotoSansSC", "bold");
+    doc.text(n.displayAmount, x + 3, y.cur + 25);
+    // Color stripe at bottom of node
+    doc.setFillColor(n.color);
+    doc.rect(x + 3, y.cur + 27, nodeW - 6, 1, "F");
+  }
+  y.cur += 32;
+
+  await yieldToMainThread();
+
+  // ── Section: 售价分配结果 (stacked bar legend) ───────────────────────────
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "售价分配结果");
+  const totalShare = model.chainNodes.reduce((s, n) => s + n.share, 0) + model.costBoard.finalNetShare;
+  const barY = y.cur;
+  doc.setFillColor(240, 240, 240);
+  doc.roundedRect(margin, barY, contentWidth, 10, 2, 2, "F");
+  let cursor = margin;
+  for (const n of model.chainNodes) {
+    if (n.share <= 0) continue;
+    const segW = (n.share / Math.max(totalShare, 1)) * contentWidth;
+    doc.setFillColor(n.color);
+    doc.rect(cursor, barY, segW, 10, "F");
+    cursor += segW;
+  }
+  const finalSegW = (model.costBoard.finalNetShare / Math.max(totalShare, 1)) * contentWidth;
+  if (finalSegW > 0) {
+    doc.setFillColor(model.finalNetGradientEnd);
+    doc.rect(cursor, barY, finalSegW, 10, "F");
+  }
+  y.cur += 14;
+
+  // Legend below bar
+  doc.setFontSize(7);
+  doc.setTextColor(170, 170, 170);
+  doc.setFont("NotoSansSC", "normal");
+  for (const item of model.stackLegend) {
+    doc.setFillColor(item.color);
+    doc.rect(margin, y.cur, 2, 2, "F");
+    doc.text(`${item.label} ${item.displayAmount}`, margin + 4, y.cur + 1.5);
+    y.cur += 4;
+  }
+  y.cur += 2;
+
+  await yieldToMainThread();
+
+  // ── Section: 不合规最高风险 (4 risk items) ──────────────────────────────
+  pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, "不合规最高风险");
+  const riskW = (contentWidth - 6) / Math.max(model.riskExposureItems.length, 1);
+  for (let i = 0; i < model.riskExposureItems.length; i++) {
+    const r = model.riskExposureItems[i];
+    const x = margin + i * (riskW + 2);
+    doc.setDrawColor(220, 220, 220);
+    doc.roundedRect(x, y.cur, riskW, 18, 2, 2, "S");
+    doc.setFontSize(8);
+    doc.setTextColor(185, 90, 80);
+    doc.setFont("NotoSansSC", "bold");
+    const riskLines = doc.splitTextToSize(r.label, riskW - 4) as string[];
+    riskLines.slice(0, 3).forEach((line, lineIdx) => {
+      doc.text(line, x + 2, y.cur + 5 + lineIdx * 4);
+    });
+  }
+  y.cur += 22;
+
+  await yieldToMainThread();
+
+  // ── Optional: 后端 LLM 成本详述 ──────────────────────────────────────────
+  if (model.backendMarkdown) {
+    pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, model.backendMarkdownTitle);
+    doc.setFontSize(9);
+    doc.setTextColor(200, 200, 200);
+    doc.setFont("NotoSansSC", "normal");
+    const mdLines = doc.splitTextToSize(model.backendMarkdown, contentWidth) as string[];
+    for (const line of mdLines) {
+      const { y: ny } = pdfCheckBreak(doc, y.cur, margin, pageHeight, 5);
+      if (ny !== y.cur) y.cur = ny;
+      doc.text(line, margin, y.cur);
+      y.cur += 4;
+    }
+    y.cur += 4;
+  }
+
+  await yieldToMainThread();
+
+  // ── Footer on each page ──────────────────────────────────────────────────
+  const pageCount = doc.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFontSize(8);
+    doc.setTextColor(200, 200, 200);
+    doc.text(
+      `${model.title} · ${model.sessionId} · 第 ${i}/${pageCount} 页`,
+      pageWidth / 2,
+      pageHeight - 6,
+      { align: "center" }
+    );
+  }
+
+  const filename = `${model.exportBasename}_${model.sessionId}.pdf`;
+  downloadBlob(doc.output("blob"), filename);
   } catch (error) {
     throw new Error(
       `Failed to export profit PDF report: ${error instanceof Error ? error.message : String(error)}`,

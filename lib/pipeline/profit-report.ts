@@ -535,5 +535,10 @@ export function synthesizeFinancialSummaryIfMissing(
     (profit.premiumPct && profit.premiumPct.length > 0 && profit.premiumPct !== "—");
   if (!hasAnyValue) return null;
 
-  return financialSummaryFromProfitReport(profit, locale, { backendMarkdown: profitMd });
+  const fs = financialSummaryFromProfitReport(profit, locale, { backendMarkdown: profitMd });
+  // 私有 flag,告诉调用方(页面 / 导出器)这是从后端 LLM markdown 合成出来的,
+  // 应当把完整 markdown 当作「后端真实输出」段落一起渲染,而不是仅展示数字。
+  (fs as FinancialSummary & { _backendMarkdown?: string })._backendMarkdown = profitMd;
+  (fs as FinancialSummary & { __includeBackendMarkdown?: boolean }).__includeBackendMarkdown = true;
+  return fs;
 }
