@@ -841,13 +841,13 @@ describe('downloadProfitReportAsPdf', () => {
   it('saves with Chinese filename when locale is zh', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'zh' : null)
     await downloadProfitReportAsPdf(makeProfitResult())
-    expect(mockAnchorRef.current.download).toBe('成本利润分析报告_sess_profit_001.pdf')
+    expect(mockAnchorRef.current.download).toBe('合规整改成本与风险影响_sess_profit_001.pdf')
   })
 
   it('saves with English filename when locale is en', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'en' : null)
     await downloadProfitReportAsPdf(makeProfitResult())
-    expect(mockAnchorRef.current.download).toBe('CostProfitAnalysisReport_sess_profit_001.pdf')
+    expect(mockAnchorRef.current.download).toBe('Compliance Cost and Risk Impact_sess_profit_001.pdf')
   })
 
   it('handles zero risk exposure correctly', async () => {
@@ -910,8 +910,9 @@ describe('downloadProfitReportAsDocx', () => {
     const firstTextRun = firstChild.children[0]
     expect(firstTextRun).toBeDefined()
     expect(firstTextRun.text).toBeDefined()
-    // profitTitle 中文经品牌名替换(火鹰合规→规航AI)后是"规航AI · 合规成本与利润分析报告"
-    expect(firstTextRun.text).toContain('规航AI')
+    // The DOCX now mirrors the `/profit/[sessionId]` page title verbatim
+    // (the unified RenderModel is the single source of truth).
+    expect(firstTextRun.text).toBe('合规整改成本与风险影响')
   })
 
   it('creates summary cards table for barebone vs compliant', async () => {
@@ -978,13 +979,13 @@ describe('downloadProfitReportAsDocx', () => {
   it('sets Chinese filename when locale is zh', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'zh' : null)
     await downloadProfitReportAsDocx(makeProfitResult())
-    expect(mockAnchorRef.current.download).toBe('成本利润分析报告_sess_profit_001.docx')
+    expect(mockAnchorRef.current.download).toBe('合规整改成本与风险影响_sess_profit_001.docx')
   })
 
   it('sets English filename when locale is en', async () => {
     localStorage.getItem = vi.fn((key: string) => key === 'locale' ? 'en' : null)
     await downloadProfitReportAsDocx(makeProfitResult())
-    expect(mockAnchorRef.current.download).toBe('CostProfitAnalysisReport_sess_profit_001.docx')
+    expect(mockAnchorRef.current.download).toBe('Compliance Cost and Risk Impact_sess_profit_001.docx')
   })
 
   it('appends anchor to body, clicks, then removes it', async () => {

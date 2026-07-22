@@ -14,6 +14,7 @@ import type { ComplianceReportResult, ProfitReportResult } from "@/lib/types";
 import type { Locale } from "./report-export-modules/shared";
 import type { DecisionContent } from "./report-export-modules/decision";
 import type { RoadmapContent } from "./report-export-modules/roadmap";
+import type { ProfitRenderModel } from "./report-export-modules/profit-render-model";
 
 const complianceModule = () => import("./report-export-modules/compliance");
 const profitPdfModule = () => import("./report-export-modules/profit-pdf");
@@ -35,6 +36,20 @@ export function downloadProfitReportAsPdf(result: ProfitReportResult, locale?: L
 
 export function downloadProfitReportAsDocx(result: ProfitReportResult, locale?: Locale): Promise<void> {
   return profitDocxModule().then((m) => m.downloadProfitReportAsDocx(result, locale));
+}
+
+/**
+ * Export using a pre-built `ProfitRenderModel` so the PDF/DOCX renders
+ * byte-for-byte the same strings / numbers / caveats the user just saw on
+ * `/profit/[sessionId]`. This is the path the production export button takes
+ * — see `app/profit/[sessionId]/profit-export-panel.tsx`.
+ */
+export function downloadProfitModelAsPdf(model: ProfitRenderModel): Promise<void> {
+  return profitPdfModule().then((m) => m.downloadProfitModelAsPdf(model));
+}
+
+export function downloadProfitModelAsDocx(model: ProfitRenderModel): Promise<void> {
+  return profitDocxModule().then((m) => m.downloadProfitModelAsDocx(model));
 }
 
 export function downloadDecisionReportAsPdf(content: DecisionContent, locale?: Locale): Promise<void> {

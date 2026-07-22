@@ -699,6 +699,7 @@ export default function ProfitPage() {
           <ProfitExportPanel
             result={result}
             locale={locale}
+            profitMode={profitMode}
             primaryLabel={riskHeadings.exportProfit}
             secondaryLabel={riskHeadings.exportCompliance}
             className="flex-1"

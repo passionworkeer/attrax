@@ -10,223 +10,443 @@ import {
   TextRun,
   WidthType,
 } from "docx";
-import type { ProfitReportResult } from "@/lib/types";
+import type { ProfitReportResult, ScanResult } from "@/lib/types";
 import { localizeProfitReportResult } from "@/lib/report-localization";
 import type { Locale } from "./shared";
 import {
-  docxTable,
   downloadBlob,
-  mkBullet,
   mkSectionH,
-  parseMarkdownToDocx,
   resolveLocale,
-  tx,
 } from "./shared";
+import {
+  buildProfitRenderModel,
+  type ProfitMetricCard,
+  type ProfitRenderModel,
+} from "./profit-render-model";
 
-const CURRENCY_SYMBOLS: Record<string, string> = {
-  CNY: "¥",
-  EUR: "€",
-  GBP: "£",
-  USD: "$",
-  JPY: "¥",
-};
-
-function currencySymbol(currency?: string): string {
-  return currency ? (CURRENCY_SYMBOLS[currency.toUpperCase()] ?? "$") : "$";
-}
-
+/**
+ * Legacy wrapper for `ProfitReportResult` → DOCX. Internally builds the same
+ * RenderModel used by `downloadProfitModelAsDocx`. New callers should prefer
+ * the model-based entry point so the exported DOCX matches the on-screen UI
+ * byte-for-byte.
+ */
 export async function downloadProfitReportAsDocx(input: ProfitReportResult, locale?: Locale): Promise<void> {
   try {
     const L = resolveLocale(locale);
     const result = localizeProfitReportResult(input, L);
-  const ccy = currencySymbol(result.currency);
-  const dateFmt = L === "zh" ? "zh-CN" : "en-US";
-  const colon = L === "zh" ? "：" : ": ";
-  const metaGap = L === "zh" ? "　　" : "    ";
-  const aspSuffix = L === "zh" ? "（ASP）" : " (ASP)";
-
-  // Translation shortcuts
-  const rp = (k: string) => tx(`report.${k}`, L);
-  const lblNoCompliance = rp("labels.noCompliance");
-  const lblWithCompliance = rp("labels.withCompliance");
-  const colCostItem = rp("columns.costItem");
-  const colBomCost = rp("columns.bomCost");
-  const colPackaging = rp("columns.packaging");
-  const colCertAmort = rp("columns.certAmortization");
-  const colEprFee = rp("columns.eprFee");
-  const colAfterSales = rp("columns.afterSales");
-  const colWarranty = rp("columns.warranty");
-  const colLogistics = rp("columns.logistics");
-  const colTotalCost = rp("columns.totalDirectCost");
-  const colRevenue = rp("columns.revenue");
-  const colAvgPrice = rp("columns.avgPrice");
-  const colGrossProfit = rp("columns.grossProfit");
-  const colGrossMargin = rp("columns.grossMargin");
-  const lblGrossProfit = rp("cards.grossProfit");
-  const lblRiskExposure = rp("cards.riskExposure");
-  const lblMode = L === "zh" ? "模式" : "Mode";
-  const lblAnalysis = L === "zh" ? "分析项" : "Analysis Item";
-  const lblDiff = L === "zh" ? "差值" : "Diff.";
-  const lblExplanation = L === "zh" ? "说明" : "Notes";
-  const lblCompliancePremium = L === "zh" ? "合规溢价" : "Compliance Premium";
-  const lblBreakeven = L === "zh" ? "盈亏平衡台数" : "Break-even Units";
-  const lblSuggestedPrice = L === "zh" ? "建议定价" : "Suggested Price";
-  const lblRiskAdjNet = L === "zh" ? "经风险调整净收益" : "Risk-Adjusted Net";
-  const lblZeroRisk = L === "zh" ? "零风险敞口" : "Zero risk exposure";
-  const lblSeizureRisk = L === "zh" ? "35-50% 扣押概率" : "35-50% seizure probability";
-  const lblPricingStrategy = L === "zh" ? "定价策略" : "Pricing Strategy";
-  const lblFullReport = L === "zh" ? "完整分析报告" : "Full Analysis Report";
-
-  const costRows: string[][] = [
-    [colCostItem, lblNoCompliance, lblWithCompliance, lblDiff],
-    [colBomCost, `${ccy}${result.barebone.bom.toFixed(2)}`, `${ccy}${result.compliant.bom.toFixed(2)}`, `${ccy}${(result.compliant.bom - result.barebone.bom).toFixed(2)}`],
-    [colPackaging, `${ccy}${result.barebone.packaging.toFixed(2)}`, `${ccy}${result.compliant.packaging.toFixed(2)}`, `${ccy}${(result.compliant.packaging - result.barebone.packaging).toFixed(2)}`],
-    [colCertAmort, `${ccy}${result.barebone.cert.toFixed(2)}`, `${ccy}${result.compliant.cert.toFixed(2)}`, `${ccy}${(result.compliant.cert - result.barebone.cert).toFixed(2)}`],
-    [colEprFee, `${ccy}${result.barebone.epr.toFixed(2)}`, `${ccy}${result.compliant.epr.toFixed(2)}`, `${ccy}${(result.compliant.epr - result.barebone.epr).toFixed(2)}`],
-    [`${colAfterSales}/${colWarranty}`, `${ccy}${result.barebone.warranty.toFixed(2)}`, `${ccy}${result.compliant.warranty.toFixed(2)}`, `${ccy}${(result.compliant.warranty - result.barebone.warranty).toFixed(2)}`],
-    [colLogistics, `${ccy}${result.barebone.logistics.toFixed(2)}`, `${ccy}${result.compliant.logistics.toFixed(2)}`, `${ccy}${(result.compliant.logistics - result.barebone.logistics).toFixed(2)}`],
-    [colTotalCost, `${ccy}${result.barebone.total.toFixed(2)}`, `${ccy}${result.compliant.total.toFixed(2)}`, `${ccy}${(result.compliant.total - result.barebone.total).toFixed(2)}`],
-  ];
-
-  const revenueRows: string[][] = [
-    [colRevenue, lblNoCompliance, lblWithCompliance, lblDiff],
-    [`${colAvgPrice}${aspSuffix}`, `${ccy}${result.barebone.asp.toFixed(2)}`, `${ccy}${result.compliant.asp.toFixed(2)}`, `${ccy}${(result.compliant.asp - result.barebone.asp).toFixed(2)}`],
-    [`${colGrossProfit}`, `${ccy}${result.barebone.gp.toFixed(2)}`, `${ccy}${result.compliant.gp.toFixed(2)}`, `${ccy}${(result.compliant.gp - result.barebone.gp).toFixed(2)}`],
-    [colGrossMargin, `${result.bareboneGpm.toFixed(1)}%`, `${result.compliantGpm.toFixed(1)}%`, "—"],
-  ];
-
-  const riskRows: string[][] = [
-    [lblMode, colGrossProfit, lblRiskExposure, lblRiskAdjNet],
-    [lblWithCompliance, `${ccy}${result.compliant.gp.toFixed(2)}`, result.compliantRiskExposure === 0 ? lblZeroRisk : `${ccy}${result.compliantRiskExposure.toFixed(0)}`, `${ccy}${result.compliant.gp.toFixed(2)}`],
-    [lblNoCompliance, `${ccy}${result.barebone.gp.toFixed(2)}`, lblSeizureRisk, `${ccy}${(result.barebone.gp - result.bareboneRiskExposure / 100).toFixed(2)}`],
-  ];
-
-  const breakevenRows: string[][] = [
-    [lblAnalysis, lblNoCompliance, lblWithCompliance, lblExplanation],
-    [lblCompliancePremium, "—", result.premiumPct || "—", result.premiumPct ? `${L === "zh" ? "成本增加" : "Cost increase"} ${result.premiumPct}` : "—"],
-    [lblBreakeven, "—", result.breakevenUnits || "—", result.breakevenUnits ? `${L === "zh" ? "约" : "Approx."} ${result.breakevenUnits}` : "—"],
-    [lblSuggestedPrice, "—", `${ccy}${result.compliant.asp.toFixed(0)}`, result.pricingStrategy || "—"],
-  ];
-
-  const conclusionParas: Paragraph[] = [];
-  const conclusionText = result.conclusions || result.keyConclusion || "";
-  if (conclusionText) {
-    for (const line of conclusionText.split("\n").filter(Boolean)) {
-      conclusionParas.push(mkBullet(line));
-    }
-  }
-
-  const refParas: Paragraph[] = [];
-  if (result.references) {
-    for (const line of result.references.split("\n").filter(Boolean)) {
-      const clean = line.replace(/^[-*]\s*/, "• ");
-      refParas.push(mkBullet(clean));
-    }
-  }
-
-  const lblSessionId = rp("sessionId");
-  const lblGeneratedAt = rp("generatedAt");
-  const brand = rp("brand");
-
-  const doc = new Document({
-    styles: {
-      paragraphStyles: [{ id: "Normal", name: "Normal", run: { font: "Arial", size: 22 } }],
-    },
-    sections: [
-      {
-        properties: { page: { margin: { top: 720, right: 720, bottom: 720, left: 900 } } },
-        children: [
-          // Title
-          new Paragraph({
-            heading: HeadingLevel.HEADING_1,
-            children: [new TextRun({ text: rp("profitTitle"), bold: true, size: 36, color: "C41E3A" })],
-            spacing: { after: 200 },
-          }),
-          new Paragraph({
-            children: [new TextRun({ text: `${tx("report.labels.product", L)}${colon}${result.productType}${metaGap}${tx("report.labels.market", L)}${colon}${result.market}${metaGap}${tx("report.labels.date", L)}${colon}${new Date(result.generatedAt).toLocaleDateString(dateFmt)}`, size: 22, color: "666666" })],
-            spacing: { after: 240 },
-          }),
-
-          // Summary cards
-          new Table({
-            width: { size: 100, type: WidthType.PERCENTAGE },
-            rows: [new TableRow({
-              children: [
-                new TableCell({ children: [
-                  new Paragraph({ children: [new TextRun({ text: lblNoCompliance, bold: true, size: 20, color: "CC4444" })], spacing: { after: 80 } }),
-                  new Paragraph({ children: [new TextRun({ text: `${lblGrossProfit}：${ccy}${result.barebone.gp.toFixed(0)}`, size: 24, bold: true, color: "CC4444" })], spacing: { after: 60 } }),
-                  new Paragraph({ children: [new TextRun({ text: `${lblRiskExposure}：${ccy}${result.bareboneRiskExposure.toFixed(0)}`, size: 20, color: "994444" })], spacing: { after: 0 } }),
-                ], width: { size: 50, type: WidthType.PERCENTAGE }, shading: { fill: "FFF0F0", type: "solid" } }),
-                new TableCell({ children: [
-                  new Paragraph({ children: [new TextRun({ text: lblWithCompliance, bold: true, size: 20, color: "1E8A46" })], spacing: { after: 80 } }),
-                  new Paragraph({ children: [new TextRun({ text: `${lblGrossProfit}：${ccy}${result.compliant.gp.toFixed(0)}`, size: 24, bold: true, color: "1E8A46" })], spacing: { after: 60 } }),
-                  new Paragraph({ children: [new TextRun({ text: `${lblRiskExposure}：${ccy}${result.compliantRiskExposure.toFixed(0)}`, size: 20, color: "1A6636" })], spacing: { after: 0 } }),
-                ], width: { size: 50, type: WidthType.PERCENTAGE }, shading: { fill: "F0FFF5", type: "solid" } }),
-              ],
-            })],
-            borders: {
-              top: { style: BorderStyle.NONE }, bottom: { style: BorderStyle.NONE },
-              left: { style: BorderStyle.NONE }, right: { style: BorderStyle.NONE },
-              insideHorizontal: { style: BorderStyle.NONE },
-              insideVertical: { style: BorderStyle.SINGLE, size: 6, color: "DDDDDD" },
-            },
-          }),
-
-          new Paragraph({ text: "" }),
-
-          // Section 1
-          mkSectionH(L === "zh" ? `${rp("costComparison")}（${lblWithCompliance} vs ${lblNoCompliance}）` : `${rp("costComparison")} (${lblWithCompliance} vs ${lblNoCompliance})`),
-          docxTable(costRows, ["BB3333", "1A7A40", "333333"]),
-          new Paragraph({ text: "" }),
-
-          // Section 2
-          mkSectionH(rp("revenueComparison")),
-          docxTable(revenueRows, ["BB3333", "1A7A40", "333333"]),
-          new Paragraph({ text: "" }),
-
-          // Section 3
-          mkSectionH(rp("riskAdjustedRevenue")),
-          docxTable(riskRows, ["BB3333", "1A7A40", "333333"]),
-          ...(result.riskNote ? [mkBullet(result.riskNote)] : []),
-          new Paragraph({ text: "" }),
-
-          // Section 4
-          mkSectionH(rp("breakEvenAnalysis")),
-          docxTable(breakevenRows, ["BB3333", "1A7A40", "333333"]),
-          ...(result.pricingStrategy ? [mkBullet(`${lblPricingStrategy}${colon}${result.pricingStrategy}`)] : []),
-          new Paragraph({ text: "" }),
-
-          // Section 5
-          ...(conclusionParas.length > 0
-            ? [mkSectionH(rp("keyConclusions")), ...conclusionParas, new Paragraph({ text: "" })]
-            : []),
-
-          // Section 6
-          ...(refParas.length > 0
-            ? [mkSectionH(rp("regulationCitations")), ...refParas, new Paragraph({ text: "" })]
-            : []),
-
-          // Full report appendix
-          ...(result.report
-            ? [mkSectionH(lblFullReport), ...parseMarkdownToDocx(result.report), new Paragraph({ text: "" })]
-            : []),
-
-          // Footer
-          new Paragraph({
-            children: [new TextRun({ text: `${lblSessionId}：${result.sessionId}  |  ${lblGeneratedAt}：${new Date(result.generatedAt).toLocaleString(dateFmt)}  |  ${brand}`, size: 18, color: "888888" })],
-          }),
+    const syntheticResult: ScanResult = {
+      sessionId: result.sessionId,
+      scanTime: result.generatedAt,
+      productName: result.productType,
+      productNameEn: result.productType,
+      targetMarkets: [result.market as ScanResult["targetMarkets"][number]],
+      productCategory: "other",
+      images: [],
+      documents: [],
+      generatedAt: result.generatedAt,
+      reportPackage: { profitReport: { markdown: result.report ?? "" } },
+      complianceScore: 0,
+      scoreGrade: "C",
+      financialSummary: {
+        estimatedHeroicProfit: `$${result.barebone.gp.toFixed(2)}`,
+        trueNetProfit: `$${result.compliant.gp.toFixed(2)}`,
+        complianceCost: `$${(result.compliant.cert + result.compliant.epr + Math.max(result.compliant.packaging - result.barebone.packaging, 0)).toFixed(2)}`,
+        monthlyNetProfit: result.pricingStrategy || "—",
+        targetVolumeLabel: "—",
+        riskExposureItems: [
+          "单日最高罚款 ¥180 万",
+          "全店永久封停",
+          "货物强制扣毁",
+          "跨境集体诉讼",
         ],
+        costBreakdown: [],
       },
-    ],
-  });
-
-  const blob = await Packer.toBlob(doc);
-  const filename = L === "zh" ? `成本利润分析报告_${result.sessionId}.docx` : `CostProfitAnalysisReport_${result.sessionId}.docx`;
-  downloadBlob(blob, filename);
+      riskPoints: [],
+      checklist: [],
+    };
+    const model = buildProfitRenderModel({
+      result: syntheticResult,
+      financialSummary: syntheticResult.financialSummary!,
+      profitMode: "compliant",
+      locale: L,
+    });
+    await downloadProfitModelAsDocx(model);
   } catch (error) {
     throw new Error(
       `Failed to export profit DOCX report: ${error instanceof Error ? error.message : String(error)}`,
       { cause: error },
     );
   }
+}
+
+/**
+ * Build a DOCX from the unified `ProfitRenderModel`. Mirrors the layout used
+ * in `downloadProfitModelAsPdf` so both formats show the same labels, numbers,
+ * bare-mode caveat, and backend LLM block.
+ */
+export async function downloadProfitModelAsDocx(model: ProfitRenderModel): Promise<void> {
+  try {
+    const ccy = model.currencySymbol;
+    const children: Array<Paragraph | Table> = [];
+
+    // ── Title + subtitle ────────────────────────────────────────────────────
+    children.push(
+      new Paragraph({
+        heading: HeadingLevel.HEADING_1,
+        children: [new TextRun({ text: model.title, bold: true, size: 36, color: "C41E3A" })],
+        spacing: { after: 200 },
+      }),
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${model.productName} · ${model.marketLabel} · ${model.generatedAtLabel}`,
+            size: 22,
+            color: "666666",
+          }),
+        ],
+        spacing: { after: 240 },
+      }),
+    );
+
+    // ── 4 metric cards as a 4-column table ──────────────────────────────────
+    children.push(
+      new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        rows: [
+          new TableRow({
+            children: model.metrics.map((m) => metricCell(m, ccy)),
+          }),
+        ],
+        borders: {
+          top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+        },
+      }),
+      new Paragraph({ text: "" }),
+    );
+
+    // ── Section: 全链路成本明细 ────────────────────────────────────────────
+    children.push(mkSectionH("全链路成本明细"));
+
+    // Top 3 summary cards (retail / chain / final net)
+    const totalChainCost = model.chainNodes.reduce((s, n) => s + n.amount, 0);
+    children.push(
+      new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        rows: [
+          new TableRow({
+            children: [
+              summaryCardCell("售价基线", `${ccy}128`, "333333"),
+              summaryCardCell("全链路成本", `${ccy}${totalChainCost.toFixed(0)}`, "333333"),
+              summaryCardCell("最终净利润", model.costBoard.finalNetValue, "168096"),
+            ],
+          }),
+        ],
+        borders: {
+          top: { style: BorderStyle.NONE },
+          bottom: { style: BorderStyle.NONE },
+          left: { style: BorderStyle.NONE },
+          right: { style: BorderStyle.NONE },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+        },
+      }),
+      new Paragraph({ text: "" }),
+    );
+
+    // AI margin signal + buffer + dominant cost (3 small cards)
+    children.push(
+      new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        rows: [
+          new TableRow({
+            children: [
+              smallCardCell("AI 利润判断", model.costBoard.marginSignal, "F8FAFC"),
+              smallCardCell("距 ¥8 利润底线", model.costBoard.breakEvenBufferLabel, "F8FAFC"),
+              smallCardCell("最大成本来源", `${model.costBoard.dominantCost.label} ${model.costBoard.dominantCost.amountLabel} · ${model.costBoard.dominantCost.shareLabel}`, "F8FAFC"),
+            ],
+          }),
+        ],
+        borders: {
+          top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+        },
+      }),
+      new Paragraph({ text: "" }),
+    );
+
+    // 6 chain cost node cards
+    children.push(
+      new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        rows: [
+          new TableRow({
+            children: model.chainNodes.map((n) => chainNodeCell(n)),
+          }),
+        ],
+        borders: {
+          top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+        },
+      }),
+      new Paragraph({ text: "" }),
+    );
+
+    // ── Section: 售价分配结果 (stacked bar legend table) ───────────────────
+    children.push(mkSectionH("售价分配结果"));
+    children.push(
+      new Table({
+        width: { size: 100, type: WidthType.PERCENTAGE },
+        rows: [
+          new TableRow({
+            children: model.stackLegend.map((item) => legendCell(item)),
+          }),
+        ],
+        borders: {
+          top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          insideHorizontal: { style: BorderStyle.NONE },
+          insideVertical: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+        },
+      }),
+      new Paragraph({ text: "" }),
+    );
+
+    // ── Section: 不合规最高风险 ────────────────────────────────────────────
+    children.push(mkSectionH("不合规最高风险"));
+    if (model.riskExposureItems.length > 0) {
+      children.push(
+        new Table({
+          width: { size: 100, type: WidthType.PERCENTAGE },
+          rows: [
+            new TableRow({
+              children: model.riskExposureItems.map((r) => riskCell(r)),
+            }),
+          ],
+          borders: {
+            top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+            bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+            left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+            right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+            insideHorizontal: { style: BorderStyle.NONE },
+            insideVertical: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+          },
+        }),
+      );
+    }
+    children.push(new Paragraph({ text: "" }));
+
+    // ── Optional: 后端 LLM 成本详述 ─────────────────────────────────────────
+    if (model.backendMarkdown) {
+      children.push(mkSectionH(model.backendMarkdownTitle));
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: model.backendMarkdownBadge,
+              bold: true,
+              size: 20,
+              color: "C41E3A",
+            }),
+          ],
+          spacing: { after: 120 },
+        }),
+      );
+      for (const line of model.backendMarkdown.split("\n")) {
+        children.push(
+          new Paragraph({
+            children: [new TextRun({ text: line || " ", size: 20, color: "374151" })],
+            spacing: { after: 60 },
+          }),
+        );
+      }
+    }
+
+    // ── Footer ──────────────────────────────────────────────────────────────
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${model.title} · ${model.sessionId} · ${new Date(model.generatedAt).toLocaleString("zh-CN")}`,
+            size: 18,
+            color: "888888",
+          }),
+        ],
+        spacing: { before: 320 },
+      }),
+    );
+
+    const doc = new Document({
+      styles: {
+        paragraphStyles: [{ id: "Normal", name: "Normal", run: { font: "Arial", size: 22 } }],
+      },
+      sections: [
+        {
+          properties: { page: { margin: { top: 720, right: 720, bottom: 720, left: 900 } } },
+          children,
+        },
+      ],
+    });
+
+    const blob = await Packer.toBlob(doc);
+    downloadBlob(blob, `${model.exportBasename}_${model.sessionId}.docx`);
+  } catch (error) {
+    throw new Error(
+      `Failed to export profit DOCX report: ${error instanceof Error ? error.message : String(error)}`,
+      { cause: error },
+    );
+  }
+}
+
+// ─── Cell helpers ──────────────────────────────────────────────────────────
+
+function metricCell(m: ProfitMetricCard, ccy: string): TableCell {
+  const toneColor = (() => {
+    switch (m.tone) {
+      case "green": return "10B981";
+      case "white": return "FFFFFF";
+      case "orange": return "F4A261";
+      case "blue": return "4CC9F0";
+      case "alert": return "F97360";
+      default: return "FFFFFF";
+    }
+  })();
+
+  const children: Paragraph[] = [
+    new Paragraph({
+      children: [new TextRun({ text: m.label, bold: true, size: 18, color: "666666" })],
+      spacing: { after: 80 },
+    }),
+    new Paragraph({
+      children: [new TextRun({ text: m.value, bold: true, size: 28, color: toneColor })],
+      spacing: { after: 40 },
+    }),
+  ];
+  if (m.unit) {
+    children.push(
+      new Paragraph({
+        children: [new TextRun({ text: m.unit, size: 16, color: "888888" })],
+        spacing: { after: 40 },
+      }),
+    );
+  }
+  if (m.bareRiskCaveat) {
+    children.push(
+      new Paragraph({
+        children: [new TextRun({ text: m.bareRiskCaveat, size: 14, color: "FF5A4D", bold: true })],
+        spacing: { after: 40 },
+      }),
+    );
+  }
+
+  return new TableCell({
+    width: { size: 25, type: WidthType.PERCENTAGE },
+    children,
+    shading: m.isCore ? { fill: "FFF8F0", type: "solid" } : undefined,
+    margins: { top: 110, bottom: 110, left: 130, right: 130 },
+  });
+}
+
+function summaryCardCell(label: string, value: string, valueColor: string): TableCell {
+  return new TableCell({
+    width: { size: 33, type: WidthType.PERCENTAGE },
+    children: [
+      new Paragraph({
+        children: [new TextRun({ text: label, size: 18, color: "888888" })],
+        spacing: { after: 80 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: value, bold: true, size: 26, color: valueColor })],
+        spacing: { after: 0 },
+      }),
+    ],
+    margins: { top: 110, bottom: 110, left: 130, right: 130 },
+  });
+}
+
+function smallCardCell(label: string, value: string, fill: string): TableCell {
+  return new TableCell({
+    width: { size: 33, type: WidthType.PERCENTAGE },
+    shading: { fill, type: "solid" },
+    children: [
+      new Paragraph({
+        children: [new TextRun({ text: label, size: 16, color: "888888" })],
+        spacing: { after: 60 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: value, bold: true, size: 20, color: "1F2937" })],
+        spacing: { after: 0 },
+      }),
+    ],
+    margins: { top: 110, bottom: 110, left: 130, right: 130 },
+  });
+}
+
+function chainNodeCell(n: ProfitRenderModel["chainNodes"][number]): TableCell {
+  const colorNoHash = n.color.replace(/^#/, "").toUpperCase();
+  return new TableCell({
+    width: { size: 16, type: WidthType.PERCENTAGE },
+    children: [
+      new Paragraph({
+        children: [new TextRun({ text: `${n.share.toFixed(1)}%`, size: 16, color: colorNoHash, bold: true })],
+        spacing: { after: 60 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: n.label, size: 18, color: "1F2937", bold: true })],
+        spacing: { after: 40 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: n.detail, size: 14, color: "666666" })],
+        spacing: { after: 60 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: n.displayAmount, size: 22, color: "1F2937", bold: true })],
+        spacing: { after: 0 },
+      }),
+    ],
+    margins: { top: 110, bottom: 110, left: 130, right: 130 },
+  });
+}
+
+function legendCell(item: ProfitRenderModel["stackLegend"][number]): TableCell {
+  const colorNoHash = item.color.replace(/^#/, "").toUpperCase();
+  return new TableCell({
+    width: { size: 12, type: WidthType.PERCENTAGE },
+    children: [
+      new Paragraph({
+        children: [
+          new TextRun({ text: `■ ${item.label} ${item.displayAmount}`, size: 14, color: colorNoHash, bold: !!item.isFinal }),
+        ],
+        spacing: { after: 0 },
+      }),
+    ],
+    margins: { top: 80, bottom: 80, left: 80, right: 80 },
+  });
+}
+
+function riskCell(r: ProfitRenderModel["riskExposureItems"][number]): TableCell {
+  return new TableCell({
+    width: { size: 25, type: WidthType.PERCENTAGE },
+    children: [
+      new Paragraph({
+        children: [new TextRun({ text: "⚠ " + r.label, size: 18, color: "B95A50", bold: true })],
+        spacing: { after: 0 },
+      }),
+    ],
+    margins: { top: 130, bottom: 130, left: 130, right: 130 },
+  });
 }
