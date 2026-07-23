@@ -1,5 +1,9 @@
 import type { CostSummary, GeneratedReportPackage, ProfitReportResult, ScanResult } from "@/lib/types";
 import type { FinancialSummary } from "@/lib/types.blaze-hawks";
+import {
+  buildProfitRenderModel,
+  type ProfitRenderModel,
+} from "@/lib/report-export-modules/profit-render-model";
 
 const RE_S4_HEADER = /盈亏平衡/;
 const RE_S5_HEADER = /关键结论/;
@@ -541,4 +545,153 @@ export function synthesizeFinancialSummaryIfMissing(
   (fs as FinancialSummary & { _backendMarkdown?: string })._backendMarkdown = profitMd;
   (fs as FinancialSummary & { __includeBackendMarkdown?: boolean }).__includeBackendMarkdown = true;
   return fs;
+}
+
+/**
+ * Adapt a `ProfitReportResult` (the legacy result-page export payload — barebone
+ * / compliant CostSummary fields + bareboneRiskExposure + pricingStrategy + etc.)
+ * into the unified `ProfitRenderModel` consumed by both `/profit/[sessionId]` and
+ * the `/result/[sessionId]` "成本利润说明" export buttons.
+ *
+ * Why this exists: before this fix, `downloadProfitReportAsPdf/Docx(pr)` was
+ * rebuilding a *synthetic* FinancialSummary that ignored `result.financialSummary`,
+ * so the two export entry points produced different numbers for the same session
+ * (¥11.48 vs ¥0.71, ¥23.97 vs ¥7.46, …). Now both flows converge on the same
+ * RenderModel so the exported PDF/DOCX matches the on-screen profit page byte-for-byte.
+ *
+ * The synthetic FinancialSummary here preserves the field semantics used by the
+ * page (estimatedHeroicProfit = barebone.gp, trueNetProfit = compliant.gp,
+ * complianceCost = compliant.cert + compliant.epr + packaging delta, …) so the
+ * resulting render model is identical to one built from a real FinancialSummary.
+ */
+export function buildProfitRenderModelFromProfitReport(
+  pr: ProfitReportResult,
+  locale: "zh" | "en" = "zh",
+): ProfitRenderModel {
+  const isEnglish = locale === "en";
+  const bare = pr.barebone;
+  const comp = pr.compliant;
+  const sym = (() => {
+    const c = pr.currency?.toUpperCase();
+    if (c === "USD") return "$";
+    if (c === "EUR") return "€";
+    if (c === "GBP") return "£";
+    if (c === "CNY" || c === "JPY") return "¥";
+    return isEnglish ? "$" : "¥";
+  })();
+  const fmt = (n: number): string => {
+    if (!Number.isFinite(n) || n === 0) return isEnglish ? "—" : "—";
+    return `${sym}${n.toFixed(2)}`;
+  };
+  const fmtInt = (n: number): string => {
+    if (!Number.isFinite(n) || n === 0) return isEnglish ? "—" : "—";
+    return `${sym}${n.toFixed(0)}`;
+  };
+  const complianceCostNum = comp.cert + comp.epr + Math.max(comp.packaging - bare.packaging, 0);
+
+  const labels = isEnglish
+    ? {
+        targetVolume: "Baseline volume 3,000 units / month",
+        risk: [
+          "Daily maximum fine ¥1.8M",
+          "Permanent store suspension",
+          "Mandatory cargo seizure",
+          "Cross-border class action",
+        ],
+        bomLabel: "BOM (shell + PCB + battery)",
+        bomDetail: "Shell, PCB, battery procurement",
+        logisticsLabel: "Logistics (lead + last mile)",
+        logisticsDetail: "Lead sea/air freight + last mile",
+        platformLabel: "Platform commission",
+        platformDetail: "Marketplace commission (folded into total)",
+        complianceLabel: "Compliance cost",
+        complianceDetail: "Cert + EPR + label remediation amortization",
+        adsLabel: "Advertising & marketing",
+        adsDetail: "Brand ads + marketplace boost (folded into total)",
+        returnsLabel: "Returns & warranty reserve",
+        returnsDetail: "Returns + warranty reserve",
+      }
+    : {
+        targetVolume: "销量基准 3,000 台 / 月",
+        risk: [
+          "单日最高罚款 ¥180 万",
+          "全店永久封停",
+          "货物强制扣毁",
+          "跨境集体诉讼",
+        ],
+        bomLabel: "采购 BOM（壳料 + PCB + 电池）",
+        bomDetail: "壳料 + PCB + 电池等原材料采购",
+        logisticsLabel: "物流头程 + 尾程",
+        logisticsDetail: "头程海运/空运 + 尾程派送",
+        platformLabel: "平台抽佣",
+        platformDetail: "亚马逊 / 主流平台抽佣(已折入 total)",
+        complianceLabel: "合规成本",
+        complianceDetail: "认证 + EPR + 标签整改一次性费用摊销",
+        adsLabel: "广告与营销",
+        adsDetail: "品牌投放 + 站内推广(已折入 total)",
+        returnsLabel: "退货与售后预留",
+        returnsDetail: "退货 + 售后保修预留",
+      };
+
+  const financialSummary: FinancialSummary = {
+    estimatedHeroicProfit: fmt(bare.gp),
+    trueNetProfit: fmt(comp.gp),
+    complianceCost: fmt(complianceCostNum),
+    monthlyNetProfit: pr.pricingStrategy || labels.targetVolume,
+    targetVolumeLabel: labels.targetVolume,
+    targetVolumeLabelEn: labels.targetVolume,
+    riskExposureItems: labels.risk,
+    riskExposureItemsEn: labels.risk,
+    costBreakdown: [
+      { itemId: "cost_01", label: labels.bomLabel, labelEn: labels.bomLabel, amount: fmt(bare.bom), detail: labels.bomDetail, detailEn: labels.bomDetail },
+      { itemId: "cost_02", label: labels.logisticsLabel, labelEn: labels.logisticsLabel, amount: fmt(bare.logistics), detail: labels.logisticsDetail, detailEn: labels.logisticsDetail },
+      { itemId: "cost_03", label: labels.platformLabel, labelEn: labels.platformLabel, amount: "—", detail: labels.platformDetail, detailEn: labels.platformDetail },
+      { itemId: "cost_04", label: labels.complianceLabel, labelEn: labels.complianceLabel, amount: fmt(complianceCostNum), detail: labels.complianceDetail, detailEn: labels.complianceDetail },
+      { itemId: "cost_05", label: labels.adsLabel, labelEn: labels.adsLabel, amount: "—", detail: labels.adsDetail, detailEn: labels.adsDetail },
+      { itemId: "cost_06", label: labels.returnsLabel, labelEn: labels.returnsLabel, amount: fmt(comp.warranty), detail: labels.returnsDetail, detailEn: labels.returnsDetail },
+    ],
+  };
+
+  const syntheticResult: ScanResult = {
+    sessionId: pr.sessionId,
+    scanTime: pr.generatedAt,
+    productName: pr.productType,
+    productNameEn: pr.productTypeEn ?? pr.productType,
+    targetMarkets: [pr.market as ScanResult["targetMarkets"][number]],
+    productCategory: "other",
+    images: [],
+    documents: [],
+    generatedAt: pr.generatedAt,
+    complianceScore: 0,
+    scoreGrade: "C",
+    financialSummary,
+    riskPoints: [],
+    checklist: [],
+    // Pass through the LLM markdown + reportPackage shape so the optional
+    // backend-LLM section still renders if the caller passed a markdown body.
+    reportPackage: pr.report
+      ? {
+          profitReport: {
+            markdown: pr.report,
+            conclusions: pr.conclusions,
+            references: pr.references,
+            pricingStrategy: pr.pricingStrategy,
+            pricingStrategyEn: pr.pricingStrategyEn,
+            riskNote: pr.riskNote,
+            riskNoteEn: pr.riskNoteEn,
+            keyConclusion: pr.keyConclusion,
+            keyConclusionEn: pr.keyConclusionEn,
+          },
+        }
+      : undefined,
+  };
+
+  // Re-use the existing builder so the legacy /result/[sessionId] export path
+  // converges with the /profit/[sessionId] path on the same model.
+  return buildProfitRenderModel({
+    result: syntheticResult,
+    financialSummary,
+    profitMode: "compliant",
+    locale: locale as import("@/lib/report-export-modules/shared").Locale,
+  });
 }

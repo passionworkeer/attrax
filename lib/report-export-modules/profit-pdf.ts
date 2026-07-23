@@ -1,6 +1,7 @@
 import { jsPDF } from "jspdf";
-import type { ProfitReportResult, ScanResult } from "@/lib/types";
+import type { ProfitReportResult } from "@/lib/types";
 import { localizeProfitReportResult } from "@/lib/report-localization";
+import { buildProfitRenderModelFromProfitReport } from "@/lib/pipeline/profit-report";
 import type { Locale } from "./shared";
 import {
   downloadBlob,
@@ -11,61 +12,23 @@ import {
   yieldToMainThread,
 } from "./shared";
 import {
-  buildProfitRenderModel,
   type ProfitMetricCard,
   type ProfitRenderModel,
 } from "./profit-render-model";
 
 /**
- * `downloadProfitReportAsPdf` keeps the legacy `ProfitReportResult` signature
- * for backwards compatibility (older tests / any non-UI caller). It internally
- * rebuilds a `ProfitRenderModel` from the result so the PDF still benefits
- * from the unified layout. Prefer `downloadProfitModelAsPdf` for new code.
+ * Legacy entry point for callers that only have a `ProfitReportResult`
+ * (e.g. the result-page "成本利润说明" export button). Internally rebuilds a
+ * `ProfitRenderModel` via `buildProfitRenderModelFromProfitReport` so the
+ * downloaded PDF matches `/profit/[sessionId]` byte-for-byte — same metric
+ * labels, same hero/net/compliance numbers, same chain breakdown, same risk
+ * items. New callers should prefer `downloadProfitModelAsPdf` directly.
  */
 export async function downloadProfitReportAsPdf(input: ProfitReportResult, locale?: Locale): Promise<void> {
   try {
     const L = resolveLocale(locale);
     const result = localizeProfitReportResult(input, L);
-    // Build a synthetic ScanResult + FinancialSummary so we can leverage the
-    // shared `buildProfitRenderModel`. The legacy ProfitReportResult predates
-    // the unified RenderModel — we map CostSummary → FinancialSummary here so
-    // the wrapper still works for old callers (existing test fixtures).
-    const syntheticResult: ScanResult = {
-      sessionId: result.sessionId,
-      scanTime: result.generatedAt,
-      productName: result.productType,
-      productNameEn: result.productType,
-      targetMarkets: [result.market as ScanResult["targetMarkets"][number]],
-      productCategory: "other",
-      images: [],
-      documents: [],
-      generatedAt: result.generatedAt,
-      reportPackage: { profitReport: { markdown: result.report ?? "" } },
-      complianceScore: 0,
-      scoreGrade: "C",
-      financialSummary: {
-        estimatedHeroicProfit: `$${result.barebone.gp.toFixed(2)}`,
-        trueNetProfit: `$${result.compliant.gp.toFixed(2)}`,
-        complianceCost: `$${(result.compliant.cert + result.compliant.epr + Math.max(result.compliant.packaging - result.barebone.packaging, 0)).toFixed(2)}`,
-        monthlyNetProfit: result.pricingStrategy || "—",
-        targetVolumeLabel: "—",
-        riskExposureItems: [
-          "单日最高罚款 ¥180 万",
-          "全店永久封停",
-          "货物强制扣毁",
-          "跨境集体诉讼",
-        ],
-        costBreakdown: [],
-      },
-      riskPoints: [],
-      checklist: [],
-    };
-    const model = buildProfitRenderModel({
-      result: syntheticResult,
-      financialSummary: syntheticResult.financialSummary!,
-      profitMode: "compliant",
-      locale: L,
-    });
+    const model = buildProfitRenderModelFromProfitReport(result, L);
     await downloadProfitModelAsPdf(model);
   } catch (error) {
     throw new Error(
@@ -117,28 +80,42 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
 
   // ── 4 metric cards (matches page.tsx grid) ─────────────────────────────────
   const halfW = (contentWidth - 4) / 2;
-  const toneColor = (tone: ProfitMetricCard["tone"]): [number, number, number] => {
+  // On-screen the metric value uses `text-white` on a dark `blaze-panel`
+  // background, which renders the value in white. PDFs/DOCXs have a *light*
+  // page background, so the page's "white" tone must invert to a dark text
+  // color (#073b54, the panel-foreground color used throughout the page) for
+  // the value to remain visible. The `isCore` card additionally gets a pale
+  // orange fill so the featured "核心结果" stands out the same way it does on
+  // screen via the orange glow.
+  const metricValueColor = (tone: ProfitMetricCard["tone"]): [number, number, number] => {
     switch (tone) {
       case "green": return [16, 185, 129];
-      case "white": return [255, 255, 255];
+      case "white": return [7, 59, 84]; // #073b54 — page dark text
       case "orange": return [244, 162, 97];
       case "blue": return [76, 201, 240];
       case "alert": return [249, 115, 96];
-      default: return [255, 255, 255];
+      default: return [7, 59, 84];
     }
   };
   const cardW = (contentWidth - 6) / 4;
   for (let i = 0; i < model.metrics.length; i++) {
     const m = model.metrics[i];
     const x = margin + i * (cardW + 2);
-    doc.setDrawColor(60, 60, 60);
-    doc.setLineWidth(0.3);
-    doc.roundedRect(x, y.cur, cardW, 32, 2, 2, "S");
+    if (m.isCore) {
+      doc.setFillColor(255, 248, 240); // #FFF8F0 — pale orange feature fill
+      doc.setDrawColor(60, 60, 60);
+      doc.setLineWidth(0.3);
+      doc.roundedRect(x, y.cur, cardW, 32, 2, 2, "FD");
+    } else {
+      doc.setDrawColor(60, 60, 60);
+      doc.setLineWidth(0.3);
+      doc.roundedRect(x, y.cur, cardW, 32, 2, 2, "S");
+    }
     doc.setFontSize(8);
     doc.setTextColor(160, 160, 160);
     doc.setFont("NotoSansSC", "normal");
     doc.text(m.label, x + 3, y.cur + 5);
-    const [r, g, b] = toneColor(m.tone);
+    const [r, g, b] = metricValueColor(m.tone);
     doc.setTextColor(r, g, b);
     doc.setFontSize(18);
     doc.setFont("NotoSansSC", "bold");
@@ -206,6 +183,9 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
   for (let i = 0; i < model.chainNodes.length; i++) {
     const n = model.chainNodes[i];
     const x = margin + i * (nodeW + 2);
+    // Chain-node cards live on a white PDF background — white text on white
+    // would be invisible, so use the panel dark text color for the label
+    // and amount. The thin color stripe at the bottom is purely decorative.
     doc.setDrawColor(220, 220, 220);
     doc.roundedRect(x, y.cur, nodeW, 28, 2, 2, "S");
     doc.setFontSize(7);
@@ -216,18 +196,18 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
     doc.setFont("NotoSansSC", "bold");
     doc.text(`${n.share.toFixed(1)}%`, x + nodeW - 12, y.cur + 5);
     doc.setFontSize(8);
-    doc.setTextColor(255, 255, 255);
+    doc.setTextColor(7, 59, 84); // #073b54 — panel dark text
     doc.setFont("NotoSansSC", "bold");
     doc.text(n.label, x + 3, y.cur + 12);
     doc.setFontSize(7);
-    doc.setTextColor(170, 170, 170);
+    doc.setTextColor(120, 120, 120);
     doc.setFont("NotoSansSC", "normal");
     const detailLines = doc.splitTextToSize(n.detail, nodeW - 6) as string[];
     detailLines.slice(0, 2).forEach((line, lineIdx) => {
       doc.text(line, x + 3, y.cur + 17 + lineIdx * 3);
     });
     doc.setFontSize(11);
-    doc.setTextColor(255, 255, 255);
+    doc.setTextColor(7, 59, 84);
     doc.setFont("NotoSansSC", "bold");
     doc.text(n.displayAmount, x + 3, y.cur + 25);
     // Color stripe at bottom of node

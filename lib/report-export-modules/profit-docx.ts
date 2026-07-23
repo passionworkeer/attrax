@@ -10,8 +10,9 @@ import {
   TextRun,
   WidthType,
 } from "docx";
-import type { ProfitReportResult, ScanResult } from "@/lib/types";
+import type { ProfitReportResult } from "@/lib/types";
 import { localizeProfitReportResult } from "@/lib/report-localization";
+import { buildProfitRenderModelFromProfitReport } from "@/lib/pipeline/profit-report";
 import type { Locale } from "./shared";
 import {
   downloadBlob,
@@ -19,57 +20,22 @@ import {
   resolveLocale,
 } from "./shared";
 import {
-  buildProfitRenderModel,
   type ProfitMetricCard,
   type ProfitRenderModel,
 } from "./profit-render-model";
 
 /**
- * Legacy wrapper for `ProfitReportResult` → DOCX. Internally builds the same
- * RenderModel used by `downloadProfitModelAsDocx`. New callers should prefer
- * the model-based entry point so the exported DOCX matches the on-screen UI
- * byte-for-byte.
+ * Legacy entry point for callers that only have a `ProfitReportResult`
+ * (e.g. the result-page "成本利润说明" export button). Internally rebuilds a
+ * `ProfitRenderModel` via `buildProfitRenderModelFromProfitReport` so the
+ * downloaded DOCX matches `/profit/[sessionId]` byte-for-byte. New callers
+ * should prefer `downloadProfitModelAsDocx` directly.
  */
 export async function downloadProfitReportAsDocx(input: ProfitReportResult, locale?: Locale): Promise<void> {
   try {
     const L = resolveLocale(locale);
     const result = localizeProfitReportResult(input, L);
-    const syntheticResult: ScanResult = {
-      sessionId: result.sessionId,
-      scanTime: result.generatedAt,
-      productName: result.productType,
-      productNameEn: result.productType,
-      targetMarkets: [result.market as ScanResult["targetMarkets"][number]],
-      productCategory: "other",
-      images: [],
-      documents: [],
-      generatedAt: result.generatedAt,
-      reportPackage: { profitReport: { markdown: result.report ?? "" } },
-      complianceScore: 0,
-      scoreGrade: "C",
-      financialSummary: {
-        estimatedHeroicProfit: `$${result.barebone.gp.toFixed(2)}`,
-        trueNetProfit: `$${result.compliant.gp.toFixed(2)}`,
-        complianceCost: `$${(result.compliant.cert + result.compliant.epr + Math.max(result.compliant.packaging - result.barebone.packaging, 0)).toFixed(2)}`,
-        monthlyNetProfit: result.pricingStrategy || "—",
-        targetVolumeLabel: "—",
-        riskExposureItems: [
-          "单日最高罚款 ¥180 万",
-          "全店永久封停",
-          "货物强制扣毁",
-          "跨境集体诉讼",
-        ],
-        costBreakdown: [],
-      },
-      riskPoints: [],
-      checklist: [],
-    };
-    const model = buildProfitRenderModel({
-      result: syntheticResult,
-      financialSummary: syntheticResult.financialSummary!,
-      profitMode: "compliant",
-      locale: L,
-    });
+    const model = buildProfitRenderModelFromProfitReport(result, L);
     await downloadProfitModelAsDocx(model);
   } catch (error) {
     throw new Error(
@@ -158,16 +124,26 @@ export async function downloadProfitModelAsDocx(model: ProfitRenderModel): Promi
       new Paragraph({ text: "" }),
     );
 
-    // AI margin signal + buffer + dominant cost (3 small cards)
+    // ── 3 small diagnostic cards: AI 利润判断 / 距 ¥8 利润底线 / 最大成本来源 ────
+    // The page renders these as white text on a dark `blaze-panel` background,
+    // so a faithful DOCX must NOT inherit any dark default. Word's default
+    // table style occasionally renders cell shading as dark — pinning both
+    // the fill (white) and the borders (light gray single line) keeps these
+    // cards readable regardless of viewer theme.
+    const dominantCostSecondary = `${model.costBoard.dominantCost.amountLabel} · ${model.costBoard.dominantCost.shareLabel}`;
     children.push(
       new Table({
         width: { size: 100, type: WidthType.PERCENTAGE },
         rows: [
           new TableRow({
             children: [
-              smallCardCell("AI 利润判断", model.costBoard.marginSignal, "F8FAFC"),
-              smallCardCell("距 ¥8 利润底线", model.costBoard.breakEvenBufferLabel, "F8FAFC"),
-              smallCardCell("最大成本来源", `${model.costBoard.dominantCost.label} ${model.costBoard.dominantCost.amountLabel} · ${model.costBoard.dominantCost.shareLabel}`, "F8FAFC"),
+              smallCardCell("AI 利润判断", model.costBoard.marginSignal),
+              smallCardCell("距 ¥8 利润底线", model.costBoard.breakEvenBufferLabel),
+              smallCardCellWithSecondary(
+                "最大成本来源",
+                model.costBoard.dominantCost.label,
+                dominantCostSecondary,
+              ),
             ],
           }),
         ],
@@ -315,14 +291,18 @@ export async function downloadProfitModelAsDocx(model: ProfitRenderModel): Promi
 // ─── Cell helpers ──────────────────────────────────────────────────────────
 
 function metricCell(m: ProfitMetricCard, ccy: string): TableCell {
-  const toneColor = (() => {
+  // On-screen the metric value uses `text-white` on a dark `blaze-panel`
+  // background. DOCX cells have a *light* default background, so the page's
+  // "white" tone must invert to a dark text color (#073b54, the panel text
+  // color used throughout the page) for the value to remain visible.
+  const valueColor = (() => {
     switch (m.tone) {
       case "green": return "10B981";
-      case "white": return "FFFFFF";
+      case "white": return "073B54";
       case "orange": return "F4A261";
       case "blue": return "4CC9F0";
       case "alert": return "F97360";
-      default: return "FFFFFF";
+      default: return "073B54";
     }
   })();
 
@@ -332,7 +312,7 @@ function metricCell(m: ProfitMetricCard, ccy: string): TableCell {
       spacing: { after: 80 },
     }),
     new Paragraph({
-      children: [new TextRun({ text: m.value, bold: true, size: 28, color: toneColor })],
+      children: [new TextRun({ text: m.value, bold: true, size: 28, color: valueColor })],
       spacing: { after: 40 },
     }),
   ];
@@ -356,7 +336,15 @@ function metricCell(m: ProfitMetricCard, ccy: string): TableCell {
   return new TableCell({
     width: { size: 25, type: WidthType.PERCENTAGE },
     children,
-    shading: m.isCore ? { fill: "FFF8F0", type: "solid" } : undefined,
+    shading: m.isCore
+      ? { fill: "FFF8F0", type: "solid" }
+      : { fill: "FFFFFF", type: "solid" },
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+    },
     margins: { top: 110, bottom: 110, left: 130, right: 130 },
   });
 }
@@ -378,20 +366,59 @@ function summaryCardCell(label: string, value: string, valueColor: string): Tabl
   });
 }
 
-function smallCardCell(label: string, value: string, fill: string): TableCell {
+function smallCardCell(label: string, value: string): TableCell {
   return new TableCell({
     width: { size: 33, type: WidthType.PERCENTAGE },
-    shading: { fill, type: "solid" },
+    shading: { fill: "FFFFFF", type: "solid" },
     children: [
       new Paragraph({
         children: [new TextRun({ text: label, size: 16, color: "888888" })],
         spacing: { after: 60 },
       }),
       new Paragraph({
-        children: [new TextRun({ text: value, bold: true, size: 20, color: "1F2937" })],
+        children: [new TextRun({ text: value, bold: true, size: 22, color: "1F2937" })],
         spacing: { after: 0 },
       }),
     ],
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+    },
+    margins: { top: 110, bottom: 110, left: 130, right: 130 },
+  });
+}
+
+/**
+ * Variant for the "最大成本来源" card: page shows two lines (label + dominant
+ * cost name + amount · share secondary). DOCX previously jammed them into a
+ * single `value` string, which lost the visual hierarchy.
+ */
+function smallCardCellWithSecondary(label: string, primary: string, secondary: string): TableCell {
+  return new TableCell({
+    width: { size: 33, type: WidthType.PERCENTAGE },
+    shading: { fill: "FFFFFF", type: "solid" },
+    children: [
+      new Paragraph({
+        children: [new TextRun({ text: label, size: 16, color: "888888" })],
+        spacing: { after: 60 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: primary, bold: true, size: 22, color: "1F2937" })],
+        spacing: { after: 40 },
+      }),
+      new Paragraph({
+        children: [new TextRun({ text: secondary, size: 16, color: "227F95" })],
+        spacing: { after: 0 },
+      }),
+    ],
+    borders: {
+      top: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      bottom: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      left: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+      right: { style: BorderStyle.SINGLE, size: 4, color: "DDDDDD" },
+    },
     margins: { top: 110, bottom: 110, left: 130, right: 130 },
   });
 }
