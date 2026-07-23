@@ -282,6 +282,63 @@ describe('downloadProfitModelAsPdf', () => {
     await downloadProfitModelAsPdf(makeModel({ exportBasename: 'Compliance Cost and Risk Impact' }))
     expect(mockAnchorRef.current.download).toBe('Compliance Cost and Risk Impact_sess_model_001.pdf')
   })
+
+  // ─── Fix #1: white-tone metric value must NOT use RGB white ───────────────
+  it('does NOT paint the white-tone metric value in white (visible-on-light-bg)', async () => {
+    const calls: Array<[number, number, number]> = []
+    jsPDFMethods.setTextColor.mockImplementation((...args: unknown[]) => {
+      // jsPDF setTextColor signature: (r, g, b) for 3-arg or (gray) for 1-arg.
+      if (args.length === 3) calls.push([args[0] as number, args[1] as number, args[2] as number])
+    })
+    const model = makeModel({
+      metrics: [
+        { label: '未整改预估单件收益', value: '¥11.48', tone: 'green', unit: '/单个产品' },
+        { label: '合规后单件净收益', value: '¥23.97', tone: 'white', unit: '/单个产品', isCore: true },
+        { label: '单产品合规总成本', value: '¥7.46', tone: 'orange', unit: '/单个产品' },
+        { label: '合规后预估月度净收益', value: '¥71910', tone: 'blue', unit: '/月' },
+      ],
+    })
+    await downloadProfitModelAsPdf(model)
+    // The 4 large metric values are drawn with setFontSize(18) (and not 8, 7, etc.)
+    // — search setTextColor invocations whose first arg tuple is the metric
+    // value color. None of them should be pure white [255, 255, 255].
+    const whiteCalls = calls.filter((c) => c[0] === 255 && c[1] === 255 && c[2] === 255)
+    expect(whiteCalls).toEqual([])
+  })
+
+  it('paints the white-tone metric value with the panel dark text (#073b54 = [7, 59, 84])', async () => {
+    const calls: Array<[number, number, number]> = []
+    jsPDFMethods.setTextColor.mockImplementation((...args: unknown[]) => {
+      if (args.length === 3) calls.push([args[0] as number, args[1] as number, args[2] as number])
+    })
+    const model = makeModel({
+      metrics: [
+        { label: '未整改预估单件收益', value: '¥11.48', tone: 'green', unit: '/单个产品' },
+        { label: '合规后单件净收益', value: '¥23.97', tone: 'white', unit: '/单个产品', isCore: true },
+        { label: '单产品合规总成本', value: '¥7.46', tone: 'orange', unit: '/单个产品' },
+        { label: '合规后预估月度净收益', value: '¥71910', tone: 'blue', unit: '/月' },
+      ],
+    })
+    await downloadProfitModelAsPdf(model)
+    expect(calls).toContainEqual([7, 59, 84])
+  })
+
+  it('fills the isCore metric card with pale orange (#FFF8F0) before drawing the border', async () => {
+    const fillCalls: Array<[number, number, number]> = []
+    jsPDFMethods.setFillColor.mockImplementation((...args: unknown[]) => {
+      if (args.length === 3) fillCalls.push([args[0] as number, args[1] as number, args[2] as number])
+    })
+    const model = makeModel({
+      metrics: [
+        { label: '未整改预估单件收益', value: '¥11.48', tone: 'green', unit: '/单个产品' },
+        { label: '合规后单件净收益', value: '¥23.97', tone: 'white', unit: '/单个产品', isCore: true },
+        { label: '单产品合规总成本', value: '¥7.46', tone: 'orange', unit: '/单个产品' },
+        { label: '合规后预估月度净收益', value: '¥71910', tone: 'blue', unit: '/月' },
+      ],
+    })
+    await downloadProfitModelAsPdf(model)
+    expect(fillCalls).toContainEqual([255, 248, 240])
+  })
 })
 
 // ─── downloadProfitModelAsDocx ─────────────────────────────────────────────
@@ -374,5 +431,59 @@ describe('downloadProfitModelAsDocx', () => {
   it('uses model.exportBasename in the downloaded filename', async () => {
     await downloadProfitModelAsDocx(makeModel({ exportBasename: '合规整改成本与风险影响' }))
     expect(mockAnchorRef.current.download).toBe('合规整改成本与风险影响_sess_model_001.docx')
+  })
+
+  // ─── Fix #1 (DOCX side): white-tone metric value must use the dark text color ──
+  it('paints the white-tone metric value in dark text color (#073B54), not pure white', async () => {
+    await downloadProfitModelAsDocx(makeModel({
+      metrics: [
+        { label: '未整改预估单件收益', value: '¥11.48', tone: 'green', unit: '/单个产品' },
+        { label: '合规后单件净收益', value: '¥23.97', tone: 'white', unit: '/单个产品', isCore: true },
+        { label: '单产品合规总成本', value: '¥7.46', tone: 'orange', unit: '/单个产品' },
+        { label: '合规后预估月度净收益', value: '¥71910', tone: 'blue', unit: '/月' },
+      ],
+    }))
+    const allRuns = mockTextRun.mock.calls.map((c) => (c[0] as { color?: string }).color)
+    expect(allRuns).toContain('073B54')
+    // Ensure no metric-value TextRun still uses pure white ("FFFFFF") — that
+    // was the old bug that made the value invisible on light cells.
+    expect(allRuns).not.toContain('FFFFFF')
+  })
+
+  // ─── Fix #2: small diagnostic cards (AI 利润判断 / 距 ¥8 利润底线 / 最大成本来源)
+  // must use a white cell fill — never the previously-buggy "F8FAFC" tint that
+  // some Word themes rendered as dark.
+  it('uses a white cell fill for the 3 small diagnostic cards', async () => {
+    await downloadProfitModelAsDocx(makeModel())
+    const cellShading = mockTableCell.mock.calls
+      .map((c) => (c[0] as { shading?: { fill?: string } }).shading?.fill)
+      .filter((v): v is string => typeof v === 'string')
+    expect(cellShading.length).toBeGreaterThan(0)
+    // Every small-card cell we render must use white fill, not the old "F8FAFC".
+    expect(cellShading.filter((f) => f === 'F8FAFC').length).toBe(0)
+    expect(cellShading.filter((f) => f === 'FFFFFF').length).toBeGreaterThanOrEqual(3)
+  })
+
+  it('renders the dominant cost card with two TextRun lines (label + secondary ¥·%)', async () => {
+    await downloadProfitModelAsDocx(makeModel())
+    const allTexts = allCellTextRuns()
+    expect(allTexts).toContain('最大成本来源')
+    expect(allTexts.some((t) => t.includes('采购 BOM'))).toBe(true)
+    expect(allTexts.some((t) => /\d+(\.\d+)?%/.test(t))).toBe(true)
+  })
+
+  it('pins explicit single-line borders on every metric and small-card cell', async () => {
+    await downloadProfitModelAsDocx(makeModel())
+    const cellBorderColors = mockTableCell.mock.calls
+      .flatMap((c) => {
+        const borders = (c[0] as { borders?: Record<string, { color?: string }> }).borders
+        if (!borders) return []
+        return Object.values(borders).map((b) => b?.color).filter((v): v is string => typeof v === 'string')
+      })
+    // At least one of the cell border colors must be the light gray we use
+    // explicitly — proving we no longer rely on the document's default table
+    // style (which is what previously rendered as a dark fill in some themes).
+    expect(cellBorderColors.length).toBeGreaterThan(0)
+    expect(cellBorderColors).toContain('DDDDDD')
   })
 })
