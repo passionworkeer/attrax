@@ -106,8 +106,8 @@ export async function downloadProfitModelAsDocx(model: ProfitRenderModel): Promi
         rows: [
           new TableRow({
             children: [
-              summaryCardCell("售价基线", `${ccy}128`, "333333"),
-              summaryCardCell("全链路成本", `${ccy}${totalChainCost.toFixed(0)}`, "333333"),
+              summaryCardCell("售价基线", `${ccy}${(model.costBoard.finalNetNumber + totalChainCost).toFixed(2)}`, "333333"),
+              summaryCardCell("全链路成本", `${ccy}${totalChainCost.toFixed(2)}`, "333333"),
               summaryCardCell("最终净利润", model.costBoard.finalNetValue, "168096"),
             ],
           }),

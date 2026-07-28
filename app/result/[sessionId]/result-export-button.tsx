@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
-import { buildProfitReportFromScanResult } from "@/lib/pipeline/profit-report";
+import { synthesizeFinancialSummaryIfMissing } from "@/lib/pipeline/profit-report";
+import { buildProfitRenderModel } from "@/lib/report-export-modules/profit-render-model";
 import {
-  downloadProfitReportAsDocx,
-  downloadProfitReportAsPdf,
+  downloadProfitModelAsDocx,
+  downloadProfitModelAsPdf,
   downloadRoadmapReportAsDocx,
   downloadRoadmapReportAsPdf,
 } from "@/lib/report-download";
@@ -131,12 +132,13 @@ export function ResultExportButton({
     setBusy(true);
     try {
       if (reportType === "profit") {
-        const exportable = buildProfitReportFromScanResult(result, locale);
-        if (!exportable) return;
+        const summary = synthesizeFinancialSummaryIfMissing(result, locale);
+        if (!summary) return;
+        const model = buildProfitRenderModel({ result, financialSummary: summary, profitMode: "compliant", locale });
         if (format === "pdf") {
-          await downloadProfitReportAsPdf(exportable, locale);
+          await downloadProfitModelAsPdf(model);
         } else {
-          await downloadProfitReportAsDocx(exportable, locale);
+          await downloadProfitModelAsDocx(model);
         }
         return;
       }
@@ -155,7 +157,7 @@ export function ResultExportButton({
   };
 
   const profitNoData =
-    reportType === "profit" && !buildProfitReportFromScanResult(result, locale);
+    reportType === "profit" && !synthesizeFinancialSummaryIfMissing(result, locale);
 
   const disabled = profitNoData || busy;
 

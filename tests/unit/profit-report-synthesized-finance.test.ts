@@ -4,6 +4,7 @@ import {
   financialSummaryFromProfitReport,
   synthesizeFinancialSummaryIfMissing,
 } from "@/lib/pipeline/profit-report";
+import { buildProfitRenderModel } from "@/lib/report-export-modules/profit-render-model";
 import type { ScanResult } from "@/lib/types";
 
 /**
@@ -66,6 +67,18 @@ function realScanWithBackendMarkdown(markdown: string): ScanResult {
   };
 }
 
+function realScanWithValidatedFinance(): ScanResult {
+  const result = realScanWithBackendMarkdown(RICH_BACKEND_MARKDOWN);
+  result.reportPackage!.profitReport!.structuredFields = {
+    currency: "USD",
+    costComparison: {
+      barebone: { bom: 10, packaging: 1, cert: 0, epr: 0, logistics: 2, warranty: 1, asp: 28, total: 20, gp: 8 },
+      compliant: { bom: 10, packaging: 2, cert: 3, epr: 1, logistics: 2, warranty: 1, asp: 30, total: 24, gp: 6 },
+    },
+  };
+  return result;
+}
+
 const RICH_BACKEND_MARKDOWN = `### 一、合规升级成本（关键成本驱动）
 基于 USB-C+PD 合规对标数据：非合规Micro-USB 方案约$0.25，合规 USB-C+PD+ESD完整方案约$1.00-$1.30，单台合规增量约*$0.75-$1.05*/台。
 
@@ -92,7 +105,7 @@ const RICH_BACKEND_MARKDOWN = `### 一、合规升级成本（关键成本驱动
 `;
 
 describe("synthesizeFinancialSummaryIfMissing", () => {
-  it("returns existing financialSummary without modification (demo path)", () => {
+  it("marks demo finance and derives an internally consistent baseline", () => {
     const result: ScanResult = {
       sessionId: "demo",
       scanTime: "2026-07-21T08:00:00Z",
@@ -118,22 +131,14 @@ describe("synthesizeFinancialSummaryIfMissing", () => {
       },
     };
     const out = synthesizeFinancialSummaryIfMissing(result, "zh");
-    expect(out).toBe(result.financialSummary); // referential identity preserved
+    expect(out).not.toBeNull();
+    expect(out!.provenance).toBe("demo");
+    expect(out!.retailBaseline).toBeCloseTo(7.46, 2);
   });
 
-  it("synthesizes a FinancialSummary when backend markdown is rich (the regression fix)", () => {
+  it("refuses markdown-derived finance for a real scan", () => {
     const result = realScanWithBackendMarkdown(RICH_BACKEND_MARKDOWN);
-    const out = synthesizeFinancialSummaryIfMissing(result, "zh");
-    expect(out).not.toBeNull();
-    expect(out).not.toBe(result.financialSummary); // must be synthesized, not the absent field
-    // Must carry the contract surface that /profit page relies on
-    expect(out!.estimatedHeroicProfit).toBeTruthy();
-    expect(out!.trueNetProfit).toBeTruthy();
-    expect(out!.complianceCost).toBeTruthy();
-    expect(out!.monthlyNetProfit).toBeTruthy();
-    expect(out!.targetVolumeLabel).toBeTruthy();
-    expect(out!.riskExposureItems.length).toBeGreaterThanOrEqual(4);
-    expect(out!.costBreakdown.length).toBeGreaterThanOrEqual(4);
+    expect(synthesizeFinancialSummaryIfMissing(result, "zh")).toBeNull();
   });
 
   it("returns null when no backend markdown is present (true empty state)", () => {
@@ -141,11 +146,35 @@ describe("synthesizeFinancialSummaryIfMissing", () => {
     expect(synthesizeFinancialSummaryIfMissing(result, "zh")).toBeNull();
   });
 
-  it("English locale labels match the document language", () => {
-    const result = realScanWithBackendMarkdown(RICH_BACKEND_MARKDOWN);
+  it("builds balanced finance only from validated structured data", () => {
+    const result = realScanWithValidatedFinance();
     const out = synthesizeFinancialSummaryIfMissing(result, "en");
     expect(out).not.toBeNull();
-    expect(out!.targetVolumeLabel).toMatch(/Baseline|month/i);
+    expect(out!.retailBaseline).toBe(30);
+    expect(out!.provenance).toBe("validated-backend");
+    const total = out!.costBreakdown.reduce(
+      (sum, row) => sum + Number(row.amount.replace(/[^\d.]/g, "")),
+      0,
+    );
+    expect(total).toBeCloseTo(24, 2);
+    expect(out!.trueNetProfit).toContain("6.00");
+  });
+
+  it("uses the same validated equation in the export render model", () => {
+    const result = realScanWithValidatedFinance();
+    const summary = synthesizeFinancialSummaryIfMissing(result, "en");
+    expect(summary).not.toBeNull();
+
+    const model = buildProfitRenderModel({
+      result,
+      financialSummary: summary!,
+      profitMode: "compliant",
+      locale: "en",
+    });
+    expect(model.costBoard.retailBaselineLabel).toContain("30");
+    expect(model.chainNodes.reduce((sum, row) => sum + row.amount, 0)).toBeCloseTo(24, 2);
+    expect(model.costBoard.finalNetNumber).toBeCloseTo(6, 2);
+    expect(model.costBoard.finalNetValue).toContain("6.00");
   });
 });
 

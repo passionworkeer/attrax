@@ -95,7 +95,14 @@ JSON 结构必须是：
     "pricingStrategy": "string",
     "riskNote": "string",
     "conclusions": "string",
-    "references": "string"
+    "references": "string",
+    "structuredFields": {
+      "currency": "USD",
+      "costComparison": {
+        "barebone": {"bom": 0, "packaging": 0, "cert": 0, "epr": 0, "logistics": 0, "warranty": 0, "asp": 0, "total": 0, "gp": 0},
+        "compliant": {"bom": 0, "packaging": 0, "cert": 0, "epr": 0, "logistics": 0, "warranty": 0, "asp": 0, "total": 0, "gp": 0}
+      }
+    }
   },
   "roadmap": {
     "totalDays": 56,
@@ -299,7 +306,13 @@ class ReportGenerator:
             else ""
         )
 
-        system = REPORT_PACKAGE_SYSTEM_PROMPT.replace("{source_chunks}", source_context)
+        finance_contract = (
+            "\nFinance contract: emit profitReport.structuredFields only when every numeric "
+            "value is supported by the retrieved material or user documents. Use a three-letter "
+            "ISO currency and make each scenario satisfy asp - total = gp to two decimal places. "
+            "Otherwise omit structuredFields entirely; never use example zeros or guessed values.\n"
+        )
+        system = REPORT_PACKAGE_SYSTEM_PROMPT.replace("{source_chunks}", finance_contract + source_context)
         user_prompt = (
             f"产品类型：{product}\n"
             f"目标市场：{market}\n"

@@ -488,7 +488,7 @@ export default function ResultPage() {
   // synthesizeFinancialSummaryIfMissing lets the result page surface a
   // populated summary tile rather than "—" placeholders for those scans.
   const synthesizedSummary = synthesizeFinancialSummaryIfMissing(result, locale);
-  const financialSummary = result.financialSummary ?? synthesizedSummary ?? {
+  const financialSummary = synthesizedSummary ?? {
     estimatedHeroicProfit: "—",
     trueNetProfit: "—",
     complianceCost: "—",
@@ -1198,4 +1198,3 @@ export default function ResultPage() {
     </main>
   );
 }
-

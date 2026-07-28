@@ -205,6 +205,7 @@ export function extractCostSummary(markdown: string): {
  *   }
  */
 export interface StructuredProfitFields {
+  currency?: string;
   costComparison?: {
     barebone?: Partial<CostSummary>;
     compliant?: Partial<CostSummary>;
@@ -229,6 +230,109 @@ function numFromStringOrNumber(v: unknown): number | undefined {
     return Number.isFinite(n) ? n : undefined;
   }
   return undefined;
+}
+
+const FINANCE_TOLERANCE = 0.01;
+const FINANCE_COST_KEYS = ["bom", "packaging", "cert", "epr", "logistics", "warranty", "asp", "total", "gp"] as const;
+
+type CompleteCostSummary = CostSummary;
+
+function isCompleteCostSummary(value: unknown): value is CompleteCostSummary {
+  if (!isRecord(value)) return false;
+  for (const key of FINANCE_COST_KEYS) {
+    const amount = value[key];
+    if (typeof amount !== "number" || !Number.isFinite(amount) || amount < 0) return false;
+  }
+  const summary = value as unknown as CompleteCostSummary;
+  return Math.abs((summary.asp - summary.total) - summary.gp) <= FINANCE_TOLERANCE;
+}
+
+function currencySymbol(currency: string): string {
+  if (currency === "USD") return "$";
+  if (currency === "EUR") return "€";
+  if (currency === "GBP") return "£";
+  return "¥";
+}
+
+function formatCurrency(value: number, currency: string): string {
+  return `${currencySymbol(currency)}${value.toFixed(2)}`;
+}
+
+function financeRowsFromCostSummary(cost: CompleteCostSummary, currency: string, locale: "zh" | "en") {
+  const isEnglish = locale === "en";
+  const label = (zh: string, en: string) => (isEnglish ? en : zh);
+  const known = cost.bom + cost.packaging + cost.cert + cost.epr + cost.logistics + cost.warranty;
+  const residual = cost.total - known;
+  if (residual < -FINANCE_TOLERANCE) return null;
+  const amount = (n: number) => formatCurrency(n, currency);
+  return [
+    { itemId: "bom", label: label("采购 BOM", "Procurement BOM"), labelEn: "Procurement BOM", amount: amount(cost.bom), detail: label("后端已验证的物料成本", "Validated materials cost"), detailEn: "Validated materials cost" },
+    { itemId: "packaging", label: label("包装与标签", "Packaging and labels"), labelEn: "Packaging and labels", amount: amount(cost.packaging), detail: label("后端已验证的包装与标签成本", "Validated packaging and label cost"), detailEn: "Validated packaging and label cost" },
+    { itemId: "compliance", label: label("认证与 EPR", "Certification and EPR"), labelEn: "Certification and EPR", amount: amount(cost.cert + cost.epr), detail: label("后端已验证的认证和生产者责任成本", "Validated certification and producer-responsibility cost"), detailEn: "Validated certification and producer-responsibility cost" },
+    { itemId: "logistics", label: label("物流", "Logistics"), labelEn: "Logistics", amount: amount(cost.logistics), detail: label("后端已验证的物流成本", "Validated logistics cost"), detailEn: "Validated logistics cost" },
+    { itemId: "warranty", label: label("售后与保修", "After-sales and warranty"), labelEn: "After-sales and warranty", amount: amount(cost.warranty), detail: label("后端已验证的售后预留", "Validated after-sales reserve"), detailEn: "Validated after-sales reserve" },
+    { itemId: "residual", label: label("其他已报告运营成本", "Other reported operating cost"), labelEn: "Other reported operating cost", amount: amount(Math.max(residual, 0)), detail: label("总成本扣除已分类项目后的剩余项；不按类别推断", "Residual after specified components; not attributed to a category"), detailEn: "Residual after specified components; not attributed to a category" },
+  ];
+}
+
+function financialSummaryFromValidatedFields(
+  result: ScanResult,
+  fields: StructuredProfitFields,
+  locale: "zh" | "en",
+): FinancialSummary | null {
+  const comparison = fields.costComparison;
+  const currency = fields.currency?.toUpperCase();
+  if (!currency || !/^[A-Z]{3}$/.test(currency) || !isCompleteCostSummary(comparison?.barebone) || !isCompleteCostSummary(comparison?.compliant)) {
+    return null;
+  }
+  const bareRows = financeRowsFromCostSummary(comparison.barebone, currency, locale);
+  const compliantRows = financeRowsFromCostSummary(comparison.compliant, currency, locale);
+  if (!bareRows || !compliantRows) return null;
+  const complianceCost = comparison.compliant.cert + comparison.compliant.epr;
+  const t = (zh: string, en: string) => (locale === "zh" ? zh : en);
+  const summary: FinancialSummary = {
+    provenance: "validated-backend",
+    currency,
+    retailBaseline: comparison.compliant.asp,
+    bareRetailBaseline: comparison.barebone.asp,
+    bareCostBreakdown: bareRows,
+    estimatedHeroicProfit: formatCurrency(comparison.barebone.gp, currency),
+    trueNetProfit: formatCurrency(comparison.compliant.gp, currency),
+    complianceCost: formatCurrency(complianceCost, currency),
+    monthlyNetProfit: t("后端未提供月度销量假设", "Monthly volume assumption not provided"),
+    targetVolumeLabel: t("后端未提供销量基准", "Volume baseline not provided"),
+    riskExposureItems: [],
+    costBreakdown: compliantRows,
+  };
+  const markdown = result.reportPackage?.profitReport?.markdown;
+  if (markdown) {
+    (summary as FinancialSummary & { _backendMarkdown?: string })._backendMarkdown = markdown;
+    (summary as FinancialSummary & { __includeBackendMarkdown?: boolean }).__includeBackendMarkdown = true;
+  }
+  return summary;
+}
+
+function normalizeDemoFinancialSummary(summary: FinancialSummary): FinancialSummary {
+  const compliantCost = summary.costBreakdown.reduce((sum, row) => sum + parseCostValue(row.amount), 0);
+  const compliantNet = parseCostValue(summary.trueNetProfit);
+  const retailBaseline = Number((compliantCost + compliantNet).toFixed(2));
+  const bareNet = parseCostValue(summary.estimatedHeroicProfit);
+  const symbol = summary.trueNetProfit.match(/[¥$€£]/)?.[0] ?? "¥";
+  return {
+    ...summary,
+    provenance: "demo",
+    currency: summary.currency ?? (symbol === "$" ? "USD" : symbol === "€" ? "EUR" : symbol === "£" ? "GBP" : "CNY"),
+    retailBaseline,
+    bareRetailBaseline: retailBaseline,
+    bareCostBreakdown: [{
+      itemId: "demo_bare_operating_cost",
+      label: "演示用非合规运营成本",
+      labelEn: "Demo bare operating cost",
+      amount: `${symbol}${Math.max(retailBaseline - bareNet, 0).toFixed(2)}`,
+      detail: "演示数据：为保证展示算术一致而汇总，不代表实际成本分类。",
+      detailEn: "Demo-only aggregate used to keep the presentation arithmetically consistent.",
+    }],
+  };
 }
 
 export function applyStructuredProfitFields(
@@ -519,11 +623,22 @@ export function synthesizeFinancialSummaryIfMissing(
   result: ScanResult,
   locale: "zh" | "en" = "zh",
 ): FinancialSummary | null {
-  if (result.financialSummary) return result.financialSummary;
-  const profitMd = result.reportPackage?.profitReport?.markdown;
+  if (result.financialSummary && (result.source === "demo" || result.modelInfo?.visionProvider === "mock")) {
+    return normalizeDemoFinancialSummary(result.financialSummary);
+  }
+  // Markdown remains a reviewable narrative. A real scan cannot become a
+  // detailed financial board through regex parsing or a borrowed demo value.
+  const structuredFields = result.reportPackage?.profitReport?.structuredFields;
+  return structuredFields
+    ? financialSummaryFromValidatedFields(result, structuredFields, locale)
+    : null;
+
+  /* Legacy markdown synthesis intentionally left below for source history;
+   * the early return above makes it unreachable for every active scan path.
+  const profitMd = result.reportPackage?.profitReport?.markdown!;
   if (!profitMd || !profitMd.trim()) return null;
 
-  const profit = buildProfitReportFromScanResult(result, locale);
+  const profit = buildProfitReportFromScanResult(result, locale)!;
   if (!profit) return null;
 
   // sanity: LLM markdown 解析后所有数字都 0 的情况就是「没数据」— 别假装合成
@@ -545,6 +660,7 @@ export function synthesizeFinancialSummaryIfMissing(
   (fs as FinancialSummary & { _backendMarkdown?: string })._backendMarkdown = profitMd;
   (fs as FinancialSummary & { __includeBackendMarkdown?: boolean }).__includeBackendMarkdown = true;
   return fs;
+  */
 }
 
 /**

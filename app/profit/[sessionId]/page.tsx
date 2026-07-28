@@ -182,7 +182,7 @@ export default function ProfitPage() {
   const displayName =
     locale === "en" ? result.productNameEn ?? result.productName : result.productName;
 
-  const financialSummary = result.financialSummary ?? synthesizeFinancialSummaryIfMissing(result, locale);
+  const financialSummary = synthesizeFinancialSummaryIfMissing(result, locale);
   if (!financialSummary) {
     const profitReport = result.reportPackage?.profitReport;
     const reportText =
@@ -227,7 +227,10 @@ export default function ProfitPage() {
     );
   }
 
-  const costRows = financialSummary.costBreakdown.map((row) => ({
+  const activeCostBreakdown = profitMode === "bare" && financialSummary.bareCostBreakdown
+    ? financialSummary.bareCostBreakdown
+    : financialSummary.costBreakdown;
+  const costRows = activeCostBreakdown.map((row) => ({
     label: locale === "en" ? row.labelEn ?? row.label : row.label,
     amount: row.amount,
     detail: locale === "en" ? row.detailEn ?? row.detail : row.detail,
@@ -369,16 +372,18 @@ export default function ProfitPage() {
             unit: locale === "zh" ? "/月" : "/month",
           },
         ];
-  const finalProfitValue =
-    profitMode === "bare"
-      ? financialSummary.estimatedHeroicProfit
-      : financialSummary.trueNetProfit;
-  const retailBaseline = 128;
+  const selectedProfit = profitMode === "bare"
+    ? parseFloat(financialSummary.estimatedHeroicProfit.replace(/[^\d.]/g, "")) || 0
+    : parseFloat(financialSummary.trueNetProfit.replace(/[^\d.]/g, "")) || 0;
+  const listedCost = costRows.reduce((sum, row) => sum + (parseFloat(row.amount.replace(/[^\d.]/g, "")) || 0), 0);
+  const retailBaseline = profitMode === "bare"
+    ? financialSummary.bareRetailBaseline ?? listedCost + selectedProfit
+    : financialSummary.retailBaseline ?? listedCost + selectedProfit;
   const chainPalette = ["#3fb5c8", "#54c9d6", "#71d9db", "#8ae6df", "#63bfd5", "#87b7cf"];
   let runningBalance = retailBaseline;
   const chainCostRows = costRows.map((row, rowIndex) => {
     const sourceAmount = parseFloat(row.amount.replace(/[^\d.]/g, "")) || 0;
-    const amount = profitMode === "bare" && rowIndex === 3 ? 0 : sourceAmount;
+    const amount = sourceAmount;
     runningBalance -= amount;
     return {
       ...row,
@@ -390,7 +395,10 @@ export default function ProfitPage() {
     };
   });
   const totalChainCost = chainCostRows.reduce((sum, row) => sum + row.amount, 0);
-  const finalProfitNumber = Math.max(retailBaseline - totalChainCost, 0);
+  const finalProfitNumber = retailBaseline - totalChainCost;
+  const currencySymbol = financialSummary.trueNetProfit.match(/[¥$€£]/)?.[0] ?? "¥";
+  const retailBaselineDisplay = `${currencySymbol}${retailBaseline.toFixed(2)}`;
+  const finalProfitValue = `${currencySymbol}${finalProfitNumber.toFixed(2)}`;
   const finalProfitShare = (finalProfitNumber / retailBaseline) * 100;
   const breakEvenBuffer = Math.max(finalProfitNumber - 8, 0);
   const dominantCost = chainCostRows.reduce((largest, row) => row.amount > largest.amount ? row : largest, chainCostRows[0]);
@@ -514,7 +522,7 @@ export default function ProfitPage() {
             </div>
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-white/10 bg-white/7 px-4 py-2 text-sm text-white/64">
-                {locale === "zh" ? `售价基线 ¥${retailBaseline}` : `Retail baseline ¥${retailBaseline}`}
+                {locale === "zh" ? `售价基线 ${retailBaselineDisplay}` : `Retail baseline ${retailBaselineDisplay}`}
               </span>
               <span className="rounded-full border border-[rgba(73,190,205,0.28)] bg-[rgba(211,247,249,0.14)] px-4 py-2 text-sm text-white/74">
                 {activeMode.title}
@@ -524,8 +532,8 @@ export default function ProfitPage() {
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             {[
-              { label: locale === "zh" ? "售价基线" : "Retail", value: `¥${retailBaseline}` },
-              { label: locale === "zh" ? "全链路成本" : "Chain cost", value: `¥${totalChainCost.toFixed(0)}` },
+              { label: locale === "zh" ? "售价基线" : "Retail", value: retailBaselineDisplay },
+              { label: locale === "zh" ? "全链路成本" : "Chain cost", value: `${currencySymbol}${totalChainCost.toFixed(2)}` },
               { label: locale === "zh" ? "最终净利润" : "Final net", value: finalProfitValue },
             ].map((metric, metricIndex) => (
               <div key={metric.label} className="rounded-[20px] border border-white/10 bg-white/[0.055] p-4">
