@@ -21,11 +21,12 @@ import type { ScanResult } from '@/lib/types'
 import type { FinancialSummary } from '@/lib/types.blaze-hawks'
 import {
   buildProfitRenderModel,
-  DEFAULT_RETAIL_BASELINE,
 } from '@/lib/report-export-modules/profit-render-model'
 
 function makeScanResult(overrides: Partial<ScanResult> = {}): ScanResult {
   return {
+    retailBaseline: 66.93,
+    bareRetailBaseline: 54.44,
     sessionId: 'sess_test_001',
     scanTime: '2026-07-21T10:00:00.000Z',
     productName: '便携式蓝牙音箱',
@@ -249,7 +250,7 @@ describe('buildProfitRenderModel — metric cards (bare)', () => {
     )
   })
 
-  it('zeros the 4th chain node (index 3 = 合规成本) in bare mode', () => {
+  it('keeps the selected bare scenario costs intact', () => {
     const m = buildProfitRenderModel({
       result: makeScanResult(),
       financialSummary: makeFinancialSummary(),
@@ -257,8 +258,7 @@ describe('buildProfitRenderModel — metric cards (bare)', () => {
       locale: 'zh',
     })
     expect(m.chainNodes[3]!.label).toContain('合规成本')
-    expect(m.chainNodes[3]!.amount).toBe(0)
-    expect(m.chainNodes[3]!.displayAmount).toBe('¥0.00')
+    expect(m.chainNodes[3]!.amount).toBe(7.46)
   })
 
   it('keeps all chain nodes populated in compliant mode', () => {
@@ -274,15 +274,14 @@ describe('buildProfitRenderModel — metric cards (bare)', () => {
 
 // ─── Chain cost / cost board / retail baseline ────────────────────────────
 describe('buildProfitRenderModel — cost chain', () => {
-  it('uses 128 as the default retail baseline', () => {
-    expect(DEFAULT_RETAIL_BASELINE).toBe(128)
+  it('uses the financial summary baseline instead of a hard-coded value', () => {
     const m = buildProfitRenderModel({
       result: makeScanResult(),
       financialSummary: makeFinancialSummary(),
       profitMode: 'compliant',
       locale: 'zh',
     })
-    expect(m.costBoard.retailBaselineLabel).toBe('售价基线 ¥128')
+    expect(m.costBoard.retailBaselineLabel).toBe('售价基线 ¥66.93')
   })
 
   it('computes finalNetNumber as retail baseline − total chain cost', () => {
@@ -293,8 +292,8 @@ describe('buildProfitRenderModel — cost chain', () => {
       locale: 'zh',
     })
     // Total chain cost = 18.5 + 12 + 0 + 7.46 + 0 + 5 = 42.96
-    // finalNet = 128 − 42.96 = 85.04
-    expect(m.costBoard.finalNetNumber).toBeCloseTo(85.04, 2)
+    // finalNet = 66.93 − 42.96 = 23.97
+    expect(m.costBoard.finalNetNumber).toBeCloseTo(23.97, 2)
   })
 
   it('emits marginSignal that flips wording when finalNetShare crosses 10%', () => {
@@ -310,6 +309,7 @@ describe('buildProfitRenderModel — cost chain', () => {
     const low = buildProfitRenderModel({
       result: makeScanResult(),
       financialSummary: makeFinancialSummary({
+        retailBaseline: 130,
         costBreakdown: [
           { itemId: 'cost_01', label: 'A', amount: '¥120', detail: 'd1' },
           { itemId: 'cost_02', label: 'B', amount: '¥5', detail: 'd2' },

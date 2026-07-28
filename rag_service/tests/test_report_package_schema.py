@@ -8,6 +8,66 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from rag_service.schemas.report_package import ReportPackage, normalize_report_package
 
 
+def _financial_costs(*, asp: float, total: float, gp: float) -> dict:
+    return {
+        "bom": 10.0,
+        "packaging": 1.0,
+        "cert": 2.0,
+        "epr": 1.0,
+        "logistics": 3.0,
+        "warranty": 1.0,
+        "asp": asp,
+        "total": total,
+        "gp": gp,
+    }
+
+
+def _package_with_finance(cost_comparison: dict) -> dict:
+    return {
+        "complianceReport": "## Compliance",
+        "profitReport": {
+            "markdown": "## Profit analysis retained for review.",
+            "structuredFields": {"currency": "USD", "costComparison": cost_comparison},
+        },
+    }
+
+
+def test_normalize_report_package_preserves_valid_structured_finance():
+    normalized = normalize_report_package(
+        _package_with_finance(
+            {
+                "barebone": _financial_costs(asp=28.0, total=20.0, gp=8.0),
+                "compliant": _financial_costs(asp=30.0, total=24.0, gp=6.0),
+            }
+        ),
+        product="Power bank",
+        market="EU",
+    )
+
+    finance = normalized["profitReport"]["structuredFields"]["costComparison"]
+    assert finance["barebone"]["asp"] == 28.0
+    assert finance["compliant"]["gp"] == 6.0
+    assert normalized["auditMetadata"]["validationStatus"] == "normalized"
+
+
+def test_normalize_report_package_drops_invalid_structured_finance_but_keeps_prose():
+    normalized = normalize_report_package(
+        _package_with_finance(
+            {
+                "barebone": _financial_costs(asp=28.0, total=20.0, gp=8.0),
+                "compliant": _financial_costs(asp=30.0, total=24.0, gp=7.0),
+            }
+        ),
+        product="Power bank",
+        market="EU",
+    )
+
+    assert normalized["profitReport"]["markdown"] == "## Profit analysis retained for review."
+    assert "structuredFields" not in normalized["profitReport"]
+    assert normalized["auditMetadata"]["validationStatus"] == "invalid"
+    assert "financial_data_invalid" in normalized["auditMetadata"]["validationErrors"]
+
+
 def test_normalize_report_package_adds_dossier_evidence_and_audit():
     package = {
         "compliance_report": "## Compliance\nUse CE evidence.",

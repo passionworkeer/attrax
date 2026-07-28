@@ -389,7 +389,16 @@ export interface ReportPackage {
      *     risk: { bareboneExposure: number, compliantExposure: number },
      *   }
      */
-    structuredFields?: Record<string, unknown>;
+    structuredFields?: {
+      currency: string;
+      costComparison: {
+        barebone: CostSummary;
+        compliant: CostSummary;
+      };
+      breakeven?: { units?: number; currency?: string };
+      pricing?: { recommended?: number; strategy?: string };
+      risk?: { bareboneExposure?: number; compliantExposure?: number };
+    };
   };
   profit_report?: ReportPackage["profitReport"] | string;
   roadmap?: GeneratedRoadmap;

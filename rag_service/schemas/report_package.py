@@ -2,9 +2,10 @@
 from __future__ import annotations
 
 from datetime import datetime, timezone
+from math import isfinite
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator, model_validator
 
 
 SCHEMA_VERSION = "report-package/v1"
@@ -33,6 +34,53 @@ class ProductDossier(FlexibleModel):
         return []
 
 
+class FinancialCostSummary(BaseModel):
+    """Per-unit finance values that may drive the detailed profit board."""
+
+    bom: float
+    packaging: float
+    cert: float
+    epr: float
+    logistics: float
+    warranty: float
+    asp: float
+    total: float
+    gp: float
+
+    @field_validator("bom", "packaging", "cert", "epr", "logistics", "warranty", "asp", "total", "gp", mode="before")
+    @classmethod
+    def require_finite_non_negative_number(cls, value: Any) -> float:
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not isfinite(value) or value < 0:
+            raise ValueError("must be a finite non-negative number")
+        return float(value)
+
+    @model_validator(mode="after")
+    def require_margin_identity(self) -> "FinancialCostSummary":
+        if abs((self.asp - self.total) - self.gp) > 0.01:
+            raise ValueError("asp - total must equal gp within currency rounding tolerance")
+        return self
+
+
+class FinancialCostComparison(BaseModel):
+    barebone: FinancialCostSummary
+    compliant: FinancialCostSummary
+
+
+class StructuredProfitFields(FlexibleModel):
+    """Optional extension fields; structured finance is strict when supplied."""
+
+    currency: str
+    costComparison: FinancialCostComparison
+
+    @field_validator("currency")
+    @classmethod
+    def require_iso_currency(cls, value: str) -> str:
+        value = str(value or "").upper()
+        if len(value) != 3 or not value.isalpha():
+            raise ValueError("must be a three-letter ISO currency code")
+        return value
+
+
 class ProfitReport(FlexibleModel):
     markdown: str
     keyConclusion: str = ""
@@ -42,6 +90,7 @@ class ProfitReport(FlexibleModel):
     riskNote: str = ""
     conclusions: str = ""
     references: str = ""
+    structuredFields: StructuredProfitFields | None = None
 
 
 class RoadmapItem(FlexibleModel):
@@ -321,6 +370,18 @@ def normalize_report_package(
     if not str(profit.get("markdown") or "").strip():
         profit["markdown"] = "Profit analysis unavailable; fallback content was not provided."
 
+    finance_validation_errors: list[str] = []
+    if "structuredFields" in profit:
+        try:
+            profit["structuredFields"] = StructuredProfitFields.model_validate(
+                profit["structuredFields"]
+            ).model_dump()
+        except ValidationError:
+            # The prose remains available for review; malformed finance must not
+            # be allowed to reach a detailed page or exported financial board.
+            profit.pop("structuredFields", None)
+            finance_validation_errors.append("financial_data_invalid")
+
     roadmap = _normalize_roadmap(source.get("roadmap"))
     decision = _normalize_decision(source.get("decisionView") or source.get("decision_view"))
 
@@ -366,8 +427,8 @@ def normalize_report_package(
     audit = {
         "schemaVersion": audit.get("schemaVersion") or SCHEMA_VERSION,
         "generatedAt": audit.get("generatedAt") or _utc_now_iso(),
-        "validationStatus": audit.get("validationStatus") or "normalized",
-        "validationErrors": list(audit.get("validationErrors") or []),
+        "validationStatus": "invalid" if finance_validation_errors else (audit.get("validationStatus") or "normalized"),
+        "validationErrors": list(audit.get("validationErrors") or []) + finance_validation_errors,
         "provider": audit.get("provider") or provider,
         "traceNodeCount": audit.get("traceNodeCount") or len(_as_list(agent_trace)),
     }
@@ -384,7 +445,7 @@ def normalize_report_package(
     }
 
     try:
-        return ReportPackage.model_validate(normalized).model_dump()
+        return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)
     except ValidationError as exc:
         normalized["complianceReport"] = normalized["complianceReport"] or (
             "Report package validation failed; no compliance report text was available."
@@ -394,4 +455,4 @@ def normalize_report_package(
             "validationStatus": "invalid",
             "validationErrors": [err["msg"] for err in exc.errors()],
         }
-        return ReportPackage.model_validate(normalized).model_dump()
+        return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)

@@ -58,7 +58,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
 
   // ── Header bar ────────────────────────────────────────────────────────────
   doc.setFontSize(9);
-  doc.setTextColor(180);
+  doc.setTextColor(110);
   doc.setFont("NotoSansSC", "normal");
   doc.text(model.title, margin, y.cur);
   y.cur += 5;
@@ -73,7 +73,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
   doc.text(model.title, margin, y.cur);
   y.cur += 7;
   doc.setFontSize(9);
-  doc.setTextColor(140);
+  doc.setTextColor(100);
   doc.setFont("NotoSansSC", "normal");
   doc.text(`${model.productName} · ${model.marketLabel} · ${model.generatedAtLabel}`, margin, y.cur);
   y.cur += 10;
@@ -112,7 +112,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
       doc.roundedRect(x, y.cur, cardW, 32, 2, 2, "S");
     }
     doc.setFontSize(8);
-    doc.setTextColor(160, 160, 160);
+    doc.setTextColor(100, 100, 100);
     doc.setFont("NotoSansSC", "normal");
     doc.text(m.label, x + 3, y.cur + 5);
     const [r, g, b] = metricValueColor(m.tone);
@@ -123,7 +123,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
     if (m.unit) {
       doc.setFontSize(8);
       doc.setFont("NotoSansSC", "normal");
-      doc.setTextColor(180, 180, 180);
+      doc.setTextColor(110, 110, 110);
       doc.text(m.unit, x + 3, y.cur + 27);
     }
     if (m.bareRiskCaveat) {
@@ -148,8 +148,8 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
   const topW = (contentWidth - 4) / 3;
   const topLabels = ["售价基线", "全链路成本", "最终净利润"];
   const topValues = [
-    `${ccy}128`,
-    `${ccy}${model.chainNodes.reduce((s, n) => s + n.amount, 0).toFixed(0)}`,
+    `${ccy}${(model.costBoard.finalNetNumber + model.chainNodes.reduce((s, n) => s + n.amount, 0)).toFixed(2)}`,
+    `${ccy}${model.chainNodes.reduce((s, n) => s + n.amount, 0).toFixed(2)}`,
     model.costBoard.finalNetValue,
   ];
   for (let i = 0; i < 3; i++) {
@@ -157,7 +157,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
     doc.setDrawColor(220, 220, 220);
     doc.roundedRect(x, y.cur, topW, 18, 2, 2, "S");
     doc.setFontSize(8);
-    doc.setTextColor(150, 150, 150);
+    doc.setTextColor(100, 100, 100);
     doc.setFont("NotoSansSC", "normal");
     doc.text(topLabels[i], x + 3, y.cur + 5);
     doc.setFontSize(13);
@@ -173,7 +173,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
 
   // Diagnostic line (margin signal)
   doc.setFontSize(9);
-  doc.setTextColor(220, 220, 220);
+  doc.setTextColor(100, 100, 100);
   doc.setFont("NotoSansSC", "normal");
   doc.text(model.costBoard.marginSignal, margin, y.cur);
   y.cur += 6;
@@ -189,7 +189,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
     doc.setDrawColor(220, 220, 220);
     doc.roundedRect(x, y.cur, nodeW, 28, 2, 2, "S");
     doc.setFontSize(7);
-    doc.setTextColor(180, 180, 180);
+  doc.setTextColor(105, 105, 105);
     doc.setFont("NotoSansSC", "normal");
     doc.text(`0${i + 1}`, x + 3, y.cur + 5);
     doc.setTextColor(34, 127, 149);
@@ -241,7 +241,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
 
   // Legend below bar
   doc.setFontSize(7);
-  doc.setTextColor(170, 170, 170);
+    doc.setTextColor(105, 105, 105);
   doc.setFont("NotoSansSC", "normal");
   for (const item of model.stackLegend) {
     doc.setFillColor(item.color);
@@ -277,7 +277,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
   if (model.backendMarkdown) {
     pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, model.backendMarkdownTitle);
     doc.setFontSize(9);
-    doc.setTextColor(200, 200, 200);
+    doc.setTextColor(110, 110, 110);
     doc.setFont("NotoSansSC", "normal");
     const mdLines = doc.splitTextToSize(model.backendMarkdown, contentWidth) as string[];
     for (const line of mdLines) {
@@ -296,7 +296,7 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
   for (let i = 1; i <= pageCount; i++) {
     doc.setPage(i);
     doc.setFontSize(8);
-    doc.setTextColor(200, 200, 200);
+    doc.setTextColor(110, 110, 110);
     doc.text(
       `${model.title} · ${model.sessionId} · 第 ${i}/${pageCount} 页`,
       pageWidth / 2,

@@ -112,13 +112,13 @@ function makeModel(overrides: Partial<ProfitRenderModel> = {}): ProfitRenderMode
       { label: '退货', detail: '退货 + 保修', displayAmount: '¥5.00', amount: 5, share: 3.9, remaining: 85.04, color: '#87b7cf' },
     ],
     costBoard: {
-      retailBaselineLabel: '售价基线 ¥128',
+      retailBaselineLabel: '售价基线 ¥66.93',
       totalChainCostLabel: '全链路成本 ¥43',
       finalNetValue: '¥23.97',
-      finalNetNumber: 85.04,
-      finalNetShare: 66.4,
+      finalNetNumber: 23.97,
+      finalNetShare: 35.8,
       marginSignal: '每售出 1 件保留 ¥85，当前利润结构接近健康线。',
-      breakEvenBufferLabel: '+¥77',
+      breakEvenBufferLabel: '+¥16',
       dominantCost: { label: '采购 BOM', amountLabel: '¥19', shareLabel: '14.5%' },
       activeModeTitle: '合规后出海',
     },
@@ -230,10 +230,10 @@ describe('downloadProfitModelAsPdf', () => {
     expect(all).toContain('跨境集体诉讼')
   })
 
-  it('renders the retail baseline ¥128 (matches page.tsx hardcoded value)', async () => {
+  it('derives the retail baseline from the model net plus chain cost', async () => {
     await downloadProfitModelAsPdf(makeModel())
     const all = allTextCalls()
-    expect(all.some((t) => t.includes('¥128'))).toBe(true)
+    expect(all.some((t) => t.includes('¥66.93'))).toBe(true)
   })
 
   it('renders the AI margin signal verbatim', async () => {

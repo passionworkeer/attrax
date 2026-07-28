@@ -268,8 +268,7 @@ const FINAL_GRADIENT_END = "#42bfd0";
  * the active `profitMode`, and the locale.
  *
  * The chain-cost math (retail baseline → per-row deduction → final profit)
- * is replicated here verbatim from page.tsx so a PDF for a ¥128 baseline
- * product shows the same ¥X final net as the page did at the moment of export.
+ * uses the same explicit financial baseline as the page and both exports.
  */
 export function buildProfitRenderModel(args: {
   result: ScanResult;
@@ -359,39 +358,44 @@ export function buildProfitRenderModel(args: {
   const bareRiskCaveat = profitMode === "bare" ? (isZh ? i.bareCaveat : i.bareCaveatEn) : null;
 
   // ── Cost breakdown / chain flow / stacked bar ─────────────────────────────
-  // The page (line 376 of page.tsx) hardcodes `retailBaseline = 128`.
-  // Replicating it here is the only way to guarantee byte-for-byte equivalence
-  // without re-deriving from real margin math.
-  const retailBaseline = 128;
+  // One selected scenario supplies the costs, baseline, and final net.
+  const selectedRows = profitMode === "bare" && ls.bareCostBreakdown
+    ? ls.bareCostBreakdown
+    : ls.costBreakdown;
+  const selectedNet = profitMode === "bare"
+    ? parseAmount(ls.estimatedHeroicProfit)
+    : parseAmount(ls.trueNetProfit);
+  const listedCost = selectedRows.reduce((sum, row) => sum + parseAmount(row.amount), 0);
+  const retailBaseline = profitMode === "bare"
+    ? ls.bareRetailBaseline ?? listedCost + selectedNet
+    : ls.retailBaseline ?? listedCost + selectedNet;
 
-  const costRows = (ls.costBreakdown ?? []).map((row, idx) => ({
+  const costRows = selectedRows.map((row, idx) => ({
     label: isZh ? row.label : row.labelEn ?? row.label,
     amountRaw: row.amount,
     amount: parseAmount(row.amount),
     detail: isZh ? row.detail : row.detailEn ?? row.detail,
     // In bare mode the page zeros out the 4th row (index 3 — 合规成本) because
     // that cost doesn't exist before remediation.
-    isZeroedInBare: idx === 3,
     color: CHAIN_PALETTE[idx % CHAIN_PALETTE.length],
   }));
 
   let runningBalance = retailBaseline;
   const chainNodes: ProfitChainNode[] = costRows.map((row, idx) => {
-    const effectiveAmount = profitMode === "bare" && row.isZeroedInBare ? 0 : row.amount;
-    runningBalance -= effectiveAmount;
+    runningBalance -= row.amount;
     return {
       label: row.label,
       detail: row.detail,
-      displayAmount: effectiveAmount === row.amount ? row.amountRaw : `${currencySymbol}0.00`,
-      amount: effectiveAmount,
-      share: Math.max((effectiveAmount / retailBaseline) * 100, 0),
+      displayAmount: row.amountRaw,
+      amount: row.amount,
+      share: Math.max((row.amount / retailBaseline) * 100, 0),
       remaining: Math.max(runningBalance, 0),
       color: row.color,
     };
   });
 
   const totalChainCost = chainNodes.reduce((sum, n) => sum + n.amount, 0);
-  const finalNetNumber = Math.max(retailBaseline - totalChainCost, 0);
+  const finalNetNumber = retailBaseline - totalChainCost;
   const finalNetShare = (finalNetNumber / retailBaseline) * 100;
   const breakEvenBuffer = Math.max(finalNetNumber - 8, 0);
   const dominantCost = chainNodes.reduce(
@@ -403,13 +407,11 @@ export function buildProfitRenderModel(args: {
     ? (isZh ? i.bare : i.bareEn)
     : (isZh ? i.compliant : i.compliantEn);
 
-  const finalNetValue = profitMode === "bare"
-    ? ls.estimatedHeroicProfit
-    : ls.trueNetProfit;
+  const finalNetValue = `${currencySymbol}${finalNetNumber.toFixed(2)}`;
 
   const costBoard: ProfitCostBoard = {
     retailBaselineLabel: isZh ? i.retailBaselineChip(retailBaseline) : i.retailBaselineChipEn(retailBaseline),
-    totalChainCostLabel: isZh ? `${i.chainCost} ${currencySymbol}${totalChainCost.toFixed(0)}` : `${i.chainCostEn} ${currencySymbol}${totalChainCost.toFixed(0)}`,
+    totalChainCostLabel: isZh ? `${i.chainCost} ${currencySymbol}${totalChainCost.toFixed(2)}` : `${i.chainCostEn} ${currencySymbol}${totalChainCost.toFixed(2)}`,
     finalNetValue,
     finalNetNumber,
     finalNetShare,
@@ -497,7 +499,6 @@ export function buildProfitRenderModel(args: {
 }
 
 /** The default retail baseline — kept here so page.tsx and exporters share it. */
-export const DEFAULT_RETAIL_BASELINE = 128;
 
 /**
  * Helper: tiny helper to look up the icon symbol for a profit risk item.
