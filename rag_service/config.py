@@ -94,6 +94,43 @@ class Settings(BaseSettings):
 
 settings = Settings()
 
+
+def _validate_production_index_bundle() -> None:
+    """Fail startup when production index artifacts exist but do not match."""
+    if settings.demo_mode or settings.app_env not in {"production", "prod"}:
+        return
+    root = Path(__file__).parent.parent.resolve()
+    directory = Path(
+        os.environ.get("FAISS_INDEX_DIR", str(root / "data" / "faiss"))
+    ).resolve()
+    index = directory / "legal_chunks.index"
+    metadata = directory / "legal_chunks_meta.json"
+    manifest = directory / "index_manifest.json"
+    present = [path.is_file() for path in (index, metadata, manifest)]
+    if not any(present):
+        return
+    if not all(present):
+        missing = [
+            path.name
+            for path, exists in zip((index, metadata, manifest), present)
+            if not exists
+        ]
+        raise RuntimeError(
+            "Incomplete FAISS bundle in production: " + ", ".join(missing)
+        )
+    from rag_service.retrieval.index_integrity import (
+        IndexIntegrityError,
+        validate_index_bundle,
+    )
+
+    try:
+        validate_index_bundle(index, metadata, manifest, require_hashes=True)
+    except IndexIntegrityError as exc:
+        raise RuntimeError(f"Refusing untrusted FAISS bundle: {exc}") from exc
+
+
+_validate_production_index_bundle()
+
 # Legacy lower-level clients still read these names directly. setdefault only
 # fills absent values and does not overwrite an operator's process environment.
 os.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
