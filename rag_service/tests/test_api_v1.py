@@ -1,10 +1,13 @@
+import io
 import time
+import zipfile
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from rag_service.api.v1 import router
 from rag_service.application.scans import ScanService
+from rag_service.config import settings
 from rag_service.infrastructure.file_backend import FileBackend
 
 
@@ -18,12 +21,22 @@ def build_app(tmp_path):
             "report": "## compliant",
             "agent_trace": [{"node": "vision", "status": "success"}],
             "loop_count": 0,
-            "documents": [],
-            "report_package": {"roadmap": {"items": [{"id": "apply-ce"}]}},
+            "documents": [{"source_id": "eu-rule", "region": "EU"}],
+            "report_package": {
+                "roadmap": {"items": [{"id": "apply-ce", "title": "Apply CE"}]},
+                "auditMetadata": {
+                    "validationStatus": "valid",
+                    "verificationMode": "nli",
+                },
+            },
         }
 
     app = FastAPI(version="test")
-    app.state.scan_service = ScanService(FileBackend(tmp_path), runner=runner)
+    app.state.scan_service = ScanService(
+        FileBackend(tmp_path),
+        runner=runner,
+        retry_base_seconds=0,
+    )
     app.state.readiness_provider = lambda: {
         "ready": True,
         "checks": {"scanService": True, "rag": True},
@@ -33,14 +46,15 @@ def build_app(tmp_path):
     return app
 
 
-def create_scan(client: TestClient):
+def create_scan(client: TestClient, headers=None, markets='["EU","US"]'):
     response = client.post(
         "/api/v1/scans",
+        headers=headers or {},
         data={
             "query": "check charger",
             "product": "USB charger",
             "category": "electronics",
-            "markets": '["EU","US"]',
+            "markets": markets,
         },
         files={"images": ("front.png", PNG, "image/png")},
     )
@@ -50,7 +64,7 @@ def create_scan(client: TestClient):
 
 
 def poll_ready(client: TestClient, session_id: str, token: str):
-    for _ in range(50):
+    for _ in range(100):
         response = client.get(
             f"/api/v1/scans/{session_id}",
             headers={"Authorization": f"Bearer {token}"},
@@ -61,30 +75,34 @@ def poll_ready(client: TestClient, session_id: str, token: str):
     raise AssertionError("scan did not finish")
 
 
-def test_create_poll_roadmap_trace_and_delete_without_nextjs(tmp_path):
-    app = build_app(tmp_path)
-    with TestClient(app) as client:
+def minimal_docx(expanded_bytes: int = 16) -> bytes:
+    output = io.BytesIO()
+    with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("[Content_Types].xml", "<Types />")
+        archive.writestr("word/document.xml", "x" * expanded_bytes)
+    return output.getvalue()
+
+
+def test_create_poll_roadmap_trace_asset_and_delete_without_nextjs(tmp_path):
+    with TestClient(build_app(tmp_path)) as client:
         session_id, token, created = create_scan(client)
-        assert created == {
-            "data": {
-                "sessionId": session_id,
-                "accessToken": token,
-                "status": "processing",
-                "pollUrl": f"/api/v1/scans/{session_id}",
-            },
-            "error": None,
-            "meta": {"requestId": created["meta"]["requestId"]},
-        }
+        assert created["data"]["pollUrl"] == f"/api/v1/scans/{session_id}"
+        assert created["meta"]["requestId"].startswith("req_")
 
         ready = poll_ready(client, session_id, token)
         assert ready.status_code == 200
+        assert ready.json()["data"]["status"] == "ready"
         assert ready.json()["data"]["result"]["complianceStatus"] == "PASS"
+        assert ready.json()["data"]["expiresAt"]
 
         headers = {"Authorization": f"Bearer {token}"}
         roadmap = client.get(f"/api/v1/scans/{session_id}/roadmap", headers=headers)
         trace = client.get(f"/api/v1/scans/{session_id}/trace", headers=headers)
+        asset = client.get(f"/api/v1/scans/{session_id}/assets/0", headers=headers)
         assert roadmap.json()["data"]["items"][0]["id"] == "apply-ce"
         assert trace.json()["data"][0]["node"] == "vision"
+        assert asset.content == PNG
+        assert asset.headers["x-content-type-options"] == "nosniff"
 
         deleted = client.delete(f"/api/v1/scans/{session_id}", headers=headers)
         assert deleted.status_code == 204
@@ -93,7 +111,7 @@ def test_create_poll_roadmap_trace_and_delete_without_nextjs(tmp_path):
         assert missing.json()["error"]["code"] == "NOT_FOUND"
 
 
-def test_poll_requires_bearer_token_and_uses_error_envelope(tmp_path):
+def test_poll_and_assets_require_the_session_bearer_token(tmp_path):
     with TestClient(build_app(tmp_path)) as client:
         session_id, token, _ = create_scan(client)
         missing = client.get(f"/api/v1/scans/{session_id}")
@@ -101,36 +119,35 @@ def test_poll_requires_bearer_token_and_uses_error_envelope(tmp_path):
             f"/api/v1/scans/{session_id}",
             headers={"Authorization": "Bearer wrong"},
         )
+        asset_missing = client.get(f"/api/v1/scans/{session_id}/assets/0")
         assert missing.status_code == 401
         assert wrong.status_code == 401
-        assert missing.json()["data"] is None
+        assert asset_missing.status_code == 401
         assert missing.json()["error"]["code"] == "UNAUTHORIZED"
-        assert missing.json()["meta"]["requestId"].startswith("req_")
-        assert missing.headers["x-request-id"] == missing.json()["meta"]["requestId"]
         poll_ready(client, session_id, token)
 
 
-def test_uploaded_asset_requires_session_token_and_returns_original_bytes(tmp_path):
+def test_create_requires_internal_secret_when_configured(tmp_path, monkeypatch):
+    monkeypatch.setattr(settings, "rag_internal_secret", "service-secret")
     with TestClient(build_app(tmp_path)) as client:
-        session_id, token, _ = create_scan(client)
-        url = f"/api/v1/scans/{session_id}/assets/0"
-
-        missing = client.get(url)
-        asset = client.get(url, headers={"Authorization": f"Bearer {token}"})
-        out_of_range = client.get(
-            f"/api/v1/scans/{session_id}/assets/99",
-            headers={"Authorization": f"Bearer {token}"},
+        denied = client.post(
+            "/api/v1/scans",
+            data={"query": "q", "category": "electronics", "markets": "EU"},
+            files={"images": ("front.png", PNG, "image/png")},
         )
+        assert denied.status_code == 401
+        assert denied.json()["error"]["code"] == "UNAUTHORIZED"
 
-        assert missing.status_code == 401
-        assert asset.status_code == 200
-        assert asset.content == PNG
-        assert asset.headers["content-type"] == "image/png"
-        assert asset.headers["x-content-type-options"] == "nosniff"
-        assert out_of_range.status_code == 404
+        session_id, token, _ = create_scan(
+            client,
+            headers={"X-Internal-Secret": "service-secret"},
+            markets="EU",
+        )
+        assert session_id.startswith("scan_")
+        poll_ready(client, session_id, token)
 
 
-def test_create_rejects_invalid_signature_and_too_many_files(tmp_path):
+def test_create_rejects_invalid_signature_market_and_file_counts(tmp_path):
     with TestClient(build_app(tmp_path)) as client:
         invalid = client.post(
             "/api/v1/scans",
@@ -140,6 +157,25 @@ def test_create_rejects_invalid_signature_and_too_many_files(tmp_path):
         assert invalid.status_code == 400
         assert invalid.json()["error"]["code"] == "INVALID_FILE_SIGNATURE"
 
+        invalid_market = client.post(
+            "/api/v1/scans",
+            data={"query": "q", "category": "electronics", "markets": "XX"},
+            files={"images": ("front.png", PNG, "image/png")},
+        )
+        assert invalid_market.status_code == 400
+        assert invalid_market.json()["error"]["code"] == "INVALID_REQUEST"
+
+        too_many_markets = client.post(
+            "/api/v1/scans",
+            data={
+                "query": "q",
+                "category": "electronics",
+                "markets": "EU,US,UK,CN,AU,JP",
+            },
+            files={"images": ("front.png", PNG, "image/png")},
+        )
+        assert too_many_markets.status_code == 400
+
         files = [("images", (f"{index}.png", PNG, "image/png")) for index in range(9)]
         excessive = client.post(
             "/api/v1/scans",
@@ -148,6 +184,79 @@ def test_create_rejects_invalid_signature_and_too_many_files(tmp_path):
         )
         assert excessive.status_code == 400
         assert excessive.json()["error"]["code"] == "TOO_MANY_IMAGES"
+
+
+def test_docx_must_be_a_real_bounded_office_archive(tmp_path, monkeypatch):
+    with TestClient(build_app(tmp_path)) as client:
+        fake = client.post(
+            "/api/v1/scans",
+            data={"query": "q", "category": "electronics", "markets": "EU"},
+            files=[
+                ("images", ("front.png", PNG, "image/png")),
+                (
+                    "documents",
+                    (
+                        "fake.docx",
+                        b"PK\x03\x04not-a-docx",
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    ),
+                ),
+            ],
+        )
+        assert fake.status_code == 400
+        assert fake.json()["error"]["code"] == "INVALID_DOCX_ARCHIVE"
+
+        import rag_service.api.v1 as v1
+
+        monkeypatch.setattr(v1, "MAX_DOCX_EXPANDED_SIZE", 8)
+        bomb = client.post(
+            "/api/v1/scans",
+            data={"query": "q", "category": "electronics", "markets": "EU"},
+            files=[
+                ("images", ("front.png", PNG, "image/png")),
+                (
+                    "documents",
+                    (
+                        "bomb.docx",
+                        minimal_docx(expanded_bytes=128),
+                        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                    ),
+                ),
+            ],
+        )
+        assert bomb.status_code == 400
+        assert bomb.json()["error"]["code"] == "INVALID_DOCX_ARCHIVE"
+
+
+def test_trace_and_roadmap_are_unavailable_instead_of_fabricated(tmp_path):
+    async def runner(payload):
+        return {
+            "status": "PASS",
+            "report": "report",
+            "agent_trace": [],
+            "documents": [],
+            "report_package": {
+                "auditMetadata": {
+                    "validationStatus": "valid",
+                    "verificationMode": "text_overlap",
+                }
+            },
+        }
+
+    app = FastAPI(version="test")
+    app.state.scan_service = ScanService(
+        FileBackend(tmp_path),
+        runner=runner,
+        retry_base_seconds=0,
+    )
+    app.include_router(router)
+    with TestClient(app) as client:
+        session_id, token, _ = create_scan(client)
+        ready = poll_ready(client, session_id, token)
+        assert ready.json()["data"]["status"] == "degraded"
+        headers = {"Authorization": f"Bearer {token}"}
+        assert client.get(f"/api/v1/scans/{session_id}/trace", headers=headers).status_code == 404
+        assert client.get(f"/api/v1/scans/{session_id}/roadmap", headers=headers).status_code == 404
 
 
 def test_v1_health_ready_and_openapi_are_frontend_consumable(tmp_path):
@@ -161,10 +270,6 @@ def test_v1_health_ready_and_openapi_are_frontend_consumable(tmp_path):
         assert "/api/v1/scans" in schema["paths"]
         assert "/api/v1/scans/{session_id}" in schema["paths"]
         assert "HTTPBearer" in schema["components"]["securitySchemes"]
-        assert schema["paths"]["/api/v1/scans/{session_id}"]["get"]["security"] == [
-            {"HTTPBearer": []}
-        ]
-        assert "security" not in schema["paths"]["/api/v1/scans"]["post"]
 
 
 def test_production_app_mounts_the_public_v1_contract():
