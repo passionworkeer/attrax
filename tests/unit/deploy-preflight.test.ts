@@ -1,4 +1,4 @@
-import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -42,43 +42,45 @@ describe("deployment preflight", () => {
   it("accepts a complete production deployment root", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const result = validateDeployment(makeDeployRoot(productionEnv()));
-
     expect(result.ok).toBe(true);
     expect(result.errors).toEqual([]);
   });
 
-  it("requires LLM, embedding, and internal service credentials", async () => {
+  it("requires LLM, embedding, internal service, and build identity", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
-    const root = makeDeployRoot(`
+    const result = validateDeployment(
+      makeDeployRoot(`
 MINIMAX_API_KEY=
 MODELSCOPE_API_KEY=
 RAG_INTERNAL_SECRET=
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
-`);
-    const result = validateDeployment(root);
-
+`),
+    );
     expect(result.ok).toBe(false);
     expect(result.errors).toContain("MINIMAX_API_KEY is required when DEMO_MODE is not true.");
     expect(result.errors).toContain("MODELSCOPE_API_KEY is required when DEMO_MODE is not true.");
     expect(result.errors).toContain("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
+    expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
 
-  it("rejects placeholder keys and weak internal secrets", async () => {
+  it("rejects every documented placeholder form", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
-    const root = makeDeployRoot(`
+    const result = validateDeployment(
+      makeDeployRoot(`
 MINIMAX_API_KEY=your_minimax_api_key
 MODELSCOPE_API_KEY=your_modelscope_api_key
-RAG_INTERNAL_SECRET=short
+RAG_INTERNAL_SECRET=replace_with_a_strong_random_service_secret
+ATTRAX_BUILD_SHA=replace_with_git_commit_sha
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
-`);
-    const result = validateDeployment(root);
-
+`),
+    );
     expect(result.ok).toBe(false);
     expect(result.errors).toContain("MINIMAX_API_KEY still contains the production example placeholder.");
     expect(result.errors).toContain("MODELSCOPE_API_KEY still contains the production example placeholder.");
     expect(result.errors).toContain("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 32 characters.");
+    expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
 
   it("requires explicit non-wildcard browser origins", async () => {
@@ -88,13 +90,13 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
 MINIMAX_API_KEY=minimax-key
 MODELSCOPE_API_KEY=modelscope-key
 RAG_INTERNAL_SECRET=${STRONG_SECRET}
+ATTRAX_BUILD_SHA=abc123
 DEMO_MODE=false
 `),
     );
     expect(missing.errors).toContain(
       "RAG_ALLOWED_ORIGINS is required for direct browser access in production.",
     );
-
     const wildcard = validateDeployment(
       makeDeployRoot(productionEnv("RAG_ALLOWED_ORIGINS=*")),
     );
@@ -104,10 +106,7 @@ DEMO_MODE=false
   it("requires the sealed index manifest and corpus directory", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const root = makeDeployRoot(productionEnv());
-    writeFileSync(join(root, "data", "faiss", "index_manifest.json.removed"), "removed");
-    const { rmSync } = await import("node:fs");
     rmSync(join(root, "data", "faiss", "index_manifest.json"));
-
     const result = validateDeployment(root);
     expect(result.ok).toBe(false);
     expect(result.errors).toContain("data/faiss/index_manifest.json is missing.");
@@ -123,27 +122,25 @@ DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
 ATTRAX_BUILD_SHA=abc123
 `);
-
     expect(validateDeployment(root).ok).toBe(true);
   });
 
-  it("warns when a deployment cannot identify its source commit", async () => {
+  it("warns about missing build identity only in demo mode", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
-    const result = validateDeployment(
-      makeDeployRoot(productionEnv().replace("ATTRAX_BUILD_SHA=abc123", "")),
-    );
+    const result = validateDeployment(makeDeployRoot("DEMO_MODE=true\n"));
     expect(result.ok).toBe(true);
     expect(result.warnings).toContain(
       "ATTRAX_BUILD_SHA is not set; health and audit records cannot identify the deployed commit.",
     );
   });
 
-  it("keeps backend runtime state on a writable Docker volume", () => {
+  it("keeps backend and rate-limit state on writable volumes", () => {
     const compose = readFileSync(join(process.cwd(), "docker-compose.yml"), "utf8");
     const dockerfile = readFileSync(join(process.cwd(), "rag_service", "Dockerfile"), "utf8");
-
     expect(compose).toContain("ATTRAX_RUNTIME_DIR: /app/data/backend");
     expect(compose).toContain("./data/backend:/app/data/backend");
+    expect(compose).toContain("./data/rate-limit:/app/data/rate-limit");
+    expect(compose).toContain("127.0.0.1:${RAG_PORT:-8001}:8000");
     expect(dockerfile).toContain("/app/data/backend");
   });
 });
