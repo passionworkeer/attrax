@@ -41,7 +41,9 @@ function isExamplePlaceholder(value) {
     normalized.startsWith("your_") ||
     normalized.startsWith("your-") ||
     normalized.includes("replace_me") ||
-    normalized.includes("changeme")
+    normalized.includes("replace_with") ||
+    normalized.includes("changeme") ||
+    normalized.includes("example_secret")
   );
 }
 
@@ -74,13 +76,19 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
     }
     if (!hasValue(env.RAG_INTERNAL_SECRET)) {
       errors.push("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
-    } else if (isExamplePlaceholder(env.RAG_INTERNAL_SECRET) || env.RAG_INTERNAL_SECRET.length < 32) {
+    } else if (
+      isExamplePlaceholder(env.RAG_INTERNAL_SECRET) ||
+      env.RAG_INTERNAL_SECRET.length < 32
+    ) {
       errors.push("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 32 characters.");
     }
     if (!hasValue(env.RAG_ALLOWED_ORIGINS)) {
       errors.push("RAG_ALLOWED_ORIGINS is required for direct browser access in production.");
     } else if (env.RAG_ALLOWED_ORIGINS.split(",").some((origin) => origin.trim() === "*")) {
       errors.push("RAG_ALLOWED_ORIGINS must not contain * in production.");
+    }
+    if (!hasValue(env.ATTRAX_BUILD_SHA) || isExamplePlaceholder(env.ATTRAX_BUILD_SHA)) {
+      errors.push("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
     }
   }
 
@@ -96,12 +104,10 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
   }
 
   for (const relativePath of ["docker-compose.yml", "Dockerfile", "rag_service/Dockerfile"]) {
-    if (!existsSync(join(rootDir, relativePath))) {
-      errors.push(`${relativePath} is missing.`);
-    }
+    if (!existsSync(join(rootDir, relativePath))) errors.push(`${relativePath} is missing.`);
   }
 
-  if (!hasValue(env.ATTRAX_BUILD_SHA)) {
+  if (demoMode && !hasValue(env.ATTRAX_BUILD_SHA)) {
     warnings.push("ATTRAX_BUILD_SHA is not set; health and audit records cannot identify the deployed commit.");
   }
   if (hasValue(env.OLLAMA_BASE_URL) || hasValue(env.OLLAMA_EMBED_MODEL)) {
@@ -157,16 +163,13 @@ function main() {
   const result = validateDeployment(root);
   printValidation(result);
   if (!result.ok) process.exit(1);
-
   validateIndexBundle(root);
-
   if (process.argv.includes("--check-only")) return;
 
   if (!commandExists("docker", ["--version"])) {
     console.error("Docker CLI is not available. Install Docker Engine and Docker Compose first.");
     process.exit(1);
   }
-
   run("docker", ["compose", "up", "-d", "--build"]);
   run("docker", ["compose", "ps"]);
 }
