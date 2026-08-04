@@ -1,15 +1,17 @@
 import asyncio
 import hashlib
+from datetime import timedelta
 
 import pytest
 
 from rag_service.application.scans import (
+    ScanNotFound,
     ScanService,
     ScanSubmission,
     ScanUnauthorized,
     SubmittedUpload,
 )
-from rag_service.domain.scans import ScanJob, ScanSession
+from rag_service.domain.scans import ScanJob, ScanSession, utc_now
 from rag_service.infrastructure.file_backend import FileBackend
 
 
@@ -39,12 +41,13 @@ def verified_result(status: str = "PASS"):
         "report": "## compliant",
         "agent_trace": [{"node": "generator", "status": "success"}],
         "loop_count": 1,
-        "documents": [{"source_id": "eu-rule"}],
+        "documents": [{"source_id": "eu-rule", "region": "EU"}],
         "report_package": {
-            "roadmap": {"items": [{"id": "step-1"}]},
+            "roadmap": {"items": [{"id": "step-1", "title": "Apply"}]},
             "auditMetadata": {
                 "validationStatus": "valid",
                 "verificationMode": "nli",
+                "citationCoverage": 1.0,
             },
         },
     }
@@ -64,8 +67,11 @@ def test_service_runs_job_persists_ready_result_and_stores_only_token_hash(tmp_p
         await service.wait_for_idle()
 
         stored = backend.get_session(created.session_id)
+        assert stored is not None
         assert stored.access_token_hash == hashlib.sha256(created.access_token.encode()).hexdigest()
-        assert created.access_token not in (tmp_path / "sessions" / f"{created.session_id}.json").read_text()
+        assert created.access_token not in (
+            tmp_path / "sessions" / f"{created.session_id}.json"
+        ).read_text()
         public = service.get_scan(created.session_id, created.access_token)
         assert public["status"] == "ready"
         assert public["result"]["complianceStatus"] == "PASS"
@@ -86,21 +92,31 @@ def test_service_runs_job_persists_ready_result_and_stores_only_token_hash(tmp_p
     asyncio.run(scenario())
 
 
-def test_service_rejects_wrong_token_without_leaking_session(tmp_path):
+def test_service_rejects_wrong_or_expired_session_tokens(tmp_path):
     async def scenario():
         async def runner(payload):
             return verified_result()
 
-        service = ScanService(FileBackend(tmp_path), runner=runner)
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
         created = await service.create_scan(submission())
         with pytest.raises(ScanUnauthorized):
             service.get_scan(created.session_id, "wrong-token")
         await service.wait_for_idle()
 
+        stored = backend.get_session(created.session_id)
+        assert stored is not None
+        backend.save_session(
+            stored.model_copy(update={"expires_at": utc_now() - timedelta(seconds=1)})
+        )
+        with pytest.raises(ScanNotFound):
+            service.get_scan(created.session_id, created.access_token)
+        assert backend.get_session(created.session_id) is None
+
     asyncio.run(scenario())
 
 
-def test_service_retries_runner_exception_then_marks_dead_without_secret_text(tmp_path):
+def test_service_retries_provider_exception_then_marks_dead_without_secret_text(tmp_path):
     async def scenario():
         calls = 0
 
@@ -132,20 +148,52 @@ def test_service_retries_runner_exception_then_marks_dead_without_secret_text(tm
     asyncio.run(scenario())
 
 
-def test_service_marks_report_degraded_when_evidence_or_strong_verification_missing(tmp_path):
+def test_service_does_not_retry_timeout_because_executor_work_may_still_be_running(tmp_path):
+    class GatewayTimeout(Exception):
+        status_code = 504
+
+    async def scenario():
+        calls = 0
+
+        async def runner(payload):
+            nonlocal calls
+            calls += 1
+            raise GatewayTimeout("timed out")
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(
+            backend,
+            runner=runner,
+            max_attempts=3,
+            retry_base_seconds=0,
+        )
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        assert calls == 1
+        assert public["status"] == "failed"
+        assert public["error"] == "SCAN_TIMEOUT"
+
+    asyncio.run(scenario())
+
+
+@pytest.mark.parametrize("verification_mode", ["text_overlap", "", None])
+def test_service_degrades_pass_when_evidence_or_strong_verification_is_missing(
+    tmp_path,
+    verification_mode,
+):
     async def scenario():
         async def runner(payload):
+            audit = {"validationStatus": "valid"}
+            if verification_mode is not None:
+                audit["verificationMode"] = verification_mode
             return {
                 "status": "PASS",
                 "report": "looks complete",
                 "agent_trace": [{"node": "generator", "status": "success"}],
                 "documents": [],
-                "report_package": {
-                    "auditMetadata": {
-                        "validationStatus": "valid",
-                        "verificationMode": "text_overlap",
-                    }
-                },
+                "report_package": {"auditMetadata": audit},
             }
 
         backend = FileBackend(tmp_path)
@@ -156,8 +204,29 @@ def test_service_marks_report_degraded_when_evidence_or_strong_verification_miss
         public = service.get_scan(created.session_id, created.access_token)
         assert public["status"] == "degraded"
         assert public["result"]["source"] == "fallback"
+        assert public["result"]["complianceStatus"] == "UNKNOWN"
         assert "NO_RETRIEVED_EVIDENCE" in public["result"]["degradedReasons"]
-        assert "WEAK_CITATION_VERIFICATION" in public["result"]["degradedReasons"]
+        assert "WEAK_OR_MISSING_CITATION_VERIFICATION" in public["result"]["degradedReasons"]
+
+    asyncio.run(scenario())
+
+
+def test_service_degrades_when_report_package_validation_is_missing(tmp_path):
+    async def scenario():
+        result = verified_result()
+        result["report_package"]["auditMetadata"].pop("validationStatus")
+
+        async def runner(payload):
+            return result
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+        public = service.get_scan(created.session_id, created.access_token)
+        assert public["status"] == "degraded"
+        assert public["result"]["complianceStatus"] == "UNKNOWN"
+        assert "REPORT_PACKAGE_NOT_VERIFIED" in public["result"]["degradedReasons"]
 
     asyncio.run(scenario())
 
@@ -165,7 +234,12 @@ def test_service_marks_report_degraded_when_evidence_or_strong_verification_miss
 def test_service_resumes_queued_job_after_restart(tmp_path):
     async def scenario():
         backend = FileBackend(tmp_path)
-        session = ScanSession.new("scan_resume", hashlib.sha256(b"token").hexdigest(), "electronics", ["EU"])
+        session = ScanSession.new(
+            "scan_resume",
+            hashlib.sha256(b"token").hexdigest(),
+            "electronics",
+            ["EU"],
+        )
         backend.save_session(session)
         upload = backend.save_upload("scan_resume", "image", "front.png", "image/png", PNG)
         backend.save_job(
