@@ -6,8 +6,8 @@ import asyncio
 import hashlib
 import hmac
 import secrets
-import time
 import uuid
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
@@ -17,6 +17,12 @@ from pydantic import BaseModel, ConfigDict, Field
 from rag_service.application.ports import ScanBackend, ScanRunner
 from rag_service.domain.scans import ScanJob, ScanSession, StoredUpload
 from rag_service.parser.docx_parser import _escape_prompt_injection, parse_docx
+
+
+_ALLOWED_MARKETS = {"EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"}
+_MAX_MARKETS_PER_SCAN = 5
+_DOCUMENT_CHUNK_CHARS = 8_000
+_MAX_DOCUMENT_CHUNKS = 20
 
 
 class ScanServiceError(Exception):
@@ -50,7 +56,7 @@ class ScanSubmission(BaseModel):
     query: str = Field(min_length=1, max_length=2_000)
     product: str = Field(default="", max_length=500)
     category: str = Field(min_length=1, max_length=100)
-    markets: list[str] = Field(min_length=1, max_length=20)
+    markets: list[str] = Field(min_length=1, max_length=_MAX_MARKETS_PER_SCAN)
     uploads: list[SubmittedUpload] = Field(min_length=1, max_length=13)
 
 
@@ -82,15 +88,47 @@ def _camelize(value: Any) -> Any:
     return converted
 
 
+def _mapping(value: Any) -> dict[str, Any]:
+    return dict(value) if isinstance(value, Mapping) else {}
+
+
+def _nested_string(source: Mapping[str, Any], *keys: str) -> str:
+    current: Any = source
+    for key in keys:
+        if not isinstance(current, Mapping):
+            return ""
+        current = current.get(key)
+    return str(current).strip().lower() if current is not None else ""
+
+
 class ScanService:
-    def __init__(self, backend: ScanBackend, runner: ScanRunner, max_attempts: int = 3):
+    def __init__(
+        self,
+        backend: ScanBackend,
+        runner: ScanRunner,
+        max_attempts: int = 3,
+        *,
+        retry_base_seconds: float = 2.0,
+        lease_seconds: int = 600,
+        session_ttl_hours: int = 24,
+    ):
         self.backend = backend
         self.runner = runner
         self.max_attempts = max(1, max_attempts)
+        self.retry_base_seconds = max(0.0, retry_base_seconds)
+        self.lease_seconds = max(30, lease_seconds)
+        self.session_ttl_hours = max(1, session_ttl_hours)
         self._tasks: set[asyncio.Task[None]] = set()
         self._session_tasks: dict[str, asyncio.Task[None]] = {}
 
     async def create_scan(self, submission: ScanSubmission) -> CreatedScan:
+        markets = [market.strip().upper() for market in submission.markets]
+        if len(markets) > _MAX_MARKETS_PER_SCAN or any(
+            market not in _ALLOWED_MARKETS for market in markets
+        ):
+            raise ValueError("unsupported target market")
+
+        self.backend.purge_expired_sessions()
         session_id = f"scan_{uuid.uuid4().hex}"
         job_id = f"job_{uuid.uuid4().hex}"
         access_token = secrets.token_urlsafe(32)
@@ -98,7 +136,8 @@ class ScanService:
             session_id=session_id,
             access_token_hash=_token_hash(access_token),
             category=submission.category,
-            markets=submission.markets,
+            markets=markets,
+            ttl_hours=self.session_ttl_hours,
         )
         try:
             self.backend.save_session(session)
@@ -119,7 +158,7 @@ class ScanService:
                     query=submission.query,
                     product=submission.product,
                     category=submission.category,
-                    markets=submission.markets,
+                    markets=markets,
                     upload_ids=[upload.upload_id for upload in uploads],
                 )
             )
@@ -127,8 +166,9 @@ class ScanService:
                 {
                     "event": "scan_started",
                     "sessionId": session_id,
+                    "jobId": job_id,
                     "category": submission.category,
-                    "markets": submission.markets,
+                    "markets": markets,
                     "fileCount": len(uploads),
                     "totalBytes": sum(upload.size for upload in uploads),
                 }
@@ -139,22 +179,48 @@ class ScanService:
         self._spawn(job_id, session_id)
         return CreatedScan(session_id=session_id, access_token=access_token)
 
-    def _spawn(self, job_id: str, session_id: str) -> None:
-        existing = self._session_tasks.get(session_id)
-        if existing and not existing.done():
-            return
-        task = asyncio.create_task(self._run_job(job_id))
+    def _track_task(
+        self,
+        task: asyncio.Task[None],
+        *,
+        session_id: str | None = None,
+    ) -> None:
         self._tasks.add(task)
-        self._session_tasks[session_id] = task
+        if session_id is not None:
+            self._session_tasks[session_id] = task
 
         def cleanup(done: asyncio.Task[None]) -> None:
             self._tasks.discard(done)
-            if self._session_tasks.get(session_id) is done:
+            if session_id is not None and self._session_tasks.get(session_id) is done:
                 self._session_tasks.pop(session_id, None)
 
         task.add_done_callback(cleanup)
 
+    def _spawn(self, job_id: str, session_id: str) -> None:
+        existing = self._session_tasks.get(session_id)
+        if existing and not existing.done():
+            return
+        self._track_task(
+            asyncio.create_task(self._run_job(job_id)),
+            session_id=session_id,
+        )
+
+    def _schedule_retry(self, job: ScanJob, delay: float) -> None:
+        async def retry_later() -> None:
+            await asyncio.sleep(delay)
+            while True:
+                existing = self._session_tasks.get(job.session_id)
+                if existing is None or existing.done():
+                    break
+                await asyncio.sleep(0)
+            if existing is not None:
+                self._session_tasks.pop(job.session_id, None)
+            self._spawn(job.job_id, job.session_id)
+
+        self._track_task(asyncio.create_task(retry_later()))
+
     def resume_pending(self) -> None:
+        self.backend.purge_expired_sessions()
         for job in self.backend.list_recoverable_jobs():
             self._spawn(job.job_id, job.session_id)
 
@@ -195,7 +261,7 @@ class ScanService:
         access_token: str,
         index: int,
     ) -> tuple[StoredUpload, bytes]:
-        """Return one authorized image without accepting a filesystem path."""
+        """Return one authorized image without trusting stored filesystem paths."""
         self._authorized_session(session_id, access_token)
         images = [
             upload
@@ -204,18 +270,12 @@ class ScanService:
         ]
         if index < 0 or index >= len(images):
             raise ScanNotFound(f"asset:{index}")
-
         upload = images[index]
-        path = Path(upload.path).resolve()
-        if path.name != upload.stored_name or path.parent.name != session_id:
-            raise ScanNotFound(f"asset:{index}")
         try:
-            content = path.read_bytes()
-        except OSError as exc:
+            restored, content = self.backend.read_upload(session_id, upload.upload_id)
+        except (FileNotFoundError, OSError) as exc:
             raise ScanNotFound(f"asset:{index}") from exc
-        if hashlib.sha256(content).hexdigest() != upload.sha256:
-            raise ScanNotFound(f"asset:{index}")
-        return upload, content
+        return restored, content
 
     def delete_scan(self, session_id: str, access_token: str) -> None:
         self._authorized_session(session_id, access_token)
@@ -226,84 +286,140 @@ class ScanService:
         self.backend.append_audit({"event": "scan_deleted", "sessionId": session_id})
 
     async def _run_job(self, job_id: str) -> None:
-        job = self.backend.get_job(job_id)
+        existing = self.backend.get_job(job_id)
+        if existing is None:
+            return
+        if existing.attempts >= self.max_attempts and existing.state != "running":
+            self._mark_dead(existing, "SCAN_MAX_ATTEMPTS_EXCEEDED")
+            return
+
+        job = self.backend.claim_job(job_id, lease_seconds=self.lease_seconds)
         if job is None:
             return
-        if job.attempts >= self.max_attempts:
-            self._mark_failed(job, "SCAN_MAX_ATTEMPTS_EXCEEDED")
-            return
-        job = self.backend.claim_job(job_id)
+
         session = self.backend.get_session(job.session_id)
         if session is None:
             self.backend.delete_job(job.job_id)
             return
-        self.backend.save_session(session.transition(progress=10, stage_text="processing"))
-        # 后台心跳任务:每 2 秒把 progress 从 10 推到 90 (避免前端卡在 10%)
-        # 单调递增,真实进度由最终 status=ready/degraded 触发到 100。
-        heartbeat_task = asyncio.create_task(
-            self._progress_heartbeat(job.session_id, started_at=time.monotonic())
+
+        self.backend.save_session(
+            session.transition(
+                ttl_hours=self.session_ttl_hours,
+                status="processing",
+                progress=max(session.progress, 10),
+                stage_text="processing",
+                error=None,
+            )
         )
+        lease_task = asyncio.create_task(self._lease_heartbeat(job.job_id, job.session_id))
         try:
             payload = self._build_runner_payload(job)
             raw = await self.runner(payload)
-            heartbeat_task.cancel()
-            try:
-                await heartbeat_task
-            except asyncio.CancelledError:
-                pass
+            result, status, degraded_reason = self._normalize_result(job, raw)
             current = self.backend.get_session(job.session_id)
             if current is None:
                 return
-            result, status = self._normalize_result(job, raw)
             self.backend.save_session(
                 current.transition(
+                    ttl_hours=self.session_ttl_hours,
                     status=status,
                     progress=100,
                     stage_text="complete" if status == "ready" else "degraded",
                     result=result,
-                    error=None,
+                    error=degraded_reason,
                 )
             )
             self.backend.delete_job(job.job_id)
             self.backend.append_audit(
-                {"event": "scan_completed", "sessionId": job.session_id, "status": status}
+                {
+                    "event": "scan_completed",
+                    "sessionId": job.session_id,
+                    "jobId": job.job_id,
+                    "attempt": job.attempts,
+                    "status": status,
+                    "degradedReason": degraded_reason,
+                }
             )
         except asyncio.CancelledError:
-            heartbeat_task.cancel()
             raise
-        except Exception as e:
-            heartbeat_task.cancel()
-            self._mark_failed(job, f"SCAN_FAILED: {e!r}"[:200])
+        except Exception as exc:
+            self._handle_job_error(job, exc)
+        finally:
+            lease_task.cancel()
+            try:
+                await lease_task
+            except asyncio.CancelledError:
+                pass
 
-    async def _progress_heartbeat(self, session_id: str, started_at: float) -> None:
-        """单调推进 session.progress, 直到 cancelled 或 progress >= 90。
-
-        真实进度到 100 由最终的 status=ready/degraded 触发。10 → 90 区间内每 2s +2% ,
-        让前端 polling 时一直能看到动起来,而不是卡在 10%。
-        """
+    async def _lease_heartbeat(self, job_id: str, session_id: str) -> None:
+        """Refresh the execution lease without inventing user-facing progress."""
+        interval = max(10.0, self.lease_seconds / 3)
         try:
             while True:
-                await asyncio.sleep(2.0)
-                cur = self.backend.get_session(session_id)
-                if cur is None or cur.status != "processing":
+                await asyncio.sleep(interval)
+                if not self.backend.renew_job_lease(
+                    job_id,
+                    lease_seconds=self.lease_seconds,
+                ):
                     return
-                # 10% + (2%/2s * elapsed) 上限 90%
-                elapsed = time.monotonic() - started_at
-                projected = min(90, 10 + int(elapsed))
-                if projected > (cur.progress or 0):
-                    self.backend.save_session(cur.transition(progress=projected))
+                current = self.backend.get_session(session_id)
+                if current is None or current.status != "processing":
+                    return
+                self.backend.save_session(
+                    current.transition(ttl_hours=self.session_ttl_hours)
+                )
         except asyncio.CancelledError:
             return
 
-    def _mark_failed(self, job: ScanJob, reason: str) -> None:
-        failed_job = job.model_copy(
-            update={"state": "failed", "failure_reason": reason, "started_at": None}
+    def _handle_job_error(self, job: ScanJob, exc: Exception) -> None:
+        retryable = not isinstance(exc, (FileNotFoundError, ValueError, TypeError))
+        stable_reason = (
+            "SCAN_PROVIDER_FAILURE" if retryable else "SCAN_INPUT_OR_STORAGE_FAILURE"
         )
-        self.backend.save_job(failed_job)
+        if retryable and job.attempts < self.max_attempts:
+            delay = min(60.0, self.retry_base_seconds * (2 ** max(0, job.attempts - 1)))
+            queued = job.requeued(stable_reason, delay_seconds=delay)
+            self.backend.save_job(queued)
+            current = self.backend.get_session(job.session_id)
+            if current is not None:
+                self.backend.save_session(
+                    current.transition(
+                        ttl_hours=self.session_ttl_hours,
+                        status="processing",
+                        progress=max(current.progress, 10),
+                        stage_text="retrying",
+                        result=None,
+                        error="SCAN_RETRY_SCHEDULED",
+                    )
+                )
+            self.backend.append_audit(
+                {
+                    "event": "scan_retry_scheduled",
+                    "sessionId": job.session_id,
+                    "jobId": job.job_id,
+                    "attempt": job.attempts,
+                    "nextAttempt": job.attempts + 1,
+                    "delaySeconds": delay,
+                    "errorType": type(exc).__name__,
+                }
+            )
+            self._schedule_retry(queued, delay)
+            return
+        self._mark_dead(job, stable_reason, error_type=type(exc).__name__)
+
+    def _mark_dead(
+        self,
+        job: ScanJob,
+        reason: str,
+        *,
+        error_type: str | None = None,
+    ) -> None:
+        self.backend.save_job(job.dead(reason))
         session = self.backend.get_session(job.session_id)
         if session is not None:
             self.backend.save_session(
                 session.transition(
+                    ttl_hours=self.session_ttl_hours,
                     status="failed",
                     progress=100,
                     stage_text="failed",
@@ -312,48 +428,79 @@ class ScanService:
                 )
             )
         self.backend.append_audit(
-            {"event": "scan_failed", "sessionId": job.session_id, "error": reason}
+            {
+                "event": "scan_failed",
+                "sessionId": job.session_id,
+                "jobId": job.job_id,
+                "attempt": job.attempts,
+                "error": reason,
+                "errorType": error_type,
+            }
         )
+
+    @staticmethod
+    def _document_chunks(name: str, mime_type: str, text: str) -> list[dict[str, Any]]:
+        escaped_name = _escape_prompt_injection(Path(name).name)
+        escaped_text = _escape_prompt_injection(text)
+        if not escaped_text:
+            return []
+        total = min(
+            _MAX_DOCUMENT_CHUNKS,
+            (len(escaped_text) + _DOCUMENT_CHUNK_CHARS - 1) // _DOCUMENT_CHUNK_CHARS,
+        )
+        truncated = len(escaped_text) > _DOCUMENT_CHUNK_CHARS * _MAX_DOCUMENT_CHUNKS
+        chunks = []
+        for index in range(total):
+            start = index * _DOCUMENT_CHUNK_CHARS
+            part = escaped_text[start : start + _DOCUMENT_CHUNK_CHARS]
+            chunks.append(
+                {
+                    "name": escaped_name,
+                    "mimeType": mime_type,
+                    "text": part,
+                    "part": index + 1,
+                    "partCount": total,
+                    "truncated": truncated,
+                }
+            )
+        return chunks
 
     def _build_runner_payload(self, job: ScanJob) -> dict[str, Any]:
         images: list[dict[str, Any]] = []
         pdfs: list[dict[str, Any]] = []
         documents: list[dict[str, Any]] = []
         for upload_id in job.upload_ids:
-            upload = self.backend.get_upload(job.session_id, upload_id)
-            if upload is None:
-                raise FileNotFoundError(upload_id)
-            path = Path(upload.path)
-            content = path.read_bytes()
+            upload, content = self.backend.read_upload(job.session_id, upload_id)
+            safe_name = Path(upload.original_name).name
             if upload.kind == "image":
                 images.append(
                     {
                         "buffer": content,
                         "mimeType": upload.content_type,
-                        "name": upload.original_name,
+                        "name": safe_name,
                     }
                 )
-            elif upload.content_type == "application/pdf" or upload.original_name.lower().endswith(".pdf"):
+            elif upload.content_type == "application/pdf" or safe_name.lower().endswith(".pdf"):
                 pdfs.append(
-                    {"buffer": content, "mimeType": "application/pdf", "name": upload.original_name}
-                )
-            elif upload.original_name.lower().endswith(".docx"):
-                parsed = parse_docx(str(path))
-                documents.append(
                     {
-                        "name": upload.original_name,
-                        "mimeType": upload.content_type,
-                        "text": str(parsed.get("rawText", ""))[:5_000],
+                        "buffer": content,
+                        "mimeType": "application/pdf",
+                        "name": safe_name,
                     }
+                )
+            elif safe_name.lower().endswith(".docx"):
+                parsed = parse_docx(upload.path)
+                documents.extend(
+                    self._document_chunks(
+                        safe_name,
+                        upload.content_type,
+                        str(parsed.get("rawText", "")),
+                    )
                 )
             else:
-                text = content.decode("utf-8", errors="replace")[:5_000]
-                documents.append(
-                    {
-                        "name": upload.original_name,
-                        "mimeType": upload.content_type,
-                        "text": _escape_prompt_injection(text),
-                    }
+                text = content.decode("utf-8", errors="replace")
+                documents.extend(
+                    self._document_chunks(safe_name, upload.content_type, text)
                 )
         return {
             "query": job.query,
@@ -366,23 +513,71 @@ class ScanService:
         }
 
     @staticmethod
-    def _normalize_result(job: ScanJob, raw: Any) -> tuple[dict[str, Any], str]:
+    def _normalize_result(
+        job: ScanJob,
+        raw: Any,
+    ) -> tuple[dict[str, Any], Literal["ready", "degraded"], str | None]:
         if hasattr(raw, "model_dump"):
             raw = raw.model_dump(mode="json")
+        if not isinstance(raw, Mapping):
+            raise TypeError("scan runner returned a non-object payload")
+
         value = _camelize(dict(raw))
         compliance_status = str(value.get("status", "UNKNOWN")).upper()
-        degraded = compliance_status == "DEMO"
+        report = str(value.get("report", "")).strip()
+        agent_trace = value.get("agentTrace")
+        retrieved_chunks = value.get("documents")
+        report_package = value.get("reportPackage")
+
+        degraded_reasons: list[str] = []
+        if compliance_status not in {"PASS", "WARN", "REJECTED"}:
+            degraded_reasons.append("UNVERIFIED_COMPLIANCE_STATUS")
+            compliance_status = "UNKNOWN"
+        if not report:
+            degraded_reasons.append("EMPTY_COMPLIANCE_REPORT")
+        if not isinstance(agent_trace, list) or not agent_trace:
+            degraded_reasons.append("MISSING_AGENT_TRACE")
+            agent_trace = []
+        if not isinstance(retrieved_chunks, list) or not retrieved_chunks:
+            degraded_reasons.append("NO_RETRIEVED_EVIDENCE")
+            retrieved_chunks = []
+        if not isinstance(report_package, Mapping):
+            degraded_reasons.append("MISSING_REPORT_PACKAGE")
+            report_package = None
+        else:
+            package = _mapping(report_package)
+            validation_status = (
+                _nested_string(package, "auditMetadata", "validationStatus")
+                or _nested_string(package, "validationStatus")
+            )
+            verification_mode = (
+                _nested_string(package, "auditMetadata", "verificationMode")
+                or _nested_string(package, "verificationMode")
+            )
+            source = _nested_string(package, "source")
+            if validation_status in {"invalid", "failed", "degraded"}:
+                degraded_reasons.append("REPORT_PACKAGE_INVALID")
+            if verification_mode in {"unverified", "text_overlap", "none"}:
+                degraded_reasons.append("WEAK_CITATION_VERIFICATION")
+            if source in {"demo", "fallback", "mock"}:
+                degraded_reasons.append("FALLBACK_REPORT_SOURCE")
+
+        degraded_reason = ",".join(dict.fromkeys(degraded_reasons)) or None
+        status: Literal["ready", "degraded"] = (
+            "degraded" if degraded_reason else "ready"
+        )
         result = {
             "sessionId": job.session_id,
             "productName": job.product,
             "productCategory": job.category,
             "targetMarkets": job.markets,
             "complianceStatus": compliance_status,
-            "complianceReport": value.get("report", ""),
-            "agentTrace": value.get("agentTrace", []),
+            "complianceReport": report,
+            "agentTrace": agent_trace,
             "loopCount": value.get("loopCount", 0),
-            "retrievedChunks": value.get("documents", []),
-            "reportPackage": value.get("reportPackage"),
-            "source": "demo" if degraded else "real",
+            "retrievedChunks": retrieved_chunks,
+            "reportPackage": report_package,
+            "degradedReasons": degraded_reasons,
+            "source": "fallback" if status == "degraded" else "real",
         }
-        return result, "degraded" if degraded else "ready"
+        return result, status, degraded_reason
