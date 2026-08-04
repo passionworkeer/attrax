@@ -186,12 +186,7 @@ class ModelScopeEmbedder:
                     input=cleaned,
                     encoding_format="float",
                 )
-                vector = list(response.data[0].embedding)
-                if len(vector) != self.DIM:
-                    raise RuntimeError(
-                        f"ModelScope returned dimension {len(vector)}, expected {self.DIM}"
-                    )
-                return vector
+                return list(response.data[0].embedding)
             except Exception as error:
                 if not self._is_rate_limit_error(error):
                     raise
@@ -237,12 +232,7 @@ class ModelScopeEmbedder:
                     slot = item.index if has_indexes else position
                     if not isinstance(slot, int) or not 0 <= slot < len(indexes):
                         raise RuntimeError("Batch embedding response index is invalid")
-                    vector = list(item.embedding)
-                    if len(vector) != self.DIM:
-                        raise RuntimeError(
-                            f"ModelScope returned dimension {len(vector)}, expected {self.DIM}"
-                        )
-                    output[indexes[slot]] = vector
+                    output[indexes[slot]] = list(item.embedding)
                 return output
             except Exception as error:
                 if not self._is_rate_limit_error(error):
