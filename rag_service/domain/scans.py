@@ -17,7 +17,9 @@ def utc_now() -> datetime:
 
 
 ScanStatus = Literal["processing", "ready", "degraded", "failed"]
-JobState = Literal["queued", "running", "dead"]
+# `failed` is retained as a read-only legacy terminal state so old JSON jobs
+# remain parseable after deployment. New terminal failures are written `dead`.
+JobState = Literal["queued", "running", "dead", "failed"]
 UploadKind = Literal["image", "document"]
 
 
