@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const REQUIRED_DATA_PATHS = [
   "data/faiss/legal_chunks.index",
   "data/faiss/legal_chunks_meta.json",
+  "data/faiss/index_manifest.json",
   "data/corpus/processed",
 ];
 
@@ -13,13 +14,9 @@ function parseEnv(content) {
   const values = {};
   for (const rawLine of content.split(/\r?\n/)) {
     const line = rawLine.trim();
-    if (!line || line.startsWith("#")) {
-      continue;
-    }
+    if (!line || line.startsWith("#")) continue;
     const eq = line.indexOf("=");
-    if (eq < 0) {
-      continue;
-    }
+    if (eq < 0) continue;
     const key = line.slice(0, eq).trim();
     let value = line.slice(eq + 1).trim();
     if (
@@ -38,9 +35,7 @@ function hasValue(value) {
 }
 
 function isExamplePlaceholder(value) {
-  if (!hasValue(value)) {
-    return false;
-  }
+  if (!hasValue(value)) return false;
   const normalized = value.trim().toLowerCase();
   return (
     normalized.startsWith("your_") ||
@@ -77,6 +72,11 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
     } else if (isExamplePlaceholder(env.MODELSCOPE_API_KEY)) {
       errors.push("MODELSCOPE_API_KEY still contains the production example placeholder.");
     }
+    if (!hasValue(env.RAG_INTERNAL_SECRET)) {
+      errors.push("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
+    } else if (isExamplePlaceholder(env.RAG_INTERNAL_SECRET) || env.RAG_INTERNAL_SECRET.length < 32) {
+      errors.push("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 32 characters.");
+    }
     if (!hasValue(env.RAG_ALLOWED_ORIGINS)) {
       errors.push("RAG_ALLOWED_ORIGINS is required for direct browser access in production.");
     } else if (env.RAG_ALLOWED_ORIGINS.split(",").some((origin) => origin.trim() === "*")) {
@@ -95,26 +95,20 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
     }
   }
 
-  if (!existsSync(join(rootDir, "docker-compose.yml"))) {
-    errors.push("docker-compose.yml is missing.");
-  }
-  if (!existsSync(join(rootDir, "Dockerfile"))) {
-    errors.push("Dockerfile is missing.");
-  }
-  if (!existsSync(join(rootDir, "rag_service", "Dockerfile"))) {
-    errors.push("rag_service/Dockerfile is missing.");
+  for (const relativePath of ["docker-compose.yml", "Dockerfile", "rag_service/Dockerfile"]) {
+    if (!existsSync(join(rootDir, relativePath))) {
+      errors.push(`${relativePath} is missing.`);
+    }
   }
 
+  if (!hasValue(env.ATTRAX_BUILD_SHA)) {
+    warnings.push("ATTRAX_BUILD_SHA is not set; health and audit records cannot identify the deployed commit.");
+  }
   if (hasValue(env.OLLAMA_BASE_URL) || hasValue(env.OLLAMA_EMBED_MODEL)) {
-    warnings.push("OLLAMA_* variables are ignored in API-only deployment.");
+    warnings.push("OLLAMA_* variables are ignored; production retrieval uses ModelScope or BM25-only mode.");
   }
 
-  return {
-    ok: errors.length === 0,
-    errors,
-    warnings,
-    env,
-  };
+  return { ok: errors.length === 0, errors, warnings, env };
 }
 
 function commandExists(command, args) {
@@ -122,38 +116,51 @@ function commandExists(command, args) {
   return result.status === 0;
 }
 
-function run(command, args) {
-  const result = spawnSync(command, args, { stdio: "inherit" });
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
+function run(command, args, options = {}) {
+  const result = spawnSync(command, args, { stdio: "inherit", ...options });
+  if (result.status !== 0) process.exit(result.status ?? 1);
+}
+
+function validateIndexBundle(root) {
+  const python = commandExists("python", ["--version"])
+    ? "python"
+    : commandExists("python3", ["--version"])
+      ? "python3"
+      : null;
+  if (!python) {
+    console.error("Python is required to validate the sealed FAISS bundle.");
+    process.exit(1);
   }
+  const script = [
+    "from rag_service.retrieval.index_integrity import validate_index_bundle;",
+    "validate_index_bundle(",
+    "'data/faiss/legal_chunks.index',",
+    "'data/faiss/legal_chunks_meta.json',",
+    "'data/faiss/index_manifest.json',",
+    "require_hashes=True)",
+  ].join("");
+  run(python, ["-c", script], { cwd: root });
 }
 
 function printValidation(result) {
-  for (const warning of result.warnings) {
-    console.warn(`WARNING: ${warning}`);
-  }
+  for (const warning of result.warnings) console.warn(`WARNING: ${warning}`);
   if (result.ok) {
     console.log("Deployment preflight passed.");
     return;
   }
   console.error("Deployment preflight failed:");
-  for (const error of result.errors) {
-    console.error(`- ${error}`);
-  }
+  for (const error of result.errors) console.error(`- ${error}`);
 }
 
 function main() {
   const root = process.cwd();
   const result = validateDeployment(root);
   printValidation(result);
-  if (!result.ok) {
-    process.exit(1);
-  }
+  if (!result.ok) process.exit(1);
 
-  if (process.argv.includes("--check-only")) {
-    return;
-  }
+  validateIndexBundle(root);
+
+  if (process.argv.includes("--check-only")) return;
 
   if (!commandExists("docker", ["--version"])) {
     console.error("Docker CLI is not available. Install Docker Engine and Docker Compose first.");
@@ -165,6 +172,4 @@ function main() {
 }
 
 const currentFile = fileURLToPath(import.meta.url);
-if (process.argv[1] === currentFile) {
-  main();
-}
+if (process.argv[1] === currentFile) main();
