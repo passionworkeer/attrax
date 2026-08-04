@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import hmac
+import io
 import json
 import re
+import zipfile
 from pathlib import Path
 from typing import Annotated, Any
 
@@ -19,6 +22,7 @@ from rag_service.application.scans import (
     ScanUnauthorized,
     SubmittedUpload,
 )
+from rag_service.config import settings
 
 
 router = APIRouter(prefix="/api/v1", tags=["public-v1"])
@@ -28,6 +32,12 @@ MAX_DOCUMENT_FILES = 5
 MAX_IMAGE_SIZE = 10 * 1024 * 1024
 MAX_DOCUMENT_SIZE = 15 * 1024 * 1024
 MAX_TEXT_SIZE = 1 * 1024 * 1024
+MAX_TOTAL_UPLOAD_SIZE = 50 * 1024 * 1024
+MAX_DOCX_EXPANDED_SIZE = 50 * 1024 * 1024
+MAX_DOCX_MEMBERS = 500
+UPLOAD_READ_CHUNK_SIZE = 1024 * 1024
+ALLOWED_MARKETS = {"EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"}
+MAX_MARKETS = 5
 
 _IMAGE_TYPES = {
     "image/jpeg": ({".jpg", ".jpeg"}, (b"\xff\xd8\xff",)),
@@ -53,7 +63,14 @@ def _parse_markets(raw: str) -> list[str]:
             values = []
     except (TypeError, ValueError):
         values = [item.strip().upper() for item in raw.split(",")]
-    return [value for value in values if re.fullmatch(r"[A-Z0-9_-]{2,12}", value)]
+    deduplicated = list(dict.fromkeys(value for value in values if value))
+    if (
+        not deduplicated
+        or len(deduplicated) > MAX_MARKETS
+        or any(value not in ALLOWED_MARKETS for value in deduplicated)
+    ):
+        return []
+    return deduplicated
 
 
 def _valid_signature(content_type: str, content: bytes) -> bool:
@@ -72,6 +89,44 @@ def _valid_signature(content_type: str, content: bytes) -> bool:
     return any(content.startswith(signature) for signature in signatures)
 
 
+async def _read_bounded(upload: UploadFile, limit: int) -> bytes | None:
+    parts: list[bytes] = []
+    total = 0
+    while True:
+        chunk = await upload.read(UPLOAD_READ_CHUNK_SIZE)
+        if not chunk:
+            break
+        total += len(chunk)
+        if total > limit:
+            return None
+        parts.append(chunk)
+    return b"".join(parts)
+
+
+def _valid_docx_archive(content: bytes) -> bool:
+    try:
+        with zipfile.ZipFile(io.BytesIO(content)) as archive:
+            members = archive.infolist()
+            if len(members) > MAX_DOCX_MEMBERS:
+                return False
+            expanded_size = sum(member.file_size for member in members)
+            if expanded_size > MAX_DOCX_EXPANDED_SIZE:
+                return False
+            names = {member.filename.replace("\\", "/") for member in members}
+            return "[Content_Types].xml" in names and "word/document.xml" in names
+    except (OSError, zipfile.BadZipFile):
+        return False
+
+
+def _authorized_create_request(request: Request) -> bool:
+    """Require the service-to-service secret whenever production configured it."""
+    secret = settings.rag_internal_secret
+    if not secret:
+        return True
+    provided = request.headers.get("x-internal-secret", "")
+    return bool(provided) and hmac.compare_digest(provided, secret)
+
+
 async def _read_uploads(
     request: Request,
     images: list[UploadFile],
@@ -85,12 +140,13 @@ async def _read_uploads(
         return None, failure(request, "TOO_MANY_DOCUMENTS", "Too many documents", 400)
 
     submitted: list[SubmittedUpload] = []
+    total_bytes = 0
     for kind, files, allowed, size_limit in (
         ("image", images, _IMAGE_TYPES, MAX_IMAGE_SIZE),
         ("document", documents, _DOCUMENT_TYPES, MAX_DOCUMENT_SIZE),
     ):
         for upload in files:
-            name = upload.filename or "upload"
+            name = Path(upload.filename or "upload").name
             content_type = (upload.content_type or "").lower()
             suffix = Path(name).suffix.lower()
             extensions = (
@@ -100,12 +156,17 @@ async def _read_uploads(
             )
             if content_type not in allowed or suffix not in extensions:
                 return None, failure(request, "INVALID_FILE_TYPE", "Unsupported file type", 400)
-            content = await upload.read()
             effective_limit = MAX_TEXT_SIZE if content_type in {"text/plain", "text/html"} else size_limit
-            if len(content) > effective_limit:
+            content = await _read_bounded(upload, effective_limit)
+            if content is None:
                 return None, failure(request, "FILE_TOO_LARGE", "Uploaded file is too large", 413)
+            total_bytes += len(content)
+            if total_bytes > MAX_TOTAL_UPLOAD_SIZE:
+                return None, failure(request, "REQUEST_TOO_LARGE", "Total upload is too large", 413)
             if not _valid_signature(content_type, content):
                 return None, failure(request, "INVALID_FILE_SIGNATURE", "File content does not match its type", 400)
+            if suffix == ".docx" and not _valid_docx_archive(content):
+                return None, failure(request, "INVALID_DOCX_ARCHIVE", "DOCX archive is invalid or unsafe", 400)
             submitted.append(
                 SubmittedUpload(
                     kind=kind,
@@ -156,11 +217,13 @@ async def create_scan(
     images: Annotated[list[UploadFile], File()] = [],
     documents: Annotated[list[UploadFile], File()] = [],
 ):
+    if not _authorized_create_request(request):
+        return failure(request, "UNAUTHORIZED", "Internal service authorization is required", 401)
     if not query.strip() or len(query) > 2_000 or len(product) > 500 or len(category) > 100:
         return failure(request, "INVALID_REQUEST", "Invalid scan fields", 400)
     parsed_markets = _parse_markets(markets)
     if not parsed_markets:
-        return failure(request, "INVALID_REQUEST", "At least one valid market is required", 400)
+        return failure(request, "INVALID_REQUEST", "Use one to five supported markets", 400)
     uploads, upload_error = await _read_uploads(request, images, documents)
     if upload_error:
         return upload_error
@@ -174,6 +237,8 @@ async def create_scan(
                 uploads=uploads or [],
             )
         )
+    except (ValueError, TypeError):
+        return failure(request, "INVALID_REQUEST", "Invalid scan fields", 400)
     except Exception:
         return failure(request, "SCAN_QUEUE_UNAVAILABLE", "Scan queue is unavailable", 503)
     return success(
@@ -229,6 +294,8 @@ def get_trace(
     if session["status"] == "processing":
         return failure(request, "NOT_READY", "Scan result is not ready", 409)
     trace = (session.get("result") or {}).get("agentTrace") or []
+    if not trace:
+        return failure(request, "NOT_FOUND", "Execution trace not available", 404)
     return success(request, trace)
 
 
