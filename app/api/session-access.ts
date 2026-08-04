@@ -4,22 +4,33 @@ import { tokenFromRequest, verifyAccessToken } from "@/lib/pipeline/session-auth
 import { serverT } from "@/lib/server-i18n";
 import type { ScanStatus } from "@/lib/types";
 
-export function requireSessionAccess(request: Request, session: StoredScanStatus): Response | null {
-  if (!session.accessTokenHash) return null;
+export function requireSessionAccess(
+  request: Request,
+  session: StoredScanStatus,
+): Response | null {
+  if (!session.accessTokenHash) {
+    // Legacy fixtures remain usable in local development and tests, but a
+    // production session without a token hash is malformed and must never be
+    // treated as public data.
+    if (process.env.NODE_ENV !== "production") return null;
+    return fail(
+      {
+        code: "UNAUTHORIZED",
+        message: "This legacy session cannot be accessed safely. Start a new scan.",
+      },
+      { status: 401 },
+    );
+  }
   const token = tokenFromRequest(request);
   if (!verifyAccessToken(token ?? "", session.accessTokenHash)) {
     return fail(
       { code: "UNAUTHORIZED", message: serverT("errors.invalidRequest", "zh") },
-      { status: 401 }
+      { status: 401 },
     );
   }
   return null;
 }
 
-// P0-1: whitelist must surface degradation evidence so the client can render
-// the unmissable warning banner. `degradedReason` carries the RAG error code;
-// `result.source` (already on the whitelisted `result`) tags fallback/demo.
-// Stripping either hides a fallback report behind a normal-looking score.
 export function sessionPayload(session: ScanStatus): ScanStatus {
   const {
     sessionId,
