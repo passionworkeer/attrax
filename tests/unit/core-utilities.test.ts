@@ -1,4 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { checkRateLimit, clientIp } from "@/lib/rate-limit";
 import { fail, ok, unwrapApiData } from "@/lib/api-response";
 import {
@@ -12,9 +15,13 @@ import { SCAN_STAGE_TEXT, serverT } from "@/lib/server-i18n";
 import type { ScanStatus } from "@/lib/types";
 import type { StoredScanStatus } from "@/lib/pipeline/session-store";
 
+let rateLimitDir = "";
+
 describe("rate-limit utilities", () => {
   beforeEach(() => {
     globalThis.__rateLimitBuckets = new Map();
+    rateLimitDir = mkdtempSync(join(tmpdir(), "attrax-rate-limit-"));
+    vi.stubEnv("RATE_LIMIT_STORE_DIR", rateLimitDir);
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-05-25T00:00:00.000Z"));
   });
@@ -23,6 +30,7 @@ describe("rate-limit utilities", () => {
     vi.useRealTimers();
     vi.unstubAllEnvs();
     globalThis.__rateLimitBuckets = undefined;
+    rmSync(rateLimitDir, { recursive: true, force: true });
   });
 
   it("ignores forwarding headers unless explicitly trusted", () => {
@@ -31,16 +39,23 @@ describe("rate-limit utilities", () => {
     });
     expect(clientIp(forwarded)).toBe("unknown");
     vi.stubEnv("RATE_LIMIT_TRUST_XFF", "true");
-    expect(clientIp(forwarded)).toBe("203.0.113.7");
+    expect(clientIp(forwarded)).toMatch(/^ip:[a-f0-9]{32}$/);
+    expect(clientIp(forwarded)).not.toContain("203.0.113.7");
   });
 
-  it("limits repeated production requests until the window resets", () => {
+  it("shares production limits through the configured store", () => {
     vi.stubEnv("NODE_ENV", "production");
     expect(checkRateLimit("scan:ip", 2, 1000)).toBe(true);
     expect(checkRateLimit("scan:ip", 2, 1000)).toBe(true);
     expect(checkRateLimit("scan:ip", 2, 1000)).toBe(false);
     vi.advanceTimersByTime(1001);
     expect(checkRateLimit("scan:ip", 2, 1000)).toBe(true);
+  });
+
+  it("fails closed for invalid limits", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    expect(checkRateLimit("bad", 0, 1000)).toBe(false);
+    expect(checkRateLimit("bad", 1, 0)).toBe(false);
   });
 });
 
@@ -104,41 +119,25 @@ describe("session access helpers", () => {
 
   afterEach(() => vi.unstubAllEnvs());
 
-  it("allows unhashed legacy fixtures outside production", () => {
+  it("allows unhashed fixtures outside production but fails closed in production", async () => {
     vi.stubEnv("NODE_ENV", "test");
-    expect(
-      requireSessionAccess(
-        new Request("http://localhost/api/scan/scan_secure"),
-        stored(),
-      ),
-    ).toBeNull();
-  });
-
-  it("fails closed for unhashed production sessions", async () => {
+    expect(requireSessionAccess(new Request("http://localhost"), stored())).toBeNull();
     vi.stubEnv("NODE_ENV", "production");
-    const response = requireSessionAccess(
-      new Request("http://localhost/api/scan/scan_secure"),
-      stored(),
-    );
+    const response = requireSessionAccess(new Request("http://localhost"), stored());
     expect(response?.status).toBe(401);
-    await expect(response?.json()).resolves.toMatchObject({
-      error: { code: "UNAUTHORIZED" },
-    });
+    await expect(response?.json()).resolves.toMatchObject({ error: { code: "UNAUTHORIZED" } });
   });
 
-  it("allows valid bearer tokens and rejects invalid ones", async () => {
+  it("allows valid bearer tokens and rejects invalid ones", () => {
     const token = "secret-token";
     const session = stored({ accessTokenHash: hashAccessToken(token) });
     expect(
       requireSessionAccess(
-        new Request("http://localhost", {
-          headers: { authorization: `Bearer ${token}` },
-        }),
+        new Request("http://localhost", { headers: { authorization: `Bearer ${token}` } }),
         session,
       ),
     ).toBeNull();
-    const denied = requireSessionAccess(new Request("http://localhost"), session);
-    expect(denied?.status).toBe(401);
+    expect(requireSessionAccess(new Request("http://localhost"), session)?.status).toBe(401);
   });
 
   it("returns only public fields including degradation evidence", () => {
