@@ -15,7 +15,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 from rag_service.application.ports import ScanBackend, ScanRunner
-from rag_service.domain.scans import ScanJob, ScanSession, StoredUpload
+from rag_service.domain.scans import ScanJob, ScanSession, StoredUpload, utc_now
 from rag_service.parser.docx_parser import _escape_prompt_injection, parse_docx
 
 
@@ -23,6 +23,8 @@ _ALLOWED_MARKETS = {"EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"}
 _MAX_MARKETS_PER_SCAN = 5
 _DOCUMENT_CHUNK_CHARS = 8_000
 _MAX_DOCUMENT_CHUNKS = 20
+_STRONG_VERIFICATION_MODES = {"nli", "llm_judge", "hybrid", "nli+llm"}
+_VALID_PACKAGE_STATUSES = {"valid", "passed", "verified"}
 
 
 class ScanServiceError(Exception):
@@ -92,13 +94,18 @@ def _mapping(value: Any) -> dict[str, Any]:
     return dict(value) if isinstance(value, Mapping) else {}
 
 
-def _nested_string(source: Mapping[str, Any], *keys: str) -> str:
+def _nested(source: Mapping[str, Any], *keys: str) -> Any:
     current: Any = source
     for key in keys:
         if not isinstance(current, Mapping):
-            return ""
+            return None
         current = current.get(key)
-    return str(current).strip().lower() if current is not None else ""
+    return current
+
+
+def _nested_string(source: Mapping[str, Any], *keys: str) -> str:
+    value = _nested(source, *keys)
+    return str(value).strip().lower() if value is not None else ""
 
 
 class ScanService:
@@ -122,9 +129,11 @@ class ScanService:
         self._session_tasks: dict[str, asyncio.Task[None]] = {}
 
     async def create_scan(self, submission: ScanSubmission) -> CreatedScan:
-        markets = [market.strip().upper() for market in submission.markets]
-        if len(markets) > _MAX_MARKETS_PER_SCAN or any(
-            market not in _ALLOWED_MARKETS for market in markets
+        markets = list(dict.fromkeys(market.strip().upper() for market in submission.markets))
+        if (
+            not markets
+            or len(markets) > _MAX_MARKETS_PER_SCAN
+            or any(market not in _ALLOWED_MARKETS for market in markets)
         ):
             raise ValueError("unsupported target market")
 
@@ -197,8 +206,8 @@ class ScanService:
         task.add_done_callback(cleanup)
 
     def _spawn(self, job_id: str, session_id: str) -> None:
-        existing = self._session_tasks.get(session_id)
-        if existing and not existing.done():
+        current = self._session_tasks.get(session_id)
+        if current and not current.done():
             return
         self._track_task(
             asyncio.create_task(self._run_job(job_id)),
@@ -209,11 +218,11 @@ class ScanService:
         async def retry_later() -> None:
             await asyncio.sleep(delay)
             while True:
-                existing = self._session_tasks.get(job.session_id)
-                if existing is None or existing.done():
+                current = self._session_tasks.get(job.session_id)
+                if current is None or current.done():
                     break
                 await asyncio.sleep(0)
-            if existing is not None:
+            if current is not None:
                 self._session_tasks.pop(job.session_id, None)
             self._spawn(job.job_id, job.session_id)
 
@@ -232,26 +241,28 @@ class ScanService:
         session = self.backend.get_session(session_id)
         if session is None:
             raise ScanNotFound(session_id)
-        provided = _token_hash(access_token)
-        if not hmac.compare_digest(provided, session.access_token_hash):
+        if session.expires_at <= utc_now():
+            self.backend.delete_session(session_id)
+            raise ScanNotFound(session_id)
+        if not hmac.compare_digest(_token_hash(access_token), session.access_token_hash):
             raise ScanUnauthorized(session_id)
         return session
 
     def get_scan(self, session_id: str, access_token: str) -> dict[str, Any]:
         public = self._authorized_session(session_id, access_token).public_data()
         assets: list[dict[str, Any]] = []
-        kind_indexes = {"image": 0, "document": 0}
+        indexes = {"image": 0, "document": 0}
         for upload in self.backend.list_uploads(session_id):
             assets.append(
                 {
                     "kind": upload.kind,
-                    "index": kind_indexes[upload.kind],
+                    "index": indexes[upload.kind],
                     "name": upload.original_name,
                     "contentType": upload.content_type,
                     "size": upload.size,
                 }
             )
-            kind_indexes[upload.kind] += 1
+            indexes[upload.kind] += 1
         public["assets"] = assets
         return public
 
@@ -261,21 +272,14 @@ class ScanService:
         access_token: str,
         index: int,
     ) -> tuple[StoredUpload, bytes]:
-        """Return one authorized image without trusting stored filesystem paths."""
         self._authorized_session(session_id, access_token)
-        images = [
-            upload
-            for upload in self.backend.list_uploads(session_id)
-            if upload.kind == "image"
-        ]
+        images = [upload for upload in self.backend.list_uploads(session_id) if upload.kind == "image"]
         if index < 0 or index >= len(images):
             raise ScanNotFound(f"asset:{index}")
-        upload = images[index]
         try:
-            restored, content = self.backend.read_upload(session_id, upload.upload_id)
+            return self.backend.read_upload(session_id, images[index].upload_id)
         except (FileNotFoundError, OSError) as exc:
             raise ScanNotFound(f"asset:{index}") from exc
-        return restored, content
 
     def delete_scan(self, session_id: str, access_token: str) -> None:
         self._authorized_session(session_id, access_token)
@@ -296,10 +300,9 @@ class ScanService:
         job = self.backend.claim_job(job_id, lease_seconds=self.lease_seconds)
         if job is None:
             return
-
         session = self.backend.get_session(job.session_id)
-        if session is None:
-            self.backend.delete_job(job.job_id)
+        if session is None or session.expires_at <= utc_now():
+            self.backend.delete_session(job.session_id)
             return
 
         self.backend.save_session(
@@ -313,8 +316,7 @@ class ScanService:
         )
         lease_task = asyncio.create_task(self._lease_heartbeat(job.job_id, job.session_id))
         try:
-            payload = self._build_runner_payload(job)
-            raw = await self.runner(payload)
+            raw = await self.runner(self._build_runner_payload(job))
             result, status, degraded_reason = self._normalize_result(job, raw)
             current = self.backend.get_session(job.session_id)
             if current is None:
@@ -352,30 +354,34 @@ class ScanService:
                 pass
 
     async def _lease_heartbeat(self, job_id: str, session_id: str) -> None:
-        """Refresh the execution lease without inventing user-facing progress."""
         interval = max(10.0, self.lease_seconds / 3)
         try:
             while True:
                 await asyncio.sleep(interval)
-                if not self.backend.renew_job_lease(
-                    job_id,
-                    lease_seconds=self.lease_seconds,
-                ):
+                if not self.backend.renew_job_lease(job_id, lease_seconds=self.lease_seconds):
                     return
                 current = self.backend.get_session(session_id)
                 if current is None or current.status != "processing":
                     return
-                self.backend.save_session(
-                    current.transition(ttl_hours=self.session_ttl_hours)
-                )
+                self.backend.save_session(current.transition(ttl_hours=self.session_ttl_hours))
         except asyncio.CancelledError:
             return
 
+    @staticmethod
+    def _classify_error(exc: Exception) -> tuple[bool, str]:
+        status_code = getattr(exc, "status_code", None)
+        if status_code == 504 or isinstance(exc, asyncio.TimeoutError):
+            # The underlying executor thread may still be finishing. Retrying
+            # immediately would duplicate provider spend and consume another worker.
+            return False, "SCAN_TIMEOUT"
+        if status_code in {400, 401, 403, 404, 409, 413, 422}:
+            return False, "SCAN_INPUT_OR_STORAGE_FAILURE"
+        if isinstance(exc, (FileNotFoundError, ValueError, TypeError)):
+            return False, "SCAN_INPUT_OR_STORAGE_FAILURE"
+        return True, "SCAN_PROVIDER_FAILURE"
+
     def _handle_job_error(self, job: ScanJob, exc: Exception) -> None:
-        retryable = not isinstance(exc, (FileNotFoundError, ValueError, TypeError))
-        stable_reason = (
-            "SCAN_PROVIDER_FAILURE" if retryable else "SCAN_INPUT_OR_STORAGE_FAILURE"
-        )
+        retryable, stable_reason = self._classify_error(exc)
         if retryable and job.attempts < self.max_attempts:
             delay = min(60.0, self.retry_base_seconds * (2 ** max(0, job.attempts - 1)))
             queued = job.requeued(stable_reason, delay_seconds=delay)
@@ -440,30 +446,26 @@ class ScanService:
 
     @staticmethod
     def _document_chunks(name: str, mime_type: str, text: str) -> list[dict[str, Any]]:
-        escaped_name = _escape_prompt_injection(Path(name).name)
-        escaped_text = _escape_prompt_injection(text)
-        if not escaped_text:
+        safe_name = _escape_prompt_injection(Path(name).name)
+        safe_text = _escape_prompt_injection(text)
+        if not safe_text:
             return []
         total = min(
             _MAX_DOCUMENT_CHUNKS,
-            (len(escaped_text) + _DOCUMENT_CHUNK_CHARS - 1) // _DOCUMENT_CHUNK_CHARS,
+            (len(safe_text) + _DOCUMENT_CHUNK_CHARS - 1) // _DOCUMENT_CHUNK_CHARS,
         )
-        truncated = len(escaped_text) > _DOCUMENT_CHUNK_CHARS * _MAX_DOCUMENT_CHUNKS
-        chunks = []
-        for index in range(total):
-            start = index * _DOCUMENT_CHUNK_CHARS
-            part = escaped_text[start : start + _DOCUMENT_CHUNK_CHARS]
-            chunks.append(
-                {
-                    "name": escaped_name,
-                    "mimeType": mime_type,
-                    "text": part,
-                    "part": index + 1,
-                    "partCount": total,
-                    "truncated": truncated,
-                }
-            )
-        return chunks
+        truncated = len(safe_text) > _DOCUMENT_CHUNK_CHARS * _MAX_DOCUMENT_CHUNKS
+        return [
+            {
+                "name": safe_name,
+                "mimeType": mime_type,
+                "text": safe_text[index * _DOCUMENT_CHUNK_CHARS : (index + 1) * _DOCUMENT_CHUNK_CHARS],
+                "part": index + 1,
+                "partCount": total,
+                "truncated": truncated,
+            }
+            for index in range(total)
+        ]
 
     def _build_runner_payload(self, job: ScanJob) -> dict[str, Any]:
         images: list[dict[str, Any]] = []
@@ -498,9 +500,12 @@ class ScanService:
                     )
                 )
             else:
-                text = content.decode("utf-8", errors="replace")
                 documents.extend(
-                    self._document_chunks(safe_name, upload.content_type, text)
+                    self._document_chunks(
+                        safe_name,
+                        upload.content_type,
+                        content.decode("utf-8", errors="replace"),
+                    )
                 )
         return {
             "query": job.query,
@@ -523,49 +528,64 @@ class ScanService:
             raise TypeError("scan runner returned a non-object payload")
 
         value = _camelize(dict(raw))
-        compliance_status = str(value.get("status", "UNKNOWN")).upper()
+        raw_status = str(value.get("status", "UNKNOWN")).upper()
+        compliance_status = raw_status if raw_status in {"PASS", "WARN", "REJECTED"} else "UNKNOWN"
         report = str(value.get("report", "")).strip()
-        agent_trace = value.get("agentTrace")
-        retrieved_chunks = value.get("documents")
-        report_package = value.get("reportPackage")
+        trace = value.get("agentTrace")
+        evidence = value.get("documents")
+        package_value = value.get("reportPackage")
 
-        degraded_reasons: list[str] = []
-        if compliance_status not in {"PASS", "WARN", "REJECTED"}:
-            degraded_reasons.append("UNVERIFIED_COMPLIANCE_STATUS")
-            compliance_status = "UNKNOWN"
+        reasons: list[str] = []
+        if raw_status not in {"PASS", "WARN", "REJECTED"}:
+            reasons.append("UNVERIFIED_COMPLIANCE_STATUS")
         if not report:
-            degraded_reasons.append("EMPTY_COMPLIANCE_REPORT")
-        if not isinstance(agent_trace, list) or not agent_trace:
-            degraded_reasons.append("MISSING_AGENT_TRACE")
-            agent_trace = []
-        if not isinstance(retrieved_chunks, list) or not retrieved_chunks:
-            degraded_reasons.append("NO_RETRIEVED_EVIDENCE")
-            retrieved_chunks = []
-        if not isinstance(report_package, Mapping):
-            degraded_reasons.append("MISSING_REPORT_PACKAGE")
-            report_package = None
+            reasons.append("EMPTY_COMPLIANCE_REPORT")
+        if not isinstance(trace, list) or not trace:
+            reasons.append("MISSING_AGENT_TRACE")
+            trace = []
+        if not isinstance(evidence, list) or not evidence:
+            reasons.append("NO_RETRIEVED_EVIDENCE")
+            evidence = []
+
+        package: dict[str, Any] | None
+        if not isinstance(package_value, Mapping):
+            reasons.append("MISSING_REPORT_PACKAGE")
+            package = None
         else:
-            package = _mapping(report_package)
+            package = _mapping(package_value)
+            audit = _mapping(package.get("auditMetadata") or package.get("audit_metadata"))
             validation_status = (
-                _nested_string(package, "auditMetadata", "validationStatus")
+                _nested_string(audit, "validationStatus")
+                or _nested_string(audit, "validation_status")
                 or _nested_string(package, "validationStatus")
             )
             verification_mode = (
-                _nested_string(package, "auditMetadata", "verificationMode")
+                _nested_string(audit, "verificationMode")
+                or _nested_string(audit, "verification_mode")
                 or _nested_string(package, "verificationMode")
             )
             source = _nested_string(package, "source")
-            if validation_status in {"invalid", "failed", "degraded"}:
-                degraded_reasons.append("REPORT_PACKAGE_INVALID")
-            if verification_mode in {"unverified", "text_overlap", "none"}:
-                degraded_reasons.append("WEAK_CITATION_VERIFICATION")
+            if validation_status not in _VALID_PACKAGE_STATUSES:
+                reasons.append("REPORT_PACKAGE_NOT_VERIFIED")
+            if verification_mode not in _STRONG_VERIFICATION_MODES:
+                reasons.append("WEAK_OR_MISSING_CITATION_VERIFICATION")
             if source in {"demo", "fallback", "mock"}:
-                degraded_reasons.append("FALLBACK_REPORT_SOURCE")
+                reasons.append("FALLBACK_REPORT_SOURCE")
 
-        degraded_reason = ",".join(dict.fromkeys(degraded_reasons)) or None
-        status: Literal["ready", "degraded"] = (
-            "degraded" if degraded_reason else "ready"
-        )
+            coverage = (
+                _nested(audit, "citationCoverage")
+                or _nested(audit, "citation_coverage")
+                or _nested(package, "citationCoverage")
+            )
+            if isinstance(coverage, (int, float)) and coverage <= 0:
+                reasons.append("ZERO_CITATION_COVERAGE")
+
+        reasons = list(dict.fromkeys(reasons))
+        degraded_reason = ",".join(reasons) or None
+        status: Literal["ready", "degraded"] = "degraded" if reasons else "ready"
+        if status == "degraded" and compliance_status in {"PASS", "WARN"}:
+            compliance_status = "UNKNOWN"
+
         result = {
             "sessionId": job.session_id,
             "productName": job.product,
@@ -573,11 +593,11 @@ class ScanService:
             "targetMarkets": job.markets,
             "complianceStatus": compliance_status,
             "complianceReport": report,
-            "agentTrace": agent_trace,
+            "agentTrace": trace,
             "loopCount": value.get("loopCount", 0),
-            "retrievedChunks": retrieved_chunks,
-            "reportPackage": report_package,
-            "degradedReasons": degraded_reasons,
+            "retrievedChunks": evidence,
+            "reportPackage": package,
+            "degradedReasons": reasons,
             "source": "fallback" if status == "degraded" else "real",
         }
         return result, status, degraded_reason
