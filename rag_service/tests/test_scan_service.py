@@ -33,20 +33,30 @@ def submission() -> ScanSubmission:
     )
 
 
+def verified_result(status: str = "PASS"):
+    return {
+        "status": status,
+        "report": "## compliant",
+        "agent_trace": [{"node": "generator", "status": "success"}],
+        "loop_count": 1,
+        "documents": [{"source_id": "eu-rule"}],
+        "report_package": {
+            "roadmap": {"items": [{"id": "step-1"}]},
+            "auditMetadata": {
+                "validationStatus": "valid",
+                "verificationMode": "nli",
+            },
+        },
+    }
+
+
 def test_service_runs_job_persists_ready_result_and_stores_only_token_hash(tmp_path):
     async def scenario():
         seen = []
 
         async def runner(payload):
             seen.append(payload)
-            return {
-                "status": "PASS",
-                "report": "## compliant",
-                "agent_trace": [{"node": "generator", "status": "success"}],
-                "loop_count": 1,
-                "documents": [{"source_id": "eu-rule"}],
-                "report_package": {"roadmap": {"items": [{"id": "step-1"}]}},
-            }
+            return verified_result()
 
         backend = FileBackend(tmp_path)
         service = ScanService(backend, runner=runner)
@@ -60,6 +70,7 @@ def test_service_runs_job_persists_ready_result_and_stores_only_token_hash(tmp_p
         assert public["status"] == "ready"
         assert public["result"]["complianceStatus"] == "PASS"
         assert public["result"]["reportPackage"]["roadmap"]["items"][0]["id"] == "step-1"
+        assert public["result"]["source"] == "real"
         assert public["assets"] == [
             {
                 "kind": "image",
@@ -78,7 +89,7 @@ def test_service_runs_job_persists_ready_result_and_stores_only_token_hash(tmp_p
 def test_service_rejects_wrong_token_without_leaking_session(tmp_path):
     async def scenario():
         async def runner(payload):
-            return {"status": "PASS", "report": "ok", "agent_trace": [], "loop_count": 0}
+            return verified_result()
 
         service = ScanService(FileBackend(tmp_path), runner=runner)
         created = await service.create_scan(submission())
@@ -89,10 +100,53 @@ def test_service_rejects_wrong_token_without_leaking_session(tmp_path):
     asyncio.run(scenario())
 
 
-def test_service_marks_runner_exception_failed_and_persists_failed_job(tmp_path):
+def test_service_retries_runner_exception_then_marks_dead_without_secret_text(tmp_path):
+    async def scenario():
+        calls = 0
+
+        async def runner(payload):
+            nonlocal calls
+            calls += 1
+            raise RuntimeError("provider secret must not be exposed")
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(
+            backend,
+            runner=runner,
+            max_attempts=3,
+            retry_base_seconds=0,
+        )
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        assert calls == 3
+        assert public["status"] == "failed"
+        assert public["error"] == "SCAN_PROVIDER_FAILURE"
+        job_files = list((tmp_path / "jobs").glob("*.json"))
+        assert len(job_files) == 1
+        assert '"state":"dead"' in job_files[0].read_text(encoding="utf-8")
+        assert "provider secret" not in job_files[0].read_text(encoding="utf-8")
+        assert "provider secret" not in (tmp_path / "audit.jsonl").read_text(encoding="utf-8")
+
+    asyncio.run(scenario())
+
+
+def test_service_marks_report_degraded_when_evidence_or_strong_verification_missing(tmp_path):
     async def scenario():
         async def runner(payload):
-            raise RuntimeError("provider secret must not be exposed")
+            return {
+                "status": "PASS",
+                "report": "looks complete",
+                "agent_trace": [{"node": "generator", "status": "success"}],
+                "documents": [],
+                "report_package": {
+                    "auditMetadata": {
+                        "validationStatus": "valid",
+                        "verificationMode": "text_overlap",
+                    }
+                },
+            }
 
         backend = FileBackend(tmp_path)
         service = ScanService(backend, runner=runner)
@@ -100,11 +154,10 @@ def test_service_marks_runner_exception_failed_and_persists_failed_job(tmp_path)
         await service.wait_for_idle()
 
         public = service.get_scan(created.session_id, created.access_token)
-        assert public["status"] == "failed"
-        assert public["error"] == "SCAN_FAILED"
-        job_files = list((tmp_path / "jobs").glob("*.json"))
-        assert len(job_files) == 1
-        assert "provider secret" not in job_files[0].read_text(encoding="utf-8")
+        assert public["status"] == "degraded"
+        assert public["result"]["source"] == "fallback"
+        assert "NO_RETRIEVED_EVIDENCE" in public["result"]["degradedReasons"]
+        assert "WEAK_CITATION_VERIFICATION" in public["result"]["degradedReasons"]
 
     asyncio.run(scenario())
 
@@ -128,7 +181,7 @@ def test_service_resumes_queued_job_after_restart(tmp_path):
         )
 
         async def runner(payload):
-            return {"status": "WARN", "report": "review", "agent_trace": [], "loop_count": 0}
+            return verified_result("WARN")
 
         service = ScanService(backend, runner=runner)
         service.resume_pending()
@@ -145,7 +198,7 @@ def test_service_delete_requires_token_and_removes_all_state(tmp_path):
 
         async def runner(payload):
             await gate.wait()
-            return {"status": "PASS", "report": "ok", "agent_trace": [], "loop_count": 0}
+            return verified_result()
 
         backend = FileBackend(tmp_path)
         service = ScanService(backend, runner=runner)
@@ -157,3 +210,20 @@ def test_service_delete_requires_token_and_removes_all_state(tmp_path):
         assert not (tmp_path / "uploads" / created.session_id).exists()
 
     asyncio.run(scenario())
+
+
+def test_submission_rejects_more_than_five_markets():
+    with pytest.raises(ValueError):
+        ScanSubmission(
+            query="q",
+            category="electronics",
+            markets=["EU", "US", "UK", "CN", "AU", "JP"],
+            uploads=[
+                SubmittedUpload(
+                    kind="image",
+                    name="front.png",
+                    content_type="image/png",
+                    content=PNG,
+                )
+            ],
+        )
