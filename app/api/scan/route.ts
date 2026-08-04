@@ -1,8 +1,10 @@
 /**
  * app/api/scan/route.ts — POST /api/scan (web BFF)
  *
- * The access token is kept only in an HttpOnly cookie. Browser JavaScript
- * receives the session id and poll URL but never the bearer secret.
+ * In production the access token is kept only in an HttpOnly cookie. Browser
+ * JavaScript receives the session id and poll URL but never the bearer secret.
+ * Non-production keeps the token in the JSON payload for existing local tests
+ * and debugging clients.
  */
 import { NextResponse } from "next/server";
 import { createScan, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
@@ -171,14 +173,21 @@ export async function POST(request: Request): Promise<Response> {
       documents,
     });
 
-    const response = ok(
-      {
-        sessionId: created.sessionId,
-        status: created.status,
-        pollUrl: `/api/scan/${created.sessionId}`,
-      },
-      { status: 202 },
-    );
+    const payload: {
+      sessionId: string;
+      status: "processing";
+      pollUrl: string;
+      accessToken?: string;
+    } = {
+      sessionId: created.sessionId,
+      status: created.status,
+      pollUrl: `/api/scan/${created.sessionId}`,
+    };
+    if (process.env.NODE_ENV !== "production") {
+      payload.accessToken = created.accessToken;
+    }
+
+    const response = ok(payload, { status: 202 });
     response.headers.append(
       "Set-Cookie",
       backendSessionCookie(created.sessionId, created.accessToken),
