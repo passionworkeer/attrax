@@ -157,7 +157,21 @@ function requestIdFromResponse(response: Response): string | null {
   return value && value.length > 0 ? value : null;
 }
 
-async function throwResponseError(response: Response, fallbackCode: string): Promise<never> {
+function stableCodeForStatus(status: number, fallbackCode: string): string {
+  if (status === 400) return "INVALID_REQUEST";
+  if (status === 401 || status === 403) return "UNAUTHORIZED";
+  if (status === 404) return "NOT_FOUND";
+  if (status === 409) return "NOT_READY";
+  if (status === 413) return "REQUEST_TOO_LARGE";
+  if (status === 429) return "RATE_LIMITED";
+  if (status === 504) return "RAG_SERVICE_TIMEOUT";
+  return fallbackCode;
+}
+
+async function throwResponseError(
+  response: Response,
+  fallbackCode: string,
+): Promise<never> {
   const contentType = response.headers.get("content-type") ?? "";
   if (contentType.includes("application/json")) {
     try {
@@ -177,7 +191,7 @@ async function throwResponseError(response: Response, fallbackCode: string): Pro
     }
   }
   throw new V1EnvelopeError(
-    fallbackCode,
+    stableCodeForStatus(response.status, fallbackCode),
     `HTTP ${response.status}`,
     response.status,
     requestIdFromResponse(response),
@@ -337,9 +351,19 @@ export async function getScanAsset(
     );
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
-      throw new V1EnvelopeError("RAG_SERVICE_TIMEOUT", "RAG service request timed out", 504, null);
+      throw new V1EnvelopeError(
+        "RAG_SERVICE_TIMEOUT",
+        "RAG service request timed out",
+        504,
+        null,
+      );
     }
-    throw new V1EnvelopeError("RAG_SERVICE_UNAVAILABLE", "RAG service unreachable", 502, null);
+    throw new V1EnvelopeError(
+      "RAG_SERVICE_UNAVAILABLE",
+      "RAG service unreachable",
+      502,
+      null,
+    );
   }
   if (!response.ok) {
     await throwResponseError(response, "RAG_SERVICE_UNAVAILABLE");
