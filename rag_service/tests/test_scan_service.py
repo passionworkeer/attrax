@@ -178,22 +178,18 @@ def test_service_does_not_retry_timeout_because_executor_work_may_still_be_runni
     asyncio.run(scenario())
 
 
-@pytest.mark.parametrize("verification_mode", ["text_overlap", "", None])
-def test_service_degrades_pass_when_evidence_or_strong_verification_is_missing(
-    tmp_path,
-    verification_mode,
-):
+def test_service_degrades_pass_when_evidence_is_missing(tmp_path):
+    """缺证据 = 真失败 → degraded,与验证强弱无关。"""
     async def scenario():
         async def runner(payload):
-            audit = {"validationStatus": "valid"}
-            if verification_mode is not None:
-                audit["verificationMode"] = verification_mode
             return {
                 "status": "PASS",
                 "report": "looks complete",
                 "agent_trace": [{"node": "generator", "status": "success"}],
-                "documents": [],
-                "report_package": {"auditMetadata": audit},
+                "documents": [],  # 缺证据 → hard reason
+                "report_package": {
+                    "auditMetadata": {"validationStatus": "valid", "verificationMode": "nli"},
+                },
             }
 
         backend = FileBackend(tmp_path)
@@ -206,7 +202,43 @@ def test_service_degrades_pass_when_evidence_or_strong_verification_is_missing(
         assert public["result"]["source"] == "fallback"
         assert public["result"]["complianceStatus"] == "UNKNOWN"
         assert "NO_RETRIEVED_EVIDENCE" in public["result"]["degradedReasons"]
-        assert "WEAK_OR_MISSING_CITATION_VERIFICATION" in public["result"]["degradedReasons"]
+
+    asyncio.run(scenario())
+
+
+@pytest.mark.parametrize("verification_mode", ["text_overlap", "", None])
+def test_service_marks_weak_verification_as_warning_without_degrading(
+    tmp_path,
+    verification_mode,
+):
+    """弱验证(text_overlap / 无 NLI)与真失败分开:有完整证据时只标 warning,不降级。"""
+    async def scenario():
+        async def runner(payload):
+            audit = {"validationStatus": "valid"}
+            if verification_mode is not None:
+                audit["verificationMode"] = verification_mode
+            return {
+                "status": "PASS",
+                "report": "looks complete",
+                "agent_trace": [{"node": "generator", "status": "success"}],
+                "documents": [{"text": "evidence chunk", "docName": "regulation.txt"}],
+                "report_package": {"auditMetadata": audit},
+            }
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        # 弱验证不降级:status=ready / source=real / PASS 保持
+        assert public["status"] == "ready"
+        assert public["result"]["source"] == "real"
+        assert public["result"]["complianceStatus"] == "PASS"
+        assert public["result"]["degradedReasons"] == []
+        # 但弱验证如实暴露在 warnings + citationVerification(前端可显示「验证较弱」)
+        assert "WEAK_OR_MISSING_CITATION_VERIFICATION" in public["result"]["warnings"]
+        assert public["result"]["citationVerification"]["strength"] == "weak"
 
     asyncio.run(scenario())
 

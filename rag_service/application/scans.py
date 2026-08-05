@@ -535,21 +535,25 @@ class ScanService:
         evidence = value.get("documents")
         package_value = value.get("reportPackage")
 
-        reasons: list[str] = []
+        # 弱验证(text_overlap 等)与真失败分开:弱验证只作 warning,不强制 degraded。
+        # 生产默认 text_overlap 验证(无 NLI)不应让真实 PASS 扫描显示降级/UNKNOWN。
+        hard_reasons: list[str] = []
+        warnings: list[str] = []
+        verification_mode: str | None = None
         if raw_status not in {"PASS", "WARN", "REJECTED"}:
-            reasons.append("UNVERIFIED_COMPLIANCE_STATUS")
+            hard_reasons.append("UNVERIFIED_COMPLIANCE_STATUS")
         if not report:
-            reasons.append("EMPTY_COMPLIANCE_REPORT")
+            hard_reasons.append("EMPTY_COMPLIANCE_REPORT")
         if not isinstance(trace, list) or not trace:
-            reasons.append("MISSING_AGENT_TRACE")
+            hard_reasons.append("MISSING_AGENT_TRACE")
             trace = []
         if not isinstance(evidence, list) or not evidence:
-            reasons.append("NO_RETRIEVED_EVIDENCE")
+            hard_reasons.append("NO_RETRIEVED_EVIDENCE")
             evidence = []
 
         package: dict[str, Any] | None
         if not isinstance(package_value, Mapping):
-            reasons.append("MISSING_REPORT_PACKAGE")
+            hard_reasons.append("MISSING_REPORT_PACKAGE")
             package = None
         else:
             package = _mapping(package_value)
@@ -566,11 +570,12 @@ class ScanService:
             )
             source = _nested_string(package, "source")
             if validation_status not in _VALID_PACKAGE_STATUSES:
-                reasons.append("REPORT_PACKAGE_NOT_VERIFIED")
+                hard_reasons.append("REPORT_PACKAGE_NOT_VERIFIED")
             if verification_mode not in _STRONG_VERIFICATION_MODES:
-                reasons.append("WEAK_OR_MISSING_CITATION_VERIFICATION")
+                # 弱验证 ≠ 真失败:只进 warnings,不进 hard_reasons、不强制 degraded。
+                warnings.append("WEAK_OR_MISSING_CITATION_VERIFICATION")
             if source in {"demo", "fallback", "mock"}:
-                reasons.append("FALLBACK_REPORT_SOURCE")
+                hard_reasons.append("FALLBACK_REPORT_SOURCE")
 
             coverage = (
                 _nested(audit, "citationCoverage")
@@ -578,14 +583,19 @@ class ScanService:
                 or _nested(package, "citationCoverage")
             )
             if isinstance(coverage, (int, float)) and coverage <= 0:
-                reasons.append("ZERO_CITATION_COVERAGE")
+                hard_reasons.append("ZERO_CITATION_COVERAGE")
 
-        reasons = list(dict.fromkeys(reasons))
-        degraded_reason = ",".join(reasons) or None
-        status: Literal["ready", "degraded"] = "degraded" if reasons else "ready"
+        hard_reasons = list(dict.fromkeys(hard_reasons))
+        warnings = list(dict.fromkeys(warnings))
+        degraded_reason = ",".join(hard_reasons) or None
+        status: Literal["ready", "degraded"] = "degraded" if hard_reasons else "ready"
         if status == "degraded" and compliance_status in {"PASS", "WARN"}:
             compliance_status = "UNKNOWN"
 
+        citation_verification = {
+            "mode": verification_mode,
+            "strength": "strong" if verification_mode in _STRONG_VERIFICATION_MODES else "weak",
+        }
         result = {
             "sessionId": job.session_id,
             "productName": job.product,
@@ -597,7 +607,9 @@ class ScanService:
             "loopCount": value.get("loopCount", 0),
             "retrievedChunks": evidence,
             "reportPackage": package,
-            "degradedReasons": reasons,
+            "degradedReasons": hard_reasons,
+            "warnings": warnings,
+            "citationVerification": citation_verification,
             "source": "fallback" if status == "degraded" else "real",
         }
         return result, status, degraded_reason
