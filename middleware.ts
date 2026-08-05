@@ -16,9 +16,12 @@ function isApiRoute(pathname: string): boolean {
 }
 
 function buildCsp(): string {
+  // Next.js dev mode(HMR + React 调试)需要 eval();生产保持严格,不加
+  // 'unsafe-eval' 以保 XSS 防护。dev 放宽仅供本地开发与 E2E(dev server)使用。
+  const dev = process.env.NODE_ENV !== "production";
   return [
     `default-src 'self'`,
-    `script-src 'self' 'unsafe-inline'`,
+    `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""}`,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' blob: data:`,
     `font-src 'self' data:`,
