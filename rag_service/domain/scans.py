@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 from typing import Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 DEFAULT_SESSION_TTL_HOURS = 24
@@ -40,6 +40,22 @@ class ScanSession(BaseModel):
     )
     result: dict[str, Any] | None = None
     error: str | None = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def _legacy_expires_at(cls, data: Any) -> Any:
+        # 旧 session JSON 无 expires_at → Pydantic default 每次给 now+24h,永不过期。
+        # 回填:基于 updated_at + ttl,让部署前的老 session 也能过期被清理。
+        if isinstance(data, dict) and "expires_at" not in data:
+            updated = data.get("updated_at")
+            if isinstance(updated, str):
+                try:
+                    updated = datetime.fromisoformat(updated)
+                except ValueError:
+                    updated = None
+            if isinstance(updated, datetime):
+                data = {**data, "expires_at": updated + timedelta(hours=DEFAULT_SESSION_TTL_HOURS)}
+        return data
 
     @classmethod
     def new(

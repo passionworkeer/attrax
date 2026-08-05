@@ -1,3 +1,4 @@
+import json
 from datetime import timedelta
 from pathlib import Path
 
@@ -128,3 +129,22 @@ def test_purge_expired_sessions_removes_uploads_and_jobs(tmp_path):
     assert backend.get_session("scan_old") is None
     assert backend.get_job("job_old") is None
     assert not Path(upload.path).exists()
+
+
+def test_legacy_session_without_expires_at_backfills_from_updated_at(tmp_path):
+    """旧 session JSON 无 expires_at -> 基于 updated_at 回填,部署前的老 session 也能过期被清理(P1-1)。"""
+    backend = FileBackend(tmp_path)
+    backend.save_session(ScanSession.new("scan_legacy", "hash", "electronics", ["EU"]))
+
+    session_path = list(backend.sessions_dir.glob("*.json"))[0]
+    data = json.loads(session_path.read_text(encoding="utf-8"))
+    data.pop("expires_at", None)
+    data["updated_at"] = (utc_now() - timedelta(days=2)).isoformat()
+    session_path.write_text(json.dumps(data), encoding="utf-8")
+
+    restored = backend.get_session("scan_legacy")
+    assert restored is not None
+    # 回填后 expires_at = updated_at(2天前) + 24h = 1天前 -> 已过期
+    assert restored.expires_at <= utc_now()
+    assert backend.purge_expired_sessions() == 1
+    assert backend.get_session("scan_legacy") is None
