@@ -298,6 +298,45 @@ def test_service_resumes_queued_job_after_restart(tmp_path):
     asyncio.run(scenario())
 
 
+def test_service_resumes_pending_retry_job_after_restart(tmp_path):
+    """retry delay 期间 restart:retry_later task 丢失,next_run_at 还在未来,
+    list_recoverable_jobs 不返回,resume_pending 通过 list_pending_retry_jobs 重新安排 delayed spawn(P1-2)。"""
+    async def scenario():
+        backend = FileBackend(tmp_path)
+        session = ScanSession.new(
+            "scan_retry",
+            hashlib.sha256(b"token").hexdigest(),
+            "electronics",
+            ["EU"],
+        )
+        backend.save_session(session)
+        upload = backend.save_upload("scan_retry", "image", "front.png", "image/png", PNG)
+        job = ScanJob.new(
+            "job_retry",
+            "scan_retry",
+            "check",
+            "charger",
+            "electronics",
+            ["EU"],
+            [upload.upload_id],
+        )
+        # 模拟一次 retry 已调度:requeued,next_run_at=now+0.1s
+        # retry_later asyncio task 假设在 pm2 restart 中丢失
+        retrying = job.requeued("TRANSIENT", delay_seconds=0.1)
+        backend.save_job(retrying)
+
+        async def runner(payload):
+            return verified_result("WARN")
+
+        service = ScanService(backend, runner=runner)
+        service.resume_pending()
+        await service.wait_for_idle()
+        assert backend.get_session("scan_retry").status == "ready"
+        assert backend.get_job("job_retry") is None
+
+    asyncio.run(scenario())
+
+
 def test_service_delete_requires_token_and_removes_all_state(tmp_path):
     async def scenario():
         gate = asyncio.Event()

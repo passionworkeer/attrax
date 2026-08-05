@@ -277,6 +277,20 @@ class FileBackend:
                     jobs.append(job)
         return sorted(jobs, key=lambda item: (item.next_run_at, item.created_at, item.job_id))
 
+    def list_pending_retry_jobs(self) -> list[ScanJob]:
+        """state=queued 且 next_run_at 还在未来的 job(retry delay 期间被重启丢失 retry_later task)。"""
+        jobs = []
+        now = utc_now()
+        with self._lock:
+            for path in self.jobs_dir.glob("*.json"):
+                try:
+                    job = ScanJob.model_validate_json(path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if job.state == "queued" and job.next_run_at > now:
+                    jobs.append(job)
+        return sorted(jobs, key=lambda item: (item.next_run_at, item.created_at, item.job_id))
+
     def append_audit(self, event: dict[str, Any]) -> None:
         payload = {
             "timestamp": utc_now().isoformat(),

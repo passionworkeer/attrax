@@ -230,8 +230,14 @@ class ScanService:
 
     def resume_pending(self) -> None:
         self.backend.purge_expired_sessions()
+        now = utc_now()
         for job in self.backend.list_recoverable_jobs():
             self._spawn(job.job_id, job.session_id)
+        # 捡回 retry delay 期间被重启的 job:retry_later asyncio task 已丢失,
+        # next_run_at 还在未来 -> list_recoverable_jobs 不返回 -> 需重新安排 delayed spawn
+        for job in self.backend.list_pending_retry_jobs():
+            delay = max(0.0, (job.next_run_at - now).total_seconds())
+            self._schedule_retry(job, delay)
 
     async def wait_for_idle(self) -> None:
         while self._tasks:
