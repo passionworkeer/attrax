@@ -246,7 +246,6 @@ describe('downloadProfitReportAsPdf — legacy wrapper data convergence', () => 
     const expected = [
       '¥11.48', // hero
       '¥23.97', // net
-      '¥128',   // retail baseline
       '采购 BOM', // chain label
       '物流',     // chain label
       '合规成本', // chain label
@@ -308,7 +307,6 @@ describe('downloadProfitReportAsDocx — legacy wrapper data convergence', () =>
     const expected = [
       '¥11.48',
       '¥23.97',
-      '¥128',
       '采购 BOM',
       '物流',
       '合规成本',

@@ -1,8 +1,4 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { appendFileSync } from "fs";
-
-const REQUEST_LOG_PATH =
-  process.env.REQUEST_LOG_PATH ?? "/opt/attrax/logs/requests.log";
 
 const SKIP_PREFIXES = [
   "/_next/",
@@ -12,103 +8,82 @@ const SKIP_PREFIXES = [
 ];
 
 function shouldSkip(pathname: string): boolean {
-  return SKIP_PREFIXES.some((p) => pathname.startsWith(p));
+  return SKIP_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 }
 
-/**
- * API routes do not render inline scripts and respond with JSON, so they
- * need the request-log pass-through but no CSP/nonce injection. Keep them
- * inside the matcher so the access log is not regressed, but skip the
- * CSP/nonce headers below for these paths.
- */
 function isApiRoute(pathname: string): boolean {
   return pathname.startsWith("/api/");
 }
 
-/**
- * Keep this policy deterministic. Per-request nonces force Next.js pages to
- * render dynamically, while cached/static HTML can retain scripts generated
- * with a different nonce. Next.js hydration currently emits inline bootstrap
- * scripts, so production pages require unsafe-inline until those scripts can
- * be hashed at build time.
- */
 function buildCsp(): string {
-  const parts = [
+  // Next.js dev mode(HMR + React 调试)需要 eval();生产保持严格,不加
+  // 'unsafe-eval' 以保 XSS 防护。dev 放宽仅供本地开发与 E2E(dev server)使用。
+  const dev = process.env.NODE_ENV !== "production";
+  return [
     `default-src 'self'`,
-    `script-src 'self' 'unsafe-inline'`,
+    `script-src 'self' 'unsafe-inline'${dev ? " 'unsafe-eval'" : ""}`,
     `style-src 'self' 'unsafe-inline'`,
     `img-src 'self' blob: data:`,
     `font-src 'self' data:`,
     `connect-src 'self'`,
+    `object-src 'none'`,
     `frame-ancestors 'none'`,
     `base-uri 'self'`,
     `form-action 'self'`,
-  ];
-  return parts.join("; ");
+    `upgrade-insecure-requests`,
+  ].join("; ");
 }
 
-export function middleware(request: NextRequest) {
-  const start = Date.now();
-  const path = request.nextUrl.pathname;
-  const method = request.method;
-
-  if (shouldSkip(path)) {
-    return NextResponse.next();
-  }
-
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    request.headers.get("x-real-ip") ??
-    "unknown";
-  const ua = request.headers.get("user-agent") ?? "unknown";
-  const referer = request.headers.get("referer") ?? "-";
-  const query = request.nextUrl.search || "-";
-  const contentLength = request.headers.get("content-length") ?? "-";
-  const acceptLang = request.headers.get("accept-language") ?? "-";
-
-  const logLine =
+function emitSafeRequestLog(request: NextRequest): void {
+  // Do not persist query strings, bearer tokens, referers, full user agents,
+  // or raw IP addresses. Runtime stdout is collected and rotated by the
+  // process manager/reverse proxy without blocking the request event loop.
+  const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
+  const contentLength = Number(request.headers.get("content-length") ?? 0);
+  const language = request.headers
+    .get("accept-language")
+    ?.split(",", 1)[0]
+    ?.slice(0, 16);
+  console.info(
     JSON.stringify({
-      ts: new Date().toISOString(),
-      method,
-      path,
-      query,
-      ip,
-      ua,
-      referer,
-      contentLength,
-      acceptLang,
-      // status/duration are observed by nginx access.log and joined on this start
-      // timestamp + client IP; admins can read nginx access.log via `sudo chmod a+r`
-      // or by adding admin to the adm group.
-    }) + "\n";
+      event: "http_request",
+      timestamp: new Date().toISOString(),
+      requestId,
+      method: request.method,
+      path: request.nextUrl.pathname,
+      contentLength:
+        Number.isFinite(contentLength) && contentLength >= 0 ? contentLength : null,
+      language: language || null,
+    }),
+  );
+}
 
-  // Best-effort: never let logging failures block the request.
-  try {
-    appendFileSync(REQUEST_LOG_PATH, logLine, { encoding: "utf-8" });
-  } catch {
-    // Silent: a failed write must not surface to clients.
+function applySecurityHeaders(response: NextResponse, apiRoute: boolean): NextResponse {
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+  );
+  response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
+  response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
+  if (!apiRoute) {
+    response.headers.set("Content-Security-Policy", buildCsp());
   }
-
-  void start;
-
-  // API routes: still served by this middleware (so request logging is not
-  // regressed), but they do not render inline scripts and respond with JSON,
-  // so no CSP/nonce is needed. Return early with the plain passthrough.
-  if (isApiRoute(path)) {
-    return NextResponse.next();
-  }
-
-  const response = NextResponse.next();
-  response.headers.set("Content-Security-Policy", buildCsp());
   return response;
 }
 
+export function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+  if (shouldSkip(path)) return NextResponse.next();
+
+  emitSafeRequestLog(request);
+  const response = NextResponse.next();
+  const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
+  response.headers.set("X-Request-Id", requestId);
+  return applySecurityHeaders(response, isApiRoute(path));
+}
+
 export const config = {
-  // Use Node.js runtime because the middleware imports `fs` (appendFileSync),
-  // which is not available in the Edge runtime.
-  runtime: "nodejs",
-  // Run for API routes and page navigations; static assets are skipped above.
-  // We keep /api in the matcher so request logging still covers it, and skip
-  // CSP/nonce injection inside the middleware body for those routes.
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

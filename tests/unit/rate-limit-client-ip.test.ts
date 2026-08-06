@@ -11,8 +11,22 @@
  * buckets instead of collapsing into a single global "unknown" bucket that
  * any single attacker could exhaust.
  */
+import { createHash } from "crypto";
 import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
 import { clientIp, resolveClientId } from "@/lib/rate-limit";
+
+// Pins the default-salt identifier digest used by lib/rate-limit.ts. Production
+// client-id functions hash IPs and cookies (never returning raw PII) before
+// they become rate-limit bucket keys, so the resolved id is a prefixed digest.
+// Keep DEFAULT_SALT in sync with lib/rate-limit.ts; if the salt or digest
+// shape changes there, this helper must change too — that is intentional.
+const DEFAULT_SALT = "attrax-rate-limit-v2";
+function digestId(prefix: "ip" | "cookie", value: string): string {
+  return `${prefix}:${createHash("sha256")
+    .update(`${DEFAULT_SALT}::${value}`)
+    .digest("hex")
+    .slice(0, 32)}`;
+}
 
 function makeRequest(headers: Record<string, string> = {}): Request {
   return new Request("http://localhost/", { headers });
@@ -56,12 +70,12 @@ describe("clientIp", () => {
         "x-real-ip": "203.0.113.5",
         "x-forwarded-for": "1.2.3.4, 10.0.0.1",
       });
-      expect(clientIp(req)).toBe("203.0.113.5");
+      expect(clientIp(req)).toBe(digestId("ip", "203.0.113.5"));
     });
 
     it("returns the leftmost XFF entry when X-Real-IP is missing", () => {
       const req = makeRequest({ "x-forwarded-for": "198.51.100.7, 10.0.0.1" });
-      expect(clientIp(req)).toBe("198.51.100.7");
+      expect(clientIp(req)).toBe(digestId("ip", "198.51.100.7"));
     });
 
     it("returns 'unknown' when X-Real-IP is whitespace and XFF is empty", () => {
@@ -71,7 +85,7 @@ describe("clientIp", () => {
 
     it("trims whitespace from X-Real-IP", () => {
       const req = makeRequest({ "x-real-ip": "  203.0.113.5  " });
-      expect(clientIp(req)).toBe("203.0.113.5");
+      expect(clientIp(req)).toBe(digestId("ip", "203.0.113.5"));
     });
 
     it("prefers X-Real-IP over a spoofed XFF from the same client", () => {
@@ -79,16 +93,16 @@ describe("clientIp", () => {
         "x-real-ip": "203.0.113.5",
         "x-forwarded-for": "999.999.999.999",
       });
-      expect(clientIp(req)).toBe("203.0.113.5");
+      expect(clientIp(req)).toBe(digestId("ip", "203.0.113.5"));
     });
 
     it("accepts '1' / 'yes' as truthy spellings", () => {
       vi.stubEnv("RATE_LIMIT_TRUST_XFF", "1");
       const req = makeRequest({ "x-real-ip": "203.0.113.5" });
-      expect(clientIp(req)).toBe("203.0.113.5");
+      expect(clientIp(req)).toBe(digestId("ip", "203.0.113.5"));
 
       vi.stubEnv("RATE_LIMIT_TRUST_XFF", "yes");
-      expect(clientIp(req)).toBe("203.0.113.5");
+      expect(clientIp(req)).toBe(digestId("ip", "203.0.113.5"));
     });
   });
 
@@ -136,7 +150,7 @@ describe("clientIp", () => {
         "user-agent": "Mozilla/5.0 Chrome/120",
         cookie: "session_id=abc123; theme=dark",
       });
-      expect(clientIp(req)).toBe("cookie:abc123");
+      expect(clientIp(req)).toBe(digestId("cookie", "session_id=abc123"));
     });
 
     it("prefers the `sid` cookie when session_id is absent", () => {
@@ -144,7 +158,7 @@ describe("clientIp", () => {
         "user-agent": "Mozilla/5.0 Chrome/120",
         cookie: "sid=xyz789",
       });
-      expect(clientIp(req)).toBe("cookie:xyz789");
+      expect(clientIp(req)).toBe(digestId("cookie", "sid=xyz789"));
     });
 
     it("falls back to 'unknown' only when UA + cookie + XFF are all absent", () => {

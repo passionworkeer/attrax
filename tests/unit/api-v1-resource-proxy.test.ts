@@ -30,7 +30,7 @@ describe("real v1 resource BFF proxies", () => {
   });
 
   it("forwards roadmap access with the browser bearer token", async () => {
-    mocks.getRoadmap.mockResolvedValue({ totalDays: 12, items: [{ id: "step-1" }] });
+    mocks.getRoadmap.mockResolvedValue({ totalDays: 12, items: [{ id: "step-1", title: "Step 1" }] });
     const { GET } = await import("@/app/api/roadmap/[sessionId]/route");
 
     const response = await GET(
@@ -65,7 +65,7 @@ describe("real v1 resource BFF proxies", () => {
       markets: ["EU"],
       createdAt: "2026-07-17T00:00:00Z",
       updatedAt: "2026-07-17T00:01:00Z",
-      result: { complianceStatus: "PASS", retrievedChunks: [] },
+      result: { complianceStatus: "PASS", complianceScore: 90, retrievedChunks: [] },
       error: null,
     });
     const { GET } = await import("@/app/api/trace/[sessionId]/route");
@@ -80,7 +80,7 @@ describe("real v1 resource BFF proxies", () => {
 
     expect(response.status).toBe(200);
     expect(body.score).toBe(90);
-    expect(body.traceNodes[0]).toMatchObject({ id: "vision", status: "success" });
+    expect(body.traceNodes[0]).toMatchObject({ id: "vision-1", status: "success" });
   });
 
   it("rejects a real resource request without a bearer token", async () => {
