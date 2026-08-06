@@ -507,7 +507,10 @@ export function createMockScanResult(
   sessionId = "demo",
   options: MockScanOptions = {}
 ): ScanResult {
-  const now = new Date().toISOString();
+  // 固定时间戳:mockScanResult 是模块级常量,SSR 与 CSR 各加载一次模块,
+  // new Date() 会产生不同的 generatedAt → hydration mismatch。固定为常量保证两侧
+  // 渲染一致。仅影响 demo/mock(真实扫描结果走 API,带真实时间戳,单侧渲染无此问题)。
+  const now = "2026-01-01T00:00:00.000Z";
   const category = options.category ?? "electronics";
   const scenario = scenarioMap[category] ?? scenarioMap.electronics;
   const markets: Market[] = options.markets?.length ? options.markets : ["EU", "UK"];

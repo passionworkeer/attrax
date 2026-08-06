@@ -1,0 +1,123 @@
+/**
+ * DEMO_MODE 本地扫描会话状态机。
+ *
+ * 背景:backend-decoupling 重构后,`/api/scan` 的 POST/GET 都改成转发 RAG 的
+ * `/api/v1/scans`(v1-adapter)。但 CI 的 e2e job 只在 DEMO_MODE 起前端、不起 RAG
+ * (RAG 需 repo 外的 FAISS 索引/语料 + ModelScope/LLM key,且 v1 `_run_job` 即使在
+ * demo_mode 也会真跑图,没有短路)。结果是 DEMO_MODE 下上传 → /api/scan 必然 502,
+ * upload-scan-result.spec.ts 的端到端链路断裂。
+ *
+ * 本模块在纯前端补回这条 demo 链路(仅 `process.env.DEMO_MODE === "true"` 时被 scan
+ * 路由调用):建一个 `scan_demo_<rand>` 会话,初始 `processing`,约 1.8s 后翻成 `ready`
+ * 并填入与 `/result/demo` 同源的 mock 结果(blaze-scan-result),让 upload → burning →
+ * result 的真实页面流转在无 RAG 时也可端到端跑通。生产(DEMO_MODE 关闭)完全不进入此路径。
+ */
+import {
+  createMockScanResult,
+} from "@/lib/mock/blaze-scan-result";
+import {
+  createMockProfitReport,
+  createMockProfitReports,
+} from "@/lib/mock/scan-result";
+import type { Market, ProductCategory, ScanStatus } from "@/lib/types";
+
+const PREFIX = "scan_demo_";
+const TTL_MS = 60 * 60 * 1000;
+const READY_DELAY_MS = 1800;
+
+interface StoredSession {
+  status: ScanStatus;
+  expiresAt: number;
+  timer?: ReturnType<typeof setTimeout>;
+}
+
+const store = new Map<string, StoredSession>();
+
+function randomSuffix(): string {
+  // 轻量随机即可(非密码学用途);避免引入 crypto 依赖。
+  return Math.random().toString(36).slice(2, 10);
+}
+
+function purgeExpired(now: number): void {
+  for (const [id, entry] of store) {
+    if (entry.expiresAt < now) {
+      if (entry.timer) clearTimeout(entry.timer);
+      store.delete(id);
+    }
+  }
+}
+
+export function isDemoScanSession(sessionId: string): boolean {
+  return sessionId.startsWith(PREFIX);
+}
+
+// 与 blaze-scan-result 内部 MockScanOptions 对齐(后者未导出,这里只挑 demo 会话
+// 需要透传给 createMockScanResult 的字段,避免改动 mock 模块)。
+export interface CreateDemoScanInput {
+  category?: ProductCategory;
+  markets?: Market[];
+  imageCount?: number;
+}
+
+export interface CreatedDemoScan {
+  sessionId: string;
+  accessToken: string;
+  status: "processing";
+  pollUrl: string;
+}
+
+export function createDemoScanSession(
+  input: CreateDemoScanInput = {},
+): CreatedDemoScan {
+  const sessionId = `${PREFIX}${Date.now().toString(36)}${randomSuffix()}`;
+  const accessToken = `demo_${randomSuffix()}${randomSuffix()}`;
+  const now = Date.now();
+
+  const initial: ScanStatus = {
+    sessionId,
+    status: "processing",
+    progress: 45,
+    stageText: "正在检索多市场法规…",
+    stageKey: "retrieval",
+    imageCount: input.imageCount,
+  };
+
+  const entry: StoredSession = {
+    status: initial,
+    expiresAt: now + TTL_MS,
+  };
+
+  entry.timer = setTimeout(() => {
+    const current = store.get(sessionId);
+    if (!current || current.expiresAt < Date.now()) return;
+    const mockResult = createMockScanResult(sessionId, input);
+    // profitReport/profitReports 放在 ScanStatus 顶层(GET /api/scan/{id} 响应),
+    // 与 result 字段(source:"demo")一起让轮询方拿到完整可渲染 + 可断言的 demo payload。
+    current.status = {
+      ...current.status,
+      status: "ready",
+      progress: 100,
+      stageText: "完成",
+      stageKey: "done",
+      result: { ...mockResult, source: "demo" },
+      profitReport: createMockProfitReport(sessionId),
+      profitReports: createMockProfitReports(sessionId),
+    };
+  }, READY_DELAY_MS);
+
+  store.set(sessionId, entry);
+  purgeExpired(now);
+
+  return { sessionId, accessToken, status: "processing", pollUrl: `/api/scan/${sessionId}` };
+}
+
+export function getDemoScanSession(sessionId: string): ScanStatus | null {
+  const entry = store.get(sessionId);
+  if (!entry) return null;
+  if (entry.expiresAt < Date.now()) {
+    if (entry.timer) clearTimeout(entry.timer);
+    store.delete(sessionId);
+    return null;
+  }
+  return entry.status;
+}

@@ -28,7 +28,7 @@ test.describe("upload scan result flow", () => {
       buffer: TEST_IMAGE,
     });
 
-    await expect(page.getByText(/1\/8 张|1\/8 images/i)).toBeVisible();
+    await expect(page.getByText(/1\/3 张已就绪|1\/3 ready/i)).toBeVisible();
 
     const submit = page.locator('button[type="submit"]');
     await expect(submit).toBeEnabled();
@@ -59,10 +59,14 @@ test.describe("upload scan result flow", () => {
 
     await page.waitForURL(new RegExp(`/result/${sessionId}$`), { timeout: 150_000 });
 
-    await expect(page.getByRole("heading", { name: new RegExp(sessionId) })).toBeVisible();
-    await expect(page.getByRole("tab", { name: /合规分析报告|Compliance Analysis Report/i })).toBeVisible();
-    await expect(page.getByRole("tab", { name: /AI 决策报告|Decision/i })).toBeVisible();
-    await expect(page.getByRole("tab", { name: /合规路线图|Compliance Roadmap/i })).toBeVisible();
+    // 结果页没有任何 heading 渲染 sessionId(主 h1 是产品名)。demo 默认 electronics
+    // 类目 → 产品名「ZGA 便携式充电器」,与 smoke/export-downloads 同 convention,
+    // 用 .first() 因为报告标题 h1 也含该产品名。
+    await expect(page.getByRole("heading", { name: /便携式充电器|Charger/i }).first()).toBeVisible();
+    // 结果页改版后无 tab 模型;合规报告区是 h3「合规分析报告」,路线图是导出卡片文本。
+    // (旧「AI 决策报告」tab 随改版移除,不再断言。)
+    await expect(page.getByRole("heading", { name: /合规分析报告|Compliance Report/i })).toBeVisible();
+    await expect(page.getByText(/合规路线图|Compliance Roadmap/i).first()).toBeVisible();
     await expect(page.getByText(/未找到对应扫描结果|扫描失败|Scan session expired/i)).toHaveCount(0);
 
     const resultResponse = await request.get(`/api/scan/${sessionId}`, {

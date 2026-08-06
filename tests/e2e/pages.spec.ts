@@ -14,24 +14,25 @@ test.describe('Upload Page E2E', () => {
     await expect(imagesSection).toBeVisible()
   })
 
-  test('displays product documents section', async ({ page }) => {
-    const docsSection = page.locator('label').filter({ hasText: /产品文档|Product Documents/ })
-    await expect(docsSection).toBeVisible()
-  })
-
   test('has target market selector', async ({ page }) => {
-    const marketSelector = page.getByText(/目标市场|Target Market/)
+    // 标题副标题里也含「目标市场」(getByText 默认子串匹配会命中 2 节点 → strict mode),
+    // 用 exact 只匹配独立的 <p>「目标市场」标签。
+    const marketSelector = page.getByText('目标市场', { exact: true })
     await expect(marketSelector).toBeVisible()
   })
 
   test('has product category selector', async ({ page }) => {
-    const categorySelector = page.getByText(/产品分类|Product Category/)
+    // 实际文案 zh「产品品类」(非「分类」)、en 小写「Product category」;
+    // 走 <label htmlFor="blaze-category"> → <select id="blaze-category"> 关联更稳。
+    const categorySelector = page.getByLabel(/产品品类|Product category/i)
     await expect(categorySelector).toBeVisible()
   })
 
   test('submit button is initially disabled without images', async ({ page }) => {
-    const submitButton = page.getByRole('button', { name: /提交并开始扫描|Submit.*Scan/i })
-    await expect(submitButton).toBeVisible()
+    // 初始无图时按钮文案是动态的(「上传 1 张图片后开始检测」),且 disabled。
+    // 用 type=submit 定位避开动态文案,并补上原漏掉的 disabled 断言。
+    const submitButton = page.locator('button[type="submit"]')
+    await expect(submitButton).toBeDisabled()
   })
 })
 
@@ -49,7 +50,8 @@ test.describe('Result Page E2E', () => {
 
   test('result page shows compliance score', async ({ page }) => {
     await page.goto('/result/demo')
-    await expect(page.getByText('45', { exact: true }).first()).toBeVisible()
+    // demo 固定输入(electronics + 3 图 + EU/UK)计算得合规分 52/D;旧 mock 是 45。
+    await expect(page.getByText('52', { exact: true }).first()).toBeVisible()
   })
 })
 

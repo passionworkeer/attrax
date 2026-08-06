@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, codex/backend-decoupling]
+    branches: [main]
   pull_request:
-    branches: [main, codex/backend-decoupling]
+    branches: [main]
   workflow_dispatch: {}
 
 concurrency:
@@ -51,12 +51,10 @@ jobs:
         run: npm run build
 
       - name: Production dependency audit
-        # advisory(非阻塞):首次启用即发现多个 high 级传递依赖漏洞
-        # (postcss / dompurify / ip-address / js-yaml / body-parser 等,经
-        # next / sharp 等构建工具链引入)。PR #2 未改 package.json,漏洞全部
-        # 预存在、非直接依赖,fix available 但升级 breaking 风险高、需单独回归。
-        # 此处保持报告可见但不卡 CI,与 backend-full job 的 advisory 模式一致;
-        # 待漏洞单独修复(npm audit fix + 回归)后移除 continue-on-error 恢复为硬门控。
+        # advisory(非阻塞):非破坏漏洞已清 —— next/postcss(override → 8.5.26)/
+        # js-yaml(override → 4.3.1)/ undici 等均经 npm audit fix 或 overrides 修复,
+        # 当前仅剩 sharp(0.34→0.35.3 breaking,影响 Next 图片优化),单独 follow-up issue
+        # 跟踪,需专属 image-optimization + build 回归后移除 continue-on-error 恢复硬门控。
         continue-on-error: true
         run: npm audit --omit=dev --audit-level=high
 
@@ -126,7 +124,8 @@ jobs:
   e2e:
     needs: [frontend, backend-unit]
     runs-on: ubuntu-latest
-    continue-on-error: true   # advisory:e2e 首次在 CI 跑(frontend 此前一直红),暴露多重预存债务 —— CSP eval 已修(smoke homepage 转绿),仍剩 hydration mismatch / 上传页 UI 选择器过时 / error-boundary 超时 / 404 页等独立问题,均非 PR #2 回归。保持 e2e 运行 + Playwright report 上传可见,不阻塞 PR;待逐项修复后移除此行恢复为硬门控。
+    # 硬门控:e2e 预存债务(hydration / 上传页选择器过时 / error-boundary 触发 / 404 路由)
+    # 已逐项修复,移除 continue-on-error 恢复为阻塞门。
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
