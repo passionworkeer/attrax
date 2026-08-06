@@ -16,6 +16,7 @@
     attrax_log_dir: /opt/attrax/logs
     backup_script_src: "../../docs/infra/backup-data.sh"
     uptime_script_src: "../../docs/infra/uptime-check.sh"
+    uptime_alert_script_src: "../../docs/infra/uptime-alert.sh"
 
   tasks:
     - name: Ensure attrax log dir exists with correct perms
@@ -160,6 +161,16 @@
       ansible.builtin.copy:
         src: "{{ uptime_script_src }}"
         dest: /opt/attrax/scripts/uptime-check.sh
+        owner: "{{ attrax_user }}"
+        group: "{{ attrax_user }}"
+        mode: '0700'
+
+    - name: Deploy uptime alert script
+      # Called by uptime-check.sh on each probe; owns the FAIL/RESOLVED webhook
+      # state machine. No separate cron — check.sh invokes it directly.
+      ansible.builtin.copy:
+        src: "{{ uptime_alert_script_src }}"
+        dest: /opt/attrax/scripts/uptime-alert.sh
         owner: "{{ attrax_user }}"
         group: "{{ attrax_user }}"
         mode: '0700'
