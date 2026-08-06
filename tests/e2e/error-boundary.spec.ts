@@ -9,6 +9,10 @@ import { expect, test } from "@playwright/test";
  *   - 副文案提到 "scan pipeline" / "previous session state"
  *   - 三个 CTA:Try again(reset)、Back to home(→ /)、Start new scan(→ /upload)
  *
+ * 注:Next 16 dev overlay 在渲染期错误时也会注入 <span class="nextjs__container_errors_label">
+ *   "Runtime Error"(大小写与 brand `<p>Runtime error</p>` 不同)。strict mode 下
+ *   `getByText("Runtime error")` 会同时命中 → 用 `{ exact: true }` 锁定 brand 文案。
+ *
  * 触发策略:访问 app/force-error/page.tsx —— 一个仅在 NODE_ENV !== "production"
  * 时渲染期抛错的专用路由。e2e 跑在 `next dev`(development)下,该路由会让 React
  * 渲染期抛错,稳定命中 app/error.tsx。
@@ -19,8 +23,8 @@ test.describe("Error boundary 兜底", () => {
   test("渲染期抛错时落到品牌化 error boundary", async ({ page }) => {
     await page.goto("/force-error");
 
-    // 品牌 error boundary 文案
-    await expect(page.getByText("Runtime error")).toBeVisible({ timeout: 15_000 });
+    // 品牌 error boundary 文案(exact 区分 brand "Runtime error" vs Next overlay "Runtime Error")
+    await expect(page.getByText("Runtime error", { exact: true })).toBeVisible({ timeout: 15_000 });
     await expect(
       page.getByRole("heading", { name: "Something caught fire." })
     ).toBeVisible();
