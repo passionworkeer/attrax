@@ -130,7 +130,7 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
 
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
-      body: buildFormData({ markets: "XX" }),
+      body: buildFormData({ markets: "EU" }),
     });
     const res = await POST(req);
 

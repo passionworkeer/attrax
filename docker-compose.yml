@@ -3,24 +3,33 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    # Nginx is the only public ingress. Never bind the application directly to
+    # all host interfaces in production.
     ports:
-      - "${WEB_PORT:-3000}:3000"
+      - "127.0.0.1:${WEB_PORT:-3000}:3000"
     environment:
       NODE_ENV: production
+      ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
       RAG_SERVICE_URL: http://rag-service:8000
       DEMO_MODE: ${DEMO_MODE:-false}
-      # When RAG_INTERNAL_SECRET is set on rag-service, set the same value
-      # here so lib/pipeline/scan.ts sends the matching X-Internal-Secret
-      # header on /scan-multipart and /profit-report calls.
-      RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:-}
+      RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:?RAG_INTERNAL_SECRET is required}
+      ATTRAX_BUILD_SHA: ${ATTRAX_BUILD_SHA:-unknown}
+      RATE_LIMIT_STORE_DIR: /app/data/rate-limit
+      RATE_LIMIT_TRUST_XFF: "true"
     volumes:
       - ./data/sessions:/app/data/sessions
+      - ./data/rate-limit:/app/data/rate-limit
       - ./public/uploads:/app/public/uploads
     depends_on:
       rag-service:
         condition: service_healthy
     restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 30s
@@ -32,32 +41,34 @@ services:
     build:
       context: .
       dockerfile: rag_service/Dockerfile
-    # PRODUCTION: prefer NOT exposing the RAG service on the host. Keep it
-    # docker-network-only (remove the port mapping) and let the web service
-    # reach it via http://rag-service:8000. The 8001:8000 mapping is kept
-    # here for local debugging convenience.
+    # Optional host access is loopback-only for operator diagnostics. The web
+    # container uses the private Docker network at rag-service:8000.
     ports:
-      - "${RAG_PORT:-8001}:8000"
+      - "127.0.0.1:${RAG_PORT:-8001}:8000"
     environment:
+      ENV: production
+      DEMO_MODE: ${DEMO_MODE:-false}
       MINIMAX_API_KEY: ${MINIMAX_API_KEY:-}
       MINIMAX_BASE_URL: ${MINIMAX_BASE_URL:-https://api.minimaxi.com/anthropic/v1}
       MINIMAX_MODEL: ${MINIMAX_MODEL:-MiniMax-M3}
       MIMOTALK_API_KEY: ${MIMOTALK_API_KEY:-}
       MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
       RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
+      RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:?RAG_INTERNAL_SECRET is required}
+      ATTRAX_BUILD_SHA: ${ATTRAX_BUILD_SHA:-unknown}
       FAISS_INDEX_DIR: /app/data/faiss
       ATTRAX_RUNTIME_DIR: /app/data/backend
-      NO_PROXY: "*"
-      # PRODUCTION: set RAG_INTERNAL_SECRET to a strong random value, and
-      # set the same value on the `web` service (RAG_INTERNAL_SECRET env).
-      # When set, write endpoints (/scan, /scan-multipart, /profit-report)
-      # require header X-Internal-Secret to match. Leave empty for local/dev.
-      RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:-}
+      NO_PROXY: "localhost,127.0.0.1,rag-service"
     volumes:
       - ./data/faiss:/app/data/faiss:ro
       - ./data/corpus/processed:/app/data/corpus/processed:ro
       - ./data/backend:/app/data/backend
     restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/ready"]
       interval: 30s

@@ -1,4 +1,15 @@
 import { createHash } from "crypto";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  readdirSync,
+  renameSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "fs";
+import { dirname, join, resolve } from "path";
 
 type Bucket = { count: number; resetAt: number };
 
@@ -7,166 +18,91 @@ declare global {
   var __rateLimitBuckets: Map<string, Bucket> | undefined;
 }
 
+const EVICT_ABOVE_SIZE = 5000;
+const DEFAULT_UA_SALT = "attrax-rate-limit-v2";
+const LOCK_STALE_MS = 10_000;
+const LOCK_RETRIES = 20;
+const LOCK_RETRY_MS = 10;
+const SLEEP_BUFFER = new Int32Array(new SharedArrayBuffer(4));
+
 function buckets(): Map<string, Bucket> {
-  if (!globalThis.__rateLimitBuckets) {
-    globalThis.__rateLimitBuckets = new Map();
-  }
+  if (!globalThis.__rateLimitBuckets) globalThis.__rateLimitBuckets = new Map();
   return globalThis.__rateLimitBuckets;
 }
-
-/** Hard cap above which stale entries get evicted on the next checkRateLimit
- *  call. Prevents unbounded growth of `__rateLimitBuckets` across days (each
- *  IP+day combo otherwise lingers until process restart). */
-const EVICT_ABOVE_SIZE = 5000;
-
-/** Default salt mixed into the anonymous fingerprint so the truncated
- *  client-id is not a pure function of public header strings (which would let
- *  an attacker precompute collision tables). Overridable via
- *  RATE_LIMIT_CLIENT_ID_SALT. */
-const DEFAULT_UA_SALT = "attrax-rate-limit-v1";
 
 function uaSalt(): string {
   return process.env.RATE_LIMIT_CLIENT_ID_SALT || DEFAULT_UA_SALT;
 }
 
-/**
- * Request-shaping headers combined into the anonymous fingerprint. The
- * User-Agent alone is trivially rotated (swap one header → fresh bucket →
- * `DAILY_FREE_SCAN_LIMIT` bypass), so we mix in the other headers a real
- * browser sends consistently. `X-Forwarded-For` / `X-Real-IP` are
- * deliberately EXCLUDED: a spoofed forwarding header must never be able to
- * shift an untrusted client's bucket (XFF-spoof hardening stays intact).
- *
- * Caveat (documented trade-off): every dimension here is still
- * client-controlled, so a determined attacker who rotates *all* of them can
- * still mint new buckets. Only the higher-priority tiers — a trusted proxy IP
- * or a server-issued session cookie — provide a hard cap. This tier exists to
- * raise the bar above "swap a single UA string" and to keep distinct browsers
- * from colliding, NOT as a complete anti-DoS control.
- */
+function digestIdentifier(value: string): string {
+  return createHash("sha256")
+    .update(`${uaSalt()}::${value}`)
+    .digest("hex")
+    .slice(0, 32);
+}
+
 const FINGERPRINT_HEADERS = [
   "user-agent",
   "accept-language",
   "accept-encoding",
 ] as const;
 
-/**
- * Build the multi-dimensional anonymous fingerprint, or `null` when none of
- * the contributing headers are present (so the caller can collapse to the
- * shared `unknown` bucket only as a genuine last resort). The raw header
- * values are never returned — only a salted, truncated SHA-256 digest.
- */
 function anonymousFingerprint(request: Request): string | null {
   const parts = FINGERPRINT_HEADERS.map(
-    (name) => request.headers.get(name)?.trim() ?? ""
+    (name) => request.headers.get(name)?.trim() ?? "",
   );
   if (parts.every((value) => value === "")) return null;
-  const digest = createHash("sha256")
-    .update([uaSalt(), ...parts].join("::"))
-    .digest("hex");
-  return `ua:${digest.slice(0, 16)}`;
+  return `ua:${digestIdentifier(parts.join("::"))}`;
 }
 
-/**
- * Whether to trust forwarding headers (X-Forwarded-For / X-Real-IP) for the
- * client IP. Default is `false` because these headers are trivially spoofable
- * by any client that can reach the app directly. Set `RATE_LIMIT_TRUST_XFF=true`
- * ONLY when the app is deployed behind a trusted reverse proxy that
- * unconditionally overwrites these headers before forwarding. Vercel and most
- * managed platforms already strip/replace XFF, so `true` is safe there.
- */
 function trustForwardedHeaders(): boolean {
   const flag = (process.env.RATE_LIMIT_TRUST_XFF ?? "").toLowerCase();
   return flag === "true" || flag === "1" || flag === "yes";
 }
 
-/**
- * Resolve the client IP used as a rate-limit key.
- *
- * Security model: by default we do NOT trust XFF / X-Real-IP — an attacker
- * sending `X-Forwarded-For: <random>` cannot reset their bucket. When the app
- * is behind a trusted reverse proxy, set `RATE_LIMIT_TRUST_XFF=true` and the
- * proxy-set headers (X-Real-IP first, then leftmost XFF) are honored.
- *
- * The function never throws; unknown connections collapse to "unknown" so the
- * fallback rate-limit bucket is shared (still bounded by `limit`).
- */
-/**
- * Resolve a stable client identifier used as a rate-limit key.
- *
- * Priority chain (first non-empty wins), strongest signal first:
- *   1. Trusted real IP (only when `RATE_LIMIT_TRUST_XFF=true`): `X-Real-IP`,
- *      then the leftmost `X-Forwarded-For` entry. This is the only tier a
- *      client cannot self-mint; honored solely behind a trusted reverse proxy
- *      that overwrites these headers (see trustForwardedHeaders). A Web
- *      `Request` exposes no raw socket peer, so the proxy-set IP is the real
- *      IP we can observe here.
- *   2. The server-issued `session_id` / `sid` cookie — one bucket per browser
- *      profile, available even when no trusted IP exists. This is what keeps
- *      the no-IP case off the global `unknown` bucket (no whole-site exhaust).
- *   3. A salted, multi-dimensional fingerprint (UA + Accept-Language +
- *      Accept-Encoding, see anonymousFingerprint). UA is no longer the sole
- *      dimension, so trivially rotating just the UA string is less effective.
- *   4. `"unknown"` — only when NONE of the above headers/cookies exist, so the
- *      shared fallback bucket is a rare edge case, never the default.
- *
- * The function never throws. XFF/X-Real-IP are ignored entirely unless XFF is
- * trusted, so a spoofed forwarding header can never reset an attacker's bucket.
- */
 export function resolveClientId(request: Request): string {
   if (trustForwardedHeaders()) {
     const realIp = request.headers.get("x-real-ip")?.trim();
-    if (realIp) return realIp;
+    if (realIp) return `ip:${digestIdentifier(realIp)}`;
     const forwarded = request.headers.get("x-forwarded-for") ?? "";
     const leftmost = forwarded.split(",", 1)[0].trim();
-    if (leftmost) return leftmost;
+    if (leftmost) return `ip:${digestIdentifier(leftmost)}`;
   }
 
-  // Cookie header: prefer our own session markers over arbitrary cookies.
-  // Server-issued cookies give one bucket per browser even with no real IP,
-  // which is what prevents anonymous traffic collapsing into `daily:unknown`.
   const cookieHeader = request.headers.get("cookie") ?? "";
   if (cookieHeader) {
-    for (const name of ["session_id", "sid"]) {
-      const match = cookieHeader.match(
-        new RegExp(`(?:^|;\\s*)${name}=([^;]+)`)
-      );
-      if (match && match[1].trim()) {
-        return `cookie:${match[1].trim()}`;
+    for (const segment of cookieHeader.split(";")) {
+      const [name, ...parts] = segment.trim().split("=");
+      const value = parts.join("=").trim();
+      if (!value) continue;
+      if (name === "session_id" || name === "sid" || name.startsWith("attrax_scan_")) {
+        return `cookie:${digestIdentifier(`${name}=${value}`)}`;
       }
     }
   }
 
-  // Multi-dimensional anonymous fingerprint (salted; raw headers never stored).
-  // Returns null only when no contributing header is present.
-  const fingerprint = anonymousFingerprint(request);
-  if (fingerprint) return fingerprint;
-
-  return "unknown";
+  return anonymousFingerprint(request) ?? "unknown";
 }
 
-/**
- * Backwards-compatible wrapper. Historical callers (e.g. scan route) use
- * `clientIp(request)` as the rate-limit key; this now delegates to
- * `resolveClientId` so the same richer identifier is used everywhere without
- * touching call sites.
- */
 export function clientIp(request: Request): string {
   return resolveClientId(request);
 }
 
-function evictExpiredBuckets(all: Map<string, Bucket>, now: number): void {
+function evictExpiredMemoryBuckets(all: Map<string, Bucket>, now: number): void {
   if (all.size <= EVICT_ABOVE_SIZE) return;
   for (const [key, bucket] of all) {
     if (bucket.resetAt <= now) all.delete(key);
   }
 }
 
-export function checkRateLimit(key: string, limit: number, windowMs: number): boolean {
-  if (process.env.NODE_ENV === "test") return true;
-  const now = Date.now();
+function checkMemoryRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number,
+  now: number,
+): boolean {
   const all = buckets();
-  evictExpiredBuckets(all, now);
+  evictExpiredMemoryBuckets(all, now);
   const current = all.get(key);
   if (!current || current.resetAt <= now) {
     all.set(key, { count: 1, resetAt: now + windowMs });
@@ -175,4 +111,139 @@ export function checkRateLimit(key: string, limit: number, windowMs: number): bo
   if (current.count >= limit) return false;
   all.set(key, { ...current, count: current.count + 1 });
   return true;
+}
+
+function storeDirectory(): string {
+  return resolve(
+    process.env.RATE_LIMIT_STORE_DIR ??
+      join(process.cwd(), "data", "rate-limit"),
+  );
+}
+
+function ensurePrivateDirectory(path: string): void {
+  mkdirSync(path, { recursive: true, mode: 0o700 });
+  try {
+    statSync(path).isDirectory();
+  } catch {
+    throw new Error("rate limit store is not a directory");
+  }
+}
+
+function sleep(ms: number): void {
+  Atomics.wait(SLEEP_BUFFER, 0, 0, ms);
+}
+
+function acquireLock(lockPath: string): boolean {
+  for (let attempt = 0; attempt < LOCK_RETRIES; attempt += 1) {
+    try {
+      mkdirSync(lockPath, { mode: 0o700 });
+      return true;
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException).code;
+      if (code !== "EEXIST") throw error;
+      try {
+        if (Date.now() - statSync(lockPath).mtimeMs > LOCK_STALE_MS) {
+          rmSync(lockPath, { recursive: true, force: true });
+          continue;
+        }
+      } catch {
+        // The lock disappeared between checks; retry immediately.
+      }
+      sleep(LOCK_RETRY_MS);
+    }
+  }
+  return false;
+}
+
+function writeBucketAtomic(path: string, bucket: Bucket): void {
+  const temporary = `${path}.${process.pid}.${Date.now()}.tmp`;
+  writeFileSync(temporary, JSON.stringify(bucket), { encoding: "utf8", mode: 0o600 });
+  renameSync(temporary, path);
+}
+
+function readBucket(path: string): Bucket | null {
+  if (!existsSync(path)) return null;
+  try {
+    const value = JSON.parse(readFileSync(path, "utf8")) as Partial<Bucket>;
+    if (
+      typeof value.count !== "number" ||
+      !Number.isInteger(value.count) ||
+      value.count < 0 ||
+      typeof value.resetAt !== "number" ||
+      !Number.isFinite(value.resetAt)
+    ) {
+      return null;
+    }
+    return { count: value.count, resetAt: value.resetAt };
+  } catch {
+    return null;
+  }
+}
+
+function evictExpiredFileBuckets(directory: string, now: number): void {
+  let names: string[];
+  try {
+    names = readdirSync(directory).filter((name) => name.endsWith(".json"));
+  } catch {
+    return;
+  }
+  if (names.length <= EVICT_ABOVE_SIZE) return;
+  for (const name of names) {
+    const path = join(directory, name);
+    const bucket = readBucket(path);
+    if (!bucket || bucket.resetAt <= now) rmSync(path, { force: true });
+  }
+}
+
+function checkSharedFileRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number,
+  now: number,
+): boolean {
+  const directory = storeDirectory();
+  ensurePrivateDirectory(directory);
+  const id = createHash("sha256").update(key).digest("hex");
+  const path = join(directory, `${id}.json`);
+  const lockPath = `${path}.lock`;
+  if (!acquireLock(lockPath)) return false;
+
+  try {
+    evictExpiredFileBuckets(directory, now);
+    const current = readBucket(path);
+    if (!current || current.resetAt <= now) {
+      writeBucketAtomic(path, { count: 1, resetAt: now + windowMs });
+      return true;
+    }
+    if (current.count >= limit) return false;
+    writeBucketAtomic(path, { count: current.count + 1, resetAt: current.resetAt });
+    return true;
+  } finally {
+    rmSync(lockPath, { recursive: true, force: true });
+  }
+}
+
+export function checkRateLimit(
+  key: string,
+  limit: number,
+  windowMs: number,
+): boolean {
+  if (process.env.NODE_ENV === "test") return true;
+  if (!Number.isInteger(limit) || limit <= 0 || !Number.isFinite(windowMs) || windowMs <= 0) {
+    return false;
+  }
+  const now = Date.now();
+  if (process.env.NODE_ENV !== "production") {
+    return checkMemoryRateLimit(key, limit, windowMs, now);
+  }
+  try {
+    return checkSharedFileRateLimit(key, limit, windowMs, now);
+  } catch (error) {
+    console.error("rate_limit_store_failure", {
+      message: error instanceof Error ? error.message : String(error),
+      directory: dirname(storeDirectory()),
+    });
+    // Cost-control boundary: fail closed when the shared store is unavailable.
+    return false;
+  }
 }
