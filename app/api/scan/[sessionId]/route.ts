@@ -27,6 +27,7 @@ import {
 import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
 import { ok, fail } from "@/lib/api-response";
 import { createMockComplianceReportResult } from "@/lib/mock/scan-result";
+import { getDemoScanSession } from "@/lib/pipeline/demo-scan-session";
 import type { ScanStatus } from "@/lib/types";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 
@@ -51,6 +52,13 @@ export async function GET(
       result: { ...mockResult, source: "demo" },
     };
     return ok(demoStatus);
+  }
+
+  // DEMO_MODE 下前端创建的 scan_demo_* 会话(见 demo-scan-session 状态机)。
+  // 无需 access token —— demo 会话不经过 RAG,纯前端内存态。
+  const demoScanStatus = getDemoScanSession(sessionId);
+  if (demoScanStatus) {
+    return ok(demoScanStatus);
   }
 
   const accessToken = backendAccessTokenFromRequest(request, sessionId);

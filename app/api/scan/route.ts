@@ -15,6 +15,8 @@ import {
   MAX_DOCUMENT_FILES,
   MAX_IMAGE_FILES,
 } from "@/lib/constants";
+import { createDemoScanSession } from "@/lib/pipeline/demo-scan-session";
+import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -164,6 +166,36 @@ export async function POST(request: Request): Promise<Response> {
   ]);
 
   try {
+    // DEMO_MODE:不走 RAG(CI e2e 与无后端本地预览场景)。用纯前端 demo 会话状态机
+    // 跑通 upload → burning → result 链路,result 标 source:"demo"。生产关闭
+    // DEMO_MODE 时完全不进入此分支,继续走下方真实 v1-adapter 路径。
+    if (process.env.DEMO_MODE === "true") {
+      const created = createDemoScanSession({
+        category: category as ProductCategory,
+        markets: markets as Market[],
+        imageCount: images.length,
+      });
+      const demoPayload: {
+        sessionId: string;
+        status: "processing";
+        pollUrl: string;
+        accessToken?: string;
+      } = {
+        sessionId: created.sessionId,
+        status: created.status,
+        pollUrl: created.pollUrl,
+      };
+      if (process.env.NODE_ENV !== "production") {
+        demoPayload.accessToken = created.accessToken;
+      }
+      const demoResponse = ok(demoPayload, { status: 202 });
+      demoResponse.headers.append(
+        "Set-Cookie",
+        backendSessionCookie(created.sessionId, created.accessToken),
+      );
+      return demoResponse;
+    }
+
     const created = await createScan({
       query,
       product,
