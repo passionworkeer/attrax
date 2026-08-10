@@ -1,8 +1,14 @@
 /**
  * GET /api/health — Frontend health check
  *
- * Probes both the Next.js server itself (liveness) and the RAG service (readiness).
- * Frontend components can call this before enabling certain features.
+ * Probes the Next.js server itself (liveness, by virtue of serving this route)
+ * and the RAG service's **readiness** (`/ready`, not `/health`). RAG `/health` is
+ * a liveness probe that returns 200 whenever the process can serve HTTP — a
+ * half-broken RAG (process up but FAISS/BM25 not loaded, the 2026-07-18 failure
+ * mode) would look "ok" and mask the outage. `/ready` returns 200 only when the
+ * gate checks pass (bm25 / minimax key / config / scan_service) and 503 otherwise,
+ * so this route surfaces real degradation. The restart window (~30-60s, /ready
+ * 503 while deps reload) is absorbed by the uptime-alert state machine.
  */
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -13,14 +19,12 @@ const HEALTH_TIMEOUT_MS = 5_000;
 export const runtime = "nodejs";
 
 /**
- * Minimal schema for the RAG /health response. We only consume `status` /
- * `demo_mode`; everything else is ignored. RAG returning malformed JSON or an
- * unexpected shape degrades to `unreachable` rather than throwing a 500.
+ * Minimal schema for the RAG `/ready` response. We only consume `ready`;
+ * `checks` / `version` are tolerated silently. Malformed JSON or an unexpected
+ * shape degrades to `error` rather than throwing a 500.
  */
-const RagHealthSchema = z.object({
-  status: z.string(),
-  demo_mode: z.boolean().optional(),
-  // Tolerate extra fields silently (the RAG service exposes faiss_index, etc.)
+const RagReadySchema = z.object({
+  ready: z.boolean(),
 }).passthrough();
 
 export async function GET() {
@@ -40,7 +44,7 @@ export async function GET() {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), HEALTH_TIMEOUT_MS);
 
-    const resp = await fetch(`${RAG_SERVICE_URL}/health`, {
+    const resp = await fetch(`${RAG_SERVICE_URL}/ready`, {
       signal: controller.signal,
     });
 
@@ -48,16 +52,20 @@ export async function GET() {
     result.ragService.responseTimeMs = Date.now() - start;
 
     if (resp.ok) {
-      const parsed = RagHealthSchema.safeParse(await resp.json());
+      const parsed = RagReadySchema.safeParse(await resp.json());
       if (parsed.success) {
-        result.ragService.status = parsed.data.status;
+        result.ragService.status = parsed.data.ready ? "ok" : "error";
+        if (!parsed.data.ready) {
+          result.ragService.error = "RAG dependencies not ready";
+        }
       } else {
         // RAG responded 2xx but with an unexpected body — treat as unhealthy
         // so a half-broken RAG does not silently look "ok".
         result.ragService.status = "error";
-        result.ragService.error = "invalid health response shape";
+        result.ragService.error = "invalid readiness response shape";
       }
     } else {
+      // /ready returns 503 (with a checks body) when a gate check fails.
       result.ragService.status = "error";
       result.ragService.error = `HTTP ${resp.status}`;
     }
@@ -69,9 +77,7 @@ export async function GET() {
     }
   }
 
-  const allOk =
-    result.frontend === "ok" &&
-    (result.ragService.status === "ok" || result.ragService.status === "DEMO");
+  const allOk = result.frontend === "ok" && result.ragService.status === "ok";
 
   return NextResponse.json(result, { status: allOk ? 200 : 503 });
 }

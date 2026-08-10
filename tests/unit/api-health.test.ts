@@ -1,6 +1,9 @@
 /**
- * Tests for GET /api/health — frontend liveness + RAG service readiness probe.
- * Pattern follows tests/unit/api-scan-session-full.test.ts.
+ * Tests for GET /api/health — frontend liveness + RAG service **readiness** probe.
+ *
+ * The route probes RAG `/ready` (not `/health`): a 200 with `{ready:true}` is the
+ * only healthy state. `{ready:false}` (200 body but deps not loaded) and HTTP 503
+ * (gate check failed) both surface as 503 here.
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
@@ -26,10 +29,10 @@ async function callHealth() {
 }
 
 describe("GET /api/health", () => {
-  it("returns 200 + frontend ok + rag ok when RAG responds with status=ok", async () => {
+  it("returns 200 + rag ok when RAG /ready reports ready=true", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ status: "ok", faiss_index: "loaded" }),
+      json: async () => ({ ready: true, checks: { bm25: true }, version: "1" }),
     });
     const res = await callHealth();
     expect(res.status).toBe(200);
@@ -40,15 +43,16 @@ describe("GET /api/health", () => {
     expect(body.ragService.error).toBeNull();
   });
 
-  it("returns 200 when RAG reports DEMO status (acceptable degraded state)", async () => {
+  it("returns 503 + status=error when RAG /ready reports ready=false (deps not loaded)", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ status: "DEMO", faiss_index: "missing" }),
+      json: async () => ({ ready: false, checks: { bm25: false } }),
     });
     const res = await callHealth();
-    expect(res.status).toBe(200);
+    expect(res.status).toBe(503);
     const body = await res.json();
-    expect(body.ragService.status).toBe("DEMO");
+    expect(body.ragService.status).toBe("error");
+    expect(body.ragService.error).toContain("not ready");
   });
 
   it("returns 503 + status=unreachable when RAG fetch throws", async () => {
@@ -61,7 +65,20 @@ describe("GET /api/health", () => {
     expect(body.ragService.error).toContain("ECONNREFUSED");
   });
 
-  it("returns 503 + status=error when RAG returns non-ok HTTP", async () => {
+  it("returns 503 + status=error when RAG /ready returns 503 (gate failed)", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      status: 503,
+      json: async () => ({ ready: false, checks: {} }),
+    });
+    const res = await callHealth();
+    expect(res.status).toBe(503);
+    const body = await res.json();
+    expect(body.ragService.status).toBe("error");
+    expect(body.ragService.error).toContain("HTTP 503");
+  });
+
+  it("returns 503 + status=error on any other non-ok HTTP", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
       status: 500,
@@ -87,7 +104,7 @@ describe("GET /api/health", () => {
   it("includes the current timestamp in the response", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ status: "ok", faiss_index: "loaded" }),
+      json: async () => ({ ready: true }),
     });
     const res = await callHealth();
     const body = await res.json();
@@ -100,7 +117,7 @@ describe("GET /api/health", () => {
     process.env.DEMO_MODE = "true";
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ status: "ok", faiss_index: "loaded" }),
+      json: async () => ({ ready: true }),
     });
     const res = await callHealth();
     const body = await res.json();
@@ -110,21 +127,21 @@ describe("GET /api/health", () => {
   it("reports demoMode=false by default", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ status: "ok", faiss_index: "loaded" }),
+      json: async () => ({ ready: true }),
     });
     const res = await callHealth();
     const body = await res.json();
     expect(body.demoMode).toBe(false);
   });
 
-  it("uses the configured RAG_SERVICE_URL env var", async () => {
+  it("probes the RAG /ready endpoint (not /health)", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
-      json: async () => ({ status: "ok", faiss_index: "loaded" }),
+      json: async () => ({ ready: true }),
     });
     await callHealth();
     expect(mockFetch).toHaveBeenCalledWith(
-      "http://rag.test:9999/health",
+      "http://rag.test:9999/ready",
       expect.objectContaining({ signal: expect.any(AbortSignal) }),
     );
   });
