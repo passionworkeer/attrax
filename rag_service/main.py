@@ -69,7 +69,7 @@ CHILD_INDEX = str(FAISS_INDEX_DIR / "legal_chunks.index")
 CHILD_META = str(FAISS_INDEX_DIR / "legal_chunks_meta.json")
 
 _retriever: Optional[HybridRetriever] = None
-# Worker count comes from settings.scan_worker_concurrency (default 8) so
+# Worker count comes from settings.scan_worker_concurrency (default 5) so
 # the 8-market fan-out doesn't serialize behind a single in-flight scan.
 _executor = ThreadPoolExecutor(
     max_workers=settings.scan_worker_concurrency
