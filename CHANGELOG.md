@@ -2,6 +2,39 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## 2026-08-13 — commit `566c4ae` — 文档对账 + 7-21~8-10 部署回写
+
+**背景**:对抗性审查发现 `docs/SERVER-VERSION.md` 滞留在 2026-07-20 的 `f167767`,而服务器 `.deployed` 实际已是 `566c4ae`(2026-08-10 10:22 build)。中间 12 个 commit 已部署但未回写文档。本次只改文档对齐真值,无代码改动。
+
+**服务器真值(SSH `cat /opt/attrax/.next/standalone/.deployed`)**:
+- commit=`566c4ae` / commit_full=`566c4ae3af7bafad498568767031c51d26927ac9`
+- build_id=`WB3ldfLOxeBRK3xWwClDv` / branch=`main` / ref=`origin/main`
+- built_at=`2026-08-10T10:22:50+08:00`
+- 探活:前端 `/api/health`=200/6ms;RAG `:8001/health`=`ok`/`demo_mode=false`/`embedding=modelscope_api`/`dense_dim_mismatch_count=0`
+
+**7-21 ~ 8-10 已部署的 12 个 commit(此前未回写 CHANGELOG,现补登)**:
+
+| commit | 主题 |
+|---|---|
+| `4a00ef3` | docs(server):同步线上真值到 f167767 + trace [sessionId] 部署 |
+| `841d880` | fix(frontend):修 35/D 单一问题 — HIGH 不再折成 critical + mock 按 preset 给分数梯度 |
+| `b7bf784` | feat(frontend):add uploaded-image 2.5D 扫描阶段 |
+| `86fc2fd` | merge:合并 origin/codex/upload-image-stage(前端 2.5D 扫描阶段) |
+| `aee801d` | fix(profit-page):真实后端扫描利润页不再用 mock 兜底 |
+| `e851f20` | feat(result-page):结果页加利润摘要条 + 利润页 bare 模式加风险 caveat |
+| `edb49ae` | refactor(export):利润页 PDF/DOCX 改走 RenderModel,字符与前端一致 |
+| `da3f816` | fix(export):利润页 PDF/DOCX 白底白字显示空白,小卡片改白底,成本利润说明走统一 RenderModel |
+| `0615689` | docs:define actual financial report integrity |
+| `25f9604` | fix(profit):财务报告真实数据闭环,停用 Markdown 猜测与固定 ¥128 |
+| `8563cd2` | fix(backend):scan 合规整改 + 队列安全 + 诚实输出(P0-1/P1-1/P1-2) |
+| `566c4ae` | fix(ci):清零 CI/CD 暴露的 e2e/audit 债务 + 补服务器健康监控告警 (#4) |
+
+**主线主题**:
+1. **利润导出统一**(`edb49ae`/`da3f816`):新增 `ProfitRenderModel` 作为页面 + PDF/DOCX 唯一真值源,修白底白字 + 两入口数字不一致。
+2. **财务报告诚实化**(`25f9604`):真实扫描不再用正则从 markdown 猜金额 / 固定 ¥128 兜底;`synthesizeFinancialSummaryIfMissing` 在缺结构化字段时返回 null(诚实降级),而非伪造。
+3. **scan 后端整改**(`8563cd2`):P0-1 降级红色 banner + degradedReason 暴露;P1-1 accessTokenHash 防覆盖;P1-2 withWriteLock 串行化 + enqueueScan 失败回滚。
+4. **CI 债务清零**(`566c4ae`,PR #4):e2e/audit 暴露的债务清零 + 补服务器健康监控告警。
+
 ## 2026-07-20 — commit `6bce766` — 8 个用户可见 bug + 93 CI 测试债 → 0
 
 **部署**:BUILD_ID `8MPBvunubBpYuqCrC_gW4`(上一个 `ekmjiomccTcAos50wKnTw`)。

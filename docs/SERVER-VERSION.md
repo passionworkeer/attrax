@@ -1,36 +1,43 @@
-# 服务器版本对账 — 2026-07-20
+# 服务器版本对账 — 2026-08-13
 
 > 服务器 `203.0.113.10` 当前跑的是哪份代码?跟哪个 git ref 一致?
 > 改了之后怎么知道已经同步?出问题时怎么回到上一个状态?
 
 ## 1. 当前线上版本
 
-> **2026-07-20 10:07 重新核对**(SSH 实地 `cat .deployed` + 端到端真实扫描测试)。
+> **2026-08-13 重新核对**(SSH 实地 `cat /opt/attrax/.next/standalone/.deployed` + `/api/health` + `:8001/health` 探活)。
 > `.deployed` 治本机制上线后,`cat /opt/attrax/.next/standalone/.deployed` 一次拿到 commit + BUILD_ID + ref,无需手动维护本文版本块(治本 `edb2431` 落地的设计)。
+> **本文档此前滞留在 `f167767`(2026-07-20)**;7-21 ~ 8-10 期间又部署了 12 个 commit(利润 PDF/DOCX 改走统一 RenderModel、财务报告真实数据闭环、scan 合规整改 P0-1/P1-1/P1-2、CI 债务清零 PR #4),但未回写本文档。现按 `.deployed` 真值对齐到 `566c4ae`。
 
 | 项 | 值 |
 |---|---|
 | 服务器 | `admin@203.0.113.10` (ssh 端口默认 22, ed25519 密钥) |
 | 部署目录 | `/opt/attrax/` |
-| 当前 BUILD_ID | `XCbWYaXVfxE-6IUMnjs_c` |
-| 对应 commit | `f167767` (codex/backend-decoupling) |
-| 对应 git ref | `origin/codex/backend-decoupling` |
+| 当前 BUILD_ID | `WB3ldfLOxeBRK3xWwClDv` |
+| 对应 commit | `566c4ae` (main) |
+| 对应 git ref | `origin/main` |
+| 构建时间(built_at) | `2026-08-10T10:22:50+08:00` |
 | 部署标识文件 | `/opt/attrax/.next/standalone/.deployed` (`build-deploy-tarball.sh` 自动写入,见 §6) |
-| 上一版 BUILD_ID(回滚点) | `8MPBvunubBpYuqCrC_gW4` (apply 备份 `.next/standalone-pre-fix-20260720-100726`) |
-| 当前 commit message | `feat(trace): 加 /trace/[sessionId] 路径参数版 + CHANGELOG` |
-| 端到端验证(7-20 上午) | 65W 充电器图 POST /api/scan → 11 次轮询 55 秒 → status=ready, score=35/D(charger 缺图高危),全链路工作 |
+| 上一版 BUILD_ID(回滚点) | `XCbWYaXVfxE-6IUMnjs_c` (commit `f167767`, 2026-07-20, apply 备份 `.next/standalone-pre-fix-20260720-100726`) |
+| 当前 commit message | `fix(ci): 清零 CI/CD 暴露的 e2e/audit 债务 + 补服务器健康监控告警 (#4)` |
+| 服务探活(8-13) | 前端 `/api/health`=200/6ms;RAG `:8001/health`=`status=ok, demo_mode=false, embedding_provider=modelscope_api, dense_dim_mismatch_count=0`;内存 available ~402MB / 磁盘 47% |
 
 ## 2. git ref 关系图
 
 ```
+origin/main (当前部署主干,2026-08-10 起)
+└── 566c4ae (当前线上:清零 CI/CD 暴露的 e2e/audit 债务 + 补服务器健康监控告警,PR #4)
+    ↑
+    └── 服务器 /opt/attrax/.next/standalone 源码 = 这个 commit
+        BUILD_ID = WB3ldfLOxeBRK3xWwClDv (本地 2026-08-10 10:22 build)
+        标识文件 /opt/attrax/.next/standalone/.deployed: commit=566c4ae / ref=origin/main
+
+历史部署链(2026-07,origin/codex/backend-decoupling 主干,现已全部并入 main):
 origin/codex/backend-decoupling
-└── 83890ae (上一版:standalone 部署补 static+public staging,根治整站 CSS 404 裸奔)
-    └── 6bce766 (修 8 个用户可见 bug + 93 CI 测试债 → 0;npm run build ✓,npx vitest run 943/943 ✓;详见 CHANGELOG.md)
-        └── f167767 (当前:加 /trace/[sessionId] 路径参数版 + CHANGELOG.md)
-            ↑
-            └── 服务器 /opt/attrax/.next/standalone 源码 = 这个 commit
-                BUILD_ID = XCbWYaXVfxE-6IUMnjs_c (本地 2026-07-20 10:06 build)
-                标识文件 /opt/attrax/.next/standalone/.deployed 自动写入(.deployed 治本机制落地)
+└── 83890ae (standalone 部署补 static+public staging,根治整站 CSS 404 裸奔)
+    └── 6bce766 (修 8 个用户可见 bug + 93 CI 测试债 → 0;npx vitest run 943/943 ✓;详见 CHANGELOG.md)
+        └── f167767 (上一版线上:加 /trace/[sessionId] 路径参数版;BUILD_ID=XCbWYaXVfxE-6IUMnjs_c,2026-07-20 10:06 build)
+            ↑ 7-21 ~ 8-10 之间又并入 12 个 commit(利润 PDF/DOCX 改走统一 RenderModel / 财务真实数据闭环 / scan 合规整改 P0-1·P1-1·P1-2 / CI 债务清零),并入 origin/main 后于 2026-08-10 部署到服务器
 ```
 
 > 服务器 `/opt/attrax` 不是 git repo (tarball 部署)。
@@ -44,7 +51,7 @@ origin/codex/backend-decoupling
 ```bash
 # 0. 最快对账:读 .deployed 标识(一次拿到 commit + BUILD_ID + ref)
 ssh admin@203.0.113.10 'cat /opt/attrax/.next/standalone/.deployed'
-# 期望: commit=83890ae / build_id=ekmjiomccTcAos50wKnTw / ref=origin/codex/backend-decoupling
+# 期望(2026-08-13 实测): commit=566c4ae / build_id=WB3ldfLOxeBRK3xWwClDv / branch=main / ref=origin/main
 
 # 1. 服务器 BUILD_ID
 ssh admin@203.0.113.10 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
@@ -184,6 +191,7 @@ ssh admin@203.0.113.10 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
 *文档创建于 2026-07-18 14:30 CST*
 *2026-07-19 22:56 CST 重新核对更新(SSH 实地校验)*
 *2026-07-20 10:08 CST 重新核对(SSH cat .deployed + 端到端真实扫描测试)*
-*当前 commit: f167767 (origin/codex/backend-decoupling)*
-*对应 BUILD_ID: XCbWYaXVfxE-6IUMnjs_c*
+*2026-08-13 CST 重新核对(SSH cat .deployed + /api/health + :8001/health 探活;发现本文档滞后 12 个 commit,对齐真值)*
+*当前 commit: 566c4ae (origin/main)*
+*对应 BUILD_ID: WB3ldfLOxeBRK3xWwClDv*
 *标识文件 /opt/attrax/.next/standalone/.deployed 已自动落地(治本机制)

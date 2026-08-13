@@ -323,7 +323,7 @@ const StartScanRequestSchema = z.object({
 |------|------|
 | `RAG_ALLOWED_ORIGINS` | CORS 白名单（逗号分隔） |
 | `FAISS_INDEX_DIR` | FAISS 索引目录覆盖（默认 `data/faiss/`） |
-| `SCAN_WORKER_CONCURRENCY` | 扫描 worker 并发数（默认 **8**，见 `config.py`；旧文档误写 1） |
+| `SCAN_WORKER_CONCURRENCY` | 扫描 worker 并发数（默认 **5**，见 `config.py`） |
 
 ---
 

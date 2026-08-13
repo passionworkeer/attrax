@@ -51,11 +51,13 @@ def test_file_backend_rejects_tampered_upload_path_and_digest(tmp_path):
     backend = FileBackend(tmp_path)
     upload = backend.save_upload("scan_01", "image", "front.jpg", "image/jpeg", b"safe")
     metadata_path = tmp_path / "uploads" / "scan_01" / f"{upload.upload_id}.json"
-    metadata = metadata_path.read_text(encoding="utf-8")
-    metadata_path.write_text(
-        metadata.replace(str(Path(upload.path)), str(tmp_path / "other" / upload.stored_name)),
-        encoding="utf-8",
-    )
+    # 篡改持久化 metadata 的 path 字段。必须走 JSON 解析,不能用字符串 replace:
+    # Windows 上存的反斜杠路径在 JSON 文件里被转义成 "\\",naive 的 str.replace
+    # 搜索单反斜杠会失配 → 篡改静默不生效 → 测试在不真正验证守卫的情况下假通过。
+    # json 往返可在所有 OS 上真正改写该字段。
+    payload = json.loads(metadata_path.read_text(encoding="utf-8"))
+    payload["path"] = str(tmp_path / "other" / upload.stored_name)
+    metadata_path.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
 
     try:
         backend.read_upload("scan_01", upload.upload_id)
