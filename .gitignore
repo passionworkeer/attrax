@@ -135,6 +135,8 @@ embedding_cache/
 
 # ─── Local Claude/worktree artifacts ─────────────────────────
 .claude/
+# playwright MCP 临时文件（每次 browser_navigate/screenshot 都会生成）
+.playwright-mcp/
 
 # ─── Nested local repository copy ────────────────────────────
 attrax/
