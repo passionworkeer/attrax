@@ -1,4 +1,8 @@
 # =============================================================================
+
+# ⚠️ 2026-09-10 改名自 requirements.txt（审计 1.7）：
+# 这是历史全量依赖快照（500+ 包），**请勿安装**。
+# 安装请用：pip install -r requirements-prod.txt（生产）/ requirements-dev.txt（测试）
 # ⚠️  DO NOT `pip install` this file for the Attrax RAG service.
 # This is a full-machine `pip freeze` snapshot (~550 pkgs) from a dev
 # workstation, NOT the project's real dependency set. It includes
@@ -75,7 +79,6 @@ cloudpickle==3.1.0
 cma==4.3.0
 cmake==4.3.1
 cobble==0.1.4
-cohere==6.1.0
 coincurve==21.0.0
 colorama==0.4.6
 coloredlogs==15.0.1

@@ -50,7 +50,6 @@ requests==2.32.5             # 内部辅助（如 regulation_collectors 调 Powe
 openai>=2.0.0                # ModelScopeEmbedder 通过 OpenAI 兼容 SDK 调 Qwen3-Embedding API
 
 # ── 可选 Embedder（Cohere，由 settings 控制） ────────────────────────────────
-cohere==6.1.0                # HybridRetriever 中作为可选 embedder（默认未启用）
 
 # ── 嵌入式并发 / 工具 ────────────────────────────────────────────────────────
 anyio==4.10.0                # FastAPI 内部依赖

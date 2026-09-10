@@ -245,6 +245,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
 
   describe("Response shape", () => {
     it("returns sessionId, status, pollUrl, and accessToken at top level (ok() spread)", async () => {
+    vi.stubEnv("ATTRAX_DEBUG_TOKEN", "1"); // 审计 3.4：token 仅显式 opt-in 时进响应体
       mockCreateScan.mockResolvedValueOnce({
         sessionId: "scan_unique",
         accessToken: "tok_unique",
@@ -263,6 +264,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       expect(body.pollUrl).toBe("/api/scan/scan_unique"); // remapped from /api/v1/...
       expect(body.accessToken).toBe("tok_unique");
       expect(body.success).toBe(true);
+      vi.unstubAllEnvs();
     });
 
     it("returns unique sessionId per request", async () => {

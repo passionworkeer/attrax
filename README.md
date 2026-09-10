@@ -167,7 +167,6 @@ Query → ┌─→ Faiss Dense (向量相似度)
          Must-Check 强制注入
          (按产品类别注入必须检查的法规)
               ↓
-         RRF 结果直接返回（cohere_reranker 已实现但未接入管线）
 ```
 
 #### 4. Must-Check 强制注入机制
@@ -212,7 +211,6 @@ QueryPlanner → [EU] → Fan-out
 | 维度 | 本项目方案 | 传统方案 |
 |------|-----------|---------|
 | Embedding | ModelScope API → Ollama → BM25 多级降级 | 仅 API |
-| Rerank | 已实现但未接入管线（cohere_reranker.py 存在，未调用） | 单一向量检索 |
 | 分块 | Parent-Child + 法律条款边界 | 固定 token |
 | 融合 | RRF (k=25) + Must-Check | 单一向量检索 |
 | 验证 | NLI 软门（归因分数 0.9/0.5/0） | 无 |
@@ -361,8 +359,6 @@ attrax/
 │   │   ├── metadata_filter.py    # 元数据过滤
 │   │   ├── modelScope_embedder.py # ModelScope API embedding（生产路径）
 │   │   ├── ollama_embedder.py    # Ollama embedding（fallback）
-│   │   ├── cohere_embedder.py    # Cohere embedding（默认未启用）
-│   │   └── cohere_reranker.py    # ⚠️ 已实现但未接入管线
 │   ├── verify/citation_verifier.py  # NLI 归因分数软门
 │   ├── generate/
 │   │   ├── report_generator.py   # MiniMax-M3 报告生成器
@@ -505,7 +501,6 @@ attrax/
 3. RRF 融合（k=25）
 4. Must-Check 强制注入
 5. 区域过滤（EU/US/CN 等）
-6. RRF 结果直接作为 Top-K 返回（cohere_reranker 已实现但未接入管线）
 
 ### LegalChunker - 法律分块
 
@@ -721,8 +716,6 @@ RULES = {
 |------|------|
 | **无持久化** | 会话仅存储 1 小时（内存 + 文件 TTL），无数据库 |
 | **无用户系统** | 无登录/注册/权限控制（Demo 模式有访问 token 校验） |
-| **cohere_reranker 未接入** | `cohere_reranker.py` 已实现，管线中未调用 |
-| **cohere_embedder 默认未启用** | 切到 ModelScope + Ollama 路径 |
 | **requirements.txt 冗余** | `rag_service/requirements.txt` 含 500+ 条，核心仅 20 个 |
 | **数据冗余** | 已清理 `data/全部法规/` 和 `data/合规/`（2026-05） |
 | **无多语言报告** | 报告目前仅中文输出 |

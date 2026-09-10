@@ -222,7 +222,12 @@ def generator_node(state: GraphState) -> dict:
         "generation_length": len(generation),
         "duration_ms": duration_ms,
     }
-    full_trace = state.get("agent_trace", []) + [trace_entry]  # full trace for report_package only
+    # ⚠️ 维护红线（2026-06-29 审计 / 2026-09-10 复核）：
+    # full_trace 仅用于 report_package 展示。graph state 的 agent_trace 是
+    # add-only reducer —— 节点 MUST 只返回新增条目（见 state.py 头注）。
+    # 把 full_trace return 进 state 会在 Send() fan-out × refine 循环下
+    # 乘法级复制 trace（曾出 32k+ entries 的 P0 事故）。勿改。
+    full_trace = state.get("agent_trace", []) + [trace_entry]
 
     if report_package:
         report_package = normalize_report_package(

@@ -13,6 +13,10 @@
  * Failures here must never block a scan: every disk write is best-effort and
  * logged to console if it fails.
  */
+/**
+ * @deprecated 2026-09-10 旧本地扫描管线(scan.ts/scan-queue.ts)已删除;生产上传走 RAG 服务 FileBackend(rag_service/infrastructure/file_backend.py)。
+ * 本模块仅剩 session-store 的 removeAllUploads 兼容用途,勿在新代码中引用。
+ */
 import { createHash } from "crypto";
 import {
   existsSync,
