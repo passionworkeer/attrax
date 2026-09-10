@@ -356,12 +356,16 @@ export function createMockScanResult(
   // (charger 45/D / humidifier 65/C / toy 50/C),避免 45/D 写死,demo
   // 路径有梯度。
   const scoreByCategory: Record<ProductCategory, { score: number; grade: ScoreGrade; name: string; nameEn: string }> = {
-    electronics: { score: 45, grade: "D", name: "ZGA 便携式充电器", nameEn: "ZGA Portable Charger" },
-    appliance:   { score: 65, grade: "C", name: "USB 智能加湿器",   nameEn: "USB Smart Humidifier" },
-    "3c":        { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
-    toy:         { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
-    home:        { score: 70, grade: "B", name: "Aurora 桌面香薰灯", nameEn: "Aurora Aromatherapy Lamp" },
-    other:       { score: 60, grade: "B", name: "通用 SKU",         nameEn: "Generic SKU" },
+    electronics:  { score: 45, grade: "D", name: "ZGA 便携式充电器", nameEn: "ZGA Portable Charger" },
+    appliance:    { score: 65, grade: "C", name: "USB 智能加湿器",   nameEn: "USB Smart Humidifier" },
+    "3c":         { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    toy:          { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    home:         { score: 70, grade: "B", name: "Aurora 桌面香薰灯", nameEn: "Aurora Aromatherapy Lamp" },
+    battery:      { score: 42, grade: "D", name: "便携储能锂电池组", nameEn: "Portable Lithium Power Station" },
+    cosmetic:     { score: 48, grade: "D", name: "水润保湿精华液",   nameEn: "Hydrating Facial Serum" },
+    textile:      { score: 62, grade: "C", name: "纯棉儿童连体衣",   nameEn: "Cotton Infant Bodysuit" },
+    food_contact: { score: 66, grade: "C", name: "食品级硅胶保鲜盒", nameEn: "Food-grade Silicone Container" },
+    other:        { score: 60, grade: "B", name: "通用 SKU",         nameEn: "Generic SKU" },
   };
   const profile = scoreByCategory[category] ?? scoreByCategory.electronics;
 
@@ -575,12 +579,16 @@ export function createMockComplianceReportResult(
   // 当前 result page 用的),保留此函数仅给遗留 BFF 路径(/api/scan/demo
   // isDemoSession 短路),修这个让 dead path 也有合理 demo 分数。
   const scoreByCategory: Record<ProductCategory, { score: number; grade: ScoreGrade; name: string; nameEn: string }> = {
-    electronics: { score: 45, grade: "D", name: "ZGA 便携式充电器", nameEn: "ZGA Portable Charger" },
-    appliance:   { score: 65, grade: "C", name: "USB 智能加湿器",   nameEn: "USB Smart Humidifier" },
-    "3c":        { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
-    toy:         { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
-    home:        { score: 70, grade: "B", name: "Aurora 桌面香薰灯", nameEn: "Aurora Aromatherapy Lamp" },
-    other:       { score: 60, grade: "B", name: "通用 SKU",         nameEn: "Generic SKU" },
+    electronics:  { score: 45, grade: "D", name: "ZGA 便携式充电器", nameEn: "ZGA Portable Charger" },
+    appliance:    { score: 65, grade: "C", name: "USB 智能加湿器",   nameEn: "USB Smart Humidifier" },
+    "3c":         { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    toy:          { score: 50, grade: "C", name: "Blocko 儿童积木",  nameEn: "Blocko Children Blocks" },
+    home:         { score: 70, grade: "B", name: "Aurora 桌面香薰灯", nameEn: "Aurora Aromatherapy Lamp" },
+    battery:      { score: 42, grade: "D", name: "便携储能锂电池组", nameEn: "Portable Lithium Power Station" },
+    cosmetic:     { score: 48, grade: "D", name: "水润保湿精华液",   nameEn: "Hydrating Facial Serum" },
+    textile:      { score: 62, grade: "C", name: "纯棉儿童连体衣",   nameEn: "Cotton Infant Bodysuit" },
+    food_contact: { score: 66, grade: "C", name: "食品级硅胶保鲜盒", nameEn: "Food-grade Silicone Container" },
+    other:        { score: 60, grade: "B", name: "通用 SKU",         nameEn: "Generic SKU" },
   };
   const profile = scoreByCategory[category] ?? scoreByCategory.electronics;
   return {

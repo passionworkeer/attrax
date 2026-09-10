@@ -44,6 +44,10 @@ export type ProductCategory =
   | "3c"
   | "toy"
   | "home"
+  | "battery"
+  | "cosmetic"
+  | "textile"
+  | "food_contact"
   | "other";
 export type FlameLevel = 1 | 2 | 3;
 export type Severity = "critical" | "warning" | "info" | "unknown";

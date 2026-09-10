@@ -691,7 +691,7 @@ export default function UploadPage() {
                     onChange={(event) => setCategory(event.target.value as ProductCategory)}
                     className="block w-full appearance-none rounded-[16px] border border-white/44 bg-white/22 px-4 py-3 pr-10 text-sm text-white outline-none transition focus:border-white/85"
                   >
-                    {(["electronics", "appliance", "toy", "home", "other"] as const).map((optionId) => (
+                    {(["electronics", "appliance", "3c", "toy", "home", "battery", "cosmetic", "textile", "food_contact", "other"] as const).map((optionId) => (
                       <option key={optionId} value={optionId} className="bg-[#e8f7fa] text-[#073b54]">
                         {copy.upload.categoryLabels[optionId]}
                       </option>

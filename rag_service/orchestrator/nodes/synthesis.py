@@ -3,7 +3,8 @@
 synthesis.py - Result synthesis node
 
 Merges and deduplicates chunks from multiple markets.
-Applies must_check regulation injection.
+(must_check injection lives in hybrid_retriever.apply_must_check; the
+generator-side anchor list is built in generator_node — 2026-09-10 A+B.)
 """
 from rag_service.orchestrator.state import GraphState
 

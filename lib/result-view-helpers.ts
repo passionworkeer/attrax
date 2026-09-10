@@ -113,6 +113,10 @@ export function productCategoryLabel(locale: "zh" | "en", category: ProductCateg
       appliance: "家电",
       toy: "玩具",
       home: "家居",
+      battery: "电池/储能",
+      cosmetic: "化妆品",
+      textile: "纺织服装",
+      food_contact: "食品接触",
       other: "其他",
     },
     en: {
@@ -121,6 +125,10 @@ export function productCategoryLabel(locale: "zh" | "en", category: ProductCateg
       appliance: "Appliance",
       toy: "Toy",
       home: "Home",
+      battery: "Battery / storage",
+      cosmetic: "Cosmetics",
+      textile: "Textile & apparel",
+      food_contact: "Food contact",
       other: "Other",
     },
   } as const;

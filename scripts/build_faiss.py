@@ -307,14 +307,14 @@ def embed_chunks(chunks: list[dict]) -> tuple[list[dict], int]:
         f"(cache file: {EMBED_CACHE_PATH})"
     )
 
-    # Phase 2 — batch the misses through the embedder (50/batch, matching
-    # ModelScope's free-tier rate limit), checkpointing after every batch so
-    # an interrupted run can resume without losing work.
+    # Phase 2 — batch the misses through the embedder (10/batch — PAI
+    # text-embedding-v4 rejects larger batches), checkpointing after every
+    # batch so an interrupted run can resume without losing work.
     failed_count = 0
     dim = getattr(embedder, "DIM", 0)
-    for start in range(0, len(pending_texts), 50):
-        batch_idx = pending_idx[start:start + 50]
-        batch_texts = pending_texts[start:start + 50]
+    for start in range(0, len(pending_texts), 10):
+        batch_idx = pending_idx[start:start + 10]
+        batch_texts = pending_texts[start:start + 10]
         try:
             vectors = embedder.embed_batch(batch_texts)
         except Exception as e:

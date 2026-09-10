@@ -163,6 +163,29 @@ def _build_source_context(chunks: list[dict], max_chunks: int = 20, max_chars: i
     return "\n---\n".join(parts)
 
 
+def _build_mandatory_section(mandatory_regulations: list[dict] | None) -> str:
+    """Render the must-cover checklist (A+B hybrid anchor) for the prompt.
+
+    The checklist is the PRIMARY claim set: every entry must surface in the
+    compliance report with its reason. Corpus chunks (source_context) are
+    supporting citations — an anchor without a matching chunk is still
+    reported, with the caveat noted below.
+    """
+    if not mandatory_regulations:
+        return ""
+    lines = [
+        "【必检法规清单】以下法规由品类/产品特征判定适用于本次扫描，",
+        "合规报告中每一条都必须出现并给出其适用理由（reason）；",
+        "若检索证据未覆盖某条，仍需列出并标注『依据规则库，待核实原文』：",
+    ]
+    for entry in mandatory_regulations:
+        region = str(entry.get("region", "")).strip()
+        doc = str(entry.get("doc_name", "")).strip()
+        reason = str(entry.get("reason", "")).strip()
+        lines.append(f"- [{region or 'GLOBAL'}] {doc} — {reason}")
+    return "\n" + "\n".join(lines) + "\n"
+
+
 def _parse_json_object(text: str) -> dict | None:
     """Parse a JSON object from raw LLM text, accepting fenced output.
 
@@ -285,10 +308,16 @@ class ReportGenerator:
         chunks: list[dict],
         max_tokens: int = 4096,
         doc_context: str = "",
+        mandatory_regulations: list[dict] | None = None,
     ) -> dict:
         """
         Generate the four result scenes in one LLM call:
         compliance report, profit report, roadmap, and decision view.
+
+        mandatory_regulations (A+B hybrid, 2026-09-10): the must-cover
+        checklist from the must_check matrix (category + features, market
+        filtered). When provided, every entry MUST appear in the compliance
+        report with its reason; corpus chunks are supporting citations.
         """
         if not chunks:
             return self._fallback_report_package(
@@ -305,6 +334,7 @@ class ReportGenerator:
             if doc_context
             else ""
         )
+        anchor_section = _build_mandatory_section(mandatory_regulations)
 
         finance_contract = (
             "\nFinance contract: emit profitReport.structuredFields only when every numeric "
@@ -317,6 +347,7 @@ class ReportGenerator:
             f"产品类型：{product}\n"
             f"目标市场：{market}\n"
             f"用户问题：{query}\n"
+            f"{anchor_section}"
             f"{doc_section}\n"
             "请基于上述证据一次性生成四个场景内容：合规报告、成本利润报告、合规排期路线图、AI 决策视图。"
             "输出必须是可解析 JSON，不要使用 Markdown 代码围栏。"
