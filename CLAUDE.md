@@ -162,12 +162,16 @@ attrax/
 │   │   ├── hybrid_retriever.py   # 混合检索主类
 │   │   ├── faiss_retriever.py    # FAISS 向量检索
 │   │   ├── bm25_retriever.py     # BM25 稀疏检索
-│   │   ├── modelScope_embedder.py # ModelScope Qwen3-Embedding（生产路径）
+│   │   ├── modelScope_embedder.py # PAI text-embedding-v4（1024 维，2026-09-10 从 ModelScope 切换；batch≤10 硬限）
 │   │   ├── ollama_embedder.py    # Ollama Embedding（fallback）
 │   │   ├── fusion.py             # RRF 融合
 │   │   # ⚠️ cohere_embedder/cohere_reranker 已删除（2026-09-10）：源码早已不存在，
 │   │   #    旧文档误标“已实现”；requirements 中的 cohere 依赖已同步移除
-│   │   ├── must_check.py         # 按品类强制注入
+│   │   ├── must_check.py         # 品类+特征规则矩阵（**报告主锚点**，A+B 混合）：
+│   │   #                            CATEGORY_REGULATIONS（10 品类×7 市场）+
+│   │   #                            FEATURE_REGULATIONS（battery/wireless/mains/children）
+│   │   #                            detect_features + build_anchor_list 供 generator
+│   │   #                            直接消费；apply_must_check 仍是检索侧引用注入
 │   │   └── metadata_filter.py    # 检索元数据过滤
 │   ├── parser/                   # 文档解析
 │   │   ├── docx_parser.py
@@ -336,6 +340,17 @@ const StartScanRequestSchema = z.object({
 ---
 
 ## 最近修复（2026-06-29 对抗性审计后）
+
+### 2026-09-10（下午）A+B 混合架构：must_check 升主源（e4da8d5）
+
+第一性原理审查结论：语料仅 26MB/7170 chunks 且冻结在 6 月索引、embedding 单点故障 3 个月无人察觉、用户真实需求是"清单+理由"而非全文检索。**规则矩阵（must_check.py）是报告主锚点，语料检索是补充引用。**
+
+- **特征矩阵**：`FEATURE_REGULATIONS`（battery/wireless/mains/children 横切特征）+ `detect_features`（vision core_features 关键词探测，精确优先防误联想）+ `build_anchor_list`（品类+特征合并去重、按目标市场过滤、UN 运输法规恒含）
+- **生成锚定**：`generator_node` → `generate_report_package(mandatory_regulations=...)` → prompt 渲染「必检法规清单」，每条必须出现在报告中；检索证据不足仍需列出并标注「依据规则库，待核实原文」
+- **品类 6→10**：+battery/cosmetic/textile/food_contact（矩阵早已存在但前端选不到——枚举不同步的实体 bug，tsc 连锁揪出 4 处 Record）
+- **PAI embedding**：ModelScope key 吊销 → 阿里云 PAI `text-embedding-v4`（1024 维同构，索引重建当日完成）。⚠️ PAI batch≤10 硬限（超限 400）
+- **不再投入**：reranker 训练 / 语料大规模扩充 / 引用覆盖率硬约束 / NLI 注入（见 handoff 2026-09-10）
+- **计划中**（未实施）：EU Safety Gate 召回数据入库（喂 riskPoints）/ 语料周更 cron / web_search 工具（B 部分）
 
 ### 2026-09-10 审计批处理（docs/plans/2026-09-09-optimization-audit.md）
 
