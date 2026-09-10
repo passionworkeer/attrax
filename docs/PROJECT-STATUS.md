@@ -164,8 +164,6 @@
 | `lib/i18n.tsx` | 1004 行超大文件 | 中（可维护性） |
 | `lib/pipeline/scan.ts` | 234 行偏大 | 低（可读性） |
 | `rag_service/requirements.txt` | 500+ 条依赖，核心仅 20 个 | 低（部署体积） |
-| `cohere_reranker.py` | 实现但未接入 | 低（功能未启用） |
-| `cohere_embedder.py` | 默认未启用 | 低（功能未启用） |
 
 ---
 
@@ -209,8 +207,6 @@
 | 项 | 说明 | 处理 |
 |------|------|------|
 | `rag_service/requirements.txt` 冗余 | 500+ 条，核心 20 个 | 计划精简（`requirements-prod.txt` 已部分精简） |
-| `cohere_reranker.py` 未接入 | CLAUDE.md 已知 | 视需要启用 |
-| `cohere_embedder.py` 默认未启用 | HybridRetriever 中可选 | 视需要启用 |
 | `tests/pressure/` 压测脚本 | 未集成 CI | 后续纳入 |
 
 ---
@@ -240,7 +236,6 @@
 - [x] **18. 超大文件拆分**（2026-06-26 完成）：`app/api/regulations/updates/route.ts` 1165 → 80 行（拆 4 文件）+ `lib/i18n.tsx` 1040 → 103 行（拆 translations 数据到独立文件）
 - [ ] **9. 上传页 UI**：暴露 category/markets 选择器
 - [ ] **10. CI 集成**：压测、E2E、Lint 流水线
-- [ ] **19. cohere_reranker 接入**（如确需 rerank）
 
 ---
 
@@ -376,7 +371,7 @@ attrax/
 
 1. **环境配置**：用户需填入真实 API Key（`.env.local` + `rag_service/.env`）
 2. ~~**超大文件**~~（2026-06-26 已解决）：`app/api/regulations/updates/route.ts`、`lib/i18n.tsx` 均已拆分
-3. **cohere 路径未启用**：`cohere_reranker.py` / `cohere_embedder.py` 实现但默认未启用
+3. ~~cohere 路径~~：源码与依赖已于 2026-09-10 确认不存在并移除（历史文档误标“已实现”）
 4. **requirements 冗余**：`rag_service/requirements.txt` 含 500+ 条，核心仅 20 个
 5. **stale attrax/ 目录**：项目根有 4 月份旧副本（独立 .git 0 commits，~1.2GB），tsconfig 已 exclude，但物理目录仍在（需用户决策删除或保留）
 

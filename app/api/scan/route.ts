@@ -215,7 +215,9 @@ export async function POST(request: Request): Promise<Response> {
       status: created.status,
       pollUrl: `/api/scan/${created.sessionId}`,
     };
-    if (process.env.NODE_ENV !== "production") {
+    // 审计 3.4：改为显式 opt-in，避免 NODE_ENV 误配（如容器未设 production）
+    // 导致访问令牌经响应体泄露。默认关闭。
+    if (process.env.ATTRAX_DEBUG_TOKEN === "1") {
       payload.accessToken = created.accessToken;
     }
 

@@ -19,8 +19,10 @@ from rag_service.domain.scans import ScanJob, ScanSession, StoredUpload, utc_now
 from rag_service.parser.docx_parser import _escape_prompt_injection, parse_docx
 
 
-_ALLOWED_MARKETS = {"EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"}
-_MAX_MARKETS_PER_SCAN = 5
+from ..config import ALLOWED_MARKETS as _ALLOWED_MARKETS_SET
+from ..config import MAX_MARKETS_PER_SCAN as _MAX_MARKETS_PER_SCAN
+
+_ALLOWED_MARKETS = _ALLOWED_MARKETS_SET
 _DOCUMENT_CHUNK_CHARS = 8_000
 _MAX_DOCUMENT_CHUNKS = 20
 _STRONG_VERIFICATION_MODES = {"nli", "llm_judge", "hybrid", "nli+llm"}

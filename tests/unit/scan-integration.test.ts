@@ -1,3 +1,4 @@
+vi.stubEnv("ATTRAX_DEBUG_TOKEN", "1"); // 审计 3.4：token 仅显式 opt-in 时进响应体
 // @vitest-environment node
 /**
  * scan-integration.test.ts — TRUE integration test for POST /api/scan (handoff).
@@ -34,6 +35,7 @@ vi.mock("@/lib/rag-client/v1-adapter", async () => {
     createScan: mockCreateScan,
     getScan: mockGetScan,
   };
+vi.unstubAllEnvs();
 });
 
 const { POST } = await import("@/app/api/scan/route");

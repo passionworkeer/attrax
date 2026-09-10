@@ -1,0 +1,335 @@
+import { blazeReportPreviewTabs } from "@/lib/mock/blaze-scenario";
+import {
+  createMockScanResult,
+  mockComplianceReportMarkdown,
+  mockScanResult,
+} from "@/lib/mock/blaze-scan-result";
+import type {
+  ComplianceReportResult,
+  Market,
+  ProductCategory,
+  RiskPoint,
+  ScanResult,
+} from "@/lib/types";
+
+/**
+ * Result page 纯视图辅助函数（2026-09-10 自 app/result/[sessionId]/page.tsx 抽出，
+ * 审计 2.5 —— 降低页面文件体积并允许单测直接覆盖）。
+ * 全部为无副作用纯函数，不依赖 React。
+ */
+
+export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "en"): ComplianceReportResult {
+  const severityRank: Record<RiskPoint["severity"], number> = { critical: 3, warning: 2, info: 1, unknown: 0 };
+  const topRank = result.riskPoints.reduce((acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0), 0);
+  const complianceStatus: ComplianceReportResult["complianceStatus"] =
+    topRank >= 3 ? "REJECTED" : topRank >= 2 ? "WARN" : "PASS";
+  const traceNodes: ComplianceReportResult["agentTrace"] = result.riskPoints.map((rp) => ({
+    node: `risk.${rp.riskId}`,
+    label: rp.title,
+    severity: rp.severity,
+  }));
+  traceNodes.push({ node: "demo.aggregate", label: locale === "zh" ? "Demo 数据汇总" : "Demo aggregate" });
+  const fallback = mockComplianceReportMarkdown(result, locale);
+  return {
+    sessionId: result.sessionId,
+    scanTime: result.scanTime,
+    productCategory: result.productCategory,
+    productName: result.productName,
+    productNameEn: result.productNameEn,
+    targetMarkets: result.targetMarkets,
+    complianceScore: result.complianceScore,
+    scoreGrade: result.scoreGrade,
+    complianceReport: fallback,
+    complianceStatus,
+    agentTrace: traceNodes,
+    loopCount: 0,
+    retrievedChunks: result.riskPoints.flatMap((rp) =>
+      rp.regulations.map((rule) => ({
+        regId: rule.regId,
+        docName: rule.name,
+        docNameEn: rule.nameEn,
+        articleNo: rule.code,
+        region: rule.market,
+        score: 0.85,
+      })),
+    ),
+    images: undefined,
+    documents: [],
+    riskPoints: undefined,
+    checklist: undefined,
+    generatedAt: result.generatedAt,
+    modelInfo: { ragProvider: "demo", latencyMs: 0 },
+    source: "demo",
+  };
+}
+
+export function readStoredAccessToken(sessionId: string): string | null {
+  try {
+    const value = sessionStorage.getItem(`scan-token:${sessionId}`);
+    return value && value.trim() ? value.trim() : null;
+  } catch {
+    return null;
+  }
+}
+
+export function severityLabel(locale: "zh" | "en", severity: RiskPoint["severity"]) {
+  if (locale === "zh") {
+    switch (severity) {
+      case "critical":
+        return "高危";
+      case "warning":
+        return "警告";
+      default:
+        return "提示";
+    }
+  }
+
+  switch (severity) {
+    case "critical":
+      return "Critical";
+    case "warning":
+      return "Warning";
+    default:
+      return "Info";
+  }
+}
+
+export function severityClass(severity: RiskPoint["severity"]) {
+  switch (severity) {
+    case "critical":
+      return "border-[rgba(196,76,63,0.32)] bg-[rgba(255,225,219,0.5)] text-[#8f3229]";
+    case "warning":
+      return "border-[rgba(189,120,30,0.28)] bg-[rgba(255,239,204,0.52)] text-[#7a4a0b]";
+    default:
+      return "border-[rgba(37,126,166,0.24)] bg-[rgba(214,242,250,0.52)] text-[#165c7a]";
+  }
+}
+
+export function productCategoryLabel(locale: "zh" | "en", category: ProductCategory) {
+  const labels = {
+    zh: {
+      electronics: "3C 电子",
+      "3c": "3C 电子",
+      appliance: "家电",
+      toy: "玩具",
+      home: "家居",
+      other: "其他",
+    },
+    en: {
+      electronics: "3C electronics",
+      "3c": "3C electronics",
+      appliance: "Appliance",
+      toy: "Toy",
+      home: "Home",
+      other: "Other",
+    },
+  } as const;
+
+  return labels[locale][category] ?? category;
+}
+
+export function localizeRiskPoint(locale: "zh" | "en", risk: RiskPoint): RiskPoint {
+  if (locale === "en") {
+    return {
+      ...risk,
+      title: risk.titleEn ?? risk.title,
+      description: risk.descriptionEn ?? risk.description,
+      recommendedAction: risk.recommendedActionEn ?? risk.recommendedAction,
+      regulations: risk.regulations.map((regulation) => ({
+        ...regulation,
+        name: regulation.nameEn ?? regulation.name,
+        summary: regulation.summaryEn ?? regulation.summary,
+      })),
+    };
+  }
+  return risk;
+}
+
+export function localizeTimeText(locale: "zh" | "en", value: string | undefined, fallback: string) {
+  if (!value) {
+    return fallback;
+  }
+  if (locale === "zh") {
+    return value;
+  }
+
+  const map: Record<string, string> = {
+    "第 1-2 天": "Days 1-2",
+    "第 3-7 天": "Days 3-7",
+    "第 1 周": "Week 1",
+    "第 2 周": "Week 2",
+    "第 3-5 周": "Weeks 3-5",
+    "第 3-5 天": "Days 3-5",
+  };
+  return map[value] ?? value;
+}
+
+export function getLocalizedPreviewTab(locale: "zh" | "en", value: string) {
+  if (locale === "zh") {
+    return blazeReportPreviewTabs.find((tab) => tab.value === value) ?? blazeReportPreviewTabs[0];
+  }
+
+  const englishMap = {
+    compliance: {
+      label: "Compliance Report",
+      title: "CompliPilot · Compliance Scan Report",
+      subtitle:
+        "This report is fit for the first remediation sync across legal, operations, and supplier teams.",
+      leftMetric: { label: "Base Mode", value: "$1", hint: "Risk mode $6800" },
+      rightMetric: { label: "Compliance Mode", value: "$7", hint: "Risk mode $6000" },
+      bullets: [
+        "CE / UKCA marks are missing and should be restored on the shell or nameplate.",
+        "Input-output specs and protocol notes are incomplete, so manuals and listings must be aligned.",
+        "Packaging warnings are too weak for EU and UK market expectations.",
+      ],
+    },
+    roadmap: {
+      label: "Roadmap Report",
+      title: "Compliance Roadmap Report",
+      subtitle:
+        "This turns document freeze, label remediation, certification, and listing review into one executable timeline.",
+      leftMetric: { label: "Current state", value: "Rejected", hint: "Estimated lead time 35 days" },
+      rightMetric: { label: "Milestones", value: "5", hint: "From freeze to listing" },
+      bullets: [
+        "Days 1-2 freeze the BOM, nameplate, and supplier package.",
+        "Days 3-7 finish CE / UKCA, IO spec, and warning updates.",
+        "Weeks 3-5 move into lab testing and declaration flow before listing review.",
+      ],
+    },
+    profit: {
+      label: "Profit & AI Decision",
+      title: "Cost Margin Analysis / AI Decision Report",
+      subtitle:
+        "This places the base and compliance modes side by side and explains why the batch should not go live yet.",
+      leftMetric: { label: "Gross profit", value: "$7.46", hint: "Base mode $0.71" },
+      rightMetric: { label: "Decision", value: "HIGH", hint: "Remediate before launch" },
+      bullets: [
+        "Single-platform compliance cost rises 23%, but it avoids fines and returns.",
+        "Estimated monthly loss is around $6000, so remediation comes before market entry.",
+        "AI decision: the evidence chain is incomplete; finish CE, LVD, and RoHS first.",
+      ],
+    },
+  } as const;
+
+  return englishMap[value as keyof typeof englishMap] ?? englishMap.compliance;
+}
+
+export function getPreviewBullets(
+  locale: "zh" | "en",
+  value: string,
+  result: ScanResult,
+  financialSummary: NonNullable<ScanResult["financialSummary"]>,
+) {
+  if (value === "roadmap") {
+    return result.checklist.slice(0, 3).map((item) => {
+      const category = locale === "en" ? item.categoryEn ?? item.category : item.category;
+      const title = locale === "en" ? item.titleEn ?? item.title : item.title;
+      return `${category}: ${title}`;
+    });
+  }
+
+  if (value === "profit") {
+    return locale === "zh"
+      ? [
+          `整改前单件收益 ${financialSummary.estimatedHeroicProfit}，合规后净收益 ${financialSummary.trueNetProfit}。`,
+          `单产品合规成本 ${financialSummary.complianceCost}，月度净收益基准 ${financialSummary.monthlyNetProfit}。`,
+          `当前得分 ${result.complianceScore} / ${result.scoreGrade}，建议先关闭高优先级风险再上架。`,
+        ]
+      : [
+          `Per-unit return moves from ${financialSummary.estimatedHeroicProfit} before remediation to ${financialSummary.trueNetProfit} after compliance.`,
+          `Compliance cost is ${financialSummary.complianceCost} per unit, with a monthly net baseline of ${financialSummary.monthlyNetProfit}.`,
+          `The current score is ${result.complianceScore} / ${result.scoreGrade}; close priority risks before launch.`,
+        ];
+  }
+
+  return result.riskPoints.slice(0, 3).map((riskRaw) => {
+    const risk = localizeRiskPoint(locale, riskRaw);
+    return `${risk.title}: ${risk.recommendedAction}`;
+  });
+}
+
+
+import type { FinancialSummary } from "@/lib/types";
+
+export type FinancialSummaryView = FinancialSummary;
+
+/**
+ * 合成财务摘要（真实 reportPackage 缺 profit 字段时的兜底视图）。
+ * 2026-09-10 自 result page 抽出（审计 2.5）。
+ */
+export function financialSummaryOrFallback(
+  result: ScanResult,
+  locale: "zh" | "en",
+  synthesize: (r: ScanResult, l?: "zh" | "en") => FinancialSummary | null,
+): FinancialSummaryView {
+  return (
+    synthesize(result, locale) ?? {
+      estimatedHeroicProfit: "—",
+      trueNetProfit: "—",
+      complianceCost: "—",
+      monthlyNetProfit: "—",
+      targetVolumeLabel: locale === "zh" ? "后端未提供" : "Not provided",
+      riskExposureItems: [],
+      costBreakdown: [],
+    }
+  );
+}
+
+export interface RoadmapRow {
+  phase: string;
+  time: string;
+  owner: string;
+  output: string;
+}
+
+/** 整改路线图行（含末尾「上架复核」行）。2026-09-10 自 result page 抽出（审计 2.5）。 */
+export function buildRoadmapRows(
+  result: ScanResult,
+  locale: "zh" | "en",
+  unknownTime: string,
+): RoadmapRow[] {
+  return [
+    ...result.checklist.map((item, index) => ({
+      phase: locale === "en" ? item.categoryEn ?? item.category : item.category,
+      time: localizeTimeText(locale, item.estimatedTime, unknownTime),
+      owner:
+        locale === "zh"
+          ? index === 0 ? "产品 / 采购" : "设计 / 合规"
+          : index === 0 ? "Product / Procurement" : "Design / Compliance",
+      output: locale === "en" ? item.titleEn ?? item.title : item.title,
+    })),
+    {
+      phase: locale === "zh" ? "上架复核" : "Listing review",
+      time: locale === "zh" ? "整改完成后" : "After remediation",
+      owner: locale === "zh" ? "运营 / 法务" : "Operations / Legal",
+      output:
+        locale === "zh"
+          ? `确认 ${result.targetMarkets.join(" / ")} 市场风险与报告均已闭环`
+          : `Confirm ${result.targetMarkets.join(" / ")} risks and reports are closed`,
+    },
+  ];
+}
+
+
+/**
+ * /result/demo 的 preset 解析（?preset=humidifier|toy|charger&markets=EU,UK）。
+ * 2026-09-10 自 result page 抽出（审计 2.5）。
+ */
+export function buildDemoPresetResult(search: URLSearchParams | null): ScanResult {
+  const presetKey = search?.get("preset") ?? "";
+  const presetCategory: ProductCategory | null =
+    presetKey === "humidifier"
+      ? "appliance"
+      : presetKey === "toy"
+        ? "toy"
+        : presetKey === "charger"
+          ? "electronics"
+          : null;
+  const presetMarketsRaw = search?.get("markets") ?? "";
+  const presetMarkets: Market[] | undefined = presetMarketsRaw
+    ? (presetMarketsRaw.split(",").filter(Boolean) as Market[])
+    : undefined;
+  return presetCategory
+    ? createMockScanResult("demo", { category: presetCategory, markets: presetMarkets })
+    : mockScanResult;
+}

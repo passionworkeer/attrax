@@ -2,6 +2,25 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## 2026-09-10 — 2026-09-09 审计批处理（详见 docs/plans/2026-09-09-optimization-audit.md）
+
+**背景**:2026-09-09 只读审计发现文档/代码系统性脱节与死代码债务。本日按审计清单批量修复,全部验证后部署。
+
+**代码变更**:
+- 删除死代码 ~1446 行:`lib/pipeline/scan.ts` + `scan-queue.ts`(937,被 v1-adapter 绕过)、`components/upload/UploadForm.tsx`(509,已标 @deprecated)、`LegacyResultView` 及 5 个对应测试文件;`upload-storage.ts` 标 @deprecated
+- **P0-1 渲染闭环**:`DegradedBanner`/`SourceNotice` 此前定义了但从未被任何页面渲染 —— 现接入 `app/result/[sessionId]/page.tsx` 成功态与空风险态,降级原因由新 `use-result-loader` hook 记录
+- `result/[sessionId]/page.tsx` 1215 → 807 行:纯函数抽到 `lib/result-view-helpers.ts`,轮询抽到 `use-result-loader.ts`,非成功态抽到 `result-state-panels.tsx`
+- `ALLOWED_MARKETS`/`MAX_MARKETS_PER_SCAN` 收敛到 `rag_service/config.py` 唯一来源(原 3 处重复)
+- 安全:POST /api/scan 的 accessToken 响应体暴露从 `NODE_ENV!=="production"` 改为 `ATTRAX_DEBUG_TOKEN=1` 显式 opt-in
+- 依赖:npm 删 5 个零引用包;`next` 16.2.6→16.3.4 等,npm audit 11 漏洞(含 1 critical: Next RCE)→ **0**;requirements 删 cohere;`requirements.txt`→`requirements-snapshot.txt`
+- `generator.py` agent_trace 分离处加维护红线注释(防 32k trace 事故复发)
+
+**文档变更**:CLAUDE.md/README/PROJECT-STATUS/RAG-ARCHITECTURE-v3 全部对齐 v1-adapter 现实架构,清除"cohere 已实现"等虚假描述;PROJECT_ANALYSIS.md 标 SUPERSEDED。
+
+**新增测试** 13 个:`result-degraded-banner`(7)、`report-export-modules-smoke`(6,真实 jsPDF+Packer 产物断言)、`test_zip_bomb_docx`(3)。合计 vitest 65 files/927 tests 全绿;pytest 565 全绿;tsc/build 通过。
+
+**评估后暂缓**:CSP nonce 化(需全站动态渲染专项,SSG 页会被 strict-dynamic 阻断)。
+
 ## 2026-08-13 — commit `566c4ae` — 文档对账 + 7-21~8-10 部署回写
 
 **背景**:对抗性审查发现 `docs/SERVER-VERSION.md` 滞留在 2026-07-20 的 `f167767`,而服务器 `.deployed` 实际已是 `566c4ae`(2026-08-10 10:22 build)。中间 12 个 commit 已部署但未回写文档。本次只改文档对齐真值,无代码改动。

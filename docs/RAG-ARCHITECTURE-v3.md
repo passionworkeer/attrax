@@ -19,7 +19,6 @@
 | 向量存储 | Qdrant / Infinity | FAISS 本地索引（data/faiss/） |
 | Embedding | Cohere API | ModelScope Qwen3-Embedding-0.6B API（生产唯一 embedding） |
 | 文档解析 | Docling | pdfplumber（主要） |
-| Reranker | Cohere Rerank API | **未接入**（cohere_reranker.py 存在但未在管线中使用） |
 | 引用验证 | 硬门（≥3 验证通过） | **软门**（attribution_score 0.9/0.5/0） |
 | LLM | Claude Sonnet | mimoTalk mimo-v2.5 |
 | 会话持久化 | 无 PostgreSQL | 内存 Map + 文件持久化（`data/sessions/{sessionId}.json`，TTL 1 小时） |
@@ -109,7 +108,6 @@ rag_service/
 │   ├── bm25_retriever.py           # BM25（jieba 中文分词 + 英文词项保护）
 │   ├── hybrid_retriever.py         # FAISS + BM25 混合检索
 │   ├── modelScope_embedder.py      # ModelScope Qwen3-Embedding-0.6B API 嵌入
-│   └── cohere_reranker.py          # ⚠️ 存在但未接入管线（未使用）
 ├── verify/
 │   └── citation_verifier.py        # NLI 引用验证（DeBERTa-v3-large-mnli）
 ├── generate/
@@ -302,14 +300,12 @@ verify 节点输出 → should_regenerate 条件函数
 
 | 组件 | 状态 | 说明 |
 |------|------|------|
-| Cohere Reranker | ⚠️ 存在，未接入 | `cohere_reranker.py` 已实现，但管线中未调用 |
 | Docling | ❌ 未使用 | 文档解析使用 pdfplumber |
 | Qdrant | ❌ 未使用 | 向量存储使用 FAISS |
 | 会话持久化 | ⚠️ 有限 | 内存 Map + `data/sessions/*.json`（TTL 1 小时，启动时清理过期文件） |
 
 #### Cohere Reranker 未接入的具体原因
 
-`cohere_reranker.py` 虽然已实现，但在当前管线中未被调用的原因如下：
 
 1. **API 成本**：Cohere Rerank API 为付费调用，每次检索需额外一次网络请求。在轻量级本地化场景下，RRF 融合已提供足够的排序质量。
 2. **延迟考量**：Rerank 步骤引入额外 ~200-500ms 延迟。对于多市场并行查询场景，影响更为明显。
@@ -493,7 +489,6 @@ RAG_SERVICE_URL=http://localhost:8001
 |------|------|---------|
 | 1.0 - 2.1 | 2026-04 | 初版至 v2 LEGACY（Cohere API / Qdrant / Docling 路线） |
 | **3.0** | **2026-05-05** | 当前实现：FAISS 本地索引 + pdfplumber + mimoTalk + 软门引用验证 |
-| **3.1** | **2026-05-07** | 补充前端接入说明、cohere_reranker 未接入原因、Embedding 降级触发条件、Parent-Child 分块、FAISS 索引构建脚本 |
 | **3.2** | **2026-05-07** | 新增 POST /profit-report 接口（成本利润报告），版本号更正为 0.3.0，测试覆盖率更新（pytest 254 / vitest 156） |
 | **3.3** | **2026-05-27** | 生产部署收敛为 ModelScope API-only embedding + mimoTalk API-only LLM，并补充一键部署入口 |
 

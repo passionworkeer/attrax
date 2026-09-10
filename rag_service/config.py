@@ -21,6 +21,12 @@ def _parse_origins(raw: str) -> list[str]:
     return [origin.strip().rstrip("/") for origin in raw.split(",") if origin.strip()]
 
 
+# ── 扫描入参常量（唯一来源，2026-09-10 审计 5.5 去重）─────────────────────────
+# api/v1.py 与 application/scans.py 一律从这里 import，不得再各自定义。
+ALLOWED_MARKETS: tuple[str, ...] = ("EU", "US", "UK", "CN", "AU", "SA", "AE", "JP")
+MAX_MARKETS_PER_SCAN = 5
+
+
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 

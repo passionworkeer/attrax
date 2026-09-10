@@ -47,7 +47,7 @@
 | RAG Service（FastAPI） | `http://localhost:8001` |
 | Ollama（本地 Embedding） | `http://localhost:11434` |
 
-> **重要**：前端调用 RAG 服务时使用端口 **8001**（不是 8000），配置在 `RAG_SERVICE_URL` 环境变量，代码见 `lib/pipeline/scan.ts`。
+> **重要**：前端调用 RAG 服务时使用端口 **8001**（不是 8000），配置在 `RAG_SERVICE_URL` 环境变量，代码见 `lib/rag-client/client.ts`。
 > docker-compose 映射为 `8001:8000`（容器内 8000，宿主机 8001）。
 
 ### 多市场支持
@@ -60,9 +60,9 @@
 
 - **内存层**：`globalThis.__scanStore`（Map，TTL 1小时）
 - **文件层**：`data/sessions/{sessionId}.json`（JSON 文件持久化）
-- **队列层**：`data/scan-queue/`（可恢复的扫描任务队列）
-- 代码：`lib/pipeline/session-store.ts` / `lib/pipeline/scan-queue.ts` / `lib/pipeline/session-auth.ts`
-- `lib/pipeline/scan.ts` 调用 `createSession()` / `updateSession()` / `enqueueScan()`
+- **服务端**：RAG 服务自管会话（`rag_service/` FastAPI + SQLite/文件后端）
+- 前端代码：`lib/rag-client/v1-adapter.ts`（创建扫描）/ `lib/rag-client/client.ts`（HTTP 封装）/ `app/api/scan/route.ts`（BFF 路由）
+- ⚠️ 旧本地管线 `lib/pipeline/scan.ts` + `scan-queue.ts` 已于 2026-09-10 删除（死代码，见 docs/plans/2026-09-09-optimization-audit.md §1.1）
 
 ### 降级模式
 
@@ -78,13 +78,12 @@
 ```
 用户上传图片
   → POST /api/scan（Next.js API route）
-      → lib/pipeline/scan-queue.ts（enqueueScan 持久化）
-      → lib/pipeline/scan.ts
-          → fetch(RAG_SERVICE_URL/scan, ...)
-          → 创建 session → 返回 sessionId
+      → lib/rag-client/v1-adapter.ts（createScan）
+          → fetch(RAG_SERVICE_URL/api/v1/scans, ...)   # RAG 服务自管会话/队列
+          → 返回 sessionId + accessToken（Set-Cookie + Bearer）
   → 前端轮询 GET /api/scan/{sessionId}
-      → lib/pipeline/session-store.ts
-          → 读取 globalThis.__scanStore + 文件
+      → lib/rag-client/v1-adapter.ts（getScan）→ RAG /api/v1/scans/{id}
+  → 结果页渲染：app/result/[sessionId]/page.tsx（use-result-loader 轮询 hook）
 ```
 
 ---
@@ -138,9 +137,7 @@ attrax/
 │   ├── report-export.ts          # 报告导出入口
 │   ├── report-export-modules/    # 报告导出实现（compliance/profit/decision/roadmap/shared）
 │   ├── pipeline/
-│   │   ├── scan.ts               # 扫描管线（调用 RAG 8001）
-│   │   ├── session-store.ts      # 会话存储（globalThis + 文件）
-│   │   ├── scan-queue.ts         # 扫描任务队列（持久化）
+│   │   ├── session-store.ts      # 会话存储（globalThis + 文件；仅旧 demo 路径）
 │   │   ├── session-auth.ts       # 会话访问 token（哈希 + 校验）
 │   │   ├── profit-report.ts      # 成本利润报告
 │   │   └── report-package.ts     # 报告包结构
@@ -167,10 +164,9 @@ attrax/
 │   │   ├── bm25_retriever.py     # BM25 稀疏检索
 │   │   ├── modelScope_embedder.py # ModelScope Qwen3-Embedding（生产路径）
 │   │   ├── ollama_embedder.py    # Ollama Embedding（fallback）
-│   │   ├── local_embedder.py     # 本地 embedder 抽象
-│   │   ├── cohere_embedder.py    # Cohere Embedding（默认未启用）
-│   │   ├── cohere_reranker.py    # ⚠️ 已实现但未接入管线
 │   │   ├── fusion.py             # RRF 融合
+│   │   # ⚠️ cohere_embedder/cohere_reranker 已删除（2026-09-10）：源码早已不存在，
+│   │   #    旧文档误标“已实现”；requirements 中的 cohere 依赖已同步移除
 │   │   ├── must_check.py         # 按品类强制注入
 │   │   └── metadata_filter.py    # 检索元数据过滤
 │   ├── parser/                   # 文档解析
@@ -333,14 +329,25 @@ const StartScanRequestSchema = z.object({
 |------|------|
 | **无持久化** | 会话仅存储 1 小时（内存 + 文件 TTL），无数据库 |
 | **无用户系统** | 无登录/注册/权限控制（Demo 模式有访问 token 校验） |
-| **cohere_reranker 未接入** | `cohere_reranker.py` 已实现，但管线中未调用 |
-| **cohere_embedder 默认未启用** | 切到 ModelScope + Ollama 路径 |
-| **requirements.txt 冗余** | `rag_service/requirements.txt` 含 500+ 条，核心仅 20 个 |
+| **cohere 依赖已移除** | embedder/reranker 源码早已不存在，2026-09-10 起文档与 requirements 同步删除（生产仅 ModelScope + BM25 fallback） |
+| **requirements 快照** | 生产安装用 `requirements-prod.txt`；原 `requirements.txt`（500+ 条）已改名 `requirements-snapshot.txt` 并标注勿安装 |
 | **无多语言报告** | 报告目前仅中文输出 |
 
 ---
 
 ## 最近修复（2026-06-29 对抗性审计后）
+
+### 2026-09-10 审计批处理（docs/plans/2026-09-09-optimization-audit.md）
+
+- **删除死代码**：`lib/pipeline/scan.ts`(470) + `scan-queue.ts`(467) + `components/upload/UploadForm.tsx`(509) + `LegacyResultView` 及其测试（scan-pipeline / scan-queue / scan-comprehensive / upload-form / result-imagecarousel-legacy）。`upload-storage.ts` 标 @deprecated。生产路径唯一：`/api/scan → v1-adapter → RAG /api/v1/scans`
+- **P0-1 渲染闭环**：`DegradedBanner` + `SourceNotice` 真正接入 `app/result/[sessionId]/page.tsx`（成功态 + 空风险态），降级原因由 `use-result-loader` 轮询记录
+- **result page 拆分**：1215 → 807 行。纯函数抽到 `lib/result-view-helpers.ts`，轮询抽到 `app/result/[sessionId]/use-result-loader.ts`，非成功态抽到 `result-state-panels.tsx`
+- **常量去重**：`ALLOWED_MARKETS` / `MAX_MARKETS_PER_SCAN` 唯一来源 `rag_service/config.py`
+- **安全**：POST /api/scan 的 accessToken 进响应体改为 `ATTRAX_DEBUG_TOKEN=1` 显式 opt-in
+- **依赖清理**：npm 删 5 个零引用包；requirements 删 cohere；requirements.txt → requirements-snapshot.txt
+- **generator.py 加固**：agent_trace 的 full_trace/state-return 分离处加维护红线注释
+- **验证**：vitest 63 files/914 tests 全绿；pytest 562 全绿（空 env 覆盖本地 .env 后）；tsc/build 通过
+- **遗留**：CSP nonce 化、/metrics + OTel、worker 拆池、demo data.ts 拆分（见审计长期项）
 
 > 5-agent 并行对抗性审计后修复 P0/P1。核心主题：消除"降级路径系统性制造虚假可信"（合规报告不再静默呈现降级/空内容为"成功"）。
 
