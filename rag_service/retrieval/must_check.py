@@ -1,8 +1,24 @@
 #!/usr/bin/env python3
 """
-must_check.py - Mandatory regulation injection by product category
+must_check.py - Mandatory regulation injection by product category / feature
 
-Certain product categories require specific regulations regardless of query.
+Two orthogonal sources of mandatory regulations:
+
+1. ``CATEGORY_REGULATIONS`` — keyed by product category (what the user picked).
+2. ``FEATURE_REGULATIONS`` — keyed by product *features* detected by the vision
+   node (battery / wireless / mains / children). Cross-cutting features apply
+   regardless of category: a bluetooth speaker classified "electronics" needs
+   RED; a bluetooth *toy* needs RED too. Category alone cannot express that.
+
+2026-09-10 (A+B hybrid decision): this matrix is the PRIMARY source of truth
+for report coverage. The corpus (FAISS/BM25) provides supporting citations,
+not the checklist itself. ``build_anchor_list`` merges category + feature
+entries, filters by target markets, and is passed to the generator as the
+must-cover checklist. See docs: first-principles review 2026-09-10.
+
+Region conventions: market codes (EU/US/UK/CN/AU/SA/AE...) mean "applies when
+that market is a target". "UN" means transport/global regimes that apply to
+every market (UN 38.3, IATA DGR) and are always included.
 """
 
 # Mandatory regulations per product category
@@ -66,25 +82,165 @@ CATEGORY_REGULATIONS = {
         {"doc_name": "GB 5296 消费品使用说明", "region": "CN", "reason": "消费品标识标准"},
     ],
     "battery": [
-        {"doc_name": "Battery Regulation (EU) 2023/1542", "region": "EU", "reason": "电池安全"},
-        {"doc_name": "UN 38.3 Transport Testing", "region": "US", "reason": "锂电池运输测试"},
+        {"doc_name": "Battery Regulation (EU) 2023/1542", "region": "EU", "reason": "电池投放市场/CE/护照（替代 2006/66/EC）"},
+        {"doc_name": "UN 38.3 Transport Testing", "region": "UN", "reason": "锂电池运输强制测试（全球）"},
+        {"doc_name": "49 CFR 173.185 Lithium Battery Transport", "region": "US", "reason": "美国锂电池运输规则"},
         {"doc_name": "GB 31241 便携式电子产品用锂电池", "region": "CN", "reason": "中国锂电池安全标准"},
+        {"doc_name": "Batteries and Accumulators (UK Retained)", "region": "UK", "reason": "英国电池法规"},
     ],
     "cosmetic": [
-        {"doc_name": "Cosmetics Regulation (EC) 1223/2009", "region": "EU", "reason": "化妆品安全"},
+        {"doc_name": "Cosmetics Regulation (EC) 1223/2009", "region": "EU", "reason": "化妆品安全 + CPNP 通报 + PIF"},
+        {"doc_name": "MoCRA Modernization of Cosmetics Act", "region": "US", "reason": "美国化妆品现代化法案（设施注册+产品列名）"},
+        {"doc_name": "化妆品监督管理条例 CSAR", "region": "CN", "reason": "中国化妆品注册备案"},
+        {"doc_name": "UK Cosmetics Regulation (Retained 1223/2009)", "region": "UK", "reason": "英国化妆品法规 + SCPN 通报"},
     ],
     "textile": [
-        {"doc_name": "EU Textile Labelling Regulation", "region": "EU", "reason": "纺织品标签"},
+        {"doc_name": "EU Textile Labelling Regulation 1007/2011", "region": "EU", "reason": "纺织品纤维标签"},
+        {"doc_name": "TFPIA Textile Fiber Products Identification Act", "region": "US", "reason": "美国纤维成分标识 + FTC 护理标签"},
+        {"doc_name": "GB 18401 国家纺织产品基本安全技术规范", "region": "CN", "reason": "中国纺织品安全类别（A/B/C 类）"},
+        {"doc_name": "GB 5296.4 纺织品和服装使用说明", "region": "CN", "reason": "中国纺织品标识标准"},
     ],
     "food_contact": [
-        {"doc_name": "FCM Regulation (EU) 10/2011", "region": "EU", "reason": "食品接触材料"},
+        {"doc_name": "FCM Framework Regulation (EC) 1935/2004", "region": "EU", "reason": "食品接触材料框架法规"},
+        {"doc_name": "FCM Regulation (EU) 10/2011", "region": "EU", "reason": "塑料食品接触材料迁移限值"},
+        {"doc_name": "FDA 21 CFR 174-190 Food Contact Substances", "region": "US", "reason": "美国食品接触物质"},
+        {"doc_name": "GB 4806 食品接触材料系列标准", "region": "CN", "reason": "中国食品接触材料安全标准"},
     ],
 }
+
+# Feature-keyed regulations. Keys are matched against vision core_features
+# text (and product/query as fallback) using FEATURE_KEYWORDS below. Order of
+# the dict defines report ordering for a matched feature.
+FEATURE_REGULATIONS: dict[str, list[dict]] = {
+    "battery": [
+        {"doc_name": "UN 38.3 Transport Testing", "region": "UN", "reason": "含锂电池：运输测试（全球强制）"},
+        {"doc_name": "Battery Regulation (EU) 2023/1542", "region": "EU", "reason": "含电池：欧盟电池法规 + CE + 电池护照"},
+        {"doc_name": "49 CFR 173.185 Lithium Battery Transport", "region": "US", "reason": "含锂电池：美国运输规则"},
+        {"doc_name": "GB 31241 便携式电子产品用锂电池", "region": "CN", "reason": "含锂电池：中国安全标准"},
+    ],
+    "wireless": [
+        {"doc_name": "RED Directive 2014/53/EU", "region": "EU", "reason": "含无线功能：欧盟无线电设备指令（CE-RED）"},
+        {"doc_name": "FCC Part 15 Radio Frequency Devices", "region": "US", "reason": "含无线功能：美国 FCC ID 认证"},
+        {"doc_name": "SRRC 无线电型号核准", "region": "CN", "reason": "含无线功能：中国型号核准"},
+        {"doc_name": "UKCA Radio Equipment Regulations 2017", "region": "UK", "reason": "含无线功能：英国无线电设备法规"},
+        {"doc_name": "RCM Compliance 无线电通信标识", "region": "AU", "reason": "含无线功能：澳大利亚 ACMA/RCM"},
+    ],
+    "mains": [
+        {"doc_name": "LVD Directive 2014/35/EU", "region": "EU", "reason": "市电供电：低电压安全（CE-LVD）"},
+        {"doc_name": "UL/ETL Listing (Marketplace-required)", "region": "US", "reason": "市电供电：美国电商平台普遍要求 UL/ETL"},
+        {"doc_name": "CCC认证 中国强制性产品认证", "region": "CN", "reason": "市电供电：中国强制认证"},
+        {"doc_name": "UKCA Marking Requirements", "region": "UK", "reason": "市电供电：英国合规标识"},
+    ],
+    "children": [
+        {"doc_name": "Toy Safety Directive 2009/48/EC", "region": "EU", "reason": "儿童产品：按玩具指令评估边界"},
+        {"doc_name": "CPSIA Children Product Safety", "region": "US", "reason": "儿童产品：CPC 证书 + 铅/邻苯测试"},
+        {"doc_name": "GB 6675 玩具安全国家标准", "region": "CN", "reason": "儿童产品：中国安全标准"},
+    ],
+}
+
+# Keyword → feature. Matching is substring on lowercase text. Keep keywords
+# conservative (precision over recall): "充电宝" does NOT imply battery in a
+# power-bank sense for an earphone charging case — but the case itself houses
+# a lithium cell, so UN 38.3 still applies; "充电"/"charging" is included for
+# exactly that reason (vision describes cases as 有线充电盒/锂电池供电).
+FEATURE_KEYWORDS: dict[str, list[str]] = {
+    "battery": [
+        "锂电池", "锂离子", "电池供电", "电池仓", "电池盒", "充电宝", "移动电源",
+        "battery", "lithium", "li-ion", "rechargeable", "充电",
+    ],
+    "wireless": [
+        "蓝牙", "无线", "wifi", "wi-fi", "2.4g", "5g频段", "射频", "nfc",
+        "bluetooth", "wireless", "radio", "rf module",
+    ],
+    "mains": [
+        "插电", "市电", "电源适配器", "适配器供电", "ac供电", "交流供电", "220v", "110v",
+        "mains", "ac powered", "power adapter", "plug-in",
+    ],
+    "children": [
+        "儿童", "孩子", "婴幼儿", "小孩", "早教",
+        "kids", "children", "child", "toddler", "infant",
+    ],
+}
+
+# Markets where "UN" transport regimes apply: everywhere. Kept as a constant
+# so market filtering has one explicit exception rule.
+ALWAYS_INCLUDE_REGIONS = {"UN"}
 
 
 def get_must_check_regulations(category: str) -> list[dict]:
     """Get mandatory regulations for a product category."""
     return CATEGORY_REGULATIONS.get(category.lower(), [])
+
+
+def detect_features(*text_sources: str) -> list[str]:
+    """Detect product features from free text (vision core_features etc.).
+
+    Args:
+        *text_sources: any number of strings scanned jointly (e.g. joined
+            core_features, product name). Order-independent.
+
+    Returns:
+        Sorted list of matched feature keys ("battery", "wireless", ...).
+        Empty list when nothing matches — the caller then falls back to
+        category-only anchors.
+    """
+    haystack = " ".join(t for t in text_sources if t).lower()
+    if not haystack.strip():
+        return []
+    matched = [
+        feature
+        for feature, keywords in FEATURE_KEYWORDS.items()
+        if any(kw in haystack for kw in keywords)
+    ]
+    return sorted(matched)
+
+
+def get_feature_regulations(features: list[str]) -> list[dict]:
+    """Regulations triggered by detected product features (no market filter)."""
+    out: list[dict] = []
+    for feature in features:
+        out.extend(FEATURE_REGULATIONS.get(feature, []))
+    return out
+
+
+def build_anchor_list(
+    category: str,
+    markets: list[str],
+    features: list[str] | None = None,
+) -> list[dict]:
+    """Build the must-cover checklist passed to the generator.
+
+    Merges category regulations + feature-triggered regulations, de-dupes by
+    (doc_name, region), and filters to the target markets. Entries whose
+    region is ``UN`` (global transport regimes) are always kept.
+
+    Returns a NEW list; never mutates the module-level matrices.
+    """
+    target = {str(m).strip().upper() for m in markets if m}
+    entries = [
+        (entry, "category") for entry in get_must_check_regulations(category)
+    ]
+    if features:
+        entries.extend((entry, "feature") for entry in get_feature_regulations(features))
+
+    seen: set[tuple[str, str]] = set()
+    anchors: list[dict] = []
+    for entry, source in entries:
+        region = str(entry.get("region", "")).strip().upper()
+        doc_name = str(entry.get("doc_name", "")).strip()
+        key = (doc_name.lower(), region)
+        if key in seen:
+            continue
+        if region not in ALWAYS_INCLUDE_REGIONS and target and region not in target:
+            continue
+        seen.add(key)
+        anchors.append({
+            "doc_name": doc_name,
+            "region": region,
+            "reason": entry.get("reason", ""),
+            "source": source,
+        })
+    return anchors
 
 
 def _find_matching_chunk(mc: dict, all_chunks: list[dict]) -> dict | None:

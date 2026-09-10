@@ -8,6 +8,7 @@ import logging
 import re
 
 from rag_service.orchestrator.state import GraphState
+from rag_service.retrieval.must_check import build_anchor_list, detect_features
 from rag_service.schemas.report_package import normalize_report_package
 
 logger = logging.getLogger(__name__)
@@ -127,6 +128,27 @@ def generator_node(state: GraphState) -> dict:
     documents = state.get("documents", [])
     user_docs = state.get("user_documents", [])
 
+    # ── A+B hybrid (2026-09-10): must-check matrix is the PRIMARY anchor ──────
+    # Build the must-cover checklist from category + vision-detected features,
+    # market-filtered. The corpus chunks below provide supporting citations;
+    # the checklist itself no longer depends on retrieval hits (the old
+    # apply_must_check dropped entries silently when the corpus lacked a
+    # matching doc — the matrix was hostage to a June-frozen index).
+    vision_result = state.get("vision_result", {}) or {}
+    core_features = vision_result.get("core_features", []) or []
+    product_type = vision_result.get("product_type", "") or ""
+    features = detect_features(
+        "；".join(core_features),
+        product_type,
+        product,
+        query,
+    )
+    mandatory_regulations = build_anchor_list(
+        category=category,
+        markets=markets,
+        features=features,
+    )
+
     generator = _get_generator()
     provider = getattr(generator, "provider", None) if generator else None
 
@@ -187,6 +209,7 @@ def generator_node(state: GraphState) -> dict:
                     market=market_label,
                     chunks=documents,
                     doc_context=doc_context,
+                    mandatory_regulations=mandatory_regulations,
                 )
                 generation = report_package.get("complianceReport", "") or "错误：报告内容为空"
                 # P0-4: Derive status from the package's own validationStatus
@@ -221,6 +244,8 @@ def generator_node(state: GraphState) -> dict:
         "chunks_count": len(documents),
         "generation_length": len(generation),
         "duration_ms": duration_ms,
+        "anchor_features": features,
+        "anchor_regulations_count": len(mandatory_regulations),
     }
     # ⚠️ 维护红线（2026-06-29 审计 / 2026-09-10 复核）：
     # full_trace 仅用于 report_package 展示。graph state 的 agent_trace 是

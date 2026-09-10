@@ -115,7 +115,14 @@ def is_likely_binary(text: str) -> bool:
 
 class ModelScopeEmbedder:
     DIM = DIM
-    MODEL = "Qwen/Qwen3-Embedding-0.6B"
+    # 2026-09-10: switched from ModelScope api-inference to Alibaba Cloud PAI
+    # OpenAI-compatible endpoint (ModelScope key revoked). text-embedding-v4
+    # is 1024-dim like Qwen3-Embedding-0.6B, so the existing FAISS index
+    # geometry survives — but the vector SPACE changed, so the index was
+    # rebuilt the same day (see data/faiss manifest version label).
+    # PAI hard-caps batch size at 10 (larger → 400 invalid_parameter_error),
+    # hence batch_size=10 below and the matching loop in build_faiss.py.
+    MODEL = "text-embedding-v4"
 
     def __init__(self, api_key: Optional[str] = None):
         self.api_key = api_key or os.environ.get("MODELSCOPE_API_KEY", "")
@@ -139,7 +146,7 @@ class ModelScopeEmbedder:
             from openai import OpenAI
 
             self._client = OpenAI(
-                base_url="https://api-inference.modelscope.cn/v1",
+                base_url="https://cn-beijing.pai-token.aliyuncs.com/v1",
                 api_key=self.api_key,
                 timeout=float(os.environ.get("MODELSCOPE_HTTP_TIMEOUT_SECONDS", "30")),
                 max_retries=0,
@@ -268,7 +275,7 @@ class ModelScopeEmbedder:
                 _QUERY_CACHE[key] = tuple(result)
             return list(result)
 
-    def embed_batch(self, texts: list[str], batch_size: int = 50) -> list[list[float]]:
+    def embed_batch(self, texts: list[str], batch_size: int = 10) -> list[list[float]]:
         if not texts:
             return []
         if not isinstance(batch_size, int) or batch_size <= 0:
