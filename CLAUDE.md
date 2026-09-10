@@ -350,7 +350,7 @@ const StartScanRequestSchema = z.object({
 - **品类 6→10**：+battery/cosmetic/textile/food_contact（矩阵早已存在但前端选不到——枚举不同步的实体 bug，tsc 连锁揪出 4 处 Record）
 - **PAI embedding**：ModelScope key 吊销 → 阿里云 PAI `text-embedding-v4`（1024 维同构，索引重建当日完成）。⚠️ PAI batch≤10 硬限（超限 400）
 - **不再投入**：reranker 训练 / 语料大规模扩充 / 引用覆盖率硬约束 / NLI 注入（见 handoff 2026-09-10）
-- **计划中**（未实施）：EU Safety Gate 召回数据入库（喂 riskPoints）/ 语料周更 cron / web_search 工具（B 部分）
+- **第二阶段规格已冻结**（未实施，见 `docs/plans/2026-09-10-a-plus-b-phase2-spec.md`）：verifier 软标注（锚点报告不再被 ZERO_CITATION_COVERAGE 打成 degraded）/ FAISS 重建续跑顺序（先重建后重启，防 PAI×Qwen3 跨空间垃圾）/ 配额监控 cron / EU Safety Gate 采集器（喂 riskPoints）/ 语料周更 / web_search（B 部分）
 
 ### 2026-09-10 审计批处理（docs/plans/2026-09-09-optimization-audit.md）
 
