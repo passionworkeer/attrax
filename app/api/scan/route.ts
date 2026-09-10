@@ -30,6 +30,10 @@ const ALLOWED_CATEGORIES = new Set([
   "3c",
   "toy",
   "home",
+  "battery",
+  "cosmetic",
+  "textile",
+  "food_contact",
   "other",
 ]);
 const DEFAULT_CATEGORY = "electronics";
