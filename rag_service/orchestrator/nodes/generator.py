@@ -5,6 +5,7 @@ generator.py - Report generation node
 Wraps ReportGenerator and updates state with generation text.
 """
 import logging
+import os
 import re
 
 from rag_service.orchestrator.state import GraphState
@@ -203,6 +204,20 @@ def generator_node(state: GraphState) -> dict:
     else:
         try:
             if getattr(generator, "supports_report_package", False):
+                # Spec §7.3: when USE_KB_INPUT is enabled, feed the LLM
+                # KB article bodies instead of retrieval chunks, and
+                # ask for the `citations` array per §4.1. The chunks
+                # path still runs so evidence bundles stay populated
+                # for backwards compatibility.
+                article_texts = None
+                kb_mode = False
+                if os.environ.get("USE_KB_INPUT", "").strip().lower() in {"1", "true", "yes", "on"}:
+                    from rag_service.retrieval.article_loader import (
+                        build_article_texts_for_anchors,
+                    )
+                    article_texts = build_article_texts_for_anchors(mandatory_regulations)
+                    kb_mode = bool(article_texts)
+
                 report_package = generator.generate_report_package(
                     query=query,
                     product=product,
@@ -210,6 +225,7 @@ def generator_node(state: GraphState) -> dict:
                     chunks=documents,
                     doc_context=doc_context,
                     mandatory_regulations=mandatory_regulations,
+                    article_texts=article_texts,
                 )
                 generation = report_package.get("complianceReport", "") or "错误：报告内容为空"
                 # P0-4: Derive status from the package's own validationStatus
@@ -217,6 +233,16 @@ def generator_node(state: GraphState) -> dict:
                 # invalid package means the LLM did not actually produce a
                 # usable result, even though no exception was raised.
                 status = _status_from_package(report_package)
+                # Spec §7.3: when KB mode is active, the LLM is asked for
+                # `citations[]`; surface how many it produced on the trace
+                # so reviewers can spot an empty citations list quickly.
+                if kb_mode:
+                    trace_payload = {
+                        "article_texts_count": len(article_texts or {}),
+                        "llm_citations_count": len(report_package.get("citations") or []),
+                    }
+                else:
+                    trace_payload = {}
             else:
                 report_package = {}
                 generation = generator.generate(
@@ -236,6 +262,12 @@ def generator_node(state: GraphState) -> dict:
 
     duration_ms = int((time.time() - start_time) * 1000)
 
+    # Spec §7.3: KB-mode telemetry (article_texts_count +
+    # llm_citations_count) is only populated when USE_KB_INPUT=true
+    # AND `supports_report_package` is true; default to empty so the
+    # legacy path still produces a clean trace entry.
+    trace_payload = {}
+
     trace_entry = {
         "node": "generate",
         "provider": provider,
@@ -246,6 +278,7 @@ def generator_node(state: GraphState) -> dict:
         "duration_ms": duration_ms,
         "anchor_features": features,
         "anchor_regulations_count": len(mandatory_regulations),
+        **trace_payload,
     }
     # ⚠️ 维护红线（2026-06-29 审计 / 2026-09-10 复核）：
     # full_trace 仅用于 report_package 展示。graph state 的 agent_trace 是

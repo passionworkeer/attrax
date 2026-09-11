@@ -158,6 +158,31 @@ class EvidenceItem(FlexibleModel):
     metadata: dict[str, Any] = Field(default_factory=dict)
 
 
+class CitationRef(FlexibleModel):
+    """Per-claim citation to a specific article in a regulation.
+
+    Spec: docs/plans/2026-09-11-de-rag-evidence-spec.md §3.3 + §4.
+
+    `quote_span` is populated by `quote_matcher.match_quote` AFTER the LLM
+    returns its output — the LLM only fills `quote`. Front-end uses
+    `quote_span` to render `<mark>` highlighting on the document viewer
+    page (§4.4).
+
+    `match_status` is a three-state enumeration (spec §4.3):
+      - matched                — `quote` is found verbatim (or whitespace-normalized)
+                                in the article text; `quote_span` is set.
+      - fallback_article_only  — article exists but quote doesn't match; chip
+                                navigates to the article but no highlight.
+      - unmatched              — article id is unknown; chip is flagged ✗.
+    """
+    doc_id: str
+    article_id: str
+    official_citation: str = ""
+    quote: str = ""
+    quote_span: tuple[int, int] | None = None
+    match_status: Literal["matched", "fallback_article_only", "unmatched"] | None = None
+
+
 class EvidenceBundles(FlexibleModel):
     visual: list[EvidenceItem] = Field(default_factory=list)
     retrieval: list[EvidenceItem] = Field(default_factory=list)
@@ -181,6 +206,17 @@ class ReportPackage(FlexibleModel):
     decisionView: DecisionView
     evidenceBundles: EvidenceBundles
     auditMetadata: AuditMetadata
+    # Spec §3.3 + §7.3: per-claim citation list. Each entry maps a
+    # compliance claim back to a specific article in the regulation
+    # library (doc_id + article_id) with a verbatim quote. The LLM
+    # fills `quote`; `quote_span` and `match_status` are filled
+    # post-LLM by `verify/quote_matcher.py`.
+    citations: list[CitationRef] = Field(default_factory=list)
+    # De-duplicated superset of `citations` used by the evidence-pack
+    # export (spec §7.6). One entry per (doc_id, article_id); if the
+    # LLM cited the same article multiple times, only one copy appears
+    # here. Empty until the quote_matcher dedup pass (§7.4).
+    evidencePack: list[CitationRef] = Field(default_factory=list)
 
     @field_validator("complianceReport")
     @classmethod
@@ -339,6 +375,39 @@ def _build_evidence_bundles(
     return EvidenceBundles(visual=visual, retrieval=retrieval, generation=generation)
 
 
+def _normalize_citations(value: Any) -> list[dict]:
+    """Normalize LLM `citations` output to a list of dict-shaped CitationRef.
+
+    The LLM is asked for an array of objects with at minimum
+    {doc_id, article_id, quote}. Optional fields (official_citation,
+    quote_span, match_status) default to safe values. Invalid entries
+    are dropped rather than rejected — a malformed citation should
+    never block report delivery; it just won't render a chip.
+    """
+    if not isinstance(value, list):
+        return []
+    out: list[dict] = []
+    for entry in value:
+        if not isinstance(entry, dict):
+            continue
+        doc_id = str(entry.get("doc_id") or entry.get("docId") or "").strip()
+        article_id = str(entry.get("article_id") or entry.get("articleId") or "").strip()
+        if not doc_id or not article_id:
+            continue
+        out.append({
+            "doc_id": doc_id,
+            "article_id": article_id,
+            "official_citation": str(entry.get("official_citation") or entry.get("officialCitation") or "").strip(),
+            "quote": str(entry.get("quote") or "").strip(),
+            # quote_span and match_status are populated by the
+            # quote_matcher pass (§7.4); default to None here so the
+            # Pydantic model accepts the dict.
+            "quote_span": None,
+            "match_status": None,
+        })
+    return out
+
+
 def normalize_report_package(
     package: dict,
     *,
@@ -433,6 +502,14 @@ def normalize_report_package(
         "traceNodeCount": audit.get("traceNodeCount") or len(_as_list(agent_trace)),
     }
 
+    # Spec §3.3 + §7.3: per-claim citations from the LLM. The
+    # quote_matcher pass (§7.4) will fill quote_span + match_status
+    # after this normalization. evidencePack is built lazily by the
+    # quote_matcher dedup step.
+    citations = _normalize_citations(
+        source.get("citations") or source.get("citationRefs")
+    )
+
     normalized = {
         **source,
         "productDossier": product_dossier,
@@ -442,6 +519,8 @@ def normalize_report_package(
         "decisionView": decision,
         "evidenceBundles": evidence_bundles.model_dump(),
         "auditMetadata": audit,
+        "citations": citations,
+        "evidencePack": _as_list(source.get("evidencePack") or source.get("evidence_pack")),
     }
 
     try:

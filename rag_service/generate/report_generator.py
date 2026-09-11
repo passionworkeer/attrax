@@ -24,6 +24,37 @@ os.environ.setdefault("NO_PROXY", "*")
 logger = logging.getLogger(__name__)
 
 
+# Feature flag for the KB-anchored generator path (De-RAG spec §7.3).
+# Default OFF to keep behavior identical for the deployed system. Set to
+# "true" / "1" / "yes" to switch the generator input from retrieval
+# chunks to KB article texts; the prompt also gains the §4.1 citation
+# rules and the JSON schema gains the `citations` field.
+def _kb_input_enabled() -> bool:
+    val = (os.environ.get("USE_KB_INPUT") or "").strip().lower()
+    return val in {"1", "true", "yes", "on"}
+
+
+# Spec §4.1 — citation rules appended to the system prompt when the KB
+# path is active. The rules demand the LLM emit a `citations` array on
+# every compliance claim. `quote_span` and `match_status` are filled
+# post-LLM by `verify/quote_matcher.py`.
+_CITATION_RULES = """
+## 引用规则（强制，KB 模式）
+对每条风险点、合规要求、禁止项目，必须在 JSON 顶层 `citations` 数组中输出：
+
+{
+  "doc_id": "EU-2023-1542",
+  "article_id": "art-77",
+  "official_citation": "(EU) 2023/1542 Art. 77",
+  "quote": "原文引句，≤ 200 字符，必须逐字摘自下方条款正文"
+}
+
+- 找不到合适原文引句时，引句留空字符串，引文仍保留（按条款级定位）
+- 严禁编造条款号或引句——不在原文里的引文会被后端校验拒绝并标记
+- private 标准（GB/ASTM/UL/EN 等）没有条款正文，不要为其填 citations；改用 KB key_points 兜底
+"""
+
+
 class _TransientLLMError(Exception):
     """Internal sentinel: a retryable LLM transport failure.
 
@@ -145,7 +176,15 @@ JSON 结构必须是：
         "reasoningEn": "English reasoning"
       }
     ]
-  }
+  },
+  "citations": [
+    {
+      "doc_id": "EU-2023-1542",
+      "article_id": "art-77",
+      "official_citation": "(EU) 2023/1542 Art. 77",
+      "quote": "原文引句，逐字摘自下方条款正文（≤ 200 字符）"
+    }
+  ]
 }
 
 来源文档：
@@ -160,6 +199,30 @@ def _build_source_context(chunks: list[dict], max_chunks: int = 20, max_chars: i
         article = chunk.get("article_no", "")
         content = chunk.get("content", "")[:max_chars].replace("\n", " ")
         parts.append(f"[{i+1}] {doc} {article}\n{content}")
+    return "\n---\n".join(parts)
+
+
+def _build_article_source_context(article_texts: dict[str, str]) -> str:
+    """Render KB article texts as the LLM source context (spec §4.1).
+
+    Input shape: {article_key: text} where article_key is the canonical
+    id used throughout the system, e.g. "EU-2023-1542#art-77".
+
+    Output: a numbered list of `{doc_id}#{article_id}\\n{text}` blocks
+    with a stable numbering so the LLM can refer to them in citations.
+    Private-with-summary regulations (no article text) are skipped —
+    those anchors rely on KB key_points for the LLM context.
+    """
+    if not article_texts:
+        return ""
+    parts: list[str] = []
+    for i, (article_key, text) in enumerate(article_texts.items(), start=1):
+        # Truncate to keep total context manageable; the spec allows
+        # ~7000 chars of JSON output, so we cap each article at ~1500.
+        clipped = (text or "").strip()[:1500]
+        if not clipped:
+            continue
+        parts.append(f"[{i}] {article_key}\n{clipped}")
     return "\n---\n".join(parts)
 
 
@@ -309,6 +372,7 @@ class ReportGenerator:
         max_tokens: int = 4096,
         doc_context: str = "",
         mandatory_regulations: list[dict] | None = None,
+        article_texts: dict[str, str] | None = None,
     ) -> dict:
         """
         Generate the four result scenes in one LLM call:
@@ -318,8 +382,17 @@ class ReportGenerator:
         checklist from the must_check matrix (category + features, market
         filtered). When provided, every entry MUST appear in the compliance
         report with its reason; corpus chunks are supporting citations.
+
+        article_texts (De-RAG spec §7.3): KB-anchored article bodies keyed
+        by canonical `{doc_id}#{article_id}`. When `USE_KB_INPUT=true` and
+        `article_texts` is non-empty, this dict drives the LLM source
+        context (instead of `chunks`). The LLM also gains the §4.1
+        citation rules and is asked to populate `citations[]` on the
+        top-level JSON. `chunks` are still passed through to the evidence
+        bundles and the `normalize_report_package` call for backwards
+        compatibility with the legacy path.
         """
-        if not chunks:
+        if not chunks and not article_texts:
             return self._fallback_report_package(
                 product=product,
                 market=market,
@@ -328,7 +401,16 @@ class ReportGenerator:
                 error="未找到合规信息，请确保语料库已正确加载。",
             )
 
-        source_context = _build_source_context(chunks, max_chunks=24, max_chars=700)
+        # Spec §7.3: when KB mode is enabled and we have article texts,
+        # use them as the LLM source context. The {KB mode + no texts}
+        # combination is treated like the legacy path so the generator
+        # degrades cleanly.
+        use_kb = _kb_input_enabled() and bool(article_texts)
+        if use_kb:
+            source_context = _build_article_source_context(article_texts or {})
+        else:
+            source_context = _build_source_context(chunks, max_chunks=24, max_chars=700)
+
         doc_section = (
             f"\n\n用户上传文档内容：\n{doc_context}\n"
             if doc_context
@@ -343,6 +425,9 @@ class ReportGenerator:
             "Otherwise omit structuredFields entirely; never use example zeros or guessed values.\n"
         )
         system = REPORT_PACKAGE_SYSTEM_PROMPT.replace("{source_chunks}", finance_contract + source_context)
+        if use_kb:
+            system = system + _CITATION_RULES
+
         user_prompt = (
             f"产品类型：{product}\n"
             f"目标市场：{market}\n"
@@ -454,6 +539,10 @@ class ReportGenerator:
             decision = {}
 
         fallback = self._fallback_report_package(product, market, query, chunks, compliance_report=compliance)
+        # Spec §7.3: forward LLM-emitted citations to the top-level
+        # package. quote_span/match_status stay None until the
+        # quote_matcher pass (§7.4) runs against the article library.
+        llm_citations = package.get("citations") if isinstance(package, dict) else None
         normalized = {
             "complianceReport": compliance,
             "profitReport": {**fallback["profitReport"], **profit},
@@ -469,6 +558,7 @@ class ReportGenerator:
                 ),
                 "validationErrors": validation_errors,
             },
+            "citations": llm_citations if llm_citations else [],
         }
         return normalize_report_package(
             normalized,

@@ -148,17 +148,24 @@ def load_article_text(reg_id: str, article_id: str) -> str | None:
 def load_articles_for_anchor(anchor: dict) -> dict[str, str]:
     """Resolve all `key_articles` of a KB anchor to their article texts.
 
-    Input shape: a KB anchor entry as returned by
-    `kb_loader.get_anchors_by_*()` (the legacy shape with `kb_entry`).
+    Input shape: any of the following (we coerce defensively):
+      - Legacy wrapper from `kb_loader.get_anchors_by_category/feature`:
+          {doc_name, region, reason, kb_entry: {regulation_id, key_articles, ...}}
+      - Bare payload from `kb_loader.get_anchor_by_regulation_id`:
+          {regulation_id, key_articles, ...}
+      - Already-flat dict (only `regulation_id` + `key_articles` keys).
 
     Output: {article_id: text} — only articles that exist AND have non-empty
     text are included. The caller (generator) decides what to do with
     missing slots (typically: keep the anchor in the report and rely on
     `key_points` instead of the verbatim text).
     """
-    kb_entry = anchor.get("kb_entry") if isinstance(anchor, dict) else None
-    reg_id = (kb_entry or anchor or {}).get("regulation_id")
-    key_articles = (kb_entry or {}).get("key_articles") or []
+    if not isinstance(anchor, dict):
+        return {}
+    kb_entry = anchor.get("kb_entry")
+    payload = kb_entry if isinstance(kb_entry, dict) else anchor
+    reg_id = payload.get("regulation_id")
+    key_articles = payload.get("key_articles") or []
     if not reg_id or not key_articles:
         return {}
 
@@ -170,7 +177,70 @@ def load_articles_for_anchor(anchor: dict) -> dict[str, str]:
     return out
 
 
+def build_article_texts_for_anchors(
+    anchors: list[dict],
+    kb_loader_module=None,
+) -> dict[str, str]:
+    """Resolve `mandatory_regulations` to `{doc_id}#{article_id} -> text`.
+
+    Spec: docs/plans/2026-09-11-de-rag-evidence-spec.md §7.3.
+
+    The generator pipeline produces a list of "must-cover" anchor entries
+    (shape: {doc_name, region, reason, source}). Those entries do NOT
+    carry the full KB payload — `regulation_id` and `key_articles` live
+    in the YAML anchor under `kb_entry`. This helper looks each entry
+    up in `data/kb/anchors/*.yaml`, pulls its `key_articles`, then loads
+    the corresponding article text from the regulation library.
+
+    Output keys are the canonical `{doc_id}#{article_id}` strings used
+    by the citation contract (`CitationRef.doc_id` + `.article_id`,
+    spec §3.3) and the document viewer route (§7.5). Missing articles
+    (private standards with empty articles[]) are silently skipped —
+    the caller's anchor list still drives coverage via `key_points`.
+
+    Args:
+        anchors: the output of `must_check.build_anchor_list`.
+        kb_loader_module: dependency injection seam for tests; defaults
+            to `rag_service.retrieval.kb_loader`.
+    """
+    if not anchors:
+        return {}
+    if kb_loader_module is None:
+        from rag_service.retrieval import kb_loader
+        kb_loader_module = kb_loader
+
+    # Build (region_upper, doc_name) → full KB payload index.
+    by_key: dict[tuple[str, str], dict] = {}
+    for payload in kb_loader_module._load_all().values():
+        if not isinstance(payload, dict):
+            continue
+        markets = (payload.get("applies_if") or {}).get("markets", []) or []
+        region = markets[0] if markets and markets[0] != "GLOBAL" else ""
+        doc_name = str(payload.get("doc_name", "")).strip()
+        by_key[(region.upper(), doc_name)] = payload
+
+    out: dict[str, str] = {}
+    for entry in anchors:
+        if not isinstance(entry, dict):
+            continue
+        region = str(entry.get("region", "")).strip().upper()
+        doc_name = str(entry.get("doc_name", "")).strip()
+        payload = by_key.get((region, doc_name))
+        if not payload:
+            continue
+        reg_id = payload.get("regulation_id")
+        key_articles = payload.get("key_articles") or []
+        if not reg_id or not key_articles:
+            continue
+        for art_id in key_articles:
+            text = load_article_text(reg_id, art_id)
+            if text:
+                out[f"{reg_id}#{art_id}"] = text
+    return out
+
+
 __all__ = [
+    "build_article_texts_for_anchors",
     "get_regulations_root",
     "invalidate_cache",
     "list_regulation_ids",
