@@ -1,0 +1,29 @@
+id: KB-3c-CN-CN-CCC-IT
+regulation_id: CN-CCC-IT
+doc_name: CCC认证 信息技术设备
+official_citation: CCC 实施规则 (信息技术设备)
+short_name: CCC 认证 (信息技术设备)
+source: category
+primary_source: 3c
+applies_if:
+  category:
+  - 3c
+  features_any: []
+  markets:
+  - CN
+key_articles:
+- 实施规则-CNCA-C09-01
+key_points:
+- 3C 数字类 (计算机/打印机/服务器/数码相机等) 的 CCC 实施规则
+- 依据 GB 4943.1 测试
+- 需 CNCA 指定认证机构 (CQC 等) 出证
+- 工厂检查 + 抽样测试 + 证后监督
+- 证书有效期 5 年
+risk_hint: 目录内 IT 设备无 CCC → 海关/平台拦截 + 处罚
+est_cost: 测试 ¥20K-50K
+license: public
+source_url: https://www.samr.gov.cn/cnca/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

@@ -1,0 +1,30 @@
+id: KB-3c-US-US-FCC-15-18
+regulation_id: US-FCC-15-18
+doc_name: FCC Part 15/18 Communications Equipment
+official_citation: 47 CFR Part 15 & Part 18
+short_name: FCC Part 15/18 (通信 + ISM 设备)
+source: category
+primary_source: 3c
+applies_if:
+  category:
+  - 3c
+  features_any: []
+  markets:
+  - US
+key_articles:
+- section-15-101
+- section-18-101
+- section-18-301
+key_points:
+- Part 15 覆盖数字/无线设备;Part 18 覆盖 ISM 频段设备 (微波炉/工业加热等)
+- 需在 FCC 认可实验室测试 EMC/RF
+- 大多数 Part 15/18 设备可走 SDoC;Part 18 ISM 通常 SDoC
+- 标记需含 FCC ID 或 SDoC 声明
+risk_hint: 无 FCC 测试 → 处罚 + 海关扣留
+est_cost: SDoC 测试 ¥8K-20K
+license: public
+source_url: https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

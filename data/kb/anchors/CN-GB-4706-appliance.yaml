@@ -1,0 +1,28 @@
+id: KB-appliance-CN-CN-GB-4706
+regulation_id: CN-GB-4706
+doc_name: GB 4706 家用电器安全通用要求
+official_citation: GB 4706.1 + 专项系列 (GB 4706.X)
+short_name: GB 4706 (家用电器, 私有标准)
+source: category
+primary_source: appliance
+applies_if:
+  category:
+  - appliance
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 对应 IEC 60335-1 家用电器安全,GB 4706.1 通用 + GB 4706.2~XX 各类专项
+- CCC 强制目录内的家电产品 (电饭锅/微波炉/空调等) 必须通过
+- 测试项目涵盖电气/机械/热/辐射等危险防护
+- GB 标准由 SAC 标准化技术委员会维护
+- 对应协调标准 GB 4706.1-2005 + 专项
+risk_hint: 未通过 GB 4706 → 不可获得 CCC,禁止销售
+est_cost: 测试 ¥15K-40K
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

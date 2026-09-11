@@ -1,0 +1,31 @@
+id: KB-food_contact-EU-EU-1935-2004
+regulation_id: EU-1935-2004
+doc_name: FCM Framework Regulation (EC) 1935/2004
+official_citation: Regulation (EC) No 1935/2004
+short_name: FCM Framework (食品接触材料)
+source: category
+primary_source: food_contact
+applies_if:
+  category:
+  - food_contact
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-3
+- art-5
+- art-15
+- art-16
+key_points:
+- 框架法规,适用于所有与食品接触的材料/制品 (塑料/金属/玻璃/陶瓷/纸等)
+- 材料不能向食品迁移危害人体健康的物质,不能改变食品成分/感官
+- 需附 DoC + 标签标识 (e.g. 'for food contact' 或刀叉符号)
+- 塑料类需额外符合 (EU) 10/2011; 陶瓷符合 84/500/EEC
+risk_hint: 无 DoC 或迁移超标 → 产品召回 + 处罚
+est_cost: 迁移测试 ¥5K-15K + DoC ¥2K-5K
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2004/1935/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

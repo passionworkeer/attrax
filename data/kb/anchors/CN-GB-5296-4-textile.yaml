@@ -1,0 +1,28 @@
+id: KB-textile-CN-CN-GB-5296-4
+regulation_id: CN-GB-5296-4
+doc_name: GB 5296.4 纺织品和服装使用说明
+official_citation: GB 5296.4-2012
+short_name: GB 5296.4 (纺织品标签, 私有标准)
+source: category
+primary_source: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- GB 5296 系列的纺织分支,规定纺织品和服装的使用说明 (标签)
+- 需标注纤维成分 + 含量百分比 + 维护方式 + 制造商/经销商
+- 需 GB/T 8685-2008 规定的图形符号表示洗涤/熨烫/晾干等
+- 中文标注强制,与英文/其他语种并列可
+- 吊牌 + 缝制标签 + 包装标注均合规
+risk_hint: 标签不合规 → 处罚 + 退货
+est_cost: 标签设计 ¥2K-5K
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

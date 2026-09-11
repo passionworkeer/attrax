@@ -1,0 +1,29 @@
+id: KB-textile-US-US-TFPIA
+regulation_id: US-TFPIA
+doc_name: TFPIA Textile Fiber Products Identification Act
+official_citation: 15 USC §70 et seq.
+short_name: TFPIA (纺织纤维标识)
+source: category
+primary_source: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - US
+key_articles:
+- section-70
+- section-70a
+key_points:
+- 要求纺织纤维制品 (含服装/家纺) 标注纤维成分 + 制造商/经销商身份
+- FTC 维护通用纤维名称表 (Generic Fiber Names)
+- 广告与标签需与实际成分一致
+- 16 CFR Part 303 实施细则规定标签格式与例外
+risk_hint: 标签错误 → FTC 处罚 + 海关扣留
+est_cost: 标签设计 + 验证 $1K-$3K
+license: public
+source_url: https://www.ftc.gov/enforcement/statutes/textile-fiber-products-identification-act
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

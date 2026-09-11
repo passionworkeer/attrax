@@ -1,0 +1,30 @@
+id: KB-electronics-CN-CN-CCC
+regulation_id: CN-CCC
+doc_name: CCC认证 中国强制性产品认证
+official_citation: 强制性产品认证制度 (CNCA 实施规则)
+short_name: CCC 认证 (中国强制)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  features_any:
+  - mains
+  markets:
+  - CN
+key_articles:
+- 实施规则-CNCA-C09-01
+key_points:
+- 适用于 CNCA 公布的强制性产品目录 (21 大类, e.g. 电线电缆、家电、玩具、安全玻璃等)
+- 需在 CNCA 指定认证机构申请 + CQC/CGC 等机构测试
+- 需工厂检查 (初始 + 获证后监督)
+- 证书有效期 5 年 (部分类别 3 年), 每年监督
+- 证书变更需变更申请,新设计/新工厂均需重新申请
+risk_hint: 无 CCC 目录内产品未认证 → 处罚 + 平台下架 + 海关扣留
+est_cost: 测试 ¥15K-40K + 申请费 ¥5K-15K + 工厂检查 ¥10K-30K
+license: public
+source_url: https://www.samr.gov.cn/cnca/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

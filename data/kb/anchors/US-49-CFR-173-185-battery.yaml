@@ -1,0 +1,30 @@
+id: KB-battery-US-US-49-CFR-173-185
+regulation_id: US-49-CFR-173-185
+doc_name: 49 CFR 173.185 Lithium Battery Transport
+official_citation: 49 CFR §173.185
+short_name: 49 CFR 173.185 (锂电池运输)
+source: category
+primary_source: battery
+applies_if:
+  category:
+  - battery
+  features_any:
+  - battery
+  markets:
+  - US
+key_articles:
+- section-173-185
+key_points:
+- 美国锂电池 (含锂离子/锂金属/锂聚合物) 陆运/海运/空运的统一规则
+- 空运额外遵循 IATA DGR (UN 3480/3481 条款)
+- 锂离子电池 UN 38.3 测试报告强制
+- 包装/标记/单件重量/数量限制按电池类型和运输方式分级
+- 需提交 Shipper's Declaration for Dangerous Goods (空运/海运)
+risk_hint: 无 UN 38.3 报告 → 航空公司/船公司拒收 + 处罚
+est_cost: UN 38.3 测试 ¥30K-80K / 6-12 周
+license: public
+source_url: https://www.ecfr.gov/current/title-49/subtitle-B/chapter-I/subchapter-C/part-173/subpart-E/section-173.185
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

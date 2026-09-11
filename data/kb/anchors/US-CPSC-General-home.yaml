@@ -1,0 +1,29 @@
+id: KB-home-US-US-CPSC-General
+regulation_id: US-CPSC-General
+doc_name: CPSC General Product Safety
+official_citation: 15 USC §2051 et seq. (Consumer Product Safety Act)
+short_name: CPSA (消费品安全法)
+source: category
+primary_source: home
+applies_if:
+  category:
+  - home
+  features_any: []
+  markets:
+  - US
+key_articles:
+- section-2051
+- section-2056
+key_points:
+- 美国消费品安全的基础法律,覆盖所有非专项立法产品
+- 禁止产品存在不合理伤害风险
+- 重大产品危害需 24h 内向 CPSC 报告 (Section 15)
+- 可与 CPSIA/Federal Hazardous Substances Act 等专项法联动
+risk_hint: 未报告产品危害 → 处罚 + 强制召回
+est_cost: 合规体系维护 (持续)
+license: public
+source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statues
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

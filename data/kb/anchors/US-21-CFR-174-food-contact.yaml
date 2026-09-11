@@ -1,0 +1,40 @@
+id: KB-food_contact-US-US-21-CFR-174
+regulation_id: US-21-CFR-174
+doc_name: FDA 21 CFR 174-190 Food Contact Substances
+official_citation: 21 CFR Parts 174-190
+short_name: FDA 21 CFR 174-190 (FCM)
+source: category
+primary_source: food_contact
+applies_if:
+  category:
+  - food_contact
+  features_any: []
+  markets:
+  - US
+key_articles:
+- part-174
+- part-175
+- part-176
+- part-177
+- part-178
+- part-180
+- part-181
+- part-182
+- part-184
+- part-186
+- part-189
+- part-190
+key_points:
+- 美国食品接触材料 (FCN) 法规框架,涵盖涂层/聚合物/橡胶/纸/粘合剂等
+- Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification)
+- 间接添加剂特定迁移限值与测试条件按法规要求
+- 需出具符合性声明 + 良好生产规范 (21 CFR Part 211 适用药物, FCM 按 GMP)
+- Recycled Plastics 需 FCN (21 CFR §174.5)
+risk_hint: 未授权物质或迁移超标 → FDA 警告信 + 召回
+est_cost: FCN 申请 $20K-$50K 或迁移测试 $10K-$30K
+license: public
+source_url: https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-174
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

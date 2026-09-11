@@ -1,0 +1,29 @@
+id: KB-toy-CN-CN-GB-6675
+regulation_id: CN-GB-6675
+doc_name: GB 6675 玩具安全国家标准
+official_citation: GB 6675.1-2014 + 6675.2-2014 + 6675.3-2014 + 6675.4-2014
+short_name: GB 6675 (玩具安全, 私有标准)
+source: category
+primary_source: toy
+applies_if:
+  category:
+  - toy
+  features_any:
+  - children
+  markets:
+  - CN
+key_articles: []
+key_points:
+- GB 6675 系列对应 ISO 8124 + EN 71 等玩具安全标准
+- GB 6675.1 基本规范 + GB 6675.2 机械物理性能 + GB 6675.3 易燃性能 + GB 6675.4 化学迁移
+- 3C 玩具目录 (电玩具/童车/塑胶玩具等) 强制 CCC
+- 非 3C 目录内玩具仍需符合 GB 6675 (GB 强制性标准)
+- 化学要求涵盖 8 种重金属迁移 + 邻苯
+risk_hint: 玩具无 GB 6675 合规 → 强制下架 + SAMR 处罚
+est_cost: 全套测试 ¥15K-35K
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

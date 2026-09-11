@@ -1,0 +1,31 @@
+id: KB-appliance-EU-EU-2009-125
+regulation_id: EU-2009-125
+doc_name: ErP Directive 2009/125/EC
+official_citation: Directive 2009/125/EC
+short_name: ErP (生态设计)
+source: category
+primary_source: appliance
+applies_if:
+  category:
+  - appliance
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-4
+- art-5
+- art-6
+- art-15
+key_points:
+- 框架指令,按产品类别的具体实施条例 (e.g. 1275/2008 待机功耗、2019/1782 外置电源等)
+- 要求能源相关产品符合生态设计要求 (能效、材料、可修复性等)
+- 需提供符合性技术文档并加贴 CE 标志
+- 数据库 EPREL (European Product Registry for Energy Labelling) 需注册
+risk_hint: 未满足具体实施条例 → 整批产品禁入欧盟
+est_cost: 检测 ¥5K-20K + 注册 ¥2K-5K
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2009/125/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

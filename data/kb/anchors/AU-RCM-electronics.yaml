@@ -1,0 +1,29 @@
+id: KB-electronics-AU-AU-RCM
+regulation_id: AU-RCM
+doc_name: RCM Compliance 无线电通信标识
+official_citation: ACMA RCM Marking Requirements
+short_name: RCM (澳新合规标志)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  features_any:
+  - wireless
+  markets:
+  - AU
+key_articles: []
+key_points:
+- ACMA 监管的 Regulatory Compliance Mark,适用于澳新 (AU/NZ) 市场
+- 涵盖无线电/EMC/电信/电磁辐射等
+- 供应商需在 ERAC (Electrical Regulatory Authorities Council) 注册为 responsible supplier
+- 贴 RCM 标志 + 供应商联系信息 + DoC
+- Underlying 无线/EMC 标准仍需 AS/NZS 协调标准测试 (AS/NZS 4268 等, 私有)
+risk_hint: 无 RCM + 未注册 → ACMA 处罚 + 召回
+est_cost: 注册 AUD A$1K + AS/NZS 测试 AUD A$5K-15K
+license: public
+source_url: https://www.acma.gov.au/standards/regulatory-compliance-mark-rcm
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

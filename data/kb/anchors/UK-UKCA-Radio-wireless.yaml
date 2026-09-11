@@ -1,0 +1,28 @@
+id: KB-wireless-UK-UK-UKCA-Radio
+regulation_id: UK-UKCA-Radio
+doc_name: UKCA Radio Equipment Regulations 2017
+official_citation: Radio Equipment Regulations 2017 (S.I. 2017/1206)
+short_name: UK Radio Equipment Regs 2017
+source: feature
+primary_source: wireless
+applies_if:
+  category: []
+  features_any:
+  - wireless
+  markets:
+  - UK
+key_articles: []
+key_points:
+- UK 无线设备法规 (对应 EU RED 2014/53/EU)
+- UK 认可实验室测试 + UK Approved Body (部分类别)
+- UKCA 标志 + UK Approved Body 编号 + DoC
+- 英国境外制造商需指定 UK 授权代表
+- 频谱使用需与 OFCOM 规则一致
+risk_hint: 无 UK 无线认证 → UK 市场禁售 + OFCOM 处罚
+est_cost: 测试 £10K-30K + UK 代表 £3K-8K/年
+license: public
+source_url: https://www.legislation.gov.uk/uksi/2017/1206/contents
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

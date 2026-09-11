@@ -1,0 +1,28 @@
+id: KB-appliance-US-US-UL-60335
+regulation_id: US-UL-60335
+doc_name: UL 60335 Household Appliance Safety
+official_citation: UL 60335-1 / UL 60335-2 series
+short_name: UL 60335 (家电安全, 私有标准)
+source: category
+primary_source: appliance
+applies_if:
+  category:
+  - appliance
+  features_any: []
+  markets:
+  - US
+key_articles: []
+key_points:
+- 美国家用电器事实标准 (UL 60335-1 通用要求 + UL 60335-2-XX 系列专项)
+- FCC 法律并不强制 UL,但 Amazon/Home Depot 等平台普遍要求 UL/ETL 列名
+- 'UL 列名流程: 送样 → UL 测试 → 工厂检查 (4 次/年) → 颁证'
+- 对应 IEC 60335 国际版,差异主要在北美电气 (120V/60Hz) 与接地要求
+- 对应协调标准为 UL 60335-1 (北美) + IEC 60335-1 (国际)
+risk_hint: 无 UL/ETL 列名 → Amazon 等北美主流电商平台强制下架
+est_cost: UL 列名 $20K-$60K + 年审 $5K-$15K
+license: private_with_summary
+purchase_url: https://www.shopulstandards.com/ProductDetail.aspx?UniqueKey=36741
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

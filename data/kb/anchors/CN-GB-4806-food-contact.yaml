@@ -1,0 +1,28 @@
+id: KB-food_contact-CN-CN-GB-4806
+regulation_id: CN-GB-4806
+doc_name: GB 4806 食品接触材料系列标准
+official_citation: GB 4806.1~.16 系列
+short_name: GB 4806 (食品接触材料, 私有标准)
+source: category
+primary_source: food_contact
+applies_if:
+  category:
+  - food_contact
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- GB 4806 系列对应中国 FCM 国家强制标准 (2026 年版)
+- GB 4806.1 通则 + GB 4806.2~.16 各材料专项 (塑料/金属/玻璃/陶瓷/纸/粘合剂等)
+- GB 4806.7 (塑料) 对应 EU 10/2011,GB 4806.9 (金属) 限制元素迁移
+- 需出具 DoC (符合性声明) + 测试报告
+- 产品接触面需标识 '食品接触用' 或刀叉符号
+risk_hint: 未满足 GB 4806 → 召回 + 市场监管处罚
+est_cost: 全套测试 ¥10K-25K
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

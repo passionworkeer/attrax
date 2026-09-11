@@ -1,0 +1,30 @@
+id: KB-electronics-US-US-CA-Prop-65
+regulation_id: US-CA-Prop-65
+doc_name: Prop 65 (California)
+official_citation: California Health and Safety Code §25249.5 et seq.
+short_name: California Prop 65
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  features_any: []
+  markets:
+  - US
+key_articles:
+- section-25249-5
+- section-25249-6
+key_points:
+- 适用于加州销售的所有产品,清单含 900+ 化学品 (铅/镉/邻苯等)
+- 需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION')
+- 清单每年至少更新 1 次 (OEHHA 维护)
+- 化学检测需确认含量低于 NSRL/MADL 或标注警示
+- 律师提交通知 (60-day notice) 是常见起诉前置程序
+risk_hint: 未警告或超标 → 民事和解单次 $10K-$100K+,集体诉讼风险
+est_cost: 筛查 + 检测 ¥5K-20K
+license: public
+source_url: https://oehha.ca.gov/proposition-65
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

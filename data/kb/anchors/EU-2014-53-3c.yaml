@@ -1,0 +1,37 @@
+id: KB-3c-EU-EU-2014-53
+regulation_id: EU-2014-53
+doc_name: RED Directive 2014/53/EU
+official_citation: Directive 2014/53/EU
+short_name: RED (无线电设备指令)
+source: category
+primary_source: 3c
+applies_if:
+  category:
+  - 3c
+  features_any:
+  - wireless
+  markets:
+  - EU
+key_articles:
+- art-3
+- art-6
+- art-7
+- art-8
+- art-10
+- art-11
+- annex-i
+- annex-ii
+key_points:
+- 覆盖 9 kHz - 3000 GHz 无线电设备 (蓝牙/Wi-Fi/NFC/4G/5G 等)
+- Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足
+- CE 标志 + DoC + Notified Body 评估 (部分类别需第三方)
+- 需指定 EU 授权代表 (欧盟外制造商强制)
+- 2024 年起部分条款已被 (EU) 2022/2380 (通用充电器指令) 修订
+risk_hint: 无 RED 测试报告或未指定欧盟代表 → 整批设备下架
+est_cost: 测试 ¥15K-50K + 欧盟代表 ¥3K-8K/年
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2014/53/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

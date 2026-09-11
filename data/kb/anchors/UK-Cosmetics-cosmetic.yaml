@@ -1,0 +1,28 @@
+id: KB-cosmetic-UK-UK-Cosmetics
+regulation_id: UK-Cosmetics
+doc_name: UK Cosmetics Regulation (Retained 1223/2009)
+official_citation: UK Cosmetics Regulation (Retained 1223/2009)
+short_name: UK Cosmetics Regulation
+source: category
+primary_source: cosmetic
+applies_if:
+  category:
+  - cosmetic
+  features_any: []
+  markets:
+  - UK
+key_articles: []
+key_points:
+- 英国脱欧后保留的 1223/2009 等效规则
+- 需 OPSS (Office for Product Safety & Standards) 通报 (UK SCPN portal)
+- 需指定 UK Responsible Person
+- Safety Report + PIF + 配方公开义务
+- 禁用/限用清单与 EU 1223/2009 同步
+risk_hint: 无 UK 通报 → UK 销售禁 + OPSS 警告
+est_cost: 通报 + PIF £3K-10K
+license: public
+source_url: https://www.legislation.gov.uk/uksi/2013/1478/contents
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

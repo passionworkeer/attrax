@@ -1,0 +1,30 @@
+id: KB-battery-UN-UN-38-3
+regulation_id: UN-38-3
+doc_name: UN 38.3 Transport Testing
+official_citation: UN Manual of Tests and Criteria, Part III, Subsection 38.3
+short_name: UN 38.3 (锂电池运输)
+source: category
+primary_source: battery
+applies_if:
+  category:
+  - battery
+  features_any:
+  - battery
+  markets:
+  - UN
+key_articles:
+- section-38-3
+key_points:
+- UN 推荐锂电池运输测试标准,全球航空/海运/陆运通用强制
+- '8 项测试 (T1-T8): 高度模拟/热冲击/振动/冲击/外部短路/撞击/过充/强制放电'
+- 需 UN 认可实验室测试,报告全球互认
+- UN 3480 (锂离子电池单独运输) + UN 3481 (装在设备内或与设备一起)
+- 测试通过后方可依据 IATA/IMO/ADR 等危险品规则运输
+risk_hint: 无 UN 38.3 报告 → 航空公司/船公司/陆运公司拒收 + 罚款
+est_cost: 测试 ¥30K-80K / 6-12 周
+license: public
+source_url: https://unece.org/transport/dangerous-goods/un-manual-tests-and-criteria
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

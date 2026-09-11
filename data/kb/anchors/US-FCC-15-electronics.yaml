@@ -1,0 +1,33 @@
+id: KB-electronics-US-US-FCC-15
+regulation_id: US-FCC-15
+doc_name: FCC Part 15 Radio Frequency Devices
+official_citation: 47 CFR Part 15
+short_name: FCC Part 15 (RF devices)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  features_any:
+  - wireless
+  markets:
+  - US
+key_articles:
+- section-15-101
+- section-15-201
+- section-15-247
+- section-15-249
+key_points:
+- 覆盖无意辐射体 (15B) 和有意辐射体 (15C, 如蓝牙/Wi-Fi/ZigBee)
+- 需 FCC 认可的实验室出具测试报告
+- 大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序
+- FCC ID 仅适用高功率/特定设备 (15C 需认证)
+- '标记要求: 含 FCC ID 或 SDoC 声明 + 责任方联系信息'
+risk_hint: 无 FCC 测试 → 海关扣留 + 处罚最高 $10 万/违规产品
+est_cost: SDoC 测试 ¥5K-15K + FCC ID 认证 ¥10K-30K
+license: public
+source_url: https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

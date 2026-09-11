@@ -1,0 +1,34 @@
+id: KB-appliance-EU-EU-2014-35
+regulation_id: EU-2014-35
+doc_name: LVD Directive 2014/35/EU
+official_citation: Directive 2014/35/EU
+short_name: LVD (低电压安全)
+source: category
+primary_source: appliance
+applies_if:
+  category:
+  - appliance
+  - electronics
+  features_any:
+  - mains
+  markets:
+  - EU
+key_articles:
+- art-3
+- art-6
+- art-7
+- annex-1
+- annex-2
+key_points:
+- 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备
+- Annex I 列主要安全目标 (电气/热/机械/辐射等危险防护)
+- Annex II 列出不适用设备 (如医疗、电梯、汽车电气等专项指令覆盖)
+- 投放市场需 CE 标志 + DoC + 技术文档
+risk_hint: 电气安全测试缺失 → 产品撤市 + 制造商法律责任
+est_cost: 测试 ¥8K-25K / 4-8 周
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2014/35/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

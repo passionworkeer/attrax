@@ -1,0 +1,30 @@
+id: KB-cosmetic-US-US-MoCRA
+regulation_id: US-MoCRA
+doc_name: MoCRA Modernization of Cosmetics Act
+official_citation: 21 USC §364-364H (Pub.L. 117-9)
+short_name: MoCRA (化妆品现代化法案)
+source: category
+primary_source: cosmetic
+applies_if:
+  category:
+  - cosmetic
+  features_any: []
+  markets:
+  - US
+key_articles:
+- section-364
+- section-364d
+key_points:
+- 2022 年通过,自 2023-12-29 起分阶段实施
+- '强制要求: 设施注册 + 产品列名 (FDA VCRP 现代化版)'
+- 安全证明 (Safety Substantiation) 必须归档,记录 GMP
+- 化妆品不良反应报告 (Serious Adverse Event) 15 个工作日内报告 FDA
+- 色素添加剂 (Color Additives) 与禁用成分必须符合 FD&C Act
+risk_hint: 未注册/未列名 → FDA 警告信 + 强制召回 + 进口扣留
+est_cost: 注册 + 列名 + 安全评估 $5K-$20K
+license: public
+source_url: https://www.fda.gov/cosmetics/cosmetics-laws-regulations/modernization-cosmetics-regulation-act-2022-mocra
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

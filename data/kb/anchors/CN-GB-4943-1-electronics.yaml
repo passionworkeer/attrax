@@ -1,0 +1,28 @@
+id: KB-electronics-CN-CN-GB-4943-1
+regulation_id: CN-GB-4943-1
+doc_name: GB 4943.1 电子产品安全要求
+official_citation: GB 4943.1-2022
+short_name: GB 4943.1 (信息技术设备, 私有标准)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 对应 IEC 62368-1 音视频/信息技术设备安全要求
+- 适用于 600V 以下电子电气设备 (电源适配器、笔记本、手机充电器等)
+- GB 4943.1-2022 替代 GB 4943.1-2011 + GB 8898-2011
+- CCC 目录内的产品需配合 CCC 认证申请
+- GB 标准由 SAC 维护,正式版本需购买纸质/电子版
+risk_hint: 未满足 GB 4943.1 → CCC 申请失败 + 平台下架
+est_cost: 测试 ¥10K-30K (含 CCC 流程)
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/bzgk/std/lookup?bid=GB%204943.1-2022
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1
