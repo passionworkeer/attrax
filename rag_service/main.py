@@ -870,3 +870,50 @@ async def global_exception_handler(request: Request, exc: Exception):
     )
 
 app.add_exception_handler(Exception, global_exception_handler)
+
+
+# ───────────────────────────────────────────────────────────────────────────
+# §7.5 Regulation viewer endpoint
+#
+# Spec: docs/plans/2026-09-11-de-rag-evidence-spec.md §7.5. Returns the
+# canonical regulation payload for one regulation_id so the Next.js
+# document viewer (`app/regulations/[docId]/page.tsx`) can render the
+# article tree without bundling 44 YAMLs into the front-end.
+# ───────────────────────────────────────────────────────────────────────────
+
+
+@app.get("/api/v1/regulations/{doc_id}")
+async def get_regulation(doc_id: str):
+    """Return one regulation from `data/regulations/{region}/*.yaml`.
+
+    Public responses surface `articles[]` (with `text`) so the viewer
+    can render the article body + apply the `hl` highlight from the
+    URL. Private responses (GB/ASTM/UL) only return metadata + key
+    points + purchase_url; `articles` is empty so the client knows to
+    render the "metadata only" view (spec §7.5 step 6).
+    """
+    from rag_service.retrieval import article_loader
+
+    article_loader.invalidate_cache()  # cheap; YAMLs are small
+    reg = article_loader.load_regulation(doc_id)
+    if reg is None:
+        return _error_response(
+            code="REGULATION_NOT_FOUND",
+            message=f"Unknown regulation_id={doc_id!r}",
+            status_code=404,
+        )
+    # Strip internal-only fields before sending across the wire
+    sanitized = {
+        k: v for k, v in reg.items()
+        if k not in {"_path"}
+    }
+    return sanitized
+
+
+def _error_response(*, code: str, message: str, status_code: int):
+    """Minimal JSON error envelope for the regulation endpoint."""
+    from fastapi.responses import JSONResponse
+    return JSONResponse(
+        status_code=status_code,
+        content={"ok": False, "error": {"code": code, "message": message}},
+    )

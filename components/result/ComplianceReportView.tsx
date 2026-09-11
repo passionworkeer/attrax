@@ -9,6 +9,7 @@ import { downloadReportAsDocx, downloadReportAsPdf } from "@/lib/report-download
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
 import { DownloadButtons } from "@/components/result/DownloadButtons";
 import { ImageCarousel, type ProductImage } from "@/components/result/ImageCarousel";
+import { CitationsList, type CitationRefContract } from "@/components/regulation/CitationChip";
 import type { ComplianceReportResult } from "@/lib/types";
 
 const STATUS_META = {
@@ -331,6 +332,22 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
             {viewResult.complianceReport}
           </ReactMarkdown>
         </div>
+        {result.reportPackage?.citations?.length ? (
+          <div className="border-t border-white/10 bg-slate-900/40 px-5 py-4">
+            <p className="mb-2 text-xs font-semibold text-white">
+              {t("result.citations", { defaultValue: "法规引用" })} ·
+              <span className="ml-1 font-normal text-slate-400">
+                {result.reportPackage.citations.length} 条
+              </span>
+            </p>
+            <CitationsList
+              citations={result.reportPackage.citations as CitationRefContract[]}
+              emptyHint={t("result.noCitations", {
+                defaultValue: "本报告未引用具体条款。",
+              })}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   );
