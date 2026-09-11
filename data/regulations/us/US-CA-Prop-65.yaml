@@ -1,0 +1,23 @@
+id: US-CA-Prop-65
+official_citation: California Health and Safety Code §25249.5 et seq.
+short_name: California Prop 65
+region: US
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: section-25249-5
+  title: Prohibited acts
+  text: 需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION') (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: section-25249-6
+  title: Exemptions
+  text: 需对暴露途径 (摄入/接触/吸入) 提供清晰合理的警示标签 ('WARNING' 或 'CAUTION') (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://oehha.ca.gov/proposition-65
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

@@ -1,0 +1,31 @@
+id: EU-2014-30
+official_citation: Directive 2014/30/EU
+short_name: EMC (电磁兼容)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-6
+  title: Placing on the market and putting into service
+  text: EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-7
+  title: Conformity assessment
+  text: EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-8
+  title: Harmonised standards
+  text: EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-1
+  title: Essential requirements (Annex I)
+  text: EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/dir/2014/30/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

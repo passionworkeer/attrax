@@ -1,0 +1,23 @@
+id: US-MoCRA
+official_citation: 21 USC §364-364H (Pub.L. 117-9)
+short_name: MoCRA (化妆品现代化法案)
+region: US
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: section-364
+  title: Facility registration and product listing
+  text: 化妆品不良反应报告 (Serious Adverse Event) 15 个工作日内报告 FDA (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: section-364d
+  title: Safety substantiation and good manufacturing practice
+  text: 化妆品不良反应报告 (Serious Adverse Event) 15 个工作日内报告 FDA (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.fda.gov/cosmetics/cosmetics-laws-regulations/modernization-cosmetics-regulation-act-2022-mocra
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

@@ -1,0 +1,31 @@
+id: EU-2011-65
+official_citation: Directive 2011/65/EU
+short_name: RoHS (有害物质限制)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-4
+  title: Prevention (restriction of hazardous substances)
+  text: Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-6
+  title: Conformity assessment and CE marking
+  text: Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-7
+  title: Market surveillance
+  text: Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-2
+  title: Restricted substances (Annex II)
+  text: Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/dir/2011/65/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

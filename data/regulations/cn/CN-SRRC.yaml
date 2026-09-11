@@ -1,0 +1,19 @@
+id: CN-SRRC
+official_citation: 《无线电发射设备管理规定》(工信部令)
+short_name: SRRC 型号核准 (无线电)
+region: CN
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: 工信部无[2021]129号
+  title: Radio transmission equipment type approval
+  text: 包括蓝牙/Wi-Fi/2.4G/5G/GSM/4G/5G 模块等所有无线电发射设备 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.miit.gov.cn/
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

@@ -1,0 +1,19 @@
+id: CN-CCC
+official_citation: 强制性产品认证制度 (CNCA 实施规则)
+short_name: CCC 认证 (中国强制)
+region: CN
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: 实施规则-CNCA-C09-01
+  title: Article 实施规则 CNCA C09 01
+  text: 适用于 CNCA 公布的强制性产品目录 (21 大类, e.g. 电线电缆、家电、玩具、安全玻璃等) (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.samr.gov.cn/cnca/
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

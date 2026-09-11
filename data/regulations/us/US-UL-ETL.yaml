@@ -1,0 +1,15 @@
+id: US-UL-ETL
+official_citation: UL/ETL Listing (第三方实验室认证)
+short_name: UL/ETL 列名 (平台强制)
+region: US
+license: private_with_summary
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+purchase_url: https://www.ul.com/services/certification/ul-listing-and-classification
+notes: Private standard — metadata + key_points only per spec §6.4. No article text is distributed; consumers must purchase
+  the full standard via `purchase_url`.

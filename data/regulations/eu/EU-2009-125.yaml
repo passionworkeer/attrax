@@ -1,0 +1,31 @@
+id: EU-2009-125
+official_citation: Directive 2009/125/EC
+short_name: ErP (生态设计)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-4
+  title: Ecodesign requirements
+  text: 数据库 EPREL (European Product Registry for Energy Labelling) 需注册 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-5
+  title: Implementing measures
+  text: 数据库 EPREL (European Product Registry for Energy Labelling) 需注册 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-6
+  title: Conformity assessment
+  text: 数据库 EPREL (European Product Registry for Energy Labelling) 需注册 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-15
+  title: Information requirements
+  text: 数据库 EPREL (European Product Registry for Energy Labelling) 需注册 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/dir/2009/125/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

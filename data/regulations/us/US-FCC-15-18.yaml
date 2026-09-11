@@ -1,0 +1,27 @@
+id: US-FCC-15-18
+official_citation: 47 CFR Part 15 & Part 18
+short_name: FCC Part 15/18 (通信 + ISM 设备)
+region: US
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: section-15-101
+  title: General applicability (Part 15)
+  text: Part 15 覆盖数字/无线设备;Part 18 覆盖 ISM 频段设备 (微波炉/工业加热等) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: section-18-101
+  title: Industrial, scientific, and medical equipment — general
+  text: Part 15 覆盖数字/无线设备;Part 18 覆盖 ISM 频段设备 (微波炉/工业加热等) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: section-18-301
+  title: Consumer ISM equipment
+  text: Part 15 覆盖数字/无线设备;Part 18 覆盖 ISM 频段设备 (微波炉/工业加热等) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

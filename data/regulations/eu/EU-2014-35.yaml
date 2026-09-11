@@ -1,0 +1,35 @@
+id: EU-2014-35
+official_citation: Directive 2014/35/EU
+short_name: LVD (低电压安全)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-3
+  title: Placing on the market and safety objectives
+  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-6
+  title: Conformity assessment
+  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-7
+  title: Declaration of conformity
+  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-1
+  title: Principal safety objectives (Annex I)
+  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-2
+  title: Equipment outside the scope (Annex II)
+  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/dir/2014/35/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

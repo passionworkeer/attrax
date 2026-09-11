@@ -1,0 +1,35 @@
+id: EU-1007-2011
+official_citation: Regulation (EU) No 1007/2011
+short_name: EU Textile Labelling
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-5
+  title: Textile fibre names
+  text: 纤维名称必须按 Annex I 用官方语言标注 (e.g. cotton/cotton) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-7
+  title: Labelling of textile products
+  text: 纤维名称必须按 Annex I 用官方语言标注 (e.g. cotton/cotton) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-9
+  title: Miscellaneous textile products
+  text: 纤维名称必须按 Annex I 用官方语言标注 (e.g. cotton/cotton) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-i
+  title: Fibre names table (Annex I)
+  text: 纤维名称必须按 Annex I 用官方语言标注 (e.g. cotton/cotton) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-v
+  title: Products not requiring fibre composition labelling (Annex V)
+  text: 纤维名称必须按 Annex I 用官方语言标注 (e.g. cotton/cotton) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/reg/2011/1007/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

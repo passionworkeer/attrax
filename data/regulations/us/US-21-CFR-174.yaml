@@ -1,0 +1,63 @@
+id: US-21-CFR-174
+official_citation: 21 CFR Parts 174-190
+short_name: FDA 21 CFR 174-190 (FCM)
+region: US
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: part-174
+  title: General provisions for food contact substances
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-175
+  title: 'Indirect food additives: adhesives and components of coatings'
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-176
+  title: 'Indirect food additives: paper and paperboard components'
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-177
+  title: 'Indirect food additives: polymers'
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-178
+  title: 'Indirect food additives: adjuvants, production aids, sanitizers'
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-180
+  title: Food additives permitted in food or in contact with food on an interim basis
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-181
+  title: Prior-sanctioned food ingredients
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-182
+  title: Substances generally recognised as safe
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-184
+  title: Direct food substances affirmed as generally recognised as safe
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-186
+  title: Indirect food substances affirmed as generally recognised as safe
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-189
+  title: Substances prohibited from use in human food
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: part-190
+  title: Dietary supplements
+  text: Indirect Food Additives 需满足 Part 174-179 物质清单或有效 FCN (Food Contact Notification) (Text condensed from KB key_points;
+    full official text pending verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-174
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

@@ -1,0 +1,31 @@
+id: US-FCC-15
+official_citation: 47 CFR Part 15
+short_name: FCC Part 15 (RF devices)
+region: US
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: section-15-101
+  title: General applicability
+  text: 大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: section-15-201
+  title: Intentional radiators — general
+  text: 大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: section-15-247
+  title: Operation within the bands 902-928 MHz, 2400-2483.5 MHz, and 5725-5850 MHz
+  text: 大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: section-15-249
+  title: Operation within the bands 2400-2483.5 MHz, 5725-5875 MHz
+  text: 大多数无意/低功率有意辐射体走 SDoC (Supplier's Declaration of Conformity) 程序 (Text condensed from KB key_points; full official text
+    pending verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

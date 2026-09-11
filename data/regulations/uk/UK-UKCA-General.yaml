@@ -1,0 +1,21 @@
+id: UK-UKCA-General
+official_citation: UKCA Marking Requirements (gov.uk)
+short_name: UKCA Marking (通用)
+region: UK
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: requirements
+  title: Summary of obligations
+  text: '2021-01-01 起 UK 市场替代 CE,Brexit 后英国市场准入标识 适用 21 类产品 (电气/玩具/医疗器械/机械等) 标注要求: UKCA 标志 + DoC + 技术文档 UK 境外的制造商必须指定 UK 授权代表
+    2024-12-31 前 CE 标志可继续使用 UK 市场;2025 起部分产品 UKCA 强制 (No specific article IDs in the KB seed for this regulation — the entire
+    instrument is treated as one compliance package. Text condensed from KB key_points; full official text pending verification
+    against the primary source.)'
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.gov.uk/guidance/using-the-ukca-marking
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
