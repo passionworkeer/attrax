@@ -408,6 +408,12 @@ export interface ReportPackage {
   roadmap?: GeneratedRoadmap;
   decisionView?: GeneratedDecisionView;
   decision_view?: GeneratedDecisionView;
+  // De-RAG spec §3.3 + §7.3: per-claim citations emitted by the LLM
+  // (and post-processed by quote_matcher in §7.4). Empty array when
+  // the KB-anchored generator is off; legacy chunk-based reports
+  // also keep this field empty.
+  citations?: import("@/lib/rag-client/report-package-schema").CitationRefContract[];
+  evidencePack?: import("@/lib/rag-client/report-package-schema").CitationRefContract[];
 }
 
 export type GeneratedReportPackage = ReportPackage;
