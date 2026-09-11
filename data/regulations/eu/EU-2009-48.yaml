@@ -1,0 +1,39 @@
+id: EU-2009-48
+official_citation: Directive 2009/48/EC
+short_name: EU Toy Safety Directive
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-4
+  title: Essential safety requirements
+  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-5
+  title: Placing on the market
+  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-6
+  title: Declaration of conformity
+  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-10
+  title: Safety assessment
+  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-11
+  title: Technical documentation
+  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-ii
+  title: Particular safety requirements (Annex II)
+  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/dir/2009/48/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

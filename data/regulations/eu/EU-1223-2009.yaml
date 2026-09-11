@@ -1,0 +1,51 @@
+id: EU-1223-2009
+official_citation: Regulation (EC) No 1223/2009
+short_name: EU Cosmetics Regulation
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-10
+  title: Safety assessment
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-11
+  title: Product information file (PIF)
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-13
+  title: Notification (CPNP)
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-16
+  title: Labelling
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-18
+  title: Claims about cosmetic products
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-19
+  title: Responsible person
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-i
+  title: Cosmetic product safety report (Annex I)
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-ii
+  title: List of substances prohibited in cosmetic products
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-iii
+  title: List of substances which cosmetic products must not contain except subject to restrictions
+  text: 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/reg/2009/1223/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

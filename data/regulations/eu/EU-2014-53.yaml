@@ -1,0 +1,47 @@
+id: EU-2014-53
+official_citation: Directive 2014/53/EU
+short_name: RED (无线电设备指令)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-3
+  title: Essential requirements
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-6
+  title: Placing on the market
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-7
+  title: Notified body conformity assessment
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-8
+  title: Compliance with essential requirements
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-10
+  title: Information to be provided
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-11
+  title: Authorised representative
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-i
+  title: Essential requirements (Annex I)
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-ii
+  title: Conformity assessment modules (Annex II)
+  text: Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/dir/2014/53/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

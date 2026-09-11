@@ -1,0 +1,31 @@
+id: EU-1935-2004
+official_citation: Regulation (EC) No 1935/2004
+short_name: FCM Framework (食品接触材料)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-3
+  title: General principles
+  text: 需附 DoC + 标签标识 (e.g. 'for food contact' 或刀叉符号) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-5
+  title: Specific measures for groups of materials
+  text: 需附 DoC + 标签标识 (e.g. 'for food contact' 或刀叉符号) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-15
+  title: Declaration of conformity
+  text: 需附 DoC + 标签标识 (e.g. 'for food contact' 或刀叉符号) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+- id: art-16
+  title: Labelling
+  text: 需附 DoC + 标签标识 (e.g. 'for food contact' 或刀叉符号) (Text condensed from KB key_points; full official text pending verification
+    against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/reg/2004/1935/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

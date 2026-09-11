@@ -1,0 +1,20 @@
+id: UK-UKCA-Appliance
+official_citation: UKCA Marking for Appliances
+short_name: UKCA Marking (家电)
+region: UK
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: requirements
+  title: Summary of obligations
+  text: 对应 EN 60335-2 系列协调标准 UK 认可实验室测试 + UK 认可的第三方 (Approved Body) 评估 标注 UKCA 标志 + UK Approved Body 编号 + DoC 制造商或 UK 授权代表对
+    DoC 负责 技术文档保留 10 年 (No specific article IDs in the KB seed for this regulation — the entire instrument is treated as one
+    compliance package. Text condensed from KB key_points; full official text pending verification against the primary source.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.gov.uk/government/publications/appliances-regulations-2016
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

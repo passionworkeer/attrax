@@ -1,0 +1,21 @@
+id: UK-UKCA-Radio
+official_citation: Radio Equipment Regulations 2017 (S.I. 2017/1206)
+short_name: UK Radio Equipment Regs 2017
+region: UK
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: requirements
+  title: Summary of obligations
+  text: UK 无线设备法规 (对应 EU RED 2014/53/EU) UK 认可实验室测试 + UK Approved Body (部分类别) UKCA 标志 + UK Approved Body 编号 + DoC 英国境外制造商需指定
+    UK 授权代表 频谱使用需与 OFCOM 规则一致 (No specific article IDs in the KB seed for this regulation — the entire instrument is treated
+    as one compliance package. Text condensed from KB key_points; full official text pending verification against the primary
+    source.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.legislation.gov.uk/uksi/2017/1206/contents
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

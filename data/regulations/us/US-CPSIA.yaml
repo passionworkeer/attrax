@@ -1,0 +1,27 @@
+id: US-CPSIA
+official_citation: 15 USC §2056a et seq. (Pub.L. 110-314)
+short_name: CPSIA (儿童产品安全法)
+region: US
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: section-2056a
+  title: General requirements for children's products
+  text: 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1% (Text condensed from KB key_points; full official
+    text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: section-2056b
+  title: Mandatory standards for consumer products
+  text: 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1% (Text condensed from KB key_points; full official
+    text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: section-2057c
+  title: Tracking labels for children's products
+  text: 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1% (Text condensed from KB key_points; full official
+    text pending verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statues/Childrens-Products
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

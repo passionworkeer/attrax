@@ -1,0 +1,20 @@
+id: UK-Batteries
+official_citation: The Batteries and Accumulables (Placing on the Market) Regulations 2008 (UK Retained)
+short_name: UK 电池法规 (Retained EU)
+region: UK
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: requirements
+  title: Summary of obligations
+  text: 英国脱欧后保留的 2006/66/EC 等效规则 (UK Retained EU Law) 含便携/工业/汽车电池分类管理 收集/回收/再利用率要求与原 EU 指令并行 UK 厂家需注册为电池生产者 后续将逐步与 EU 2023/1542
+    趋同 (No specific article IDs in the KB seed for this regulation — the entire instrument is treated as one compliance package.
+    Text condensed from KB key_points; full official text pending verification against the primary source.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.legislation.gov.uk/uksi/2008/2164/contents
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

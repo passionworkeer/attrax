@@ -1,0 +1,35 @@
+id: EU-1907-2006
+official_citation: Regulation (EC) No 1907/2006
+short_name: REACH (化学品注册)
+region: EU
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: art-7
+  title: Registration and notification of substances in articles
+  text: 化学品/混合物/物品中 SVHC (高关注物质) 含量 > 0.1% w/w 需向 ECHA 通报并告知下游 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-8
+  title: Dossier and chemical safety report
+  text: 化学品/混合物/物品中 SVHC (高关注物质) 含量 > 0.1% w/w 需向 ECHA 通报并告知下游 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-9
+  title: Communication in the supply chain
+  text: 化学品/混合物/物品中 SVHC (高关注物质) 含量 > 0.1% w/w 需向 ECHA 通报并告知下游 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-33
+  title: Communication of information on substances in articles
+  text: 化学品/混合物/物品中 SVHC (高关注物质) 含量 > 0.1% w/w 需向 ECHA 通报并告知下游 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+- id: annex-xvii
+  title: Restrictions on the manufacture, placing on the market and use of certain dangerous substances, mixtures and articles
+  text: 化学品/混合物/物品中 SVHC (高关注物质) 含量 > 0.1% w/w 需向 ECHA 通报并告知下游 (Text condensed from KB key_points; full official text pending
+    verification against the primary source — see regulation `source_url` and `notes`.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://eur-lex.europa.eu/eli/reg/2006/1907/oj
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

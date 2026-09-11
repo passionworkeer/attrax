@@ -1,0 +1,15 @@
+id: CN-GB-5296-4
+official_citation: GB 5296.4-2012
+short_name: GB 5296.4 (纺织品标签, 私有标准)
+region: CN
+license: private_with_summary
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+purchase_url: https://openstd.samr.gov.cn/
+notes: Private standard — metadata + key_points only per spec §6.4. No article text is distributed; consumers must purchase
+  the full standard via `purchase_url`.

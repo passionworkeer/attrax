@@ -1,0 +1,125 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://attrax/schemas/regulation.schema.json",
+  "title": "Regulation library entry",
+  "description": "Structured representation of a single regulation (or regulation series), as consumed by the article_loader and rendered by the document viewer. See docs/plans/2026-09-11-de-rag-evidence-spec.md §3.1.",
+  "type": "object",
+  "required": [
+    "id",
+    "official_citation",
+    "license",
+    "last_verified",
+    "language",
+    "schema_version"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9-]{2,}$",
+      "description": "Stable regulation identifier. Same id appears in KB anchors (`regulation_id`)."
+    },
+    "official_citation": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display citation as a compliance practitioner would write it (e.g. 'Regulation (EU) 2023/1542')."
+    },
+    "short_name": {
+      "type": "string",
+      "description": "Short human-readable name."
+    },
+    "region": {
+      "type": "string",
+      "enum": ["EU", "US", "UK", "CN", "AU", "UN", "GLOBAL"]
+    },
+    "license": {
+      "type": "string",
+      "enum": ["public", "private_with_summary"]
+    },
+    "source_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Official source URL (public laws/regulations). Required for public; null otherwise."
+    },
+    "purchase_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Purchase / lookup URL for private standards (ASTM, UL, GB, EN, etc.). Required for private; null otherwise."
+    },
+    "consolidated_version_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "If a consolidated (post-amendment) version exists, link to it here."
+    },
+    "in_force_as_of": {
+      "type": ["string", "null"],
+      "format": "date"
+    },
+    "last_verified": {
+      "type": "string",
+      "format": "date"
+    },
+    "last_verified_by": {
+      "type": "string",
+      "enum": ["human", "collector", "llm-assisted"]
+    },
+    "replaces": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Earlier regulation IDs superseded by this one."
+    },
+    "replaced_by": {
+      "type": ["string", "null"],
+      "description": "If this regulation has been formally repealed, the successor's ID."
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$",
+      "description": "ISO 639-1 (or BCP-47) code for the article text language. en / zh / fr etc."
+    },
+    "articles": {
+      "type": "array",
+      "items": {"$ref": "#/definitions/article"}
+    },
+    "raw_file": {
+      "type": ["string", "null"],
+      "description": "Relative path (under data/regulations/) to the official PDF/HTML file, or null for private standards."
+    },
+    "checksum_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Free-form maintenance notes (amendments applied, structure decisions, etc.)."
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "if": {"properties": {"license": {"const": "public"}}},
+  "then": {"required": ["source_url"]},
+  "else": {"required": ["purchase_url"]},
+  "definitions": {
+    "article": {
+      "type": "object",
+      "required": ["id", "title"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^\\S+$",
+          "description": "Article ID within this regulation (e.g. 'art-77', 'annex-iv', '第17条', '工信部无[2021]129号'). Non-whitespace only — no semantic constraint to allow Chinese punctuation and brackets."
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "text": {
+          "type": "string",
+          "description": "Full article text. Empty/missing is allowed only as a placeholder (need_human_review)."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+id: UK-Cosmetics
+official_citation: UK Cosmetics Regulation (Retained 1223/2009)
+short_name: UK Cosmetics Regulation
+region: UK
+license: public
+last_verified: '2026-09-11'
+last_verified_by: llm-assisted
+language: en
+articles:
+- id: requirements
+  title: Summary of obligations
+  text: 英国脱欧后保留的 1223/2009 等效规则 需 OPSS (Office for Product Safety & Standards) 通报 (UK SCPN portal) 需指定 UK Responsible Person
+    Safety Report + PIF + 配方公开义务 禁用/限用清单与 EU 1223/2009 同步 (No specific article IDs in the KB seed for this regulation — the
+    entire instrument is treated as one compliance package. Text condensed from KB key_points; full official text pending
+    verification against the primary source.)
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+source_url: https://www.legislation.gov.uk/uksi/2013/1478/contents
+notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
+  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'

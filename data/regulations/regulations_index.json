@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-11",
+  "count": 44,
+  "regulations": [
+    {
+      "id": "AU-RCM",
+      "region": "AU",
+      "license": "public",
+      "official_citation": "ACMA RCM Marking Requirements",
+      "short_name": "RCM (澳新合规标志)",
+      "source_url": "https://www.acma.gov.au/standards/regulatory-compliance-mark-rcm",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "CN-CCC-IT",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "CCC 实施规则 (信息技术设备)",
+      "short_name": "CCC 认证 (信息技术设备)",
+      "source_url": "https://www.samr.gov.cn/cnca/",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "CN-CCC",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "强制性产品认证制度 (CNCA 实施规则)",
+      "short_name": "CCC 认证 (中国强制)",
+      "source_url": "https://www.samr.gov.cn/cnca/",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "CN-CSAR",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "国务院令第727号《化妆品监督管理条例》",
+      "short_name": "化妆品监督管理条例 (CSAR)",
+      "source_url": "https://www.gov.cn/zhengce/content/2020-06/29/content_5524019.htm",
+      "purchase_url": null,
+      "article_count": 4
+    },
+    {
+      "id": "CN-GB-18401",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 18401-2010",
+      "short_name": "GB 18401 (纺织安全, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-31241",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 31241-2022",
+      "short_name": "GB 31241 (便携锂电池, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-4706",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 4706.1 + 专项系列 (GB 4706.X)",
+      "short_name": "GB 4706 (家用电器, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-4806",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 4806.1~.16 系列",
+      "short_name": "GB 4806 (食品接触材料, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-4943-1",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 4943.1-2022",
+      "short_name": "GB 4943.1 (信息技术设备, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/bzgk/std/lookup?bid=GB%204943.1-2022",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-5296-4",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 5296.4-2012",
+      "short_name": "GB 5296.4 (纺织品标签, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-5296",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 5296.1-2012 + GB 5296.2-... 系列",
+      "short_name": "GB 5296 (消费品使用说明, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-GB-6675",
+      "region": "CN",
+      "license": "private_with_summary",
+      "official_citation": "GB 6675.1-2014 + 6675.2-2014 + 6675.3-2014 + 6675.4-2014",
+      "short_name": "GB 6675 (玩具安全, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://openstd.samr.gov.cn/",
+      "article_count": 0
+    },
+    {
+      "id": "CN-SRRC",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "《无线电发射设备管理规定》(工信部令)",
+      "short_name": "SRRC 型号核准 (无线电)",
+      "source_url": "https://www.miit.gov.cn/",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "EU-10-2011",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) No 10/2011",
+      "short_name": "FCM Plastics (塑料食品接触)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2011/10/oj",
+      "purchase_url": null,
+      "article_count": 10
+    },
+    {
+      "id": "EU-1007-2011",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) No 1007/2011",
+      "short_name": "EU Textile Labelling",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2011/1007/oj",
+      "purchase_url": null,
+      "article_count": 5
+    },
+    {
+      "id": "EU-1223-2009",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EC) No 1223/2009",
+      "short_name": "EU Cosmetics Regulation",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2009/1223/oj",
+      "purchase_url": null,
+      "article_count": 9
+    },
+    {
+      "id": "EU-1907-2006",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EC) No 1907/2006",
+      "short_name": "REACH (化学品注册)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2006/1907/oj",
+      "purchase_url": null,
+      "article_count": 5
+    },
+    {
+      "id": "EU-1935-2004",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EC) No 1935/2004",
+      "short_name": "FCM Framework (食品接触材料)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2004/1935/oj",
+      "purchase_url": null,
+      "article_count": 4
+    },
+    {
+      "id": "EU-2009-125",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2009/125/EC",
+      "short_name": "ErP (生态设计)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2009/125/oj",
+      "purchase_url": null,
+      "article_count": 4
+    },
+    {
+      "id": "EU-2009-48",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2009/48/EC",
+      "short_name": "EU Toy Safety Directive",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2009/48/oj",
+      "purchase_url": null,
+      "article_count": 6
+    },
+    {
+      "id": "EU-2011-65",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2011/65/EU",
+      "short_name": "RoHS (有害物质限制)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2011/65/oj",
+      "purchase_url": null,
+      "article_count": 4
+    },
+    {
+      "id": "EU-2014-30",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2014/30/EU",
+      "short_name": "EMC (电磁兼容)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/30/oj",
+      "purchase_url": null,
+      "article_count": 4
+    },
+    {
+      "id": "EU-2014-35",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2014/35/EU",
+      "short_name": "LVD (低电压安全)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/35/oj",
+      "purchase_url": null,
+      "article_count": 5
+    },
+    {
+      "id": "EU-2014-53",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2014/53/EU",
+      "short_name": "RED (无线电设备指令)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj",
+      "purchase_url": null,
+      "article_count": 8
+    },
+    {
+      "id": "EU-2023-1542",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2023/1542",
+      "short_name": "EU Battery Regulation 2023/1542",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj",
+      "purchase_url": null,
+      "article_count": 5
+    },
+    {
+      "id": "EU-2023-988",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2023/988",
+      "short_name": "GPSR (通用产品安全)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2023/988/oj",
+      "purchase_url": null,
+      "article_count": 5
+    },
+    {
+      "id": "UK-Batteries",
+      "region": "UK",
+      "license": "public",
+      "official_citation": "The Batteries and Accumulables (Placing on the Market) Regulations 2008 (UK Retained)",
+      "short_name": "UK 电池法规 (Retained EU)",
+      "source_url": "https://www.legislation.gov.uk/uksi/2008/2164/contents",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "UK-Cosmetics",
+      "region": "UK",
+      "license": "public",
+      "official_citation": "UK Cosmetics Regulation (Retained 1223/2009)",
+      "short_name": "UK Cosmetics Regulation",
+      "source_url": "https://www.legislation.gov.uk/uksi/2013/1478/contents",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "UK-UKCA-Appliance",
+      "region": "UK",
+      "license": "public",
+      "official_citation": "UKCA Marking for Appliances",
+      "short_name": "UKCA Marking (家电)",
+      "source_url": "https://www.gov.uk/government/publications/appliances-regulations-2016",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "UK-UKCA-General",
+      "region": "UK",
+      "license": "public",
+      "official_citation": "UKCA Marking Requirements (gov.uk)",
+      "short_name": "UKCA Marking (通用)",
+      "source_url": "https://www.gov.uk/guidance/using-the-ukca-marking",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "UK-UKCA-Radio",
+      "region": "UK",
+      "license": "public",
+      "official_citation": "Radio Equipment Regulations 2017 (S.I. 2017/1206)",
+      "short_name": "UK Radio Equipment Regs 2017",
+      "source_url": "https://www.legislation.gov.uk/uksi/2017/1206/contents",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "UN-38-3",
+      "region": "UN",
+      "license": "public",
+      "official_citation": "UN Manual of Tests and Criteria, Part III, Subsection 38.3",
+      "short_name": "UN 38.3 (锂电池运输)",
+      "source_url": "https://unece.org/transport/dangerous-goods/un-manual-tests-and-criteria",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "US-21-CFR-174",
+      "region": "US",
+      "license": "public",
+      "official_citation": "21 CFR Parts 174-190",
+      "short_name": "FDA 21 CFR 174-190 (FCM)",
+      "source_url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-174",
+      "purchase_url": null,
+      "article_count": 12
+    },
+    {
+      "id": "US-49-CFR-173-185",
+      "region": "US",
+      "license": "public",
+      "official_citation": "49 CFR §173.185",
+      "short_name": "49 CFR 173.185 (锂电池运输)",
+      "source_url": "https://www.ecfr.gov/current/title-49/subtitle-B/chapter-I/subchapter-C/part-173/subpart-E/section-173.185",
+      "purchase_url": null,
+      "article_count": 1
+    },
+    {
+      "id": "US-ASTM-F963",
+      "region": "US",
+      "license": "private_with_summary",
+      "official_citation": "ASTM F963-23",
+      "short_name": "ASTM F963 (玩具安全, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://www.astm.org/f0963-23.html",
+      "article_count": 0
+    },
+    {
+      "id": "US-CA-Prop-65",
+      "region": "US",
+      "license": "public",
+      "official_citation": "California Health and Safety Code §25249.5 et seq.",
+      "short_name": "California Prop 65",
+      "source_url": "https://oehha.ca.gov/proposition-65",
+      "purchase_url": null,
+      "article_count": 2
+    },
+    {
+      "id": "US-CPSC-General",
+      "region": "US",
+      "license": "public",
+      "official_citation": "15 USC §2051 et seq. (Consumer Product Safety Act)",
+      "short_name": "CPSA (消费品安全法)",
+      "source_url": "https://www.cpsc.gov/Regulations-Laws--Standards/Statues",
+      "purchase_url": null,
+      "article_count": 2
+    },
+    {
+      "id": "US-CPSIA",
+      "region": "US",
+      "license": "public",
+      "official_citation": "15 USC §2056a et seq. (Pub.L. 110-314)",
+      "short_name": "CPSIA (儿童产品安全法)",
+      "source_url": "https://www.cpsc.gov/Regulations-Laws--Standards/Statues/Childrens-Products",
+      "purchase_url": null,
+      "article_count": 3
+    },
+    {
+      "id": "US-FCC-15-18",
+      "region": "US",
+      "license": "public",
+      "official_citation": "47 CFR Part 15 & Part 18",
+      "short_name": "FCC Part 15/18 (通信 + ISM 设备)",
+      "source_url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A",
+      "purchase_url": null,
+      "article_count": 3
+    },
+    {
+      "id": "US-FCC-15",
+      "region": "US",
+      "license": "public",
+      "official_citation": "47 CFR Part 15",
+      "short_name": "FCC Part 15 (RF devices)",
+      "source_url": "https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15",
+      "purchase_url": null,
+      "article_count": 4
+    },
+    {
+      "id": "US-MoCRA",
+      "region": "US",
+      "license": "public",
+      "official_citation": "21 USC §364-364H (Pub.L. 117-9)",
+      "short_name": "MoCRA (化妆品现代化法案)",
+      "source_url": "https://www.fda.gov/cosmetics/cosmetics-laws-regulations/modernization-cosmetics-regulation-act-2022-mocra",
+      "purchase_url": null,
+      "article_count": 2
+    },
+    {
+      "id": "US-TFPIA",
+      "region": "US",
+      "license": "public",
+      "official_citation": "15 USC §70 et seq.",
+      "short_name": "TFPIA (纺织纤维标识)",
+      "source_url": "https://www.ftc.gov/enforcement/statutes/textile-fiber-products-identification-act",
+      "purchase_url": null,
+      "article_count": 2
+    },
+    {
+      "id": "US-UL-60335",
+      "region": "US",
+      "license": "private_with_summary",
+      "official_citation": "UL 60335-1 / UL 60335-2 series",
+      "short_name": "UL 60335 (家电安全, 私有标准)",
+      "source_url": null,
+      "purchase_url": "https://www.shopulstandards.com/ProductDetail.aspx?UniqueKey=36741",
+      "article_count": 0
+    },
+    {
+      "id": "US-UL-ETL",
+      "region": "US",
+      "license": "private_with_summary",
+      "official_citation": "UL/ETL Listing (第三方实验室认证)",
+      "short_name": "UL/ETL 列名 (平台强制)",
+      "source_url": null,
+      "purchase_url": "https://www.ul.com/services/certification/ul-listing-and-classification",
+      "article_count": 0
+    }
+  ]
+}
