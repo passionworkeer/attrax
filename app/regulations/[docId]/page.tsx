@@ -13,8 +13,8 @@ import { DocViewer, type RegulationViewModel } from "@/components/regulation/Doc
 import { LinkBackToReport } from "@/components/regulation/LinkBackToReport";
 
 interface PageProps {
-  params: { docId: string };
-  searchParams?: { hl?: string };
+  params: Promise<{ docId: string }>;
+  searchParams?: Promise<{ hl?: string }>;
 }
 
 async function loadRegulation(
@@ -60,14 +60,17 @@ export default async function RegulationViewerPage({
   params,
   searchParams,
 }: PageProps) {
-  const reg = await loadRegulation(params.docId);
+  // Next 16: params / searchParams are Promises in server components.
+  const { docId } = await params;
+  const sp = (await searchParams) ?? {};
+  const reg = await loadRegulation(docId);
   if (!reg) {
     notFound();
   }
   // The URL hash carries the article id (e.g. #art-77) but Next.js
   // `searchParams` does not expose it. We pass the raw hl pair down
   // and let the DocViewer / browser handle the hash-scroll.
-  const hlRaw = searchParams?.hl;
+  const hlRaw = sp.hl;
   const hl = parseHl(hlRaw);
 
   return (
