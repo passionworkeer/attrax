@@ -137,6 +137,29 @@ const EvidenceBundles = z
   })
   .passthrough();
 
+// Spec §3.3 + §4: a single per-claim citation. The LLM emits
+// `doc_id` + `article_id` + `official_citation` + `quote`; the
+// backend `quote_matcher` pass fills `quoteSpan` and `matchStatus`
+// after the LLM returns. Front-end renders `<CitationChip>` from
+// these — chip click navigates to
+// `/regulations/{doc_id}#{article_id}?hl={start},{end}` (§4.4).
+const CitationMatchStatus = z.enum([
+  "matched",
+  "fallback_article_only",
+  "unmatched",
+]);
+
+const CitationRef = z
+  .object({
+    doc_id: z.string(),
+    article_id: z.string(),
+    official_citation: z.string().optional().default(""),
+    quote: z.string().optional().default(""),
+    quote_span: z.tuple([z.number().int(), z.number().int()]).nullable().optional(),
+    match_status: CitationMatchStatus.nullable().optional(),
+  })
+  .passthrough();
+
 const AuditMetadata = z
   .object({
     schemaVersion: z.string().optional().default(SCHEMA_VERSION),
@@ -160,10 +183,18 @@ export const ReportPackageSchema = z
     decisionView: DecisionView,
     evidenceBundles: EvidenceBundles,
     auditMetadata: AuditMetadata,
+    // Spec §3.3 + §7.3: per-claim citations the report leans on.
+    // Front-end renders `<CitationChip>` per entry. Empty arrays
+    // stay valid — older reports and KB-mode-off responses won't
+    // carry them.
+    citations: z.array(CitationRef).optional().default([]),
+    // De-duplicated list used by the evidence-pack export (§7.6).
+    evidencePack: z.array(CitationRef).optional().default([]),
   })
   .passthrough();
 
 export type ReportPackageContract = z.infer<typeof ReportPackageSchema>;
+export type CitationRefContract = z.infer<typeof CitationRef>;
 
 export interface ValidationOutcome {
   ok: boolean;
