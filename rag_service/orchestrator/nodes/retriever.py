@@ -77,7 +77,18 @@ def _retrieve_single_market(query: str, market: str) -> list[dict]:
 
 
 def retriever_node(state: GraphState) -> dict:
-    """Single-market retrieval (called per market via Send())."""
+    """Single-market retrieval (called per market via Send()).
+
+    De-RAG spec §7.7 step 1: when `RETRIEVAL_ENABLED` is disabled
+    (default false), the retrieval stack is bypassed entirely — the
+    generator consumes KB article texts (via `USE_KB_INPUT=true`) and
+    `mandatory_regulations` instead of corpus chunks. The graph shape
+    stays intact so flipping the flag back re-enables retrieval with
+    zero code changes.
+    """
+    if not _retrieval_enabled():
+        return {"documents": []}
+
     sub_queries = state.get("sub_queries", [])
     if not sub_queries:
         return {"documents": []}
@@ -87,8 +98,42 @@ def retriever_node(state: GraphState) -> dict:
     return {"documents": results}
 
 
+def _retrieval_enabled() -> bool:
+    """Feature flag for the retrieval stack (De-RAG spec §7.7 step 1).
+
+    Default TRUE preserves the deployed behavior (chunks path).
+    Set `RETRIEVAL_ENABLED=false` to skip retrieval — combined with
+    `USE_KB_INPUT=true` this activates the full KB-anchored pipeline
+    without the FAISS/BM25/embedding stack.
+
+    Note: the spec text says the collapsed pipeline defaults to
+    retrieval-off; we ship default-on to keep the deployed system
+    unchanged until the E2E baseline comparison (spec §10 step 7)
+    signs off on the KB path.
+    """
+    val = (os.environ.get("RETRIEVAL_ENABLED") or "").strip().lower()
+    if not val:
+        return True  # default: legacy retrieval active
+    return val in {"1", "true", "yes", "on"}
+
+
 def fan_out_markets(state: GraphState) -> list[Send]:
-    """Fan out to one retrieve node per market."""
+    """Fan out to one retrieve node per market.
+
+    When retrieval is disabled (§7.7 step 1) the fan-out returns a
+    single no-op Send so the graph topology is unchanged — the
+    retriever node itself short-circuits to `{"documents": []}`.
+    """
+    if not _retrieval_enabled():
+        # Still emit one Send so the 'retrieve' node executes (and its
+        # trace entry lands), but it will return empty documents.
+        sub_queries = state.get("sub_queries", [])
+        if sub_queries:
+            sq = sub_queries[0]
+            return [
+                Send("retrieve", {"query": sq["query"], "market": sq["market"], "sub_queries": [sq]})
+            ]
+        return []
     sub_queries = state.get("sub_queries", [])
     return [
         Send("retrieve", {"query": sq["query"], "market": sq["market"], "sub_queries": [sq]})
