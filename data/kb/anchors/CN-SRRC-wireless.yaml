@@ -1,0 +1,29 @@
+id: KB-wireless-CN-CN-SRRC
+regulation_id: CN-SRRC
+doc_name: SRRC 无线电型号核准
+official_citation: 《无线电发射设备管理规定》(工信部令)
+short_name: SRRC 型号核准 (无线电)
+source: feature
+primary_source: wireless
+applies_if:
+  category: []
+  features_any:
+  - wireless
+  markets:
+  - CN
+key_articles:
+- 工信部无[2021]129号
+key_points:
+- 工信部 (MIIT) 主管,适用于在中国销售/使用的无线电发射设备
+- 包括蓝牙/Wi-Fi/2.4G/5G/GSM/4G/5G 模块等所有无线电发射设备
+- 需 SRRC 认可实验室测试 + 工信部无线电
+- 型号核准证后获 + 工厂检查 + 证后监督
+- 证书有效期 5 年
+risk_hint: 无 SRRC → 处罚 + 海关扣留 + 平台下架
+est_cost: 测试 ¥10K-30K + 申请 ¥5K-10K
+license: public
+source_url: https://www.miit.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

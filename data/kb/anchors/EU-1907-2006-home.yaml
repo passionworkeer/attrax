@@ -1,0 +1,33 @@
+id: KB-home-EU-EU-1907-2006
+regulation_id: EU-1907-2006
+doc_name: REACH (EC) 1907/2006
+official_citation: Regulation (EC) No 1907/2006
+short_name: REACH (化学品注册)
+source: category
+primary_source: home
+applies_if:
+  category:
+  - home
+  - toy
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-7
+- art-8
+- art-9
+- art-33
+- annex-xvii
+key_points:
+- 化学品/混合物/物品中 SVHC (高关注物质) 含量 > 0.1% w/w 需向 ECHA 通报并告知下游
+- Annex XVII 列出限用物质 (e.g. 邻苯二甲酸盐、重金属、偶氮染料)
+- 需做 SVHC 筛查 (ICP-MS/XRF 等) 并保留测试证书 10 年
+- Candidate List (候选清单) 通常每年 1-2 次更新
+risk_hint: SVHC 超标未通报 → 产品召回 + 处罚 + 平台下架
+est_cost: 筛查 ¥5K-15K + 持续合规维护
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2006/1907/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

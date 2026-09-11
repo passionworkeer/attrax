@@ -1,0 +1,32 @@
+id: KB-cosmetic-CN-CN-CSAR
+regulation_id: CN-CSAR
+doc_name: 化妆品监督管理条例 CSAR
+official_citation: 国务院令第727号《化妆品监督管理条例》
+short_name: 化妆品监督管理条例 (CSAR)
+source: category
+primary_source: cosmetic
+applies_if:
+  category:
+  - cosmetic
+  features_any: []
+  markets:
+  - CN
+key_articles:
+- 第17条
+- 第20条
+- 第32条
+- 第37条
+key_points:
+- 2021-01-01 起施行,取代《化妆品卫生监督条例》(1990)
+- 国家药监局 (NMPA) 主管,省级局负责备案/注册
+- 特殊化妆品 (染发/烫发/美白/防晒/防脱发/新功效) 实行注册管理,普通化妆品备案
+- 需提交产品配方/生产工艺/质量标准/安全评估资料
+- 原料符合《已使用化妆品原料目录》(2021版) 或按新原料注册
+risk_hint: 无备案/注册 → NMPA 处罚 + 平台下架 + 召回
+est_cost: 备案 ¥3K-10K + 注册 ¥20K-100K
+license: public
+source_url: https://www.gov.cn/zhengce/content/2020-06/29/content_5524019.htm
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

@@ -1,0 +1,29 @@
+id: KB-battery-CN-CN-GB-31241
+regulation_id: CN-GB-31241
+doc_name: GB 31241 便携式电子产品用锂电池
+official_citation: GB 31241-2022
+short_name: GB 31241 (便携锂电池, 私有标准)
+source: category
+primary_source: battery
+applies_if:
+  category:
+  - battery
+  features_any:
+  - battery
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 适用于便携式电子产品用锂离子电池 (手机/笔记本/电动工具/平衡车等)
+- CCC 目录内的电池产品 (充电宝/平衡车等) 必须通过
+- '测试项目: 安全 (过充/短路/跌落/挤压/热冲击) + 性能 (容量/循环)'
+- GB 31241-2022 替代 2014 版,新增高海拔模拟等
+- 对应 IEC 62133-2 协调
+risk_hint: 无 GB 31241 → 3C 申请失败 + 平台下架 + 安全事故风险
+est_cost: 测试 ¥20K-50K
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

@@ -1,0 +1,28 @@
+id: KB-appliance-UK-UK-UKCA-Appliance
+regulation_id: UK-UKCA-Appliance
+doc_name: UKCA Marking for Appliances
+official_citation: UKCA Marking for Appliances
+short_name: UKCA Marking (家电)
+source: category
+primary_source: appliance
+applies_if:
+  category:
+  - appliance
+  features_any: []
+  markets:
+  - UK
+key_articles: []
+key_points:
+- 对应 EN 60335-2 系列协调标准
+- UK 认可实验室测试 + UK 认可的第三方 (Approved Body) 评估
+- 标注 UKCA 标志 + UK Approved Body 编号 + DoC
+- 制造商或 UK 授权代表对 DoC 负责
+- 技术文档保留 10 年
+risk_hint: 无 UKCA → UK 市场禁售
+est_cost: 测试 ¥15K-40K
+license: public
+source_url: https://www.gov.uk/government/publications/appliances-regulations-2016
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

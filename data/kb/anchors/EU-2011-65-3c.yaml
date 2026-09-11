@@ -1,0 +1,32 @@
+id: KB-3c-EU-EU-2011-65
+regulation_id: EU-2011-65
+doc_name: RoHS Directive 2011/65/EU
+official_citation: Directive 2011/65/EU
+short_name: RoHS (有害物质限制)
+source: category
+primary_source: 3c
+applies_if:
+  category:
+  - 3c
+  - electronics
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-4
+- art-6
+- art-7
+- annex-2
+key_points:
+- 限制电子电气设备中铅、汞、镉、六价铬、PBB、PBDE 等 10 类有害物质
+- 投放欧盟市场需附 CE 标志 + DoC (符合性声明)
+- Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾)
+- 由各成员国市场监管机构执行,违规处罚因国而异
+risk_hint: CE/DoC 不全或 Annex III 申报缺失 → 海关扣留 + 市场禁售
+est_cost: 测试 ¥3K-10K + 文件准备 ¥2K-5K
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2011/65/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

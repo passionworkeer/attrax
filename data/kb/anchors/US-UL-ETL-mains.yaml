@@ -1,0 +1,28 @@
+id: KB-mains-US-US-UL-ETL
+regulation_id: US-UL-ETL
+doc_name: UL/ETL Listing (Marketplace-required)
+official_citation: UL/ETL Listing (第三方实验室认证)
+short_name: UL/ETL 列名 (平台强制)
+source: feature
+primary_source: mains
+applies_if:
+  category: []
+  features_any:
+  - mains
+  markets:
+  - US
+key_articles: []
+key_points:
+- UL 与 ETL (Intertek) 均为 NRTL (国家认可测试实验室),北美 NRTL 认证并行
+- Amazon 等北美电商平台强制要求电气产品 UL/ETL 列名
+- 对应 UL 标准 (e.g. UL 1088 用于装饰灯、UL 982 用于家用食物处理机等)
+- 包含产品测试 + 工厂首次检查 (Follow-up Service)
+- 需每年维护 (季度/年审)
+risk_hint: 无 UL/ETL 列名 → Amazon/Walmart 等强制下架
+est_cost: $8K-$30K + 年审 $2K-$8K
+license: private_with_summary
+purchase_url: https://www.ul.com/services/certification/ul-listing-and-classification
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

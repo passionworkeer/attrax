@@ -1,0 +1,28 @@
+id: KB-textile-CN-CN-GB-18401
+regulation_id: CN-GB-18401
+doc_name: GB 18401 国家纺织产品基本安全技术规范
+official_citation: GB 18401-2010
+short_name: GB 18401 (纺织安全, 私有标准)
+source: category
+primary_source: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- 国家纺织产品安全基本技术规范,强制标准
+- 分 A/B/C 三类 (婴幼儿/直接接触皮肤/非直接接触),甲醛/可萃取重金属/pH 等要求逐级放宽
+- A 类婴幼儿用品要求最严,不可检出芳香胺染料
+- 需在 NMPA 认可实验室测试并保留报告
+- GB 18401-2010 现行,2025 年新版修订征求意见中
+risk_hint: 无 GB 18401 报告 → 处罚 + 平台下架
+est_cost: 全套测试 ¥3K-8K/产品
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

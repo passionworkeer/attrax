@@ -1,0 +1,28 @@
+id: KB-home-CN-CN-GB-5296
+regulation_id: CN-GB-5296
+doc_name: GB 5296 消费品使用说明
+official_citation: GB 5296.1-2012 + GB 5296.2-... 系列
+short_name: GB 5296 (消费品使用说明, 私有标准)
+source: category
+primary_source: home
+applies_if:
+  category:
+  - home
+  features_any: []
+  markets:
+  - CN
+key_articles: []
+key_points:
+- GB 5296 系列规定消费品使用说明 (产品标签/说明书) 的基本要求
+- GB 5296.1 通用要求 + GB 5296.2~7 各类产品专项
+- GB 5296.4 (纺织品) + GB 5296.5 (玩具) + GB 5296.6 (灯具) 等
+- 标识内容必须真实/准确/齐全,使用中文
+- 需标注产品名称/型号/规格/成分/制造商 + 警示语
+risk_hint: 标签缺失或信息不全 → 处罚 + 平台下架
+est_cost: 标签设计 + 翻译 ¥3K-8K
+license: private_with_summary
+purchase_url: https://openstd.samr.gov.cn/
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

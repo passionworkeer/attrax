@@ -1,0 +1,33 @@
+id: KB-3c-EU-EU-2014-30
+regulation_id: EU-2014-30
+doc_name: EMC Directive 2014/30/EU
+official_citation: Directive 2014/30/EU
+short_name: EMC (电磁兼容)
+source: category
+primary_source: 3c
+applies_if:
+  category:
+  - 3c
+  - appliance
+  - electronics
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-6
+- art-7
+- art-8
+- annex-1
+key_points:
+- 确保电子设备在正常使用环境中不产生不可接受的电磁干扰,且能承受外部干扰
+- CE 标志 + DoC + 技术文档 (含 EMC 测试报告) 是投放前提
+- EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据
+- 本指令不适用于 2014/53/EU (RED) 覆盖的无线电设备
+risk_hint: 无 EMC 测试报告 → CE 标志无效,海关/平台可下架
+est_cost: 测试 ¥5K-15K / 4-6 周
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2014/30/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

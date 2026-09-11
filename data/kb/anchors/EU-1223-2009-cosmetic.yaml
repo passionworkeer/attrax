@@ -1,0 +1,37 @@
+id: KB-cosmetic-EU-EU-1223-2009
+regulation_id: EU-1223-2009
+doc_name: Cosmetics Regulation (EC) 1223/2009
+official_citation: Regulation (EC) No 1223/2009
+short_name: EU Cosmetics Regulation
+source: category
+primary_source: cosmetic
+applies_if:
+  category:
+  - cosmetic
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-10
+- art-11
+- art-13
+- art-16
+- art-18
+- art-19
+- annex-i
+- annex-ii
+- annex-iii
+key_points:
+- 上市前需完成 CPNP (Cosmetic Products Notification Portal) 通报
+- 需准备 PIF (Product Information File) 含安全评估 + 配方 + 微生物/稳定性测试
+- Annex II (禁用清单) / Annex III (限用清单) 必须逐项核查
+- 需指定欧盟境内的 responsible person (责任人)
+- 产品标签需含 INCI 全成分 + 批号 + 保质期/PAO + 责任人地址 (本地语言)
+risk_hint: 无 CPNP 通报/PIF 不全 → 产品禁售 + 处罚 + RAPEX 召回
+est_cost: 通报 + PIF 准备 ¥10K-30K + 安全评估 ¥8K-25K
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2009/1223/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

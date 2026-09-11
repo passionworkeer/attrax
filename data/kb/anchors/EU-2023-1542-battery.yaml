@@ -1,0 +1,34 @@
+id: KB-battery-EU-EU-2023-1542
+regulation_id: EU-2023-1542
+doc_name: Battery Regulation (EU) 2023/1542
+official_citation: Regulation (EU) 2023/1542
+short_name: EU Battery Regulation 2023/1542
+source: category
+primary_source: battery
+applies_if:
+  category:
+  - battery
+  features_any:
+  - battery
+  markets:
+  - EU
+key_articles:
+- art-7
+- art-38
+- art-39
+- art-77
+- art-85
+key_points:
+- 替代 2006/66/EC,涵盖所有类型电池 (便携/工业/汽车/LMT/SLMT)
+- 投放市场需 CE 标志 + DoC + 经济运营者 (REMS) 注册
+- '电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起'
+- 回收效率 + 再生材料含量配额逐年提高 (Co/Ni/Li/Pb)
+- 碳足迹声明分阶段强制 (Art. 7)
+risk_hint: 无 CE/护照/REMS 注册 → 整批电池禁入欧盟
+est_cost: 认证 ¥15K-40K + 护照系统集成 ¥20K-100K
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

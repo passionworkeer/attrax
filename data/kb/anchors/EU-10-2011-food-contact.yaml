@@ -1,0 +1,38 @@
+id: KB-food_contact-EU-EU-10-2011
+regulation_id: EU-10-2011
+doc_name: FCM Regulation (EU) 10/2011
+official_citation: Regulation (EU) No 10/2011
+short_name: FCM Plastics (塑料食品接触)
+source: category
+primary_source: food_contact
+applies_if:
+  category:
+  - food_contact
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-5
+- art-8
+- art-13
+- art-14
+- art-15
+- art-17
+- annex-i
+- annex-ii
+- annex-iii
+- annex-v
+key_points:
+- 塑料食品接触材料的专门规则 (总体迁移 ≤ 10 mg/dm²,特定迁移按 Annex I)
+- 需做 Overall Migration (OM) + Specific Migration (SM) 测试
+- Annex I 列授权物质 (单体/添加剂),需在 Union List 内
+- Functional Barrier 概念 (Art. 13) 允许多层塑料未授权物质在 Barrier 后
+- 需附书面 DoC 声明符合性
+risk_hint: OM/SM 超标 → 召回 + 处罚 + 平台下架
+est_cost: 全套迁移测试 ¥15K-40K / 6-10 周
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2011/10/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

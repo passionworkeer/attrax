@@ -1,0 +1,34 @@
+id: KB-toy-EU-EU-2009-48
+regulation_id: EU-2009-48
+doc_name: Toy Safety Directive 2009/48/EC
+official_citation: Directive 2009/48/EC
+short_name: EU Toy Safety Directive
+source: category
+primary_source: toy
+applies_if:
+  category:
+  - toy
+  features_any:
+  - children
+  markets:
+  - EU
+key_articles:
+- art-4
+- art-5
+- art-6
+- art-10
+- art-11
+- annex-ii
+key_points:
+- 14 岁以下玩具安全 (机械物理/易燃/化学迁移/电气/卫生)
+- EN 71 系列协调标准是合规证据 (EN 71-1/-2/-3 等)
+- 需 CE 标志 + DoC + 技术文档
+- 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动
+risk_hint: 无 EN 71 报告 → 产品被海关/平台下架,极端情况触发 RAPEX
+est_cost: 测试 ¥10K-30K / 4-8 周
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2009/48/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

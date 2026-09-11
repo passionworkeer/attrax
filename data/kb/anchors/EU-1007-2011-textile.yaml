@@ -1,0 +1,32 @@
+id: KB-textile-EU-EU-1007-2011
+regulation_id: EU-1007-2011
+doc_name: EU Textile Labelling Regulation 1007/2011
+official_citation: Regulation (EU) No 1007/2011
+short_name: EU Textile Labelling
+source: category
+primary_source: textile
+applies_if:
+  category:
+  - textile
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-5
+- art-7
+- art-9
+- annex-i
+- annex-v
+key_points:
+- 纤维名称必须按 Annex I 用官方语言标注 (e.g. cotton/cotton)
+- 多纤维产品按重量降序 + 非纺织部件需单独标注
+- 标签须持久 (缝合/烫印/挂签),购买前可见
+- 皮革/毛皮动物来源需明示 (Annex V)
+risk_hint: 纤维名称错误或缺失 → 海关扣留 + 处罚
+est_cost: 标签设计 ¥2K-5K + 纤维检测 ¥1K-3K
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2011/1007/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

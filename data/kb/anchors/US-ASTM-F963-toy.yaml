@@ -1,0 +1,28 @@
+id: KB-toy-US-US-ASTM-F963
+regulation_id: US-ASTM-F963
+doc_name: ASTM F963 Toy Safety Standard
+official_citation: ASTM F963-23
+short_name: ASTM F963 (玩具安全, 私有标准)
+source: category
+primary_source: toy
+applies_if:
+  category:
+  - toy
+  features_any: []
+  markets:
+  - US
+key_articles: []
+key_points:
+- 美国玩具安全事实标准,CPSIA (15 USC §2056b) 引用为强制性安全标准
+- 涵盖机械物理性能 (跌落/挤压/锐边/小部件) + 易燃 + 化学 (8 种重金属迁移)
+- 需在 CPSC 认可的实验室测试并出报告
+- ASTM 会员每年更新版次 (现行 F963-23)
+- CPSIA 要求 CPC (Children's Product Certificate) + 测试报告归档 5 年
+risk_hint: 无 ASTM F963 测试 + CPC → 强制召回 + CPSC 处罚
+est_cost: 全套测试 $5K-$15K + CPC 准备
+license: private_with_summary
+purchase_url: https://www.astm.org/f0963-23.html
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1

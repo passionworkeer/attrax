@@ -1,0 +1,33 @@
+id: KB-home-EU-EU-2023-988
+regulation_id: EU-2023-988
+doc_name: GPSR (EU) 2023/988 通用产品安全法规
+official_citation: Regulation (EU) 2023/988
+short_name: GPSR (通用产品安全)
+source: category
+primary_source: home
+applies_if:
+  category:
+  - home
+  features_any: []
+  markets:
+  - EU
+key_articles:
+- art-7
+- art-9
+- art-15
+- art-17
+- art-22
+key_points:
+- 替代 2001/95/EC 通用产品安全指令,2024-12-13 生效
+- 所有消费品均适用 (专项指令未覆盖的),线上线下销售均需合规
+- 要求制造商/进口商/分销商履行尽职调查 + 产品追溯 + 事故报告
+- 欧盟外制造商必须指定单一授权代表 (Single Point of Contact)
+- 产品需附完整制造商联系信息 + 安全使用说明 (本地语言)
+risk_hint: 未指定授权代表 → 欧盟市场禁售 + 罚款最高 €400K 或 4% 营业额
+est_cost: 合规体系搭建 ¥10K-30K + 授权代表 ¥5K-15K/年
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2023/988/oj
+last_verified: '2026-09-11'
+verified_by: llm-assisted
+verification_status: needs_human_review
+schema_version: 1
