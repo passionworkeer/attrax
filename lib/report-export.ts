@@ -17,3 +17,14 @@ export { downloadDecisionReportAsPdf, downloadDecisionReportAsDocx } from "./rep
 export { downloadRoadmapReportAsPdf, downloadRoadmapReportAsDocx } from "./report-export-modules/roadmap";
 export type { DecisionContent } from "./report-export-modules/decision";
 export type { RoadmapContent } from "./report-export-modules/roadmap";
+export {
+  downloadEvidencePack,
+  downloadEvidencePackAsPdf,
+  downloadEvidencePackAsDocx,
+} from "./report-export-modules/evidence-pack";
+export type {
+  EvidencePackInput,
+  EvidencePackDownloadInput,
+  CitationRefExport,
+  RegulationPayload,
+} from "./report-export-modules/evidence-pack";

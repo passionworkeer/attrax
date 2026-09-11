@@ -10,6 +10,7 @@ import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTr
 import { DownloadButtons } from "@/components/result/DownloadButtons";
 import { ImageCarousel, type ProductImage } from "@/components/result/ImageCarousel";
 import { CitationsList, type CitationRefContract } from "@/components/regulation/CitationChip";
+import { downloadEvidencePack } from "@/lib/report-export";
 import type { ComplianceReportResult } from "@/lib/types";
 
 const STATUS_META = {
@@ -323,6 +324,32 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
             onPdf={(dlLocale) => downloadReportAsPdf(result, dlLocale)}
             onDocx={(dlLocale) => downloadReportAsDocx(result, dlLocale)}
           />
+          {result.reportPackage?.citations?.length ? (
+            <button
+              type="button"
+              onClick={() => {
+                void downloadEvidencePack(
+                  {
+                    reportPackage: {
+                      ...result.reportPackage,
+                      sessionId: result.sessionId,
+                      generatedAt: result.scanTime,
+                      productDossier: {
+                        product: viewResult.productName ?? result.productName,
+                        markets: viewResult.targetMarkets,
+                      },
+                    },
+                  },
+                  locale === "en" ? "en" : "zh",
+                  "pdf",
+                );
+              }}
+              className="ml-3 inline-flex items-center gap-1.5 rounded-lg border border-blaze-cyan/30 bg-blaze-cyan/10 px-3 py-1.5 text-xs font-medium text-blaze-cyan transition hover:border-blaze-cyan/60 hover:bg-blaze-cyan/20"
+            >
+              <span aria-hidden>↓</span>
+              {t("result.evidencePack", { defaultValue: "证据包 PDF" })}
+            </button>
+          ) : null}
         </div>
         <div
           suppressHydrationWarning
