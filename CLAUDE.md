@@ -352,6 +352,30 @@ const StartScanRequestSchema = z.object({
 - **不再投入**：reranker 训练 / 语料大规模扩充 / 引用覆盖率硬约束 / NLI 注入（见 handoff 2026-09-10）
 - **第二阶段规格已冻结**（未实施，见 `docs/plans/2026-09-10-a-plus-b-phase2-spec.md`）：verifier 软标注（锚点报告不再被 ZERO_CITATION_COVERAGE 打成 degraded）/ FAISS 重建续跑顺序（先重建后重启，防 PAI×Qwen3 跨空间垃圾）/ 配额监控 cron / EU Safety Gate 采集器（喂 riskPoints）/ 语料周更 / web_search（B 部分）
 
+### 2026-09-11 De-RAG + Evidence-Anchored Reports（重大架构转向，未实施）
+
+第一性原理审查结论进一步升级：**完全去掉 RAG**（embedding + 向量检索 + BM25 + LangGraph），改为 **Knowledge-Anchored Generation**——视觉识别 → 规则知识库确定性查表 → 按需加载适用条款原文 → LLM 一次性生成（带条款 ID + 原文引句）→ 确定性引文回匹配（同时产出可信度校验和高亮坐标）→ 报告 + 文档查看器 + 证据包下载。
+
+**经验证据**：
+- embedding 静默失效 3 个月无人察觉（不承重）
+- 3 篇关键 EU 文档（RED / CLP / outdoor noise）rawText 是 PDF 二进制乱码，25 篇近空
+- 31s 扫描中 30.5s 是 LLM，<0.5s 是检索——价值与成本都在生成侧
+- FAISS 索引只覆盖 135/355 文档，新同步的 220 篇（KR/JP/AU/MX/IN/BR/ZA/TR/PH/CL/AR）不在索引里
+
+**量化收益**：rag-service 11,287 行 → ~4-5k（**-55~65%**）；删除 `faiss-cpu/numpy/jieba/rank-bm25/langgraph/langchain-core/openai`；内存 900MB+ → ~150MB；外部 API 2 key → 1 key。
+
+**新增产品能力**：报告每条风险点可点验官方原文条款 → 字符级高亮 → 下载证据包 PDF。
+
+**完整规格**（执行基准）：`docs/plans/2026-09-11-de-rag-evidence-spec.md`。要点：
+- 44 篇锚点法规程序化清单（从 must_check 提取，2026-09-11 实测）
+- License 分类：33 public（EU 指令/US CFR/UK 法/CN 法规/UN 公约）+ 11 private_with_summary（GB 标准/ASTM/UL/EN）
+- 双层数据模型：`data/kb/anchors/*.yaml`（适用性）+ `data/regulations/{region}/{reg_id}.yaml`（条款原文）
+- 引用 + 高亮机制：LLM 输出 `[doc_id#article] + 引句` → 引文回匹配产出 `(start, end)` 偏移
+- 6 步实施（KB 抽取 → 法规库 → 生成器改造 → 引文匹配 → 查看器前端 → 证据包 → 管线塌缩）
+- **取消 phase2 Spec A（FAISS 重建）/ Spec B（verifier 软标注）**；Spec D1 Safety Gate 采集器 / D4 web_search 保留
+
+**继承的运维雷区**（2026-09-10 handoff）：pm2 restart 不读 env 段、`.env` 行尾 CRLF、`/api/health` 不验证鉴权只看可达、BFF `ALLOWED_CATEGORIES` 与 KB `applies_if.category` 必须同步。
+
 ### 2026-09-10 审计批处理（docs/plans/2026-09-09-optimization-audit.md）
 
 - **删除死代码**：`lib/pipeline/scan.ts`(470) + `scan-queue.ts`(467) + `components/upload/UploadForm.tsx`(509) + `LegacyResultView` 及其测试（scan-pipeline / scan-queue / scan-comprehensive / upload-form / result-imagecarousel-legacy）。`upload-storage.ts` 标 @deprecated。生产路径唯一：`/api/scan → v1-adapter → RAG /api/v1/scans`
