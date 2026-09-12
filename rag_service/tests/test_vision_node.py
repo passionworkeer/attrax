@@ -104,6 +104,11 @@ FCC
 UKCA
 """
 
+# Valid magic-byte prefixed buffers (≥12 bytes) for the analyze_single_image
+# tests — the P1-J signature guard rejects anything smaller or mismatched.
+_JPEG_BYTES = b"\xff\xd8\xff\xe0" + b"\x00" * 12
+_PNG_BYTES = b"\x89PNG\r\n\x1a\n" + b"\x00" * 8
+
 
 # ─────────────────────────────────────────────
 #  Tests: _empty_vision_result()
@@ -114,7 +119,7 @@ class TestEmptyVisionResult:
         result = _empty_vision_result()
         assert set(result.keys()) == {
             "descriptions", "combined_description", "certifications",
-            "images_analyzed", "enriched_query", "cert_summary",
+            "issues", "images_analyzed", "enriched_query", "cert_summary",
         }
 
     def test_all_default_values(self):
@@ -122,6 +127,7 @@ class TestEmptyVisionResult:
         assert result["descriptions"] == []
         assert result["combined_description"] == ""
         assert result["certifications"] == []
+        assert result["issues"] == []
         assert result["images_analyzed"] == 0
         assert result["enriched_query"] == ""
         assert result["cert_summary"] == "未分析"
@@ -264,7 +270,7 @@ CE, FCC
         result = _parse_vision_text(VALID_VISION_OUTPUT, VALID_VISION_OUTPUT)
         assert set(result.keys()) == {
             "description", "product_type", "core_features",
-            "certifications", "raw_response", "enriched_query",
+            "certifications", "issues", "raw_response", "enriched_query",
         }
 
     def test_description_equals_raw(self):
@@ -402,28 +408,47 @@ class TestVisionAnalyzerSingleImage:
     def test_vision_call_failed_returns_error_dict(self, mock_call):
         mock_call.return_value = ""
         analyzer = VisionAnalyzer(api_key="test-key")
-        result = analyzer.analyze_single_image(b"\x00\x01\x02", "image/jpeg")
+        result = analyzer.analyze_single_image(_JPEG_BYTES, "image/jpeg")
         assert result["error"] == "vision_call_failed"
 
     @patch.object(VisionAnalyzer, "_call_mimotalk")
     def test_successful_analysis_returns_parsed_dict(self, mock_call):
         mock_call.return_value = VALID_VISION_OUTPUT
         analyzer = VisionAnalyzer(api_key="test-key")
-        result = analyzer.analyze_single_image(b"\x00\x01\x02", "image/jpeg")
+        result = analyzer.analyze_single_image(_JPEG_BYTES, "image/jpeg")
         assert "product_type" in result
         assert "certifications" in result
         assert result["product_type"] == "蓝牙耳机"
+        # Feature 1: the issues array is surfaced (empty when the LLM
+        # omitted it, as VALID_VISION_OUTPUT does).
+        assert result["issues"] == []
 
     @patch.object(VisionAnalyzer, "_call_mimotalk")
     def test_passes_mime_type_correctly(self, mock_call):
         mock_call.return_value = VALID_VISION_OUTPUT
         analyzer = VisionAnalyzer(api_key="test-key")
-        analyzer.analyze_single_image(b"\x00", "image/png")
+        analyzer.analyze_single_image(_PNG_BYTES, "image/png")
         # Verify the call was made (mime type is embedded in the messages list)
         args = mock_call.call_args[0][0]
         content = args[0]["content"]
         img_block = next(b for b in content if b.get("type") == "image")
         assert img_block["source"]["media_type"] == "image/png"
+
+    def test_invalid_image_buffer_short_circuits_before_llm(self):
+        """Audit P1-J: corrupt/mismatched buffers must not reach the LLM."""
+        analyzer = VisionAnalyzer(api_key="test-key")
+        with patch.object(
+            VisionAnalyzer, "_call_mimotalk"
+        ) as mock_call:
+            result = analyzer.analyze_single_image(b"\x00\x01\x02", "image/jpeg")
+        assert result["error"] == "invalid_image_buffer"
+        mock_call.assert_not_called()
+
+    def test_invalid_image_buffer_rejects_wrong_magic_for_mime(self):
+        analyzer = VisionAnalyzer(api_key="test-key")
+        # PNG bytes labeled as JPEG → signature mismatch.
+        result = analyzer.analyze_single_image(_PNG_BYTES, "image/jpeg")
+        assert result["error"] == "invalid_image_buffer"
 
 
 # ─────────────────────────────────────────────

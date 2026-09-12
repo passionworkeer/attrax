@@ -172,7 +172,25 @@ function regulationFromChunk(chunk: UnknownRecord, index: number): RegulationRef
   };
 }
 
-function buildRisks(result: UnknownRecord, reportPackage: UnknownRecord): RiskPoint[] {
+function bboxFromNode(node: UnknownRecord): { x: number; y: number; w: number; h: number } | undefined {
+  // Vision-anchored decision nodes carry a normalized 0..1 bbox keyed as
+  // either `bbox` (camelCase) or `region` (legacy). Both are accepted; the
+  // outer risk builder clamps them below to avoid the historical all-(0,0,0,0)
+  // bug from audit P1-E.
+  const candidate = record(node.bbox ?? node.region);
+  const x = number(candidate.x, -1);
+  const y = number(candidate.y, -1);
+  const w = number(candidate.w ?? candidate.width, -1);
+  const h = number(candidate.h ?? candidate.height, -1);
+  if (x < 0 || y < 0 || w <= 0 || h <= 0) return undefined;
+  return { x, y, w, h };
+}
+
+function buildRisks(
+  result: UnknownRecord,
+  reportPackage: UnknownRecord,
+  sessionId: string,
+): RiskPoint[] {
   const decision = record(reportPackage.decisionView);
   const nodes = records(decision.nodes);
   const regulations = records(result.retrievedChunks).map(regulationFromChunk);
@@ -182,6 +200,19 @@ function buildRisks(result: UnknownRecord, reportPackage: UnknownRecord): RiskPo
     // is pipeline execution state. Falls back to "info" for older payloads.
     const severity = severityFor(node.severity);
     const confidence = Math.max(0, Math.min(1, number(node.confidence, 0)));
+    // Audit P1-E: read the bbox from the vision-anchored node when present.
+    // Legacy / non-vision scans still fall through to the default zero box;
+    // the result page hides hotspots with an all-zero bbox, so the UI is
+    // unaffected when the backend never emits one.
+    const bbox = bboxFromNode(node);
+    // Feature 1: the backend tags vision hotspots with `vision-image-N`;
+    // remap to the session image asset id (`{sessionId}-image-N`) so the
+    // page's image lookup actually matches.
+    const rawImageId = text(node.imageId);
+    const visionMatch = /^vision-image-(\d+)$/.exec(rawImageId);
+    const imageId = visionMatch
+      ? `${sessionId}-image-${visionMatch[1]}`
+      : rawImageId;
     return {
       riskId: text(node.id, `risk-${index + 1}`),
       title: text(node.label, text(node.type, `Risk ${index + 1}`)),
@@ -191,8 +222,8 @@ function buildRisks(result: UnknownRecord, reportPackage: UnknownRecord): RiskPo
       severity,
       flameLevel: severity === "critical" ? 3 : severity === "warning" ? 2 : 1,
       confidence,
-      imageId: "",
-      bbox: { x: 0, y: 0, w: 0, h: 0 },
+      imageId,
+      bbox: bbox ?? { x: 0, y: 0, w: 0, h: 0 },
       regulations,
       recommendedAction: text(
         decision.recommendedAction,
@@ -240,7 +271,7 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
   // Build risks FIRST so the score can be rolled up from them. The previous
   // version computed score from `complianceStatus` alone, which caused the
   // "REJECTED with no critical riskPoint" bug.
-  const riskPoints = buildRisks(result, reportPackage);
+  const riskPoints = buildRisks(result, reportPackage, session.sessionId);
   const decisionView = record(reportPackage.decisionView);
   const decisionRiskLevel = text(decisionView.riskLevel);
 
@@ -257,15 +288,34 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     session.updatedAt,
   );
 
-  // De-RAG pipeline output: surface the real LLM-generated report markdown
+  // Audit P1-G: 200KB is well above any realistic compliance report
+// (~30-50KB for the longest ones we've seen) and bounds memory pressure
+// + XSS surface for an adversarial LLM that emits an unbounded markdown
+// blob (which `<ReactMarkdown>` would otherwise parse verbatim). See also
+// `MAX_COMPLIANCE_REPORT_BYTES` in `lib/constants.ts`.
+const MAX_COMPLIANCE_REPORT_BYTES = 200 * 1024;
+
+function truncateReport(report: string): { value: string; truncated: boolean } {
+  if (report.length <= MAX_COMPLIANCE_REPORT_BYTES) {
+    return { value: report, truncated: false };
+  }
+  return {
+    value: `${report.slice(0, MAX_COMPLIANCE_REPORT_BYTES - 1)}…`,
+    truncated: true,
+  };
+}
+
+// De-RAG pipeline output: surface the real LLM-generated report markdown
   // and the real agent trace so the result page does not need to fall back
   // to the demo template. Both fields are optional in the contract (legacy
   // RAG payloads and demo sessions do not emit them) so we read defensively.
-  const complianceReport =
+  const complianceReportRaw =
     text(result.complianceReport) ||
     text(reportPackage.complianceReport) ||
     text(record(reportPackage).compliance_report) ||
-    undefined;
+    "";
+  const { value: complianceReport, truncated: complianceReportTruncated } =
+    truncateReport(complianceReportRaw);
   const agentTrace = Array.isArray(result.agentTrace)
     ? (result.agentTrace as Array<{ node: string; [key: string]: unknown }>)
     : undefined;
@@ -277,6 +327,16 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     record(reportPackage.auditMetadata).latencyMs ??
       result.latencyMs ??
       record(result.modelInfo).latencyMs,
+    0,
+  );
+  // Audit P0-B: the result page previously hard-coded loopCount to 0 because
+  // the v1 adapter never surfaced it. We now extract it from auditMetadata
+  // (set by the orchestrator's `trace_node_count` or refine-loop counter).
+  const loopCount = number(
+    record(reportPackage.auditMetadata).loopCount ??
+      record(reportPackage.auditMetadata).loop_count ??
+      result.loopCount ??
+      0,
     0,
   );
 
@@ -303,10 +363,12 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     checklist: buildChecklist(reportPackage),
     generatedAt,
     reportPackage: result.reportPackage as ReportPackage | undefined,
-    complianceReport,
+    complianceReport: complianceReport || undefined,
+    complianceReportTruncated,
     agentTrace,
     ragProvider,
     latencyMs,
+    loopCount,
     modelInfo: {
       visionProvider: "minimax",
       latencyMs,

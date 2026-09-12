@@ -21,6 +21,8 @@ import {
 import { cn } from "@/lib/utils";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { DegradedBanner } from "@/components/result/DegradedBanner";
+import { FallbackNotice } from "@/components/result/FallbackNotice";
+import { HotspotLayer, isRenderableBbox } from "@/components/result/HotspotLayer";
 import { SourceNotice } from "@/components/result/SourceNotice";
 import { ResultExportButton } from "./result-export-button";
 import { useResultLoader } from "./use-result-loader";
@@ -125,6 +127,22 @@ export default function ResultPage() {
   const riskImage =
     resultImages.find((item) => item.imageId === anchorId) ?? resultImages[0] ?? null;
   const riskCanvasImage = riskImage;
+  // Feature 1 (2.5D hotspots): risks whose vision-anchored bbox actually
+  // points somewhere render as tilted highlight frames via <HotspotLayer>;
+  // the rest keep the legacy circular pins (fallback for scans without
+  // vision data — including legacy/demo payloads).
+  const locatedHotspots = result.riskPoints
+    .filter((risk) => isRenderableBbox(risk.bbox))
+    .map((risk) => ({
+      id: risk.riskId,
+      label: localizeRiskPoint(locale, risk).title,
+      severity: risk.severity === "critical" ? ("critical" as const) : risk.severity === "warning" ? ("warning" as const) : ("info" as const),
+      bbox: risk.bbox,
+      regulationRef: risk.regulations[0]?.regId ?? null,
+    }));
+  const unlocatedRisks = result.riskPoints.filter(
+    (risk) => !isRenderableBbox(risk.bbox),
+  );
   const displayProductName = locale === "en" ? result.productNameEn ?? result.productName : result.productName;
   const displayProductCategory = productCategoryLabel(locale, result.productCategory);
   const roadmapRows = buildRoadmapRows(result, locale, copy.result.unknownTime);
@@ -151,6 +169,9 @@ export default function ResultPage() {
           source={result.source}
           degradedReason={degradedReason ?? undefined}
           showProfitNotice={result.source === "fallback"}
+        />
+        <FallbackNotice
+          validationStatus={result.reportPackage?.auditMetadata?.validationStatus}
         />
         <SourceNotice source={result.source} />
         <section id="overview" className="blaze-panel overflow-hidden p-5 sm:p-7">
@@ -338,11 +359,31 @@ export default function ResultPage() {
                   );
                 })}
 
-                {result.riskPoints.map((riskRaw) => {
+                {/* Feature 1: vision-anchored risks render as tilted 2.5D
+                    highlight frames; clicking a severity chip jumps to the
+                    corresponding risk card below. */}
+                <HotspotLayer
+                  hotspots={locatedHotspots}
+                  activeId={selectedRiskId}
+                  onHotspotClick={(id) => setSelectedRiskId(id)}
+                  localizedLabel={(severity) =>
+                    severity === "critical"
+                      ? locale === "zh" ? "高危" : "Critical"
+                      : severity === "warning"
+                        ? locale === "zh" ? "警告" : "Warning"
+                        : severity === "info"
+                          ? locale === "zh" ? "提示" : "Info"
+                          : severity
+                  }
+                  viewDetailLabel={locale === "zh" ? "查看风险详情" : "View risk detail"}
+                />
+
+                {unlocatedRisks.map((riskRaw, riskIndex) => {
                   const risk = localizeRiskPoint(locale, riskRaw);
                   const selected = riskRaw.riskId === activeRiskRaw?.riskId;
-                  const hotspotLeft = risk.bbox.x * 100;
-                  const hotspotTop = risk.bbox.y * 100;
+                  // Spread unlocated pins across the top edge instead of
+                  // stacking them all in the top-left corner (audit P1.7).
+                  const spreadLeft = 8 + (riskIndex % 5) * 22;
                   return (
                     <button
                       key={riskRaw.riskId}
@@ -356,11 +397,11 @@ export default function ResultPage() {
                       }`}
                       style={{
                         left: selected
-                          ? `clamp(8px, calc(${hotspotLeft}% - 8px), calc(100% - 178px))`
-                          : `clamp(8px, calc(${hotspotLeft}% - 8px), calc(100% - 48px))`,
+                          ? `clamp(8px, calc(${spreadLeft}% - 8px), calc(100% - 178px))`
+                          : `clamp(8px, calc(${spreadLeft}% - 8px), calc(100% - 48px))`,
                         top: selected
-                          ? `clamp(8px, calc(${hotspotTop}% - 8px), calc(100% - 68px))`
-                          : `clamp(8px, calc(${hotspotTop}% - 8px), calc(100% - 48px))`,
+                          ? `clamp(8px, calc(12% - 8px), calc(100% - 68px))`
+                          : `clamp(8px, calc(12% - 8px), calc(100% - 48px))`,
                       }}
                     >
                       <span className="relative flex size-7 shrink-0 items-center justify-center rounded-full bg-[rgba(71,190,207,0.16)]">

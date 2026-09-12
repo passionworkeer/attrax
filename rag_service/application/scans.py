@@ -648,6 +648,17 @@ class ScanService:
             if finance_status == "invalid":
                 warnings.append("FINANCE_DATA_INVALID")
 
+            # Audit P0-D: same isolation pattern for decisionView / roadmap /
+            # evidenceBundles. A malformed sub-scene surfaces as a warning;
+            # the compliance report stays "ready" so users do not see the red
+            # DegradedBanner for a partial-shape failure that does not affect
+            # the verdict.
+            for scene in ("decisionView", "roadmap", "evidenceBundles"):
+                scene_obj = _mapping(audit.get(scene))
+                scene_status = _nested_string(scene_obj, "validationStatus")
+                if scene_status == "invalid":
+                    warnings.append(f"{scene.upper()}_SHAPE_INVALID")
+
             coverage = (
                 _nested(audit, "citationCoverage")
                 or _nested(audit, "citation_coverage")

@@ -87,6 +87,14 @@ describe("scanResultToRealComplianceView", () => {
     expect(view.modelInfo.latencyMs).toBe(48484);
   });
 
+  it("falls back to 'unknown' (not 'minimax') when the backend omitted provider", () => {
+    // Audit P1-H: previously the helper fabricated "minimax" when the
+    // backend shipped no provider, which would silently keep showing the old
+    // label after any future LLM swap.
+    const view = scanResultToRealComplianceView({ ...baseResult, ragProvider: undefined }, "zh");
+    expect(view.modelInfo.ragProvider).toBe("unknown");
+  });
+
   it("uses result.source (real/fallback) and never hardcodes 'demo'", () => {
     const realView = scanResultToRealComplianceView({ ...baseResult, source: "real" }, "zh");
     const fallbackView = scanResultToRealComplianceView({ ...baseResult, source: "fallback" }, "zh");
@@ -106,5 +114,72 @@ describe("scanResultToRealComplianceView", () => {
       "zh",
     );
     expect(view.complianceStatus).toBe("UNKNOWN");
+  });
+
+  /**
+   * P0-A regression: real scans previously dropped images/riskPoints/checklist
+   * in the helper (they were hardcoded to `undefined`), which silently collapsed
+   * the rich panel inside `<ComplianceReportView>`. After the fix the helper
+   * forwards them so the rich section renders identically for demo and real.
+   */
+  it("forwards images, riskPoints, checklist, and documents for real scans (no silent undefined)", () => {
+    const realImages = [
+      {
+        imageId: "img_real",
+        url: "/api/scan/scan_real_1/asset/0",
+        thumbnail: "/api/scan/scan_real_1/asset/0",
+        width: 1024,
+        height: 768,
+        fileName: "front.jpg",
+        angleHint: "front" as const,
+      },
+    ];
+    const realDocuments = [
+      {
+        documentId: "doc_real",
+        name: "spec.pdf",
+        size: 12345,
+        type: "pdf" as const,
+        mimeType: "application/pdf",
+        url: "/api/scan/scan_real_1/asset/doc/0",
+      },
+    ];
+    const realRiskPoints = [
+      {
+        ...baseResult.riskPoints[0],
+        regulations: [
+          {
+            regId: "EU-2014-35",
+            code: "Art. 4",
+            name: "Low Voltage Directive",
+            nameEn: "Low Voltage Directive",
+            market: "EU" as const,
+            summary: "电气安全",
+            sourceUrl: "https://eur-lex.europa.eu/eli/dir/2014/35/oj",
+            severity: "critical" as const,
+          },
+        ],
+      },
+    ];
+    const view = scanResultToRealComplianceView(
+      { ...baseResult, images: realImages, documents: realDocuments, riskPoints: realRiskPoints },
+      "zh",
+    );
+    expect(view.images).toBe(realImages);
+    expect(view.documents).toEqual([
+      expect.objectContaining({
+        documentId: "doc_real",
+        name: "spec.pdf",
+        type: "pdf",
+      }),
+    ]);
+    expect(view.riskPoints).toBe(realRiskPoints);
+    expect(view.checklist).toBe(baseResult.checklist);
+    expect(view.retrievedChunks.length).toBeGreaterThan(0);
+    expect(view.retrievedChunks[0]).toMatchObject({
+      regId: "EU-2014-35",
+      articleNo: "Art. 4",
+      region: "EU",
+    });
   });
 });

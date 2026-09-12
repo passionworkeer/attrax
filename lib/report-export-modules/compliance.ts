@@ -55,7 +55,7 @@ function evidenceRows(result: ComplianceReportResult, locale: Locale): string[][
 function documentRows(result: ComplianceReportResult, locale: Locale): string[][] {
   return [
     locale === "zh" ? ["#", "原始文件", "类型", "大小"] : ["#", "Source File", "Type", "Size"],
-    ...result.documents.map((document, index) => [
+    ...(result.documents ?? []).map((document, index) => [
       String(index + 1),
       locale === "en" ? document.nameEn ?? document.name : document.name,
       document.type.toUpperCase(),
@@ -147,7 +147,7 @@ export async function downloadReportAsPdf(input: ComplianceReportResult, locale?
       await yieldToMainThread();
     }
 
-    if (result.documents.length > 0) {
+    if ((result.documents ?? []).length > 0) {
       pdfSectionTitle(doc, yRef, margin, pageWidth, pageHeight, L === "zh" ? "上传原始资料清单" : "Uploaded Source Files");
       pdfDrawTable(doc, yRef, margin, pageWidth, pageHeight, documentRows(result, L), [10, 88, 24, 22]);
       await yieldToMainThread();
@@ -283,7 +283,7 @@ export async function downloadReportAsDocx(input: ComplianceReportResult, locale
               ]
             : []),
 
-          ...(result.documents.length > 0
+          ...(result.documents && result.documents.length > 0
             ? [
                 mkSectionH(L === "zh" ? "上传原始资料清单" : "Uploaded Source Files"),
                 docxTable(documentRows(result, L), ["475569", "475569", "475569", "475569"]),

@@ -160,6 +160,13 @@ export interface ScanResult {
    */
   complianceReport?: string;
   /**
+   * Audit P1-G: set when the LLM-rendered report was truncated by the BFF
+   * to `MAX_COMPLIANCE_REPORT_BYTES` (200KB). The page can use this to
+   * show a "truncated" hint and prevent users from re-sharing a report
+   * that lost context mid-paragraph.
+   */
+  complianceReportTruncated?: boolean;
+  /**
    * Real agent execution trace from the KB-anchored pipeline (vision →
    * generate → verify). Optional because legacy RAG payloads and demo
    * sessions do not emit it; consumers must guard for absence.
@@ -169,6 +176,12 @@ export interface ScanResult {
   ragProvider?: string;
   /** Pipeline total latency, milliseconds (sum of all node durations). */
   latencyMs?: number;
+  /**
+   * Number of refine / re-retrieval rounds. Always 0 for the De-RAG pipeline
+   * (single-pass generation); legacy RAG payloads with a refine loop set this
+   * to 1+. Surfaced as "审核轮数 / Review Rounds" on the result page.
+   */
+  loopCount?: number;
   /** Raw, validated-at-the-boundary backend package for report-only views. */
   reportPackage?: ReportPackage;
   modelInfo?: {
@@ -192,6 +205,16 @@ export interface ComplianceReportResult {
   complianceReportEn?: string;
   /** PASS | WARN | REJECTED */
   complianceStatus: "PASS" | "WARN" | "REJECTED" | "UNKNOWN";
+  /**
+   * Audit P1-K: discriminator that records which converter produced this
+   * view. `kind === "demo"` means the demo template was used (no real LLM
+   * output) and `kind === "real"` means the helper forwarded KB-anchored
+   * data. The result page currently chooses by `sessionId === "demo"` but
+   * the discriminator makes the contract self-enforcing: future callers
+   * cannot accidentally route a real scan through the demo converter
+   * because the type-level union forces them to pick a kind explicitly.
+   */
+  kind: "demo" | "real";
   /** Agent execution trace (node name + timing per step) */
   agentTrace: Array<{ node: string; [key: string]: unknown }>;
   /** Loop count (0 = single retrieval, 1-2 = re-retrieval) */
@@ -207,8 +230,20 @@ export interface ComplianceReportResult {
   }>;
   /** Optional one-pass generated package for the four result scenes. */
   reportPackage?: ReportPackage;
-  images: undefined;
-  documents: Array<{
+  /**
+   * Product images uploaded for the scan. Forwarded by both the demo converter
+   * and the real (KB-anchored) converter so the rich risk-point panel in
+   * `<ComplianceReportView>` can render thumbnails / hotspot overlays.
+   * `undefined` is kept as a valid value for legacy callers that do not pass
+   * images through; the view treats undefined the same as empty.
+   */
+  images?: ImageAsset[] | undefined;
+  /**
+   * Optional documents uploaded alongside the images. When the user attaches
+   * a PDF/DOCX/TXT spec sheet via the upload page, the file metadata flows
+   * through here so downstream export modules can list them in the report.
+   */
+  documents?: Array<{
     documentId: string;
     name: string;
     nameEn?: string;
@@ -217,8 +252,13 @@ export interface ComplianceReportResult {
     mimeType: string;
     url: string;
   }>;
-  riskPoints: undefined;
-  checklist: undefined;
+  /**
+   * Risk points for the rich UI section. Optional to preserve backwards compat
+   * with legacy RAG payloads that did not emit a flat array (only nested
+   * markdown). When `images` is empty the rich panel stays collapsed.
+   */
+  riskPoints?: RiskPoint[] | undefined;
+  checklist?: ChecklistItem[] | undefined;
   generatedAt: string;
   modelInfo: { ragProvider: string; latencyMs: number };
   source?: "real" | "fallback" | "demo";
@@ -352,6 +392,27 @@ export interface AuditMetadata {
   finance?: {
     validationStatus?: "valid" | "invalid";
     validation_status?: "valid" | "invalid";
+    errors?: string[];
+  };
+  /**
+   * Audit P0-D: per-sub-scene validation, mirroring `finance`. When the
+   * orchestrator emits a malformed decisionView/roadmap/evidenceBundles
+   * shape, the schema normalizer records it here instead of flipping
+   * `validationStatus` to "invalid". The result page's `<FallbackNotice>`
+   * does not surface these (they are non-fatal by design), but downstream
+   * tooling and the profit/roadmap pages can read them to render their
+   * own notices.
+   */
+  decisionView?: {
+    validationStatus?: "valid" | "invalid";
+    errors?: string[];
+  };
+  roadmap?: {
+    validationStatus?: "valid" | "invalid";
+    errors?: string[];
+  };
+  evidenceBundles?: {
+    validationStatus?: "valid" | "invalid";
     errors?: string[];
   };
   [key: string]: unknown;

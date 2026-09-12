@@ -87,6 +87,18 @@ function localRoadmap(sessionId: string, resultValue: unknown) {
 
   const score = result.complianceScore ?? result.compliance_score;
   const markets = result.targetMarkets ?? result.target_markets;
+  // Audit P1-I: surface the backend's decisionView verdict so the roadmap
+  // page's PDF/DOCX export reflects reality ("PASS" / "WARN" / "REJECTED")
+  // instead of hard-coding REJECTED whenever any real roadmap exists.
+  const decisionView = record(reportPackage.decisionView);
+  const decisionVerdict =
+    typeof (decisionView.verdict ?? decisionView.verdict) === "string"
+      ? (decisionView.verdict ?? decisionView.verdict)
+      : null;
+  const decisionRiskLevel =
+    typeof (decisionView.riskLevel ?? decisionView.risk_level) === "string"
+      ? (decisionView.riskLevel ?? decisionView.risk_level)
+      : null;
   return ok({
     sessionId,
     product:
@@ -105,6 +117,8 @@ function localRoadmap(sessionId: string, resultValue: unknown) {
       typeof (result.complianceStatus ?? result.compliance_status) === "string"
         ? result.complianceStatus ?? result.compliance_status
         : "UNKNOWN",
+    verdict: decisionVerdict,
+    riskLevel: decisionRiskLevel,
     totalDays:
       typeof (roadmap.totalDays ?? roadmap.total_days) === "number"
         ? roadmap.totalDays ?? roadmap.total_days

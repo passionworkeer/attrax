@@ -22,6 +22,12 @@ interface RoadmapData {
   totalCost?: string;
   progress?: number;
   items?: RoadmapItem[];
+  /**
+   * Audit P1-I: the backend's decisionView verdict, used to drive the
+   * PDF/DOCX export's `currentStatus` instead of a hard-coded "REJECTED".
+   */
+  verdict?: string | null;
+  riskLevel?: string | null;
 }
 
 /**
@@ -159,10 +165,26 @@ function RoadmapSessionPageInner({
   // 真实 API(/api/roadmap/[sessionId])返回的 items 已是 camelCase,可以直接复用;
   // Demo items are only present for the explicit demo entry point.
   function buildRoadmapContent(dlLocale: "zh" | "en"): RoadmapContent {
+    // Audit P1-I: prefer the backend's verdict (decisionView.verdict) over a
+    // hard-coded "REJECTED". Fall back to the historical hard-code for
+    // demo sessions where no verdict exists, and only when a real roadmap is
+    // present (otherwise we don't claim anything).
+    const verdict =
+      (typeof roadmapData?.verdict === "string" && roadmapData.verdict) ||
+      (typeof roadmapData?.riskLevel === "string" && roadmapData.riskLevel) ||
+      (hasRealRoadmap ? "REJECTED" : "WARN");
+    const verdictEn =
+      verdict === "REJECTED"
+        ? "REJECTED"
+        : verdict === "WARN"
+          ? "WARN"
+          : verdict === "PASS"
+            ? "PASS"
+            : verdict;
     return {
       sessionId: sessionId ?? "demo",
-      currentStatus: hasRealRoadmap ? "REJECTED" : "WARN",
-      currentStatusEn: hasRealRoadmap ? "REJECTED" : "WARN",
+      currentStatus: verdict as RoadmapContent["currentStatus"],
+      currentStatusEn: verdictEn as RoadmapContent["currentStatusEn"],
       totalDays,
       totalCost,
       progress,

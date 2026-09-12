@@ -189,7 +189,90 @@ def _build_vision_context(vision_result: dict) -> str:
     questions = values("questions_needed", 4)
     if questions:
         lines.append("- 需要补充：" + "；".join(questions))
+    issues = vision_result.get("issues")
+    if isinstance(issues, list) and issues:
+        for issue in issues[:6]:
+            if not isinstance(issue, dict):
+                continue
+            label = str(issue.get("label") or "").strip()[:200]
+            if not label:
+                continue
+            lines.append(f"- 视觉定位问题：{label}")
     return "\n".join(lines)
+
+
+def _inject_vision_hotspots(report_package: dict, vision_issues: list) -> dict:
+    """Feature 1 (2.5D hotspots): attach vision-emitted bbox metadata onto
+    the package's decisionView nodes so the result page can render highlight
+    overlays on the uploaded images.
+
+    Matching strategy (deliberately conservative):
+    - If a decisionView node's label/reasoning contains the issue label (or
+      vice versa), attach the bbox to that node in place.
+    - Otherwise append a new node carrying the vision issue verbatim.
+
+    Both paths are idempotent: re-running the injection on an already
+    annotated package will not duplicate nodes or bbox entries.
+    """
+    if not isinstance(report_package, dict) or not vision_issues:
+        return report_package
+
+    decision = report_package.get("decisionView")
+    if not isinstance(decision, dict):
+        return report_package
+
+    nodes = decision.get("nodes")
+    if not isinstance(nodes, list):
+        nodes = []
+        decision["nodes"] = nodes
+
+    existing_labels = [
+        str(node.get("label") or "").strip()
+        for node in nodes
+        if isinstance(node, dict)
+    ]
+
+    appended = 0
+    for issue in vision_issues:
+        if not isinstance(issue, dict):
+            continue
+        label = str(issue.get("label") or "").strip()
+        bbox = issue.get("bbox")
+        if not label or not isinstance(bbox, dict):
+            continue
+        if not all(key in bbox for key in ("x", "y", "w", "h")):
+            continue
+
+        matched = False
+        for node, existing_label in zip(nodes, existing_labels):
+            if not isinstance(node, dict):
+                continue
+            haystack = existing_label or ""
+            reasoning = str(node.get("reasoning") or "")
+            if label in haystack or label in reasoning or (
+                existing_label and existing_label in label
+            ):
+                node["bbox"] = bbox
+                node["imageId"] = f"vision-image-{issue.get('image_index', 0)}"
+                matched = True
+                break
+
+        if not matched and appended < 6:
+            nodes.append({
+                "id": issue.get("id") or f"vision-hotspot-{appended + 1}",
+                "type": "vision",
+                "label": label[:200],
+                "severity": issue.get("severity") or "medium",
+                "status": "success",
+                "bbox": bbox,
+                "imageId": f"vision-image-{issue.get('image_index', 0)}",
+                "reasoning": label[:200],
+                "regulation_ref": issue.get("regulation_ref"),
+            })
+            existing_labels.append(label[:200])
+            appended += 1
+
+    return report_package
 
 
 def generator_node(state: GraphState) -> dict:
@@ -386,6 +469,14 @@ def generator_node(state: GraphState) -> dict:
             user_documents=user_docs,
             provider=provider or "",
         )
+        # Feature 1 (2.5D hotspots): surface the vision-emitted issues as
+        # decisionView nodes with bbox metadata so the result page can
+        # render the highlight overlay. Issues that the LLM also emitted
+        # in decisionView.nodes (by label match) are deduplicated here;
+        # standalone vision-issued nodes are appended.
+        vision_issues = (state.get("vision_result") or {}).get("issues") or []
+        if vision_issues:
+            report_package = _inject_vision_hotspots(report_package, vision_issues)
 
     result = {
         "generation": generation,
