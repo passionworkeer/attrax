@@ -337,11 +337,11 @@ class TestVerifierNodeIntegration:
         # CitationVerifier stub via set_verifier() and never reset the
         # module-level singleton — clear it here so we always exercise
         # the quote_matcher path.
-        from rag_service.orchestrator.nodes import verifier as verifier_mod
+        from rag_service.pipeline.nodes import verifier as verifier_mod
         verifier_mod._verifier_instance = None
 
     def test_runs_quote_matcher_over_state_report_package(self):
-        from rag_service.orchestrator.nodes.verifier import verifier_node
+        from rag_service.pipeline.nodes.verifier import verifier_node
 
         state = {
             "report_package": {
@@ -370,7 +370,7 @@ class TestVerifierNodeIntegration:
         assert "evidencePack" in result["report_package"]
 
     def test_handles_empty_citations(self):
-        from rag_service.orchestrator.nodes.verifier import verifier_node
+        from rag_service.pipeline.nodes.verifier import verifier_node
 
         state = {"report_package": {"complianceReport": "x", "citations": []}}
         result = verifier_node(state)
@@ -378,7 +378,7 @@ class TestVerifierNodeIntegration:
         assert result["agent_trace"][0]["status"] == "no_citations"
 
     def test_handles_missing_report_package(self):
-        from rag_service.orchestrator.nodes.verifier import verifier_node
+        from rag_service.pipeline.nodes.verifier import verifier_node
 
         state = {}
         result = verifier_node(state)

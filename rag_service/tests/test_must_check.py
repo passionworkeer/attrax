@@ -21,7 +21,6 @@ from rag_service.retrieval.must_check import (
     CATEGORY_REGULATIONS,
     FEATURE_KEYWORDS,
     FEATURE_REGULATIONS,
-    apply_must_check,
     build_anchor_list,
     detect_features,
     get_feature_regulations,
@@ -134,33 +133,6 @@ class TestMatrixIntegrity:
 
     def test_always_include_regions_is_un_only(self):
         assert ALWAYS_INCLUDE_REGIONS == {"UN"}
-
-
-class TestApplyMustCheckRetrievalPath:
-    """The corpus-injection path (supporting citations) must keep working."""
-
-    def _chunks(self):
-        return [
-            {"id": "c1", "doc_name": "RoHS Directive 2011/65/EU", "region": "EU",
-             "content": "rohs text", "article_no": "Art.1"},
-            {"id": "c2", "doc_name": "Toy Safety Directive 2009/48/EC", "region": "EU",
-             "content": "toy text", "article_no": "Art.2"},
-        ]
-
-    def test_injects_missing_doc(self):
-        results = [{"id": "c1", "doc_name": "RoHS Directive 2011/65/EU", "region": "EU",
-                    "content": "rohs", "rrf_score": 0.05, "score": 0.9}]
-        merged = apply_must_check(results, "toy", self._chunks())
-        injected = [r for r in merged if r.get("is_must_check")]
-        # Toy Safety Directive missing from results → injected from corpus
-        assert any("Toy Safety" in r["doc_name"] for r in injected)
-
-    def test_no_injection_when_corpus_lacks_doc(self):
-        # REACH is a toy must-check but the fake corpus lacks it → silently
-        # skipped (citation path only; the generator anchor covers coverage).
-        results = []
-        merged = apply_must_check(results, "toy", self._chunks())
-        assert all("REACH" not in r.get("doc_name", "") for r in merged)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,186 @@
+{
+  "productDossier": {
+    "product": "塑料玩具",
+    "category": "toy",
+    "markets": [
+      "US"
+    ],
+    "query": "儿童塑料玩具出口美国的合规要求",
+    "sourceCounts": {
+      "retrievedChunks": 0,
+      "userDocuments": 0,
+      "visualItems": 0
+    }
+  },
+  "complianceReport": "## 合规报告\n\n\n> ⚠️ LLM 调用失败：HTTP Error 429: Too Many Requests\n\n产品：塑料玩具 | 目标市场：US\n\n### 合规要求\n- 确认产品是否需要 CE/FCC 等认证标志\n- 检查 RoHS/REACH 有害物质限制要求\n- 准备符合当地标签法规的产品铭牌\n- 保存合规技术文档以备抽查\n\n### 禁止/限制项目\n- 铅、镉、汞等有害物质含量限制（RoHS / REACH）\n- 特定电子产品的能效要求（如 ErP 指令）\n- 儿童产品安全标准（EN 71 系列）\n- 锂电池运输安全要求（UN 38.3）\n\n### 合规建议\n1. 委托有资质的检测机构进行产品测试\n2. 获取 CE/FCC 等目标市场认证\n3. 建立产品合规技术文档包（TDF）\n4. 定期跟踪目标市场法规变化\n\n### 法规引用\n- EU:参阅《欧盟通用产品安全指令》/ RoHS指令 / REACH法规\n- US: 参阅 FCC 联邦法规第 47 篇 / CPSC 法规\n- CN: 参阅 GB 标准体系\n\n> 💡 此为降级 mock 报告，请检查后端服务是否正常运行。",
+  "profitReport": {
+    "markdown": "## [塑料玩具] 合规成本与利润分析报告\n\n> 目标市场：US | 产品类型：general | 报告日期：2026-09-11\n\n---\n\n### 一、成本对比表（合规模式 vs 裸奔模式）\n\n| 成本项 | 裸奔模式 | 合规模式 | 差异 |\n|--------|---------|---------|------|\n| 材料成本(BOM) | $10.00 | $18.00 | +$8.00 |\n| 包装与印刷 | $0.30 | $0.80 | +$0.50 |\n| 认证费(单台摊销) | $0.00 | $0.50 | +$0.50 |\n| EPR运营费 | $0.00 | $0.30 | +$0.30 |\n| 售后/保修预留 | $0.30 | $0.80 | +$0.50 |\n| 物流与渠道 | $5.00 | $5.00 | 持平 |\n| **总直接成本** | **$15.60** | **$25.40** | **+$9.80 (+63%)** |\n\n### 二、收益对比\n\n| 收益项 | 裸奔模式 | 合规模式 | 差异 |\n|--------|---------|---------|------|\n| 平均售价(ASP) | $25.00 | $55.00 | +$30.00 |\n| 毛利润(单台) | $7.40 | $26.60 | +$19.20 |\n| 毛利率 | 29.6% | 48.4% | — |\n\n### 三、风险调整后净收益\n\n| 模式 | 毛利润 | 风险敞口 | 经风险调整净收益 |\n|------|--------|---------|----------------|\n| 合规模式 | $26.60 | $0.00 | **$26.60** |\n| 裸奔模式 | $7.40 | 20–40% 扣押/召回概率（视市场） | **约-$2.00（期望值亏损）** |\n\n> 风险敞口说明：非合规产品在目标市场面临监管处罚风险。具体概率取决于市场严格程度（EU > US > UK）。\n\n### 四、盈亏平衡分析\n\n- 合规溢价约 **63%**\n- 盈亏平衡点：约 **约500台** 台\n- 合规模式定价策略：建议定价为裸奔产品的 2–3 倍，定位中高端市场\n\n### 五、关键结论\n\n1. **合规溢价约 63%**：单台成本增加约 $9.80，定价可提升 2–3 倍。\n2. **合规模式净利润约 $26.60/台**，显著高于裸奔模式。\n3. **关键合规节点**：CE/FCC 认证、RoHS/REACH 测试、产品安全标签。\n4. **合规是结构性竞争优势**：在监管趋严的大趋势下，合规投入是高确定性回报。\n\n### 六、法规引用\n\n- CE/FCC 产品安全认证\n- RoHS 2011/65/EU / REACH (EC) No 1907/2006\n- 目标市场 EPR 注册体系\n- GPSR (EU) 2023/988（如适用）\n",
+    "keyConclusion": "合规模式可降低平台下架、清关扣押与召回风险，建议优先补齐关键认证。",
+    "premiumPct": "估算",
+    "breakevenUnits": "估算",
+    "pricingStrategy": "以合规认证和低风险交付作为溢价依据，优先进入主流渠道。",
+    "riskNote": "成本与风险敞口基于当前语料保守估算，落地前需结合真实 BOM 与检测报价复核。",
+    "conclusions": "完成认证、标签和技术文档后再规模化销售，整体风险收益更稳定。",
+    "references": "参考本次检索到的法规语料与用户上传文档。"
+  },
+  "roadmap": {
+    "totalDays": 56,
+    "totalCost": "¥25K+",
+    "progress": 25,
+    "items": [
+      {
+        "id": "1",
+        "date": "2026-09-11",
+        "title": "完成产品识别与风险初筛",
+        "titleEn": "Complete product identification and risk screening",
+        "description": "确认 塑料玩具 在 US 的主要合规风险与证据缺口。",
+        "descriptionEn": "Confirm core compliance risks and evidence gaps for the target markets.",
+        "type": "complete",
+        "status": "completed",
+        "estimatedDays": 0,
+        "cost": "",
+        "documents": [],
+        "documentsEn": []
+      },
+      {
+        "id": "2",
+        "date": "2026-09-18",
+        "title": "补齐技术资料与标签信息",
+        "titleEn": "Prepare technical files and labeling",
+        "description": "整理说明书、BOM、铭牌、警示标签、测试样品和已有证书。",
+        "descriptionEn": "Prepare manuals, BOM, nameplates, warnings, samples, and existing certificates.",
+        "type": "apply",
+        "status": "in-progress",
+        "estimatedDays": 7,
+        "cost": "",
+        "documents": [
+          "说明书",
+          "BOM 清单",
+          "铭牌/标签",
+          "已有测试报告"
+        ],
+        "documentsEn": [
+          "Manual",
+          "BOM",
+          "Nameplate/Label",
+          "Existing test reports"
+        ]
+      },
+      {
+        "id": "3",
+        "date": "2026-10-02",
+        "title": "送检并完成关键认证",
+        "titleEn": "Run testing and obtain key certifications",
+        "description": "按目标市场安排安全、EMC、化学限制、包装/EPR 等检测或注册。",
+        "descriptionEn": "Run safety, EMC, chemical restriction, packaging/EPR tests or registrations.",
+        "type": "test",
+        "status": "pending",
+        "estimatedDays": 21,
+        "cost": "¥15,000-40,000",
+        "documents": [],
+        "documentsEn": []
+      },
+      {
+        "id": "4",
+        "date": "2026-11-06",
+        "title": "合规上市复核",
+        "titleEn": "Final compliant launch review",
+        "description": "复核证书、DoC、标签、包装和平台上架材料后再进入目标市场。",
+        "descriptionEn": "Review certificates, DoC, labels, packaging, and listing materials before launch.",
+        "type": "complete",
+        "status": "pending",
+        "estimatedDays": 7,
+        "cost": "",
+        "documents": [],
+        "documentsEn": []
+      }
+    ]
+  },
+  "decisionView": {
+    "summary": "系统先识别产品，再检索目标市场法规，最后生成合规、利润和执行路线图。",
+    "keyFindings": [
+      "产品识别结果决定检索关键词和适用法规范围。",
+      "检索证据不足的部分以保守风险提示呈现。",
+      "路线图优先覆盖认证、标签、技术文档和上市复核。"
+    ],
+    "recommendedAction": "先补齐技术资料和可见标签，再启动目标市场检测/认证。",
+    "nodes": [
+      {
+        "id": "vision",
+        "type": "vision",
+        "label": "产品视觉识别",
+        "labelEn": "Product vision analysis",
+        "status": "success",
+        "duration": "0s",
+        "confidence": 0.8,
+        "reasoning": "从图片中提取产品类型、核心特征和可见认证标志。",
+        "reasoningEn": "Extract product type, key features, and visible marks from images.",
+        "severity": "info"
+      },
+      {
+        "id": "retriever",
+        "type": "retriever",
+        "label": "法规与成本语料检索",
+        "labelEn": "Regulation and cost retrieval",
+        "status": "success",
+        "duration": "0s",
+        "confidence": 0.75,
+        "reasoning": "使用目标市场和产品特征召回相关法规、认证和成本片段。",
+        "reasoningEn": "Retrieve relevant regulation, certification, and cost evidence.",
+        "severity": "info"
+      },
+      {
+        "id": "generate",
+        "type": "generate",
+        "label": "四场景内容生成",
+        "labelEn": "Four-scene content generation",
+        "status": "success",
+        "duration": "0s",
+        "confidence": 0.78,
+        "reasoning": "一次生成合规报告、成本利润、排期路线图和决策解释。",
+        "reasoningEn": "Generate compliance, profit, roadmap, and decision content in one pass.",
+        "severity": "info"
+      }
+    ],
+    "verdict": "WARN",
+    "riskLevel": "LOW"
+  },
+  "evidenceBundles": {
+    "visual": [],
+    "retrieval": [],
+    "generation": [
+      {
+        "id": "generation:compliance_report",
+        "layer": "generation",
+        "source": "report_generator",
+        "title": "Compliance report draft",
+        "content": "## 合规报告\n\n\n> ⚠️ LLM 调用失败：HTTP Error 429: Too Many Requests\n\n产品：塑料玩具 | 目标市场：US\n\n### 合规要求\n- 确认产品是否需要 CE/FCC 等认证标志\n- 检查 RoHS/REACH 有害物质限制要求\n- 准备符合当地标签法规的产品铭牌\n- 保存合规技术文档以备抽查\n\n### 禁止/限制项目\n- 铅、镉、汞等有害物质含量限制（RoHS / REACH）\n- 特定电子产品的能效要求（如 ErP 指令）\n- 儿童产品安全标准（EN 71 系列）\n- 锂电池运输安全要求（UN 38.3）\n\n### 合规建议\n1. 委托有资质的检测机构进行产品测试\n2. 获取 CE/FCC 等目标市场认证\n3. 建立产品合规技术文档包（TDF）\n4. 定期跟踪目标市场法规变化\n\n### 法规引用\n- EU:参阅《欧盟通用产品安全指令》/ RoHS指令 / REACH法规\n- US: 参阅 FCC 联邦法规第 47 篇 / CPSC 法规\n- CN: 参阅 GB 标准体系\n\n> 💡 此为降级 mock 报告，请检查后端服务是否正常运行。",
+        "metadata": {
+          "characterCount": 498
+        }
+      },
+      {
+        "id": "generation:package_keys",
+        "layer": "generation",
+        "source": "report_package",
+        "title": "Generated package keys",
+        "content": "auditMetadata, complianceReport, decisionView, profitReport, roadmap",
+        "metadata": {
+          "sceneCount": 5
+        }
+      }
+    ]
+  },
+  "auditMetadata": {
+    "schemaVersion": "report-package/v1",
+    "generatedAt": "2026-09-11T09:08:10+00:00",
+    "validationStatus": "fallback",
+    "validationErrors": [
+      "LLM 调用失败：HTTP Error 429: Too Many Requests"
+    ],
+    "provider": "minimax",
+    "traceNodeCount": 3
+  },
+  "citations": [],
+  "evidencePack": []
+}

@@ -40,64 +40,42 @@ def test_ready_endpoint_reports_dependency_checks(client):
     assert data["version"] == app.version
     assert "ready" in data
     assert "checks" in data
-    assert "faiss" in data["checks"]
-    assert "bm25" in data["checks"]
-    assert data["checks"]["bm25"] is True
+    assert "kb_anchors" in data["checks"]
+    assert "regulation_library" in data["checks"]
+    assert data["checks"]["kb_anchors"] is True
+    assert data["checks"]["regulation_library"] is True
 
 
 def test_ready_endpoint_reports_required_api_keys(client):
-    """Production readiness reports API-only LLM and embedding configuration."""
+    """Production readiness reports the LLM key as the sole gate
+    (De-RAG §7.7: embedding stack is gone)."""
     previous_demo_mode = settings.demo_mode
     previous_minimax = settings.minimax_api_key
-    previous_mimotalk = settings.mimotalk_api_key
-    previous_modelscope = settings.modelscope_api_key
-    previous_retriever = main_module._retriever
     settings.demo_mode = False
     settings.minimax_api_key = ""
-    settings.mimotalk_api_key = ""
-    settings.modelscope_api_key = ""
-
-    class ReadyRetriever:
-        faiss_retriever = object()
-
-    main_module._retriever = ReadyRetriever()
     try:
         resp = client.get("/ready")
     finally:
         settings.demo_mode = previous_demo_mode
         settings.minimax_api_key = previous_minimax
-        settings.mimotalk_api_key = previous_mimotalk
-        settings.modelscope_api_key = previous_modelscope
-        main_module._retriever = previous_retriever
 
     assert resp.status_code == 503
     data = resp.json()
     assert data["checks"]["minimax_api_key"] is False
-    assert data["checks"]["modelscope_api_key"] is False
+    # KB / regulation library still load regardless of LLM key.
+    assert data["checks"]["kb_anchors"] is True
 
 
-def test_readiness_accepts_populated_bm25_when_faiss_is_unavailable(client):
-    previous_demo_mode = settings.demo_mode
-    previous_minimax = settings.minimax_api_key
-    previous_retriever = main_module._retriever
-    settings.demo_mode = False
-    settings.minimax_api_key = "configured"
-
-    class SparseReadyRetriever:
-        faiss_retriever = None
-        _chunks_loaded = True
-        _chunks = [{"id": "rule-1"}]
-
-    main_module._retriever = SparseReadyRetriever()
-    try:
-        resp = client.get("/ready")
-    finally:
-        settings.demo_mode = previous_demo_mode
-        settings.minimax_api_key = previous_minimax
-        main_module._retriever = previous_retriever
-
+def test_readiness_returns_200_with_all_kb_checks_passing(client):
+    """Happy path: KB + regulation library load + LLM key configured →
+    readiness is 200 and gates pass."""
+    resp = client.get("/ready")
     assert resp.status_code == 200
-    assert resp.json()["checks"]["faiss"] is False
+    data = resp.json()
+    assert data["ready"] is True
+    assert data["checks"]["kb_anchors"] is True
+    assert data["checks"]["regulation_library"] is True
+    assert data["checks"]["minimax_api_key"] is True
 
 
 def test_parse_markets_accepts_json_array():

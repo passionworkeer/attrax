@@ -2,7 +2,7 @@
 """
 main.py - FastAPI entry point for rag-service
 
-POST /scan → Agentic RAG graph
+POST /scan → collapsed De-RAG pipeline (vision → generate → verify)
 GET /health
 """
 import os
@@ -45,32 +45,21 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from rag_service.config import settings
-from rag_service.orchestrator.graph import run_compliance_graph
-from rag_service.retrieval.faiss_retriever import FaissRetriever
-from rag_service.schemas.report_package import ReportPackage
-from rag_service.retrieval.hybrid_retriever import HybridRetriever
-from rag_service.retrieval.bm25_retriever import BM25Retriever, _fast_tokenize
+from rag_service.pipeline import run_compliance_graph
 from rag_service.generate.report_generator import ReportGenerator
-from rag_service.verify.citation_verifier import CitationVerifier
-from rag_service.orchestrator.nodes import vision as vision_node
+from rag_service.pipeline.nodes import vision as vision_node
 from rag_service.api.v1 import router as public_v1_router
 from rag_service.application.scans import ScanService
 from rag_service.infrastructure.file_backend import FileBackend
-from rag_service.retrieval.corpus_loader import load_bm25_chunks_from_corpus
+from rag_service.schemas.report_package import ReportPackage
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 _APP_ROOT = Path(__file__).parent.parent.resolve()
 
-_FAISS_ASCII_DIR = Path(os.environ.get("FAISS_INDEX_DIR", _APP_ROOT / "data" / "faiss"))
-FAISS_INDEX_DIR = _FAISS_ASCII_DIR
-CHILD_INDEX = str(FAISS_INDEX_DIR / "legal_chunks.index")
-CHILD_META = str(FAISS_INDEX_DIR / "legal_chunks_meta.json")
-
-_retriever: Optional[HybridRetriever] = None
 # Worker count comes from settings.scan_worker_concurrency (default 5) so
-# the 8-market fan-out doesn't serialize behind a single in-flight scan.
+# concurrent scans don't serialize behind a single in-flight request.
 _executor = ThreadPoolExecutor(
     max_workers=settings.scan_worker_concurrency
 )
@@ -78,100 +67,42 @@ _executor = ThreadPoolExecutor(
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    global _retriever
-
-    logger.info("Starting rag-service...")
+    logger.info("Starting rag-service (De-RAG pipeline)...")
 
     # P0-6: fail-closed internal-secret policy. Must run before anything that
-    # would consume LLM/embedding quota. See _enforce_secret_policy for the
+    # would consume LLM quota. See _enforce_secret_policy for the
     # exact dev/demo vs production matrix.
     _enforce_secret_policy(settings)
 
-    bm25 = BM25Retriever()
+    from rag_service.pipeline.nodes import generator as generator_node_module
+    from rag_service.pipeline.nodes import vision as vision_node_module
 
-    # Pre-warm embedder at startup to avoid 3-8s probe delay on first query
-    from rag_service.retrieval.hybrid_retriever import _probe_embedders
-    warm_embedder, warm_name = _probe_embedders()
-    if warm_embedder:
-        logger.info(f"Embedding pre-warmed: {warm_name}")
-    else:
-        logger.warning("Embedding: all providers unavailable (BM25-only mode)")
-
-    faiss_ret = None
-    if os.path.exists(CHILD_INDEX) and os.path.exists(CHILD_META):
-        try:
-            faiss_ret = FaissRetriever.load(CHILD_INDEX, CHILD_META)
-            logger.info(f"Faiss index loaded: {len(faiss_ret)} vectors")
-        except Exception as e:
-            logger.warning(f"Failed to load Faiss index: {e}")
-    else:
-        logger.info(f"Faiss index not found at {FAISS_INDEX_DIR}")
-
-    _retriever = HybridRetriever(bm25=bm25, faiss_retriever=faiss_ret)
-
-    chunks = faiss_ret.chunks if faiss_ret else []
-    if not chunks:
-        chunks = load_bm25_chunks_from_corpus(_APP_ROOT / "data" / "corpus" / "processed")
-        if chunks:
-            bm25 = BM25Retriever(tokenizer=_fast_tokenize)
-
-    _retriever = HybridRetriever(bm25=bm25, faiss_retriever=faiss_ret)
-    if chunks:
-        _retriever.load_chunks(chunks)
-        logger.info(f"BM25 index built with {len(chunks)} chunks")
-
-    from rag_service.orchestrator.nodes import vision as vision_node_module
-    from rag_service.orchestrator.nodes import generator
-    from rag_service.orchestrator.nodes import verifier
-    from rag_service.orchestrator.nodes import retriever as retriever_node
-    retriever_node.set_retriever(_retriever)
-    generator.set_generator(ReportGenerator(api_key=settings.effective_minimax_api_key or None))
-
-    # P0-3b: surface the NLI-degraded mode at startup. CitationVerifier() is
-    # constructed without an injected NLI model, so verification falls back to
-    # text-overlap matching (weaker grounding). Best-effort attribute probe —
-    # if a future change auto-loads NLI inside __init__, the warning is silent.
-    _cv = CitationVerifier()
-    _nli_loaded = any(
-        getattr(_cv, _attr, None) is not None
-        for _attr in ("nli_model", "nli", "_nli_model", "model")
+    generator_node_module.set_generator(
+        ReportGenerator(api_key=settings.effective_minimax_api_key or None)
     )
-    if not _nli_loaded:
-        logger.warning(
-            "NLI verifier not loaded — citation verification degraded to "
-            "text-overlap mode"
+    vision_node_module.set_vision_analyzer(
+        vision_node.VisionAnalyzer(settings.effective_minimax_api_key or None)
+    )
+
+    # KB + regulation library sanity: a scan without these degrades to
+    # the fallback package. Log counts at startup so misdeploys surface
+    # immediately instead of at first-scan time.
+    try:
+        from rag_service.retrieval import kb_loader, article_loader
+        kb_loader.invalidate_cache()
+        article_loader.invalidate_cache()
+        logger.info(
+            "Knowledge base ready: %d KB anchors, %d regulation library entries",
+            len(kb_loader.list_all_regulations()),
+            len(article_loader.list_regulation_ids()),
         )
-    verifier.set_verifier(_cv)
-    vision_node_module.set_vision_analyzer(vision_node.VisionAnalyzer(settings.effective_minimax_api_key or None))
+    except Exception as exc:
+        logger.warning("KB/regulation library load check failed: %r", exc)
 
-    # ── Pre-warm embedding cache with common compliance queries ─────────────────
-    # Embedding these at startup populates the LRU cache so the first real user
-    # query hits cache immediately (~0.1ms instead of 100-300ms per embed call).
-    if warm_embedder is not None:
-        import time
-        t0 = time.monotonic()
-        common_queries = [
-            "充电宝 合规 EU",
-            "蓝牙耳机 CE RoHS",
-            "锂电池 运输 法规",
-            "玩具 安全 EN71",
-            "电子产品 环保 RoHS",
-            "出口欧盟 合规要求",
-        ]
-        try:
-            warm_embedder.embed_batch(common_queries, batch_size=len(common_queries))
-            logger.info(
-                f"Query pre-warming done: {len(common_queries)} queries "
-                f"embedded in {time.monotonic()-t0:.1f}s (cache populated)"
-            )
-        except Exception as e:
-            logger.warning(f"Query pre-warming skipped: {e}")
-    else:
-        logger.info("Query pre-warming skipped: no embedder available")
-
-    # Compose the frontend-independent application service only after the RAG
-    # dependencies are initialized. The service persists jobs before spawning
-    # them, so resume_pending safely recovers work after a process restart.
+    # Compose the frontend-independent application service only after the
+    # pipeline dependencies are initialized. The service persists jobs
+    # before spawning them, so resume_pending safely recovers work after
+    # a process restart.
     app.state.scan_service = ScanService(
         FileBackend(settings.runtime_data_dir),
         runner=_run_public_scan_payload,
@@ -339,24 +270,9 @@ class ProfitReportResponse(BaseModel):
 
 
 def _current_embedding_provider() -> str:
-    """Best-effort read of the active embedding provider name.
-
-    Returns one of: 'modelscope_api', 'ollama', 'none', or 'unknown' if
-    the retriever / embedder is not yet initialized. Defensive: never raises.
-
-    Contract: HybridRetriever exposes `self.embedder_name` as a public
-    attribute (set when an embedder is selected). We read it directly;
-    getattr-with-default guards against older retriever instances that
-    predate the attribute. The previous implementation reflected into a
-    module-level private global of hybrid_retriever, which coupled main.py
-    to an internal symbol that could change without notice.
-    """
-    if _retriever is None:
-        return "none"
-    try:
-        return getattr(_retriever, "embedder_name", None) or "unknown"
-    except Exception:
-        return "unknown"
+    """De-RAG §7.7: the embedding stack is deleted. Kept as a stub so
+    legacy monitoring payloads keep parsing; always reports 'none'."""
+    return "none"
 
 
 def _enforce_secret_policy(s: "settings.__class__") -> None:
@@ -470,11 +386,7 @@ def health(request: Request):
         body.update({
             "version": app.version,
             "demo_mode": settings.demo_mode,
-            "embedding_provider": _current_embedding_provider(),
-            "dense_dim_mismatch_count": (
-                getattr(_retriever, "dense_dim_mismatch_count", 0)
-                if _retriever else 0
-            ),
+            "pipeline": "kb_anchored",
         })
     return JSONResponse(body)
 
@@ -487,52 +399,42 @@ def ready(request: Request):
 
     P1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s
     probes work without credentials (the test suite also asserts these).
-    Sensitive diagnostics (demo_mode, embedding_provider, embedding_status,
-    dense_dim_mismatch_count, warnings) are gated behind ``_is_privileged``.
+    Sensitive diagnostics (demo_mode, pipeline) are gated behind
+    ``_is_privileged``.
 
-    Embedding has a graceful-degradation path: if ModelScope is unavailable,
-    the service falls back to Ollama, then to BM25-only. ModelScope key
-    absence therefore does NOT block readiness; it is reported as a warning
-    to privileged callers only.
+    De-RAG §7.7: readiness gates on the KB + regulation library (the
+    generator's actual inputs) instead of the deleted retrieval stack.
     """
     body = _readiness_snapshot()
     all_ok = body["ready"]
-    has_modelscope = body["checks"]["modelscope_api_key"]
     if _is_privileged(request):
-        warnings = []
-        embedding_status = "ok"
-        if not has_modelscope:
-            warnings.append("modelscope_api_key missing — embedding degraded to ollama_fallback")
-            embedding_status = "ollama_fallback"
         body.update({
             "demo_mode": settings.demo_mode,
-            "embedding_provider": _current_embedding_provider(),
-            "embedding_status": embedding_status,
-            "dense_dim_mismatch_count": (
-                getattr(_retriever, "dense_dim_mismatch_count", 0)
-                if _retriever else 0
-            ),
-            "warnings": warnings,
+            "pipeline": "kb_anchored",
         })
     return JSONResponse(body, status_code=200 if all_ok else 503)
 
 
 def _readiness_snapshot() -> dict:
     """Return non-sensitive readiness fields shared by legacy and v1 APIs."""
-    has_modelscope = settings.demo_mode or bool(settings.modelscope_api_key.strip())
+    kb_ok = False
+    library_ok = False
+    try:
+        from rag_service.retrieval import kb_loader, article_loader
+        kb_loader.invalidate_cache()
+        article_loader.invalidate_cache()
+        kb_ok = len(kb_loader.list_all_regulations()) > 0
+        library_ok = len(article_loader.list_regulation_ids()) > 0
+    except Exception:
+        pass
     checks = {
-        "faiss": _retriever is not None and _retriever.faiss_retriever is not None,
-        "bm25": bool(
-            _retriever is not None
-            and getattr(_retriever, "_chunks_loaded", False)
-            and getattr(_retriever, "_chunks", [])
-        ),
+        "kb_anchors": kb_ok,
+        "regulation_library": library_ok,
         "minimax_api_key": settings.demo_mode or bool(settings.effective_minimax_api_key.strip()),
-        "modelscope_api_key": has_modelscope,
         "config_loaded": True,
         "scan_service": hasattr(app.state, "scan_service"),
     }
-    gate_keys = ("bm25", "minimax_api_key", "config_loaded", "scan_service")
+    gate_keys = ("kb_anchors", "regulation_library", "minimax_api_key", "config_loaded", "scan_service")
     return {
         "ready": all(checks[key] for key in gate_keys),
         "checks": checks,

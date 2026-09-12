@@ -54,7 +54,7 @@ def test_legacy_mimotalk_variables_are_supported(monkeypatch):
 def test_vision_and_report_generator_share_minimax_defaults(monkeypatch):
     _clear_provider_env(monkeypatch)
     from rag_service.generate.report_generator import ReportGenerator
-    from rag_service.orchestrator.nodes.vision import VisionAnalyzer
+    from rag_service.pipeline.nodes.vision import VisionAnalyzer
 
     vision = VisionAnalyzer(api_key="test-key")
     generator = ReportGenerator(api_key="test-key")
