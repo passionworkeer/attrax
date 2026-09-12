@@ -11,6 +11,10 @@ module.exports = {
       env: {
         PYTHONUNBUFFERED: "1",
         // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）
+        // 2026-09-12: pydantic-settings reads rag_service/.env on import,
+        // so when pm2 spawns this process without RAG_INTERNAL_SECRET
+        // in its own env, the .env fallback keeps the gate configured.
+        // To override, prefix the pm2 call: `RAG_INTERNAL_SECRET=… pm2 start …`.
         RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || "",
         APP_ENV: "production",
       },
