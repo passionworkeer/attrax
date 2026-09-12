@@ -30,6 +30,16 @@ CELLAR_VARIANTS: tuple[str, ...] = (
     "0002.02",
 )
 
+# First-pass incident (2026-09-12 deploy): unbounded uuid×variant probing
+# left the process blocked in a slow Cellar read for 5+ minutes with zero
+# progress. Bound the probe work per source — 2 UUIDs × 2 variants × 15s
+# single-attempt keeps the worst case under a minute; the EUR-Lex HTML
+# fallback (full retry budget) still catches what the probe misses.
+MAX_UUID_TRIES = 2
+MAX_VARIANT_TRIES = 2
+PROBE_TIMEOUT_SECONDS = 15
+PROBE_RETRIES = 1
+
 CELLAR_UUID_PATTERN = re.compile(
     r'<rdf:Description[^>]+rdf:about="http://publications\.europa\.eu/resource/cellar/([^"/]+)',
 )
@@ -59,19 +69,23 @@ def collect_eu_celex(entry: dict) -> RegulationUpdate:
 
 def _resolve_celex(celex: str) -> tuple[str, str, str | None, str]:
     """Return (normalized_text, resolved_url, last_modified, mode)."""
-    # 1) Cellar manifestation list → first XHTML variant we can fetch.
+    # 1) Cellar manifestation list → first XHTML variant we can fetch
+    #    (bounded probe, see MAX_UUID_TRIES / MAX_VARIANT_TRIES above).
     try:
         list_url = CELEX_CELLAR_URL.format(celex=celex)
         list_body, _ = fetch_url(
             list_url, accept="application/rdf+xml; q=1.0, application/xml; q=0.9, */*; q=0.5"
         )
         uuids = CELLAR_UUID_PATTERN.findall(list_body.decode("utf-8", errors="replace"))
-        for uuid in dict.fromkeys(uuids):  # de-dup, keep order
-            for variant in CELLAR_VARIANTS:
+        for uuid in list(dict.fromkeys(uuids))[:MAX_UUID_TRIES]:
+            for variant in CELLAR_VARIANTS[:MAX_VARIANT_TRIES]:
                 url = f"{CELLAR_BASE}/{uuid}/{variant}"
                 try:
                     body, last_modified = fetch_url(
-                        url, accept="application/xhtml+xml; q=1.0, */*; q=0.5"
+                        url,
+                        timeout=PROBE_TIMEOUT_SECONDS,
+                        retries=PROBE_RETRIES,
+                        accept="application/xhtml+xml; q=1.0, */*; q=0.5",
                     )
                     return (
                         normalize_text(body),
