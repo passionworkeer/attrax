@@ -239,6 +239,48 @@ def test_service_degrades_pass_when_evidence_is_missing(tmp_path):
     asyncio.run(scenario())
 
 
+def test_service_keeps_verified_unknown_decision_as_real_result(tmp_path):
+    """UNKNOWN is a decision outcome, not a synthetic provider failure."""
+    async def scenario():
+        async def runner(payload):
+            return {
+                "status": "UNKNOWN",
+                "report": "Need a readable nameplate before applicability can be confirmed.",
+                "agent_trace": [{"node": "vision"}, {"node": "generate"}, {"node": "verify"}],
+                "documents": [],
+                "report_package": {
+                    "auditMetadata": {
+                        "validationStatus": "normalized",
+                        "verificationMode": "kb_exact_quote",
+                        "citationCoverage": 1.0,
+                    },
+                    "citations": [{
+                        "doc_id": "EU-2023-1542",
+                        "article_id": "art-7",
+                        "quote": "Requirements for batteries.",
+                    }],
+                    "evidencePack": [{
+                        "doc_id": "EU-2023-1542",
+                        "article_id": "art-7",
+                        "quote": "Requirements for batteries.",
+                    }],
+                },
+            }
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        assert public["status"] == "ready"
+        assert public["result"]["source"] == "real"
+        assert public["result"]["complianceStatus"] == "UNKNOWN"
+        assert public["result"]["degradedReasons"] == []
+
+    asyncio.run(scenario())
+
+
 def test_service_accepts_kb_only_report_package_evidence(tmp_path):
     """De-RAG runs have no retrieval chunks; verified KB citations are evidence."""
     async def scenario():
