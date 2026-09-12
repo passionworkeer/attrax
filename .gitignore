@@ -20,6 +20,9 @@ test-results/
 /.next/
 /out/
 
+# local-only E2E / work artifacts (spec §7.7 live-LLM probe dumps)
+/work/
+
 # production
 /build
 
