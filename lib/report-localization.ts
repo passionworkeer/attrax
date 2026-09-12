@@ -162,7 +162,7 @@ export function localizeComplianceReportResult(
       ...chunk,
       docName: pickLocalized(chunk.docName, chunk.docNameEn, locale, chunk.regId || "Regulation document"),
     })),
-    documents: result.documents.map((document) => {
+    documents: (result.documents ?? []).map((document) => {
       const withEnglishName = document as typeof document & { nameEn?: string };
       return {
         ...document,

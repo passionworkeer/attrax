@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   ChevronDown,
   FileImage,
+  FileText,
   PackageCheck,
   Play,
   PlugZap,
@@ -27,6 +28,7 @@ import {
 } from "@/components/complipilot/flow-shell";
 import { getCompliPilotCopy } from "@/lib/complipilot/copy";
 import { MARKET_IDS, type Market, type ProductCategory } from "@/lib/types";
+import { validateUploadFile } from "@/lib/upload-validation";
 import styles from "./upload.module.css";
 
 type ScanStartPayload = {
@@ -38,8 +40,10 @@ type ScanStartPayload = {
 
 const REQUIRED_UPLOAD_SLOTS = 3;
 const MAX_UPLOAD_FILES = 8;
+const MAX_DOCUMENT_FILES = 5;
 const MAX_FILE_SIZE_BYTES = 12 * 1024 * 1024;
 const ACCEPTED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/webp"]);
+const ACCEPTED_DOCUMENT_EXTENSIONS = ".pdf,.docx,.txt,.html,.htm";
 const FEATURED_MARKETS: Market[] = ["EU", "US", "UK", "CN", "JP", "AU"];
 
 function formatFileSize(size: number) {
@@ -97,6 +101,9 @@ export default function UploadPage() {
   const [previewMode, setPreviewMode] = useState<"upload" | "preset">("preset");
   const [showAllMarkets, setShowAllMarkets] = useState(false);
   const [dragActive, setDragActive] = useState(false);
+  const [documentFiles, setDocumentFiles] = useState<File[]>([]);
+  const [documentError, setDocumentError] = useState<string | null>(null);
+  const documentInputRef = useRef<HTMLInputElement | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const uploadedFiles = files.filter((file): file is File => Boolean(file));
@@ -306,6 +313,69 @@ export default function UploadPage() {
     });
   }
 
+  /**
+   * Validate a single document file via the shared `validateUploadFile` helper
+   * (same code path as `/api/scan/route.ts:135` so the UI mirrors the BFF).
+   * Returns an i18n-ready error message, or null on success.
+   */
+  function describeDocumentError(code: ReturnType<typeof validateUploadFile> extends Promise<infer R> ? R : never): string | null {
+    if (!code) return null;
+    const t = copy.upload.documents;
+    switch (code) {
+      case "DOCUMENT_TOO_LARGE":
+        return t.tooLarge;
+      case "UNSUPPORTED_DOCUMENT_TYPE":
+        return t.invalidType;
+      case "INVALID_FILE_SIGNATURE":
+        return t.signatureFailed;
+      default:
+        return t.invalidType;
+    }
+  }
+
+  async function handleDocumentFiles(rawFiles: File[]) {
+    setDocumentError(null);
+    if (rawFiles.length === 0) return;
+
+    const remainingSlots = MAX_DOCUMENT_FILES - documentFiles.length;
+    if (remainingSlots <= 0) {
+      setDocumentError(copy.upload.documents.invalidType);
+      return;
+    }
+
+    // De-dupe by (name+size+lastModified) so the same file dropped twice isn't
+    // added twice (common when users drag the same file across multiple slots).
+    const seen = new Set(documentFiles.map((f) => `${f.name}|${f.size}|${f.lastModified}`));
+    const accepted: File[] = [];
+    let firstError: string | null = null;
+
+    for (const file of rawFiles.slice(0, remainingSlots)) {
+      const key = `${file.name}|${file.size}|${file.lastModified}`;
+      if (seen.has(key)) continue;
+      const validation = await validateUploadFile(file, "document");
+      if (validation) {
+        if (!firstError) firstError = describeDocumentError(validation);
+        continue;
+      }
+      seen.add(key);
+      accepted.push(file);
+    }
+
+    if (firstError) setDocumentError(firstError);
+    if (accepted.length === 0) return;
+
+    startTransition(() => {
+      setDocumentFiles((current) => [...current, ...accepted]);
+    });
+  }
+
+  function removeDocumentFile(index: number) {
+    startTransition(() => {
+      setDocumentFiles((current) => current.filter((_, i) => i !== index));
+      setDocumentError(null);
+    });
+  }
+
   function toggleMarket(market: Market) {
     setSelectedMarkets((current) => {
       if (current.includes(market)) {
@@ -396,6 +466,7 @@ export default function UploadPage() {
 
     const formData = new FormData();
     uploadedFiles.forEach((file) => formData.append("images", file));
+    documentFiles.forEach((file) => formData.append("documents", file));
     formData.append("category", category);
     formData.append("markets", selectedMarkets.join(","));
     formData.append("locale", locale);
@@ -636,6 +707,96 @@ export default function UploadPage() {
                   : `${files.slice(REQUIRED_UPLOAD_SLOTS).filter(Boolean).length} extra images will be supporting evidence.`}
               </p>
             ) : null}
+
+            <details className="group mt-6 rounded-[22px] border border-white/24 bg-white/8 open:bg-white/12">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 [&::-webkit-details-marker]:hidden">
+                <div className="flex min-w-0 items-center gap-3">
+                  <FileText className="size-4 shrink-0 text-white/58" />
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-semibold text-white">
+                      {copy.upload.documents.toggleLabel}
+                    </p>
+                    <p className="mt-0.5 truncate text-xs text-white/48">
+                      {copy.upload.documents.toggleHint}
+                    </p>
+                  </div>
+                </div>
+                <span className="shrink-0 rounded-full border border-white/30 bg-white/14 px-2.5 py-0.5 text-[11px] font-medium text-white/58">
+                  {documentFiles.length > 0
+                    ? `${documentFiles.length}/${MAX_DOCUMENT_FILES}`
+                    : locale === "zh"
+                      ? "可选"
+                      : "Optional"}
+                </span>
+              </summary>
+              <div className="border-t border-white/16 px-4 pb-4 pt-3">
+                <p className="text-xs leading-5 text-white/46">
+                  {copy.upload.documents.format}
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <label
+                    htmlFor="blaze-document-input"
+                    className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-white/38 bg-white/14 px-3 py-1.5 text-xs font-medium text-white/72 transition hover:border-white/55 hover:bg-white/22 hover:text-white"
+                  >
+                    <Upload className="size-3.5" />
+                    {documentFiles.length === 0
+                      ? copy.upload.documents.toggleLabel.replace(/^📄\s*/, "")
+                      : copy.upload.documents.addAnother}
+                  </label>
+                  <input
+                    ref={documentInputRef}
+                    id="blaze-document-input"
+                    type="file"
+                    multiple
+                    aria-label={copy.upload.documents.toggleLabel}
+                    accept={ACCEPTED_DOCUMENT_EXTENSIONS}
+                    className="sr-only"
+                    onChange={(event) => {
+                      const next = Array.from(event.currentTarget.files ?? []);
+                      void handleDocumentFiles(next);
+                      event.currentTarget.value = "";
+                    }}
+                  />
+                </div>
+                {documentError ? (
+                  <p
+                    className="mt-2 rounded-[12px] border border-[rgba(196,76,63,0.24)] bg-[rgba(255,232,227,0.46)] px-3 py-2 text-xs text-[#8f3229]"
+                    role="alert"
+                    aria-live="polite"
+                  >
+                    {documentError}
+                  </p>
+                ) : null}
+                {documentFiles.length > 0 ? (
+                  <ul className="mt-3 space-y-1.5" data-testid="document-list">
+                      {documentFiles.map((doc, index) => (
+                        <li
+                          key={`${doc.name}-${index}`}
+                          className="flex items-center justify-between gap-3 rounded-[12px] border border-white/20 bg-white/10 px-3 py-2 text-xs"
+                        >
+                          <div className="flex min-w-0 items-center gap-2">
+                            <FileText className="size-3.5 shrink-0 text-white/58" />
+                            <span className="truncate font-medium text-white/82">
+                              {doc.name}
+                            </span>
+                            <span className="shrink-0 font-mono text-[11px] text-white/42">
+                              {formatFileSize(doc.size)}
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => removeDocumentFile(index)}
+                            aria-label={copy.upload.documents.removed}
+                            className="shrink-0 rounded-full border border-white/28 bg-white/10 p-1 text-white/55 transition hover:border-white/55 hover:bg-white/22 hover:text-white"
+                          >
+                            <X className="size-3" />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                ) : null}
+              </div>
+            </details>
 
             <div className="mt-6 grid gap-5 border-t border-white/30 pt-5 xl:grid-cols-[1fr_210px]">
               <div>

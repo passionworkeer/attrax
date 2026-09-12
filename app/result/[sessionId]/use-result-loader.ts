@@ -40,6 +40,9 @@ export function useResultLoader(options: {
     }
 
     let cancelled = false;
+    // Audit P1-F: share the AbortController between the polling loop and
+    // the effect cleanup so navigation away cancels in-flight fetches.
+    const abortController = new AbortController();
 
     const cached = sessionStorage.getItem(`scan:${sessionId}`);
     if (cached) {
@@ -57,8 +60,29 @@ export function useResultLoader(options: {
     }
 
     async function loadResult() {
+      // Audit P1-F: cap the total polling window so a stuck scan cannot
+      // hammer the backend forever, exponential-backoff between polls so
+      // idle scans don't generate ~3 req/s, and abort the in-flight fetch
+      // when the consumer unmounts (previously the request ran to
+      // completion even after navigation away).
+      const startedAt = Date.now();
+      const POLL_MAX_MS = 5 * 60 * 1000;
+      const POLL_BACKOFF_MS = 1500;
+      const POLL_BACKOFF_CAP_MS = 8000;
+
       try {
+        let idleStreak = 0;
         while (!cancelled) {
+          if (Date.now() - startedAt > POLL_MAX_MS) {
+            startTransition(() => {
+              setMessage(
+                locale === "zh"
+                  ? "扫描超时，请稍后刷新或重新检测。"
+                  : "The scan timed out. Please reload or try again.",
+              );
+            });
+            return;
+          }
           const accessToken = readStoredAccessToken(sessionId);
           const headers: Record<string, string> = {};
           if (accessToken) {
@@ -67,6 +91,7 @@ export function useResultLoader(options: {
           const response = await fetch(`/api/scan/${sessionId}`, {
             cache: "no-store",
             headers,
+            signal: abortController.signal,
           });
           if (!response.ok) {
             startTransition(() => {
@@ -116,18 +141,30 @@ export function useResultLoader(options: {
           startTransition(() => {
             setMessage(copy.processing);
           });
-          await new Promise((resolve) => setTimeout(resolve, 900));
+          // Exponential backoff with a ceiling: idle polls space out (1.5s →
+          // 3s → 6s → 8s) so a 3-minute scan produces ~70 polls instead of
+          // 200. Resets whenever the backend reports fresh progress; falls
+          // back to the cap on idle streaks.
+          idleStreak = payload.progress > 0 ? 0 : idleStreak + 1;
+          const delay = Math.min(
+            POLL_BACKOFF_CAP_MS,
+            POLL_BACKOFF_MS * 2 ** Math.min(idleStreak, 4),
+          );
+          await new Promise((resolve) => setTimeout(resolve, delay));
         }
-      } catch {
-        if (!cancelled) {
-          startTransition(() => {
-            setMessage(
-              locale === "zh"
-                ? "结果加载失败，请检查本地服务后重新检测。"
-                : "The result failed to load. Check the local service and scan again."
-            );
-          });
-        }
+      } catch (error) {
+        if (abortController.signal.aborted || cancelled) return;
+        startTransition(() => {
+          setMessage(
+            locale === "zh"
+              ? "结果加载失败，请检查本地服务后重新检测。"
+              : "The result failed to load. Check the local service and scan again.",
+          );
+        });
+      } finally {
+        // Always release the abort controller so a future re-mount doesn't
+        // trip over a stale AbortSignal.
+        abortController.abort();
       }
     }
 
@@ -135,6 +172,7 @@ export function useResultLoader(options: {
 
     return () => {
       cancelled = true;
+      abortController.abort();
     };
   }, [
     copy.failed,

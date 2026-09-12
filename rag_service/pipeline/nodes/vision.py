@@ -39,8 +39,18 @@ PROMPT = """你是产品视觉取证助手。只记录图片中可观察到的�
   "core_features": ["最多 4 条可见且与合规相关的特征"],
   "visible_certification_marks": ["仅图片中实际清晰可见的 CE/FCC/UKCA/CCC/RoHS/WEEE/REACH 标志"],
   "unreadable_or_missing_evidence": ["例如：铭牌区域未展示、标签文字不可辨认；没有就 []"],
-  "questions_needed": ["需要用户补充确认的信息；没有就 []"]
+  "questions_needed": ["需要用户补充确认的信息；没有就 []"],
+  "issues": [
+    {
+      "label": "一句话描述视觉问题（如：铭牌无 CCC 标志 / 接口无 CE 标记 / 包装缺警告语）",
+      "severity": "critical|high|medium|low",
+      "region": {"x": 0.0-1.0, "y": 0.0-1.0, "w": 0.0-1.0, "h": 0.0-1.0},
+      "regulation_ref": "可选：相关法规 ID（如 EU-2014-35）；不确定时省略"
+    }
+  ]
 }
+只对**视觉上能定位**的问题输出 region；纯文本类问题（如"未提供说明书"）不要写 region。
+如果图片中未发现明显的视觉合规问题，issues 留空数组 []。
 
 硬性规则：
 - “图片未展示/看不清标志”只写入 unreadable_or_missing_evidence，绝不能写成“缺少认证”或“不合规”。
@@ -149,10 +159,46 @@ class VisionAnalyzer:
                 return ""
         return ""
 
+    # Audit P1-J: sniff magic bytes BEFORE base64-encoding so we don't waste
+    # an LLM roundtrip on a corrupted / mismatched / empty upload. Mirrors the
+    # frontend's lib/upload-validation.ts signature checks.
+    _MAGIC_SIGNATURES = {
+        "image/jpeg": [b"\xff\xd8\xff"],
+        "image/png": [b"\x89PNG\r\n\x1a\n"],
+        "image/webp": [b"RIFF", b"WEBP"],  # 12-byte check (RIFF + WEBP at offset 8)
+    }
+
+    def _looks_like_image(self, image_data: bytes, mime_type: str) -> bool:
+        if not image_data or len(image_data) < 12:
+            return False
+        signatures = self._MAGIC_SIGNATURES.get(mime_type)
+        if not signatures:
+            # Unknown mime type — let the LLM decide but skip the trust.
+            return True
+        head = image_data[:12]
+        for sig in signatures:
+            if sig == b"RIFF" and head.startswith(sig) and head[8:12] == b"WEBP":
+                return True
+            if sig != b"RIFF" and head.startswith(sig):
+                return True
+        return False
+
     def analyze_single_image(self, image_data: bytes, mime_type: str = "image/jpeg") -> dict:
         """Analyze one image and return structured result."""
         if not self.api_key:
             return {"error": "no_api_key", "description": "", "certifications": []}
+
+        if not self._looks_like_image(image_data, mime_type):
+            # Audit P1-J: do not waste an LLM roundtrip on a corrupt / mismatched
+            # upload (the most common production failure was users renaming
+            # a JPEG to .png without re-encoding). The frontend already blocks
+            # these via lib/upload-validation.ts magic-byte checks; this guard
+            # is the last line of defense for back-channel uploads.
+            return {
+                "error": "invalid_image_buffer",
+                "description": "",
+                "certifications": [],
+            }
 
         b64 = base64.b64encode(image_data).decode("utf-8")
 
@@ -193,10 +239,17 @@ class VisionAnalyzer:
             enriched_query = _build_vision_enriched_query(
                 result.get("description", ""), certs_list
             )
+            # Feature 1 (2.5D hotspots): tag each issue with the image index
+            # so the UI can route the hotspot to the right thumbnail.
+            tagged_issues = [
+                {**issue, "image_index": 0}
+                for issue in result.get("issues") or []
+            ]
             return {
                 "descriptions": [result.get("description", "")] if result.get("description") else [],
                 "combined_description": result.get("description", ""),
                 "certifications": certs_list,
+                "issues": tagged_issues,
                 "images_analyzed": 1,
                 "enriched_query": enriched_query,
                 "cert_summary": cert_str,
@@ -225,6 +278,17 @@ class VisionAnalyzer:
                             seen_certs[mark] = cert
                 except Exception as e:
                     logger.debug(f"Image analysis failed: {e}")
+            # Feature 1: collect issues across all images, tagging each with
+            # the index of the image that produced it so the UI can route
+            # the hotspot to the correct thumbnail.
+            all_issues: list[dict] = []
+            for image_index, future in enumerate(futures):
+                try:
+                    r = future.result()
+                except Exception:
+                    continue
+                for issue in (r or {}).get("issues") or []:
+                    all_issues.append({**issue, "image_index": image_index})
 
         combined_desc = "\n\n".join(descriptions)
         certs_list = list(seen_certs.values())
@@ -236,6 +300,7 @@ class VisionAnalyzer:
             "descriptions": descriptions,
             "combined_description": combined_desc,
             "certifications": certs_list,
+            "issues": all_issues,
             "images_analyzed": len(images),
             "enriched_query": enriched_query,
             "cert_summary": cert_str,
@@ -286,6 +351,40 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
         ]
         unreadable = string_list("unreadable_or_missing_evidence", 6)
         questions = string_list("questions_needed", 6)
+        # Feature 1 (2.5D hotspots): parse the LLM-emitted `issues` array with
+        # normalized 0..1 bbox coordinates. Each issue becomes a hotspot on
+        # the result page. Bad / missing bbox or severity falls back to safe
+        # defaults so a partial LLM output cannot crash the orchestrator.
+        issues_raw = structured.get("issues") or []
+        issues: list[dict] = []
+        if isinstance(issues_raw, list):
+            for idx, item in enumerate(issues_raw[:8]):
+                if not isinstance(item, dict):
+                    continue
+                region = item.get("region") or item.get("bbox") or {}
+                if not isinstance(region, dict):
+                    continue
+                try:
+                    x = float(region.get("x", -1))
+                    y = float(region.get("y", -1))
+                    w = float(region.get("w", -1))
+                    h = float(region.get("h", -1))
+                except (TypeError, ValueError):
+                    continue
+                if not (0 <= x <= 1 and 0 <= y <= 1 and 0 < w <= 1 and 0 < h <= 1):
+                    continue
+                severity_raw = str(item.get("severity") or "medium").lower()
+                if severity_raw not in {"critical", "high", "medium", "low"}:
+                    severity_raw = "medium"
+                issues.append({
+                    "id": f"vision-issue-{idx}",
+                    "label": str(item.get("label") or "").strip()[:200],
+                    "severity": severity_raw,
+                    "bbox": {"x": x, "y": y, "w": w, "h": h},
+                    "regulation_ref": (
+                        str(item.get("regulation_ref") or "").strip() or None
+                    ),
+                })
         description_parts = []
         if product_type:
             description_parts.append(f"产品类型：{product_type}")
@@ -303,6 +402,7 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
             "certifications": certifications,
             "unreadable_or_missing_evidence": unreadable,
             "questions_needed": questions,
+            "issues": issues,
             "raw_response": raw_response,
             "enriched_query": _build_vision_enriched_query("\n".join(description_parts), certifications),
         }
@@ -365,6 +465,9 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
         "product_type": product_type,
         "core_features": core_features,
         "certifications": certifications,
+        # Legacy heading-format output carries no bbox info; keep the key
+        # present so downstream consumers see a uniform shape (Feature 1).
+        "issues": [],
         "raw_response": raw_response,
         "enriched_query": enriched_query,
     }
@@ -395,6 +498,7 @@ def _empty_vision_result() -> dict:
         "descriptions": [],
         "combined_description": "",
         "certifications": [],
+        "issues": [],
         "images_analyzed": 0,
         "enriched_query": "",
         "cert_summary": "未分析",

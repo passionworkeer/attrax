@@ -55,5 +55,27 @@ module.exports = {
         NEXT_PUBLIC_APP_URL: "https://resume.example.com",
       },
     },
+    {
+      // Feature 3: 法规自动更新 watchdog。单次运行后退出（exit 0/2/3），
+      // 由 pm2 cron_restart 每天 03:00 UTC 拉起 — 不用 APScheduler、无常驻
+      // Python 进程。退出码：0=无变化/仅 cosmetic；2=有真实变化待人工
+      // 审阅（data/regulation_supplements/watchdog-{date}/pending_review.json）；
+      // 3=部分源失败（errors.json）。注意 pm2 会把非 0 退出码记为 errored
+      // 再按 cron 拉起 — 这是预期行为，看 pm2 logs regwatch 即可。
+      name: "regwatch",
+      cwd: "/opt/attrax",
+      script: "/opt/attrax/.venv/bin/python",
+      args: ["-m", "scripts.watchdog.orchestrator"],
+      interpreter: "none",
+      autorestart: false,
+      cron_restart: process.env.ATTRAX_REGWATCH_CRON || "0 3 * * *",
+      max_restarts: 2,
+      env: {
+        PYTHONUNBUFFERED: "1",
+        PYTHONPATH: "/opt/attrax",
+        ATTRAX_REGWATCH_ENABLED: process.env.ATTRAX_REGWATCH_ENABLED || "true",
+        ATTRAX_REGWATCH_NOTIFY: process.env.ATTRAX_REGWATCH_NOTIFY || "log",
+      },
+    },
   ],
 };

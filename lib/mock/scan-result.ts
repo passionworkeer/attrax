@@ -603,6 +603,7 @@ export function createMockComplianceReportResult(
     complianceReport: buildComplianceReportZh(),
     complianceReportEn: buildComplianceReportEn(),
     complianceStatus: "REJECTED",
+    kind: "demo",
     agentTrace: [
       { node: "vision", status: "MOCK", duration_ms: 0, score: 0.7 },
       { node: "retriever", status: "FALLBACK", duration_ms: 0, docs_retrieved: 6 },

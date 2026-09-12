@@ -41,6 +41,10 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
     scoreGrade: result.scoreGrade,
     complianceReport: fallback,
     complianceStatus,
+    // Audit P1-K: explicit kind discriminator so downstream consumers can
+    // assert "this view is from the demo path" without re-checking the
+    // sessionId string.
+    kind: "demo",
     agentTrace: traceNodes,
     loopCount: 0,
     retrievedChunks: result.riskPoints.flatMap((rp) =>
@@ -53,10 +57,22 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
         score: 0.85,
       })),
     ),
-    images: undefined,
-    documents: [],
-    riskPoints: undefined,
-    checklist: undefined,
+    // Forward the rich side-data so `<ComplianceReportView>`'s rich
+    // risk-point / checklist / image panel renders for demo presets too.
+    // (Previously these were hardcoded to `undefined`, which silently
+    // collapsed the entire rich section — see audit P0-A.)
+    images: result.images,
+    documents: result.documents.map((doc) => ({
+      documentId: doc.documentId,
+      name: doc.name,
+      nameEn: doc.nameEn,
+      size: doc.size,
+      type: doc.type,
+      mimeType: doc.mimeType,
+      url: doc.url,
+    })),
+    riskPoints: result.riskPoints,
+    checklist: result.checklist,
     generatedAt: result.generatedAt,
     modelInfo: { ragProvider: "demo", latencyMs: 0 },
     source: "demo",
@@ -123,17 +139,49 @@ export function scanResultToRealComplianceView(
     scoreGrade: result.scoreGrade,
     complianceReport,
     complianceStatus,
+    // Audit P1-K: explicit kind discriminator so the type system enforces
+    // which converter produced this view (see `scanResultToComplianceView`).
+    kind: "real",
     agentTrace,
-    loopCount: 0,
-    retrievedChunks: [],
-    images: undefined,
-    documents: [],
-    riskPoints: undefined,
-    checklist: undefined,
+    loopCount: typeof result.loopCount === "number" ? result.loopCount : 0,
+    retrievedChunks: result.riskPoints.flatMap((rp) =>
+      rp.regulations.map((rule) => ({
+        regId: rule.regId,
+        docName: rule.name,
+        docNameEn: rule.nameEn,
+        articleNo: rule.code,
+        region: rule.market,
+        // Use the first-cited regulation's confidence if present so demo
+        // and real lists are visually consistent; otherwise the neutral 0.85.
+        score: 0.85,
+      })),
+    ),
+    // Forward rich side-data so `<ComplianceReportView>`'s rich risk-point /
+    // checklist / image panel actually renders for real scans. Prior audit
+    // P0-A: real scans used to silently drop these fields, hiding the
+    // hotspot overlay, the rich risk cards, and the checklist entirely.
+    images: result.images,
+    documents: result.documents.map((doc) => ({
+      documentId: doc.documentId,
+      name: doc.name,
+      nameEn: doc.nameEn,
+      size: doc.size,
+      type: doc.type,
+      mimeType: doc.mimeType,
+      url: doc.url,
+    })),
+    riskPoints: result.riskPoints,
+    checklist: result.checklist,
     generatedAt: result.generatedAt,
     reportPackage: result.reportPackage,
     modelInfo: {
-      ragProvider: result.ragProvider || "minimax",
+      // Audit P1-H: surface an honest "unknown" when the backend didn't ship
+      // a provider name, instead of fabricating "minimax". This used to make
+      // future LLM swaps silently keep showing the old provider label.
+      ragProvider:
+        typeof result.ragProvider === "string" && result.ragProvider.trim()
+          ? result.ragProvider.trim()
+          : "unknown",
       latencyMs: typeof result.latencyMs === "number" ? result.latencyMs : 0,
     },
     source: result.source ?? "real",

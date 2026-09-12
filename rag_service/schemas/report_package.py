@@ -190,13 +190,25 @@ class EvidenceBundles(FlexibleModel):
 
 
 class FinanceValidation(FlexibleModel):
-    """Isolated validation state for the profit/finance sub-report.
+    """Per-sub-report validation, surfaced separately from the package-level
+    `validationStatus` so a malformed sub-report (e.g. bad currency arithmetic
+    in profit/finance) does NOT downgrade the whole compliance package. The
+    profit page reads `finance.validationStatus` to render its own notice.
 
-    Kept structurally separate from the package-level `validationStatus` so
-    malformed finance numbers (typically LLM-hallucinated cost/price) cannot
-    downgrade the entire scan to ``degraded`` — the compliance prose remains
-    valid. The profit page reads this field to render a dedicated
-    "数据不可用" notice. See Fix B in 2026-09-12 plan.
+    Audit P0-D: extended the same pattern to decisionView/roadmap/
+    evidenceBundles — previously only finance had isolation, so a missing
+    decisionView node could still flip the package to "invalid" and trigger
+    the red `DegradedBanner`.
+    """
+
+    validationStatus: Literal["valid", "invalid"] = "valid"
+    errors: list[str] = Field(default_factory=list)
+
+
+class SubReportValidation(FlexibleModel):
+    """Per-scene validation tracker for `decisionView`, `roadmap`, and
+    `evidenceBundles`. Mirrors `FinanceValidation` so a malformed sub-scene
+    surfaces as a warning without downgrading the whole package (audit P0-D).
     """
 
     validationStatus: Literal["valid", "invalid"] = "valid"
@@ -211,6 +223,9 @@ class AuditMetadata(FlexibleModel):
     provider: str = ""
     traceNodeCount: int = 0
     finance: FinanceValidation = Field(default_factory=FinanceValidation)
+    decisionView: SubReportValidation = Field(default_factory=SubReportValidation)
+    roadmap: SubReportValidation = Field(default_factory=SubReportValidation)
+    evidenceBundles: SubReportValidation = Field(default_factory=SubReportValidation)
 
 
 class ReportPackage(FlexibleModel):
@@ -550,12 +565,43 @@ def normalize_report_package(
     try:
         return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)
     except ValidationError as exc:
+        # Audit P0-D: only `complianceReport` failure downgrades the package.
+        # A malformed `decisionView` / `roadmap` / `evidenceBundles` shape is
+        # recorded per-scene via SubReportValidation so it surfaces as a
+        # warning, not as the red DegradedBanner.
+        raw_errors = exc.errors()
+        sub_scene_failures: dict = {
+            "decisionView": [],
+            "roadmap": [],
+            "evidenceBundles": [],
+        }
+        package_level_failures: list = []
+        for err in raw_errors:
+            path = tuple(err.get("loc", ()))
+            if not path:
+                package_level_failures.append(err["msg"])
+                continue
+            head = path[0]
+            if head in sub_scene_failures and len(path) == 1:
+                sub_scene_failures[head].append(err["msg"])
+            else:
+                package_level_failures.append(err["msg"])
+
         normalized["complianceReport"] = normalized["complianceReport"] or (
             "Report package validation failed; no compliance report text was available."
         )
+        scene_warnings: dict = {}
+        for scene, errors in sub_scene_failures.items():
+            scene_warnings[scene] = SubReportValidation(
+                validationStatus="invalid" if errors else "valid",
+                errors=errors,
+            ).model_dump()
         normalized["auditMetadata"] = {
             **audit,
-            "validationStatus": "invalid",
-            "validationErrors": [err["msg"] for err in exc.errors()],
+            "validationStatus": "invalid" if package_level_failures else "normalized",
+            "validationErrors": package_level_failures,
+            "decisionView": scene_warnings["decisionView"],
+            "roadmap": scene_warnings["roadmap"],
+            "evidenceBundles": scene_warnings["evidenceBundles"],
         }
         return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)
