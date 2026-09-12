@@ -56,8 +56,8 @@ def _kb_anchor_citations(article_texts: dict[str, str], limit: int = 5) -> list[
 
     These are not model-invented claim links: each item is a directly
     inspectable excerpt from one of the regulation-library articles supplied
-    to the model.  The verifier still quote-matches every excerpt and the
-    trace records that this recovery path was used.  One article per
+    to the model. The verifier still quote-matches every excerpt and the
+    trace records that this recovery path was used. One article per
     regulation keeps the resulting evidence pack focused while ensuring an
     image-only De-RAG scan is never rendered evidence-free solely because the
     provider skipped a required JSON field.
@@ -334,11 +334,12 @@ def generator_node(state: GraphState) -> dict:
     if user_docs:
         doc_parts = []
         for doc in user_docs:
-            name = doc.get("name", "未知文档")
+            raw_name = str(doc.get("name") or "未知文档").strip()
+            safe_name = re.sub(r'[\r\n\t"\'<>]', '_', raw_name)[:100] or "未知文档"
             text = _sanitize_doc_context(doc.get("text", "").strip())
             if text:
                 doc_parts.append(
-                    f"<user_document name=\"{name}\">\n{text[:3000]}\n</user_document>"
+                    f"<user_document name=\"{safe_name}\">\n{text[:3000]}\n</user_document>"
                 )
         if doc_parts:
             doc_context = (

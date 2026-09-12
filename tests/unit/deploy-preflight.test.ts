@@ -7,17 +7,18 @@ const STRONG_SECRET = "0123456789abcdef0123456789abcdef";
 
 function makeDeployRoot(envBody: string) {
   const root = mkdtempSync(join(tmpdir(), "attrax-deploy-"));
-  mkdirSync(join(root, "data", "faiss"), { recursive: true });
-  mkdirSync(join(root, "data", "corpus", "processed"), { recursive: true });
+  mkdirSync(join(root, "data", "kb", "anchors"), { recursive: true });
+  mkdirSync(join(root, "data", "regulations"), { recursive: true });
+  mkdirSync(join(root, "data", "regulation_sources"), { recursive: true });
   mkdirSync(join(root, "rag_service"), { recursive: true });
-  writeFileSync(join(root, "data", "faiss", "legal_chunks.index"), "index");
+  writeFileSync(join(root, "data", "kb", "anchors", "anchor.yaml"), "anchor");
   writeFileSync(
-    join(root, "data", "faiss", "legal_chunks_meta.json"),
-    '{"dim":4,"chunks":[{"id":"one"}]}',
+    join(root, "data", "regulations", "regulations_index.json"),
+    '{"regulations":[]}',
   );
   writeFileSync(
-    join(root, "data", "faiss", "index_manifest.json"),
-    '{"schema_version":2,"dim":4,"vector_count":1,"chunk_count":1}',
+    join(root, "data", "regulation_sources", "official_sources.json"),
+    "[]",
   );
   writeFileSync(join(root, "docker-compose.yml"), "services: {}\n");
   writeFileSync(join(root, "Dockerfile"), "FROM node:22-alpine\n");
@@ -29,7 +30,6 @@ function makeDeployRoot(envBody: string) {
 function productionEnv(extra = "") {
   return `
 MINIMAX_API_KEY=minimax-key
-MODELSCOPE_API_KEY=modelscope-key
 RAG_INTERNAL_SECRET=${STRONG_SECRET}
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
@@ -46,12 +46,11 @@ describe("deployment preflight", () => {
     expect(result.errors).toEqual([]);
   });
 
-  it("requires LLM, embedding, internal service, and build identity", async () => {
+  it("requires LLM, internal service, and build identity", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const result = validateDeployment(
       makeDeployRoot(`
 MINIMAX_API_KEY=
-MODELSCOPE_API_KEY=
 RAG_INTERNAL_SECRET=
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
@@ -59,7 +58,6 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     );
     expect(result.ok).toBe(false);
     expect(result.errors).toContain("MINIMAX_API_KEY is required when DEMO_MODE is not true.");
-    expect(result.errors).toContain("MODELSCOPE_API_KEY is required when DEMO_MODE is not true.");
     expect(result.errors).toContain("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
     expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
@@ -69,7 +67,6 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     const result = validateDeployment(
       makeDeployRoot(`
 MINIMAX_API_KEY=your_minimax_api_key
-MODELSCOPE_API_KEY=your_modelscope_api_key
 RAG_INTERNAL_SECRET=replace_with_a_strong_random_service_secret
 ATTRAX_BUILD_SHA=replace_with_git_commit_sha
 DEMO_MODE=false
@@ -78,7 +75,6 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     );
     expect(result.ok).toBe(false);
     expect(result.errors).toContain("MINIMAX_API_KEY still contains the production example placeholder.");
-    expect(result.errors).toContain("MODELSCOPE_API_KEY still contains the production example placeholder.");
     expect(result.errors).toContain("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 32 characters.");
     expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
@@ -88,7 +84,6 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     const missing = validateDeployment(
       makeDeployRoot(`
 MINIMAX_API_KEY=minimax-key
-MODELSCOPE_API_KEY=modelscope-key
 RAG_INTERNAL_SECRET=${STRONG_SECRET}
 ATTRAX_BUILD_SHA=abc123
 DEMO_MODE=false
@@ -103,20 +98,19 @@ DEMO_MODE=false
     expect(wildcard.errors).toContain("RAG_ALLOWED_ORIGINS must not contain * in production.");
   });
 
-  it("requires the sealed index manifest and corpus directory", async () => {
+  it("requires the knowledge anchors and regulations index", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const root = makeDeployRoot(productionEnv());
-    rmSync(join(root, "data", "faiss", "index_manifest.json"));
+    rmSync(join(root, "data", "regulations", "regulations_index.json"));
     const result = validateDeployment(root);
     expect(result.ok).toBe(false);
-    expect(result.errors).toContain("data/faiss/index_manifest.json is missing.");
+    expect(result.errors).toContain("data/regulations/regulations_index.json is missing.");
   });
 
   it("accepts the legacy MIMOTALK_API_KEY alias during migration", async () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const root = makeDeployRoot(`
 MIMOTALK_API_KEY=legacy-key
-MODELSCOPE_API_KEY=modelscope-key
 RAG_INTERNAL_SECRET=${STRONG_SECRET}
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com

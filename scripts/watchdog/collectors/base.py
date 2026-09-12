@@ -10,13 +10,18 @@ from dataclasses import dataclass, field
 logger = logging.getLogger("attrax.regwatch.collectors")
 
 USER_AGENT = (
-    "attrax-regulation-watchdog/1.0 (+https://attrax.example; compliance"
-    " change monitoring)"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
 )
 DEFAULT_TIMEOUT = 30
 DEFAULT_RETRIES = 3
 RETRY_BACKOFF_SECONDS = 2.0
 MIN_CONTENT_BYTES = 64  # smaller responses are treated as errors
+
+
+class WAFChallengeBlockedException(urllib.error.URLError):
+    """Raised when a site returns a 200/403 with a Cloudflare/Akamai challenge page."""
+
+    pass
 
 
 @dataclass
@@ -57,6 +62,16 @@ def fetch_url(
                 if len(body) < MIN_CONTENT_BYTES:
                     raise urllib.error.URLError(
                         f"suspiciously small response ({len(body)} bytes) from {url}"
+                    )
+                lower_body = body[:2048].lower()
+                if (
+                    b"challenge-platform" in lower_body
+                    or b"<title>just a moment...</title>" in lower_body
+                    or b"cf-browser-verification" in lower_body
+                    or b"enable javascript and cookies to continue" in lower_body
+                ):
+                    raise WAFChallengeBlockedException(
+                        f"WAF challenge / anti-bot interstitial detected from {url}"
                     )
                 return body, response.headers.get("Last-Modified")
         except urllib.error.HTTPError as exc:

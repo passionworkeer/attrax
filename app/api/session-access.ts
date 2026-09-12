@@ -1,6 +1,7 @@
 import { fail } from "@/lib/api-response";
 import { type StoredScanStatus } from "@/lib/pipeline/session-store";
-import { tokenFromRequest, verifyAccessToken } from "@/lib/pipeline/session-auth";
+import { verifyAccessToken } from "@/lib/pipeline/session-auth";
+import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 import { serverT } from "@/lib/server-i18n";
 import type { ScanStatus } from "@/lib/types";
 
@@ -21,7 +22,7 @@ export function requireSessionAccess(
       { status: 401 },
     );
   }
-  const token = tokenFromRequest(request);
+  const token = backendAccessTokenFromRequest(request, session.sessionId);
   if (!verifyAccessToken(token ?? "", session.accessTokenHash)) {
     return fail(
       { code: "UNAUTHORIZED", message: serverT("errors.invalidRequest", "zh") },

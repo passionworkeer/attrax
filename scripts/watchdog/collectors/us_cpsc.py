@@ -23,6 +23,10 @@ def collect_cpsc_rss(entry: dict) -> RegulationUpdate:
     body, last_modified = fetch_url(url, accept="application/rss+xml; q=1.0, application/xml; q=0.9, */*; q=0.5")
 
     items = _parse_rss_items(body)
+    if not items:
+        raise ValueError(
+            f"CPSC RSS feed returned 0 parsed items from non-empty response ({len(body)} bytes)"
+        )
     # Sort so feed re-ordering does not read as a content change.
     items.sort(key=lambda item: (item.get("link", ""), item.get("title", "")))
     normalized = normalize_text(

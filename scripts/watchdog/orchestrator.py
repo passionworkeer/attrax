@@ -117,10 +117,14 @@ def run_pass(*, dry_run: bool = False) -> int:
                 real_changes.append(change)
         snapshots.append((source_id, update.text, update.content_hash))
 
-    # Persist the new snapshots (even for sources with only cosmetic churn —
-    # that's the point of the threshold).
+    # Persist snapshots for unchanged and cosmetic-only sources.
+    # Real changes (added / modified) must NOT overwrite the baseline snapshot
+    # until reviewed and approved, otherwise subsequent passes would report no change
+    # and lose track of un-reviewed regulatory modifications!
+    real_change_source_ids = {c.source_id for c in real_changes}
+    safe_snapshots = [s for s in snapshots if s[0] not in real_change_source_ids]
     if not dry_run:
-        store.bulk_snapshot(snapshots)
+        store.bulk_snapshot(safe_snapshots)
     store.close()
 
     # ── write outputs ─────────────────────────────────────────────────

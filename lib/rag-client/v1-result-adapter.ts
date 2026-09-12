@@ -2,6 +2,7 @@ import type { V1SessionData } from "@/lib/rag-client/v1-adapter";
 import {
   MARKET_IDS,
   type ChecklistItem,
+  type DocumentType,
   type Market,
   type ProductCategory,
   type RegulationRef,
@@ -257,6 +258,17 @@ function buildChecklist(reportPackage: UnknownRecord): ChecklistItem[] {
   });
 }
 
+function documentTypeFromName(name: string, contentType: string): DocumentType {
+  const lowerName = name.toLowerCase();
+  if (lowerName.endsWith(".docx") || contentType.includes("wordprocessingml") || contentType.includes("msword")) {
+    return "docx";
+  }
+  if (lowerName.endsWith(".html") || lowerName.endsWith(".htm") || contentType.includes("html")) {
+    return "html";
+  }
+  return "pdf";
+}
+
 export function normalizeV1ScanResult(session: V1SessionData): ScanResult | undefined {
   if (!session.result) return undefined;
 
@@ -358,7 +370,16 @@ function truncateReport(report: string): { value: string; truncated: boolean } {
         height: 0,
         fileName: asset.name,
       })),
-    documents: [],
+    documents: (session.assets ?? [])
+      .filter((asset) => asset.kind === "document")
+      .map((asset) => ({
+        documentId: `${session.sessionId}-document-${asset.index}`,
+        name: asset.name,
+        size: asset.size,
+        type: documentTypeFromName(asset.name, asset.contentType),
+        mimeType: asset.contentType,
+        url: `/api/scan/${session.sessionId}/asset/${asset.index}`,
+      })),
     riskPoints,
     checklist: buildChecklist(reportPackage),
     generatedAt,

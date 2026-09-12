@@ -63,16 +63,13 @@ export interface RegulationPayload {
   articles?: Array<{ id: string; title: string; text?: string }>;
 }
 
-const RAG_SERVICE_URL =
-  (typeof process !== "undefined" &&
-    process.env?.NEXT_PUBLIC_RAG_SERVICE_URL) ||
-  "http://localhost:8001";
-
 async function fetchRegulation(docId: string): Promise<RegulationPayload | null> {
   try {
-    const res = await fetch(
-      `${RAG_SERVICE_URL.replace(/\/+$/, "")}/api/v1/regulations/${encodeURIComponent(docId)}`,
-    );
+    const endpoint =
+      typeof window !== "undefined"
+        ? `/api/regulations/${encodeURIComponent(docId)}`
+        : `${(process.env.RAG_SERVICE_URL || "http://127.0.0.1:8001").replace(/\/+$/, "")}/api/v1/regulations/${encodeURIComponent(docId)}`;
+    const res = await fetch(endpoint);
     if (!res.ok) return null;
     return (await res.json()) as RegulationPayload;
   } catch {

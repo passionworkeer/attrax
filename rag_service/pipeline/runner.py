@@ -57,15 +57,25 @@ def _merge(state: GraphState, update: dict) -> GraphState:
 
 
 def _final_status(state: GraphState) -> str:
-    """Derive PASS/WARN/REJECTED from the package, not from NLI."""
+    """Derive PASS/WARN/REJECTED from the package with strict validation grounding."""
     pkg = state.get("report_package") or {}
-    verdict = str((pkg.get("decisionView") or {}).get("verdict") or "").upper()
-    if verdict in {"PASS", "WARN", "REJECTED"}:
-        return verdict
-    generation = state.get("generation", "")
-    if generation.strip() and "错误" not in generation[:30]:
+    audit = pkg.get("auditMetadata") or {}
+    validation_status = audit.get("validationStatus")
+
+    # If the package failed schema validation or fell back to an unverified template,
+    # never grant a fake PASS or WARN.
+    if validation_status in {"invalid", "fallback"}:
         return "UNKNOWN"
-    return "REJECTED"
+
+    generation = str(state.get("generation") or "").strip()
+    if not generation or generation.startswith("错误") or generation.lower().startswith("error"):
+        return "UNKNOWN"
+
+    verdict = str((pkg.get("decisionView") or {}).get("verdict") or "").upper()
+    if verdict in {"PASS", "WARN", "REJECTED", "UNKNOWN"}:
+        return verdict
+
+    return "UNKNOWN"
 
 
 def run_compliance_graph(

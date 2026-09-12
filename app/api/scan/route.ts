@@ -16,6 +16,7 @@ import {
   MAX_IMAGE_FILES,
 } from "@/lib/constants";
 import { createDemoScanSession } from "@/lib/pipeline/demo-scan-session";
+import { checkRateLimit, resolveClientId } from "@/lib/rate-limit";
 import type { Market, ProductCategory } from "@/lib/types";
 
 export const runtime = "nodejs";
@@ -29,52 +30,21 @@ const ALLOWED_CATEGORIES = new Set([
   "appliance",
   "3c",
   "toy",
+  "toys",
   "home",
   "battery",
-  "cosmetic",
+  "batteries",
   "textile",
+  "textiles",
+  "cosmetics",
+  "cosmetic",
   "food_contact",
   "other",
 ]);
 const DEFAULT_CATEGORY = "electronics";
 
 function isFile(value: FormDataEntryValue): value is File {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "arrayBuffer" in value &&
-    "name" in value
-  );
-}
-
-function parseMarkets(input: FormDataEntryValue | null): string[] {
-  if (typeof input !== "string" || !input.trim()) {
-    return [...DEFAULT_MARKETS];
-  }
-  let values: string[];
-  if (input.trim().startsWith("[")) {
-    try {
-      const parsed: unknown = JSON.parse(input);
-      values = Array.isArray(parsed) ? parsed.map(String) : [];
-    } catch {
-      values = [];
-    }
-  } else {
-    values = input.split(",");
-  }
-  const normalized = [...new Set(values.map((m) => m.trim().toUpperCase()).filter(Boolean))];
-  if (
-    normalized.length === 0 ||
-    normalized.length > 5 ||
-    normalized.some((market) => !ALLOWED_MARKETS.has(market))
-  ) {
-    return [];
-  }
-  return normalized;
-}
-
-function buildQuery(category: string, markets: string[]): string {
-  return `compliance scan for ${category} targeting ${markets.join(", ")}`;
+  return typeof value === "object" && value !== null && "arrayBuffer" in value;
 }
 
 function badInputResponse(
@@ -83,9 +53,32 @@ function badInputResponse(
   status = 400,
 ): Response {
   return NextResponse.json(
-    { success: false, data: null, error: { code, message } },
+    {
+      success: false,
+      error: {
+        code,
+        message,
+      },
+    },
     { status },
   );
+}
+
+function parseMarkets(value: FormDataEntryValue | null): Market[] {
+  if (typeof value !== "string") {
+    return [...DEFAULT_MARKETS];
+  }
+  const parts = value
+    .split(",")
+    .map((item) => item.trim().toUpperCase())
+    .filter((item) => ALLOWED_MARKETS.has(item));
+
+  const unique = Array.from(new Set(parts)) as Market[];
+  return unique.length ? unique : [...DEFAULT_MARKETS];
+}
+
+function buildQuery(category: string, markets: Market[]): string {
+  return `评估 ${category} 类产品在 ${markets.join("/")} 市场的合规风险`;
 }
 
 function validateContentLength(request: Request): Response | null {
@@ -104,6 +97,26 @@ function validateContentLength(request: Request): Response | null {
 export async function POST(request: Request): Promise<Response> {
   const contentLengthError = validateContentLength(request);
   if (contentLengthError) return contentLengthError;
+
+  // Origin check for CSRF defense on simple multipart requests
+  const origin = request.headers.get("origin");
+  const host = request.headers.get("host");
+  if (origin && host) {
+    try {
+      const originHost = new URL(origin).host;
+      if (originHost !== host) {
+        return badInputResponse("CROSS_ORIGIN_FORBIDDEN", "Cross-origin scan submission forbidden.", 403);
+      }
+    } catch {
+      // Ignore invalid URL formatting
+    }
+  }
+
+  // Rate limiting defense against quota exhaustion
+  const clientId = resolveClientId(request);
+  if (!checkRateLimit(`scan:${clientId}`, 10, 60_000)) {
+    return badInputResponse("RATE_LIMITED", "请求过于频繁，请稍候再试。", 429);
+  }
 
   let formData: FormData;
   try {

@@ -306,15 +306,11 @@ class TestSchemaValidator:
     """Validate the schema validator runs cleanly on the shipped library."""
 
     def test_validate_regulations_exits_zero(self):
-        # Use the project venv's python3 (system python lacks PyYAML).
-        venv_python = (
-            REPO / "rag_service" / ".venv" / "bin" / "python3"
-            if (REPO / "rag_service" / ".venv" / "bin" / "python3").exists()
-            else "python3"
-        )
+        # Use current running Python interpreter (which has all deps installed).
+        import sys
         proc = subprocess.run(
             [
-                str(venv_python),
+                sys.executable,
                 str(REPO / "scripts" / "schema_validator.py"),
                 "validate-regulations",
             ],

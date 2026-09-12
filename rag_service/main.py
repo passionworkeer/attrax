@@ -796,7 +796,6 @@ async def get_regulation(doc_id: str):
     """
     from rag_service.retrieval import article_loader
 
-    article_loader.invalidate_cache()  # cheap; YAMLs are small
     reg = article_loader.load_regulation(doc_id)
     if reg is None:
         return _error_response(

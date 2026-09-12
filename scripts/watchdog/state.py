@@ -212,15 +212,26 @@ class SourceStateStore:
         ]
 
     def bulk_snapshot(self, updates: Iterable[tuple[str, str, str]]) -> None:
-        """Persist (source_id, normalized_text, hash) triples after a pass."""
-        for source_id, text, content_hash in updates:
-            self.upsert(
-                source_id,
-                text=text,
-                content_hash=content_hash,
-                last_modified=None,
-                status="ok",
-            )
+        """Persist (source_id, normalized_text, hash) triples after a pass in a single atomic transaction."""
+        now = time.time()
+        with self._conn:
+            for source_id, text, content_hash in updates:
+                self._conn.execute(
+                    """
+                    INSERT INTO source_state
+                        (source_id, last_hash, last_text, last_modified,
+                         last_checked_at, last_status, check_count)
+                    VALUES (?, ?, ?, ?, ?, ?, 1)
+                    ON CONFLICT(source_id) DO UPDATE SET
+                        last_hash = excluded.last_hash,
+                        last_text = excluded.last_text,
+                        last_modified = excluded.last_modified,
+                        last_checked_at = excluded.last_checked_at,
+                        last_status = excluded.last_status,
+                        check_count = source_state.check_count + 1
+                    """,
+                    (source_id, content_hash, text, None, now, "ok"),
+                )
 
     def export_report(self) -> str:
         rows = self._conn.execute(

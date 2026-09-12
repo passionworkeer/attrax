@@ -77,6 +77,15 @@ export default function AgentDecisionTree({
     return traceData || (isDemo ? demoTrace : null);
   })();
 
+  useEffect(() => {
+    if (data && isPlaying) {
+      const interval = setInterval(() => {
+        setProgress((p) => (p >= 100 ? 0 : p + 2));
+      }, 100 / animationSpeed);
+      return () => clearInterval(interval);
+    }
+  }, [data, isPlaying, animationSpeed]);
+
   if (!data) {
     return (
       <div role="status" className="glass-panel rounded-3xl border border-amber-500/30 p-8 text-center">
@@ -102,15 +111,6 @@ export default function AgentDecisionTree({
   // 使用传入的 score 和 grade，或从 data 中提取
   const displayScore = score ?? ((data as TraceNode).data?.score as number | undefined) ?? 85;
   const displayGrade = grade ?? ((data as TraceNode).data?.grade as string | undefined) ?? "B";
-
-  useEffect(() => {
-    if (isPlaying) {
-      const interval = setInterval(() => {
-        setProgress((p) => (p >= 100 ? 0 : p + 2));
-      }, 100 / animationSpeed);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying, animationSpeed]);
 
   return (
     <div className="w-full">

@@ -115,6 +115,7 @@ function checkMemoryRateLimit(
 
 function storeDirectory(): string {
   return resolve(
+    /*turbopackIgnore: true*/
     process.env.RATE_LIMIT_STORE_DIR ??
       join(process.cwd(), "data", "rate-limit"),
   );
