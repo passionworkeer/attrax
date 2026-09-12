@@ -64,8 +64,11 @@ def test_normalize_report_package_drops_invalid_structured_finance_but_keeps_pro
 
     assert normalized["profitReport"]["markdown"] == "## Profit analysis retained for review."
     assert "structuredFields" not in normalized["profitReport"]
-    assert normalized["auditMetadata"]["validationStatus"] == "invalid"
-    assert "financial_data_invalid" in normalized["auditMetadata"]["validationErrors"]
+    # Financial fields are an optional sub-report. Bad arithmetic must hide
+    # that board without downgrading the evidence-backed compliance result.
+    assert normalized["auditMetadata"]["validationStatus"] == "normalized"
+    assert normalized["auditMetadata"]["finance"]["validationStatus"] == "invalid"
+    assert "financial_data_invalid" in normalized["auditMetadata"]["finance"]["errors"]
 
 
 def test_normalize_report_package_adds_dossier_evidence_and_audit():

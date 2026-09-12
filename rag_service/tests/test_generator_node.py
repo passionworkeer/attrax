@@ -167,6 +167,29 @@ class TestGeneratorNodeNormal:
         assert call_kwargs["market"] == "EU, US"
         assert call_kwargs["query"] == "锂电池出口欧盟需要哪些认证？"
 
+    def test_package_path_passes_bounded_visual_observation(self):
+        gen = MagicMock()
+        gen.provider = "minimax"
+        gen.supports_report_package = True
+        gen.generate_report_package.return_value = make_report_package()
+        generator_module.set_generator(gen)
+
+        generator_module.generator_node(make_state(
+            documents=[make_chunk()],
+            vision_result={
+                "product_type": "USB 充电器",
+                "identity_confidence": "high",
+                "core_features": ["USB-C 接口"],
+                "certifications": [{"mark": "CE"}],
+                "unreadable_or_missing_evidence": ["铭牌区域未展示"],
+            },
+        ))
+
+        context = gen.generate_report_package.call_args.kwargs["vision_context"]
+        assert "识别产品类型：USB 充电器" in context
+        assert "图片无法验证：铭牌区域未展示" in context
+        assert "可见标志：CE" in context
+
     def test_agent_trace_appended(self, mock_generator):
         generator_module.set_generator(mock_generator)
         state = make_state(

@@ -30,28 +30,23 @@ from typing import Optional
 
 logger = logging.getLogger(__name__)
 
-PROMPT = """你是一位跨境电商产品视觉识别专家。请仔细分析这张产品图片，准确识别产品类型。
+PROMPT = """你是产品视觉取证助手。只记录图片中可观察到的事实；不要给出法规结论、认证结论、价格或上市建议。
 
-**核心任务：只识别你绝对有把握的产品类型，禁止猜测不确定的产品。**
+返回一个 JSON 对象，不能使用 Markdown、代码围栏或额外文字：
+{
+  "product_type": "一个具体产品类型；不确定时为 无法识别具体产品类型",
+  "identity_confidence": "high|medium|low",
+  "core_features": ["最多 4 条可见且与合规相关的特征"],
+  "visible_certification_marks": ["仅图片中实际清晰可见的 CE/FCC/UKCA/CCC/RoHS/WEEE/REACH 标志"],
+  "unreadable_or_missing_evidence": ["例如：铭牌区域未展示、标签文字不可辨认；没有就 []"],
+  "questions_needed": ["需要用户补充确认的信息；没有就 []"]
+}
 
-请按以下格式输出：
-
-### 产品类型
-[仅输出一个最确定的产品类型，例如：蓝牙耳机、 USB充电器、电动玩具]
-[如果无法确定，输出：无法识别具体产品类型]
-
-### 核心特征
-[列出该产品的2-3个最核心特征，仅描述与合规相关的内容，如：蓝牙耳机、入耳式、有线充电盒、锂电池供电]
-
-### 认证标志
-[列出图片中清晰可见的认证标志，如：CE、FCC、CCC、RoHS等]
-[如果都没有，输出：无明显认证标志]
-
-### 重要提示
-- 如果图片是耳机，请只描述耳机相关特征，不要提及充电宝、移动电源等无关产品
-- 如果图片包含充电盒或电池仓，描述为"耳机充电盒"或"锂电池盒"，不要扩展为"充电宝"
-- 不要基于"可能有电池"就联想到电源适配器、移动电源等
-- 宁可描述模糊（如"音频设备"）也不要错报产品类型"""
+硬性规则：
+- “图片未展示/看不清标志”只写入 unreadable_or_missing_evidence，绝不能写成“缺少认证”或“不合规”。
+- 不得由充电盒、电池仓或 USB 接口推断为充电宝、电源适配器或移动电源；宁可使用更宽泛的产品类型。
+- 只有完整、清晰可见的标志才可写入 visible_certification_marks；文字提及或猜测不算可见标志。
+- 不确定的产品类型使用“无法识别具体产品类型”，并在 questions_needed 中说明需要哪张补拍图。"""
 
 PRODUCT_TYPE_KEYWORDS = {
     "充电宝": ["移动电源", "power bank", "便携式充电器"],
@@ -109,6 +104,7 @@ class VisionAnalyzer:
         body = json.dumps({
             "model": self.model,
             "max_tokens": max_tokens,
+            "temperature": 0.1,
             "messages": messages,
         }).encode("utf-8")
 
@@ -248,13 +244,70 @@ class VisionAnalyzer:
 
 def _parse_vision_text(raw: str, raw_response: str) -> dict:
     """Parse structured info from vision model output."""
-    certifications = []
     cert_map = {
         "CE": {"region": "EU"}, "FCC": {"region": "US"},
         "UKCA": {"region": "UK"}, "CCC": {"region": "CN"},
         "ROHS": {"region": "EU"}, "WEEE": {"region": "EU"},
         "REACH": {"region": "EU"},
     }
+    # M3 is asked for JSON. Keep the legacy heading parser below so historical
+    # providers/results remain readable during a rolling deployment.
+    candidate = (raw or "").strip()
+    if candidate.startswith("```"):
+        lines = candidate.splitlines()
+        candidate = "\n".join(lines[1:-1] if len(lines) >= 2 else []).strip()
+        if candidate.lower().startswith("json"):
+            candidate = candidate[4:].lstrip()
+    try:
+        structured = json.loads(candidate)
+    except (TypeError, ValueError, json.JSONDecodeError):
+        structured = None
+    if isinstance(structured, dict):
+        def string_list(key: str, limit: int) -> list[str]:
+            value = structured.get(key)
+            if not isinstance(value, list):
+                return []
+            return [str(item).strip() for item in value if str(item).strip()][:limit]
+
+        product_type = str(structured.get("product_type") or "").strip()
+        if product_type in {"无法识别具体产品类型", "无法确定", "unknown", "Unknown"}:
+            product_type = ""
+        confidence = str(structured.get("identity_confidence") or "low").lower()
+        if confidence not in {"high", "medium", "low"}:
+            confidence = "low"
+        features = string_list("core_features", 4)
+        visible_marks = {
+            item.upper() for item in string_list("visible_certification_marks", 8)
+        }
+        certifications = [
+            {"mark": mark, "region": info["region"], "confidence": "high"}
+            for mark, info in cert_map.items()
+            if mark in visible_marks
+        ]
+        unreadable = string_list("unreadable_or_missing_evidence", 6)
+        questions = string_list("questions_needed", 6)
+        description_parts = []
+        if product_type:
+            description_parts.append(f"产品类型：{product_type}")
+        if features:
+            description_parts.append("核心特征：" + "；".join(features))
+        if certifications:
+            description_parts.append("可见认证标志：" + "、".join(item["mark"] for item in certifications))
+        if unreadable:
+            description_parts.append("未验证视觉证据：" + "；".join(unreadable))
+        return {
+            "description": "\n".join(description_parts),
+            "product_type": product_type,
+            "identity_confidence": confidence,
+            "core_features": features,
+            "certifications": certifications,
+            "unreadable_or_missing_evidence": unreadable,
+            "questions_needed": questions,
+            "raw_response": raw_response,
+            "enriched_query": _build_vision_enriched_query("\n".join(description_parts), certifications),
+        }
+
+    certifications = []
     upper = raw.upper()
     for mark, info in cert_map.items():
         # Word-boundary check so we don't match substrings like "CE" inside "CELL".

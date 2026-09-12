@@ -150,6 +150,48 @@ def _status_from_package(report_package: dict) -> str:
     return _PACKAGE_STATUS_TO_TRACE.get(validation_status, "degraded")
 
 
+def _build_vision_context(vision_result: dict) -> str:
+    """Serialize visual observations as bounded, non-authoritative evidence.
+
+    The report model must see visual recognition separately from legal sources:
+    an unreadable label is a request for a better image, never proof of a
+    missing certification. Values are produced by the vision model, so they
+    are bounded and stripped of prompt-control delimiters before inclusion.
+    """
+    if not isinstance(vision_result, dict):
+        return ""
+
+    def values(key: str, limit: int = 6) -> list[str]:
+        raw = vision_result.get(key)
+        if not isinstance(raw, list):
+            return []
+        return [_sanitize_doc_context(str(item).strip())[:240] for item in raw if str(item).strip()][:limit]
+
+    lines = []
+    product_type = _sanitize_doc_context(str(vision_result.get("product_type") or "").strip())[:240]
+    if product_type:
+        lines.append(f"- 识别产品类型：{product_type}")
+    confidence = str(vision_result.get("identity_confidence") or "").strip().lower()
+    if confidence in {"high", "medium", "low"}:
+        lines.append(f"- 产品识别置信度：{confidence}")
+    features = values("core_features", 4)
+    if features:
+        lines.append("- 可见特征：" + "；".join(features))
+    marks: list[str] = []
+    certifications = vision_result.get("certifications")
+    if isinstance(certifications, list):
+        marks = [str(item.get("mark") or "").strip() for item in certifications if isinstance(item, dict) and str(item.get("mark") or "").strip()][:6]
+    if marks:
+        lines.append("- 图片中可见标志：" + "、".join(marks))
+    unavailable = values("unreadable_or_missing_evidence", 6)
+    if unavailable:
+        lines.append("- 图片无法验证：" + "；".join(unavailable))
+    questions = values("questions_needed", 4)
+    if questions:
+        lines.append("- 需要补充：" + "；".join(questions))
+    return "\n".join(lines)
+
+
 def generator_node(state: GraphState) -> dict:
     """Generate compliance report from retrieved documents."""
     import time
@@ -172,6 +214,7 @@ def generator_node(state: GraphState) -> dict:
     vision_result = state.get("vision_result", {}) or {}
     core_features = vision_result.get("core_features", []) or []
     product_type = vision_result.get("product_type", "") or ""
+    vision_context = _build_vision_context(vision_result)
     features = detect_features(
         "；".join(core_features),
         product_type,
@@ -265,6 +308,7 @@ def generator_node(state: GraphState) -> dict:
                     doc_context=doc_context,
                     mandatory_regulations=mandatory_regulations,
                     article_texts=article_texts,
+                    vision_context=vision_context,
                 )
                 generation = report_package.get("complianceReport", "") or "错误：报告内容为空"
                 # P0-4: Derive status from the package's own validationStatus

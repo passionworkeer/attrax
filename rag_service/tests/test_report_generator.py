@@ -111,4 +111,51 @@ def test_generate_report_package_caps_default_output_for_interactive_latency(mon
 
     assert seen["max_tokens"] == 4096
     assert "7000 个字符以内" in seen["prompt"]
+    assert "每条 citation 必须有 claim" in seen["prompt"]
     assert "优先保证所有 JSON 字段闭合" in seen["prompt"]
+
+
+def test_generate_report_package_includes_visual_observation_without_treating_it_as_law(monkeypatch):
+    gen = ReportGenerator(api_key="configured")
+    seen = {}
+
+    def fake_generate(system, prompt, max_tokens):
+        seen["system"] = system
+        seen["prompt"] = prompt
+        return '{"complianceReport":"## Report","profitReport":{"markdown":"Unavailable"},"roadmap":{"items":[]},"decisionView":{}}'
+
+    monkeypatch.setattr(gen, "_generate_mimotalk", fake_generate)
+    gen.generate_report_package(
+        query="Check charger",
+        product="USB charger",
+        market="EU",
+        chunks=[{"id": "r1", "content": "Article 1 safety", "doc_name": "LVD"}],
+        vision_context="- 图片无法验证：铭牌区域未展示\n- 可见特征：USB-C 接口",
+    )
+
+    assert "视觉观察（仅代表图片可见内容，不是法规或认证结论）" in seen["prompt"]
+    assert "铭牌区域未展示" in seen["prompt"]
+    assert "图片未展示或无法辨认" in seen["system"]
+
+
+def test_generate_report_package_repairs_malformed_json_once(monkeypatch):
+    gen = ReportGenerator(api_key="configured")
+    calls = []
+
+    def fake_generate(system, prompt, max_tokens):
+        calls.append((system, prompt))
+        if len(calls) == 1:
+            return '{"complianceReport":'
+        return '{"complianceReport":"## Repaired","profitReport":{"markdown":"Unavailable"},"roadmap":{"items":[]},"decisionView":{}}'
+
+    monkeypatch.setattr(gen, "_generate_mimotalk", fake_generate)
+    package = gen.generate_report_package(
+        query="Check charger",
+        product="USB charger",
+        market="EU",
+        chunks=[{"id": "r1", "content": "Article 1 safety", "doc_name": "LVD"}],
+    )
+
+    assert len(calls) == 2
+    assert "严格的 JSON 修复器" in calls[1][0]
+    assert package["complianceReport"] == "## Repaired"
