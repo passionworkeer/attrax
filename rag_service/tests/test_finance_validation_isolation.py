@@ -30,6 +30,7 @@ from rag_service.application.scans import (
 )
 from rag_service.domain.scans import ScanSession
 from rag_service.infrastructure.file_backend import FileBackend
+from rag_service.schemas.report_package import normalize_report_package
 
 PNG = b"\x89PNG\r\n\x1a\n" + b"test-image"
 
@@ -99,6 +100,16 @@ def test_finance_invalid_does_not_downgrade_status(tmp_path):
                 }
             ],
         }
+        # Match the production graph: generator_node normalizes every package
+        # before ScanService receives it. This is where malformed structured
+        # finance is removed and recorded under auditMetadata.finance.
+        package = normalize_report_package(
+            package,
+            product="65W charger",
+            category="electronics",
+            market=["EU"],
+            query="compliance scan",
+        )
         raw = {
             "status": "REJECTED",
             "report": "# 真实合规报告",
