@@ -132,6 +132,22 @@ class TestEmptyVisionResult:
 # ─────────────────────────────────────────────
 
 class TestParseVisionText:
+    def test_parses_constrained_json_and_keeps_unreadable_separate_from_marks(self):
+        raw = '''{
+          "product_type": "USB 充电器",
+          "identity_confidence": "high",
+          "core_features": ["USB-C 接口", "插脚"],
+          "visible_certification_marks": ["CE"],
+          "unreadable_or_missing_evidence": ["铭牌区域未展示"],
+          "questions_needed": ["请补拍铭牌"]
+        }'''
+        result = _parse_vision_text(raw, raw)
+        assert result["product_type"] == "USB 充电器"
+        assert result["identity_confidence"] == "high"
+        assert [item["mark"] for item in result["certifications"]] == ["CE"]
+        assert result["unreadable_or_missing_evidence"] == ["铭牌区域未展示"]
+        assert "铭牌区域未展示" in result["description"]
+
     """Unit tests for _parse_vision_text()."""
 
     # ── Product type extraction ───────────────

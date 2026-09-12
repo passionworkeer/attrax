@@ -96,11 +96,13 @@ SYSTEM_PROMPT = """你是跨境电商合规专家。根据用户上传的产品�
 REPORT_PACKAGE_SYSTEM_PROMPT = """你是跨境电商合规与商业化专家。你会基于检索到的法规/成本语料，一次性生成四个前端场景需要的内容。
 
 核心原则：
-1. 只使用给定来源文档和用户上传文档中的事实，不要编造法规条款或确定性数字。
-2. 信息不足时必须写明“暂无充分依据”，可以给出保守估算但要标注“估算”。
-3. 合规报告、成本利润、排期路线图、AI 决策视图必须互相一致。
-4. 合规报告中的事实需要标注来源，格式为 [法规名称/条款]。
-5. 直接输出 JSON，不要输出 Markdown 代码围栏，不要附加解释。
+1. 你的输出服务于“是否可以推进下一步”的决策，而不是替代认证机构、律师或实验室；不得声称已合规、已获证或可以上市。
+2. 严格区分三类信息：视觉观察（仅图片可见）、法规证据（仅来源文档）、商业估算（仅用户文件或来源明确支持）。不要把其中任意两类混为事实。
+3. 只使用给定来源文档和用户上传文档中的法规/成本事实，不要编造法规条款、检测结论、认证状态或确定性数字。
+4. 图片未展示或无法辨认铭牌/标志时，写“图片无法验证”，不能写“缺失”“不合规”。
+5. 信息不足时必须写明“暂无充分依据”；成本、工期和日期没有来源时必须写“待询价/待确认”，不要用示例数字填充。
+6. 合规报告、成本利润、排期路线图、AI 决策视图必须互相一致；上市阻断项只能来自法规证据或明确的视觉可见事实。
+7. 每个法规事实在 complianceReport 内标注来源，格式为 [法规名称/条款]。直接输出 JSON，不要输出 Markdown 代码围栏或额外解释。
 
 风险等级契约（决定前端得分展示，**必须**遵守）：
 - `decisionView.verdict`：四个枚举的字符串之一，PASS/WARN/REJECTED/UNKNOWN。
@@ -179,6 +181,7 @@ JSON 结构必须是：
   },
   "citations": [
     {
+      "claim": "此引文支持的精确合规主张",
       "doc_id": "EU-2023-1542",
       "article_id": "art-77",
       "official_citation": "(EU) 2023/1542 Art. 77",
@@ -187,7 +190,7 @@ JSON 结构必须是：
   ]
 }
 
-来源文档：
+来源文档（唯一可用于法规事实和引文的材料）：
 {source_chunks}"""
 
 
@@ -373,6 +376,7 @@ class ReportGenerator:
         doc_context: str = "",
         mandatory_regulations: list[dict] | None = None,
         article_texts: dict[str, str] | None = None,
+        vision_context: str = "",
     ) -> dict:
         """
         Generate the four result scenes in one LLM call:
@@ -417,6 +421,12 @@ class ReportGenerator:
             else ""
         )
         anchor_section = _build_mandatory_section(mandatory_regulations)
+        vision_section = (
+            "\n\n视觉观察（仅代表图片可见内容，不是法规或认证结论）：\n"
+            f"{vision_context.strip()}\n"
+            if vision_context.strip()
+            else "\n\n视觉观察：图片信息不足，产品身份与标志均待确认。\n"
+        )
 
         finance_contract = (
             "\nFinance contract: emit profitReport.structuredFields only when every numeric "
@@ -433,12 +443,14 @@ class ReportGenerator:
             f"目标市场：{market}\n"
             f"用户问题：{query}\n"
             f"{anchor_section}"
+            f"{vision_section}"
             f"{doc_section}\n"
             "请基于上述证据一次性生成四个场景内容：合规报告、成本利润报告、合规排期路线图、AI 决策视图。"
             "输出必须是可解析 JSON，不要使用 Markdown 代码围栏。"
             "为避免响应截断：整个 JSON 控制在 7000 个字符以内，"
             "complianceReport 与 profitReport.markdown 各不超过 1200 个汉字，"
-            "roadmap.items 最多 5 项，decisionView.nodes 最多 6 项；优先保证所有 JSON 字段闭合。"
+            "roadmap.items 最多 5 项，decisionView.nodes 最多 6 项；每条 citation 必须有 claim；"
+            "优先保证所有 JSON 字段闭合。"
         )
 
         try:
@@ -454,6 +466,29 @@ class ReportGenerator:
             )
 
         parsed = _parse_json_object(raw)
+        if parsed is None and raw.strip():
+            # JSON syntax failure is recoverable without changing the evidence
+            # set. Give M3 one tightly scoped repair call before declaring the
+            # package degraded; this avoids turning otherwise useful output
+            # into a demo-like fallback merely because a brace was truncated.
+            repair_prompt = (
+                "将下面的模型输出修复为一个完整、可解析的 JSON 对象。"
+                "保留已有事实；不要补充法规、认证、金额、日期或引用；"
+                "缺失字段使用空字符串、空数组或空对象。只输出 JSON。\n\n"
+                f"<model_output>\n{raw[:12000]}\n</model_output>"
+            )
+            try:
+                repaired = self._generate_mimotalk(
+                    "你是严格的 JSON 修复器，不得创造或改写事实。",
+                    repair_prompt,
+                    max_tokens,
+                )
+                parsed = _parse_json_object(repaired)
+                if parsed is not None:
+                    raw = repaired
+                    logger.info("mimoTalk package JSON repaired in one bounded retry")
+            except Exception as exc:
+                logger.warning("mimoTalk package JSON repair failed: %r", exc)
         if parsed is None:
             logger.warning("mimoTalk package generation returned non-JSON output")
             return self._fallback_report_package(
@@ -800,6 +835,7 @@ class ReportGenerator:
         body = json.dumps({
             "model": self.model,
             "max_tokens": max_tokens,
+            "temperature": 0.2,
             "system": system,
             "messages": [
                 {"role": "user", "content": user_prompt},
