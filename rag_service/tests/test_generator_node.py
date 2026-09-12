@@ -123,8 +123,15 @@ class TestGeneratorInjection:
 # ── Test: generator_node — empty / edge documents ────────────────────────────
 
 class TestGeneratorNodeEdgeDocuments:
-    def test_empty_documents_returns_error_message(self, mock_generator):
-        """documents=[] → generation contains error message, no LLM called."""
+    def test_empty_documents_returns_error_message(self, mock_generator, monkeypatch):
+        """documents=[] → generation contains error message, no LLM called.
+
+        Hermetic env guard (2026-09-12): the operator shell on lighthouse
+        exports USE_KB_INPUT=true, which legitimately reroutes the node to
+        the KB-anchors path — this test documents the *legacy* contract
+        (no documents AND no KB → error), so pin the flag off explicitly.
+        """
+        monkeypatch.delenv("USE_KB_INPUT", raising=False)
         generator_module.set_generator(mock_generator)
         state = make_state(documents=[])
 
