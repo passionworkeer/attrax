@@ -25,8 +25,15 @@ from ..config import MAX_MARKETS_PER_SCAN as _MAX_MARKETS_PER_SCAN
 _ALLOWED_MARKETS = _ALLOWED_MARKETS_SET
 _DOCUMENT_CHUNK_CHARS = 8_000
 _MAX_DOCUMENT_CHUNKS = 20
-_STRONG_VERIFICATION_MODES = {"nli", "llm_judge", "hybrid", "nli+llm"}
-_VALID_PACKAGE_STATUSES = {"valid", "passed", "verified"}
+_STRONG_VERIFICATION_MODES = {
+    "nli", "llm_judge", "hybrid", "nli+llm", "kb_exact_quote",
+}
+# ``normalize_report_package`` emits ``normalized`` for a structurally valid
+# package.  It is the pipeline's canonical success state (and is separately
+# rejected when it becomes ``invalid``/``fallback``), so ScanService must not
+# downgrade an otherwise evidence-backed real scan just because older callers
+# used valid/passed/verified instead.
+_VALID_PACKAGE_STATUSES = {"valid", "passed", "verified", "normalized"}
 
 
 class ScanServiceError(Exception):
@@ -43,6 +50,10 @@ class ScanUnauthorized(ScanServiceError):
 
 class ScanNotReady(ScanServiceError):
     code = "NOT_READY"
+
+
+class _RetryableScanResult(Exception):
+    """Internal marker for a provider response that cannot be delivered yet."""
 
 
 class SubmittedUpload(BaseModel):
@@ -326,6 +337,17 @@ class ScanService:
         try:
             raw = await self.runner(self._build_runner_payload(job))
             result, status, degraded_reason = self._normalize_result(job, raw)
+            # A transport-successful LLM call can still omit a required scene
+            # or return a malformed package. Treat that as a retryable provider
+            # result, not as a terminal user-facing scan: the job already has a
+            # bounded retry budget and a subsequent generation is independent.
+            if (
+                status == "degraded"
+                and job.attempts < self.max_attempts
+                and self._is_retryable_generation_result(raw)
+            ):
+                self._handle_job_error(job, _RetryableScanResult("invalid generation package"))
+                return
             current = self.backend.get_session(job.session_id)
             if current is None:
                 return
@@ -387,6 +409,32 @@ class ScanService:
         if isinstance(exc, (FileNotFoundError, ValueError, TypeError)):
             return False, "SCAN_INPUT_OR_STORAGE_FAILURE"
         return True, "SCAN_PROVIDER_FAILURE"
+
+    @staticmethod
+    def _is_retryable_generation_result(raw: Any) -> bool:
+        """Identify only model/package-shape failures eligible for a rerun.
+
+        A valid PASS/WARN/REJECTED result is never retried.  This deliberately
+        keys off the pipeline's explicit generation trace and audit state, not
+        the final compliance verdict or user supplied content.
+        """
+        if hasattr(raw, "model_dump"):
+            raw = raw.model_dump(mode="json")
+        if not isinstance(raw, Mapping):
+            return False
+        value = _camelize(dict(raw))
+        trace = value.get("agentTrace")
+        if isinstance(trace, list):
+            for entry in trace:
+                if not isinstance(entry, Mapping) or entry.get("node") != "generate":
+                    continue
+                if str(entry.get("status") or "").lower() in {
+                    "generation_failed", "error", "degraded",
+                }:
+                    return True
+        package = _mapping(value.get("reportPackage"))
+        audit = _mapping(package.get("auditMetadata") or package.get("audit_metadata"))
+        return _nested_string(audit, "validationStatus") in {"invalid", "fallback"}
 
     def _handle_job_error(self, job: ScanJob, exc: Exception) -> None:
         retryable, stable_reason = self._classify_error(exc)
@@ -540,7 +588,6 @@ class ScanService:
         compliance_status = raw_status if raw_status in {"PASS", "WARN", "REJECTED"} else "UNKNOWN"
         report = str(value.get("report", "")).strip()
         trace = value.get("agentTrace")
-        evidence = value.get("documents")
         package_value = value.get("reportPackage")
 
         # 弱验证(text_overlap 等)与真失败分开:弱验证只作 warning,不强制 degraded。
@@ -555,8 +602,8 @@ class ScanService:
         if not isinstance(trace, list) or not trace:
             hard_reasons.append("MISSING_AGENT_TRACE")
             trace = []
-        if not isinstance(evidence, list) or not evidence:
-            hard_reasons.append("NO_RETRIEVED_EVIDENCE")
+        evidence = value.get("documents")
+        if not isinstance(evidence, list):
             evidence = []
 
         package: dict[str, Any] | None
@@ -585,6 +632,17 @@ class ScanService:
             if source in {"demo", "fallback", "mock"}:
                 hard_reasons.append("FALLBACK_REPORT_SOURCE")
 
+            # 利润/财务子报告校验失败时,只进 warnings;不要因为利润数据不准
+            # 就把整张合规报告打成 degraded。Profit 页面单独读
+            # audit.finance.validationStatus 渲染专用提示。Fix B 2026-09-12。
+            finance = _mapping(audit.get("finance") or audit.get("finance_validation"))
+            finance_status = (
+                _nested_string(finance, "validationStatus")
+                or _nested_string(finance, "validation_status")
+            )
+            if finance_status == "invalid":
+                warnings.append("FINANCE_DATA_INVALID")
+
             coverage = (
                 _nested(audit, "citationCoverage")
                 or _nested(audit, "citation_coverage")
@@ -592,6 +650,20 @@ class ScanService:
             )
             if isinstance(coverage, (int, float)) and coverage <= 0:
                 hard_reasons.append("ZERO_CITATION_COVERAGE")
+
+        # De-RAG no longer produces retrieval chunks.  In KB-input mode the
+        # report package's citations/evidencePack is the authoritative evidence
+        # payload, so an empty legacy ``documents`` list is expected.  Keep the
+        # old gate for runners that return neither representation: accepting a
+        # report without any inspectable source evidence would still be unsafe.
+        package_evidence = []
+        if package is not None:
+            for key in ("evidencePack", "citations"):
+                candidate = package.get(key)
+                if isinstance(candidate, list):
+                    package_evidence.extend(item for item in candidate if isinstance(item, Mapping))
+        if not evidence and not package_evidence:
+            hard_reasons.append("NO_RETRIEVED_EVIDENCE")
 
         hard_reasons = list(dict.fromkeys(hard_reasons))
         warnings = list(dict.fromkeys(warnings))

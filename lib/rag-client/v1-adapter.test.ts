@@ -121,7 +121,7 @@ describe("v1-adapter", () => {
       expect(init.body).toBeInstanceOf(FormData);
     });
 
-    it("AbortError maps to RAG_SERVICE_TIMEOUT", async () => {
+    it("AbortError maps to SCAN_SERVICE_TIMEOUT", async () => {
       const abortErr = new Error("aborted");
       abortErr.name = "AbortError";
       mockFetch.mockRejectedValueOnce(abortErr);
@@ -137,12 +137,12 @@ describe("v1-adapter", () => {
       } catch (err) {
         expect(err).toBeInstanceOf(V1EnvelopeError);
         const e = err as V1EnvelopeError;
-        expect(e.code).toBe("RAG_SERVICE_TIMEOUT");
+        expect(e.code).toBe("SCAN_SERVICE_TIMEOUT");
         expect(e.httpStatus).toBe(504);
       }
     });
 
-    it("non-2xx maps to RAG_SERVICE_UNAVAILABLE with the response status", async () => {
+    it("non-2xx maps to SCAN_SERVICE_UNAVAILABLE with the response status", async () => {
       mockFetch.mockResolvedValueOnce(emptyResponse(503, { "x-request-id": "req-503" }));
 
       try {
@@ -156,7 +156,7 @@ describe("v1-adapter", () => {
       } catch (err) {
         expect(err).toBeInstanceOf(V1EnvelopeError);
         const e = err as V1EnvelopeError;
-        expect(e.code).toBe("RAG_SERVICE_UNAVAILABLE");
+        expect(e.code).toBe("SCAN_SERVICE_UNAVAILABLE");
         expect(e.httpStatus).toBe(503);
         expect(e.requestId).toBe("req-503");
       }

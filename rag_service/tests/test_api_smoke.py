@@ -16,10 +16,18 @@ from rag_service.main import _parse_markets, app
 @pytest.fixture(scope="module")
 def client():
     previous_demo_mode = settings.demo_mode
+    previous_secret = settings.rag_internal_secret
     settings.demo_mode = True
+    # The developer's rag_service/.env may contain the production-like
+    # service secret. This module tests the legacy endpoints' validation and
+    # demo responses, not the secret middleware (covered separately in
+    # test_internal_secret.py), so keep that host-specific value out of these
+    # assertions.
+    settings.rag_internal_secret = ""
     with TestClient(app) as test_client:
         yield test_client
     settings.demo_mode = previous_demo_mode
+    settings.rag_internal_secret = previous_secret
 
 
 def test_health_endpoint(client):

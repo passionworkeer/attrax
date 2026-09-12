@@ -14,7 +14,7 @@ describe("evidence-pack markdown rendering", () => {
   ];
 
   it("emits a cover header + product/market metadata", async () => {
-    // Avoid hitting RAG service in unit tests.
+    // Avoid hitting the scan service in unit tests.
     const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response(
         JSON.stringify({

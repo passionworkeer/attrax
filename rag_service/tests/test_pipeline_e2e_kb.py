@@ -259,6 +259,27 @@ class TestKBPipelineEndToEnd:
         assert result.get("report_package"), "KB mode must generate with documents=[]"
         assert "错误：未找到合规信息" not in result.get("generation", "")
 
+    def test_kb_backfills_verbatim_anchor_evidence_when_llm_omits_citations(self):
+        """A real provider can omit the required citations array. The
+        production path must recover auditable KB excerpts instead of returning
+        an evidence-free report."""
+        from rag_service.pipeline import run_compliance_graph
+        from rag_service.pipeline.nodes import generator as generator_module
+
+        gen = _make_well_behaved_generator([])
+        generator_module.set_generator(gen)
+        result = run_compliance_graph(
+            query="充电宝出口欧盟", product="充电宝", category="battery",
+            markets=["EU"], vision_result={}, images=[], documents=[],
+        )
+
+        citations = result["report_package"]["citations"]
+        assert citations
+        assert all(citation["match_status"] == "matched" for citation in citations)
+        generate_trace = next(item for item in result["agent_trace"] if item["node"] == "generate")
+        assert generate_trace["llm_citations_count"] == 0
+        assert generate_trace["kb_anchor_backfill_count"] == len(citations)
+
     def test_status_maps_from_verdict_when_no_nli(self):
         """Without NLI, generation_score is unset — the final status must
         not silently become REJECTED. (Current graph maps unknown →

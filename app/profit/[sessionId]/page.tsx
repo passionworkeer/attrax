@@ -182,8 +182,12 @@ export default function ProfitPage() {
   const displayName =
     locale === "en" ? result.productNameEn ?? result.productName : result.productName;
 
+  const financeValidation = result.reportPackage?.auditMetadata?.finance;
+  const financeUnavailable =
+    financeValidation?.validationStatus === "invalid" ||
+    financeValidation?.validation_status === "invalid";
   const financialSummary = synthesizeFinancialSummaryIfMissing(result, locale);
-  if (!financialSummary) {
+  if (financeUnavailable || !financialSummary) {
     const profitReport = result.reportPackage?.profitReport;
     const reportText =
       (locale === "en" ? profitReport?.markdownEn : undefined) ??
@@ -199,22 +203,26 @@ export default function ProfitPage() {
             backHref={`/result/${sessionId}`}
             backLabel={locale === "zh" ? "返回结果页" : "Back to result"}
             flowTitle={locale === "zh" ? "成本影响分析" : "Cost Impact Analysis"}
-            flowSubtitle={locale === "zh" ? "真实后端报告 · 结构化数据待补" : "Real backend report · structured data pending"}
+            flowSubtitle={locale === "zh" ? "真实扫描结果 · 财务数据独立校验" : "Real scan result · finance data validated separately"}
             primaryHref={`/result/${sessionId}`}
             primaryLabel={locale === "zh" ? "查看合规结果" : "View compliance result"}
-            statusLabel={locale === "zh" ? "数据不完整" : "Incomplete data"}
+            statusLabel={locale === "zh" ? "利润数据不可用" : "Profit data unavailable"}
             tone="bright"
           />
           <section className="mx-auto w-full max-w-5xl px-6 pt-8">
             <div className="blaze-panel p-8">
-              <SectionEyebrow>{locale === "zh" ? "真实后端输出" : "Real backend output"}</SectionEyebrow>
+              <SectionEyebrow>{locale === "zh" ? "合规报告仍可用" : "Compliance report remains available"}</SectionEyebrow>
               <h1 className="mt-3 text-3xl font-semibold text-white">
-                {locale === "zh" ? "利润页没有使用演示数据替代" : "No demo figures were substituted"}
+                {locale === "zh" ? "利润数据不可用，未使用演示数据替代" : "Profit data is unavailable; no demo figures were substituted"}
               </h1>
               <p className="mt-4 text-sm leading-7 text-white/64">
-                {locale === "zh"
-                  ? "当前报告来自本次扫描，但后端尚未提供成本明细、售价、销量和风险金额等结构化字段。"
-                  : "This report belongs to the current scan, but the backend has not provided structured costs, price, volume, or exposure values."}
+                {financeUnavailable
+                  ? locale === "zh"
+                    ? "本次扫描的合规报告已保留；仅利润子报告的结构化字段校验失败，因此成本、售价和预算看板不会展示。"
+                    : "The compliance report from this scan is still available. Only the profit sub-report failed structured-field validation, so cost, price, and budget figures are hidden."
+                  : locale === "zh"
+                    ? "当前报告来自本次扫描，但后端尚未提供成本明细、售价、销量和风险金额等结构化字段。"
+                    : "This report belongs to the current scan, but the backend has not provided structured costs, price, volume, or exposure values."}
               </p>
               <pre className="mt-6 whitespace-pre-wrap rounded-2xl border border-white/10 bg-black/20 p-5 text-sm leading-7 text-white/72">
                 {reportText}

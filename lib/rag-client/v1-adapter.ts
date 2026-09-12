@@ -164,7 +164,7 @@ function stableCodeForStatus(status: number, fallbackCode: string): string {
   if (status === 409) return "NOT_READY";
   if (status === 413) return "REQUEST_TOO_LARGE";
   if (status === 429) return "RATE_LIMITED";
-  if (status === 504) return "RAG_SERVICE_TIMEOUT";
+  if (status === 504) return "SCAN_SERVICE_TIMEOUT";
   return fallbackCode;
 }
 
@@ -210,16 +210,16 @@ async function requestEnvelope<T>(
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
       throw new V1EnvelopeError(
-        "RAG_SERVICE_TIMEOUT",
-        "RAG service request timed out",
+        "SCAN_SERVICE_TIMEOUT",
+        "Scan service request timed out",
         504,
         null,
       );
     }
     const message = error instanceof Error ? error.message : String(error);
     throw new V1EnvelopeError(
-      "RAG_SERVICE_UNAVAILABLE",
-      message || "RAG service unreachable",
+      "SCAN_SERVICE_UNAVAILABLE",
+      message || "Scan service unreachable",
       502,
       null,
     );
@@ -277,7 +277,7 @@ export async function createScan(input: CreateScanInput): Promise<CreatedScanDat
       headers: buildAuthHeaders(null),
     },
     RAG_SERVICE_TIMEOUT_MS,
-    "RAG_SERVICE_UNAVAILABLE",
+    "SCAN_SERVICE_UNAVAILABLE",
   );
 }
 
@@ -294,7 +294,7 @@ export async function getScan(input: GetScanInput): Promise<V1SessionData> {
       headers: buildAuthHeaders(input.accessToken),
     },
     V1_SCAN_GET_TIMEOUT_MS,
-    "RAG_SERVICE_UNAVAILABLE",
+    "SCAN_SERVICE_UNAVAILABLE",
   );
 }
 
@@ -314,7 +314,7 @@ async function getSessionResource<T>(
       headers: buildAuthHeaders(input.accessToken),
     },
     V1_SCAN_GET_TIMEOUT_MS,
-    "RAG_SERVICE_UNAVAILABLE",
+    "SCAN_SERVICE_UNAVAILABLE",
   );
 }
 
@@ -352,21 +352,21 @@ export async function getScanAsset(
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
       throw new V1EnvelopeError(
-        "RAG_SERVICE_TIMEOUT",
-        "RAG service request timed out",
+        "SCAN_SERVICE_TIMEOUT",
+        "Scan service request timed out",
         504,
         null,
       );
     }
     throw new V1EnvelopeError(
-      "RAG_SERVICE_UNAVAILABLE",
-      "RAG service unreachable",
+      "SCAN_SERVICE_UNAVAILABLE",
+      "Scan service unreachable",
       502,
       null,
     );
   }
   if (!response.ok) {
-    await throwResponseError(response, "RAG_SERVICE_UNAVAILABLE");
+    await throwResponseError(response, "SCAN_SERVICE_UNAVAILABLE");
   }
   return {
     bytes: new Uint8Array(await response.arrayBuffer()),

@@ -141,7 +141,7 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
     expect(body.error.code).toBe("INVALID_MARKET");
   });
 
-  it("collapses v1 5xx / network errors to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+  it("collapses v1 5xx / network errors to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
     mockCreateScan.mockRejectedValueOnce(new Error("ECONNREFUSED"));
 
     const req = new Request("http://localhost/api/scan", {
@@ -152,7 +152,7 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
 
     expect(res.status).toBe(502);
     const body = await res.json();
-    expect(body.error.code).toBe("RAG_SERVICE_UNAVAILABLE");
+    expect(body.error.code).toBe("SCAN_SERVICE_UNAVAILABLE");
   });
 
   it("rejects requests with no images at the validation layer (no adapter call)", async () => {

@@ -305,10 +305,10 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       expect(body.error.code).toBe("INVALID_MARKET");
     });
 
-    it("5xx envelope errors collapse to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+    it("5xx envelope errors collapse to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
       const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
       mockCreateScan.mockRejectedValueOnce(
-        new V1EnvelopeError("RAG_SERVICE_UNAVAILABLE", "down", 503, null),
+        new V1EnvelopeError("SCAN_SERVICE_UNAVAILABLE", "down", 503, null),
       );
 
       const { POST } = await import("@/app/api/scan/route");
@@ -318,13 +318,13 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       expect(res.status).toBe(502);
     });
 
-    it("RAG_SERVICE_TIMEOUT from adapter is treated as infrastructure failure (502)", async () => {
+    it("SCAN_SERVICE_TIMEOUT from adapter is treated as infrastructure failure (502)", async () => {
       // v1 adapter returns 504 for upstream timeouts, but the BFF collapses
       // all 5xx upstream errors to 502 (Bad Gateway) since the client is
-      // talking to a BFF, not directly to the RAG service.
+      // talking to a BFF, not directly to the scan service.
       const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
       mockCreateScan.mockRejectedValueOnce(
-        new V1EnvelopeError("RAG_SERVICE_TIMEOUT", "slow", 504, null),
+        new V1EnvelopeError("SCAN_SERVICE_TIMEOUT", "slow", 504, null),
       );
 
       const { POST } = await import("@/app/api/scan/route");

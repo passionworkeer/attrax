@@ -2,8 +2,9 @@
  * GET /api/health — Frontend health check
  *
  * Probes the Next.js server itself (liveness, by virtue of serving this route)
- * and the RAG service's **readiness** (`/ready`, not `/health`). RAG `/health` is
- * a liveness probe that returns 200 whenever the process can serve HTTP — a
+ * and the scan service's **readiness** (`/ready`, not `/health`). The scan
+ * service's `/health` is a liveness probe that returns 200 whenever the
+ * process can serve HTTP — a
  * half-broken RAG (process up but FAISS/BM25 not loaded, the 2026-07-18 failure
  * mode) would look "ok" and mask the outage. `/ready` returns 200 only when the
  * gate checks pass (bm25 / minimax key / config / scan_service) and 503 otherwise,

@@ -28,7 +28,7 @@ function presetCategoryFromKey(key: string | null | undefined): ProductCategory 
  * returns.
  *
  * Non-demo sessions fall back to the USB 加湿器 result only when the
- * production RAG service has not produced one yet, since that helper is the
+ * production scan service has not produced one yet, since that helper is the
  * single source of truth for backend-down fallback packages.
  */
 export function getResultForReport(

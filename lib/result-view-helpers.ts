@@ -63,6 +63,83 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
   };
 }
 
+/**
+ * Build a ComplianceReportResult for a *real* (non-demo) scan.
+ *
+ * Unlike `scanResultToComplianceView`, this does NOT overwrite the LLM output
+ * with mock markdown or a synthetic "demo.aggregate" trace node. The KB-anchored
+ * pipeline already emits the report markdown, agent trace, and provider name on
+ * the v1 session payload; the v1-adapter surfaces them on `result`, and we
+ * forward them unchanged. Only the shape is adapted to match ComplianceReportResult.
+ *
+ * Callers MUST gate on `isDemoSession` (e.g. `sessionId === "demo"`) before
+ * picking between this and `scanResultToComplianceView` — real scans routed
+ * through the demo converter would render the fake template.
+ */
+export function scanResultToRealComplianceView(
+  result: ScanResult,
+): ComplianceReportResult {
+  // Roll complianceStatus up from the result's own riskPoints when the backend
+  // did not supply a top-level complianceStatus (matches the v1-adapter scoring
+  // contract — never fall back to demo defaults).
+  const severityRank: Record<RiskPoint["severity"], number> = {
+    critical: 4,
+    warning: 3,
+    info: 1,
+    unknown: 0,
+  };
+  const topRank = result.riskPoints.reduce(
+    (acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0),
+    0,
+  );
+  const complianceStatus: ComplianceReportResult["complianceStatus"] =
+    topRank >= 4 ? "REJECTED" : topRank >= 3 ? "WARN" : topRank >= 1 ? "PASS" : "UNKNOWN";
+
+  // Prefer the real LLM-rendered markdown; fall back to the package-level field
+  // (some payloads nest it under reportPackage) and finally to an empty string
+  // so the renderer never silently swaps in a demo template.
+  const complianceReport =
+    (typeof result.complianceReport === "string" && result.complianceReport.trim()) ||
+    (typeof result.reportPackage?.complianceReport === "string" &&
+      result.reportPackage.complianceReport.trim()) ||
+    "";
+
+  // Real agent trace from the KB-anchored pipeline (vision → generate → verify).
+  // When the backend omitted it (legacy or demo-shaped payload) emit an empty
+  // array — do NOT append the demo.aggregate sentinel here, that belongs only
+  // to the demo path.
+  const agentTrace: ComplianceReportResult["agentTrace"] = Array.isArray(result.agentTrace)
+    ? result.agentTrace
+    : [];
+
+  return {
+    sessionId: result.sessionId,
+    scanTime: result.scanTime,
+    productCategory: result.productCategory,
+    productName: result.productName,
+    productNameEn: result.productNameEn,
+    targetMarkets: result.targetMarkets,
+    complianceScore: result.complianceScore,
+    scoreGrade: result.scoreGrade,
+    complianceReport,
+    complianceStatus,
+    agentTrace,
+    loopCount: 0,
+    retrievedChunks: [],
+    images: undefined,
+    documents: [],
+    riskPoints: undefined,
+    checklist: undefined,
+    generatedAt: result.generatedAt,
+    reportPackage: result.reportPackage,
+    modelInfo: {
+      ragProvider: result.ragProvider || "minimax",
+      latencyMs: typeof result.latencyMs === "number" ? result.latencyMs : 0,
+    },
+    source: result.source ?? "real",
+  };
+}
+
 export function readStoredAccessToken(sessionId: string): string | null {
   try {
     const value = sessionStorage.getItem(`scan-token:${sessionId}`);

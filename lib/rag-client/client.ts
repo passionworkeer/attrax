@@ -1,7 +1,8 @@
 /**
  * lib/rag-client/client.ts
  *
- * HTTP client for the RAG service. Owns:
+ * HTTP client for the scan service (attrax backend, formerly "RAG service").
+ * Owns:
  *  - baseURL resolution from `RAG_SERVICE_URL` env (default http://localhost:8001)
  *  - timeout enforcement via AbortController
  *  - X-Internal-Secret header injection when configured
@@ -69,7 +70,7 @@ async function parseJsonResponse<T>(
   if (!resp.ok) {
     throw new RagServiceError(
       `${RAG_ERROR_CODES.HTTP_PREFIX}${resp.status}` as RagServiceError["code"],
-      `RAG service returned HTTP ${resp.status}`,
+      `Scan service returned HTTP ${resp.status}`,
       { httpStatus: resp.status },
     );
   }
@@ -80,7 +81,7 @@ async function parseJsonResponse<T>(
   } catch (cause) {
     throw new RagServiceError(
       RAG_ERROR_CODES.INVALID_RESPONSE,
-      "RAG service response was not valid JSON",
+      "Scan service response was not valid JSON",
       { cause },
     );
   }
@@ -89,7 +90,7 @@ async function parseJsonResponse<T>(
   if (!parsed.success) {
     throw new RagServiceError(
       RAG_ERROR_CODES.INVALID_RESPONSE,
-      `RAG service response did not match schema: ${parsed.error.message}`,
+      `Scan service response did not match schema: ${parsed.error.message}`,
       { cause: parsed.error },
     );
   }

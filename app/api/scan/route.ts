@@ -249,8 +249,8 @@ export async function POST(request: Request): Promise<Response> {
         success: false,
         data: null,
         error: {
-          code: "RAG_SERVICE_UNAVAILABLE",
-          message: "RAG service unavailable",
+          code: "SCAN_SERVICE_UNAVAILABLE",
+          message: "Scan service unavailable",
         },
       },
       { status: 502 },

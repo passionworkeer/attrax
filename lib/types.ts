@@ -152,6 +152,23 @@ export interface ScanResult {
   checklist: ChecklistItem[];
   generatedAt: string;
   financialSummary?: FinancialSummary;
+  /**
+   * Real LLM-rendered compliance report markdown. Populated by the v1 adapter
+   * from `result.complianceReport` (or `reportPackage.complianceReport` as a
+   * fallback) so the result page can render the actual generated text instead
+   * of falling back to the demo template.
+   */
+  complianceReport?: string;
+  /**
+   * Real agent execution trace from the KB-anchored pipeline (vision →
+   * generate → verify). Optional because legacy RAG payloads and demo
+   * sessions do not emit it; consumers must guard for absence.
+   */
+  agentTrace?: Array<{ node: string; [key: string]: unknown }>;
+  /** Real LLM provider name as reported by the backend (e.g. "minimax"). */
+  ragProvider?: string;
+  /** Pipeline total latency, milliseconds (sum of all node durations). */
+  latencyMs?: number;
   /** Raw, validated-at-the-boundary backend package for report-only views. */
   reportPackage?: ReportPackage;
   modelInfo?: {
@@ -212,12 +229,12 @@ export interface ScanStatus {
   /**
    * Lifecycle of a scan.
    * - `processing`: scan in flight, progress increments.
-   * - `ready`: real RAG scan completed successfully.
-   * - `degraded`: RAG service unavailable / returned 5xx — the result field is
-   *   filled with demo data so the user still sees something, but it is NOT a
-   *   pass. `degradedReason` carries the error code and `result.source` is
-   *   `"fallback"`. UI MUST distinguish this from `ready` (Wave2 consumers rely
-   *   on this contract).
+   * - `ready`: real scan completed successfully.
+   * - `degraded`: scan service returned an incomplete result — the result
+   *   field is still populated (with whatever the pipeline could produce)
+   *   but it is NOT a pass. `degradedReason` carries the error code and
+   *   `result.source` is `"fallback"`. UI MUST distinguish this from
+   *   `ready` (Wave2 consumers rely on this contract).
    * - `failed`: scan threw, no result produced.
    */
   status: "processing" | "ready" | "degraded" | "failed";
@@ -226,7 +243,7 @@ export interface ScanStatus {
   stageKey?: "queued" | "vision" | "retrieval" | "report" | "done" | "failed";
   /** Number of uploaded product images available through the scan asset API. */
   imageCount?: number;
-  /** When status==="degraded", the RAG error code (e.g. RAG_SERVICE_UNAVAILABLE). */
+  /** When status==="degraded", the scan service error code (e.g. SCAN_SERVICE_UNAVAILABLE). */
   degradedReason?: string;
   result?: ScanResult | ComplianceReportResult;
   profitReport?: ProfitReportResult;
@@ -332,6 +349,11 @@ export interface AuditMetadata {
   packageVersion?: string;
   package_version?: string;
   warnings?: string[];
+  finance?: {
+    validationStatus?: "valid" | "invalid";
+    validation_status?: "valid" | "invalid";
+    errors?: string[];
+  };
   [key: string]: unknown;
 }
 

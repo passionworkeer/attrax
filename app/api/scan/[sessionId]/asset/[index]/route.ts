@@ -33,6 +33,6 @@ export async function GET(
     if (error instanceof V1EnvelopeError) {
       return fail({ code: error.code, message: error.message }, { status: error.httpStatus });
     }
-    return fail({ code: "RAG_SERVICE_UNAVAILABLE", message: "RAG service unavailable" }, { status: 502 });
+    return fail({ code: "SCAN_SERVICE_UNAVAILABLE", message: "Scan service unavailable" }, { status: 502 });
   }
 }

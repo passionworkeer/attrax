@@ -12,6 +12,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from rag_service.api import v1
+from rag_service.config import settings
 
 
 PNG = b"\x89PNG\r\n\x1a\n" + b"zip-bomb-cover"
@@ -42,7 +43,10 @@ def _zip_bomb_docx() -> bytes:
     return buf.getvalue()
 
 
-def test_docx_zip_bomb_rejected_before_extraction(tmp_path):
+def test_docx_zip_bomb_rejected_before_extraction(tmp_path, monkeypatch):
+    # This test targets archive inspection. Keep an operator's local service
+    # secret from intercepting the request before that validation runs.
+    monkeypatch.setattr(settings, "rag_internal_secret", "")
     bomb = _zip_bomb_docx()
     assert len(bomb) < 1 * 1024 * 1024, "压缩体积必须很小才有炸弹意义"
     assert v1.MAX_DOCX_EXPANDED_SIZE < 200 * 1024 * 1024

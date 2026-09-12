@@ -117,7 +117,11 @@ def resolve_minimax_config(api_key: str | None = None) -> tuple[str, str, str]:
     """Resolve current process settings, preferring MINIMAX_* over aliases."""
     current = Settings(_env_file=None)
     return (
-        api_key or current.effective_minimax_api_key,
+        # ``None`` means "use configured credentials". An explicit empty
+        # string is a deliberate no-network override used by fallback paths
+        # and tests; treating it as falsy silently reloaded the operator's
+        # local key and could issue an unintended LLM request.
+        current.effective_minimax_api_key if api_key is None else api_key,
         current.effective_minimax_base_url,
         current.effective_minimax_model,
     )

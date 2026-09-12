@@ -172,10 +172,10 @@ describe("POST /api/scan", () => {
     expect(body.error.message).toBe("bad markets");
   });
 
-  it("collapses infrastructure errors (5xx) to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+  it("collapses infrastructure errors (5xx) to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
     const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
     mockCreateScan.mockRejectedValueOnce(
-      new V1EnvelopeError("RAG_SERVICE_UNAVAILABLE", "boom", 503, null),
+      new V1EnvelopeError("SCAN_SERVICE_UNAVAILABLE", "boom", 503, null),
     );
 
     const { POST } = await import("@/app/api/scan/route");
@@ -184,10 +184,10 @@ describe("POST /api/scan", () => {
 
     expect(res.status).toBe(502);
     const body = await res.json();
-    expect(body.error.code).toBe("RAG_SERVICE_UNAVAILABLE");
+    expect(body.error.code).toBe("SCAN_SERVICE_UNAVAILABLE");
   });
 
-  it("maps non-V1EnvelopeError to 502 RAG_SERVICE_UNAVAILABLE", async () => {
+  it("maps non-V1EnvelopeError to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
     mockCreateScan.mockRejectedValueOnce(new Error("network"));
 
     const { POST } = await import("@/app/api/scan/route");

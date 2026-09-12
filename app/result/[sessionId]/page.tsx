@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { startTransition, useEffect, useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { CircleAlert, CircleDollarSign, Download, FileStack, MoveRight, ScanLine } from "lucide-react";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
@@ -19,8 +18,6 @@ import {
   blazeReportFiles,
   blazeReportPreviewTabs,
 } from "@/lib/complipilot/scenario";
-import { createMockScanResult, mockComplianceReportMarkdown, mockScanResult } from "@/lib/mock/blaze-scan-result";
-import type { ComplianceReportResult, Market, ProductCategory, RiskPoint, ScanResult, ScanStatus } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { DegradedBanner } from "@/components/result/DegradedBanner";
@@ -34,6 +31,7 @@ import {
   buildRoadmapRows,
   financialSummaryOrFallback,
   scanResultToComplianceView,
+  scanResultToRealComplianceView,
   severityClass,
   severityLabel,
   productCategoryLabel,
@@ -74,11 +72,8 @@ export default function ResultPage() {
   const demoResult = isDemoSession ? buildDemoPresetResult(search) : null;
   const {
     result,
-    setResult,
     degradedReason,
-    setDegradedReason,
     message,
-    setMessage,
     selectedRiskId,
     setSelectedRiskId,
   } = useResultLoader({
@@ -116,7 +111,9 @@ export default function ResultPage() {
   // Same synthesis path as /profit/[sessionId]: real backend RAG responses
   // carry profit data only in reportPackage.profitReport.markdown.
   const financialSummary = financialSummaryOrFallback(result, locale, synthesizeFinancialSummaryIfMissing);
-  const complianceView = scanResultToComplianceView(result, locale);
+  const complianceView = isDemoSession
+    ? scanResultToComplianceView(result, locale)
+    : scanResultToRealComplianceView(result);
   const critical = result.riskPoints.find((item) => item.severity === "critical");
   const activeRiskRaw =
     result.riskPoints.find((item) => item.riskId === selectedRiskId) ??

@@ -159,7 +159,7 @@ export async function GET(
         );
       }
       return fail(
-        { code: "RAG_SERVICE_UNAVAILABLE", message: "RAG service unavailable" },
+        { code: "SCAN_SERVICE_UNAVAILABLE", message: "Scan service unavailable" },
         { status: 502 },
       );
     }

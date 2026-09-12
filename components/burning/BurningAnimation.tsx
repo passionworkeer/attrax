@@ -30,8 +30,8 @@ const STAGE_TEXT_TO_ID: [RegExp, string][] = [
   [/检索合规法规库|Retrieving compliance regulation database/u, "retrievingRegulations"],
   [/生成合规报告|Generating compliance report/u, "generatingReport"],
   [/报告生成完成|Report generation complete/u, "reportComplete"],
-  [/后端服务响应超时|Backend service timed out|RAG_SERVICE_TIMEOUT/u, "backendTimeout"],
-  [/后端服务不可用|Backend service unavailable|RAG_SERVICE_UNAVAILABLE/u, "backendUnavailable"],
+  [/后端服务响应超时|Backend service timed out|SCAN_SERVICE_TIMEOUT/u, "backendTimeout"],
+  [/后端服务不可用|Backend service unavailable|SCAN_SERVICE_UNAVAILABLE/u, "backendUnavailable"],
   [/演示结果已生成|Demo result generated/u, "demoResultGenerated"],
   [/合规扫描通过|Compliance scan passed/u, "scanPassed"],
   [/合规警告|Compliance warning/u, "scanWarning"],
@@ -49,8 +49,8 @@ export interface BurningAnimationProps {
 
 const FAILURE_ERROR_KEYS: Record<string, string> = {
   SCAN_FAILED: "errors.scanFailed",
-  RAG_SERVICE_TIMEOUT: "errors.backendTimeout",
-  RAG_SERVICE_UNAVAILABLE: "errors.backendUnavailable",
+  SCAN_SERVICE_TIMEOUT: "errors.backendTimeout",
+  SCAN_SERVICE_UNAVAILABLE: "errors.backendUnavailable",
 };
 
 function getStageId(stageText: string | undefined): string | undefined {
