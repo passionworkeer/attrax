@@ -11,7 +11,7 @@ function nowIso() {
 function buildComplianceReportZh(productName = PRODUCT_NAME): string {
   return `## 降级合规分析报告：${productName}
 
-> 当前为离线降级报告：后端 RAG/LLM 服务不可用时生成，用于保障演示和业务流不中断。结论偏保守，正式出货前仍需要以实验室报告和官方法规为准。
+> 当前为离线降级报告：后端扫描服务不可用时生成，用于保障演示和业务流不中断。结论偏保守，正式出货前仍需要以实验室报告和官方法规为准。
 
 ### 1. 总体判断
 
@@ -51,7 +51,7 @@ function buildComplianceReportZh(productName = PRODUCT_NAME): string {
 function buildComplianceReportEn(productName = PRODUCT_NAME_EN): string {
   return `## Fallback Compliance Analysis Report: ${productName}
 
-> This is an offline fallback report generated when the RAG/LLM backend is unavailable. It keeps the demo and business flow running. The conclusions are intentionally conservative; final shipment decisions should still rely on laboratory reports and official regulatory sources.
+> This is an offline fallback report generated when the scan service is unavailable. It keeps the demo and business flow running. The conclusions are intentionally conservative; final shipment decisions should still rely on laboratory reports and official regulatory sources.
 
 ### 1. Overall Assessment
 

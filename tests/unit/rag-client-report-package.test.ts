@@ -59,6 +59,20 @@ describe("mock report package contract", () => {
     expect(visionNode).toBeDefined();
     expect(visionNode?.severity).toBe("high");
   });
+
+  it("accepts an invalid finance sub-report without invalidating the compliance package", () => {
+    const mockResult = createMockComplianceReportResult("test-session");
+    mockResult.reportPackage!.auditMetadata!.finance = {
+      validationStatus: "invalid",
+      errors: ["financial_data_invalid"],
+    };
+
+    const outcome = validateReportPackage(mockResult.reportPackage);
+
+    expect(outcome.ok).toBe(true);
+    expect(outcome.data?.auditMetadata.validationStatus).toBe("normalized");
+    expect(outcome.data?.auditMetadata.finance?.validationStatus).toBe("invalid");
+  });
 });
 
 describe("validateReportPackage rejects malformed input", () => {

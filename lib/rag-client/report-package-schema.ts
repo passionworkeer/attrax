@@ -1,7 +1,7 @@
 /**
  * lib/rag-client/report-package-schema.ts
  *
- * Strict Zod schema for the `ReportPackage` returned by the RAG service.
+ * Strict Zod schema for the `ReportPackage` returned by the scan service.
  *
  * This is the **frontend's source of truth** for what the backend is
  * contractually obligated to return. It mirrors
@@ -171,6 +171,15 @@ const AuditMetadata = z
     validationErrors: z.array(z.string()).optional().default([]),
     provider: z.string().optional().default(""),
     traceNodeCount: z.number().int().optional().default(0),
+    // Finance is a separately validated optional sub-report. An invalid
+    // finance payload does not invalidate the compliance package; callers use
+    // this signal to hide the profit board while keeping the scan result live.
+    finance: z
+      .object({
+        validationStatus: z.enum(["valid", "invalid"]).optional().default("valid"),
+        errors: z.array(z.string()).optional().default([]),
+      })
+      .optional(),
   })
   .passthrough();
 

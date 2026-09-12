@@ -189,6 +189,20 @@ class EvidenceBundles(FlexibleModel):
     generation: list[EvidenceItem] = Field(default_factory=list)
 
 
+class FinanceValidation(FlexibleModel):
+    """Isolated validation state for the profit/finance sub-report.
+
+    Kept structurally separate from the package-level `validationStatus` so
+    malformed finance numbers (typically LLM-hallucinated cost/price) cannot
+    downgrade the entire scan to ``degraded`` — the compliance prose remains
+    valid. The profit page reads this field to render a dedicated
+    "数据不可用" notice. See Fix B in 2026-09-12 plan.
+    """
+
+    validationStatus: Literal["valid", "invalid"] = "valid"
+    errors: list[str] = Field(default_factory=list)
+
+
 class AuditMetadata(FlexibleModel):
     schemaVersion: str = SCHEMA_VERSION
     generatedAt: str
@@ -196,6 +210,7 @@ class AuditMetadata(FlexibleModel):
     validationErrors: list[str] = Field(default_factory=list)
     provider: str = ""
     traceNodeCount: int = 0
+    finance: FinanceValidation = Field(default_factory=FinanceValidation)
 
 
 class ReportPackage(FlexibleModel):
@@ -493,13 +508,22 @@ def normalize_report_package(
         )
 
     audit = _as_dict(source.get("auditMetadata") or source.get("audit_metadata"))
+    # Top-level validationStatus reflects only the compliance package shape.
+    # Malformed profit/finance sub-report must NOT downgrade the whole package:
+    # the prose remains valid (per the inline comment above) and the profit
+    # page renders a dedicated "数据不可用" notice from
+    # `finance.validationStatus`. See Fix B in 2026-09-12 plan.
     audit = {
         "schemaVersion": audit.get("schemaVersion") or SCHEMA_VERSION,
         "generatedAt": audit.get("generatedAt") or _utc_now_iso(),
-        "validationStatus": "invalid" if finance_validation_errors else (audit.get("validationStatus") or "normalized"),
-        "validationErrors": list(audit.get("validationErrors") or []) + finance_validation_errors,
+        "validationStatus": audit.get("validationStatus") or "normalized",
+        "validationErrors": list(audit.get("validationErrors") or []),
         "provider": audit.get("provider") or provider,
         "traceNodeCount": audit.get("traceNodeCount") or len(_as_list(agent_trace)),
+        "finance": {
+            "validationStatus": "invalid" if finance_validation_errors else "valid",
+            "errors": list(finance_validation_errors),
+        },
     }
 
     # Spec §3.3 + §7.3: per-claim citations from the LLM. The

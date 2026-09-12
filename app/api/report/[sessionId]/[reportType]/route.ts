@@ -68,7 +68,7 @@ export async function GET(
         );
       }
       return NextResponse.json(
-        { error: { code: "RAG_SERVICE_UNAVAILABLE", message: "RAG service unavailable" } },
+        { error: { code: "SCAN_SERVICE_UNAVAILABLE", message: "Scan service unavailable" } },
         { status: 502 },
       );
     }

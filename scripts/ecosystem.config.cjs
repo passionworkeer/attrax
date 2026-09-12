@@ -17,6 +17,10 @@ module.exports = {
         // To override, prefix the pm2 call: `RAG_INTERNAL_SECRET=… pm2 start …`.
         RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || "",
         APP_ENV: "production",
+        // De-RAG has no retriever output; regulation-library articles are the
+        // production evidence input for image-only scans. Allow an explicit
+        // operator override, but keep the deployed default usable.
+        USE_KB_INPUT: process.env.USE_KB_INPUT || "true",
       },
     },
     {

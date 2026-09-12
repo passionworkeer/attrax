@@ -3,7 +3,7 @@
  * the regulation library. Spec §7.5: route renders the regulation
  * payload returned by `GET /api/v1/regulations/{docId}`.
  *
- * Server component: SSR fetches the regulation from RAG service. The
+ * Server component: SSR fetches the regulation from the scan service. The
  * `hl` query param (start,end) is parsed and passed to the client
  * `DocViewer`, which highlights the matched span and scrolls the
  * target article into view.

@@ -148,6 +148,39 @@ def test_service_retries_provider_exception_then_marks_dead_without_secret_text(
     asyncio.run(scenario())
 
 
+def test_service_retries_invalid_generation_package_then_persists_ready_result(tmp_path):
+    """A model response missing required report scenes is retried internally."""
+    async def scenario():
+        calls = 0
+
+        async def runner(payload):
+            nonlocal calls
+            calls += 1
+            if calls == 1:
+                return {
+                    "status": "REJECTED",
+                    "report": "partial provider response",
+                    "agent_trace": [{"node": "generate", "status": "generation_failed"}],
+                    "documents": [{"text": "evidence"}],
+                    "report_package": {
+                        "auditMetadata": {"validationStatus": "invalid"},
+                    },
+                }
+            return verified_result()
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner, retry_base_seconds=0)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        assert calls == 2
+        assert public["status"] == "ready"
+        assert public["result"]["source"] == "real"
+
+    asyncio.run(scenario())
+
+
 def test_service_does_not_retry_timeout_because_executor_work_may_still_be_running(tmp_path):
     class GatewayTimeout(Exception):
         status_code = 504
@@ -202,6 +235,48 @@ def test_service_degrades_pass_when_evidence_is_missing(tmp_path):
         assert public["result"]["source"] == "fallback"
         assert public["result"]["complianceStatus"] == "UNKNOWN"
         assert "NO_RETRIEVED_EVIDENCE" in public["result"]["degradedReasons"]
+
+    asyncio.run(scenario())
+
+
+def test_service_accepts_kb_only_report_package_evidence(tmp_path):
+    """De-RAG runs have no retrieval chunks; verified KB citations are evidence."""
+    async def scenario():
+        async def runner(payload):
+            return {
+                "status": "PASS",
+                "report": "KB-backed report",
+                "agent_trace": [{"node": "vision"}, {"node": "generate"}, {"node": "verify"}],
+                "documents": [],
+                "report_package": {
+                    "auditMetadata": {
+                        "validationStatus": "normalized",
+                        "verificationMode": "nli",
+                        "citationCoverage": 1.0,
+                    },
+                    "citations": [{
+                        "doc_id": "EU-2023-1542",
+                        "article_id": "art-7",
+                        "quote": "Requirements for batteries.",
+                    }],
+                    "evidencePack": [{
+                        "doc_id": "EU-2023-1542",
+                        "article_id": "art-7",
+                        "quote": "Requirements for batteries.",
+                    }],
+                },
+            }
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        assert public["status"] == "ready"
+        assert public["result"]["source"] == "real"
+        assert public["result"]["retrievedChunks"] == []
+        assert public["result"]["degradedReasons"] == []
 
     asyncio.run(scenario())
 

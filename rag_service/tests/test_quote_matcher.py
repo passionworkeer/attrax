@@ -369,6 +369,29 @@ class TestVerifierNodeIntegration:
         # evidence pack populated
         assert "evidencePack" in result["report_package"]
 
+    def test_replaces_a_provider_paraphrase_with_a_verbatim_article_excerpt(self):
+        """A real article id with a non-verbatim LLM quote is recovered into
+        a highlightable, source-owned excerpt; an unknown id is not."""
+        from rag_service.pipeline.nodes.verifier import verifier_node
+
+        result = verifier_node({
+            "report_package": {
+                "complianceReport": "dummy",
+                "auditMetadata": {"validationStatus": "normalized"},
+                "citations": [{
+                    "doc_id": "EU-2023-1542",
+                    "article_id": "art-77",
+                    "quote": "provider paraphrase that is not in the article",
+                }],
+            },
+        })
+        citation = result["report_package"]["citations"][0]
+        assert citation["match_status"] == "matched"
+        assert citation["quote_span"] is not None
+        assert citation["quote_provenance"] == "canonical_regulation_excerpt"
+        assert result["report_package"]["auditMetadata"]["verificationMode"] == "kb_exact_quote"
+        assert result["agent_trace"][0]["canonical_quote_recovery_count"] == 1
+
     def test_handles_empty_citations(self):
         from rag_service.pipeline.nodes.verifier import verifier_node
 

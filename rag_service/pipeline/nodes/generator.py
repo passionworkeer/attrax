@@ -51,6 +51,40 @@ def _sanitize_doc_context(text: str) -> str:
     )
 
 
+def _kb_anchor_citations(article_texts: dict[str, str], limit: int = 5) -> list[dict]:
+    """Return small, verbatim citations when the LLM omits the required list.
+
+    These are not model-invented claim links: each item is a directly
+    inspectable excerpt from one of the regulation-library articles supplied
+    to the model.  The verifier still quote-matches every excerpt and the
+    trace records that this recovery path was used.  One article per
+    regulation keeps the resulting evidence pack focused while ensuring an
+    image-only De-RAG scan is never rendered evidence-free solely because the
+    provider skipped a required JSON field.
+    """
+    citations: list[dict] = []
+    seen_documents: set[str] = set()
+    for key, text in article_texts.items():
+        if not isinstance(key, str) or "#" not in key:
+            continue
+        doc_id, article_id = key.split("#", 1)
+        quote = str(text or "").strip()[:700]
+        if not doc_id or not article_id or not quote or doc_id in seen_documents:
+            continue
+        citations.append(
+            {
+                "doc_id": doc_id,
+                "article_id": article_id,
+                "official_citation": f"{doc_id} {article_id}",
+                "quote": quote,
+            }
+        )
+        seen_documents.add(doc_id)
+        if len(citations) >= limit:
+            break
+    return citations
+
+
 def set_generator(generator):
     global _generator_instance, _is_injected
     _generator_instance = generator
@@ -202,6 +236,8 @@ def generator_node(state: GraphState) -> dict:
     # is legitimately empty and the KB anchors are the sole LLM input.
     article_texts = None
     kb_mode = False
+    llm_citations_count = 0
+    kb_anchor_backfill_count = 0
     if os.environ.get("USE_KB_INPUT", "").strip().lower() in {"1", "true", "yes", "on"}:
         from rag_service.retrieval.article_loader import (
             build_article_texts_for_anchors,
@@ -240,12 +276,13 @@ def generator_node(state: GraphState) -> dict:
                 # `citations[]`; surface how many it produced on the trace
                 # so reviewers can spot an empty citations list quickly.
                 if kb_mode:
-                    trace_payload = {
-                        "article_texts_count": len(article_texts or {}),
-                        "llm_citations_count": len(report_package.get("citations") or []),
-                    }
-                else:
-                    trace_payload = {}
+                    llm_citations_count = len(report_package.get("citations") or [])
+                    if not llm_citations_count:
+                        recovered = _kb_anchor_citations(article_texts or {})
+                        if recovered:
+                            report_package = dict(report_package)
+                            report_package["citations"] = recovered
+                            kb_anchor_backfill_count = len(recovered)
             else:
                 report_package = {}
                 generation = generator.generate(
@@ -281,7 +318,8 @@ def generator_node(state: GraphState) -> dict:
         # the name at the top (an eager `trace_payload = {}` here would
         # clobber the value set in the try block).
         **({"article_texts_count": len(article_texts or {}),
-            "llm_citations_count": len((report_package or {}).get("citations") or [])}
+            "llm_citations_count": llm_citations_count,
+            "kb_anchor_backfill_count": kb_anchor_backfill_count}
            if kb_mode else {}),
     }
     # ⚠️ 维护红线（2026-06-29 审计 / 2026-09-10 复核）：

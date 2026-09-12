@@ -257,6 +257,29 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     session.updatedAt,
   );
 
+  // De-RAG pipeline output: surface the real LLM-generated report markdown
+  // and the real agent trace so the result page does not need to fall back
+  // to the demo template. Both fields are optional in the contract (legacy
+  // RAG payloads and demo sessions do not emit them) so we read defensively.
+  const complianceReport =
+    text(result.complianceReport) ||
+    text(reportPackage.complianceReport) ||
+    text(record(reportPackage).compliance_report) ||
+    undefined;
+  const agentTrace = Array.isArray(result.agentTrace)
+    ? (result.agentTrace as Array<{ node: string; [key: string]: unknown }>)
+    : undefined;
+  const ragProvider =
+    text(record(reportPackage.auditMetadata).provider) ||
+    text(result.ragProvider) ||
+    undefined;
+  const latencyMs = number(
+    record(reportPackage.auditMetadata).latencyMs ??
+      result.latencyMs ??
+      record(result.modelInfo).latencyMs,
+    0,
+  );
+
   return {
     sessionId: session.sessionId,
     scanTime: session.createdAt,
@@ -280,9 +303,13 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
     checklist: buildChecklist(reportPackage),
     generatedAt,
     reportPackage: result.reportPackage as ReportPackage | undefined,
+    complianceReport,
+    agentTrace,
+    ragProvider,
+    latencyMs,
     modelInfo: {
       visionProvider: "minimax",
-      latencyMs: 0,
+      latencyMs,
     },
     source: session.status === "degraded" ? "fallback" : "real",
   };

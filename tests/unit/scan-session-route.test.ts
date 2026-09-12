@@ -297,7 +297,7 @@ describe("GET /api/scan/[sessionId]", () => {
       const body = await res.json();
 
       expect(res.status).toBe(502);
-      expect(body.error.code).toBe("RAG_SERVICE_UNAVAILABLE");
+      expect(body.error.code).toBe("SCAN_SERVICE_UNAVAILABLE");
     });
   });
 });

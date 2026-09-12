@@ -2,6 +2,7 @@ import io
 import time
 import zipfile
 
+import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
@@ -12,6 +13,17 @@ from rag_service.infrastructure.file_backend import FileBackend
 
 
 PNG = b"\x89PNG\r\n\x1a\n" + b"public-api-image"
+
+
+@pytest.fixture(autouse=True)
+def clear_operator_secret(monkeypatch):
+    """Keep the public-v1 contract tests independent of a local .env secret.
+
+    Secret enforcement has its own explicit test below. Without this fixture,
+    a developer's production-like ``rag_service/.env`` turns every ordinary
+    request into 401 before the input/session behavior under test can run.
+    """
+    monkeypatch.setattr(settings, "rag_internal_secret", "")
 
 
 def build_app(tmp_path):

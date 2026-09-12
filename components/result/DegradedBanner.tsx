@@ -8,7 +8,7 @@ import { useTranslation } from "@/lib/i18n";
  * Triggered by ANY of:
  * - `source` is "fallback" or "demo" (mock data path)
  * - `isDegraded` flag set by the poller (session.status === "degraded")
- * - `degradedReason` present (RAG error code)
+ * - `degradedReason` present (scan service error code)
  *
  * The banner is intentionally red (not amber) and persistent (always at the
  * top of the report) so the user cannot mistake fallback data for a real

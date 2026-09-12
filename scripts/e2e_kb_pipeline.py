@@ -22,8 +22,11 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
+import argparse
+from datetime import datetime, timezone
 from pathlib import Path
 
 # Flags MUST be set before importing the pipeline (env read at call time,
@@ -34,6 +37,14 @@ os.environ["USE_KB_INPUT"] = "true"
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
+# Each live probe must preserve its own evidence. The previous flat filenames
+# overwrote the committed sample artifacts and made a later run impossible to
+# audit independently. Callers may supply E2E_RUN_ID for a traceable label.
+_requested_run_id = os.environ.get("E2E_RUN_ID", "").strip()
+RUN_ID = _requested_run_id or datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,79}", RUN_ID):
+    raise ValueError("E2E_RUN_ID must contain only letters, numbers, dot, underscore, or hyphen")
+
 # Load the service .env (same as main.py does) so MINIMAX_API_KEY resolves.
 try:
     from dotenv import load_dotenv
@@ -43,7 +54,10 @@ except ImportError:
 
 
 def run_case(name: str, query: str, product: str, category: str, markets: list[str]) -> dict:
-    from rag_service.orchestrator.graph import run_compliance_graph
+    # §7.7 replaced the LangGraph orchestrator with the linear pipeline.
+    # Keep this probe on the public compatibility entry point so it follows
+    # the same implementation used by FastAPI.
+    from rag_service.pipeline import run_compliance_graph
 
     t0 = time.time()
     result = run_compliance_graph(
@@ -89,14 +103,14 @@ def run_case(name: str, query: str, product: str, category: str, markets: list[s
         print(f"  generate trace    : { {k: v for k, v in gen_trace[0].items() if k != 'node'} }")
 
     # Dump artifacts for manual review
-    out_dir = REPO / "work" / "e2e"
+    out_dir = REPO / "work" / "e2e" / RUN_ID
     out_dir.mkdir(parents=True, exist_ok=True)
     slug = name.replace(" ", "_").replace("/", "-")
     (out_dir / f"{slug}-report.md").write_text(result.get("final_report", ""))
     (out_dir / f"{slug}-package.json").write_text(
         json.dumps(pkg, ensure_ascii=False, indent=2, default=str)
     )
-    print(f"  artifacts         : work/e2e/{slug}-report.md, {slug}-package.json")
+    print(f"  artifacts         : work/e2e/{RUN_ID}/{slug}-report.md, {slug}-package.json")
 
     return {
         "name": name, "elapsed": elapsed, "status": result.get("status"),
@@ -107,8 +121,18 @@ def run_case(name: str, query: str, product: str, category: str, markets: list[s
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description="Run KB-anchored live LLM probes.")
+    parser.add_argument(
+        "--case",
+        dest="selected_case",
+        choices=("battery-eu", "toy-us", "cosmetic-cn"),
+        help="Run one named case; omit to run the full three-case suite.",
+    )
+    args = parser.parse_args()
+    print(f"RUN ID: {RUN_ID}")
     cases = [
         {
+            "id": "battery-eu",
             "name": "battery/EU",
             "query": "锂电池充电宝出口欧盟需要什么认证",
             "product": "充电宝",
@@ -116,6 +140,7 @@ def main() -> int:
             "markets": ["EU"],
         },
         {
+            "id": "toy-us",
             "name": "toy/US",
             "query": "儿童塑料玩具出口美国的合规要求",
             "product": "塑料玩具",
@@ -123,6 +148,7 @@ def main() -> int:
             "markets": ["US"],
         },
         {
+            "id": "cosmetic-cn",
             "name": "cosmetic/CN",
             "query": "面霜在中国上市需要的化妆品备案",
             "product": "面霜",
@@ -131,7 +157,10 @@ def main() -> int:
         },
     ]
 
-    results = [run_case(**c) for c in cases]
+    if args.selected_case:
+        cases = [case for case in cases if case["id"] == args.selected_case]
+
+    results = [run_case(**{key: value for key, value in case.items() if key != "id"}) for case in cases]
 
     print(f"\n{'='*70}")
     print("SUMMARY")
