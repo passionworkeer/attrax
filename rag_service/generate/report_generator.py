@@ -106,6 +106,11 @@ REPORT_PACKAGE_SYSTEM_PROMPT = """你是跨境电商合规与商业化专家。�
 
 风险等级契约（决定前端得分展示，**必须**遵守）：
 - `decisionView.verdict`：四个枚举的字符串之一，PASS/WARN/REJECTED/UNKNOWN。
+- verdict 的业务语义必须固定，不能把证据不足误写成不合规：
+    * PASS — 仅当本次提供的文件和可见信息足以支持“可继续下一步复核”；它仍不代表已获证或可上市。
+    * WARN — 产品类别和适用法规已可判断，但还需要补充图片、铭牌、测试报告、DoC 或报价；这是图片看不清、认证标志不可见、供电方式待确认时的默认值。
+    * REJECTED — 仅当给定法规或用户文件/清晰可见事实直接证明存在禁止、超限、错误标签或已知不符合项时使用；“图片未展示”“无法辨认”“尚未提供文件”绝不能触发 REJECTED。
+    * UNKNOWN — 仅当连产品身份、目标市场或法规适用性都无法可靠确定时使用；若已有用户声明的品类/市场和法规锚点，应使用 WARN 并列出待补证据。
 - `decisionView.riskLevel`：四个枚举的字符串之一，CRITICAL/HIGH/MEDIUM/LOW。
 - `decisionView.nodes[].severity`：四个枚举的字符串之一，critical/high/medium/info。这是每个节点对整体风险的贡献——风险等级规则：
     * critical — 节点证据已构成上市阻断（例如缺 CE/UKCA、铭牌缺失、电池产品不合规等）
@@ -113,7 +118,7 @@ REPORT_PACKAGE_SYSTEM_PROMPT = """你是跨境电商合规与商业化专家。�
     * medium — 节点证据需要二次审视（与具体类目对应法规有差异、备案未提交）
     * info — 节点证据属于流程性提醒（已识别、已检索、已合成），没有具体风险
 - `decisionView.riskLevel` 必须等于 nodes 中所有 severity 的最大值；只要任一节点是 critical 或 high，决策层 riskLevel 必须是 CRITICAL/HIGH；全 info 时才是 LOW。
-- vision 节点如果发现图片不清晰 / 找不到铭牌 / 没有强制标志，severity 默认 critical。
+- vision 节点如果图片不清晰、铭牌未展示或标志不可辨认，severity 为 medium，并明确写“图片无法验证”；只有清晰可见的事实直接证明违规时才为 critical。
 - retriever 节点如果召回 0 条相关法规、或仅召回通用条款，severity 默认 high。
 - generate 节点（产生 LLM 文本）如果 complianceReport 中的事实无来源 [法规/条款] 引用，severity 默认 medium。
 

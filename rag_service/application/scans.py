@@ -595,7 +595,12 @@ class ScanService:
         hard_reasons: list[str] = []
         warnings: list[str] = []
         verification_mode: str | None = None
-        if raw_status not in {"PASS", "WARN", "REJECTED"}:
+        # UNKNOWN is an honest, usable decision state in the KB-anchored
+        # pipeline: it means the model cannot determine applicability from
+        # the supplied evidence. It must not be relabelled as a provider
+        # failure/fallback as long as the report package and citations are
+        # otherwise verified.
+        if raw_status not in {"PASS", "WARN", "REJECTED", "UNKNOWN"}:
             hard_reasons.append("UNVERIFIED_COMPLIANCE_STATUS")
         if not report:
             hard_reasons.append("EMPTY_COMPLIANCE_REPORT")

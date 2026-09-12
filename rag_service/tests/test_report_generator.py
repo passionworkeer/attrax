@@ -2,7 +2,7 @@
 import sys, os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
-from rag_service.generate.report_generator import ReportGenerator
+from rag_service.generate.report_generator import REPORT_PACKAGE_SYSTEM_PROMPT, ReportGenerator
 from rag_service.schemas.report_package import ReportPackage
 
 
@@ -136,6 +136,13 @@ def test_generate_report_package_includes_visual_observation_without_treating_it
     assert "视觉观察（仅代表图片可见内容，不是法规或认证结论）" in seen["prompt"]
     assert "铭牌区域未展示" in seen["prompt"]
     assert "图片未展示或无法辨认" in seen["system"]
+
+
+def test_report_package_prompt_treats_unreadable_visual_evidence_as_warn_not_rejection():
+    """A blurry label is an evidence gap, never a fabricated non-compliance finding."""
+    assert "WARN — 产品类别和适用法规已可判断" in REPORT_PACKAGE_SYSTEM_PROMPT
+    assert "绝不能触发 REJECTED" in REPORT_PACKAGE_SYSTEM_PROMPT
+    assert "severity 为 medium" in REPORT_PACKAGE_SYSTEM_PROMPT
 
 
 def test_generate_report_package_repairs_malformed_json_once(monkeypatch):
