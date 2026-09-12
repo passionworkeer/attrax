@@ -1,5 +1,5 @@
 """
-test_generator_node.py - Unit tests for rag_service.orchestrator.nodes.generator
+test_generator_node.py - Unit tests for rag_service.pipeline.nodes.generator
 
 Covers:
 - generator_node(state) with edge cases
@@ -16,7 +16,7 @@ from unittest.mock import MagicMock, patch
 
 
 # ── Subject under test ──────────────────────────────────────────────────────
-from rag_service.orchestrator.nodes import generator as generator_module
+from rag_service.pipeline.nodes import generator as generator_module
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────

@@ -1,5 +1,5 @@
 """
-pytest unit tests for rag_service/orchestrator/nodes/vision.py
+pytest unit tests for rag_service.pipeline.nodes.vision.py
 
 Covers:
 - _parse_vision_text()
@@ -15,7 +15,7 @@ import pytest
 from unittest.mock import patch, MagicMock, call
 import urllib.error
 
-from rag_service.orchestrator.nodes.vision import (
+from rag_service.pipeline.nodes.vision import (
     _parse_vision_text,
     _build_vision_enriched_query,
     _empty_vision_result,
@@ -33,7 +33,7 @@ from rag_service.orchestrator.nodes.vision import (
 @pytest.fixture
 def clean_analyzer_state():
     """Reset module-level analyzer state before and after each test."""
-    import rag_service.orchestrator.nodes.vision as mod
+    import rag_service.pipeline.nodes.vision as mod
     mod._analyzer_instance = None
     mod._is_injected = False
     yield
@@ -566,7 +566,7 @@ class TestVisionAnalysisNode:
         result = vision_analysis_node(state)
         assert result["agent_trace"][-1]["status"] == "precomputed"
 
-    @patch("rag_service.orchestrator.nodes.vision._get_analyzer")
+    @patch("rag_service.pipeline.nodes.vision._get_analyzer")
     def test_no_api_key_returns_empty_result(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = ""
@@ -581,7 +581,7 @@ class TestVisionAnalysisNode:
         assert result["vision_result"] == _empty_vision_result()
         assert result["agent_trace"][-1]["status"] == "no_api_key"
 
-    @patch("rag_service.orchestrator.nodes.vision._get_analyzer")
+    @patch("rag_service.pipeline.nodes.vision._get_analyzer")
     def test_normal_flow_enriches_query(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = "test-key"
@@ -605,7 +605,7 @@ class TestVisionAnalysisNode:
         assert "CE" in result["query"]
         assert result["agent_trace"][-1]["node"] == "vision"
 
-    @patch("rag_service.orchestrator.nodes.vision._get_analyzer")
+    @patch("rag_service.pipeline.nodes.vision._get_analyzer")
     def test_no_enriched_query_preserves_original(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = "test-key"
@@ -627,7 +627,7 @@ class TestVisionAnalysisNode:
         result = vision_analysis_node(state)
         assert result["query"] == "出口欧盟"
 
-    @patch("rag_service.orchestrator.nodes.vision._get_analyzer")
+    @patch("rag_service.pipeline.nodes.vision._get_analyzer")
     def test_exception_returns_empty_result(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = "test-key"
@@ -643,7 +643,7 @@ class TestVisionAnalysisNode:
         assert result["vision_result"] == _empty_vision_result()
         assert result["agent_trace"][-1]["status"] == "error"
 
-    @patch("rag_service.orchestrator.nodes.vision._get_analyzer")
+    @patch("rag_service.pipeline.nodes.vision._get_analyzer")
     def test_agent_trace_returns_only_new_entry(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = "test-key"
