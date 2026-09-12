@@ -676,6 +676,22 @@ class ScanService:
             "mode": verification_mode,
             "strength": "strong" if verification_mode in _STRONG_VERIFICATION_MODES else "weak",
         }
+        # The result page deliberately renders the actual provider and elapsed
+        # pipeline time instead of demo's fixed "demo · 0.0 s". Preserve the
+        # generator's provider and aggregate all measured trace-node timings at
+        # the public v1 boundary, where both snake_case and camelCase runner
+        # payloads have already been normalized.
+        audit_metadata = _mapping(package.get("auditMetadata")) if package else {}
+        rag_provider = _nested_string(audit_metadata, "provider")
+        latency_ms = 0
+        for entry in trace:
+            if not isinstance(entry, Mapping):
+                continue
+            if not rag_provider and _nested_string(entry, "node") == "generate":
+                rag_provider = _nested_string(entry, "provider")
+            duration = entry.get("durationMs")
+            if isinstance(duration, (int, float)) and not isinstance(duration, bool) and duration >= 0:
+                latency_ms += int(duration)
         result = {
             "sessionId": job.session_id,
             "productName": job.product,
@@ -690,6 +706,8 @@ class ScanService:
             "degradedReasons": hard_reasons,
             "warnings": warnings,
             "citationVerification": citation_verification,
+            "ragProvider": rag_provider or None,
+            "latencyMs": latency_ms,
             "source": "fallback" if status == "degraded" else "real",
         }
         return result, status, degraded_reason

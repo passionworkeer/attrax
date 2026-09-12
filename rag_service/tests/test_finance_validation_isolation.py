@@ -115,7 +115,7 @@ def test_finance_invalid_does_not_downgrade_status(tmp_path):
             "report": "# 真实合规报告",
             "agent_trace": [
                 {"node": "vision", "durationMs": 5054},
-                {"node": "generate", "status": "success", "durationMs": 48484},
+                {"node": "generate", "provider": "minimax", "status": "success", "durationMs": 48484},
                 {"node": "verify", "status": "success", "matched": 1},
             ],
             "loop_count": 0,
@@ -141,6 +141,8 @@ def test_finance_invalid_does_not_downgrade_status(tmp_path):
         assert public["result"]["source"] == "real", (
             f"expected source=real, got {public['result']['source']!r}"
         )
+        assert public["result"]["ragProvider"] == "minimax"
+        assert public["result"]["latencyMs"] == 53538
         assert "REPORT_PACKAGE_NOT_VERIFIED" not in public["result"]["degradedReasons"], (
             "finance failure must not flip package-level validation"
         )
