@@ -113,17 +113,15 @@ function TracePageInner() {
     }
   };
 
-  // P0.5: distinguish real API stats from demo defaults so users aren't
-  // misled by silent fallback numbers. hasRealTrace means we got a
-  // non-empty payload from /api/trace.
-  const hasRealTrace = Boolean(traceData);
+  const isDemo = sessionId === "demo" || !sessionId;
+  const hasRealTrace = Boolean(traceData?.traceNodes?.length);
   const totalTime = traceData?.totalTime
     ? parseFloat(traceData.totalTime).toFixed(1)
-    : "8.8";
-  const steps = traceData?.steps ?? 9;
-  const markets = traceData?.markets ?? 4;
-  const score = traceData?.score ?? 85;
-  const grade = traceData?.grade ?? "B";
+    : isDemo ? "8.8" : "—";
+  const steps = traceData?.steps ?? (isDemo ? 9 : "—");
+  const markets = traceData?.markets ?? (isDemo ? 4 : "—");
+  const score = traceData?.score ?? (isDemo ? 85 : undefined);
+  const grade = traceData?.grade ?? (isDemo ? "B" : undefined);
 
   if (sessionId && sessionId !== "demo" && settledSessionId !== sessionId) {
     return (
@@ -150,13 +148,12 @@ function TracePageInner() {
         </button>
       </div>
 
-      {/* B-1: explicit failure banner so the Demo badge isn't the only signal */}
       {loadFailed && !hasRealTrace && (
         <div role="alert" className="mx-auto mt-4 max-w-6xl px-6">
           <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-5 py-3 text-sm text-red-200">
             {locale === "zh"
-              ? "Trace 数据加载失败，以下展示的是 Demo 默认值，不是本次扫描的真实数据。"
-              : "Trace data failed to load. The values below are Demo defaults, not real scan data."}
+              ? "执行溯源数据加载失败；本页不会以示例数据替代本次扫描结果。"
+              : "Trace data failed to load; this page will not replace the scan result with sample data."}
           </div>
         </div>
       )}
@@ -175,9 +172,7 @@ function TracePageInner() {
                 </div>
                 <div className="min-w-0 flex items-center gap-3">
                   <h1 className="text-3xl font-bold tracking-tight text-white max-sm:text-2xl">{t("trace.title")}</h1>
-                  {/* P0.5: explicit demo badge when we're showing fallback
-                      numbers rather than real telemetry. */}
-                  {!hasRealTrace && (
+                  {isDemo && (
                     <span className="inline-flex items-center rounded-full border border-blaze-cyan/40 bg-blaze-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blaze-cyan">
                       Demo
                     </span>
@@ -214,6 +209,7 @@ function TracePageInner() {
           score={score}
           grade={grade}
           traceNodes={traceData ? traceData.traceNodes : undefined}
+          isDemo={isDemo}
         />
       </div>
 

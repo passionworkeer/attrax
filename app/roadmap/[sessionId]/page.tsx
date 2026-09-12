@@ -140,18 +140,24 @@ function RoadmapSessionPageInner({
     }
   };
 
+  const isDemo = sessionId === "demo" || !sessionId;
   const hasRealRoadmap = Boolean(roadmapData?.items?.length);
-
-  const totalDays = roadmapData?.totalDays ?? 63;
-  const totalCost = roadmapData?.totalCost ?? "¥20K+";
-  const progress = roadmapData?.progress ?? 14;
-  const steps = roadmapData?.items?.length ?? 7;
-
-  const items = roadmapData?.items ?? getDefaultRoadmapItems();
+  const hasRoadmapToDisplay = hasRealRoadmap || isDemo;
+  const items = hasRealRoadmap
+    ? roadmapData!.items!
+    : isDemo
+      ? getDefaultRoadmapItems()
+      : [];
+  const totalDays = roadmapData?.totalDays ?? (isDemo ? 63 : 0);
+  const totalCost = roadmapData?.totalCost ?? (isDemo ? "¥20K+" : "—");
+  const progress = roadmapData?.progress ?? (isDemo ? 14 : 0);
+  const displayTotalDays = hasRoadmapToDisplay ? totalDays : "—";
+  const displayProgress = hasRoadmapToDisplay ? progress : "—";
+  const steps = roadmapData?.items?.length ?? (isDemo ? 7 : "—");
 
   // 把当前渲染中的 items 适配成 PDF/DOCX 客户端导出需要的 RoadmapContent。
   // 真实 API(/api/roadmap/[sessionId])返回的 items 已是 camelCase,可以直接复用;
-  // demo / fallback 走 getDefaultRoadmapItems() 也要做一次中英文按 locale 拆。
+  // Demo items are only present for the explicit demo entry point.
   function buildRoadmapContent(dlLocale: "zh" | "en"): RoadmapContent {
     return {
       sessionId: sessionId ?? "demo",
@@ -199,13 +205,12 @@ function RoadmapSessionPageInner({
         </button>
       </div>
 
-      {/* B-1: failure banner — make Demo badge explicit, not the only signal */}
       {loadFailed && !hasRealRoadmap && (
         <div role="alert" className="mx-auto mt-4 max-w-6xl px-6">
           <div className="rounded-2xl border border-red-500/40 bg-red-500/10 px-5 py-3 text-sm text-red-200">
             {locale === "zh"
-              ? "路线图数据加载失败，以下展示的是 Demo 默认值，不是本次扫描的真实路线图。"
-              : "Roadmap data failed to load. The items below are Demo defaults, not the real scan roadmap."}
+              ? "路线图数据加载失败；本页不会以示例计划替代本次扫描结果。"
+              : "Roadmap data failed to load; this page will not replace the scan result with a sample plan."}
           </div>
         </div>
       )}
@@ -224,7 +229,7 @@ function RoadmapSessionPageInner({
                 </div>
                 <div className="min-w-0 flex items-center gap-3">
                   <h1 className="text-3xl font-bold tracking-tight text-white max-sm:text-2xl">{t("roadmap.title")}</h1>
-                  {!hasRealRoadmap && (
+                  {isDemo && (
                     <span className="inline-flex items-center rounded-full border border-blaze-cyan/40 bg-blaze-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blaze-cyan">
                       Demo
                     </span>
@@ -237,7 +242,7 @@ function RoadmapSessionPageInner({
             {/* Stats */}
             <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 lg:w-auto lg:flex lg:items-center lg:gap-4">
               <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
-                <div className="text-2xl font-black text-blaze-red">{totalDays}</div>
+                <div className="text-2xl font-black text-blaze-red">{displayTotalDays}</div>
                 <div className="text-xs text-slate-400">{t("roadmap.totalDays")}</div>
               </div>
               <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
@@ -249,7 +254,7 @@ function RoadmapSessionPageInner({
                 <div className="text-xs text-slate-400">{t("roadmap.stepsCount")}</div>
               </div>
               <div className="min-w-0 text-center rounded-2xl border border-white/10 bg-slate-900/50 px-3 py-3 shadow-sm backdrop-blur sm:px-5">
-                <div className="text-2xl font-black text-blaze-red">{progress}%</div>
+                <div className="text-2xl font-black text-blaze-red">{displayProgress}{hasRoadmapToDisplay ? "%" : ""}</div>
                 <div className="text-xs text-slate-400">{t("roadmap.progress")}</div>
               </div>
             </div>
@@ -258,28 +263,34 @@ function RoadmapSessionPageInner({
             <span className="text-xs uppercase tracking-[0.2em] text-white/45">
               {locale === "zh" ? "可下载文件" : "Download files"}
             </span>
-            <DownloadButtons
-              label={t("roadmap.title")}
-              onPdf={async (dlLocale) => downloadRoadmapReportAsPdf(buildRoadmapContent(dlLocale), dlLocale)}
-              onDocx={async (dlLocale) => downloadRoadmapReportAsDocx(buildRoadmapContent(dlLocale), dlLocale)}
-            />
-            <a
-              href={`/api/report/${sessionId || "demo"}/roadmap?format=csv&lang=${locale}`}
-              download
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "sm" }),
-                "rounded-full border border-white/10 bg-white/7 text-white hover:bg-white/12",
-              )}
-            >
-              CSV {locale.toUpperCase()}
-            </a>
+            {hasRoadmapToDisplay ? (
+              <>
+                <DownloadButtons
+                  label={t("roadmap.title")}
+                  onPdf={async (dlLocale) => downloadRoadmapReportAsPdf(buildRoadmapContent(dlLocale), dlLocale)}
+                  onDocx={async (dlLocale) => downloadRoadmapReportAsDocx(buildRoadmapContent(dlLocale), dlLocale)}
+                />
+                <a
+                  href={`/api/report/${sessionId || "demo"}/roadmap?format=csv&lang=${locale}`}
+                  download
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "sm" }),
+                    "rounded-full border border-white/10 bg-white/7 text-white hover:bg-white/12",
+                  )}
+                >
+                  CSV {locale.toUpperCase()}
+                </a>
+              </>
+            ) : (
+              <span className="text-xs text-amber-300">{locale === "zh" ? "路线图不可导出" : "Roadmap export unavailable"}</span>
+            )}
           </div>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-6 py-12">
-        <ComplianceTimeline locale={locale} autoPlay={false} items={items} />
+        <ComplianceTimeline locale={locale} autoPlay={false} items={items} isDemo={isDemo} />
       </div>
     </div>
   );
