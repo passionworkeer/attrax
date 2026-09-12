@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AgentDecisionTree from "@/components/trace/AgentDecisionTree";
 import { buttonVariants } from "@/components/ui/button";
@@ -53,13 +53,9 @@ function TraceSessionPageInner({
   const router = useRouter();
   const { t, locale } = useTranslation();
 
-  // 解析 path segment(异步 params)→ 喂给 useSessionId 兜底
-  const [paramSessionId, setParamSessionId] = useState<string>("");
-  useEffect(() => {
-    params.then((p) => setParamSessionId(p.sessionId));
-  }, [params]);
-
-  const sessionId = useSessionId(paramSessionId);
+  // 解析 path segment(异步 params)使用 React.use
+  const resolvedParams = use(params);
+  const sessionId = useSessionId(resolvedParams.sessionId);
 
   const [settledSessionId, setSettledSessionId] = useState("");
   const [traceData, setTraceData] = useState<TraceStats | null>(null);

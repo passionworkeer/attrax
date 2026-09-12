@@ -179,22 +179,35 @@ export default function ResultPage() {
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
                 <SectionEyebrow>{locale === "zh" ? "STEP 01 · 先看结论" : "STEP 01 · Verdict"}</SectionEyebrow>
-                <span className={cn("rounded-full border px-3 py-1 text-xs", severityClass(activeRisk.severity))}>
+                <span className={cn(
+                  "rounded-full border px-3 py-1 text-xs",
+                  criticalCount > 0
+                    ? severityClass("critical")
+                    : (result.source === "fallback" ||
+                       result.reportPackage?.auditMetadata?.validationStatus === "invalid" ||
+                       result.reportPackage?.auditMetadata?.validationStatus === "fallback")
+                    ? "border-amber-500/40 bg-amber-500/10 text-amber-300"
+                    : severityClass(activeRisk.severity)
+                )}>
                   {criticalCount > 0
                     ? locale === "zh" ? "暂缓上架" : "Hold launch"
+                    : (result.source === "fallback" ||
+                       result.reportPackage?.auditMetadata?.validationStatus === "invalid" ||
+                       result.reportPackage?.auditMetadata?.validationStatus === "fallback")
+                    ? locale === "zh" ? "待人工核验" : "Needs verification"
                     : locale === "zh" ? "可进入复核" : "Ready for review"}
                 </span>
               </div>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl">{displayProductName}</h1>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-white/62">
                 {locale === "zh"
-                  ? `已完成 ${result.images.length} 张图片分析。先处理 ${criticalCount} 个高危风险，再进入 ${result.targetMarkets.join(" / ")} 市场上架复核。`
-                  : `${result.images.length} images analyzed. Close ${criticalCount} critical risks before ${result.targetMarkets.join(" / ")} launch review.`}
+                  ? `已完成 ${result.images?.length ?? 0} 张图片分析。先处理 ${criticalCount} 个高危风险，再进入 ${(result.targetMarkets ?? []).join(" / ")} 市场上架复核。`
+                  : `${result.images?.length ?? 0} images analyzed. Close ${criticalCount} critical risks before ${(result.targetMarkets ?? []).join(" / ")} launch review.`}
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
-                {result.targetMarkets.map((market) => <GlowPill key={market}>{market} {copy.result.marketSuffix}</GlowPill>)}
+                {(result.targetMarkets ?? []).map((market) => <GlowPill key={market}>{market} {copy.result.marketSuffix}</GlowPill>)}
                 <GlowPill>{displayProductCategory}</GlowPill>
-                <GlowPill>{result.riskPoints.length} {copy.result.hotspotsCountSuffix}</GlowPill>
+                <GlowPill>{result.riskPoints?.length ?? 0} {copy.result.hotspotsCountSuffix}</GlowPill>
               </div>
               <div className="mt-6 grid overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.045] sm:grid-cols-4">
                 {[

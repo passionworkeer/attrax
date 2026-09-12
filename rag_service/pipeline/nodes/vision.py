@@ -100,7 +100,7 @@ class VisionAnalyzer:
         from rag_service.config import resolve_minimax_config
         self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
 
-    def _call_mimotalk(self, messages: list[dict], max_tokens: int = 512) -> str:
+    def _call_mimotalk(self, messages: list[dict], max_tokens: int = 1536) -> str:
         """Call the MiniMax Anthropic-compatible /messages endpoint.
 
         Retries up to 3 times on network/timeout class errors with exponential

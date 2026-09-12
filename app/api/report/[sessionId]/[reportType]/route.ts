@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getResultForReport, getTextReportPayload, localizeResult, type BlazeExportFormat, type BlazeReportLocale, type BlazeReportType } from "@/lib/reporting";
+import { getDefaultFormat, getResultForReport, getTextReportPayload, localizeResult, type BlazeExportFormat, type BlazeReportLocale, type BlazeReportType } from "@/lib/reporting";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 import { getScan, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
@@ -112,7 +112,8 @@ export async function GET(
   }
 
   const normalizedType = reportType as BlazeReportType;
-  const format = requestedFormat ?? "md";
+  const defaultFmt = getDefaultFormat(normalizedType);
+  const format = requestedFormat ?? defaultFmt;
   const localizedResult = localizeResult(result, locale);
 
   if (!validFormats.includes(format)) {
@@ -141,13 +142,50 @@ export async function GET(
     );
   }
 
-  const payload = getTextReportPayload(normalizedType, localizedResult, format, locale);
+  if (normalizedType === "roadmap" && format !== "csv") {
+    return NextResponse.json(
+      {
+        error: {
+          code: "BAD_REPORT_FORMAT",
+          message: "路线图导出仅支持 CSV 格式。",
+        },
+      },
+      { status: 400 }
+    );
+  }
 
-  return new NextResponse(payload.body, {
-    headers: {
-      "Content-Type": payload.contentType,
-      "Content-Disposition": `attachment; filename="${payload.filename}"`,
-      "Cache-Control": "no-store",
-    },
-  });
+  if ((normalizedType === "compliance" || normalizedType === "profit") && format !== "md") {
+    return NextResponse.json(
+      {
+        error: {
+          code: "BAD_REPORT_FORMAT",
+          message: "合规与决策报告仅支持 Markdown 格式。",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const payload = getTextReportPayload(normalizedType, localizedResult, format, locale);
+
+    return new NextResponse(payload.body, {
+      headers: {
+        "Content-Type": payload.contentType,
+        "Content-Disposition": `attachment; filename="${payload.filename}"`,
+        "Cache-Control": "no-store",
+      },
+    });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Failed to generate report payload";
+    return NextResponse.json(
+      {
+        error: {
+          code: "REPORT_GENERATION_FAILED",
+          message,
+        },
+      },
+      { status: 500 }
+    );
+  }
 }

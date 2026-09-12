@@ -310,19 +310,58 @@ Generated at: {{GENERATED_AT}}
 Score scale: 100 max, A≥85 / B≥70 / C≥55 / D<55
 `;
 
+function sanitizeCsvCell(cell: unknown): string {
+  const str = String(cell ?? "");
+  // Neutralize CSV formula injection: if cell starts with =, +, -, @, \t, \r, prefix with a single quote '
+  const sanitized = /^[=+\-@\t\r]/.test(str) ? `'${str}` : str;
+  return `"${sanitized.replaceAll('"', '""')}"`;
+}
+
 export function buildRoadmapCsv(result: ScanResult, locale: BlazeReportLocale) {
   const localized = localizeResult(result, locale);
+  const items = result.reportPackage?.roadmap?.items;
+
+  if (items && items.length > 0) {
+    if (locale === "en") {
+      const headers = ["Index", "Title", "Description", "Estimated Days", "Cost", "Required Documents"];
+      const rows = items.map((item, idx) => [
+        String(idx + 1),
+        item.titleEn ?? item.title_en ?? item.title ?? "",
+        item.descriptionEn ?? item.description_en ?? item.description ?? "",
+        item.estimatedDays != null ? `${item.estimatedDays} days` : (item.estimated_days != null ? `${item.estimated_days} days` : ""),
+        item.cost ?? "",
+        (item.documentsEn ?? item.documents_en ?? item.documents ?? []).join("; "),
+      ]);
+      return [headers, ...rows]
+        .map((row) => row.map(sanitizeCsvCell).join(","))
+        .join("\n");
+    }
+
+    const headers = ["序号", "事项", "描述", "预估耗时", "预估费用", "所需资料"];
+    const rows = items.map((item, idx) => [
+      String(idx + 1),
+      item.title ?? item.titleEn ?? "",
+      item.description ?? item.descriptionEn ?? "",
+      item.estimatedDays != null ? `${item.estimatedDays} 天` : (item.estimated_days != null ? `${item.estimated_days} 天` : ""),
+      item.cost ?? "",
+      (item.documents ?? item.documentsEn ?? []).join("；"),
+    ]);
+    return [headers, ...rows]
+      .map((row) => row.map(sanitizeCsvCell).join(","))
+      .join("\n");
+  }
+
   if (locale === "en") {
     const rows = [
       ["Phase", "Action", "Output", "Note"],
       ["Document freeze", "Collect specification, BOM, nameplate, and supplier files", "Base product package", localized.productName ?? ""],
       ["Label remediation", "Restore CE/UKCA, IO specs, and warning copy", "Shell and packaging artwork", marketList(localized)],
-      ["Risk review", "Confirm hotspot and citation closure", "Risk summary", `${localized.riskPoints.length} hotspots`],
+      ["Risk review", "Confirm hotspot and closure", "Risk summary", `${localized.riskPoints.length} hotspots`],
       ["Formal certification", "Enter lab testing and DoC flow", "Test and declaration files", "Recommended week 3-5"],
       ["Listing review", "Align listing, hero image, and manual", "Launch package", "Only enter the market after closure"],
     ];
     return rows
-      .map((row) => row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(","))
+      .map((row) => row.map(sanitizeCsvCell).join(","))
       .join("\n");
   }
 
@@ -336,7 +375,7 @@ export function buildRoadmapCsv(result: ScanResult, locale: BlazeReportLocale) {
   ];
 
   return rows
-    .map((row) => row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(","))
+    .map((row) => row.map(sanitizeCsvCell).join(","))
     .join("\n");
 }
 

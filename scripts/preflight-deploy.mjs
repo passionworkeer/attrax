@@ -4,10 +4,9 @@ import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const REQUIRED_DATA_PATHS = [
-  "data/faiss/legal_chunks.index",
-  "data/faiss/legal_chunks_meta.json",
-  "data/faiss/index_manifest.json",
-  "data/corpus/processed",
+  "data/kb/anchors",
+  "data/regulations/regulations_index.json",
+  "data/regulation_sources/official_sources.json",
 ];
 
 function parseEnv(content) {
@@ -69,11 +68,6 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
     } else if (isExamplePlaceholder(minimaxApiKey)) {
       errors.push("MINIMAX_API_KEY still contains the production example placeholder.");
     }
-    if (!hasValue(env.MODELSCOPE_API_KEY)) {
-      errors.push("MODELSCOPE_API_KEY is required when DEMO_MODE is not true.");
-    } else if (isExamplePlaceholder(env.MODELSCOPE_API_KEY)) {
-      errors.push("MODELSCOPE_API_KEY still contains the production example placeholder.");
-    }
     if (!hasValue(env.RAG_INTERNAL_SECRET)) {
       errors.push("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
     } else if (
@@ -98,7 +92,7 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
       errors.push(`${relativePath} is missing.`);
       continue;
     }
-    if (relativePath.endsWith("processed") && !statSync(path).isDirectory()) {
+    if (relativePath.endsWith("anchors") && !statSync(path).isDirectory()) {
       errors.push(`${relativePath} must be a directory.`);
     }
   }
@@ -127,25 +121,21 @@ function run(command, args, options = {}) {
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
-function validateIndexBundle(root) {
-  const python = commandExists("python", ["--version"])
-    ? "python"
-    : commandExists("python3", ["--version"])
-      ? "python3"
-      : null;
-  if (!python) {
-    console.error("Python is required to validate the sealed FAISS bundle.");
+function validateKnowledgeAnchors(root) {
+  const indexFile = join(root, "data/regulations/regulations_index.json");
+  if (!existsSync(indexFile)) {
+    console.error("data/regulations/regulations_index.json is missing.");
     process.exit(1);
   }
-  const script = [
-    "from rag_service.retrieval.index_integrity import validate_index_bundle;",
-    "validate_index_bundle(",
-    "'data/faiss/legal_chunks.index',",
-    "'data/faiss/legal_chunks_meta.json',",
-    "'data/faiss/index_manifest.json',",
-    "require_hashes=True)",
-  ].join("");
-  run(python, ["-c", script], { cwd: root });
+  try {
+    const raw = readFileSync(indexFile, "utf8");
+    const parsed = JSON.parse(raw);
+    const count = Array.isArray(parsed) ? parsed.length : Object.keys(parsed).length;
+    console.log(`Knowledge anchors verified: ${count} entries.`);
+  } catch (err) {
+    console.error("Failed to parse regulations_index.json:", err);
+    process.exit(1);
+  }
 }
 
 function printValidation(result) {
@@ -163,7 +153,7 @@ function main() {
   const result = validateDeployment(root);
   printValidation(result);
   if (!result.ok) process.exit(1);
-  validateIndexBundle(root);
+  validateKnowledgeAnchors(root);
   if (process.argv.includes("--check-only")) return;
 
   if (!commandExists("docker", ["--version"])) {

@@ -339,7 +339,7 @@ export default function UploadPage() {
 
     const remainingSlots = MAX_DOCUMENT_FILES - documentFiles.length;
     if (remainingSlots <= 0) {
-      setDocumentError(copy.upload.documents.invalidType);
+      setDocumentError(copy.upload.documents.maxCountExceeded ?? `最多支持上传 ${MAX_DOCUMENT_FILES} 个文档文件`);
       return;
     }
 
@@ -347,7 +347,9 @@ export default function UploadPage() {
     // added twice (common when users drag the same file across multiple slots).
     const seen = new Set(documentFiles.map((f) => `${f.name}|${f.size}|${f.lastModified}`));
     const accepted: File[] = [];
-    let firstError: string | null = null;
+    let firstError: string | null = rawFiles.length > remainingSlots
+      ? (copy.upload.documents.maxCountExceeded ?? `最多支持上传 ${MAX_DOCUMENT_FILES} 个文档文件`)
+      : null;
 
     for (const file of rawFiles.slice(0, remainingSlots)) {
       const key = `${file.name}|${file.size}|${file.lastModified}`;

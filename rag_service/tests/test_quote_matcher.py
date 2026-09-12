@@ -386,11 +386,12 @@ class TestVerifierNodeIntegration:
             },
         })
         citation = result["report_package"]["citations"][0]
-        assert citation["match_status"] == "matched"
-        assert citation["quote_span"] is not None
-        assert citation["quote_provenance"] == "canonical_regulation_excerpt"
+        assert citation["match_status"] == "fallback_article_only"
+        assert citation.get("canonical_excerpt")
+        assert citation["quote_provenance"] == "llm_paraphrase_unverified"
         assert result["report_package"]["auditMetadata"]["verificationMode"] == "kb_exact_quote"
-        assert result["agent_trace"][0]["canonical_quote_recovery_count"] == 1
+        assert result["report_package"]["auditMetadata"]["canonicalQuoteAttachedCount"] == 1
+        assert result["agent_trace"][0]["canonical_quote_attached_count"] == 1
 
     def test_handles_empty_citations(self):
         from rag_service.pipeline.nodes.verifier import verifier_node

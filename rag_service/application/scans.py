@@ -230,16 +230,17 @@ class ScanService:
     def _schedule_retry(self, job: ScanJob, delay: float) -> None:
         async def retry_later() -> None:
             await asyncio.sleep(delay)
-            while True:
-                current = self._session_tasks.get(job.session_id)
-                if current is None or current.done():
-                    break
-                await asyncio.sleep(0)
-            if current is not None:
-                self._session_tasks.pop(job.session_id, None)
-            self._spawn(job.job_id, job.session_id)
+            current = self._session_tasks.get(job.session_id)
+            if current is not None and not current.done():
+                try:
+                    await asyncio.wait_for(asyncio.shield(current), timeout=10.0)
+                except (asyncio.TimeoutError, asyncio.CancelledError):
+                    pass
+            self._session_tasks.pop(job.session_id, None)
+            if self.backend.get_session(job.session_id) is not None:
+                self._spawn(job.job_id, job.session_id)
 
-        self._track_task(asyncio.create_task(retry_later()))
+        self._track_task(asyncio.create_task(retry_later()), session_id=job.session_id)
 
     def resume_pending(self) -> None:
         self.backend.purge_expired_sessions()
@@ -685,7 +686,7 @@ class ScanService:
         warnings = list(dict.fromkeys(warnings))
         degraded_reason = ",".join(hard_reasons) or None
         status: Literal["ready", "degraded"] = "degraded" if hard_reasons else "ready"
-        if status == "degraded" and compliance_status in {"PASS", "WARN"}:
+        if status == "degraded":
             compliance_status = "UNKNOWN"
 
         citation_verification = {

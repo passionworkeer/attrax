@@ -24,6 +24,42 @@ export interface FallbackNoticeProps {
 export function FallbackNotice({ validationStatus, fallbackReason }: FallbackNoticeProps) {
   const { t } = useTranslation();
 
+  if (validationStatus === "invalid") {
+    return (
+      <div
+        role="alert"
+        aria-live="assertive"
+        data-testid="invalid-notice"
+        className="mt-6 rounded-2xl border border-rose-500/70 bg-rose-500/20 px-5 py-4 shadow-[0_0_28px_rgba(244,63,94,0.25)]"
+      >
+        <div className="flex items-start gap-3">
+          <svg
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden
+            className="mt-0.5 size-5 shrink-0 text-rose-400"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <div className="min-w-0 flex-1">
+            <p className="text-sm font-bold text-rose-100">
+              {t("result.invalidNotice")}
+            </p>
+            {fallbackReason ? (
+              <p className="mt-1 font-mono text-[11px] text-rose-200/80">
+                [{fallbackReason}]
+              </p>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (validationStatus !== "fallback") return null;
 
   return (

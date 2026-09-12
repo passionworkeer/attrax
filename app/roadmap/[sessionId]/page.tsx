@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import ComplianceTimeline from "@/components/trace/ComplianceTimeline";
 import { buttonVariants } from "@/components/ui/button";
@@ -69,16 +69,9 @@ function RoadmapSessionPageInner({
   const router = useRouter();
   const { t, locale } = useTranslation();
 
-  // Unwrap the params Promise (Next.js 15+: dynamic params are async). The
-  // resolved sessionId is fed into useSessionId so the hook's existing
-  // query→param→storage precedence still works (a `?sessionId=` query, if
-  // present, wins over the path segment — matching the documented behavior).
-  const [paramSessionId, setParamSessionId] = useState<string>("");
-  useEffect(() => {
-    params.then((p) => setParamSessionId(p.sessionId));
-  }, [params]);
-
-  const sessionId = useSessionId(paramSessionId);
+  // Unwrap the params Promise using React.use (component is already under Suspense)
+  const resolvedParams = use(params);
+  const sessionId = useSessionId(resolvedParams.sessionId);
 
   const [settledSessionId, setSettledSessionId] = useState("");
   const [roadmapData, setRoadmapData] = useState<RoadmapData | null>(null);

@@ -20,10 +20,11 @@ import type {
 
 export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "en"): ComplianceReportResult {
   const severityRank: Record<RiskPoint["severity"], number> = { critical: 3, warning: 2, info: 1, unknown: 0 };
-  const topRank = result.riskPoints.reduce((acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0), 0);
+  const riskPoints = result.riskPoints ?? [];
+  const topRank = riskPoints.reduce((acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0), 0);
   const complianceStatus: ComplianceReportResult["complianceStatus"] =
     topRank >= 3 ? "REJECTED" : topRank >= 2 ? "WARN" : "PASS";
-  const traceNodes: ComplianceReportResult["agentTrace"] = result.riskPoints.map((rp) => ({
+  const traceNodes: ComplianceReportResult["agentTrace"] = riskPoints.map((rp) => ({
     node: `risk.${rp.riskId}`,
     label: rp.title,
     severity: rp.severity,
@@ -36,7 +37,7 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
     productCategory: result.productCategory,
     productName: result.productName,
     productNameEn: result.productNameEn,
-    targetMarkets: result.targetMarkets,
+    targetMarkets: result.targetMarkets ?? [],
     complianceScore: result.complianceScore,
     scoreGrade: result.scoreGrade,
     complianceReport: fallback,
@@ -47,8 +48,8 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
     kind: "demo",
     agentTrace: traceNodes,
     loopCount: 0,
-    retrievedChunks: result.riskPoints.flatMap((rp) =>
-      rp.regulations.map((rule) => ({
+    retrievedChunks: riskPoints.flatMap((rp) =>
+      (rp.regulations ?? []).map((rule) => ({
         regId: rule.regId,
         docName: rule.name,
         docNameEn: rule.nameEn,
@@ -61,8 +62,8 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
     // risk-point / checklist / image panel renders for demo presets too.
     // (Previously these were hardcoded to `undefined`, which silently
     // collapsed the entire rich section — see audit P0-A.)
-    images: result.images,
-    documents: result.documents.map((doc) => ({
+    images: result.images ?? [],
+    documents: (result.documents ?? []).map((doc) => ({
       documentId: doc.documentId,
       name: doc.name,
       nameEn: doc.nameEn,
@@ -71,8 +72,8 @@ export function scanResultToComplianceView(result: ScanResult, locale: "zh" | "e
       mimeType: doc.mimeType,
       url: doc.url,
     })),
-    riskPoints: result.riskPoints,
-    checklist: result.checklist,
+    riskPoints: riskPoints,
+    checklist: result.checklist ?? [],
     generatedAt: result.generatedAt,
     modelInfo: { ragProvider: "demo", latencyMs: 0 },
     source: "demo",
@@ -104,7 +105,8 @@ export function scanResultToRealComplianceView(
     info: 1,
     unknown: 0,
   };
-  const topRank = result.riskPoints.reduce(
+  const riskPoints = result.riskPoints ?? [];
+  const topRank = riskPoints.reduce(
     (acc, rp) => Math.max(acc, severityRank[rp.severity] ?? 0),
     0,
   );
@@ -134,7 +136,7 @@ export function scanResultToRealComplianceView(
     productCategory: result.productCategory,
     productName: result.productName,
     productNameEn: result.productNameEn,
-    targetMarkets: result.targetMarkets,
+    targetMarkets: result.targetMarkets ?? [],
     complianceScore: result.complianceScore,
     scoreGrade: result.scoreGrade,
     complianceReport,
@@ -144,8 +146,8 @@ export function scanResultToRealComplianceView(
     kind: "real",
     agentTrace,
     loopCount: typeof result.loopCount === "number" ? result.loopCount : 0,
-    retrievedChunks: result.riskPoints.flatMap((rp) =>
-      rp.regulations.map((rule) => ({
+    retrievedChunks: riskPoints.flatMap((rp) =>
+      (rp.regulations ?? []).map((rule) => ({
         regId: rule.regId,
         docName: rule.name,
         docNameEn: rule.nameEn,
@@ -160,8 +162,8 @@ export function scanResultToRealComplianceView(
     // checklist / image panel actually renders for real scans. Prior audit
     // P0-A: real scans used to silently drop these fields, hiding the
     // hotspot overlay, the rich risk cards, and the checklist entirely.
-    images: result.images,
-    documents: result.documents.map((doc) => ({
+    images: result.images ?? [],
+    documents: (result.documents ?? []).map((doc) => ({
       documentId: doc.documentId,
       name: doc.name,
       nameEn: doc.nameEn,
@@ -170,8 +172,8 @@ export function scanResultToRealComplianceView(
       mimeType: doc.mimeType,
       url: doc.url,
     })),
-    riskPoints: result.riskPoints,
-    checklist: result.checklist,
+    riskPoints: riskPoints,
+    checklist: result.checklist ?? [],
     generatedAt: result.generatedAt,
     reportPackage: result.reportPackage,
     modelInfo: {
@@ -354,7 +356,7 @@ export function getPreviewBullets(
   financialSummary: NonNullable<ScanResult["financialSummary"]>,
 ) {
   if (value === "roadmap") {
-    return result.checklist.slice(0, 3).map((item) => {
+    return (result.checklist ?? []).slice(0, 3).map((item) => {
       const category = locale === "en" ? item.categoryEn ?? item.category : item.category;
       const title = locale === "en" ? item.titleEn ?? item.title : item.title;
       return `${category}: ${title}`;
@@ -375,7 +377,7 @@ export function getPreviewBullets(
         ];
   }
 
-  return result.riskPoints.slice(0, 3).map((riskRaw) => {
+  return (result.riskPoints ?? []).slice(0, 3).map((riskRaw) => {
     const risk = localizeRiskPoint(locale, riskRaw);
     return `${risk.title}: ${risk.recommendedAction}`;
   });
@@ -422,7 +424,7 @@ export function buildRoadmapRows(
   unknownTime: string,
 ): RoadmapRow[] {
   return [
-    ...result.checklist.map((item, index) => ({
+    ...(result.checklist ?? []).map((item, index) => ({
       phase: locale === "en" ? item.categoryEn ?? item.category : item.category,
       time: localizeTimeText(locale, item.estimatedTime, unknownTime),
       owner:
@@ -437,8 +439,8 @@ export function buildRoadmapRows(
       owner: locale === "zh" ? "运营 / 法务" : "Operations / Legal",
       output:
         locale === "zh"
-          ? `确认 ${result.targetMarkets.join(" / ")} 市场风险与报告均已闭环`
-          : `Confirm ${result.targetMarkets.join(" / ")} risks and reports are closed`,
+          ? `确认 ${(result.targetMarkets ?? []).join(" / ")} 市场风险与报告均已闭环`
+          : `Confirm ${(result.targetMarkets ?? []).join(" / ")} risks and reports are closed`,
     },
   ];
 }

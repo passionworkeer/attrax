@@ -44,20 +44,27 @@ type RichRiskPoint = {
   description: string;
   descriptionEn?: string;
   severity: "critical" | "warning" | "info";
-  confidence: number;
-  imageId: string;
-  bbox: { x: number; y: number; w: number; h: number };
-  matched_regulations: Array<{ name: string; nameEn?: string; article: string }>;
-  suggestions: string;
+  confidence?: number;
+  imageId?: string;
+  bbox?: { x: number; y: number; w: number; h: number };
+  matched_regulations?: Array<{ name: string; nameEn?: string; article?: string }>;
+  regulations?: Array<{ name: string; nameEn?: string; article?: string; code?: string }>;
+  suggestions?: string;
   suggestionsEn?: string;
+  recommendedAction?: string;
+  recommendedActionEn?: string;
 };
 
 type RichChecklistItem = {
-  question: string;
+  question?: string;
   questionEn?: string;
-  answer: string;
+  title?: string;
+  titleEn?: string;
+  answer?: string;
   answerEn?: string;
-  status: "pass" | "fail" | "warn";
+  actionRequired?: string;
+  actionRequiredEn?: string;
+  status?: "pass" | "fail" | "warn";
 };
 
 export function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
@@ -160,8 +167,21 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
                   : risk.description;
               const riskSuggestions =
                 locale === "en"
-                  ? englishText(risk.suggestionsEn, englishText(risk.suggestions, ""))
-                  : risk.suggestions;
+                  ? englishText(
+                      risk.suggestionsEn,
+                      englishText(risk.suggestions, risk.recommendedActionEn ?? risk.recommendedAction ?? ""),
+                    )
+                  : risk.suggestions ?? risk.recommendedAction;
+              const matchedRegs =
+                risk.matched_regulations ??
+                risk.regulations?.map((r) => ({
+                  name: r.name,
+                  nameEn: r.nameEn,
+                  article: r.article ?? r.code ?? "",
+                })) ??
+                [];
+              const confidenceVal =
+                typeof risk.confidence === "number" ? risk.confidence : 0.95;
               return (
                 <div
                   key={risk.riskId}
@@ -200,15 +220,15 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
                             : "bg-blue-500/15 text-blaze-cyan",
                       )}
                     >
-                      {(risk.confidence * 100).toFixed(0)}%
+                      {(confidenceVal * 100).toFixed(0)}%
                     </span>
                   </div>
-                  {risk.matched_regulations.length > 0 && (
+                  {matchedRegs.length > 0 && (
                     <div className="mt-3 space-y-1">
                       <p className="text-xs font-medium text-slate-400">
                         {t("result.relatedRegulations")}:
                       </p>
-                      {risk.matched_regulations.map((reg, i) => (
+                      {matchedRegs.map((reg, i) => (
                         <div
                           key={i}
                           className="flex items-center gap-2 text-xs text-slate-400"
@@ -221,8 +241,12 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
                                 )
                               : reg.name}
                           </span>
-                          <span className="text-slate-600">·</span>
-                          <span>{reg.article}</span>
+                          {reg.article && (
+                            <>
+                              <span className="text-slate-600">·</span>
+                              <span>{reg.article}</span>
+                            </>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -249,12 +273,13 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
             {richChecklist.map((item, i) => {
               const question =
                 locale === "en"
-                  ? englishText(item.questionEn, englishText(item.question, "Checklist question"))
-                  : item.question;
+                  ? englishText(item.questionEn, englishText(item.question, item.titleEn ?? item.title ?? "Checklist question"))
+                  : item.question ?? item.title;
               const answer =
                 locale === "en"
-                  ? englishText(item.answerEn, englishText(item.answer, "Checklist answer pending"))
-                  : item.answer;
+                  ? englishText(item.answerEn, englishText(item.answer, item.actionRequiredEn ?? item.actionRequired ?? "Checklist answer pending"))
+                  : item.answer ?? item.actionRequired;
+              const status = item.status ?? "pass";
               return (
                 <div
                   key={i}
@@ -263,14 +288,14 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
                   <span
                     className={cn(
                       "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold",
-                      item.status === "pass"
+                      status === "pass"
                         ? "bg-emerald-500 text-white"
-                        : item.status === "fail"
+                        : status === "fail"
                           ? "bg-blaze-red text-white"
                           : "bg-amber-500 text-white",
                     )}
                   >
-                    {item.status === "pass" ? "✓" : item.status === "fail" ? "✗" : "!"}
+                    {status === "pass" ? "✓" : status === "fail" ? "✗" : "!"}
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-white">{question}</p>

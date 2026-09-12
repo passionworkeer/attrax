@@ -141,12 +141,24 @@ class DecisionNode(FlexibleModel):
     def coerce_id(cls, value: Any) -> str:
         return str(value or "")
 
+    @field_validator("confidence", mode="before")
+    @classmethod
+    def coerce_confidence(cls, value: Any) -> float | None:
+        if value is None or value == "":
+            return None
+        try:
+            return float(value)
+        except (ValueError, TypeError):
+            return None
+
 
 class DecisionView(FlexibleModel):
     summary: str = ""
     keyFindings: list[str] = Field(default_factory=list)
     recommendedAction: str = ""
     nodes: list[DecisionNode] = Field(default_factory=list)
+    verdict: str = ""
+    riskLevel: str = ""
 
 
 class EvidenceItem(FlexibleModel):
@@ -481,8 +493,21 @@ def normalize_report_package(
             profit.pop("structuredFields", None)
             finance_validation_errors.append("financial_data_invalid")
 
-    roadmap = _normalize_roadmap(source.get("roadmap"))
-    decision = _normalize_decision(source.get("decisionView") or source.get("decision_view"))
+    roadmap_validation_errors: list[str] = []
+    raw_roadmap = _normalize_roadmap(source.get("roadmap"))
+    try:
+        validated_roadmap = Roadmap.model_validate(raw_roadmap).model_dump(exclude_none=True)
+    except ValidationError as exc:
+        roadmap_validation_errors = [e["msg"] for e in exc.errors()]
+        validated_roadmap = Roadmap().model_dump(exclude_none=True)
+
+    decision_validation_errors: list[str] = []
+    raw_decision = _normalize_decision(source.get("decisionView") or source.get("decision_view"))
+    try:
+        validated_decision = DecisionView.model_validate(raw_decision).model_dump(exclude_none=True)
+    except ValidationError as exc:
+        decision_validation_errors = [e["msg"] for e in exc.errors()]
+        validated_decision = DecisionView().model_dump(exclude_none=True)
 
     product_dossier = _as_dict(source.get("productDossier") or source.get("product_dossier"))
     product_dossier = {
@@ -499,11 +524,13 @@ def normalize_report_package(
         },
     }
 
+    evidence_validation_errors: list[str] = []
     evidence = source.get("evidenceBundles") or source.get("evidence_bundles")
     if isinstance(evidence, dict):
         try:
             evidence_bundles = EvidenceBundles.model_validate(evidence)
-        except ValidationError:
+        except ValidationError as exc:
+            evidence_validation_errors = [e["msg"] for e in exc.errors()]
             evidence_bundles = _build_evidence_bundles(
                 chunks,
                 vision_result=vision_result,
@@ -523,11 +550,9 @@ def normalize_report_package(
         )
 
     audit = _as_dict(source.get("auditMetadata") or source.get("audit_metadata"))
-    # Top-level validationStatus reflects only the compliance package shape.
-    # Malformed profit/finance sub-report must NOT downgrade the whole package:
-    # the prose remains valid (per the inline comment above) and the profit
-    # page renders a dedicated "数据不可用" notice from
-    # `finance.validationStatus`. See Fix B in 2026-09-12 plan.
+    # Top-level validationStatus reflects the compliance package shape.
+    # Malformed sub-scenes (finance, decisionView, roadmap, evidenceBundles) are
+    # isolated per-scene and do NOT downgrade the whole compliance package prose.
     audit = {
         "schemaVersion": audit.get("schemaVersion") or SCHEMA_VERSION,
         "generatedAt": audit.get("generatedAt") or _utc_now_iso(),
@@ -539,12 +564,21 @@ def normalize_report_package(
             "validationStatus": "invalid" if finance_validation_errors else "valid",
             "errors": list(finance_validation_errors),
         },
+        "decisionView": {
+            "validationStatus": "invalid" if decision_validation_errors else "valid",
+            "errors": list(decision_validation_errors),
+        },
+        "roadmap": {
+            "validationStatus": "invalid" if roadmap_validation_errors else "valid",
+            "errors": list(roadmap_validation_errors),
+        },
+        "evidenceBundles": {
+            "validationStatus": "invalid" if evidence_validation_errors else "valid",
+            "errors": list(evidence_validation_errors),
+        },
     }
 
-    # Spec §3.3 + §7.3: per-claim citations from the LLM. The
-    # quote_matcher pass (§7.4) will fill quote_span + match_status
-    # after this normalization. evidencePack is built lazily by the
-    # quote_matcher dedup step.
+    # Spec §3.3 + §7.3: per-claim citations from the LLM.
     citations = _normalize_citations(
         source.get("citations") or source.get("citationRefs")
     )
@@ -554,9 +588,9 @@ def normalize_report_package(
         "productDossier": product_dossier,
         "complianceReport": str(compliance or "").strip(),
         "profitReport": profit,
-        "roadmap": roadmap,
-        "decisionView": decision,
-        "evidenceBundles": evidence_bundles.model_dump(),
+        "roadmap": validated_roadmap,
+        "decisionView": validated_decision,
+        "evidenceBundles": evidence_bundles.model_dump(exclude_none=True),
         "auditMetadata": audit,
         "citations": citations,
         "evidencePack": _as_list(source.get("evidencePack") or source.get("evidence_pack")),
@@ -565,43 +599,16 @@ def normalize_report_package(
     try:
         return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)
     except ValidationError as exc:
-        # Audit P0-D: only `complianceReport` failure downgrades the package.
-        # A malformed `decisionView` / `roadmap` / `evidenceBundles` shape is
-        # recorded per-scene via SubReportValidation so it surfaces as a
-        # warning, not as the red DegradedBanner.
-        raw_errors = exc.errors()
-        sub_scene_failures: dict = {
-            "decisionView": [],
-            "roadmap": [],
-            "evidenceBundles": [],
-        }
-        package_level_failures: list = []
-        for err in raw_errors:
-            path = tuple(err.get("loc", ()))
-            if not path:
-                package_level_failures.append(err["msg"])
-                continue
-            head = path[0]
-            if head in sub_scene_failures and len(path) == 1:
-                sub_scene_failures[head].append(err["msg"])
-            else:
-                package_level_failures.append(err["msg"])
-
+        package_level_failures = [e["msg"] for e in exc.errors()]
         normalized["complianceReport"] = normalized["complianceReport"] or (
             "Report package validation failed; no compliance report text was available."
         )
-        scene_warnings: dict = {}
-        for scene, errors in sub_scene_failures.items():
-            scene_warnings[scene] = SubReportValidation(
-                validationStatus="invalid" if errors else "valid",
-                errors=errors,
-            ).model_dump()
         normalized["auditMetadata"] = {
             **audit,
-            "validationStatus": "invalid" if package_level_failures else "normalized",
+            "validationStatus": "invalid",
             "validationErrors": package_level_failures,
-            "decisionView": scene_warnings["decisionView"],
-            "roadmap": scene_warnings["roadmap"],
-            "evidenceBundles": scene_warnings["evidenceBundles"],
         }
-        return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)
+        try:
+            return ReportPackage.model_validate(normalized).model_dump(exclude_none=True)
+        except ValidationError:
+            return normalized

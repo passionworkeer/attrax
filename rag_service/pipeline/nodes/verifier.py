@@ -27,17 +27,15 @@ logger = logging.getLogger(__name__)
 _ARTICLE_TEXT_CACHE: dict[tuple[str, str], str | None] = {}
 
 
-def _recover_fallback_quotes(citations: list[dict]) -> int:
-    """Replace an unverifiable provider paraphrase with a source excerpt.
+def _attach_canonical_excerpts(citations: list[dict]) -> int:
+    """Attach canonical article excerpts for fallback citations without overwriting LLM quotes.
 
-    This is deliberately limited to ``fallback_article_only`` entries: their
-    document and article identifiers already resolved against our bundled
-    regulation library, but the provider's claimed quotation did not occur in
-    that article.  The replacement is a verbatim, bounded excerpt from that
-    same article and is tagged for consumers/audit. Unknown articles remain
-    ``unmatched`` and are never manufactured into evidence.
+    When a citation resolves to a known regulation article but the LLM quote
+    cannot be verified verbatim (fallback_article_only), we attach a canonical
+    excerpt as reference metadata. We NEVER overwrite the LLM's original quote,
+    nor do we forge the match_status into 'matched'.
     """
-    recovered = 0
+    attached = 0
     for entry in citations:
         if not isinstance(entry, dict) or entry.get("match_status") != "fallback_article_only":
             continue
@@ -47,12 +45,10 @@ def _recover_fallback_quotes(citations: list[dict]) -> int:
         excerpt = str(article_text or "").strip()[:700]
         if not excerpt:
             continue
-        entry["quote"] = excerpt
-        entry["quote_provenance"] = "canonical_regulation_excerpt"
-        entry["quote_span"] = None
-        entry["match_status"] = None
-        recovered += 1
-    return recovered
+        entry["canonical_excerpt"] = excerpt
+        entry["quote_provenance"] = "llm_paraphrase_unverified"
+        attached += 1
+    return attached
 
 
 def verifier_node(state: GraphState) -> dict:
@@ -72,13 +68,8 @@ def verifier_node(state: GraphState) -> dict:
 
     match_citations(citations, cache=_ARTICLE_TEXT_CACHE)
 
-    # Providers occasionally pick a real article but paraphrase the requested
-    # quotation. Convert only those resolved-but-unverifiable paraphrases to
-    # canonical library excerpts, then run the same matcher again so the UI
-    # receives a real span/highlight rather than a misleading soft citation.
-    recovered_quotes = _recover_fallback_quotes(citations)
-    if recovered_quotes:
-        match_citations(citations, cache=_ARTICLE_TEXT_CACHE)
+    # Attach canonical excerpts for audit & reference without falsifying the quote or match status
+    attached_excerpts = _attach_canonical_excerpts(citations)
 
     report_package = dict(report_package)
     report_package["citations"] = citations
@@ -89,7 +80,7 @@ def verifier_node(state: GraphState) -> dict:
     unmatched = sum(1 for c in citations if c.get("match_status") == "unmatched")
     audit = dict(report_package.get("auditMetadata") or {})
     audit["verificationMode"] = "kb_exact_quote"
-    audit["canonicalQuoteRecoveryCount"] = recovered_quotes
+    audit["canonicalQuoteAttachedCount"] = attached_excerpts
     report_package["auditMetadata"] = audit
 
     return {
@@ -101,6 +92,6 @@ def verifier_node(state: GraphState) -> dict:
             "fallback_article_only": fallback,
             "unmatched": unmatched,
             "total_citations": len(citations),
-            "canonical_quote_recovery_count": recovered_quotes,
+            "canonical_quote_attached_count": attached_excerpts,
         }],
     }

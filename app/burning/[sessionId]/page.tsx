@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -25,6 +25,7 @@ import { cn } from "@/lib/utils";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
 function readStoredAccessToken(sessionId: string): string | null {
+  if (typeof window === "undefined") return null;
   try {
     const value = sessionStorage.getItem(`scan-token:${sessionId}`);
     return value && value.trim() ? value.trim() : null;
@@ -34,6 +35,7 @@ function readStoredAccessToken(sessionId: string): string | null {
 }
 
 function readStoredImageCount(sessionId: string): number {
+  if (typeof window === "undefined") return 0;
   try {
     const value = Number.parseInt(
       sessionStorage.getItem(`scan-image-count:${sessionId}`) ?? "",
@@ -105,12 +107,19 @@ export default function BurningPage() {
   const isDemoSession = sessionId === "demo";
   const preset = isDemoSession ? parsePreset(searchParams.get("preset")) : null;
   const demoMarkets = searchParams.get("markets") ?? "EU,US";
-  // Read the access token directly from sessionStorage on every render.
-  // useScanPolling is keyed on sessionId, so the hook's effect re-fires when
-  // sessionId changes and re-reads the token. sessionStorage is cheap and
-  // synchronous; caching it in state would just mirror the same value with
-  // a cascading render.
-  const accessToken = isDemoSession ? null : readStoredAccessToken(sessionId);
+
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [storedImageCount, setStoredImageCount] = useState<number>(0);
+
+  useEffect(() => {
+    if (!isDemoSession && sessionId) {
+      startTransition(() => {
+        setAccessToken(readStoredAccessToken(sessionId));
+        setStoredImageCount(readStoredImageCount(sessionId));
+      });
+    }
+  }, [isDemoSession, sessionId]);
+
   const { status, displayProgress } = useScanPolling(sessionId, accessToken);
   const displayStatus = isDemoSession
     ? {
@@ -125,7 +134,7 @@ export default function BurningPage() {
   const activeIndex = getActiveIndex(progress);
   const imageCount = isDemoSession
     ? 1
-    : status?.imageCount || readStoredImageCount(sessionId);
+    : status?.imageCount || storedImageCount;
   const stageImages = resolveScanStageImages({
     sessionId,
     imageCount,

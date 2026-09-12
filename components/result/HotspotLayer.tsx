@@ -155,11 +155,11 @@ export function HotspotLayer({
               className="absolute -right-px -bottom-px size-2.5 rounded-br-[10px]"
               style={{ borderBottom: `2px solid ${style.border}`, borderRight: `2px solid ${style.border}` }}
             />
-            {/* Clickable severity chip pinned to the top-left of the frame */}
+            {/* Clickable severity chip pinned to the frame (positions inside if too close to top edge to prevent overflow clipping) */}
             <button
               type="button"
               onClick={() => onHotspotClick?.(spot.id)}
-              className={`pointer-events-auto absolute -top-2.5 left-2 flex max-w-full items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-semibold text-white shadow-lg backdrop-blur-md transition hover:brightness-110 ${style.tag}`}
+              className={`pointer-events-auto absolute ${spot.bbox.y < 0.06 ? "top-1.5 left-2" : "-top-2.5 left-2"} flex max-w-full items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-semibold text-white shadow-lg backdrop-blur-md transition hover:brightness-110 ${style.tag}`}
               style={{ transform: "perspective(800px) rotateX(7deg) rotateY(-6deg)" }}
               aria-label={`${localizedLabel?.(spot.severity) ?? spot.severity}: ${spot.label}${viewDetailLabel ? ` — ${viewDetailLabel}` : ""}`}
             >

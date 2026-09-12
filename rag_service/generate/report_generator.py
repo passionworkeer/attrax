@@ -301,8 +301,11 @@ def _parse_json_object(text: str) -> dict | None:
 
     # Try to find the largest balanced top-level JSON object.
     decoder = json.JSONDecoder()
-    best_obj: dict | None = None
-    best_len = 0
+    best_root_obj: dict | None = None
+    best_root_len = 0
+    best_any_obj: dict | None = None
+    best_any_len = 0
+
     for i, ch in enumerate(raw):
         if ch != "{":
             continue
@@ -310,22 +313,49 @@ def _parse_json_object(text: str) -> dict | None:
             obj, end_idx = decoder.raw_decode(raw, i)
         except json.JSONDecodeError:
             continue
-        if isinstance(obj, dict) and end_idx - i > best_len:
-            best_obj = obj
-            best_len = end_idx - i
-    if best_obj is not None:
-        return best_obj
+        if isinstance(obj, dict):
+            obj_len = end_idx - i
+            has_root_key = "complianceReport" in obj or "compliance_report" in obj or "compliance" in obj
+            if has_root_key and obj_len > best_root_len:
+                best_root_obj = obj
+                best_root_len = obj_len
+            elif obj_len > best_any_len:
+                best_any_obj = obj
+                best_any_len = obj_len
 
-    # Last-resort: substring between first { and last }.
+    if best_root_obj is not None:
+        return best_root_obj
+
+    # If raw mentions complianceReport, do NOT return a partial sub-object (like an isolated profitReport),
+    # as that would cause the caller to bypass JSON repair and drop the LLM compliance report.
+    if ("complianceReport" in raw or "compliance_report" in raw) and best_any_obj is not None:
+        logger.warning(
+            "Parsed inner JSON object missing root complianceReport key; rejecting partial sub-object to allow repair/fallback."
+        )
+    elif best_any_obj is not None:
+        return best_any_obj
+
+    # Truncation recovery: try closing open strings and structures from first {
     start = raw.find("{")
     end = raw.rfind("}")
     if start >= 0 and end > start:
         try:
             data = json.loads(raw[start:end + 1])
-            return data if isinstance(data, dict) else None
+            if isinstance(data, dict):
+                return data
         except Exception as exc:
-            logger.warning("substring json.loads failed: %s; slice[:200]=%r", exc, raw[start:end + 1][:200])
-            return None
+            logger.debug("substring json.loads failed: %s", exc)
+
+    if start >= 0:
+        candidate = raw[start:].rstrip()
+        for suffix in ['"}', '"]}', '"}]}', '"}}', '}', ']}', ']}}']:
+            try:
+                data = json.loads(candidate + suffix)
+                if isinstance(data, dict) and ("complianceReport" in data or "compliance_report" in data):
+                    logger.info("Recovered truncated JSON by appending %r", suffix)
+                    return data
+            except Exception:
+                continue
 
     return None
 
@@ -697,7 +727,7 @@ class ReportGenerator:
                 ],
             },
             "decisionView": {
-                "verdict": "WARN",
+                "verdict": "UNKNOWN",
                 # riskLevel 同 REPORT_PACKAGE_SYSTEM_PROMPT 风险等级契约:
                 # = nodes[].severity 最大值。fallback 没真证据,vision/retriever/generate
                 # 默认都是 info,而非硬编码 critical/high/medium,否则前端会把它 rollup 成
