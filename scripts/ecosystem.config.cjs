@@ -10,7 +10,8 @@ module.exports = {
       autorestart: true,
       env: {
         PYTHONUNBUFFERED: "1",
-        RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || ""  // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）,
+        // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）
+        RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || "",
         APP_ENV: "production",
       },
     },
@@ -26,7 +27,8 @@ module.exports = {
         PORT: "3000",
         HOSTNAME: "127.0.0.1",
         RAG_SERVICE_URL: "http://127.0.0.1:8001",
-        RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || ""  // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）,
+        // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）
+        RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || "",
         DAILY_FREE_SCAN_LIMIT: "3",
         DEMO_MODE: "false",
       },
