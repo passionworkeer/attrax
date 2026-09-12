@@ -42,6 +42,8 @@ interface DecisionTreeProps {
   score?: number;
   grade?: string;
   traceNodes?: unknown[];
+  /** Only the explicitly labelled sample flow may render the fixture tree. */
+  isDemo?: boolean;
 }
 
 export default function AgentDecisionTree({
@@ -52,12 +54,13 @@ export default function AgentDecisionTree({
   score,
   grade,
   traceNodes,
+  isDemo = false,
 }: DecisionTreeProps) {
   const { t } = useTranslation();
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [progress, setProgress] = useState(0);
 
-  // 使用 API 返回的真实数据，否则用 demo 数据
+  // Real sessions must never turn missing telemetry into a believable sample.
   const data = (() => {
     if (traceNodes && Array.isArray(traceNodes) && traceNodes.length > 0) {
       // 从 API 转换真实数据
@@ -71,8 +74,23 @@ export default function AgentDecisionTree({
         confidence?: number;
       }[]);
     }
-    return traceData || demoTrace;
+    return traceData || (isDemo ? demoTrace : null);
   })();
+
+  if (!data) {
+    return (
+      <div role="status" className="glass-panel rounded-3xl border border-amber-500/30 p-8 text-center">
+        <h3 className="text-xl font-bold text-white">
+          {locale === "zh" ? "暂无可用执行溯源" : "Execution trace unavailable"}
+        </h3>
+        <p className="mt-2 text-sm text-slate-400">
+          {locale === "zh"
+            ? "本次扫描未返回可验证的执行节点，请返回结果页后重试。"
+            : "This scan did not return verifiable execution nodes. Return to the result page and retry."}
+        </p>
+      </div>
+    );
+  }
 
   const totalTime = data.children?.reduce((acc, child) => {
     const duration = child.duration?.replace("s", "") || "0";

@@ -85,6 +85,32 @@ export async function GET(
     );
   }
 
+  // A real scan is never allowed to export the old locally synthesized
+  // roadmap. The report package is the authoritative source; example stages
+  // remain available only for the explicit demo session.
+  if (
+    reportType === "roadmap" &&
+    sessionId !== "demo" &&
+    result.source !== "demo" &&
+    !result.reportPackage?.roadmap?.items?.length
+  ) {
+    return NextResponse.json(
+      { error: { code: "ROADMAP_UNAVAILABLE", message: "The scan did not return a roadmap." } },
+      { status: 409 },
+    );
+  }
+
+  const finance = result.reportPackage?.auditMetadata?.finance;
+  if (
+    reportType === "profit" &&
+    (finance?.validationStatus === "invalid" || finance?.validation_status === "invalid")
+  ) {
+    return NextResponse.json(
+      { error: { code: "FINANCE_DATA_INVALID", message: "The scan returned invalid finance data." } },
+      { status: 409 },
+    );
+  }
+
   const normalizedType = reportType as BlazeReportType;
   const format = requestedFormat ?? "md";
   const localizedResult = localizeResult(result, locale);

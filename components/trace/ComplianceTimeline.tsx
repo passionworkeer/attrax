@@ -39,6 +39,8 @@ interface ComplianceTimelineProps {
   items?: TimelineItem[];
   autoPlay?: boolean;
   locale?: "zh" | "en";
+  /** Fixture items are allowed only in the explicitly labelled demo flow. */
+  isDemo?: boolean;
 }
 
 const typeColors = {
@@ -84,13 +86,15 @@ function ProgressBar({ progress, color = "bg-gradient-to-r from-blaze-red to-amb
 }
 
 export default function ComplianceTimeline({
-  items = defaultItems,
+  items,
   autoPlay = false,
   locale: localeProp,
+  isDemo = false,
 }: ComplianceTimelineProps) {
   const { t: hookT, locale: hookLocale } = useTranslation();
   const locale = localeProp ?? hookLocale ?? "zh";
   const t = hookT;
+  const displayItems = items?.length ? items : (isDemo ? defaultItems : []);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [isPlaying, setIsPlaying] = useState(autoPlay);
   const [currentStep, setCurrentStep] = useState(0);
@@ -110,11 +114,11 @@ export default function ComplianceTimeline({
     return Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
   };
 
-  const getTotalDays = () => getDaysFromNow(items[items.length - 1].date);
+  const getTotalDays = () => displayItems.length ? getDaysFromNow(displayItems[displayItems.length - 1].date) : 0;
 
   const getTotalCost = () => {
     let min = 0, max = 0;
-    items.forEach((item) => {
+    displayItems.forEach((item) => {
       if (item.cost) {
         const match = item.cost.match(/¥([\d,]+)-([\d,]+)/);
         if (match) {
@@ -127,8 +131,8 @@ export default function ComplianceTimeline({
   };
 
   const getProgress = () => {
-    const completed = items.filter((item) => item.status === "completed").length;
-    return Math.round((completed / items.length) * 100);
+    const completed = displayItems.filter((item) => item.status === "completed").length;
+    return displayItems.length ? Math.round((completed / displayItems.length) * 100) : 0;
   };
 
   const getStatusBadge = (status: string) => {
@@ -162,11 +166,26 @@ export default function ComplianceTimeline({
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
-        setCurrentStep((prev) => (prev >= items.length - 1 ? 0 : prev + 1));
+        setCurrentStep((prev) => (prev >= displayItems.length - 1 ? 0 : prev + 1));
       }, 2000);
       return () => clearInterval(interval);
     }
-  }, [isPlaying, items.length]);
+  }, [isPlaying, displayItems.length]);
+
+  if (!displayItems.length) {
+    return (
+      <div role="status" className="glass-panel rounded-3xl border border-amber-500/30 p-8 text-center">
+        <h3 className="text-xl font-bold text-white">
+          {locale === "zh" ? "暂无可用合规路线图" : "Compliance roadmap unavailable"}
+        </h3>
+        <p className="mt-2 text-sm text-slate-400">
+          {locale === "zh"
+            ? "本次扫描未返回路线图数据，无法展示或导出示例计划。"
+            : "This scan did not return roadmap data, so no sample plan is shown or exported."}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full">
@@ -226,7 +245,7 @@ export default function ComplianceTimeline({
                 <Sparkles className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <div className="text-2xl font-black text-white">{items.length}</div>
+                <div className="text-2xl font-black text-white">{displayItems.length}</div>
                 <div className="text-xs text-slate-400">{t("roadmap.stepsCount")}</div>
               </div>
             </div>
@@ -259,7 +278,7 @@ export default function ComplianceTimeline({
 
         {/* Items */}
         <div className="space-y-4">
-          {items.map((item, index) => {
+          {displayItems.map((item, index) => {
             const isToday = item.date === today;
             const colors = typeColors[item.type];
             const daysFromNow = getDaysFromNow(item.date);

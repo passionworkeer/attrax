@@ -31,15 +31,12 @@ import { cn } from "@/lib/utils";
  * - `pdf` / `docx` + `profit` → 客户端用 jspdf / docx 生成
  *   (通过 `buildProfitReportFromScanResult` 把 `ScanResult` 适配为
  *   `ProfitReportResult`,走 `ELECTRONICS_FINANCIAL.costBreakdown` 兜底)
- * - `pdf` / `docx` + `roadmap` → 客户端 `downloadRoadmapReportAsPdf/Docx`
- *   `RoadmapContent` 直接由 `getDefaultRoadmapItems()` 提供(demo 默认
- *   7 阶段,真扫描用 `result.reportPackage.roadmap.items`,前置未上传时
- *   兜底)
+ * - `pdf` / `docx` + `roadmap` → 客户端 `downloadRoadmapReportAsPdf/Docx`。
+ *   真实会话必须有后端路线图；只有明确 demo 会话能使用示例阶段。
  */
 
-function buildRoadmapContent(result: ScanResult, locale: "zh" | "en"): RoadmapContent {
-  // 真扫描结果在 `result.reportPackage.roadmap.items` 已经有完整数据;
-  // demo / 非 reportPackage 路径用 `lib/mock/roadmap.getDefaultRoadmapItems()` 兜底
+function buildRoadmapContent(result: ScanResult, locale: "zh" | "en"): RoadmapContent | null {
+  const isDemo = result.sessionId === "demo" || result.source === "demo";
   const fromPackage = result.reportPackage?.roadmap?.items?.length
     ? result.reportPackage.roadmap.items.map((item) => ({
         title: item.title ?? item.titleEn ?? "",
@@ -54,9 +51,8 @@ function buildRoadmapContent(result: ScanResult, locale: "zh" | "en"): RoadmapCo
       }))
     : null;
 
-  const items =
-    fromPackage ??
-    getDefaultRoadmapItems().map((item) => ({
+  const items = fromPackage ?? (isDemo
+    ? getDefaultRoadmapItems().map((item) => ({
       title: locale === "en" ? item.titleEn : item.title,
       titleEn: item.titleEn,
       description: locale === "en" ? item.descriptionEn : item.description,
@@ -66,7 +62,10 @@ function buildRoadmapContent(result: ScanResult, locale: "zh" | "en"): RoadmapCo
       status: item.status,
       documents: item.documents,
       documentsEn: item.documentsEn,
-    }));
+    }))
+    : null);
+
+  if (!items) return null;
 
   return {
     sessionId: result.sessionId,
@@ -96,6 +95,27 @@ export function ResultExportButton({
 }) {
   const [busy, setBusy] = useState(false);
   const presetQuery = presetKey ? `&preset=${presetKey}` : "";
+  const roadmapNoData =
+    reportType === "roadmap" &&
+    result.sessionId !== "demo" &&
+    result.source !== "demo" &&
+    !result.reportPackage?.roadmap?.items?.length;
+  const financeInvalid =
+    result.reportPackage?.auditMetadata?.finance?.validationStatus === "invalid" ||
+    result.reportPackage?.auditMetadata?.finance?.validation_status === "invalid";
+  const profitNoData =
+    reportType === "profit" && (financeInvalid || !synthesizeFinancialSummaryIfMissing(result, locale));
+
+  if ((format === "md" || format === "csv") && (roadmapNoData || profitNoData)) {
+    const unavailable = roadmapNoData
+      ? locale === "zh" ? "缺少真实路线图，无法导出" : "Missing real roadmap; export is unavailable."
+      : locale === "zh" ? "利润数据不可用，无法导出" : "Profit data is unavailable; export is unavailable.";
+    return (
+      <button type="button" disabled title={unavailable} className={cn(buttonVariants({ variant: "ghost", size: "sm" }), "rounded-full border border-white/10 bg-white/7 text-white disabled:opacity-50")}>
+        {format.toUpperCase()}
+      </button>
+    );
+  }
 
   // 文本格式直接走 API 路径(本来就 200)
   if (format === "md" || format === "csv") {
@@ -144,6 +164,7 @@ export function ResultExportButton({
       }
       if (reportType === "roadmap") {
         const content = buildRoadmapContent(result, locale);
+        if (!content) return;
         if (format === "pdf") {
           await downloadRoadmapReportAsPdf(content, locale);
         } else {
@@ -156,15 +177,16 @@ export function ResultExportButton({
     }
   };
 
-  const profitNoData =
-    reportType === "profit" && !synthesizeFinancialSummaryIfMissing(result, locale);
+  const disabled = profitNoData || roadmapNoData || busy;
 
-  const disabled = profitNoData || busy;
-
-  const tooltip = profitNoData
+  const tooltip = roadmapNoData
     ? locale === "zh"
-      ? "缺少利润报告 markdown,无法导出"
-      : "Missing profit report markdown; export is unavailable."
+      ? "缺少真实路线图，无法导出"
+      : "Missing real roadmap; export is unavailable."
+    : profitNoData
+    ? locale === "zh"
+      ? "利润数据不可用，无法导出"
+      : "Profit data is unavailable; export is unavailable."
     : undefined;
 
   return (

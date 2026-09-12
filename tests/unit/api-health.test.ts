@@ -29,7 +29,7 @@ async function callHealth() {
 }
 
 describe("GET /api/health", () => {
-  it("returns 200 + rag ok when RAG /ready reports ready=true", async () => {
+  it("returns 200 + scan backend ok when /ready reports ready=true", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ ready: true, checks: { bm25: true }, version: "1" }),
@@ -38,12 +38,12 @@ describe("GET /api/health", () => {
     expect(res.status).toBe(200);
     const body = await res.json();
     expect(body.frontend).toBe("ok");
-    expect(body.ragService.status).toBe("ok");
-    expect(body.ragService.responseTimeMs).toBeGreaterThanOrEqual(0);
-    expect(body.ragService.error).toBeNull();
+    expect(body.scanService.status).toBe("ok");
+    expect(body.scanService.responseTimeMs).toBeGreaterThanOrEqual(0);
+    expect(body.scanService.error).toBeNull();
   });
 
-  it("returns 503 + status=error when RAG /ready reports ready=false (deps not loaded)", async () => {
+  it("returns 503 + status=error when /ready reports ready=false", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ ready: false, checks: { bm25: false } }),
@@ -51,21 +51,21 @@ describe("GET /api/health", () => {
     const res = await callHealth();
     expect(res.status).toBe(503);
     const body = await res.json();
-    expect(body.ragService.status).toBe("error");
-    expect(body.ragService.error).toContain("not ready");
+    expect(body.scanService.status).toBe("error");
+    expect(body.scanService.error).toContain("not ready");
   });
 
-  it("returns 503 + status=unreachable when RAG fetch throws", async () => {
+  it("returns 503 + status=unreachable when scan backend fetch throws", async () => {
     mockFetch.mockRejectedValueOnce(new Error("ECONNREFUSED"));
     const res = await callHealth();
     expect(res.status).toBe(503);
     const body = await res.json();
     expect(body.frontend).toBe("ok"); // frontend itself is alive
-    expect(body.ragService.status).toBe("unreachable");
-    expect(body.ragService.error).toContain("ECONNREFUSED");
+    expect(body.scanService.status).toBe("unreachable");
+    expect(body.scanService.error).toContain("ECONNREFUSED");
   });
 
-  it("returns 503 + status=error when RAG /ready returns 503 (gate failed)", async () => {
+  it("returns 503 + status=error when /ready returns 503", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: false,
       status: 503,
@@ -74,8 +74,8 @@ describe("GET /api/health", () => {
     const res = await callHealth();
     expect(res.status).toBe(503);
     const body = await res.json();
-    expect(body.ragService.status).toBe("error");
-    expect(body.ragService.error).toContain("HTTP 503");
+    expect(body.scanService.status).toBe("error");
+    expect(body.scanService.error).toContain("HTTP 503");
   });
 
   it("returns 503 + status=error on any other non-ok HTTP", async () => {
@@ -87,8 +87,8 @@ describe("GET /api/health", () => {
     const res = await callHealth();
     expect(res.status).toBe(503);
     const body = await res.json();
-    expect(body.ragService.status).toBe("error");
-    expect(body.ragService.error).toContain("HTTP 500");
+    expect(body.scanService.status).toBe("error");
+    expect(body.scanService.error).toContain("HTTP 500");
   });
 
   it("returns 503 with error=timeout when AbortError fires", async () => {
@@ -97,8 +97,8 @@ describe("GET /api/health", () => {
     const res = await callHealth();
     expect(res.status).toBe(503);
     const body = await res.json();
-    expect(body.ragService.status).toBe("unreachable");
-    expect(body.ragService.error).toBe("timeout");
+    expect(body.scanService.status).toBe("unreachable");
+    expect(body.scanService.error).toBe("timeout");
   });
 
   it("includes the current timestamp in the response", async () => {
@@ -134,7 +134,7 @@ describe("GET /api/health", () => {
     expect(body.demoMode).toBe(false);
   });
 
-  it("probes the RAG /ready endpoint (not /health)", async () => {
+  it("probes the scan backend /ready endpoint (not /health)", async () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
       json: async () => ({ ready: true }),
