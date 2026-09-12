@@ -108,11 +108,13 @@ def test_collect_source_dispatches_by_source_type():
         "ecfr_part": 1307,
         "title": "16 CFR 1307",
     }
-    resp = _fake_response(b"<part>phthalates rules</part>" * 10)
+    resp = _fake_response(b"<html>phthalates rules page</html>" * 5)
     with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp):
         update = collect_source(entry)
     assert update.source_type == "ecfr_part"
-    assert "ecfr.gov/api/versioner" in update.source_url
+    # 2026-09-12 postmortem: the versioner API 406s from Seoul — the
+    # collector now hashes the human-facing eCFR page instead.
+    assert "ecfr.gov/current/title-16/part-1307" in update.source_url
     assert update.metadata["ecfrPart"] == 1307
 
 
