@@ -698,30 +698,12 @@ async def profit_report(req: ProfitReportRequest):
         )
 
     def _generate() -> str:
-        # Retrieve relevant chunks from FAISS/BM25 index
-        if _retriever is None:
-            logger.warning("Retriever not initialized, using empty chunks")
-            chunks = []
-        else:
-            # Search for profit/cost related keywords
-            search_queries = [
-                f"{product_type} 合规 成本 利润",
-                f"{product_type} BOM 材料成本",
-                f"{product_type} 认证费 EPR",
-            ]
-            retrieved = _retriever.retrieve(search_queries[0], top_k=20)
-            # Also fetch by keyword combinations
-            for q in search_queries[1:]:
-                try:
-                    additional = _retriever.retrieve(q, top_k=10)
-                    doc_ids = {r.get("doc_id") or r.get("chunk_id") for r in retrieved}
-                    for item in additional:
-                        if (item.get("doc_id") or item.get("chunk_id")) not in doc_ids:
-                            retrieved.append(item)
-                            doc_ids.add(item.get("doc_id") or item.get("chunk_id"))
-                except Exception:
-                    pass
-            chunks = _normalize_chunks(retrieved)
+        # De-RAG has no retriever (FAISS/BM25/LangGraph were removed in §7.7).
+        # The profit-report endpoint feeds the LLM with empty chunks and relies
+        # on the model's domain knowledge for the cost/profit breakdown. Pre-built
+        # profit data is consulted inside ReportGenerator for power-bank and
+        # table-tennis-racket product types (see generate/prebuilt_profit_data).
+        chunks: list[dict] = []
 
         gen = ReportGenerator(api_key=settings.effective_minimax_api_key or None)
         return gen.generate_profit_report(

@@ -5,7 +5,7 @@
  * straight to /result/demo.
  */
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
 
@@ -41,13 +41,6 @@ function findAnchorByText(exactText: string): HTMLElement | undefined {
 }
 
 describe("CompliPilotHome — 60 秒演示 entry point", () => {
-  // Open the "关于" dialog first so the in-dialog CTA ("体验合规检测")
-  // is in the DOM. The dialog is hidden behind state.default = null.
-  const openAboutDialog = (): void => {
-    const aboutTrigger = screen.getByRole("button", { name: "关于" });
-    fireEvent.click(aboutTrigger);
-  };
-
   it('"查看 60 秒演示" link points directly to /result/demo (no extra tab)', () => {
     render(<CompliPilotHome />);
     const demoLink = findAnchorByText("查看 60 秒演示");
@@ -84,16 +77,5 @@ describe("CompliPilotHome — 60 秒演示 entry point", () => {
     const demoFlowLink = findAnchorByText("演示流程");
     expect(demoFlowLink).toBeDefined();
     expect(demoFlowLink).toHaveAttribute("href", "/result/demo");
-  });
-
-  it('"体验合规检测" link in about dialog points directly to /result/demo', () => {
-    // The "体验合规检测" CTA lives inside the "关于" / about dialog (not the
-    // "能做什么" capabilities dialog). Same intent as "查看 60 秒演示":
-    // jump to /result/demo, skip the extra tab through /upload.
-    render(<CompliPilotHome />);
-    openAboutDialog();
-    const tryLink = findAnchorByText("体验合规检测");
-    expect(tryLink, "expected about dialog to render '体验合规检测' anchor").toBeDefined();
-    expect(tryLink).toHaveAttribute("href", "/result/demo");
   });
 });

@@ -301,14 +301,13 @@ export default function PricingPage() {
                   {locale === "zh" ? "演示环境 · 不会发起真实支付" : "Demo mode · no real payment"}
                 </div>
                 <a
-                  href="/api/reference/entry-plan"
-                  download
+                  href="mailto:contact@attrax.example?subject=Entry%20Plan"
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "mt-5 w-full rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] text-white shadow-[0_12px_40px_rgba(255,120,41,0.26)] hover:opacity-95"
                   )}
                 >
-                  {locale === "zh" ? "下载参赛计划书" : "Download Entry Plan"}
+                  {locale === "zh" ? "联系获取参赛计划书" : "Request Entry Plan"}
                 </a>
               </div>
             </div>
