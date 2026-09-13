@@ -27,6 +27,71 @@ from typing import Iterable
 SIMILARITY_THRESHOLD = 0.95
 _DEFAULT_DB_NAME = ".cache.db"
 
+# 2026-09-13 production incident: a genuinely-changed EU Cellar source
+# (~9 MB normalized RDF) drove ``difflib.SequenceMatcher`` (O(n²) worst case)
+# at 100% CPU for 2.5+ hours. Above this budget the similarity score falls
+# back to an O(n) line-hash Jaccard, which separates cosmetic churn (≥0.95)
+# from real edits just as reliably for whole-document comparisons, and the
+# unified diff is replaced by a bounded first-divergence excerpt.
+SEQUENCE_MATCHER_MAX_CHARS = 500_000
+# The line-hash Jaccard on giant documents reads higher than the exact
+# SequenceMatcher ratio for the same edit (one changed line costs 2 set
+# slots out of ~300k). A real amendment of a 300k-line RDF moves thousands
+# of lines (≈0.96-0.98) while cosmetic churn moves a handful (≥0.999), so
+# the giant-doc cosmetic gate sits at 0.99 instead of 0.95.
+JACCARD_SIMILARITY_THRESHOLD = 0.99
+_DIFF_EXCERPT_LINES = 40
+
+
+def _similarity_and_exact(before: str, after: str) -> tuple[float, bool]:
+    """Return (similarity ratio, used_exact_sequence_matcher)."""
+    if max(len(before), len(after)) <= SEQUENCE_MATCHER_MAX_CHARS:
+        return difflib.SequenceMatcher(None, before, after).ratio(), True
+    before_lines = {hash(line) for line in before.splitlines()}
+    after_lines = {hash(line) for line in after.splitlines()}
+    if not before_lines and not after_lines:
+        return 1.0, False
+    return len(before_lines & after_lines) / len(before_lines | after_lines), False
+
+
+def _bounded_unified_diff(before: str, after: str, source_id: str) -> str:
+    """Unified diff for small docs; bounded first-divergence excerpt for big ones."""
+    if max(len(before), len(after)) <= SEQUENCE_MATCHER_MAX_CHARS:
+        diff_lines = list(
+            difflib.unified_diff(
+                before.splitlines(),
+                after.splitlines(),
+                fromfile=f"{source_id}@before",
+                tofile=f"{source_id}@after",
+                lineterm="",
+            )
+        )
+        return "\n".join(diff_lines[:120])
+
+    before_lines = before.splitlines()
+    after_lines = after.splitlines()
+    head = [
+        f"{source_id}: document too large for a full inline diff "
+        f"({len(before)} → {len(after)} chars); first divergence excerpt follows."
+    ]
+    shown = 0
+    for index, (old, new) in enumerate(zip(before_lines, after_lines)):
+        if old != new:
+            head.append(f"@@ line {index + 1} @@")
+            head.append(f"- {old[:200]}")
+            head.append(f"+ {new[:200]}")
+            shown += 1
+            if shown >= 5:
+                break
+    if shown == 0:
+        # Divergence is purely in length (lines appended/removed).
+        head.append(f"@@ line {min(len(before_lines), len(after_lines)) + 1} @@")
+        tail_source = before_lines if len(before_lines) > len(after_lines) else after_lines
+        sign = "-" if len(before_lines) > len(after_lines) else "+"
+        for line in tail_source[min(len(before_lines), len(after_lines)) :][:5]:
+            head.append(f"{sign} {line[:200]}")
+    return "\n".join(head[:_DIFF_EXCERPT_LINES])
+
 
 @dataclass
 class Change:
@@ -173,11 +238,10 @@ class SourceStateStore:
             return []
 
         before_text = previous["last_text"] or ""
-        similarity = difflib.SequenceMatcher(
-            None, before_text, current_text
-        ).ratio()
+        similarity, exact = _similarity_and_exact(before_text, current_text)
+        threshold = SIMILARITY_THRESHOLD if exact else JACCARD_SIMILARITY_THRESHOLD
 
-        if similarity >= SIMILARITY_THRESHOLD:
+        if similarity >= threshold:
             # Cosmetic churn — record the new snapshot but do not report.
             return [
                 Change(
@@ -190,15 +254,6 @@ class SourceStateStore:
                 )
             ]
 
-        diff_lines = list(
-            difflib.unified_diff(
-                before_text.splitlines(),
-                current_text.splitlines(),
-                fromfile=f"{source_id}@before",
-                tofile=f"{source_id}@after",
-                lineterm="",
-            )
-        )[:max_diff_lines]
         return [
             Change(
                 kind="modified",
@@ -206,7 +261,9 @@ class SourceStateStore:
                 similarity=similarity,
                 before_hash=previous["last_hash"],
                 after_hash=current_hash,
-                unified_diff="\n".join(diff_lines),
+                unified_diff=_bounded_unified_diff(
+                    before_text, current_text, source_id
+                ),
                 metadata=metadata or {},
             )
         ]

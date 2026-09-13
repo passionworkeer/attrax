@@ -111,3 +111,47 @@ def test_change_to_dict_is_json_safe(store):
     d = change.to_dict()
     assert d["similarity"] == 0.8765
     assert len(d["unifiedDiff"]) <= 8000
+
+
+def test_detect_changes_giant_texts_return_fast(store):
+    """2026-09-13 incident regression: a ~9 MB changed EU RDF drove
+    SequenceMatcher at 100% CPU for hours. The line-hash Jaccard fallback
+    must return in seconds and still classify a real edit as modified."""
+    import time
+
+    # ~9 MB of distinct lines, with a real edit block in the middle.
+    before = "\n".join(f"line-{i}-before" for i in range(300_000))
+    after_lines = [f"line-{i}-before" for i in range(300_000)]
+    for i in range(150_000, 155_000):
+        after_lines[i] = f"line-{i}-AMENDED"
+    after = "\n".join(after_lines)
+
+    store.bulk_snapshot([("eu-big", before, text_hash(before))])
+    started = time.monotonic()
+    changes = store.detect_changes("eu-big", after)
+    elapsed = time.monotonic() - started
+
+    assert elapsed < 10.0, f"giant-text diff took {elapsed:.1f}s — fallback broken"
+    assert len(changes) == 1
+    assert changes[0].kind == "modified"
+    # 5k of 300k lines changed → Jaccard ≈ 0.967, below the giant-doc
+    # cosmetic gate (0.99) → correctly a real change.
+    assert 0.9 < changes[0].similarity < 0.99
+    assert "first divergence" in changes[0].unified_diff or "@@" in changes[0].unified_diff
+
+
+def test_giant_nearly_identical_texts_classify_cosmetic_fast(store):
+    """Timestamp-only churn on a giant doc must stay cosmetic (≥0.95) and fast."""
+    import time
+
+    before = "\n".join(f"stable-{i}" for i in range(300_000))
+    after = before.replace("stable-1000\n", "stable-1000-touched\n", 1)
+
+    store.bulk_snapshot([("eu-big2", before, text_hash(before))])
+    started = time.monotonic()
+    changes = store.detect_changes("eu-big2", after)
+    elapsed = time.monotonic() - started
+
+    assert elapsed < 10.0
+    assert changes and changes[0].kind == "cosmetic"
+    assert changes[0].similarity >= 0.95
