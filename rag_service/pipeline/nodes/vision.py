@@ -58,6 +58,42 @@ PROMPT = """你是产品视觉取证助手。只记录图片中可观察到的�
 - 只有完整、清晰可见的标志才可写入 visible_certification_marks；文字提及或猜测不算可见标志。
 - 不确定的产品类型使用“无法识别具体产品类型”，并在 questions_needed 中说明需要哪张补拍图。"""
 
+# ── Checklist observation prompt (plan 2026-09-13 §5 + §7.1 step 3) ─────────
+# The checklist path replaces free-form issue emission for categories that
+# have an inspection profile: the server selects checkIds from
+# data/inspection_profiles/*.yaml, and the model ONLY returns per-check
+# observations. It must not invent checkIds, regulations, prices, or
+# pipeline nodes — those are server-owned.
+CHECKLIST_PROMPT_TEMPLATE = """你是产品视觉取证助手。对下面列出的每个检查项，只报告"这张图里看到了什么、在哪里、看得清不清楚"。不要给出法规结论、合规判断、认证真伪、价格或建议。
+
+检查项清单（每项必须出现在 observations 里，一项一条）：
+{checklist}
+
+返回一个 JSON 对象，不能使用 Markdown、代码围栏或额外文字：
+{{
+  "product_type": "一个具体产品类型；不确定时为 无法识别具体产品类型",
+  "identity_confidence": "high|medium|low",
+  "core_features": ["最多 4 条可见且与合规相关的特征"],
+  "visible_certification_marks": ["仅图片中实际清晰可见的 CE/FCC/UKCA/CCC/RoHS/WEEE/REACH 标志"],
+  "questions_needed": ["需要用户补充确认的信息；没有就 []"],
+  "observations": [
+    {{
+      "check_id": "必须逐字使用清单里的 id",
+      "visibility": "present_readable|present_unreadable|not_in_view|occluded|absent_in_visible_scope",
+      "observed_text": "标签/文字上实际读到的内容；没有为 null",
+      "description": "一句话描述看到的内容或为何看不到",
+      "bbox": {{"x": 0.0, "y": 0.0, "w": 0.0, "h": 0.0}}
+    }}
+  ]
+}}
+
+硬性规则：
+- visibility 只能取上面五个值；清单里每一项都必须有一条 observation，不知道的用 not_in_view。
+- bbox 是归一化坐标（0.0-1.0），只有**肉眼可定位**的观察才填 bbox；not_in_view 的项 bbox 为 null。
+- absent_in_visible_scope 仅当完整标签区域清晰可见、但清单期望的字段确实未出现时使用；它不是"产品缺少该标识"的结论。
+- 不得推断被遮挡/内部部件的属性；不得输出法规 ID 或合规结论。
+- 只有完整、清晰可见的标志才可写入 visible_certification_marks。"""
+
 PRODUCT_TYPE_KEYWORDS = {
     "充电宝": ["移动电源", "power bank", "便携式充电器"],
     "耳机": ["蓝牙耳机", "有线耳机", "earphone", "headphone", "earbuds"],
@@ -214,6 +250,156 @@ class VisionAnalyzer:
             return {"error": "vision_call_failed", "description": "", "certifications": []}
 
         return _parse_vision_text(text, text)
+
+    def analyze_single_image_with_checks(
+        self,
+        image_data: bytes,
+        mime_type: str,
+        checks: list[dict],
+    ) -> dict:
+        """Checklist-mode analysis (plan 2026-09-13 §7.1 step 3).
+
+        ``checks`` is a list of ``{"id", "title"}`` dicts from the category's
+        inspection profile. The model answers per-check observations only;
+        legacy ``issues`` remains empty because judgments moved to the
+        findings layer. Falls back to the legacy free-form prompt when the
+        checklist call fails, so an LLM hiccup degrades to the old behavior
+        instead of killing the scan.
+        """
+        if not self.api_key:
+            return {"error": "no_api_key", "description": "", "certifications": [], "observations": []}
+
+        if not self._looks_like_image(image_data, mime_type):
+            return {
+                "error": "invalid_image_buffer",
+                "description": "",
+                "certifications": [],
+                "observations": [],
+            }
+
+        checklist_block = "\n".join(
+            f"- id: {item['id']}｜{item.get('title') or item['id']}" for item in checks
+        )
+        prompt = CHECKLIST_PROMPT_TEMPLATE.format(checklist=checklist_block)
+        b64 = base64.b64encode(image_data).decode("utf-8")
+
+        text = self._call_mimotalk(
+            [{
+                "role": "user",
+                "content": [
+                    {"type": "image", "source": {"type": "base64", "media_type": mime_type, "data": b64}},
+                    {"type": "text", "text": prompt},
+                ],
+            }],
+            max_tokens=3072,
+        )
+        if not text:
+            # Checklist call failed — fall back to the legacy prompt so the
+            # scan still gets vision data (observations stay empty).
+            legacy = self.analyze_single_image(image_data, mime_type)
+            legacy.setdefault("observations", [])
+            return legacy
+
+        parsed = _parse_vision_text(text, text)
+        parsed.setdefault("observations", [])
+        return parsed
+
+    def analyze_images_with_checks(
+        self,
+        images: list[dict],
+        checks: list[dict],
+        session_id: str = "scan",
+    ) -> dict:
+        """Multi-image checklist analysis returning merged observations.
+
+        Single-image path avoids the thread pool; multi-image runs the same
+        bounded parallelism as ``analyze_images`` (≤4 workers).
+        """
+        if not images or not self.api_key:
+            result = _empty_vision_result()
+            result["observations"] = []
+            return result
+
+        selected_check_ids = [item["id"] for item in checks]
+
+        if len(images) == 1:
+            result = self.analyze_single_image_with_checks(
+                images[0].get("buffer", b""),
+                images[0].get("mime_type", images[0].get("mimeType", "image/jpeg")),
+                checks,
+            )
+            observations = _parse_checklist_observations(
+                result, 0, session_id, selected_check_ids
+            )
+            legacy_result = self._legacy_shape_from(result)
+            legacy_result["observations"] = observations
+            return legacy_result
+
+        raw_results: list[dict | None] = [None] * len(images)
+        with ThreadPoolExecutor(max_workers=min(len(images), 4)) as pool:
+            futures = {
+                pool.submit(
+                    self.analyze_single_image_with_checks,
+                    img.get("buffer", b""),
+                    img.get("mime_type", img.get("mimeType", "image/jpeg")),
+                    checks,
+                ): index
+                for index, img in enumerate(images)
+            }
+            for future in futures:
+                index = futures[future]
+                try:
+                    raw_results[index] = future.result()
+                except Exception as exc:  # pragma: no cover — defensive
+                    logger.debug("checklist analysis failed for image %d: %s", index, exc)
+
+        descriptions: list[str] = []
+        seen_certs: dict[str, dict] = {}
+        observations: list[dict] = []
+        for index, result in enumerate(raw_results):
+            if not result:
+                continue
+            if result.get("description"):
+                descriptions.append(result["description"])
+            for cert in result.get("certifications", []):
+                mark = cert["mark"]
+                if mark not in seen_certs or cert.get("confidence") == "high":
+                    seen_certs[mark] = cert
+            structured = result if isinstance(result, dict) else {}
+            observations.extend(
+                _parse_checklist_observations(
+                    structured, index, session_id, selected_check_ids
+                )
+            )
+
+        certs_list = list(seen_certs.values())
+        cert_str = ", ".join(c["mark"] for c in certs_list) if certs_list else "未发现认证标志"
+        combined = "\n\n".join(descriptions)
+        return {
+            "descriptions": descriptions,
+            "combined_description": combined,
+            "certifications": certs_list,
+            "issues": [],  # checklist mode: judgments live in findings, not here
+            "observations": observations,
+            "images_analyzed": len(images),
+            "enriched_query": _build_vision_enriched_query(combined, certs_list),
+            "cert_summary": cert_str,
+        }
+
+    @staticmethod
+    def _legacy_shape_from(result: dict) -> dict:
+        """Map a checklist-mode single-image result onto the legacy shape."""
+        certs_list = result.get("certifications", [])
+        description = result.get("description", "")
+        return {
+            "descriptions": [description] if description else [],
+            "combined_description": description,
+            "certifications": certs_list,
+            "issues": result.get("issues", []),
+            "images_analyzed": 1,
+            "enriched_query": _build_vision_enriched_query(description, certs_list),
+            "cert_summary": ", ".join(c["mark"] for c in certs_list) if certs_list else "未发现认证标志",
+        }
 
     def analyze_images(self, images: list[dict]) -> dict:
         """
@@ -493,6 +679,113 @@ def _build_vision_enriched_query(description: str, certifications: list[dict]) -
     return description[:300].replace("\n", " ")
 
 
+# ── Checklist observation parsing (plan 2026-09-13 §7.1 step 3) ─────────────
+
+_VALID_VISIBILITIES = {
+    "present_readable",
+    "present_unreadable",
+    "not_in_view",
+    "occluded",
+    "absent_in_visible_scope",
+}
+
+
+def _parse_checklist_observations(
+    structured: dict,
+    image_index: int,
+    session_id: str,
+    selected_check_ids: list[str],
+) -> list[dict]:
+    """Normalize the model's per-check observations to the v2 contract.
+
+    Enforces:
+    - every emitted check_id must be one of the server-selected ids
+      (unknown ids are dropped, not passed through)
+    - visibility must be one of the five states (default not_in_view)
+    - bbox passes through raw; grounding.py validates/clamps later
+    - ids carry the scan + image identity (audit §6: "ID 至少带本次扫描与
+      图片的身份,不能每张图从 vision-issue-0 重复编号")
+    """
+    raw_observations = structured.get("observations")
+    if not isinstance(raw_observations, list):
+        return []
+
+    selected = set(selected_check_ids)
+    parsed: list[dict] = []
+    for position, item in enumerate(raw_observations):
+        if not isinstance(item, dict):
+            continue
+        check_id = str(item.get("check_id") or item.get("checkId") or "").strip()
+        if check_id not in selected:
+            continue
+        visibility = str(item.get("visibility") or "").strip().lower()
+        if visibility not in _VALID_VISIBILITIES:
+            visibility = "not_in_view"
+
+        observed_text = item.get("observed_text") or item.get("observedText")
+        bbox_raw = item.get("bbox") or item.get("region")
+        bbox: dict | None = None
+        if isinstance(bbox_raw, dict) and bbox_raw:
+            try:
+                bbox = {
+                    "x": float(bbox_raw.get("x", -1)),
+                    "y": float(bbox_raw.get("y", -1)),
+                    "w": float(bbox_raw.get("w", bbox_raw.get("width", -1))),
+                    "h": float(bbox_raw.get("h", bbox_raw.get("height", -1))),
+                }
+            except (TypeError, ValueError):
+                bbox = None
+            else:
+                if bbox["w"] <= 0 or bbox["h"] <= 0:
+                    bbox = None
+
+        parsed.append(
+            {
+                "observationId": f"{session_id}-img{image_index}-obs{position}",
+                "checkId": check_id,
+                "imageIndex": image_index,
+                "imageId": f"vision-image-{image_index}",
+                "visibility": visibility,
+                "observedText": (
+                    str(observed_text).strip()[:500]
+                    if isinstance(observed_text, str) and observed_text.strip()
+                    else None
+                ),
+                "description": str(item.get("description") or "").strip()[:500],
+                "region": (
+                    {
+                        "kind": "bbox",
+                        "coordinateSpace": "normalized_canonical_image",
+                        "bbox": bbox,
+                    }
+                    if bbox
+                    else None
+                ),
+            }
+        )
+
+    # Server-side full-set validation: every selected check must come back.
+    # Missing ones get backfilled as not_assessed so a partial model response
+    # can never look like "all clear" (plan §5.1).
+    returned = {entry["checkId"] for entry in parsed}
+    for check_id in selected_check_ids:
+        if check_id in returned:
+            continue
+        parsed.append(
+            {
+                "observationId": f"{session_id}-img{image_index}-{check_id}-unassessed",
+                "checkId": check_id,
+                "imageIndex": image_index,
+                "imageId": f"vision-image-{image_index}",
+                "visibility": "not_assessed",
+                "observedText": None,
+                "description": "",
+                "region": None,
+            }
+        )
+    return parsed
+
+
 def _empty_vision_result() -> dict:
     return {
         "descriptions": [],
@@ -513,10 +806,19 @@ def vision_analysis_node(state: dict) -> dict:
 
     Runs only when images are provided; otherwise passes through.
     When vision_result is pre-computed (e.g. via API), preserve it.
+
+    Checklist mode (plan 2026-09-13 §5): when the category has an
+    inspection profile, the model receives the fixed check list and
+    returns per-check observations instead of free-form issues. The
+    legacy free-form path still runs when no profile exists (``other``
+    without confirmation, legacy callers) so behavior degrades, not
+    breaks.
     """
     start_time = time.time()
     images = state.get("images", [])
     query = state.get("query", "")
+    category = str(state.get("category") or "").strip().lower()
+    session_id = str(state.get("session_id") or "scan")
 
     if not images:
         # Preserve pre-computed vision_result from API call
@@ -544,19 +846,53 @@ def vision_analysis_node(state: dict) -> dict:
             "agent_trace": [{"node": "vision", "status": "no_api_key"}],
         }
 
+    # Checklist selection: category → profile → visual checks. Categories
+    # with no profile file fall back to the legacy free-form prompt.
+    checklist_checks: list[dict] = []
+    if category:
+        try:
+            from rag_service.pipeline.nodes.visual_checks import (
+                effective_checks,
+            )
+            checklist_checks = [
+                {"id": check.id, "title": check.title}
+                for check in effective_checks(category)
+                if any(method in {"vision", "ocr"} for method in check.methods)
+            ]
+        except Exception as exc:
+            logger.warning("inspection profile load failed (%s); using legacy vision", exc)
+            checklist_checks = []
+
     try:
-        vision_data = analyzer.analyze_images(images)
+        if checklist_checks:
+            vision_data = analyzer.analyze_images_with_checks(
+                images, checklist_checks, session_id=session_id
+            )
+            mode = "checklist"
+        else:
+            vision_data = analyzer.analyze_images(images)
+            mode = "freeform"
+
         enriched_q = vision_data.get("enriched_query", "")
         combined = f"{query} {enriched_q}".strip() if enriched_q else query
 
         trace_entry = {
             "node": "vision",
+            "mode": mode,
+            "check_count": len(checklist_checks),
             "images_count": len(images),
             "certifications_found": len(vision_data.get("certifications", [])),
             "description_length": len(vision_data.get("combined_description", "")), "duration_ms": int((time.time() - start_time) * 1000),
         }
+        observations = vision_data.get("observations") or []
+        if observations:
+            trace_entry["observation_count"] = len(observations)
 
-        logger.info(f"Vision node: analyzed {len(images)} images, found {len(vision_data.get('certifications', []))} certs")
+        logger.info(
+            f"Vision node: analyzed {len(images)} images (mode={mode}), "
+            f"found {len(vision_data.get('certifications', []))} certs, "
+            f"{len(observations)} observations"
+        )
 
         return {
             "vision_result": vision_data,

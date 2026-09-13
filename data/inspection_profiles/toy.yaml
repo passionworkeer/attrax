@@ -1,0 +1,89 @@
+# 玩具类。优先子类型之一。
+# Plan §5 toy 行:年龄说明、警告语、可见小附件、磁体/绳带、电池仓闭合方式、
+# 可见尖锐或破损部位。单凭图片不能得出:小零件量规通过与否、拉力、磁通量、
+# 迁移限值 —— 全部 lab_test。
+profile_id: toy
+version: 1
+title: 玩具视觉检查
+extends: common
+checks:
+  - id: toy.age_range.label
+    version: 1
+    title: 年龄适用范围标注
+    target_regions: [packaging, product_label]
+    required_views: [package_front]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-2009-48-toy
+      - US-ASTM-F963-toy
+
+  - id: toy.warnings.text
+    version: 1
+    title: 警告语(窒息/磁体/电池等)
+    target_regions: [warning_label, packaging]
+    required_views: [package_front, warning_label_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-2009-48-toy
+
+  - id: toy.small_parts.visible
+    version: 1
+    title: 可见小附件(含脱落风险目视)
+    target_regions: [product_body]
+    required_views: [overview, accessories_flat]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: toy.magnets_cords.visible
+    version: 1
+    title: 磁体/绳带/绳索可见形态
+    target_regions: [product_body]
+    required_views: [overview, accessories_flat]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: toy.battery_compartment.closure
+    version: 1
+    title: 电池仓闭合方式(螺丝/卡扣)
+    target_regions: [battery_compartment]
+    required_views: [battery_compartment]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - KB-toy-EU-2009-48
+
+  - id: toy.sharp_edges.visible
+    version: 1
+    title: 可见尖锐/破损部位
+    target_regions: [product_body]
+    required_views: [overview]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: toy.mechanical_physical.test
+    version: 1
+    title: 机械物理性能测试(小零件/拉力/磁通量)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - EU-2009-48-toy
+      - US-ASTM-F963-toy
+      - US-CPSIA-toy
+
+  - id: toy.chemical_migration.test
+    version: 1
+    title: 化学迁移测试(重金属/增塑剂)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - EU-2009-48-toy
+      - US-CPSIA-toy

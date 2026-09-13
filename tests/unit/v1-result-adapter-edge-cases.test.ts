@@ -194,4 +194,113 @@ describe("normalizeV1ScanResult - Edge Cases & Resilient Fallbacks", () => {
       expect(adapted?.riskPoints).toHaveLength(0);
     });
   });
+
+  // Plan 2026-09-13 §6 — checklist-mode scans carry v2 observations. The
+  // adapter must remap vision-image-N ids to the session image asset ids
+  // (same discipline as riskPoints) and drop unusable regions.
+  describe("inspection observations v2", () => {
+    it("maps observations with image id remap and region passthrough", () => {
+      const raw: V1SessionData = {
+        sessionId: "scan_abc123",
+        status: "completed",
+        result: {
+          reportPackage: {
+            decisionView: { verdict: "WARN", nodes: [] },
+            observations: [
+              {
+                observationId: "scan_abc123-img0-obs0",
+                checkId: "common.nameplate.readability",
+                imageId: "vision-image-0",
+                visibility: "present_readable",
+                observedText: "ACME 5V⎓2A",
+                description: "铭牌可见",
+                region: {
+                  kind: "bbox",
+                  coordinateSpace: "normalized_canonical_image",
+                  bbox: { x: 0.1, y: 0.1, w: 0.3, h: 0.15 },
+                  verified: true,
+                },
+              },
+              {
+                observationId: "scan_abc123-img0-obs1",
+                checkId: "common.warning_text.language",
+                imageId: "vision-image-0",
+                visibility: "not_in_view",
+                observedText: null,
+                description: "正面照未覆盖警告标签",
+                region: null,
+              },
+            ],
+            selectedCheckIds: [
+              "common.nameplate.readability",
+              "common.warning_text.language",
+            ],
+          },
+        },
+      };
+      const adapted = normalizeV1ScanResult(raw);
+      expect(adapted?.inspectionObservations).toHaveLength(2);
+      const first = adapted?.inspectionObservations?.[0];
+      expect(first?.imageId).toBe("scan_abc123-image-0");
+      expect(first?.visibility).toBe("present_readable");
+      expect(first?.region?.bbox).toEqual({ x: 0.1, y: 0.1, w: 0.3, h: 0.15 });
+      expect(first?.region?.verified).toBe(true);
+      const second = adapted?.inspectionObservations?.[1];
+      expect(second?.region).toBeNull();
+      expect(second?.visibility).toBe("not_in_view");
+      expect(adapted?.selectedCheckIds).toEqual([
+        "common.nameplate.readability",
+        "common.warning_text.language",
+      ]);
+    });
+
+    it("drops observations with invalid bbox regions", () => {
+      const raw: V1SessionData = {
+        sessionId: "scan_bad_bbox",
+        status: "completed",
+        result: {
+          reportPackage: {
+            decisionView: { verdict: "WARN", nodes: [] },
+            observations: [
+              {
+                observationId: "o1",
+                checkId: "c",
+                imageId: "vision-image-0",
+                visibility: "present_readable",
+                region: { kind: "bbox", bbox: { x: -1, y: 0, w: 0.2, h: 0.2 } },
+              },
+            ],
+          },
+        },
+      };
+      const adapted = normalizeV1ScanResult(raw);
+      const first = adapted?.inspectionObservations?.[0];
+      expect(first?.region).toBeNull();
+      // visibility preserved — the observation itself is valid, only the
+      // grounding is unusable
+      expect(first?.visibility).toBe("present_readable");
+    });
+
+    it("defaults unknown visibility to not_assessed", () => {
+      const raw: V1SessionData = {
+        sessionId: "scan_weird_vis",
+        status: "completed",
+        result: {
+          reportPackage: {
+            decisionView: { verdict: "WARN", nodes: [] },
+            observations: [
+              {
+                observationId: "o1",
+                checkId: "c",
+                imageId: "vision-image-0",
+                visibility: "quantum_superposition",
+              },
+            ],
+          },
+        },
+      };
+      const adapted = normalizeV1ScanResult(raw);
+      expect(adapted?.inspectionObservations?.[0]?.visibility).toBe("not_assessed");
+    });
+  });
 });

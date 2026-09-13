@@ -1,0 +1,59 @@
+# 食品接触材料类(餐厨具/容器/包装)。
+# Plan §5 food_contact 行:接触面、材质声明文字、温度/用途说明、涂层可见异常、
+# 产品标签。单凭图片不能得出:总迁移/特定迁移、重金属、实际耐热。
+profile_id: food_contact
+version: 1
+title: 食品接触材料视觉检查
+extends: common
+checks:
+  - id: food_contact.surface.condition
+    version: 1
+    title: 接触面可见状态(涂层剥落/划痕/污渍)
+    target_regions: [contact_surface]
+    required_views: [inner_surface]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-1935-2004-food-contact
+
+  - id: food_contact.material_declaration.text
+    version: 1
+    title: 材质声明文字(如"食品级"/PP/PE/不锈钢牌号)
+    target_regions: [product_label, bottom_marking]
+    required_views: [bottom_label]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-10-2011-food-contact
+      - CN-GB-4806-food-contact
+
+  - id: food_contact.temperature_usage.text
+    version: 1
+    title: 温度/用途说明(微波适用/ Oven-safe 等)
+    target_regions: [product_label]
+    required_views: [bottom_label]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: food_contact.coating.anomaly
+    version: 1
+    title: 涂层可见异常(疑点级,需检测确认)
+    target_regions: [coating_area]
+    required_views: [inner_surface]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+    # ⚠️ "涂层剥落疑点"是观察;化学限值是否超标必须走迁移测试。
+
+  - id: food_contact.migration_test.report
+    version: 1
+    title: 总迁移/特定迁移测试报告
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - EU-10-2011-food-contact
+      - US-21-CFR-174-food-contact
+      - CN-GB-4806-food-contact

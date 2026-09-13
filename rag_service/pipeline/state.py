@@ -16,6 +16,7 @@ class PipelineState(TypedDict, total=False):
     product: str
     category: str
     markets: list[str]
+    session_id: str                 # scan identity for observation ids (plan §6)
     vision_result: dict
     images: list[dict]  # [{"buffer": bytes, "mime_type": str}]
     user_documents: list[dict]  # [{"name": str, "mime_type": str, "text": str}]
@@ -37,13 +38,15 @@ GraphState = PipelineState
 def initial_state(query: str, product: str, category: str,
                   markets: list[str], vision_result: dict,
                   images: list[dict] = None,
-                  documents: list[dict] = None) -> PipelineState:
+                  documents: list[dict] = None,
+                  session_id: str = "scan") -> PipelineState:
     """Create the initial pipeline state."""
     return PipelineState(
         query=query,
         product=product,
         category=category,
         markets=markets,
+        session_id=session_id,
         vision_result=vision_result,
         images=images or [],
         user_documents=documents or [],

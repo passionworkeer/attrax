@@ -1,0 +1,96 @@
+# 纺织/服装类。
+# Plan §5 textile 行:纤维成分、洗护、尺码、追溯标签、绳带/附件、可见做工异常。
+# 单凭图片不能得出:实际纤维含量、色牢度、甲醛/偶氮、阻燃测试。
+profile_id: textile
+version: 1
+title: 纺织品视觉检查
+extends: common
+checks:
+  - id: textile.fiber_content.label
+    version: 1
+    title: 纤维成分标签
+    target_regions: [care_label]
+    required_views: [care_label_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-1007-2011-textile
+      - US-TFPIA-textile
+
+  - id: textile.care_instructions.label
+    version: 1
+    title: 洗护说明与图形符号
+    target_regions: [care_label]
+    required_views: [care_label_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - CN-GB-5296-4-textile
+
+  - id: textile.size_marking.label
+    version: 1
+    title: 尺码标注
+    target_regions: [size_label]
+    required_views: [all_sewn_labels]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: textile.traceability.label
+    version: 1
+    title: 追溯信息(产地/制造商/进口商)
+    target_regions: [care_label, brand_label]
+    required_views: [all_sewn_labels]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-1007-2011-textile
+
+  - id: textile.cords_drawstrings.visible
+    version: 1
+    title: 绳带/拉绳形态(童装头部颈部特别关注)
+    target_regions: [product_body]
+    required_views: [overview_front, overview_back]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-EN-14682-child-clothing
+
+  - id: textile.accessories.visible
+    version: 1
+    title: 附件(纽扣/拉链/装饰件)可见状态
+    target_regions: [product_body]
+    required_views: [overview_front]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: textile.workmanship.visible
+    version: 1
+    title: 可见做工异常(线头/破洞/色差)
+    target_regions: [product_body]
+    required_views: [overview_front, overview_back]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: textile.composition_verification.test
+    version: 1
+    title: 纤维含量定量分析
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - EU-1007-2011-textile
+      - CN-GB-18401-textile
+
+  - id: textile.chemical_safety.test
+    version: 1
+    title: 化学安全测试(甲醛/偶氮/pH)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - CN-GB-18401-textile

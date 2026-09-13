@@ -1,0 +1,78 @@
+# 化妆品类。
+# Plan §5 cosmetic 行:容器与外盒的成分表、净含量、批号/日期、用途、使用方法、
+# 警告和责任主体文字。单凭图片不能得出:配方合法性、污染/微生物、功效真实性。
+profile_id: cosmetic
+version: 1
+title: 化妆品视觉检查
+extends: common
+checks:
+  - id: cosmetic.ingredients.listing
+    version: 1
+    title: 成分表完整性
+    target_regions: [ingredient_label]
+    required_views: [label_front, label_back]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-1223-2009-cosmetic
+      - CN-CSAR-cosmetic
+
+  - id: cosmetic.net_content.marking
+    version: 1
+    title: 净含量标注
+    target_regions: [product_label]
+    required_views: [label_front]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: cosmetic.batch_date.code
+    version: 1
+    title: 批号/生产日期/保质期
+    target_regions: [batch_label]
+    required_views: [bottom_batch]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: cosmetic.usage_directions.text
+    version: 1
+    title: 用途与使用方法文字
+    target_regions: [product_label]
+    required_views: [label_back]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: cosmetic.warnings.responsible_party
+    version: 1
+    title: 警告语与责任主体(欧盟 RP 地址等)
+    target_regions: [product_label, packaging]
+    required_views: [label_back, package]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - EU-1223-2009-cosmetic
+      - UK-Cosmetics-battery
+
+  - id: cosmetic.safety.assessment
+    version: 1
+    title: CPSR 安全评估报告(欧盟)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: document
+    legal_anchor_refs:
+      - EU-1223-2009-cosmetic
+
+  - id: cosmetic.notification.registration
+    version: 1
+    title: 市场通报/备案凭证(CPNP/SCSN/国产备案)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: registration
+    legal_anchor_refs:
+      - EU-1223-2009-cosmetic
+      - CN-CSAR-cosmetic
+      - US-MoCRA-cosmetic

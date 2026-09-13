@@ -24,6 +24,7 @@ import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { DegradedBanner } from "@/components/result/DegradedBanner";
 import { FallbackNotice } from "@/components/result/FallbackNotice";
 import { HotspotLayer, isRenderableBbox } from "@/components/result/HotspotLayer";
+import { InspectionChecklistPanel } from "@/components/result/InspectionChecklistPanel";
 import { SourceNotice } from "@/components/result/SourceNotice";
 import { ResultExportButton } from "./result-export-button";
 import { useResultLoader } from "./use-result-loader";
@@ -640,6 +641,23 @@ export default function ResultPage() {
             </div>
           </section>
         </section>
+
+        {/* Plan 2026-09-13 §8 — 检查清单在报告与成本之前:先告诉用户
+            "哪些检查项有结果、哪些需要补拍",再进入全文报告。
+            只有 checklist-mode 扫描(有 observations)渲染该面板。 */}
+        {result.inspectionObservations && result.inspectionObservations.length > 0 ? (
+          <InspectionChecklistPanel
+            observations={result.inspectionObservations}
+            selectedCheckIds={result.selectedCheckIds}
+            locale={locale}
+            activeImageId={riskImage?.imageId ?? null}
+            onCheckClick={(observation) => {
+              if (observation.imageId) {
+                setSelectedImageId(observation.imageId);
+              }
+            }}
+          />
+        ) : null}
 
         <section id="compliance-report" className="blaze-panel p-5 sm:p-7">
           <div className="flex flex-wrap items-end justify-between gap-4">
