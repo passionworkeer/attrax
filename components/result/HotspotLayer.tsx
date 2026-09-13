@@ -4,13 +4,14 @@ import type { BoundingBox } from "@/lib/types";
 
 /**
  * Feature 1 (2.5D hotspots): renders vision-anchored risk regions as
- * slightly-tilted rectangles on top of the product image canvas.
+ * highlight frames on top of the product image canvas.
  *
- * Visual language: each hotspot is a CSS `perspective(800px)` +
- * `rotateX/rotateY` transformed rectangle with a multi-layer box-shadow and
- * a translucent gradient fill. The tilt gives a subtle "2.5D sticker"
- * feel — the box reads as floating *over* the photo rather than being
- * burned into it. Severity drives the accent color.
+ * Audit 2026-09-13 P1-3: the evidence frame itself must stay FLAT —
+ * perspective/rotate/scale transforms on the bbox visually move the box
+ * away from the exact region the model grounded, which breaks the
+ * "this observation belongs to this area" claim. The 2.5D feel now lives
+ * only on the floating label chip; plan §8: "2.5D effects should only be
+ * added to the copied partial image cards".
  *
  * Data source: `vision.py` emits `issues[].bbox` (normalized 0..1); the
  * generator injects them into `decisionView.nodes[].bbox`; the v1 adapter
@@ -130,18 +131,16 @@ export function HotspotLayer({
               opacity: activeId && !isActive ? 0.45 : 1,
             }}
           >
-            {/* 2.5D tilted frame — the visual hotspot itself is not a click
-                target (pointer-events-none on the layer keeps the canvas
-                image draggable); the label chip below is the button. */}
+            {/* Flat evidence frame — no perspective/rotate/scale on the
+                bbox itself (audit P1-3): the box must stay glued to the
+                exact region the model grounded. */}
             <div
               aria-hidden
               className="absolute inset-0 rounded-[10px] backdrop-blur-[1.5px]"
               style={{
-                transform: `perspective(800px) rotateX(7deg) rotateY(-6deg) scale(${isActive ? 1.06 : 1})`,
-                transformOrigin: "center center",
                 border: `1.5px solid ${style.border}`,
                 background: `linear-gradient(135deg, ${style.gradient}, transparent 70%)`,
-                boxShadow: `0 0 0 1.5px ${style.border}, 12px 22px 32px -8px ${style.shadow}, inset 0 0 24px ${style.gradient}`,
+                boxShadow: `0 0 0 1.5px ${style.border}, 0 14px 26px -10px ${style.shadow}, inset 0 0 24px ${style.gradient}`,
               }}
             />
             {/* Corner ticks — cheap "targeting reticle" affordance */}
@@ -155,12 +154,11 @@ export function HotspotLayer({
               className="absolute -right-px -bottom-px size-2.5 rounded-br-[10px]"
               style={{ borderBottom: `2px solid ${style.border}`, borderRight: `2px solid ${style.border}` }}
             />
-            {/* Clickable severity chip pinned to the frame (positions inside if too close to top edge to prevent overflow clipping) */}
+            {/* Clickable severity chip pinned to the frame (positions inside if too close to top edge to prevent overflow clipping). The chip carries the subtle 2.5D lift so the flat frame reads as evidence, not decoration. */}
             <button
               type="button"
               onClick={() => onHotspotClick?.(spot.id)}
               className={`pointer-events-auto absolute ${spot.bbox.y < 0.06 ? "top-1.5 left-2" : "-top-2.5 left-2"} flex max-w-full items-center gap-1.5 rounded-full border px-2 py-0.5 text-[10px] font-semibold text-white shadow-lg backdrop-blur-md transition hover:brightness-110 ${style.tag}`}
-              style={{ transform: "perspective(800px) rotateX(7deg) rotateY(-6deg)" }}
               aria-label={`${localizedLabel?.(spot.severity) ?? spot.severity}: ${spot.label}${viewDetailLabel ? ` — ${viewDetailLabel}` : ""}`}
             >
               <span className={`inline-block size-1.5 shrink-0 rounded-full ${style.dot}`} />
