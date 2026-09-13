@@ -1,10 +1,12 @@
 /**
  * DEMO_MODE 本地扫描会话状态机单元测试。
  *
- * 覆盖 lib/pipeline/demo-scan-session.ts 的全部导出:
- *  - isDemoScanSession(前缀判断)
+ * 覆盖 lib/pipeline/demo-scan-session.ts 的剩余导出:
  *  - createDemoScanSession(建会话、setTimeout 注册 ready 转换、TTL)
  *  - getDemoScanSession(读、过期清理)
+ *
+ * `isDemoScanSession` 已于 2026-09-13 死代码扫描后删除(详见源码内注释);
+ * 它只覆盖 `scan_demo_` 前缀,生产路径走字面 `sessionId === "demo"` 检查。
  *
  * 用 fake timers 控制 READY_DELAY_MS(1.8s)的 ready 转换与 TTL(1h)的过期清理,
  * 避免真实等待。每个用例 resetModules 拿到干净的模块级 store。
@@ -25,20 +27,6 @@ async function loadModule() {
 }
 
 describe("demo-scan-session", () => {
-  describe("isDemoScanSession", () => {
-    it("识别 scan_demo_ 前缀的 sessionId", async () => {
-      const m = await loadModule();
-      expect(m.isDemoScanSession("scan_demo_abc123")).toBe(true);
-    });
-
-    it("拒绝非 demo 前缀的 sessionId", async () => {
-      const m = await loadModule();
-      expect(m.isDemoScanSession("sess_abc123")).toBe(false);
-      expect(m.isDemoScanSession("demo")).toBe(false);
-      expect(m.isDemoScanSession("")).toBe(false);
-    });
-  });
-
   describe("createDemoScanSession", () => {
     it("返回 processing 会话 + scan_demo_ 前缀 sessionId + pollUrl", async () => {
       const m = await loadModule();

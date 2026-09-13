@@ -115,11 +115,7 @@ jobs:
           DEMO_MODE: "true"
         run: >
           python -m pytest rag_service/tests/ -v
-          --ignore=rag_service/tests/test_embedders.py
-          --ignore=rag_service/tests/test_faiss_retriever.py
-          --ignore=rag_service/tests/test_regulation_retrieval_eval.py
           --ignore=rag_service/tests/test_registry_collector_manifest.py
-          --ignore=rag_service/tests/test_smoke.py
 
   e2e:
     needs: [frontend, backend-unit]

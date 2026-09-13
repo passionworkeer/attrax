@@ -56,13 +56,13 @@ services:
       RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
       RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:?RAG_INTERNAL_SECRET is required}
       ATTRAX_BUILD_SHA: ${ATTRAX_BUILD_SHA:-unknown}
-      FAISS_INDEX_DIR: /app/data/faiss
       ATTRAX_RUNTIME_DIR: /app/data/backend
       NO_PROXY: "localhost,127.0.0.1,rag-service"
     volumes:
-      - ./data/faiss:/app/data/faiss:ro
-      - ./data/corpus/processed:/app/data/corpus/processed:ro
       - ./data/backend:/app/data/backend
+      # KB regulation library + per-region YAMLs are baked into the image at build
+      # time (see rag_service/Dockerfile COPY data/kb data/regulations). No host
+      # mounts are required at runtime for the de-RAG pipeline.
     restart: unless-stopped
     init: true
     security_opt:

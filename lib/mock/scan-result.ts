@@ -875,9 +875,4 @@ export function createMockProfitReportUS(sessionId = "demo"): ProfitReportResult
   return createMockProfitReports(sessionId)[2];
 }
 
-export const mockComplianceReportResult = createMockComplianceReportResult("demo");
 export const mockScanResult = createMockScanResult("demo");
-export const mockProfitReports = createMockProfitReports("demo");
-export const mockProfitReport = mockProfitReports[1];
-export const demoProfitReportEU = createMockProfitReportEU();
-export const demoProfitReportUS = createMockProfitReportUS();
