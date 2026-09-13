@@ -48,8 +48,12 @@ function number(value: unknown, fallback = 0): number {
   return typeof value === "number" && Number.isFinite(value) ? value : fallback;
 }
 
-function markets(value: unknown, fallback: string[]): Market[] {
-  const values = Array.isArray(value) ? value : fallback;
+function markets(value: unknown, fallback?: string[]): Market[] {
+  const values = Array.isArray(value)
+    ? value
+    : Array.isArray(fallback)
+      ? fallback
+      : ["EU"];
   return values
     .map((item) => String(item).toUpperCase())
     .filter((item): item is Market => MARKET_SET.has(item));
