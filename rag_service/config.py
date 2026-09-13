@@ -96,6 +96,12 @@ class Settings(BaseSettings):
 
     rag_internal_secret: str = os.environ.get("RAG_INTERNAL_SECRET", "")
 
+    # Plan 2026-09-13 §10.4: 发布写入 ATTRAX_BUILD_SHA。pydantic-settings
+    # reads it from rag_service/.env (deployed) or the process env — either
+    # path works, so `pm2 restart` (which preserves env) is enough and the
+    # delete&&start env dance is not required just to stamp the version.
+    build_sha: str = os.environ.get("ATTRAX_BUILD_SHA", "")
+
     app_env: str = os.environ.get(
         "ENV", os.environ.get("NODE_ENV", "")
     ).strip().lower()

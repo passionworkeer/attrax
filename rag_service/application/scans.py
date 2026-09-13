@@ -377,7 +377,11 @@ class ScanService:
                     # agent trace the runner already records.
                     "stageLatencyMs": self._stage_latencies(result),
                     "latencyMs": result.get("latencyMs"),
-                    "codeVersion": os.environ.get("ATTRAX_BUILD_SHA") or "unknown",
+                    # §10.4: every result records the code version it ran
+                    # on (the audit session's "codeVersion: unknown" gap).
+                    # settings.build_sha reads ATTRAX_BUILD_SHA from
+                    # rag_service/.env or the process env.
+                    "codeVersion": self._build_sha() or "unknown",
                 }
             )
         except asyncio.CancelledError:
@@ -404,6 +408,19 @@ class ScanService:
                 self.backend.save_session(current.transition(ttl_hours=self.session_ttl_hours))
         except asyncio.CancelledError:
             return
+
+    @staticmethod
+    def _build_sha() -> str:
+        """Resolve the deployed code version: settings (.env) → process env."""
+        try:
+            from ..config import settings
+
+            sha = (settings.build_sha or "").strip()
+            if sha:
+                return sha
+        except Exception:
+            pass
+        return (os.environ.get("ATTRAX_BUILD_SHA") or "").strip()
 
     @staticmethod
     def _stage_latencies(result: Mapping[str, Any]) -> dict[str, int]:
