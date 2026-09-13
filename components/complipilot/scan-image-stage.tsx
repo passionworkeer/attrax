@@ -16,48 +16,60 @@ type ScanImageStageProps = {
 type StageStyle = CSSProperties & Record<`--${string}`, string | number>;
 
 /**
- * 2.5D disassembly-stage: the uploaded product image is the visual anchor;
- * six severity-coded hotspot pins fade in as `progress` advances so the
- * user sees the vision scan "landing" on parts of the product. A live
- * regulation-check feed on the right ticks regulations off as the
- * retrieval phase advances. Both feeds are deterministic (no random layout)
- * so that two concurrent scans do not drift apart visually.
+ * 2.5D disassembly-stage: the uploaded product image is the visual anchor.
+ *
+ * Audit 2026-09-13 §4.3: the old version decorated the loading page with
+ * severity-coded hotspot pins (高危/警告) at fixed positions and a fake
+ * regulation checklist that ticked off EU 2023/1542 / FCC §15B / … as the
+ * progress bar advanced — none of that was real; no findings exist while
+ * the scan runs. Both decorations are gone. What remains is honest:
+ * the photo, the phase the pipeline is actually in, the images analyzed,
+ * and neutral scan motion (beam / tilt / ring). Real hotspots appear only
+ * on the result page, grounded to model-emitted bboxes.
  */
-const HOTSPOT_SLOTS: ReadonlyArray<{ left: string; top: string; severity: "critical" | "warning" | "info" }> = [
-  { left: "18%", top: "22%", severity: "critical" },
-  { left: "62%", top: "18%", severity: "warning" },
-  { left: "76%", top: "52%", severity: "info" },
-  { left: "44%", top: "44%", severity: "critical" },
-  { left: "12%", top: "66%", severity: "warning" },
-  { left: "58%", top: "78%", severity: "info" },
+
+/** Neutral scan waypoints — no severity, no fabricated findings. */
+const SCAN_WAYPOINTS: ReadonlyArray<{ left: string; top: string }> = [
+  { left: "18%", top: "22%" },
+  { left: "62%", top: "18%" },
+  { left: "76%", top: "52%" },
+  { left: "44%", top: "44%" },
+  { left: "12%", top: "66%" },
+  { left: "58%", top: "78%" },
 ];
 
-const REGULATION_FEED: ReadonlyArray<{ code: string; market: string }> = [
-  { code: "EU 2023/1542", market: "EU" },
-  { code: "GPSR (EU) 2023/988", market: "EU" },
-  { code: "EN IEC 62368-1", market: "EU" },
-  { code: "FCC §15B", market: "US" },
-  { code: "CPSIA", market: "US" },
-  { code: "ASTM F963", market: "US" },
-  { code: "UKCA — Electrical", market: "UK" },
-  { code: "GB 31241-2022", market: "CN" },
-  { code: "UN 38.3", market: "INTL" },
-  { code: "PSE (METI)", market: "JP" },
-];
+/** Each waypoint lights up at this progress fraction. */
+const WAYPOINT_UNLOCK_AT = [0.18, 0.28, 0.36, 0.46, 0.56, 0.66];
 
-/** Each hotspot completes at this progress fraction. */
-const HOTSPOT_UNLOCK_AT = [0.18, 0.28, 0.36, 0.46, 0.56, 0.66];
-/** Each regulation completes at this progress fraction. */
-const REG_UNLOCK_AT = [0.12, 0.22, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.8, 0.88];
+/** Real pipeline phases — what the stage indicator actually reports. */
+const PHASE_LABELS: ReadonlyArray<{
+  key: string;
+  zh: string;
+  en: string;
+}> = [
+  { key: "queued", zh: "排队与预处理", en: "Queue & preprocess" },
+  { key: "vision", zh: "图像观察", en: "Image observation" },
+  { key: "applicability", zh: "适用性判断", en: "Applicability check" },
+  { key: "generate", zh: "报告生成", en: "Report generation" },
+  { key: "verify", zh: "引用核对", en: "Citation verify" },
+  { key: "done", zh: "完成", en: "Done" },
+];
 
 function clamp(value: number, min: number, max: number): number {
   return Math.min(Math.max(value, min), max);
 }
 
-const SEVERITY_LABEL: Record<"critical" | "warning" | "info", { zh: string; en: string }> = {
-  critical: { zh: "高危", en: "Critical" },
-  warning: { zh: "警告", en: "Warning" },
-  info: { zh: "提示", en: "Info" },
+const STAGE_TO_PHASE_INDEX: Record<string, number> = {
+  queued: 0,
+  vision: 1,
+  retrieval: 2,
+  applicability: 2,
+  report: 3,
+  generate: 3,
+  verify: 4,
+  persist: 4,
+  done: 5,
+  failed: 5,
 };
 
 export function ScanImageStage({
@@ -76,13 +88,16 @@ export function ScanImageStage({
   const progressRatio = safeProgress / 100;
 
   // 2.5D disassembly parameters — driven by progress:
-  // 0   → image sits flat, no tilt, hotspots invisible, no fragments
-  // 50  → card tilts ~14°, hotspots 1..3 visible, first half of regs checked
-  // 100 → card tilts back to neutral, all hotspots visible, all regs checked
+  // 0   → image sits flat, no tilt, waypoints invisible, no fragments
+  // 50  → card tilts ~14°, waypoints 1..3 visible, first half of phases lit
+  // 100 → card tilts back to neutral, all waypoints visible, all phases lit
   const tiltX = clamp((progressRatio - 0.05) * 14, -2, 14);
   const explodeScale = clamp(0.96 + (progressRatio - 0.2) * 0.18, 0.96, 1.16);
   const ringOpacity = clamp((progressRatio - 0.12) * 1.6, 0, 1);
-  const hotspotOpacityBase = clamp((progressRatio - 0.16) * 1.8, 0, 1);
+  const waypointOpacityBase = clamp((progressRatio - 0.16) * 1.8, 0, 1);
+
+  const activePhaseIndex =
+    STAGE_TO_PHASE_INDEX[stageKey] ?? STAGE_TO_PHASE_INDEX.vision;
 
   function updateTilt(event: PointerEvent<HTMLElement>) {
     if (event.pointerType === "touch") return;
@@ -146,16 +161,16 @@ export function ScanImageStage({
             {stageKey === "queued"
               ? locale === "zh" ? "排队中" : "queued"
               : stageKey === "vision"
-                ? locale === "zh" ? "视觉建模" : "vision"
+                ? locale === "zh" ? "图像观察" : "observation"
                 : stageKey === "retrieval"
-                  ? locale === "zh" ? "法规检索" : "retrieval"
+                  ? locale === "zh" ? "适用性判断" : "applicability"
                   : stageKey === "report"
                     ? locale === "zh" ? "报告生成" : "report"
                     : stageKey === "done"
                       ? locale === "zh" ? "完成" : "done"
                       : locale === "zh"
-                        ? "视觉建模"
-                        : "vision"}
+                        ? "图像观察"
+                        : "observation"}
           </span>
         </div>
       </div>
@@ -195,28 +210,22 @@ export function ScanImageStage({
                   {locale === "zh" ? "图像已锁定" : "IMAGE LOCKED"}
                 </span>
 
-                {HOTSPOT_SLOTS.map((slot, index) => {
-                  const unlocked = progressRatio >= HOTSPOT_UNLOCK_AT[index];
+                {SCAN_WAYPOINTS.map((slot, index) => {
+                  const unlocked = progressRatio >= WAYPOINT_UNLOCK_AT[index];
                   if (!unlocked) return null;
-                  const localized = SEVERITY_LABEL[slot.severity];
-                  const label = locale === "zh" ? localized.zh : localized.en;
                   return (
                     <div
-                      key={`hotspot-${index}`}
-                      className={`${styles.hotspotPin} ${styles[`pin_${slot.severity}`]}`}
+                      key={`scan-waypoint-${index}`}
+                      className={styles.hotspotPin}
                       style={{
                         left: slot.left,
                         top: slot.top,
-                        opacity: hotspotOpacityBase,
+                        opacity: waypointOpacityBase,
                       } as StageStyle}
-                      aria-label={`${label} ${index + 1}`}
+                      aria-hidden="true"
                     >
                       <span className={styles.ping} aria-hidden="true" />
                       <span className={styles.dot} aria-hidden="true" />
-                      <span className={styles.chip}>
-                        {String(index + 1).padStart(2, "0")} ·{" "}
-                        {locale === "zh" ? localized.zh : localized.en}
-                      </span>
                     </div>
                   );
                 })}
@@ -261,27 +270,33 @@ export function ScanImageStage({
         <aside className={styles.feed} aria-live="polite">
           <header className={styles.feedHeader}>
             <span className={styles.feedEyebrow}>
-              {locale === "zh" ? "法规检索" : "REG SCAN"}
+              {locale === "zh" ? "处理阶段" : "PIPELINE"}
             </span>
             <strong>
-              {REGULATION_FEED.filter((_, i) => progressRatio >= REG_UNLOCK_AT[i]).length}
+              {activePhaseIndex + 1}
               <span className={styles.feedSlash}>/</span>
-              {REGULATION_FEED.length}
+              {PHASE_LABELS.length}
             </strong>
           </header>
           <ul className={styles.feedList}>
-            {REGULATION_FEED.map((reg, index) => {
-              const done = progressRatio >= REG_UNLOCK_AT[index];
+            {PHASE_LABELS.map((phase, index) => {
+              const done = index < activePhaseIndex;
+              const active = index === activePhaseIndex;
               return (
                 <li
-                  key={reg.code}
+                  key={phase.key}
                   className={`${styles.feedRow} ${done ? styles.feedRowDone : ""}`}
+                  aria-current={active ? "step" : undefined}
                 >
                   <span className={styles.feedDot} aria-hidden="true">
                     {done ? "✓" : ""}
                   </span>
-                  <span className={styles.feedMarket}>{reg.market}</span>
-                  <span className={styles.feedCode}>{reg.code}</span>
+                  <span className={styles.feedMarket}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className={styles.feedCode}>
+                    {locale === "zh" ? phase.zh : phase.en}
+                  </span>
                 </li>
               );
             })}
