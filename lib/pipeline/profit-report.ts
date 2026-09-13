@@ -234,6 +234,9 @@ function numFromStringOrNumber(v: unknown): number | undefined {
 
 const FINANCE_TOLERANCE = 0.01;
 const FINANCE_COST_KEYS = ["bom", "packaging", "cert", "epr", "logistics", "warranty", "asp", "total", "gp"] as const;
+// Audit 2026-09-13 §10.2: gp is a profit, not a cost — it may legitimately
+// be negative (selling at a loss). Mirrors the backend Pydantic split.
+const FINANCE_PROFIT_KEYS = new Set(["gp"]);
 
 type CompleteCostSummary = CostSummary;
 
@@ -241,7 +244,8 @@ function isCompleteCostSummary(value: unknown): value is CompleteCostSummary {
   if (!isRecord(value)) return false;
   for (const key of FINANCE_COST_KEYS) {
     const amount = value[key];
-    if (typeof amount !== "number" || !Number.isFinite(amount) || amount < 0) return false;
+    if (typeof amount !== "number" || !Number.isFinite(amount)) return false;
+    if (amount < 0 && !FINANCE_PROFIT_KEYS.has(key)) return false;
   }
   const summary = value as unknown as CompleteCostSummary;
   return Math.abs((summary.asp - summary.total) - summary.gp) <= FINANCE_TOLERANCE;
@@ -283,6 +287,17 @@ function financialSummaryFromValidatedFields(
   const comparison = fields.costComparison;
   const currency = fields.currency?.toUpperCase();
   if (!currency || !/^[A-Z]{3}$/.test(currency) || !isCompleteCostSummary(comparison?.barebone) || !isCompleteCostSummary(comparison?.compliant)) {
+    return null;
+  }
+  // Audit 2026-09-13 §10.2: the model fills unknown finance values with
+  // zero, and an all-zero comparison passes every numeric check above —
+  // the page then showed "$0.00" as if it were a real quote while the
+  // report text said 待询价. An all-zero comparison carries no
+  // information (free products don't exist at this granularity); treat
+  // it as "no data" so the fallback renders 待询价/"—" instead.
+  const isAllZero = (summary: CompleteCostSummary) =>
+    FINANCE_COST_KEYS.every((key) => summary[key] === 0);
+  if (isAllZero(comparison.barebone) && isAllZero(comparison.compliant)) {
     return null;
   }
   const bareRows = financeRowsFromCostSummary(comparison.barebone, currency, locale);

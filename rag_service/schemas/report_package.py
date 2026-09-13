@@ -35,7 +35,13 @@ class ProductDossier(FlexibleModel):
 
 
 class FinancialCostSummary(BaseModel):
-    """Per-unit finance values that may drive the detailed profit board."""
+    """Per-unit finance values that may drive the detailed profit board.
+
+    Audit 2026-09-13 §10.2: ``gp`` may be NEGATIVE — a real product can
+    sell at a loss, and the old non-negative constraint made the model
+    (or a normalizer) silently clamp losses to 0 to pass validation.
+    Cost fields stay non-negative; only the profit fields accept losses.
+    """
 
     bom: float
     packaging: float
@@ -47,11 +53,21 @@ class FinancialCostSummary(BaseModel):
     total: float
     gp: float
 
-    @field_validator("bom", "packaging", "cert", "epr", "logistics", "warranty", "asp", "total", "gp", mode="before")
+    @field_validator("bom", "packaging", "cert", "epr", "logistics", "warranty", "asp", "total", mode="before")
     @classmethod
     def require_finite_non_negative_number(cls, value: Any) -> float:
         if isinstance(value, bool) or not isinstance(value, (int, float)) or not isfinite(value) or value < 0:
             raise ValueError("must be a finite non-negative number")
+        return float(value)
+
+    @field_validator("gp", mode="before")
+    @classmethod
+    def require_finite_number(cls, value: Any) -> float:
+        # gp = asp - total may be negative (a loss). Only finiteness is
+        # enforced here; the margin identity below still binds it to the
+        # other fields so it cannot be an arbitrary number.
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not isfinite(value):
+            raise ValueError("must be a finite number")
         return float(value)
 
     @model_validator(mode="after")
