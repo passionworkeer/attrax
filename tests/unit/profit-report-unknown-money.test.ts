@@ -55,25 +55,40 @@ describe("synthesizeFinancialSummaryIfMissing — unknown vs quoted money", () =
   it("returns a summary for a genuinely zero-cost free item when the other side has data", () => {
     // barebone all-zero (free to make), compliant carries real cert cost —
     // the pair as a whole carries information, so it must not be dropped
-    // (plan: 不要通过"所有零都禁止"误伤真实免费项目).
+    // (plan: 不要通过"所有零都禁止"误伤真实免费项目). sourceStatus is absent
+    // → model estimate → values render with the 估算 marker (§10.2).
     const result = scanResultWithCostComparison(
       ZERO_SUMMARY,
       { bom: 1, packaging: 0.5, cert: 0.2, epr: 0, logistics: 0.3, warranty: 0, asp: 2, total: 2, gp: 0 },
     );
     const summary = synthesizeFinancialSummaryIfMissing(result);
     expect(summary).not.toBeNull();
+    expect(summary?.trueNetProfit).toBe("$0.00（估）");
+    expect(summary?.complianceCost).toBe("$0.20（估）");
+  });
+
+  it("renders plain values when sourceStatus is quoted", () => {
+    const result = scanResultWithCostComparison(
+      ZERO_SUMMARY,
+      { bom: 1, packaging: 0.5, cert: 0.2, epr: 0, logistics: 0.3, warranty: 0, asp: 2, total: 2, gp: 0 },
+    );
+    (
+      (result.reportPackage as unknown as { profitReport: { structuredFields: Record<string, unknown> } })
+        .profitReport.structuredFields
+    ).sourceStatus = "quoted";
+    const summary = synthesizeFinancialSummaryIfMissing(result);
     expect(summary?.trueNetProfit).toBe("$0.00");
     expect(summary?.complianceCost).toBe("$0.20");
   });
 
-  it("accepts a negative gp (loss) and formats it", () => {
+  it("accepts a negative gp (loss) and formats it as an estimate", () => {
     const result = scanResultWithCostComparison(
       ZERO_SUMMARY,
       { bom: 3, packaging: 0.5, cert: 0.2, epr: 0, logistics: 0.3, warranty: 0, asp: 2, total: 4, gp: -2 },
     );
     const summary = synthesizeFinancialSummaryIfMissing(result);
     expect(summary).not.toBeNull();
-    expect(summary?.trueNetProfit).toBe("$-2.00");
+    expect(summary?.trueNetProfit).toBe("$-2.00（估）");
   });
 
   it("returns null when structuredFields are missing entirely", () => {

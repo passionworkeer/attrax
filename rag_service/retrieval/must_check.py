@@ -125,11 +125,17 @@ def build_anchor_list(
         if region not in kb_loader.ALWAYS_INCLUDE_REGIONS and target and region not in target:
             continue
         seen.add(key)
+        kb_entry = entry.get("kb_entry") or {}
         anchors.append({
             "doc_name": doc_name,
             "region": region,
             "reason": entry.get("reason", ""),
             "source": source,
+            # Plan 2026-09-13 §10.1: the applicability engine keys special
+            # rules (battery passport scoping, UK radio CE acceptance) by
+            # regulation id — carry it through from the KB anchor.
+            "regulation_id": str(kb_entry.get("regulation_id") or ""),
+            "short_name": str(kb_entry.get("short_name") or ""),
         })
     return anchors
 

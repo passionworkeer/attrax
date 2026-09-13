@@ -3,6 +3,7 @@ import {
   MARKET_IDS,
   type ChecklistItem,
   type DocumentType,
+  type InspectionFinding,
   type InspectionObservation,
   type Market,
   type ProductCategory,
@@ -493,6 +494,48 @@ function truncateReport(report: string): { value: string; truncated: boolean } {
     selectedCheckIds: Array.isArray((reportPackage as UnknownRecord).selectedCheckIds)
       ? ((reportPackage as UnknownRecord).selectedCheckIds as unknown[]).map((id) => String(id))
       : undefined,
+    // Plan §6 findings — deterministic, server-built. Enum-guarded so a
+    // malformed package field can never fabricate a "confirmed_issue".
+    inspectionFindings: records(
+      (reportPackage as UnknownRecord).findings,
+    )
+      .filter((finding) => {
+        const assessment = String(finding.assessment);
+        return (
+          assessment === "suspected_issue" ||
+          assessment === "evidence_needed" ||
+          assessment === "confirmed_issue"
+        );
+      })
+      .map((finding) => ({
+        findingId: text(finding.findingId, `finding-${Math.random().toString(36).slice(2, 8)}`),
+        checkId: text(finding.checkId),
+        title: text(finding.title, text(finding.checkId, "Finding")),
+        assessment: String(finding.assessment) as InspectionFinding["assessment"],
+        applicability: ((): InspectionFinding["applicability"] => {
+          const value = text(finding.applicability);
+          return value === "applicable" || value === "not_applicable" || value === "needs_confirmation"
+            ? (value as InspectionFinding["applicability"])
+            : "applicable";
+        })(),
+        severity: ((): InspectionFinding["severity"] => {
+          const value = text(finding.severity).toLowerCase();
+          const allowed = ["critical", "high", "medium", "low", "unknown"] as const;
+          return (allowed as readonly string[]).includes(value)
+            ? (value as InspectionFinding["severity"])
+            : "unknown";
+        })(),
+        observationIds: Array.isArray(finding.observationIds)
+          ? finding.observationIds.map((id) => String(id))
+          : [],
+        citationIds: Array.isArray(finding.citationIds)
+          ? finding.citationIds.map((id) => String(id))
+          : [],
+        suggestedAction: text(finding.suggestedAction),
+        requiredEvidence: Array.isArray(finding.requiredEvidence)
+          ? finding.requiredEvidence.map((item) => String(item))
+          : [],
+      } satisfies InspectionFinding)),
     complianceReport: complianceReport || undefined,
     complianceReportTruncated,
     agentTrace,

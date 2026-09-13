@@ -172,7 +172,12 @@ class TestGeneratorNodeNormal:
         call_kwargs = mock_generator.generate.call_args.kwargs
         assert call_kwargs["product"] == "蓝牙耳机"
         assert call_kwargs["market"] == "EU, US"
-        assert call_kwargs["query"] == "锂电池出口欧盟需要哪些认证？"
+        # The user query is passed through; the applicability engine
+        # (plan 2026-09-13 §10.1) appends its guardrail block when a
+        # keyword-derived feature leaves an anchor needs_confirmation —
+        # "锂电池" in the query makes the battery anchor a candidate.
+        assert call_kwargs["query"].startswith("锂电池出口欧盟需要哪些认证？")
+        assert "适用性边界" in call_kwargs["query"]
 
     def test_package_path_passes_bounded_visual_observation(self):
         gen = MagicMock()

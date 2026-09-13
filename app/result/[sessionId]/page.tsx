@@ -701,6 +701,7 @@ export default function ResultPage() {
           <InspectionChecklistPanel
             observations={result.inspectionObservations}
             selectedCheckIds={result.selectedCheckIds}
+            findings={result.inspectionFindings}
             locale={locale}
             activeImageId={riskImage?.imageId ?? null}
             onCheckClick={(observation) => {

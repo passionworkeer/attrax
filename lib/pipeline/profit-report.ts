@@ -213,6 +213,15 @@ export interface StructuredProfitFields {
   breakeven?: { units?: string | number; currency?: string };
   pricing?: { strategy?: string; premiumPct?: string };
   risk?: { bareboneExposure?: number; compliantExposure?: number };
+  /**
+   * Plan 2026-09-13 §10.2 — provenance. "quoted" means a real source backs
+   * the numbers (supplier list, uploaded doc); "estimated" marks model
+   * guesses; "unknown" is the legacy default. The synthesizer renders
+   * non-quoted values with an 估算 marker so they can't read as quotes.
+   */
+  sourceStatus?: "quoted" | "estimated" | "unknown";
+  asOf?: string;
+  sourceRefs?: string[];
 }
 
 function isRecord(v: unknown): v is Record<string, unknown> {
@@ -305,15 +314,20 @@ function financialSummaryFromValidatedFields(
   if (!bareRows || !compliantRows) return null;
   const complianceCost = comparison.compliant.cert + comparison.compliant.epr;
   const t = (zh: string, en: string) => (locale === "zh" ? zh : en);
+  // §10.2: numbers without a "quoted" source are model guesses — label
+  // them as estimates instead of letting them read as real quotes.
+  const isQuoted = fields.sourceStatus === "quoted";
+  const mark = (value: string) =>
+    isQuoted ? value : `${value}${t("（估）", " (est.)")}`;
   const summary: FinancialSummary = {
     provenance: "validated-backend",
     currency,
     retailBaseline: comparison.compliant.asp,
     bareRetailBaseline: comparison.barebone.asp,
     bareCostBreakdown: bareRows,
-    estimatedHeroicProfit: formatCurrency(comparison.barebone.gp, currency),
-    trueNetProfit: formatCurrency(comparison.compliant.gp, currency),
-    complianceCost: formatCurrency(complianceCost, currency),
+    estimatedHeroicProfit: mark(formatCurrency(comparison.barebone.gp, currency)),
+    trueNetProfit: mark(formatCurrency(comparison.compliant.gp, currency)),
+    complianceCost: mark(formatCurrency(complianceCost, currency)),
     monthlyNetProfit: t("后端未提供月度销量假设", "Monthly volume assumption not provided"),
     targetVolumeLabel: t("后端未提供销量基准", "Volume baseline not provided"),
     riskExposureItems: [],

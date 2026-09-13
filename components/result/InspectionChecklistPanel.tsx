@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
-import type { InspectionObservation } from "@/lib/types";
+import type { InspectionFinding, InspectionObservation } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 /**
@@ -46,12 +46,14 @@ function checkTitleFromId(checkId: string): string {
 export function InspectionChecklistPanel({
   observations,
   selectedCheckIds,
+  findings,
   locale,
   onCheckClick,
   activeImageId,
 }: {
   observations: InspectionObservation[];
   selectedCheckIds?: string[];
+  findings?: InspectionFinding[];
   locale: "zh" | "en";
   onCheckClick?: (observation: InspectionObservation) => void;
   activeImageId?: string | null;
@@ -176,6 +178,63 @@ export function InspectionChecklistPanel({
           );
         })}
       </ul>
+
+      {/* Plan §10.3 — 确定性的待补清单: findings carry the concrete
+          reshoot / material actions, built server-side from the same
+          observations (never by the LLM). */}
+      {findings && findings.length > 0 ? (
+        <div className="mt-6 border-t border-white/10 pt-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/42">
+            {locale === "zh"
+              ? `待补拍 / 待补资料（${findings.length} 项）`
+              : `Actions needed (${findings.length})`}
+          </p>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {findings.map((finding) => (
+              <li
+                key={finding.findingId}
+                data-testid="inspection-finding"
+                className="rounded-[16px] border border-white/10 bg-white/[0.045] px-4 py-3"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <span className="text-sm font-medium text-white">{finding.title}</span>
+                  <span
+                    className={cn(
+                      "shrink-0 rounded-full border px-2 py-0.5 text-[10px]",
+                      finding.assessment === "suspected_issue"
+                        ? "border-amber-400/35 bg-amber-400/10 text-amber-200"
+                        : "border-sky-400/30 bg-sky-400/10 text-sky-200",
+                    )}
+                  >
+                    {finding.assessment === "suspected_issue"
+                      ? locale === "zh" ? "疑点" : "suspected"
+                      : locale === "zh" ? "待证据" : "evidence"}
+                  </span>
+                </div>
+                {finding.suggestedAction ? (
+                  <p className="mt-2 text-xs leading-5 text-white/62">
+                    {finding.suggestedAction}
+                  </p>
+                ) : null}
+                {finding.requiredEvidence.length > 0 ? (
+                  <ul className="mt-2 space-y-1">
+                    {finding.requiredEvidence.map((evidence) => (
+                      <li key={evidence} className="text-[11px] text-white/48">
+                        · {evidence}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                {finding.citationIds.length > 0 ? (
+                  <p className="mt-2 truncate font-mono text-[10px] text-white/38">
+                    {finding.citationIds.join(" · ")}
+                  </p>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 }
