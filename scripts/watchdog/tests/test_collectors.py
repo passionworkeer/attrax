@@ -1,6 +1,7 @@
 """Tests for the watchdog collectors — dispatch + parsing, with mocked HTTP."""
 from __future__ import annotations
 
+import json
 import sys
 import urllib.error
 from pathlib import Path
@@ -108,14 +109,36 @@ def test_collect_source_dispatches_by_source_type():
         "ecfr_part": 1307,
         "title": "16 CFR 1307",
     }
-    resp = _fake_response(b"<html>phthalates rules page</html>" * 5)
+    fr_json = json.dumps(
+        {
+            "count": 38,
+            "results": [
+                {
+                    "document_number": "2024-12345",
+                    "publication_date": "2024-05-01",
+                    "title": "Safety Standard for Toddler Beds",
+                    "type": "Rule",
+                },
+                {
+                    "document_number": "2019-99999",
+                    "publication_date": "2019-10-02",
+                    "title": "Toddler Beds Update",
+                    "type": "Proposed Rule",
+                },
+            ],
+        }
+    ).encode("utf-8")
+    resp = _fake_response(fr_json)
     with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp):
         update = collect_source(entry)
     assert update.source_type == "ecfr_part"
-    # 2026-09-12 postmortem: the versioner API 406s from Seoul — the
-    # collector now hashes the human-facing eCFR page instead.
-    assert "ecfr.gov/current/title-16/part-1307" in update.source_url
+    # 2026-09-13 postmortem: eCFR pages/API are unusable from Seoul — the
+    # collector now monitors the Federal Register API instead.
+    assert "federalregister.gov/api/v1/documents" in update.source_url
     assert update.metadata["ecfrPart"] == 1307
+    assert update.metadata["mode"] == "federalregister_api"
+    # Sorted by document_number, so order churn in the API is not a change.
+    assert "2019-99999" in update.text.splitlines()[0]
 
 
 # ── CPSC RSS parsing ─────────────────────────────────────────────────────

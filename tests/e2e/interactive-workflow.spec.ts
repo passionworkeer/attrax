@@ -1,0 +1,141 @@
+import { test, expect } from "@playwright/test";
+
+const PIXEL_PNG = Buffer.from(
+  "89504e470d0a1a0a0000000d4948445200000001000000010802000000907753de0000000c49444154789c6360f8cf00000301010118dd8db00000000049454e44ae426082",
+  "hex"
+);
+
+test.describe("Interactive Browser Workflow E2E", () => {
+  test("upload form: category selection, market toggling, and button states", async ({ page }) => {
+    await page.goto("/upload");
+
+    // Wait for client hydration
+    await page.waitForFunction(() => {
+      const input = document.querySelector('input[type="file"]');
+      return Boolean(input && Object.keys(input).some((k) => k.startsWith("__reactProps")));
+    });
+
+    const submitBtn = page.locator('button[type="submit"]');
+    await expect(submitBtn).toBeDisabled();
+
+    // Verify category buttons are interactive
+    const applianceCategoryBtn = page.locator("button, div").filter({ hasText: /家电|Appliance/i }).first();
+    if (await applianceCategoryBtn.isVisible()) {
+      await applianceCategoryBtn.click();
+    }
+
+    // Toggle target markets
+    const usMarketBtn = page.locator("button, div").filter({ hasText: /^US$|^美国$/i }).first();
+    if (await usMarketBtn.isVisible()) {
+      await usMarketBtn.click();
+    }
+
+    // Submit button still disabled without images
+    await expect(submitBtn).toBeDisabled();
+  });
+
+  test("upload form: file count limit enforcement and file removal", async ({ page }) => {
+    await page.goto("/upload");
+
+    await page.waitForFunction(() => {
+      const input = document.querySelector('input[type="file"]');
+      return Boolean(input && Object.keys(input).some((k) => k.startsWith("__reactProps")));
+    });
+
+    const fileInput = page.locator('input[type="file"]').first();
+
+    // Upload 1 valid file
+    await fileInput.setInputFiles({
+      name: "sample.png",
+      mimeType: "image/png",
+      buffer: PIXEL_PNG,
+    });
+
+    // Should show 1 file ready
+    await expect(page.getByText(/1\/3 张已就绪|1\/3 ready/i)).toBeVisible();
+    const submitBtn = page.locator('button[type="submit"]');
+    await expect(submitBtn).toBeEnabled();
+
+    // Upload 6 files to exceed MAX_IMAGE_COUNT (5)
+    const sixFiles = Array.from({ length: 6 }, (_, i) => ({
+      name: `file_${i + 1}.png`,
+      mimeType: "image/png",
+      buffer: PIXEL_PNG,
+    }));
+
+    await fileInput.setInputFiles(sixFiles);
+
+    // Assert error message displayed
+    await expect(
+      page.getByText(/最多上传 5 张图片|Maximum 5 files allowed|exceeded/i)
+    ).toBeVisible({ timeout: 5000 });
+  });
+
+  test("demo result: preview tabs switching and interactive details", async ({ page }) => {
+    await page.goto("/result/demo");
+
+    // Ensure page loaded
+    await expect(page.getByRole("heading", { name: /便携式充电器|Charger/i }).first()).toBeVisible();
+
+    // Check report preview section
+    const reportSection = page.locator("#reports");
+    await expect(reportSection).toBeVisible();
+
+    // Switch between preview tabs (Roadmap, Profit, Compliance)
+    const roadmapTab = page.getByRole("tab", { name: /路线图报告|Roadmap Report/i }).first();
+    if (await roadmapTab.isVisible()) {
+      await roadmapTab.click();
+      await expect(page.getByText(/整改路线图|Compliance Roadmap|Timeline/i).first()).toBeVisible();
+    }
+
+    const profitTab = page.getByRole("tab", { name: /利润影响|Profit & AI Decision/i }).first();
+    if (await profitTab.isVisible()) {
+      await profitTab.click();
+      await expect(page.getByText(/单件收益|合规成本|gross profit|margin/i).first()).toBeVisible();
+    }
+
+    const complianceTab = page.getByRole("tab", { name: /合规报告|Compliance Report/i }).first();
+    if (await complianceTab.isVisible()) {
+      await complianceTab.click();
+      await expect(page.getByText(/合规分析报告|Compliance Scan Report/i).first()).toBeVisible();
+    }
+  });
+
+  test("demo result: hotspot markers and priority risk panel interaction", async ({ page }) => {
+    await page.goto("/result/demo");
+
+    await expect(page.getByRole("heading", { name: /便携式充电器|Charger/i }).first()).toBeVisible();
+
+    // Locate hotspot layer or risk items
+    const riskItems = page.locator("#overview, #evidence").locator("button, [role='button']").filter({ hasText: /CE|标识|说明书|Warning|Mark/i });
+    const count = await riskItems.count();
+    if (count > 0) {
+      await riskItems.first().click();
+      // Verify Top Priority or details panel is rendered
+      await expect(page.getByText(/当前最重要的事|Top priority|建议动作|Recommended action/i).first()).toBeVisible();
+    }
+
+    // Anchor link clicks
+    const viewEvidenceLink = page.getByRole("link", { name: /查看风险证据|View evidence/i }).first();
+    if (await viewEvidenceLink.isVisible()) {
+      await viewEvidenceLink.click();
+      await expect(page.locator("#evidence")).toBeInViewport();
+    }
+  });
+
+  test("roadmap interactive page loads and renders checklist phases", async ({ page }) => {
+    await page.goto("/roadmap/demo");
+
+    await expect(page.getByText(/整改路线图|Compliance Roadmap|Roadmap/i).first()).toBeVisible();
+    // Checklist phase headers
+    await expect(page.getByText(/资料冻结|Document freeze|BOM/i).first()).toBeVisible();
+    await expect(page.getByText(/上架复核|Listing review/i).first()).toBeVisible();
+  });
+
+  test("trace interactive page loads decision tree", async ({ page }) => {
+    await page.goto("/trace/demo");
+
+    await expect(page.getByText(/执行溯源|Execution Trace|Trace/i).first()).toBeVisible();
+    await expect(page.getByText(/AI/i).first()).toBeVisible();
+  });
+});
