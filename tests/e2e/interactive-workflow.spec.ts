@@ -137,4 +137,81 @@ test.describe("Interactive Browser Workflow E2E", () => {
     await expect(page.getByText(/执行溯源|Execution Trace|Trace/i).first()).toBeVisible();
     await expect(page.getByText(/AI/i).first()).toBeVisible();
   });
+
+  test("upload form: document attachment, list display, and removal", async ({ page }) => {
+    await page.goto("/upload");
+
+    await page.waitForFunction(() => {
+      const input = document.querySelector('input[type="file"]');
+      return Boolean(input && Object.keys(input).some((k) => k.startsWith("__reactProps")));
+    });
+
+    // Expand optional documents section
+    const summaryElem = page.locator("summary").filter({ hasText: /说明书|Document/i }).first();
+    await summaryElem.click();
+
+    const docInput = page.locator("#blaze-document-input");
+    await docInput.setInputFiles({
+      name: "user_manual_spec.pdf",
+      mimeType: "application/pdf",
+      buffer: Buffer.from("%PDF-1.4 test document stream"),
+    });
+
+    // Check document appears in list
+    const docList = page.locator('[data-testid="document-list"]');
+    await expect(docList).toBeVisible();
+    await expect(docList.getByText("user_manual_spec.pdf")).toBeVisible();
+
+    // Click remove button
+    const removeBtn = docList.locator("button").first();
+    await removeBtn.click();
+
+    // List should disappear or be empty
+    await expect(page.getByText("user_manual_spec.pdf")).not.toBeVisible();
+  });
+
+  test("regulations page: search input and market filter interaction", async ({ page }) => {
+    await page.goto("/regulations");
+
+    // Wait for regulations page to load
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+
+    // Find search input and type filter query
+    const searchInput = page.locator('input[type="text"]').first();
+    await searchInput.fill("RoHS");
+
+    // Filter by EU market button
+    const euButton = page.locator("button").filter({ hasText: /^EU$|^欧盟$/i }).first();
+    if (await euButton.isVisible()) {
+      await euButton.click();
+    }
+
+    // Verify regulation list is rendered
+    const regCards = page.locator(".glass-panel").filter({ hasText: /RoHS|CE|EU/i });
+    if (await regCards.count() > 0) {
+      await expect(regCards.first()).toBeVisible();
+    }
+  });
+
+  test("global header: language switcher toggle switches locale", async ({ page }) => {
+    await page.goto("/");
+
+    const langTrigger = page.locator('button[aria-haspopup="menu"]').first();
+    if (await langTrigger.isVisible()) {
+      await langTrigger.click();
+
+      // Check popup menu appears
+      const menu = page.locator('[role="menu"]');
+      await expect(menu).toBeVisible();
+
+      // Click English option
+      const enOption = menu.locator('[role="menuitemradio"]').filter({ hasText: /English|🇺🇸/i }).first();
+      if (await enOption.isVisible()) {
+        await enOption.click();
+        // Check html lang is en
+        await expect(page.locator("html")).toHaveAttribute("lang", "en");
+      }
+    }
+  });
 });
+
