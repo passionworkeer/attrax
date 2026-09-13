@@ -2,7 +2,7 @@
   --tilt-x: 0deg;
   --tilt-y: 0deg;
   position: relative;
-  min-height: 540px;
+  min-height: 580px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.58);
   border-radius: 30px;
@@ -15,7 +15,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.32),
     inset 0 -80px 120px rgba(0, 17, 55, 0.35),
     0 30px 80px rgba(0, 40, 93, 0.22);
-  perspective: 1300px;
 }
 
 .haze {
@@ -41,109 +40,79 @@
   transform-origin: center bottom;
 }
 
-.particles,
-.orbits,
-.scene {
+/* Disassembly ring: six orbital markers around the central card that
+   appear as the scan progresses. They sit "behind" the card (z = 0) so
+   the card lifts off them as explodeScale kicks in. */
+.disassembleRing {
   position: absolute;
   inset: 0;
-}
-
-.particle {
-  position: absolute;
-  left: var(--particle-x);
-  top: var(--particle-y);
-  width: var(--particle-size);
-  height: var(--particle-size);
-  border-radius: 999px;
-  background: rgba(174, 255, 247, 0.9);
-  box-shadow: 0 0 9px rgba(110, 244, 255, 0.9);
-  animation: particleDrift var(--particle-duration) ease-in-out var(--particle-delay) infinite;
-}
-
-.particle:nth-child(3n) {
-  background: rgba(255, 223, 164, 0.92);
-  box-shadow: 0 0 11px rgba(255, 190, 115, 0.78);
-}
-
-.orbits {
-  display: grid;
-  place-items: center;
+  z-index: 1;
   pointer-events: none;
-  transform: rotateX(64deg) translateY(13%);
-  transform-style: preserve-3d;
+  transition: opacity 600ms ease;
 }
 
-.orbits span {
-  position: absolute;
-  width: 76%;
-  aspect-ratio: 2.15 / 1;
-  border: 1px solid rgba(140, 247, 255, 0.34);
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(69, 226, 255, 0.1);
-  animation: orbitPulse 4.8s ease-in-out infinite;
-}
-
-.orbits span:nth-child(2) {
-  width: 58%;
-  animation-delay: -1.6s;
-}
-
-.orbits span:nth-child(3) {
-  width: 42%;
-  animation-delay: -3.2s;
-}
-
-.scene {
-  display: grid;
-  place-items: center;
-  padding: 68px 42px 86px;
-  transform: rotateX(var(--tilt-y)) rotateY(var(--tilt-x));
-  transform-style: preserve-3d;
-  transition: transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.layer {
+.disassembleRing span {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: min(47%, 420px);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(174, 255, 247, 0.95);
+  box-shadow: 0 0 16px rgba(110, 244, 255, 0.85);
+  transform-origin: center;
+  animation: ringFloat 6.4s ease-in-out infinite;
+}
+
+.disassembleRing span:nth-child(1) { transform: translate(-50%, -50%) translate(-220px, -160px); animation-delay: -0.4s; }
+.disassembleRing span:nth-child(2) { transform: translate(-50%, -50%) translate(220px, -170px); animation-delay: -1.2s; }
+.disassembleRing span:nth-child(3) { transform: translate(-50%, -50%) translate(250px, 60px); animation-delay: -2.0s; }
+.disassembleRing span:nth-child(4) { transform: translate(-50%, -50%) translate(-230px, 90px); animation-delay: -2.8s; background: rgba(255, 223, 164, 0.95); box-shadow: 0 0 18px rgba(255, 190, 115, 0.78); }
+.disassembleRing span:nth-child(5) { transform: translate(-50%, -50%) translate(-90px, -240px); animation-delay: -3.6s; }
+.disassembleRing span:nth-child(6) { transform: translate(-50%, -50%) translate(110px, 230px); animation-delay: -4.4s; background: rgba(255, 223, 164, 0.95); box-shadow: 0 0 18px rgba(255, 190, 115, 0.78); }
+
+@keyframes ringFloat {
+  0%, 100% { opacity: 0.3; transform: var(--ring-transform, translate(-50%, -50%)) scale(0.6); }
+  50% { opacity: 1; transform: var(--ring-transform, translate(-50%, -50%)) scale(1.1); }
+}
+
+/* Two-column layout: tilted card + regulation feed. The card lifts off
+   the ring above via 3D transforms on .scene. */
+.stageLayout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 24px;
+  align-items: stretch;
+  padding: 92px 28px 88px;
+  min-height: 580px;
+}
+
+@media (max-width: 980px) {
+  .stageLayout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 80px 18px 78px;
+  }
+}
+
+.scene {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 400px;
+  transform-style: preserve-3d;
+  transition: transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cardWrap {
+  position: relative;
+  width: min(72%, 420px);
   aspect-ratio: 1.25 / 1;
   transform-style: preserve-3d;
-  transition: filter 320ms ease, transform 520ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.layer1 {
-  transform: translate3d(-82%, -50%, -72px) rotateY(12deg) rotateZ(-4deg);
-}
-
-.layer2 {
-  transform: translate3d(-50%, -46%, 82px) rotateX(-1deg);
-}
-
-.layer3 {
-  transform: translate3d(-18%, -50%, -44px) rotateY(-12deg) rotateZ(4deg);
-}
-
-.stage[data-count="2"] .layer1 {
-  transform: translate3d(-72%, -51%, -40px) rotateY(10deg) rotateZ(-3deg);
-}
-
-.stage[data-count="2"] .layer2 {
-  transform: translate3d(-28%, -47%, 66px) rotateY(-6deg) rotateZ(2deg);
-}
-
-.stage[data-count="1"] .layer {
-  width: min(66%, 540px);
-}
-
-.stage[data-count="1"] .layer1 {
-  transform: translate3d(-50%, -49%, 34px) rotateX(-1deg);
-}
-
-.floatLayer {
-  width: 100%;
-  height: 100%;
-  animation: cardFloat 5.8s ease-in-out var(--float-delay) infinite;
+  transition: transform 720ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: drop-shadow(0 26px 40px rgba(1, 23, 64, 0.42));
 }
 
 .imageCard {
@@ -151,7 +120,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 1px solid rgba(224, 255, 255, 0.72);
+  border: 1px solid rgba(224, 255, 255, 0.78);
   border-radius: 24px;
   background: rgba(219, 243, 255, 0.15);
   box-shadow:
@@ -159,6 +128,15 @@
     0 0 0 8px rgba(196, 244, 255, 0.055),
     inset 0 1px 0 rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(14px);
+  transition: box-shadow 600ms ease, border-color 600ms ease;
+}
+
+.imageCard[data-active="true"] {
+  box-shadow:
+    0 34px 52px rgba(1, 23, 64, 0.4),
+    0 0 0 12px rgba(196, 244, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  border-color: rgba(170, 255, 244, 0.92);
 }
 
 .imageCard img {
@@ -175,7 +153,7 @@
   inset: 0;
   background:
     linear-gradient(120deg, rgba(255, 255, 255, 0.28), transparent 25%, transparent 67%, rgba(119, 244, 255, 0.14)),
-    linear-gradient(to top, rgba(1, 25, 65, 0.56), transparent 38%);
+    linear-gradient(to top, rgba(1, 25, 65, 0.4), transparent 38%);
   pointer-events: none;
 }
 
@@ -221,13 +199,207 @@
   box-shadow: 0 0 8px #8bfff0;
 }
 
+/* Hotspot pins: absolute-positioned severity chips that fade in as the
+   vision phase progresses. They use the same tilt space as the card so
+   they stay locked to the image plane. */
+.hotspotPin {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transform: translate(-50%, -50%) perspective(800px) rotateX(7deg) rotateY(-6deg);
+  transition: opacity 320ms ease, transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pin_critical .dot { background: #ef4444; box-shadow: 0 0 12px rgba(239, 68, 68, 0.85); }
+.pin_warning  .dot { background: #fbbf24; box-shadow: 0 0 12px rgba(251, 191, 36, 0.8); }
+.pin_info     .dot { background: #38bdf8; box-shadow: 0 0 12px rgba(56, 189, 248, 0.78); }
+
+.hotspotPin .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.hotspotPin .ping {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pinPing 2.4s ease-out infinite;
+}
+
+.pin_critical .ping { background: rgba(239, 68, 68, 0.5); }
+.pin_warning  .ping { background: rgba(251, 191, 36, 0.45); }
+.pin_info     .ping { background: rgba(56, 189, 248, 0.45); }
+
+.hotspotPin .chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 4px 9px;
+  border: 1px solid;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.pin_critical .chip { background: rgba(239, 68, 68, 0.92); border-color: rgba(255, 200, 200, 0.7); color: #fff; }
+.pin_warning  .chip { background: rgba(251, 191, 36, 0.92); border-color: rgba(255, 235, 180, 0.7); color: #4a2e00; }
+.pin_info     .chip { background: rgba(56, 189, 248, 0.92); border-color: rgba(180, 220, 255, 0.7); color: #00263a; }
+
+@keyframes pinPing {
+  0%   { width: 10px;  height: 10px;  opacity: 0.85; }
+  100% { width: 46px;  height: 46px;  opacity: 0; }
+}
+
+/* Orbit slivers: secondary images (uploaded 2nd/3rd) shown as small
+   perspective slices around the main card. */
+.orbitSlivers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: opacity 600ms ease;
+}
+
+.sliver {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(190, 245, 255, 0.5);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(1, 23, 64, 0.32);
+  background: rgba(8, 60, 110, 0.4);
+}
+
+.sliver img { width: 100%; height: 100%; object-fit: cover; }
+
+.sliver2 { right: -36px; top: 18%; transform: perspective(800px) rotateY(-22deg) rotateX(2deg); }
+.sliver3 { left: -36px;  bottom: 14%; transform: perspective(800px) rotateY(22deg) rotateX(-2deg); }
+
+/* Regulation scan feed — right column. Live ticker that ticks regulations
+   off as the retrieval phase advances. */
+.feed {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(190, 240, 255, 0.32);
+  border-radius: 22px;
+  background:
+    linear-gradient(165deg, rgba(8, 60, 110, 0.78), rgba(4, 32, 70, 0.82)),
+    radial-gradient(circle at 50% 0%, rgba(122, 235, 255, 0.16), transparent 60%);
+  padding: 16px 16px 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 14px 38px rgba(1, 23, 64, 0.28);
+  overflow: hidden;
+}
+
+.feedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed rgba(190, 240, 255, 0.22);
+}
+
+.feedEyebrow {
+  color: rgba(167, 226, 255, 0.7);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.feedHeader strong {
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feedSlash {
+  margin: 0 4px;
+  color: rgba(167, 226, 255, 0.4);
+  font-weight: 400;
+}
+
+.feedList {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feedRow {
+  display: grid;
+  grid-template-columns: 22px 36px 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 9px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 10.5px;
+  color: rgba(230, 245, 255, 0.55);
+  transition: background-color 480ms ease, color 480ms ease, transform 480ms ease;
+}
+
+.feedRowDone {
+  background: rgba(76, 224, 200, 0.14);
+  color: rgba(220, 255, 248, 0.94);
+  transform: translateX(2px);
+}
+
+.feedDot {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid rgba(190, 240, 255, 0.4);
+  background: rgba(8, 60, 110, 0.6);
+  font-size: 11px;
+  color: rgba(140, 215, 245, 0.5);
+}
+
+.feedRowDone .feedDot {
+  border-color: rgba(110, 240, 220, 0.85);
+  background: rgba(76, 224, 200, 0.95);
+  color: #042735;
+  box-shadow: 0 0 8px rgba(110, 240, 220, 0.5);
+}
+
+.feedMarket {
+  color: rgba(167, 226, 255, 0.65);
+  font-size: 9.5px;
+  letter-spacing: 0.05em;
+}
+
+.feedRowDone .feedMarket {
+  color: rgba(150, 240, 220, 0.9);
+}
+
+.feedCode {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
 .progressDial {
   position: absolute;
   top: 22px;
   right: 22px;
   z-index: 8;
-  width: 82px;
-  height: 82px;
+  width: 86px;
+  height: 86px;
   padding: 2px;
   border-radius: 50%;
   background: conic-gradient(#90fff0 var(--progress), rgba(255, 255, 255, 0.12) 0);
@@ -264,7 +436,7 @@
   z-index: 7;
   top: -20%;
   bottom: -20%;
-  width: 24%;
+  width: 22%;
   transform: skewX(-12deg);
   background: linear-gradient(90deg, transparent, rgba(166, 255, 244, 0.08), rgba(218, 255, 251, 0.42), rgba(166, 255, 244, 0.08), transparent);
   filter: blur(1px);
@@ -344,21 +516,6 @@
   to { transform: rotate(360deg); }
 }
 
-@keyframes particleDrift {
-  0%, 100% { opacity: 0.2; transform: translate3d(0, 8px, 0) scale(0.7); }
-  45% { opacity: 0.9; transform: translate3d(7px, -10px, 0) scale(1); }
-}
-
-@keyframes orbitPulse {
-  0%, 100% { opacity: 0.25; transform: scale(0.94); }
-  50% { opacity: 0.7; transform: scale(1.04); }
-}
-
-@keyframes cardFloat {
-  0%, 100% { transform: translate3d(0, -5px, 0); }
-  50% { transform: translate3d(0, 8px, 0); }
-}
-
 @keyframes scanSweep {
   0% { left: -34%; opacity: 0; }
   14% { opacity: 0.8; }
@@ -372,24 +529,23 @@
 }
 
 @media (max-width: 820px) {
-  .stage { min-height: 460px; border-radius: 24px; }
-  .layer { width: min(54%, 330px); }
-  .stage[data-count="1"] .layer { width: min(76%, 430px); }
-  .scene { padding-inline: 20px; transform: none; }
-  .progressDial { width: 68px; height: 68px; top: 15px; right: 15px; }
+  .stage { min-height: 540px; border-radius: 24px; }
+  .cardWrap { width: min(82%, 360px); }
+  .progressDial { width: 70px; height: 70px; top: 15px; right: 15px; }
   .progressDial strong { font-size: 14px; }
   .progressDial span { display: none; }
   .caption { right: 14px; bottom: 14px; left: 14px; }
   .caption strong { display: none; }
-  .orbits span { width: 92%; }
-  .particles .particle:nth-child(n + 14) { display: none; }
+  .sliver { width: 70px; height: 70px; }
+  .sliver2 { right: -22px; }
+  .sliver3 { left: -22px; }
 }
 
 @media (max-width: 520px) {
-  .stage { min-height: 390px; }
-  .layer { width: 61%; }
-  .stage[data-count="3"] .layer1 { transform: translate3d(-86%, -50%, -54px) rotateY(10deg) rotateZ(-4deg); }
-  .stage[data-count="3"] .layer3 { transform: translate3d(-14%, -50%, -38px) rotateY(-10deg) rotateZ(4deg); }
+  .stage { min-height: 480px; }
+  .stageLayout { padding: 76px 14px 76px; }
+  .cardWrap { width: 92%; }
+  .sliver { display: none; }
   .imageIndex { top: 8px; left: 8px; width: 28px; height: 28px; }
   .imageState { display: none; }
   .caption { font-size: 9px; }
@@ -397,13 +553,17 @@
 
 @media (prefers-reduced-motion: reduce) {
   .haze,
-  .particle,
-  .orbits span,
-  .floatLayer,
   .scanBeam,
-  .emptyPulse {
+  .emptyPulse,
+  .disassembleRing span,
+  .hotspotPin .ping {
     animation: none !important;
   }
 
-  .scene { transform: none !important; transition: none; }
+  .scene,
+  .cardWrap,
+  .hotspotPin {
+    transition: none;
+    transform: none;
+  }
 }
