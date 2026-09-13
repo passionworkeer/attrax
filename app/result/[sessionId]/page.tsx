@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { DegradedBanner } from "@/components/result/DegradedBanner";
 import { FallbackNotice } from "@/components/result/FallbackNotice";
+import { FloatingEvidenceCrop } from "@/components/result/FloatingEvidenceCrop";
 import { HotspotLayer, isRenderableBbox } from "@/components/result/HotspotLayer";
 import { InspectionChecklistPanel } from "@/components/result/InspectionChecklistPanel";
 import { SourceNotice } from "@/components/result/SourceNotice";
@@ -97,6 +98,35 @@ export default function ResultPage() {
   });
   const displayMessage = message;
 
+  // ── Hooks: all before the early returns below (React rules-of-hooks —
+  // the loading → loaded transition must not change the hook count). ──
+  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+  // Audit 2026-09-13 P1-2: the canvas used to force a fixed 4:3 box with
+  // object-cover, which crops the photo and breaks percentage-anchored
+  // hotspots. We now capture the image's natural dimensions onLoad and
+  // adopt its intrinsic aspect ratio (plan §8.1 layout 1) — cover==contain
+  // at that point, no cropping, boxes land where the model put them.
+  // object-contain is the pre-load safety net: letterboxing beats cropping.
+  const [canvasImageSize, setCanvasImageSize] = useState<{
+    width: number;
+    height: number;
+  } | null>(null);
+  const derivedResultImages = result?.images ?? [];
+  const derivedAnchorImageId =
+    selectedImageId ??
+    result?.riskPoints.find((item) => item.severity === "critical")?.imageId ??
+    derivedResultImages[0]?.imageId ??
+    null;
+  // Reset intrinsic-ratio tracking when the displayed photo changes so a
+  // 4:3 → 16:9 switch doesn't briefly render the new image letterboxed
+  // against the old ratio.
+  useEffect(() => {
+    setCanvasImageSize(null);
+  }, [derivedAnchorImageId]);
+  const canvasAspectRatio = canvasImageSize
+    ? `${canvasImageSize.width} / ${canvasImageSize.height}`
+    : "4 / 3";
+
   if (!result) {
     return <ResultLoadingPanel locale={locale} displayMessage={displayMessage} />;
   }
@@ -131,13 +161,6 @@ export default function ResultPage() {
     critical ??
     result.riskPoints[0];
   const activeRisk = localizeRiskPoint(locale, activeRiskRaw);
-  const [accessToken] = useState<string | null>(null);
-  // Image switcher state — null means "show whatever the active risk /
-  // canonical image is". Multi-image uploads now get a thumbnail row
-  // (audit 2026-09-13 P1-1) so users can pick which photo to inspect,
-  // and the hotspot / cost-tag filters above will only render findings
-  // matching the chosen imageId.
-  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
   const resultImages = result.images;
   const explicitImage = selectedImageId
     ? resultImages.find((item) => item.imageId === selectedImageId) ?? null
@@ -148,7 +171,7 @@ export default function ResultPage() {
     resultImages.find((item) => item.imageId === anchorId) ?? resultImages[0] ?? null;
   const riskCanvasImage = riskImage;
   // Feature 1 (2.5D hotspots): risks whose vision-anchored bbox actually
-  // points somewhere render as tilted highlight frames via <HotspotLayer>;
+  // points somewhere render as flat evidence frames via <HotspotLayer>;
   // the rest keep the legacy circular pins (fallback for scans without
   // vision data — including legacy/demo payloads).
   //
@@ -427,8 +450,8 @@ export default function ResultPage() {
               ) : null}
               <div
                 data-flow-dark
-                className="relative aspect-[4/3] overflow-hidden rounded-[24px] border border-white/10 bg-[#10243d]"
-                style={{ aspectRatio: "4 / 3" }}
+                className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[#10243d]"
+                style={{ aspectRatio: canvasAspectRatio }}
               >
                 {riskCanvasImage ? (
                   <Image
@@ -436,9 +459,18 @@ export default function ResultPage() {
                     alt={displayProductName ?? "Product risk canvas"}
                     fill
                     sizes="(min-width: 1280px) 62vw, (min-width: 768px) 92vw, 94vw"
-                    className="object-cover"
+                    className="object-contain"
                     priority
                     unoptimized={riskCanvasImage.url.startsWith("/api/")}
+                    onLoad={(event) => {
+                      const element = event.currentTarget;
+                      if (element.naturalWidth > 0 && element.naturalHeight > 0) {
+                        setCanvasImageSize({
+                          width: element.naturalWidth,
+                          height: element.naturalHeight,
+                        });
+                      }
+                    }}
                   />
                 ) : null}
 
@@ -474,8 +506,8 @@ export default function ResultPage() {
                     );
                   })}
 
-                {/* Feature 1: vision-anchored risks render as tilted 2.5D
-                    highlight frames; clicking a severity chip jumps to the
+                {/* Feature 1: vision-anchored risks render as flat evidence
+                    frames; clicking a severity chip jumps to the
                     corresponding risk card below. */}
                 <HotspotLayer
                   hotspots={locatedHotspots}
@@ -492,6 +524,26 @@ export default function ResultPage() {
                   }
                   viewDetailLabel={locale === "zh" ? "查看风险详情" : "View risk detail"}
                 />
+
+                {/* Plan §8.2 capability B — 局部悬浮放大 for the active
+                    located risk: a real crop of the same photo, floated
+                    beside its hotspot with a leader-line feel. The 2.5D
+                    transform lives HERE (on the copied card), not on the
+                    evidence frame (audit P1-3). */}
+                {activeRiskRaw &&
+                riskCanvasImage &&
+                isRenderableBbox(activeRiskRaw.bbox) &&
+                (!activeRiskRaw.imageId ||
+                  !displayedImageId ||
+                  activeRiskRaw.imageId === displayedImageId) ? (
+                  <FloatingEvidenceCrop
+                    imageUrl={riskCanvasImage.url}
+                    bbox={activeRiskRaw.bbox}
+                    label={activeRisk.title}
+                    locale={locale}
+                    unoptimized={riskCanvasImage.url.startsWith("/api/")}
+                  />
+                ) : null}
 
                 {pinnedRisks.map((riskRaw, riskIndex) => {
                   const risk = localizeRiskPoint(locale, riskRaw);

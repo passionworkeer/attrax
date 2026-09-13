@@ -57,13 +57,18 @@ describe("HotspotLayer", () => {
     expect(wrapper).toHaveStyle({ left: "71%", top: "14%" });
   });
 
-  it("applies the 2.5D perspective transform on the frame", () => {
+  it("keeps the evidence frame flat — no perspective/rotate/scale on the bbox (audit P1-3)", () => {
     render(<HotspotLayer hotspots={[mkHotspot()]} />);
     const layer = screen.getByTestId("hotspot-layer");
     const frame = layer.querySelector("div[aria-hidden]") as HTMLElement;
-    expect(frame.getAttribute("style")).toContain("perspective(800px)");
-    expect(frame.getAttribute("style")).toContain("rotateX(7deg)");
-    expect(frame.getAttribute("style")).toContain("rotateY(-6deg)");
+    const style = frame.getAttribute("style") ?? "";
+    // The 2.5D transforms moved to the floating crop card
+    // (FloatingEvidenceCrop); the evidence frame must stay glued to the
+    // grounded region. See plan 2026-09-13 §8.
+    expect(style).not.toContain("perspective(");
+    expect(style).not.toContain("rotateX(");
+    expect(style).not.toContain("rotateY(");
+    expect(style).not.toContain("scale(");
   });
 
   it("fires onHotspotClick with the hotspot id when the chip is clicked", () => {
