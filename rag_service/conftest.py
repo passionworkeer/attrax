@@ -20,3 +20,23 @@ import sys
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _PROJECT_ROOT not in sys.path:
     sys.path.insert(0, _PROJECT_ROOT)
+
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def _isolated_vision_cache(tmp_path, monkeypatch):
+    """Point the vision response cache at a per-test tmp dir.
+
+    The cache is module-global and (in production) persists across
+    sessions by design — without this fixture a successful analyze test
+    poisons every later failure-path test that reuses the same image
+    bytes (observed 2026-09-13 when the cache landed).
+    """
+    from rag_service.verify import vision_cache
+
+    monkeypatch.setattr(
+        "rag_service.pipeline.nodes.vision._vision_cache",
+        vision_cache.VisionResponseCache(tmp_path),
+    )
+    yield

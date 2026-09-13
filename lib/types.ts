@@ -197,6 +197,9 @@ export interface ScanResult {
   inspectionObservations?: InspectionObservation[];
   /** Selected check ids from the category's inspection profile (v2). */
   selectedCheckIds?: string[];
+  /** Deterministic findings v2 (plan §6) — built server-side from the
+   * observations + deferred evidence checks, never by the LLM. */
+  inspectionFindings?: InspectionFinding[];
   modelInfo?: {
     visionProvider: "claude" | "openai" | "gemini" | "minimax" | "mock";
     latencyMs: number;
@@ -224,6 +227,20 @@ export interface InspectionObservation {
     bbox?: { x: number; y: number; w: number; h: number };
     verified?: boolean;
   };
+}
+
+/** Deterministic finding built from observations (plan §6 Finding). */
+export interface InspectionFinding {
+  findingId: string;
+  checkId: string;
+  title: string;
+  assessment: "suspected_issue" | "evidence_needed" | "confirmed_issue";
+  applicability: "applicable" | "not_applicable" | "needs_confirmation";
+  severity: "critical" | "high" | "medium" | "low" | "unknown";
+  observationIds: string[];
+  citationIds: string[];
+  suggestedAction: string;
+  requiredEvidence: string[];
 }
 
 export interface ComplianceReportResult {

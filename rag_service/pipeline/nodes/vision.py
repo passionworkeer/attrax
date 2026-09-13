@@ -107,8 +107,23 @@ PRODUCT_TYPE_KEYWORDS = {
     "蓝牙音箱": ["蓝牙音箱", "蓝牙音箱", "Bluetooth speaker", "wireless speaker"],
 }
 
+# Bump when PROMPT / CHECKLIST_PROMPT_TEMPLATE semantics change — the
+# observation cache keys on this so stale analyses never mix with new
+# prompt behavior (plan §10.3: 图像观察按 hash＋模型＋Prompt 版本缓存).
+VISION_PROMPT_VERSION = "vision-prompt/v2-2026-09-13"
+
 _analyzer_instance = None
 _is_injected = False
+_vision_cache = None
+
+
+def _get_vision_cache():
+    global _vision_cache
+    if _vision_cache is None:
+        from rag_service.verify.vision_cache import VisionResponseCache
+
+        _vision_cache = VisionResponseCache()
+    return _vision_cache
 
 
 def set_vision_analyzer(analyzer):
@@ -238,6 +253,14 @@ class VisionAnalyzer:
 
         b64 = base64.b64encode(image_data).decode("utf-8")
 
+        cache = _get_vision_cache()
+        cache_key = cache.cache_key(
+            image_data, self.model, VISION_PROMPT_VERSION, None
+        )
+        cached = cache.get(cache_key)
+        if cached:
+            return _parse_vision_text(cached, cached)
+
         text = self._call_mimotalk([{
             "role": "user",
             "content": [
@@ -249,6 +272,7 @@ class VisionAnalyzer:
         if not text:
             return {"error": "vision_call_failed", "description": "", "certifications": []}
 
+        cache.put(cache_key, text)
         return _parse_vision_text(text, text)
 
     def analyze_single_image_with_checks(
@@ -283,16 +307,26 @@ class VisionAnalyzer:
         prompt = CHECKLIST_PROMPT_TEMPLATE.format(checklist=checklist_block)
         b64 = base64.b64encode(image_data).decode("utf-8")
 
-        text = self._call_mimotalk(
-            [{
-                "role": "user",
-                "content": [
-                    {"type": "image", "source": {"type": "base64", "media_type": mime_type, "data": b64}},
-                    {"type": "text", "text": prompt},
-                ],
-            }],
-            max_tokens=3072,
+        cache = _get_vision_cache()
+        cache_key = cache.cache_key(
+            image_data, self.model, VISION_PROMPT_VERSION, checks
         )
+        cached = cache.get(cache_key)
+        if cached:
+            text = cached
+        else:
+            text = self._call_mimotalk(
+                [{
+                    "role": "user",
+                    "content": [
+                        {"type": "image", "source": {"type": "base64", "media_type": mime_type, "data": b64}},
+                        {"type": "text", "text": prompt},
+                    ],
+                }],
+                max_tokens=3072,
+            )
+            if text:
+                cache.put(cache_key, text)
         if not text:
             # Checklist call failed — fall back to the legacy prompt so the
             # scan still gets vision data (observations stay empty).

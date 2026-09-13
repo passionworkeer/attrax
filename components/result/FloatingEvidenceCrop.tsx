@@ -27,6 +27,15 @@ export interface FloatingEvidenceCropProps {
   cardWidth?: number;
   aspectRatio?: number;
   unoptimized?: boolean;
+  /**
+   * Plan 2026-09-13 §8.2 capability C — optional segmentation mask
+   * (SAM worker output) as an image URL. When present the crop is clipped
+   * to the mask via CSS mask-image, giving the contour-float effect on
+   * the REAL part silhouette. Without a segmentation service this stays
+   * undefined and the plain bbox crop renders (capability B) — the
+   * bbox path is the guaranteed fallback, per §11 Batch E.
+   */
+  maskUrl?: string;
 }
 
 export function FloatingEvidenceCrop({
@@ -37,6 +46,7 @@ export function FloatingEvidenceCrop({
   cardWidth = 240,
   aspectRatio = 4 / 3,
   unoptimized,
+  maskUrl,
 }: FloatingEvidenceCropProps) {
   const [loaded, setLoaded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
@@ -106,6 +116,18 @@ export function FloatingEvidenceCrop({
             backgroundSize: `${backgroundSizePercent}%`,
             backgroundPosition: `${backgroundPositionX}% ${backgroundPositionY}%`,
             backgroundRepeat: "no-repeat",
+            ...(maskUrl
+              ? {
+                  // Contour clip (capability C): the mask image is alpha-
+                  // encoded over the same normalized frame as the bbox.
+                  maskImage: `url(${maskUrl})`,
+                  WebkitMaskImage: `url(${maskUrl})`,
+                  maskSize: "100% 100%",
+                  WebkitMaskSize: "100% 100%",
+                  maskRepeat: "no-repeat",
+                  WebkitMaskRepeat: "no-repeat",
+                }
+              : {}),
           }}
         />
       </div>

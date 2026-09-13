@@ -310,6 +310,39 @@ def generator_node(state: GraphState) -> dict:
         features=features,
     )
 
+    # Plan 2026-09-13 §10.1 — applicability guardrails. Feature keywords
+    # are candidates, not confirmed hardware facts, and regime-level
+    # conditions (battery passport scoping, GB CE acceptance) cannot live
+    # in the YAML applies_if. Evaluate each anchor and (a) render the
+    # non-trivial decisions into prompt lines so the LLM stops claiming
+    # e.g. Article 77 passports for earbud cases, (b) persist the decisions
+    # on the package for the result page / audit.
+    from rag_service.verify.applicability import (
+        ProductFacts,
+        evaluate_anchors,
+        prompt_context_lines,
+    )
+
+    observed_text = " ".join(
+        str(obs.get("observedText") or "")
+        for obs in ((vision_result.get("observations") or [])
+                    if isinstance(vision_result.get("observations"), list) else [])
+    )
+    product_facts = ProductFacts.from_scan(
+        category=category,
+        markets=markets,
+        detected_features=features,
+        observed_text=observed_text,
+    )
+    applicability_decisions = evaluate_anchors(mandatory_regulations, product_facts)
+    applicability_lines = prompt_context_lines(applicability_decisions)
+    if applicability_lines:
+        query = (
+            query
+            + "\n\n【适用性边界（必须遵守，不得扩大适用范围）】\n"
+            + "\n".join(applicability_lines)
+        )
+
     generator = _get_generator()
     provider = getattr(generator, "provider", None) if generator else None
 
@@ -519,6 +552,29 @@ def generator_node(state: GraphState) -> dict:
             report_package["selectedCheckIds"] = visual_check_ids(category)
         except Exception:
             report_package.setdefault("selectedCheckIds", [])
+
+        # Plan §10.3 (精简生成 first slice) + §3: findings are built
+        # DETERMINISTICALLY from the verified observations + the profile's
+        # deferred-evidence checks — the model never writes these. Every
+        # finding cites its observations and profile legal anchors.
+        if report_package.get("observations"):
+            from rag_service.pipeline.nodes.findings_builder import build_findings
+
+            try:
+                report_package["findings"] = build_findings(
+                    session_id=str(state.get("session_id") or "scan"),
+                    category=category,
+                    observations=report_package["observations"],
+                )
+            except Exception as exc:
+                logger.warning("findings builder failed: %s", exc)
+                report_package.setdefault("findings", [])
+
+        # §10.1: persist the applicability decisions (states, effective
+        # dates, product conditions, rules version) for audit + result.
+        report_package["anchorApplicability"] = [
+            decision.to_audit_dict() for decision in applicability_decisions
+        ]
 
     result = {
         "generation": generation,

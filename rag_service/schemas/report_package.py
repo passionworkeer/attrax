@@ -83,10 +83,21 @@ class FinancialCostComparison(BaseModel):
 
 
 class StructuredProfitFields(FlexibleModel):
-    """Optional extension fields; structured finance is strict when supplied."""
+    """Optional extension fields; structured finance is strict when supplied.
+
+    Plan 2026-09-13 §10.2 — provenance: numbers are only trustworthy when
+    the source says so. ``sourceStatus`` distinguishes a real quote
+    ("quoted", e.g. supplier price list), a model estimate ("estimated"),
+    and unknown ("unknown" — the historical default when the model filled
+    numbers without any source). ``asOf`` + ``sourceRefs`` make the claim
+    checkable; the frontend renders estimated/unknown as 估算/待询价.
+    """
 
     currency: str
     costComparison: FinancialCostComparison
+    sourceStatus: Literal["quoted", "estimated", "unknown"] = "unknown"
+    asOf: str = ""
+    sourceRefs: list[str] = Field(default_factory=list)
 
     @field_validator("currency")
     @classmethod

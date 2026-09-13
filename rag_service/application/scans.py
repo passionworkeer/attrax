@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import hmac
+import os
 import secrets
 import uuid
 from collections.abc import Mapping
@@ -371,6 +372,12 @@ class ScanService:
                     "attempt": job.attempts,
                     "status": status,
                     "degradedReason": degraded_reason,
+                    # Plan 2026-09-13 §10.4 — stage latency breakdown for
+                    # p50/p95 trending. Summed per pipeline node from the
+                    # agent trace the runner already records.
+                    "stageLatencyMs": self._stage_latencies(result),
+                    "latencyMs": result.get("latencyMs"),
+                    "codeVersion": os.environ.get("ATTRAX_BUILD_SHA") or "unknown",
                 }
             )
         except asyncio.CancelledError:
@@ -397,6 +404,25 @@ class ScanService:
                 self.backend.save_session(current.transition(ttl_hours=self.session_ttl_hours))
         except asyncio.CancelledError:
             return
+
+    @staticmethod
+    def _stage_latencies(result: Mapping[str, Any]) -> dict[str, int]:
+        """Sum per-node durations (ms) from the agent trace, for §10.4 metrics."""
+        breakdown: dict[str, int] = {}
+        trace = result.get("agentTrace")
+        if not isinstance(trace, list):
+            return breakdown
+        for entry in trace:
+            if not isinstance(entry, Mapping):
+                continue
+            node = str(entry.get("node") or "").strip()
+            duration = entry.get("durationMs") or entry.get("duration_ms")
+            if not node or not isinstance(duration, (int, float)) or isinstance(duration, bool):
+                continue
+            if duration < 0:
+                continue
+            breakdown[node] = breakdown.get(node, 0) + int(duration)
+        return breakdown
 
     @staticmethod
     def _classify_error(exc: Exception) -> tuple[bool, str]:
