@@ -131,7 +131,15 @@ export default function ResultPage() {
     return <ResultLoadingPanel locale={locale} displayMessage={displayMessage} />;
   }
 
-  if (result.riskPoints.length === 0) {
+  // A scan is only "incomplete" when it produced NOTHING renderable.
+  // Plan 2026-09-13 §1: "真实问题可以是零个" — with the pipeline-stage
+  // nodes no longer promoted to risks, a clean scan legitimately has
+  // zero riskPoints; when the checklist/findings layer exists, the page
+  // renders normally (observations + 待补拍/待补资料 carry the value).
+  const hasFindingsLayer =
+    (result.inspectionObservations?.length ?? 0) > 0 ||
+    (result.inspectionFindings?.length ?? 0) > 0;
+  if (result.riskPoints.length === 0 && !hasFindingsLayer) {
     return (
       <ResultIncompletePanel
         locale={locale}
@@ -160,7 +168,10 @@ export default function ResultPage() {
     result.riskPoints.find((item) => item.riskId === selectedRiskId) ??
     critical ??
     result.riskPoints[0];
-  const activeRisk = localizeRiskPoint(locale, activeRiskRaw);
+  // Zero-risk scans (plan §1: 真实问题可以是零个) have no active risk;
+  // the risk-specific blocks render neutral empty states instead.
+  const noRisks = !activeRiskRaw;
+  const activeRisk = activeRiskRaw ? localizeRiskPoint(locale, activeRiskRaw) : null;
   const resultImages = result.images;
   const explicitImage = selectedImageId
     ? resultImages.find((item) => item.imageId === selectedImageId) ?? null
@@ -245,7 +256,9 @@ export default function ResultPage() {
                        result.reportPackage?.auditMetadata?.validationStatus === "invalid" ||
                        result.reportPackage?.auditMetadata?.validationStatus === "fallback")
                     ? "border-amber-500/40 bg-amber-500/10 text-amber-300"
-                    : severityClass(activeRisk.severity)
+                    : noRisks
+                      ? "border-sky-400/30 bg-sky-400/10 text-sky-200"
+                      : severityClass(activeRisk!.severity)
                 )}>
                   {criticalCount > 0
                     ? locale === "zh" ? "暂缓上架" : "Hold launch"
@@ -253,7 +266,9 @@ export default function ResultPage() {
                        result.reportPackage?.auditMetadata?.validationStatus === "invalid" ||
                        result.reportPackage?.auditMetadata?.validationStatus === "fallback")
                     ? locale === "zh" ? "待人工核验" : "Needs verification"
-                    : locale === "zh" ? "可进入复核" : "Ready for review"}
+                    : noRisks
+                      ? locale === "zh" ? "未发现可定位风险" : "No located risks"
+                      : locale === "zh" ? "可进入复核" : "Ready for review"}
                 </span>
               </div>
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl">{displayProductName}</h1>
@@ -283,12 +298,34 @@ export default function ResultPage() {
             </div>
             <aside className="flex flex-col rounded-[28px] border border-[rgba(255,143,57,0.22)] bg-[linear-gradient(145deg,rgba(255,143,57,0.12),rgba(255,255,255,0.05))] p-5">
               <p className="text-xs font-bold uppercase tracking-[0.22em] text-[#073b54]">{locale === "zh" ? "当前最重要的事" : "Top priority"}</p>
-              <h2 className="mt-4 text-2xl font-semibold leading-snug text-white">{activeRisk.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-white/60">{activeRisk.description}</p>
-              <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
-                <p className="text-xs text-white/42">{locale === "zh" ? "建议动作" : "Recommended action"}</p>
-                <p className="mt-2 text-sm leading-6 text-white/72">{activeRisk.recommendedAction}</p>
-              </div>
+              {noRisks ? (
+                <>
+                  <h2 className="mt-4 text-2xl font-semibold leading-snug text-white">
+                    {locale === "zh" ? "本次扫描未发现可定位风险点" : "No locatable risk found in this scan"}
+                  </h2>
+                  <p className="mt-3 text-sm leading-6 text-white/60">
+                    {locale === "zh"
+                      ? "未发现风险不等于合规完成：下方检查清单里的「待补拍 / 待补资料」项仍需补齐后再做上架判断。"
+                      : "No located risks ≠ compliant: complete the reshoot / material items in the checklist below before the launch decision."}
+                  </p>
+                  <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-xs text-white/42">{locale === "zh" ? "建议动作" : "Recommended action"}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/72">
+                      {(result.inspectionFindings ?? [])[0]?.suggestedAction
+                        ?? (locale === "zh" ? "按检查清单补齐证据后重新扫描。" : "Gather the listed evidence and rescan.")}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h2 className="mt-4 text-2xl font-semibold leading-snug text-white">{activeRisk!.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-white/60">{activeRisk!.description}</p>
+                  <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-xs text-white/42">{locale === "zh" ? "建议动作" : "Recommended action"}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/72">{activeRisk!.recommendedAction}</p>
+                  </div>
+                </>
+              )}
               <div className="mt-auto flex flex-wrap gap-2 pt-5">
                 <a href="#evidence" className={cn(buttonVariants({ size: "sm" }), "rounded-full")}>
                   {locale === "zh" ? "查看风险证据" : "View evidence"}<MoveRight className="size-4" />
@@ -539,7 +576,7 @@ export default function ResultPage() {
                   <FloatingEvidenceCrop
                     imageUrl={riskCanvasImage.url}
                     bbox={activeRiskRaw.bbox}
-                    label={activeRisk.title}
+                    label={activeRisk!.title}
                     locale={locale}
                     unoptimized={riskCanvasImage.url.startsWith("/api/")}
                   />
@@ -591,34 +628,54 @@ export default function ResultPage() {
 
             <article className="rounded-[26px] border border-white/10 bg-white/[0.06] p-5 sm:p-6">
               <SectionEyebrow>{copy.result.hotspotDetail}</SectionEyebrow>
-              <h3 className="mt-3 text-2xl font-semibold text-white">{activeRisk.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-white/60">{activeRisk.description}</p>
+              {noRisks ? (
+                <>
+                  <h3 className="mt-3 text-2xl font-semibold text-white">
+                    {locale === "zh" ? "无可定位的风险详情" : "No located risk detail"}
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-white/60">
+                    {locale === "zh"
+                      ? "本次扫描没有产生带位置的风险点。观察结果与待补项见下方检查清单；补齐所需照片/资料后重新扫描可获得完整风险定位。"
+                      : "This scan produced no located risks. See the checklist below for observations and pending evidence; rescan after gathering them."}
+                  </p>
+                  <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
+                    <p className="text-xs text-white/42">{locale === "zh" ? "已观察到（可定位）" : "Observed (located)"}</p>
+                    <p className="mt-2 font-mono text-sm text-white">
+                      {(result.inspectionObservations ?? []).filter((o) => o.region?.bbox).length}
+                      {locale === "zh" ? " 项" : " items"}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+              <h3 className="mt-3 text-2xl font-semibold text-white">{activeRisk!.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-white/60">{activeRisk!.description}</p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <span className={cn("rounded-full border px-3 py-1 text-xs", severityClass(activeRisk.severity))}>{severityLabel(locale, activeRisk.severity)}</span>
-                <GlowPill>{copy.result.confidence} {Math.round(activeRisk.confidence * 100)}</GlowPill>
-                <GlowPill>{copy.result.flameLevel} {activeRisk.flameLevel}</GlowPill>
+                <span className={cn("rounded-full border px-3 py-1 text-xs", severityClass(activeRisk!.severity))}>{severityLabel(locale, activeRisk!.severity)}</span>
+                <GlowPill>{copy.result.confidence} {Math.round(activeRisk!.confidence * 100)}</GlowPill>
+                <GlowPill>{copy.result.flameLevel} {activeRisk!.flameLevel}</GlowPill>
               </div>
               <div className="relative mt-5 overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.035]">
                 <div className="max-h-[340px] snap-y snap-mandatory space-y-3 overflow-y-auto p-3 pr-2 [scrollbar-color:rgba(91,196,207,0.45)_transparent] [scrollbar-width:thin]">
                   <article className="snap-start rounded-[18px] border border-white/10 bg-white/[0.07] p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2d7b90]">{locale === "zh" ? "风险数据" : "Risk metrics"}</p>
                     <div className="mt-3 grid grid-cols-3 gap-2">
-                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "置信度" : "Confidence"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{Math.round(activeRisk.confidence * 100)}%</p></div>
-                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "整改成本" : "Fix cost"}</p><p className="mt-1 font-mono text-sm font-semibold text-white">{activeRisk.estimatedFixCost ?? copy.result.unknownCost}</p></div>
-                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "法规数" : "Citations"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{activeRisk.regulations.length}</p></div>
+                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "置信度" : "Confidence"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{Math.round(activeRisk!.confidence * 100)}%</p></div>
+                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "整改成本" : "Fix cost"}</p><p className="mt-1 font-mono text-sm font-semibold text-white">{activeRisk!.estimatedFixCost ?? copy.result.unknownCost}</p></div>
+                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "法规数" : "Citations"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{activeRisk!.regulations.length}</p></div>
                     </div>
                   </article>
 
                   <article className="snap-start rounded-[18px] border border-white/10 bg-white/[0.07] p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2d7b90]">{locale === "zh" ? "证据定位" : "Evidence location"}</p>
                     <div className="mt-3 grid grid-cols-3 gap-2">
-                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "图片" : "Image"}</p><p className="mt-1 truncate font-mono text-xs font-semibold text-white">{activeRiskRaw.imageId}</p></div>
+                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "图片" : "Image"}</p><p className="mt-1 truncate font-mono text-xs font-semibold text-white">{activeRiskRaw!.imageId}</p></div>
                       <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "市场" : "Markets"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{result.targetMarkets.length}</p></div>
-                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "风险编号" : "Risk ID"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{activeRisk.riskId.slice(-2)}</p></div>
+                      <div className="rounded-[13px] bg-white/[0.06] p-3"><p className="text-[10px] text-white/40">{locale === "zh" ? "风险编号" : "Risk ID"}</p><p className="mt-1 font-mono text-base font-semibold text-white">{activeRisk!.riskId.slice(-2)}</p></div>
                     </div>
                   </article>
 
-                  {activeRisk.regulations.map((regulation) => (
+                  {activeRisk!.regulations.map((regulation) => (
                     <article key={regulation.regId} className="snap-start rounded-[18px] border border-white/10 bg-white/[0.07] p-4">
                       <div className="flex items-start justify-between gap-3">
                         <div>
@@ -633,7 +690,7 @@ export default function ResultPage() {
 
                   <article className="snap-start rounded-[18px] border border-[rgba(62,172,194,0.25)] bg-[rgba(217,248,250,0.14)] p-4">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#2d7b90]">{locale === "zh" ? "下一步整改" : "Next action"}</p>
-                    <p className="mt-2 text-sm leading-6 text-white/68">{activeRisk.recommendedAction}</p>
+                    <p className="mt-2 text-sm leading-6 text-white/68">{activeRisk!.recommendedAction}</p>
                   </article>
 
                   <article className="snap-start rounded-[18px] border border-white/10 bg-white/[0.07] p-4">
@@ -648,8 +705,10 @@ export default function ResultPage() {
               </div>
               <div className="mt-3 flex items-center justify-between gap-3 text-xs text-white/46">
                 <span>{locale === "zh" ? "向上滑动查看更多风险详情" : "Swipe up for more risk details"}</span>
-                <span className="font-mono">{String(activeRisk.regulations.length + 4).padStart(2, "0")} {locale === "zh" ? "张卡片" : "cards"}</span>
+                <span className="font-mono">{String(activeRisk!.regulations.length + 4).padStart(2, "0")} {locale === "zh" ? "张卡片" : "cards"}</span>
               </div>
+                </>
+              )}
             </article>
           </div>
 
@@ -664,7 +723,7 @@ export default function ResultPage() {
             <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {result.riskPoints.map((riskRaw) => {
                 const risk = localizeRiskPoint(locale, riskRaw);
-                const isActive = riskRaw.riskId === activeRiskRaw.riskId;
+                const isActive = riskRaw.riskId === activeRiskRaw?.riskId;
                 return (
                   <button
                     type="button"
@@ -780,7 +839,7 @@ export default function ResultPage() {
                 <p className="text-sm font-semibold text-white">{locale === "zh" ? "当前执行重点" : "Current priority"}</p>
                 <span className="rounded-full border border-white/10 bg-white/7 px-2.5 py-1 text-[10px] text-white/50">01 / {String(roadmapRows.length).padStart(2, "0")}</span>
               </div>
-              <p className="mt-2 text-sm leading-6 text-white/62">{activeRisk.recommendedAction}</p>
+              <p className="mt-2 text-sm leading-6 text-white/62">{noRisks ? (locale === "zh" ? "按检查清单补齐待补拍/待补资料项。" : "Complete the reshoot / material items in the checklist.") : activeRisk!.recommendedAction}</p>
               <div className="mt-3 flex flex-wrap gap-2">
                 <GlowPill>{roadmapRows[0]?.time}</GlowPill>
                 <GlowPill>{roadmapRows[0]?.owner}</GlowPill>
