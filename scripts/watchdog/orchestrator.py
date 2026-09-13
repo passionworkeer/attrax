@@ -1,11 +1,20 @@
-"""Regulation watchdog orchestrator — single-pass entry point.
+"""Regulation watchdog orchestrator — scheduled single-pass entry point.
 
 Run modes:
-- ``python -m scripts.watchdog.orchestrator``          — one pass, then exit
-- ``python -m scripts.watchdog.orchestrator --once``   — same (explicit)
+- ``python -m scripts.watchdog.orchestrator``          — daemon: run one pass
+  immediately, then sleep until the next daily run time (ATTRAX_REGWATCH_RUN_AT,
+  default 03:00 **server-local** — Asia/Shanghai on lighthouse) and repeat.
+- ``python -m scripts.watchdog.orchestrator --once``   — single pass, exit
+- ``python -m scripts.watchdog.orchestrator --dry-run``— detect changes but do
+  not write outputs or update the snapshot DB
 
-Scheduling is external by design: pm2's ``cron_restart: "0 3 * * *"`` boots
-this module once a day (see scripts/ecosystem.config.cjs → ``regwatch``).
+Why an internal scheduler (2026-09-13 incident): the original design relied on
+pm2 ``cron_restart`` to relaunch the single-pass process daily. That never
+fired — pm2's cron_restart only acts on *online* processes, and a fork-mode
+app that exits cleanly goes to "stopped", which cron_restart ignores. Keeping
+the scheduler inside the process (plain ``time.sleep`` loop, still stdlib-only)
+means pm2 supervises a permanently-online app and ``autorestart`` covers
+crashes; the timeslot config lives in one place (ATTRAX_REGWATCH_RUN_AT).
 
 Pass outline:
 1. Load the 25 source entries from data/regulation_sources/official_sources.json
@@ -17,13 +26,13 @@ Pass outline:
    - pending_review.json — changes that require human approval before the
                            regulation library is rebuilt
    - errors.json       — per-source fetch failures
-5. Auto-rebuild gate: when every change is *cosmetic* (similarity ≥ 0.95)
-   and ATTRAX_REGWATCH_AUTO_REBUILD=true, snapshot state and exit 0. Any
-   real change writes pending_review.json and exits 2 — the rebuild is a
+5. Auto-rebuild gate: cosmetic-only changes (similarity ≥ 0.95) snapshot and
+   move on. Any real change writes pending_review.json — the rebuild is a
    human decision, never automatic.
 
-Exit codes: 0 = clean / cosmetic only · 2 = real changes awaiting review ·
-3 = one or more sources failed (others still processed) · 1 = fatal.
+Exit codes (single-pass mode): 0 = clean / cosmetic only · 2 = real changes
+awaiting review · 3 = one or more sources failed (others still processed) ·
+1 = fatal. Daemon mode logs the per-pass code and keeps running.
 """
 from __future__ import annotations
 
@@ -32,7 +41,9 @@ import datetime as _dt
 import json
 import logging
 import os
+import signal
 import sys
+import time
 from pathlib import Path
 
 from scripts.watchdog.collectors.base import collect_source
@@ -49,6 +60,35 @@ EXIT_CLEAN = 0
 EXIT_CHANGES_PENDING = 2
 EXIT_PARTIAL_FAILURE = 3
 EXIT_FATAL = 1
+
+# Default daily run time, server-local. The old docs said "03:00 UTC" — that
+# was wrong: pm2 cron and this loop both use the daemon's local zone
+# (Asia/Shanghai on lighthouse), so 03:00 CST = 19:00 UTC.
+DEFAULT_RUN_AT = "03:00"
+_SHUTDOWN = False
+
+
+def _request_shutdown(signum, frame):  # noqa: ARG001 — signal handler signature
+    global _SHUTDOWN
+    _SHUTDOWN = True
+    logger.info("received signal %s — shutting down after current step", signum)
+
+
+def _seconds_until_next_run(run_at: str) -> float:
+    """Seconds from now until the next HH:MM (server-local), min 60s guard."""
+    try:
+        hour_s, minute_s = run_at.split(":", 1)
+        hour, minute = int(hour_s), int(minute_s)
+        if not (0 <= hour <= 23 and 0 <= minute <= 59):
+            raise ValueError
+    except ValueError:
+        logger.warning("invalid ATTRAX_REGWATCH_RUN_AT %r — using %s", run_at, DEFAULT_RUN_AT)
+        hour, minute = 3, 0
+    now = _dt.datetime.now()
+    target = now.replace(hour=hour, minute=minute, second=0, microsecond=0)
+    if target <= now:
+        target += _dt.timedelta(days=1)
+    return max(60.0, (target - now).total_seconds())
 
 
 def load_sources() -> list[dict]:
@@ -212,10 +252,12 @@ def run_pass(*, dry_run: bool = False) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="attrax regulation watchdog (single pass)"
+        description="attrax regulation watchdog (single pass or daily scheduler)"
     )
     parser.add_argument(
-        "--once", action="store_true", help="explicit single-pass mode (default)"
+        "--once",
+        action="store_true",
+        help="run exactly one pass and exit (no scheduling)",
     )
     parser.add_argument(
         "--dry-run",
@@ -223,8 +265,38 @@ def main(argv: list[str] | None = None) -> int:
         help="detect changes but do not write outputs or update the snapshot DB",
     )
     args = parser.parse_args(argv)
-    del args.once  # single-pass is the only mode; flag kept for operator habit
-    return run_pass(dry_run=args.dry_run)
+
+    if args.once:
+        return run_pass(dry_run=args.dry_run)
+
+    # Daemon mode: one immediate pass (catch-up for any missed timeslot),
+    # then sleep until the next daily run time. Signal-aware so `pm2 stop`
+    # shuts down within one sleep chunk.
+    signal.signal(signal.SIGTERM, _request_shutdown)
+    signal.signal(signal.SIGINT, _request_shutdown)
+    run_at = (os.environ.get("ATTRAX_REGWATCH_RUN_AT") or DEFAULT_RUN_AT).strip()
+
+    logger.info("regwatch daemon starting — run_at=%s (server-local)", run_at)
+    code = run_pass(dry_run=args.dry_run)
+    logger.info("initial pass finished with exit code %d", code)
+
+    while not _SHUTDOWN:
+        wait = _seconds_until_next_run(run_at)
+        next_at = (
+            _dt.datetime.now() + _dt.timedelta(seconds=wait)
+        ).strftime("%Y-%m-%d %H:%M:%S")
+        logger.info("sleeping %.0fs — next pass at %s", wait, next_at)
+        # Chunked sleep so SIGTERM is honoured within 30s.
+        deadline = time.monotonic() + wait
+        while not _SHUTDOWN and time.monotonic() < deadline:
+            time.sleep(min(30, max(0.1, deadline - time.monotonic())))
+        if _SHUTDOWN:
+            break
+        code = run_pass(dry_run=args.dry_run)
+        logger.info("scheduled pass finished with exit code %d", code)
+
+    logger.info("regwatch daemon stopped")
+    return code
 
 
 if __name__ == "__main__":

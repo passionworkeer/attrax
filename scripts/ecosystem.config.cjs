@@ -67,14 +67,20 @@ module.exports = {
       script: "/opt/attrax/.venv/bin/python",
       args: ["-m", "scripts.watchdog.orchestrator"],
       interpreter: "none",
-      autorestart: false,
-      cron_restart: process.env.ATTRAX_REGWATCH_CRON || "0 3 * * *",
-      max_restarts: 2,
+      // 2026-09-13: cron_restart never fired — pm2 的 cron 只作用于 online
+      // 进程，单次跑完退出的 app 进 stopped 态后不会被唤醒。调度改为
+      // orchestrator 内部 sleep 循环（ATTRAX_REGWATCH_RUN_AT，默认 03:00
+      // 服务器本地时区 = Asia/Shanghai = 19:00 UTC），进程常驻、崩溃由
+      // autorestart 兜底。
+      autorestart: true,
+      max_restarts: 10,
+      restart_delay: 5000,
       env: {
         PYTHONUNBUFFERED: "1",
         PYTHONPATH: "/opt/attrax",
         ATTRAX_REGWATCH_ENABLED: process.env.ATTRAX_REGWATCH_ENABLED || "true",
         ATTRAX_REGWATCH_NOTIFY: process.env.ATTRAX_REGWATCH_NOTIFY || "log",
+        ATTRAX_REGWATCH_RUN_AT: process.env.ATTRAX_REGWATCH_RUN_AT || "03:00",
       },
     },
   ],

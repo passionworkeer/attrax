@@ -4,15 +4,19 @@ Daily change detection across the 25 official regulation sources tracked in
 `data/regulation_sources/official_sources.json` (EU Cellar / eCFR / CPSC RSS /
 GOV.UK / CA Justice Laws / NZ legislation / direct URLs).
 
-## Architecture decision (2026-09-12)
+## Architecture decision (2026-09-12, revised 2026-09-13)
 
-**Single-pass process + pm2 `cron_restart`** — no APScheduler, no
-long-running Python daemon, no new pip packages (stdlib `urllib` /
-`sqlite3` / `difflib` only). pm2 already provides supervision, logs, and
-restart backoff; a second scheduler inside the process would duplicate that
-and add a venv dependency (`regwatch-eu`, `APScheduler`, `feedparser`) for no
-functional gain. The EU collector re-implements the CELEX → Cellar
-resolution already proven in `rag_service/regulation_collectors/eu_rdf.py`.
+**Daemon process with an internal daily scheduler** — the orchestrator runs
+one pass at startup, then sleeps until the next `ATTRAX_REGWATCH_RUN_AT`
+(default 03:00 **server-local** — Asia/Shanghai on lighthouse, i.e. 19:00 UTC)
+and repeats. Stdlib only (`time.sleep` — no APScheduler, no extra pip
+packages).
+
+Why not pm2 `cron_restart`: it never fired in production (2026-09-13
+incident) — pm2's cron only acts on **online** processes, and a single-pass
+fork-mode app that exits cleanly sits in "stopped", which cron_restart
+ignores. With the scheduler inside the process, pm2 supervises a
+permanently-online app and `autorestart` covers crashes.
 
 ## Run
 
@@ -23,12 +27,13 @@ PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.orchestrator --onc
 # Dry run (no outputs written, snapshot DB untouched)
 PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.orchestrator --dry-run
 
-# Production (lighthouse): pm2 owns the schedule (03:00 UTC daily)
+# Production (lighthouse): daemon under pm2 — pass at startup, then daily
+# at ATTRAX_REGWATCH_RUN_AT (server-local)
 pm2 start scripts/ecosystem.config.cjs --only regwatch
 pm2 logs regwatch --lines 100
 ```
 
-## Exit codes
+## Exit codes (single-pass / per-pass return values)
 
 | Code | Meaning |
 |------|---------|
@@ -37,8 +42,9 @@ pm2 logs regwatch --lines 100
 | 3 | One or more sources failed (others still processed) → `errors.json` |
 | 1 | Fatal (bad config, unreadable sources file) |
 
-pm2 records non-zero exits as `errored` before the next cron tick — that is
-expected and harmless; check `pm2 logs regwatch`.
+pm2 records non-zero exits as `errored` and `autorestart` relaunches — that is
+expected and harmless in `--once` mode; in daemon mode these codes are logged
+per pass and the loop keeps running.
 
 ## Outputs — `data/regulation_supplements/watchdog-{date}/`
 
@@ -68,7 +74,7 @@ Snapshot state lives in `data/regulation_supplements/.cache.db` (SQLite).
 | Var | Default | Purpose |
 |-----|---------|---------|
 | `ATTRAX_REGWATCH_ENABLED` | `true` | kill switch for the whole pass |
-| `ATTRAX_REGWATCH_CRON` | `0 3 * * *` | pm2 cron (read at `pm2 start` time) |
+| `ATTRAX_REGWATCH_RUN_AT` | `03:00` | daily run time HH:MM, server-local |
 | `ATTRAX_REGWATCH_NOTIFY` | `log` | comma list: `log,slack,webhook` |
 | `SLACK_WEBHOOK_URL` | — | required when `slack` is selected |
 | `ATTRAX_REGWATCH_WEBHOOK` | — | required when `webhook` is selected |
