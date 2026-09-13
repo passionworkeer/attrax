@@ -179,40 +179,69 @@ function regulationFromChunk(chunk: UnknownRecord, index: number): RegulationRef
   };
 }
 
-// Pipeline-stage node types emitted by the orchestrator that describe the
-// *process* (audit/consistency/verification/cite-check) rather than a real
-// compliance finding. The 2026-09-13 plan §3 calls these out: turning them
-// into RiskPoint rows surfaces them on the verdict strip and inflates the
-// critical/warning counts. We drop them at the adapter boundary so the
-// page only sees actual findings.
-const PIPELINE_STAGE_NODE_TYPES = new Set<string>([
+// Pipeline-stage nodes describe the *process* rather than a real
+// compliance finding. The 2026-09-13 plan §3 calls these out: turning
+// them into RiskPoint rows surfaces them on the verdict strip and
+// inflates the critical/warning counts. We drop them at the adapter
+// boundary so the page only sees actual findings.
+//
+// Matching rule — the pipeline's own node names match on EXACT node.id
+// only (the production scan emitted ids: vision / query_planner /
+// retriever / synthesis / generate / verify). Type matching is NOT used
+// for these: `_inject_vision_hotspots` appends REAL finding nodes with
+// type "vision" and ids like "vision-issue-0" — exact-id matching keeps
+// those alive. The audit-stage vocabulary (audit / consistency /
+// cite_check / …) matches on id OR type since those never carry
+// hotspots.
+const PIPELINE_NODE_IDS = new Set<string>([
+  "vision",
+  "query_planner",
+  "queryplanner",
+  "query-planner",
+  "retriever",
+  "retrieve",
+  "retrieval",
+  "synthesis",
+  "generate",
+  "generator",
+  "verify",
+  "verifier",
+  "refine",
+]);
+
+const AUDIT_STAGE_NODE_TYPES = new Set<string>([
   "audit",
   "consistency",
   "consistency_check",
   "consistency-check",
   "verification",
-  "verify",
   "cite_check",
   "cite-check",
   "citecheck",
   "pipeline",
   "process",
   "trace",
-  "synthesis",
-  "retrieve",
-  "retrieval",
 ]);
 
 function isPipelineStageNode(node: UnknownRecord): boolean {
-  if (typeof node.id === "string" && node.id.startsWith("audit:")) return true;
-  if (typeof node.id === "string" && node.id.startsWith("trace:")) return true;
+  const id = typeof node.id === "string" ? node.id.trim() : "";
+  if (id.startsWith("audit:") || id.startsWith("trace:")) return true;
+  if (id && PIPELINE_NODE_IDS.has(id)) return true;
   const type = typeof node.type === "string" ? node.type.toLowerCase().trim() : "";
-  if (type && PIPELINE_STAGE_NODE_TYPES.has(type)) return true;
-  // Chinese labels used by older generators: 一致性校验 / 一致性检查 / 引用核对 / 流程节点
+  if (type && AUDIT_STAGE_NODE_TYPES.has(type)) return true;
+  // Chinese stage labels emitted by the generator's decisionView:
+  // 视觉识别 / 查询规划 / 法规检索 / 证据合成 / 报告生成 / 一致性校验 /
+  // 合规校验 / 引用核对 / 流程节点
   const label = typeof node.label === "string" ? node.label.trim() : "";
   if (
+    label.includes("视觉识别") ||
+    label.includes("查询规划") ||
+    label.includes("法规检索") ||
+    label.includes("证据合成") ||
+    label.includes("报告生成") ||
     label.includes("一致性校验") ||
     label.includes("一致性检查") ||
+    label.includes("合规校验") ||
     label.includes("引用核对") ||
     label.includes("引用校验") ||
     label.includes("流程节点") ||

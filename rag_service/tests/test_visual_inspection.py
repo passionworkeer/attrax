@@ -8,6 +8,8 @@ Plan 2026-09-13 §5/§6/§7.1 — these tests pin the core contract invariants:
 """
 from __future__ import annotations
 
+import json
+
 import pytest
 from pydantic import ValidationError
 
@@ -269,3 +271,84 @@ class TestObservationModel:
                 title="x",
                 assessment="no_issue_observed",  # findings are never clean
             )
+
+
+class TestVisionTextObservationsPassthrough:
+    """Production regression (scan_20685100..., 2026-09-13): the model
+    returned a perfect per-check observations array, but
+    _parse_vision_text's structured branch dropped the key — every check
+    then backfilled to not_assessed and the result page showed an empty
+    checklist. The observations array must pass through raw."""
+
+    def test_structured_parse_keeps_observations(self):
+        from rag_service.pipeline.nodes.vision import _parse_vision_text
+
+        raw = json.dumps(
+            {
+                "product_type": "65W GaN USB 充电器",
+                "identity_confidence": "high",
+                "core_features": ["白色外壳"],
+                "visible_certification_marks": [],
+                "questions_needed": [],
+                "observations": [
+                    {
+                        "check_id": "electronics.interface.plug_pins",
+                        "visibility": "present_readable",
+                        "observed_text": "USB-C1 / USB-C2 / USB-A",
+                        "description": "端面可见三个接口",
+                        "bbox": {"x": 0.3, "y": 0.4, "w": 0.2, "h": 0.15},
+                    },
+                    {
+                        "check_id": "common.nameplate.readability",
+                        "visibility": "not_in_view",
+                        "observed_text": None,
+                        "description": "铭牌可能在未拍摄面",
+                        "bbox": None,
+                    },
+                ],
+            },
+            ensure_ascii=False,
+        )
+        parsed = _parse_vision_text(raw, raw)
+        assert isinstance(parsed.get("observations"), list)
+        assert len(parsed["observations"]) == 2
+
+    def test_checklist_observations_parse_real_model_shape(self):
+        from rag_service.pipeline.nodes.vision import _parse_checklist_observations
+
+        model_result = {
+            "observations": [
+                {
+                    "check_id": "electronics.interface.plug_pins",
+                    "visibility": "present_readable",
+                    "observed_text": "USB-C1 / USB-C2 / USB-A",
+                    "description": "端面可见三个接口",
+                    "bbox": {"x": 0.3, "y": 0.4, "w": 0.2, "h": 0.15},
+                },
+                {
+                    "check_id": "common.nameplate.readability",
+                    "visibility": "not_in_view",
+                    "observed_text": None,
+                    "description": "铭牌可能在未拍摄面",
+                    "bbox": None,
+                },
+            ]
+        }
+        parsed = _parse_checklist_observations(
+            model_result,
+            image_index=0,
+            session_id="scan_test",
+            selected_check_ids=[
+                "electronics.interface.plug_pins",
+                "common.nameplate.readability",
+                "common.brand_model.visible",
+            ],
+        )
+        by_check = {entry["checkId"]: entry for entry in parsed}
+        assert by_check["electronics.interface.plug_pins"]["visibility"] == "present_readable"
+        assert by_check["electronics.interface.plug_pins"]["region"]["bbox"] == {
+            "x": 0.3, "y": 0.4, "w": 0.2, "h": 0.15,
+        }
+        assert by_check["common.nameplate.readability"]["region"] is None
+        # The check the model skipped is backfilled, not dropped.
+        assert by_check["common.brand_model.visible"]["visibility"] == "not_assessed"

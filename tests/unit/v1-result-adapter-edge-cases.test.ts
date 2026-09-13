@@ -193,6 +193,48 @@ describe("normalizeV1ScanResult - Edge Cases & Resilient Fallbacks", () => {
       const adapted = normalizeV1ScanResult(raw);
       expect(adapted?.riskPoints).toHaveLength(0);
     });
+
+    // Production regression (scan_20685100..., 2026-09-13): the generator's
+    // decisionView carried the six pipeline nodes with ids
+    // vision/query_planner/retriever/synthesis/generate/verify and labels
+    // 视觉识别/查询规划/法规检索/证据合成/报告生成/合规校验 — all six
+    // rendered as product risks. Exact-id matching must drop them while
+    // KEEPING vision-anchored hotspot nodes (id "vision-issue-N" with a
+    // bbox, injected by _inject_vision_hotspots).
+    it("drops the six pipeline stage nodes but keeps vision hotspot findings", () => {
+      const raw: V1SessionData = {
+        sessionId: "scan_prod_regression",
+        status: "completed",
+        result: {
+          reportPackage: {
+            decisionView: {
+              verdict: "WARN",
+              nodes: [
+                { id: "vision", type: "vision", label: "视觉识别", severity: "info" },
+                { id: "query_planner", type: "query_planner", label: "查询规划", severity: "info" },
+                { id: "retriever", type: "retriever", label: "法规检索", severity: "info" },
+                { id: "synthesis", type: "synthesis", label: "证据合成", severity: "info" },
+                { id: "generate", type: "generate", label: "报告生成", severity: "info" },
+                { id: "verify", type: "verify", label: "合规校验", severity: "info" },
+                {
+                  id: "vision-issue-0",
+                  type: "vision",
+                  label: "接口无 CE 标记",
+                  severity: "high",
+                  confidence: 0.9,
+                  bbox: { x: 0.3, y: 0.4, w: 0.2, h: 0.15 },
+                  imageId: "vision-image-0",
+                },
+              ],
+            },
+          },
+        },
+      };
+      const adapted = normalizeV1ScanResult(raw);
+      expect(adapted?.riskPoints).toHaveLength(1);
+      expect(adapted?.riskPoints[0].riskId).toBe("vision-issue-0");
+      expect(adapted?.riskPoints[0].bbox).toEqual({ x: 0.3, y: 0.4, w: 0.2, h: 0.15 });
+    });
   });
 
   // Plan 2026-09-13 §6 — checklist-mode scans carry v2 observations. The
