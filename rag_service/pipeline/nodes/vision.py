@@ -623,6 +623,15 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
             "unreadable_or_missing_evidence": unreadable,
             "questions_needed": questions,
             "issues": issues,
+            # Checklist mode (plan §5): the model's per-check observations
+            # array passes through raw — _parse_checklist_observations
+            # normalizes/validates it per session. Found via the 2026-09-13
+            # production scan: the model returned perfect observations but
+            # this dict dropped the key, so every check backfilled to
+            # not_assessed.
+            "observations": structured.get("observations")
+            if isinstance(structured.get("observations"), list)
+            else [],
             "raw_response": raw_response,
             "enriched_query": _build_vision_enriched_query("\n".join(description_parts), certifications),
         }
