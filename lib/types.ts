@@ -1,3 +1,8 @@
+// Single source of truth for the markets the upload page exposes. The
+// backend allow-list (rag_service/config.py ALLOWED_MARKETS) and the BFF
+// (app/api/scan/route.ts ALLOWED_MARKETS) MUST stay in lockstep with
+// this list. Audit 2026-09-13 P0-5 caught the previous drift where the
+// BFF silently filtered 8 of these markets and fell back to EU/US.
 export const MARKET_IDS = [
   "EU",
   "US",

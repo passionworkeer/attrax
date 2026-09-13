@@ -23,7 +23,19 @@ def _parse_origins(raw: str) -> list[str]:
 
 # ── 扫描入参常量（唯一来源，2026-09-10 审计 5.5 去重）─────────────────────────
 # api/v1.py 与 application/scans.py 一律从这里 import，不得再各自定义。
-ALLOWED_MARKETS: tuple[str, ...] = ("EU", "US", "UK", "CN", "AU", "SA", "AE", "JP")
+# 2026-09-13 audit P0: the upload page exposes 16 markets
+# (KR/CA/SG/MX/BR/DE/FR/IT in addition to the 8 in the legacy list). The
+# BFF was silently filtering the extras and falling back to EU/US when
+# the user picked only unsupported markets — that turned a deliberate
+# "I want to sell in Korea" choice into "EU only" without telling them.
+# Sync the backend allow-list with the frontend so the request survives
+# validation; the scanner's KB still uses the original 8 as primary
+# sources, the new 8 will fall through to "no applicable anchor found"
+# (UNKNOWN, not REJECTED — surfaced honestly per spec §7.7).
+ALLOWED_MARKETS: tuple[str, ...] = (
+    "EU", "US", "UK", "CN", "AU", "SA", "AE", "JP",
+    "KR", "CA", "SG", "MX", "BR", "DE", "FR", "IT",
+)
 MAX_MARKETS_PER_SCAN = 5
 
 

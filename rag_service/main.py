@@ -525,7 +525,10 @@ async def _build_scan_request_from_multipart(
     )
 
 
-async def _run_scan_request(req: ScanRequest) -> ScanResponse:
+async def _run_scan_request(
+    req: ScanRequest,
+    progress_callback=None,
+) -> ScanResponse:
     """Run the main compliance scan endpoint."""
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="query is required")
@@ -595,6 +598,7 @@ async def _run_scan_request(req: ScanRequest) -> ScanResponse:
                     vision_result=req.vision_result or {},
                     images=decoded_images,
                     documents=all_docs,
+                    progress_callback=progress_callback,
                 ),
             ),
             timeout=_SCAN_TIMEOUT_SECS,
@@ -645,7 +649,9 @@ async def _run_public_scan_payload(payload: dict) -> ScanResponse:
             images=images,
             documents=payload.get("documents", []),
             pdfs=pdfs,
-        )
+            vision_result=payload.get("vision_result", {}),
+        ),
+        progress_callback=payload.get("progressCallback"),
     )
 
 

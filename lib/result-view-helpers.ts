@@ -417,6 +417,103 @@ export interface RoadmapRow {
   output: string;
 }
 
+export interface EvidenceCoverage {
+  ratio: number;            // 0..1 — share of findings that have ≥1 citation AND (a bbox or a description)
+  coveredFindings: number;
+  totalFindings: number;
+  matchedCitations: number;
+  unmatchedCitations: number;
+  totalCitations: number;
+  status: "complete" | "partial" | "minimal" | "unknown";
+}
+
+/**
+ * Compute real evidence coverage from the report package.
+ *
+ * Audit 2026-09-13 §10.2 + §P0-3: the result page used to hard-code "85%".
+ * That number was wrong in two ways — it was a constant regardless of scan,
+ * and it conflated "citation coverage" (how many citations matched the
+ * source text) with "evidence coverage" (how many findings have a
+ * grounding citation *and* a concrete observation).
+ *
+ * New contract:
+ *   - ratio = coveredFindings / totalFindings (0 if no findings)
+ *   - status:
+ *       complete — every finding has a citation + grounding
+ *       partial  — at least one finding has a citation + grounding
+ *       minimal  — findings exist but none are grounded
+ *       unknown  — no findings (i.e. the scan produced nothing to cover)
+ *
+ * Returns ratio=0, status="unknown" when the result has no findings.
+ */
+export function computeEvidenceCoverage(result: ScanResult): EvidenceCoverage {
+  const findings = result.riskPoints ?? [];
+  const totalFindings = findings.length;
+
+  // Citations: prefer the structured evidencePack; fall back to the
+  // legacy retrievedChunks[] view (it surfaces the same refs through
+  // a different field path).
+  const reportPackage = (result.reportPackage ?? {}) as Record<string, unknown>;
+  const evidencePack = Array.isArray(reportPackage.evidencePack)
+    ? (reportPackage.evidencePack as Array<Record<string, unknown>>)
+    : Array.isArray((reportPackage as { evidence_pack?: unknown[] }).evidence_pack)
+      ? ((reportPackage as { evidence_pack: Array<Record<string, unknown>> }).evidence_pack)
+      : [];
+  const citations = Array.isArray(reportPackage.citations)
+    ? (reportPackage.citations as Array<Record<string, unknown>>)
+    : [];
+
+  const allCitations = [...evidencePack, ...citations];
+  const totalCitations = allCitations.length;
+  const matchedCitations = allCitations.filter((entry) => {
+    const status = String(entry.matchStatus ?? entry.match_status ?? "").toLowerCase();
+    return status === "matched" || status === "fallback_article_only";
+  }).length;
+  const unmatchedCitations = totalCitations - matchedCitations;
+
+  if (totalFindings === 0) {
+    return {
+      ratio: 0,
+      coveredFindings: 0,
+      totalFindings: 0,
+      matchedCitations,
+      unmatchedCitations,
+      totalCitations,
+      status: "unknown",
+    };
+  }
+
+  let coveredFindings = 0;
+  for (const finding of findings) {
+    const hasCitation = (finding.regulations?.length ?? 0) > 0;
+    const bbox = finding.bbox;
+    const hasGrounding =
+      hasCitation &&
+      (typeof finding.confidence === "number" ? finding.confidence > 0 : true) &&
+      (bbox?.w ?? 0) > 0 &&
+      (bbox?.h ?? 0) > 0;
+    if (hasCitation && hasGrounding) coveredFindings += 1;
+  }
+
+  const ratio = Math.max(0, Math.min(1, coveredFindings / totalFindings));
+  const status: EvidenceCoverage["status"] =
+    coveredFindings === totalFindings
+      ? "complete"
+      : coveredFindings > 0
+        ? "partial"
+        : "minimal";
+
+  return {
+    ratio,
+    coveredFindings,
+    totalFindings,
+    matchedCitations,
+    unmatchedCitations,
+    totalCitations,
+    status,
+  };
+}
+
 /** 整改路线图行（含末尾「上架复核」行）。2026-09-10 自 result page 抽出（审计 2.5）。 */
 export function buildRoadmapRows(
   result: ScanResult,
