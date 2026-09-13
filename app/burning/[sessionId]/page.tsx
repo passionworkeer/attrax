@@ -311,6 +311,7 @@ export default function BurningPage() {
               images={stageImages}
               progress={progress}
               locale={locale}
+              stageKey={displayStatus?.stageKey ?? "vision"}
               isPreset={isDemoSession}
             />
 

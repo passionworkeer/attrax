@@ -242,13 +242,13 @@ export default function ResultPage() {
             </aside>
           </div>
           {/*
-            Compact profit summary strip. Lives inside #overview so the verdict
-            and the profit signal stay attached. The full panel (cost breakdown,
-            risk cards, breakeven, decision flow) is on /profit/[sessionId].
-            When financialSummary is the un-synthesized fallback (`—`), the
-            strip hides itself instead of rendering noise.
+            Profit impact summary lives in its own section AFTER #action (roadmap +
+            export), so the verdict and hotspot-driven evidence get the user's
+            attention first. Previously this strip rendered inside #overview;
+            users got profit numbers before they had located the hotspots. The
+            full cost-breakdown panel remains on /profit/[sessionId].
           */}
-          {financialSummary.trueNetProfit !== "—" ? (
+          {false && financialSummary.trueNetProfit !== "—" ? (
             <div
               data-testid="result-profit-summary-strip"
               className="mt-6 flex flex-wrap items-center gap-4 rounded-[22px] border border-[rgba(255,90,77,0.32)] bg-[linear-gradient(135deg,rgba(255,90,77,0.10),rgba(255,255,255,0.04))] px-5 py-4"
@@ -659,6 +659,110 @@ export default function ResultPage() {
                 </article>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* #profit-impact — moved out of #overview in the 2026-09-13 dead-code /
+            UX pass. The verdict and hotspot-driven evidence now come first;
+            profit appears AFTER #action (roadmap + export) so users see
+            compliance before cost. Full cost breakdown still lives at
+            /profit/[sessionId] — this section is the summary anchor. */}
+        <section id="profit-impact" className="blaze-panel p-5 sm:p-7">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <SectionEyebrow>{locale === "zh" ? "STEP 04 · 利润影响" : "STEP 04 · Profit impact"}</SectionEyebrow>
+              <h2 className="mt-3 text-3xl font-semibold text-white">
+                {locale === "zh" ? "整改后的利润影响" : "Post-remediation profit impact"}
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-white/58">
+                {locale === "zh"
+                  ? `根据上方合规报告中的整改动作,以下是 ${displayProductName} 在目标市场的利润变化估算。完整表格与决策流请前往利润报告页。`
+                  : `Based on the remediation actions above, here is the estimated profit impact for ${displayProductName} across the target markets. The full cost table and decision flow live on the profit report page.`}
+              </p>
+            </div>
+            {financialSummary.trueNetProfit !== "—" ? (
+              <Link
+                href={`/profit/${sessionId}`}
+                className={cn(
+                  buttonVariants({ size: "sm" }),
+                  "shrink-0 rounded-full border border-[rgba(255,90,77,0.45)] bg-[rgba(255,90,77,0.18)] text-white hover:bg-[rgba(255,90,77,0.28)]"
+                )}
+              >
+                {locale === "zh" ? "查看完整利润报告" : "Full profit report"}
+                <MoveRight className="size-4" />
+              </Link>
+            ) : null}
+          </div>
+
+          <div className="mt-6 grid gap-4 md:grid-cols-4">
+            {[
+              {
+                label: locale === "zh" ? "合规预算" : "Compliance budget",
+                value: financialSummary.complianceCost,
+                accent: "text-[#ff8a6a]",
+                note: locale === "zh" ? "标签 / 测试 / 认证" : "Label / test / cert",
+              },
+              {
+                label: locale === "zh" ? "整改后净利" : "Post-fix net",
+                value: financialSummary.trueNetProfit,
+                accent: "text-emerald-300",
+                note: locale === "zh" ? "单件 / 平台" : "Per unit / channel",
+              },
+              {
+                label: locale === "zh" ? "高危罚款上限" : "Critical fine ceiling",
+                value: locale === "zh" ? "¥180 万 / 日" : "¥1.8M / day",
+                accent: "text-rose-300",
+                note: locale === "zh" ? "合规后归零" : "Zeroed after fix",
+              },
+              {
+                label: locale === "zh" ? "目标市场" : "Target markets",
+                value: String(result.targetMarkets?.length ?? 0),
+                accent: "text-sky-300",
+                note: (result.targetMarkets ?? []).join(" / "),
+              },
+            ].map((metric) => (
+              <div
+                key={metric.label}
+                className="rounded-[22px] border border-white/10 bg-white/[0.045] p-5"
+              >
+                <p className="text-xs text-white/44">{metric.label}</p>
+                <p className={cn("mt-2 font-mono text-2xl font-bold", metric.accent)}>
+                  {metric.value}
+                </p>
+                <p className="mt-1 truncate text-[11px] text-white/42">{metric.note}</p>
+              </div>
+            ))}
+          </div>
+
+          <div
+            data-testid="result-profit-summary-strip"
+            className="mt-5 flex flex-wrap items-center gap-4 rounded-[22px] border border-[rgba(255,90,77,0.32)] bg-[linear-gradient(135deg,rgba(255,90,77,0.10),rgba(255,255,255,0.04))] px-5 py-4"
+          >
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[rgba(255,90,77,0.4)] bg-[rgba(255,90,77,0.18)] text-[#ff5a4d]">
+              <CircleAlert className="size-4" />
+            </span>
+            <p className="min-w-0 flex-1 text-sm leading-6 text-white/82">
+              {locale === "zh" ? (
+                <>
+                  完成上方合规扫描报告中的全部整改动作后,
+                  <span className="font-mono font-semibold text-white">{displayProductName}</span>{" "}
+                  在 <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>{" "}
+                  单件净利水平下进入目标市场,合规预算{" "}
+                  <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>,
+                  高危风险下日均罚款 <span className="font-mono font-semibold text-[#ff8a6a]">¥180 万上限</span>。
+                </>
+              ) : (
+                <>
+                  After completing the remediation actions in the compliance report above,{" "}
+                  <span className="font-mono font-semibold text-white">{displayProductName}</span>{" "}
+                  reaches a per-unit net of{" "}
+                  <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>{" "}
+                  in the target markets, with a compliance budget of{" "}
+                  <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>{" "}
+                  and a zeroed critical-risk fine ceiling.
+                </>
+              )}
+            </p>
           </div>
         </section>
 
