@@ -32,6 +32,14 @@ def collect_eu_celex(entry: dict) -> RegulationUpdate:
 
     url = CELEX_CELLAR_URL.format(celex=celex)
     body, last_modified = fetch_url(url, accept=CELLAR_ACCEPT)
+    # Content-sanity guard (2026-09-13 postmortem, mirroring the eCFR lesson):
+    # an interstitial/error page served with HTTP 200 must never become the
+    # snapshot — otherwise the next real fetch reads as a "modified" change.
+    if b"rdf:RDF" not in body[:4000] and not body.lstrip()[:100].startswith(b"<?xml"):
+        raise ValueError(
+            f"cellar response for {celex} is not RDF/XML "
+            f"({len(body)} bytes, head={body[:80]!r})"
+        )
     text = normalize_text(body)
     return RegulationUpdate(
         source_id=entry["id"],
