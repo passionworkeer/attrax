@@ -33,18 +33,24 @@ ssh lighthouse "cd /opt/attrax && PYTHONPATH=/opt/attrax .venv/bin/python -m scr
 ssh lighthouse "/usr/bin/pm2 logs regwatch --lines 100 --nostream"
 ```
 
-## 变更处理流程
+## 变更处理流程（2026-09-13 起默认全自动）
 
-1. `pending_review.json` 出现 → 打开同目录 `diff.json` 审阅 unified diff
-2. 确认变更有效（不是误报）→ 手动跑
-   ```bash
-   ssh lighthouse "cd /opt/attrax && .venv/bin/python scripts/build_regulation_library.py"
-   ```
-3. 重建后重启 rag-service 使 KB 锚点生效：
-   ```bash
-   ssh lighthouse "cd /opt/attrax && /usr/bin/pm2 restart rag-service"
-   ```
-4. 确认误报 → 不用动任何东西，快照已在本次运行中更新，下次不会再报
+默认 `ATTRAX_REGWATCH_AUTO_INGEST=true`：真实变化 pass 结束即自动入库 —
+- **UPDATE**：EU CELEX 能映射到 `data/regulations/eu/*.yaml` 的源，更新
+  last_verified / checksum / raw_file / source_url + 审计 note；原文件备份到
+  `auto-{date}/backup/`；articles 正文永不机械改写
+- **CREATE**：可映射但库里没有的（如 WEEE 2012/19）自动建最小 public 条目
+- **MARK（删的保守形态）**：源连续 7 天失联 → `status: stale`；FR 文件
+  标题/类型含 removal/revocation/repeal → `status: repealed`。绝不硬删
+- **EVIDENCE**：每个变化源都在 `auto-{date}/{source_id}/` 留 raw + meta + diff
+- 入库成功即推进基线快照；`regulations_index.json` 自动重建；当日
+  `applied.json` 记录干了什么
+
+回滚：`cp data/regulation_supplements/auto-{date}/backup/{id}.yaml data/regulations/eu/{id}.yaml`
+再 `python scripts/build_regulation_library.py`（重建 index 可选，或等下次 pass）。
+
+手动审阅模式（可选）：`ATTRAX_REGWATCH_AUTO_INGEST=false` 时恢复人工闸门 —
+pending_review.json + `--ack <SOURCE_ID>` / `--ack-all` 审批推进基线。
 
 ## 通知配置
 

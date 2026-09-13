@@ -181,14 +181,30 @@ def run_pass(*, dry_run: bool = False) -> int:
 
     store = SourceStateStore(SUPPLEMENTS_DIR)
     notifiers = build_notifiers()
+    # Auto-ingest (2026-09-13 user directive): real changes are applied to
+    # the regulation library automatically — no manual review gate. The
+    # ingest itself is the "review": on success the baseline snapshot moves
+    # forward; on ingest failure the source stays un-snapshotted and keeps
+    # re-appearing (the c46fb3c un-reviewed-changes semantics).
+    auto_ingest_enabled = (os.environ.get("ATTRAX_REGWATCH_AUTO_INGEST") or "true").strip().lower() not in {
+        "0", "false", "no", "off",
+    }
+    ingestor = None
+    if auto_ingest_enabled and not dry_run:
+        from scripts.watchdog.auto_ingest import AutoIngestor
+
+        ingestor = AutoIngestor(run_date)
 
     real_changes: list[Change] = []
     cosmetic_changes: list[Change] = []
     snapshots: list[tuple[str, str, str]] = []
     errors: list[dict] = []
+    updates_by_id: dict[str, object] = {}
+    entries_by_id: dict[str, dict] = {}
 
     for entry in entries:
         source_id = entry.get("id") or entry.get("source_url") or "unknown"
+        entries_by_id[source_id] = entry
         try:
             update = collect_source(entry)
         except Exception as exc:  # noqa: BLE001 — per-source isolation
@@ -196,7 +212,12 @@ def run_pass(*, dry_run: bool = False) -> int:
             errors.append(
                 {"sourceId": source_id, "error": f"{type(exc).__name__}: {exc}"}
             )
+            if ingestor is not None:
+                ingestor.record_failure(source_id, entry)
             continue
+        if ingestor is not None:
+            ingestor.record_success(source_id)
+            updates_by_id[source_id] = update
 
         changes = store.detect_changes(
             source_id,
@@ -218,12 +239,47 @@ def run_pass(*, dry_run: bool = False) -> int:
 
     # Persist snapshots for unchanged and cosmetic-only sources.
     # Real changes (added / modified) must NOT overwrite the baseline snapshot
-    # until reviewed and approved, otherwise subsequent passes would report no change
-    # and lose track of un-reviewed regulatory modifications!
+    # until they are either auto-ingested (default) or manually approved
+    # (--ack, when auto-ingest is disabled) — otherwise subsequent passes
+    # would report no change and lose track of un-applied modifications.
     real_change_source_ids = {c.source_id for c in real_changes}
-    safe_snapshots = [s for s in snapshots if s[0] not in real_change_source_ids]
+    ingest_report = None
+    if ingestor is not None and real_changes:
+        ingest_report = ingestor.apply(entries_by_id, updates_by_id, real_changes)  # type: ignore[arg-type]
+        for item in ingest_report.to_dict()["failed"]:
+            logger.warning("auto-ingest failed for %s: %s", item["sourceId"], item["error"])
+
     if not dry_run:
-        store.bulk_snapshot(safe_snapshots)
+        if ingestor is not None:
+            if ingest_report is not None and real_changes:
+                (out_dir / "applied.json").write_text(
+                    json.dumps(
+                        {
+                            "date": run_date,
+                            "mode": "auto",
+                            **ingest_report.to_dict(),
+                        },
+                        indent=2,
+                        ensure_ascii=False,
+                    ),
+                    encoding="utf-8",
+                )
+            # Sources whose change ingested cleanly (or had no real change)
+            # advance the baseline; ingest failures stay un-snapshotted so
+            # they keep re-appearing until they apply or the operator --acks.
+            failed_ids = {f["sourceId"] for f in (ingest_report.failed if ingest_report else [])}
+            blocked_ids = (
+                real_change_source_ids & failed_ids if ingest_report else set()
+            ) if real_changes else set()
+            store.bulk_snapshot(
+                [s for s in snapshots if s[0] not in blocked_ids]
+            )
+        else:
+            # Auto-ingest disabled: c46fb3c semantics — real changes are not
+            # snapshotted until a human runs --ack.
+            store.bulk_snapshot(
+                [s for s in snapshots if s[0] not in real_change_source_ids]
+            )
     store.close()
 
     # ── write outputs ─────────────────────────────────────────────────
@@ -250,24 +306,26 @@ def run_pass(*, dry_run: bool = False) -> int:
                 ),
                 encoding="utf-8",
             )
-            # Real changes need a human before the KB is rebuilt.
-            (out_dir / "pending_review.json").write_text(
-                json.dumps(
-                    {
-                        "date": run_date,
-                        "reason": "structural content changes detected",
-                        "changes": [c.to_dict() for c in real_changes],
-                        "nextStep": (
-                            "Review diff.json, then run"
-                            " scripts/build_regulation_library.py to rebuild"
-                            " data/regulations + data/kb/anchors."
-                        ),
-                    },
-                    indent=2,
-                    ensure_ascii=False,
-                ),
-                encoding="utf-8",
-            )
+            # Auto-ingest off → real changes need a human (--ack) before the
+            # baseline moves. Auto-ingest on → applied.json is the record.
+            if ingestor is None:
+                (out_dir / "pending_review.json").write_text(
+                    json.dumps(
+                        {
+                            "date": run_date,
+                            "reason": "structural content changes detected",
+                            "changes": [c.to_dict() for c in real_changes],
+                            "nextStep": (
+                                "Review diff.json, then run"
+                                " python -m scripts.watchdog.orchestrator --ack-all"
+                                " (or --ack <sourceId>) to approve."
+                            ),
+                        },
+                        indent=2,
+                        ensure_ascii=False,
+                    ),
+                    encoding="utf-8",
+                )
         if cosmetic_changes:
             (out_dir / "cosmetic.json").write_text(
                 json.dumps(
@@ -291,6 +349,15 @@ def run_pass(*, dry_run: bool = False) -> int:
         f"cosmetic:        {len(cosmetic_changes)}",
         f"errors:          {len(errors)}",
     ]
+    if ingest_report is not None:
+        body_lines.append(
+            "ingested:        {} created / {} updated / {} marked / {} evidence-only".format(
+                len(ingest_report.created),
+                len(ingest_report.updated),
+                len(ingest_report.marked),
+                len(ingest_report.evidence_only),
+            )
+        )
     for change in real_changes[:5]:
         body_lines.append(
             f"- [{change.kind}] {change.source_id} (similarity {change.similarity:.3f})"
