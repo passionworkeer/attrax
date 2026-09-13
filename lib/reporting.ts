@@ -310,7 +310,7 @@ Generated at: {{GENERATED_AT}}
 Score scale: 100 max, A≥85 / B≥70 / C≥55 / D<55
 `;
 
-function sanitizeCsvCell(cell: unknown): string {
+export function sanitizeCsvCell(cell: unknown): string {
   const str = String(cell ?? "");
   // Neutralize CSV formula injection: if cell starts with =, +, -, @, \t, \r, prefix with a single quote '
   const sanitized = /^[=+\-@\t\r]/.test(str) ? `'${str}` : str;
