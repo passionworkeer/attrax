@@ -1,0 +1,1395 @@
+{
+  "sessionId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7",
+  "status": "ready",
+  "progress": 100,
+  "stageText": "complete",
+  "stageKey": "done",
+  "imageCount": 1,
+  "result": {
+    "sessionId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7",
+    "scanTime": "2026-09-13T12:32:52.142963Z",
+    "productCategory": "electronics",
+    "targetMarkets": [
+      "EU",
+      "UK"
+    ],
+    "complianceScore": 65,
+    "scoreGrade": "C",
+    "images": [
+      {
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "url": "/api/scan/scan_e9b1d6add9fd432489a1116a4dbb5bf7/asset/0",
+        "thumbnail": "/api/scan/scan_e9b1d6add9fd432489a1116a4dbb5bf7/asset/0",
+        "width": 0,
+        "height": 0,
+        "fileName": "earbuds-front.jpg"
+      }
+    ],
+    "documents": [],
+    "riskPoints": [],
+    "checklist": [
+      {
+        "itemId": "1",
+        "category": "apply",
+        "title": "证据补全与产品身份确认",
+        "titleEn": "Evidence collection & product ID confirmation",
+        "requiredMaterials": [
+          "铭牌照片",
+          "拆机照片",
+          "规格书"
+        ],
+        "requiredMaterialsEn": [
+          "Nameplate photos",
+          "Teardown photos",
+          "Spec sheet"
+        ],
+        "estimatedCost": "内部成本",
+        "estimatedTime": "7 天",
+        "estimatedTimeEn": "7 days",
+        "isFree": false
+      },
+      {
+        "itemId": "2",
+        "category": "test",
+        "title": "实验室测试申请（RoHS/EMC/LVD/UN 38.3）",
+        "titleEn": "Lab test application (RoHS/EMC/LVD/UN 38.3)",
+        "requiredMaterials": [
+          "测试申请表",
+          "样品"
+        ],
+        "requiredMaterialsEn": [
+          "Test application form",
+          "Samples"
+        ],
+        "estimatedCost": "¥15,000-50,000+（待询价）",
+        "estimatedTime": "21 天",
+        "estimatedTimeEn": "21 days",
+        "isFree": false
+      },
+      {
+        "itemId": "3",
+        "category": "apply",
+        "title": "技术文档与 DoC 编制",
+        "titleEn": "Technical file & DoC preparation",
+        "requiredMaterials": [
+          "DoC",
+          "技术文档"
+        ],
+        "requiredMaterialsEn": [
+          "DoC",
+          "Technical file"
+        ],
+        "estimatedCost": "内部成本 / ¥5,000-15,000 外包",
+        "estimatedTime": "10 天",
+        "estimatedTimeEn": "10 days",
+        "isFree": false
+      },
+      {
+        "itemId": "4",
+        "category": "certify",
+        "title": "CE/UKCA 标志与 EPR 注册",
+        "titleEn": "CE/UKCA marking & EPR registration",
+        "requiredMaterials": [
+          "CE/UKCA 标志图稿",
+          "EPR 注册号"
+        ],
+        "requiredMaterialsEn": [
+          "CE/UKCA artwork",
+          "EPR numbers"
+        ],
+        "estimatedCost": "¥3,000-10,000+（待询价）",
+        "estimatedTime": "10 天",
+        "estimatedTimeEn": "10 days",
+        "isFree": false
+      },
+      {
+        "itemId": "5",
+        "category": "complete",
+        "title": "完成并准备上市",
+        "titleEn": "Completion & market readiness",
+        "requiredMaterials": [
+          "合规档案",
+          "平台提交资料"
+        ],
+        "requiredMaterialsEn": [
+          "Compliance archive",
+          "Platform submission"
+        ],
+        "estimatedCost": "¥2,000-5,000+（待询价）",
+        "estimatedTime": "8 天",
+        "estimatedTimeEn": "8 days",
+        "isFree": false
+      }
+    ],
+    "generatedAt": "2026-09-13T12:33:46+00:00",
+    "reportPackage": {
+      "productDossier": {
+        "product": "",
+        "category": "electronics",
+        "markets": [
+          "EU",
+          "UK"
+        ],
+        "query": "评估 electronics 类产品在 EU/UK 市场的合规风险 产品类型：无线耳机充电盒 核心特征：白色塑料外壳,边缘有银色金属装饰条；正面印有 iQOO 品牌字样；正面底部可见一个小圆孔(疑似指示灯/麦克风)；表面可见多处划痕\n\n【适用性边界（必须遵守，不得扩大适用范围）】\n- UN-38-3（UN）: 待确认。battery only a keyword candidate; UN 38.3 applies once presence is confirmed\n- EU-2023-1542（EU）: 待确认。battery only a keyword candidate; confirm with label photo or spec sheet；battery presence inferred from keywords — needs visible marking or spec sheet；电池护照 (Art. 77) 不适用于便携式电池（如耳机充电盒/普通消费电子）：仅 LMT、电动车电池及 >2 kWh 工业电池需要，工业类自 2027-02-18 起、LMT 自 2028-08-18 起\n- EU-2014-53（EU）: 待确认。trigger feature 'battery' is a keyword candidate — confirm with label photo / spec sheet before treating as applicable\n- UK-UKCA-Radio（UK）: 待确认。wireless capability inferred from name/keywords（如“无线耳机”）——名称含“无线”不证明充电盒含发射模块；需规格书或拆机确认；区分设备本体与充电盒的无线属性：仅含发射模块的主体受无线设备法规约束；GB 与北爱尔兰 (NI) 分开评估：NI 走 EU 规则；GB 市场特定条件下接受 CE 标志（等效性条件满足时），无 UKCA 不等于不合规",
+        "sourceCounts": {
+          "retrievedChunks": 0,
+          "userDocuments": 0,
+          "visualItems": 0
+        }
+      },
+      "complianceReport": "# 合规风险评估报告\n\n**产品类型**：无线耳机充电盒（electronics 类）\n**目标市场**：EU、UK\n**结论**：WARN — 产品身份与多项关键法规触发条件待图片/铭牌/规格书确认。\n\n---\n\n## 视觉观察\n- 白色塑料外壳，边缘银色金属装饰条，正面 iQOO 品牌字样，正面底部小圆孔（疑似指示灯/麦克风），表面多处划痕。\n- 铭牌、CE/UKCA 标志、电池信息、无线模块标识均不可见。图片无法验证。\n\n---\n\n## 法规逐条评估\n\n### 1. RoHS Directive 2011/65/EU（EU）— 适用\n电子电气产品落入 Annex I 类别 8/9（小型/大型设备）。**依据规则库，待核实原文**[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]。\n- 待补：DoC、Annex III 申报、材料测试报告或风险评估。\n\n### 2. UKCA Marking Requirements（UK）— 适用\n作为电子电气产品投放 GB 市场需 UKCA 标志。图片无法验证是否已标 UKCA。\n- 待补：UKCA DoC、UK 负责人信息。\n\n### 3. EMC Directive 2014/30/EU（EU）— 适用\n电子设备均受 EMC 指令约束。**依据规则库，待核实原文**[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]。\n- 待补：EN 55032/55035 测试报告（协调标准）。\n\n### 4. LVD Directive 2014/35/EU（EU）— 条件性适用\n充电盒若含供电电路（USB-C/Lightning 输入），触及额定电压 50–1000V AC / 75–1500V DC 边界。**依据规则库，待核实原文**[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7]。\n- 待补：输入电压/电流规格、电气安全测试报告。\n\n### 5. UN 38.3 Transport Testing（UN）— 待确认\nbattery 仅为关键词候选，UN 38.3 是否适用取决于充电盒内置锂电池的存在。**依据规则库，待核实原文**[UN-38-3#section-38-3]。\n- 待补：电池规格书或拆机确认、UN 38.3 (T1–T8) 测试报告。\n\n### 6. Battery Regulation (EU) 2023/1542（EU）— 待确认\n便携式电池（含耳机充电盒类）通常不在 Art. 77 数字产品护照强制范围内（LMT/工业 >2 kWh 除外）。**依据规则库，待核实原文**[EU-2023-1542#art-7][EU-2023-1542#art-38][EU-2023-1542#art-39][EU-2023-1542#art-77][EU-2023-1542#art-85]。\n- 待补：电池容量（kWh）、化学组成、标签/二维码、CE 标志。\n\n### 7. RED Directive 2014/53/EU（EU）— 待确认\n充电盒名称含\"无线耳机\"不证明充电盒本体含射频发射模块；RED 仅约束主体耳机（含发射模块者）。**依据规则库，待核实原文**[EU-2014-53#art-3][EU-2014-53#art-6][EU-2014-53#art-10]。\n- 待补：充电盒是否含 BT/Wi-Fi/感应通信模块；若是，需 Art. 3.2/3.3 测试、欧盟代表信息。\n\n### 8. UKCA Radio Equipment Regulations 2017（UK）— 待确认\n仅当充电盒含无线电发射模块时适用；GB 市场特定条件下接受 CE，NI 仍走 EU 规则。\n- 待补：射频规格、UK 无线测试报告、UKCA 标志可见性。\n\n---\n\n## 上市阻断项\n暂无充分依据构成 REJECTED。所有阻断项依赖图片/铭牌/规格书确认。\n\n## 待补证据清单\n1. 清晰铭牌/标签照片（含 CE/UKCA、电压、电池信息、制造商信息）。\n2. 内部拆机照片（确认电池类型、无线模块）。\n3. RoHS 测试报告或合规声明。\n4. EMC/LVD 测试报告。\n5. UN 38.3 报告（如含电池）。\n6. DoC 及欧盟代表/UK 负责人信息。\n7. 无线模块规格书（如适用）。",
+      "profitReport": {
+        "markdown": "# 成本与利润评估\n\n**产品类型**：无线耳机充电盒\n**目标市场**：EU、UK\n\n⚠️ 暂无充分依据支持具体成本数字。所有费用标注\"待询价\"。\n\n---\n\n## 两方案对比框架\n\n### Barebone 方案（无认证）\n| 项目 | 内容 | 状态 |\n|---|---|---|\n| BOM | 含外壳、PCBA、电池（推测） | 待询价 |\n| 包装 | 标准彩盒 + 说明书 | 待询价 |\n| 认证 | 0 | 风险项 |\n| EPR | EU/UK EPR 注册 | 待询价 |\n| 物流 | FBA/海运 | 待询价 |\n| 售后 | 基础保修 | 待询价 |\n| ASP | 目标零售 | 待询价 |\n\n### Compliant 方案（含全套认证）\n| 项目 | 内容 | 状态 |\n|---|---|---|\n| BOM | 同上 | 待询价 |\n| 包装 | 含警告语、多语言 | 待询价 |\n| 认证 | CE/UKCA + RoHS + EMC + LVD + UN 38.3 | 待询价 |\n| EPR | FR/DE/ES 等多国 EPR | 待询价 |\n| 物流 | FBA/海运 + 危险品申报（如锂电池） | 待询价 |\n| 售后 | 12 月保修 | 待询价 |\n| ASP | 含合规溢价 | 待询价 |\n\n---\n\n## 关键结论\n合规成本估算需以下输入：①认证报价（实验室询价）；②EPR 多国注册费；③FBA 头程与危险品附加费；④竞品 ASP 调研。\n\n## 风险提示\n无认证出货将面临 EU/UK 海关扣留、平台下架、产品召回及罚款风险，估算需以认证齐全为前提。",
+        "keyConclusion": "成本/利润数字暂无充分依据，需先获取认证询价与 ASP 调研",
+        "premiumPct": "待询价",
+        "breakevenUnits": "待询价",
+        "pricingStrategy": "先做小批量合规试销，再决定全量铺货",
+        "riskNote": "无认证出货风险极高（海关/平台/法律），不可作为上市选项",
+        "conclusions": "完整成本利润模型需以认证询价、竞品 ASP、平台费率与 EPR 注册费为基础，本报告暂不输出具体数字。",
+        "references": "用户文件未提供 BOM/ASP 数据；EU/UK 法规成本来源未在源文档中给出具体金额。",
+        "structuredFields": null
+      },
+      "roadmap": {
+        "totalDays": 56,
+        "totalCost": "¥25,000-80,000+（待询价）",
+        "progress": 15,
+        "items": [
+          {
+            "id": "1",
+            "date": "2025-01-13",
+            "title": "证据补全与产品身份确认",
+            "titleEn": "Evidence collection & product ID confirmation",
+            "description": "收集清晰铭牌/标签照片、拆机照片、电池与无线模块规格书；确认充电盒是否含电池/射频模块",
+            "descriptionEn": "Collect clear nameplate photos, teardown images, battery & RF module specs",
+            "type": "apply",
+            "status": "in-progress",
+            "estimatedDays": 7,
+            "cost": "内部成本",
+            "documents": [
+              "铭牌照片",
+              "拆机照片",
+              "规格书"
+            ],
+            "documentsEn": [
+              "Nameplate photos",
+              "Teardown photos",
+              "Spec sheet"
+            ]
+          },
+          {
+            "id": "2",
+            "date": "2025-01-20",
+            "title": "实验室测试申请（RoHS/EMC/LVD/UN 38.3）",
+            "titleEn": "Lab test application (RoHS/EMC/LVD/UN 38.3)",
+            "description": "依据产品特征向认可实验室送样测试；UN 38.3 仅在含锂电池时进行",
+            "descriptionEn": "Submit samples to accredited lab based on confirmed features",
+            "type": "test",
+            "status": "pending",
+            "estimatedDays": 21,
+            "cost": "¥15,000-50,000+（待询价）",
+            "documents": [
+              "测试申请表",
+              "样品"
+            ],
+            "documentsEn": [
+              "Test application form",
+              "Samples"
+            ]
+          },
+          {
+            "id": "3",
+            "date": "2025-02-10",
+            "title": "技术文档与 DoC 编制",
+            "titleEn": "Technical file & DoC preparation",
+            "description": "编制 EU DoC、UK DoC、技术文档（含风险评估、电路图、BOM、标签图）",
+            "descriptionEn": "Draft EU/UK DoC and technical documentation",
+            "type": "apply",
+            "status": "pending",
+            "estimatedDays": 10,
+            "cost": "内部成本 / ¥5,000-15,000 外包",
+            "documents": [
+              "DoC",
+              "技术文档"
+            ],
+            "documentsEn": [
+              "DoC",
+              "Technical file"
+            ]
+          },
+          {
+            "id": "4",
+            "date": "2025-02-20",
+            "title": "CE/UKCA 标志与 EPR 注册",
+            "titleEn": "CE/UKCA marking & EPR registration",
+            "description": "按法规要求加贴 CE/UKCA 标志；完成 EU/UK EPR 注册（多国）",
+            "descriptionEn": "Apply CE/UKCA marks; complete multi-country EPR registration",
+            "type": "certify",
+            "status": "pending",
+            "estimatedDays": 10,
+            "cost": "¥3,000-10,000+（待询价）",
+            "documents": [
+              "CE/UKCA 标志图稿",
+              "EPR 注册号"
+            ],
+            "documentsEn": [
+              "CE/UKCA artwork",
+              "EPR numbers"
+            ]
+          },
+          {
+            "id": "5",
+            "date": "2025-03-02",
+            "title": "完成并准备上市",
+            "titleEn": "Completion & market readiness",
+            "description": "整理合规档案、平台上传、危险品申报（如含锂电池），准备上市",
+            "descriptionEn": "Finalize compliance archive, platform upload, dangerous goods declaration",
+            "type": "complete",
+            "status": "pending",
+            "estimatedDays": 8,
+            "cost": "¥2,000-5,000+（待询价）",
+            "documents": [
+              "合规档案",
+              "平台提交资料"
+            ],
+            "documentsEn": [
+              "Compliance archive",
+              "Platform submission"
+            ]
+          }
+        ]
+      },
+      "decisionView": {
+        "summary": "产品身份与多部关键法规触发条件需图片/铭牌/规格书确认；现有证据不足以判定合规或不合规，但已识别多项需补证据的高风险节点。",
+        "keyFindings": [
+          "铭牌与 CE/UKCA 标志不可见，图片无法验证",
+          "充电盒是否含电池与射频模块未确认，UN 38.3、RED、电池法规适用性悬而未决",
+          "GB 与 NI 区分评估：GB 特定条件下接受 CE，NI 仍走 EU 规则",
+          "LVD 是否适用取决于输入电压是否触及 50–1000V AC / 75–1500V DC",
+          "所有阻断项判定均依赖待补证据，当前仅构成 WARN"
+        ],
+        "recommendedAction": "优先补全：①铭牌/标签高清图 ②拆机图确认电池与射频模块 ③规格书（电压/电流/电池容量） ④实验室报价，然后回到合规复核。",
+        "nodes": [
+          {
+            "id": "vision",
+            "type": "vision",
+            "label": "视觉观察",
+            "labelEn": "Vision analysis",
+            "status": "success",
+            "duration": "0.8s",
+            "confidence": 0.45,
+            "reasoning": "图片显示白色塑料外壳与 iQOO 品牌字样，但铭牌、CE/UKCA、电池与无线模块标识均不可见，图片无法验证。",
+            "reasoningEn": "Image shows white plastic shell and iQOO branding; nameplate, CE/UKCA, battery and RF markings not visible — image cannot verify.",
+            "severity": "medium"
+          },
+          {
+            "id": "query_planner",
+            "type": "query_planner",
+            "label": "法规查询规划",
+            "labelEn": "Query planning",
+            "status": "success",
+            "duration": "0.3s",
+            "confidence": 0.9,
+            "reasoning": "已按品类与目标市场规划 8 部必检法规清单，覆盖 RoHS/EMC/LVD/RED/电池/UN 38.3/UKCA。",
+            "reasoningEn": "Planned 8 mandatory regulations covering RoHS/EMC/LVD/RED/Battery/UN 38.3/UKCA.",
+            "severity": "info"
+          },
+          {
+            "id": "retriever",
+            "type": "retriever",
+            "label": "法规检索",
+            "labelEn": "Regulation retrieval",
+            "status": "success",
+            "duration": "1.1s",
+            "confidence": 0.7,
+            "reasoning": "召回 EU 与 UK 多部法规条目，但所有原文标注\"condensed from KB key_points; full official text pending verification\"，证据强度受限。",
+            "reasoningEn": "Retrieved multiple EU/UK regulation entries, but all flagged as condensed from KB; full text pending verification.",
+            "severity": "high"
+          },
+          {
+            "id": "synthesis",
+            "type": "synthesis",
+            "label": "合规综合",
+            "labelEn": "Compliance synthesis",
+            "status": "success",
+            "duration": "0.9s",
+            "confidence": 0.65,
+            "reasoning": "产品类别与法规适用性可初步判断，但触发条件（电池、射频、电压等级）均待图片/铭牌/规格书确认，结论为 WARN。",
+            "reasoningEn": "Product category and regulation applicability partially identifiable; triggers (battery, RF, voltage) await evidence — verdict WARN.",
+            "severity": "high"
+          },
+          {
+            "id": "generate",
+            "type": "generate",
+            "label": "报告生成",
+            "labelEn": "Report generation",
+            "status": "success",
+            "duration": "1.4s",
+            "confidence": 0.8,
+            "reasoning": "合规报告每条法规事实均标注来源；利润数字因缺乏输入未填具体值。",
+            "reasoningEn": "Each regulation fact in compliance report cited; profit figures left blank due to missing inputs.",
+            "severity": "medium"
+          },
+          {
+            "id": "verify",
+            "type": "verify",
+            "label": "一致性校验",
+            "labelEn": "Consistency check",
+            "status": "success",
+            "duration": "0.4s",
+            "confidence": 0.85,
+            "reasoning": "合规报告、成本报告、排期与决策视图结论一致：均为 WARN、待补证据、风险等级 HIGH。",
+            "reasoningEn": "Compliance report, profit report, roadmap and decision view are consistent: WARN, evidence pending, HIGH risk.",
+            "severity": "info"
+          }
+        ],
+        "verdict": "WARN",
+        "riskLevel": "HIGH"
+      },
+      "evidenceBundles": {
+        "visual": [],
+        "retrieval": [],
+        "generation": [
+          {
+            "id": "generation:compliance_report",
+            "layer": "generation",
+            "source": "report_generator",
+            "title": "Compliance report draft",
+            "content": "# 合规风险评估报告\n\n**产品类型**：无线耳机充电盒（electronics 类）\n**目标市场**：EU、UK\n**结论**：WARN — 产品身份与多项关键法规触发条件待图片/铭牌/规格书确认。\n\n---\n\n## 视觉观察\n- 白色塑料外壳，边缘银色金属装饰条，正面 iQOO 品牌字样，正面底部小圆孔（疑似指示灯/麦克风），表面多处划痕。\n- 铭牌、CE/UKCA 标志、电池信息、无线模块标识均不可见。图片无法验证。\n\n---\n\n## 法规逐条评估\n\n### 1. RoHS Directive 2011/65/EU（EU）— 适用\n电子电气产品落入 Annex I 类别 8/9（小型/大型设备）。**依据规则库，待核实原文**[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]。\n- 待补：DoC、Annex III 申报、材料测试报告或风险评估。\n\n### 2. UKCA Marking Requirements（UK）— 适用\n作为电子电气产品投放 GB 市场需 UKCA 标志。图片无法验证是否已标 UKCA。\n- 待补：UKCA DoC、UK 负责人信息。\n\n### 3. EMC Directive 2014/30/EU（EU）— 适用\n电子设备均受 EMC 指令约束。**依据规则库，待核实原文**[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]。\n- 待补：EN 55032/55035 测试报告（协调标准）。\n\n### 4. LVD Directive 2014/35/EU（EU）— 条件性适用\n充电盒若含供电电路（USB-C/Lightning 输入），触及额定电压 50–1000V AC / 75–1500V DC 边界。**依据规则库，待核实原文**[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7]。\n- 待补：输入电压/电流规格、电气安全测试报告。\n\n### 5. UN 38.3 Transport Testing（UN）— 待确认\nbattery 仅为关键词候选，UN 38.3 是否适用取决于充电盒内置锂电池的存在。**依据规则库，待核实原文**[UN-38-3#section-38-3]。\n- 待补：电池规格书或拆机确认、UN 38.3 (T1–T8) 测试报告。\n\n### 6. Battery Regulation (EU) 2023/1542（EU）— 待确认\n便携式电池（含耳机充电盒类）通常不在 Art. 77 数字产品护照强制范围内（LMT/工业 >2 kWh 除外）。**",
+            "metadata": {
+              "characterCount": 1928
+            }
+          },
+          {
+            "id": "generation:package_keys",
+            "layer": "generation",
+            "source": "report_package",
+            "title": "Generated package keys",
+            "content": "auditMetadata, citations, complianceReport, decisionView, profitReport, roadmap",
+            "metadata": {
+              "sceneCount": 6
+            }
+          }
+        ]
+      },
+      "auditMetadata": {
+        "schemaVersion": "report-package/v1",
+        "generatedAt": "2026-09-13T12:33:46+00:00",
+        "validationStatus": "normalized",
+        "validationErrors": [],
+        "provider": "minimax",
+        "traceNodeCount": 2,
+        "finance": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "decisionView": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "roadmap": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "evidenceBundles": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "verificationMode": "kb_exact_quote",
+        "canonicalQuoteAttachedCount": 9
+      },
+      "citations": [
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-4",
+          "officialCitation": "Directive 2011/65/EU Art. 4",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "annex-2",
+          "officialCitation": "Directive 2011/65/EU Annex II",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/30/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-3",
+          "officialCitation": "Directive 2014/35/EU Art. 3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "UN-38-3",
+          "articleId": "section-38-3",
+          "officialCitation": "UN Manual of Tests and Criteria Section 38.3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "8 项测试 (T1-T8): 高度模拟/热冲击/振动/冲击/外部短路/撞击/过充/强制放电 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-77",
+          "officialCitation": "(EU) 2023/1542 Art. 77",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-77",
+          "officialCitation": "(EU) 2023/1542 Art. 77",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-53",
+          "articleId": "art-3",
+          "officialCitation": "Directive 2014/53/EU Art. 3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-53",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/53/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        }
+      ],
+      "evidencePack": [
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-4",
+          "officialCitation": "Directive 2011/65/EU Art. 4",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "annex-2",
+          "officialCitation": "Directive 2011/65/EU Annex II",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/30/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-3",
+          "officialCitation": "Directive 2014/35/EU Art. 3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "UN-38-3",
+          "articleId": "section-38-3",
+          "officialCitation": "UN Manual of Tests and Criteria Section 38.3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "8 项测试 (T1-T8): 高度模拟/热冲击/振动/冲击/外部短路/撞击/过充/强制放电 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-77",
+          "officialCitation": "(EU) 2023/1542 Art. 77",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-53",
+          "articleId": "art-3",
+          "officialCitation": "Directive 2014/53/EU Art. 3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-53",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/53/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Art. 3.2 (频谱使用) + Art. 3.3 系列 (EMC/LVD/健康安全) 必须满足 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs0",
+          "checkId": "electronics.nameplate.electrical_ratings",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "图中仅展示充电盒正面,未见任何电压/电流/功率/频率等电气参数",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs1",
+          "checkId": "electronics.interface.plug_pins",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "正面未见任何接口或插脚形态,推测位于其他面但未在图中",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs2",
+          "checkId": "electronics.cable.connector_condition",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "absent_in_visible_scope",
+          "observedText": null,
+          "description": "画面中未出现线缆或接头",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs3",
+          "checkId": "electronics.marks.certification_region",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "正面未见任何 CE/FCC/UKCA/CCC 等认证标志",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs4",
+          "checkId": "electronics.adapter.external_power",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "absent_in_visible_scope",
+          "observedText": null,
+          "description": "画面中未出现外置电源适配器",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs5",
+          "checkId": "common.product.overview",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": null,
+          "description": "主体为白色方形圆角充电盒,顶部有银色金属装饰条,整体外观完整,表面可见多道划痕",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.04,
+              "y": 0.52,
+              "w": 0.94,
+              "h": 0.48
+            },
+            "verified": true
+          }
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs6",
+          "checkId": "common.nameplate.readability",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "正面除 iQOO 品牌字样外无铭牌或标签",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs7",
+          "checkId": "common.brand_model.visible",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": "iQOO",
+          "description": "正面中部偏下印有 'iQOO' 品牌字样,清晰可读;未见具体型号",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.36,
+              "y": 0.71,
+              "w": 0.28,
+              "h": 0.07
+            },
+            "verified": true
+          }
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs8",
+          "checkId": "common.batch_traceability.fields",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "正面未见批次号、序列号、生产日期等追溯信息",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs9",
+          "checkId": "common.warning_text.language",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "画面中未见任何警告文字",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs10",
+          "checkId": "common.packaging.info",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "absent_in_visible_scope",
+          "observedText": null,
+          "description": "画面中未出现包装盒或包装标签",
+          "region": null
+        },
+        {
+          "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs11",
+          "checkId": "common.defects.visible",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": null,
+          "description": "充电盒正面及顶部金属条表面可见多道明显划痕,壳体未观察到裂纹或鼓胀",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.06,
+              "y": 0.58,
+              "w": 0.88,
+              "h": 0.34
+            },
+            "verified": true
+          }
+        }
+      ],
+      "findings": [
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-1",
+          "checkId": "electronics.nameplate.electrical_ratings",
+          "title": "铭牌电气参数(电压/电流/功率/频率)",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs0"
+          ],
+          "citationIds": [
+            "KB-electronics-CN-CN-CCC",
+            "KB-electronics-EU-LVD-2014-35"
+          ],
+          "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-2",
+          "checkId": "electronics.interface.plug_pins",
+          "title": "接口与插脚形态",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs1"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍ports_closeup、plug_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：ports_closeup、plug_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-3",
+          "checkId": "electronics.cable.connector_condition",
+          "title": "线缆与接头可见状态",
+          "assessment": "suspected_issue",
+          "applicability": "applicable",
+          "severity": "medium",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs2"
+          ],
+          "citationIds": [],
+          "suggestedAction": "标签区域可见但未检出「线缆与接头可见状态」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+          "requiredEvidence": [
+            "补拍视角：cable_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-4",
+          "checkId": "electronics.marks.certification_region",
+          "title": "可见认证标志(仅记录清晰可见者,不做真伪判断)",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs3"
+          ],
+          "citationIds": [
+            "KB-electronics-CN-CN-CCC",
+            "KB-electronics-EU-CE-General"
+          ],
+          "suggestedAction": "补拍nameplate_closeup、back（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup、back"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-5",
+          "checkId": "electronics.adapter.external_power",
+          "title": "外置适配器(如拍摄)",
+          "assessment": "suspected_issue",
+          "applicability": "applicable",
+          "severity": "medium",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs4"
+          ],
+          "citationIds": [],
+          "suggestedAction": "标签区域可见但未检出「外置适配器(如拍摄)」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+          "requiredEvidence": [
+            "补拍视角：adapter_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-6",
+          "checkId": "common.nameplate.readability",
+          "title": "铭牌/标签信息可读性",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs6"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-7",
+          "checkId": "common.batch_traceability.fields",
+          "title": "批次号/序列号/生产日期等追溯字段",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs8"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-8",
+          "checkId": "common.warning_text.language",
+          "title": "警告文字及其语言",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs9"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍warning_label_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：warning_label_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-9",
+          "checkId": "common.packaging.info",
+          "title": "包装信息(如已拍摄)",
+          "assessment": "suspected_issue",
+          "applicability": "applicable",
+          "severity": "medium",
+          "observationIds": [
+            "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs10"
+          ],
+          "citationIds": [],
+          "suggestedAction": "标签区域可见但未检出「包装信息(如已拍摄)」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+          "requiredEvidence": [
+            "补拍视角：package"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-10",
+          "checkId": "electronics.safety.electrical_test",
+          "title": "电气安全测试报告",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [],
+          "citationIds": [
+            "KB-electronics-EU-LVD-2014-35",
+            "US-UL-ETL-mains"
+          ],
+          "suggestedAction": "提供检测报告：电气安全测试报告",
+          "requiredEvidence": [
+            "检测报告：电气安全测试报告"
+          ]
+        },
+        {
+          "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-11",
+          "checkId": "electronics.emc.test_report",
+          "title": "EMC 测试报告",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [],
+          "citationIds": [
+            "KB-electronics-EU-EMC-2014-30"
+          ],
+          "suggestedAction": "提供检测报告：EMC 测试报告",
+          "requiredEvidence": [
+            "检测报告：EMC 测试报告"
+          ]
+        }
+      ],
+      "selectedCheckIds": [
+        "electronics.nameplate.electrical_ratings",
+        "electronics.interface.plug_pins",
+        "electronics.cable.connector_condition",
+        "electronics.marks.certification_region",
+        "electronics.adapter.external_power",
+        "common.product.overview",
+        "common.nameplate.readability",
+        "common.brand_model.visible",
+        "common.batch_traceability.fields",
+        "common.warning_text.language",
+        "common.packaging.info",
+        "common.defects.visible"
+      ],
+      "anchorApplicability": [
+        {
+          "regulationId": "EU-2011-65",
+          "market": "EU",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "UK-UKCA-General",
+          "market": "UK",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2014-30",
+          "market": "EU",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2014-35",
+          "market": "EU",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "UN-38-3",
+          "market": "UN",
+          "state": "needs_confirmation",
+          "reason": "battery only a keyword candidate; UN 38.3 applies once presence is confirmed",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2023-1542",
+          "market": "EU",
+          "state": "needs_confirmation",
+          "reason": "battery only a keyword candidate; confirm with label photo or spec sheet",
+          "effectiveFrom": null,
+          "productConditions": [
+            "battery presence inferred from keywords — needs visible marking or spec sheet",
+            "电池护照 (Art. 77) 不适用于便携式电池（如耳机充电盒/普通消费电子）：仅 LMT、电动车电池及 >2 kWh 工业电池需要，工业类自 2027-02-18 起、LMT 自 2028-08-18 起"
+          ],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2014-53",
+          "market": "EU",
+          "state": "needs_confirmation",
+          "reason": "trigger feature 'battery' is a keyword candidate — confirm with label photo / spec sheet before treating as applicable",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "UK-UKCA-Radio",
+          "market": "UK",
+          "state": "needs_confirmation",
+          "reason": "wireless capability inferred from name/keywords（如“无线耳机”）——名称含“无线”不证明充电盒含发射模块；需规格书或拆机确认",
+          "effectiveFrom": null,
+          "productConditions": [
+            "区分设备本体与充电盒的无线属性：仅含发射模块的主体受无线设备法规约束",
+            "GB 与北爱尔兰 (NI) 分开评估：NI 走 EU 规则",
+            "GB 市场特定条件下接受 CE 标志（等效性条件满足时），无 UKCA 不等于不合规"
+          ],
+          "rulesVersion": "applicability-rules/v1"
+        }
+      ]
+    },
+    "inspectionObservations": [
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs0",
+        "checkId": "electronics.nameplate.electrical_ratings",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "图中仅展示充电盒正面,未见任何电压/电流/功率/频率等电气参数",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs1",
+        "checkId": "electronics.interface.plug_pins",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "正面未见任何接口或插脚形态,推测位于其他面但未在图中",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs2",
+        "checkId": "electronics.cable.connector_condition",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "absent_in_visible_scope",
+        "observedText": null,
+        "description": "画面中未出现线缆或接头",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs3",
+        "checkId": "electronics.marks.certification_region",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "正面未见任何 CE/FCC/UKCA/CCC 等认证标志",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs4",
+        "checkId": "electronics.adapter.external_power",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "absent_in_visible_scope",
+        "observedText": null,
+        "description": "画面中未出现外置电源适配器",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs5",
+        "checkId": "common.product.overview",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "present_readable",
+        "observedText": null,
+        "description": "主体为白色方形圆角充电盒,顶部有银色金属装饰条,整体外观完整,表面可见多道划痕",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.04,
+            "y": 0.52,
+            "w": 0.94,
+            "h": 0.48
+          },
+          "verified": true
+        }
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs6",
+        "checkId": "common.nameplate.readability",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "正面除 iQOO 品牌字样外无铭牌或标签",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs7",
+        "checkId": "common.brand_model.visible",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "present_readable",
+        "observedText": "iQOO",
+        "description": "正面中部偏下印有 'iQOO' 品牌字样,清晰可读;未见具体型号",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.36,
+            "y": 0.71,
+            "w": 0.28,
+            "h": 0.07
+          },
+          "verified": true
+        }
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs8",
+        "checkId": "common.batch_traceability.fields",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "正面未见批次号、序列号、生产日期等追溯信息",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs9",
+        "checkId": "common.warning_text.language",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "画面中未见任何警告文字",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs10",
+        "checkId": "common.packaging.info",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "absent_in_visible_scope",
+        "observedText": null,
+        "description": "画面中未出现包装盒或包装标签",
+        "region": null
+      },
+      {
+        "observationId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs11",
+        "checkId": "common.defects.visible",
+        "imageId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0",
+        "visibility": "present_readable",
+        "observedText": null,
+        "description": "充电盒正面及顶部金属条表面可见多道明显划痕,壳体未观察到裂纹或鼓胀",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.06,
+            "y": 0.58,
+            "w": 0.88,
+            "h": 0.34
+          },
+          "verified": true
+        }
+      }
+    ],
+    "selectedCheckIds": [
+      "electronics.nameplate.electrical_ratings",
+      "electronics.interface.plug_pins",
+      "electronics.cable.connector_condition",
+      "electronics.marks.certification_region",
+      "electronics.adapter.external_power",
+      "common.product.overview",
+      "common.nameplate.readability",
+      "common.brand_model.visible",
+      "common.batch_traceability.fields",
+      "common.warning_text.language",
+      "common.packaging.info",
+      "common.defects.visible"
+    ],
+    "inspectionFindings": [
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-1",
+        "checkId": "electronics.nameplate.electrical_ratings",
+        "title": "铭牌电气参数(电压/电流/功率/频率)",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs0"
+        ],
+        "citationIds": [
+          "KB-electronics-CN-CN-CCC",
+          "KB-electronics-EU-LVD-2014-35"
+        ],
+        "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-2",
+        "checkId": "electronics.interface.plug_pins",
+        "title": "接口与插脚形态",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs1"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍ports_closeup、plug_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：ports_closeup、plug_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-3",
+        "checkId": "electronics.cable.connector_condition",
+        "title": "线缆与接头可见状态",
+        "assessment": "suspected_issue",
+        "applicability": "applicable",
+        "severity": "medium",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs2"
+        ],
+        "citationIds": [],
+        "suggestedAction": "标签区域可见但未检出「线缆与接头可见状态」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+        "requiredEvidence": [
+          "补拍视角：cable_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-4",
+        "checkId": "electronics.marks.certification_region",
+        "title": "可见认证标志(仅记录清晰可见者,不做真伪判断)",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs3"
+        ],
+        "citationIds": [
+          "KB-electronics-CN-CN-CCC",
+          "KB-electronics-EU-CE-General"
+        ],
+        "suggestedAction": "补拍nameplate_closeup、back（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup、back"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-5",
+        "checkId": "electronics.adapter.external_power",
+        "title": "外置适配器(如拍摄)",
+        "assessment": "suspected_issue",
+        "applicability": "applicable",
+        "severity": "medium",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs4"
+        ],
+        "citationIds": [],
+        "suggestedAction": "标签区域可见但未检出「外置适配器(如拍摄)」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+        "requiredEvidence": [
+          "补拍视角：adapter_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-6",
+        "checkId": "common.nameplate.readability",
+        "title": "铭牌/标签信息可读性",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs6"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-7",
+        "checkId": "common.batch_traceability.fields",
+        "title": "批次号/序列号/生产日期等追溯字段",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs8"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-8",
+        "checkId": "common.warning_text.language",
+        "title": "警告文字及其语言",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs9"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍warning_label_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：warning_label_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-9",
+        "checkId": "common.packaging.info",
+        "title": "包装信息(如已拍摄)",
+        "assessment": "suspected_issue",
+        "applicability": "applicable",
+        "severity": "medium",
+        "observationIds": [
+          "scan_e9b1d6add9fd432489a1116a4dbb5bf7-img0-obs10"
+        ],
+        "citationIds": [],
+        "suggestedAction": "标签区域可见但未检出「包装信息(如已拍摄)」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+        "requiredEvidence": [
+          "补拍视角：package"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-10",
+        "checkId": "electronics.safety.electrical_test",
+        "title": "电气安全测试报告",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [],
+        "citationIds": [
+          "KB-electronics-EU-LVD-2014-35",
+          "US-UL-ETL-mains"
+        ],
+        "suggestedAction": "提供检测报告：电气安全测试报告",
+        "requiredEvidence": [
+          "检测报告：电气安全测试报告"
+        ]
+      },
+      {
+        "findingId": "scan_e9b1d6add9fd432489a1116a4dbb5bf7-finding-11",
+        "checkId": "electronics.emc.test_report",
+        "title": "EMC 测试报告",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [],
+        "citationIds": [
+          "KB-electronics-EU-EMC-2014-30"
+        ],
+        "suggestedAction": "提供检测报告：EMC 测试报告",
+        "requiredEvidence": [
+          "检测报告：EMC 测试报告"
+        ]
+      }
+    ],
+    "complianceReport": "# 合规风险评估报告\n\n**产品类型**：无线耳机充电盒（electronics 类）\n**目标市场**：EU、UK\n**结论**：WARN — 产品身份与多项关键法规触发条件待图片/铭牌/规格书确认。\n\n---\n\n## 视觉观察\n- 白色塑料外壳，边缘银色金属装饰条，正面 iQOO 品牌字样，正面底部小圆孔（疑似指示灯/麦克风），表面多处划痕。\n- 铭牌、CE/UKCA 标志、电池信息、无线模块标识均不可见。图片无法验证。\n\n---\n\n## 法规逐条评估\n\n### 1. RoHS Directive 2011/65/EU（EU）— 适用\n电子电气产品落入 Annex I 类别 8/9（小型/大型设备）。**依据规则库，待核实原文**[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]。\n- 待补：DoC、Annex III 申报、材料测试报告或风险评估。\n\n### 2. UKCA Marking Requirements（UK）— 适用\n作为电子电气产品投放 GB 市场需 UKCA 标志。图片无法验证是否已标 UKCA。\n- 待补：UKCA DoC、UK 负责人信息。\n\n### 3. EMC Directive 2014/30/EU（EU）— 适用\n电子设备均受 EMC 指令约束。**依据规则库，待核实原文**[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]。\n- 待补：EN 55032/55035 测试报告（协调标准）。\n\n### 4. LVD Directive 2014/35/EU（EU）— 条件性适用\n充电盒若含供电电路（USB-C/Lightning 输入），触及额定电压 50–1000V AC / 75–1500V DC 边界。**依据规则库，待核实原文**[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7]。\n- 待补：输入电压/电流规格、电气安全测试报告。\n\n### 5. UN 38.3 Transport Testing（UN）— 待确认\nbattery 仅为关键词候选，UN 38.3 是否适用取决于充电盒内置锂电池的存在。**依据规则库，待核实原文**[UN-38-3#section-38-3]。\n- 待补：电池规格书或拆机确认、UN 38.3 (T1–T8) 测试报告。\n\n### 6. Battery Regulation (EU) 2023/1542（EU）— 待确认\n便携式电池（含耳机充电盒类）通常不在 Art. 77 数字产品护照强制范围内（LMT/工业 >2 kWh 除外）。**依据规则库，待核实原文**[EU-2023-1542#art-7][EU-2023-1542#art-38][EU-2023-1542#art-39][EU-2023-1542#art-77][EU-2023-1542#art-85]。\n- 待补：电池容量（kWh）、化学组成、标签/二维码、CE 标志。\n\n### 7. RED Directive 2014/53/EU（EU）— 待确认\n充电盒名称含\"无线耳机\"不证明充电盒本体含射频发射模块；RED 仅约束主体耳机（含发射模块者）。**依据规则库，待核实原文**[EU-2014-53#art-3][EU-2014-53#art-6][EU-2014-53#art-10]。\n- 待补：充电盒是否含 BT/Wi-Fi/感应通信模块；若是，需 Art. 3.2/3.3 测试、欧盟代表信息。\n\n### 8. UKCA Radio Equipment Regulations 2017（UK）— 待确认\n仅当充电盒含无线电发射模块时适用；GB 市场特定条件下接受 CE，NI 仍走 EU 规则。\n- 待补：射频规格、UK 无线测试报告、UKCA 标志可见性。\n\n---\n\n## 上市阻断项\n暂无充分依据构成 REJECTED。所有阻断项依赖图片/铭牌/规格书确认。\n\n## 待补证据清单\n1. 清晰铭牌/标签照片（含 CE/UKCA、电压、电池信息、制造商信息）。\n2. 内部拆机照片（确认电池类型、无线模块）。\n3. RoHS 测试报告或合规声明。\n4. EMC/LVD 测试报告。\n5. UN 38.3 报告（如含电池）。\n6. DoC 及欧盟代表/UK 负责人信息。\n7. 无线模块规格书（如适用）。",
+    "complianceReportTruncated": false,
+    "agentTrace": [
+      {
+        "node": "vision",
+        "mode": "checklist",
+        "checkCount": 12,
+        "imagesCount": 1,
+        "certificationsFound": 0,
+        "descriptionLength": 82,
+        "durationMs": 8949,
+        "observationCount": 12
+      },
+      {
+        "node": "generate",
+        "provider": "minimax",
+        "status": "success",
+        "packageScenes": 12,
+        "chunksCount": 0,
+        "generationLength": 1928,
+        "durationMs": 45723,
+        "anchorFeatures": [
+          "battery",
+          "wireless"
+        ],
+        "anchorRegulationsCount": 8,
+        "articleTextsCount": 27,
+        "llmCitationsCount": 9,
+        "kbAnchorBackfillCount": 0
+      },
+      {
+        "node": "verify",
+        "status": "success",
+        "matched": 0,
+        "fallbackArticleOnly": 9,
+        "unmatched": 0,
+        "totalCitations": 9,
+        "canonicalQuoteAttachedCount": 9
+      }
+    ],
+    "ragProvider": "minimax",
+    "latencyMs": 54672,
+    "loopCount": 0,
+    "modelInfo": {
+      "visionProvider": "minimax",
+      "latencyMs": 54672
+    },
+    "source": "real"
+  }
+}

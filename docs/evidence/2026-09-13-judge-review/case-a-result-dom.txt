@@ -1,0 +1,19 @@
+- alert: 规航AI · 先合规，再出海
+- main:
+  - link "返回上传页":
+    - /url: /upload
+    - generic: 返回上传页
+  - link "规航AI 规航AI · CompliPilot 合规检测结果 真实后端结果 · 未伪造风险项":
+    - /url: /
+    - img "规航AI"
+    - generic: 规航AI · CompliPilot
+    - strong: 合规检测结果
+    - generic: 真实后端结果 · 未伪造风险项
+  - button "中" [pressed]
+  - button "EN"
+  - generic: INCOMPLETE
+  - link "重新检测":
+    - /url: /upload
+  - paragraph: Incomplete
+  - heading "后端未返回可展示的风险证据" [level=1]
+  - paragraph: 页面不会用 Mock 数据替换真实结果。请检查检索库、模型响应和报告包中的 decisionView。
