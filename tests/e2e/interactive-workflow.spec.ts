@@ -56,18 +56,18 @@ test.describe("Interactive Browser Workflow E2E", () => {
     const submitBtn = page.locator('button[type="submit"]');
     await expect(submitBtn).toBeEnabled();
 
-    // Upload 6 files to exceed MAX_IMAGE_COUNT (5)
-    const sixFiles = Array.from({ length: 6 }, (_, i) => ({
+    // Upload 9 files to exceed MAX_UPLOAD_FILES (8)
+    const nineFiles = Array.from({ length: 9 }, (_, i) => ({
       name: `file_${i + 1}.png`,
       mimeType: "image/png",
       buffer: PIXEL_PNG,
     }));
 
-    await fileInput.setInputFiles(sixFiles);
+    await fileInput.setInputFiles(nineFiles);
 
     // Assert error message displayed
     await expect(
-      page.getByText(/最多上传 5 张图片|Maximum 5 files allowed|exceeded/i)
+      page.getByText(/最多上传 8 张图片|Up to 8 images are allowed/i)
     ).toBeVisible({ timeout: 5000 });
   });
 
@@ -123,13 +123,12 @@ test.describe("Interactive Browser Workflow E2E", () => {
     }
   });
 
-  test("roadmap interactive page loads and renders checklist phases", async ({ page }) => {
+  test("roadmap interactive page loads and renders timeline items", async ({ page }) => {
     await page.goto("/roadmap/demo");
 
     await expect(page.getByText(/整改路线图|Compliance Roadmap|Roadmap/i).first()).toBeVisible();
-    // Checklist phase headers
-    await expect(page.getByText(/资料冻结|Document freeze|BOM/i).first()).toBeVisible();
-    await expect(page.getByText(/上架复核|Listing review/i).first()).toBeVisible();
+    // Timeline steps from mock/roadmap
+    await expect(page.getByText(/合规评估完成|Compliance Assessment Complete|准备申请材料/i).first()).toBeVisible();
   });
 
   test("trace interactive page loads decision tree", async ({ page }) => {

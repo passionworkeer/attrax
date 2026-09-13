@@ -153,6 +153,7 @@ jobs:
           tests/e2e/not-found.spec.ts
           tests/e2e/error-boundary.spec.ts
           tests/e2e/upload-scan-result.spec.ts
+          tests/e2e/interactive-workflow.spec.ts
 
       - name: Upload Playwright report
         if: always()

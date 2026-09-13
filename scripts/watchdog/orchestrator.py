@@ -99,6 +99,65 @@ def load_sources() -> list[dict]:
     return entries
 
 
+def ack_sources(ids: set[str] | None) -> int:
+    """Approve pending changes: snapshot the CURRENT live content of the
+    acked sources as the new baseline, and prune them from today's
+    diff.json / pending_review.json.
+
+    Pairs with the "real changes are not snapshotted until reviewed" rule
+    (see run_pass): without this command, an un-reviewed source would keep
+    re-appearing in pending_review on every pass with no way to clear it.
+    ``ids=None`` means ack everything (``--ack-all``).
+    """
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s %(levelname)s %(name)s %(message)s",
+    )
+    entries = load_sources()
+    store = SourceStateStore(SUPPLEMENTS_DIR)
+    acked: list[str] = []
+    for entry in entries:
+        source_id = entry.get("id") or entry.get("source_url") or "unknown"
+        if ids is not None and source_id not in ids:
+            continue
+        try:
+            update = collect_source(entry)
+        except Exception as exc:  # noqa: BLE001 — ack what we can, report rest
+            logger.warning("ack: source %s failed to fetch: %s", source_id, exc)
+            continue
+        store.bulk_snapshot([(source_id, update.text, update.content_hash)])
+        acked.append(source_id)
+    store.close()
+
+    acked_set = set(acked)
+    run_date = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d")
+    out_dir = SUPPLEMENTS_DIR / f"watchdog-{run_date}"
+    for fname in ("diff.json", "pending_review.json"):
+        path = out_dir / fname
+        if not path.exists():
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(data, dict) or not isinstance(data.get("changes"), list):
+            continue
+        remaining = [
+            c for c in data["changes"] if c.get("sourceId") not in acked_set
+        ]
+        if remaining:
+            data["changes"] = remaining
+            data["changeCount"] = len(remaining)
+            path.write_text(
+                json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8"
+            )
+        else:
+            path.unlink()
+
+    logger.info("acked %d source(s): %s", len(acked), ", ".join(acked) or "(none)")
+    return EXIT_CLEAN
+
+
 def run_pass(*, dry_run: bool = False) -> int:
     logging.basicConfig(
         level=logging.INFO,
@@ -264,7 +323,26 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="detect changes but do not write outputs or update the snapshot DB",
     )
+    parser.add_argument(
+        "--ack",
+        action="append",
+        default=None,
+        metavar="SOURCE_ID",
+        help=(
+            "approve a pending change: snapshot the source's current live"
+            " content as the new baseline and remove it from today's"
+            " pending_review.json. Repeatable."
+        ),
+    )
+    parser.add_argument(
+        "--ack-all",
+        action="store_true",
+        help="approve every pending change (snapshot all sources as baseline)",
+    )
     args = parser.parse_args(argv)
+
+    if args.ack or args.ack_all:
+        return ack_sources(set(args.ack) if args.ack else None)
 
     if args.once:
         return run_pass(dry_run=args.dry_run)
