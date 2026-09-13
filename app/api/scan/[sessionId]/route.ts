@@ -107,6 +107,11 @@ export async function GET(
  * the burning page already understands. The key is consumed by the page for
  * localized stage labels; unknown keys fall back to the raw text via the
  * page's `localizeStageText()` helper.
+ *
+ * 2026-09-13 audit: the backend now emits `stageText` in the form
+ * `"vision:running"` / `"generate:done"`. We strip the `:state` suffix so
+ * the key the page already localizes ("vision", "retrieval", "report",
+ * "done", "failed", "queued") still matches.
  */
 function inferStageKey(
   stageText: string,
@@ -115,6 +120,13 @@ function inferStageKey(
   if (status === "ready" || status === "degraded") return "done";
   if (status === "failed") return "failed";
   const text = stageText.toLowerCase();
+  if (text.startsWith("vision")) return "vision";
+  if (text.startsWith("applicability") || text.startsWith("retriev") || text.startsWith("match"))
+    return "retrieval";
+  if (text.startsWith("generate") || text.startsWith("report") || text.startsWith("persist"))
+    return "report";
+  if (text.startsWith("verify")) return "report";
+  if (text.startsWith("done")) return "done";
   if (text.includes("vision") || text.includes("identify")) return "vision";
   if (text.includes("retriev") || text.includes("match")) return "retrieval";
   if (text.includes("generat") || text.includes("report")) return "report";

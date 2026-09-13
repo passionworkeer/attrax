@@ -177,6 +177,51 @@ function regulationFromChunk(chunk: UnknownRecord, index: number): RegulationRef
   };
 }
 
+// Pipeline-stage node types emitted by the orchestrator that describe the
+// *process* (audit/consistency/verification/cite-check) rather than a real
+// compliance finding. The 2026-09-13 plan §3 calls these out: turning them
+// into RiskPoint rows surfaces them on the verdict strip and inflates the
+// critical/warning counts. We drop them at the adapter boundary so the
+// page only sees actual findings.
+const PIPELINE_STAGE_NODE_TYPES = new Set<string>([
+  "audit",
+  "consistency",
+  "consistency_check",
+  "consistency-check",
+  "verification",
+  "verify",
+  "cite_check",
+  "cite-check",
+  "citecheck",
+  "pipeline",
+  "process",
+  "trace",
+  "synthesis",
+  "retrieve",
+  "retrieval",
+]);
+
+function isPipelineStageNode(node: UnknownRecord): boolean {
+  if (typeof node.id === "string" && node.id.startsWith("audit:")) return true;
+  if (typeof node.id === "string" && node.id.startsWith("trace:")) return true;
+  const type = typeof node.type === "string" ? node.type.toLowerCase().trim() : "";
+  if (type && PIPELINE_STAGE_NODE_TYPES.has(type)) return true;
+  // Chinese labels used by older generators: 一致性校验 / 一致性检查 / 引用核对 / 流程节点
+  const label = typeof node.label === "string" ? node.label.trim() : "";
+  if (
+    label.includes("一致性校验") ||
+    label.includes("一致性检查") ||
+    label.includes("引用核对") ||
+    label.includes("引用校验") ||
+    label.includes("流程节点") ||
+    label.toLowerCase().includes("consistency check") ||
+    label.toLowerCase().includes("citation check")
+  ) {
+    return true;
+  }
+  return false;
+}
+
 function bboxFromNode(node: UnknownRecord): { x: number; y: number; w: number; h: number } | undefined {
   // Vision-anchored decision nodes carry a normalized 0..1 bbox keyed as
   // either `bbox` (camelCase) or `region` (legacy). Both are accepted; the
@@ -197,7 +242,7 @@ function buildRisks(
   sessionId: string,
 ): RiskPoint[] {
   const decision = record(reportPackage.decisionView);
-  const nodes = records(decision.nodes);
+  const nodes = records(decision.nodes).filter((node) => !isPipelineStageNode(node));
   const regulations = records(result.retrievedChunks).map(regulationFromChunk);
 
   return nodes.map((node, index) => {

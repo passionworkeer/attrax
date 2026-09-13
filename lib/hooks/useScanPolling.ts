@@ -58,6 +58,25 @@ const STAGE_MILESTONES: Record<string, [number, number]> = {
 };
 const SIMULATED_CEILING = 92;
 
+/**
+ * Per-stage asymptotic time constant (ms). The simulator advances
+ * displayProgress toward the stage ceiling using
+ * `target = floor + (ceiling - floor - 1) × (1 - exp(-elapsed / tau))`
+ * so the user always sees real motion inside the active stage even when
+ * the backend only emits 10 → 100 (audit 2026-09-13 §4.1). Larger tau
+ * means slower growth — vision/generate are typically the longest stages
+ * and need a longer tau to avoid jumping ahead too fast.
+ */
+const STAGE_TAU_MS: Record<string, number> = {
+  queued: 2_500,
+  vision: 4_500,
+  retrieval: 6_000,
+  report: 12_000,
+  done: 1_500,
+};
+const STAGE_TAU_FALLBACK = 4_000;
+const HARD_DISPLAY_CAP = 99; // never round up to 100 until backend confirms ready + 100
+
 export function useScanPolling(
   sessionId: string,
   accessToken?: string | null,
@@ -66,6 +85,7 @@ export function useScanPolling(
   const [displayProgress, setDisplayProgress] = useState(0);
   const targetProgressRef = useRef(0);
   const stageKeyRef = useRef<string>("queued");
+  const stageEnteredAtRef = useRef<number>(0);
   const lastTickAtRef = useRef<number>(0);
   const isTerminalRef = useRef<boolean>(false);
 
@@ -86,25 +106,14 @@ export function useScanPolling(
         // We do NOT cross stage ceilings without backend confirmation —
         // a stage claim "report" stays inside [72, 92] until the poll returns
         // a later stage.
-        const milestone = STAGE_MILESTONES[stageKeyRef.current] ??
-          STAGE_MILESTONES.queued;
+        const stageKey = stageKeyRef.current;
+        const milestone = STAGE_MILESTONES[stageKey] ?? STAGE_MILESTONES.queued;
         const [floor, ceiling] = milestone;
         const stageTarget = Math.min(ceiling, SIMULATED_CEILING);
 
-        // Pseudo-random jitter so two concurrent scans don't look in lockstep,
-        // and so a stuck session still shows motion rather than freezing.
         const lastTick = lastTickAtRef.current || now;
         const dt = Math.max(0, now - lastTick);
         lastTickAtRef.current = now;
-
-        // Speed in percent-per-millisecond. The base speed is calibrated so a
-        // stage covering ~25 progress points takes ~6-9 seconds, which is
-        // long enough to feel like work without dragging.
-        const baseSpeed = 0.0035; // ~ 3.5 percent per second
-        const jitter = isTerminalRef.current
-          ? 0
-          : (Math.sin(now * 0.0011) + Math.cos(now * 0.0007)) * 0.0008;
-        const advance = (baseSpeed + jitter) * dt;
 
         if (isTerminalRef.current) {
           // Backend says ready/degraded but progress hasn't jumped yet — hold.
@@ -115,9 +124,23 @@ export function useScanPolling(
           // Already at the stage ceiling, wait for the next poll to unlock.
           return prev;
         }
-        const next = Math.min(stageTarget, Math.max(floor, prev + advance));
-        // Never let the simulator race ahead of the latest real progress.
-        return Math.min(next, Math.max(realTarget, floor));
+
+        // Stage-asymptotic interpolation: displayProgress approaches the
+        // stage ceiling with time constant `tau`, starting from `floor`.
+        // This replaces the old broken `Math.max(realTarget, floor)` floor
+        // that pinned progress to 10 forever (audit 2026-09-13 P0 §4.1).
+        const tau = STAGE_TAU_MS[stageKey] ?? STAGE_TAU_FALLBACK;
+        const stageEnteredAt = stageEnteredAtRef.current || now;
+        const elapsed = Math.max(0, now - stageEnteredAt);
+        const ceilingMargin = Math.max(0, ceiling - floor - 1);
+        const eased = ceilingMargin * (1 - Math.exp(-elapsed / tau));
+        const stageProgress = Math.min(stageTarget, floor + eased);
+
+        // The simulator's value is authoritative within the active stage.
+        // The real backend `progress` is a one-shot ramp (only 10 → 100) so
+        // we never let it pin the UI backwards to 10 — but we still respect
+        // monotonicity (displayProgress never decreases).
+        return Math.max(prev, stageProgress);
       });
       rafId = requestAnimationFrame(tick);
     };
@@ -181,8 +204,14 @@ export function useScanPolling(
         }
 
         targetProgressRef.current = data.progress ?? 0;
-        if (data.stageKey) {
+        const previousStage = stageKeyRef.current;
+        if (data.stageKey && data.stageKey !== previousStage) {
           stageKeyRef.current = data.stageKey;
+          // Reset the per-stage clock so the asymptotic interpolation restarts
+          // from the new stage's floor on the very next animation frame. This
+          // is what the 2026-09-13 plan §4.1 calls out: each stage should
+          // visibly ramp inside its own [floor, ceiling] range.
+          stageEnteredAtRef.current = Date.now();
         }
         isTerminalRef.current = data.status !== "processing";
         if (!cancelled) {
@@ -212,5 +241,15 @@ export function useScanPolling(
     };
   }, [sessionId, accessToken]);
 
-  return { status, displayProgress: Math.round(displayProgress) };
+  return {
+    status,
+    /**
+     * The simulator's progress rounded for display. Capped at 99 — never
+     * round up to 100% before the backend reports a terminal `ready` /
+     * `degraded` with `progress >= 100`. The burning page waits for the
+     * backend confirmation before jumping to the result route (audit
+     * 2026-09-13 §4.3).
+     */
+    displayProgress: Math.min(HARD_DISPLAY_CAP, Math.round(displayProgress)),
+  };
 }

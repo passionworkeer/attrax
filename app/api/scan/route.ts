@@ -24,7 +24,28 @@ export const dynamic = "force-dynamic";
 
 const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
 const DEFAULT_MARKETS = ["EU", "US"] as const;
-const ALLOWED_MARKETS = new Set(["EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"]);
+// 2026-09-13 audit P0-5: keep this list in lockstep with the upload page
+// (lib/types.ts MARKET_IDS) and the backend allow-list (rag_service/config.py
+// ALLOWED_MARKETS). Anything the upload page lets users pick must round-trip
+// through the BFF — otherwise the backend silently filters it back to EU/US.
+const ALLOWED_MARKETS = new Set([
+  "EU",
+  "US",
+  "UK",
+  "CN",
+  "AU",
+  "SA",
+  "AE",
+  "JP",
+  "KR",
+  "CA",
+  "SG",
+  "MX",
+  "BR",
+  "DE",
+  "FR",
+  "IT",
+]);
 const ALLOWED_CATEGORIES = new Set([
   "electronics",
   "appliance",

@@ -30,6 +30,7 @@ falling back to generation success:
 from __future__ import annotations
 
 import logging
+from typing import Callable, Optional
 
 from rag_service.pipeline.state import GraphState, initial_state
 from rag_service.pipeline.nodes.vision import vision_analysis_node
@@ -37,6 +38,21 @@ from rag_service.pipeline.nodes.generator import generator_node
 from rag_service.pipeline.nodes.verifier import verifier_node
 
 logger = logging.getLogger(__name__)
+
+
+# Stage progress milestones (audit 2026-09-13 §4.1). The plan calls for an
+# explicit [floor, ceiling] per stage so the burning page can drive a smooth
+# async animation between polls. These defaults are used when the runner is
+# called directly (tests, scripts). When called from ScanService, the
+# application layer injects a `progress_callback` that maps the same stage
+# key to its session.update() side-effect.
+STAGE_PROGRESS: dict[str, tuple[int, int]] = {
+    "vision":   (12, 30),
+    "applicability": (30, 36),
+    "generate": (36, 83),
+    "verify":   (83, 93),
+    "persist":  (93, 98),
+}
 
 
 def _merge(state: GraphState, update: dict) -> GraphState:
@@ -54,6 +70,26 @@ def _merge(state: GraphState, update: dict) -> GraphState:
         else:
             next_state[key] = value
     return next_state
+
+
+def _emit(
+    callback: Optional[Callable[[str, str, int], None]],
+    stage_key: str,
+    stage_state: str,
+    progress: int,
+) -> None:
+    """Fire a progress event to the application layer if a callback exists.
+
+    The callback is invoked from the executor thread; the application layer
+    is responsible for thread safety (FileBackend.save_session holds an
+    RLock, so the default backend is fine).
+    """
+    if callback is None:
+        return
+    try:
+        callback(stage_key, stage_state, progress)
+    except Exception as exc:  # pragma: no cover - safety net only
+        logger.debug("progress_callback for %s failed: %s", stage_key, exc)
 
 
 def _final_status(state: GraphState) -> str:
@@ -86,6 +122,7 @@ def run_compliance_graph(
     vision_result: dict = None,
     images: list[dict] = None,
     documents: list[dict] = None,
+    progress_callback: Optional[Callable[[str, str, int], None]] = None,
 ) -> dict:
     """Run the collapsed three-step pipeline.
 
@@ -97,6 +134,11 @@ def run_compliance_graph(
         vision_result: pre-computed vision analysis result (API path)
         images: list of {"buffer": bytes, "mime_type": str}
         documents: user-uploaded docs [{"name", "mime_type", "text"}]
+        progress_callback: optional `(stage_key, stage_state, progress) -> None`
+            invoked at every stage boundary. Used by ScanService to drive the
+            burning page's progress bar (audit 2026-09-13 §4.1 — the prior
+            version only emitted 10/100). The callback runs on the executor
+            thread; the caller is responsible for thread safety.
 
     Returns:
         dict with final_report, status, agent_trace, retrieved_chunks,
@@ -122,9 +164,22 @@ def run_compliance_graph(
         documents=documents,
     )
 
+    _emit(progress_callback, "vision", "running", STAGE_PROGRESS["vision"][0])
     state = _merge(state, vision_analysis_node(state))
+    _emit(progress_callback, "vision", "done", STAGE_PROGRESS["vision"][1])
+
+    _emit(progress_callback, "applicability", "running", STAGE_PROGRESS["applicability"][0])
+    _emit(progress_callback, "applicability", "done", STAGE_PROGRESS["applicability"][1])
+
+    _emit(progress_callback, "generate", "running", STAGE_PROGRESS["generate"][0])
     state = _merge(state, generator_node(state))
+    _emit(progress_callback, "generate", "done", STAGE_PROGRESS["generate"][1])
+
+    _emit(progress_callback, "verify", "running", STAGE_PROGRESS["verify"][0])
     state = _merge(state, verifier_node(state))
+    _emit(progress_callback, "verify", "done", STAGE_PROGRESS["verify"][1])
+
+    _emit(progress_callback, "persist", "running", STAGE_PROGRESS["persist"][0])
 
     final_report = state.get("generation", "") or state.get("final_report", "")
 

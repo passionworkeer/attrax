@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
@@ -31,6 +32,7 @@ import { synthesizeFinancialSummaryIfMissing } from "@/lib/pipeline/profit-repor
 import {
   buildDemoPresetResult,
   buildRoadmapRows,
+  computeEvidenceCoverage,
   financialSummaryOrFallback,
   scanResultToComplianceView,
   scanResultToRealComplianceView,
@@ -113,6 +115,12 @@ export default function ResultPage() {
   // Same synthesis path as /profit/[sessionId]: real backend RAG responses
   // carry profit data only in reportPackage.profitReport.markdown.
   const financialSummary = financialSummaryOrFallback(result, locale, synthesizeFinancialSummaryIfMissing);
+  const evidenceCoverage = computeEvidenceCoverage(result);
+  const coverageLabel =
+    evidenceCoverage.totalFindings === 0
+      ? locale === "zh" ? "—" : "—"
+      : `${Math.round(evidenceCoverage.ratio * 100)}%`;
+  const coverageWidth = `${Math.round(evidenceCoverage.ratio * 100)}%`;
   const complianceView = isDemoSession
     ? scanResultToComplianceView(result, locale)
     : scanResultToRealComplianceView(result);
@@ -122,17 +130,36 @@ export default function ResultPage() {
     critical ??
     result.riskPoints[0];
   const activeRisk = localizeRiskPoint(locale, activeRiskRaw);
+  const [accessToken] = useState<string | null>(null);
+  // Image switcher state — null means "show whatever the active risk /
+  // canonical image is". Multi-image uploads now get a thumbnail row
+  // (audit 2026-09-13 P1-1) so users can pick which photo to inspect,
+  // and the hotspot / cost-tag filters above will only render findings
+  // matching the chosen imageId.
+  const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
   const resultImages = result.images;
-  const anchorId = activeRiskRaw?.imageId ?? resultImages[0]?.imageId;
+  const explicitImage = selectedImageId
+    ? resultImages.find((item) => item.imageId === selectedImageId) ?? null
+    : null;
+  const anchorId = selectedImageId ?? activeRiskRaw?.imageId ?? resultImages[0]?.imageId;
   const riskImage =
+    explicitImage ??
     resultImages.find((item) => item.imageId === anchorId) ?? resultImages[0] ?? null;
   const riskCanvasImage = riskImage;
   // Feature 1 (2.5D hotspots): risks whose vision-anchored bbox actually
   // points somewhere render as tilted highlight frames via <HotspotLayer>;
   // the rest keep the legacy circular pins (fallback for scans without
   // vision data — including legacy/demo payloads).
+  //
+  // Audit 2026-09-13 P1-1: hotspots now also filter by `imageId`. Risks
+  // emitted for image #2 used to draw their bbox on image #1 just because
+  // the page defaulted to the first image. We render only the hotspots
+  // that match the displayed image's id (or that have no imageId at all,
+  // which is the legacy demo / fallback shape).
+  const displayedImageId = riskImage?.imageId ?? null;
   const locatedHotspots = result.riskPoints
     .filter((risk) => isRenderableBbox(risk.bbox))
+    .filter((risk) => !risk.imageId || !displayedImageId || risk.imageId === displayedImageId)
     .map((risk) => ({
       id: risk.riskId,
       label: localizeRiskPoint(locale, risk).title,
@@ -142,6 +169,13 @@ export default function ResultPage() {
     }));
   const unlocatedRisks = result.riskPoints.filter(
     (risk) => !isRenderableBbox(risk.bbox),
+  );
+  // Pin display: same imageId rule applies. Risks without imageId (legacy
+  // shape) keep the previous top-edge spread behavior for backwards
+  // compatibility — only risks that target a different image get filtered
+  // out of the pin strip.
+  const pinnedRisks = unlocatedRisks.filter(
+    (risk) => !risk.imageId || !displayedImageId || risk.imageId === displayedImageId,
   );
   const displayProductName = locale === "en" ? result.productNameEn ?? result.productName : result.productName;
   const displayProductCategory = productCategoryLabel(locale, result.productCategory);
@@ -325,17 +359,71 @@ export default function ResultPage() {
             </div>
             <div className="rounded-[22px] border border-white/10 bg-white/[0.055] p-4">
               <div className="flex items-center justify-between gap-3 text-xs text-white/48">
-                <span>{locale === "zh" ? "风险证据完整度" : "Evidence coverage"}</span>
-                <span>85%</span>
+                <span>
+                  {locale === "zh"
+                    ? `风险证据完整度（${evidenceCoverage.coveredFindings}/${evidenceCoverage.totalFindings}）`
+                    : `Evidence coverage (${evidenceCoverage.coveredFindings}/${evidenceCoverage.totalFindings})`}
+                </span>
+                <span>{coverageLabel}</span>
               </div>
               <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-white/[0.08]">
-                <div className="h-full rounded-full bg-[linear-gradient(90deg,#76eadf,#54bde0)] shadow-[0_0_12px_rgba(93,224,220,0.35)]" style={{ width: "85%" }} />
+                <div
+                  className="h-full rounded-full bg-[linear-gradient(90deg,#76eadf,#54bde0)] shadow-[0_0_12px_rgba(93,224,220,0.35)]"
+                  style={{ width: coverageWidth }}
+                />
               </div>
+              <p className="mt-2 text-[11px] text-white/40">
+                {evidenceCoverage.totalCitations > 0
+                  ? locale === "zh"
+                    ? `${evidenceCoverage.matchedCitations}/${evidenceCoverage.totalCitations} 条引用已对照原文`
+                    : `${evidenceCoverage.matchedCitations}/${evidenceCoverage.totalCitations} citations matched against the source text`
+                  : locale === "zh"
+                    ? "本次扫描未提供结构化引用"
+                    : "No structured citations in this scan"}
+              </p>
             </div>
           </div>
 
           <div className="mt-6 grid items-start gap-5 xl:grid-cols-[minmax(0,1.35fr)_400px]">
             <div className="mt-5 overflow-hidden rounded-[28px] border border-white/10 bg-[linear-gradient(135deg,rgba(117,222,230,0.12),rgba(74,135,198,0.12))] p-3 sm:p-4">
+              {resultImages.length > 1 ? (
+                <div className="mb-3 flex flex-wrap items-center gap-2 px-1">
+                  <span className="text-[11px] uppercase tracking-[0.18em] text-white/44">
+                    {locale === "zh" ? "查看图片" : "Inspect image"}
+                  </span>
+                  {resultImages.map((image, index) => {
+                    const isActive = image.imageId === (riskImage?.imageId ?? null);
+                    const findingsHere = result.riskPoints.filter(
+                      (risk) => risk.imageId === image.imageId,
+                    ).length;
+                    return (
+                      <button
+                        key={image.imageId}
+                        type="button"
+                        onClick={() => setSelectedImageId(image.imageId)}
+                        aria-pressed={isActive}
+                        aria-label={`${image.fileName ?? `Image ${index + 1}`} — ${findingsHere} findings`}
+                        className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition ${
+                          isActive
+                            ? "border-[rgba(102,224,226,0.65)] bg-[rgba(207,247,249,0.92)] text-[#155b70]"
+                            : "border-white/10 bg-white/[0.045] text-white/72 hover:border-white/30 hover:bg-white/[0.085]"
+                        }`}
+                      >
+                        <span
+                          className="inline-block size-6 shrink-0 rounded-md bg-cover bg-center"
+                          style={{ backgroundImage: `url(${image.thumbnail ?? image.url})` }}
+                          aria-hidden
+                        />
+                        <span className="font-mono">#{index + 1}</span>
+                        <span className="text-[10px] opacity-70">
+                          {findingsHere}
+                          {locale === "zh" ? " 项" : ""}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
               <div
                 data-flow-dark
                 className="relative aspect-[4/3] overflow-hidden rounded-[24px] border border-white/10 bg-[#10243d]"
@@ -353,24 +441,37 @@ export default function ResultPage() {
                   />
                 ) : null}
 
-                {result.riskPoints.filter((risk) => risk.estimatedFixCost).slice(0, 3).map((riskRaw, tagIndex) => {
-                  const tagPositions = [
-                    { left: "10%", top: "12%" },
-                    { left: "62%", top: "14%" },
-                    { left: "56%", top: "75%" },
-                  ];
-                  const pos = tagPositions[tagIndex % tagPositions.length];
-                  return (
-                    <div
-                      key={`cost-tag-${riskRaw.riskId}`}
-                      className="absolute hidden items-center gap-1.5 rounded-full border border-[rgba(102,224,226,0.46)] bg-[rgba(238,252,255,0.9)] px-2.5 py-1.5 font-mono text-[11px] font-semibold text-[#155b70] shadow-[0_10px_30px_rgba(5,48,70,0.14)] backdrop-blur-md sm:flex"
-                      style={{ left: pos.left, top: pos.top }}
-                    >
-                      <CircleDollarSign className="size-3.5" />
-                      {riskRaw.estimatedFixCost}
-                    </div>
-                  );
-                })}
+                {/* Cost labels are pinned to the bbox of the matching risk
+                    (audit 2026-09-13 P1-4). The legacy version dropped
+                    these tags at three fixed canvas positions regardless
+                    of where the risk actually was on the photo, which
+                    made the chips look like real "findings" on the image.
+                    Now: tag sits just above the bbox (or just below if
+                    there's no room near the top), and is hidden when the
+                    risk has no renderable bbox — those risks surface via
+                    the unlocated pin strip / card list instead. */}
+                {result.riskPoints
+                  .filter((risk) => risk.estimatedFixCost && isRenderableBbox(risk.bbox))
+                  .filter((risk) => !risk.imageId || !displayedImageId || risk.imageId === displayedImageId)
+                  .slice(0, 3)
+                  .map((riskRaw) => {
+                    const bbox = riskRaw.bbox!;
+                    const above = bbox.y > 0.12;
+                    const left = `${Math.min(85, Math.max(0, bbox.x * 100))}%`;
+                    const top = above
+                      ? `calc(${bbox.y * 100}% - 24px)`
+                      : `calc(${(bbox.y + bbox.h) * 100}% + 6px)`;
+                    return (
+                      <div
+                        key={`cost-tag-${riskRaw.riskId}`}
+                        className="absolute hidden items-center gap-1.5 rounded-full border border-[rgba(102,224,226,0.46)] bg-[rgba(238,252,255,0.9)] px-2.5 py-1.5 font-mono text-[11px] font-semibold text-[#155b70] shadow-[0_10px_30px_rgba(5,48,70,0.14)] backdrop-blur-md sm:flex"
+                        style={{ left, top }}
+                      >
+                        <CircleDollarSign className="size-3.5" />
+                        {riskRaw.estimatedFixCost}
+                      </div>
+                    );
+                  })}
 
                 {/* Feature 1: vision-anchored risks render as tilted 2.5D
                     highlight frames; clicking a severity chip jumps to the
@@ -391,7 +492,7 @@ export default function ResultPage() {
                   viewDetailLabel={locale === "zh" ? "查看风险详情" : "View risk detail"}
                 />
 
-                {unlocatedRisks.map((riskRaw, riskIndex) => {
+                {pinnedRisks.map((riskRaw, riskIndex) => {
                   const risk = localizeRiskPoint(locale, riskRaw);
                   const selected = riskRaw.riskId === activeRiskRaw?.riskId;
                   // Spread unlocated pins across the top edge instead of

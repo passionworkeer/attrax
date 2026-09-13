@@ -132,4 +132,66 @@ describe("normalizeV1ScanResult - Edge Cases & Resilient Fallbacks", () => {
     expect(adapted).toBeDefined();
     expect(adapted?.source).toBe("fallback");
   });
+
+  // Audit 2026-09-13 P0-2: pipeline-stage decision nodes (audit /
+  // consistency check / cite verification) must NOT be promoted into
+  // risk points. The audit reference session
+  // scan_11cd3b56a7244d348e5688c5db1e6838 had 6 decisionView nodes
+  // including "一致性校验" being rendered as the verdict headline.
+  describe("pipeline-stage node filtering", () => {
+    it("drops audit/consistency/citation-check decision nodes", () => {
+      const raw: V1SessionData = {
+        sessionId: "sess-pipeline-nodes",
+        status: "completed",
+        result: {
+          reportPackage: {
+            decisionView: {
+              verdict: "WARN",
+              riskLevel: "HIGH",
+              nodes: [
+                { id: "audit:trace:1", type: "audit", label: "Audit trail", severity: "info" },
+                { id: "consistency-1", type: "consistency", label: "一致性校验", severity: "info" },
+                { id: "cite-1", type: "cite_check", label: "引用核对", severity: "info" },
+                { id: "process-1", type: "process", label: "流程节点", severity: "info" },
+                // The actual finding should survive filtering
+                {
+                  id: "vision-issue-1",
+                  type: "vision",
+                  label: "铭牌无 CCC 标志",
+                  severity: "high",
+                  confidence: 0.9,
+                  bbox: { x: 0.2, y: 0.2, w: 0.4, h: 0.1 },
+                },
+              ],
+            },
+          },
+        },
+      };
+      const adapted = normalizeV1ScanResult(raw);
+      expect(adapted?.riskPoints).toHaveLength(1);
+      expect(adapted?.riskPoints[0].riskId).toBe("vision-issue-1");
+      expect(adapted?.riskPoints[0].title).toBe("铭牌无 CCC 标志");
+    });
+
+    it("filters by Chinese labels too (一致性校验 / 引用核对 / 流程节点)", () => {
+      const raw: V1SessionData = {
+        sessionId: "sess-cn-labels",
+        status: "completed",
+        result: {
+          reportPackage: {
+            decisionView: {
+              verdict: "WARN",
+              nodes: [
+                { id: "x1", type: "synthesis", label: "一致性校验通过", severity: "info" },
+                { id: "x2", type: "verification", label: "引用校验", severity: "info" },
+                { id: "x3", type: "trace", label: "流程节点总结", severity: "info" },
+              ],
+            },
+          },
+        },
+      };
+      const adapted = normalizeV1ScanResult(raw);
+      expect(adapted?.riskPoints).toHaveLength(0);
+    });
+  });
 });

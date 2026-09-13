@@ -141,17 +141,57 @@ export default function BurningPage() {
     preset,
   });
 
+  // Hold the burning page at 100% for a short, bounded window before
+  // redirecting to the result route. The 2026-09-13 plan §4.3 calls out
+  // the exact bug we used to ship: ready came back, the user saw the
+  // progress bar shoot from 58 → ready → /result with no 100% moment.
+  // 0.6 s is enough for the visual to register without dragging the
+  // perceived wait back out for long-running scans.
+  const HUNDRED_PERCENT_HOLD_MS = 600;
+  const [holdReadyAt, setHoldReadyAt] = useState<number | null>(null);
+  const realProgressComplete =
+    !isDemoSession &&
+    status &&
+    isDisplayableTerminalStatus(status.status) &&
+    status.result &&
+    (status.progress ?? 0) >= 100;
+  const displayShowsComplete =
+    !isDemoSession && progress >= 100;
+
+  useEffect(() => {
+    if (!realProgressComplete) {
+      setHoldReadyAt(null);
+      return;
+    }
+    setHoldReadyAt(Date.now());
+  }, [realProgressComplete]);
+
   useEffect(() => {
     if (
       !isDemoSession &&
       status &&
       isDisplayableTerminalStatus(status.status) &&
-      status.result
+      status.result &&
+      holdReadyAt !== null &&
+      displayShowsComplete
     ) {
-      sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
-      router.push(`/result/${sessionId}`);
+      const elapsed = Date.now() - holdReadyAt;
+      const remaining = HUNDRED_PERCENT_HOLD_MS - elapsed;
+      const timer = window.setTimeout(() => {
+        sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
+        router.push(`/result/${sessionId}`);
+      }, Math.max(0, remaining));
+      return () => window.clearTimeout(timer);
     }
-  }, [isDemoSession, router, sessionId, status]);
+    return undefined;
+  }, [
+    displayShowsComplete,
+    holdReadyAt,
+    isDemoSession,
+    router,
+    sessionId,
+    status,
+  ]);
   useEffect(() => {
     if (!isDemoSession) {
       return;

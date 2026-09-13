@@ -336,7 +336,7 @@ class ScanService:
         )
         lease_task = asyncio.create_task(self._lease_heartbeat(job.job_id, job.session_id))
         try:
-            raw = await self.runner(self._build_runner_payload(job))
+            raw = await self.runner(self._build_runner_payload(job, progress_callback=self._make_progress_callback(job)))
             result, status, degraded_reason = self._normalize_result(job, raw)
             # A transport-successful LLM call can still omit a required scene
             # or return a malformed package. Treat that as a retryable provider
@@ -524,7 +524,12 @@ class ScanService:
             for index in range(total)
         ]
 
-    def _build_runner_payload(self, job: ScanJob) -> dict[str, Any]:
+    def _build_runner_payload(
+        self,
+        job: ScanJob,
+        *,
+        progress_callback=None,
+    ) -> dict[str, Any]:
         images: list[dict[str, Any]] = []
         pdfs: list[dict[str, Any]] = []
         documents: list[dict[str, Any]] = []
@@ -564,7 +569,7 @@ class ScanService:
                         content.decode("utf-8", errors="replace"),
                     )
                 )
-        return {
+        payload: dict[str, Any] = {
             "query": job.query,
             "product": job.product,
             "category": job.category,
@@ -573,6 +578,46 @@ class ScanService:
             "pdfs": pdfs,
             "documents": documents,
         }
+        # Only inject the callback when the caller supplied one — keeps the
+        # dict small for callers that don't care (tests, public direct calls).
+        if progress_callback is not None:
+            payload["progressCallback"] = progress_callback
+        return payload
+
+    def _make_progress_callback(self, job: ScanJob):
+        """Return a thread-safe progress emitter used by run_compliance_graph.
+
+        The runner fires `(stage_key, stage_state, progress)` from inside an
+        executor thread. We persist those into the session so the burning
+        page can poll real progress instead of the old 10 → 100 jump (audit
+        2026-09-13 §4.1). FileBackend.save_session holds an RLock, so it's
+        safe to call concurrently with the lease heartbeat.
+        """
+
+        def emit(stage_key: str, stage_state: str, progress: int) -> None:
+            try:
+                current = self.backend.get_session(job.session_id)
+            except Exception:
+                return
+            if current is None or current.status != "processing":
+                return
+            stage_label = (
+                f"{stage_key}:{stage_state}" if stage_state else stage_key
+            )
+            try:
+                self.backend.save_session(
+                    current.transition(
+                        ttl_hours=self.session_ttl_hours,
+                        stage_text=stage_label,
+                        progress=max(current.progress, int(progress)),
+                    )
+                )
+            except Exception:
+                # Progress is best-effort. A failed write must never abort
+                # the pipeline; the next lease heartbeat will re-emit state.
+                return
+
+        return emit
 
     @staticmethod
     def _normalize_result(
