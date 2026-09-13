@@ -577,6 +577,10 @@ class ScanService:
             "images": images,
             "pdfs": pdfs,
             "documents": documents,
+            # Scan identity: flows into observation ids so hotspots carry the
+            # session + image identity (plan §6: ids must not repeat across
+            # scans/images).
+            "session_id": job.session_id,
         }
         # Only inject the callback when the caller supplied one — keeps the
         # dict small for callers that don't care (tests, public direct calls).

@@ -1,0 +1,78 @@
+# 3C 数码类(耳机/音箱/平板/相机等,含充电盒)。优先子类型:耳机+充电盒。
+# Plan §5 3c 行:设备与充电盒分别识别;各自铭牌、端口、标签、可见电池说明、
+# 无线声明。单凭图片不能得出:充电盒是否含无线发射模块、隐藏电芯参数。
+profile_id: 3c
+version: 1
+title: 3C 数码视觉检查
+extends: common
+checks:
+  - id: "3c.device.identity"
+    version: 1
+    title: 主设备识别与铭牌
+    target_regions: [device_body, device_label]
+    required_views: [front, back]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: "3c.case.identity"
+    version: 1
+    title: 充电盒/收纳盒识别与铭牌
+    target_regions: [charging_case, case_label]
+    required_views: [case_bottom, case_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: "3c.ports.visible"
+    version: 1
+    title: 端口形态(USB-C/Lightning/裸针)
+    target_regions: [ports]
+    required_views: [ports_closeup]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: "3c.battery.marking"
+    version: 1
+    title: 可见电池说明(V/Ah/Wh 文字)
+    target_regions: [battery_marking]
+    required_views: [case_bottom, battery_compartment]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - KB-battery-EU-2023-1542
+      - UN-38-3
+
+  - id: "3c.wireless.declaration"
+    version: 1
+    title: 无线声明文字(蓝牙/WiFi/2.4G)
+    target_regions: [packaging, device_label]
+    required_views: [package, back]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+    # 注意:名称含"无线"不构成硬件事实 —— 是否真含发射模块需拆机或规格书,
+    # 适用性标记 needs_confirmation,不是 confirmed。
+
+  - id: "3c.radio.module.confirmation"
+    version: 1
+    title: 无线发射模块存在性确认(需资料)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: document
+    legal_anchor_refs:
+      - KB-3c-EU-RED-2014-53
+      - UK-UKCA-Radio-wireless
+
+  - id: "3c.battery.spec_sheet"
+    version: 1
+    title: 电芯规格书(容量/化学体系)
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: document
+    legal_anchor_refs:
+      - UN-38-3
+      - KB-battery-EU-2023-1542

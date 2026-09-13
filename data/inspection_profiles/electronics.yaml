@@ -1,0 +1,79 @@
+# 电子电器类(充电器/适配器/小家电控制部分)。优先子类型:充电器。
+# Plan §5 electronics 行:铭牌、电压/电流/功率文字、接口/插脚、线缆与接头、
+# 外壳可见裂损、可见标志区域。单凭图片不能得出:电气安全、EMC、绝缘耐压、
+# 化学含量 —— 这些走 evidence_mode: lab_test / document。
+profile_id: electronics
+version: 1
+title: 电子电器视觉检查
+extends: common
+checks:
+  - id: electronics.nameplate.electrical_ratings
+    version: 1
+    title: 铭牌电气参数(电压/电流/功率/频率)
+    target_regions: [nameplate]
+    required_views: [nameplate_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - KB-electronics-CN-CN-CCC
+      - KB-electronics-EU-LVD-2014-35
+
+  - id: electronics.interface.plug_pins
+    version: 1
+    title: 接口与插脚形态
+    target_regions: [ports, plug_pins]
+    required_views: [ports_closeup, plug_closeup]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: electronics.cable.connector_condition
+    version: 1
+    title: 线缆与接头可见状态
+    target_regions: [cable, connector]
+    required_views: [cable_closeup]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: electronics.marks.certification_region
+    version: 1
+    title: 可见认证标志(仅记录清晰可见者,不做真伪判断)
+    target_regions: [cert_marking_area]
+    required_views: [nameplate_closeup, back]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - KB-electronics-CN-CN-CCC
+      - KB-electronics-EU-CE-General
+
+  - id: electronics.adapter.external_power
+    version: 1
+    title: 外置适配器(如拍摄)
+    target_regions: [external_adapter]
+    required_views: [adapter_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  # 以下为非视觉项:记录为"待补资料",不画框
+  - id: electronics.safety.electrical_test
+    version: 1
+    title: 电气安全测试报告
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - KB-electronics-EU-LVD-2014-35
+      - US-UL-ETL-mains
+
+  - id: electronics.emc.test_report
+    version: 1
+    title: EMC 测试报告
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - KB-electronics-EU-EMC-2014-30

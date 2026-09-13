@@ -1,0 +1,17 @@
+# 其他品类 — 先应用通用检查,确认用途/人群/供电/接触类型后转具体 profile。
+# Plan §5 other 行:不推断所有法规均适用或判定通过。
+profile_id: other
+version: 1
+title: 其他品类视觉检查(通用层)
+extends: common
+checks:
+  - id: other.purpose_classification.confirmation
+    version: 1
+    title: 用途/人群/供电/接触类型确认
+    target_regions: [product_body, product_label]
+    required_views: [overview, label]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+    # 该检查输出 needs_confirmation + questions_needed,由用户补拍/补充资料后
+    # 路由到具体 profile;在此之前只出通用观察,不出品类判断。

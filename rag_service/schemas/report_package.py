@@ -259,6 +259,15 @@ class ReportPackage(FlexibleModel):
     # LLM cited the same article multiple times, only one copy appears
     # here. Empty until the quote_matcher dedup pass (§7.4).
     evidencePack: list[CitationRef] = Field(default_factory=list)
+    # Plan 2026-09-13 §6 — visual inspection v2 objects. Optional so v1
+    # packages (legacy sessions) validate unchanged; new scans populate
+    # both from the checklist-mode vision node + the findings builder.
+    observations: list[dict[str, Any]] = Field(default_factory=list)
+    findings: list[dict[str, Any]] = Field(default_factory=list)
+    # Checklist coverage: which inspection checks were selected for this
+    # scan (id list). The result page renders not_assessed items as
+    # "待补拍/待补资料" instead of pretending they were checked.
+    selectedCheckIds: list[str] = Field(default_factory=list)
 
     @field_validator("complianceReport")
     @classmethod

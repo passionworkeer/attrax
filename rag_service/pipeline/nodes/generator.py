@@ -479,6 +479,47 @@ def generator_node(state: GraphState) -> dict:
         if vision_issues:
             report_package = _inject_vision_hotspots(report_package, vision_issues)
 
+        # Plan 2026-09-13 §6: persist the checklist observations (v2 visual
+        # inspection) alongside the legacy hotspots. Observations carry the
+        # grounding contract — visibility, optional normalized bbox, per-
+        # check ids — and the result page renders them as the "检查清单 +
+        # 待补拍" layer. Coordinate validation happens here (verify/grounding),
+        # before the package is persisted.
+        observations = (state.get("vision_result") or {}).get("observations") or []
+        if observations:
+            from rag_service.verify.grounding import (
+                annotate_verification,
+                verify_observations,
+            )
+
+            image_count = len(state.get("images") or [])
+            known_image_ids = {f"vision-image-{index}" for index in range(image_count)}
+            grounding_report = verify_observations(
+                observations, known_image_ids=known_image_ids
+            )
+            report_package["observations"] = annotate_verification(
+                observations, grounding_report
+            )
+            if grounding_report.rejected:
+                # Rejections are audit facts, not user-facing failures; the
+                # trace carries the rate for observability (plan §10.4).
+                trace_entry["grounding_rejected"] = len(grounding_report.rejected)
+                trace_entry["grounding_rejection_rate"] = round(
+                    grounding_report.rejection_rate, 4
+                )
+            if grounding_report.deduplicated:
+                trace_entry["grounding_deduplicated"] = len(grounding_report.deduplicated)
+
+        # The selected check ids travel with the package so the result page
+        # can list not_assessed items as 待补拍 instead of pretending they
+        # were checked (plan §5.1 full-set validation).
+        try:
+            from rag_service.pipeline.nodes.visual_checks import visual_check_ids
+
+            report_package["selectedCheckIds"] = visual_check_ids(category)
+        except Exception:
+            report_package.setdefault("selectedCheckIds", [])
+
     result = {
         "generation": generation,
         "agent_trace": [trace_entry],  # only new entry for reducer (audit 2026-06-29)

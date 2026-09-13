@@ -3,6 +3,7 @@ import {
   MARKET_IDS,
   type ChecklistItem,
   type DocumentType,
+  type InspectionObservation,
   type Market,
   type ProductCategory,
   type RegulationRef,
@@ -433,6 +434,65 @@ function truncateReport(report: string): { value: string; truncated: boolean } {
     checklist: buildChecklist(reportPackage),
     generatedAt,
     reportPackage: result.reportPackage as ReportPackage | undefined,
+    // Plan 2026-09-13 §6: checklist-mode scans carry v2 observations.
+    // Remap imageId the same way riskPoints does (vision-image-N →
+    // {sessionId}-image-N) so the checklist panel's image links match
+    // the page's image asset ids.
+    inspectionObservations: records(
+      (reportPackage as UnknownRecord).observations,
+    ).map((observation) => {
+      const rawImageId = text(observation.imageId);
+      const visionMatch = /^vision-image-(\d+)$/.exec(rawImageId);
+      const mapped = visionMatch
+        ? `${session.sessionId}-image-${visionMatch[1]}`
+        : rawImageId || text(observation.imageIndex, "0");
+      const imageId = /^vision-image-(\d+)$/.test(mapped)
+        ? `${session.sessionId}-image-${mapped.replace(/^vision-image-/, "")}`
+        : mapped;
+      return {
+        observationId: text(observation.observationId, `obs-${Math.random().toString(36).slice(2, 8)}`),
+        checkId: text(observation.checkId),
+        imageId,
+        visibility: ((): InspectionObservation["visibility"] => {
+          const value = text(observation.visibility);
+          const allowed = [
+            "present_readable",
+            "present_unreadable",
+            "not_in_view",
+            "occluded",
+            "absent_in_visible_scope",
+            "not_assessed",
+          ] as const;
+          return (allowed as readonly string[]).includes(value)
+            ? (value as InspectionObservation["visibility"])
+            : "not_assessed";
+        })(),
+        observedText:
+          typeof observation.observedText === "string" && observation.observedText.trim()
+            ? observation.observedText.trim()
+            : null,
+        description: text(observation.description),
+        region: (() => {
+          const region = record(observation.region);
+          if (!region.kind) return null;
+          const bbox = record(region.bbox);
+          const x = number(bbox.x, -1);
+          const y = number(bbox.y, -1);
+          const w = number(bbox.w ?? bbox.width, -1);
+          const h = number(bbox.h ?? bbox.height, -1);
+          if (x < 0 || y < 0 || w <= 0 || h <= 0) return null;
+          return {
+            kind: region.kind === "polygon" ? ("polygon" as const) : ("bbox" as const),
+            coordinateSpace: "normalized_canonical_image" as const,
+            bbox: { x, y, w, h },
+            verified: region.verified === true,
+          };
+        })(),
+      } satisfies InspectionObservation;
+    }),
+    selectedCheckIds: Array.isArray((reportPackage as UnknownRecord).selectedCheckIds)
+      ? ((reportPackage as UnknownRecord).selectedCheckIds as unknown[]).map((id) => String(id))
+      : undefined,
     complianceReport: complianceReport || undefined,
     complianceReportTruncated,
     agentTrace,

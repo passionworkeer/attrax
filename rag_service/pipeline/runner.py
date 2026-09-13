@@ -123,6 +123,7 @@ def run_compliance_graph(
     images: list[dict] = None,
     documents: list[dict] = None,
     progress_callback: Optional[Callable[[str, str, int], None]] = None,
+    session_id: str = "scan",
 ) -> dict:
     """Run the collapsed three-step pipeline.
 
@@ -162,6 +163,7 @@ def run_compliance_graph(
         vision_result=vision_result,
         images=images,
         documents=documents,
+        session_id=session_id,
     )
 
     _emit(progress_callback, "vision", "running", STAGE_PROGRESS["vision"][0])

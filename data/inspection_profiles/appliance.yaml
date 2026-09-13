@@ -1,0 +1,69 @@
+# 家电类(加湿器/风扇/厨房小电等)。优先子类型:加湿器。
+# Plan §5 appliance 行:铭牌、供电端、进出水/加热/通风区域、线缆、水位/温度
+# 警告、外壳可见异常。单凭图片不能得出:防水等级、温升、漏电、内部结构安全。
+profile_id: appliance
+version: 1
+title: 家电视觉检查
+extends: common
+checks:
+  - id: appliance.nameplate.ratings
+    version: 1
+    title: 底面/背面铭牌参数
+    target_regions: [nameplate]
+    required_views: [bottom_nameplate]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - CN-GB-4706-appliance
+      - EU-2014-35-appliance
+
+  - id: appliance.power_entry.visible
+    version: 1
+    title: 供电端(插头/电源口/线缆入口)
+    target_regions: [power_entry]
+    required_views: [power_side]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: appliance.functional_zones.condition
+    version: 1
+    title: 功能区域状态(水槽/出雾口/加热区/通风口)
+    target_regions: [water_tank, mist_outlet, heating_zone, vent]
+    required_views: [functional_side]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: appliance.water_temp_warnings.text
+    version: 1
+    title: 水位/温度/倾倒警告文字
+    target_regions: [warning_label, product_label]
+    required_views: [warning_label_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+    # 注:警告缺失是否违规取决于市场+子类型,由适用性规则判定;此处只记录
+    # "看没看到、看不看得清"。
+
+  - id: appliance.ip_rating.marking
+    version: 1
+    title: IP 防护等级标注(如宣称防水)
+    target_regions: [nameplate, product_label]
+    required_views: [nameplate_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+    # ⚠️ 看到 IPX4 文字 ≠ 实测通过;测试本身走 lab_test。
+
+  - id: appliance.safety.electrical_test
+    version: 1
+    title: 电气安全+温升+防水测试报告
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - CN-GB-4706-appliance
+      - US-UL-60335-appliance
+      - EU-2014-35-appliance

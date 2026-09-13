@@ -189,11 +189,41 @@ export interface ScanResult {
   loopCount?: number;
   /** Raw, validated-at-the-boundary backend package for report-only views. */
   reportPackage?: ReportPackage;
+  /**
+   * Plan 2026-09-13 §6 — visual inspection v2 observations. Optional: only
+   * checklist-mode scans (categories with an inspection profile) populate
+   * these; legacy/demo sessions leave them undefined.
+   */
+  inspectionObservations?: InspectionObservation[];
+  /** Selected check ids from the category's inspection profile (v2). */
+  selectedCheckIds?: string[];
   modelInfo?: {
     visionProvider: "claude" | "openai" | "gemini" | "minimax" | "mock";
     latencyMs: number;
   };
   source?: "real" | "fallback" | "demo";
+}
+
+/** One observed fact about one check on one image (plan §6 Observation). */
+export interface InspectionObservation {
+  observationId: string;
+  checkId: string;
+  imageId: string;
+  visibility:
+    | "present_readable"
+    | "present_unreadable"
+    | "not_in_view"
+    | "occluded"
+    | "absent_in_visible_scope"
+    | "not_assessed";
+  observedText?: string | null;
+  description: string;
+  region: null | {
+    kind: "bbox" | "polygon";
+    coordinateSpace: "normalized_canonical_image";
+    bbox?: { x: number; y: number; w: number; h: number };
+    verified?: boolean;
+  };
 }
 
 export interface ComplianceReportResult {

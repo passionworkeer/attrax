@@ -1,0 +1,72 @@
+# 通用检查 — 所有品类在应用专属 profile 前先跑这一层。
+# Plan 2026-09-13 §5:common 覆盖"产品主体、品牌型号、铭牌/标签、批次与追溯、
+# 警告文字、包装信息、可见外观异常"。
+#
+# ⚠️ 这些是"图片里固定观察什么"的清单,不是法律要求断言。某项是否强制、
+# 在哪个市场强制,由 KB anchors 的 applies_if + 适用性规则引擎判断。
+profile_id: common
+version: 1
+title: 通用视觉检查
+checks:
+  - id: common.product.overview
+    version: 1
+    title: 产品主体与外观完整性
+    target_regions: [product_body]
+    required_views: [front]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: common.nameplate.readability
+    version: 1
+    title: 铭牌/标签信息可读性
+    target_regions: [nameplate, product_label]
+    required_views: [nameplate_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: common.brand_model.visible
+    version: 1
+    title: 品牌与型号标识
+    target_regions: [brand_marking, model_marking]
+    required_views: [front, back]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: common.batch_traceability.fields
+    version: 1
+    title: 批次号/序列号/生产日期等追溯字段
+    target_regions: [nameplate, batch_label]
+    required_views: [nameplate_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: common.warning_text.language
+    version: 1
+    title: 警告文字及其语言
+    target_regions: [warning_label]
+    required_views: [warning_label_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: common.packaging.info
+    version: 1
+    title: 包装信息(如已拍摄)
+    target_regions: [packaging]
+    required_views: [package]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: common.defects.visible
+    version: 1
+    title: 可见外观异常(裂损/变形/污渍/鼓胀)
+    target_regions: [product_body]
+    required_views: [front, back, side]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []

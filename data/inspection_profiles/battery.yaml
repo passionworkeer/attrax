@@ -1,0 +1,68 @@
+# 电池/移动电源类。
+# Plan §5 battery 行:电池标签、型号、V/Ah/Wh/化学体系文字、端子、绝缘包覆、
+# 可见鼓胀/破损疑点。单凭图片不能得出:实际容量、UN38.3 通过与否、内部短路。
+profile_id: battery
+version: 1
+title: 电池视觉检查
+extends: common
+checks:
+  - id: battery.label.parameters
+    version: 1
+    title: 电池标签参数(V/Ah/Wh/化学体系)
+    target_regions: [battery_label]
+    required_views: [label_closeup]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - KB-battery-EU-2023-1542
+      - UN-38-3
+
+  - id: battery.terminals.insulation
+    version: 1
+    title: 端子形态与绝缘包覆
+    target_regions: [terminals]
+    required_views: [terminal_closeup, side]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - UN-38-3
+
+  - id: battery.condition.swelling_damage
+    version: 1
+    title: 可见鼓胀/破损/漏液疑点
+    target_regions: [battery_body]
+    required_views: [side, overview]
+    methods: [vision]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
+  - id: battery.transport.packaging
+    version: 1
+    title: 运输包装标识(如已拍摄)
+    target_regions: [packaging]
+    required_views: [package]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs:
+      - UN-38-3
+
+  - id: battery.un38_3.test_report
+    version: 1
+    title: UN 38.3 测试摘要
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - UN-38-3
+      - US-49-CFR-173-185-battery
+
+  - id: battery.capacity_verification.test
+    version: 1
+    title: 实际容量/循环测试
+    target_regions: []
+    required_views: []
+    methods: []
+    evidence_mode: lab_test
+    legal_anchor_refs:
+      - KB-battery-EU-2023-1542
