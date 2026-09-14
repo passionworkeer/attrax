@@ -18,8 +18,8 @@
 
 **Data hygiene**:
 - data/regulation_supplements/*/raw/: untracked from git (~400MB, 369 files)
-- public/fonts/NotoSansSC-Regular.ttf: untracked (17MB)
-- .gitignore: tightened to prevent re-tracking (`data/regulation_supplements/*/raw/`, `public/fonts/`)
+- public/fonts/NotoSansSC-Regular.ttf: **kept tracked** (briefly untracked, then reverted — adversarial review showed CI + fresh clones break without it: report-export vitest reads it from disk, e2e export-downloads fetches it at runtime; a fetch-script alternative downloaded the wrong font flavor OTTO vs TrueType and would corrupt jsPDF output)
+- .gitignore: tightened to prevent re-tracking (`data/regulation_supplements/*/raw/`)
 
 **Dead code removed**:
 - components/burning/BurningAnimation.tsx (177 LOC)

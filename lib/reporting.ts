@@ -25,9 +25,11 @@ function presetCategoryFromKey(key: string | null | undefined): ProductCategory 
  * so the data the user sees on `/result/demo` matches what the export API
  * returns.
  *
- * Non-demo sessions fall back to the USB 加湿器 result only when the
- * production scan service has not produced one yet, since that helper is the
- * single source of truth for backend-down fallback packages.
+ * Non-demo sessions require the production scan result via the
+ * `backendResult` argument (fetched from the RAG service by the caller).
+ * Without one this returns null and the caller answers 404 — there is no
+ * local fallback package anymore (the old session-store path never had
+ * production writers, see 2026-09-14 cleanup).
  */
 export function getResultForReport(
   sessionId: string,
