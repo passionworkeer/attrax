@@ -17,6 +17,12 @@ export interface V1SessionData {
   updatedAt: string;
   expiresAt?: string;
   result: Record<string, unknown> | null;
+  /**
+   * Explicit "result payload addressable" flag from the backend (plan §4.1).
+   * `ready`/`degraded` without a persisted result must not be treated as
+   * complete by the burning page's progress state machine.
+   */
+  resultReady?: boolean;
   error: string | null;
   assets?: Array<{
     kind: "image" | "document";
