@@ -1,80 +1,90 @@
 # 火鹰合规 - 文档索引
 
-- [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md)：新前端接入独立 FastAPI 后端的唯一入口。
+> 最后更新：2026-09-14
 
-> 最后更新：2026-06-21（16 轮安全加固后）
-
-## 🎯 入口
+## 入口
 
 | 我想知道… | 看这里 |
 |---|---|
-| **当前状态 / 16 轮做了什么** | [`HARDENING-SUMMARY.md`](./HARDENING-SUMMARY.md) ⭐ 起点 |
-| 安全政策（key、网络、权限、headers）| [`SECURITY.md`](./SECURITY.md) |
-| 服务器怎么跑、怎么改、怎么备份 | [`SERVER-OPS.md`](./SERVER-OPS.md) |
+| **当前 API 契约**（前后端对接） | [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md) ⭐ |
+| 项目架构怎么演进（de-RAG 路线） | [`plans/2026-09-11-de-rag-evidence-spec.md`](./plans/2026-09-11-de-rag-evidence-spec.md) |
+| 当下在修什么（judge review J01–J11） | [`plans/2026-09-14-judge-review-and-optimization-plan.md`](./plans/2026-09-14-judge-review-and-optimization-plan.md) |
+| 安全政策（key、网络、权限、headers） | [`SECURITY.md`](./SECURITY.md) |
 | 服务器挂了怎么恢复 | [`RECOVERY.md`](./RECOVERY.md) |
-| nginx/sysctl/sshd/fail2ban 实际配置 | [`infra/`](./infra/)（含 Ansible playbook）|
-| 项目本身（架构、需求、状态）| [`PROJECT.md`](./PROJECT.md) [`PRD.md`](./PRD.md) [`RAG-ARCHITECTURE-v3.md`](./RAG-ARCHITECTURE-v3.md) [`PROJECT-STATUS.md`](./PROJECT-STATUS.md) |
-| RAG 语料库怎么构建 | [`DOCUMENT-PIPELINE.md`](./DOCUMENT-PIPELINE.md) |
-| 法规数据源覆盖 | [`regulation-data-sources-coverage-2026-05-27.md`](./regulation-data-sources-coverage-2026-05-27.md) |
+| watchdog 法规自动入库 | [`WATCHDOG.md`](./WATCHDOG.md) + `scripts/watchdog/README.md` |
+| Next 16 standalone 部署坑 | [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md) |
+| nginx/sysctl/sshd/fail2ban 实际配置 | [`infra/`](./infra/) |
+| 历史事故 / 修复记录 | 根目录 [`CHANGELOG.md`](../CHANGELOG.md) |
 | 历史修复计划 | [`plans/`](./plans/) |
+| 历史安全加固 16 轮 | [`HARDENING-SUMMARY.md`](./HARDENING-SUMMARY.md)（历史快照） |
+| 历史上线评估 | [`PROJECT-STATUS.md`](./PROJECT-STATUS.md)（历史快照） |
+| 评测与生产证据 | [`evidence/`](./evidence/) |
+| 标注集格式（grounding eval） | [`annotation/grounding-eval.md`](./annotation/grounding-eval.md) |
 
-## 🚀 快速开始（本地开发）
+## 快速开始（本地开发）
 
 ```bash
-# 前端
+# RAG 后端（端口 8001）
+cd rag_service
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements-prod.txt
+uvicorn rag_service.main:app --reload --port 8001
+
+# 前端（端口 3000）
+cp .env.local.example .env.local   # 填 MINIMAX_API_KEY + PAI_API_KEY
 npm install
 npm run dev
-# 访问 http://localhost:3000
-
-# RAG 后端
-cp rag_service/.env.example rag_service/.env
-# 编辑填入 MIMOTALK_API_KEY + MODELSCOPE_API_KEY
-D:\python\python.exe -m uvicorn rag_service.main:app --reload --port 8001
 
 # 测试
 npm run test           # vitest 单元
 npm run test:e2e       # Playwright E2E
-npm run test:all       # 全部
+npm run test:rag       # pytest 后端
+npm run typecheck && npm run lint
 ```
 
-## 🏭 生产部署（203.0.113.10，无 Docker）
+## 生产部署（lighthouse 198.51.100.20）
+
+生产环境是腾讯云首尔 lighthouse（Ubuntu 22.04），pm2 跑 `nextjs` + `rag-service` + `regwatch`，nginx 反代。**不走 docker-compose、不走 Ansible**（`docs/infra/` 下的 Ansible 文件是历史 aliyun-sz 时代的，不再维护）。
 
 | 操作 | 方法 |
 |---|---|
-| 改服务器配置 | 改 `infra/` 对应文件 → `ansible-playbook -i inventory deploy-infra.yml` |
-| 重新 build 应用 | `SERVER-OPS.md` 5.4 节（**必须先 `pm2 stop rag-service`**）|
-| 紧急恢复 | `RECOVERY.md` |
-| 备份位置 | `/opt/attrax/backups/` (每日 03:00 cron, 保留 14 份) |
-| 健康检查 | `https://203.0.113.10/api/health` |
+| 源码同步 | git bundle 路线（本地 `git bundle create` → scp → 服务器 `git fetch`；服务器 ssh key 无法直接 fetch github，详见 memory `2026-09-14-lighthouse-fetch-github-fix`） |
+| 构建产物 | 本地 `npm run build` → tar `.next/standalone/` + `.next/static/` → scp 到 `/opt/attrax/.next/`（openrsync 大目录会崩，必须 tar） |
+| 静态资源 symlink | `ln -sfn /opt/attrax/public /opt/attrax/.next/standalone/public`（Next 16 standalone 不复制 public/） |
+| 重启 | `pm2 restart nextjs rag-service`（改 `.env` 也用 restart；改 ecosystem env 段才要 delete && start） |
+| 健康检查 | `ssh lighthouse 'curl -s http://localhost:3000/api/health'` |
+| 备份 | `/opt/attrax/backups/`（每日 03:00 cron，保留 14 份） |
 
-## 📁 目录结构
+详细步骤：根目录 [`README.md`](../README.md) §部署 + [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md)。
+
+## 目录结构
 
 ```
 docs/
-├── README.md                    ← 你在这里
-├── HARDENING-SUMMARY.md         ← 16 轮加固摘要（建议先看）
-├── SECURITY.md                  ← 安全政策
-├── SERVER-OPS.md                ← 运维手册
-├── RECOVERY.md                  ← 紧急恢复
-├── PROJECT.md / PRD.md / RAG-ARCHITECTURE-v3.md
-├── DOCUMENT-PIPELINE.md         ← 语料库构建
-├── PROJECT-STATUS.md            ← 上线评估
-├── regulation-data-sources-coverage-2026-05-27.md
-├── plans/                       ← 历史修复计划
-├── superpowers/specs/           ← 架构设计 spec
-└── infra/                       ← 服务器配置快照 + Ansible
-    ├── README.md                ← 部署到新服务器指南
-    ├── deploy-infra.yml         ← Ansible playbook
-    ├── inventory.example
-    ├── nginx-*.conf / sysctl-*.conf / sshd-*.conf
-    ├── fail2ban-*.conf / journald-*.conf
-    ├── cron-attrax-* / *.sh
-    └── sshd-banner.txt
+├── README.md                              ← 你在这里
+├── FRONTEND-BACKEND-INTEGRATION.md        ← 当前 API 契约源
+├── SECURITY.md                            ← 安全政策
+├── RECOVERY.md                            ← 紧急恢复
+├── WATCHDOG.md                            ← 法规自动入库运维手册
+├── HARDENING-SUMMARY.md                   ← 历史快照（16 轮加固）
+├── PROJECT-STATUS.md                      ← 历史快照（上线评估）
+├── PROJECT.md / PRD.md / MOCK-REAL-MAPPING.md / DOCUMENT-PIPELINE.md  ← 产品/流程文档（待同步）
+├── regulation-data-sources-coverage-2026-05-27.md  ← 历史覆盖率快照
+├── plans/                                 ← 修复计划与设计 spec（历史 + 当前）
+├── evidence/                              ← 评测与生产证据（judge-review 2026-09-13 等）
+├── annotation/                            ← 标注集格式
+├── superpowers/specs/                     ← 架构设计 spec（历史）
+└── infra/                                 ← 服务器配置快照
+    ├── README.md
+    ├── NEXTJS-16-STANDALONE-NOTES.md      ← Next 16 standalone 部署坑（当前）
+    ├── nginx-attrax-locations.conf        ← nginx 站配快照（当前）
+    └── sysctl-*.conf / sshd-*.conf / fail2ban-*.conf / cron-*  ← 历史快照（aliyun 时代，不再走 Ansible）
 ```
 
-## 🔗 相关链接
+## 相关链接
 
-- **首页**: http://localhost:3000
-- **公网**: https://203.0.113.10
-- **API 健康**: `https://203.0.113.10/api/health`
+- **本地**: http://localhost:3000
+- **公网**: https://example.com
+- **API 健康**: `https://example.com/api/health`
 - **GitHub**: https://github.com/passionworkeer/attrax
+- **AI 协作说明**: 根目录 [`CLAUDE.md`](../CLAUDE.md)
