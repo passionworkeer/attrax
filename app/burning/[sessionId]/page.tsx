@@ -53,14 +53,24 @@ function parsePreset(value: string | null): ScanStagePreset {
   }
   return "charger";
 }
+/**
+ * J21: analysisSteps 现与 ScanImageStage 的 6 阶段流水线统一，
+ * activeIndex 也改为 0-5 的六档映射（旧版按 4 步只映射到 3）。
+ */
 function getActiveIndex(progress: number) {
-  if (progress >= 85) {
+  if (progress >= 92) {
+    return 5;
+  }
+  if (progress >= 78) {
+    return 4;
+  }
+  if (progress >= 60) {
     return 3;
   }
-  if (progress >= 55) {
+  if (progress >= 30) {
     return 2;
   }
-  if (progress >= 25) {
+  if (progress >= 12) {
     return 1;
   }
   return 0;
@@ -347,7 +357,8 @@ export default function BurningPage() {
         <section className="blaze-panel min-h-[820px] p-5 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <SectionEyebrow>Exploded Stage</SectionEyebrow>
+              {/* J21: 「Exploded Stage」超出实际能力——这里是图像证据分析舞台 */}
+              <SectionEyebrow>Image Evidence Stage</SectionEyebrow>
               <h2 className="mt-3 text-3xl font-semibold text-white">{copy.burning.preview}</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-white/58">
                 {copy.burning.stageNote}

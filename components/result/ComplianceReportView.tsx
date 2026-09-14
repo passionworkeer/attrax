@@ -64,7 +64,8 @@ type RichChecklistItem = {
   answerEn?: string;
   actionRequired?: string;
   actionRequiredEn?: string;
-  status?: "pass" | "fail" | "warn";
+  /** J16: 缺省为 "todo"（待办空心圈），不再是 "pass"（旧版全部打勾）。 */
+  status?: "pass" | "fail" | "warn" | "todo";
 };
 
 export function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
@@ -279,7 +280,10 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
                 locale === "en"
                   ? englishText(item.answerEn, englishText(item.answer, item.actionRequiredEn ?? item.actionRequired ?? "Checklist answer pending"))
                   : item.answer ?? item.actionRequired;
-              const status = item.status ?? "pass";
+              // J16: 无 status 字段时不再默认 "pass"（旧版全部渲染绿色 ✓，
+              // 视觉上等同「已完成」）。缺少状态的数据显示待办空心圈，
+              // 仅当来源显式给出 pass/fail/warn 才显示对应状态。
+              const status = item.status ?? "todo";
               return (
                 <div
                   key={i}
@@ -292,10 +296,14 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
                         ? "bg-emerald-500 text-white"
                         : status === "fail"
                           ? "bg-blaze-red text-white"
-                          : "bg-amber-500 text-white",
+                          : status === "warn"
+                            ? "bg-amber-500 text-white"
+                            // 待办：空心圆，中性样式
+                            : "border border-slate-500 text-slate-400",
                     )}
                   >
-                    {status === "pass" ? "✓" : status === "fail" ? "✗" : "!"}
+                    {status === "pass" ? "✓" : status === "fail" ? "✗" : status === "warn" ? "!" : ""}
+                    {status === "todo" ? <span className="text-[10px] leading-none">○</span> : null}
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium text-white">{question}</p>

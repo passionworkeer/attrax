@@ -19,7 +19,7 @@ articles:
   text: 'EU 符合性声明：制造商须编制并保存 EU 符合性声明，随技术文档一并保存，并应市场监管机构要求提供。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 - id: art-77
   title: Battery passport (electronic record)
-  text: '电池护照（电子记录）：LMT 电池、电动车电池及容量 >2 kWh 的工业电池须配备电池护照（含数据载体与信息要求，由欧委会受权法案细化）。依据欧盟委员会 2026-08-21 指南，上述 EV/LMT 与 >2 kWh 工业电池的护照要求自 2027-02-18 起适用；便携式电池（如耳机充电盒/普通消费电子）不适用电池护照。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
+  text: 'Battery passport（电池护照，电子记录）：LMT 电池、电动车电池及容量 >2 kWh 的工业电池须配备 battery passport（含数据载体与信息要求，由欧委会受权法案细化）。依据欧盟委员会 2026-08-21 指南，上述 EV/LMT 与 >2 kWh 工业电池的护照要求自 2027-02-18 起适用；便携式电池（如耳机充电盒/普通消费电子）不适用电池护照。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 - id: art-85
   title: Reporting obligations
   text: '报告义务：欧委会与成员国之间关于电池投放市场数量、构成与性能等的报告与数据收集安排。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'

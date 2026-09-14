@@ -2,10 +2,15 @@
 
 import { useMemo } from "react";
 import type { InspectionFinding, InspectionObservation } from "@/lib/types";
+import type { CheckResultVM, FindingVM, InspectionResultVM } from "@/lib/result/inspection-view-model";
 import { cn } from "@/lib/utils";
 
 /**
  * Plan 2026-09-13 §5 + §8 — the per-check inspection checklist.
+ * Plan 2026-09-14 §4.3 (J03/J15) — the panel now consumes the unified
+ * `InspectionResultVM` when provided. The legacy raw-props path stays as
+ * the fallback so demo/legacy sessions keep rendering; both paths produce
+ * the same row structure.
  *
  * Every selected check MUST show a result (真实问题可以是零个；未覆盖、
  * 看不清、需要材料检测也是有价值的结果). The panel groups checks into:
@@ -17,6 +22,9 @@ import { cn } from "@/lib/utils";
  * It deliberately does NOT render "通过/合格" for clean checks —
  * `present_readable` only means "this photo shows the region and the
  * text is legible", which is an observation, not a compliance verdict.
+ *
+ * J14: checkId 收进诊断详情 — rows display the business title first and
+ * the technical checkId in a secondary mono line.
  */
 
 const VISIBILITY_LABELS: Record<string, { zh: string; en: string; tone: "ok" | "reshoot" | "confirm" }> = {
@@ -34,6 +42,13 @@ const TONE_STYLES: Record<"ok" | "reshoot" | "confirm", string> = {
   confirm: "border-white/15 bg-white/[0.06] text-white/62",
 };
 
+/** Assessment chip for findings (suspected/confirmed/evidence-needed). */
+const ASSESSMENT_LABELS: Record<string, { zh: string; en: string; tone: string }> = {
+  suspected_issue: { zh: "疑点", en: "suspected", tone: "border-amber-400/35 bg-amber-400/10 text-amber-200" },
+  confirmed_issue: { zh: "确定问题", en: "confirmed", tone: "border-red-400/45 bg-red-400/10 text-red-200" },
+  evidence_needed: { zh: "待证据", en: "evidence", tone: "border-sky-400/30 bg-sky-400/10 text-sky-200" },
+};
+
 function checkTitleFromId(checkId: string): string {
   // "common.nameplate.readability" → "铭牌/标签信息可读性" is available
   // server-side only; on the client we humanize the trailing segment.
@@ -43,6 +58,90 @@ function checkTitleFromId(checkId: string): string {
     .replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
+interface ChecklistRow {
+  checkId: string;
+  title: string;
+  visibility: InspectionObservation["visibility"];
+  observedText: string | null;
+  description: string;
+  hasRegion: boolean;
+  /** observation to switch the image stage to when clicked */
+  anchorObservation: InspectionObservation | null;
+  findings: FindingVM[];
+}
+
+function rowFromVMCheck(check: CheckResultVM, activeImageId: string | null): ChecklistRow {
+  // Anchor selection: prefer a located observation ON the displayed image,
+  // then any located observation (switch image), else no anchor.
+  const located = check.observations.filter(
+    (observation) => observation.bbox !== null && observation.imageId !== "",
+  );
+  const onActive = activeImageId
+    ? located.find((observation) => observation.imageId === activeImageId)
+    : undefined;
+  const anchor = onActive ?? located[0] ?? null;
+  const best = check.bestObservation;
+  return {
+    checkId: check.checkId,
+    title: check.title,
+    visibility: best?.visibility ?? "not_assessed",
+    observedText: best?.observedText ?? null,
+    description: best?.description ?? "",
+    hasRegion: anchor !== null,
+    anchorObservation: anchor
+      ? ({
+          observationId: anchor.observationId,
+          checkId: anchor.checkId,
+          imageId: anchor.imageId,
+          visibility: anchor.visibility,
+          observedText: anchor.observedText,
+          description: anchor.description,
+          region: anchor.bbox
+            ? { kind: "bbox", coordinateSpace: "normalized_canonical_image" as const, bbox: anchor.bbox, verified: anchor.regionVerified }
+            : null,
+        } satisfies InspectionObservation)
+      : null,
+    findings: check.findings,
+  };
+}
+
+function rowFromLegacy(
+  observation: InspectionObservation,
+  findings: FindingVM[],
+): ChecklistRow {
+  const hasRegion = !!observation.region?.bbox;
+  return {
+    checkId: observation.checkId,
+    title: checkTitleFromId(observation.checkId),
+    visibility: observation.visibility,
+    observedText: observation.observedText ?? null,
+    description: observation.description,
+    hasRegion,
+    anchorObservation: hasRegion ? observation : null,
+    findings,
+  };
+}
+
+/** Visibility rank shared by the VM and legacy row ordering (lower = more
+ *  informative / displayed first). */
+function rowVisibilityRank(row: { visibility: InspectionObservation["visibility"] }): number {
+  return row.visibility === "present_readable" ? 0
+    : row.visibility === "absent_in_visible_scope" ? 1
+    : row.visibility === "present_unreadable" ? 2
+    : row.visibility === "occluded" ? 3
+    : row.visibility === "not_in_view" ? 4
+    : 5;
+}
+
+/** Legacy-path row priority: displayed-image preference + visibility rank. */
+function legacyRowPriority(
+  row: ChecklistRow,
+  activeImageId: string | null | undefined,
+): number {
+  const onActiveImage = !activeImageId || row.anchorObservation?.imageId === activeImageId;
+  return (onActiveImage ? 0 : 10) + rowVisibilityRank(row);
+}
+
 export function InspectionChecklistPanel({
   observations,
   selectedCheckIds,
@@ -50,6 +149,8 @@ export function InspectionChecklistPanel({
   locale,
   onCheckClick,
   activeImageId,
+  vm,
+  selectedObservationId,
 }: {
   observations: InspectionObservation[];
   selectedCheckIds?: string[];
@@ -57,10 +158,23 @@ export function InspectionChecklistPanel({
   locale: "zh" | "en";
   onCheckClick?: (observation: InspectionObservation) => void;
   activeImageId?: string | null;
+  /**
+   * Plan 2026-09-14 §4.3 — the unified result ViewModel. When provided the
+   * panel renders from it (business titles, finding join, coverage states)
+   * and the legacy props are ignored.
+   */
+  vm?: InspectionResultVM;
+  /** Selection linkage: highlight the row whose observation is selected. */
+  selectedObservationId?: string | null;
 }) {
-  const rows = useMemo(() => {
-    // Best observation per check: prefer ones on the displayed image, then
-    // by informativeness (readable beats missing).
+  const rows = useMemo<ChecklistRow[]>(() => {
+    if (vm) {
+      return vm.checks
+        .map((check) => rowFromVMCheck(check, activeImageId ?? null))
+        .sort((a, b) => rowVisibilityRank(a) - rowVisibilityRank(b));
+    }
+    // Legacy path (demo sessions / older stored payloads without a VM):
+    // best observation per check, prefer ones on the displayed image.
     const byCheck = new Map<string, InspectionObservation>();
     const priority = (obs: InspectionObservation) => {
       const onActiveImage = !activeImageId || obs.imageId === activeImageId;
@@ -94,10 +208,35 @@ export function InspectionChecklistPanel({
         });
       }
     }
-    return [...byCheck.values()].sort((a, b) => priority(a) - priority(b));
-  }, [observations, selectedCheckIds, activeImageId]);
+    return [...byCheck.values()]
+      .map((observation) => rowFromLegacy(observation, []))
+      .sort((a, b) => legacyRowPriority(a, activeImageId) - legacyRowPriority(b, activeImageId));
+  }, [vm, observations, selectedCheckIds, activeImageId]);
 
-  if (rows.length === 0) return null;
+  // Findings for the bottom 待补拍/待补资料 block: prefer the VM findings
+  // (real foreign-key expansion), else the raw legacy findings.
+  const displayFindings: FindingVM[] | null = vm
+    ? vm.findings.length > 0
+      ? vm.findings
+      : null
+    : (findings && findings.length > 0
+        ? findings.map((finding) => ({
+            findingId: finding.findingId,
+            checkId: finding.checkId,
+            title: finding.title,
+            assessment: finding.assessment,
+            applicability: finding.applicability,
+            severity: finding.severity,
+            suggestedAction: finding.suggestedAction,
+            requiredEvidence: finding.requiredEvidence,
+            citationIds: finding.citationIds,
+            observations: [],
+            locatedAnchors: [],
+          }))
+        : null);
+
+  if (rows.length === 0 && !displayFindings && !vm) return null;
+  if (rows.length === 0 && !displayFindings) return null;
 
   const counts = {
     ok: rows.filter((row) => VISIBILITY_LABELS[row.visibility]?.tone === "ok").length,
@@ -137,25 +276,28 @@ export function InspectionChecklistPanel({
       <ul className="mt-5 space-y-2">
         {rows.map((row) => {
           const meta = VISIBILITY_LABELS[row.visibility] ?? VISIBILITY_LABELS.not_assessed;
-          const hasRegion = !!row.region?.bbox;
+          const isSelected = !!row.anchorObservation && row.anchorObservation.observationId === selectedObservationId;
           return (
             <li key={row.checkId}>
               <button
                 type="button"
-                onClick={hasRegion ? () => onCheckClick?.(row) : undefined}
-                disabled={!hasRegion}
+                onClick={row.anchorObservation ? () => onCheckClick?.(row.anchorObservation!) : undefined}
+                disabled={!row.anchorObservation}
+                data-check-id={row.checkId}
                 className={cn(
                   "flex w-full items-start justify-between gap-3 rounded-[16px] border px-4 py-3 text-left transition",
-                  hasRegion
-                    ? "border-white/10 bg-white/[0.045] hover:border-white/25 hover:bg-white/[0.07]"
+                  row.anchorObservation
+                    ? isSelected
+                      ? "border-[rgba(94,234,222,0.55)] bg-[rgba(210,247,249,0.14)]"
+                      : "border-white/10 bg-white/[0.045] hover:border-white/25 hover:bg-white/[0.07]"
                     : "cursor-default border-white/8 bg-white/[0.03]",
                 )}
               >
                 <span className="min-w-0">
-                  <span className="block truncate font-mono text-xs text-white/48">{row.checkId}</span>
-                  <span className="mt-1 block text-sm font-medium text-white">
-                    {checkTitleFromId(row.checkId)}
-                  </span>
+                  {/* J14: business title first; the technical checkId moves to
+                      the secondary mono line instead of being the headline. */}
+                  <span className="block text-sm font-medium text-white">{row.title}</span>
+                  <span className="mt-0.5 block truncate font-mono text-[10px] text-white/38">{row.checkId}</span>
                   {row.observedText ? (
                     <span className="mt-1 block truncate text-xs text-white/55">
                       {locale === "zh" ? "读到：" : "Read: "}
@@ -181,57 +323,101 @@ export function InspectionChecklistPanel({
 
       {/* Plan §10.3 — 确定性的待补清单: findings carry the concrete
           reshoot / material actions, built server-side from the same
-          observations (never by the LLM). */}
-      {findings && findings.length > 0 ? (
+          observations (never by the LLM). J15: when the VM is provided the
+          same block renders the MERGED evidence requests (plan §5.3) instead
+          of a wall of near-duplicate cards. */}
+      {vm && vm.evidenceRequests.length > 0 ? (
         <div className="mt-6 border-t border-white/10 pt-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/42">
             {locale === "zh"
-              ? `待补拍 / 待补资料（${findings.length} 项）`
-              : `Actions needed (${findings.length})`}
+              ? `补充证据（${vm.evidenceRequests.length} 项请求 · ${vm.findings.length} 项待办）`
+              : `Evidence requests (${vm.evidenceRequests.length} · ${vm.findings.length} findings)`}
           </p>
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {findings.map((finding) => (
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2" data-testid="evidence-request-list">
+            {vm.evidenceRequests.map((request) => (
               <li
-                key={finding.findingId}
-                data-testid="inspection-finding"
+                key={request.id}
+                data-testid="evidence-request"
                 className="rounded-[16px] border border-white/10 bg-white/[0.045] px-4 py-3"
               >
                 <div className="flex items-start justify-between gap-2">
-                  <span className="text-sm font-medium text-white">{finding.title}</span>
+                  <span className="text-sm font-medium text-white">{request.title}</span>
                   <span
                     className={cn(
                       "shrink-0 rounded-full border px-2 py-0.5 text-[10px]",
-                      finding.assessment === "suspected_issue"
+                      request.type === "photo"
                         ? "border-amber-400/35 bg-amber-400/10 text-amber-200"
                         : "border-sky-400/30 bg-sky-400/10 text-sky-200",
                     )}
                   >
-                    {finding.assessment === "suspected_issue"
-                      ? locale === "zh" ? "疑点" : "suspected"
-                      : locale === "zh" ? "待证据" : "evidence"}
+                    {request.type === "photo"
+                      ? locale === "zh" ? "待补拍" : "photo"
+                      : locale === "zh" ? "待补资料" : "document"}
                   </span>
                 </div>
-                {finding.suggestedAction ? (
-                  <p className="mt-2 text-xs leading-5 text-white/62">
-                    {finding.suggestedAction}
-                  </p>
+                {request.explanation ? (
+                  <p className="mt-2 text-xs leading-5 text-white/62">{request.explanation}</p>
                 ) : null}
-                {finding.requiredEvidence.length > 0 ? (
-                  <ul className="mt-2 space-y-1">
-                    {finding.requiredEvidence.map((evidence) => (
-                      <li key={evidence} className="text-[11px] text-white/48">
-                        · {evidence}
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-                {finding.citationIds.length > 0 ? (
-                  <p className="mt-2 truncate font-mono text-[10px] text-white/38">
-                    {finding.citationIds.join(" · ")}
+                {request.resolvesCheckIds.length > 0 ? (
+                  <p className="mt-2 font-mono text-[10px] text-white/38">
+                    {locale === "zh"
+                      ? `可补齐 ${request.resolvesCheckIds.length} 项检查`
+                      : `resolves ${request.resolvesCheckIds.length} checks`}
                   </p>
                 ) : null}
               </li>
             ))}
+          </ul>
+        </div>
+      ) : displayFindings ? (
+        <div className="mt-6 border-t border-white/10 pt-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/42">
+            {locale === "zh"
+              ? `待补拍 / 待补资料（${displayFindings.length} 项）`
+              : `Actions needed (${displayFindings.length})`}
+          </p>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {displayFindings.map((finding) => {
+              const assessment = ASSESSMENT_LABELS[finding.assessment] ?? ASSESSMENT_LABELS.evidence_needed;
+              return (
+                <li
+                  key={finding.findingId}
+                  data-testid="inspection-finding"
+                  className="rounded-[16px] border border-white/10 bg-white/[0.045] px-4 py-3"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="text-sm font-medium text-white">{finding.title}</span>
+                    <span
+                      className={cn(
+                        "shrink-0 rounded-full border px-2 py-0.5 text-[10px]",
+                        assessment.tone,
+                      )}
+                    >
+                      {locale === "zh" ? assessment.zh : assessment.en}
+                    </span>
+                  </div>
+                  {finding.suggestedAction ? (
+                    <p className="mt-2 text-xs leading-5 text-white/62">
+                      {finding.suggestedAction}
+                    </p>
+                  ) : null}
+                  {finding.requiredEvidence.length > 0 ? (
+                    <ul className="mt-2 space-y-1">
+                      {finding.requiredEvidence.map((evidence) => (
+                        <li key={evidence} className="text-[11px] text-white/48">
+                          · {evidence}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {finding.citationIds.length > 0 ? (
+                    <p className="mt-2 truncate font-mono text-[10px] text-white/38">
+                      {finding.citationIds.join(" · ")}
+                    </p>
+                  ) : null}
+                </li>
+              );
+            })}
           </ul>
         </div>
       ) : null}

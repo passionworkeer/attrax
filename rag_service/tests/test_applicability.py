@@ -5,12 +5,19 @@ The two documented counterexamples are the acceptance bars:
   battery-passport obligations
 - "no UKCA" must not be treated as automatic non-compliance for GB radio
   equipment (CE acceptance + GB/NI split)
+
+J08 (2026-09-14): the LMT battery-passport date is 2027-02-18 per the
+European Commission guidance of 2026-08-21 — asserted below so the old
+2028-08-18 value cannot silently return.
 """
 from __future__ import annotations
+
+from datetime import date
 
 import pytest
 
 from rag_service.verify.applicability import (
+    BATTERY_PASSPORT_LMT_FROM,
     ProductFacts,
     evaluate_anchor,
     evaluate_anchors,
@@ -67,6 +74,23 @@ class TestBatteryRegulation:
         assert decision.state == "applicable"
         assert any("2 kWh" in c or "容量" in c for c in decision.product_conditions)
 
+    def test_lmt_passport_date_is_2027_02_18(self):
+        """J08 regression: EC guidance 2026-08-21 says the battery passport
+        obligation for LMT (and EV / >2 kWh industrial) batteries starts
+        2027-02-18 — not 2028-08-18 as previously quoted."""
+        assert BATTERY_PASSPORT_LMT_FROM == date(2027, 2, 18)
+
+    def test_passport_note_text_uses_2027_date(self):
+        facts = ProductFacts(
+            category="3c",
+            markets=["EU"],
+            battery="confirmed",
+        )
+        decision = evaluate_anchor(anchor("EU-2023-1542", "EU", "feature"), facts)
+        conditions = " ".join(decision.product_conditions)
+        assert "2027-02-18" in conditions
+        assert "2028" not in conditions
+
     def test_no_battery_no_decision(self):
         facts = ProductFacts(category="textile", markets=["EU"], battery="absent")
         decision = evaluate_anchor(anchor("EU-2023-1542", "EU", "feature"), facts)
@@ -86,6 +110,29 @@ class TestUkRadio:
         conditions = " ".join(decision.product_conditions)
         assert "CE" in conditions
         assert "北爱尔兰" in conditions or "NI" in conditions
+
+    def test_prompt_lines_never_claim_ukca_is_mandatory(self):
+        """J08 regression: the report must not tell users UKCA is required
+        to enter GB — the official guidance accepts CE under conditions,
+        and NI follows EU rules. The rendered guardrail lines must say
+        exactly that and never「必须 UKCA」."""
+        facts = ProductFacts(
+            category="3c",
+            markets=["UK"],
+            wireless="confirmed",
+        )
+        anchors = [
+            anchor("UK-UKCA-Radio", "UK", "feature"),
+            anchor("EU-2023-1542", "EU", "feature"),
+        ]
+        lines = prompt_context_lines(evaluate_anchors(anchors, facts))
+        joined = "\n".join(lines)
+        assert "UK-UKCA-Radio" in joined
+        assert "CE" in joined
+        assert "NI 走 EU 规则" in joined
+        # No formulation that presents UKCA as mandatory or CE as invalid.
+        for banned in ("必须 UKCA", "必须UKCA", "UKCA 必须", "无 UKCA 不合规"):
+            assert banned not in joined
 
     def test_wireless_keyword_only_is_needs_confirmation(self):
         """名称含"无线"不证明充电盒含发射模块 (plan §9)."""
