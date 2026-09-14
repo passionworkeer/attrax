@@ -71,18 +71,7 @@ test.describe('Regulations Page E2E', () => {
   })
 })
 
-test.describe('Trace Page E2E', () => {
-  test('trace page loads', async ({ page }) => {
-    await page.goto('/trace')
-    await page.waitForLoadState('domcontentloaded')
-    await expect(page.locator('body')).toBeVisible()
-  })
-})
-
-test.describe('Roadmap Page E2E', () => {
-  test('roadmap page loads', async ({ page }) => {
-    await page.goto('/roadmap')
-    await page.waitForLoadState('domcontentloaded')
-    await expect(page.locator('body')).toBeVisible()
-  })
-})
+// 2026-09-13 sweep removed the standalone /trace and /roadmap routes. The
+// former "page loads" tests here only asserted `body` visibility — they kept
+// passing against the branded 404 and provided zero signal, so they were
+// deleted along with the routes instead of being retargeted.
