@@ -95,6 +95,12 @@ class ScanSession(BaseModel):
 
     def public_data(self) -> dict[str, Any]:
         data = self.model_dump(mode="json", exclude={"access_token_hash"})
+        # `resultReady` is the explicit contract the burning page drives its
+        # 100%-completion state machine off (plan §4.1): a terminal status alone
+        # is not enough — `degraded` sessions carry a partial result, and a
+        # `ready` transition without a persisted result must not let the frontend
+        # claim "100% complete" before the payload is actually addressable.
+        result_ready = self.status in ("ready", "degraded") and bool(self.result)
         return {
             "sessionId": data["session_id"],
             "status": data["status"],
@@ -106,6 +112,7 @@ class ScanSession(BaseModel):
             "updatedAt": data["updated_at"],
             "expiresAt": data["expires_at"],
             "result": data["result"],
+            "resultReady": result_ready,
             "error": data["error"],
         }
 

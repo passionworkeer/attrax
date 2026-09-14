@@ -333,6 +333,14 @@ export interface ScanStatus {
   progress: number;
   stageText: string;
   stageKey?: "queued" | "vision" | "retrieval" | "report" | "done" | "failed";
+  /**
+   * Backend-explicit "result payload addressable" flag (plan §4.1). True only
+   * when status is terminal (`ready`/`degraded`) AND a result payload exists.
+   * The burning page uses this — not `status` alone — to drive the
+   * 100% → hold → navigate state machine, so a `ready` transition racing the
+   * result persist can never fake a completed scan.
+   */
+  resultReady?: boolean;
   /** Number of uploaded product images available through the scan asset API. */
   imageCount?: number;
   /** When status==="degraded", the scan service error code (e.g. SCAN_SERVICE_UNAVAILABLE). */

@@ -86,20 +86,33 @@ export function useScanPolling(
   const targetProgressRef = useRef(0);
   const stageKeyRef = useRef<string>("queued");
   const stageEnteredAtRef = useRef<number>(0);
-  const lastTickAtRef = useRef<number>(0);
   const isTerminalRef = useRef<boolean>(false);
+  /**
+   * Plan 2026-09-14 §4.1: the 99 cap only applies to NON-terminal states.
+   * Once the backend reports `ready`/`degraded` AND `resultReady`, the poller
+   * enters `completing` and the display progress is completed to a real 100
+   * (backend terminal progress is already 100; we chase it directly instead
+   * of holding at 99 forever — that exact deadlock is bug J01).
+   */
+  const isCompletingRef = useRef<boolean>(false);
 
   useEffect(() => {
     let rafId: number;
     const tick = (now: number) => {
       setDisplayProgress((prev) => {
-        // Once the backend has reported a real terminal progress (>= 95),
-        // chase it directly without simulation — the real number is the truth.
-        const realTarget = targetProgressRef.current;
-        if (realTarget >= 95) {
-          const diff = realTarget - prev;
-          if (Math.abs(diff) < 0.2) return realTarget;
+        if (isCompletingRef.current) {
+          // Backend confirmed ready + result addressable. Chase the backend's
+          // terminal progress (100) directly — the real number is the truth.
+          const diff = targetProgressRef.current - prev;
+          if (Math.abs(diff) < 0.2) return targetProgressRef.current;
           return prev + diff * 0.2;
+        }
+
+        // Backend says ready/degraded but resultReady hasn't arrived yet —
+        // hold wherever we are, never simulate into 100 (plan §4.1 rule: only
+        // `ready && resultReady` may complete).
+        if (isTerminalRef.current) {
+          return prev;
         }
 
         // Otherwise drive progress via the active stage's [floor, ceiling].
@@ -111,36 +124,30 @@ export function useScanPolling(
         const [floor, ceiling] = milestone;
         const stageTarget = Math.min(ceiling, SIMULATED_CEILING);
 
-        const lastTick = lastTickAtRef.current || now;
-        const dt = Math.max(0, now - lastTick);
-        lastTickAtRef.current = now;
-
-        if (isTerminalRef.current) {
-          // Backend says ready/degraded but progress hasn't jumped yet — hold.
-          return prev;
-        }
-
         if (prev >= stageTarget) {
           // Already at the stage ceiling, wait for the next poll to unlock.
           return prev;
         }
 
+        // The real backend `progress` for the active stage, clamped to the
+        // stage window — respects monotonicity without letting one-shot
+        // backend jumps (10 → 100) pin the bar or leak the 99 cap early.
+        const realTarget = targetProgressRef.current;
+
         // Stage-asymptotic interpolation: displayProgress approaches the
         // stage ceiling with time constant `tau`, starting from `floor`.
         // This replaces the old broken `Math.max(realTarget, floor)` floor
         // that pinned progress to 10 forever (audit 2026-09-13 P0 §4.1).
+        // The real backend `progress` inside a stage is respected as a lower
+        // bound (monotonic display) but the simulator owns pacing within the
+        // stage so one-shot backend jumps (10 → 100) don't pin the bar.
         const tau = STAGE_TAU_MS[stageKey] ?? STAGE_TAU_FALLBACK;
         const stageEnteredAt = stageEnteredAtRef.current || now;
         const elapsed = Math.max(0, now - stageEnteredAt);
         const ceilingMargin = Math.max(0, ceiling - floor - 1);
         const eased = ceilingMargin * (1 - Math.exp(-elapsed / tau));
         const stageProgress = Math.min(stageTarget, floor + eased);
-
-        // The simulator's value is authoritative within the active stage.
-        // The real backend `progress` is a one-shot ramp (only 10 → 100) so
-        // we never let it pin the UI backwards to 10 — but we still respect
-        // monotonicity (displayProgress never decreases).
-        return Math.max(prev, stageProgress);
+        return Math.max(prev, stageProgress, Math.min(realTarget, stageTarget));
       });
       rafId = requestAnimationFrame(tick);
     };
@@ -214,6 +221,14 @@ export function useScanPolling(
           stageEnteredAtRef.current = Date.now();
         }
         isTerminalRef.current = data.status !== "processing";
+        // Plan 2026-09-14 §4.1: `ready && resultReady` (BFF contract) moves
+        // the poller into the `completing` state — the simulator stops
+        // pretending and the display progress is driven to a real 100.
+        // A terminal status WITHOUT resultReady (failed, or a ready transition
+        // racing the result persist) stays capped; only a failure path may
+        // leave the poller non-complete.
+        isCompletingRef.current =
+          isDisplayableTerminalStatus(data.status) && data.resultReady === true;
         if (!cancelled) {
           setStatus(data);
         }
@@ -244,12 +259,15 @@ export function useScanPolling(
   return {
     status,
     /**
-     * The simulator's progress rounded for display. Capped at 99 — never
-     * round up to 100% before the backend reports a terminal `ready` /
-     * `degraded` with `progress >= 100`. The burning page waits for the
-     * backend confirmation before jumping to the result route (audit
-     * 2026-09-13 §4.3).
+     * The simulator's progress rounded for display. Capped at 99 while the
+     * scan is NOT complete — plan 2026-09-14 §4.1 (bug J01): once the backend
+     * reports a terminal `ready`/`degraded` WITH `resultReady`, the poller is
+     * in `completing` state and the cap is lifted so the display reaches a
+     * real 100 and the burning page can complete its hold-then-navigate
+     * sequence. Failures stay capped (no fake 100 on failure paths).
      */
-    displayProgress: Math.min(HARD_DISPLAY_CAP, Math.round(displayProgress)),
+    displayProgress: isCompletingRef.current
+      ? Math.round(Math.min(100, displayProgress))
+      : Math.min(HARD_DISPLAY_CAP, Math.round(displayProgress)),
   };
 }

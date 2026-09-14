@@ -379,8 +379,9 @@ describe("useScanPolling", () => {
         ok: true,
         json: async () => ({
           sessionId: "s1",
-          status: "processing",
+          status: "ready",
           progress: 100,
+          resultReady: true,
           stageText: "...",
         }),
       });
@@ -397,8 +398,37 @@ describe("useScanPolling", () => {
         runAnimationFrames(100);
       });
 
-      // Should settle close to target (100)
+      // Should settle close to target (100) — completing state chases the
+      // backend's real terminal progress (plan 2026-09-14 §4.1, bug J01).
       expect(result.current.displayProgress).toBeGreaterThanOrEqual(95);
+    });
+
+    it("processing stays capped at 99 even when backend progress is 100", async () => {
+      // Plan 2026-09-14 §4.1: only `ready && resultReady` may complete to 100.
+      // A `processing` status carrying progress=100 must NOT leak 100 into
+      // the display — the 99 cap protects the terminal-completion contract.
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "s1",
+          status: "processing",
+          progress: 100,
+          stageText: "generate:running",
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("s1"));
+
+      await act(async () => {
+        vi.advanceTimersByTimeAsync(1);
+      });
+
+      await act(async () => {
+        runAnimationFrames(100);
+      });
+
+      expect(result.current.displayProgress).toBeLessThanOrEqual(99);
     });
 
     it("rounds displayProgress to integer", () => {

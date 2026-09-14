@@ -141,20 +141,20 @@ export default function BurningPage() {
     preset,
   });
 
-  // Hold the burning page at 100% for a short, bounded window before
-  // redirecting to the result route. The 2026-09-13 plan §4.3 calls out
-  // the exact bug we used to ship: ready came back, the user saw the
-  // progress bar shoot from 58 → ready → /result with no 100% moment.
-  // 0.6 s is enough for the visual to register without dragging the
-  // perceived wait back out for long-running scans.
+  // Plan 2026-09-14 §4.1 (bug J01): the completion state machine keys off
+  // `ready && resultReady` — an explicit BFF contract — not `progress >= 100`
+  // inferred from text. The 100% hold is measured from when the DISPLAY shows
+  // 100 (not from when the backend said ready), so the user always sees the
+  // completed bar before the route change.
   const HUNDRED_PERCENT_HOLD_MS = 600;
   const [holdReadyAt, setHoldReadyAt] = useState<number | null>(null);
+  const [navigatedRef, setNavigated] = useState(false);
   const realProgressComplete =
     !isDemoSession &&
-    status &&
+    status != null &&
     isDisplayableTerminalStatus(status.status) &&
-    status.result &&
-    (status.progress ?? 0) >= 100;
+    status.resultReady === true &&
+    status.result != null;
   const displayShowsComplete =
     !isDemoSession && progress >= 100;
 
@@ -170,15 +170,23 @@ export default function BurningPage() {
     if (
       !isDemoSession &&
       status &&
-      isDisplayableTerminalStatus(status.status) &&
-      status.result &&
+      realProgressComplete &&
       holdReadyAt !== null &&
       displayShowsComplete
     ) {
       const elapsed = Date.now() - holdReadyAt;
       const remaining = HUNDRED_PERCENT_HOLD_MS - elapsed;
       const timer = window.setTimeout(() => {
-        sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
+        // Plan §4.1 (6): the completion jump must not depend on
+        // sessionStorage writes succeeding. Cache failures are skipped —
+        // the result page re-fetches the session via /api/scan/{id}.
+        try {
+          sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(status.result));
+        } catch {
+          // Quota / private-mode storage failures must not block result access.
+        }
+        if (navigatedRef) return;
+        setNavigated(true);
         router.push(`/result/${sessionId}`);
       }, Math.max(0, remaining));
       return () => window.clearTimeout(timer);
@@ -188,6 +196,8 @@ export default function BurningPage() {
     displayShowsComplete,
     holdReadyAt,
     isDemoSession,
+    navigatedRef,
+    realProgressComplete,
     router,
     sessionId,
     status,
@@ -391,6 +401,33 @@ export default function BurningPage() {
                 >
                   {copy.burning.showDemo}
                 </Link>
+              </div>
+            </div>
+          ) : null}
+
+          {/* Plan §4.1 (8): fallback escape hatch. If the backend has already
+              finished (ready + resultReady) but the animated bar is still
+              settling, the user can reach the result page directly instead of
+              being trapped by the 99% deadlock (bug J01). */}
+          {realProgressComplete && !navigatedRef ? (
+            <div className="mt-6 rounded-[26px] border border-[rgba(126,231,135,0.36)] bg-[rgba(126,231,135,0.08)] p-5">
+              <p className="text-sm text-[#d3ffd7]">
+                {locale === "zh"
+                  ? "扫描已完成，正在准备结果页…"
+                  : "Scan complete — preparing the result page…"}
+              </p>
+              <div className="mt-4">
+                <Button
+                  size="lg"
+                  className="rounded-full"
+                  onClick={() => {
+                    if (navigatedRef) return;
+                    setNavigated(true);
+                    router.push(`/result/${sessionId}`);
+                  }}
+                >
+                  {locale === "zh" ? "查看已完成结果" : "View completed result"}
+                </Button>
               </div>
             </div>
           ) : null}
