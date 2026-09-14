@@ -17,6 +17,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 from rag_service.api.dependencies import bearer_scheme, bearer_token, get_scan_service
 from rag_service.api.models import ApiEnvelope, CreatedScanData, failure, success
 from rag_service.application.scans import (
+    ScanNotReady,
     ScanNotFound,
     ScanSubmission,
     ScanUnauthorized,
@@ -300,6 +301,134 @@ def get_trace(
     if not trace:
         return failure(request, "NOT_FOUND", "Execution trace not available", 404)
     return success(request, trace)
+
+
+# ── Evidence supplementation + revision re-run (plan 2026-09-14 §5.3, J10) ──
+
+
+@router.post("/scans/{session_id}/evidence", response_model=ApiEnvelope[dict[str, Any]], status_code=202)
+async def append_evidence(
+    request: Request,
+    session_id: str,
+    idempotency_key: Annotated[str, Form()] = "",
+    images: Annotated[list[UploadFile], File()] = [],
+    documents: Annotated[list[UploadFile], File()] = [],
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)] = None,
+):
+    """Attach supplementary photos/documents to a completed scan.
+
+    The evidence request merge (多个待补项合并为一个请求) happens on the
+    frontend VM; this endpoint only persists files + idempotency marker."""
+    service, token, denied = _session_and_token(request, session_id, credentials)
+    if denied:
+        return denied
+    if not images and not documents:
+        return failure(request, "INVALID_REQUEST", "At least one file is required", 400)
+    uploads, upload_error = await _read_evidence_uploads(request, images, documents)
+    if upload_error:
+        return upload_error
+    try:
+        result = service.append_evidence(
+            session_id,
+            token,
+            idempotency_key=idempotency_key.strip() or None,
+            uploads=uploads or [],
+        )
+    except ScanNotReady:
+        return failure(request, "NOT_READY", "Scan is still processing", 409)
+    except ScanUnauthorized:
+        return failure(request, "UNAUTHORIZED", "Invalid scan access token", 401)
+    except ScanNotFound:
+        return failure(request, "NOT_FOUND", "Scan session not found", 404)
+    except (ValueError, TypeError):
+        return failure(request, "INVALID_REQUEST", "Evidence rejected (type/count/size)", 400)
+    except Exception:
+        return failure(request, "SCAN_QUEUE_UNAVAILABLE", "Evidence storage is unavailable", 503)
+    return success(request, result, 202)
+
+
+@router.post("/scans/{session_id}/revisions", response_model=ApiEnvelope[dict[str, Any]], status_code=202)
+def request_revision(
+    request: Request,
+    session_id: str,
+    revision_request: dict[str, Any] | None = None,
+    credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)] = None,
+):
+    """Idempotently queue a revision re-run over the session's evidence."""
+    service, token, denied = _session_and_token(request, session_id, credentials)
+    if denied:
+        return denied
+    payload = revision_request or {}
+    idempotency_key = str(payload.get("idempotencyKey") or payload.get("idempotency_key") or "").strip()
+    try:
+        result = service.request_revision(
+            session_id,
+            token,
+            idempotency_key=idempotency_key or None,
+        )
+    except ScanNotReady:
+        return failure(request, "NOT_READY", "Scan is still processing", 409)
+    except ScanUnauthorized:
+        return failure(request, "UNAUTHORIZED", "Invalid scan access token", 401)
+    except ScanNotFound:
+        return failure(request, "NOT_FOUND", "Scan session not found", 404)
+    except Exception:
+        return failure(request, "SCAN_QUEUE_UNAVAILABLE", "Revision queue is unavailable", 503)
+    return success(request, result, 202)
+
+
+async def _read_evidence_uploads(
+    request: Request,
+    images: list[UploadFile],
+    documents: list[UploadFile],
+) -> tuple[list[SubmittedUpload] | None, Response | None]:
+    """Validation for supplementary evidence: at least one file, but no
+    requirement that images exist (a user may be supplying a document to
+    resolve a 待补资料 finding)."""
+    if len(images) > MAX_IMAGE_FILES:
+        return None, failure(request, "TOO_MANY_IMAGES", "Too many images", 400)
+    if len(documents) > MAX_DOCUMENT_FILES:
+        return None, failure(request, "TOO_MANY_DOCUMENTS", "Too many documents", 400)
+    if not images and not documents:
+        return None, failure(request, "INVALID_REQUEST", "At least one file is required", 400)
+
+    submitted: list[SubmittedUpload] = []
+    total_bytes = 0
+    for kind, files, allowed, size_limit in (
+        ("image", images, _IMAGE_TYPES, MAX_IMAGE_SIZE),
+        ("document", documents, _DOCUMENT_TYPES, MAX_DOCUMENT_SIZE),
+    ):
+        for upload in files:
+            name = Path(upload.filename or "upload").name
+            content_type = (upload.content_type or "").lower()
+            suffix = Path(name).suffix.lower()
+            extensions = (
+                allowed.get(content_type, (set(), ()))[0]
+                if kind == "image"
+                else allowed.get(content_type, set())
+            )
+            if content_type not in allowed or suffix not in extensions:
+                return None, failure(request, "INVALID_FILE_TYPE", "Unsupported file type", 400)
+            effective_limit = MAX_TEXT_SIZE if content_type in {"text/plain", "text/html"} else size_limit
+            content = await _read_bounded(upload, effective_limit)
+            if content is None:
+                return None, failure(request, "FILE_TOO_LARGE", "Uploaded file is too large", 413)
+            total_bytes += len(content)
+            if total_bytes > MAX_TOTAL_UPLOAD_SIZE:
+                return None, failure(request, "REQUEST_TOO_LARGE", "Total upload is too large", 413)
+            if not _valid_signature(content_type, content):
+                return None, failure(request, "INVALID_FILE_SIGNATURE", "File content does not match its type", 400)
+            if suffix == ".docx" and not _valid_docx_archive(content):
+                return None, failure(request, "INVALID_DOCX_ARCHIVE", "DOCX archive is invalid or unsafe", 400)
+            submitted.append(
+                SubmittedUpload(
+                    kind=kind,
+                    name=name,
+                    content_type=content_type,
+                    content=content,
+                )
+            )
+    return submitted, None
 
 
 @router.get("/scans/{session_id}/assets/{index}")

@@ -5,9 +5,12 @@ version: 1
 title: 其他品类视觉检查(通用层)
 extends: common
 checks:
+  # record_only: 用途/人群/供电/接触类型只记录观察结果,由用户补充
+  # 条件后路由到具体 profile,不据此判绿判红。
   - id: other.purpose_classification.confirmation
     version: 1
     title: 用途/人群/供电/接触类型确认
+    semantic: record_only
     target_regions: [product_body, product_label]
     required_views: [overview, label]
     methods: [vision, ocr]

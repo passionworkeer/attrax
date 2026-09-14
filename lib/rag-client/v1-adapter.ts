@@ -336,6 +336,64 @@ export function getTrace(
   return getSessionResource(input, "trace");
 }
 
+// ── Evidence supplementation + revision re-run (plan 2026-09-14 §5.3, J10) ──
+
+export interface AppendEvidenceInput extends SessionResourceInput {
+  files: Array<{ buffer: Buffer; originalName: string; mimeType: string }>;
+  idempotencyKey?: string;
+}
+
+export interface AppendEvidenceData {
+  status: "stored" | "already_applied";
+  storedCount: number;
+  uploads?: Array<{ uploadId: string; kind: string; name: string; size: number }>;
+}
+
+export async function appendEvidence(input: AppendEvidenceInput): Promise<AppendEvidenceData> {
+  const formData = new FormData();
+  formData.set("idempotency_key", input.idempotencyKey ?? "");
+  for (const file of input.files) {
+    const field = file.mimeType.startsWith("image/") ? "images" : "documents";
+    formData.append(
+      field,
+      new Blob([new Uint8Array(file.buffer)], { type: file.mimeType }),
+      file.originalName,
+    );
+  }
+  return requestEnvelope<AppendEvidenceData>(
+    `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/evidence`,
+    {
+      method: "POST",
+      body: formData,
+      headers: buildAuthHeaders(input.accessToken),
+    },
+    RAG_SERVICE_TIMEOUT_MS,
+    "SCAN_SERVICE_UNAVAILABLE",
+  );
+}
+
+export interface RevisionQueueData {
+  status: "queued" | "already_queued";
+  revision: number;
+  jobId?: string;
+}
+
+export async function requestRevision(input: SessionResourceInput): Promise<RevisionQueueData> {
+  return requestEnvelope<RevisionQueueData>(
+    `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/revisions`,
+    {
+      method: "POST",
+      headers: {
+        ...buildAuthHeaders(input.accessToken),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idempotencyKey: `${input.sessionId}:revision` }),
+    },
+    RAG_SERVICE_TIMEOUT_MS,
+    "SCAN_SERVICE_UNAVAILABLE",
+  );
+}
+
 export interface GetScanAssetInput extends SessionResourceInput {
   index: number;
 }

@@ -192,6 +192,21 @@ class InspectionProfile(BaseModel):
     checks: list[InspectionProfileCheck] = Field(default_factory=list)
 
 
+# Check semantics — what the check's *presence* MEANS (plan 2026-09-14 §4.2,
+# problem J02). Visibility alone cannot decide good/bad: seeing a scratch is
+# bad, NOT seeing a scratch is good; seeing a nameplate is good, NOT seeing
+# one in a visible label area is suspect. The semantic tells the findings
+# builder which direction to read each observation in.
+CheckSemantic = Literal[
+    "required_presence",  # element SHOULD exist (nameplate/label/warning/age mark)
+    "hazard_presence",    # the observed feature is a DEFECT if present (crack/
+                          # sharp edge/swelling); absence in view is GOOD
+    "record_only",        # morphology is recorded but photos alone cannot
+                          # judge compliance (small parts/cord shape); neither
+                          # pass nor fail from one photo
+]
+
+
 class InspectionProfileCheck(BaseModel):
     """One checklist item inside a profile (plan §5.1 YAML shape)."""
 
@@ -200,6 +215,7 @@ class InspectionProfileCheck(BaseModel):
     id: str                              # "common.nameplate.readability"
     version: int = 1
     title: str = ""
+    semantic: CheckSemantic = "required_presence"
     target_regions: list[str] = Field(default_factory=list)
     required_views: list[str] = Field(default_factory=list)
     methods: list[str] = Field(default_factory=list)      # vision / ocr / detector

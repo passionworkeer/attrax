@@ -10,6 +10,7 @@ checks:
   - id: toy.age_range.label
     version: 1
     title: 年龄适用范围标注
+    semantic: required_presence
     target_regions: [packaging, product_label]
     required_views: [package_front]
     methods: [vision, ocr]
@@ -21,6 +22,7 @@ checks:
   - id: toy.warnings.text
     version: 1
     title: 警告语(窒息/磁体/电池等)
+    semantic: required_presence
     target_regions: [warning_label, packaging]
     required_views: [package_front, warning_label_closeup]
     methods: [vision, ocr]
@@ -28,18 +30,23 @@ checks:
     legal_anchor_refs:
       - EU-2009-48-toy
 
+  # record_only: 看到小附件只记录形态;尺寸/年龄风险需量规等证据,
+  # 不因能看清就判绿,也不生成整改项(plan §4.2 真值表第 5 行)。
   - id: toy.small_parts.visible
     version: 1
     title: 可见小附件(含脱落风险目视)
+    semantic: record_only
     target_regions: [product_body]
     required_views: [overview, accessories_flat]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 清晰看到磁体/绳带危险形态才生成疑点;未见是好事。
   - id: toy.magnets_cords.visible
     version: 1
     title: 磁体/绳带/绳索可见形态
+    semantic: hazard_presence
     target_regions: [product_body]
     required_views: [overview, accessories_flat]
     methods: [vision]
@@ -49,6 +56,7 @@ checks:
   - id: toy.battery_compartment.closure
     version: 1
     title: 电池仓闭合方式(螺丝/卡扣)
+    semantic: required_presence
     target_regions: [battery_compartment]
     required_views: [battery_compartment]
     methods: [vision]
@@ -56,9 +64,12 @@ checks:
     legal_anchor_refs:
       - KB-toy-EU-2009-48
 
+  # hazard_presence: 清晰看到尖锐/裂纹/破损 → 外观疑点+原图区域;
+  # 区域可见但未见异常 → 无 finding(J02 正例)。
   - id: toy.sharp_edges.visible
     version: 1
     title: 可见尖锐/破损部位
+    semantic: hazard_presence
     target_regions: [product_body]
     required_views: [overview]
     methods: [vision]

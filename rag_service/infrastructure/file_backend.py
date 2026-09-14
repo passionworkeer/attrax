@@ -304,6 +304,27 @@ class FileBackend:
                 stream.write(line + "\n")
             self._chmod(self.audit_path, 0o600)
 
+    def audit_event_exists(self, event: str) -> bool:
+        """Idempotency probe for the evidence/revision endpoints (plan §5.3).
+
+        True when an audit event with this exact name was recorded before —
+        used to make retried requests with the same idempotency key no-ops
+        so files are not double-stored and jobs not double-spawned."""
+        if not self.audit_path.exists():
+            return False
+        try:
+            with self.audit_path.open("r", encoding="utf-8") as stream:
+                for line in stream:
+                    try:
+                        payload = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    if payload.get("event") == event:
+                        return True
+        except OSError:
+            return False
+        return False
+
     def delete_session(self, session_id: str) -> None:
         safe_session = self._id(session_id)
         with self._lock:

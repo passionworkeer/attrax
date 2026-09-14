@@ -6,35 +6,32 @@ license: public
 last_verified: '2026-09-11'
 last_verified_by: llm-assisted
 language: en
+source_kind: unverified
 articles:
 - id: art-7
-  title: Carbon footprint declaration
-  text: '电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed
-    from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and
-    `notes`.)'
+  title: Electrochemical performance and durability requirements
+  text: '电化学性能与耐久性：便携式一般用途电池及 LMT 电池须满足额定容量、循环寿命等性能参数要求（具体参数由欧委会受权法案细化）。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 - id: art-38
   title: Conformity assessment and CE marking
-  text: '电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed
-    from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and
-    `notes`.)'
+  text: '合格评定与 CE 标志：电池投放市场或投入使用前须按适用模块完成合格评定并加贴 CE 标志；制造商对合规性负责并保存技术文档。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 - id: art-39
-  title: Declaration of conformity
-  text: '电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed
-    from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and
-    `notes`.)'
+  title: EU declaration of conformity
+  text: 'EU 符合性声明：制造商须编制并保存 EU 符合性声明，随技术文档一并保存，并应市场监管机构要求提供。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 - id: art-77
   title: Battery passport (electronic record)
-  text: '电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed
-    from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and
-    `notes`.)'
+  text: '电池护照（电子记录）：LMT 电池、电动车电池及容量 >2 kWh 的工业电池须配备电池护照（含数据载体与信息要求，由欧委会受权法案细化）。依据欧盟委员会 2026-08-21 指南，上述 EV/LMT 与 >2 kWh 工业电池的护照要求自 2027-02-18 起适用；便携式电池（如耳机充电盒/普通消费电子）不适用电池护照。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 - id: art-85
   title: Reporting obligations
-  text: '电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed
-    from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and
-    `notes`.)'
+  text: '报告义务：欧委会与成员国之间关于电池投放市场数量、构成与性能等的报告与数据收集安排。 (Article theme summary — NOT verbatim official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)'
 raw_file: null
 checksum_sha256: null
 schema_version: 1
 source_url: https://eur-lex.europa.eu/eli/reg/2023/1542/oj
-notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+notes: 'Governance pass 2026-09-14 (plan J08 / §4.4 layer 3): the previous seed attached the same
+  battery-passport KB summary to art-7/38/39/77/85 (article-content mismatch), and quoted the LMT battery
+  passport date as 2028-08-18. Per the European Commission guidance of 2026-08-21
+  (single-market-economy.ec.europa.eu — guidance to support preparations for digital batteries passport),
+  EV/LMT batteries and industrial batteries > 2 kWh require the passport from 2027-02-18; the date is
+  corrected accordingly. source_kind: unverified — summaries, NOT verbatim official text; must not enter
+  the exact-quote flow or be labeled 已对照原文. Verbatim replacement via `parser/legal_parser.py`
+  remains pending.'

@@ -35,6 +35,8 @@ export default function PricingPage() {
             price: "¥99",
             unit: "/ 次",
             badge: "按次交付",
+            // J18: 只列已交付能力。旧的「认证绿色通道 / 专属客服」未实现，
+            // 不再列成已包含权益（移到下方「规划中」区块）。
             features: ["单个 SKU 完整合规报告", "利润测算表导出", "风险整改建议", "7 天扫描历史保留"],
           },
           {
@@ -45,9 +47,8 @@ export default function PricingPage() {
             features: [
               "每月 10 个 SKU 完整报告",
               "不限次产品扫描",
-              "法规更新提醒",
-              "认证绿色通道",
-              "专属客服支持",
+              "法规动态示例查看",
+              "报告版本对比",
             ],
           },
           {
@@ -55,7 +56,7 @@ export default function PricingPage() {
             price: "¥2399",
             unit: "/ 年",
             badge: "企业常用",
-            features: ["每年 180 个 SKU 完整报告", "专家人工复核 1 次", "企业级多人协作", "优先体验新功能"],
+            features: ["每年 180 个 SKU 完整报告", "专家人工复核 1 次", "优先体验新功能"],
           },
         ]
       : [
@@ -74,9 +75,8 @@ export default function PricingPage() {
             features: [
               "10 complete SKU reports per month",
               "Unlimited product scans",
-              "Regulation update reminders",
-              "Certification fast lane",
-              "Dedicated support",
+              "Regulation update demos",
+              "Report revision comparison",
             ],
           },
           {
@@ -84,24 +84,27 @@ export default function PricingPage() {
             price: "¥2399",
             unit: "/ yr",
             badge: "Team plan",
-            features: ["180 complete SKU reports per year", "One expert manual review", "Enterprise collaboration", "Early access to new features"],
+            features: ["180 complete SKU reports per year", "One expert manual review", "Early access to new features"],
           },
         ];
   const selectedPlan = pricingPlans[selectedPlanIndex] ?? pricingPlans[1];
+  // J18: 「包含交付」只保留当前真实可交付的四项产出（旧版把
+  // 「认证绿色通道与专属客服」列成已包含权益，未实现，已移除）。
   const unlockItems =
     locale === "zh"
       ? [
           "完整合规总报告 PDF / DOCX",
           "供应商整改路线图 CSV",
           "利润测算与 AI 决策说明",
-          "认证绿色通道与专属客服",
+          "扫描会话证据记录（7 天）",
         ]
       : [
           "Full compliance report PDF / DOCX",
           "Supplier remediation roadmap CSV",
           "Margin analysis and AI decision note",
-          "Certification fast lane and support",
+          "Scan session evidence records (7 days)",
         ];
+  // J18: 已交付 / 洽谈中的交付方式。私有化部署尚未交付，移入规划中区块。
   const deliveryModes =
     locale === "zh"
       ? [
@@ -113,18 +116,11 @@ export default function PricingPage() {
             metric: "最快 3 分钟开通",
           },
           {
-            title: "API 服务",
+            title: "API 服务（合作洽谈）",
             price: "¥0.1 / 次起",
-            body: "适合 ERP / CRM / 内部选品系统集成，支持高频调用、阶梯折扣和结果回传。",
+            body: "适合 ERP / CRM / 内部选品系统集成，支持高频调用、阶梯折扣和结果回传；按项目对接，需商务洽谈。",
             fit: "平台系统 · 批量任务",
             metric: "按调用量弹性计费",
-          },
-          {
-            title: "私有部署",
-            price: "¥5-20 万 / 次",
-            body: "Docker 一键部署，适合大型企业把法规库、FAISS 索引和产品数据留在内网。",
-            fit: "大型企业 · 私域数据",
-            metric: "法规与数据不出域",
           },
         ]
       : [
@@ -136,19 +132,29 @@ export default function PricingPage() {
             metric: "Live in 3 minutes",
           },
           {
-            title: "API service",
+            title: "API service (in talks)",
             price: "from ¥0.1 / call",
-            body: "Built for ERP / CRM / sourcing system integration with volume discounts and result callbacks.",
+            body: "Built for ERP / CRM / sourcing system integration with volume discounts and result callbacks; per-project onboarding via sales.",
             fit: "Platforms · batch jobs",
             metric: "Elastic usage pricing",
           },
-          {
-            title: "Private deployment",
-            price: "¥50k-200k / setup",
-            body: "One-click Docker deployment keeps rule libraries, FAISS indexes, and product data inside the enterprise network.",
-            fit: "Enterprise · private data",
-            metric: "Data stays in-domain",
-          },
+        ];
+  // J18: 规划中（尚未交付）——如实标注，不与已交付权益混排。
+  const plannedItems =
+    locale === "zh"
+      ? [
+          "专属客服支持",
+          "认证绿色通道（对接实验室 / 认证机构）",
+          "企业级多人协作",
+          "私有化部署（法规库与产品数据留在内网）",
+          "实时法规监控订阅（当前 /regulations 为静态示例）",
+        ]
+      : [
+          "Dedicated support",
+          "Certification fast lane (lab / body matchmaking)",
+          "Enterprise multi-user collaboration",
+          "Private deployment (rule libraries and product data on-prem)",
+          "Live regulation monitoring (current /regulations page is a static demo)",
         ];
 
   return (

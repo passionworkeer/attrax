@@ -9,9 +9,7 @@ import {
   ChevronDown,
   FileImage,
   FileText,
-  PackageCheck,
   Play,
-  PlugZap,
   Upload,
   X,
 } from "lucide-react";
@@ -28,6 +26,7 @@ import {
 } from "@/components/complipilot/flow-shell";
 import { getCompliPilotCopy } from "@/lib/complipilot/copy";
 import { MARKET_IDS, type Market, type ProductCategory } from "@/lib/types";
+import { getCategoryManifest } from "@/lib/upload/category-manifest";
 import { validateUploadFile } from "@/lib/upload-validation";
 import styles from "./upload.module.css";
 
@@ -38,7 +37,10 @@ type ScanStartPayload = {
   pollUrl: string;
 };
 
-const REQUIRED_UPLOAD_SLOTS = 3;
+/**
+ * J17（计划 §5.4）：不再使用固定 3 槽。照片槽数量由当前品类的
+ * `category-manifest.ts` 决定（2-4 槽），上限仍为 MAX_UPLOAD_FILES。
+ */
 const MAX_UPLOAD_FILES = 8;
 const MAX_DOCUMENT_FILES = 5;
 const MAX_FILE_SIZE_BYTES = 12 * 1024 * 1024;
@@ -106,8 +108,16 @@ export default function UploadPage() {
   const documentInputRef = useRef<HTMLInputElement | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // J17: 品类条件问题的答案（问题 id → 用户选择的选项文案）。
+  // 纯前端收集，提交时以 `userDeclaredFacts` JSON 字段附带给 BFF——
+  // BFF 目前不消费该字段，因此提交结构与既有契约保持兼容。
+  const [categoryAnswers, setCategoryAnswers] = useState<Record<string, string>>({});
   const uploadedFiles = files.filter((file): file is File => Boolean(file));
-  const uploadProgress = files.slice(0, REQUIRED_UPLOAD_SLOTS).filter(Boolean).length;
+  // J17: 照片槽 = 当前品类 manifest 的 photoSlots（数量可变，≤8）。
+  const categoryManifest = getCategoryManifest(category);
+  const photoSlots = categoryManifest.photoSlots;
+  const slotCount = Math.min(photoSlots.length, MAX_UPLOAD_FILES);
+  const uploadProgress = files.slice(0, slotCount).filter(Boolean).length;
   const uploadedPreviewEntries = previewUrls.flatMap((url, index) =>
     url ? [{ index, url }] : []
   );
@@ -133,48 +143,28 @@ export default function UploadPage() {
       : locale === "zh"
         ? `${selectedMarketNames.slice(0, 2).join(" + ")} 等 ${selectedMarketNames.length} 个市场`
         : `${selectedMarketNames.slice(0, 2).join(" + ")} + ${selectedMarketNames.length - 2} more`;
+  // J18/J17: 预览徽标不再叫「多品类模式」——那会暗示系统已经跨品类
+  // 自动切换检查配置。改为如实的「示例预览 · <品类>」。
   const categoryLabel =
-    category === "electronics"
-      ? copy.upload.previewPill
-      : locale === "zh"
-        ? "多品类模式"
-        : "multi-category";
+    locale === "zh"
+      ? `示例预览 · ${categoryManifest.label}`
+      : `Sample preview · ${categoryManifest.labelEn}`;
   const slotCopy =
     locale === "zh"
-      ? [
-          {
-            title: "正面主视图",
-            hint: "完整机身、品牌与外观轮廓",
-            icon: Camera,
-          },
-          {
-            title: "接口 / 侧面细节",
-            hint: "插头、端口、规格结构",
-            icon: PlugZap,
-          },
-          {
-            title: "铭牌 / 包装标签",
-            hint: "CE、UKCA、FCC 与警示语",
-            icon: PackageCheck,
-          },
-        ]
-      : [
-          {
-            title: "Front view",
-            hint: "Full body, brand, and outline",
-            icon: Camera,
-          },
-          {
-            title: "Ports / side detail",
-            hint: "Plug, port, and spec structure",
-            icon: PlugZap,
-          },
-          {
-            title: "Nameplate / package",
-            hint: "CE, UKCA, FCC, and warnings",
-            icon: PackageCheck,
-          },
-        ];
+      ? photoSlots.map((slot) => ({
+          title: slot.label,
+          hint: slot.hint,
+          icon: Camera,
+        }))
+      : photoSlots.map((slot) => ({
+          title: slot.labelEn,
+          hint: slot.hintEn,
+          icon: Camera,
+        }));
+  const recommendedSlotTitle =
+    locale === "zh"
+      ? `建议补齐这 ${slotCount} 个角度（${categoryManifest.label}）`
+      : `Recommended ${slotCount} angles (${categoryManifest.labelEn})`;
 
   useEffect(() => {
     return () => {
@@ -256,7 +246,7 @@ export default function UploadPage() {
     startTransition(() => {
       setFiles((current) => {
         const nextFiles = [...current];
-        while (nextFiles.length < REQUIRED_UPLOAD_SLOTS) {
+        while (nextFiles.length < slotCount) {
           nextFiles.push(null);
         }
         nextFiles[slotIndex] = validatedFile;
@@ -265,7 +255,7 @@ export default function UploadPage() {
 
       setPreviewUrls((current) => {
         const nextPreviewUrls = [...current];
-        while (nextPreviewUrls.length < REQUIRED_UPLOAD_SLOTS) {
+        while (nextPreviewUrls.length < slotCount) {
           nextPreviewUrls.push(null);
         }
 
@@ -387,6 +377,16 @@ export default function UploadPage() {
     });
   }
 
+  /**
+   * J17: 切换品类时，清空旧品类的条件问题答案——问题集随品类变化，
+   * 旧答案对新问题没有意义。已上传的照片保留（它们仍是有效证据），
+   * 超出新品类槽位数的部分自动按「补充证据」处理。
+   */
+  function handleCategoryChange(nextCategory: ProductCategory) {
+    setCategory(nextCategory);
+    setCategoryAnswers({});
+  }
+
   async function submitScan(formData: FormData) {
     setSubmitting(true);
     setError(null);
@@ -472,6 +472,23 @@ export default function UploadPage() {
     formData.append("category", category);
     formData.append("markets", selectedMarkets.join(","));
     formData.append("locale", locale);
+    // J17: 附带品类条件问题的用户声明。BFF 当前不消费该字段（
+    // 见 app/api/scan/route.ts 只读取 images/documents/category/markets/
+    // query/product），因此提交结构与既有契约兼容；后端未来接入
+    // 用户事实（计划 §5.4）时可直接读取该 JSON。
+    const declaredFacts = categoryManifest.conditionalQuestions.reduce<Record<string, string>>(
+      (acc, question) => {
+        const answer = categoryAnswers[question.id];
+        if (answer) {
+          acc[question.id] = answer;
+        }
+        return acc;
+      },
+      {},
+    );
+    if (Object.keys(declaredFacts).length > 0) {
+      formData.append("userDeclaredFacts", JSON.stringify(declaredFacts));
+    }
 
     await submitScan(formData);
   }
@@ -522,14 +539,14 @@ export default function UploadPage() {
                 </p>
               </div>
               <span className="rounded-full border border-white/40 bg-white/22 px-3 py-1.5 text-xs font-semibold text-white">
-                {uploadProgress}/{REQUIRED_UPLOAD_SLOTS} {locale === "zh" ? "张已就绪" : "ready"}
+                {uploadProgress}/{slotCount} {locale === "zh" ? "张已就绪" : "ready"}
               </span>
             </div>
 
             <div className="mt-5 grid grid-cols-3 gap-2 text-center text-xs font-medium text-white/58">
               {(locale === "zh"
-                ? ["1 上传图片", "2 选择市场", "3 生成报告"]
-                : ["1 Upload", "2 Markets", "3 Report"]
+                ? ["1 选择品类上传", "2 选择市场", "3 生成报告"]
+                : ["1 Category + upload", "2 Markets", "3 Report"]
               ).map((step, index) => (
                 <span
                   key={step}
@@ -540,6 +557,35 @@ export default function UploadPage() {
                   {step}
                 </span>
               ))}
+            </div>
+
+            {/* J17（计划 §5.4）：先选品类，下面的照片槽与提示按品类动态渲染 */}
+            <div className="mt-5 flex flex-wrap items-end gap-3">
+              <div className="min-w-[220px] flex-1">
+                <label className="text-sm font-semibold text-white" htmlFor="blaze-category">
+                  {copy.upload.category}
+                </label>
+                <p className="mt-1 text-xs text-white/42">
+                  {locale === "zh"
+                    ? "照片槽与提示会随品类变化"
+                    : "Photo slots and hints change with the category"}
+                </p>
+              </div>
+              <div className="relative min-w-[200px] flex-[2]">
+                <select
+                  id="blaze-category"
+                  value={category}
+                  onChange={(event) => handleCategoryChange(event.target.value as ProductCategory)}
+                  className="block w-full appearance-none rounded-[16px] border border-white/44 bg-white/22 px-4 py-3 pr-10 text-sm text-white outline-none transition focus:border-white/85"
+                >
+                  {(["electronics", "appliance", "3c", "toy", "home", "battery", "cosmetic", "textile", "food_contact", "other"] as const).map((optionId) => (
+                    <option key={optionId} value={optionId} className="bg-[#e8f7fa] text-[#073b54]">
+                      {copy.upload.categoryLabels[optionId]}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-white/46" />
+              </div>
             </div>
 
             <label
@@ -603,13 +649,28 @@ export default function UploadPage() {
             <div className="mt-5">
               <div className="flex items-center justify-between gap-3">
                 <p className="text-sm font-semibold text-white">
-                  {locale === "zh" ? "建议补齐这 3 个角度" : "Recommended 3 angles"}
+                  {recommendedSlotTitle}
                 </p>
                 <span className="text-xs text-white/42">
                   {locale === "zh" ? "至少 1 张即可开始" : "1 image minimum"}
                 </span>
               </div>
-              <div className="mt-3 grid gap-3 sm:grid-cols-3">
+              {/* J17: 品类诚实边界 — 提示该品类哪些结论不能仅凭照片断言 */}
+              <p className="mt-1.5 text-xs leading-5 text-white/48">
+                {locale === "zh" ? categoryManifest.notPhotoAssertable : categoryManifest.notPhotoAssertableEn}
+              </p>
+              {/* J17: 建议补充的文档类型（按品类） */}
+              <p className="mt-1 text-xs leading-5 text-white/40">
+                {locale === "zh"
+                  ? `建议补充资料：${categoryManifest.documentHints.join(" · ")}`
+                  : `Suggested documents: ${categoryManifest.documentHintsEn.join(" · ")}`}
+              </p>
+              {/* J17: 槽位数量随品类变化（2-4），网格列数随之自适应 */}
+              <div
+                className={`mt-3 grid gap-3 ${
+                  slotCount === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"
+                }`}
+              >
                 {slotCopy.map((slot, index) => {
                   const file = files[index];
                   const previewUrl = previewUrls[index];
@@ -702,12 +763,74 @@ export default function UploadPage() {
               </div>
             </div>
 
-            {files.slice(REQUIRED_UPLOAD_SLOTS).filter(Boolean).length > 0 ? (
+            {files.slice(slotCount).filter(Boolean).length > 0 ? (
               <p className="mt-3 text-xs leading-5 text-white/48">
                 {locale === "zh"
-                  ? `另外 ${files.slice(REQUIRED_UPLOAD_SLOTS).filter(Boolean).length} 张图片会作为补充证据。`
-                  : `${files.slice(REQUIRED_UPLOAD_SLOTS).filter(Boolean).length} extra images will be supporting evidence.`}
+                  ? `另外 ${files.slice(slotCount).filter(Boolean).length} 张图片会作为补充证据。`
+                  : `${files.slice(slotCount).filter(Boolean).length} extra images will be supporting evidence.`}
               </p>
+            ) : null}
+
+            {/* J17（计划 §5.4）：品类条件问题——回答后作为「用户声明」随扫描提交，
+                帮助检查器关闭不适用的检查（例如玩具声明无电池时不再要求电池仓照片）。
+                跳过不影响提交；回答不会替代照片证据（例如年龄声明不能替代包装年龄标注）。 */}
+            {categoryManifest.conditionalQuestions.length > 0 ? (
+              <fieldset className="mt-6 rounded-[22px] border border-white/24 bg-white/8 p-4">
+                <legend className="px-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+                  {locale === "zh"
+                    ? `${categoryManifest.label} · 条件问题（用户声明，可选）`
+                    : `${categoryManifest.labelEn} · Conditional questions (user declaration, optional)`}
+                </legend>
+                <p className="text-xs leading-5 text-white/48">
+                  {locale === "zh"
+                    ? "这些回答会被记录为「用户声明」用于关闭不适用的检查，但不是认证证明——照片与文件证据仍以实物为准。"
+                    : "Answers are recorded as user declarations to close inapplicable checks; they are not certification proof — photo and document evidence still decides."}
+                </p>
+                <div className="mt-3 space-y-4">
+                  {categoryManifest.conditionalQuestions.map((question) => {
+                    const questionText = locale === "zh" ? question.question : question.questionEn;
+                    const options =
+                      locale === "zh"
+                        ? question.options
+                        : question.optionsEn ?? question.options;
+                    return (
+                      <div key={question.id}>
+                        <p className="text-sm font-semibold text-white">{questionText}</p>
+                        <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label={questionText}>
+                          {options.map((option) => {
+                            const selected = categoryAnswers[question.id] === option;
+                            return (
+                              <button
+                                key={option}
+                                type="button"
+                                aria-pressed={selected}
+                                onClick={() =>
+                                  setCategoryAnswers((current) => {
+                                    const next = { ...current };
+                                    if (selected) {
+                                      delete next[question.id];
+                                    } else {
+                                      next[question.id] = option;
+                                    }
+                                    return next;
+                                  })
+                                }
+                                className={`rounded-full border px-3 py-1.5 text-xs transition ${
+                                  selected
+                                    ? "border-white/75 bg-white/40 text-white"
+                                    : "border-white/34 bg-white/12 text-white/58 hover:bg-white/28"
+                                }`}
+                              >
+                                {option}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </fieldset>
             ) : null}
 
             <details className="group mt-6 rounded-[22px] border border-white/24 bg-white/8 open:bg-white/12">
@@ -800,7 +923,7 @@ export default function UploadPage() {
               </div>
             </details>
 
-            <div className="mt-6 grid gap-5 border-t border-white/30 pt-5 xl:grid-cols-[1fr_210px]">
+            <div className="mt-6 grid gap-5 border-t border-white/30 pt-5">
               <div>
                 <div className="flex items-center justify-between gap-3">
                   <div>
@@ -840,27 +963,6 @@ export default function UploadPage() {
                       ? locale === "zh" ? "收起" : "Less"
                       : locale === "zh" ? "更多市场" : "More markets"}
                   </button>
-                </div>
-              </div>
-
-              <div>
-                <label className="text-sm font-semibold text-white" htmlFor="blaze-category">
-                  {copy.upload.category}
-                </label>
-                <div className="relative mt-3">
-                  <select
-                    id="blaze-category"
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value as ProductCategory)}
-                    className="block w-full appearance-none rounded-[16px] border border-white/44 bg-white/22 px-4 py-3 pr-10 text-sm text-white outline-none transition focus:border-white/85"
-                  >
-                    {(["electronics", "appliance", "3c", "toy", "home", "battery", "cosmetic", "textile", "food_contact", "other"] as const).map((optionId) => (
-                      <option key={optionId} value={optionId} className="bg-[#e8f7fa] text-[#073b54]">
-                        {copy.upload.categoryLabels[optionId]}
-                      </option>
-                    ))}
-                  </select>
-                  <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-white/46" />
                 </div>
               </div>
             </div>
@@ -1053,7 +1155,7 @@ export default function UploadPage() {
                       aria-pressed={active}
                       onClick={() => {
                         setSelectedPresetIndex(index);
-                        setCategory(preset.category);
+                        handleCategoryChange(preset.category);
                         setSelectedMarkets(preset.markets);
                         setPreviewMode("preset");
                       }}

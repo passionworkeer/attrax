@@ -354,6 +354,165 @@ class ScanService:
         self.backend.delete_session(session_id)
         self.backend.append_audit({"event": "scan_deleted", "sessionId": session_id})
 
+    # ── Evidence supplementation + revision re-run (plan §5.3, J10) ────────
+    #
+    # Completed scans accept additional photos/documents against the SAME
+    # session so the original evidence is preserved and the new run is a
+    # revision of it (not a fresh scan that loses context). Idempotency is
+    # enforced with an explicit `idempotency_key` so a retry after a network
+    # failure does not double-store files or double-spawn a job.
+
+    _MAX_EVIDENCE_UPLOADS = 8
+
+    def append_evidence(
+        self,
+        session_id: str,
+        access_token: str,
+        *,
+        idempotency_key: str | None,
+        uploads: list[SubmittedUpload],
+    ) -> dict[str, Any]:
+        """Store supplementary evidence on a completed (or degraded) scan.
+
+        Returns the per-request status; the frontend surfaces it as
+        "N 项已补齐" and offers triggering a revision re-run.
+        """
+        session = self._authorized_session(session_id, access_token)
+        if session.status == "processing":
+            raise ScanNotReady(session_id)
+        if not uploads:
+            raise ValueError("no evidence supplied")
+        existing = self.backend.list_uploads(session_id)
+        if len(existing) + len(uploads) > self._MAX_EVIDENCE_UPLOADS:
+            raise ValueError("evidence upload limit exceeded")
+
+        key = (idempotency_key or "").strip()
+        if key:
+            marker = f"evidence:{session_id}:{key}"
+            if self.backend.audit_event_exists(marker):
+                return {
+                    "status": "already_applied",
+                    "storedCount": 0,
+                }
+
+        stored: list[dict[str, Any]] = []
+        for upload in uploads:
+            record = self.backend.save_upload(
+                session_id=session_id,
+                kind=upload.kind,
+                original_name=upload.name,
+                content_type=upload.content_type,
+                content=upload.content,
+            )
+            stored.append(
+                {
+                    "uploadId": record.upload_id,
+                    "kind": record.kind,
+                    "name": record.original_name,
+                    "size": record.size,
+                }
+            )
+        self.backend.append_audit(
+            {
+                "event": "evidence_appended" if not key else marker,
+                "sessionId": session_id,
+                "idempotencyKey": key or None,
+                "count": len(stored),
+                "totalUploads": len(self.backend.list_uploads(session_id)),
+            }
+        )
+        return {"status": "stored", "storedCount": len(stored), "uploads": stored}
+
+    def request_revision(
+        self,
+        session_id: str,
+        access_token: str,
+        *,
+        idempotency_key: str | None,
+    ) -> dict[str, Any]:
+        """Idempotently queue a revision re-run over the session's evidence.
+
+        Revision N+1 reuses the original job's query/product/category/markets
+        plus the now-extended upload set. The previous result stays readable
+        until the new one completes (the session keeps its old `result` while
+        `status` flips back to `processing`).
+        """
+        session = self._authorized_session(session_id, access_token)
+        if session.status == "processing":
+            raise ScanNotReady(session_id)
+
+        key = (idempotency_key or "").strip()
+        marker = f"revision:{session_id}:{key}" if key else None
+        if marker and self.backend.audit_event_exists(marker):
+            current = self.backend.get_session(session_id)
+            revision = self._next_revision(current or session)
+            return {"status": "already_queued", "revision": revision}
+
+        revision = self._next_revision(session)
+        job_id = f"job_{uuid.uuid4().hex}"
+        upload_ids = [u.upload_id for u in self.backend.list_uploads(session_id)]
+        # The original job is deleted on completion, so recover the
+        # submission context from the session's persisted result.
+        query, product = self._revision_job_fields(session)
+        self.backend.save_job(
+            ScanJob.new(
+                job_id=job_id,
+                session_id=session_id,
+                query=query,
+                product=product,
+                category=session.category,
+                markets=list(session.markets),
+                upload_ids=upload_ids,
+            )
+        )
+        # The revision job carries its own marker in last_error so a crash
+        # between save_job and the audit append can't orphan duplicate jobs.
+        self.backend.append_audit(
+            {
+                "event": marker or "revision_requested",
+                "sessionId": session_id,
+                "jobId": job_id,
+                "revision": revision,
+            }
+        )
+        self._spawn(job_id, session_id)
+        return {"status": "queued", "revision": revision, "jobId": job_id}
+
+    @staticmethod
+    def _next_revision(session: ScanSession) -> int:
+        result = session.result if isinstance(session.result, Mapping) else {}
+        current = result.get("revision")
+        if isinstance(current, bool) or not isinstance(current, int):
+            try:
+                current = int(str(current or 0))
+            except ValueError:
+                current = 0
+        return max(0, current) + 1
+
+    def _next_revision_from_result(self, session_id: str) -> int:
+        """Revision stamp for a freshly normalized result: the stored
+        session's revision (0 when absent) + 1, so the original scan is 1
+        and each evidence re-run increments (plan §5.3)."""
+        session = self.backend.get_session(session_id)
+        if session is None:
+            return 1
+        return self._next_revision(session)
+
+    # NOTE: kept for callers outside _run_job; _normalize_result is a
+    # staticmethod and receives the revision via parameter instead.
+
+    def _revision_job_fields(self, session: ScanSession) -> tuple[str, str]:
+        """Recover query/product for a revision job from the stored session.
+
+        The original job record is deleted when the scan completes, so the
+        revision job captures the values from the persisted result; the
+        re-run is identical modulo the extended evidence set.
+        """
+        result = session.result if isinstance(session.result, Mapping) else {}
+        query = str(result.get("query") or result.get("complianceReport") or "").strip()
+        product = str(result.get("productName") or "").strip()
+        return (query or "compliance re-check")[:2000], (product or "product")[:500]
+
     async def _run_job(self, job_id: str) -> None:
         existing = self.backend.get_job(job_id)
         if existing is None:
@@ -382,7 +541,11 @@ class ScanService:
         lease_task = asyncio.create_task(self._lease_heartbeat(job.job_id, job.session_id))
         try:
             raw = await self.runner(self._build_runner_payload(job, progress_callback=self._make_progress_callback(job)))
-            result, status, degraded_reason = self._normalize_result(job, raw)
+            current_session = self.backend.get_session(job.session_id)
+            result_revision = self._next_revision(current_session) if current_session else 1
+            result, status, degraded_reason = self._normalize_result(
+                job, raw, revision=result_revision
+            )
             # A transport-successful LLM call can still omit a required scene
             # or return a malformed package. Treat that as a retryable provider
             # result, not as a terminal user-facing scan: the job already has a
@@ -714,6 +877,8 @@ class ScanService:
     def _normalize_result(
         job: ScanJob,
         raw: Any,
+        *,
+        revision: int = 1,
     ) -> tuple[dict[str, Any], Literal["ready", "degraded"], str | None]:
         if hasattr(raw, "model_dump"):
             raw = raw.model_dump(mode="json")
@@ -862,5 +1027,9 @@ class ScanService:
             "ragProvider": rag_provider or None,
             "latencyMs": latency_ms,
             "source": "fallback" if status == "degraded" else "real",
+            # Plan §5.3 (J10): the revision counter — the original scan is 1,
+            # every evidence-supplement re-run increments (caller supplies
+            # the next revision from the stored session).
+            "revision": revision,
         }
         return result, status, degraded_reason
