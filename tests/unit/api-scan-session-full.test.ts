@@ -84,7 +84,8 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
   });
 
   describe("Result structure variations", () => {
-    it("maps backend compliance statuses to the new frontend score contract", async () => {      const statuses = [
+    it("maps backend compliance statuses to the new frontend score contract", async () => {
+      const statuses = [
         ["PASS", 90, "A"],
         ["WARN", 65, "C"],
         ["REJECTED", 35, "D"],
@@ -167,6 +168,84 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
       expect(body.result.riskPoints).toHaveLength(1);
       expect(body.result.riskPoints[0].regulations).toHaveLength(1);
       expect(body.result.riskPoints[0].regulations[0]).toHaveProperty("regId", "EU-CE-LVD");
+    });
+
+    // ── J01-a (plan 2026-09-14 §4.1): the BFF resultReady fallback contract ──
+    // An OLD backend deployment does not emit `resultReady` at all. The BFF
+    // computes `resultReady = terminal && data.resultReady !== false && result
+    // != null` so the missing field degrades to "true" when a result payload is
+    // addressable — legacy sessions must complete, not deadlock at 99%.
+    it("J01-a: degraded session WITHOUT resultReady field (legacy backend) still maps resultReady=true when a result exists", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({
+          // fixture omits resultReady entirely — simulates the old backend
+          status: "degraded",
+          progress: 100,
+          result: {
+            sessionId: "scan_legacy",
+            complianceScore: 50,
+            scoreGrade: "C",
+            complianceStatus: "UNKNOWN",
+          },
+        }),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_legacy", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_legacy" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      expect(body.status).toBe("degraded");
+      expect(body.resultReady).toBe(true);
+      expect(body.result).not.toBeNull();
+      expect(body.degradedReason).toBe("BACKEND_DEGRADED");
+    });
+
+    it("J01-a: an explicit resultReady=false from the backend caps resultReady (never fake-complete)", async () => {
+      mockGetScan.mockResolvedValue({
+        ...sessionFixture({
+          status: "ready",
+          progress: 100,
+          result: null,
+        }),
+        resultReady: false,
+      });
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      // ready + resultReady=false + no result → must NOT claim complete.
+      expect(body.resultReady).toBe(false);
+    });
+
+    it("J01-a: processing sessions never claim resultReady", async () => {
+      mockGetScan.mockResolvedValue(
+        sessionFixture({ status: "processing", progress: 40, result: null }),
+      );
+
+      const { GET } = await import("@/app/api/scan/[sessionId]/route");
+      const req = new Request("http://localhost/api/scan/scan_x", {
+        headers: { authorization: "Bearer t" },
+      });
+      const ctx = { params: Promise.resolve({ sessionId: "scan_x" }) };
+
+      const res = await GET(req, ctx);
+      const body = await res.json();
+
+      expect(res.status).toBe(200);
+      expect(body.resultReady).toBe(false);
     });
   });
 

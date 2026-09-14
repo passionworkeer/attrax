@@ -196,6 +196,17 @@ def _session_and_token(
     return get_scan_service(request), token, None
 
 
+async def _session_and_token_async(
+    request: Request,
+    session_id: str,
+    credentials: HTTPAuthorizationCredentials | None,
+):
+    """Async variant for routes that must stay on the event loop (the
+    revisions route spawns an asyncio task via the service layer, which
+    requires a running loop — sync handlers execute in the threadpool)."""
+    return _session_and_token(request, session_id, credentials)
+
+
 def _read_session(
     request: Request,
     session_id: str,
@@ -366,14 +377,22 @@ async def append_evidence(
 
 
 @router.post("/scans/{session_id}/revisions", response_model=ApiEnvelope[dict[str, Any]], status_code=202)
-def request_revision(
+async def request_revision(
     request: Request,
     session_id: str,
     revision_request: dict[str, Any] | None = None,
     credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer_scheme)] = None,
 ):
-    """Idempotently queue a revision re-run over the session's evidence."""
-    service, token, denied = _session_and_token(request, session_id, credentials)
+    """Idempotently queue a revision re-run over the session's evidence.
+
+    MUST be `async def`: the service's `request_revision` spawns the re-run
+    task via `asyncio.create_task`, which requires a RUNNING event loop. A
+    sync `def` handler runs in Starlette's threadpool, where there is no
+    running loop — the spawn raised RuntimeError and the route returned
+    503 SCAN_QUEUE_UNAVAILABLE for every revision request (red-team probe
+    2026-09-14: "coroutine 'ScanService._run_job' was never awaited").
+    """
+    service, token, denied = await _session_and_token_async(request, session_id, credentials)
     if denied:
         return denied
     payload = revision_request or {}

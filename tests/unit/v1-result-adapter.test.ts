@@ -126,4 +126,128 @@ describe("normalizeV1ScanResult", () => {
     expect(source).toContain('unoptimized={riskCanvasImage.url.startsWith("/api/")}');
     expect(profitSource).not.toContain("setResult(mockScanResult)");
   });
+
+  // ── J04-b (plan 2026-09-14 §4.4, first layer): legacy sessions persisted by
+  // the OLD backend build carry camelCased citation keys (docId/articleId) —
+  // that's what rendered "Citation undefined (matched)" →
+  // /regulations/undefined. The BFF now re-asserts snake_case at the boundary,
+  // but stored legacy sessions pass through `normalizeV1ScanResult`, which
+  // must normalize BOTH casing shapes and drop id-less entries.
+  it("normalizes legacy camelCase citation keys to the snake_case contract", () => {
+    const result = normalizeV1ScanResult(
+      session({
+        result: {
+          sessionId: "scan_real1",
+          productName: "USB charger",
+          productCategory: "electronics",
+          targetMarkets: ["EU"],
+          complianceStatus: "WARN",
+          retrievedChunks: [],
+          reportPackage: {
+            citations: [
+              {
+                // Legacy camelCase shape stored by the old build.
+                docId: "EU-2014-35",
+                articleId: "art-7",
+                officialCitation: "LVD Art. 7",
+                quote: "Electrical equipment must be safe.",
+                quoteSpan: [4, 36],
+                matchStatus: "matched",
+              },
+              // Missing ids → dropped, never rendered as an undefined chip.
+              { docId: "", articleId: "", matchStatus: "matched" },
+            ],
+            evidencePack: [
+              {
+                docId: "EU-2014-35",
+                articleId: "art-7",
+                matchStatus: "matched",
+              },
+            ],
+            auditMetadata: { provider: "minimax", generatedAt: "2026-07-17T08:01:00Z" },
+          },
+        },
+      }),
+    );
+
+    const citations = result?.reportPackage?.citations ?? [];
+    expect(citations).toHaveLength(1);
+    expect(citations[0]).toMatchObject({
+      doc_id: "EU-2014-35",
+      article_id: "art-7",
+      official_citation: "LVD Art. 7",
+      match_status: "matched",
+      quote_span: [4, 36],
+    });
+    // The camel twins must not survive — CitationChip reads doc_id directly.
+    expect(citations[0]).not.toHaveProperty("docId");
+    expect(citations[0]).not.toHaveProperty("articleId");
+
+    const evidencePack = result?.reportPackage?.evidencePack ?? [];
+    expect(evidencePack).toHaveLength(1);
+    expect(evidencePack[0]).toMatchObject({ doc_id: "EU-2014-35", article_id: "art-7" });
+  });
+
+  it("keeps native snake_case citations unchanged (no double conversion)", () => {
+    const result = normalizeV1ScanResult(
+      session({
+        result: {
+          sessionId: "scan_real1",
+          productName: "USB charger",
+          productCategory: "electronics",
+          targetMarkets: ["EU"],
+          complianceStatus: "WARN",
+          retrievedChunks: [],
+          reportPackage: {
+            citations: [
+              {
+                doc_id: "EU-2009-48",
+                article_id: "art-5",
+                official_citation: "Directive 2009/48/EC, Art. 5",
+                quote: "Toy safety requirements.",
+                quote_span: [0, 24],
+                match_status: "fallback_article_only",
+              },
+            ],
+            auditMetadata: { provider: "minimax", generatedAt: "2026-07-17T08:01:00Z" },
+          },
+        },
+      }),
+    );
+
+    const citations = result?.reportPackage?.citations ?? [];
+    expect(citations).toHaveLength(1);
+    expect(citations[0]).toMatchObject({
+      doc_id: "EU-2009-48",
+      article_id: "art-5",
+      match_status: "fallback_article_only",
+      quote_span: [0, 24],
+    });
+  });
+
+  it("drops citation entries without usable doc/article ids (no undefined chips)", () => {
+    const result = normalizeV1ScanResult(
+      session({
+        result: {
+          sessionId: "scan_real1",
+          productName: "USB charger",
+          productCategory: "electronics",
+          targetMarkets: ["EU"],
+          complianceStatus: "WARN",
+          retrievedChunks: [],
+          reportPackage: {
+            citations: [
+              { docId: "EU-X", articleId: "" }, // article missing → drop
+              { docId: "", articleId: "art-9" }, // doc missing → drop
+              { quote: "orphan quote" }, // both missing → drop
+            ],
+            auditMetadata: { provider: "minimax", generatedAt: "2026-07-17T08:01:00Z" },
+          },
+        },
+      }),
+    );
+
+    expect(result?.reportPackage?.citations).toEqual([]);
+    expect(result?.reportPackage?.evidencePack).toEqual([]);
+  });
 });

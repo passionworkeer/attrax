@@ -489,3 +489,154 @@ def test_submission_rejects_more_than_five_markets():
                 )
             ],
         )
+
+
+# ── J04 (plan 2026-09-14 §4.4, first layer): the citation contract is ──────
+# snake_case (doc_id / article_id / match_status / official_citation /
+# quote_span). The pipeline's CitationRef emits snake_case; `_normalize_result`
+# runs `_camelize` over the whole payload (which would rewrite nested keys to
+# docId/articleId — the exact bug J04) and then `_preserve_snake_citation_keys`
+# must restore the snake contract at the boundary. These tests pin the full
+# chain: LLM/pipeline snake → camelize → restore → served snake.
+
+
+def test_citation_keys_stay_snake_case_after_camelize_normalization(tmp_path):
+    """LLM emits snake_case citations → served JSON must still be doc_id."""
+
+    async def scenario():
+        async def runner(payload):
+            return {
+                "status": "PASS",
+                "report": "## compliant",
+                "agent_trace": [{"node": "vision"}, {"node": "generate"}],
+                "documents": [],
+                "report_package": {
+                    "auditMetadata": {
+                        "validationStatus": "normalized",
+                        "verificationMode": "kb_exact_quote",
+                        "citationCoverage": 1.0,
+                    },
+                    "citations": [
+                        {
+                            "doc_id": "EU-2023-1542",
+                            "article_id": "art-10",
+                            "official_citation": "Regulation (EU) 2023/1542, Art. 10",
+                            "quote": "Batteries shall be accompanied by documentation.",
+                            "quote_span": [12, 55],
+                            "match_status": "matched",
+                        }
+                    ],
+                    "evidencePack": [
+                        {
+                            "doc_id": "EU-2023-1542",
+                            "article_id": "art-10",
+                            "official_citation": "Regulation (EU) 2023/1542, Art. 10",
+                            "quote": "Batteries shall be accompanied by documentation.",
+                            "quote_span": [12, 55],
+                            "match_status": "matched",
+                        }
+                    ],
+                },
+            }
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        package = public["result"]["reportPackage"]
+        for collection in ("citations", "evidencePack"):
+            entry = package[collection][0]
+            assert "doc_id" in entry, f"{collection} lost doc_id (bug J04)"
+            assert "article_id" in entry, f"{collection} lost article_id (bug J04)"
+            assert "match_status" in entry, f"{collection} lost match_status (bug J04)"
+            assert "official_citation" in entry, f"{collection} lost official_citation"
+            assert "quote_span" in entry, f"{collection} lost quote_span"
+            assert entry["doc_id"] == "EU-2023-1542"
+            assert entry["article_id"] == "art-10"
+            # The camel twins must NOT survive alongside (would render
+            # "Citation undefined (matched)" → /regulations/undefined on chips).
+            assert "docId" not in entry
+            assert "articleId" not in entry
+            assert "matchStatus" not in entry
+
+    asyncio.run(scenario())
+
+
+def test_preserve_snake_citation_keys_restores_camelized_entries():
+    """Direct unit: camelize first (legacy-runner shape), then the restore pass."""
+    from rag_service.application.scans import (
+        _camelize,
+        _preserve_snake_citation_keys,
+    )
+
+    package = {
+        "citations": [
+            {
+                "doc_id": "EU-2009-48",
+                "article_id": "art-5",
+                "official_citation": "Directive 2009/48/EC, Art. 5",
+                "quote": "Manufacturers obligations.",
+                "quote_span": (3, 28),
+                "match_status": "fallback_article_only",
+                "quote_provenance": "llm_paraphrase_unverified",
+                "canonical_excerpt": "…",
+            }
+        ],
+        "evidencePack": [
+            {
+                "doc_id": "EU-2009-48",
+                "article_id": "art-5",
+                "official_citation": "Directive 2009/48/EC, Art. 5",
+                "match_status": "fallback_article_only",
+            }
+        ],
+    }
+    camelized = _camelize(dict(package))
+    # camelize rewrote the nested keys — that's the J04 bug shape.
+    assert "docId" in camelized["citations"][0]
+    restored = _preserve_snake_citation_keys(camelized)
+    for collection in ("citations", "evidencePack"):
+        entry = restored[collection][0]
+        assert entry["doc_id"] == "EU-2009-48"
+        assert entry["article_id"] == "art-5"
+        assert "docId" not in entry and "articleId" not in entry
+    assert restored["citations"][0]["match_status"] == "fallback_article_only"
+    assert restored["citations"][0]["quote_provenance"] == "llm_paraphrase_unverified"
+    assert restored["citations"][0]["canonical_excerpt"] == "…"
+
+
+def test_preserve_snake_citation_keys_is_idempotent_for_native_snake():
+    """A package already carrying snake keys must pass through unchanged."""
+    from rag_service.application.scans import _preserve_snake_citation_keys
+
+    package = {
+        "citations": [{"doc_id": "D", "article_id": "A", "match_status": "matched"}],
+        "evidencePack": [],
+    }
+    out = _preserve_snake_citation_keys(dict(package))
+    assert out["citations"][0] == {
+        "doc_id": "D",
+        "article_id": "A",
+        "match_status": "matched",
+    }
+
+
+def test_next_revision_stamps_result_revision(tmp_path):
+    """Plan §5.3 (J10): the served result carries the revision counter."""
+    import asyncio as _asyncio
+
+    async def scenario():
+        async def runner(payload):
+            return verified_result()
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await service.wait_for_idle()
+
+        public = service.get_scan(created.session_id, created.access_token)
+        assert public["result"]["revision"] == 1
+
+    _asyncio.run(scenario())
