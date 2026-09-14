@@ -119,6 +119,19 @@ scripts/archive/
 # RAG eval 运行产物（评测结果 JSON，由 run_eval.py 生成）
 rag_service/eval/results/
 
+# ─── regwatch/watchdog runtime outputs (PM2 cron writes) ────────
+# 这些是 regwatch 守护进程（PM2 module）在 cron 周期写入的运行时
+# 产物，不应纳入版本控制。注：data/corpus/ 与 data/regulations/ 下
+# watchdog 会改写的 manifest / index / *_index.json / EU-*.yaml 等
+# 仍保留在版本控制（autocrlf 噪音归 git 处理），因为它们历史上是
+# 仓库的一部分；如需彻底解耦再单独走 git rm --cached 流程。
+data/regulation_supplements/.cache.db
+data/regulation_supplements/auto-*/
+data/regulation_supplements/watchdog-*/
+backups/
+logs/
+tools/pwtest
+
 # ─── Python ──────────────────────────────────────────────────
 .venv/
 __pycache__/
