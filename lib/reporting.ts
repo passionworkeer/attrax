@@ -1,6 +1,4 @@
 import { createMockScanResult as createBlazeMockScanResult, mockScanResult as blazeMockScanResult } from "@/lib/mock/blaze-scan-result";
-import { createMockScanResult } from "@/lib/mock/scan-result";
-import { getSession } from "@/lib/pipeline/session-store";
 import type { ChecklistItem, ProductCategory, RegulationRef, RiskPoint, ScanResult } from "@/lib/types";
 
 export type BlazeReportType = "compliance" | "roadmap" | "profit";
@@ -56,12 +54,11 @@ export function getResultForReport(
     return createBlazeMockScanResult("demo") ?? blazeMockScanResult;
   }
 
-  const session = getSession(sessionId);
-  const result = session?.result;
-  if (!result || !("riskPoints" in result) || !Array.isArray(result.riskPoints)) {
-    return null;
-  }
-  return result as ScanResult;
+  // Non-demo sessions: production scans are owned by the RAG service and
+  // already return their result via the backendResult argument above. If no
+  // backend result was provided, fall through to 404 (return null) rather
+  // than resurrecting the legacy local session store.
+  return null;
 }
 
 export function getDefaultFormat(reportType: BlazeReportType): BlazeExportFormat {

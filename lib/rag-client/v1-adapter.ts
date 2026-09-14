@@ -337,33 +337,6 @@ export interface SessionResourceInput {
   accessToken: string;
 }
 
-async function getSessionResource<T>(
-  input: SessionResourceInput,
-  suffix: string,
-): Promise<T> {
-  return requestEnvelope<T>(
-    `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/${suffix}`,
-    {
-      method: "GET",
-      headers: buildAuthHeaders(input.accessToken),
-    },
-    V1_SCAN_GET_TIMEOUT_MS,
-    "SCAN_SERVICE_UNAVAILABLE",
-  );
-}
-
-export function getRoadmap(
-  input: SessionResourceInput,
-): Promise<Record<string, unknown>> {
-  return getSessionResource(input, "roadmap");
-}
-
-export function getTrace(
-  input: SessionResourceInput,
-): Promise<Array<Record<string, unknown>>> {
-  return getSessionResource(input, "trace");
-}
-
 // ── Evidence supplementation + revision re-run (plan 2026-09-14 §5.3, J10) ──
 
 export interface AppendEvidenceInput extends SessionResourceInput {
