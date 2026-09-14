@@ -29,7 +29,7 @@
 
 - **框架**：FastAPI 0.115.6（线性 3 步管线：vision → generate → verify；LangGraph 已于 de-RAG §7.7 塌缩移除）
 - **语言**：Python 3.10+
-- **Embedding**：阿里云 PAI `text-embedding-v4`（1024 维，生产唯一路径）。2026-09-10 由 ModelScope Qwen3-Embedding-0.6B 切换（Key 吊销）；⚠️ PAI batch≤10 硬限（超限 400）
+- **Embedding**：**无**——embedding 栈（PAI/ModelScope）已随 de-RAG §7.7 整体删除，`_current_embedding_provider()` 保留 stub 恒返 `"none"`。任何文档/配置提到 PAI_API_KEY 都是过时的（无代码读取）
 - **LLM**：MiniMax-M3（Anthropic SDK，端点 `https://api.minimaxi.com/anthropic/v1`）
 - **检索**：不再走向量检索——当前是 **规则知识库（must_check）+ KB 锚点（kb_loader）+ 法规原文（article_loader）** 三段式
 - **PDF 解析**：pdfplumber
@@ -67,8 +67,8 @@
 | 模式 | 触发条件 | 行为 |
 |------|---------|------|
 | DEMO_MODE | `DEMO_MODE=true` 环境变量 | 使用 Mock 数据，无需 API Key |
-| Embedding 降级 | PAI API 不可用 | 当前**无**自动 fallback（探测仅含 PAI）；Embedding 失败会直接报错而非降级 |
-| 引用验证 | 生产环境（无 NLI 模型） | deterministic quote matching：`verify/quote_matcher.py` 对 LLM 引用的法规条款做反向字面匹配，返回每条引用的 `match_status`；`verification_mode` 字段 + `/health` 暴露真实模式 |
+| Embedding | （已删除） | de-RAG §7.7 后无 embedding 调用，不存在降级路径 |
+| 引用验证 | 生产环境 | deterministic quote matching：`verify/quote_matcher.py` 对 LLM 引用的法规条款做反向字面匹配，返回每条引用的 `match_status`；逐扫描的 `report_package.auditMetadata.verificationMode` 字段暴露真实模式（不在 `/health` 上） |
 | RAG 服务不可用 | 无法连接 localhost:8001 | 前端降级为 degraded 状态 + 红色横幅提示（sessionPayload 暴露 degradedReason，非静默 demo） |
 
 ### 前端调用 RAG 服务流程
@@ -80,7 +80,7 @@
           → fetch(RAG_SERVICE_URL/api/v1/scans, ...)   # RAG 服务自管会话/队列
           → 返回 sessionId + accessToken（Set-Cookie + Bearer）
   → 前端轮询 GET /api/scan/{sessionId}
-      → lib/rag-client/v1-result-adapter.ts（getScan）→ RAG /api/v1/scans/{id}
+      → lib/rag-client/v1-adapter.ts（getScan）→ RAG /api/v1/scans/{id}
   → 结果页渲染：app/result/[sessionId]/page.tsx（use-result-loader 轮询 hook）
 
   → 补充证据（可选）：POST /api/scan/{sessionId}/evidence + /revisions
@@ -107,7 +107,8 @@ attrax/
 │   └── api/                      # Next.js API 路由
 │       ├── scan/route.ts         # POST /api/scan — 创建扫描
 │       ├── scan/[sessionId]/     # GET 轮询 + asset/[index] + evidence + revisions
-│       ├── backend-session-access.ts  # 会话访问 token 校验（session-auth）
+│       ├── backend-session-access.ts  # （helper 模块，非路由）cookie/bearer 读取
+│       ├── report/[sessionId]/[reportType]/  # GET md/csv 文本导出（PDF/DOCX 在客户端）
 │       ├── regulations/updates/  # GET 法规更新
 │       ├── regulations/[docId]/  # GET 单条法规原文（evidence-pack 引用）
 │       └── health/               # GET 健康检查
@@ -138,7 +139,7 @@ attrax/
 │   ├── report-localization.ts    # 报告字段本地化
 │   ├── report-export.ts          # 报告导出入口（仅 downloadEvidencePack 实际被引）
 │   ├── report-download.ts        # 报告导出（动态导入，lazy loading）
-│   ├── report-export-modules/    # 报告导出实现（compliance / profit / decision / roadmap / shared / evidence-pack；客户端 jsPDF/Packer，无 API 路由）
+│   ├── report-export-modules/    # 报告导出实现（compliance / profit / decision / roadmap / shared / evidence-pack；PDF/DOCX 走客户端 jsPDF/Packer，md/csv 走 app/api/report/[sessionId]/[reportType] API 路由）
 │   ├── result-view-helpers.ts    # 结果页视图助手
 │   ├── pipeline/                 # demo 会话 + BFF 报告导出（4 文件，全部活跃）
 │   │   ├── session-auth.ts       # 会话访问 token（哈希 + 校验）
@@ -196,7 +197,7 @@ attrax/
 │   ├── regulation_supplements/   # watchdog 自动入库包 + manifest（⚠️ */raw/ 原件 PDF/DOCX/HTML 不纳入版本控制，约 400MB，见 .gitignore）
 │   ├── regulation_eval/ + regulation_reports/  # 法规评测与报告产物
 │   └── corpus/                   # 法规语料 HTML（运行时由 watchdog 维护）
-│   # 运行时目录（gitignore，不入库）：data/sessions/（TTL 1h）、data/backend/、data/uploads/
+│   # 运行时目录（gitignore，不入库）：data/backend/sessions/（RAG 会话，TTL 24h）、data/backend/jobs/、data/backend/uploads/
 │
 ├── tests/                        # 前端测试
 │   ├── unit/                     # Vitest 单元测试
@@ -281,20 +282,21 @@ const StartScanRequestSchema = z.object({
 
 | 变量 | 默认值 | 必填 | 说明 |
 |------|--------|------|------|
-| `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`） |
+| `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`；RAG 侧读取，前端只需透传场景） |
 | `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
 | `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
-| `PAI_API_KEY` | - | 是（非 Demo） | 阿里云 PAI Embedding API Key（2026-09-10 从 ModelScope 切换） |
-| `OLLAMA_BASE_URL` | `http://localhost:11434` | 否 | Ollama 地址（备用，未接入探测） |
-| `OLLAMA_EMBED_MODEL` | `nomic-embed-text` | 否 | Ollama Embedding 模型（备用） |
-| `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址 |
+| `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址（BFF 转发目标） |
 | `DEMO_MODE` | `false` | 否 | Demo 模式（Mock 数据，无需 API Key） |
-| `DAILY_FREE_SCAN_LIMIT` | `3` | 否 | 每日免费扫描次数 |
+| `ATTRAX_DEBUG_TOKEN` | - | 否 | `=1` 时创建扫描响应体带 accessToken（默认仅 HttpOnly cookie） |
+| `RATE_LIMIT_TRUST_XFF` / `RATE_LIMIT_CLIENT_ID_SALT` / `RATE_LIMIT_STORE_DIR` | - | 否 | BFF 限流调优（`lib/rate-limit.ts`） |
+| `DAILY_FREE_SCAN_LIMIT` | - | 否 | ⚠️ 无人读取（ecosystem 注入但前后端代码均不消费），待实现或移除 |
 | `ATTRAX_BUILD_SHA` | - | 否 | 当前部署 commit SHA（pydantic-settings 读取，写在 `rag_service/.env`） |
+
+> `PAI_API_KEY` / `MODELSCOPE_API_KEY` / `OLLAMA_*` 已无代码读取（embedding 栈随 de-RAG §7.7 删除），不要在新配置里填写。
 
 ### RAG 服务（`rag_service/.env`）
 
-同上前端变量（Ollama、PAI、LLM 等），RAG 服务从 `rag_service/.env` 读取。
+同上（LLM、DEMO_MODE 等），RAG 服务从 `rag_service/.env` 读取。
 
 ### 关键 RAG 服务环境变量
 
@@ -311,13 +313,11 @@ const StartScanRequestSchema = z.object({
 
 | 限制 | 说明 |
 |------|------|
-| **无持久化** | 会话仅存储 1 小时（内存 + 文件 TTL），无数据库 |
-| **无用户系统** | 无登录/注册/权限控制（Demo 模式有访问 token 校验） |
-| **Embedding 单点** | PAI API 是唯一路径，无 Ollama 自动 fallback |
+| **无持久化** | RAG 会话存文件 TTL 默认 24h（`data/backend/sessions/`，`session_ttl_hours`），无数据库 |
+| **无用户系统** | 无登录/注册/权限控制（会话级 accessToken 校验有） |
 | **requirements 快照** | 生产安装用 `requirements-prod.txt`；原 `requirements.txt`（500+ 条）已改名 `requirements-snapshot.txt` 并标注勿安装 |
-| **无多语言报告** | 报告目前仅中文输出 |
-| **agent_trace 乘法级复制风险** | Send() fan-out + refine 循环下 trace 指数增长（默认 max_attempts=2 安全；配置不当会 OOM 而非平滑触发 recursion_limit），待修 |
-| **rag-service 单 worker 内存波动** | 多市场 BM25 索引构建会推高 RSS 到 ~960MB；已通过 `ecosystem.config.cjs` 把 `max_memory_restart` 调到 1300M（留 300MB 给 nextjs+系统，超出走 swap）。单 worker 仍是瓶颈：并发扫描会串行等待 |
+| **报告语言** | 报告正文以中文为主；导出走 `?lang=en` 时报告框架字段有英文回退（`lib/report-localization.ts`），LLM 生成的正文本身仍中文 |
+| **rag-service 单 worker** | uvicorn `--workers 1`，扫描经 ThreadPoolExecutor（`SCAN_WORKER_CONCURRENCY=5`）并发；`max_memory_restart: 1300M`（ecosystem.config.cjs）。LLM 慢/挂时仍会占住 worker（`_SCAN_TIMEOUT_SECS=280` 兜底） |
 
 ---
 
@@ -342,7 +342,7 @@ const StartScanRequestSchema = z.object({
 
 ### 2026-09-11 — De-RAG 架构 spec 冻结（未实施）
 
-第一性原理审查结论：**完全去掉 RAG**（embedding + 向量检索 + BM25 + LangGraph），改为 **Knowledge-Anchored Generation**。LangGraph 编排壳已按 §7.7 塌缩为线性 3 步管线（vision → generate → verify）；must_check + KB 是主路径，PAI 仍承担 embedding 类辅助调用。完整规格：`docs/plans/2026-09-11-de-rag-evidence-spec.md`。
+第一性原理审查结论：**完全去掉 RAG**（embedding + 向量检索 + BM25 + LangGraph），改为 **Knowledge-Anchored Generation**。LangGraph 编排壳已按 §7.7 塌缩为线性 3 步管线（vision → generate → verify）；must_check + KB 是主路径（spec 当时计划保留 PAI 做 embedding 辅助，实际落地时 embedding 栈整体删除）。完整规格：`docs/plans/2026-09-11-de-rag-evidence-spec.md`。
 
 ### 2026-09-10 — A+B 混合架构 + 审计批处理
 

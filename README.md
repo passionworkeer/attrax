@@ -42,7 +42,7 @@ uvicorn rag_service.main:app --reload --port 8001
 ### 2. 启动前端（端口 3000）
 
 ```bash
-cp .env.local.example .env.local   # 填入 MINIMAX_API_KEY / 阿里云 PAI 凭据
+cp .env.local.example .env.local   # 填入 MINIMAX_API_KEY（LLM；无 embedding 依赖）
 npm install
 npm run dev
 ```
@@ -59,7 +59,7 @@ npm run lint         # ESLint
 
 ### 4. 一键演示
 
-上传项目内置的 `public/preset-charger-photo.png` 或玩具示例图 → 等 ~30s → 进入结果页 → 点「下载证据包」看 PDF。
+上传项目内置的 `public/mock-fixtures/preset-charger-photo.png` 或玩具示例图 → 等 ~30s → 进入结果页 → 点「下载证据包」看 PDF。
 
 ## 架构
 
@@ -81,7 +81,7 @@ npm run lint         # ESLint
                               │
                               ▼
 ┌────────────────────────────────────────────────────────────────┐
-│  RAG 服务（FastAPI + 阿里云 PAI Embedding + LLM）              │
+│  RAG 服务（FastAPI + MiniMax LLM；KB 锚定，无 embedding）      │
 │  rag_service/pipeline/                                         │
 │    vision → generate → verify                                  │
 │  rag_service/verify/{applicability, grounding, quote_matcher, vision_cache}   │
@@ -94,7 +94,7 @@ npm run lint         # ESLint
 │  data/regulations/{region}/{reg_id}.yaml — 44 篇锚点法规条款   │
 │  data/inspection_profiles/*.yaml — 视觉检查 profile           │
 │  data/regulation_supplements/ — watchdog 自动入库的语料包     │
-│  data/sessions/ — 会话文件（TTL 1h）                          │
+│  data/backend/sessions/ — RAG 会话文件（TTL 24h）              │
 └────────────────────────────────────────────────────────────────┘
 ```
 

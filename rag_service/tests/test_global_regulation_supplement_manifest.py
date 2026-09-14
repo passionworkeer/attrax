@@ -10,6 +10,14 @@ def test_global_regulation_manifest_covers_markets_and_raw_files():
     manifest_path = SUPPLEMENT_DIR / "manifest.json"
     if not manifest_path.exists():
         pytest.skip(f"Historical supplement data omitted in this deployment: {manifest_path}")
+    # 2026-09-14: raw/ 原件已从 git untrack（~400MB）。fresh clone 只有
+    # manifest.json；断言 raw 文件存在性/sha 的用例需要数据落盘才有意义。
+    raw_dir = SUPPLEMENT_DIR / "raw"
+    if not raw_dir.is_dir() or not any(raw_dir.iterdir()):
+        pytest.skip(
+            "raw supplement files are untracked since 2026-09-14; "
+            "manifest raw-file assertions need the on-disk data"
+        )
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
     summary = manifest["summary"]

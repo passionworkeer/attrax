@@ -610,15 +610,18 @@ class ScanService:
                 error=None,
             )
         )
-        # P1-9: register the heartbeat so wait_for_idle() drains it during
-        # shutdown. Without tracking, lifespan's graceful-shutdown path
-        # (main.py) would return immediately and the heartbeat could outlive
-        # the executor's hard shutdown. Binding session_id keeps the cleanup
-        # callback consistent with the rest of the tracking bookkeeping.
+        # P1-9 follow-up (adversarial review): track the heartbeat WITHOUT
+        # session_id. _session_tasks[session_id] must keep pointing at the
+        # _run_job task (set by _spawn) so delete_scan cancels the actual
+        # job — registering the heartbeat under the same slot made DELETE
+        # cancel only the heartbeat while the scan ran on to its 280s
+        # timeout. The heartbeat needs no session binding: _run_job's
+        # finally block already cancels+awaits it, and wait_for_idle()
+        # drains it via the tracked-task set.
         lease_task = asyncio.create_task(
             self._lease_heartbeat(job.job_id, job.session_id)
         )
-        self._track_task(lease_task, session_id=job.session_id)
+        self._track_task(lease_task)
         try:
             raw = await self.runner(self._build_runner_payload(job, progress_callback=self._make_progress_callback(job)))
             current_session = self.backend.get_session(job.session_id)

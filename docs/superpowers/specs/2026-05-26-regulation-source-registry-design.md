@@ -1,6 +1,6 @@
 # Regulation Source Registry and Official Source Expansion Design
 
-> ⚠️ **SUPERSEDED — 2026-05-26 历史架构设计 spec**。当前权威源注册见 `data/regulation_sources/` + `scripts/regulation_collectors/`，运行时由 `scripts/watchdog/` 自动维护。
+> ⚠️ **SUPERSEDED — 2026-05-26 历史架构设计 spec**。当前权威源注册见 `data/regulation_sources/` + `rag_service/regulation_collectors/`（采集脚本在 `scripts/`），运行时由 `scripts/watchdog/` 自动维护。
 
 ## Context
 

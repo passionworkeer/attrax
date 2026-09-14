@@ -8,14 +8,14 @@
 
 ## 一、当前架构（1 段）
 
-KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next.js BFF `POST /api/scan` → FastAPI `POST /api/v1/scans` 走线性 3 步管线 **vision → generate → verify**（LangGraph 编排壳已按 `2026-09-11-de-rag-evidence-spec.md §7.7` 塌缩移除）。锚点来自三段：① `rag_service/retrieval/must_check.py`（10 品类 × 7 市场 + must_check 特征矩阵）；② `rag_service/retrieval/kb_loader.py`（`data/kb/` 锚点 YAML）；③ `rag_service/retrieval/article_loader.py`（`data/regulations/` 44 篇法规原文 + summary）。验证层：`verify/applicability.py`（三态 ProductFacts）+ `verify/quote_matcher.py`（每条 citation 字面匹配，match_status）+ `verify/grounding.py`（grounding verifier）+ `verify/vision_cache.py`（sha256 LRU）。报告渲染走客户端 `lib/report-export-modules/`（jsPDF + Packer）下载，无后端导出 API。Embedding 唯一生产路径：阿里云 PAI `text-embedding-v4`（1024 维，PAI batch≤10 硬限；2026-09-10 由 ModelScope 切换）。
+KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next.js BFF `POST /api/scan` → FastAPI `POST /api/v1/scans` 走线性 3 步管线 **vision → generate → verify**（LangGraph 编排壳已按 `2026-09-11-de-rag-evidence-spec.md §7.7` 塌缩移除）。锚点来自三段：① `rag_service/retrieval/must_check.py`（10 品类 × 7 市场 + must_check 特征矩阵）；② `rag_service/retrieval/kb_loader.py`（`data/kb/` 锚点 YAML）；③ `rag_service/retrieval/article_loader.py`（`data/regulations/` 44 篇法规原文 + summary）。验证层：`verify/applicability.py`（三态 ProductFacts）+ `verify/quote_matcher.py`（每条 citation 字面匹配，match_status）+ `verify/grounding.py`（grounding verifier）+ `verify/vision_cache.py`（sha256 LRU）。报告导出：PDF/DOCX 走客户端 `lib/report-export-modules/`（jsPDF + Packer），md/csv 走 `GET /api/report/[sessionId]/[reportType]`。Embedding：**无**——embedding 栈（PAI/ModelScope）已随 de-RAG §7.7 整体删除。
 
 ## 二、模块完成度
 
 | 模块 | 状态 | 备注 |
 |------|------|------|
 | 前端 Next.js 16.2.6 + React 19.2.4 | ✅ 完成 | 详见 `CLAUDE.md` 目录树 |
-| BFF API（v1 canonical） | ✅ 完成 | `/api/scan` + `/api/scan/[sessionId]/{asset,evidence,revisions}` + `/api/regulations/*` + `/api/health` + `/api/backend-session-access` |
+| BFF API（v1 canonical） | ✅ 完成 | `/api/scan` + `/api/scan/[sessionId]/{asset,evidence,revisions}` + `/api/report/[sessionId]/[reportType]`（md/csv） + `/api/regulations/*` + `/api/health`（`app/api/backend-session-access.ts` 是 helper 模块非路由） |
 | FastAPI v1 端点 | ✅ 完成 | `/api/v1/scans/{evidence,revisions}` + `/api/v1/regulations/{doc_id}` |
 | 知识库锚定三件套 | ✅ 完成 | must_check / kb_loader / article_loader |
 | 验证四件套 | ✅ 完成 | applicability / grounding / quote_matcher / vision_cache |
@@ -35,20 +35,18 @@ KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next
 
 - **开发**：`http://localhost:3000`（前端） / `http://localhost:8001`（FastAPI）。docker-compose 映射为 loopback-only `127.0.0.1:${RAG_PORT:-8001}:8000`。
 - **生产**：腾讯云首尔 lighthouse `43.155.141.192`，pm2 跑 `nextjs` + `rag-service` + `regwatch`，nginx 反代，**不走 docker-compose / Ansible**（`docs/infra/` 下的 Ansible 文件是历史 aliyun-sz 时代遗留）。
-- **环境变量**（前端）：`MINIMAX_API_KEY` / `MINIMAX_BASE_URL` / `MINIMAX_MODEL` / `PAI_API_KEY` / `RAG_SERVICE_URL` / `DEMO_MODE` / `DAILY_FREE_SCAN_LIMIT` / `ATTRAX_BUILD_SHA`。详见 `CLAUDE.md` §环境变量清单。
+- **环境变量**（前端）：`MINIMAX_API_KEY` / `MINIMAX_BASE_URL` / `MINIMAX_MODEL` / `RAG_SERVICE_URL` / `DEMO_MODE` / `ATTRAX_BUILD_SHA`（`PAI_API_KEY` / `DAILY_FREE_SCAN_LIMIT` 无代码读取）。详见 `CLAUDE.md` §环境变量清单。
 - **RAG 服务鉴权**：`RAG_INTERNAL_SECRET`（BFF ↔ RAG 内部认证，fail-closed：prod 空 secret 拒绝启动）。
 
 ## 四、当前已知限制（`CLAUDE.md` §已知限制 同源）
 
 | 限制 | 说明 |
 |------|------|
-| 无持久化 | 会话仅存储 1 小时（内存 + 文件 TTL），无数据库 |
-| 无用户系统 | 无登录/注册/权限控制（Demo 模式有访问 token 校验） |
-| Embedding 单点 | PAI API 唯一路径，无 Ollama 自动 fallback |
+| 无持久化 | RAG 会话存文件 TTL 默认 24h（`data/backend/sessions/`），无数据库 |
+| 无用户系统 | 无登录/注册/权限控制（会话级 accessToken 校验有） |
 | requirements 快照 | 生产用 `requirements-prod.txt`；原 `requirements.txt`（500+ 条）已改名 `requirements-snapshot.txt` 并标注勿安装 |
-| 无多语言报告 | 报告目前仅中文输出 |
-| agent_trace 乘法级复制 | Send() fan-out + refine 循环下 trace 指数增长（默认 max_attempts=2 安全） |
-| rag-service 单 worker | 多市场 BM25 索引构建推高 RSS 到 ~960MB；`max_memory_restart: 1300M`；单 worker 仍是并发瓶颈 |
+| 报告语言 | 正文以中文为主；`?lang=en` 导出有框架字段英文回退，LLM 正文仍中文 |
+| rag-service 单 worker | uvicorn `--workers 1`，扫描经 ThreadPoolExecutor（默认 5 并发）；`max_memory_restart: 1300M`；LLM 慢时 worker 被占（280s 兜底超时） |
 
 ## 五、当下优化方向
 
