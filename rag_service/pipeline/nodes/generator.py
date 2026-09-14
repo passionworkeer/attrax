@@ -426,6 +426,11 @@ def generator_node(state: GraphState) -> dict:
                     mandatory_regulations=mandatory_regulations,
                     article_texts=article_texts,
                     vision_context=vision_context,
+                    # J19: pass the real inputs so sourceCounts (userDocuments
+                    # / visualItems) reflects what the scan actually consumed
+                    # instead of always-zero defaults.
+                    vision_result=vision_result or None,
+                    user_documents=user_docs,
                 )
                 generation = report_package.get("complianceReport", "") or "错误：报告内容为空"
                 # P0-4: Derive status from the package's own validationStatus

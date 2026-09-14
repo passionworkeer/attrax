@@ -412,6 +412,9 @@ class ReportGenerator:
         mandatory_regulations: list[dict] | None = None,
         article_texts: dict[str, str] | None = None,
         vision_context: str = "",
+        *,
+        vision_result: dict | None = None,
+        user_documents: list[dict] | None = None,
     ) -> dict:
         """
         Generate the four result scenes in one LLM call:
@@ -535,7 +538,8 @@ class ReportGenerator:
             )
 
         return self._normalize_report_package(
-            parsed, product, market, query, chunks, self._extract_markdown_fallback(raw)
+            parsed, product, market, query, chunks, self._extract_markdown_fallback(raw),
+            vision_result=vision_result, user_documents=user_documents,
         )
 
     @staticmethod
@@ -564,6 +568,9 @@ class ReportGenerator:
         query: str,
         chunks: list[dict],
         markdown_fallback: str = "",
+        *,
+        vision_result: dict | None = None,
+        user_documents: list[dict] | None = None,
     ) -> dict:
         """Normalize model JSON keys and fill missing scenes conservatively.
 
@@ -637,6 +644,10 @@ class ReportGenerator:
             query=query,
             chunks=chunks,
             provider=self.provider,
+            # J19: sourceCounts must reflect the REAL inputs — user documents
+            # and vision items — not always-zero defaults.
+            vision_result=vision_result,
+            user_documents=user_documents,
         )
 
     def _fallback_report_package(

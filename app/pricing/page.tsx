@@ -163,14 +163,14 @@ export default function PricingPage() {
 
       <div className="relative z-10">
         <CompliPilotFlowHeader
-          backHref="/profit/demo"
-          backLabel={locale === "zh" ? "返回利润页" : "Back to profit"}
+          backHref="/"
+          backLabel={locale === "zh" ? "返回首页" : "Back home"}
           flowTitle={locale === "zh" ? "产品方案" : "Product Plans"}
           flowSubtitle={locale === "zh" ? "合规报告 · 成本决策 · 整改路线" : "Reports · cost decisions · remediation roadmap"}
           primaryHref="/upload"
           primaryLabel={locale === "zh" ? "开始检测" : "Start scan"}
-          secondaryHref="/profit/demo"
-          secondaryLabel={locale === "zh" ? "查看成本示例" : "View cost demo"}
+          secondaryHref="/result/demo"
+          secondaryLabel={locale === "zh" ? "查看演示结果" : "View demo result"}
           tone="bright"
         />
 
@@ -306,15 +306,24 @@ export default function PricingPage() {
                   <LockKeyhole className="size-4" />
                   {locale === "zh" ? "演示环境 · 不会发起真实支付" : "Demo mode · no real payment"}
                 </div>
-                <a
-                  href="mailto:contact@attrax.example?subject=Entry%20Plan"
+                {/* J18: 原为 mailto:contact@attrax.example（RFC 保留域，写真实
+                    邮箱前缀会误导）。改为如实占位说明，邮箱配置后再替换。 */}
+                <div
                   className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "mt-5 w-full rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] text-white shadow-[0_12px_40px_rgba(255,120,41,0.26)] hover:opacity-95"
+                    buttonVariants({ size: "lg", variant: "outline" }),
+                    "mt-5 w-full cursor-not-allowed rounded-full border-white/16 bg-white/6 text-white/62",
                   )}
+                  aria-disabled="true"
                 >
-                  {locale === "zh" ? "联系获取参赛计划书" : "Request Entry Plan"}
-                </a>
+                  {locale === "zh"
+                    ? "联系邮箱待配置（规划中）"
+                    : "Contact email pending setup (planned)"}
+                </div>
+                <p className="mt-2 text-[11px] leading-4 text-white/40">
+                  {locale === "zh"
+                    ? "演示阶段未接入客服通道；如需交流请通过演示现场或仓库 issue 联系。"
+                    : "No support channel is wired up in the demo; reach us via the demo booth or repo issues."}
+                </p>
               </div>
             </div>
 
@@ -359,11 +368,13 @@ export default function PricingPage() {
                 </h2>
               </div>
               <p className="max-w-xl text-sm leading-6 text-white/50">
-                {locale === "zh" ? "从即开即用到内网部署，分析能力与报告口径保持一致。" : "From instant access to private deployment, analysis and reporting stay consistent."}
+                {locale === "zh"
+                  ? "当前已交付 SaaS 扫描闭环；API 按项目对接，私有化部署仍在规划中。"
+                  : "The SaaS scan loop is delivered today; API onboarding is per-project; private deployment is still planned."}
               </p>
             </div>
 
-            <div className="mt-5 grid gap-4 lg:grid-cols-3">
+            <div className="mt-5 grid gap-4 lg:grid-cols-2">
               {deliveryModes.map((mode, index) => {
                 const ModeIcon = planIcons[index] ?? Sparkles;
                 return (
@@ -395,6 +406,37 @@ export default function PricingPage() {
                 );
               })}
             </div>
+
+            {/* J18: 规划中区块 — 未实现的服务明确标注「规划中」，
+                与已交付权益分列，不冒充已包含内容。 */}
+            <div className="mt-5 rounded-[26px] border border-[rgba(255,143,57,0.22)] bg-[rgba(255,143,57,0.06)] p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <SectionEyebrow>{locale === "zh" ? "规划中" : "Planned"}</SectionEyebrow>
+                  <h3 className="mt-2 text-xl font-semibold text-white">
+                    {locale === "zh" ? "尚未交付的服务（路线图）" : "Not yet delivered (roadmap)"}
+                  </h3>
+                  <p className="mt-2 max-w-3xl text-xs leading-5 text-white/50">
+                    {locale === "zh"
+                      ? "以下服务当前不在任何方案的已包含权益内；上线后会另行公告。"
+                      : "These are NOT included in any plan today; they will be announced separately when shipped."}
+                  </p>
+                </div>
+              </div>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                {plannedItems.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-2 rounded-[16px] border border-white/10 bg-white/[0.045] px-3 py-2.5 text-sm text-white/62"
+                  >
+                    <span className="shrink-0 rounded-full border border-[rgba(255,143,57,0.35)] bg-[rgba(255,143,57,0.12)] px-2 py-0.5 text-[10px] font-semibold text-[var(--blaze-orange)]">
+                      {locale === "zh" ? "规划中" : "Planned"}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -407,9 +449,11 @@ export default function PricingPage() {
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-3">
+            {/* J18: 旧版把「本地部署」列为已交付徽标——私有化部署实际
+                未实现，已移入上方规划中区块，徽标只保留已交付能力。 */}
             {(locale === "zh"
-              ? ["前端闭环", "可解释报告", "本地部署"]
-              : ["Complete flow", "Explainable reports", "Local deployment"]
+              ? ["前端闭环", "可解释报告", "报告导出"]
+              : ["Complete flow", "Explainable reports", "Report export"]
             ).map((label) => (
               <div
                 key={label}
@@ -423,12 +467,14 @@ export default function PricingPage() {
         </section>
 
         <div className="text-center">
+          {/* J18: 从首页进入定价页时，旧链接「返回成本结果页」跳 /profit/demo
+              缺上下文。统一回主导航（首页），与页眉返回一致。 */}
           <Link
-            href="/profit/demo"
+            href="/"
             className="inline-flex items-center gap-2 border-b border-transparent pb-1 text-sm text-white/58 transition hover:border-[var(--blaze-orange)] hover:text-[var(--blaze-orange)]"
           >
             <ArrowLeft className="size-4" />
-            <span>{locale === "zh" ? "返回成本结果页" : "Back to cost result"}</span>
+            <span>{locale === "zh" ? "返回首页" : "Back home"}</span>
           </Link>
         </div>
       </section>
