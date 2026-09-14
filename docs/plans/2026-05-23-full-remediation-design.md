@@ -1,5 +1,7 @@
 # 全量问题修复设计
 
+> ⚠️ **SUPERSEDED — 2026-05-23 历史快照**。该设计中针对的 `PROJECT_ANALYSIS.md` P0/P1/P2 问题已于 2026-05~2026-09 间逐批修复完成，权威进度见根目录 `CHANGELOG.md` 与 `CLAUDE.md`。
+
 **日期**: 2026-05-23
 **范围**: `PROJECT_ANALYSIS.md` 中 P0/P1/P2 问题全量修复
 

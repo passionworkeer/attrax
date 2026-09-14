@@ -1,5 +1,7 @@
 # attrax（Blaze Hawks / 火鹰合规）—— 漏洞修复 + 真实模式启动 实施方案
 
+> ⚠️ **SUPERSEDED — 2026-06-18 历史快照**。该方案中的多项修复（cohere embed、LangGraph 编排、FAISS 索引、`lib/pipeline/scan.ts` + `scan-queue.ts` 等）已于 2026-09-10 前后被移除或重构。当前权威真值见根目录 `CLAUDE.md` + `docs/plans/2026-09-09-optimization-audit.md`。
+
 > **版本**: v1.0
 > **制定日期**: 2026-06-18（周四）
 > **执行者**: 健俊 + 助手

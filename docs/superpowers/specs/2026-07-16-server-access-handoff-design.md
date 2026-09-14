@@ -1,5 +1,7 @@
 # Attrax Server Access Handoff Design
 
+> ⚠️ **SUPERSEDED — 2026-07-16 历史运维设计 spec**。attrax 当前生产已迁至腾讯云首尔 lighthouse（43.155.141.192）；阿里云深圳 `120.77.36.107` 已退役。原 2026-07-16 的"基于阿里云的运维 handoff" 不再适用。当前真值见根目录 [`CLAUDE.md`](../../../CLAUDE.md) §部署雷区 与 [`docs/README.md`](../../README.md) §生产部署。
+
 ## Goal
 
 Leave a durable, secret-free handoff that lets a future maintainer connect to the current Attrax production server and understand its deployment constraints without changing production today.

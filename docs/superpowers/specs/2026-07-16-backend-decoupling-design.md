@@ -1,5 +1,7 @@
 # Attrax 独立后端解耦设计
 
+> ⚠️ **SUPERSEDED — 2026-07-16 历史架构设计 spec**。该设计中规划的 FastAPI 独立后端解耦已落地（`rag_service/` 现行），权威当前契约见 [`docs/FRONTEND-BACKEND-INTEGRATION.md`](../../FRONTEND-BACKEND-INTEGRATION.md)。
+
 ## 目标
 
 把当前散落在 Next.js API Route 和 `lib/pipeline` 中的服务端职责迁入 Python FastAPI，使后续任意前端只通过稳定的 HTTP API 和 OpenAPI 契约接入，不再依赖 Next.js 服务端运行时或 TypeScript 内部类型。

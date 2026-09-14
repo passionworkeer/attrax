@@ -1,5 +1,7 @@
 # 官方法规数据源与覆盖说明（2026-05-27）
 
+> ⚠️ **SUPERSEDED — 2026-05-27 历史覆盖率快照**。当前覆盖率通过 [`scripts/report_regulation_coverage.py`](../scripts/report_regulation_coverage.py) 重新生成，并配合 [`scripts/eval_grounding.py`](../scripts/eval_grounding.py) 做定位评测。
+
 本文档说明当前已经采集的产品合规、消费者保护、市场准入、产品安全、标签、化学限制、无线/电信、环保与可持续相关官方原件来源，供后续人工 review、embedding 与入库使用。
 
 ## 采集原则

@@ -1,5 +1,7 @@
 # Actual Financial Report Integrity Design
 
+> ⚠️ **SUPERSEDED — 2026-07-28 历史设计 spec**。该设计中提出的 financial report integrity 修复已全部落地（`lib/pipeline/profit-report.ts:synthesizeFinancialSummaryIfMissing` 在缺结构化字段时返回 null 而非伪造；`lib/rag-client/v1-adapter.ts` 透传后端真实 `backend profitReport.markdown`；利润页 PDF/DOCX 改走 RenderModel 唯一真值源）。
+
 Date: 2026-07-28
 
 ## Goal

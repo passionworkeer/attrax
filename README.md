@@ -83,8 +83,8 @@ npm run lint         # ESLint
 ┌────────────────────────────────────────────────────────────────┐
 │  RAG 服务（FastAPI + 阿里云 PAI Embedding + LLM）              │
 │  rag_service/pipeline/                                         │
-│    vision → must_check → KB → generator → verifier           │
-│  rag_service/verify/{applicability, grounding, vision_cache}   │
+│    vision → generate → verify                                  │
+│  rag_service/verify/{applicability, grounding, quote_matcher, vision_cache}   │
 │  rag_service/retrieval/{must_check, kb_loader, article_loader} │
 └────────────────────────────────────────────────────────────────┘
                               │
@@ -117,23 +117,24 @@ attrax/
 │       └── health/
 ├── components/                   # UI 组件
 │   ├── ui/                       # shadcn/ui 基础组件
-│   ├── upload/                   # 上传相关
-│   ├── burning/                  # 扫描动画
+│   ├── blaze-hawks/              # BlazeLocaleProvider（locale）+ 品牌 UI
 │   ├── result/                   # 结果展示（InspectionChecklistPanel,
 │   │                             # FloatingEvidenceCrop, EvidenceRequestPanel）
-│   └── regulation/               # CitationChip / ComplianceReportView
+│   └── regulation/               # CitationChip / DocViewer
 ├── lib/                          # 前端核心库
 │   ├── rag-client/               # v1-adapter + evidence-api + types.gen
 │   ├── report-export-modules/     # 报告导出（compliance / profit / decision /
 │   │                             #   roadmap / evidence-pack / shared）
-│   ├── hooks/{useScanPolling, use-result-loader}
-│   ├── i18n.tsx + server-i18n.ts
+│   ├── hooks/useScanPolling.ts   # 轮询 hook（结果页另有 use-result-loader）
+│   ├── i18n.tsx + i18n/translations.ts
+│   ├── pipeline/                 # demo 会话 + BFF 报告导出（session-auth /
+│   │                             #   demo-scan-session / report-package / profit-report）
 │   └── types.ts + schemas.ts     # Zod Schema
 ├── rag_service/                  # Python RAG 服务（FastAPI，端口 8001）
 │   ├── main.py                   # FastAPI 入口
-│   ├── pipeline/                 # 节点 + 状态机
+│   ├── pipeline/                 # 线性 3 步管线（vision → generate → verify）
 │   ├── retrieval/                # must_check / kb_loader / article_loader
-│   ├── verify/                   # applicability / grounding / vision_cache
+│   ├── verify/                   # applicability / grounding / quote_matcher / vision_cache
 │   ├── schemas/                  # Pydantic report_package
 │   └── tests/                    # pytest
 ├── data/                         # 法规语料 + 视觉 profile + 会话
@@ -165,7 +166,7 @@ ssh lighthouse 'sed -i "s/^ATTRAX_BUILD_SHA=.*/ATTRAX_BUILD_SHA=$(git -C /Users/
 ssh lighthouse 'cd /opt/attrax && RAG_INTERNAL_SECRET=$(grep "^RAG_INTERNAL_SECRET=" /opt/attrax/rag_service/.env | cut -d= -f2) APP_ENV=production /usr/bin/pm2 start scripts/ecosystem.config.cjs --only nextjs'
 ```
 
-详细部署步骤（`/opt/attrax/.next/standalone/.next/static` symlink、`public/` 链接、nginx alias 等）见 [`docs/DEPLOYMENT.md`](./docs/DEPLOYMENT.md)。
+详细部署步骤（`/opt/attrax/.next/standalone/.next/static` symlink、`public/` 链接、nginx alias 等）见 [`docs/README.md`](./docs/README.md) §生产部署 与 [`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](./docs/infra/NEXTJS-16-STANDALONE-NOTES.md)。
 
 ## 引用
 
@@ -173,7 +174,7 @@ ssh lighthouse 'cd /opt/attrax && RAG_INTERNAL_SECRET=$(grep "^RAG_INTERNAL_SECR
 - 架构设计 → [docs/plans/](./docs/plans/)（特别是 `2026-09-11-de-rag-evidence-spec.md` 与 `2026-09-14-judge-review-and-optimization-plan.md`）
 - API 契约 → [docs/FRONTEND-BACKEND-INTEGRATION.md](./docs/FRONTEND-BACKEND-INTEGRATION.md)
 - 历史事故 / 修复记录 → [CHANGELOG.md](./CHANGELOG.md)
-- 部署文档 → [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md)
+- 部署文档 → [docs/README.md](./docs/README.md) §生产部署 + [docs/infra/](./docs/infra/)
 - 当前优化方向 → [docs/plans/2026-09-14-judge-review-and-optimization-plan.md](./docs/plans/2026-09-14-judge-review-and-optimization-plan.md)（11 节、待实施 J01–J11）
 
 ---

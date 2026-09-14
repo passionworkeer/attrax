@@ -1,5 +1,7 @@
 # Regulation Retrieval Governance Design
 
+> ⚠️ **SUPERSEDED — 2026-05-26 历史架构设计 spec**。当前去 RAG 后的权威架构见根目录 [`CLAUDE.md`](../../../CLAUDE.md) §目录结构 + [`docs/plans/2026-09-11-de-rag-evidence-spec.md`](../../plans/2026-09-11-de-rag-evidence-spec.md)。
+
 ## Goal
 
 Build the next regulation data layer around three operational capabilities:
