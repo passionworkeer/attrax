@@ -1,0 +1,50 @@
+- alert: 规航AI · 先合规，再出海
+- banner:
+  - navigation "主导航":
+    - link "规航AI首页":
+      - /url: /
+      - img "规航AI"
+    - link "开始扫描":
+      - /url: /upload
+    - link "演示流程":
+      - /url: /result/demo
+    - link "产品方案":
+      - /url: /pricing
+    - link "法规更新":
+      - /url: /regulations
+    - group "语言切换":
+      - button "中" [pressed]
+      - button "EN"
+    - link "开始检测":
+      - /url: /upload
+- main:
+  - region "先合规，再出海":
+    - generic: 全新
+    - generic: 合规航线测试版已开放
+    - paragraph: AI COMPLIANCE NAVIGATOR
+    - heading "先合规，再出海" [level=1]
+    - paragraph: 规航AI是一款面向跨境出海企业的AI合规预检工具。上传产品照片，即可定位目标市场风险，并生成带法规依据和整改建议的可解释报告。
+    - link "开始合规检测":
+      - /url: /upload
+    - link "查看 60 秒演示":
+      - /url: /result/demo
+    - article:
+      - text: 覆盖市场
+      - strong:
+        - generic: "42"
+      - paragraph: 持续更新的法规航线
+    - article:
+      - text: 完整流程
+      - strong:
+        - generic: "4"
+        - generic: 步
+      - paragraph: 从图片到可解释报告
+  - generic: 与全球出海团队一起，让合规决策更清晰
+  - generic: "01"
+  - text: 图像识别
+  - generic: "02"
+  - text: 风险扫描
+  - generic: "03"
+  - text: 法规溯源
+  - generic: "04"
+  - text: 可解释报告

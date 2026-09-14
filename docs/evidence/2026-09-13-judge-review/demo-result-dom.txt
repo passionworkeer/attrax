@@ -1,0 +1,357 @@
+- main:
+  - link "返回上传页":
+    - /url: /upload
+    - generic: 返回上传页
+  - link "规航AI 规航AI · CompliPilot 合规检测结果 风险总览 · 法规依据 · 整改报告":
+    - /url: /
+    - img "规航AI"
+    - generic: 规航AI · CompliPilot
+    - strong: 合规检测结果
+    - generic: 风险总览 · 法规依据 · 整改报告
+  - button "中" [pressed]
+  - button "EN"
+  - link "返回首页":
+    - /url: /
+  - link "查看报告":
+    - /url: "#reports"
+  - paragraph: STEP 01 · 先看结论
+  - generic: 暂缓上架
+  - heading "ZGA 便携式充电器" [level=1]
+  - paragraph: 已完成 3 张图片分析。先处理 1 个高危风险，再进入 EU / UK 市场上架复核。
+  - generic: EU 市场
+  - generic: UK 市场
+  - generic: 3C 电子
+  - generic: 1 个热点
+  - paragraph: 合规得分
+  - paragraph: 52/D
+  - paragraph: 高危风险
+  - paragraph: "1"
+  - paragraph: 整改预算
+  - paragraph: ¥64.50
+  - paragraph: 整改后净利
+  - paragraph: ¥7.46
+  - complementary:
+    - paragraph: 当前最重要的事
+    - heading "认证标志缺失" [level=2]
+    - paragraph: 外壳与上角视图均未看到明确 CE / UKCA 标志，欧洲与英国市场会直接影响上架与抽检。
+    - paragraph: 建议动作
+    - paragraph: 补齐 CE / UKCA 标志并提交技术文件包。
+    - link "查看风险证据":
+      - /url: "#evidence"
+      - text: 查看风险证据
+    - link "查看利润影响":
+      - /url: /profit/demo
+  - navigation "结果阅读顺序":
+    - link "01 先看结论 确认是否可以继续上架":
+      - /url: "#overview"
+      - generic: "01"
+      - generic: 先看结论
+      - generic: 确认是否可以继续上架
+    - link "02 再查证据 定位风险、法规与成本":
+      - /url: "#evidence"
+      - generic: "02"
+      - generic: 再查证据
+      - generic: 定位风险、法规与成本
+    - link "03 最后执行 按路线整改并导出报告":
+      - /url: "#action"
+      - generic: "03"
+      - generic: 最后执行
+      - generic: 按路线整改并导出报告
+  - paragraph: STEP 02 · 查证据
+  - heading "动态计价 + 风险可视化" [level=2]
+  - paragraph: 用真实产品底图讲清楚每个风险点，风险标签、风险等级和整改成本都在同一屏里完成解释。
+  - generic: 点击热点查看详情
+  - paragraph: 预计整改成本
+  - paragraph: ¥64.50
+  - generic: 风险证据完整度（1/1）
+  - generic: 100%
+  - paragraph: 本次扫描未提供结构化引用
+  - generic: 查看图片
+  - button "Image 1 — 0 findings":
+    - generic: "#1"
+    - generic: 0 项
+  - button "Image 2 — 0 findings":
+    - generic: "#2"
+    - generic: 0 项
+  - button "Image 3 — 1 findings" [pressed]:
+    - generic: "#3"
+    - generic: 1 项
+  - img "ZGA 便携式充电器"
+  - text: ¥4,500
+  - 'button "高危: 认证标志缺失 — 查看风险详情"':
+    - generic: 1. 认证标志缺失
+  - generic: 局部放大 · 认证标志缺失
+  - button "关闭放大图": ✕
+  - article:
+    - paragraph: 热点详情
+    - heading "认证标志缺失" [level=3]
+    - paragraph: 外壳与上角视图均未看到明确 CE / UKCA 标志，欧洲与英国市场会直接影响上架与抽检。
+    - generic: 高危
+    - generic: 置信 94
+    - generic: 风险等级 1
+    - article:
+      - paragraph: 风险数据
+      - paragraph: 置信度
+      - paragraph: 94%
+      - paragraph: 整改成本
+      - paragraph: ¥4,500
+      - paragraph: 法规数
+      - paragraph: "1"
+    - article:
+      - paragraph: 证据定位
+      - paragraph: 图片
+      - paragraph: img_03
+      - paragraph: 市场
+      - paragraph: "2"
+      - paragraph: 风险编号
+      - paragraph: "01"
+    - article:
+      - paragraph: EU · CE
+      - paragraph: CE 标识与合规评估
+      - link "法规源":
+        - /url: https://eur-lex.europa.eu/
+      - paragraph: 需补充合格评定、DoC 与铭牌版式。
+    - article:
+      - paragraph: 下一步整改
+      - paragraph: 补齐 CE / UKCA 标志并提交技术文件包。
+    - article:
+      - paragraph: 利润影响
+      - paragraph: 总整改预算
+      - paragraph: ¥64.50
+      - paragraph: 整改后净利
+      - paragraph: ¥7.46
+    - generic: 向上滑动查看更多风险详情
+    - generic: 05 张卡片
+  - paragraph: 全部风险
+  - heading "热点总览" [level=3]
+  - paragraph: 选择风险卡片可同步图中定位与法规详情
+  - button "高危 认证标志缺失 EU · CE ¥4,500":
+    - generic: 高危
+    - paragraph: 认证标志缺失
+    - generic: EU · CE
+    - generic: ¥4,500
+  - paragraph: STEP 02.5 · 合规扫描报告全文
+  - heading "完整合规扫描报告(可下载 PDF / DOCX)" [level=2]
+  - paragraph: 以下报告由合规扫描引擎生成,涵盖核心结论、法规引用、整改动作与责任方。可直接导出 PDF 给业务/法务/供应商。
+  - generic: 导出 PDF / DOCX
+  - generic: "52"
+  - generic: 综合评分
+  - generic: 拒绝
+  - generic: 等级：D
+  - generic: ·
+  - generic: 品类：electronics
+  - generic: ·
+  - generic: 市场：欧盟 · 英国
+  - generic: ·
+  - generic: 审核轮数：0
+  - heading "执行步骤" [level=3]
+  - text: 初检
+  - generic: Round 1
+  - generic: risk.risk_01
+  - generic: demo.aggregate
+  - heading "命中法规(1)" [level=3]:
+    - text: 命中法规
+    - generic: (1)
+  - generic: EU
+  - generic: /
+  - generic: CE 标识与合规评估
+  - generic: /
+  - generic: CE
+  - generic: "0.85"
+  - heading "产品图片分析" [level=3]
+  - group "产品图片分析":
+    - img "front"
+    - button "上一张":
+    - button "下一张":
+    - generic: 1 / 3
+    - button "front":
+      - img "front"
+    - button "side":
+      - img "side"
+    - button "package":
+      - img "package"
+    - generic: front
+  - heading "风险点详情" [level=3]
+  - heading "认证标志缺失" [level=4]
+  - paragraph: 外壳与上角视图均未看到明确 CE / UKCA 标志，欧洲与英国市场会直接影响上架与抽检。
+  - generic: 94%
+  - paragraph: "涉及法规:"
+  - generic: CE 标识与合规评估
+  - generic: ·
+  - generic: CE
+  - paragraph: "建议: 补齐 CE / UKCA 标志并提交技术文件包。"
+  - heading "合规检查清单" [level=3]
+  - generic: ✓
+  - paragraph: 整理 CE / FCC / UKCA 合规资料包
+  - paragraph
+  - generic: ✓
+  - paragraph: 完成 LVD / EMC 预扫与异常工作测试
+  - paragraph
+  - generic: "通过: 0"
+  - generic: ·
+  - generic: "警告: 0"
+  - generic: ·
+  - generic: "失败: 0"
+  - heading "合规分析报告" [level=3]
+  - generic: demo · 0.0s
+  - button "合规 PDF ZH"
+  - button "Word ZH"
+  - button "合规 PDF EN"
+  - button "Word EN"
+  - heading "规航AI · 合规扫描报告 · ZGA 便携式充电器 (Demo)" [level=1]
+  - blockquote:
+    - paragraph:
+      - text: 本报告针对产品
+      - strong: ZGA 便携式充电器
+      - text: 的目标市场
+      - strong: EU / UK
+      - text: "给出端到端的合规风险评估与整改路径。 报告基于以下 3 张产品图片(正面 / 侧面 / 包装)的多模态识别结果, 并联动了法规知识库:"
+      - strong: CE-RED / LVD / EMC / RoHS / GPSR / UKCA / EMC-2016 / EPR
+      - text: 。
+  - heading "1. 总体判断" [level=2]
+  - list:
+    - strong: 合规等级
+    - text: ": 52 / D"
+    - strong: 结论
+    - text: ": 当前状态"
+    - strong: 不建议直接上架
+    - text: EU / UK。在下面 4 件事闭环之前,进入目标市场销售会同时触发 平台审核拒绝 + 海关扣留 + 抽检召回三种风险链路。
+  - heading "2. 关键风险与法规引用" [level=2]
+  - list:
+    - listitem: "认证标志缺失 — 外壳与上角视图均未看到明确 CE / UKCA 标志，欧洲与英国市场会直接影响上架与抽检。 · 证据: EU·CE · 整改: 补齐 CE / UKCA 标志并提交技术文件包。 (预计 ¥4,500)"
+  - heading "3. 整改路线图概览" [level=2]
+  - table:
+    - rowgroup:
+      - row "阶段 时间 关键产出 责任方":
+        - columnheader "阶段"
+        - columnheader "时间"
+        - columnheader "关键产出"
+        - columnheader "责任方"
+    - rowgroup:
+      - row "资料冻结 第 1-2 天 规格书 / BOM / 适配器规格 / 外壳材料锁定 产品 / 采购":
+        - cell "资料冻结"
+        - cell "第 1-2 天"
+        - cell "规格书 / BOM / 适配器规格 / 外壳材料锁定"
+        - cell "产品 / 采购"
+      - row "标签包装整改 第 3-7 天 铭牌相关标志、说明书多语言警示、回收标识 设计 / 合规":
+        - cell "标签包装整改"
+        - cell "第 3-7 天"
+        - cell "铭牌相关标志、说明书多语言警示、回收标识"
+        - cell "设计 / 合规"
+      - row "实验室预扫 第 1-2 周 适用指令的预扫 + 异常工作测试报告 实验室":
+        - cell "实验室预扫"
+        - cell "第 1-2 周"
+        - cell "适用指令的预扫 + 异常工作测试报告"
+        - cell "实验室"
+      - row "正式认证 第 3-5 周 技术文件包、DoC、RoHS/REACH 报告 实验室 / 合规":
+        - cell "正式认证"
+        - cell "第 3-5 周"
+        - cell "技术文件包、DoC、RoHS/REACH 报告"
+        - cell "实验室 / 合规"
+      - row "上架复核 第 5 周 listing 文案 / 主图 / 证书归档 / EPR 编号 运营 / 法务":
+        - cell "上架复核"
+        - cell "第 5 周"
+        - cell "listing 文案 / 主图 / 证书归档 / EPR 编号"
+        - cell "运营 / 法务"
+  - separator
+  - paragraph: "报告生成时间: 2026-01-01T00:00:00.000Z 合规评分体系: 满分 100,A≥85 / B≥70 / C≥55 / D<55"
+  - paragraph: Roadmap
+  - heading "推荐整改排期" [level=2]
+  - paragraph: 执行阶段
+  - paragraph: "3"
+  - paragraph: 预计周期
+  - paragraph: 2周
+  - paragraph: 参与角色
+  - paragraph: "6"
+  - table:
+    - rowgroup:
+      - row "阶段 时间 负责人 产出":
+        - columnheader "阶段"
+        - columnheader "时间"
+        - columnheader "负责人"
+        - columnheader "产出"
+    - rowgroup:
+      - row "核心市场 第 1 周 产品 / 采购 整理 CE / FCC / UKCA 合规资料包":
+        - cell "核心市场"
+        - cell "第 1 周"
+        - cell "产品 / 采购"
+        - cell "整理 CE / FCC / UKCA 合规资料包"
+      - row "电气安全 第 2-3 周 设计 / 合规 完成 LVD / EMC 预扫与异常工作测试":
+        - cell "电气安全"
+        - cell "第 2-3 周"
+        - cell "设计 / 合规"
+        - cell "完成 LVD / EMC 预扫与异常工作测试"
+      - row "上架复核 整改完成后 运营 / 法务 确认 EU / UK 市场风险与报告均已闭环":
+        - cell "上架复核"
+        - cell "整改完成后"
+        - cell "运营 / 法务"
+        - cell "确认 EU / UK 市场风险与报告均已闭环"
+  - paragraph: 当前执行重点
+  - generic: 01 / 03
+  - paragraph: 补齐 CE / UKCA 标志并提交技术文件包。
+  - generic: 第 1 周
+  - generic: 产品 / 采购
+  - paragraph: Export
+  - heading "合规报告可导出下载" [level=2]
+  - paragraph: 报告可按合规总报告、路线图和成本测算拆分导出，便于复制、分享和交给不同角色继续执行。
+  - article:
+    - paragraph: 合规总报告
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - link "PDF":
+      - /url: /result/demo#compliance-report
+    - link "DOCX":
+      - /url: /result/demo#compliance-report
+    - link "MD":
+      - /url: /api/report/demo/compliance?format=md&lang=zh
+  - article:
+    - paragraph: 合规路线图
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - button "PDF"
+    - button "DOCX"
+    - link "CSV":
+      - /url: /api/report/demo/roadmap?format=csv&lang=zh
+  - article:
+    - paragraph: 成本分析说明
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - button "PDF"
+    - button "DOCX"
+    - link "MD":
+      - /url: /api/report/demo/profit?format=md&lang=zh
+  - paragraph: STEP 04 · 利润影响
+  - heading "整改后的利润影响" [level=2]
+  - paragraph: 根据上方合规报告中的整改动作,以下是 ZGA 便携式充电器 在目标市场的利润变化估算。完整表格与决策流请前往利润报告页。
+  - link "查看完整利润报告":
+    - /url: /profit/demo
+    - text: 查看完整利润报告
+  - paragraph: 合规预算
+  - paragraph: ¥64.50
+  - paragraph: 标签 / 测试 / 认证
+  - paragraph: 整改后净利
+  - paragraph: ¥7.46
+  - paragraph: 单件 / 平台
+  - paragraph: 高危罚款上限
+  - paragraph: ¥180 万 / 日
+  - paragraph: 合规后归零
+  - paragraph: 目标市场
+  - paragraph: "2"
+  - paragraph: EU / UK
+  - paragraph: 完成上方合规扫描报告中的全部整改动作后,ZGA 便携式充电器 在 ¥7.46 单件净利水平下进入目标市场,合规预算 ¥64.50, 高危风险下日均罚款 ¥180 万上限。
+  - generic "可选查看 导出报告预览 展开报告样张":
+    - paragraph: 可选查看
+    - heading "导出报告预览" [level=2]
+    - generic: 展开报告样张
+  - link "规航AI 让每一次出海都有合规航线":
+    - /url: /
+    - strong: 规航AI
+    - generic: 让每一次出海都有合规航线
+  - navigation "流程导航":
+    - link "图像识别":
+      - /url: /upload
+    - link "风险扫描":
+      - /url: /result/demo
+    - link "法规溯源":
+      - /url: /result/demo#reports
+    - link "可解释报告":
+      - /url: /result/demo#report-previews
+  - paragraph: 演示原型 · 结论需结合专业机构复核
+- alert

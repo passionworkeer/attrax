@@ -1,0 +1,1570 @@
+{
+  "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a",
+  "status": "ready",
+  "progress": 100,
+  "stageText": "complete",
+  "stageKey": "done",
+  "imageCount": 1,
+  "result": {
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a",
+    "scanTime": "2026-09-13T14:07:56.495635Z",
+    "productCategory": "electronics",
+    "targetMarkets": [
+      "EU",
+      "UK"
+    ],
+    "complianceScore": 65,
+    "scoreGrade": "C",
+    "images": [
+      {
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "url": "/api/scan/scan_ea07272d0ff34b5dbde103ed86d18a4a/asset/0",
+        "thumbnail": "/api/scan/scan_ea07272d0ff34b5dbde103ed86d18a4a/asset/0",
+        "width": 0,
+        "height": 0,
+        "fileName": "preset-charger-photo.png"
+      }
+    ],
+    "documents": [],
+    "riskPoints": [],
+    "checklist": [
+      {
+        "itemId": "1",
+        "category": "apply",
+        "title": "补充铭牌与标志照片",
+        "titleEn": "Collect nameplate & marking photos",
+        "requiredMaterials": [
+          "铭牌高清照",
+          "标志位置照"
+        ],
+        "requiredMaterialsEn": [
+          "Nameplate photo",
+          "Marking location photo"
+        ],
+        "estimatedCost": "免费（自行拍摄）",
+        "estimatedTime": "7 天",
+        "estimatedTimeEn": "7 days",
+        "isFree": false
+      },
+      {
+        "itemId": "2",
+        "category": "test",
+        "title": "提交 RoHS/EMC/LVD 测试与 DoC",
+        "titleEn": "Submit RoHS/EMC/LVD tests & DoC",
+        "requiredMaterials": [
+          "RoHS 测试报告",
+          "EMC 测试报告",
+          "LVD 测试报告",
+          "EU DoC"
+        ],
+        "requiredMaterialsEn": [
+          "RoHS report",
+          "EMC report",
+          "LVD report",
+          "EU DoC"
+        ],
+        "estimatedCost": "¥15K-40K（待询价）",
+        "estimatedTime": "21 天",
+        "estimatedTimeEn": "21 days",
+        "isFree": false
+      },
+      {
+        "itemId": "3",
+        "category": "certify",
+        "title": "UKCA 合格声明与注册",
+        "titleEn": "UKCA DoC & registration",
+        "requiredMaterials": [
+          "UKCA DoC",
+          "UK 责任人信息"
+        ],
+        "requiredMaterialsEn": [
+          "UKCA DoC",
+          "UK responsible person"
+        ],
+        "estimatedCost": "¥5K-15K（待询价）",
+        "estimatedTime": "14 天",
+        "estimatedTimeEn": "14 days",
+        "isFree": false
+      },
+      {
+        "itemId": "4",
+        "category": "apply",
+        "title": "EPR 注册（包装/EEE）",
+        "titleEn": "EPR registration (packaging/EEE)",
+        "requiredMaterials": [
+          "EPR 注册号",
+          "缴费凭证"
+        ],
+        "requiredMaterialsEn": [
+          "EPR registration ID",
+          "Payment proof"
+        ],
+        "estimatedCost": "待询价",
+        "estimatedTime": "10 天",
+        "estimatedTimeEn": "10 days",
+        "isFree": false
+      },
+      {
+        "itemId": "5",
+        "category": "complete",
+        "title": "上市前最终复核",
+        "titleEn": "Pre-launch final review",
+        "requiredMaterials": [
+          "最终出货清单"
+        ],
+        "requiredMaterialsEn": [
+          "Final shipment checklist"
+        ],
+        "estimatedCost": "内部工时",
+        "estimatedTime": "4 天",
+        "estimatedTimeEn": "4 days",
+        "isFree": false
+      }
+    ],
+    "generatedAt": "2026-09-13T14:08:16+00:00",
+    "reportPackage": {
+      "productDossier": {
+        "product": "",
+        "category": "electronics",
+        "markets": [
+          "EU",
+          "UK"
+        ],
+        "query": "评估 electronics 类产品在 EU/UK 市场的合规风险 产品类型：65W GaN USB 充电器（带美规折叠插脚） 核心特征：白色立方体外壳，表面印有 65W GaN Fast Charger；输出端面含 2×USB-C 接口与 1×USB-A 接口，分别标注 USB-C1、USB-C2、USB-A；使用美规可折叠插脚（Type-A 扁脚）；外壳无可见裂损、变形、鼓胀或污渍\n\n【适用性边界（必须遵守，不得扩大适用范围）】\n- UN-38-3（UN）: 待确认。battery only a keyword candidate; UN 38.3 applies once presence is confirmed\n- EU-2023-1542（EU）: 待确认。battery only a keyword candidate; confirm with label photo or spec sheet；battery presence inferred from keywords — needs visible marking or spec sheet；电池护照 (Art. 77) 不适用于便携式电池（如耳机充电盒/普通消费电子）：仅 LMT、电动车电池及 >2 kWh 工业电池需要，工业类自 2027-02-18 起、LMT 自 2028-08-18 起",
+        "sourceCounts": {
+          "retrievedChunks": 0,
+          "userDocuments": 0,
+          "visualItems": 0
+        }
+      },
+      "complianceReport": "# 合规风险评估报告\n\n## 1. 产品概述\n- **类型**：65W GaN USB 充电器\n- **目标市场**：EU、UK\n- **可见特征**：白色立方体外壳；表面印有 65W GaN Fast Charger；输出端含 2×USB-C、1×USB-A；美规 Type-A 折叠插脚\n- **视觉盲点**：铭牌、输入电压范围、制造商信息、CE/UKCA 标志、批次码——**图片无法验证**\n\n## 2. 法规适用性逐条评估\n\n### 2.1 RoHS Directive 2011/65/EU（EU）\n- **适用**：电子产品进入欧盟须满足有害物质限值并完成 CE/DoC 与 Annex III 申报。\n- **现状**：用户未提交测试报告或 DoC。\n- **风险**：缺 CE/DoC 或 Annex III 申报可致海关扣留、市场禁售。\n- **依据**：[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]\n\n### 2.2 UKCA Marking Requirements（UK）\n- **适用**：投放英国市场（GB）须有 UKCA 标志及合格声明。\n- **现状**：图片未见 UKCA 或 CE 标志。\n- **风险**：缺 UKCA/CE 可致英国海关扣留与处罚。\n- **依据**：来源文档未覆盖 UKCA，待补充官方原文核实\n\n### 2.3 EMC Directive 2014/30/EU（EU）\n- **适用**：充电器属电气设备，须满足 EMC 协调标准（EN 55032/55035/61000 系列）。\n- **现状**：用户未提交 EMC 测试报告。\n- **风险**：缺 EMC 报告则 CE 标志无效，海关/平台可下架。\n- **依据**：[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]\n\n### 2.4 LVD Directive 2014/35/EU（EU）\n- **适用**：额定电压 50–1000V AC / 75–1500V DC 的电气设备。\n- **现状**：用户未提交电气安全测试报告。\n- **风险**：缺安规测试可致产品撤市、制造商法律责任。\n- **依据**：[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7][EU-2014-35#annex-1][EU-2014-35#annex-2]\n\n### 2.5 UN 38.3 Transport Testing\n- **适用性边界**：仅当内置电池时适用；本产品为外接电源充电器，**待确认**。\n- **风险**：若有内置电池且无 UN 38.3 报告，承运商拒收并罚款。\n- **依据**：[UN-38-3#section-38-3]\n\n### 2.6 Battery Regulation (EU) 2023/1542\n- **适用性边界**：本产品为外接电源式充电器，本身不含电池，电池护照 (Art. 77) 不适用便携式电池；**适用性待确认**（视是否含电池及电池类型）。\n- **依据**：[EU-2023-1542#art-7][EU-2023-1542#art-38][EU-2023-1542#art-39][EU-2023-1542#art-77][EU-2023-1542#art-85]\n\n## 3. 结论\n- 法规覆盖已建立，但**核心证据缺口**（铭牌、CE/UKCA、DoC、测试报告）尚需补齐方可推进。\n- 本报告不构成已合规、已获证或可上市的判定。",
+      "profitReport": {
+        "markdown": "# 成本与利润估算\n\n## 1. 前提说明\n- 用户未提供 BOM、报价、ASP、运费、EPR 费用等数据。\n- 以下结论仅为结构占位，具体数值**待询价/待确认**，不构成商业承诺。\n\n## 2. Barebone vs Compliant 成本结构（占位）\n| 项目 | Barebone | Compliant（含 RoHS/LVD/EMC/UKCA 测试与 DoC） |\n|---|---|---|\n| BOM | 待询价 | 待询价 |\n| Packaging | 待询价 | 待询价（含合规标签与多语警告） |\n| Cert（测试+DoC+UKCA 申请） | 0 | 待询价 |\n| EPR（EU/UK 包装、EEE） | 0 | 待询价 |\n| Logistics | 待询价 | 待询价 |\n| Warranty | 待询价 | 待询价 |\n| ASP | 待确认 | 待确认 |\n| GP（毛利） | 待确认 | 待确认 |\n\n## 3. 关键结论\n- 合规化将增加 Cert+EPR+测试+文档成本，需在 ASP 上体现溢价。\n- 仅有用户提供的真实报价/ASP 后，方可计算 premiumPct、breakevenUnits、conclusions。\n\n## 4. 风险提示\n- 若无 CE/UKCA，产品在 EU/UK 渠道将被下架/扣押，barebone 方案的 GP=0 不成立。",
+        "keyConclusion": "用户未提供成本与 ASP 报价，所有数值待询价/待确认",
+        "premiumPct": "待确认",
+        "breakevenUnits": "待确认",
+        "pricingStrategy": "待用户提供成本/ASP 后再制定（合规化溢价策略）",
+        "riskNote": "barebone 方案在 EU/UK 不可上市，GP=0 不成立",
+        "conclusions": "暂无充分依据完成 GP/盈亏平衡测算",
+        "references": "用户文件与来源文档均未提供具体成本/ASP 数据",
+        "structuredFields": null
+      },
+      "roadmap": {
+        "totalDays": 56,
+        "totalCost": "¥30K+（待询价）",
+        "progress": 25,
+        "items": [
+          {
+            "id": "1",
+            "date": "2025-01-15",
+            "title": "补充铭牌与标志照片",
+            "titleEn": "Collect nameplate & marking photos",
+            "description": "提供产品铭牌、CE/UKCA 标志位置、输入电压/电流、制造商信息近照，以核验适用法规",
+            "descriptionEn": "Capture nameplate, CE/UKCA marking location, input rating, manufacturer info",
+            "type": "apply",
+            "status": "in-progress",
+            "estimatedDays": 7,
+            "cost": "免费（自行拍摄）",
+            "documents": [
+              "铭牌高清照",
+              "标志位置照"
+            ],
+            "documentsEn": [
+              "Nameplate photo",
+              "Marking location photo"
+            ]
+          },
+          {
+            "id": "2",
+            "date": "2025-01-22",
+            "title": "提交 RoHS/EMC/LVD 测试与 DoC",
+            "titleEn": "Submit RoHS/EMC/LVD tests & DoC",
+            "description": "依据 RoHS 2011/65/EU、EMC 2014/30/EU、LVD 2014/35/EU 送检并起草 DoC",
+            "descriptionEn": "Send to lab per RoHS/EMC/LVD and draft DoC",
+            "type": "test",
+            "status": "pending",
+            "estimatedDays": 21,
+            "cost": "¥15K-40K（待询价）",
+            "documents": [
+              "RoHS 测试报告",
+              "EMC 测试报告",
+              "LVD 测试报告",
+              "EU DoC"
+            ],
+            "documentsEn": [
+              "RoHS report",
+              "EMC report",
+              "LVD report",
+              "EU DoC"
+            ]
+          },
+          {
+            "id": "3",
+            "date": "2025-02-12",
+            "title": "UKCA 合格声明与注册",
+            "titleEn": "UKCA DoC & registration",
+            "description": "准备 UKCA 标志、UK DoC 及 GB 责任人信息",
+            "descriptionEn": "Prepare UKCA mark, UK DoC, UK responsible person",
+            "type": "certify",
+            "status": "pending",
+            "estimatedDays": 14,
+            "cost": "¥5K-15K（待询价）",
+            "documents": [
+              "UKCA DoC",
+              "UK 责任人信息"
+            ],
+            "documentsEn": [
+              "UKCA DoC",
+              "UK responsible person"
+            ]
+          },
+          {
+            "id": "4",
+            "date": "2025-02-26",
+            "title": "EPR 注册（包装/EEE）",
+            "titleEn": "EPR registration (packaging/EEE)",
+            "description": "完成 EU/UK 包装法与 EEE EPR 注册，缴费并获取注册号",
+            "descriptionEn": "Register EU/UK packaging & EEE EPR; obtain registration IDs",
+            "type": "apply",
+            "status": "pending",
+            "estimatedDays": 10,
+            "cost": "待询价",
+            "documents": [
+              "EPR 注册号",
+              "缴费凭证"
+            ],
+            "documentsEn": [
+              "EPR registration ID",
+              "Payment proof"
+            ]
+          },
+          {
+            "id": "5",
+            "date": "2025-03-08",
+            "title": "上市前最终复核",
+            "titleEn": "Pre-launch final review",
+            "description": "复核 DoC、测试报告、铭牌、EPR、UKCA 一致性，准备出货",
+            "descriptionEn": "Verify DoC/test report/nameplate/EPR/UKCA consistency before shipment",
+            "type": "complete",
+            "status": "pending",
+            "estimatedDays": 4,
+            "cost": "内部工时",
+            "documents": [
+              "最终出货清单"
+            ],
+            "documentsEn": [
+              "Final shipment checklist"
+            ]
+          }
+        ]
+      },
+      "decisionView": {
+        "summary": "65W GaN USB 充电器投放 EU/UK 涉及 RoHS、EMC、LVD、UKCA 等强制法规；核心证据（铭牌、CE/UKCA、DoC、测试报告）尚未提供，需补齐后再推进。",
+        "keyFindings": [
+          "图片无法验证铭牌与 CE/UKCA 标志",
+          "未提交 RoHS/EMC/LVD 测试报告与 DoC",
+          "UKCA 与 UK 责任人信息缺失",
+          "EPR（包装/EEE）注册未提交",
+          "UN 38.3 与 (EU) 2023/1542 是否适用视是否含电池而定，需铭牌或规格书确认"
+        ],
+        "recommendedAction": "补齐铭牌高清照、输入规格、CE/UKCA 标志照片后送检 RoHS/EMC/LVD 并起草 EU DoC 与 UKCA DoC，同步启动 EU/UK EPR 注册。",
+        "nodes": [
+          {
+            "id": "vision",
+            "type": "vision",
+            "label": "视觉识别",
+            "labelEn": "Vision",
+            "status": "success",
+            "duration": "0.8s",
+            "confidence": 0.55,
+            "reasoning": "图片可见外壳、端口、折叠插脚，但铭牌与 CE/UKCA 标志未在视图中显现——图片无法验证。",
+            "reasoningEn": "Shell, ports and foldable prins visible; nameplate and CE/UKCA not shown — image unverifiable.",
+            "severity": "medium"
+          },
+          {
+            "id": "query_planner",
+            "type": "query_planner",
+            "label": "法规匹配",
+            "labelEn": "Query planner",
+            "status": "success",
+            "duration": "0.3s",
+            "confidence": 0.85,
+            "reasoning": "已识别适用法规：RoHS 2011/65、EMC 2014/30、LVD 2014/35、UKCA、UN 38.3（待确认）、EU 2023/1542（待确认）。",
+            "reasoningEn": "Applicable regs identified: RoHS, EMC, LVD, UKCA; UN 38.3 & (EU)2023/1542 pending.",
+            "severity": "info"
+          },
+          {
+            "id": "retriever",
+            "type": "retriever",
+            "label": "法规召回",
+            "labelEn": "Retriever",
+            "status": "success",
+            "duration": "1.1s",
+            "confidence": 0.62,
+            "reasoning": "召回 KB 条款覆盖 RoHS/EMC/LVD/(EU)2023/1542/UN 38.3；UKCA 来源文档未覆盖，标为待补充。",
+            "reasoningEn": "KB covers RoHS/EMC/LVD/Battery/UN 38.3; UKCA source not in KB — pending.",
+            "severity": "high"
+          },
+          {
+            "id": "synthesis",
+            "type": "synthesis",
+            "label": "证据综合",
+            "labelEn": "Synthesis",
+            "status": "success",
+            "duration": "0.9s",
+            "confidence": 0.6,
+            "reasoning": "合规缺口明确：DoC/测试/UKCA/EPR 均缺；图片盲点阻止部分事实确认。",
+            "reasoningEn": "Gaps clear: DoC/tests/UKCA/EPR missing; image blind spots prevent confirmation.",
+            "severity": "high"
+          },
+          {
+            "id": "generate",
+            "type": "generate",
+            "label": "报告生成",
+            "labelEn": "Generate",
+            "status": "success",
+            "duration": "0.7s",
+            "confidence": 0.7,
+            "reasoning": "合规报告每条事实均带 [法规/条款] 引用；利润数据未编造。",
+            "reasoningEn": "Each compliance fact tagged with [regulation/article]; no fabricated cost numbers.",
+            "severity": "medium"
+          },
+          {
+            "id": "verify",
+            "type": "verify",
+            "label": "一致性核验",
+            "labelEn": "Verify",
+            "status": "success",
+            "duration": "0.4s",
+            "confidence": 0.75,
+            "reasoning": "合规报告/利润/路线图/决策视图互相一致；无 RJECTED 触发条件。",
+            "reasoningEn": "Cross-view consistency OK; no REJECTED trigger.",
+            "severity": "info"
+          }
+        ],
+        "verdict": "WARN",
+        "riskLevel": "HIGH"
+      },
+      "evidenceBundles": {
+        "visual": [],
+        "retrieval": [],
+        "generation": [
+          {
+            "id": "generation:compliance_report",
+            "layer": "generation",
+            "source": "report_generator",
+            "title": "Compliance report draft",
+            "content": "# 合规风险评估报告\n\n## 1. 产品概述\n- **类型**：65W GaN USB 充电器\n- **目标市场**：EU、UK\n- **可见特征**：白色立方体外壳；表面印有 65W GaN Fast Charger；输出端含 2×USB-C、1×USB-A；美规 Type-A 折叠插脚\n- **视觉盲点**：铭牌、输入电压范围、制造商信息、CE/UKCA 标志、批次码——**图片无法验证**\n\n## 2. 法规适用性逐条评估\n\n### 2.1 RoHS Directive 2011/65/EU（EU）\n- **适用**：电子产品进入欧盟须满足有害物质限值并完成 CE/DoC 与 Annex III 申报。\n- **现状**：用户未提交测试报告或 DoC。\n- **风险**：缺 CE/DoC 或 Annex III 申报可致海关扣留、市场禁售。\n- **依据**：[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]\n\n### 2.2 UKCA Marking Requirements（UK）\n- **适用**：投放英国市场（GB）须有 UKCA 标志及合格声明。\n- **现状**：图片未见 UKCA 或 CE 标志。\n- **风险**：缺 UKCA/CE 可致英国海关扣留与处罚。\n- **依据**：来源文档未覆盖 UKCA，待补充官方原文核实\n\n### 2.3 EMC Directive 2014/30/EU（EU）\n- **适用**：充电器属电气设备，须满足 EMC 协调标准（EN 55032/55035/61000 系列）。\n- **现状**：用户未提交 EMC 测试报告。\n- **风险**：缺 EMC 报告则 CE 标志无效，海关/平台可下架。\n- **依据**：[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]\n\n### 2.4 LVD Directive 2014/35/EU（EU）\n- **适用**：额定电压 50–1000V AC / 75–1500V DC 的电气设备。\n- **现状**：用户未提交电气安全测试报告。\n- **风险**：缺安规测试可致产品撤市、制造商法律责任。\n- **依据**：[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7][EU-2014-35#annex-1][EU-2014-35#annex-2]\n\n### 2.5 UN 38.3 Transport Testing\n- **适用性边界**：仅当内置电池时适用；本产品为外接电源充电器，**待确认**。\n- **风险**",
+            "metadata": {
+              "characterCount": 1587
+            }
+          },
+          {
+            "id": "generation:package_keys",
+            "layer": "generation",
+            "source": "report_package",
+            "title": "Generated package keys",
+            "content": "auditMetadata, citations, complianceReport, decisionView, profitReport, roadmap",
+            "metadata": {
+              "sceneCount": 6
+            }
+          }
+        ]
+      },
+      "auditMetadata": {
+        "schemaVersion": "report-package/v1",
+        "generatedAt": "2026-09-13T14:08:16+00:00",
+        "validationStatus": "normalized",
+        "validationErrors": [],
+        "provider": "minimax",
+        "traceNodeCount": 2,
+        "finance": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "decisionView": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "roadmap": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "evidenceBundles": {
+          "validationStatus": "valid",
+          "errors": []
+        },
+        "verificationMode": "kb_exact_quote",
+        "canonicalQuoteAttachedCount": 19
+      },
+      "citations": [
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-4",
+          "officialCitation": "Directive 2011/65/EU Art. 4",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2011/65/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-7",
+          "officialCitation": "Directive 2011/65/EU Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "annex-2",
+          "officialCitation": "Directive 2011/65/EU Annex II",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/30/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-7",
+          "officialCitation": "Directive 2014/30/EU Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-8",
+          "officialCitation": "Directive 2014/30/EU Art. 8",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "annex-1",
+          "officialCitation": "Directive 2014/30/EU Annex I",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-3",
+          "officialCitation": "Directive 2014/35/EU Art. 3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/35/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-7",
+          "officialCitation": "Directive 2014/35/EU Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "annex-1",
+          "officialCitation": "Directive 2014/35/EU Annex I",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "annex-2",
+          "officialCitation": "Directive 2014/35/EU Annex II",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "UN-38-3",
+          "articleId": "section-38-3",
+          "officialCitation": "UN Manual of Tests and Criteria 38.3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "8 项测试 (T1-T8): 高度模拟/热冲击/振动/冲击/外部短路/撞击/过充/强制放电 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-77",
+          "officialCitation": "(EU) 2023/1542 Art. 77",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-7",
+          "officialCitation": "(EU) 2023/1542 Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-38",
+          "officialCitation": "(EU) 2023/1542 Art. 38",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-39",
+          "officialCitation": "(EU) 2023/1542 Art. 39",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-85",
+          "officialCitation": "(EU) 2023/1542 Art. 85",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        }
+      ],
+      "evidencePack": [
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-4",
+          "officialCitation": "Directive 2011/65/EU Art. 4",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2011/65/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "art-7",
+          "officialCitation": "Directive 2011/65/EU Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2011-65",
+          "articleId": "annex-2",
+          "officialCitation": "Directive 2011/65/EU Annex II",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "Annex II 列具体限值与豁免清单 (e.g. 焊料铅豁免至 2026 阶段收尾) (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/30/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-7",
+          "officialCitation": "Directive 2014/30/EU Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "art-8",
+          "officialCitation": "Directive 2014/30/EU Art. 8",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-30",
+          "articleId": "annex-1",
+          "officialCitation": "Directive 2014/30/EU Annex I",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "EN 55032 / EN 55035 / EN 61000 系列协调标准是常用合规依据 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-3",
+          "officialCitation": "Directive 2014/35/EU Art. 3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-6",
+          "officialCitation": "Directive 2014/35/EU Art. 6",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "art-7",
+          "officialCitation": "Directive 2014/35/EU Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "annex-1",
+          "officialCitation": "Directive 2014/35/EU Annex I",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2014-35",
+          "articleId": "annex-2",
+          "officialCitation": "Directive 2014/35/EU Annex II",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "UN-38-3",
+          "articleId": "section-38-3",
+          "officialCitation": "UN Manual of Tests and Criteria 38.3",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "8 项测试 (T1-T8): 高度模拟/热冲击/振动/冲击/外部短路/撞击/过充/强制放电 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-77",
+          "officialCitation": "(EU) 2023/1542 Art. 77",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-7",
+          "officialCitation": "(EU) 2023/1542 Art. 7",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-38",
+          "officialCitation": "(EU) 2023/1542 Art. 38",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-39",
+          "officialCitation": "(EU) 2023/1542 Art. 39",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        },
+        {
+          "docId": "EU-2023-1542",
+          "articleId": "art-85",
+          "officialCitation": "(EU) 2023/1542 Art. 85",
+          "quote": "",
+          "quoteSpan": null,
+          "matchStatus": "fallback_article_only",
+          "canonicalExcerpt": "电池护照 (digital product passport) 强制实施:  - 工业电池 >2 kWh 自 2027-02-18 起  - LMT (轻型运输工具) 自 2028-08-18 起 (Text condensed from KB key_points; full official text pending verification against the primary source — see regulation `source_url` and `notes`.)",
+          "quoteProvenance": "llm_paraphrase_unverified"
+        }
+      ],
+      "observations": [
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs0",
+          "checkId": "electronics.nameplate.electrical_ratings",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "图中可见的两面（输出端面与侧面）均未出现电压/电流/功率/频率等电气参数铭牌，可能位于未拍摄面。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs1",
+          "checkId": "electronics.interface.plug_pins",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": "USB-C1 / USB-C2 / USB-A",
+          "description": "输出端面上可见两个 USB-C 口（黑色舌片）标注 USB-C1、USB-C2，及一个 USB-A 口（橙色舌片）标注 USB-A；AC 插脚为美规两脚可折叠式，仅金属插脚端面可见。",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.595,
+              "y": 0.345,
+              "w": 0.155,
+              "h": 0.395
+            },
+            "verified": true
+          }
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs2",
+          "checkId": "electronics.cable.connector_condition",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "画面中未见随附线缆或外接连接器，无法评估接头状态。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs3",
+          "checkId": "electronics.marks.certification_region",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "absent_in_visible_scope",
+          "observedText": null,
+          "description": "可清晰观察到的侧面与输出端面上未见任何 CE/FCC/UKCA/CCC/RoHS/WEEE/REACH 等认证标志；其他面未在画面内。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs4",
+          "checkId": "electronics.adapter.external_power",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "画面中未出现可辨识的外置电源适配器/线缆产品。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs5",
+          "checkId": "common.product.overview",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": "65W GaN Fast Charger",
+          "description": "主体为白色磨砂质感方块状充电器，棱角圆润，输出端面含 2×USB-C 与 1×USB-A，外壳完整。",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.345,
+              "y": 0.225,
+              "w": 0.355,
+              "h": 0.515
+            },
+            "verified": true
+          }
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs6",
+          "checkId": "common.nameplate.readability",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": "65W / GaN Fast Charger",
+          "description": "侧面印有“65W GaN Fast Charger”，字迹清晰可读；但电气参数铭牌不在可见范围内。",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.345,
+              "y": 0.515,
+              "w": 0.25,
+              "h": 0.115
+            },
+            "verified": true
+          }
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs7",
+          "checkId": "common.brand_model.visible",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "absent_in_visible_scope",
+          "observedText": null,
+          "description": "可见面未出现品牌 Logo 或具体型号字符串；仅印有 65W / GaN Fast Charger 与端口标识。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs8",
+          "checkId": "common.batch_traceability.fields",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "画面中未见批次号、序列号、生产日期等追溯字段。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs9",
+          "checkId": "common.warning_text.language",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "可见面未出现警告文字及其语言。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs10",
+          "checkId": "common.packaging.info",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "not_in_view",
+          "observedText": null,
+          "description": "画面中未出现产品包装或包装标签。",
+          "region": null
+        },
+        {
+          "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs11",
+          "checkId": "common.defects.visible",
+          "imageIndex": 0,
+          "imageId": "vision-image-0",
+          "visibility": "present_readable",
+          "observedText": null,
+          "description": "充电器外壳及端口未见裂损、变形、鼓胀或明显污渍，外观状态正常。",
+          "region": {
+            "kind": "bbox",
+            "coordinateSpace": "normalized_canonical_image",
+            "bbox": {
+              "x": 0.345,
+              "y": 0.225,
+              "w": 0.355,
+              "h": 0.515
+            },
+            "verified": true
+          }
+        }
+      ],
+      "findings": [
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-1",
+          "checkId": "electronics.nameplate.electrical_ratings",
+          "title": "铭牌电气参数(电压/电流/功率/频率)",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs0"
+          ],
+          "citationIds": [
+            "KB-electronics-CN-CN-CCC",
+            "KB-electronics-EU-LVD-2014-35"
+          ],
+          "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-2",
+          "checkId": "electronics.cable.connector_condition",
+          "title": "线缆与接头可见状态",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs2"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍cable_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：cable_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-3",
+          "checkId": "electronics.marks.certification_region",
+          "title": "可见认证标志(仅记录清晰可见者,不做真伪判断)",
+          "assessment": "suspected_issue",
+          "applicability": "applicable",
+          "severity": "medium",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs3"
+          ],
+          "citationIds": [
+            "KB-electronics-CN-CN-CCC",
+            "KB-electronics-EU-CE-General"
+          ],
+          "suggestedAction": "标签区域可见但未检出「可见认证标志(仅记录清晰可见者,不做真伪判断)」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup、back"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-4",
+          "checkId": "electronics.adapter.external_power",
+          "title": "外置适配器(如拍摄)",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs4"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍adapter_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：adapter_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-5",
+          "checkId": "common.brand_model.visible",
+          "title": "品牌与型号标识",
+          "assessment": "suspected_issue",
+          "applicability": "applicable",
+          "severity": "medium",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs7"
+          ],
+          "citationIds": [],
+          "suggestedAction": "标签区域可见但未检出「品牌与型号标识」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+          "requiredEvidence": [
+            "补拍视角：front、back"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-6",
+          "checkId": "common.batch_traceability.fields",
+          "title": "批次号/序列号/生产日期等追溯字段",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs8"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：nameplate_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-7",
+          "checkId": "common.warning_text.language",
+          "title": "警告文字及其语言",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs9"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍warning_label_closeup（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：warning_label_closeup"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-8",
+          "checkId": "common.packaging.info",
+          "title": "包装信息(如已拍摄)",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [
+            "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs10"
+          ],
+          "citationIds": [],
+          "suggestedAction": "补拍package（本次照片未覆盖该区域）",
+          "requiredEvidence": [
+            "补拍视角：package"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-9",
+          "checkId": "electronics.safety.electrical_test",
+          "title": "电气安全测试报告",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [],
+          "citationIds": [
+            "KB-electronics-EU-LVD-2014-35",
+            "US-UL-ETL-mains"
+          ],
+          "suggestedAction": "提供检测报告：电气安全测试报告",
+          "requiredEvidence": [
+            "检测报告：电气安全测试报告"
+          ]
+        },
+        {
+          "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-10",
+          "checkId": "electronics.emc.test_report",
+          "title": "EMC 测试报告",
+          "assessment": "evidence_needed",
+          "applicability": "applicable",
+          "severity": "low",
+          "observationIds": [],
+          "citationIds": [
+            "KB-electronics-EU-EMC-2014-30"
+          ],
+          "suggestedAction": "提供检测报告：EMC 测试报告",
+          "requiredEvidence": [
+            "检测报告：EMC 测试报告"
+          ]
+        }
+      ],
+      "selectedCheckIds": [
+        "electronics.nameplate.electrical_ratings",
+        "electronics.interface.plug_pins",
+        "electronics.cable.connector_condition",
+        "electronics.marks.certification_region",
+        "electronics.adapter.external_power",
+        "common.product.overview",
+        "common.nameplate.readability",
+        "common.brand_model.visible",
+        "common.batch_traceability.fields",
+        "common.warning_text.language",
+        "common.packaging.info",
+        "common.defects.visible"
+      ],
+      "anchorApplicability": [
+        {
+          "regulationId": "EU-2011-65",
+          "market": "EU",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "UK-UKCA-General",
+          "market": "UK",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2014-30",
+          "market": "EU",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2014-35",
+          "market": "EU",
+          "state": "applicable",
+          "reason": "category selected by the user",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "UN-38-3",
+          "market": "UN",
+          "state": "needs_confirmation",
+          "reason": "battery only a keyword candidate; UN 38.3 applies once presence is confirmed",
+          "effectiveFrom": null,
+          "productConditions": [],
+          "rulesVersion": "applicability-rules/v1"
+        },
+        {
+          "regulationId": "EU-2023-1542",
+          "market": "EU",
+          "state": "needs_confirmation",
+          "reason": "battery only a keyword candidate; confirm with label photo or spec sheet",
+          "effectiveFrom": null,
+          "productConditions": [
+            "battery presence inferred from keywords — needs visible marking or spec sheet",
+            "电池护照 (Art. 77) 不适用于便携式电池（如耳机充电盒/普通消费电子）：仅 LMT、电动车电池及 >2 kWh 工业电池需要，工业类自 2027-02-18 起、LMT 自 2028-08-18 起"
+          ],
+          "rulesVersion": "applicability-rules/v1"
+        }
+      ]
+    },
+    "inspectionObservations": [
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs0",
+        "checkId": "electronics.nameplate.electrical_ratings",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "图中可见的两面（输出端面与侧面）均未出现电压/电流/功率/频率等电气参数铭牌，可能位于未拍摄面。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs1",
+        "checkId": "electronics.interface.plug_pins",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "present_readable",
+        "observedText": "USB-C1 / USB-C2 / USB-A",
+        "description": "输出端面上可见两个 USB-C 口（黑色舌片）标注 USB-C1、USB-C2，及一个 USB-A 口（橙色舌片）标注 USB-A；AC 插脚为美规两脚可折叠式，仅金属插脚端面可见。",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.595,
+            "y": 0.345,
+            "w": 0.155,
+            "h": 0.395
+          },
+          "verified": true
+        }
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs2",
+        "checkId": "electronics.cable.connector_condition",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "画面中未见随附线缆或外接连接器，无法评估接头状态。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs3",
+        "checkId": "electronics.marks.certification_region",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "absent_in_visible_scope",
+        "observedText": null,
+        "description": "可清晰观察到的侧面与输出端面上未见任何 CE/FCC/UKCA/CCC/RoHS/WEEE/REACH 等认证标志；其他面未在画面内。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs4",
+        "checkId": "electronics.adapter.external_power",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "画面中未出现可辨识的外置电源适配器/线缆产品。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs5",
+        "checkId": "common.product.overview",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "present_readable",
+        "observedText": "65W GaN Fast Charger",
+        "description": "主体为白色磨砂质感方块状充电器，棱角圆润，输出端面含 2×USB-C 与 1×USB-A，外壳完整。",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.345,
+            "y": 0.225,
+            "w": 0.355,
+            "h": 0.515
+          },
+          "verified": true
+        }
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs6",
+        "checkId": "common.nameplate.readability",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "present_readable",
+        "observedText": "65W / GaN Fast Charger",
+        "description": "侧面印有“65W GaN Fast Charger”，字迹清晰可读；但电气参数铭牌不在可见范围内。",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.345,
+            "y": 0.515,
+            "w": 0.25,
+            "h": 0.115
+          },
+          "verified": true
+        }
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs7",
+        "checkId": "common.brand_model.visible",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "absent_in_visible_scope",
+        "observedText": null,
+        "description": "可见面未出现品牌 Logo 或具体型号字符串；仅印有 65W / GaN Fast Charger 与端口标识。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs8",
+        "checkId": "common.batch_traceability.fields",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "画面中未见批次号、序列号、生产日期等追溯字段。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs9",
+        "checkId": "common.warning_text.language",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "可见面未出现警告文字及其语言。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs10",
+        "checkId": "common.packaging.info",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "not_in_view",
+        "observedText": null,
+        "description": "画面中未出现产品包装或包装标签。",
+        "region": null
+      },
+      {
+        "observationId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs11",
+        "checkId": "common.defects.visible",
+        "imageId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-image-0",
+        "visibility": "present_readable",
+        "observedText": null,
+        "description": "充电器外壳及端口未见裂损、变形、鼓胀或明显污渍，外观状态正常。",
+        "region": {
+          "kind": "bbox",
+          "coordinateSpace": "normalized_canonical_image",
+          "bbox": {
+            "x": 0.345,
+            "y": 0.225,
+            "w": 0.355,
+            "h": 0.515
+          },
+          "verified": true
+        }
+      }
+    ],
+    "selectedCheckIds": [
+      "electronics.nameplate.electrical_ratings",
+      "electronics.interface.plug_pins",
+      "electronics.cable.connector_condition",
+      "electronics.marks.certification_region",
+      "electronics.adapter.external_power",
+      "common.product.overview",
+      "common.nameplate.readability",
+      "common.brand_model.visible",
+      "common.batch_traceability.fields",
+      "common.warning_text.language",
+      "common.packaging.info",
+      "common.defects.visible"
+    ],
+    "inspectionFindings": [
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-1",
+        "checkId": "electronics.nameplate.electrical_ratings",
+        "title": "铭牌电气参数(电压/电流/功率/频率)",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs0"
+        ],
+        "citationIds": [
+          "KB-electronics-CN-CN-CCC",
+          "KB-electronics-EU-LVD-2014-35"
+        ],
+        "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-2",
+        "checkId": "electronics.cable.connector_condition",
+        "title": "线缆与接头可见状态",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs2"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍cable_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：cable_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-3",
+        "checkId": "electronics.marks.certification_region",
+        "title": "可见认证标志(仅记录清晰可见者,不做真伪判断)",
+        "assessment": "suspected_issue",
+        "applicability": "applicable",
+        "severity": "medium",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs3"
+        ],
+        "citationIds": [
+          "KB-electronics-CN-CN-CCC",
+          "KB-electronics-EU-CE-General"
+        ],
+        "suggestedAction": "标签区域可见但未检出「可见认证标志(仅记录清晰可见者,不做真伪判断)」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup、back"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-4",
+        "checkId": "electronics.adapter.external_power",
+        "title": "外置适配器(如拍摄)",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs4"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍adapter_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：adapter_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-5",
+        "checkId": "common.brand_model.visible",
+        "title": "品牌与型号标识",
+        "assessment": "suspected_issue",
+        "applicability": "applicable",
+        "severity": "medium",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs7"
+        ],
+        "citationIds": [],
+        "suggestedAction": "标签区域可见但未检出「品牌与型号标识」：核对规则允许的其他标识位置；如确无，需补认证/标注",
+        "requiredEvidence": [
+          "补拍视角：front、back"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-6",
+        "checkId": "common.batch_traceability.fields",
+        "title": "批次号/序列号/生产日期等追溯字段",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs8"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍nameplate_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：nameplate_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-7",
+        "checkId": "common.warning_text.language",
+        "title": "警告文字及其语言",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs9"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍warning_label_closeup（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：warning_label_closeup"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-8",
+        "checkId": "common.packaging.info",
+        "title": "包装信息(如已拍摄)",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [
+          "scan_ea07272d0ff34b5dbde103ed86d18a4a-img0-obs10"
+        ],
+        "citationIds": [],
+        "suggestedAction": "补拍package（本次照片未覆盖该区域）",
+        "requiredEvidence": [
+          "补拍视角：package"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-9",
+        "checkId": "electronics.safety.electrical_test",
+        "title": "电气安全测试报告",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [],
+        "citationIds": [
+          "KB-electronics-EU-LVD-2014-35",
+          "US-UL-ETL-mains"
+        ],
+        "suggestedAction": "提供检测报告：电气安全测试报告",
+        "requiredEvidence": [
+          "检测报告：电气安全测试报告"
+        ]
+      },
+      {
+        "findingId": "scan_ea07272d0ff34b5dbde103ed86d18a4a-finding-10",
+        "checkId": "electronics.emc.test_report",
+        "title": "EMC 测试报告",
+        "assessment": "evidence_needed",
+        "applicability": "applicable",
+        "severity": "low",
+        "observationIds": [],
+        "citationIds": [
+          "KB-electronics-EU-EMC-2014-30"
+        ],
+        "suggestedAction": "提供检测报告：EMC 测试报告",
+        "requiredEvidence": [
+          "检测报告：EMC 测试报告"
+        ]
+      }
+    ],
+    "complianceReport": "# 合规风险评估报告\n\n## 1. 产品概述\n- **类型**：65W GaN USB 充电器\n- **目标市场**：EU、UK\n- **可见特征**：白色立方体外壳；表面印有 65W GaN Fast Charger；输出端含 2×USB-C、1×USB-A；美规 Type-A 折叠插脚\n- **视觉盲点**：铭牌、输入电压范围、制造商信息、CE/UKCA 标志、批次码——**图片无法验证**\n\n## 2. 法规适用性逐条评估\n\n### 2.1 RoHS Directive 2011/65/EU（EU）\n- **适用**：电子产品进入欧盟须满足有害物质限值并完成 CE/DoC 与 Annex III 申报。\n- **现状**：用户未提交测试报告或 DoC。\n- **风险**：缺 CE/DoC 或 Annex III 申报可致海关扣留、市场禁售。\n- **依据**：[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]\n\n### 2.2 UKCA Marking Requirements（UK）\n- **适用**：投放英国市场（GB）须有 UKCA 标志及合格声明。\n- **现状**：图片未见 UKCA 或 CE 标志。\n- **风险**：缺 UKCA/CE 可致英国海关扣留与处罚。\n- **依据**：来源文档未覆盖 UKCA，待补充官方原文核实\n\n### 2.3 EMC Directive 2014/30/EU（EU）\n- **适用**：充电器属电气设备，须满足 EMC 协调标准（EN 55032/55035/61000 系列）。\n- **现状**：用户未提交 EMC 测试报告。\n- **风险**：缺 EMC 报告则 CE 标志无效，海关/平台可下架。\n- **依据**：[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]\n\n### 2.4 LVD Directive 2014/35/EU（EU）\n- **适用**：额定电压 50–1000V AC / 75–1500V DC 的电气设备。\n- **现状**：用户未提交电气安全测试报告。\n- **风险**：缺安规测试可致产品撤市、制造商法律责任。\n- **依据**：[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7][EU-2014-35#annex-1][EU-2014-35#annex-2]\n\n### 2.5 UN 38.3 Transport Testing\n- **适用性边界**：仅当内置电池时适用；本产品为外接电源充电器，**待确认**。\n- **风险**：若有内置电池且无 UN 38.3 报告，承运商拒收并罚款。\n- **依据**：[UN-38-3#section-38-3]\n\n### 2.6 Battery Regulation (EU) 2023/1542\n- **适用性边界**：本产品为外接电源式充电器，本身不含电池，电池护照 (Art. 77) 不适用便携式电池；**适用性待确认**（视是否含电池及电池类型）。\n- **依据**：[EU-2023-1542#art-7][EU-2023-1542#art-38][EU-2023-1542#art-39][EU-2023-1542#art-77][EU-2023-1542#art-85]\n\n## 3. 结论\n- 法规覆盖已建立，但**核心证据缺口**（铭牌、CE/UKCA、DoC、测试报告）尚需补齐方可推进。\n- 本报告不构成已合规、已获证或可上市的判定。",
+    "complianceReportTruncated": false,
+    "agentTrace": [
+      {
+        "node": "vision",
+        "mode": "checklist",
+        "checkCount": 12,
+        "imagesCount": 1,
+        "certificationsFound": 0,
+        "descriptionLength": 160,
+        "durationMs": 3,
+        "observationCount": 12
+      },
+      {
+        "node": "generate",
+        "provider": "minimax",
+        "status": "success",
+        "packageScenes": 12,
+        "chunksCount": 0,
+        "generationLength": 1586,
+        "durationMs": 20207,
+        "anchorFeatures": [
+          "battery"
+        ],
+        "anchorRegulationsCount": 6,
+        "articleTextsCount": 19,
+        "llmCitationsCount": 19,
+        "kbAnchorBackfillCount": 0
+      },
+      {
+        "node": "verify",
+        "status": "success",
+        "matched": 0,
+        "fallbackArticleOnly": 19,
+        "unmatched": 0,
+        "totalCitations": 19,
+        "canonicalQuoteAttachedCount": 19
+      }
+    ],
+    "ragProvider": "minimax",
+    "latencyMs": 20210,
+    "loopCount": 0,
+    "modelInfo": {
+      "visionProvider": "minimax",
+      "latencyMs": 20210
+    },
+    "source": "real"
+  }
+}

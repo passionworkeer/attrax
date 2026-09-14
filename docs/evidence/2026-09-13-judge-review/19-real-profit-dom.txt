@@ -1,0 +1,34 @@
+- alert
+- main:
+  - link "返回结果页":
+    - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7
+    - generic: 返回结果页
+  - link "规航AI 规航AI · CompliPilot 成本影响分析 真实扫描结果 · 财务数据独立校验":
+    - /url: /
+    - img "规航AI"
+    - generic: 规航AI · CompliPilot
+    - strong: 成本影响分析
+    - generic: 真实扫描结果 · 财务数据独立校验
+  - button "中" [pressed]
+  - button "EN"
+  - generic: 利润数据不可用
+  - link "查看合规结果":
+    - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7
+  - paragraph: 合规报告仍可用
+  - heading "利润数据不可用，未使用演示数据替代" [level=1]
+  - paragraph: 当前报告来自本次扫描，但后端尚未提供成本明细、售价、销量和风险金额等结构化字段。
+  - generic: "# 成本与利润评估 **产品类型**：无线耳机充电盒 **目标市场**：EU、UK ⚠️ 暂无充分依据支持具体成本数字。所有费用标注\"待询价\"。 --- ## 两方案对比框架 ### Barebone 方案（无认证） | 项目 | 内容 | 状态 | |---|---|---| | BOM | 含外壳、PCBA、电池（推测） | 待询价 | | 包装 | 标准彩盒 + 说明书 | 待询价 | | 认证 | 0 | 风险项 | | EPR | EU/UK EPR 注册 | 待询价 | | 物流 | FBA/海运 | 待询价 | | 售后 | 基础保修 | 待询价 | | ASP | 目标零售 | 待询价 | ### Compliant 方案（含全套认证） | 项目 | 内容 | 状态 | |---|---|---| | BOM | 同上 | 待询价 | | 包装 | 含警告语、多语言 | 待询价 | | 认证 | CE/UKCA + RoHS + EMC + LVD + UN 38.3 | 待询价 | | EPR | FR/DE/ES 等多国 EPR | 待询价 | | 物流 | FBA/海运 + 危险品申报（如锂电池） | 待询价 | | 售后 | 12 月保修 | 待询价 | | ASP | 含合规溢价 | 待询价 | --- ## 关键结论 合规成本估算需以下输入：①认证报价（实验室询价）；②EPR 多国注册费；③FBA 头程与危险品附加费；④竞品 ASP 调研。 ## 风险提示 无认证出货将面临 EU/UK 海关扣留、平台下架、产品召回及罚款风险，估算需以认证齐全为前提。"
+  - link "规航AI 让每一次出海都有合规航线":
+    - /url: /
+    - strong: 规航AI
+    - generic: 让每一次出海都有合规航线
+  - navigation "流程导航":
+    - link "图像识别":
+      - /url: /upload
+    - link "风险扫描":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7
+    - link "法规溯源":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7#reports
+    - link "可解释报告":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7#report-previews
+  - paragraph: 演示原型 · 结论需结合专业机构复核

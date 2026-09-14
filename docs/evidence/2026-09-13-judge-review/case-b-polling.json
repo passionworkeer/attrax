@@ -1,0 +1,41 @@
+[
+  {
+    "error": "net::ERR_ABORTED"
+  },
+  {
+    "status": "processing",
+    "stageKey": "report",
+    "progress": 36,
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a"
+  },
+  {
+    "status": "processing",
+    "stageKey": "report",
+    "progress": 36,
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a"
+  },
+  {
+    "status": "processing",
+    "stageKey": "report",
+    "progress": 36,
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a"
+  },
+  {
+    "status": "processing",
+    "stageKey": "report",
+    "progress": 36,
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a"
+  },
+  {
+    "status": "processing",
+    "stageKey": "report",
+    "progress": 36,
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a"
+  },
+  {
+    "status": "ready",
+    "stageKey": "done",
+    "progress": 100,
+    "sessionId": "scan_ea07272d0ff34b5dbde103ed86d18a4a"
+  }
+]

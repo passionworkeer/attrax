@@ -1,0 +1,489 @@
+- alert
+- main:
+  - link "返回上传页":
+    - /url: /upload
+    - generic: 返回上传页
+  - link "规航AI 规航AI · CompliPilot 合规检测结果 风险总览 · 法规依据 · 整改报告":
+    - /url: /
+    - img "规航AI"
+    - generic: 规航AI · CompliPilot
+    - strong: 合规检测结果
+    - generic: 风险总览 · 法规依据 · 整改报告
+  - button "中" [pressed]
+  - button "EN"
+  - link "返回首页":
+    - /url: /
+  - link "查看报告":
+    - /url: "#reports"
+  - paragraph: STEP 01 · 先看结论
+  - generic: 未发现可定位风险
+  - heading [level=1]
+  - paragraph: 已完成 1 张图片分析。先处理 0 个高危风险，再进入 EU / UK 市场上架复核。
+  - generic: EU 市场
+  - generic: UK 市场
+  - generic: 3C 电子
+  - generic: 0 个热点
+  - paragraph: 合规得分
+  - paragraph: 65/C
+  - paragraph: 高危风险
+  - paragraph: "0"
+  - paragraph: 整改预算
+  - paragraph: —
+  - paragraph: 整改后净利
+  - paragraph: —
+  - complementary:
+    - paragraph: 当前最重要的事
+    - heading "本次扫描未发现可定位风险点" [level=2]
+    - paragraph: 未发现风险不等于合规完成：下方检查清单里的「待补拍 / 待补资料」项仍需补齐后再做上架判断。
+    - paragraph: 建议动作
+    - paragraph: 补拍nameplate_closeup（本次照片未覆盖该区域）
+    - link "查看风险证据":
+      - /url: "#evidence"
+      - text: 查看风险证据
+    - link "查看利润影响":
+      - /url: /profit/scan_e9b1d6add9fd432489a1116a4dbb5bf7
+  - navigation "结果阅读顺序":
+    - link "01 先看结论 确认是否可以继续上架":
+      - /url: "#overview"
+      - generic: "01"
+      - generic: 先看结论
+      - generic: 确认是否可以继续上架
+    - link "02 再查证据 定位风险、法规与成本":
+      - /url: "#evidence"
+      - generic: "02"
+      - generic: 再查证据
+      - generic: 定位风险、法规与成本
+    - link "03 最后执行 按路线整改并导出报告":
+      - /url: "#action"
+      - generic: "03"
+      - generic: 最后执行
+      - generic: 按路线整改并导出报告
+  - paragraph: STEP 02 · 查证据
+  - heading "动态计价 + 风险可视化" [level=2]
+  - paragraph: 用真实产品底图讲清楚每个风险点，风险标签、风险等级和整改成本都在同一屏里完成解释。
+  - generic: 点击热点查看详情
+  - paragraph: 预计整改成本
+  - paragraph: —
+  - generic: 风险证据完整度（0/0）
+  - generic: —
+  - paragraph: 17/17 条引用已对照原文
+  - img "Product risk canvas"
+  - article:
+    - paragraph: 热点详情
+    - heading "无可定位的风险详情" [level=3]
+    - paragraph: 本次扫描没有产生带位置的风险点。观察结果与待补项见下方检查清单；补齐所需照片/资料后重新扫描可获得完整风险定位。
+    - paragraph: 已观察到（可定位）
+    - paragraph: 3 项
+  - paragraph: 全部风险
+  - heading "热点总览" [level=3]
+  - paragraph: 选择风险卡片可同步图中定位与法规详情
+  - paragraph: 检查清单
+  - heading "按品类逐项检查结果" [level=3]
+  - paragraph: 每项都有结果；「待补拍」与「待确认」不代表产品不合格，只说明当前照片无法支撑判断。
+  - generic: 已观察 3
+  - generic: 待补拍 6
+  - generic: 待确认 3
+  - list:
+    - button "common.product.overview Overview 主体为白色方形圆角充电盒,顶部有银色金属装饰条,整体外观完整,表面可见多道划痕 已观察":
+      - generic: common.product.overview
+      - generic: Overview
+      - generic: 主体为白色方形圆角充电盒,顶部有银色金属装饰条,整体外观完整,表面可见多道划痕
+      - generic: 已观察
+    - button "common.brand_model.visible Visible 读到：iQOO 已观察":
+      - generic: common.brand_model.visible
+      - generic: Visible
+      - generic: 读到：iQOO
+      - generic: 已观察
+    - button "common.defects.visible Visible 充电盒正面及顶部金属条表面可见多道明显划痕,壳体未观察到裂纹或鼓胀 已观察":
+      - generic: common.defects.visible
+      - generic: Visible
+      - generic: 充电盒正面及顶部金属条表面可见多道明显划痕,壳体未观察到裂纹或鼓胀
+      - generic: 已观察
+    - button "electronics.cable.connector_condition Connector Condition 画面中未出现线缆或接头 待确认 · 可见范围未检出" [disabled]:
+      - generic: electronics.cable.connector_condition
+      - generic: Connector Condition
+      - generic: 画面中未出现线缆或接头
+      - generic: 待确认 · 可见范围未检出
+    - button "electronics.adapter.external_power External Power 画面中未出现外置电源适配器 待确认 · 可见范围未检出" [disabled]:
+      - generic: electronics.adapter.external_power
+      - generic: External Power
+      - generic: 画面中未出现外置电源适配器
+      - generic: 待确认 · 可见范围未检出
+    - button "common.packaging.info Info 画面中未出现包装盒或包装标签 待确认 · 可见范围未检出" [disabled]:
+      - generic: common.packaging.info
+      - generic: Info
+      - generic: 画面中未出现包装盒或包装标签
+      - generic: 待确认 · 可见范围未检出
+    - button "electronics.nameplate.electrical_ratings Electrical Ratings 图中仅展示充电盒正面,未见任何电压/电流/功率/频率等电气参数 待补拍 · 未入镜" [disabled]:
+      - generic: electronics.nameplate.electrical_ratings
+      - generic: Electrical Ratings
+      - generic: 图中仅展示充电盒正面,未见任何电压/电流/功率/频率等电气参数
+      - generic: 待补拍 · 未入镜
+    - button "electronics.interface.plug_pins Plug Pins 正面未见任何接口或插脚形态,推测位于其他面但未在图中 待补拍 · 未入镜" [disabled]:
+      - generic: electronics.interface.plug_pins
+      - generic: Plug Pins
+      - generic: 正面未见任何接口或插脚形态,推测位于其他面但未在图中
+      - generic: 待补拍 · 未入镜
+    - button "electronics.marks.certification_region Certification Region 正面未见任何 CE/FCC/UKCA/CCC 等认证标志 待补拍 · 未入镜" [disabled]:
+      - generic: electronics.marks.certification_region
+      - generic: Certification Region
+      - generic: 正面未见任何 CE/FCC/UKCA/CCC 等认证标志
+      - generic: 待补拍 · 未入镜
+    - button "common.nameplate.readability Readability 正面除 iQOO 品牌字样外无铭牌或标签 待补拍 · 未入镜" [disabled]:
+      - generic: common.nameplate.readability
+      - generic: Readability
+      - generic: 正面除 iQOO 品牌字样外无铭牌或标签
+      - generic: 待补拍 · 未入镜
+    - button "common.batch_traceability.fields Fields 正面未见批次号、序列号、生产日期等追溯信息 待补拍 · 未入镜" [disabled]:
+      - generic: common.batch_traceability.fields
+      - generic: Fields
+      - generic: 正面未见批次号、序列号、生产日期等追溯信息
+      - generic: 待补拍 · 未入镜
+    - button "common.warning_text.language Language 画面中未见任何警告文字 待补拍 · 未入镜" [disabled]:
+      - generic: common.warning_text.language
+      - generic: Language
+      - generic: 画面中未见任何警告文字
+      - generic: 待补拍 · 未入镜
+  - paragraph: 待补拍 / 待补资料（11 项）
+  - list:
+    - generic: 铭牌电气参数(电压/电流/功率/频率)
+    - generic: 待证据
+    - paragraph: 补拍nameplate_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：nameplate_closeup
+    - paragraph: KB-electronics-CN-CN-CCC · KB-electronics-EU-LVD-2014-35
+    - generic: 接口与插脚形态
+    - generic: 待证据
+    - paragraph: 补拍ports_closeup、plug_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：ports_closeup、plug_closeup
+    - generic: 线缆与接头可见状态
+    - generic: 疑点
+    - paragraph: 标签区域可见但未检出「线缆与接头可见状态」：核对规则允许的其他标识位置；如确无，需补认证/标注
+    - list:
+      - listitem: · 补拍视角：cable_closeup
+    - generic: 可见认证标志(仅记录清晰可见者,不做真伪判断)
+    - generic: 待证据
+    - paragraph: 补拍nameplate_closeup、back（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：nameplate_closeup、back
+    - paragraph: KB-electronics-CN-CN-CCC · KB-electronics-EU-CE-General
+    - generic: 外置适配器(如拍摄)
+    - generic: 疑点
+    - paragraph: 标签区域可见但未检出「外置适配器(如拍摄)」：核对规则允许的其他标识位置；如确无，需补认证/标注
+    - list:
+      - listitem: · 补拍视角：adapter_closeup
+    - generic: 铭牌/标签信息可读性
+    - generic: 待证据
+    - paragraph: 补拍nameplate_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：nameplate_closeup
+    - generic: 批次号/序列号/生产日期等追溯字段
+    - generic: 待证据
+    - paragraph: 补拍nameplate_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：nameplate_closeup
+    - generic: 警告文字及其语言
+    - generic: 待证据
+    - paragraph: 补拍warning_label_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：warning_label_closeup
+    - generic: 包装信息(如已拍摄)
+    - generic: 疑点
+    - paragraph: 标签区域可见但未检出「包装信息(如已拍摄)」：核对规则允许的其他标识位置；如确无，需补认证/标注
+    - list:
+      - listitem: · 补拍视角：package
+    - generic: 电气安全测试报告
+    - generic: 待证据
+    - paragraph: 提供检测报告：电气安全测试报告
+    - list:
+      - listitem: · 检测报告：电气安全测试报告
+    - paragraph: KB-electronics-EU-LVD-2014-35 · US-UL-ETL-mains
+    - generic: EMC 测试报告
+    - generic: 待证据
+    - paragraph: 提供检测报告：EMC 测试报告
+    - list:
+      - listitem: · 检测报告：EMC 测试报告
+    - paragraph: KB-electronics-EU-EMC-2014-30
+  - paragraph: STEP 02.5 · 合规扫描报告全文
+  - heading "完整合规扫描报告(可下载 PDF / DOCX)" [level=2]
+  - paragraph: 以下报告由合规扫描引擎生成,涵盖核心结论、法规引用、整改动作与责任方。可直接导出 PDF 给业务/法务/供应商。
+  - generic: 导出 PDF / DOCX
+  - generic: "65"
+  - generic: 综合评分
+  - generic: 未知
+  - generic: 等级：C
+  - generic: ·
+  - generic: 品类：electronics
+  - generic: ·
+  - generic: 市场：欧盟 · 英国
+  - generic: ·
+  - generic: 审核轮数：0
+  - heading "执行步骤" [level=3]
+  - text: 初检
+  - generic: Round 1
+  - generic: vision
+  - generic: generate
+  - generic: verify
+  - heading "产品图片分析" [level=3]
+  - group "产品图片分析":
+    - img "scan_e9b1d6add9fd432489a1116a4dbb5bf7-image-0"
+    - generic: 1 / 1
+  - heading "合规检查清单" [level=3]
+  - generic: ✓
+  - paragraph: 证据补全与产品身份确认
+  - paragraph
+  - generic: ✓
+  - paragraph: 实验室测试申请（RoHS/EMC/LVD/UN 38.3）
+  - paragraph
+  - generic: ✓
+  - paragraph: 技术文档与 DoC 编制
+  - paragraph
+  - generic: ✓
+  - paragraph: CE/UKCA 标志与 EPR 注册
+  - paragraph
+  - generic: ✓
+  - paragraph: 完成并准备上市
+  - paragraph
+  - generic: "通过: 0"
+  - generic: ·
+  - generic: "警告: 0"
+  - generic: ·
+  - generic: "失败: 0"
+  - heading "合规分析报告" [level=3]
+  - generic: minimax · 54.7s
+  - button "合规 PDF ZH"
+  - button "Word ZH"
+  - button "合规 PDF EN"
+  - button "Word EN"
+  - button "证据包 PDF":
+    - generic: ↓
+    - text: 证据包 PDF
+  - heading "合规风险评估报告" [level=1]
+  - paragraph:
+    - strong: 产品类型
+    - text: ：无线耳机充电盒（electronics 类）
+    - strong: 目标市场
+    - text: ：EU、UK
+    - strong: 结论
+    - text: ：WARN — 产品身份与多项关键法规触发条件待图片/铭牌/规格书确认。
+  - separator
+  - heading "视觉观察" [level=2]
+  - list:
+    - listitem: 白色塑料外壳，边缘银色金属装饰条，正面 iQOO 品牌字样，正面底部小圆孔（疑似指示灯/麦克风），表面多处划痕。
+    - listitem: 铭牌、CE/UKCA 标志、电池信息、无线模块标识均不可见。图片无法验证。
+  - separator
+  - heading "法规逐条评估" [level=2]
+  - heading "1. RoHS Directive 2011/65/EU（EU）— 适用" [level=3]
+  - paragraph:
+    - text: 电子电气产品落入 Annex I 类别 8/9（小型/大型设备）。
+    - strong: 依据规则库，待核实原文
+    - text: "[EU-2011-65#art-4][EU-2011-65#art-6][EU-2011-65#art-7][EU-2011-65#annex-2]。"
+  - list:
+    - listitem: 待补：DoC、Annex III 申报、材料测试报告或风险评估。
+  - heading "2. UKCA Marking Requirements（UK）— 适用" [level=3]
+  - paragraph: 作为电子电气产品投放 GB 市场需 UKCA 标志。图片无法验证是否已标 UKCA。
+  - list:
+    - listitem: 待补：UKCA DoC、UK 负责人信息。
+  - heading "3. EMC Directive 2014/30/EU（EU）— 适用" [level=3]
+  - paragraph:
+    - text: 电子设备均受 EMC 指令约束。
+    - strong: 依据规则库，待核实原文
+    - text: "[EU-2014-30#art-6][EU-2014-30#art-7][EU-2014-30#art-8][EU-2014-30#annex-1]。"
+  - list:
+    - listitem: 待补：EN 55032/55035 测试报告（协调标准）。
+  - heading "4. LVD Directive 2014/35/EU（EU）— 条件性适用" [level=3]
+  - paragraph:
+    - text: 充电盒若含供电电路（USB-C/Lightning 输入），触及额定电压 50–1000V AC / 75–1500V DC 边界。
+    - strong: 依据规则库，待核实原文
+    - text: "[EU-2014-35#art-3][EU-2014-35#art-6][EU-2014-35#art-7]。"
+  - list:
+    - listitem: 待补：输入电压/电流规格、电气安全测试报告。
+  - heading "5. UN 38.3 Transport Testing（UN）— 待确认" [level=3]
+  - paragraph:
+    - text: battery 仅为关键词候选，UN 38.3 是否适用取决于充电盒内置锂电池的存在。
+    - strong: 依据规则库，待核实原文
+    - text: "[UN-38-3#section-38-3]。"
+  - list:
+    - listitem: 待补：电池规格书或拆机确认、UN 38.3 (T1–T8) 测试报告。
+  - heading "6. Battery Regulation (EU) 2023/1542（EU）— 待确认" [level=3]
+  - paragraph:
+    - text: 便携式电池（含耳机充电盒类）通常不在 Art. 77 数字产品护照强制范围内（LMT/工业 >2 kWh 除外）。
+    - strong: 依据规则库，待核实原文
+    - text: "[EU-2023-1542#art-7][EU-2023-1542#art-38][EU-2023-1542#art-39][EU-2023-1542#art-77][EU-2023-1542#art-85]。"
+  - list:
+    - listitem: 待补：电池容量（kWh）、化学组成、标签/二维码、CE 标志。
+  - heading "7. RED Directive 2014/53/EU（EU）— 待确认" [level=3]
+  - paragraph:
+    - text: 充电盒名称含"无线耳机"不证明充电盒本体含射频发射模块；RED 仅约束主体耳机（含发射模块者）。
+    - strong: 依据规则库，待核实原文
+    - text: "[EU-2014-53#art-3][EU-2014-53#art-6][EU-2014-53#art-10]。"
+  - list:
+    - listitem: 待补：充电盒是否含 BT/Wi-Fi/感应通信模块；若是，需 Art. 3.2/3.3 测试、欧盟代表信息。
+  - heading "8. UKCA Radio Equipment Regulations 2017（UK）— 待确认" [level=3]
+  - paragraph: 仅当充电盒含无线电发射模块时适用；GB 市场特定条件下接受 CE，NI 仍走 EU 规则。
+  - list:
+    - listitem: 待补：射频规格、UK 无线测试报告、UKCA 标志可见性。
+  - separator
+  - heading "上市阻断项" [level=2]
+  - paragraph: 暂无充分依据构成 REJECTED。所有阻断项依赖图片/铭牌/规格书确认。
+  - heading "待补证据清单" [level=2]
+  - list:
+    - listitem: 清晰铭牌/标签照片（含 CE/UKCA、电压、电池信息、制造商信息）。
+    - listitem: 内部拆机照片（确认电池类型、无线模块）。
+    - listitem: RoHS 测试报告或合规声明。
+    - listitem: EMC/LVD 测试报告。
+    - listitem: UN 38.3 报告（如含电池）。
+    - listitem: DoC 及欧盟代表/UK 负责人信息。
+    - listitem: 无线模块规格书（如适用）。
+  - paragraph:
+    - text: 法规引用 ·
+    - generic: 9 条
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - paragraph: Roadmap
+  - heading "推荐整改排期" [level=2]
+  - paragraph: 执行阶段
+  - paragraph: "6"
+  - paragraph: 预计周期
+  - paragraph: 2周
+  - paragraph: 参与角色
+  - paragraph: "6"
+  - table:
+    - rowgroup:
+      - row "阶段 时间 负责人 产出":
+        - columnheader "阶段"
+        - columnheader "时间"
+        - columnheader "负责人"
+        - columnheader "产出"
+    - rowgroup:
+      - row "apply 7 天 产品 / 采购 证据补全与产品身份确认":
+        - cell "apply"
+        - cell "7 天"
+        - cell "产品 / 采购"
+        - cell "证据补全与产品身份确认"
+      - row "test 21 天 设计 / 合规 实验室测试申请（RoHS/EMC/LVD/UN 38.3）":
+        - cell "test"
+        - cell "21 天"
+        - cell "设计 / 合规"
+        - cell "实验室测试申请（RoHS/EMC/LVD/UN 38.3）"
+      - row "apply 10 天 设计 / 合规 技术文档与 DoC 编制":
+        - cell "apply"
+        - cell "10 天"
+        - cell "设计 / 合规"
+        - cell "技术文档与 DoC 编制"
+      - row "certify 10 天 设计 / 合规 CE/UKCA 标志与 EPR 注册":
+        - cell "certify"
+        - cell "10 天"
+        - cell "设计 / 合规"
+        - cell "CE/UKCA 标志与 EPR 注册"
+      - row "complete 8 天 设计 / 合规 完成并准备上市":
+        - cell "complete"
+        - cell "8 天"
+        - cell "设计 / 合规"
+        - cell "完成并准备上市"
+      - row "上架复核 整改完成后 运营 / 法务 确认 EU / UK 市场风险与报告均已闭环":
+        - cell "上架复核"
+        - cell "整改完成后"
+        - cell "运营 / 法务"
+        - cell "确认 EU / UK 市场风险与报告均已闭环"
+  - paragraph: 当前执行重点
+  - generic: 01 / 06
+  - paragraph: 按检查清单补齐待补拍/待补资料项。
+  - generic: 7 天
+  - generic: 产品 / 采购
+  - paragraph: Export
+  - heading "合规报告可导出下载" [level=2]
+  - paragraph: 报告可按合规总报告、路线图和成本测算拆分导出，便于复制、分享和交给不同角色继续执行。
+  - article:
+    - paragraph: 合规总报告
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - link "PDF":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7#compliance-report
+    - link "DOCX":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7#compliance-report
+    - link "MD":
+      - /url: /api/report/scan_e9b1d6add9fd432489a1116a4dbb5bf7/compliance?format=md&lang=zh
+  - article:
+    - paragraph: 合规路线图
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - button "PDF"
+    - button "DOCX"
+    - link "CSV":
+      - /url: /api/report/scan_e9b1d6add9fd432489a1116a4dbb5bf7/roadmap?format=csv&lang=zh
+  - article:
+    - paragraph: 成本分析说明
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - button "PDF" [disabled]
+    - button "DOCX" [disabled]
+    - button "MD" [disabled]
+  - paragraph: STEP 04 · 利润影响
+  - heading "整改后的利润影响" [level=2]
+  - paragraph: 根据上方合规报告中的整改动作,以下是 undefined 在目标市场的利润变化估算。完整表格与决策流请前往利润报告页。
+  - paragraph: 合规预算
+  - paragraph: —
+  - paragraph: 标签 / 测试 / 认证
+  - paragraph: 整改后净利
+  - paragraph: —
+  - paragraph: 单件 / 平台
+  - paragraph: 高危罚款上限
+  - paragraph: ¥180 万 / 日
+  - paragraph: 合规后归零
+  - paragraph: 目标市场
+  - paragraph: "2"
+  - paragraph: EU / UK
+  - paragraph:
+    - text: 完成上方合规扫描报告中的全部整改动作后,
+    - text: 在 — 单件净利水平下进入目标市场,合规预算 —, 高危风险下日均罚款 ¥180 万上限。
+  - generic "可选查看 导出报告预览 展开报告样张":
+    - paragraph: 可选查看
+    - heading "导出报告预览" [level=2]
+    - generic: 展开报告样张
+  - link "规航AI 让每一次出海都有合规航线":
+    - /url: /
+    - strong: 规航AI
+    - generic: 让每一次出海都有合规航线
+  - navigation "流程导航":
+    - link "图像识别":
+      - /url: /upload
+    - link "风险扫描":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7
+    - link "法规溯源":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7#reports
+    - link "可解释报告":
+      - /url: /result/scan_e9b1d6add9fd432489a1116a4dbb5bf7#report-previews
+  - paragraph: 演示原型 · 结论需结合专业机构复核

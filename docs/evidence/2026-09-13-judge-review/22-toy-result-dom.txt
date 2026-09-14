@@ -1,0 +1,481 @@
+- alert: 规航AI · 先合规，再出海
+- main:
+  - link "返回上传页":
+    - /url: /upload
+    - generic: 返回上传页
+  - link "规航AI 规航AI · CompliPilot 合规检测结果 风险总览 · 法规依据 · 整改报告":
+    - /url: /
+    - img "规航AI"
+    - generic: 规航AI · CompliPilot
+    - strong: 合规检测结果
+    - generic: 风险总览 · 法规依据 · 整改报告
+  - button "中" [pressed]
+  - button "EN"
+  - link "返回首页":
+    - /url: /
+  - link "查看报告":
+    - /url: "#reports"
+  - paragraph: STEP 01 · 先看结论
+  - generic: 未发现可定位风险
+  - heading [level=1]
+  - paragraph: 已完成 1 张图片分析。先处理 0 个高危风险，再进入 EU / UK 市场上架复核。
+  - generic: EU 市场
+  - generic: UK 市场
+  - generic: 玩具
+  - generic: 0 个热点
+  - paragraph: 合规得分
+  - paragraph: 65/C
+  - paragraph: 高危风险
+  - paragraph: "0"
+  - paragraph: 整改预算
+  - paragraph: —
+  - paragraph: 整改后净利
+  - paragraph: —
+  - complementary:
+    - paragraph: 当前最重要的事
+    - heading "本次扫描未发现可定位风险点" [level=2]
+    - paragraph: 未发现风险不等于合规完成：下方检查清单里的「待补拍 / 待补资料」项仍需补齐后再做上架判断。
+    - paragraph: 建议动作
+    - paragraph: 补拍package_front（本次照片未覆盖该区域）
+    - link "查看风险证据":
+      - /url: "#evidence"
+      - text: 查看风险证据
+    - link "查看利润影响":
+      - /url: /profit/scan_b6d211b3f07c4c59b7140478e7b4ace2
+  - navigation "结果阅读顺序":
+    - link "01 先看结论 确认是否可以继续上架":
+      - /url: "#overview"
+      - generic: "01"
+      - generic: 先看结论
+      - generic: 确认是否可以继续上架
+    - link "02 再查证据 定位风险、法规与成本":
+      - /url: "#evidence"
+      - generic: "02"
+      - generic: 再查证据
+      - generic: 定位风险、法规与成本
+    - link "03 最后执行 按路线整改并导出报告":
+      - /url: "#action"
+      - generic: "03"
+      - generic: 最后执行
+      - generic: 按路线整改并导出报告
+  - paragraph: STEP 02 · 查证据
+  - heading "动态计价 + 风险可视化" [level=2]
+  - paragraph: 用真实产品底图讲清楚每个风险点，风险标签、风险等级和整改成本都在同一屏里完成解释。
+  - generic: 点击热点查看详情
+  - paragraph: 预计整改成本
+  - paragraph: —
+  - generic: 风险证据完整度（0/0）
+  - generic: —
+  - paragraph: 22/22 条引用已对照原文
+  - img "Product risk canvas"
+  - article:
+    - paragraph: 热点详情
+    - heading "无可定位的风险详情" [level=3]
+    - paragraph: 本次扫描没有产生带位置的风险点。观察结果与待补项见下方检查清单；补齐所需照片/资料后重新扫描可获得完整风险定位。
+    - paragraph: 已观察到（可定位）
+    - paragraph: 2 项
+  - paragraph: 全部风险
+  - heading "热点总览" [level=3]
+  - paragraph: 选择风险卡片可同步图中定位与法规详情
+  - paragraph: 检查清单
+  - heading "按品类逐项检查结果" [level=3]
+  - paragraph: 每项都有结果；「待补拍」与「待确认」不代表产品不合格，只说明当前照片无法支撑判断。
+  - generic: 已观察 2
+  - generic: 待补拍 8
+  - generic: 待确认 3
+  - list:
+    - button "toy.small_parts.visible Visible 场景中可见多块小型积木、黄色小桶、粉色花瓣等小附件散落于地垫上，存在脱落/误吞目视风险。 已观察":
+      - generic: toy.small_parts.visible
+      - generic: Visible
+      - generic: 场景中可见多块小型积木、黄色小桶、粉色花瓣等小附件散落于地垫上，存在脱落/误吞目视风险。
+      - generic: 已观察
+    - button "common.product.overview Overview 主体为拼装好的红顶黄墙小屋，附带蓝色小车、人偶、花草、围栏及散落积木，外观完整无明显缺件。 已观察":
+      - generic: common.product.overview
+      - generic: Overview
+      - generic: 主体为拼装好的红顶黄墙小屋，附带蓝色小车、人偶、花草、围栏及散落积木，外观完整无明显缺件。
+      - generic: 已观察
+    - button "toy.magnets_cords.visible Visible 画面范围内未见磁体、绳带或绳索类部件。 待确认 · 可见范围未检出" [disabled]:
+      - generic: toy.magnets_cords.visible
+      - generic: Visible
+      - generic: 画面范围内未见磁体、绳带或绳索类部件。
+      - generic: 待确认 · 可见范围未检出
+    - button "toy.sharp_edges.visible Visible 可见积木及组件边缘为圆角造型，未见明显尖锐或破损部位。 待确认 · 可见范围未检出" [disabled]:
+      - generic: toy.sharp_edges.visible
+      - generic: Visible
+      - generic: 可见积木及组件边缘为圆角造型，未见明显尖锐或破损部位。
+      - generic: 待确认 · 可见范围未检出
+    - button "common.defects.visible Visible 可见积木、人偶及配件表面光滑，未见裂纹、变形、污渍或鼓胀等外观异常。 待确认 · 可见范围未检出" [disabled]:
+      - generic: common.defects.visible
+      - generic: Visible
+      - generic: 可见积木、人偶及配件表面光滑，未见裂纹、变形、污渍或鼓胀等外观异常。
+      - generic: 待确认 · 可见范围未检出
+    - button "toy.age_range.label Label 画面中未见任何年龄适用范围标注或年龄数字。 待补拍 · 未入镜" [disabled]:
+      - generic: toy.age_range.label
+      - generic: Label
+      - generic: 画面中未见任何年龄适用范围标注或年龄数字。
+      - generic: 待补拍 · 未入镜
+    - button "toy.warnings.text Text 画面中未见窒息、磁体、电池等相关警告语。 待补拍 · 未入镜" [disabled]:
+      - generic: toy.warnings.text
+      - generic: Text
+      - generic: 画面中未见窒息、磁体、电池等相关警告语。
+      - generic: 待补拍 · 未入镜
+    - button "toy.battery_compartment.closure Closure 画面中未见电池仓或任何螺丝/卡扣闭合结构。 待补拍 · 未入镜" [disabled]:
+      - generic: toy.battery_compartment.closure
+      - generic: Closure
+      - generic: 画面中未见电池仓或任何螺丝/卡扣闭合结构。
+      - generic: 待补拍 · 未入镜
+    - button "common.nameplate.readability Readability 画面中未见铭牌或标签区域。 待补拍 · 未入镜" [disabled]:
+      - generic: common.nameplate.readability
+      - generic: Readability
+      - generic: 画面中未见铭牌或标签区域。
+      - generic: 待补拍 · 未入镜
+    - button "common.brand_model.visible Visible 画面中未见任何品牌 Logo 或型号文字。 待补拍 · 未入镜" [disabled]:
+      - generic: common.brand_model.visible
+      - generic: Visible
+      - generic: 画面中未见任何品牌 Logo 或型号文字。
+      - generic: 待补拍 · 未入镜
+    - button "common.batch_traceability.fields Fields 画面中未见批次号、序列号或生产日期等追溯字段。 待补拍 · 未入镜" [disabled]:
+      - generic: common.batch_traceability.fields
+      - generic: Fields
+      - generic: 画面中未见批次号、序列号或生产日期等追溯字段。
+      - generic: 待补拍 · 未入镜
+    - button "common.warning_text.language Language 画面中未见任何警告文字，无法判断语言。 待补拍 · 未入镜" [disabled]:
+      - generic: common.warning_text.language
+      - generic: Language
+      - generic: 画面中未见任何警告文字，无法判断语言。
+      - generic: 待补拍 · 未入镜
+    - button "common.packaging.info Info 画面中未见包装盒或包装信息。 待补拍 · 未入镜" [disabled]:
+      - generic: common.packaging.info
+      - generic: Info
+      - generic: 画面中未见包装盒或包装信息。
+      - generic: 待补拍 · 未入镜
+  - paragraph: 待补拍 / 待补资料（13 项）
+  - list:
+    - generic: 年龄适用范围标注
+    - generic: 待证据
+    - paragraph: 补拍package_front（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：package_front
+    - paragraph: EU-2009-48-toy · US-ASTM-F963-toy
+    - generic: 警告语(窒息/磁体/电池等)
+    - generic: 待证据
+    - paragraph: 补拍package_front、warning_label_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：package_front、warning_label_closeup
+    - paragraph: EU-2009-48-toy
+    - generic: 磁体/绳带/绳索可见形态
+    - generic: 疑点
+    - paragraph: 标签区域可见但未检出「磁体/绳带/绳索可见形态」：核对规则允许的其他标识位置；如确无，需补认证/标注
+    - list:
+      - listitem: · 补拍视角：overview、accessories_flat
+    - generic: 电池仓闭合方式(螺丝/卡扣)
+    - generic: 待证据
+    - paragraph: 补拍battery_compartment（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：battery_compartment
+    - paragraph: KB-toy-EU-2009-48
+    - generic: 可见尖锐/破损部位
+    - generic: 疑点
+    - paragraph: 标签区域可见但未检出「可见尖锐/破损部位」：核对规则允许的其他标识位置；如确无，需补认证/标注
+    - list:
+      - listitem: · 补拍视角：overview
+    - generic: 铭牌/标签信息可读性
+    - generic: 待证据
+    - paragraph: 补拍nameplate_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：nameplate_closeup
+    - generic: 品牌与型号标识
+    - generic: 待证据
+    - paragraph: 补拍front、back（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：front、back
+    - generic: 批次号/序列号/生产日期等追溯字段
+    - generic: 待证据
+    - paragraph: 补拍nameplate_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：nameplate_closeup
+    - generic: 警告文字及其语言
+    - generic: 待证据
+    - paragraph: 补拍warning_label_closeup（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：warning_label_closeup
+    - generic: 包装信息(如已拍摄)
+    - generic: 待证据
+    - paragraph: 补拍package（本次照片未覆盖该区域）
+    - list:
+      - listitem: · 补拍视角：package
+    - generic: 可见外观异常(裂损/变形/污渍/鼓胀)
+    - generic: 疑点
+    - paragraph: 标签区域可见但未检出「可见外观异常(裂损/变形/污渍/鼓胀)」：核对规则允许的其他标识位置；如确无，需补认证/标注
+    - list:
+      - listitem: · 补拍视角：front、back、side
+    - generic: 机械物理性能测试(小零件/拉力/磁通量)
+    - generic: 待证据
+    - paragraph: 提供检测报告：机械物理性能测试(小零件/拉力/磁通量)
+    - list:
+      - listitem: · 检测报告：机械物理性能测试(小零件/拉力/磁通量)
+    - paragraph: EU-2009-48-toy · US-ASTM-F963-toy · US-CPSIA-toy
+    - generic: 化学迁移测试(重金属/增塑剂)
+    - generic: 待证据
+    - paragraph: 提供检测报告：化学迁移测试(重金属/增塑剂)
+    - list:
+      - listitem: · 检测报告：化学迁移测试(重金属/增塑剂)
+    - paragraph: EU-2009-48-toy · US-CPSIA-toy
+  - paragraph: STEP 02.5 · 合规扫描报告全文
+  - heading "完整合规扫描报告(可下载 PDF / DOCX)" [level=2]
+  - paragraph: 以下报告由合规扫描引擎生成,涵盖核心结论、法规引用、整改动作与责任方。可直接导出 PDF 给业务/法务/供应商。
+  - generic: 导出 PDF / DOCX
+  - generic: "65"
+  - generic: 综合评分
+  - generic: 未知
+  - generic: 等级：C
+  - generic: ·
+  - generic: 品类：toy
+  - generic: ·
+  - generic: 市场：欧盟 · 英国
+  - generic: ·
+  - generic: 审核轮数：0
+  - heading "执行步骤" [level=3]
+  - text: 初检
+  - generic: Round 1
+  - generic: vision
+  - generic: generate
+  - generic: verify
+  - heading "产品图片分析" [level=3]
+  - group "产品图片分析":
+    - img "scan_b6d211b3f07c4c59b7140478e7b4ace2-image-0"
+    - generic: 1 / 1
+  - heading "合规检查清单" [level=3]
+  - generic: ✓
+  - paragraph: 提交 EN 71-1/-2/-3 测试申请
+  - paragraph
+  - generic: ✓
+  - paragraph: 完成 REACH / SVHC 筛查
+  - paragraph
+  - generic: ✓
+  - paragraph: 准备 CE / UKCA 符合性声明与标签
+  - paragraph
+  - generic: ✓
+  - paragraph: EPR / 包装延伸责任注册 (EU+UK)
+  - paragraph
+  - generic: ✓
+  - paragraph: 技术文件归档与上市前内部复核
+  - paragraph
+  - generic: "通过: 0"
+  - generic: ·
+  - generic: "警告: 0"
+  - generic: ·
+  - generic: "失败: 0"
+  - heading "合规分析报告" [level=3]
+  - generic: minimax · 44.1s
+  - button "合规 PDF ZH"
+  - button "Word ZH"
+  - button "合规 PDF EN"
+  - button "Word EN"
+  - button "证据包 PDF":
+    - generic: ↓
+    - text: 证据包 PDF
+  - heading "积木玩具（搭建类，含人偶、房屋、车、园艺场景）欧盟/英国市场合规报告" [level=1]
+  - heading "0. 重要说明" [level=2]
+  - paragraph: 本报告基于【法规来源】与【用户上传产品规格说明 toy-spec-test.txt】生成，不构成认证、检测或法律意见。报告仅用于判断"是否可以推进下一步"，不代表已获 CE/UKCA 标志或可上市。
+  - heading "1. 产品身份与视觉观察" [level=2]
+  - list:
+    - listitem: 用户声明：积木花园测试套装；搭建类；含人偶、车辆、房屋、花草、围栏；大颗粒塑料积木。
+    - listitem: 供电：不含电池、不含电子电路、不需充电。
+    - listitem: 视觉模型独立识别结果未在本输入中给出可见铭牌或 CE/UKCA 标志详情，按规则不写"缺失"，仅记"图片无法验证"。
+  - heading "2. 适用法规与逐条分析" [level=2]
+  - heading "2.1 [EU] REACH (EC) 1907/2006 —— SVHC 通报与下游告知" [level=3]
+  - list:
+    - listitem: 适用理由：积木玩具属于"物品 (article)"，塑料材质可能含有 SVHC；阈值 0.1% w/w 触发 Art. 7/8/9 通报义务及 Art. 33 下游告知义务。
+    - listitem: 当前证据：仅用户文档声明"塑料拼插积木"，未提供材料成分表、SDS、SVHC 检测报告。
+    - listitem: 风险：未通报且 SVHC 超标将面临召回、处罚、平台下架（依据规则库，待核实原文）。
+    - listitem: 来源：[EU-1907-2006#art-7]、[EU-1907-2006#art-8]、[EU-1907-2006#art-9]、[EU-1907-2006#art-33]、[EU-1907-2006#annex-xvii]。
+  - heading "2.2 [EU] Toy Safety Directive 2009/48/EC —— 玩具安全指令" [level=3]
+  - list:
+    - listitem: 适用理由：搭建类积木、人偶、车辆、场景组件均属 TSD 2009/48/EC 调整范围。
+    - text: 必检项：
+    - list:
+      - listitem: Art. 4 玩具安全通用要求 + 通用安全要求 (GSR)；
+      - listitem: Art. 5 化学要求 (CMR/致敏香料 55 项禁用清单)，与 REACH 联动；
+      - listitem: Art. 6 物理/机械性能（小零件、圆角、跌落、拉力等）；
+      - listitem: Art. 10 制造商义务（含技术文件、DoC、批次可追溯）；
+      - listitem: Art. 11 CE 标志与符合性声明；
+      - listitem: Annex II 特定安全要求（含 8 岁以下儿童小零件判定等）。
+    - listitem: 当前证据：用户文档声明"适用年龄 8 岁及以上"，不含电池/电子/磁体/绳索；但未提供 EN 71 系列测试报告、CE 标志或 DoC。
+    - listitem: 风险：无 EN 71 报告将面临海关/平台下架，极端情况触发 RAPEX（依据规则库，待核实原文）。
+    - listitem: 来源：[EU-2009-48#art-4]、[EU-2009-48#art-5]、[EU-2009-48#art-6]、[EU-2009-48#art-10]、[EU-2009-48#art-11]、[EU-2009-48#annex-ii]。
+  - heading "3. 英国市场特别提示" [level=2]
+  - list:
+    - listitem: 英国脱欧后使用 UKCA 标志；玩具仍需符合 TSD 2009/48/EC 等效法规；UK 海关/Trading Standards 抽查 EN 71 系列。
+    - listitem: 本规则库未召回 UKCA 法规原文，标注"依据规则库，待核实原文"。
+  - heading "4. 缺口清单（待补证据）" [level=2]
+  - list:
+    - listitem: EN 71-1/-2/-3（机械、物理、化学迁移）第三方测试报告；
+    - listitem: CE / UKCA 标志可见照片；
+    - listitem: 制造商/进口商地址、批次号；
+    - listitem: SVHC / REACH 材料声明 (SDS、XRF/化学迁移报告)；
+    - listitem: 致敏香料 55 项筛查表；
+    - listitem: 警示语与年龄段标注的标签图样；
+    - listitem: 技术文件 (TCF) 与 DoC 草案。
+  - heading "5. 结论" [level=2]
+  - list:
+    - listitem: 当前证据不足以判定已合规；建议推进到测试与文件准备阶段，但需先补齐上述缺口方可宣告"可上市"。
+  - paragraph:
+    - text: 法规引用 ·
+    - generic: 11 条
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - link "Citation undefined (matched)":
+    - /url: /regulations/undefined#undefined
+    - generic: ✓
+    - generic: undefined undefined
+  - paragraph: Roadmap
+  - heading "推荐整改排期" [level=2]
+  - paragraph: 执行阶段
+  - paragraph: "6"
+  - paragraph: 预计周期
+  - paragraph: 2周
+  - paragraph: 参与角色
+  - paragraph: "6"
+  - table:
+    - rowgroup:
+      - row "阶段 时间 负责人 产出":
+        - columnheader "阶段"
+        - columnheader "时间"
+        - columnheader "负责人"
+        - columnheader "产出"
+    - rowgroup:
+      - row "test 14 天 产品 / 采购 提交 EN 71-1/-2/-3 测试申请":
+        - cell "test"
+        - cell "14 天"
+        - cell "产品 / 采购"
+        - cell "提交 EN 71-1/-2/-3 测试申请"
+      - row "apply 7 天 设计 / 合规 完成 REACH / SVHC 筛查":
+        - cell "apply"
+        - cell "7 天"
+        - cell "设计 / 合规"
+        - cell "完成 REACH / SVHC 筛查"
+      - row "certify 7 天 设计 / 合规 准备 CE / UKCA 符合性声明与标签":
+        - cell "certify"
+        - cell "7 天"
+        - cell "设计 / 合规"
+        - cell "准备 CE / UKCA 符合性声明与标签"
+      - row "apply 14 天 设计 / 合规 EPR / 包装延伸责任注册 (EU+UK)":
+        - cell "apply"
+        - cell "14 天"
+        - cell "设计 / 合规"
+        - cell "EPR / 包装延伸责任注册 (EU+UK)"
+      - row "complete 14 天 设计 / 合规 技术文件归档与上市前内部复核":
+        - cell "complete"
+        - cell "14 天"
+        - cell "设计 / 合规"
+        - cell "技术文件归档与上市前内部复核"
+      - row "上架复核 整改完成后 运营 / 法务 确认 EU / UK 市场风险与报告均已闭环":
+        - cell "上架复核"
+        - cell "整改完成后"
+        - cell "运营 / 法务"
+        - cell "确认 EU / UK 市场风险与报告均已闭环"
+  - paragraph: 当前执行重点
+  - generic: 01 / 06
+  - paragraph: 按检查清单补齐待补拍/待补资料项。
+  - generic: 14 天
+  - generic: 产品 / 采购
+  - paragraph: Export
+  - heading "合规报告可导出下载" [level=2]
+  - paragraph: 报告可按合规总报告、路线图和成本测算拆分导出，便于复制、分享和交给不同角色继续执行。
+  - article:
+    - paragraph: 合规总报告
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - link "PDF":
+      - /url: /result/scan_b6d211b3f07c4c59b7140478e7b4ace2#compliance-report
+    - link "DOCX":
+      - /url: /result/scan_b6d211b3f07c4c59b7140478e7b4ace2#compliance-report
+    - link "MD":
+      - /url: /api/report/scan_b6d211b3f07c4c59b7140478e7b4ace2/compliance?format=md&lang=zh
+  - article:
+    - paragraph: 合规路线图
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - button "PDF"
+    - button "DOCX"
+    - link "CSV":
+      - /url: /api/report/scan_b6d211b3f07c4c59b7140478e7b4ace2/roadmap?format=csv&lang=zh
+  - article:
+    - paragraph: 成本分析说明
+    - paragraph: 支持 PDF / DOCX / 文本导出
+    - button "PDF" [disabled]
+    - button "DOCX" [disabled]
+    - button "MD" [disabled]
+  - paragraph: STEP 04 · 利润影响
+  - heading "整改后的利润影响" [level=2]
+  - paragraph: 根据上方合规报告中的整改动作,以下是 undefined 在目标市场的利润变化估算。完整表格与决策流请前往利润报告页。
+  - paragraph: 合规预算
+  - paragraph: —
+  - paragraph: 标签 / 测试 / 认证
+  - paragraph: 整改后净利
+  - paragraph: —
+  - paragraph: 单件 / 平台
+  - paragraph: 高危罚款上限
+  - paragraph: ¥180 万 / 日
+  - paragraph: 合规后归零
+  - paragraph: 目标市场
+  - paragraph: "2"
+  - paragraph: EU / UK
+  - paragraph:
+    - text: 完成上方合规扫描报告中的全部整改动作后,
+    - text: 在 — 单件净利水平下进入目标市场,合规预算 —, 高危风险下日均罚款 ¥180 万上限。
+  - generic "可选查看 导出报告预览 展开报告样张":
+    - paragraph: 可选查看
+    - heading "导出报告预览" [level=2]
+    - generic: 展开报告样张
+  - link "规航AI 让每一次出海都有合规航线":
+    - /url: /
+    - strong: 规航AI
+    - generic: 让每一次出海都有合规航线
+  - navigation "流程导航":
+    - link "图像识别":
+      - /url: /upload
+    - link "风险扫描":
+      - /url: /result/scan_b6d211b3f07c4c59b7140478e7b4ace2
+    - link "法规溯源":
+      - /url: /result/scan_b6d211b3f07c4c59b7140478e7b4ace2#reports
+    - link "可解释报告":
+      - /url: /result/scan_b6d211b3f07c4c59b7140478e7b4ace2#report-previews
+  - paragraph: 演示原型 · 结论需结合专业机构复核

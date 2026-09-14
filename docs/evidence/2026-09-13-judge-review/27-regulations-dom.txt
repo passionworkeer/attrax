@@ -1,0 +1,395 @@
+- alert: 规航AI · 先合规，再出海
+- paragraph:
+  - text: 演示法规情报库
+- heading "法规更新" [level=1]
+- paragraph: 追踪目标市场的最新法规变化
+- generic: "最近校验: 2026年5月22日"
+- generic: 当前页面使用静态 mock 数据，官方链接仅用于演示来源追溯；这些条目不会实时抓取或自动校验。
+- generic: 法规总数
+- paragraph: "30"
+- generic: 覆盖市场
+- paragraph: "12"
+- generic: 高优先级
+- paragraph: "18"
+- generic: 45 天内生效
+- paragraph: "4"
+- textbox "搜索法规..."
+- button "全部市场"
+- button "欧盟"
+- button "美国"
+- button "英国"
+- button "中国"
+- button "澳大利亚"
+- button "沙特"
+- button "阿联酋"
+- button "日本"
+- button "巴西"
+- button "加拿大"
+- button "韩国"
+- button "印度"
+- article:
+  - generic: 欧盟
+  - generic: 高风险
+  - generic: 修订
+  - text: 即将生效
+  - heading "RoHS 豁免条款续期和限制物质复核" [level=3]
+  - paragraph: 欧盟继续复核 RoHS 豁免条款和部分限制物质阈值。依赖铅焊料、特定阻燃剂或豁免材料的产品需要确认豁免有效期。
+  - generic: "发布: 2026年4月28日"
+  - generic: "生效: 2026年10月1日"
+  - generic: 欧盟委员会
+  - generic: 草案跟踪
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 美国
+  - generic: 中风险
+  - generic: 修订
+  - text: 即将生效
+  - heading "加州 Proposition 65 短版警示文本适用边界更新" [level=3]
+  - paragraph: 加州继续调整短版警示文本适用场景，产品页面、包装和说明书上的化学物质警示需要保持一致。
+  - generic: "发布: 2026年4月18日"
+  - generic: "生效: 2026年9月30日"
+  - generic: 加州环境健康危害评估办公室 OEHHA
+  - generic: 过渡期
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 美国
+  - generic: 中风险
+  - generic: 咨询
+  - text: 即将生效
+  - heading "FCC 网络安全标签计划试点跟踪" [level=3]
+  - paragraph: FCC 网络安全标签计划推进 IoT 产品安全声明、漏洞披露和更新支持周期透明化，智能硬件品牌可提前准备自愿认证资料。
+  - generic: "发布: 2026年3月20日"
+  - generic: "生效: 2026年9月30日"
+  - generic: 美国联邦通信委员会 FCC
+  - generic: 试点跟踪
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 沙特
+  - generic: 中风险
+  - generic: 修订
+  - text: 即将生效
+  - heading "沙特纺织品标签和 SALEEM 类目规则更新" [level=3]
+  - paragraph: 沙特更新部分纺织品标签、阿拉伯语信息和 SALEEM 类目规则。纤维成分、原产地和护理说明需要符合本地格式。
+  - generic: "发布: 2026年4月1日"
+  - generic: "生效: 2026年10月15日"
+  - generic: SASO
+  - generic: 过渡期
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 澳大利亚
+  - generic: 严重
+  - generic: 执法
+  - heading "纽扣电池安全标准执法复核" [level=3]
+  - paragraph: 澳大利亚继续重点检查含纽扣电池产品的电池仓安全、警示标签和儿童防护设计，线上卖家需要保留测试证据。
+  - generic: "发布: 2026年4月22日"
+  - generic: "生效: 2026年5月30日"
+  - generic: ACCC Product Safety Australia
+  - generic: 立即处理
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 美国
+  - generic: 严重
+  - generic: 执法
+  - heading "CPSIA 儿童产品铅含量与证书要求更新" [level=3]
+  - paragraph: CPSC 强化儿童产品中铅含量、可接触涂层和儿童产品证书 CPC 的抽查要求，跨境卖家需要确保实验室报告与批次信息一致。
+  - generic: "发布: 2026年5月8日"
+  - generic: "生效: 2026年6月1日"
+  - generic: 美国消费品安全委员会 CPSC
+  - generic: 执法窗口临近
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 欧盟
+  - generic: 严重
+  - generic: 执法
+  - heading "GPSR 线上市场可追溯信息执法提醒" [level=3]
+  - paragraph: 欧盟通用产品安全法规 GPSR 对线上展示的制造商、欧盟责任人、安全警示和产品识别信息提出更严格要求。
+  - generic: "发布: 2026年5月12日"
+  - generic: "生效: 2026年6月13日"
+  - generic: 欧盟委员会 Safety Gate
+  - generic: 执法窗口临近
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 中国
+  - generic: 严重
+  - generic: 新增
+  - heading "两用物项出口管制许可规则细化" [level=3]
+  - paragraph: 主管部门细化两用物项分类、最终用户声明和许可证申请材料。涉及高性能芯片、测量设备和特定化学品的出口订单需要提前评估。
+  - generic: "发布: 2026年5月5日"
+  - generic: "生效: 2026年6月15日"
+  - generic: 商务部
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 加拿大
+  - generic: 高风险
+  - generic: 执法
+  - heading "加拿大消费品事故报告时限提醒" [level=3]
+  - paragraph: 加拿大消费品安全法下，企业获知重大事故、缺陷或召回信息后需要按规定时限向监管机构报告。
+  - generic: "发布: 2026年4月12日"
+  - generic: "生效: 2026年6月30日"
+  - generic: 加拿大卫生部 Health Canada
+  - generic: 持续有效
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 印度
+  - generic: 高风险
+  - generic: 执法
+  - heading "印度电子废弃物 EPR 门户季度申报提醒" [level=3]
+  - paragraph: 印度电子废弃物规则要求生产者责任延伸 EPR 门户定期申报销售量、回收量和授权回收伙伴信息。
+  - generic: "发布: 2026年4月8日"
+  - generic: "生效: 2026年6月30日"
+  - generic: 印度中央污染控制委员会 CPCB
+  - generic: 申报期临近
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 欧盟
+  - generic: 高风险
+  - generic: 修订
+  - heading "REACH 高关注物质候选清单扩展" [level=3]
+  - paragraph: ECHA 候选清单新增多种高关注物质，重点影响含塑化剂、阻燃剂或表面涂层的消费品。出口商需要更新物料声明和供应商符合性证明。
+  - generic: "发布: 2026年5月10日"
+  - generic: "生效: 2026年7月1日"
+  - generic: 欧洲化学品管理局 ECHA
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 沙特
+  - generic: 高风险
+  - generic: 执法
+  - heading "SABER 平台产品证书和装运证书流程收紧" [level=3]
+  - paragraph: 沙特继续强化 SABER 平台中产品证书 PCoC 和装运证书 SCoC 的一致性校验，进口商、HS Code 和产品图片需要保持一致。
+  - generic: "发布: 2026年4月15日"
+  - generic: "生效: 2026年7月1日"
+  - generic: 沙特标准、计量与质量组织 SASO
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 巴西
+  - generic: 高风险
+  - generic: 执法
+  - heading "巴西 INMETRO 进口电子产品认证资料要求" [level=3]
+  - paragraph: 巴西强化 INMETRO 认证资料、进口商授权和本地测试报告的一致性审查。进口电子产品需要提前安排本地认证机构流程。
+  - generic: "发布: 2026年3月28日"
+  - generic: "生效: 2026年7月1日"
+  - generic: 巴西国家计量、质量和技术研究院 INMETRO
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 阿联酋
+  - generic: 高风险
+  - generic: 执法
+  - heading "阿联酋 RoHS 有害物质符合性文件抽查" [level=3]
+  - paragraph: 阿联酋对电子电器产品 RoHS 技术文件进行更频繁抽查，材料声明、测试报告和 ECAS 证书需要相互对应。
+  - generic: "发布: 2026年4月2日"
+  - generic: "生效: 2026年7月10日"
+  - generic: MoIAT / UAE RoHS
+  - generic: 重点抽查
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 英国
+  - generic: 高风险
+  - generic: 执法
+  - heading "OPSS 产品安全事件和召回协作要求" [level=3]
+  - paragraph: 英国 OPSS 强调企业发现产品安全事件后的信息留存、风险评估和召回协作义务，线上卖家需要可快速提供销售记录。
+  - generic: "发布: 2026年5月1日"
+  - generic: "生效: 2026年7月20日"
+  - generic: 英国 Office for Product Safety and Standards
+  - generic: 重点抽查
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 韩国
+  - generic: 高风险
+  - generic: 修订
+  - heading "韩国 KC 锂电池和充电产品安全确认更新" [level=3]
+  - paragraph: 韩国对部分锂电池和充电产品的 KC 安全确认资料提出更细的型号覆盖和标签要求。
+  - generic: "发布: 2026年4月26日"
+  - generic: "生效: 2026年7月25日"
+  - generic: 韩国产业通商资源部 MOTIE
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 阿联酋
+  - generic: 高风险
+  - generic: 执法
+  - heading "阿联酋低电压设备 ECAS 与能效标签要求更新" [level=3]
+  - paragraph: 阿联酋更新低电压设备符合性方案，部分产品需要同步满足 ECAS 证书、能效标签和进口清关文件要求。
+  - generic: "发布: 2026年4月20日"
+  - generic: "生效: 2026年8月1日"
+  - generic: 阿联酋工业与先进技术部 MoIAT
+  - generic: 执法窗口临近
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 中国
+  - generic: 高风险
+  - generic: 修订
+  - heading "强制性产品认证 CCC 锂电池适用范围提示" [level=3]
+  - paragraph: 中国市场对部分锂电池和移动电源产品的 CCC 适用范围进一步明确，进口、内销和平台入驻资料需要同步调整。
+  - generic: "发布: 2026年4月30日"
+  - generic: "生效: 2026年8月1日"
+  - generic: 国家市场监督管理总局
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 印度
+  - generic: 高风险
+  - generic: 新增
+  - heading "印度 BIS CRS 电子产品目录扩展" [level=3]
+  - paragraph: 印度 BIS CRS 目录扩展，更多电子产品需要在印度认可实验室完成测试并取得注册号后方可销售。
+  - generic: "发布: 2026年4月16日"
+  - generic: "生效: 2026年8月10日"
+  - generic: 印度标准局 BIS
+  - generic: 已发布
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 日本
+  - generic: 高风险
+  - generic: 修订
+  - heading "日本 PSE 对锂电池和无线设备范围复核" [level=3]
+  - paragraph: 日本复核电气用品安全法 PSE 适用目录，对含锂电池、电源适配器或无线模块的产品提出更清晰的分类和标识要求。
+  - generic: "发布: 2026年4月5日"
+  - generic: "生效: 2026年8月15日"
+  - generic: 日本经济产业省 METI
+  - generic: 草案跟踪
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 美国
+  - generic: 高风险
+  - generic: 执法
+  - heading "锂离子电池消费品安全抽查升级" [level=3]
+  - paragraph: 美国监管机构和平台加强对含锂电池消费品的热失控、充电保护和运输标签审查，UL/IEC 报告匹配度成为重点。
+  - generic: "发布: 2026年5月2日"
+  - generic: "生效: 2026年8月15日"
+  - generic: CPSC / 平台安全政策
+  - generic: 重点抽查
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 澳大利亚
+  - generic: 中风险
+  - generic: 修订
+  - heading "澳大利亚线上产品安全监管现代化" [level=3]
+  - paragraph: 澳大利亚加强线上渠道产品安全监管，平台和卖家需要更快响应事故报告、禁售令和强制召回通知。
+  - generic: "发布: 2026年4月10日"
+  - generic: "生效: 2026年9月1日"
+  - generic: 澳大利亚竞争与消费者委员会 ACCC
+  - generic: 咨询后跟踪
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 加拿大
+  - generic: 中风险
+  - generic: 修订
+  - heading "ISED 无线设备标准和标签文件更新" [level=3]
+  - paragraph: 加拿大无线设备认证要求更新，模块认证、主机标签和用户手册中的合规声明需要保持一致。
+  - generic: "发布: 2026年3月31日"
+  - generic: "生效: 2026年9月1日"
+  - generic: 加拿大创新、科学与经济发展部 ISED
+  - generic: 草案跟踪
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 中国
+  - generic: 中风险
+  - generic: 咨询
+  - heading "玩具安全国家标准化学迁移限量复核" [level=3]
+  - paragraph: 中国玩具安全标准复核部分化学迁移限量和年龄警示标识要求，含涂层、软胶和儿童可接触部件的产品需要重点关注。
+  - generic: "发布: 2026年3月18日"
+  - generic: "生效: 2026年11月1日"
+  - generic: 国家标准化管理委员会
+  - generic: 公开征求意见
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 巴西
+  - generic: 中风险
+  - generic: 修订
+  - heading "ANATEL CPE 网络安全测试要求跟踪" [level=3]
+  - paragraph: 巴西 ANATEL 对通信终端设备的网络安全测试、默认密码和固件更新机制提出更高要求。
+  - generic: "发布: 2026年3月15日"
+  - generic: "生效: 2026年11月30日"
+  - generic: 巴西国家电信局 ANATEL
+  - generic: 草案跟踪
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 欧盟
+  - generic: 中风险
+  - generic: 咨询
+  - heading "ESPR 可持续产品生态设计和数字产品护照草案" [level=3]
+  - paragraph: 欧盟可持续产品生态设计框架推进数字产品护照、可维修性和可持续信息披露要求，先行类目需要准备数据治理。
+  - generic: "发布: 2026年3月12日"
+  - generic: "生效: 2026年12月1日"
+  - generic: 欧盟委员会
+  - generic: 公开咨询
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 英国
+  - generic: 中风险
+  - generic: 修订
+  - heading "UKCA 标志过渡安排和 CE 认可边界更新" [level=3]
+  - paragraph: 英国继续调整 UKCA 和 CE 标志认可安排，不同产品法规下的过渡期不完全一致。卖家需要按法规族确认标签和合格评定路径。
+  - generic: "发布: 2026年4月25日"
+  - generic: "生效: 2026年12月31日"
+  - generic: 英国商业与贸易部
+  - generic: 过渡期
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 韩国
+  - generic: 中风险
+  - generic: 修订
+  - heading "K-REACH 化学物质登记和下游用户信息传递" [level=3]
+  - paragraph: 韩国 K-REACH 对进口化学物质登记、吨位确认和下游用户信息传递持续加强，含化学混合物产品需要供应链配合。
+  - generic: "发布: 2026年3月22日"
+  - generic: "生效: 2026年12月31日"
+  - generic: 韩国环境部
+  - generic: 过渡期
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 欧盟
+  - generic: 中风险
+  - generic: 新增
+  - heading "包装和包装废弃物法规 PPWR 实施准备" [level=3]
+  - paragraph: 欧盟包装法规推动包装减量、可回收设计和标签一致性。跨境电商品牌需要同步评估商品包装和物流包装。
+  - generic: "发布: 2026年3月8日"
+  - generic: "生效: 2026年12月31日"
+  - generic: 欧盟委员会
+  - generic: 分阶段实施
+  - button "查看详情":
+    - text: 查看详情
+- article:
+  - generic: 欧盟
+  - generic: 中风险
+  - generic: 新增
+  - heading "欧盟电池法规数字电池护照准备要求" [level=3]
+  - paragraph: 欧盟电池法规对碳足迹、回收含量、供应链尽责和数字电池护照提出分阶段要求，含电池产品需要提前整理数据。
+  - generic: "发布: 2026年3月19日"
+  - generic: "生效: 2027年2月18日"
+  - generic: 欧盟委员会
+  - generic: 分阶段实施
+  - button "查看详情":
+    - text: 查看详情
+- paragraph: 显示 1-30 条，共 30 条
+- paragraph: "数据集: static-demo"

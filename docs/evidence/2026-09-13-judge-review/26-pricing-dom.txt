@@ -1,0 +1,145 @@
+- alert: 规航AI · 先合规，再出海
+- main:
+  - link "返回利润页":
+    - /url: /profit/demo
+    - generic: 返回利润页
+  - link "规航AI 规航AI · CompliPilot 产品方案 合规报告 · 成本决策 · 整改路线":
+    - /url: /
+    - img "规航AI"
+    - generic: 规航AI · CompliPilot
+    - strong: 产品方案
+    - generic: 合规报告 · 成本决策 · 整改路线
+  - button "中" [pressed]
+  - button "EN"
+  - link "查看成本示例":
+    - /url: /profit/demo
+  - link "开始检测":
+    - /url: /upload
+  - paragraph: Page 06
+  - heading "选择适合你的合规交付方式" [level=1]
+  - paragraph: 每个方案都沿用同一条检测闭环：产品图片、风险证据、法规依据、成本影响与整改路线。
+  - article:
+    - paragraph: 按次交付
+    - heading "单次解锁" [level=2]
+    - generic: ¥
+    - generic: "99"
+    - generic: / 次
+    - generic: ✓
+    - text: 单个 SKU 完整合规报告
+    - generic: ✓
+    - text: 利润测算表导出
+    - generic: ✓
+    - text: 风险整改建议
+    - generic: ✓
+    - text: 7 天扫描历史保留
+    - button "立即解锁":
+      - text: 立即解锁
+  - article:
+    - generic: 官方推荐
+    - heading "月度会员" [level=2]
+    - generic: ¥
+    - generic: "299"
+    - generic: / 月
+    - generic: ⚡
+    - text: 每月 10 个 SKU 完整报告
+    - generic: ⚡
+    - text: 不限次产品扫描
+    - generic: ⚡
+    - text: 法规更新提醒
+    - generic: ⚡
+    - text: 认证绿色通道
+    - generic: ⚡
+    - text: 专属客服支持
+    - button "已选择该方案":
+      - text: 已选择该方案
+  - article:
+    - paragraph: 企业常用
+    - heading "年度会员" [level=2]
+    - generic: ¥
+    - generic: "2399"
+    - generic: / 年
+    - generic: 省 ¥1189
+    - generic: ✓
+    - text: 每年 180 个 SKU 完整报告
+    - generic: ✓
+    - text: 专家人工复核 1 次
+    - generic: ✓
+    - text: 企业级多人协作
+    - generic: ✓
+    - text: 优先体验新功能
+    - button "立即解锁":
+      - text: 立即解锁
+  - paragraph: 当前方案
+  - heading "月度会员" [level=2]
+  - paragraph: 官方推荐
+  - generic: ¥299
+  - generic: / 月
+  - generic: 每月 10 个 SKU 完整报告
+  - generic: 不限次产品扫描
+  - text: 演示环境 · 不会发起真实支付
+  - link "联系获取参赛计划书":
+    - /url: mailto:contact@attrax.example?subject=Entry%20Plan
+  - paragraph: 包含交付
+  - heading "一次解锁，交付完整闭环" [level=2]
+  - paragraph: 04 项核心产出
+  - generic: "01"
+  - generic: 完整合规总报告 PDF / DOCX
+  - generic: "02"
+  - generic: 供应商整改路线图 CSV
+  - generic: "03"
+  - generic: 利润测算与 AI 决策说明
+  - generic: "04"
+  - generic: 认证绿色通道与专属客服
+  - paragraph: 方案切换后，交付范围与价格会在此处同步更新。
+  - text: 已同步当前选择
+  - paragraph: 落地方式
+  - heading "按业务阶段选择接入方式" [level=2]
+  - paragraph: 从即开即用到内网部署，分析能力与报告口径保持一致。
+  - article:
+    - paragraph: "01"
+    - heading "SaaS 订阅" [level=3]
+    - paragraph: ¥0-599 / 月
+    - paragraph: 注册即可获得 3 次免费扫描；订阅费已覆盖报告生成 Token 成本，不额外收取隐藏费用。
+    - paragraph: 适用
+    - paragraph: 个人卖家 · 中小团队
+    - paragraph: 特点
+    - paragraph: 最快 3 分钟开通
+  - article:
+    - paragraph: "02"
+    - heading "API 服务" [level=3]
+    - paragraph: ¥0.1 / 次起
+    - paragraph: 适合 ERP / CRM / 内部选品系统集成，支持高频调用、阶梯折扣和结果回传。
+    - paragraph: 适用
+    - paragraph: 平台系统 · 批量任务
+    - paragraph: 特点
+    - paragraph: 按调用量弹性计费
+  - article:
+    - paragraph: "03"
+    - heading "私有部署" [level=3]
+    - paragraph: ¥5-20 万 / 次
+    - paragraph: Docker 一键部署，适合大型企业把法规库、FAISS 索引和产品数据留在内网。
+    - paragraph: 适用
+    - paragraph: 大型企业 · 私域数据
+    - paragraph: 特点
+    - paragraph: 法规与数据不出域
+  - paragraph: 演示闭环已覆盖图片上传、风险扫描、法规溯源、成本决策与报告导出
+  - text: 前端闭环
+  - text: 可解释报告
+  - text: 本地部署
+  - link "返回成本结果页":
+    - /url: /profit/demo
+    - generic: 返回成本结果页
+  - link "规航AI 让每一次出海都有合规航线":
+    - /url: /
+    - strong: 规航AI
+    - generic: 让每一次出海都有合规航线
+  - navigation "流程导航":
+    - link "图像识别":
+      - /url: /upload
+    - link "风险扫描":
+      - /url: /result/demo
+    - link "法规溯源":
+      - /url: /result/demo#reports
+    - link "可解释报告":
+      - /url: /result/demo#report-previews
+  - paragraph: 演示原型 · 结论需结合专业机构复核
