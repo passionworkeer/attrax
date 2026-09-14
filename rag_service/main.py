@@ -262,9 +262,14 @@ class ScanRequest(BaseModel):
     category: str = ""
     markets: list[str] = ["EU"]
     vision_result: Optional[dict] = None
-    images: Optional[list[dict]] = None  # [{"buffer": base64_str, "mime_type": str, "name": str}]
+    # ``images[].buffer`` is dual-type: a ``str`` carries base64 (legacy
+    # /scan-multipart path that already encodes server-side); ``bytes`` is
+    # the raw upload buffer (P1-6: ``_run_public_scan_payload`` no longer
+    # round-trips through base64 when the runner is the in-process
+    # ``ScanService``). ``_run_scan_request`` branches on ``isinstance``.
+    images: Optional[list[dict]] = None  # [{"buffer": str|bytes, "mime_type": str, "name": str}]
     documents: Optional[list[dict]] = None  # [{"name": str, "mime_type": str, "text": str}]
-    pdfs: Optional[list[dict]] = None  # [{"name": str, "buffer": base64_str}] — extracted server-side via pdfplumber
+    pdfs: Optional[list[dict]] = None  # [{"name": str, "buffer": str|bytes}] — extracted server-side via pdfplumber
 
 
 class ScanResponse(BaseModel):
@@ -619,7 +624,14 @@ async def _run_scan_request(
     decoded_images = []
     if req.images:
         for img in req.images:
-            buf = base64.b64decode(img.get("buffer", ""))
+            # P1-6: ``buffer`` is dual-typed (str=base64 legacy multipart,
+            # bytes=raw in-process payload). Skip the round-trip when the
+            # caller already handed us the raw upload.
+            raw_buffer = img.get("buffer", b"")
+            if isinstance(raw_buffer, bytes):
+                buf = raw_buffer
+            else:
+                buf = base64.b64decode(raw_buffer or b"")
             decoded_images.append({
                 "buffer": buf,
                 "mime_type": img.get("mime_type", "image/jpeg"),
@@ -632,7 +644,11 @@ async def _run_scan_request(
             import pdfplumber
             for pdf_item in req.pdfs:
                 name = pdf_item.get("name", "unknown.pdf")
-                buf = base64.b64decode(pdf_item.get("buffer", ""))
+                raw_pdf_buffer = pdf_item.get("buffer", b"")
+                if isinstance(raw_pdf_buffer, bytes):
+                    buf = raw_pdf_buffer
+                else:
+                    buf = base64.b64decode(raw_pdf_buffer or b"")
                 text_parts = []
                 try:
                     with pdfplumber.open(io.BytesIO(buf)) as pdf:
@@ -697,10 +713,18 @@ async def _run_scan_request(
 
 
 async def _run_public_scan_payload(payload: dict) -> ScanResponse:
-    """Adapt stored application payloads to the existing RAG request model."""
+    """Adapt stored application payloads to the existing RAG request model.
+
+    P1-6: the legacy version re-encoded the in-memory bytes buffers to
+    base64 only so that ``_run_scan_request`` could decode them again. Now
+    that ScanRequest accepts ``bytes`` for ``images[].buffer`` /
+    ``pdfs[].buffer`` we forward the raw bytes and skip the redundant
+    encode+decode pair. The legacy /scan-multipart path keeps encoding to
+    base64 because HTTP form uploads are already a str boundary.
+    """
     images = [
         {
-            "buffer": base64.b64encode(item["buffer"]).decode("ascii"),
+            "buffer": item["buffer"],  # already bytes from FileBackend
             "mime_type": item["mimeType"],
             "name": item["name"],
         }
@@ -708,7 +732,7 @@ async def _run_public_scan_payload(payload: dict) -> ScanResponse:
     ]
     pdfs = [
         {
-            "buffer": base64.b64encode(item["buffer"]).decode("ascii"),
+            "buffer": item["buffer"],  # already bytes from FileBackend
             "name": item["name"],
         }
         for item in payload.get("pdfs", [])
