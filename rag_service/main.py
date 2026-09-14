@@ -118,6 +118,21 @@ async def lifespan(app: FastAPI):
     logger.info("rag-service ready")
     yield
     logger.info("rag-service shutting down")
+    # P1-3: gracefully drain in-flight scan tasks before tearing the executor
+    # down. ``wait_for_idle`` awaits every active ScanService job; bound the
+    # wait to 30s (well below the 280s scan timeout) so a stuck scan can
+    # never block process exit. After the timeout we fall through to the
+    # hard ``_executor.shutdown(wait=False)`` so the process still exits.
+    scan_service = getattr(app.state, "scan_service", None)
+    if scan_service is not None:
+        try:
+            await asyncio.wait_for(scan_service.wait_for_idle(), timeout=30.0)
+            logger.info("all in-flight scans completed before shutdown")
+        except asyncio.TimeoutError:
+            logger.warning(
+                "in-flight scans did not finish within 30s; falling back to "
+                "hard executor shutdown"
+            )
     _executor.shutdown(wait=False)
 
 
