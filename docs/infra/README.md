@@ -1,8 +1,15 @@
 # Attrax Server Config (infra/)
 
-> Snapshots of `/opt/attrax` server configuration files at `203.0.113.10`.
-> Captured 2026-06-21 after 11 rounds of hardening.
-> Companion: `../SECURITY.md` for the security policy and `../SERVER-OPS.md` for ops manual.
+> **Historical snapshots** captured 2026-06-21 at `203.0.113.10`（aliyun-sz 时代）after 11 rounds of hardening.
+> Attrax 生产已迁移至腾讯云首尔 lighthouse（`198.51.100.20`）；下列 conf 仍适用于新机参考，但 **Ansible 流程已不维护**，当前部署走 git bundle + tar + pm2（见根目录 `README.md` §部署 与 `NEXTJS-16-STANDALONE-NOTES.md`）。
+> Companion: `../SECURITY.md` for the security policy.
+
+## 当前活跃文件（lighthouse 时代）
+
+| File | Purpose |
+|---|---|
+| `NEXTJS-16-STANDALONE-NOTES.md` | Next 16 standalone 部署坑（`_next/static` alias、`public/` symlink、nginx 站配）——当前部署必读 |
+| `nginx-attrax-locations.conf` | nginx `location` 块快照（lighthouse 当前） |
 
 ## Files
 

@@ -2,6 +2,42 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## 2026-09-14 — judge review 批处理 A/A1/B1/C2 + 全项目死代码清理
+
+**背景**:`docs/plans/2026-09-14-judge-review-and-optimization-plan.md` 冻结（11 节 J01–J11），当日完成 Batch A / A1 / B1 / C2 实施 + 第二轮全项目对抗性死代码扫描（3 subagent 并行：前端 / 后端 / 文档）。
+
+**judge review 实施（batch A/A1/B1/C2）**:
+- **A1**（58dbbf8）：J01 进度终态契约（`resultReady` + `completing` state）——修三次真实扫描卡 99% 的根因
+- **A**（6b57148）：J04 引用契约（`source`/`literal`/`semantic` 分层）、J05 缺省未验证、J06 证据包 CJK 字体、J07 无依据罚款数字移除、J11 标题 fallback
+- **B1+C2**（cdb069f）：J02/J09 语义检查（`(semantic, visibility)` 真值表替代全局规则；`declared_facts` 关闭电池仓检查）；J10 证据/重扫循环（`POST /scans/{id}/evidence` + `/revisions`，`EvidenceRequestPanel` UI）
+
+**死代码清理（chore/cleanup-2026-09-14 分支）**:
+- 删孤儿路由 20 文件 -3518 行：`/trace` + `/roadmap` 页面（结果页已有内联面板）+ 2 个孤儿 API + `useSessionId` + `components/trace/*` 5 文件 + `lib/format.ts` + 4 个孤儿测试
+- 删 3 个死脚本 + `legal_parser.py` 共 -2255 行：`build_regulation_library.py` + `migrate_must_check_to_kb.py`（死 dyad）、`schema_validator.py`（仅测试调用）
+- 删 `PROJECT_ANALYSIS.md`（自标 SUPERSEDED）+ `dist/attrax-regulations-cron-slim.zip`（4.3MB 二进制制品）+ `pixel.png`（仅被死测试引用）；`.gitignore` 加 `/dist/`
+- **保留**（subagent 反向纠错）：`lib/mock/roadmap.ts`（结果页 export 链引用）、`/api/regulations/[docId]`（evidence-pack 引用）—— 这两个本来在删除清单上
+
+**文档同步**:README 737 → 180 行重写（去掉 FAISS/LangGraph 中心叙事与"准确率>85%"无依据声明）；CLAUDE.md 同步 de-RAG 过渡态 + 2026-09 时间线 + 部署雷区专节。
+
+## 2026-09-13 — 视觉检查 Batch A–E + 两次生产回归修复
+
+**背景**：执行 `docs/plans/2026-09-13-visual-inspection-and-progress-plan.md` 全批次。
+
+**交付**（e1244aa + 1698d67）:
+- **Batch A**（988b726）：真实阶段事件、imageId 热点、去固定 85%/管线风险误报
+- **Batch B**（1f3319b）：视觉检查清单（`data/inspection_profiles/*.yaml` 11 个 profile）、v2 observations、grounding verifier
+- **Batch C**（10c935a）：intrinsic-ratio canvas、扁平证据框、真实裁片悬浮
+- **Batch D**（e1244aa）：适用性引擎（三态 ProductFacts）、确定性 findings（零 LLM）、视觉缓存（sha256 键 500 LRU）
+- **Batch E**（e1244aa）：mask contract（`FloatingEvidenceCrop` maskUrl）、`scripts/eval_grounding.py` + 标注格式文档
+- `ATTRAX_BUILD_SHA` 改 pydantic-settings 读 `.env`（1698d67）——`pm2 restart` 即生效，避开 pm2 env 雷区
+
+**生产回归（3a8dc1a + b6cea17，部署后真实扫描暴露）**:
+- `_parse_vision_text` 结构化分支丢 `observations` key → 透传原始数组（单测 mock 不到"中间层丢 key"，教训：新链路字段透传要端到端测）
+- 六个管线节点被误判为风险 → 过滤表按**精确 node.id** 匹配（不能按 type）
+- 零风险扫描被错送 `ResultIncompletePanel` → 有 observations/findings 层就正常渲染
+
+**验证**：pytest 464/464、vitest 967/967、生产两次真实扫描（充电器 EU/UK）阶段事件 12→36→93→100 全程可见。
+
 ## 2026-09-10 — 2026-09-09 审计批处理（详见 docs/plans/2026-09-09-optimization-audit.md）
 
 **背景**:2026-09-09 只读审计发现文档/代码系统性脱节与死代码债务。本日按审计清单批量修复,全部验证后部署。
