@@ -359,9 +359,11 @@ export interface ScanStatus {
   profitReports?: ProfitReportResult[];
   error?: string;
   /**
-   * Per-upload archive metadata, populated by /api/scan so admins can review
-   * what each session submitted even after the buffers are freed. See
-   * lib/pipeline/upload-storage.ts for the on-disk layout.
+   * Legacy per-upload archive metadata. Nothing populates this anymore —
+   * the upload archive (lib/pipeline/upload-storage.ts) was removed with the
+   * dead local session pipeline in the 2026-09-14 cleanup; uploads now live
+   * only on the RAG service side. Field kept for schema compatibility with
+   * older persisted demo sessions.
    */
   uploads?: Array<{
     originalName: string;

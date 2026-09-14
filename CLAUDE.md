@@ -204,7 +204,7 @@ attrax/
 │   ├── pressure/                 # 压力测试脚本（improved-load-test.js）
 │   └── setup.ts
 │
-├── public/                       # 静态资源（fonts/NotoSansSC-Regular.ttf 17MB 不入库；fresh clone 跑 `bash scripts/fetch-font.sh` 补齐，服务器自备）
+├── public/                       # 静态资源（fonts/NotoSansSC-Regular.ttf 17MB 保持入库——PDF 导出与测试运行时依赖）
 ├── docs/                         # 项目文档（详见 docs/README.md）
 │   ├── plans/                    # 修复计划与设计 spec
 │   │   ├── 2026-09-11-de-rag-evidence-spec.md  # de-RAG 迁移路线（执行基准）

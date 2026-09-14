@@ -142,8 +142,11 @@ data/regulation_supplements/watchdog-*/
 !data/regulation_supplements/*/README.md
 !data/regulation_supplements/*.md
 
-# Large fonts are runtime assets, not source.
-public/fonts/*.ttf
+# NOTE: public/fonts/NotoSansSC-Regular.ttf (17MB) STAYS TRACKED — the PDF
+# export modules fetch it at runtime and three test files read it from disk.
+# It was briefly untracked (189885a) but adversarial review showed CI and
+# fresh clones break without it; a fetch script reintroduced format risk
+# (OTTO vs TrueType). Reverted in favor of keeping the asset in git.
 backups/
 logs/
 tools/pwtest
