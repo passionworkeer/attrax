@@ -393,7 +393,7 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
               </span>
             </p>
             <CitationsList
-              citations={result.reportPackage.citations as CitationRefContract[]}
+              citations={result.reportPackage.citations}
               emptyHint={t("result.noCitations", {
                 defaultValue: "本报告未引用具体条款。",
               })}

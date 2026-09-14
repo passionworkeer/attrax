@@ -104,6 +104,50 @@ def _camelize(value: Any) -> Any:
     return converted
 
 
+# Report-package collections whose contract keys must stay snake_case
+# (doc_id / article_id / match_status / official_citation / quote_span —
+# the De-RAG spec §3.3 CitationRef shape the front-end Zod schema and
+# CitationChip read). `_camelize` rewrites nested dict keys recursively,
+# which previously turned these into docId/articleId — the exact bug J04
+# (Citation undefined → /regulations/undefined). Only the boundary adapter
+# may translate casing; run-time validation happens on the BFF side.
+_SNAKE_COLLECTION_KEYS = frozenset({"citations", "evidencePack"})
+
+
+def _preserve_snake_citation_keys(package: dict[str, Any]) -> dict[str, Any]:
+    """Re-assert snake_case keys inside citations/evidencePack after camelize.
+
+    The recursive `_camelize` call is what produced `docId`/`articleId` in the
+    served JSON (judge review 2026-09-14 §4.4, first layer). Pydantic's
+    CitationRef already emits snake_case; the camelize pass must not rewrite
+    the citation sub-contract. Normalized here, at the boundary, once.
+    """
+    for key in _SNAKE_COLLECTION_KEYS:
+        entries = package.get(key)
+        if not isinstance(entries, list):
+            continue
+        restored: list[Any] = []
+        for entry in entries:
+            if not isinstance(entry, dict):
+                restored.append(entry)
+                continue
+            item = dict(entry)
+            for snake, camel in (
+                ("doc_id", "docId"),
+                ("article_id", "articleId"),
+                ("official_citation", "officialCitation"),
+                ("quote_span", "quoteSpan"),
+                ("match_status", "matchStatus"),
+                ("quote_provenance", "quoteProvenance"),
+                ("canonical_excerpt", "canonicalExcerpt"),
+            ):
+                if camel in item and snake not in item:
+                    item[snake] = item.pop(camel)
+            restored.append(item)
+        package[key] = restored
+    return package
+
+
 def _mapping(value: Any) -> dict[str, Any]:
     return dict(value) if isinstance(value, Mapping) else {}
 
@@ -709,7 +753,7 @@ class ScanService:
             hard_reasons.append("MISSING_REPORT_PACKAGE")
             package = None
         else:
-            package = _mapping(package_value)
+            package = _preserve_snake_citation_keys(_mapping(package_value))
             audit = _mapping(package.get("auditMetadata") or package.get("audit_metadata"))
             validation_status = (
                 _nested_string(audit, "validationStatus")

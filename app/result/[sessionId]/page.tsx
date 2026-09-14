@@ -212,7 +212,16 @@ export default function ResultPage() {
   const pinnedRisks = unlocatedRisks.filter(
     (risk) => !risk.imageId || !displayedImageId || risk.imageId === displayedImageId,
   );
-  const displayProductName = locale === "en" ? result.productNameEn ?? result.productName : result.productName;
+  // J11 (plan §4.3): never render an empty h1 / "undefined". Prefer a real
+  // product name from the structured dossier, then the recognized category +
+  // 待确认型号, so the page always has a readable title.
+  const rawProductName =
+    locale === "en" ? result.productNameEn ?? result.productName : result.productName;
+  const displayProductName =
+    rawProductName?.trim() ||
+    (locale === "en"
+      ? `${productCategoryLabel(locale, result.productCategory)} (model TBD)`
+      : `${productCategoryLabel(locale, result.productCategory)}（型号待确认）`);
   const displayProductCategory = productCategoryLabel(locale, result.productCategory);
   const roadmapRows = buildRoadmapRows(result, locale, copy.result.unknownTime);
 
@@ -339,54 +348,11 @@ export default function ResultPage() {
           {/*
             Profit impact summary lives in its own section AFTER #action (roadmap +
             export), so the verdict and hotspot-driven evidence get the user's
-            attention first. Previously this strip rendered inside #overview;
-            users got profit numbers before they had located the hotspots. The
-            full cost-breakdown panel remains on /profit/[sessionId].
+            attention first. The legacy in-overview strip (with its hard-coded
+            ¥180万/day fine ceiling — J07) was removed; the summary now renders in
+            #profit-impact without invented fine numbers. The full cost-breakdown
+            panel remains on /profit/[sessionId].
           */}
-          {false && financialSummary.trueNetProfit !== "—" ? (
-            <div
-              data-testid="result-profit-summary-strip"
-              className="mt-6 flex flex-wrap items-center gap-4 rounded-[22px] border border-[rgba(255,90,77,0.32)] bg-[linear-gradient(135deg,rgba(255,90,77,0.10),rgba(255,255,255,0.04))] px-5 py-4"
-            >
-              <span className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[rgba(255,90,77,0.4)] bg-[rgba(255,90,77,0.18)] text-[#ff5a4d]">
-                <CircleAlert className="size-4" />
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#ff5a4d]">
-                  {locale === "zh" ? "利润风险提示" : "Profit risk note"}
-                </p>
-                <p className="mt-1 text-sm leading-6 text-white/82">
-                  {locale === "zh" ? (
-                    <>
-                      <span className="font-mono font-semibold text-white">{displayProductName}</span> 整改后单件净利约{" "}
-                      <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>，
-                      合规预算 <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>，
-                      高危风险下日均罚款 <span className="font-mono font-semibold text-[#ff8a6a]">¥180 万上限</span>。
-                    </>
-                  ) : (
-                    <>
-                      After remediation, per-unit net is about{" "}
-                      <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>,
-                      compliance budget is{" "}
-                      <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>,
-                      and the daily fine ceiling for critical risks is{" "}
-                      <span className="font-mono font-semibold text-[#ff8a6a]">¥1.8M max</span>.
-                    </>
-                  )}
-                </p>
-              </div>
-              <Link
-                href={`/profit/${sessionId}`}
-                className={cn(
-                  buttonVariants({ size: "sm" }),
-                  "shrink-0 rounded-full border border-[rgba(255,90,77,0.45)] bg-[rgba(255,90,77,0.18)] text-white hover:bg-[rgba(255,90,77,0.28)]"
-                )}
-              >
-                {locale === "zh" ? "查看完整利润报告" : "Full profit report"}
-                <MoveRight className="size-4" />
-              </Link>
-            </div>
-          ) : null}
         </section>
         <nav aria-label={locale === "zh" ? "结果阅读顺序" : "Result reading order"} className="blaze-panel grid gap-3 p-2 sm:grid-cols-3">
           {[
@@ -940,10 +906,16 @@ export default function ResultPage() {
                 note: locale === "zh" ? "单件 / 平台" : "Per unit / channel",
               },
               {
-                label: locale === "zh" ? "高危罚款上限" : "Critical fine ceiling",
-                value: locale === "zh" ? "¥180 万 / 日" : "¥1.8M / day",
+                // J07 (plan §4.6): fine amounts need jurisdiction, violation
+                // type, currency, period AND a legal source before they can
+                // be shown as a number. Without structured cost/fine inputs
+                // we state the dependency instead of inventing a figure.
+                label: locale === "zh" ? "罚款风险" : "Fine exposure",
+                value: locale === "zh" ? "待确认" : "To confirm",
                 accent: "text-rose-300",
-                note: locale === "zh" ? "合规后归零" : "Zeroed after fix",
+                note: locale === "zh"
+                  ? "需提供适用违法行销与辖区信息"
+                  : "Needs applicable violation + jurisdiction",
               },
               {
                 label: locale === "zh" ? "目标市场" : "Target markets",
@@ -975,12 +947,12 @@ export default function ResultPage() {
             <p className="min-w-0 flex-1 text-sm leading-6 text-white/82">
               {locale === "zh" ? (
                 <>
-                  完成上方合规扫描报告中的全部整改动作后,
+                  完成上方合规扫描报告中的全部整改动作后，
                   <span className="font-mono font-semibold text-white">{displayProductName}</span>{" "}
                   在 <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>{" "}
-                  单件净利水平下进入目标市场,合规预算{" "}
-                  <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>,
-                  高危风险下日均罚款 <span className="font-mono font-semibold text-[#ff8a6a]">¥180 万上限</span>。
+                  单件净利水平下进入目标市场，合规预算{" "}
+                  <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>。
+                  罚款金额取决于具体违法行为与辖区，本报告未获取适用条文与罚则输入，不作数字估算。
                 </>
               ) : (
                 <>
@@ -989,8 +961,9 @@ export default function ResultPage() {
                   reaches a per-unit net of{" "}
                   <span className="font-mono font-semibold text-white">{financialSummary.trueNetProfit}</span>{" "}
                   in the target markets, with a compliance budget of{" "}
-                  <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>{" "}
-                  and a zeroed critical-risk fine ceiling.
+                  <span className="font-mono font-semibold text-white">{financialSummary.complianceCost}</span>.
+                  Fine amounts depend on the specific violation and jurisdiction; no applicable
+                  statute or fine input was provided, so no figure is estimated.
                 </>
               )}
             </p>
