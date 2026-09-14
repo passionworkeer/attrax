@@ -20,12 +20,13 @@ os.environ.pop("https_proxy", None)
 os.environ.setdefault("NO_PROXY", "*")
 
 import json
+import asyncio  # P1-7: asyncio.gather + Semaphore for multi-image dispatch
 import base64
 import logging
 import time
 import urllib.request
 import urllib.error
-from concurrent.futures import ThreadPoolExecutor, as_completed
+from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
 logger = logging.getLogger(__name__)
@@ -369,23 +370,16 @@ class VisionAnalyzer:
             legacy_result["observations"] = observations
             return legacy_result
 
-        raw_results: list[dict | None] = [None] * len(images)
-        with ThreadPoolExecutor(max_workers=min(len(images), 4)) as pool:
-            futures = {
-                pool.submit(
-                    self.analyze_single_image_with_checks,
-                    img.get("buffer", b""),
-                    img.get("mime_type", img.get("mimeType", "image/jpeg")),
-                    checks,
-                ): index
-                for index, img in enumerate(images)
-            }
-            for future in futures:
-                index = futures[future]
-                try:
-                    raw_results[index] = future.result()
-                except Exception as exc:  # pragma: no cover — defensive
-                    logger.debug("checklist analysis failed for image %d: %s", index, exc)
+        # P1-7: replace the ThreadPoolExecutor with asyncio.gather under a
+        # bounded semaphore. ``_call_mimotalk`` is still sync (urllib-based)
+        # so each per-image call is wrapped in ``asyncio.to_thread`` to keep
+        # the event loop unblocked. ``vision_analysis_node`` runs in an
+        # executor worker thread that has no running event loop, so
+        # ``asyncio.run`` is safe; if a future caller invokes us from inside
+        # an async context we fall back to the old ThreadPoolExecutor.
+        concurrency = min(len(images), 4)
+        results = self._run_parallel_with_checks(images, checks, concurrency)
+        raw_results: list[dict | None] = list(results)
 
         descriptions: list[str] = []
         seen_certs: dict[str, dict] = {}
@@ -435,6 +429,166 @@ class VisionAnalyzer:
             "cert_summary": ", ".join(c["mark"] for c in certs_list) if certs_list else "未发现认证标志",
         }
 
+    # ── P1-7 parallel dispatch helpers ────────────────────────────────────
+    #
+    # ``analyze_images`` / ``analyze_images_with_checks`` previously ran
+    # per-image calls through a ``concurrent.futures.ThreadPoolExecutor``.
+    # That works but stacks two thread pools (the LLM is sync, but the
+    # pipeline node runs in ``run_in_executor`` already). Switching to
+    # ``asyncio.gather`` + ``asyncio.Semaphore`` lets a single event loop
+    # schedule N concurrent sync calls via ``asyncio.to_thread`` — same
+    # bounded parallelism, no extra executor pool.
+
+    def _run_parallel_with_checks(
+        self,
+        images: list[dict],
+        checks: list[dict],
+        concurrency: int,
+    ) -> list[dict | None]:
+        """Bounded-parallel checklist analysis.
+
+        Returns a list aligned with ``images``: ``None`` for empty-buffer
+        or failed entries, the parsed dict on success.
+        """
+        try:
+            return asyncio.run(
+                self._gather_with_checks(images, checks, concurrency)
+            )
+        except RuntimeError:
+            # Already inside a running event loop — fall back to the
+            # legacy ThreadPoolExecutor path so an async caller doesn't
+            # crash on us.
+            return self._gather_with_checks_threadpool(images, checks, concurrency)
+
+    def _run_parallel_legacy(
+        self,
+        images: list[dict],
+        concurrency: int,
+    ) -> list[dict | None]:
+        """Bounded-parallel legacy analysis (no checks)."""
+        try:
+            return asyncio.run(self._gather_legacy(images, concurrency))
+        except RuntimeError:
+            return self._gather_legacy_threadpool(images, concurrency)
+
+    async def _gather_with_checks(
+        self,
+        images: list[dict],
+        checks: list[dict],
+        concurrency: int,
+    ) -> list[dict | None]:
+        semaphore = asyncio.Semaphore(concurrency)
+
+        async def one(img: dict) -> dict | None:
+            buf = img.get("buffer", b"")
+            if not buf:
+                return None
+            async with semaphore:
+                # analyze_single_image_with_checks is sync; offload to a
+                # worker thread so the event loop stays unblocked.
+                return await asyncio.to_thread(
+                    self.analyze_single_image_with_checks,
+                    buf,
+                    img.get("mime_type", img.get("mimeType", "image/jpeg")),
+                    checks,
+                )
+
+        tasks = [one(img) for img in images]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        ordered: list[dict | None] = []
+        for index, value in enumerate(results):
+            if isinstance(value, BaseException):
+                logger.debug(
+                    "checklist analysis failed for image %d: %s",
+                    index,
+                    value,
+                )
+                ordered.append(None)
+            else:
+                ordered.append(value)
+        return ordered
+
+    async def _gather_legacy(
+        self,
+        images: list[dict],
+        concurrency: int,
+    ) -> list[dict | None]:
+        semaphore = asyncio.Semaphore(concurrency)
+
+        async def one(img: dict) -> dict | None:
+            buf = img.get("buffer", b"")
+            if not buf:
+                return None
+            async with semaphore:
+                return await asyncio.to_thread(
+                    self.analyze_single_image,
+                    buf,
+                    img.get("mime_type", "image/jpeg"),
+                )
+
+        tasks = [one(img) for img in images]
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+        ordered: list[dict | None] = []
+        for index, value in enumerate(results):
+            if isinstance(value, BaseException):
+                logger.debug("Image analysis failed for image %d: %s", index, value)
+                ordered.append(None)
+            else:
+                ordered.append(value)
+        return ordered
+
+    def _gather_with_checks_threadpool(
+        self,
+        images: list[dict],
+        checks: list[dict],
+        concurrency: int,
+    ) -> list[dict | None]:
+        """ThreadPoolExecutor fallback when an event loop is already running."""
+        raw_results: list[dict | None] = [None] * len(images)
+        with ThreadPoolExecutor(max_workers=concurrency) as pool:
+            futures = {
+                pool.submit(
+                    self.analyze_single_image_with_checks,
+                    img.get("buffer", b""),
+                    img.get("mime_type", img.get("mimeType", "image/jpeg")),
+                    checks,
+                ): index
+                for index, img in enumerate(images)
+            }
+            for future, index in futures.items():
+                try:
+                    raw_results[index] = future.result()
+                except Exception as exc:  # pragma: no cover — defensive
+                    logger.debug(
+                        "checklist analysis failed for image %d: %s", index, exc
+                    )
+        return raw_results
+
+    def _gather_legacy_threadpool(
+        self,
+        images: list[dict],
+        concurrency: int,
+    ) -> list[dict | None]:
+        """ThreadPoolExecutor fallback for legacy multi-image path."""
+        def _analyze_one(img: dict) -> dict | None:
+            buf = img.get("buffer", b"")
+            if not buf:
+                return None
+            return self.analyze_single_image(buf, img.get("mime_type", "image/jpeg"))
+
+        raw_results: list[dict | None] = [None] * len(images)
+        with ThreadPoolExecutor(max_workers=concurrency) as pool:
+            futures = {
+                pool.submit(_analyze_one, img): index
+                for index, img in enumerate(images)
+            }
+            for future, index in futures.items():
+                try:
+                    raw_results[index] = future.result()
+                except Exception as exc:
+                    logger.debug("Image analysis failed for image %d: %s", index, exc)
+        return raw_results
+
     def analyze_images(self, images: list[dict]) -> dict:
         """
         Analyze multiple images in parallel and merge results.
@@ -475,40 +629,33 @@ class VisionAnalyzer:
                 "cert_summary": cert_str,
             }
 
-        # Multiple images: parallel analysis via ThreadPoolExecutor
-        def _analyze_one(img: dict):
-            buf = img.get("buffer", b"")
-            if not buf:
-                return None
-            return self.analyze_single_image(buf, img.get("mime_type", "image/jpeg"))
+        # Multiple images: bounded parallelism. P1-7: prefer
+        # ``asyncio.gather`` + ``asyncio.Semaphore`` over ThreadPoolExecutor;
+        # each per-image call is sync (urllib urlopen) so it goes through
+        # ``asyncio.to_thread``. ``vision_analysis_node`` runs in an executor
+        # worker thread with no running event loop; if a future caller is
+        # already inside one, ``_run_parallel_legacy`` falls back to the
+        # ThreadPoolExecutor path to stay safe.
+        concurrency = min(len(images), 4)
+        results = self._run_parallel_legacy(images, concurrency)
 
         descriptions = []
         seen_certs = {}
 
-        with ThreadPoolExecutor(max_workers=min(len(images), 4)) as pool:
-            futures = [pool.submit(_analyze_one, img) for img in images]
-            for future in as_completed(futures):
-                try:
-                    result = future.result()
-                    if result and result.get("description"):
-                        descriptions.append(result["description"])
-                    for cert in (result or {}).get("certifications", []):
-                        mark = cert["mark"]
-                        if mark not in seen_certs or cert["confidence"] == "high":
-                            seen_certs[mark] = cert
-                except Exception as e:
-                    logger.debug(f"Image analysis failed: {e}")
+        for result in results:
+            if result and result.get("description"):
+                descriptions.append(result["description"])
+            for cert in (result or {}).get("certifications", []):
+                mark = cert["mark"]
+                if mark not in seen_certs or cert["confidence"] == "high":
+                    seen_certs[mark] = cert
             # Feature 1: collect issues across all images, tagging each with
             # the index of the image that produced it so the UI can route
             # the hotspot to the correct thumbnail.
-            all_issues: list[dict] = []
-            for image_index, future in enumerate(futures):
-                try:
-                    r = future.result()
-                except Exception:
-                    continue
-                for issue in (r or {}).get("issues") or []:
-                    all_issues.append({**issue, "image_index": image_index})
+        all_issues: list[dict] = []
+        for image_index, result in enumerate(results):
+            for issue in (result or {}).get("issues") or []:
+                all_issues.append({**issue, "image_index": image_index})
 
         combined_desc = "\n\n".join(descriptions)
         certs_list = list(seen_certs.values())
