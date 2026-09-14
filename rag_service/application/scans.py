@@ -289,9 +289,22 @@ class ScanService:
             self._session_tasks[session_id] = task
 
         def cleanup(done: asyncio.Task[None]) -> None:
-            self._tasks.discard(done)
-            if session_id is not None and self._session_tasks.get(session_id) is done:
-                self._session_tasks.pop(session_id, None)
+            # P1-10: a done-callback that raises would surface as
+            # "Task exception was never retrieved" and (under
+            # ``asyncio.get_event_loop().set_debug(True)``) as a noisy
+            # traced exception. By the time cleanup fires the ScanService
+            # may already be torn down (backend swapped for a closed
+            # FileBackend, session_tasks cleared, etc.); swallow any
+            # bookkeeping failure so a stale task can never crash shutdown.
+            try:
+                self._tasks.discard(done)
+                if (
+                    session_id is not None
+                    and self._session_tasks.get(session_id) is done
+                ):
+                    self._session_tasks.pop(session_id, None)
+            except Exception as exc:  # pragma: no cover — defensive
+                logger.debug("scan task cleanup callback failed: %r", exc)
 
         task.add_done_callback(cleanup)
 
