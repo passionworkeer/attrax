@@ -27,6 +27,7 @@ import {
 } from "docx";
 import {
   downloadBlob,
+  embedFont,
   parseMarkdownBlocks,
   type Locale,
   yieldToMainThread,
@@ -130,12 +131,17 @@ export async function renderEvidencePackMarkdown(input: EvidencePackInput): Prom
   lines.push("");
 
   // Group by doc_id so each regulation appears once even when cited
-  // from multiple articles.
+  // from multiple articles. J04/J06: ids are sanitized at the BFF
+  // boundary, but a hand-built or legacy input may still carry
+  // undefined/empty ids — drop them instead of printing "undefined"
+  // headings into the pack.
   const byDoc = new Map<string, CitationRefExport[]>();
   for (const c of input.citations) {
-    const list = byDoc.get(c.doc_id) ?? [];
+    const docId = String(c.doc_id ?? "").trim();
+    if (!docId) continue;
+    const list = byDoc.get(docId) ?? [];
     list.push(c);
-    byDoc.set(c.doc_id, list);
+    byDoc.set(docId, list);
   }
 
   for (const [docId, items] of byDoc.entries()) {
@@ -156,16 +162,18 @@ export async function renderEvidencePackMarkdown(input: EvidencePackInput): Prom
     lines.push("");
 
     for (const citation of items) {
+      const articleId = String(citation.article_id ?? "").trim() || "(article pending)";
       const article = reg?.articles?.find((a) => a.id === citation.article_id);
-      const articleTitle = article ? article.title : "(no title)";
-      const headerLine = "### " + citation.article_id + " — " + articleTitle;
+      const articleTitle = article?.title?.trim() || "(title pending)";
+      const headerLine = "### " + articleId + " — " + articleTitle;
       lines.push(headerLine);
       lines.push("");
-      if (citation.official_citation) {
-        lines.push("**Citation**: " + citation.official_citation);
+      if (citation.official_citation?.trim()) {
+        lines.push("**Citation**: " + citation.official_citation.trim());
       }
-      if (citation.quote) {
-        const statusLabel = citation.match_status || "matched";
+      if (citation.quote?.trim()) {
+        // J05: a missing status must not be presented as "matched".
+        const statusLabel = citation.match_status || "unverified";
         const quoteHeader = "**Quote** (status: " + statusLabel + "):";
         lines.push(quoteHeader);
         lines.push("");
@@ -220,6 +228,12 @@ export async function downloadEvidencePackAsPdf(
 ): Promise<void> {
   const markdown = await renderEvidencePackMarkdown(input);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
+  // J06 (plan §4.5): the evidence-pack used to draw with built-in
+  // `helvetica`, which cannot encode CJK — every Chinese heading/quote
+  // rendered as mojibake in the downloaded file. Embed the shared
+  // NotoSansSC font (same path as the compliance report) so both exports
+  // share one typesetting/font layer.
+  await embedFont(doc);
   const pageWidth = doc.internal.pageSize.getWidth();
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 48;
@@ -238,16 +252,16 @@ export async function downloadEvidencePackAsPdf(
     if (block.type === "heading") {
       ensureSpace(40);
       const size = block.level === 1 ? 20 : block.level === 2 ? 16 : 14;
-      doc.setFont("helvetica", "bold");
+      doc.setFont("NotoSansSC", "bold");
       doc.setFontSize(size);
       doc.text(block.text, margin, cursorY);
       cursorY += size + 8;
-      doc.setFont("helvetica", "normal");
+      doc.setFont("NotoSansSC", "normal");
       doc.setFontSize(11);
       continue;
     }
     if (block.type === "paragraph") {
-      doc.setFont("helvetica", "normal");
+      doc.setFont("NotoSansSC", "normal");
       doc.setFontSize(11);
       const lines = doc.splitTextToSize(block.text, usableWidth);
       for (const line of lines) {
@@ -259,7 +273,7 @@ export async function downloadEvidencePackAsPdf(
       continue;
     }
     if (block.type === "listItem") {
-      doc.setFont("helvetica", "normal");
+      doc.setFont("NotoSansSC", "normal");
       doc.setFontSize(11);
       const wrapped = doc.splitTextToSize(block.text, usableWidth - 12);
       const bullet = block.ordered
@@ -273,7 +287,7 @@ export async function downloadEvidencePackAsPdf(
       continue;
     }
     if (block.type === "quote") {
-      doc.setFont("helvetica", "italic");
+      doc.setFont("NotoSansSC", "normal");
       doc.setFontSize(11);
       const lines = doc.splitTextToSize(block.text, usableWidth - 16);
       for (const line of lines) {
@@ -281,7 +295,7 @@ export async function downloadEvidencePackAsPdf(
         doc.text(line, margin + 12, cursorY);
         cursorY += 14;
       }
-      doc.setFont("helvetica", "normal");
+      doc.setFont("NotoSansSC", "normal");
       cursorY += 4;
       continue;
     }

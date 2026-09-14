@@ -19,7 +19,8 @@ import { cn } from "@/lib/utils";
 export type CitationMatchStatus =
   | "matched"
   | "fallback_article_only"
-  | "unmatched";
+  | "unmatched"
+  | "unverified";
 
 export interface CitationRefContract {
   doc_id: string;
@@ -49,6 +50,11 @@ const STATUS_META: Record<
     tone: "border-blaze-red/40 bg-blaze-red/10 text-blaze-red",
     ariaKey: "unmatched",
   },
+  unverified: {
+    icon: "?",
+    tone: "border-slate-500/40 bg-slate-500/10 text-slate-400",
+    ariaKey: "unverified",
+  },
 };
 
 export interface CitationChipProps {
@@ -59,8 +65,11 @@ export interface CitationChipProps {
 }
 
 export function CitationChip({ citation, showQuote = true, className }: CitationChipProps) {
-  const status = (citation.match_status ?? "matched") as CitationMatchStatus;
-  const meta = STATUS_META[status];
+  // Plan 2026-09-14 §4.4: a missing/unknown match_status must NOT default to
+  // `matched` (J05 — overclaiming evidence strength). Chips without a
+  // verification result render as unverified.
+  const status = (citation.match_status ?? "unverified") as CitationMatchStatus;
+  const meta = STATUS_META[status] ?? STATUS_META.unverified;
 
   // The viewer reads the article + scroll target from the URL hash +
   // ?hl= param (spec §4.4). quote_span is only meaningful when

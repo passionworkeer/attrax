@@ -1,5 +1,17 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
 import { renderEvidencePackMarkdown, downloadEvidencePack } from "@/lib/report-export-modules/evidence-pack";
+import { embedFont } from "@/lib/report-export-modules/shared";
+
+// J06: the PDF export now embeds the shared NotoSansSC font (same layer as
+// the compliance report). Mock it so tests don't fetch a 10MB TTF.
+vi.mock("@/lib/report-export-modules/shared", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/report-export-modules/shared")>();
+  return {
+    ...actual,
+    embedFont: vi.fn().mockResolvedValue(undefined),
+  };
+});
+void embedFont;
 
 describe("evidence-pack markdown rendering", () => {
   const sampleCitations = [
@@ -131,6 +143,25 @@ describe("downloadEvidencePack dispatcher", () => {
     // dispatcher test we can spy on the globalThis.document.body
     // appendChild to detect the download trigger.
     const appendChildSpy = vi.spyOn(document.body, "appendChild");
+    // embedFont (J06 shared-font fix) fetches the CJK TTF by URL; route
+    // non-regulation fetches to a stub binary so the font layer resolves.
+    const fontBytes = new Uint8Array([0x00, 0x01, 0x02, 0x03]);
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      const url = String(input);
+      if (url.includes("/fonts/")) {
+        return new Response(fontBytes, { status: 200 });
+      }
+      return new Response(
+        JSON.stringify({
+          id: "X",
+          official_citation: "X",
+          region: "EU",
+          license: "public",
+          articles: [],
+        }),
+        { status: 200, headers: { "content-type": "application/json" } },
+      );
+    });
     // Simpler: skip module-level mocking; instead verify the dispatcher
     // accepts the format arg without throwing.
     await expect(

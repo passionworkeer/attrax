@@ -349,11 +349,61 @@ function documentTypeFromName(name: string, contentType: string): DocumentType {
   return "pdf";
 }
 
+// Plan 2026-09-14 §4.4 (J04, first layer): the citation contract is
+// snake_case (`doc_id`/`article_id`/`match_status`/`official_citation`/
+// `quote_span`). Sessions persisted by the older backend build carry
+// camelCased keys (`docId`/`articleId`), which is what rendered
+// "Citation undefined (matched)" → /regulations/undefined. The BFF now
+// re-asserts snake_case at the boundary, but legacy stored sessions are
+// served verbatim — normalize here so every consumer (CitationChip,
+// evidence-pack export, coverage math) sees one shape. Entries missing a
+// usable doc/article id are dropped from the chip list instead of
+// rendering broken links; their claims stay visible in the report body.
+function normalizeCitationCollections(
+  reportPackage: UnknownRecord,
+): { citations: UnknownRecord[]; evidencePack: UnknownRecord[] } {
+  const toSnake = (entry: UnknownRecord): UnknownRecord => {
+    const item = { ...entry };
+    for (const [snake, camel] of [
+      ["doc_id", "docId"],
+      ["article_id", "articleId"],
+      ["official_citation", "officialCitation"],
+      ["quote_span", "quoteSpan"],
+      ["match_status", "matchStatus"],
+      ["quote_provenance", "quoteProvenance"],
+      ["canonical_excerpt", "canonicalExcerpt"],
+    ] as const) {
+      if (!(snake in item) && camel in item) {
+        item[snake] = item[camel];
+        delete item[camel];
+      }
+    }
+    return item;
+  };
+  const hasIds = (entry: UnknownRecord): boolean =>
+    text(entry.doc_id) !== "" && text(entry.article_id) !== "";
+  const normalizeList = (value: unknown): UnknownRecord[] =>
+    records(value).map(toSnake).filter(hasIds);
+  return {
+    citations: normalizeList(reportPackage.citations),
+    evidencePack: normalizeList(reportPackage.evidencePack ?? reportPackage.evidence_pack),
+  };
+}
+
 export function normalizeV1ScanResult(session: V1SessionData): ScanResult | undefined {
   if (!session.result) return undefined;
 
   const result = record(session.result);
-  const reportPackage = record(result.reportPackage);
+  const reportPackageRaw = record(result.reportPackage);
+  // J04: normalize citation collections (snake_case + id presence) once at
+  // the boundary so downstream consumers never see `docId`-shaped legacy
+  // entries or id-less "undefined" chips.
+  const citationCollections = normalizeCitationCollections(reportPackageRaw);
+  const reportPackage: UnknownRecord = {
+    ...reportPackageRaw,
+    citations: citationCollections.citations,
+    evidencePack: citationCollections.evidencePack,
+  };
   const complianceStatusRaw = result.complianceStatus;
   const complianceStatus =
     typeof complianceStatusRaw === "string" && complianceStatusRaw.length > 0
@@ -463,7 +513,7 @@ function truncateReport(report: string): { value: string; truncated: boolean } {
     riskPoints,
     checklist: buildChecklist(reportPackage),
     generatedAt,
-    reportPackage: result.reportPackage as ReportPackage | undefined,
+    reportPackage: reportPackage as ReportPackage | undefined,
     // Plan 2026-09-13 §6: checklist-mode scans carry v2 observations.
     // Remap imageId the same way riskPoints does (vision-image-N →
     // {sessionId}-image-N) so the checklist panel's image links match

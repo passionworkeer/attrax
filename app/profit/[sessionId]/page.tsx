@@ -179,8 +179,10 @@ export default function ProfitPage() {
     );
   }
 
+  // J11: no empty / undefined product names on the profit page either.
   const displayName =
-    locale === "en" ? result.productNameEn ?? result.productName : result.productName;
+    (locale === "en" ? result.productNameEn ?? result.productName : result.productName)?.trim() ||
+    (locale === "en" ? "Product (model TBD)" : "产品（型号待确认）");
 
   const financeValidation = result.reportPackage?.auditMetadata?.finance;
   const financeUnavailable =
