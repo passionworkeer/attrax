@@ -4,7 +4,8 @@
 import { createElement } from 'react'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, it, expect, vi } from 'vitest'
-import { getTranslations, t, TranslationProvider, useTranslation } from '@/lib/i18n'
+import { getTranslations, t, useTranslation } from '@/lib/i18n'
+import { BlazeLocaleProvider } from '@/components/blaze-hawks/locale'
 
 function flattenStrings(value: unknown, prefix = ''): Array<[string, string]> {
   if (typeof value === 'string') return [[prefix, value]]
@@ -212,7 +213,7 @@ describe('i18n locale switching', () => {
   })
 })
 
-describe('TranslationProvider and useTranslation', () => {
+describe('BlazeLocaleProvider and useTranslation', () => {
   afterEach(() => {
     vi.useRealTimers()
     localStorage.clear()
@@ -228,9 +229,9 @@ describe('TranslationProvider and useTranslation', () => {
   }
 
   it('detects a stored locale after mount', async () => {
-    localStorage.setItem('locale', 'en')
+    localStorage.setItem('complipilot-locale', 'en')
 
-    render(createElement(TranslationProvider, null, createElement(LocaleButton)))
+    render(createElement(BlazeLocaleProvider, null, createElement(LocaleButton)))
 
     expect(screen.getByRole('button').textContent).toContain('zh:')
 
@@ -240,11 +241,11 @@ describe('TranslationProvider and useTranslation', () => {
   })
 
   it('persists explicit locale changes from consumers', () => {
-    render(createElement(TranslationProvider, null, createElement(LocaleButton)))
+    render(createElement(BlazeLocaleProvider, null, createElement(LocaleButton)))
 
     fireEvent.click(screen.getByRole('button'))
 
-    expect(localStorage.setItem).toHaveBeenCalledWith('locale', 'en')
+    expect(localStorage.setItem).toHaveBeenCalledWith('complipilot-locale', 'en')
     expect(screen.getByRole('button').textContent).toContain('en:Submit:missing.key')
   })
 
@@ -255,7 +256,7 @@ describe('TranslationProvider and useTranslation', () => {
     }
 
     expect(() => render(createElement(MissingProvider))).toThrow(
-      'useTranslation must be used within a TranslationProvider'
+      'useBlazeLocale must be used within BlazeLocaleProvider'
     )
   })
 })

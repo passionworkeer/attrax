@@ -9,11 +9,11 @@ import { expect, test } from "@playwright/test";
  *     `中/EN` 按钮只切 BlazeLocaleProvider 状态(也即 nav 高亮/动画等纯展示态),
  *     不影响文案本身。
  *   - `/zh` 与 `/en` 走 app/[locale]/page.tsx,服务端用 lib/i18n.tsx 的 `t(key, locale)`
- *     (TranslationProvider 体系的非-React 服务端分支)渲染 home.subtitle:
+ *     (i18n 模块的非-React 服务端分支)渲染 home.subtitle:
  *       zh: "想出海？先烧毁！"
  *       en: "Think Before You Expand"
  *
- * 本 spec 测的是 [locale] 路由的服务端翻译输出(TranslationProvider 的 SSR 分支),
+ * 本 spec 测的是 [locale] 路由的服务端翻译输出(i18n 模块的 SSR 分支),
  * 通过直接访问 /zh 与 /en 验证。
  *
  * 不验证 <html lang>:app/layout.tsx 硬编码 lang="zh-CN",BlazeLocaleProvider 仅在

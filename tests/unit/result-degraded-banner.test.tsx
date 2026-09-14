@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { DegradedBanner } from "@/components/result/DegradedBanner";
 import { SourceNotice } from "@/components/result/SourceNotice";
-import { TranslationProvider } from "@/lib/i18n";
+import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 
 /**
  * P0-1 渲染闭环回归测试（2026-09-10 审计 1.3 / 3.9）。
@@ -10,7 +10,7 @@ import { TranslationProvider } from "@/lib/i18n";
  */
 
 function wrap(ui: React.ReactElement) {
-  return render(<TranslationProvider>{ui}</TranslationProvider>);
+  return render(<BlazeLocaleProvider>{ui}</BlazeLocaleProvider>);
 }
 
 describe("DegradedBanner", () => {
