@@ -597,7 +597,15 @@ class ScanService:
                 error=None,
             )
         )
-        lease_task = asyncio.create_task(self._lease_heartbeat(job.job_id, job.session_id))
+        # P1-9: register the heartbeat so wait_for_idle() drains it during
+        # shutdown. Without tracking, lifespan's graceful-shutdown path
+        # (main.py) would return immediately and the heartbeat could outlive
+        # the executor's hard shutdown. Binding session_id keeps the cleanup
+        # callback consistent with the rest of the tracking bookkeeping.
+        lease_task = asyncio.create_task(
+            self._lease_heartbeat(job.job_id, job.session_id)
+        )
+        self._track_task(lease_task, session_id=job.session_id)
         try:
             raw = await self.runner(self._build_runner_payload(job, progress_callback=self._make_progress_callback(job)))
             current_session = self.backend.get_session(job.session_id)
