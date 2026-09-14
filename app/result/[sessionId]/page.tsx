@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams, useSearchParams } from "next/navigation";
@@ -139,10 +139,14 @@ export default function ResultPage() {
     null;
   // Reset intrinsic-ratio tracking when the displayed photo changes so a
   // 4:3 → 16:9 switch doesn't briefly render the new image letterboxed
-  // against the old ratio.
-  useEffect(() => {
+  // against the old ratio. Derived state during render (React's documented
+  // "adjust state when a prop changes" pattern): the captured size belongs
+  // to the *previous* image until the new <img> onLoad fires.
+  const [sizedForImage, setSizedForImage] = useState<string | null>(null);
+  if (sizedForImage !== derivedAnchorImageId) {
+    setSizedForImage(derivedAnchorImageId);
     setCanvasImageSize(null);
-  }, [derivedAnchorImageId]);
+  }
   const canvasAspectRatio = canvasImageSize
     ? `${canvasImageSize.width} / ${canvasImageSize.height}`
     : "4 / 3";

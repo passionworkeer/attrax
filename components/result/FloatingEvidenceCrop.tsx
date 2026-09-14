@@ -50,6 +50,7 @@ export function FloatingEvidenceCrop({
 }: FloatingEvidenceCropProps) {
   const [loaded, setLoaded] = useState(false);
   const [dismissed, setDismissed] = useState(false);
+  const [probedUrl, setProbedUrl] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
 
   // Zoom factor: how much bigger the crop shows the region than it appears
@@ -59,10 +60,17 @@ export function FloatingEvidenceCrop({
   const zoom = Math.min(4, Math.max(2, 0.9 / Math.max(regionShare, 0.05)));
   const worthShowing = regionShare < 0.85;
 
-  useEffect(() => {
-    if (!imageUrl) return;
+  // Derived state during render (React's documented "adjust state when a
+  // prop changes" pattern): when the target image changes, drop the stale
+  // probe state and restart dismissal — no setState-in-effect cascade.
+  if (probedUrl !== imageUrl) {
+    setProbedUrl(imageUrl);
     setLoaded(false);
     setDismissed(false);
+  }
+
+  useEffect(() => {
+    if (!imageUrl) return;
     const probe = new window.Image();
     probe.onload = () => setLoaded(true);
     probe.onerror = () => setLoaded(false);

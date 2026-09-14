@@ -83,6 +83,18 @@ export function useScanPolling(
 ) {
   const [status, setStatus] = useState<ScanStatus | null>(null);
   const [displayProgress, setDisplayProgress] = useState(0);
+  // J01: `completing` is mirrored into state so the returned displayProgress
+  // can branch on it without reading a ref during render (lint rule). The
+  // ref remains the source of truth for the animation loop.
+  const [isCompleting, setIsCompleting] = useState(false);
+  /**
+   * Wall-clock timestamp (ms) of the poll response that FIRST reported the
+   * completing state. The burning page uses this as the hold-timer origin —
+   * "when did we learn it's done" — instead of calling Date.now() during
+   * render (React purity rules forbid that; capturing in the poll event
+   * handler is the sanctioned spot).
+   */
+  const [completedAt, setCompletedAt] = useState<number | null>(null);
   const targetProgressRef = useRef(0);
   const stageKeyRef = useRef<string>("queued");
   const stageEnteredAtRef = useRef<number>(0);
@@ -231,6 +243,15 @@ export function useScanPolling(
           isDisplayableTerminalStatus(data.status) && data.resultReady === true;
         if (!cancelled) {
           setStatus(data);
+          setIsCompleting(isCompletingRef.current);
+          // Capture the completion timestamp once, in the poll event
+          // handler (pure-render compliant). Cleared if a later poll flips
+          // back (e.g. a revision re-run restarts processing).
+          if (isCompletingRef.current && completedAt === null) {
+            setCompletedAt(Date.now());
+          } else if (!isCompletingRef.current && completedAt !== null) {
+            setCompletedAt(null);
+          }
         }
 
         if (data.status !== "processing") {
@@ -254,10 +275,16 @@ export function useScanPolling(
     return () => {
       cancelled = true;
     };
-  }, [sessionId, accessToken]);
+  }, [sessionId, accessToken, completedAt]);
 
   return {
     status,
+    /**
+     * Timestamp (ms) of the first poll response that reported the completing
+     * state; null while non-complete. Serves as the burning page's hold-timer
+     * origin (plan §4.1 (4): hold ~600ms from the observed completion).
+     */
+    completedAt,
     /**
      * The simulator's progress rounded for display. Capped at 99 while the
      * scan is NOT complete — plan 2026-09-14 §4.1 (bug J01): once the backend
@@ -266,7 +293,7 @@ export function useScanPolling(
      * real 100 and the burning page can complete its hold-then-navigate
      * sequence. Failures stay capped (no fake 100 on failure paths).
      */
-    displayProgress: isCompletingRef.current
+    displayProgress: isCompleting
       ? Math.round(Math.min(100, displayProgress))
       : Math.min(HARD_DISPLAY_CAP, Math.round(displayProgress)),
   };

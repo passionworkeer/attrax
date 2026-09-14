@@ -130,7 +130,11 @@ export default function BurningPage() {
     }
   }, [isDemoSession, sessionId]);
 
-  const { status, displayProgress } = useScanPolling(sessionId, accessToken);
+  // Hold-timer origin: the poller captures the timestamp of the FIRST
+  // response that reported completing (event-handler context — pure-render
+  // compliant). The page just consumes it; no Date.now() during render.
+  const { status, displayProgress, completedAt: holdReadyAt } = useScanPolling(sessionId, accessToken);
+
   const displayStatus = isDemoSession
     ? {
         sessionId,
@@ -157,7 +161,6 @@ export default function BurningPage() {
   // 100 (not from when the backend said ready), so the user always sees the
   // completed bar before the route change.
   const HUNDRED_PERCENT_HOLD_MS = 600;
-  const [holdReadyAt, setHoldReadyAt] = useState<number | null>(null);
   const [navigatedRef, setNavigated] = useState(false);
   const realProgressComplete =
     !isDemoSession &&
@@ -167,14 +170,6 @@ export default function BurningPage() {
     status.result != null;
   const displayShowsComplete =
     !isDemoSession && progress >= 100;
-
-  useEffect(() => {
-    if (!realProgressComplete) {
-      setHoldReadyAt(null);
-      return;
-    }
-    setHoldReadyAt(Date.now());
-  }, [realProgressComplete]);
 
   useEffect(() => {
     if (
