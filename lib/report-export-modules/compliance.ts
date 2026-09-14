@@ -12,8 +12,10 @@ import {
   TextRun,
   WidthType,
 } from "docx";
-import type { ComplianceReportResult } from "@/lib/types";
+import type { ComplianceReportResult, ScanResult } from "@/lib/types";
 import { localizeComplianceReportResult } from "@/lib/report-localization";
+import { buildInspectionResultViewModel } from "@/lib/result/inspection-view-model";
+import { appendInspectionAnnexToPdf } from "./inspection-annex";
 import type { Locale } from "./shared";
 import {
   complianceStatusLabel,
@@ -153,6 +155,30 @@ export async function downloadReportAsPdf(input: ComplianceReportResult, locale?
       await yieldToMainThread();
     }
     y = yRef.cur;
+
+    // ── Image evidence annex (plan 2026-09-14 §4.5, J06) ──────────────────
+    // Only checklist-mode scans carry inspection observations/findings; demo
+    // and legacy sessions leave them undefined and the annex is skipped
+    // (a VM over an empty entity set adds nothing but the disclaimer).
+    const rawResult = input as Partial<ScanResult> & ComplianceReportResult;
+    if ((rawResult.inspectionObservations?.length ?? 0) > 0 || (rawResult.inspectionFindings?.length ?? 0) > 0) {
+      try {
+        const inspectionVM = buildInspectionResultViewModel({
+          result: rawResult as unknown as ScanResult,
+          sessionId: result.sessionId,
+        });
+        await appendInspectionAnnexToPdf(doc, inspectionVM, {
+          sessionId: result.sessionId,
+          locale: L,
+          margin,
+        });
+      } catch (annexError) {
+        // The annex is additive — a failure here must never destroy the core
+        // report the user already has. Log-and-continue (J06: 导出前校验的
+        // 降级路径要明确，不静默也不中断主报告).
+        console.warn("[report-export] inspection annex skipped:", annexError);
+      }
+    }
 
     // ── Footer on each page ────────────────────────────────
     const pageCount = doc.getNumberOfPages();

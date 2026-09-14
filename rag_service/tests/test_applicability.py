@@ -206,3 +206,41 @@ class TestProductFacts:
             battery_wh=1.98,
         )
         assert facts.battery == "confirmed"
+
+
+class TestBatteryAnchorKeyPoints:
+    """J08 red-team residual: the battery-passport KB anchor's key_points
+    ALSO feeds the LLM prompt (unlike the applicability module, which is
+    code). The 2028-08-18 LMT date survived there after the rules-engine
+    fix — this test pins the anchor YAML to the corrected 2027-02-18 date
+    so it cannot silently return."""
+
+    def test_battery_anchor_key_points_use_2027_date(self):
+        import yaml
+        from pathlib import Path
+
+        anchor_path = (
+            Path(__file__).resolve().parents[2]
+            / "data"
+            / "kb"
+            / "anchors"
+            / "EU-2023-1542-battery.yaml"
+        )
+        entry = yaml.safe_load(anchor_path.read_text(encoding="utf-8"))
+        joined = " ".join(str(point) for point in entry.get("key_points", []))
+        assert "2027-02-18" in joined
+        assert "2028" not in joined
+
+    def test_all_kb_anchor_files_free_of_2028_passport_dates(self):
+        import yaml
+        from pathlib import Path
+
+        anchors_root = (
+            Path(__file__).resolve().parents[2] / "data" / "kb" / "anchors"
+        )
+        for path in anchors_root.glob("*.yaml"):
+            entry = yaml.safe_load(path.read_text(encoding="utf-8"))
+            points = entry.get("key_points") or []
+            joined = " ".join(str(point) for point in points)
+            # The old wrong LMT date must not reappear in any anchor.
+            assert "2028-08-18" not in joined, f"{path.name} still quotes 2028-08-18"

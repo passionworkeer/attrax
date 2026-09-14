@@ -244,6 +244,14 @@ export interface CreateScanInput {
   markets: string[];
   images: Array<{ buffer: Buffer; originalName: string; mimeType: string }>;
   documents?: Array<{ buffer: Buffer; originalName: string; mimeType: string }>;
+  /**
+   * J09 (plan §5.4): user-stated product facts collected by the upload
+   * wizard's conditional questions, e.g. { battery: "否" }. Forwarded to
+   * the backend so conditionally-applicable checks (battery compartment
+   * closure when the product has no battery) are closed instead of
+   * demanding photos of nonexistent parts.
+   */
+  declaredFacts?: Record<string, string>;
 }
 
 export interface CreatedScanData {
@@ -259,6 +267,26 @@ export async function createScan(input: CreateScanInput): Promise<CreatedScanDat
   formData.set("product", input.product ?? "");
   formData.set("category", input.category);
   formData.set("markets", JSON.stringify(input.markets));
+  // J09: user-declared facts as a JSON form field (snake_case on the wire
+  // matches the backend `declared_facts` Form parameter). Only a bounded
+  // string→string object is sent; anything else is dropped.
+  if (
+    input.declaredFacts &&
+    typeof input.declaredFacts === "object" &&
+    !Array.isArray(input.declaredFacts)
+  ) {
+    const bounded: Record<string, string> = {};
+    for (const [key, value] of Object.entries(input.declaredFacts).slice(0, 32)) {
+      const keyText = String(key).slice(0, 64);
+      const valueText = String(value ?? "").slice(0, 200);
+      if (keyText && valueText) {
+        bounded[keyText] = valueText;
+      }
+    }
+    if (Object.keys(bounded).length > 0) {
+      formData.set("declared_facts", JSON.stringify(bounded));
+    }
+  }
 
   for (const image of input.images) {
     formData.append(

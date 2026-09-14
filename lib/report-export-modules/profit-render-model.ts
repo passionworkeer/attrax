@@ -206,8 +206,6 @@ const I18N = {
     unitPerEn: "/unit",
     unitMonth: "/月",
     unitMonthEn: "/month",
-    unitDailyCap: "单日上限",
-    unitDailyCapEn: "daily max",
     bareCaveat: "↑ 此数未扣除期望风险敞口（潜在罚款 / 扣押 / 召回）",
     bareCaveatEn: "↑ Does not deduct expected risk exposure (potential fines, seizure, recall)",
     costBoardEyebrow: "PAGE 05 · 数据驱动",
@@ -295,8 +293,13 @@ export function buildProfitRenderModel(args: {
   // ── 4 metric cards ────────────────────────────────────────────────────────
   const visibleCost = "¥0";
   const visibleCostEn = "¥0";
-  const maxExposure = "¥180万";
-  const maxExposureEn = "¥1.8M";
+  // J07 (plan 2026-09-14 §4.6): fine amounts need jurisdiction, violation type,
+  // currency, period AND a legal source before they can render as a number.
+  // Without structured fine inputs the bare-mode exposure card states the
+  // dependency instead of inventing a ¥180万/¥1.8M figure (the exact J07
+  // violation the 2026-09-14 review called out).
+  const maxExposure = "待确认";
+  const maxExposureEn = "To confirm";
 
   const metrics: ProfitMetricCard[] = profitMode === "bare"
     ? [
@@ -318,7 +321,8 @@ export function buildProfitRenderModel(args: {
           label: isZh ? i.maxExposure : i.maxExposureEn,
           value: isZh ? maxExposure : maxExposureEn,
           tone: "orange",
-          unit: isZh ? i.unitDailyCap : i.unitDailyCapEn,
+          // J07: no invented daily cap; the unit states the missing input.
+          unit: isZh ? "需适用违法行销与辖区信息" : "Needs violation + jurisdiction",
         },
         {
           label: isZh ? i.aiDecision : i.aiDecisionEn,

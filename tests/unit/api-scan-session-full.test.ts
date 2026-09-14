@@ -84,8 +84,7 @@ describe("GET /api/scan/[sessionId] - Extended Coverage", () => {
   });
 
   describe("Result structure variations", () => {
-    it("maps backend compliance statuses to the new frontend score contract", async () => {
-      const statuses = [
+    it("maps backend compliance statuses to the new frontend score contract", async () => {      const statuses = [
         ["PASS", 90, "A"],
         ["WARN", 65, "C"],
         ["REJECTED", 35, "D"],

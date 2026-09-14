@@ -124,6 +124,7 @@ def run_compliance_graph(
     documents: list[dict] = None,
     progress_callback: Optional[Callable[[str, str, int], None]] = None,
     session_id: str = "scan",
+    declared_facts: dict | None = None,
 ) -> dict:
     """Run the collapsed three-step pipeline.
 
@@ -140,6 +141,9 @@ def run_compliance_graph(
             burning page's progress bar (audit 2026-09-13 §4.1 — the prior
             version only emitted 10/100). The callback runs on the executor
             thread; the caller is responsible for thread safety.
+        declared_facts: J09 user-stated product facts ({"battery": "absent"})
+            collected by the upload wizard; findings_builder uses them to
+            close checks that presuppose an absent component.
 
     Returns:
         dict with final_report, status, agent_trace, retrieved_chunks,
@@ -154,6 +158,8 @@ def run_compliance_graph(
         images = []
     if documents is None:
         documents = []
+    if declared_facts is None:
+        declared_facts = {}
 
     state = initial_state(
         query=query,
@@ -164,6 +170,7 @@ def run_compliance_graph(
         images=images,
         documents=documents,
         session_id=session_id,
+        declared_facts=declared_facts,
     )
 
     _emit(progress_callback, "vision", "running", STAGE_PROGRESS["vision"][0])

@@ -152,13 +152,22 @@ _RULES: dict[tuple[str, str], dict[str, str]] = {
 # Per-semantic display rank for picking the representative observation of a
 # check across multiple images. IMPORTANT (J02): ``absent_in_visible_scope``
 # is NOT globally the most severe state anymore — it only carries weight in
-# the required_presence semantic. For hazard/record checks the “saw it
-# clearly” observation must win so a present hazard is never short-circuited
+# the required_presence semantic, and even there it ranks BELOW
+# present_readable: for required_presence any readable sighting satisfies
+# presence (a photo that READ the field beats a different photo whose label
+# area happened not to carry it). For hazard/record checks the "saw it
+# clearly" observation must win so a present hazard is never short-circuited
 # by other images, and a readable record suppresses reshoot noise.
 _RANK_BY_SEMANTIC: dict[str, dict[str, int]] = {
     "required_presence": {
-        "absent_in_visible_scope": 5,
-        "present_readable": 4,     # any readable sighting satisfies presence
+        # Any present_readable sighting satisfies the presence check (the
+        # module docstring + the §4.2 truth table row "整个标签清晰" — the
+        # field was READ, so a different photo showing a label area without
+        # it must NOT override that read with an absent suspected_issue).
+        # absent_in_visible_scope therefore ranks BELOW present_readable: it
+        # only becomes the representative when NO image read the field.
+        "present_readable": 5,      # the read itself satisfies presence
+        "absent_in_visible_scope": 4,
         "present_unreadable": 3,
         "occluded": 2,
         "not_in_view": 1,

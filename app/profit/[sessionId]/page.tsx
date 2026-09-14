@@ -344,10 +344,13 @@ export default function ProfitPage() {
             unit: locale === "zh" ? "/单个产品" : "/unit",
           },
           {
-            label: locale === "zh" ? "最高风险暴露" : "Maximum exposure",
-            value: locale === "zh" ? "¥180万" : "¥1.8M",
+            // J07 (plan §4.6): fine amounts need jurisdiction, violation type,
+            // currency, period AND a legal source before they can render as a
+            // number. State the dependency instead of inventing a figure.
+            label: locale === "zh" ? "罚款风险" : "Fine exposure",
+            value: locale === "zh" ? "待确认" : "To confirm",
             tone: "text-[var(--blaze-orange)]",
-            unit: locale === "zh" ? "单日上限" : "daily max",
+            unit: locale === "zh" ? "需适用违法行销与辖区信息" : "Needs violation + jurisdiction",
           },
           {
             label: locale === "zh" ? "AI 决策" : "AI decision",

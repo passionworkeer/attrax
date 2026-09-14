@@ -186,6 +186,35 @@ export async function POST(request: Request): Promise<Response> {
     return badInputResponse("INVALID_REQUEST", "Invalid scan fields.");
   }
 
+  // J09 (plan §5.4): forward the upload wizard's conditional-question
+  // answers (userDeclaredFacts JSON) to the backend so conditionally
+  // applicable checks can be closed (e.g. toy declared no battery → the
+  // battery-compartment reshoot finding is suppressed instead of demanding
+  // a photo of a part that does not exist). Malformed JSON is ignored —
+  // the facts are an applicability enhancement, never a hard requirement.
+  let declaredFacts: Record<string, string> | undefined;
+  const declaredFactsRaw = formData.get("userDeclaredFacts");
+  if (typeof declaredFactsRaw === "string" && declaredFactsRaw.trim()) {
+    try {
+      const parsed: unknown = JSON.parse(declaredFactsRaw);
+      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
+        const bounded: Record<string, string> = {};
+        for (const [key, value] of Object.entries(parsed as Record<string, unknown>).slice(0, 32)) {
+          const keyText = String(key).slice(0, 64);
+          const valueText = String(value ?? "").slice(0, 200);
+          if (keyText && valueText) {
+            bounded[keyText] = valueText;
+          }
+        }
+        if (Object.keys(bounded).length > 0) {
+          declaredFacts = bounded;
+        }
+      }
+    } catch {
+      // Ignore malformed declared facts — the scan proceeds without them.
+    }
+  }
+
   const [images, documents] = await Promise.all([
     Promise.all(
       imageFiles.map(async (file) => ({
@@ -241,6 +270,7 @@ export async function POST(request: Request): Promise<Response> {
       markets,
       images,
       documents,
+      declaredFacts,
     });
 
     const payload: {

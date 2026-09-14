@@ -52,7 +52,7 @@ function makeFinancialSummary(overrides: Partial<FinancialSummary> = {}): Financ
     monthlyNetProfit: '¥71910',
     targetVolumeLabel: '销量基准 3,000 台 / 月',
     riskExposureItems: [
-      '单日最高罚款 ¥180 万',
+      '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算',
       '全店永久封停',
       '货物强制扣毁',
       '跨境集体诉讼',
@@ -192,7 +192,9 @@ describe('buildProfitRenderModel — metric cards (compliant)', () => {
 
 // ─── 4 metric cards (bare mode) + bare caveat ─────────────────────────────
 describe('buildProfitRenderModel — metric cards (bare)', () => {
-  it('renders the bare-mode card set: heroic / ¥0 / ¥180万 / 先整改', () => {
+  // J07 (2026-09-14 §4.6): fine figures need jurisdiction/violation/source
+  // inputs; the exposure card now states 待确认 instead of ¥180万.
+  it('renders the bare-mode card set: heroic / ¥0 / 待确认 / 先整改', () => {
     const m = buildProfitRenderModel({
       result: makeScanResult(),
       financialSummary: makeFinancialSummary(),
@@ -203,9 +205,28 @@ describe('buildProfitRenderModel — metric cards (bare)', () => {
     expect(m.metrics[0]!.value).toBe('¥11.48') // estimatedHeroicProfit carried over
     expect(m.metrics[1]!.value).toBe('¥0')      // surface compliance cost
     expect(m.metrics[1]!.isCore).toBe(true)     // featured card in bare mode
-    expect(m.metrics[2]!.value).toBe('¥180万')
+    expect(m.metrics[2]!.value).toBe('待确认')
     expect(m.metrics[3]!.value).toBe('先整改')
     expect(m.metrics[3]!.tone).toBe('alert')
+  })
+
+  it('J07 regression: bare-mode export never carries a hard-coded fine figure', () => {
+    for (const locale of ['zh', 'en'] as const) {
+      const m = buildProfitRenderModel({
+        result: makeScanResult(),
+        financialSummary: makeFinancialSummary(),
+        profitMode: 'bare',
+        locale,
+      })
+      const joined = [
+        ...m.metrics.map((card) => `${card.label}|${card.value}|${card.unit ?? ''}`),
+        ...m.riskExposureItems.map((item) => item.label),
+      ].join('|')
+      expect(joined).not.toContain('¥180万')
+      expect(joined).not.toContain('¥1.8M')
+      expect(joined).not.toContain('单日最高罚款')
+      expect(joined).not.toContain('Daily maximum fine')
+    }
   })
 
   it('attaches the bare-risk caveat only to the first card in bare mode', () => {
@@ -348,8 +369,9 @@ describe('buildProfitRenderModel — risk exposure', () => {
       profitMode: 'compliant',
       locale: 'zh',
     })
+    // J07: qualitative exposure — no invented fine figure in the list.
     expect(m.riskExposureItems.map((r) => r.label)).toEqual([
-      '单日最高罚款 ¥180 万',
+      '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算',
       '全店永久封停',
       '货物强制扣毁',
       '跨境集体诉讼',
@@ -387,7 +409,7 @@ describe('buildProfitRenderModel — risk exposure', () => {
       result: makeScanResult(),
       financialSummary: makeFinancialSummary({
         riskExposureItemsEn: [
-          'Daily maximum fine ¥1.8M',
+          'Fine amounts depend on violation and jurisdiction',
           'Permanent store suspension',
           'Mandatory cargo seizure',
           'Cross-border class action',
@@ -397,7 +419,7 @@ describe('buildProfitRenderModel — risk exposure', () => {
       locale: 'en',
     })
     expect(m.riskExposureItems.map((r) => r.label)).toEqual([
-      'Daily maximum fine ¥1.8M',
+      'Fine amounts depend on violation and jurisdiction',
       'Permanent store suspension',
       'Mandatory cargo seizure',
       'Cross-border class action',

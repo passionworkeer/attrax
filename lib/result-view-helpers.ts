@@ -174,6 +174,13 @@ export function scanResultToRealComplianceView(
     })),
     riskPoints: riskPoints,
     checklist: result.checklist ?? [],
+    // Plan 2026-09-14 §4.5 (J06): forward the v2 inspection entities so the
+    // report exports can append the 图像证据附录 (image annex) from the same
+    // unified VM the result page renders. Demo/legacy payloads leave these
+    // undefined and the export skips the annex without error.
+    inspectionObservations: result.inspectionObservations,
+    selectedCheckIds: result.selectedCheckIds,
+    inspectionFindings: result.inspectionFindings,
     generatedAt: result.generatedAt,
     reportPackage: result.reportPackage,
     modelInfo: {

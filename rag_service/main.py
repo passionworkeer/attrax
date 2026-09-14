@@ -578,8 +578,14 @@ async def _run_scan_request(
     req: ScanRequest,
     progress_callback=None,
     session_id: str = "scan",
+    declared_facts: dict | None = None,
 ) -> ScanResponse:
-    """Run the main compliance scan endpoint."""
+    """Run the main compliance scan endpoint.
+
+    ``declared_facts`` (J09) are user-stated product facts forwarded from the
+    stored application payload; they flow into the pipeline state so
+    findings_builder can close checks presupposing an absent component.
+    """
     if not req.query.strip():
         raise HTTPException(status_code=400, detail="query is required")
 
@@ -650,6 +656,7 @@ async def _run_scan_request(
                     documents=all_docs,
                     progress_callback=progress_callback,
                     session_id=session_id,
+                    declared_facts=declared_facts or {},
                 ),
             ),
             timeout=_SCAN_TIMEOUT_SECS,
@@ -704,6 +711,7 @@ async def _run_public_scan_payload(payload: dict) -> ScanResponse:
         ),
         progress_callback=payload.get("progressCallback"),
         session_id=str(payload.get("session_id") or "scan"),
+        declared_facts=payload.get("declared_facts", {}),
     )
 
 

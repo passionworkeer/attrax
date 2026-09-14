@@ -21,6 +21,11 @@ Three-state match_status (spec §4.3):
   - ``unmatched``              — article id is unknown or quote empty.
                                  Chip is flagged ✗, no navigation.
 
+J08 source-kind gate (plan 2026-09-14 §4.4 layer 3): a verbatim hit against
+an ``source_kind: unverified`` regulation (a summary never checked against
+the primary source) is downgraded from ``matched`` to
+``fallback_article_only`` — summaries must not be presented as 已对照原文.
+
 Performance: 50 citations × ~5KB article × 200-char quote < 50ms in pure
 Python (string find + a couple of normalize passes).
 """
@@ -232,6 +237,15 @@ def match_citations(
         entry. Entries missing `doc_id`/`article_id` are left untouched
         and counted as `unmatched`.
 
+    J08 source-kind gate (plan 2026-09-14 §4.4 layer 3): when the article's
+    regulation carries ``source_kind: unverified`` (or the legacy missing
+    value), the article body is a SUMMARY that was never checked against the
+    primary source. A verbatim string hit against such text is NOT a
+    verification against the official wording, so ``matched`` is downgraded
+    to ``fallback_article_only`` (article located; quote not verbatim-
+    verified). Verified sources (``official_verbatim`` /
+    ``official_summary`` / ``curated_summary``) keep the full matched flow.
+
     The matched-status distribution is logged once per call so reviewers
     can spot regressions (target ≥ 70% matched per spec §7.4).
     """
@@ -241,6 +255,18 @@ def match_citations(
         article_loader_module = article_loader
 
     cache = cache if cache is not None else {}
+
+    # (doc_id) -> verbatim-allowed flag, cached per call alongside the
+    # article-text cache so a 50-citation scan does not re-query governance
+    # metadata per entry.
+    verbatim_allowed: dict[str, bool] = {}
+
+    def _allows_verbatim(doc_id: str) -> bool:
+        if doc_id not in verbatim_allowed:
+            verbatim_allowed[doc_id] = bool(
+                article_loader_module.is_verbatim_allowed(doc_id)
+            )
+        return verbatim_allowed[doc_id]
 
     matched = fallback = unmatched = 0
     for entry in citations:
@@ -278,6 +304,15 @@ def match_citations(
         # `fallback_article_only` here so the front-end rendering is
         # consistent regardless of whether the LLM emitted `""`.
         if not quote and status == "matched":
+            entry["quote_span"] = None
+            entry["match_status"] = "fallback_article_only"
+            fallback += 1
+            continue
+
+        # J08 source-kind gate: an unverified regulation's body is a
+        # summary, not official text — a verbatim hit against it is article
+        # location only, never "已对照原文".
+        if status == "matched" and not _allows_verbatim(doc_id):
             entry["quote_span"] = None
             entry["match_status"] = "fallback_article_only"
             fallback += 1

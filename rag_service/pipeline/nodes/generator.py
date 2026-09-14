@@ -562,14 +562,25 @@ def generator_node(state: GraphState) -> dict:
         # DETERMINISTICALLY from the verified observations + the profile's
         # deferred-evidence checks — the model never writes these. Every
         # finding cites its observations and profile legal anchors.
+        # J09: the user-declared facts (upload wizard conditional questions)
+        # flow in via the runner payload so checks presupposing an absent
+        # component (battery=absent → 电池仓) are closed instead of demanding
+        # a photo of a part that does not exist.
         if report_package.get("observations"):
             from rag_service.pipeline.nodes.findings_builder import build_findings
 
+            declared_facts = state.get("declared_facts") or {}
+            if not isinstance(declared_facts, dict):
+                declared_facts = {}
             try:
                 report_package["findings"] = build_findings(
                     session_id=str(state.get("session_id") or "scan"),
                     category=category,
                     observations=report_package["observations"],
+                    declared_facts={
+                        str(key): str(value)
+                        for key, value in declared_facts.items()
+                    },
                 )
             except Exception as exc:
                 logger.warning("findings builder failed: %s", exc)

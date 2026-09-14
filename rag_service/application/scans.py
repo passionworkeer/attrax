@@ -74,6 +74,37 @@ class ScanSubmission(BaseModel):
     category: str = Field(min_length=1, max_length=100)
     markets: list[str] = Field(min_length=1, max_length=_MAX_MARKETS_PER_SCAN)
     uploads: list[SubmittedUpload] = Field(min_length=1, max_length=13)
+    # J09 (2026-09-14): user-stated product facts, e.g.
+    # ``{"battery": "absent"}``. The upload wizard collects these from the
+    # category's conditional questions; the findings builder uses them to
+    # close checks that presuppose an absent component instead of demanding
+    # a photo of a part that does not exist. Bounded (32 keys, 200-char
+    # values) so a hostile client cannot stuff the job record.
+    declared_facts: dict[str, str] = Field(
+        default_factory=dict,
+        max_length=32,
+    )
+
+
+def clamp_declared_facts(raw: Any) -> dict[str, str]:
+    """Normalize a client-supplied declared-facts JSON blob.
+
+    Accepts a JSON object of {fact_key: answer}; every key/value is coerced
+    to a bounded string. Non-dict input, oversized payloads, and non-scalar
+    values are dropped (never a 500 — the facts are an enhancement, not a
+    required field).
+    """
+    if not isinstance(raw, Mapping):
+        return {}
+    out: dict[str, str] = {}
+    for key, value in raw.items():
+        if len(out) >= 32:
+            break
+        key_text = str(key).strip()[:64]
+        value_text = str(value).strip()[:200]
+        if key_text and value_text:
+            out[key_text] = value_text
+    return out
 
 
 @dataclass(frozen=True)
@@ -227,6 +258,7 @@ class ScanService:
                     category=submission.category,
                     markets=markets,
                     upload_ids=[upload.upload_id for upload in uploads],
+                    declared_facts=dict(submission.declared_facts),
                 )
             )
             self.backend.append_audit(
@@ -452,8 +484,11 @@ class ScanService:
         job_id = f"job_{uuid.uuid4().hex}"
         upload_ids = [u.upload_id for u in self.backend.list_uploads(session_id)]
         # The original job is deleted on completion, so recover the
-        # submission context from the session's persisted result.
+        # submission context from the session's persisted result. The
+        # user-declared facts survive the revision re-run: they were stated
+        # once on the upload page and stay true for the same product.
         query, product = self._revision_job_fields(session)
+        declared_facts = self._revision_declared_facts(session)
         self.backend.save_job(
             ScanJob.new(
                 job_id=job_id,
@@ -463,6 +498,7 @@ class ScanService:
                 category=session.category,
                 markets=list(session.markets),
                 upload_ids=upload_ids,
+                declared_facts=declared_facts,
             )
         )
         # The revision job carries its own marker in last_error so a crash
@@ -512,6 +548,29 @@ class ScanService:
         query = str(result.get("query") or result.get("complianceReport") or "").strip()
         product = str(result.get("productName") or "").strip()
         return (query or "compliance re-check")[:2000], (product or "product")[:500]
+
+    @staticmethod
+    def _revision_declared_facts(session: ScanSession) -> dict[str, str]:
+        """Recover the user-declared facts for a revision job.
+
+        The facts were persisted with the original job; after completion the
+        job record is gone, so the revision re-run reads them from the
+        session's persisted result (``declaredFacts``, written by
+        `_normalize_result`). Bounded the same way as the create path.
+        """
+        result = session.result if isinstance(session.result, Mapping) else {}
+        raw = result.get("declaredFacts")
+        if not isinstance(raw, Mapping):
+            return {}
+        out: dict[str, str] = {}
+        for key, value in raw.items():
+            if len(out) >= 32:
+                break
+            key_text = str(key).strip()[:64]
+            value_text = str(value).strip()[:200]
+            if key_text and value_text:
+                out[key_text] = value_text
+        return out
 
     async def _run_job(self, job_id: str) -> None:
         existing = self.backend.get_job(job_id)
@@ -827,6 +886,10 @@ class ScanService:
             "images": images,
             "pdfs": pdfs,
             "documents": documents,
+            # J09: user-declared product facts flow through to the pipeline so
+            # findings_builder can close checks presupposing an absent
+            # component (battery=absent → no battery-compartment reshoot).
+            "declared_facts": dict(job.declared_facts or {}),
             # Scan identity: flows into observation ids so hotspots carry the
             # session + image identity (plan §6: ids must not repeat across
             # scans/images).
@@ -1031,5 +1094,12 @@ class ScanService:
             # every evidence-supplement re-run increments (caller supplies
             # the next revision from the stored session).
             "revision": revision,
+            # J09: persist the user-declared facts on the stored result so a
+            # revision re-run can recover them after the original job record
+            # is deleted (see `_revision_declared_facts`).
+            "declaredFacts": {
+                str(key): str(value)
+                for key, value in (job.declared_facts or {}).items()
+            },
         }
         return result, status, degraded_reason

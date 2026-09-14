@@ -91,13 +91,17 @@ const ELECTRONICS_FINANCIAL: FinancialSummary = {
   targetVolumeLabel: "3,000 台 / 月",
   targetVolumeLabelEn: "3,000 units / month",
   riskExposureItems: [
-    "单日最高罚款 ¥180 万",
+    // J07 (2026-09-14 §4.6): the demo previously carried a hard-coded
+    // "单日最高罚款 ¥180 万". Even in demo data a specific fine figure needs
+    // jurisdiction/violation/currency/period + a legal source — the same rule
+    // as real scans. Qualitative exposure items only.
+    "无适用罚则输入，罚款金额未估算（示例）",
     "全店永久封停",
     "货物强制扣毁",
     "跨境集体诉讼",
   ],
   riskExposureItemsEn: [
-    "Up to ¥1.8M daily fine",
+    "No fine input provided; amount not estimated (demo)",
     "Permanent store suspension",
     "Mandatory goods destruction",
     "Cross-border class action",

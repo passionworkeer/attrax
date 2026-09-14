@@ -22,6 +22,7 @@ from rag_service.application.scans import (
     ScanSubmission,
     ScanUnauthorized,
     SubmittedUpload,
+    clamp_declared_facts,
 )
 from rag_service.config import settings
 
@@ -218,16 +219,32 @@ async def create_scan(
     product: Annotated[str, Form()] = "",
     category: Annotated[str, Form()] = "electronics",
     markets: Annotated[str, Form()] = '["EU"]',
+    declared_facts: Annotated[str, Form()] = "",
     images: Annotated[list[UploadFile], File()] = [],
     documents: Annotated[list[UploadFile], File()] = [],
 ):
+    """Create a scan session.
+
+    ``declared_facts`` (J09): a JSON object of user-stated product facts
+    (e.g. ``{"battery": "absent"}``) collected by the upload wizard's
+    conditional questions. Malformed JSON is ignored — the facts are an
+    enhancement to applicability, never a request requirement.
+    """
     if not _authorized_create_request(request):
         return failure(request, "UNAUTHORIZED", "Internal service authorization is required", 401)
     if not query.strip() or len(query) > 2_000 or len(product) > 500 or len(category) > 100:
         return failure(request, "INVALID_REQUEST", "Invalid scan fields", 400)
+    if len(declared_facts) > 20_000:
+        return failure(request, "INVALID_REQUEST", "Declared facts payload is too large", 400)
     parsed_markets = _parse_markets(markets)
     if not parsed_markets:
         return failure(request, "INVALID_REQUEST", "Use one to five supported markets", 400)
+    facts_payload: dict[str, str] = {}
+    if declared_facts.strip():
+        try:
+            facts_payload = clamp_declared_facts(json.loads(declared_facts))
+        except (TypeError, ValueError):
+            facts_payload = {}
     uploads, upload_error = await _read_uploads(request, images, documents)
     if upload_error:
         return upload_error
@@ -239,6 +256,7 @@ async def create_scan(
                 category=category.strip(),
                 markets=parsed_markets,
                 uploads=uploads or [],
+                declared_facts=facts_payload,
             )
         )
     except (ValueError, TypeError):

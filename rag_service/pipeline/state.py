@@ -20,6 +20,11 @@ class PipelineState(TypedDict, total=False):
     vision_result: dict
     images: list[dict]  # [{"buffer": bytes, "mime_type": str}]
     user_documents: list[dict]  # [{"name": str, "mime_type": str, "text": str}]
+    # J09 (2026-09-14): user-stated product facts ({"battery": "absent"}),
+    # collected by the upload wizard's conditional questions and forwarded
+    # through ScanSubmission → ScanJob → runner payload. findings_builder
+    # consumes them to close checks presupposing an absent component.
+    declared_facts: dict[str, str]
 
     # === Intermediate state ===
     generation: str                 # Current draft report
@@ -39,7 +44,8 @@ def initial_state(query: str, product: str, category: str,
                   markets: list[str], vision_result: dict,
                   images: list[dict] = None,
                   documents: list[dict] = None,
-                  session_id: str = "scan") -> PipelineState:
+                  session_id: str = "scan",
+                  declared_facts: dict | None = None) -> PipelineState:
     """Create the initial pipeline state."""
     return PipelineState(
         query=query,
@@ -50,6 +56,7 @@ def initial_state(query: str, product: str, category: str,
         vision_result=vision_result,
         images=images or [],
         user_documents=documents or [],
+        declared_facts=dict(declared_facts or {}),
         generation="",
         report_package={},
         agent_trace=[],

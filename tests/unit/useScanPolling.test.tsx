@@ -403,6 +403,77 @@ describe("useScanPolling", () => {
       expect(result.current.displayProgress).toBeGreaterThanOrEqual(95);
     });
 
+    // ── J01-b (plan §4.1): fast sessions — first poll returns ready+resultReady.
+    // displayProgress must chase 0 → 100 with the 0.2-frame factor (~26 frames @
+    // 60fps ≈ 0.43s), then settle at exactly 100 so the burning page's hold →
+    // navigate state machine fires. The old code held at 99 forever.
+    it("fast session: first poll ready+resultReady chases displayProgress to a real 100", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "fast",
+          status: "ready",
+          progress: 100,
+          stageText: "complete",
+          stageKey: "done",
+          resultReady: true,
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("fast"));
+
+      await act(async () => {
+        vi.advanceTimersByTimeAsync(1);
+      });
+
+      // Before any animation frame the display is still at 0 (capped branch
+      // only lifts once isCompleting state lands — verify the hook settled).
+      expect(result.current.status?.status).toBe("ready");
+      expect(result.current.completedAt).not.toBeNull();
+
+      // ~26 frames is the theoretical convergence window; run 60 to settle.
+      await act(async () => {
+        runAnimationFrames(60);
+      });
+      expect(result.current.displayProgress).toBe(100);
+
+      // completedAt is captured exactly once and never resets while complete.
+      const stamp = result.current.completedAt;
+      await act(async () => {
+        runAnimationFrames(10);
+      });
+      expect(result.current.completedAt).toBe(stamp);
+    });
+
+    it("fast session chase converges within ~30 frames (0.2 easing, 100 unit gap)", async () => {
+      const fetchSpy = vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => ({
+          sessionId: "fast",
+          status: "ready",
+          progress: 100,
+          stageText: "complete",
+          resultReady: true,
+        }),
+      });
+      vi.stubGlobal("fetch", fetchSpy);
+
+      const { result } = renderHook(() => useScanPolling("fast"));
+
+      await act(async () => {
+        vi.advanceTimersByTimeAsync(1);
+      });
+
+      // The easing is prev + diff*0.2 → after n frames the remaining gap is
+      // 100*0.8^n. For the rounded display to read 100 we need gap < 0.5 →
+      // n ≈ ln(0.005)/ln(0.8) ≈ 25 frames. 30 frames must suffice.
+      await act(async () => {
+        runAnimationFrames(30);
+      });
+      expect(result.current.displayProgress).toBe(100);
+    });
+
     it("processing stays capped at 99 even when backend progress is 100", async () => {
       // Plan 2026-09-14 §4.1: only `ready && resultReady` may complete to 100.
       // A `processing` status carrying progress=100 must NOT leak 100 into

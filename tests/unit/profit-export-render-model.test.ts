@@ -132,7 +132,8 @@ function makeModel(overrides: Partial<ProfitRenderModel> = {}): ProfitRenderMode
       { label: '最终净利润', color: '#42bfd0', displayAmount: '¥23.97', isFinal: true },
     ],
     riskExposureItems: [
-      { icon: 'gavel', label: '单日最高罚款 ¥180 万' },
+      // J07: risk exposure items are qualitative; no invented fine figure.
+      { icon: 'gavel', label: '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算' },
       { icon: 'xcircle', label: '全店永久封停' },
       { icon: 'shield', label: '货物强制扣毁' },
       { icon: 'gavel', label: '跨境集体诉讼' },
@@ -221,13 +222,22 @@ describe('downloadProfitModelAsPdf', () => {
     expect(all).toContain('退货')
   })
 
-  it('renders all 4 risk exposure items', async () => {
+  it('renders all 4 risk exposure items (J07: qualitative, no invented fine)', async () => {
     await downloadProfitModelAsPdf(makeModel())
     const all = allTextCalls()
-    expect(all).toContain('单日最高罚款 ¥180 万')
+    expect(all).toContain('罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算')
     expect(all).toContain('全店永久封停')
     expect(all).toContain('货物强制扣毁')
     expect(all).toContain('跨境集体诉讼')
+  })
+
+  it('J07 regression: never renders a hard-coded fine figure (¥180万/¥1.8M)', async () => {
+    await downloadProfitModelAsPdf(makeModel())
+    const all = allTextCalls()
+    const joined = all.join('|')
+    expect(joined).not.toContain('¥180万')
+    expect(joined).not.toContain('¥1.8M')
+    expect(joined).not.toContain('单日最高罚款')
   })
 
   it('derives the retail baseline from the model net plus chain cost', async () => {
@@ -250,7 +260,7 @@ describe('downloadProfitModelAsPdf', () => {
         { label: '未整改预估单件收益', value: '¥11.48', tone: 'green', unit: '/单个产品',
           bareRiskCaveat: '↑ 此数未扣除期望风险敞口（潜在罚款 / 扣押 / 召回）' },
         { label: '表面合规成本', value: '¥0', tone: 'white', unit: '/单个产品', isCore: true },
-        { label: '最高风险暴露', value: '¥180万', tone: 'orange', unit: '单日上限' },
+        { label: '罚款风险', value: '待确认', tone: 'orange', unit: '需适用违法行销与辖区信息' },
         { label: 'AI 决策', value: '先整改', tone: 'alert', unit: '' },
       ],
     })
@@ -383,10 +393,10 @@ describe('downloadProfitModelAsDocx', () => {
     expect(all).toContain('退货')
   })
 
-  it('renders all 4 risk exposure items', async () => {
+  it('renders all 4 risk exposure items (J07: qualitative, no invented fine)', async () => {
     await downloadProfitModelAsDocx(makeModel())
     const all = allCellTextRuns()
-    expect(all.some((t) => t.includes('单日最高罚款'))).toBe(true)
+    expect(all.some((t) => t.includes('不作数字估算'))).toBe(true)
     expect(all.some((t) => t.includes('全店永久封停'))).toBe(true)
     expect(all.some((t) => t.includes('货物强制扣毁'))).toBe(true)
     expect(all.some((t) => t.includes('跨境集体诉讼'))).toBe(true)
@@ -400,7 +410,7 @@ describe('downloadProfitModelAsDocx', () => {
         { label: '未整改预估单件收益', value: '¥11.48', tone: 'green', unit: '/单个产品',
           bareRiskCaveat: '↑ 此数未扣除期望风险敞口（潜在罚款 / 扣押 / 召回）' },
         { label: '表面合规成本', value: '¥0', tone: 'white', unit: '/单个产品', isCore: true },
-        { label: '最高风险暴露', value: '¥180万', tone: 'orange', unit: '单日上限' },
+        { label: '罚款风险', value: '待确认', tone: 'orange', unit: '需适用违法行销与辖区信息' },
         { label: 'AI 决策', value: '先整改', tone: 'alert', unit: '' },
       ],
     })

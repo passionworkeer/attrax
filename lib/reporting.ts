@@ -451,7 +451,7 @@ Average selling price (ASP) ¥180; gross profit per unit barebone ≈ ¥109.80 (
 
 ## Why remediation precedes listing
 
-- Single-platform compliance cost rises ~75% per unit, but avoids fines up to ¥1.8M/day and permanent store suspension.
+- Single-platform compliance cost rises ~75% per unit, but removes the tail risks of store suspension, seizure, and cross-border litigation (fine amounts depend on the violation and jurisdiction; no statute-backed figure is claimed in this demo).
 - ${summary?.riskExposureItems?.length ?? 0} explicit risk exposures listed: ${(summary?.riskExposureItemsEn ?? summary?.riskExposureItems ?? []).join("; ")}.
 - AI decision: ${totalCritical > 0 ? "evidence chain is incomplete — close the top " + Math.min(3, totalCritical) + " hotspots before the listing review window." : "compliance evidence is sufficient for an EU + UK launch campaign."}
 `
@@ -494,13 +494,13 @@ Average selling price (ASP) ¥180; gross profit per unit barebone ≈ ¥109.80 (
   约 2,580 台 / 月(因认证 / EPR / 保修预留拉高了固定成本门槛)。
 - 定价策略: 单平台合规成本上升约 75%,但单件净利仍正向,建议保留 ¥180 基础
   售价,关键市场做"含税认证险"增值服务(¥15 / 单)以回收部分合规投入。
-- 风险敞口拆解: 单日最高罚款 ¥180 万 / 全店永久封停 / 货物强制扣毁 /
-  跨境集体诉讼四条线,任一触发的概率提升 1 倍就足以覆盖合规投入。
+- 风险敞口拆解: 罚款金额取决于具体违法行为与辖区,本示例未提供适用罚则,不作数字估算;
+  另含全店永久封停 / 货物强制扣毁 / 跨境集体诉讼三条尾部风险线。
 
 ## 4. 为什么先整改再上架
 
-- 合规后每件净利下降约 ¥52,但消除单日 ¥180 万罚款与永久封停的尾部风险
-  (月化期望损失约 ¥18 万)。
+- 合规后每件净利下降约 ¥52,消除永久封停与货物扣押的尾部风险
+  (罚款金额取决于违法行为与辖区,本示例不作数字估算)。
 - 整改闭环完成后,listing 主图 / 资料审核 / 售后追溯可一次性放行,运营可
   把节省下来的"补交资料 + 申诉"时间投入增长策略。
 - AI 结论: ${totalCritical > 0

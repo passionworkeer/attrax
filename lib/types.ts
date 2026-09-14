@@ -311,6 +311,15 @@ export interface ComplianceReportResult {
    */
   riskPoints?: RiskPoint[] | undefined;
   checklist?: ChecklistItem[] | undefined;
+  /**
+   * Plan 2026-09-14 §4.3/§4.5 — visual inspection v2 entities forwarded from
+   * `ScanResult` so the report exports can build the unified
+   * `InspectionResultVM` (image annex with located anchors). Optional:
+   * demo/legacy sessions leave them undefined and the PDF annex is skipped.
+   */
+  inspectionObservations?: InspectionObservation[] | undefined;
+  selectedCheckIds?: string[] | undefined;
+  inspectionFindings?: InspectionFinding[] | undefined;
   generatedAt: string;
   modelInfo: { ragProvider: string; latencyMs: number };
   source?: "real" | "fallback" | "demo";

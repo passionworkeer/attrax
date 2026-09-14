@@ -68,8 +68,8 @@ def test_verifier_node_empty_citations():
     assert result["agent_trace"][0]["status"] == "no_citations"
 
 
-def test_verifier_node_with_real_citations():
-    _ARTICLE_TEXT_CACHE[("EU-2023-1542", "art-13")] = (
+def test_verifier_node_with_real_citations(tmp_path, monkeypatch):
+    _ARTICLE_TEXT_CACHE[("VER-CE", "art-13")] = (
         "Batteries shall be marked with the CE symbol."
     )
     # J08: the verifier now syncs its cache against the library generation
@@ -80,11 +80,38 @@ def test_verifier_node_with_real_citations():
     import rag_service.pipeline.nodes.verifier as verifier_mod
     verifier_mod._ARTICLE_TEXT_CACHE_GENERATION = article_loader.cache_generation()
 
+    # J08 source-kind gate: a verbatim quote only stays `matched` when the
+    # regulation is an official/verified source. The shipped library is
+    # entirely unverified summaries, so this fixture points the loader at a
+    # verified fixture library for the VER-CE regulation.
+    reg_dir = tmp_path / "eu"
+    reg_dir.mkdir()
+    (reg_dir / "VER-CE.yaml").write_text(
+        "id: VER-CE\n"
+        "official_citation: Test\n"
+        "license: public\n"
+        "last_verified: '2026-09-14'\n"
+        "language: en\n"
+        "source_kind: official_verbatim\n"
+        "articles:\n"
+        "- id: art-13\n"
+        "  title: CE marking\n"
+        "  text: Batteries shall be marked with the CE symbol.\n"
+        "raw_file: null\n"
+        "checksum_sha256: null\n"
+        "schema_version: 1\n"
+        "source_url: https://example.com/x\n"
+        "notes: test fixture\n"
+    )
+    monkeypatch.setattr(article_loader, "_regulations_root", tmp_path)
+    article_loader.invalidate_cache()
+    verifier_mod._ARTICLE_TEXT_CACHE_GENERATION = article_loader.cache_generation()
+
     state: GraphState = {
         "report_package": {
             "citations": [
                 {
-                    "doc_id": "EU-2023-1542",
+                    "doc_id": "VER-CE",
                     "article_id": "art-13",
                     "quote": "Batteries shall be marked with the CE symbol.",
                 }
@@ -99,6 +126,16 @@ def test_verifier_node_with_real_citations():
     rp = result["report_package"]
     assert rp["auditMetadata"]["verificationMode"] == "kb_exact_quote"
     assert "evidencePack" in rp
+
+    # Restore the real library root for the rest of the suite.
+    monkeypatch.setattr(
+        article_loader, "_regulations_root", article_loader._DEFAULT_REGULATIONS_ROOT
+    )
+    article_loader.invalidate_cache()
+    # Leave the module as a fresh process would look (the later cache
+    # invalidation tests read this marker before their first sync).
+    verifier_mod._ARTICLE_TEXT_CACHE.clear()
+    verifier_mod._ARTICLE_TEXT_CACHE_GENERATION = -1
 
 
 # ── cache staleness guard (plan 2026-09-14 J08) ────────────────────────

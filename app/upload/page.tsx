@@ -109,8 +109,9 @@ export default function UploadPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   // J17: 品类条件问题的答案（问题 id → 用户选择的选项文案）。
-  // 纯前端收集，提交时以 `userDeclaredFacts` JSON 字段附带给 BFF——
-  // BFF 目前不消费该字段，因此提交结构与既有契约保持兼容。
+  // 提交时以 `userDeclaredFacts` JSON 字段附带给 BFF；BFF 透传为
+  // declared_facts → 后端 ScanSubmission → findings_builder 关闭不适用的
+  // 检查（例如声明无电池时不再要求电池仓照片）。
   const [categoryAnswers, setCategoryAnswers] = useState<Record<string, string>>({});
   const uploadedFiles = files.filter((file): file is File => Boolean(file));
   // J17: 照片槽 = 当前品类 manifest 的 photoSlots（数量可变，≤8）。
@@ -380,7 +381,9 @@ export default function UploadPage() {
   /**
    * J17: 切换品类时，清空旧品类的条件问题答案——问题集随品类变化，
    * 旧答案对新问题没有意义。已上传的照片保留（它们仍是有效证据），
-   * 超出新品类槽位数的部分自动按「补充证据」处理。
+   * 超出新品类槽位数的部分自动按「补充证据」提交（见下方
+   * uploadedFiles 的构造：所有已上传文件都进入 formData 的 images，
+   * 槽位只是建议视角，不是提交过滤器）。
    */
   function handleCategoryChange(nextCategory: ProductCategory) {
     setCategory(nextCategory);
@@ -472,10 +475,10 @@ export default function UploadPage() {
     formData.append("category", category);
     formData.append("markets", selectedMarkets.join(","));
     formData.append("locale", locale);
-    // J17: 附带品类条件问题的用户声明。BFF 当前不消费该字段（
-    // 见 app/api/scan/route.ts 只读取 images/documents/category/markets/
-    // query/product），因此提交结构与既有契约兼容；后端未来接入
-    // 用户事实（计划 §5.4）时可直接读取该 JSON。
+    // J17: 附带品类条件问题的用户声明。BFF 读取该 JSON 并透传为
+    // declared_facts（见 app/api/scan/route.ts 与 lib/rag-client/
+    // v1-adapter.ts），后端 findings_builder 据此关闭不适用的检查
+    // （计划 §5.4，J09）。
     const declaredFacts = categoryManifest.conditionalQuestions.reduce<Record<string, string>>(
       (acc, question) => {
         const answer = categoryAnswers[question.id];

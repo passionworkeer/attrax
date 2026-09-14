@@ -142,6 +142,11 @@ class ScanJob(BaseModel):
     category: str
     markets: list[str]
     upload_ids: list[str]
+    # J09 (2026-09-14): user-declared product facts ({fact: answer}) captured
+    # by the upload wizard's conditional questions. Forwarded to the pipeline
+    # so findings_builder can close checks presupposing an absent component.
+    # Defaulted so pre-existing job JSON (without the key) still parses.
+    declared_facts: dict[str, str] = Field(default_factory=dict)
     state: JobState = "queued"
     attempts: int = Field(default=0, ge=0)
     created_at: datetime = Field(default_factory=utc_now)
@@ -160,6 +165,7 @@ class ScanJob(BaseModel):
         category: str,
         markets: list[str],
         upload_ids: list[str],
+        declared_facts: dict[str, str] | None = None,
     ) -> "ScanJob":
         return cls(
             job_id=job_id,
@@ -169,6 +175,7 @@ class ScanJob(BaseModel):
             category=category,
             markets=list(markets),
             upload_ids=list(upload_ids),
+            declared_facts=dict(declared_facts or {}),
         )
 
     def ready_to_claim(self, now: datetime | None = None) -> bool:

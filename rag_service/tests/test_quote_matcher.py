@@ -214,17 +214,42 @@ class TestMatchCitations:
         match_citations(citations)
         assert citations[0]["match_status"] == "unmatched"
 
-    def test_real_article_with_verbatim_quote(self):
-        # Pull a real article from the regulation library
+    def test_real_article_with_verbatim_quote(self, tmp_path, monkeypatch):
+        # Pull a real article from a VERIFIED fixture library (the shipped
+        # library is entirely source_kind: unverified — J08 forbids
+        # presenting its summaries as verbatim-matched, so the matched
+        # contract is exercised against an official_verbatim fixture).
         from rag_service.retrieval import article_loader
+
+        reg_dir = tmp_path / "eu"
+        reg_dir.mkdir()
+        (reg_dir / "VER-BATT.yaml").write_text(
+            "id: VER-BATT\n"
+            "official_citation: Test\n"
+            "license: public\n"
+            "last_verified: '2026-09-14'\n"
+            "language: en\n"
+            "source_kind: official_verbatim\n"
+            "articles:\n"
+            "- id: art-77\n"
+            "  title: Battery passport\n"
+            "  text: From 18 February 2027 LMT batteries shall carry a battery passport.\n"
+            "raw_file: null\n"
+            "checksum_sha256: null\n"
+            "schema_version: 1\n"
+            "source_url: https://example.com/x\n"
+            "notes: test fixture\n"
+        )
+        monkeypatch.setattr(article_loader, "_regulations_root", tmp_path)
         article_loader.invalidate_cache()
-        text = article_loader.load_article_text("EU-2023-1542", "art-77")
+
+        text = article_loader.load_article_text("VER-BATT", "art-77")
         assert text, "test fixture missing — article text should be present"
-        # Take a 30-char slice of the real article as the quote
-        snippet = text[20:50]
+        # Take a slice of the article as the quote
+        snippet = text[5:35]
         citations = [
             {
-                "doc_id": "EU-2023-1542",
+                "doc_id": "VER-BATT",
                 "article_id": "art-77",
                 "quote": snippet,
             }
@@ -232,6 +257,13 @@ class TestMatchCitations:
         match_citations(citations)
         assert citations[0]["match_status"] == "matched"
         assert citations[0]["quote_span"] is not None
+
+        monkeypatch.setattr(
+            article_loader,
+            "_regulations_root",
+            article_loader._DEFAULT_REGULATIONS_ROOT,
+        )
+        article_loader.invalidate_cache()
 
     def test_empty_quote_on_real_article_maps_to_fallback(self):
         # Spec §4.1: empty quote is preserved at article level — that
@@ -246,25 +278,47 @@ class TestMatchCitations:
         assert citations[0]["match_status"] == "fallback_article_only"
         assert citations[0]["quote_span"] is None
 
-    def test_distribution_meets_spec_thresholds(self):
+    def test_distribution_meets_spec_thresholds(self, tmp_path, monkeypatch):
         # Spec §7.4 acceptance: matched >= 70%, fallback <= 25%,
-        # unmatched <= 5%. We construct a synthetic mix that fits
-        # comfortably within the thresholds.
+        # unmatched <= 5%. Constructed over an official_verbatim fixture
+        # library (J08: the shipped library is unverified summaries — a
+        # verbatim hit against them must NOT be matched).
         from rag_service.retrieval import article_loader
+
+        reg_dir = tmp_path / "eu"
+        reg_dir.mkdir()
+        (reg_dir / "VER-BATT.yaml").write_text(
+            "id: VER-BATT\n"
+            "official_citation: Test\n"
+            "license: public\n"
+            "last_verified: '2026-09-14'\n"
+            "language: en\n"
+            "source_kind: official_verbatim\n"
+            "articles:\n"
+            "- id: art-77\n"
+            "  title: Battery passport\n"
+            "  text: From 18 February 2027 LMT batteries shall carry a battery passport.\n"
+            "raw_file: null\n"
+            "checksum_sha256: null\n"
+            "schema_version: 1\n"
+            "source_url: https://example.com/x\n"
+            "notes: test fixture\n"
+        )
+        monkeypatch.setattr(article_loader, "_regulations_root", tmp_path)
         article_loader.invalidate_cache()
-        real_text = article_loader.load_article_text("EU-2023-1542", "art-77")
+        real_text = article_loader.load_article_text("VER-BATT", "art-77")
         assert real_text
         good_quote = real_text[10:50]
 
         citations = [
             # 8 matched
             *[{
-                "doc_id": "EU-2023-1542",
+                "doc_id": "VER-BATT",
                 "article_id": "art-77",
                 "quote": good_quote,
             } for _ in range(8)],
             # 1 fallback (mismatched quote)
-            {"doc_id": "EU-2023-1542", "article_id": "art-77", "quote": "no such string here at all"},
+            {"doc_id": "VER-BATT", "article_id": "art-77", "quote": "no such string here at all"},
             # 0 unmatched (private reg would be matched as fallback due
             # to empty articles[], not unmatched — the spec reserves
             # unmatched for unknown article_id)
@@ -275,6 +329,13 @@ class TestMatchCitations:
         total = len(citations)
         assert matched / total >= 0.70, f"matched ratio {matched/total} < 0.70"
         assert fallback / total <= 0.25, f"fallback ratio {fallback/total} > 0.25"
+
+        monkeypatch.setattr(
+            article_loader,
+            "_regulations_root",
+            article_loader._DEFAULT_REGULATIONS_ROOT,
+        )
+        article_loader.invalidate_cache()
 
     def test_cache_hits_avoid_repeated_lookups(self):
         from rag_service.retrieval import article_loader
