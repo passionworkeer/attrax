@@ -204,7 +204,7 @@ attrax/
 │   ├── pressure/                 # 压力测试脚本（improved-load-test.js）
 │   └── setup.ts
 │
-├── public/                       # 静态资源（fonts/NotoSansSC-Regular.ttf 17MB 不入库，服务器自备）
+├── public/                       # 静态资源（fonts/NotoSansSC-Regular.ttf 17MB 不入库；fresh clone 跑 `bash scripts/fetch-font.sh` 补齐，服务器自备）
 ├── docs/                         # 项目文档（详见 docs/README.md）
 │   ├── plans/                    # 修复计划与设计 spec
 │   │   ├── 2026-09-11-de-rag-evidence-spec.md  # de-RAG 迁移路线（执行基准）
@@ -419,3 +419,13 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

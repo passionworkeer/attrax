@@ -123,20 +123,10 @@ test.describe("Interactive Browser Workflow E2E", () => {
     }
   });
 
-  test("roadmap interactive page loads and renders timeline items", async ({ page }) => {
-    await page.goto("/roadmap/demo");
-
-    await expect(page.getByText(/整改路线图|Compliance Roadmap|Roadmap/i).first()).toBeVisible();
-    // Timeline steps from mock/roadmap
-    await expect(page.getByText(/合规评估完成|Compliance Assessment Complete|准备申请材料/i).first()).toBeVisible();
-  });
-
-  test("trace interactive page loads decision tree", async ({ page }) => {
-    await page.goto("/trace/demo");
-
-    await expect(page.getByText(/执行溯源|Execution Trace|Trace/i).first()).toBeVisible();
-    await expect(page.getByText(/AI/i).first()).toBeVisible();
-  });
+  // 2026-09-13 sweep removed the standalone /roadmap and /trace routes —
+  // their content now lives in the result page's embedded panels. The two
+  // dedicated e2e tests (roadmap timeline / trace decision tree) were
+  // deleted with the routes; result-page coverage is in the tests above.
 
   test("upload form: document attachment, list display, and removal", async ({ page }) => {
     await page.goto("/upload");
