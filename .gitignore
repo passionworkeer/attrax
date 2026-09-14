@@ -129,6 +129,21 @@ rag_service/eval/results/
 data/regulation_supplements/.cache.db
 data/regulation_supplements/auto-*/
 data/regulation_supplements/watchdog-*/
+
+# Raw regulation source files (PDF/RDF/XHTML). Build pipeline reads from
+# the curated data/regulations/ YAML library; the raw supplements are
+# cache material that the watchdog ingests at deploy time, NOT source.
+data/regulation_supplements/*/raw/
+data/regulation_supplements/*.cache.db
+data/regulation_supplements/auto-*/
+data/regulation_supplements/watchdog-*/
+# Human-readable indexes / reports stay tracked.
+!data/regulation_supplements/*/DOCUMENTS.md
+!data/regulation_supplements/*/README.md
+!data/regulation_supplements/*.md
+
+# Large fonts are runtime assets, not source.
+public/fonts/*.ttf
 backups/
 logs/
 tools/pwtest
