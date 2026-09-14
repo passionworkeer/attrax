@@ -56,7 +56,9 @@ public/uploads/
 data/sessions/
 data/backend/
 
-# per-session upload archive (admin-only, auto-generated, see lib/pipeline/upload-storage.ts)
+# per-session upload archive (legacy; the local upload-storage module was
+# removed with the dead local session pipeline on 2026-09-14 — RAG service
+# keeps its own uploads under data/backend/uploads/)
 data/uploads/
 
 # user activity log (auto-generated per request)
@@ -152,6 +154,8 @@ logs/
 tools/pwtest
 
 # ─── Python ──────────────────────────────────────────────────
+# bare `.venv` (no trailing slash) also matches symlinked venvs in worktrees
+.venv
 .venv/
 __pycache__/
 *.pyc

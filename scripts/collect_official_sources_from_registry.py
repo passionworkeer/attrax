@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
@@ -16,21 +17,64 @@ from rag_service.regulation_collectors.base import BaseCollector
 from rag_service.regulation_collectors.eu_rdf import ensure_eu_text
 
 try:
-    from scripts.collect_global_regulation_sources import (
-        as_posix,
-        build_readme,
-        make_entry,
-        sha256_file,
-    )
     from scripts.diff_regulation_manifests import compare_manifests, load_manifest, write_diff_report
 except ImportError:  # pragma: no cover - direct script execution path
-    from collect_global_regulation_sources import (
-        as_posix,
-        build_readme,
-        make_entry,
-        sha256_file,
-    )
     from diff_regulation_manifests import compare_manifests, load_manifest, write_diff_report
+
+
+def make_entry(
+    entry_id: str,
+    market: str,
+    title: str,
+    channel: str,
+    source_url: str,
+    files: list[str],
+    why_added: str,
+    product_categories: list[str],
+    regulatory_types: list[str],
+) -> dict[str, Any]:
+    return {
+        "id": entry_id,
+        "market": market,
+        "title": title,
+        "channel": channel,
+        "source_url": source_url,
+        "files": files,
+        "why_added": why_added,
+        "product_categories": product_categories,
+        "regulatory_types": regulatory_types,
+    }
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def as_posix(path: Path) -> str:
+    return path.as_posix()
+
+
+def build_readme(manifest: dict[str, Any]) -> str:
+    summary = manifest["summary"]
+    return f"""# Registry Official Sources Supplement
+
+This directory contains isolated raw official or government-source regulation
+documents collected for review before ingestion.
+
+- Collected at: {manifest["created_at"]}
+- Entries collected: {summary["regulation_entries"]}
+- Raw files referenced: {summary["raw_files"]}
+- Failed downloads: {summary["failed_downloads"]}
+- Markets: {", ".join(summary["markets"])}
+- Source manifest: manifest.json
+
+Files stay out of the curated `data/regulations/` library until reviewed and
+ingested via `scripts/ingest_regulation_supplements.py`.
+"""
 
 
 DEFAULT_REGISTRY = Path("data/regulation_sources/official_sources.json")

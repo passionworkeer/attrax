@@ -1,8 +1,15 @@
 # Attrax Security Policy
 
-> Last updated: 2026-06-21 (after 11 rounds of hardening)
+> **⚠️ 历史快照（2026-06-21，aliyun-sz 部署时代）** — 生产已迁至 lighthouse（腾讯首尔，见 `docs/infra/`），文中 IP/机器细节为当时快照。安全设计原则（fail-closed secret、magic bytes 校验、fail2ban、限流）仍然有效，但涉及具体文件/路径的条目以下述修正为准：
+>
+> - `lib/pipeline/session-store.ts` 已删除（2026-09-14）——sessionId 格式校验现在在 `lib/schemas.ts` `SessionIdSchema` + `app/api/backend-session-access.ts` `SAFE_SESSION_ID`
+> - `PAI_API_KEY` 无代码读取（embedding 栈已删），密钥旋转只需 `MINIMAX_API_KEY` / `RAG_INTERNAL_SECRET`
+> - 会话失效路径：`rm /opt/attrax/data/backend/sessions/*.json`（RAG FileBackend，非 data/sessions）
+> - `scan-queue` 本地作业文件已不存在（本地管线删除），上传仅存 RAG 侧 `data/backend/uploads/`
+>
+> Last updated: 2026-06-21 (after 11 rounds of hardening); corrections banner added 2026-09-14.
 
-This document covers security practices for the Attrax production deployment at `203.0.113.10`. Companion file: `infra/` contains actual server config snapshots.
+This document covers security practices for the Attrax production deployment (historically at `203.0.113.10`, now lighthouse). Companion file: `infra/` contains actual server config snapshots.
 
 ## Architecture
 

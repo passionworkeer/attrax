@@ -121,8 +121,12 @@ async def lifespan(app: FastAPI):
     # P1-3: gracefully drain in-flight scan tasks before tearing the executor
     # down. ``wait_for_idle`` awaits every active ScanService job; bound the
     # wait to 30s (well below the 280s scan timeout) so a stuck scan can
-    # never block process exit. After the timeout we fall through to the
-    # hard ``_executor.shutdown(wait=False)`` so the process still exits.
+    # never block the drain indefinitely. After the timeout we fall through
+    # to ``_executor.shutdown(wait=False)`` — note this abandons the futures
+    # but does NOT kill the worker threads: CPython's atexit joins non-daemon
+    # executor threads, so a scan mid-LLM-call (90s socket timeout × retries)
+    # can still delay actual process exit. Cancelled/abandoned jobs stay
+    # claimed on disk and are recovered by resume_pending() on next start.
     scan_service = getattr(app.state, "scan_service", None)
     if scan_service is not None:
         try:

@@ -2,7 +2,7 @@
 
 > **Canonical: v1。** 新前端接入**仅使用** `/api/v1/*`，完整接入指南见 [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md)。
 >
-> 本文件后文保留 `/scan` / `/scan-multipart` / `/profit-report` 等**遗留端点**作为向后兼容说明——这些端点目前仍存在于 `rag_service/main.py`（main.py:718/723/747），但所有新代码、CI 与当前前端 BFF 都走 `/api/v1/scans`（含 `/evidence` + `/revisions`），遗留端点不接受新功能。
+> 本文件后文保留 `/scan` / `/scan-multipart` / `/profit-report` 等**遗留端点**作为向后兼容说明——这些端点目前仍存在于 `rag_service/main.py`（装饰器位于 main.py:761/766/790），但所有新代码、CI 与当前前端 BFF 都走 `/api/v1/scans`（含 `/evidence` + `/revisions`），遗留端点不接受新功能。
 
 > 版本基线：FastAPI 自动生成于 `rag_service/main.py`，**OpenAPI 规范文件**在 [`lib/rag-client/openapi.snapshot.json`](../lib/rag-client/openapi.snapshot.json)（CI 会校验它与代码生成的一致性）。
 >
@@ -300,28 +300,24 @@ interface EvidenceItem {
 {
   "ready": true,
   "checks": {
-    "kb_anchors": true,         // 来自 rag_service/retrieval/kb_loader.py
+    "kb_anchors": true,          // 来自 rag_service/retrieval/kb_loader.py
     "regulation_library": true,  // 来自 rag_service/retrieval/article_loader.py
     "minimax_api_key": true,
     "config_loaded": true,
     "scan_service": true
-    "bm25": true,
-    "mimotalk_api_key": true,
-    "modelscope_api_key": true,
-    "config_loaded": true
   },
-  "demo_mode": false,
-  "version": "0.3.0"
+  "version": "0.3.0",
+  "release": { "releaseId": "…", "buildSha": "…", "kbHash": "…", "pipeline": "kb_anchored" }
 }
 ```
 
-503 当且仅当 `checks` 任一为 `false`（非 Demo 模式下两个 API Key 缺失也算 false）。
+503 当且仅当 `checks` 任一为 `false`（键只有上面 5 个——`minimax_api_key` 是唯一 key 检查；`demo_mode`/`pipeline` 仅在特权请求头下附加）。
 
 ---
 
 ## 6. 降级行为（前端视角）
 
-> 详细分层见 [`docs/ARCHITECTURE.md` §降级状态](./ARCHITECTURE.md#降级状态-不要混淆)。这里只列 RAG 端点会触发的几种。
+> 详细分层见 `CLAUDE.md` §降级模式。这里只列 RAG 端点会触发的几种。
 
 | 触发 | 表现 |
 |------|------|

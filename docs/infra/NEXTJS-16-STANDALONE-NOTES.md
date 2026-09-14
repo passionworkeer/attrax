@@ -1,7 +1,7 @@
 # Next.js 16 + Turbopack Standalone 部署笔记（attrax）
 
 > 创建：2026-09-11 — 记录 2026-09-10/11 事故后修复的 attrax 部署真相。
-> 配套文档：仓库根 `docs/DEPLOY-CHECKLIST.md`（legacy aliyun-sz 路径，已不维护）；实际生产部署路径见本文件。
+> 实际生产部署路径见本文件（legacy aliyun-sz 路径的 DEPLOY-CHECKLIST.md 已删除；部署入口是 `docs/README.md` §生产部署 + 仓库 CLAUDE.md §部署雷区）。
 > lighthouse 上其他 Next 16 站点的等价文档：work 仓 `ops/NEXTJS-16-DEPLOYMENT-NOTES.md`。
 
 ## TL;DR

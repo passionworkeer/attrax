@@ -1,8 +1,9 @@
 """Shared EU Publications Office / EUR-Lex resolution helper.
 
-Used by ``collect_more_official_sources`` and ``collect_global_regulation_sources``
-to resolve a CELEX number to its Cellar XHTML representation, with optional
-EUR-Lex HTML fallback when Cellar DOC_1 endpoints are unreachable.
+Used by ``scripts/collect_official_sources_from_registry.py`` (and, historically,
+the removed one-shot collectors) to resolve a CELEX number to its Cellar XHTML
+representation, with optional EUR-Lex HTML fallback when Cellar DOC_1 endpoints
+are unreachable.
 """
 from __future__ import annotations
 

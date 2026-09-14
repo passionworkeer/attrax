@@ -11,6 +11,15 @@ MANIFEST_PATH = SUPPLEMENT_DIR / "manifest.json"
 def load_manifest() -> dict:
     if not MANIFEST_PATH.exists():
         pytest.skip(f"Historical supplement data omitted in this deployment: {MANIFEST_PATH}")
+    # 2026-09-14: raw/ 原件（PDF/RDF/XHTML，~400MB）已从 git untrack。
+    # manifest.json 仍在库里，但 fresh clone 没有 raw/ —— 断言 raw 文件
+    # sha256 的用例只有在数据落盘（采集过或从服务器拷贝）时才有意义。
+    raw_dir = SUPPLEMENT_DIR / "raw"
+    if not raw_dir.is_dir() or not any(raw_dir.iterdir()):
+        pytest.skip(
+            "raw supplement files are untracked since 2026-09-14; "
+            "manifest sha assertions need the on-disk data"
+        )
     return json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
 
 

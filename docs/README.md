@@ -32,7 +32,7 @@ pip install -r requirements-prod.txt
 uvicorn rag_service.main:app --reload --port 8001
 
 # 前端（端口 3000）
-cp .env.local.example .env.local   # 填 MINIMAX_API_KEY + PAI_API_KEY
+cp .env.local.example .env.local   # 填 MINIMAX_API_KEY（LLM；无 embedding 依赖）
 npm install
 npm run dev
 

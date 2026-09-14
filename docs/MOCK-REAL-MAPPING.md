@@ -41,12 +41,12 @@
 | `targetMarkets` | 入参 | 入参 | ✅ |
 | `complianceScore` / `scoreGrade` | `v1-result-adapter.ts` 启发式映射（resultReady 时取 decisionView.verdict → severityFor → scoreFor） | severity / verdict 硬编码 | ✅ |
 | `complianceReport` | `reportPackage.complianceReport` | `buildComplianceReportZh()` | ✅ |
-| `complianceReportEn` | `reportPackage.complianceReportEn` | `buildComplianceReportEn()` | ✅ |
+| `complianceReportEn` | 后端 schema **无此字段**；前端 `lib/report-localization.ts` 组装：`result.complianceReportEn ?? reportPackage?.complianceReportEn ?? 英文框架回退` | `buildComplianceReportEn()` | ✅ |
 | `complianceStatus` | `decisionView.verdict` / `riskLevel` | 写死 `"REJECTED"` | ✅ |
 | `agentTrace` | RAG `agent_trace`（线性 3 步：vision / generate / verify） | 手写若干条 | ✅ 字段名一致 |
 | `retrievedChunks` | `reportPackage.retrievedChunks` | 手写若干条 | ✅ |
 | `reportPackage` | RAG `/api/v1/scans/{id}` 的 `report_package` | `createMockReportPackage()` | ✅ |
-| `modelInfo.ragProvider` | RAG `metadata.provider` / PAI 端点探测 | `"fallback-mock"` | ✅（旧版本硬编码 `"cohere-anthropic"` 已修） |
+| `modelInfo.ragProvider` | RAG `metadata.provider`（恒 `"minimax"`，见 `report_generator.py` provider property） | `"fallback-mock"` | ✅（旧版本硬编码 `"cohere-anthropic"` 已修） |
 | `source` | `"real"` | `"fallback"` | ✅ |
 
 ---
@@ -86,7 +86,7 @@
 | `generatedAt` | ✅ ISO 8601 | ✅ | ✅ |
 | `validationStatus` | ✅ `"normalized"` / `"fallback"` / `"invalid"` | ✅ `"normalized"` | ✅ |
 | `validationErrors` | ✅ `[]` | ✅ | ✅ |
-| `provider` | ✅ `"pai"`（embedding）+ `"minimax"`（LLM，字符串标识） | ✅ `"mock"` | ✅ |
+| `provider` | ✅ `"minimax"`（唯一 LLM；embedding 栈已删，无 `"pai"` 值） | ✅ `"mock"` | ✅ |
 | `traceNodeCount` | ✅ | ✅ | ✅ |
 
 ### 3.5 `productDossier`

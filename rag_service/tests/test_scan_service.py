@@ -474,6 +474,43 @@ def test_service_delete_requires_token_and_removes_all_state(tmp_path):
     asyncio.run(scenario())
 
 
+def test_delete_scan_cancels_the_running_job_not_just_heartbeat(tmp_path):
+    """Regression: P1-9 once registered the lease heartbeat under
+    _session_tasks[session_id], overwriting the _run_job task _spawn had
+    stored there. delete_scan then cancelled only the heartbeat while the
+    scan ran on to its 280s timeout (provider spend + lingering task).
+    The session slot must hold the job task itself."""
+
+    async def scenario():
+        entered = asyncio.Event()
+        cancelled = asyncio.Event()
+
+        async def runner(payload):
+            entered.set()
+            try:
+                await asyncio.sleep(3600)
+            except asyncio.CancelledError:
+                cancelled.set()
+                raise
+            return verified_result()
+
+        backend = FileBackend(tmp_path)
+        service = ScanService(backend, runner=runner)
+        created = await service.create_scan(submission())
+        await asyncio.wait_for(entered.wait(), timeout=5)
+
+        # The session slot must reference the _run_job task, not the
+        # _lease_heartbeat coroutine.
+        slot_task = service._session_tasks[created.session_id]
+        assert slot_task.get_coro().cr_code.co_name == "_run_job"
+
+        service.delete_scan(created.session_id, created.access_token)
+        await asyncio.wait_for(cancelled.wait(), timeout=5)
+        assert cancelled.is_set()
+
+    asyncio.run(scenario())
+
+
 def test_submission_rejects_more_than_five_markets():
     with pytest.raises(ValueError):
         ScanSubmission(

@@ -3,7 +3,8 @@ name: pressure-test
 # Manual load test against a deployed target. Not run on PRs — the load
 # script hammers a live server (tests/pressure/improved-load-test.js), and
 # starting one inside CI would require `npm run build`, which is omitted
-# everywhere due to the server OOM constraint (see RECOVERY.md).
+# everywhere due to the server OOM constraint (build happens on the dev
+# machine via scripts/build-deploy-tarball.sh; see CLAUDE.md §部署雷区).
 #
 # Trigger from the Actions tab: provide TARGET_URL (staging/prod) and the
 # scenario. Results print to the job log.

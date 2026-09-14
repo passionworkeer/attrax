@@ -27,7 +27,9 @@ updates:
       patch-and-minor:
         update-types: ["minor", "patch"]
     ignore:
-      # Major bumps need manual rebuild + memory check (see RECOVERY.md).
+      # Major bumps need manual rebuild + memory check (see docs/SECURITY.md
+      # banner + CLAUDE.md §部署雷区; the old RECOVERY.md was removed with
+      # the aliyun-sz deployment docs).
       # Past breakage: next.js major bumps have changed standalone build
       # behavior, breaking deploys.
       - dependency-name: "next"
