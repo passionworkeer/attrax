@@ -64,7 +64,9 @@ test.describe('Regulations Page E2E', () => {
 
   test('displays regulation updates title', async ({ page }) => {
     await page.goto('/regulations')
-    const title = page.getByText(/法规更新|Regulation Updates/)
+    // J18: entry renamed 法规更新 → 法规动态示例 to mark the page as a
+    // static demo instead of implying a live feed.
+    const title = page.getByText(/法规动态示例|Regulation Update Demos/)
     await expect(title).toBeVisible()
   })
 })

@@ -216,13 +216,16 @@ async function runSmokeTest() {
     try {
       const response = await fetch(BASE_URL + scenario.url)
       const ok = response.status === scenario.expectedStatus
-      const sizeOk = !scenario.expectedMinSize || parseInt(response.headers.get('content-length') || '0') > scenario.expectedMinSize
+      // Next.js dev/streaming responses may omit content-length; measure the
+      // actual body size instead of trusting the header.
+      const body = await response.text()
+      const sizeOk = !scenario.expectedMinSize || body.length > scenario.expectedMinSize
 
       if (ok && sizeOk) {
         console.log('  PASS: ' + scenario.name)
         passed++
       } else {
-        console.log('  FAIL: ' + scenario.name + ' - Status: ' + response.status)
+        console.log('  FAIL: ' + scenario.name + ' - Status: ' + response.status + (ok ? ' (body too small: ' + body.length + ')' : ''))
         failed++
       }
     } catch (error) {
