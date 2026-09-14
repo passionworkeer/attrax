@@ -1,6 +1,12 @@
 import pytest
-from rag_service.pipeline.nodes.verifier import verifier_node, _attach_canonical_excerpts, _ARTICLE_TEXT_CACHE
+from rag_service.pipeline.nodes.verifier import (
+    _ARTICLE_TEXT_CACHE,
+    _sync_article_cache,
+    verifier_node,
+    _attach_canonical_excerpts,
+)
 from rag_service.pipeline.state import GraphState
+from rag_service.retrieval import article_loader
 
 
 def test_attach_canonical_excerpts_preserves_authentic_quotes():

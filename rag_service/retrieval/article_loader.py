@@ -33,6 +33,16 @@ Caching: loaded once per process on first call. YAML files are small (<200 KB
 typically), so the memory cost is bounded; the cache lifetime is the process
 lifetime.
 
+Cache staleness guard (plan 2026-09-14 J08 / §4.4 layer 3): the library is
+NOT read-only at runtime during development/redeploys — a regulation YAML
+edited on disk must not keep serving stale text for the rest of the process.
+Every entry point consults ``_library_stamp()`` (one cheap
+``glob + stat`` over ~44 files); if any file's (mtime_ns, size) changed or
+the file set itself changed, the cache is dropped and rebuilt. A monotonically
+increasing ``cache_generation()`` counter ticks on every rebuild so
+downstream caches (verifier ``_ARTICLE_TEXT_CACHE``) can invalidate their
+own entries keyed on it.
+
 License discipline: the loader returns whatever is in the YAML — it does NOT
 enforce license restrictions. The `schema_validator` (§7.2 phase 3) enforces
 the "private license ⇒ no article body" rule at write time; read paths trust
@@ -55,6 +65,12 @@ _DEFAULT_REGULATIONS_ROOT = Path(__file__).resolve().parents[2] / "data" / "regu
 # Module-level cache: reg_id -> full YAML payload
 _cache: dict[str, dict] | None = None
 _regulations_root: Path = _DEFAULT_REGULATIONS_ROOT
+# Stamp of the files the current cache was built from:
+# {path_str: (mtime_ns, size)}. None until the first load.
+_cache_stamp: dict[str, tuple[int, int]] | None = None
+# Ticks every time the cache is (re)built — downstream caches key on it to
+# drop their own stale entries when the library changes on disk.
+_cache_generation: int = 0
 
 
 def get_regulations_root() -> Path:
@@ -73,43 +89,92 @@ def invalidate_cache() -> None:
     """Clear the regulation cache. Tests / dev use this for hot-reload."""
     global _cache
     _cache = None
+    _rebuild_generation()
+
+
+def cache_generation() -> int:
+    """Return the current cache generation (see module docstring)."""
+    return _cache_generation
+
+
+def _rebuild_generation() -> None:
+    global _cache_generation
+    _cache_generation += 1
+
+
+def _library_stamp() -> dict[str, tuple[int, int]]:
+    """Snapshot {(path): (mtime_ns, size)} for every library YAML.
+
+    Cheap: one directory glob plus a stat per file (~44 entries). Used to
+    detect on-disk edits between entry-point calls so a running process
+    never keeps serving regulation text that was replaced.
+    """
+    stamp: dict[str, tuple[int, int]] = {}
+    root = get_regulations_root()
+    if not root.exists():
+        return stamp
+    for path in root.glob("*/*.yaml"):
+        try:
+            stat = path.stat()
+        except OSError:
+            # File vanished between glob and stat — treat as "changed" by
+            # leaving it out of the stamp, which forces a rebuild against
+            # the previous stamp.
+            continue
+        stamp[str(path)] = (stat.st_mtime_ns, stat.st_size)
+    return stamp
+
+
+def _library_changed() -> bool:
+    """True when the on-disk library differs from the cached snapshot."""
+    global _cache_stamp
+    if _cache is None or _cache_stamp is None:
+        return True
+    current = _library_stamp()
+    return current != _cache_stamp
 
 
 def _load_all() -> dict[str, dict]:
     """Walk data/regulations/{region}/*.yaml once and cache by regulation id."""
-    global _cache
-    if _cache is not None:
+    global _cache, _cache_stamp
+    if _cache is not None and not _library_changed():
         return _cache
 
+    stamp = _library_stamp()
+    loaded: dict[str, dict] = {}
     root = get_regulations_root()
     if not root.exists():
         logger.warning("Regulations root does not exist: %s", root)
-        _cache = {}
-        return _cache
-
-    loaded: dict[str, dict] = {}
-    for path in sorted(root.glob("*/*.yaml")):
-        try:
-            data = yaml.safe_load(path.read_text())
-        except Exception as exc:
-            logger.error("Failed to load regulation YAML %s: %r", path, exc)
-            continue
-        if not isinstance(data, dict):
-            logger.error("Regulation YAML %s did not parse to a dict", path)
-            continue
-        reg_id = data.get("id")
-        if not reg_id:
-            logger.error("Regulation YAML %s missing id", path)
-            continue
-        if reg_id in loaded:
-            logger.error(
-                "Duplicate regulation id %s in %s (already in %s); skipping",
-                reg_id, path, loaded[reg_id].get("_path"),
-            )
-            continue
-        data["_path"] = str(path)
-        loaded[reg_id] = data
+    else:
+        for path in sorted(root.glob("*/*.yaml")):
+            try:
+                data = yaml.safe_load(path.read_text())
+            except Exception as exc:
+                logger.error("Failed to load regulation YAML %s: %r", path, exc)
+                continue
+            if not isinstance(data, dict):
+                logger.error("Regulation YAML %s did not parse to a dict", path)
+                continue
+            reg_id = data.get("id")
+            if not reg_id:
+                logger.error("Regulation YAML %s missing id", path)
+                continue
+            if reg_id in loaded:
+                logger.error(
+                    "Duplicate regulation id %s in %s (already in %s); skipping",
+                    reg_id, path, loaded[reg_id].get("_path"),
+                )
+                continue
+            data["_path"] = str(path)
+            loaded[reg_id] = data
+    if _cache is not None:
+        logger.info(
+            "regulation library changed on disk — cache rebuilt (%d regulations)",
+            len(loaded),
+        )
+        _rebuild_generation()
     _cache = loaded
+    _cache_stamp = stamp
     return _cache
 
 
@@ -241,6 +306,7 @@ def build_article_texts_for_anchors(
 
 __all__ = [
     "build_article_texts_for_anchors",
+    "cache_generation",
     "get_regulations_root",
     "invalidate_cache",
     "list_regulation_ids",

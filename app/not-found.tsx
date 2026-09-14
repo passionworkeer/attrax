@@ -6,6 +6,10 @@ import { buttonVariants } from "@/components/ui/button";
  * 404 page for unknown routes. Renders as a server component so search
  * engines can still index it. Branded with the same dark cyber-industrial
  * theme as the rest of the app.
+ *
+ * J18（计划 §7）：文案从英文「Lost in the smoke.」改为中文主导
+ * 「页面未找到」，与中文品牌和工作流一致；保留英文辅助行。
+ * 保留返回首页与法规示例入口两个 CTA。
  */
 export default function NotFound() {
   return (
@@ -17,24 +21,27 @@ export default function NotFound() {
 
         <p className="label-caps text-xs text-blaze-cyan/80 mb-3">404 · Not found</p>
         <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white mb-4">
-          Lost in the smoke.
+          页面未找到
         </h1>
+        <p className="text-sm text-slate-300 mb-6">
+          你访问的页面不存在，可能已被移动、重命名，或链接地址有误。
+        </p>
         <p className="text-sm leading-relaxed text-slate-400 mb-8">
-          The page you tried to reach does not exist on CompliPilot. It may have
-          been moved, renamed, or the URL is mistyped.
+          Page not found — the page may have been moved, renamed, or the URL is
+          mistyped.
         </p>
 
         <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link href="/" className={buttonVariants({ variant: "default", size: "lg" })}>
             <Home className="h-4 w-4 mr-2" />
-            Back to home
+            返回首页
           </Link>
           <Link
             href="/regulations"
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
             <Search className="h-4 w-4 mr-2" />
-            Browse regulations
+            法规动态示例
           </Link>
         </div>
       </div>

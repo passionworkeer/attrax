@@ -486,6 +486,31 @@ def _normalize_citations(value: Any) -> list[dict]:
     return out
 
 
+def _visual_item_count(vision_result: dict | None) -> int:
+    """J19: real number of visual inputs the scan consumed.
+
+    The vision payload (checklist mode) either carries an explicit
+    ``image_count`` or a list of per-image results; legacy payloads with
+    neither fall back to the boolean 1/0 the old code used."""
+    if not vision_result:
+        return 0
+    for key in ("image_count", "imageCount", "images"):
+        value = vision_result.get(key)
+        if isinstance(value, list):
+            return len(value)
+        if isinstance(value, int) and not isinstance(value, bool) and value > 0:
+            return value
+    observations = vision_result.get("observations")
+    if isinstance(observations, list):
+        image_ids = {
+            str(obs.get("image_id") or obs.get("imageId") or "")
+            for obs in observations
+            if isinstance(obs, dict)
+        } - {""}
+        return len(image_ids) if image_ids else 0
+    return 1
+
+
 def normalize_report_package(
     package: dict,
     *,
@@ -555,8 +580,18 @@ def normalize_report_package(
         "sourceCounts": {
             "retrievedChunks": len(chunks),
             "userDocuments": len(_as_list(user_documents)),
-            "visualItems": 1 if vision_result else 0,
-            **_as_dict(product_dossier.get("sourceCounts")),
+            # J19: count the REAL visual inputs (images assessed by the
+            # vision stage), not a boolean 1/0. The vision payload carries
+            # either `image_count` or per-image observations.
+            "visualItems": _visual_item_count(vision_result),
+            # Pre-existing dossier counts (if any) only fill gaps — real
+            # computed values above must not be overridden back to zero by
+            # a stale dossier copy.
+            **{
+                key: value
+                for key, value in _as_dict(product_dossier.get("sourceCounts")).items()
+                if key not in {"retrievedChunks", "userDocuments", "visualItems"}
+            },
         },
     }
 
