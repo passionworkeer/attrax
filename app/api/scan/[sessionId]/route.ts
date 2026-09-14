@@ -40,7 +40,10 @@ export async function GET(
   const { sessionId } = await context.params;
 
   // Demo short-circuit: no auth, returns the legacy mock. Keeps the design
-  // QA flow working without needing a real RAG session.
+  // QA flow working without needing a real RAG session. `resultReady` is set
+  // so the J01 completion contract (`ready && resultReady`) holds on every
+  // terminal payload this route emits — even though the demo burning page
+  // navigates on its own timer and never polls for it.
   if (isDemoSession(sessionId)) {
     const mockResult = createMockComplianceReportResult("demo");
     const demoStatus: ScanStatus = {
@@ -49,6 +52,7 @@ export async function GET(
       progress: 100,
       stageText: "完成",
       stageKey: "done",
+      resultReady: true,
       result: { ...mockResult, source: "demo" },
     };
     return ok(demoStatus);

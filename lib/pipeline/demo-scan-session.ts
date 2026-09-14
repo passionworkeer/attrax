@@ -96,6 +96,13 @@ export function createDemoScanSession(
     // 与 result 字段(source:"demo")一起让轮询方拿到完整可渲染 + 可断言的 demo payload。
     current.status = {
       ...current.status,
+      // J01 (plan 2026-09-14 §4.1): the burning page's completion state machine
+      // requires `status.resultReady === true` before it may chase 100% and
+      // navigate. DEMO_MODE sessions (`scan_demo_*`) bypass the v1 adapter —
+      // the BFF returns this status verbatim — so the flag must be set here,
+      // or the CI e2e flow (upload → burning → result) would reintroduce the
+      // exact 99% deadlock the resultReady contract fixed.
+      resultReady: true,
       status: "ready",
       progress: 100,
       stageText: "完成",

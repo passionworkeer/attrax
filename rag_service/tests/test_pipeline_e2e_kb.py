@@ -29,10 +29,40 @@ import pytest  # noqa: E402
 
 
 @pytest.fixture(autouse=True)
-def _kb_env(monkeypatch):
-    """Force the collapsed-pipeline env for every test in this module."""
+def _kb_env(monkeypatch, tmp_path):
+    """Force the collapsed-pipeline env for every test in this module.
+
+    J08 (2026-09-14): the shipped regulation library is entirely
+    ``source_kind: unverified`` — summaries that must not be verbatim-matched.
+    This suite's contract is the PIPELINE WIRING (anchors → article_texts →
+    prompt → citations → quote-match), so it runs against a fixture copy of
+    the library re-labeled ``official_verbatim``. The unverified-source gate
+    itself is covered by test_unverified_source_quote_gate.py.
+    """
     monkeypatch.setenv("RETRIEVAL_ENABLED", "false")
     monkeypatch.setenv("USE_KB_INPUT", "true")
+    # Build the verified fixture library: copy the real YAML files and swap
+    # source_kind to official_verbatim so verbatim quotes legitimately match.
+    import re as _re
+    from rag_service.retrieval import article_loader as _loader
+
+    fixture_root = tmp_path / "regulations"
+    for source in _loader._DEFAULT_REGULATIONS_ROOT.glob("*/*.yaml"):
+        region_dir = fixture_root / source.parent.name
+        region_dir.mkdir(parents=True, exist_ok=True)
+        text = source.read_text(encoding="utf-8")
+        if "source_kind:" in text:
+            text = _re.sub(r"source_kind: \S+", "source_kind: official_verbatim", text)
+        else:
+            text = text.replace(
+                "language: en\n",
+                "language: en\nsource_kind: official_verbatim\n",
+                1,
+            )
+        (region_dir / source.name).write_text(text, encoding="utf-8")
+    monkeypatch.setattr(_loader, "_regulations_root", fixture_root)
+    _loader.invalidate_cache()
+
     # Reset node singletons so injected mocks from other tests don't leak.
     from rag_service.pipeline.nodes import (
         generator as generator_module,
@@ -44,6 +74,10 @@ def _kb_env(monkeypatch):
     yield
     generator_module._generator_instance = None
     generator_module._is_injected = False
+    monkeypatch.setattr(
+        _loader, "_regulations_root", _loader._DEFAULT_REGULATIONS_ROOT
+    )
+    _loader.invalidate_cache()
 
 
 def _real_quote(doc_id: str, article_id: str, length: int = 40) -> str:

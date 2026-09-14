@@ -128,13 +128,13 @@ function makeLegacyResult(overrides: Partial<ProfitReportResult> = {}): ProfitRe
       warranty: 7.46,
       total: 86.96,
     },
-    bareboneRiskExposure: 1800000,
-    compliantRiskExposure: 900000,
+    bareboneRiskExposure: 0, // J07: fine exposure no longer synthesized as a figure
+    compliantRiskExposure: 0,
     keyConclusion: '关键结论:先合规',
     premiumPct: '52%',
     breakevenUnits: '1200 台',
     pricingStrategy: '¥71910',
-    riskNote: '单日最高罚款 ¥180 万',
+    riskNote: '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算',
     conclusions: '',
     references: '',
     generatedAt: '2026-07-22T10:00:00.000Z',
@@ -197,7 +197,7 @@ describe('buildProfitRenderModelFromProfitReport', () => {
   it('emits 4 risk exposure items verbatim', () => {
     const m = buildProfitRenderModelFromProfitReport(makeLegacyResult(), 'zh')
     expect(m.riskExposureItems.map((r) => r.label)).toEqual([
-      '单日最高罚款 ¥180 万',
+      '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算',
       '全店永久封停',
       '货物强制扣毁',
       '跨境集体诉讼',
@@ -250,7 +250,7 @@ describe('downloadProfitReportAsPdf — legacy wrapper data convergence', () => 
       '物流',     // chain label
       '合规成本', // chain label
       '退货',     // chain label
-      '单日最高罚款 ¥180 万', // risk
+      '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算', // risk
       '全店永久封停',
       '货物强制扣毁',
       '跨境集体诉讼',
@@ -311,7 +311,7 @@ describe('downloadProfitReportAsDocx — legacy wrapper data convergence', () =>
       '物流',
       '合规成本',
       '退货',
-      '单日最高罚款 ¥180 万',
+      '罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算',
       '全店永久封停',
       '货物强制扣毁',
       '跨境集体诉讼',

@@ -210,6 +210,36 @@ def load_article_text(reg_id: str, article_id: str) -> str | None:
     return None
 
 
+# ── source-kind governance (plan 2026-09-14 J08 / §4.4 layer 3) ─────────────
+
+# Kinds whose article text may participate in verbatim (exact-quote)
+# matching. ``unverified`` (and the legacy missing value) are summaries that
+# were never checked against the primary source — quoting them verbatim is
+# NOT "checked against the official text".
+VERBATIM_ALLOWED_SOURCE_KINDS = frozenset(
+    {"official_verbatim", "official_summary", "curated_summary"}
+)
+
+
+def load_source_kind(reg_id: str) -> str:
+    """Return the regulation's ``source_kind`` governance label.
+
+    Values: ``official_verbatim`` / ``official_summary`` /
+    ``curated_summary`` / ``unverified``. Legacy files that predate the
+    field return ``""`` — callers must treat that as NOT verbatim-allowed
+    (absent metadata cannot be trusted as official).
+    """
+    reg = load_regulation(reg_id)
+    if reg is None:
+        return ""
+    return str(reg.get("source_kind") or "").strip()
+
+
+def is_verbatim_allowed(reg_id: str) -> bool:
+    """True when the regulation's article text may enter the exact-quote flow."""
+    return load_source_kind(reg_id) in VERBATIM_ALLOWED_SOURCE_KINDS
+
+
 def load_articles_for_anchor(anchor: dict) -> dict[str, str]:
     """Resolve all `key_articles` of a KB anchor to their article texts.
 
@@ -309,9 +339,12 @@ __all__ = [
     "cache_generation",
     "get_regulations_root",
     "invalidate_cache",
+    "is_verbatim_allowed",
     "list_regulation_ids",
     "load_article_text",
     "load_articles_for_anchor",
     "load_regulation",
+    "load_source_kind",
     "set_regulations_root",
+    "VERBATIM_ALLOWED_SOURCE_KINDS",
 ]

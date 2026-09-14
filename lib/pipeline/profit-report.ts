@@ -621,8 +621,13 @@ export function financialSummaryFromProfitReport(
     complianceCost: fmtAmount(comp.cert + comp.epr + (comp.packaging - bare.packaging > 0 ? comp.packaging - bare.packaging : 0)),
     monthlyNetProfit: profit.pricingStrategy || t("由利润率 × 销量基准估算", "Estimated from margin × monthly volume"),
     targetVolumeLabel: t(`销量基准 3,000 台 / 月`, `Baseline volume 3,000 units / month`),
+    // J07 (plan 2026-09-14 §4.6): fine amounts need jurisdiction, violation
+    // type, currency, period AND a legal source before they can appear as a
+    // number. The old hard-coded "单日最高罚款 ¥180 万" invented a fine figure
+    // for every session; risk items now state the qualitative exposure
+    // without fabricating an amount.
     riskExposureItems: [
-      t("单日最高罚款 ¥180 万", "Daily maximum fine ¥1.8M"),
+      t("罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算", "Fine amounts depend on the violation and jurisdiction; no applicable statute was provided, so no figure is estimated"),
       t("全店永久封停", "Permanent store suspension"),
       t("货物强制扣毁", "Mandatory cargo seizure / destruction"),
       t("跨境集体诉讼", "Cross-border class action"),
@@ -737,8 +742,10 @@ export function buildProfitRenderModelFromProfitReport(
   const labels = isEnglish
     ? {
         targetVolume: "Baseline volume 3,000 units / month",
+        // J07 (plan 2026-09-14 §4.6): no invented fine figure — the first risk
+        // item states the dependency (violation + jurisdiction + statute).
         risk: [
-          "Daily maximum fine ¥1.8M",
+          "Fine amounts depend on the violation and jurisdiction; no applicable statute was provided, so no figure is estimated",
           "Permanent store suspension",
           "Mandatory cargo seizure",
           "Cross-border class action",
@@ -758,8 +765,9 @@ export function buildProfitRenderModelFromProfitReport(
       }
     : {
         targetVolume: "销量基准 3,000 台 / 月",
+        // J07: see the English branch above — qualitative exposure only.
         risk: [
-          "单日最高罚款 ¥180 万",
+          "罚款金额取决于违法行为与辖区，未提供适用罚则，不作数字估算",
           "全店永久封停",
           "货物强制扣毁",
           "跨境集体诉讼",

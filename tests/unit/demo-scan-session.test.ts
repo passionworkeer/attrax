@@ -75,6 +75,26 @@ describe("demo-scan-session", () => {
       expect(ready!.profitReport).toBeDefined();
       expect(ready!.profitReports).toBeDefined();
     });
+
+    it("J01: ready 状态携带 resultReady=true(否则 burning 页 99% 死锁在 DEMO_MODE 复现)", async () => {
+      // Plan 2026-09-14 §4.1: the burning page's completion state machine keys
+      // off `status.resultReady === true` — not `status === "ready"` alone.
+      // The BFF returns this demo status verbatim (no v1 adapter involved), so
+      // the flag must be set on the state machine's ready transition or the
+      // upload → burning → result e2e flow would never navigate.
+      const m = await loadModule();
+      const created = m.createDemoScanSession({ imageCount: 2 });
+
+      // processing 阶段没有 resultReady —— 后端契约里 processing 也不该有。
+      const processing = m.getDemoScanSession(created.sessionId);
+      expect(processing!.resultReady).toBeUndefined();
+
+      vi.advanceTimersByTime(1800);
+      const ready = m.getDemoScanSession(created.sessionId);
+      expect(ready!.status).toBe("ready");
+      expect(ready!.resultReady).toBe(true);
+      expect(ready!.result).not.toBeNull();
+    });
   });
 
   describe("getDemoScanSession 过期清理", () => {
