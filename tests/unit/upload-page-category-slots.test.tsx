@@ -30,15 +30,14 @@ vi.mock("next/image", () => ({
 }));
 
 vi.mock("@/components/blaze-hawks/locale", () => ({
-  useBlazeLocale: () => ({ locale: "zh" }),
-  // lib/i18n 的 TranslationProvider 通过 useOptionalBlazeLocale 可选接入
-  // blaze locale 上下文；脱离 provider 时返回 null 走默认 zh。
+  // lib/i18n.useTranslation delegates to useBlazeLocale; with this mock it
+  // works without a wrapper provider (returns zh by default).
+  useBlazeLocale: () => ({ locale: "zh", setLocale: vi.fn() }),
   useOptionalBlazeLocale: () => null,
 }));
 
 import UploadPage from "@/app/upload/page";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
-import { TranslationProvider } from "@/lib/i18n";
 import { getCompliPilotCopy } from "@/lib/complipilot/copy";
 import { MARKET_IDS } from "@/lib/types";
 import type { ComplianceReportResult } from "@/lib/types";
@@ -169,11 +168,7 @@ describe("J16: ComplianceReportView 检查清单缺省状态为待办（不再�
       { id: "chk_001", category: "核心市场", title: "证据补全与产品身份确认", actionRequired: "补齐铭牌照片" },
       { id: "chk_002", category: "实验室", title: "实验室测试申请", actionRequired: "送检 RoHS" },
     ]);
-    const { container } = render(
-      <TranslationProvider>
-        <ComplianceReportView result={result} />
-      </TranslationProvider>,
-    );
+    const { container } = render(<ComplianceReportView result={result} />);
 
     // 待办空心圈：中性边框样式，非 emerald 实心
     const statusBadge = container.querySelector(".border-slate-500");
@@ -187,11 +182,7 @@ describe("J16: ComplianceReportView 检查清单缺省状态为待办（不再�
     const result = makeChecklistResult([
       { question: "多语言警示齐全？", answer: "齐全", status: "pass" },
     ]);
-    const { container } = render(
-      <TranslationProvider>
-        <ComplianceReportView result={result} />
-      </TranslationProvider>,
-    );
+    const { container } = render(<ComplianceReportView result={result} />);
     expect(container.querySelector(".bg-emerald-500")).toBeInTheDocument();
   });
 });

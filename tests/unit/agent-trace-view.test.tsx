@@ -17,7 +17,7 @@ vi.mock('framer-motion', () => ({
 }))
 
 // Import at the end to ensure mocks are set up first
-import { TranslationProvider } from '@/lib/i18n'
+import { BlazeLocaleProvider } from '@/components/blaze-hawks/locale'
 import { AgentTraceTimeline, RetrievedChunks } from '@/components/result/AgentTraceView'
 
 describe('AgentTraceTimeline component', () => {
@@ -37,9 +37,9 @@ describe('AgentTraceTimeline component', () => {
   describe('Rendering', () => {
     it('renders nothing when trace is empty', () => {
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={[]} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeNull()
     })
@@ -50,18 +50,18 @@ describe('AgentTraceTimeline component', () => {
         { node: 'query_planner', duration_ms: 300 },
       ])
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={trace} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })
 
     it('renders node badges', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'vision', duration_ms: 500 }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('vision')).toBeInTheDocument()
     })
@@ -70,18 +70,18 @@ describe('AgentTraceTimeline component', () => {
   describe('Stage display', () => {
     it('displays duration in seconds', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'vision', duration_ms: 1500 }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('1.5s')).toBeInTheDocument()
     })
 
     it('displays docs_retrieved count', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'retriever', docs_retrieved: 15 }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       // Check that the component renders with the docs_retrieved info
       expect(screen.getByText('retriever')).toBeInTheDocument()
@@ -89,9 +89,9 @@ describe('AgentTraceTimeline component', () => {
 
     it('displays confidence score', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'generator', score: 0.876 }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('generator')).toBeInTheDocument()
     })
@@ -107,9 +107,9 @@ describe('AgentTraceTimeline component', () => {
         { node: 'retriever' },
       ])
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={trace} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })
@@ -121,9 +121,9 @@ describe('AgentTraceTimeline component', () => {
         { node: 'retriever' },
       ])
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={trace} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })
@@ -132,18 +132,18 @@ describe('AgentTraceTimeline component', () => {
   describe('Status badges', () => {
     it('displays WARN status badge', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'verifier', status: 'WARN' }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('WARN')).toBeInTheDocument()
     })
 
     it('displays PASS status badge', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'verifier', status: 'PASS' }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('PASS')).toBeInTheDocument()
     })
@@ -152,9 +152,9 @@ describe('AgentTraceTimeline component', () => {
   describe('Node styling', () => {
     it('renders different node types', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'vision' }, { node: 'query_planner' }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('vision')).toBeInTheDocument()
       expect(screen.getByText('query_planner')).toBeInTheDocument()
@@ -162,9 +162,9 @@ describe('AgentTraceTimeline component', () => {
 
     it('renders unknown node types', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <AgentTraceTimeline trace={createTrace([{ node: 'custom_node' }])} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('custom_node')).toBeInTheDocument()
     })
@@ -194,9 +194,9 @@ describe('RetrievedChunks component', () => {
   describe('Rendering', () => {
     it('renders nothing when chunks is empty', () => {
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={[]} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeNull()
     })
@@ -204,18 +204,18 @@ describe('RetrievedChunks component', () => {
     it('renders chunk badges', () => {
       const chunks = createChunks(3)
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })
 
     it('displays region and doc name', () => {
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={createChunks(2)} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('EU')).toBeInTheDocument()
       expect(screen.getByText('US')).toBeInTheDocument()
@@ -226,9 +226,9 @@ describe('RetrievedChunks component', () => {
     it('displays high score badge', () => {
       const chunks = [{ regId: 'r1', docName: 'Doc', articleNo: 'A1', region: 'EU', score: 0.95 }]
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('0.95')).toBeInTheDocument()
     })
@@ -236,9 +236,9 @@ describe('RetrievedChunks component', () => {
     it('displays medium score badge', () => {
       const chunks = [{ regId: 'r1', docName: 'Doc', articleNo: 'A1', region: 'EU', score: 0.75 }]
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('0.75')).toBeInTheDocument()
     })
@@ -246,9 +246,9 @@ describe('RetrievedChunks component', () => {
     it('displays low score badge', () => {
       const chunks = [{ regId: 'r1', docName: 'Doc', articleNo: 'A1', region: 'EU', score: 0.5 }]
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('0.50')).toBeInTheDocument()
     })
@@ -258,9 +258,9 @@ describe('RetrievedChunks component', () => {
     it('handles overflow when chunks exceed display cap', () => {
       const chunks = createChunks(20)
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })
@@ -268,9 +268,9 @@ describe('RetrievedChunks component', () => {
     it('handles chunks within limit', () => {
       const chunks = createChunks(10)
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })
@@ -280,9 +280,9 @@ describe('RetrievedChunks component', () => {
     it('shows article number when present', () => {
       const chunks = [{ regId: 'r1', docName: 'Doc', articleNo: 'Article 42', region: 'EU', score: 0.9 }]
       render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(screen.getByText('Article 42')).toBeInTheDocument()
     })
@@ -290,9 +290,9 @@ describe('RetrievedChunks component', () => {
     it('handles chunks without article number', () => {
       const chunks = [{ regId: 'r1', docName: 'Doc', region: 'EU', score: 0.9 }]
       const { container } = render(
-        <TranslationProvider>
+        <BlazeLocaleProvider>
           <RetrievedChunks chunks={chunks} />
-        </TranslationProvider>
+        </BlazeLocaleProvider>
       )
       expect(container.firstChild).toBeTruthy()
     })

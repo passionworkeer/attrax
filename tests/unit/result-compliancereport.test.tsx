@@ -7,7 +7,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import React from "react";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
-import { TranslationProvider } from "@/lib/i18n";
+import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 import type { ComplianceReportResult } from "@/lib/types";
 
 vi.mock("@/lib/report-download", () => ({
@@ -20,7 +20,7 @@ vi.mock("@/lib/report-download", () => ({
 }));
 
 function renderInProvider(node: React.ReactNode) {
-  return render(<TranslationProvider>{node}</TranslationProvider>);
+  return render(<BlazeLocaleProvider>{node}</BlazeLocaleProvider>);
 }
 
 function makeReport(overrides: Partial<ComplianceReportResult> = {}): ComplianceReportResult {

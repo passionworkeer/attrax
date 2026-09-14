@@ -10,12 +10,12 @@ import { SourceNotice } from '@/components/result/SourceNotice'
 import { DownloadButtons } from '@/components/result/DownloadButtons'
 import { PageSkeleton } from '@/components/ui/PageSkeleton'
 import GlobalError from '@/app/error'
-import { TranslationProvider } from '@/lib/i18n'
+import { BlazeLocaleProvider } from '@/components/blaze-hawks/locale'
 
 // next/link needs an href and won't render in jsdom without it; the router
 // stub from setup.ts is already in place.
 function renderInProvider(node: React.ReactNode) {
-  return render(<TranslationProvider>{node}</TranslationProvider>)
+  return render(<BlazeLocaleProvider>{node}</BlazeLocaleProvider>)
 }
 
 describe('SourceNotice', () => {

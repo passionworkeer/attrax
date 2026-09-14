@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import React from "react";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
-import { TranslationProvider } from "@/lib/i18n";
+import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 import type { ComplianceReportResult } from "@/lib/types";
 
 vi.mock("@/lib/report-download", () => ({
@@ -15,7 +15,7 @@ vi.mock("@/lib/report-download", () => ({
 }));
 
 function renderInProvider(node: React.ReactNode) {
-  return render(<TranslationProvider>{node}</TranslationProvider>);
+  return render(<BlazeLocaleProvider>{node}</BlazeLocaleProvider>);
 }
 
 describe("ComplianceReportView Edge Cases & Defensive Rendering", () => {
