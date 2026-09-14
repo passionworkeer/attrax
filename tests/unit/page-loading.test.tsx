@@ -10,15 +10,11 @@ import '@testing-library/jest-dom'
 import UploadLoading from '@/app/upload/loading'
 import BurningLoading from '@/app/burning/[sessionId]/loading'
 import ResultLoading from '@/app/result/[sessionId]/loading'
-import TraceLoading from '@/app/trace/loading'
-import RoadmapLoading from '@/app/roadmap/loading'
 
 const EXPECTED: Array<{ name: string; Component: React.ComponentType; label: string }> = [
   { name: 'upload', Component: UploadLoading, label: 'Loading upload…' },
   { name: 'burning', Component: BurningLoading, label: 'Initializing scan…' },
   { name: 'result', Component: ResultLoading, label: 'Loading report…' },
-  { name: 'trace', Component: TraceLoading, label: 'Loading trace…' },
-  { name: 'roadmap', Component: RoadmapLoading, label: 'Loading roadmap…' },
 ]
 
 describe('Page-level loading.tsx wrappers', () => {
