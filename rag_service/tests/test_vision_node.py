@@ -357,33 +357,33 @@ class TestVisionAnalyzerMimotalk:
         result = analyzer._call_mimotalk([])
         assert result == ""
 
-    @patch("urllib.request.urlopen")
-    def test_successful_call_returns_text(self, mock_urlopen):
+    @patch("rag_service.pipeline.nodes.vision._NO_PROXY_OPENER")
+    def test_successful_call_returns_text(self, mock_opener):
         mock_response = MagicMock()
         mock_response.__enter__ = MagicMock(return_value=mock_response)
         mock_response.__exit__ = MagicMock(return_value=False)
         mock_response.read.return_value = b'{"content":[{"text":"product type"}]}'
-        mock_urlopen.return_value = mock_response
+        mock_opener.open.return_value = mock_response
 
         analyzer = VisionAnalyzer(api_key="test-key")
         result = analyzer._call_mimotalk([{"role": "user", "content": []}])
         assert result == "product type"
 
-    @patch("urllib.request.urlopen")
-    def test_http_error_returns_empty_string(self, mock_urlopen):
+    @patch("rag_service.pipeline.nodes.vision._NO_PROXY_OPENER")
+    def test_http_error_returns_empty_string(self, mock_opener):
         # Provide a proper file-like body so e.read() works in the exception handler
         mock_body = MagicMock()
         mock_body.read.return_value = b'{"error": "bad request"}'
-        mock_urlopen.side_effect = urllib.error.HTTPError(
+        mock_opener.open.side_effect = urllib.error.HTTPError(
             "url", 401, "Unauthorized", {}, mock_body
         )
         analyzer = VisionAnalyzer(api_key="bad-key")
         result = analyzer._call_mimotalk([{"role": "user", "content": []}])
         assert result == ""
 
-    @patch("urllib.request.urlopen")
-    def test_timeout_error_returns_empty_string(self, mock_urlopen):
-        mock_urlopen.side_effect = Exception("timeout")
+    @patch("rag_service.pipeline.nodes.vision._NO_PROXY_OPENER")
+    def test_timeout_error_returns_empty_string(self, mock_opener):
+        mock_opener.open.side_effect = Exception("timeout")
         analyzer = VisionAnalyzer(api_key="test-key")
         result = analyzer._call_mimotalk([{"role": "user", "content": []}])
         assert result == ""

@@ -14,14 +14,21 @@ import urllib.error
 
 from rag_service.schemas.report_package import normalize_report_package
 
-# Disable system proxy for all urllib calls (prevents WinError 10060 on Windows)
-os.environ.pop("HTTP_PROXY", None)
-os.environ.pop("HTTPS_PROXY", None)
-os.environ.pop("http_proxy", None)
-os.environ.pop("https_proxy", None)
-os.environ.setdefault("NO_PROXY", "*")
-
 logger = logging.getLogger(__name__)
+
+
+def _make_no_proxy_opener() -> urllib.request.OpenerDirector:
+    """Return an opener that ignores system proxy settings.
+
+    P1-8: the previous implementation popped ``HTTP_PROXY`` from
+    ``os.environ`` at import time. That affected every other HTTP library
+    in the process, not just urllib. Routing through an explicit
+    ``ProxyHandler({})`` opener confines the bypass to this module.
+    """
+    return urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
+_NO_PROXY_OPENER = _make_no_proxy_opener()
 
 
 # Feature flag for the KB-anchored generator path (De-RAG spec §7.3).
@@ -927,7 +934,7 @@ class ReportGenerator:
         propagates as-is.
         """
         try:
-            with urllib.request.urlopen(req, timeout=90) as r:
+            with _NO_PROXY_OPENER.open(req, timeout=90) as r:
                 data = json.loads(r.read())
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503, 504):
