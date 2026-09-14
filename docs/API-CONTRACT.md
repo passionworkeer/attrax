@@ -1,6 +1,8 @@
 # API 契约：RAG Service
 
-> 新前端接入请只使用版本化 `/api/v1`，完整流程见 [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md)。本文件后续章节保留旧接口契约，供现有 Next.js 迁移期兼容。
+> **Canonical: v1。** 新前端接入**仅使用** `/api/v1/*`，完整接入指南见 [`FRONTEND-BACKEND-INTEGRATION.md`](./FRONTEND-BACKEND-INTEGRATION.md)。
+>
+> 本文件后文保留 `/scan` / `/scan-multipart` / `/profit-report` 等**遗留端点**作为向后兼容说明——这些端点目前仍存在于 `rag_service/main.py`（main.py:718/723/747），但所有新代码、CI 与当前前端 BFF 都走 `/api/v1/scans`（含 `/evidence` + `/revisions`），遗留端点不接受新功能。
 
 > 版本基线：FastAPI 自动生成于 `rag_service/main.py`，**OpenAPI 规范文件**在 [`lib/rag-client/openapi.snapshot.json`](../lib/rag-client/openapi.snapshot.json)（CI 会校验它与代码生成的一致性）。
 >
@@ -16,7 +18,7 @@
 | `/scan-multipart` | POST | Form 形态的扫描（带图片+PDF） | 同上 | 同上 | 280s | 同上 |
 | `/profit-report` | POST | 生成合规成本/利润报告 | 同上 | 同上 | 60s | 200 / 400 / 413 / 429 / 500 / 504 |
 | `/health` | GET | 存活探针 | 无 | 无 | — | 200 |
-| `/ready` | GET | 就绪探针（检查 FAISS/BM25/Key） | 无 | 无 | — | 200 / 503 |
+| `/ready` | GET | 就绪探针（检查 KB 锚点 + 法规原文库 + LLM Key） | 无 | 无 | — | 200 / 503 |
 | `/openapi.json` | GET | OpenAPI 3 规范 | 无 | 无 | — | 200 |
 | `/docs` | GET | Swagger UI | 无 | 无 | — | 200 |
 
@@ -64,7 +66,7 @@
 
 ### 2.5 幂等 / 重试
 
-- 服务**无幂等保证**。重发同样的 `query` + `images` 会重新跑一次完整 LangGraph。
+- 服务**无幂等保证**。重发同样的 `query` + `images` 会重新跑一次完整 KB 锚定生成管线（vision → generate → verify）。
 - 客户端建议：每个 `sessionId` 只发起一次扫描；失败由 `degradedReason` 决定前端降级，不在后端重试。
 
 ---
@@ -105,7 +107,7 @@ interface ScanRequest {
 interface ScanResponse {
   status: "PASS" | "WARN" | "REJECTED" | "UNKNOWN";
   report: string;                             // markdown
-  agent_trace: Array<Record<string, unknown>>; // LangGraph 节点日志
+  agent_trace: Array<Record<string, unknown>>; // KB 锚定管线节点日志（vision / generate / verify / findings_builder / visual_checks）
   loop_count: number;                         // 0 = 单次，1+ = 重新检索
   documents?: Array<{                         // 上限 15 条
     id: string;
@@ -290,7 +292,7 @@ interface EvidenceItem {
 { "status": "ok", "version": "0.3.0", "demo_mode": false }
 ```
 
-200 永远。`status` 当前**不**反映内部错误（FAISS 加载失败不会让 health 变红）。需要真实健康度请用 `/ready`。
+200 永远。`status` 当前**不**反映内部错误（KB 锚点 / 法规原文库加载失败不会让 health 变红）。需要真实健康度请用 `/ready`。
 
 ### 5.2 `GET /ready`
 
@@ -298,7 +300,11 @@ interface EvidenceItem {
 {
   "ready": true,
   "checks": {
-    "faiss": true,
+    "kb_anchors": true,         // 来自 rag_service/retrieval/kb_loader.py
+    "regulation_library": true,  // 来自 rag_service/retrieval/article_loader.py
+    "minimax_api_key": true,
+    "config_loaded": true,
+    "scan_service": true
     "bm25": true,
     "mimotalk_api_key": true,
     "modelscope_api_key": true,

@@ -16,7 +16,7 @@
 
 ### 前端（Next.js）
 
-- **框架**：Next.js 16.2.4 + React 19.2.4 + TypeScript（strict）
+- **框架**：Next.js ^16.2.6 + React 19.2.4 + TypeScript（strict）
 - **样式**：Tailwind CSS 4.x + shadcn/ui 4.4.0
 - **动画**：framer-motion 12.38.0
 - **Markdown**：react-markdown + remark-gfm（报告渲染）
@@ -27,7 +27,7 @@
 
 ### 后端 RAG 服务（Python）
 
-- **框架**：FastAPI 0.115.6（暂保留 LangGraph 1.1.6 作为节点编排壳，de-RAG 计划下个里程碑塌缩）
+- **框架**：FastAPI 0.115.6（线性 3 步管线：vision → generate → verify；LangGraph 已于 de-RAG §7.7 塌缩移除）
 - **语言**：Python 3.10+
 - **Embedding**：阿里云 PAI `text-embedding-v4`（1024 维，生产唯一路径）。2026-09-10 由 ModelScope Qwen3-Embedding-0.6B 切换（Key 吊销）；⚠️ PAI batch≤10 硬限（超限 400）
 - **LLM**：MiniMax-M3（Anthropic SDK，端点 `https://api.minimaxi.com/anthropic/v1`）
@@ -47,7 +47,7 @@
 | RAG Service（FastAPI） | `http://localhost:8001` |
 
 > **重要**：前端调用 RAG 服务时使用端口 **8001**（不是 8000），配置在 `RAG_SERVICE_URL` 环境变量，代码见 `lib/rag-client/client.ts`。
-> docker-compose 映射为 `8001:8000`（容器内 8000，宿主机 8001）。
+> docker-compose 映射为 loopback-only `127.0.0.1:${RAG_PORT:-8001}:8000`（容器内 8000，宿主机 8001）。
 
 ### 多市场支持
 
@@ -60,7 +60,7 @@
 
 - **服务端**：RAG 服务自管会话（`rag_service/` FastAPI + 文件后端）
 - 前端代码：`lib/rag-client/v1-adapter.ts`（创建扫描）/ `lib/rag-client/client.ts`（HTTP 封装）/ `app/api/scan/route.ts`（BFF 路由）
-- ⚠️ 旧本地管线 `lib/pipeline/scan.ts` + `scan-queue.ts` 已于 2026-09-10 删除（死代码，见 docs/plans/2026-09-09-optimization-audit.md §1.1）
+- `lib/pipeline/` 当前文件：`session-auth`、`demo-scan-session`、`report-package`、`profit-report`——全部活跃服务于 demo 路径与 BFF 报告导出
 
 ### 降级模式
 
@@ -68,7 +68,7 @@
 |------|---------|------|
 | DEMO_MODE | `DEMO_MODE=true` 环境变量 | 使用 Mock 数据，无需 API Key |
 | Embedding 降级 | PAI API 不可用 | 当前**无**自动 fallback（探测仅含 PAI）；Embedding 失败会直接报错而非降级 |
-| 引用验证 | 生产环境（NLI 模型未注入） | text-overlap 词重叠降级；`verification_mode` 字段 + `/health` 暴露真实模式 |
+| 引用验证 | 生产环境（无 NLI 模型） | deterministic quote matching：`verify/quote_matcher.py` 对 LLM 引用的法规条款做反向字面匹配，返回每条引用的 `match_status`；`verification_mode` 字段 + `/health` 暴露真实模式 |
 | RAG 服务不可用 | 无法连接 localhost:8001 | 前端降级为 degraded 状态 + 红色横幅提示（sessionPayload 暴露 degradedReason，非静默 demo） |
 
 ### 前端调用 RAG 服务流程
@@ -95,35 +95,34 @@
 attrax/
 ├── app/                          # Next.js App Router
 │   ├── page.tsx                  # 首页
-│   ├── layout.tsx                # 根布局（i18n Provider）
+│   ├── layout.tsx                # 根布局（BlazeLocaleProvider）
 │   ├── [locale]/page.tsx         # i18n 首页变体
 │   ├── upload/page.tsx           # 上传页
 │   ├── burning/[sessionId]/      # 扫描中动画页
 │   ├── result/[sessionId]/       # 结果页（合规 + 利润 + 决策 + 路线图）
+│   │   └── use-result-loader.ts  # 结果页轮询 hook
 │   ├── profit/[sessionId]/       # 利润独立页面
 │   ├── pricing/page.tsx          # 商业方案
 │   ├── regulations/page.tsx      # 法规更新列表
 │   └── api/                      # Next.js API 路由
 │       ├── scan/route.ts         # POST /api/scan — 创建扫描
-│       ├── scan/[sessionId]/     # GET 轮询 + asset + evidence + revisions
+│       ├── scan/[sessionId]/     # GET 轮询 + asset/[index] + evidence + revisions
+│       ├── backend-session-access.ts  # 会话访问 token 校验（session-auth）
 │       ├── regulations/updates/  # GET 法规更新
 │       ├── regulations/[docId]/  # GET 单条法规原文（evidence-pack 引用）
-│       ├── report/[sessionId]/[reportType]/  # PDF/DOCX 下载
 │       └── health/               # GET 健康检查
 │
 ├── components/                   # React 组件
 │   ├── ui/                       # shadcn/ui 基础组件
-│   ├── upload/                   # 上传相关
-│   ├── burning/BurningAnimation.tsx
+│   ├── blaze-hawks/              # BlazeLocaleProvider（locale 真值源）+ 品牌 UI
 │   ├── result/                   # 结果展示
 │   │   ├── ComplianceReportView.tsx
 │   │   ├── EvidenceRequestPanel.tsx     # J10 补充证据 UI（2026-09-14）
-│   │   ├── InspectionChecklistPanel.tsx  # J02/J09 语义检查
-│   │   ├── FloatingEvidenceCrop.tsx
-│   │   ├── HotspotLayer.tsx
-│   │   ├── ProfitReportView.tsx          # 利润报告视图
-│   │   └── AgentTraceView.tsx
-│   └── regulation/               # CitationChip / DocViewer / ComplianceReportView
+│   │   ├── InspectionChecklistPanel.tsx # J02/J09 语义检查
+│   │   ├── FloatingEvidenceCrop.tsx / HotspotLayer.tsx / ObservationHotspotLayer.tsx
+│   │   ├── AgentTraceView.tsx
+│   │   └── DegradedBanner / SourceNotice / FallbackNotice / DownloadButtons / ImageCarousel
+│   └── regulation/               # CitationChip / DocViewer / LinkBackToReport
 │
 ├── lib/                          # 核心库
 │   ├── types.ts                  # TS 类型（Market/ProductCategory/ScanStatus/...）
@@ -131,22 +130,23 @@ attrax/
 │   ├── utils.ts                  # 工具函数
 │   ├── constants.ts              # 共享常量（超时/限额/限流）
 │   ├── api-response.ts           # API 响应信封（ok/fail/unwrapApiData）
-│   ├── i18n.tsx                  # 前端 i18n（TranslationProvider/useTranslation）
-│   ├── server-i18n.ts            # 服务端 i18n（serverT/SCAN_STAGE_TEXT）
+│   ├── i18n.tsx                  # 前端 i18n hook（useTranslation；locale 取自 BlazeLocaleProvider）
+│   ├── i18n/translations.ts      # zh/en 文案表
+│   ├── complipilot/              # 规航AI 品牌文案 / 扫描阶段 / 场景
 │   ├── rate-limit.ts             # 限流
 │   ├── upload-validation.ts      # 上传文件校验
 │   ├── report-localization.ts    # 报告字段本地化
 │   ├── report-export.ts          # 报告导出入口（仅 downloadEvidencePack 实际被引）
 │   ├── report-download.ts        # 报告导出（动态导入，lazy loading）
-│   ├── report-export-modules/    # 报告导出实现（compliance / profit / decision / roadmap / shared / evidence-pack）
+│   ├── report-export-modules/    # 报告导出实现（compliance / profit / decision / roadmap / shared / evidence-pack；客户端 jsPDF/Packer，无 API 路由）
 │   ├── result-view-helpers.ts    # 结果页视图助手
-│   ├── pipeline/                 # 旧会话存储（仅旧 demo 路径）
-│   │   ├── session-store.ts      # 会话存储（globalThis + 文件；仅旧 demo 路径）
+│   ├── pipeline/                 # demo 会话 + BFF 报告导出（4 文件，全部活跃）
 │   │   ├── session-auth.ts       # 会话访问 token（哈希 + 校验）
-│   │   └── report-package.ts     # 报告包结构
-│   ├── mock/                     # Demo 模式模拟数据
+│   │   ├── demo-scan-session.ts  # demo 模式会话
+│   │   ├── report-package.ts     # 报告包结构归一化（normalizeReportPackage）
+│   │   └── profit-report.ts      # 利润报告合成 + RenderModel
+│   ├── mock/                     # Demo 模式模拟数据（blaze-scan-result / blaze-scenario / scan-result / roadmap / blaze-copy）
 │   ├── hooks/useScanPolling.ts   # 轮询 hook
-│   ├── hooks/use-result-loader.ts # 结果页轮询
 │   ├── rag-client/               # 前端 RAG 客户端
 │   │   ├── v1-adapter.ts          # 创建扫描 / 轮询
 │   │   ├── v1-result-adapter.ts  # 结果字段映射
@@ -157,7 +157,7 @@ attrax/
 │   │   ├── report-package-schema.ts
 │   │   ├── openapi.snapshot.json # 从运行中 RAG 服务抓取的 OpenAPI
 │   │   └── types.gen.ts          # 自动生成的 TS 类型
-│   └── upload/                   # 上传相关 helpers（活跃开发）
+│   └── upload/category-manifest.ts  # 上传品类清单（该目录唯一文件）
 │
 ├── rag_service/                  # Python RAG 服务（FastAPI，端口 8001）
 │   ├── main.py                   # FastAPI 入口（/api/v1/* 端点）
@@ -165,10 +165,10 @@ attrax/
 │   ├── application/scans.py      # 扫描生命周期 + 证据/重扫逻辑
 │   ├── api/v1.py                 # /api/v1/scans + /evidence + /revisions
 │   ├── infrastructure/file_backend.py
-│   ├── pipeline/                 # 节点编排（沿用 LangGraph 形态，de-RAG 后塌缩）
+│   ├── pipeline/                 # 线性 3 步管线 vision → generate → verify（LangGraph 形态已于 de-RAG §7.7 塌缩移除）
 │   │   ├── runner.py             # 编排入口
 │   │   ├── state.py              # 状态定义
-│   │   └── nodes/                # vision / must_check / generator / verifier / findings_builder / visual_checks
+│   │   └── nodes/                # vision / generator / verifier / findings_builder / visual_checks
 │   ├── retrieval/                # 知识库锚定三件套
 │   │   ├── must_check.py         # CATEGORY_REGULATIONS（10 品类×7 市场）+ FEATURE_REGULATIONS
 │   │   ├── kb_loader.py          # 锚点 YAML 加载
@@ -176,6 +176,7 @@ attrax/
 │   ├── verify/                   # 验证层
 │   │   ├── applicability.py      # 三态 ProductFacts（confirmed/candidate/absent）
 │   │   ├── grounding.py          # grounding verifier
+│   │   ├── quote_matcher.py      # 引用反向字面匹配（deterministic，每条 citation 返回 match_status）
 │   │   └── vision_cache.py       # 视觉结果 LRU 缓存
 │   ├── schemas/                  # Pydantic
 │   │   ├── report_package.py
@@ -189,30 +190,31 @@ attrax/
 │
 ├── data/                         # 数据文件
 │   ├── regulations/              # 44 篇锚点法规 YAML（生产只读）
+│   ├── kb/                       # KB 锚点 YAML
 │   ├── inspection_profiles/      # 视觉检查 profile（11 个 yaml）
-│   ├── regulation_supplements/   # watchdog 自动入库包 + manifest
-│   ├── sessions/                 # 会话文件（TTL 1h）
-│   ├── corpus/                   # 法规语料 HTML（运行时由 watchdog 维护）
-│   └── scan-queue/               # 扫描任务队列（持久化）
+│   ├── regulation_sources/       # 法规数据源注册表
+│   ├── regulation_supplements/   # watchdog 自动入库包 + manifest（⚠️ */raw/ 原件 PDF/DOCX/HTML 不纳入版本控制，约 400MB，见 .gitignore）
+│   ├── regulation_eval/ + regulation_reports/  # 法规评测与报告产物
+│   └── corpus/                   # 法规语料 HTML（运行时由 watchdog 维护）
+│   # 运行时目录（gitignore，不入库）：data/sessions/（TTL 1h）、data/backend/、data/uploads/
 │
 ├── tests/                        # 前端测试
 │   ├── unit/                     # Vitest 单元测试
 │   ├── e2e/                      # Playwright E2E
-│   ├── pressure/                 # 压力测试脚本
+│   ├── pressure/                 # 压力测试脚本（improved-load-test.js）
 │   └── setup.ts
 │
-├── public/                       # 静态资源
+├── public/                       # 静态资源（fonts/NotoSansSC-Regular.ttf 17MB 不入库，服务器自备）
 ├── docs/                         # 项目文档（详见 docs/README.md）
 │   ├── plans/                    # 修复计划与设计 spec
 │   │   ├── 2026-09-11-de-rag-evidence-spec.md  # de-RAG 迁移路线（执行基准）
 │   │   ├── 2026-09-14-judge-review-and-optimization-plan.md  # 当下优化方向
 │   │   └── 2026-09-09-optimization-audit.md    # 已完成的审计
-│   ├── evidence/                 # 评测与生产证据
+│   ├── evidence/                 # 评测与生产证据（历史截图 / DOM 快照）
 │   ├── infra/                    # 服务器配置快照
-│   ├── FRONTEND-BACKEND-INTEGRATION.md  # 当前 API 契约源（替代已过时的 API-CONTRACT.md）
-│   └── DEPLOYMENT.md             # 部署指南
+│   └── FRONTEND-BACKEND-INTEGRATION.md  # 当前 API 契约源（替代已过时的 API-CONTRACT.md）
 └── scripts/                      # 运维脚本
-    ├── deploy.sh + deploy.ps1
+    ├── build-deploy-tarball.sh   # 部署 tarball 构建（自动写 .deployed 标识）
     ├── preflight-deploy.mjs
     ├── ingest_regulation_supplements.py  # watchdog 流水线
     ├── watchdog/                 # 法规自动入库守护
@@ -340,7 +342,7 @@ const StartScanRequestSchema = z.object({
 
 ### 2026-09-11 — De-RAG 架构 spec 冻结（未实施）
 
-第一性原理审查结论：**完全去掉 RAG**（embedding + 向量检索 + BM25 + LangGraph），改为 **Knowledge-Anchored Generation**。当前 commit 处于过渡阶段（仍走 LangGraph + PAI，但 must_check + KB 已是主路径）。完整规格：`docs/plans/2026-09-11-de-rag-evidence-spec.md`。
+第一性原理审查结论：**完全去掉 RAG**（embedding + 向量检索 + BM25 + LangGraph），改为 **Knowledge-Anchored Generation**。LangGraph 编排壳已按 §7.7 塌缩为线性 3 步管线（vision → generate → verify）；must_check + KB 是主路径，PAI 仍承担 embedding 类辅助调用。完整规格：`docs/plans/2026-09-11-de-rag-evidence-spec.md`。
 
 ### 2026-09-10 — A+B 混合架构 + 审计批处理
 
@@ -357,7 +359,7 @@ const StartScanRequestSchema = z.object({
   1. 前端 BUILD_ID 旧，浏览器 Server Action ID 与新版不匹配 → 扫描提交 400 + 反复重试
   2. rag-service `--workers 1` + 扫描 280s 超时（LLM `json.loads failed` 反复重试）→ 单 worker 被卡 + 内存涨到 960MB → `max_memory_restart: 900M` 过低 → pm2 频繁重启 → meta.json 95MB 未分片全量加载加剧崩溃循环
 - **运维修复（已落地）**：
-  - meta.json 95MB 分片：`FaissRetriever.split_meta_to_shards('data/faiss/legal_chunks_meta.json', 50)` → 50 分片各 ~3MB，加载器自动识别
+  - meta.json 95MB 分片：`FaissRetriever.split_meta_to_shards('data/faiss/legal_chunks_meta.json', 50)` → 50 分片各 ~3MB，加载器自动识别（⚠️ 历史记录：`data/faiss/` 与 `FaissRetriever` 已随 de-RAG 于 2026-09 移除，此条仅为事故存档）
   - `max_memory_restart: 900M → 1300M`（rag-service，留 300MB 给 nextjs+系统，超出走 4GB swap）
 
 ---
@@ -405,7 +407,7 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 - `docs/plans/2026-09-11-de-rag-evidence-spec.md` — de-RAG 迁移路线（执行基准）
 - `docs/plans/2026-09-14-judge-review-and-optimization-plan.md` — 当前优化方向
 - `docs/plans/2026-09-09-optimization-audit.md` — 已完成的审计
-- `docs/DEPLOYMENT.md` — 部署指南
+- `docs/README.md` §生产部署 — 部署入口（lighthouse git-bundle + tar 流程）
 - `CHANGELOG.md` — 历史修复 + 事故记录
 
 ---

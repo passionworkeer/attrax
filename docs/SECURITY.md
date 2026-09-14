@@ -152,7 +152,7 @@ If you suspect compromise:
 1. **Disconnect**: `ufw deny in` on 22/80/443 (or `iptables -I INPUT 1 -j DROP`)
 2. **Snapshot**: `dd` the disk before rebooting
 3. **Audit logs**: `journalctl --since="24 hours ago"` + `tail /var/log/attrax-*.log` + `grep -E "(sk-cp-|ms-)" /var/log/`
-4. **Rotate keys**: `MIMOTALK_API_KEY`, `MODELSCOPE_API_KEY` on provider dashboards
+4. **Rotate keys**: `MINIMAX_API_KEY`, `PAI_API_KEY` on provider dashboards
 5. **Force re-key**: invalidate all sessions by `rm /opt/attrax/.next/standalone/data/sessions/*.json`
 6. **Inspect**: check `~/.ssh/authorized_keys` on root and admin for unexpected entries
 7. **Rebuild**: deploy fresh from clean git checkout

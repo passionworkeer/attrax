@@ -6,7 +6,7 @@
 
 ```bash
 # 1. 同步代码（与其他服务一起）
-rsync -az --delete --exclude='data/faiss' --exclude='.venv' \
+rsync -az --delete --exclude='.venv' \
   --exclude='data/backend' --exclude='__pycache__' --exclude='*.pyc' \
   --exclude='data/regulation_supplements' \
   attrax/ lighthouse:/opt/attrax/

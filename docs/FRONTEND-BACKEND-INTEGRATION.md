@@ -16,7 +16,7 @@ python -m uvicorn rag_service.main:app --host 127.0.0.1 --port 8001
 docker compose up -d rag-service
 ```
 
-生产环境必须设置真实的 `MIMOTALK_API_KEY`、`MODELSCOPE_API_KEY`、`RAG_INTERNAL_SECRET` 和新前端的 `RAG_ALLOWED_ORIGINS`。运行状态持久化在 `ATTRAX_RUNTIME_DIR`；Compose 默认映射为宿主机 `./data/backend`。
+生产环境必须设置真实的 `MINIMAX_API_KEY`、`PAI_API_KEY`、`RAG_INTERNAL_SECRET` 和新前端的 `RAG_ALLOWED_ORIGINS`。运行状态持久化在 `ATTRAX_RUNTIME_DIR`；Compose 默认映射为宿主机 `./data/backend`。
 
 ## 2. 唯一公开流程
 

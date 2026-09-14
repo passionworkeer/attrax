@@ -1,6 +1,8 @@
 # Attrax 安全加固总结（16 轮 / 2026-06-21）
 
-> 这是 1 页能看完的摘要。详细政策看 `SECURITY.md`，运维操作看 `SERVER-OPS.md`，恢复流程看 `RECOVERY.md`，服务器配置快照看 `infra/`。
+> ⚠️ **SUPERSEDED — 2026-06-21 历史快照**。该文档中提到的 `SERVER-OPS.md` / `RECOVERY.md` 已随阿里云深圳服务器退役而删除（2026-09-14）；当前安全政策见 [`SECURITY.md`](./SECURITY.md)。
+
+> 这是 1 页能看完的摘要。详细政策看 `SECURITY.md`，服务器配置快照看 `infra/`。
 
 ## 当前状态（snap 时间：2026-06-21 22:12）
 

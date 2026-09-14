@@ -1,5 +1,7 @@
 # 火鹰合规 (Blaze Hawks) - 项目描述文档
 
+> ⚠️ **历史产品文档（成文 2026 年中前）**。多项内容（LangGraph 编排、`app/trace/[sessionId]` 与 `app/roadmap/[sessionId]` 孤儿页、`lib/pipeline/scan.ts` + `scan-queue.ts` + `LegacyResultView`、`components/trace/*`、`components/upload/UploadForm.tsx`、`ProfitReportView` 独立组件、cohere embed、FAISS 索引、`data/faiss/`、`data/scan-queue/` 等）已于 2026-09-10 ~ 2026-09-14 间被移除或重构。当前架构权威真值见根目录 [`CLAUDE.md`](../CLAUDE.md) + [`docs/PROJECT-STATUS.md`](./PROJECT-STATUS.md)。
+
 > "想出海？先烧毁。" — 跨境电商合规风险智能扫描平台
 
 ---

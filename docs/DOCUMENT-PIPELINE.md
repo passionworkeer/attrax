@@ -1,5 +1,7 @@
 # Document Processing Pipeline - Design Document
 
+> ⚠️ **SUPERSEDED — 历史设计 spec**。本文档描述的"前端 docparser 模块 + `lib/pipeline/scan.ts` 集成 Reporter"流程未落地，相关代码（`lib/pipeline/scan.ts` + `components/upload/UploadForm.tsx`）已于 2026-09-10 删除。当前权威实现在后端 `rag_service/parser/docx_parser.py` + `rag_service/parser/html_parser.py`，由 FastAPI 在扫描时直接调用；前端不再计划独立的 docparser 模块。
+
 > 文档版本：1.1
 > 创建时间：2026-04-28
 > 更新时间：2026-05-07

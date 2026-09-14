@@ -1,5 +1,7 @@
 # 新前端完整迁移与后端联调设计
 
+> ⚠️ **SUPERSEDED — 2026-07-17 历史迁移设计 spec**。新前端迁移早已完成（2026-07~08），权威当前契约见 [`docs/FRONTEND-BACKEND-INTEGRATION.md`](../../FRONTEND-BACKEND-INTEGRATION.md)。
+
 **日期：** 2026-07-17  
 **状态：** 已批准（方案 A）
 

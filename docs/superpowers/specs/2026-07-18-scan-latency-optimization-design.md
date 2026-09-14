@@ -1,5 +1,7 @@
 # Scan Latency Optimization Design
 
+> ⚠️ **SUPERSEDED — 2026-07-18 历史优化设计 spec**。当前扫描延迟优化已并入 [`docs/plans/2026-09-14-judge-review-and-optimization-plan.md`](../../plans/2026-09-14-judge-review-and-optimization-plan.md)；该 spec 中提出的 LangGraph Send fan-out + HyDE refine 已随去 RAG 塌缩（2026-09-11 §7.7）移除。
+
 Date: 2026-07-18
 Status: Approved direction, pending implementation
 Scope: RAG scan orchestration only

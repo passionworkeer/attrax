@@ -2,6 +2,48 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## [Unreleased] - 2026-09-14
+
+### Cleanup (this batch)
+
+**Documentation fixes**:
+- CLAUDE.md: removed false claims (LangGraph still used; lib/pipeline/scan.ts deleted; Next.js 16.2.4; etc.)
+- docs/: deleted DEPLOYMENT.md, RECOVERY.md, E2E-REPORT-20260718.md, DEPLOY-CHECKLIST.md (referenced defunct Aliyun SZ server 203.0.113.10)
+- docs/: rewrote PROJECT-STATUS.md, MOCK-REAL-MAPPING.md to match current architecture
+- docs/superpowers/specs/2026-{05,07}-*: marked SUPERSEDED
+- docs/API-CONTRACT.md: strengthened v1-canocal banner; legacy endpoints marked backward-compat only
+- docs/FRONTEND-BACKEND-INTEGRATION.md: env keys corrected (MINIMAX_API_KEY, PAI_API_KEY)
+- docs/WATCHDOG.md: removed stale `--exclude='data/faiss'` from rsync (data/faiss no longer exists)
+- README.md: tree updated; DEPLOYMENT.md references redirected to docs/README.md §生产部署
+
+**Data hygiene**:
+- data/regulation_supplements/*/raw/: untracked from git (~400MB, 369 files)
+- public/fonts/NotoSansSC-Regular.ttf: untracked (17MB)
+- .gitignore: tightened to prevent re-tracking (`data/regulation_supplements/*/raw/`, `public/fonts/`)
+
+**Dead code removed**:
+- components/burning/BurningAnimation.tsx (177 LOC)
+- app/api/session-access.ts (58 LOC)
+- lib/pipeline/session-store.ts (~300 LOC) + lib/pipeline/upload-storage.ts
+- lib/server-i18n.ts (sole production caller removed)
+- scripts/collect_global_regulation_sources.py (906 LOC)
+- scripts/deploy.sh, scripts/deploy.ps1
+- tests/pressure/{load-test.js,simple-load-test.sh}
+- tests/e2e/api-integration.spec.ts
+- tests/unit/burning-animation.test.tsx + tests/unit/{session-store,upload-storage}.test.ts
+- lib/rag-client/v1-adapter.ts getRoadmap/getTrace + corresponding test
+
+**i18n consolidation**:
+- lib/i18n.tsx TranslationProvider: removed
+- All consumers (5 result/ components, regulations page) use BlazeLocaleProvider's locale
+
+**Backend logic fixes**:
+- main.py lifespan: graceful shutdown awaits scan_service.wait_for_idle() with bounded timeout
+- _run_public_scan_payload: no longer double base64-encodes (passes bytes through)
+- vision.py: replaced nested ThreadPoolExecutor with asyncio.gather + semaphore + asyncio.to_thread for sync LLM
+- vision.py / report_generator.py: process-level proxy env pop replaced with per-request opener bypass
+- application/scans.py: lease_task registered to _tasks; cleanup callback hardened against backend shutdown
+
 ## 2026-09-14 — judge review 批处理 A/A1/B1/C2 + 全项目死代码清理
 
 **背景**:`docs/plans/2026-09-14-judge-review-and-optimization-plan.md` 冻结（11 节 J01–J11），当日完成 Batch A / A1 / B1 / C2 实施 + 第二轮全项目对抗性死代码扫描（3 subagent 并行：前端 / 后端 / 文档）。

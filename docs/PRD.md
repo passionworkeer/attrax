@@ -1,5 +1,7 @@
 # 火鹰合规 (Blaze Hawks) - 产品需求文档 (PRD)
 
+> ⚠️ **历史产品文档（成文 2026 年中前）**。多项 PRD 内容（LangGraph 编排、trace / roadmap 独立页、cohere embed、ModelScope / FaissRetriever 混合检索等）已于 2026-09 前后被移除或重构。当前架构权威真值见根目录 [`CLAUDE.md`](../CLAUDE.md) + [`docs/PROJECT-STATUS.md`](./PROJECT-STATUS.md)；后续迭代 PRD 提议应落到 `docs/plans/` 而非直接改本份历史 PRD。
+
 ## 1. 产品愿景
 
 ### 核心价值
