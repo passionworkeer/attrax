@@ -12,12 +12,10 @@ Analyzes uploaded product images to extract:
 Usage: This node runs at graph entry, enriching the query with vision data.
 """
 import os
-# Disable system proxy for all urllib calls (prevents WinError 10060 on Windows)
-os.environ.pop("HTTP_PROXY", None)
-os.environ.pop("HTTPS_PROXY", None)
-os.environ.pop("http_proxy", None)
-os.environ.pop("https_proxy", None)
-os.environ.setdefault("NO_PROXY", "*")
+# P1-8: proxy bypass used to be implemented by mutating ``os.environ`` at
+# import time, which silently affects every other library in the process
+# (httpx, requests, anything that reads HTTP_PROXY). Now we route through a
+# dedicated opener below — the env vars are left untouched.
 
 import json
 import asyncio  # P1-7: asyncio.gather + Semaphore for multi-image dispatch
@@ -30,6 +28,24 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
 logger = logging.getLogger(__name__)
+
+
+def _make_no_proxy_opener() -> urllib.request.OpenerDirector:
+    """Return an opener that ignores system proxy settings.
+
+    ``urllib.request.build_opener(ProxyHandler({}))`` installs an explicit
+    empty-proxy handler that overrides any HTTP_PROXY/HTTPS_PROXY env vars
+    for the resulting opener — but only for callers that go through this
+    opener, not for the rest of the process. That was the bug P1-8 fixed:
+    popping ``HTTP_PROXY`` from ``os.environ`` leaked to every other HTTP
+    library the process happened to import.
+    """
+    return urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+
+# Module-level singleton opener — ProxyHandler({}) is stateless, so a
+# single shared instance is safe to reuse across calls and across threads.
+_NO_PROXY_OPENER = _make_no_proxy_opener()
 
 PROMPT = """你是产品视觉取证助手。只记录图片中可观察到的事实；不要给出法规结论、认证结论、价格或上市建议。
 
@@ -186,7 +202,7 @@ class VisionAnalyzer:
             )
 
             try:
-                with urllib.request.urlopen(req, timeout=60) as r:
+                with _NO_PROXY_OPENER.open(req, timeout=60) as r:
                     data = json.loads(r.read())
                     return data.get("content", [{}])[0].get("text", "")
             except urllib.error.HTTPError as e:
