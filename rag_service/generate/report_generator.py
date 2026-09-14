@@ -917,6 +917,13 @@ class ReportGenerator:
                         "mimoTalk transient failure (attempt %d/%d): %r; retrying in %.1fs",
                         attempt, self._LLM_MAX_ATTEMPTS, e.cause, delay,
                     )
+                    # P1-11: this sleep runs inside the executor worker
+                    # thread that ``main._run_scan_request`` dispatched via
+                    # ``loop.run_in_executor(_executor, ...)`` — not the
+                    # event loop thread — so a blocking sleep is fine here.
+                    # Switching to ``await asyncio.sleep`` would require an
+                    # async rewrite of ``_generate_mimotalk`` and all of its
+                    # callers; deliberately deferred.
                     time.sleep(delay)
                     continue
                 raise last_exc  # type: ignore[misc]
