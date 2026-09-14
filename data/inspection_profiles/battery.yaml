@@ -9,6 +9,7 @@ checks:
   - id: battery.label.parameters
     version: 1
     title: 电池标签参数(V/Ah/Wh/化学体系)
+    semantic: required_presence
     target_regions: [battery_label]
     required_views: [label_closeup]
     methods: [vision, ocr]
@@ -17,9 +18,12 @@ checks:
       - KB-battery-EU-2023-1542
       - UN-38-3
 
+  # hazard_presence: 端子裸露/绝缘破损等危险形态清晰可见才出疑点;
+  # 未见异常是好事,不生成"缺异常"整改项。
   - id: battery.terminals.insulation
     version: 1
     title: 端子形态与绝缘包覆
+    semantic: hazard_presence
     target_regions: [terminals]
     required_views: [terminal_closeup, side]
     methods: [vision]
@@ -27,9 +31,12 @@ checks:
     legal_anchor_refs:
       - UN-38-3
 
+  # hazard_presence: 鼓胀/破损/漏液是外观危险特征 —— 清晰看到才出
+  # 外观疑点+原图区域,不直接判法规不合格;未见异常不生成 finding。
   - id: battery.condition.swelling_damage
     version: 1
     title: 可见鼓胀/破损/漏液疑点
+    semantic: hazard_presence
     target_regions: [battery_body]
     required_views: [side, overview]
     methods: [vision]
@@ -39,6 +46,7 @@ checks:
   - id: battery.transport.packaging
     version: 1
     title: 运输包装标识(如已拍摄)
+    semantic: required_presence
     target_regions: [packaging]
     required_views: [package]
     methods: [vision, ocr]

@@ -6,9 +6,12 @@ version: 1
 title: 食品接触材料视觉检查
 extends: common
 checks:
+  # hazard_presence: 接触面涂层剥落/划痕/污渍是可见危险特征 —— 清晰
+  # 看到才出外观疑点;接触面可见但未见异常不生成整改项。
   - id: food_contact.surface.condition
     version: 1
     title: 接触面可见状态(涂层剥落/划痕/污渍)
+    semantic: hazard_presence
     target_regions: [contact_surface]
     required_views: [inner_surface]
     methods: [vision]
@@ -19,6 +22,7 @@ checks:
   - id: food_contact.material_declaration.text
     version: 1
     title: 材质声明文字(如"食品级"/PP/PE/不锈钢牌号)
+    semantic: required_presence
     target_regions: [product_label, bottom_marking]
     required_views: [bottom_label]
     methods: [vision, ocr]
@@ -30,15 +34,19 @@ checks:
   - id: food_contact.temperature_usage.text
     version: 1
     title: 温度/用途说明(微波适用/ Oven-safe 等)
+    semantic: required_presence
     target_regions: [product_label]
     required_views: [bottom_label]
     methods: [vision, ocr]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 涂层异常是可见危险特征 —— 清晰看到才出疑点级
+  # 外观记录;化学限值是否超标必须走迁移测试,不直接判不合格。
   - id: food_contact.coating.anomaly
     version: 1
     title: 涂层可见异常(疑点级,需检测确认)
+    semantic: hazard_presence
     target_regions: [coating_area]
     required_views: [inner_surface]
     methods: [vision]

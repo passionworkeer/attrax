@@ -10,6 +10,7 @@ checks:
   - id: electronics.nameplate.electrical_ratings
     version: 1
     title: 铭牌电气参数(电压/电流/功率/频率)
+    semantic: required_presence
     target_regions: [nameplate]
     required_views: [nameplate_closeup]
     methods: [vision, ocr]
@@ -18,27 +19,34 @@ checks:
       - KB-electronics-CN-CN-CCC
       - KB-electronics-EU-LVD-2014-35
 
+  # record_only: 接口/插脚形态只记录;电压/极性/规格匹配需资料确认。
   - id: electronics.interface.plug_pins
     version: 1
     title: 接口与插脚形态
+    semantic: record_only
     target_regions: [ports, plug_pins]
     required_views: [ports_closeup, plug_closeup]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 线缆破损/接头裂损等可见缺陷清晰可见才出疑点。
   - id: electronics.cable.connector_condition
     version: 1
     title: 线缆与接头可见状态
+    semantic: hazard_presence
     target_regions: [cable, connector]
     required_views: [cable_closeup]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # record_only: 认证标志仅记录清晰可见者,不做真伪判断 —— 看到CE
+  # 不判绿,没看到也不直接判缺认证(是否适用由规则引擎判定)。
   - id: electronics.marks.certification_region
     version: 1
     title: 可见认证标志(仅记录清晰可见者,不做真伪判断)
+    semantic: record_only
     target_regions: [cert_marking_area]
     required_views: [nameplate_closeup, back]
     methods: [vision, ocr]
@@ -47,9 +55,11 @@ checks:
       - KB-electronics-CN-CN-CCC
       - KB-electronics-EU-CE-General
 
+  # record_only: 外置适配器如拍摄则记录形态与铭牌,是否匹配需资料。
   - id: electronics.adapter.external_power
     version: 1
     title: 外置适配器(如拍摄)
+    semantic: record_only
     target_regions: [external_adapter]
     required_views: [adapter_closeup]
     methods: [vision, ocr]

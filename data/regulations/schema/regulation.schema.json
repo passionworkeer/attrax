@@ -77,6 +77,11 @@
       "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$",
       "description": "ISO 639-1 (or BCP-47) code for the article text language. en / zh / fr etc."
     },
+    "source_kind": {
+      "type": "string",
+      "enum": ["official_verbatim", "official_summary", "curated_summary", "unverified"],
+      "description": "Provenance tier of the article texts (plan 2026-09-14 J08 / §4.4 layer 3). official_verbatim = verbatim text from the official source (may enter the exact-quote flow); official_summary = faithful summary of the official text; curated_summary = internal KB-derived summary, usable for candidate retrieval but must NOT be presented as verbatim; unverified = placeholder/condensed text pending verification — never claim as 原文."
+    },
     "articles": {
       "type": "array",
       "items": {"$ref": "#/definitions/article"}

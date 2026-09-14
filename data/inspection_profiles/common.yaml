@@ -8,9 +8,11 @@ profile_id: common
 version: 1
 title: 通用视觉检查
 checks:
+  # record_only: 产品主体外观只记录整体形态,不据此判绿判红。
   - id: common.product.overview
     version: 1
     title: 产品主体与外观完整性
+    semantic: record_only
     target_regions: [product_body]
     required_views: [front]
     methods: [vision]
@@ -20,6 +22,7 @@ checks:
   - id: common.nameplate.readability
     version: 1
     title: 铭牌/标签信息可读性
+    semantic: required_presence
     target_regions: [nameplate, product_label]
     required_views: [nameplate_closeup]
     methods: [vision, ocr]
@@ -29,6 +32,7 @@ checks:
   - id: common.brand_model.visible
     version: 1
     title: 品牌与型号标识
+    semantic: required_presence
     target_regions: [brand_marking, model_marking]
     required_views: [front, back]
     methods: [vision, ocr]
@@ -38,6 +42,7 @@ checks:
   - id: common.batch_traceability.fields
     version: 1
     title: 批次号/序列号/生产日期等追溯字段
+    semantic: required_presence
     target_regions: [nameplate, batch_label]
     required_views: [nameplate_closeup]
     methods: [vision, ocr]
@@ -47,6 +52,7 @@ checks:
   - id: common.warning_text.language
     version: 1
     title: 警告文字及其语言
+    semantic: required_presence
     target_regions: [warning_label]
     required_views: [warning_label_closeup]
     methods: [vision, ocr]
@@ -56,15 +62,19 @@ checks:
   - id: common.packaging.info
     version: 1
     title: 包装信息(如已拍摄)
+    semantic: required_presence
     target_regions: [packaging]
     required_views: [package]
     methods: [vision, ocr]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 可见外观异常(裂损/变形/污渍/鼓胀)——清晰看到才出
+  # 外观疑点;区域可见但未见异常不生成"缺异常"整改项(J02)。
   - id: common.defects.visible
     version: 1
     title: 可见外观异常(裂损/变形/污渍/鼓胀)
+    semantic: hazard_presence
     target_regions: [product_body]
     required_views: [front, back, side]
     methods: [vision]

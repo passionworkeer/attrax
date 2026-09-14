@@ -6,34 +6,46 @@ license: public
 last_verified: '2026-09-11'
 last_verified_by: llm-assisted
 language: en
+source_kind: unverified
 articles:
 - id: art-4
-  title: Essential safety requirements
-  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Obligations of manufacturers
+  text: 制造商义务：按第 10 条与附件 II 的基本安全要求设计与制造玩具，在投放市场前完成适用合格评定、签发 EC 合格声明并加贴 CE 标志，同时加贴可识别的型号/批次编号与制造商名称地址，随附规定语言的说明与安全信息，并保存技术文档与合格声明 10 年备查。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
 - id: art-5
-  title: Placing on the market
-  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Authorised representatives
+  text: 授权代表：制造商可以通过书面授权指定授权代表，但第 4(1) 条项下义务与技术文档的编制不可委托；授权至少须包括为市场监管机构保存合格声明与技术文档 10 年、应要求提供合格信息并配合消除风险的行动。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
 - id: art-6
-  title: Declaration of conformity
-  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Obligations of importers
+  text: 进口商义务：仅可投放合规玩具，投放前须核实制造商已完成合格评定、编制技术文档并履行标识与说明义务；进口商须在玩具或包装上标注自身名称地址，确保说明为规定语言，保存合格声明副本 10 年，发现不合规或有风险时采取退市/召回等纠正措施并通知制造商与主管机关。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
 - id: art-10
-  title: Safety assessment
-  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Essential safety requirements
+  text: 基本安全要求：玩具（含其化学成分）在按预期或可预见方式使用时不得危及使用者或第三方的安全或健康；须考虑儿童行为能力，供 36 个月以下儿童使用或可入口的玩具另按附件 II 附加要求评估；标签与说明须就固有风险及规避方式给出警示，且玩具在正常可预见使用期内保持合规。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
 - id: art-11
+  title: Warnings
+  text: 警告与使用限制：须按附件 V Part A 标明使用限制，属 Part B 所列类别的玩具适用其规定警告（部分条款须逐字使用）；警告须清晰可见、易读、准确并冠以「警告」字样，影响购买决定的使用限制（如适用年龄）须在包装上可见（含线上销售），且不得与玩具预期用途相矛盾。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
+- id: art-21
   title: Technical documentation
-  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  text: 技术文档：制造商须编制包含证明符合第 10 条与附件 II 所需全部相关资料的技术文档（含附件 IV 所列文件），以官方语言之一出具；市场监管机构有理由提出要求时，制造商通常须在 30 日内提供译文，拒不配合时机关可安排指定机构检测以核实符合性。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
 - id: annex-ii
   title: Particular safety requirements (Annex II)
-  text: 化学要求严格 (CMR/致敏香料 55 项禁用清单),与 REACH 联动 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  text: 附件 II 特定安全要求：按物理机械性能、易燃性、化学性能、电气性能、卫生与放射性分部规定具体要求。附录 C 规定供 36 个月以下儿童使用或可放入口中的玩具所用化学品的特定限值（迁移限量清单）。(Article theme summary — NOT verbatim
+    official text. Text pending verification against the primary source — see regulation `source_url` and `notes`.)
 raw_file: null
 checksum_sha256: null
 schema_version: 1
 source_url: https://eur-lex.europa.eu/eli/dir/2009/48/oj
-notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+notes: 'Governance pass 2026-09-14 (plan J08 / §4.4 layer 3): the previous seed reused one battery-KB
+  Chinese summary for all six articles (Art.4/5/6/10/11 + annex-ii were described as 化学要求/REACH 联动 —
+  factually mismatched). Articles now carry per-article theme summaries aligned with the real directive
+  structure (Ch. II obligations of economic operators: art-4 manufacturers, art-5 authorised representatives,
+  art-6 importers; art-10 essential safety requirements; art-11 warnings; art-21 technical documentation;
+  annex-ii particular safety requirements incl. Appendix C migration limits). source_kind: unverified — these
+  are summaries, NOT verbatim official text; they must not enter the exact-quote flow or be labeled 已对照原文.
+  Verbatim replacement via `parser/legal_parser.py` against EUR-Lex remains pending (see notes in the
+  2026-09-11 seed).'

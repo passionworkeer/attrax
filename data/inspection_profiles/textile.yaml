@@ -9,6 +9,7 @@ checks:
   - id: textile.fiber_content.label
     version: 1
     title: 纤维成分标签
+    semantic: required_presence
     target_regions: [care_label]
     required_views: [care_label_closeup]
     methods: [vision, ocr]
@@ -20,6 +21,7 @@ checks:
   - id: textile.care_instructions.label
     version: 1
     title: 洗护说明与图形符号
+    semantic: required_presence
     target_regions: [care_label]
     required_views: [care_label_closeup]
     methods: [vision, ocr]
@@ -30,6 +32,7 @@ checks:
   - id: textile.size_marking.label
     version: 1
     title: 尺码标注
+    semantic: required_presence
     target_regions: [size_label]
     required_views: [all_sewn_labels]
     methods: [vision, ocr]
@@ -39,6 +42,7 @@ checks:
   - id: textile.traceability.label
     version: 1
     title: 追溯信息(产地/制造商/进口商)
+    semantic: required_presence
     target_regions: [care_label, brand_label]
     required_views: [all_sewn_labels]
     methods: [vision, ocr]
@@ -46,9 +50,12 @@ checks:
     legal_anchor_refs:
       - EU-1007-2011-textile
 
+  # hazard_presence: 童装头部/颈部绳带是可见危险形态 —— 清晰看到才出
+  # 疑点+原图区域(是否超标还需 EN 14682 尺寸证据);未见不生成整改项。
   - id: textile.cords_drawstrings.visible
     version: 1
     title: 绳带/拉绳形态(童装头部颈部特别关注)
+    semantic: hazard_presence
     target_regions: [product_body]
     required_views: [overview_front, overview_back]
     methods: [vision]
@@ -56,18 +63,22 @@ checks:
     legal_anchor_refs:
       - EU-EN-14682-child-clothing
 
+  # record_only: 附件形态只记录;拉力/脱落风险需测试证据。
   - id: textile.accessories.visible
     version: 1
     title: 附件(纽扣/拉链/装饰件)可见状态
+    semantic: record_only
     target_regions: [product_body]
     required_views: [overview_front]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 线头/破洞/色差等做工异常清晰可见才出外观疑点。
   - id: textile.workmanship.visible
     version: 1
     title: 可见做工异常(线头/破洞/色差)
+    semantic: hazard_presence
     target_regions: [product_body]
     required_views: [overview_front, overview_back]
     methods: [vision]

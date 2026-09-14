@@ -6,27 +6,34 @@ version: 1
 title: 家居视觉检查
 extends: common
 checks:
+  # record_only: 用途与接触面只记录形态,是否适用儿童规则等需条件确认。
   - id: home.purpose_contact.visible
     version: 1
     title: 产品用途与接触面
+    semantic: record_only
     target_regions: [product_body]
     required_views: [overview]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 连接/承重部位的可见缺陷(开裂/松脱/变形)清晰可见
+  # 才出外观疑点;未见异常不生成整改项(plan §4.2 hazard 真值表)。
   - id: home.joints_loadbearing.visible
     version: 1
     title: 连接/承重部位可见状态
+    semantic: hazard_presence
     target_regions: [joints, load_bearing_parts]
     required_views: [joint_closeup]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 边缘尖角/毛刺等危险形态清晰可见才出疑点。
   - id: home.edges_sharpness.visible
     version: 1
     title: 边缘与尖角形态
+    semantic: hazard_presence
     target_regions: [edges]
     required_views: [edge_closeup]
     methods: [vision]
@@ -36,6 +43,7 @@ checks:
   - id: home.assembly_instructions.text
     version: 1
     title: 安装说明(如已拍摄)
+    semantic: required_presence
     target_regions: [manual]
     required_views: [manual]
     methods: [vision, ocr]
@@ -46,6 +54,7 @@ checks:
   - id: home.warning_label.text
     version: 1
     title: 警告标签(倾倒/承重/玻璃等)
+    semantic: required_presence
     target_regions: [warning_label]
     required_views: [warning_label_closeup]
     methods: [vision, ocr]
@@ -53,9 +62,11 @@ checks:
     legal_anchor_refs:
       - EU-2023-988-home
 
+  # hazard_presence: 可见破损/裂纹/变形 —— 清晰看到才出外观疑点。
   - id: home.damage.visible
     version: 1
     title: 可见破损/裂纹/变形
+    semantic: hazard_presence
     target_regions: [product_body]
     required_views: [overview, overview_back]
     methods: [vision]

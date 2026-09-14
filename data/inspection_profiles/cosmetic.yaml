@@ -9,6 +9,7 @@ checks:
   - id: cosmetic.ingredients.listing
     version: 1
     title: 成分表完整性
+    semantic: required_presence
     target_regions: [ingredient_label]
     required_views: [label_front, label_back]
     methods: [vision, ocr]
@@ -20,6 +21,7 @@ checks:
   - id: cosmetic.net_content.marking
     version: 1
     title: 净含量标注
+    semantic: required_presence
     target_regions: [product_label]
     required_views: [label_front]
     methods: [vision, ocr]
@@ -29,6 +31,7 @@ checks:
   - id: cosmetic.batch_date.code
     version: 1
     title: 批号/生产日期/保质期
+    semantic: required_presence
     target_regions: [batch_label]
     required_views: [bottom_batch]
     methods: [vision, ocr]
@@ -38,6 +41,7 @@ checks:
   - id: cosmetic.usage_directions.text
     version: 1
     title: 用途与使用方法文字
+    semantic: required_presence
     target_regions: [product_label]
     required_views: [label_back]
     methods: [vision, ocr]
@@ -47,6 +51,7 @@ checks:
   - id: cosmetic.warnings.responsible_party
     version: 1
     title: 警告语与责任主体(欧盟 RP 地址等)
+    semantic: required_presence
     target_regions: [product_label, packaging]
     required_views: [label_back, package]
     methods: [vision, ocr]

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
+import { MARKET_IDS } from "@/lib/types";
 import styles from "./homepage.module.css";
 
 export function CompliPilotHome() {
@@ -11,6 +12,9 @@ export function CompliPilotHome() {
   const capabilities = isZh
     ? ["图像识别", "风险扫描", "法规溯源", "可解释报告"]
     : ["Visual recognition", "Risk scanning", "Rule traceability", "Explainable reports"];
+  // J18: 市场数量从 lib/types 的 MARKET_IDS 计算（与上传页/后端 allow-list
+  // 同源），不再写死营销数字（旧值「42」远超实际支持的 16 个市场）。
+  const supportedMarketCount = MARKET_IDS.length;
 
   return (
     <div className={styles.page}>
@@ -53,7 +57,9 @@ export function CompliPilotHome() {
               {isZh ? "产品方案" : "Plans"}
             </Link>
             <Link className={styles.navTextLink} href="/regulations">
-              {isZh ? "法规更新" : "Regulation updates"}
+              {/* J18: /regulations 是静态示例数据（static-demo），
+                  入口不再叫「法规更新」以免误以为实时能力，明确标注示例性质。 */}
+              {isZh ? "法规动态示例" : "Regulation demos"}
             </Link>
             <div className={styles.localeSwitch} role="group" aria-label={isZh ? "语言切换" : "Language switcher"}>
               <button type="button" aria-pressed={isZh} className={isZh ? styles.localeActive : undefined} onClick={() => setLocale("zh")}>中</button>
@@ -97,12 +103,20 @@ export function CompliPilotHome() {
           </div>
 
           <div className={`${styles.stats} ${styles.reveal}`}>
+            {/* J18: 「42 市场」写死且与实际能力不符。改为从 MARKET_IDS
+                计算「支持扫描市场」，并列出实际支持的市场代码；其他
+                市场明确标注为「资料支持/规划中」，不冒充已支持。 */}
             <article className={`${styles.stat} ${styles.liquid}`}>
-              <span>{isZh ? "覆盖市场" : "Markets covered"}</span>
+              <span>{isZh ? "支持扫描市场" : "Scannable markets"}</span>
               <strong className={styles.statValue}>
-                <span className={styles.statNumber}>42</span>
+                <span className={styles.statNumber}>{supportedMarketCount}</span>
               </strong>
-              <p>{isZh ? "持续更新的法规航线" : "Continuously updated rule routes"}</p>
+              <p>{MARKET_IDS.join(" / ")}</p>
+              <p>
+                {isZh
+                  ? "仅上述市场已接入扫描；其他市场为资料支持 / 规划中"
+                  : "Only these markets are scannable; others are reference-only / planned"}
+              </p>
             </article>
             <article className={`${styles.stat} ${styles.liquid}`}>
               <span>{isZh ? "完整流程" : "Complete workflow"}</span>

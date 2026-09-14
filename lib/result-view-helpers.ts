@@ -421,9 +421,25 @@ export interface EvidenceCoverage {
   ratio: number;            // 0..1 — share of findings that have ≥1 citation AND (a bbox or a description)
   coveredFindings: number;
   totalFindings: number;
-  matchedCitations: number;
+  /**
+   * Evidence-status layers (plan 2026-09-14 §4.4 layer 2 / J05).
+   *
+   * matchedCitations keeps its name for page compatibility, but its
+   * semantics changed 2026-09-14: it now counts ONLY citations whose
+   * quote was verified verbatim against the article text
+   * (match_status === "matched" AND a non-empty quote).
+   * `fallback_article_only` entries are counted in
+   * articleLocatedCount instead — "we found the article" is no longer
+   * "we checked it against the source text".
+   */
+  matchedCitations: number;      // verbatim-matched only (fallback no longer counts)
   unmatchedCitations: number;
   totalCitations: number;
+  /** Layered counts over the de-duplicated citation set. */
+  verbatimMatchedCount: number;  // match_status === "matched" && quote non-empty
+  articleLocatedCount: number;    // fallback_article_only — article found, not verbatim-verified
+  /** unmatchedCitations === verbatim-verified-unmatched + missing-status entries. */
+  distinctRegulationsCount: number; // unique doc_id values across the citation set
   status: "complete" | "partial" | "minimal" | "unknown";
 }
 
@@ -436,13 +452,32 @@ export interface EvidenceCoverage {
  * source text) with "evidence coverage" (how many findings have a
  * grounding citation *and* a concrete observation).
  *
+ * Audit 2026-09-14 J05 (plan §4.4 layer 2): the citation side used to
+ * concatenate `evidencePack` + `citations` (B's 19 entries counted as 38)
+ * and treat `fallback_article_only` as "已对照原文". Both are fixed here:
+ *
+ *   - Citations are first de-duplicated by a stable key
+ *     (doc_id + article_id + quote + quote_span) so the evidencePack
+ *     (which is a de-duplicated projection of citations) does not
+ *     double-count.
+ *   - Evidence status is layered:
+ *       verbatimMatchedCount — match_status "matched" AND non-empty quote
+ *       articleLocatedCount  — fallback_article_only (article found, quote
+ *                              empty or not located — NOT verbatim-verified)
+ *       unmatchedCitations   — everything else (unmatched / missing status)
+ *   - matchedCitations === verbatimMatchedCount for page compatibility:
+ *     fallback entries must never be presented as "checked against the
+ *     source text".
+ *
  * New contract:
  *   - ratio = coveredFindings / totalFindings (0 if no findings)
  *   - status:
  *       complete — every finding has a citation + grounding
  *       partial  — at least one finding has a citation + grounding
  *       minimal  — findings exist but none are grounded
- *       unknown  — no findings (i.e. the scan produced nothing to cover)
+ *       unknown  — no findings (i.e. the scan produced nothing to cover);
+ *                  also when there is nothing to count citations against
+ *                  the page must show「暂无可核对条目」, never 100%
  *
  * Returns ratio=0, status="unknown" when the result has no findings.
  */
@@ -463,13 +498,53 @@ export function computeEvidenceCoverage(result: ScanResult): EvidenceCoverage {
     ? (reportPackage.citations as Array<Record<string, unknown>>)
     : [];
 
-  const allCitations = [...evidencePack, ...citations];
+  // ── J05 fix 1: de-duplicate instead of concatenating. ──
+  // The evidencePack is a de-duplicated projection of citations (one
+  // entry per (doc_id, article_id), longest quote wins), so appending it
+  // to the raw citations list double-counts every article (B: 19 → 38).
+  // A stable key of (doc_id, article_id, quote, quote_span) merges the
+  // pack entry back into its citation twin while still distinguishing
+  // two genuinely different quotes of the same article.
+  const seenKeys = new Set<string>();
+  const allCitations: Array<Record<string, unknown>> = [];
+  const distinctRegulations = new Set<string>();
+  for (const entry of [...citations, ...evidencePack]) {
+    if (!entry || typeof entry !== "object") continue;
+    const docId = String(entry.doc_id ?? entry.docId ?? "");
+    const articleId = String(entry.article_id ?? entry.articleId ?? "");
+    const quote = String(entry.quote ?? "");
+    const spanRaw = entry.quote_span ?? entry.quoteSpan;
+    const spanKey = Array.isArray(spanRaw) ? spanRaw.join(",") : String(spanRaw ?? "");
+    // Entries without a resolvable doc_id cannot be linked to any
+    // regulation; they carry no verifiable claim, so they are excluded
+    // from the de-duplicated citation set entirely (they would otherwise
+    // never match anything and only inflate the unmatched pool).
+    if (!docId) continue;
+    const key = `${docId}｜${articleId}｜${quote}｜${spanKey}`;
+    if (seenKeys.has(key)) continue;
+    seenKeys.add(key);
+    allCitations.push(entry);
+    distinctRegulations.add(docId);
+  }
   const totalCitations = allCitations.length;
-  const matchedCitations = allCitations.filter((entry) => {
-    const status = String(entry.matchStatus ?? entry.match_status ?? "").toLowerCase();
-    return status === "matched" || status === "fallback_article_only";
+
+  // ── J05 fix 2: layered evidence status; fallback ≠ 已对照原文. ──
+  const readStatus = (entry: Record<string, unknown>) =>
+    String(entry.matchStatus ?? entry.match_status ?? "").toLowerCase();
+  const readQuote = (entry: Record<string, unknown>) =>
+    String(entry.quote ?? "").trim();
+
+  const verbatimMatchedCount = allCitations.filter((entry) => {
+    const status = readStatus(entry);
+    return status === "matched" && readQuote(entry).length > 0;
   }).length;
-  const unmatchedCitations = totalCitations - matchedCitations;
+  const articleLocatedCount = allCitations.filter((entry) => {
+    return readStatus(entry) === "fallback_article_only";
+  }).length;
+  // matchedCitations keeps the historical field name the result page
+  // renders, but its semantics are now strictly verbatim-matched.
+  const matchedCitations = verbatimMatchedCount;
+  const unmatchedCitations = totalCitations - verbatimMatchedCount - articleLocatedCount;
 
   if (totalFindings === 0) {
     return {
@@ -479,6 +554,9 @@ export function computeEvidenceCoverage(result: ScanResult): EvidenceCoverage {
       matchedCitations,
       unmatchedCitations,
       totalCitations,
+      verbatimMatchedCount,
+      articleLocatedCount,
+      distinctRegulationsCount: distinctRegulations.size,
       status: "unknown",
     };
   }
@@ -510,6 +588,9 @@ export function computeEvidenceCoverage(result: ScanResult): EvidenceCoverage {
     matchedCitations,
     unmatchedCitations,
     totalCitations,
+    verbatimMatchedCount,
+    articleLocatedCount,
+    distinctRegulationsCount: distinctRegulations.size,
     status,
   };
 }

@@ -9,6 +9,7 @@ checks:
   - id: appliance.nameplate.ratings
     version: 1
     title: 底面/背面铭牌参数
+    semantic: required_presence
     target_regions: [nameplate]
     required_views: [bottom_nameplate]
     methods: [vision, ocr]
@@ -17,18 +18,23 @@ checks:
       - CN-GB-4706-appliance
       - EU-2014-35-appliance
 
+  # record_only: 供电端形态只记录;插脚规格/电压是否匹配需资料确认。
   - id: appliance.power_entry.visible
     version: 1
     title: 供电端(插头/电源口/线缆入口)
+    semantic: record_only
     target_regions: [power_entry]
     required_views: [power_side]
     methods: [vision]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # hazard_presence: 功能区域(水槽/出雾口/加热区/通风口)的可见缺陷
+  # (裂损/变形/烧蚀痕迹)清晰可见才出疑点;未见异常不生成整改项。
   - id: appliance.functional_zones.condition
     version: 1
     title: 功能区域状态(水槽/出雾口/加热区/通风口)
+    semantic: hazard_presence
     target_regions: [water_tank, mist_outlet, heating_zone, vent]
     required_views: [functional_side]
     methods: [vision]
@@ -38,6 +44,7 @@ checks:
   - id: appliance.water_temp_warnings.text
     version: 1
     title: 水位/温度/倾倒警告文字
+    semantic: required_presence
     target_regions: [warning_label, product_label]
     required_views: [warning_label_closeup]
     methods: [vision, ocr]
@@ -49,6 +56,7 @@ checks:
   - id: appliance.ip_rating.marking
     version: 1
     title: IP 防护等级标注(如宣称防水)
+    semantic: required_presence
     target_regions: [nameplate, product_label]
     required_views: [nameplate_closeup]
     methods: [vision, ocr]

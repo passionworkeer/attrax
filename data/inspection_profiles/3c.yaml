@@ -9,6 +9,7 @@ checks:
   - id: "3c.device.identity"
     version: 1
     title: 主设备识别与铭牌
+    semantic: required_presence
     target_regions: [device_body, device_label]
     required_views: [front, back]
     methods: [vision, ocr]
@@ -18,15 +19,19 @@ checks:
   - id: "3c.case.identity"
     version: 1
     title: 充电盒/收纳盒识别与铭牌
+    semantic: required_presence
     target_regions: [charging_case, case_label]
     required_views: [case_bottom, case_closeup]
     methods: [vision, ocr]
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # record_only: 端口形态只记录(USB-C/Lightning/裸针);是否合规需规格
+  # 与认证资料,不因能看清就判绿,也不生成整改项。
   - id: "3c.ports.visible"
     version: 1
     title: 端口形态(USB-C/Lightning/裸针)
+    semantic: record_only
     target_regions: [ports]
     required_views: [ports_closeup]
     methods: [vision]
@@ -36,6 +41,7 @@ checks:
   - id: "3c.battery.marking"
     version: 1
     title: 可见电池说明(V/Ah/Wh 文字)
+    semantic: required_presence
     target_regions: [battery_marking]
     required_views: [case_bottom, battery_compartment]
     methods: [vision, ocr]
@@ -47,6 +53,7 @@ checks:
   - id: "3c.wireless.declaration"
     version: 1
     title: 无线声明文字(蓝牙/WiFi/2.4G)
+    semantic: required_presence
     target_regions: [packaging, device_label]
     required_views: [package, back]
     methods: [vision, ocr]
