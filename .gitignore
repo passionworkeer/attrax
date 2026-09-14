@@ -25,6 +25,7 @@ test-results/
 
 # production
 /build
+/dist/
 
 # ─── 临时文件 ──────────────────────────────────────────────────
 npm.log
