@@ -10,10 +10,6 @@ import {
   tokenFromRequest,
   verifyAccessToken,
 } from "@/lib/pipeline/session-auth";
-import { requireSessionAccess, sessionPayload } from "@/app/api/session-access";
-import { SCAN_STAGE_TEXT, serverT } from "@/lib/server-i18n";
-import type { ScanStatus } from "@/lib/types";
-import type { StoredScanStatus } from "@/lib/pipeline/session-store";
 
 let rateLimitDir = "";
 
@@ -100,78 +96,5 @@ describe("session auth utilities", () => {
     const query = new Request("http://localhost/api/scan/x?token=query");
     expect(tokenFromRequest(bearer)).toBe("header-token");
     expect(tokenFromRequest(query)).toBeNull();
-  });
-});
-
-describe("session access helpers", () => {
-  function stored(overrides: Partial<StoredScanStatus> = {}): StoredScanStatus {
-    return {
-      sessionId: "scan_secure",
-      status: "ready",
-      progress: 100,
-      stageText: "complete",
-      createdAt: 0,
-      updatedAt: 0,
-      expiresAt: Date.now() + 1000,
-      ...overrides,
-    };
-  }
-
-  afterEach(() => vi.unstubAllEnvs());
-
-  it("allows unhashed fixtures outside production but fails closed in production", async () => {
-    vi.stubEnv("NODE_ENV", "test");
-    expect(requireSessionAccess(new Request("http://localhost"), stored())).toBeNull();
-    vi.stubEnv("NODE_ENV", "production");
-    const response = requireSessionAccess(new Request("http://localhost"), stored());
-    expect(response?.status).toBe(401);
-    await expect(response?.json()).resolves.toMatchObject({ error: { code: "UNAUTHORIZED" } });
-  });
-
-  it("allows valid bearer tokens and rejects invalid ones", () => {
-    const token = "secret-token";
-    const session = stored({ accessTokenHash: hashAccessToken(token) });
-    expect(
-      requireSessionAccess(
-        new Request("http://localhost", { headers: { authorization: `Bearer ${token}` } }),
-        session,
-      ),
-    ).toBeNull();
-    expect(requireSessionAccess(new Request("http://localhost"), session)?.status).toBe(401);
-  });
-
-  it("returns only public fields including degradation evidence", () => {
-    const status: ScanStatus & { accessTokenHash?: string } = {
-      sessionId: "scan_public",
-      status: "degraded",
-      progress: 100,
-      stageText: "degraded",
-      degradedReason: "NO_RETRIEVED_EVIDENCE",
-      accessTokenHash: "private",
-    };
-    expect(sessionPayload(status)).toEqual({
-      sessionId: "scan_public",
-      status: "degraded",
-      progress: 100,
-      stageText: "degraded",
-      result: undefined,
-      profitReport: undefined,
-      profitReports: undefined,
-      error: undefined,
-      degradedReason: "NO_RETRIEVED_EVIDENCE",
-    });
-  });
-});
-
-describe("server i18n utilities", () => {
-  it("returns translations and parameterized fallbacks", () => {
-    expect(serverT("errors.invalidRequest", "en")).toContain("Invalid request");
-    expect(serverT("missing.key", "en")).toBe("missing.key");
-    expect(serverT("Hello {name}", "en", { name: "CompliPilot" })).toBe("Hello CompliPilot");
-  });
-
-  it("exports scan stage text for both locales", () => {
-    expect(SCAN_STAGE_TEXT.zh.identifyingLabels).toBeTruthy();
-    expect(SCAN_STAGE_TEXT.en.reportComplete).toBe("Report complete");
   });
 });

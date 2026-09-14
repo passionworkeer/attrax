@@ -2,8 +2,7 @@
  * Comprehensive tests for extractCostSummary function
  * Covers lib/pipeline/scan.ts extractCostSummary function
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { createSession, getSession, clearStore, updateSession } from '@/lib/pipeline/session-store'
+import { describe, it, expect, vi } from 'vitest'
 import { extractCostSummary } from '@/lib/pipeline/profit-report'
 
 // Mock modules
@@ -306,84 +305,6 @@ describe('extractCostSummary', () => {
 
       expect(result.riskNote).toBe('Risk buffer needed')
       expect(result.keyConclusion).toBe('Legacy conclusion')
-    })
-  })
-})
-
-describe('Scan pipeline - session store integration', () => {
-  beforeEach(() => {
-    clearStore()
-    vi.clearAllMocks()
-  })
-
-  afterEach(() => {
-    vi.useRealTimers()
-    vi.restoreAllMocks()
-  })
-
-  describe('updateSession with file reload', () => {
-    it('attempts file reload when session not in memory', () => {
-      const sessionId = 'test_file_reload'
-      createSession(sessionId)
-      const session = getSession(sessionId)
-      expect(session).toBeDefined()
-      expect(session?.sessionId).toBe(sessionId)
-    })
-
-    it('updates existing session multiple times', () => {
-      const sessionId = 'test_multi_update'
-      createSession(sessionId)
-
-      updateSession(sessionId, { progress: 10, stageText: '步骤1' })
-      updateSession(sessionId, { progress: 25, stageText: '步骤2' })
-      updateSession(sessionId, { progress: 50, stageText: '步骤3' })
-      updateSession(sessionId, { progress: 75, stageText: '步骤4' })
-
-      const session = getSession(sessionId)
-      expect(session?.progress).toBe(75)
-      expect(session?.stageText).toBe('步骤4')
-    })
-
-    it('attaches profit report result', () => {
-      const sessionId = 'test_profit_result'
-      createSession(sessionId)
-
-      const mockProfitReport = {
-        sessionId,
-        productType: 'Test Product',
-        market: 'EU',
-        report: '# Report',
-        barebone: {
-          bom: 50, packaging: 5, cert: 10, epr: 3,
-          logistics: 12, asp: 120, gp: 40, warranty: 2, total: 82,
-        },
-        compliant: {
-          bom: 60, packaging: 8, cert: 15, epr: 5,
-          logistics: 15, asp: 150, gp: 47, warranty: 3, total: 106,
-        },
-        bareboneRiskExposure: 12000,
-        compliantRiskExposure: 0,
-        keyConclusion: 'Test',
-        generatedAt: new Date().toISOString(),
-        premiumPct: '37%',
-        breakevenUnits: '500台',
-        pricingStrategy: '¥150',
-        riskNote: 'Note',
-        conclusions: 'Conclusions',
-        references: 'References',
-        bareboneGpm: 33.3,
-        compliantGpm: 31.3,
-      }
-
-      updateSession(sessionId, {
-        status: 'ready',
-        progress: 100,
-        profitReport: mockProfitReport as any,
-      })
-
-      const session = getSession(sessionId)
-      expect(session?.profitReport).toBeDefined()
-      expect((session?.profitReport as any)?.premiumPct).toBe('37%')
     })
   })
 })

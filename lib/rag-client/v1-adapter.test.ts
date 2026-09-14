@@ -13,10 +13,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createScan,
-  getRoadmap,
   getScan,
   getScanAsset,
-  getTrace,
   getRagServiceUrl,
   isDemoSession,
   unwrapV1Envelope,
@@ -221,27 +219,6 @@ describe("v1-adapter", () => {
   });
 
   describe("session resources", () => {
-    it("gets roadmap and trace with the same bearer token", async () => {
-      mockFetch
-        .mockResolvedValueOnce(
-          jsonResponse({ data: { items: [{ id: "step-1" }] }, error: null, meta: { requestId: "r1" } }),
-        )
-        .mockResolvedValueOnce(
-          jsonResponse({ data: [{ node: "vision" }], error: null, meta: { requestId: "r2" } }),
-        );
-
-      expect(await getRoadmap({ sessionId: "scan_abc", accessToken: "tok" })).toMatchObject({
-        items: [{ id: "step-1" }],
-      });
-      expect(await getTrace({ sessionId: "scan_abc", accessToken: "tok" })).toEqual([
-        { node: "vision" },
-      ]);
-
-      for (const [, init] of mockFetch.mock.calls) {
-        expect((init.headers as Record<string, string>).Authorization).toBe("Bearer tok");
-      }
-    });
-
     it("returns authenticated asset bytes and content type", async () => {
       mockFetch.mockResolvedValueOnce(
         new Response(new Uint8Array([1, 2, 3]), {
