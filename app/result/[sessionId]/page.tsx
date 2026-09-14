@@ -26,6 +26,8 @@ import { FallbackNotice } from "@/components/result/FallbackNotice";
 import { FloatingEvidenceCrop } from "@/components/result/FloatingEvidenceCrop";
 import { HotspotLayer, isRenderableBbox } from "@/components/result/HotspotLayer";
 import { InspectionChecklistPanel } from "@/components/result/InspectionChecklistPanel";
+import { ObservationHotspotLayer } from "@/components/result/ObservationHotspotLayer";
+import { EvidenceRequestPanel } from "@/components/result/EvidenceRequestPanel";
 import { SourceNotice } from "@/components/result/SourceNotice";
 import { ResultExportButton } from "./result-export-button";
 import { useResultLoader } from "./use-result-loader";
@@ -45,6 +47,10 @@ import {
   getLocalizedPreviewTab,
   getPreviewBullets,
 } from "@/lib/result-view-helpers";
+import {
+  buildInspectionResultViewModel,
+  type InspectionResultVM,
+} from "@/lib/result/inspection-view-model";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
 /**
@@ -101,6 +107,10 @@ export default function ResultPage() {
   // ── Hooks: all before the early returns below (React rules-of-hooks —
   // the loading → loaded transition must not change the hook count). ──
   const [selectedImageId, setSelectedImageId] = useState<string | null>(null);
+  // Plan 2026-09-14 §4.3 (J03): observation-selection linkage. Clicking a
+  // checklist row / finding card selects the located observation, which the
+  // image stage highlights via <ObservationHotspotLayer>.
+  const [selectedObservationId, setSelectedObservationId] = useState<string | null>(null);
   // Audit 2026-09-13 P1-2: the canvas used to force a fixed 4:3 box with
   // object-cover, which crops the photo and breaks percentage-anchored
   // hotspots. We now capture the image's natural dimensions onLoad and
@@ -112,9 +122,19 @@ export default function ResultPage() {
     height: number;
   } | null>(null);
   const derivedResultImages = result?.images ?? [];
+  // J03: when the checklist layer produced located observations, prefer the
+  // first anchored image over "first risk's image" so checklist-mode scans
+  // (zero riskPoints) open on a photo that actually carries a hotspot.
+  const firstAnchoredObservationImageId =
+    result?.inspectionFindings?.find(
+      (finding) => finding.observationIds.length > 0,
+    )?.observationIds
+      .map((id) => result?.inspectionObservations?.find((obs) => obs.observationId === id))
+      .find((obs) => obs?.region?.bbox && obs.imageId)?.imageId ?? null;
   const derivedAnchorImageId =
     selectedImageId ??
     result?.riskPoints.find((item) => item.severity === "critical")?.imageId ??
+    firstAnchoredObservationImageId ??
     derivedResultImages[0]?.imageId ??
     null;
   // Reset intrinsic-ratio tracking when the displayed photo changes so a
@@ -151,6 +171,15 @@ export default function ResultPage() {
   }
 
   const criticalCount = result.riskPoints.filter((item) => item.severity === "critical").length;
+  // Plan 2026-09-14 §4.3 (J03/J15) — the unified result ViewModel. Built for
+  // every result; the checklist panel, observation hotspots and the
+  // evidence-request block all consume THIS single join (finding →
+  // observationIds → imageId/region), so the list, the image stage and the
+  // summary can never drift apart.
+  const inspectionVM: InspectionResultVM = buildInspectionResultViewModel({
+    result,
+    sessionId,
+  });
   // Same synthesis path as /profit/[sessionId]: real backend RAG responses
   // carry profit data only in reportPackage.profitReport.markdown.
   const financialSummary = financialSummaryOrFallback(result, locale, synthesizeFinancialSummaryIfMissing);
@@ -176,7 +205,8 @@ export default function ResultPage() {
   const explicitImage = selectedImageId
     ? resultImages.find((item) => item.imageId === selectedImageId) ?? null
     : null;
-  const anchorId = selectedImageId ?? activeRiskRaw?.imageId ?? resultImages[0]?.imageId;
+  const anchorId =
+    selectedImageId ?? activeRiskRaw?.imageId ?? firstAnchoredObservationImageId ?? resultImages[0]?.imageId;
   const riskImage =
     explicitImage ??
     resultImages.find((item) => item.imageId === anchorId) ?? resultImages[0] ?? null;
@@ -192,6 +222,13 @@ export default function ResultPage() {
   // that match the displayed image's id (or that have no imageId at all,
   // which is the legacy demo / fallback shape).
   const displayedImageId = riskImage?.imageId ?? null;
+  // J03 (plan §4.3): the observation-driven anchors for the currently
+  // displayed image. Only observations with a real region land in the VM's
+  // anchor set — ungrounded document gaps stay in the checklist list, never
+  // on the photo.
+  const observationAnchors = displayedImageId
+    ? inspectionVM.anchorsByImage[displayedImageId] ?? []
+    : [];
   const locatedHotspots = result.riskPoints
     .filter((risk) => isRenderableBbox(risk.bbox))
     .filter((risk) => !risk.imageId || !displayedImageId || risk.imageId === displayedImageId)
@@ -212,16 +249,21 @@ export default function ResultPage() {
   const pinnedRisks = unlocatedRisks.filter(
     (risk) => !risk.imageId || !displayedImageId || risk.imageId === displayedImageId,
   );
-  // J11 (plan §4.3): never render an empty h1 / "undefined". Prefer a real
-  // product name from the structured dossier, then the recognized category +
-  // 待确认型号, so the page always has a readable title.
+  // J11 (plan §4.3): never render an empty h1 / "undefined". The VM runs the
+  // documented fallback chain (结构化产品名 → dossier → 类别 label +
+  // 待确认型号); the legacy inline chain stays for the demo path where the
+  // mock's localized fields read better.
   const rawProductName =
     locale === "en" ? result.productNameEn ?? result.productName : result.productName;
-  const displayProductName =
-    rawProductName?.trim() ||
-    (locale === "en"
+  const legacyProductFallback =
+    locale === "en"
       ? `${productCategoryLabel(locale, result.productCategory)} (model TBD)`
-      : `${productCategoryLabel(locale, result.productCategory)}（型号待确认）`);
+      : `${productCategoryLabel(locale, result.productCategory)}（型号待确认）`;
+  const displayProductName = isDemoSession
+    ? rawProductName?.trim() || legacyProductFallback
+    : rawProductName?.trim() ||
+      inspectionVM.product.title ||
+      legacyProductFallback;
   const displayProductCategory = productCategoryLabel(locale, result.productCategory);
   const roadmapRows = buildRoadmapRows(result, locale, copy.result.unknownTime);
 
@@ -276,7 +318,9 @@ export default function ResultPage() {
                        result.reportPackage?.auditMetadata?.validationStatus === "fallback")
                     ? locale === "zh" ? "待人工核验" : "Needs verification"
                     : noRisks
-                      ? locale === "zh" ? "未发现可定位风险" : "No located risks"
+                      ? inspectionVM.summary.observationOnly
+                        ? locale === "zh" ? "观察模式" : "Observation mode"
+                        : locale === "zh" ? "未发现可定位风险" : "No located risks"
                       : locale === "zh" ? "可进入复核" : "Ready for review"}
                 </span>
               </div>
@@ -289,7 +333,21 @@ export default function ResultPage() {
               <div className="mt-5 flex flex-wrap gap-2">
                 {(result.targetMarkets ?? []).map((market) => <GlowPill key={market}>{market} {copy.result.marketSuffix}</GlowPill>)}
                 <GlowPill>{displayProductCategory}</GlowPill>
-                <GlowPill>{result.riskPoints?.length ?? 0} {copy.result.hotspotsCountSuffix}</GlowPill>
+                {/* J03: zero-riskPoint checklist scans show the VM finding
+                    count instead of a hard 0 热点 badge. */}
+                <GlowPill>
+                  {(result.riskPoints?.length ?? 0) > 0
+                    ? `${result.riskPoints.length} ${copy.result.hotspotsCountSuffix}`
+                    : inspectionVM.findings.length > 0
+                      ? locale === "zh"
+                        ? `${inspectionVM.findings.length} 项待办`
+                        : `${inspectionVM.findings.length} findings`
+                      : inspectionVM.summary.observationCount > 0
+                        ? locale === "zh"
+                          ? `${inspectionVM.summary.observationCount} 项观察`
+                          : `${inspectionVM.summary.observationCount} observations`
+                        : `0 ${copy.result.hotspotsCountSuffix}`}
+                </GlowPill>
               </div>
               <div className="mt-6 grid overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.045] sm:grid-cols-4">
                 {[
@@ -310,18 +368,29 @@ export default function ResultPage() {
               {noRisks ? (
                 <>
                   <h2 className="mt-4 text-2xl font-semibold leading-snug text-white">
-                    {locale === "zh" ? "本次扫描未发现可定位风险点" : "No locatable risk found in this scan"}
+                    {inspectionVM.summary.observationOnly
+                      ? locale === "zh"
+                        ? "观察模式：本次检查未产生问题项"
+                        : "Observation mode: no issues from this scan"
+                      : locale === "zh"
+                        ? "本次扫描未发现可定位风险点"
+                        : "No locatable risk found in this scan"}
                   </h2>
                   <p className="mt-3 text-sm leading-6 text-white/60">
-                    {locale === "zh"
-                      ? "未发现风险不等于合规完成：下方检查清单里的「待补拍 / 待补资料」项仍需补齐后再做上架判断。"
-                      : "No located risks ≠ compliant: complete the reshoot / material items in the checklist below before the launch decision."}
+                    {inspectionVM.summary.observationOnly
+                      ? locale === "zh"
+                        ? `共记录 ${inspectionVM.summary.observationCount} 项观察。已观察不等于合规通过——检查清单仍是逐项判断依据，未入镜的检查项需补拍后再下结论。`
+                        : `${inspectionVM.summary.observationCount} observations recorded. Observed ≠ compliant — the checklist remains the per-check basis; off-photo checks need reshoots before a verdict.`
+                      : locale === "zh"
+                        ? "未发现风险不等于合规完成：下方检查清单里的「待补拍 / 待补资料」项仍需补齐后再做上架判断。"
+                        : "No located risks ≠ compliant: complete the reshoot / material items in the checklist below before the launch decision."}
                   </p>
                   <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.055] p-4">
                     <p className="text-xs text-white/42">{locale === "zh" ? "建议动作" : "Recommended action"}</p>
                     <p className="mt-2 text-sm leading-6 text-white/72">
-                      {(result.inspectionFindings ?? [])[0]?.suggestedAction
-                        ?? (locale === "zh" ? "按检查清单补齐证据后重新扫描。" : "Gather the listed evidence and rescan.")}
+                      {inspectionVM.evidenceRequests[0]?.explanation ||
+                        inspectionVM.findings[0]?.suggestedAction ||
+                        (locale === "zh" ? "按检查清单补齐证据后重新扫描。" : "Gather the listed evidence and rescan.")}
                     </p>
                   </div>
                 </>
@@ -402,8 +471,14 @@ export default function ResultPage() {
               <p className="mt-2 text-[11px] text-white/40">
                 {evidenceCoverage.totalCitations > 0
                   ? locale === "zh"
-                    ? `${evidenceCoverage.matchedCitations}/${evidenceCoverage.totalCitations} 条引用已对照原文`
-                    : `${evidenceCoverage.matchedCitations}/${evidenceCoverage.totalCitations} citations matched against the source text`
+                    ? `${evidenceCoverage.matchedCitations}/${evidenceCoverage.totalCitations} 条引用已逐字对照原文` +
+                      (evidenceCoverage.articleLocatedCount > 0
+                        ? `；${evidenceCoverage.articleLocatedCount} 条已定位条款但未逐字核验`
+                        : "")
+                    : `${evidenceCoverage.matchedCitations}/${evidenceCoverage.totalCitations} citations verified verbatim against the source text` +
+                      (evidenceCoverage.articleLocatedCount > 0
+                        ? `; ${evidenceCoverage.articleLocatedCount} located the article but not verified verbatim`
+                        : "")
                   : locale === "zh"
                     ? "本次扫描未提供结构化引用"
                     : "No structured citations in this scan"}
@@ -423,13 +498,19 @@ export default function ResultPage() {
                     const findingsHere = result.riskPoints.filter(
                       (risk) => risk.imageId === image.imageId,
                     ).length;
+                    // J03: show the observation-anchor count (VM join) when
+                    // the legacy riskPoints count is zero — the badge must
+                    // still tell the user which photo carries evidence.
+                    const anchorsHere =
+                      inspectionVM.anchorsByImage[image.imageId]?.length ?? 0;
+                    const badgeCount = findingsHere > 0 ? findingsHere : anchorsHere;
                     return (
                       <button
                         key={image.imageId}
                         type="button"
                         onClick={() => setSelectedImageId(image.imageId)}
                         aria-pressed={isActive}
-                        aria-label={`${image.fileName ?? `Image ${index + 1}`} — ${findingsHere} findings`}
+                        aria-label={`${image.fileName ?? `Image ${index + 1}`} — ${badgeCount} findings`}
                         className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition ${
                           isActive
                             ? "border-[rgba(102,224,226,0.65)] bg-[rgba(207,247,249,0.92)] text-[#155b70]"
@@ -443,7 +524,7 @@ export default function ResultPage() {
                         />
                         <span className="font-mono">#{index + 1}</span>
                         <span className="text-[10px] opacity-70">
-                          {findingsHere}
+                          {badgeCount}
                           {locale === "zh" ? " 项" : ""}
                         </span>
                       </button>
@@ -526,6 +607,26 @@ export default function ResultPage() {
                           : severity
                   }
                   viewDetailLabel={locale === "zh" ? "查看风险详情" : "View risk detail"}
+                />
+
+                {/* J03 (plan §4.3): the NEW findings layer drives the image.
+                    <ObservationHotspotLayer> draws the checklist-mode
+                    observations' normalized regions (finding → observationIds
+                    → imageId/region) with numbered chips; clicking a chip
+                    selects that observation so the checklist row + hotspot
+                    highlight stay in sync. Anchors only exist for
+                    region-bearing observations — document gaps never appear
+                    as fake hotspots. */}
+                <ObservationHotspotLayer
+                  anchors={observationAnchors}
+                  activeObservationId={selectedObservationId}
+                  onAnchorClick={(anchor) => {
+                    setSelectedObservationId(anchor.observationId);
+                    if (anchor.imageId && anchor.imageId !== displayedImageId) {
+                      setSelectedImageId(anchor.imageId);
+                    }
+                  }}
+                  anchorLabel={locale === "zh" ? "观察点" : "Observation"}
                 />
 
                 {/* Plan §8.2 capability B — 局部悬浮放大 for the active
@@ -721,19 +822,49 @@ export default function ResultPage() {
 
         {/* Plan 2026-09-13 §8 — 检查清单在报告与成本之前:先告诉用户
             "哪些检查项有结果、哪些需要补拍",再进入全文报告。
-            只有 checklist-mode 扫描(有 observations)渲染该面板。 */}
-        {result.inspectionObservations && result.inspectionObservations.length > 0 ? (
+            Plan 2026-09-14 §4.3 (J03/J15): the panel now consumes the
+            unified VM. Clicking a located row switches the image stage to
+            the observation's image AND highlights its hotspot (selection
+            linkage selectedObservationId → ObservationHotspotLayer).
+            Renders when observations OR findings exist (findings without
+            observations — e.g. deferred-material checks — still matter). */}
+        {(result.inspectionObservations?.length ?? 0) > 0 ||
+        (result.inspectionFindings?.length ?? 0) > 0 ? (
           <InspectionChecklistPanel
-            observations={result.inspectionObservations}
+            observations={result.inspectionObservations ?? []}
             selectedCheckIds={result.selectedCheckIds}
             findings={result.inspectionFindings}
             locale={locale}
+            vm={inspectionVM}
             activeImageId={riskImage?.imageId ?? null}
+            selectedObservationId={selectedObservationId}
             onCheckClick={(observation) => {
+              // J03 selection linkage: switch image + mark the observation
+              // as selected so the hotspot layer highlights its box.
               if (observation.imageId) {
                 setSelectedImageId(observation.imageId);
               }
+              if (observation.region?.bbox) {
+                setSelectedObservationId(observation.observationId);
+              }
             }}
+          />
+        ) : null}
+
+        {/* J10 (plan §5.3): supplement-evidence loop. Merged VM evidence
+            requests become ONE actionable card — upload against the same
+            session, then trigger an idempotent revision re-run. Real
+            sessions only (demo has no backend session to supplement). */}
+        {!isDemoSession && inspectionVM.evidenceRequests.length > 0 ? (
+          <EvidenceRequestPanel
+            sessionId={sessionId}
+            locale={locale}
+            requests={inspectionVM.evidenceRequests.map((request) => ({
+              id: request.id,
+              title: request.title,
+              explanation: request.explanation,
+              resolvesCheckIds: request.resolvesCheckIds,
+            }))}
           />
         ) : null}
 
@@ -764,7 +895,14 @@ export default function ResultPage() {
             <div className="mt-5 grid grid-cols-3 overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.05]">
               {[
                 { label: locale === "zh" ? "执行阶段" : "Phases", value: String(roadmapRows.length) },
-                { label: locale === "zh" ? "预计周期" : "Timeline", value: locale === "zh" ? "2周" : "2 wks" },
+                // J16: 旧版此处写死「预计周期 2周」，与任务条目（21 天 / 多周）矛盾。
+                // 改为从 roadmapRows 求合计项数，周期口径以各条目估时与依赖为准。
+                {
+                  label: locale === "zh" ? "任务合计 · 依估时" : "Tasks total · est. based",
+                  value: locale === "zh"
+                    ? `${roadmapRows.length} 项`
+                    : `${roadmapRows.length} items`,
+                },
                 { label: locale === "zh" ? "参与角色" : "Owners", value: String(new Set(roadmapRows.flatMap((row) => row.owner.split(" / "))).size) },
               ].map((metric) => (
                 <div key={metric.label} className="border-r border-white/10 px-3 py-3 text-center last:border-r-0">
@@ -773,6 +911,12 @@ export default function ResultPage() {
                 </div>
               ))}
             </div>
+            {/* J16: 周期说明 — 不给出确定总周期，明确以条目估时与依赖为准 */}
+            <p className="mt-2 text-[11px] leading-4 text-white/40">
+              {locale === "zh"
+                ? "周期以各条目估时与依赖关系为准（逐项见下表），未提供估时的条目按待估处理。"
+                : "The timeline follows each item's estimate and dependencies (see the table); items without estimates stay TBD."}
+            </p>
             <div className="mt-5 overflow-x-auto rounded-[24px] border border-white/8">
               <table className="w-full text-left text-sm text-white/68">
                 <thead className="bg-white/6 text-white/42">

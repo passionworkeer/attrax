@@ -10,13 +10,18 @@ import io
 import json
 import logging
 import base64
+import hashlib
 from collections import deque
+from datetime import datetime, timezone
 from pathlib import Path
 from contextlib import asynccontextmanager
 from typing import Optional
 import asyncio
 import time
 from concurrent.futures import ThreadPoolExecutor
+
+# J22 (plan §9.3): process start anchor for the dev releaseId in /ready.
+_PROCESS_STARTED_AT = datetime.now(timezone.utc)
 
 # Default timeouts (seconds) — prevents executor thread exhaustion on slow LLM calls
 _SCAN_TIMEOUT_SECS = 280
@@ -439,6 +444,50 @@ def _readiness_snapshot() -> dict:
         "ready": all(checks[key] for key in gate_keys),
         "checks": checks,
         "version": app.version,
+        # J22 (plan §9.3): auditable release identity. The readiness body
+        # exposes the deployed build SHA + a KB fingerprint + profile
+        # versions so "which build served this scan" is answerable without
+        # SSH-ing the box. In dev (no ATTRAX_BUILD_SHA) the releaseId is
+        # derived from process start time.
+        "release": _release_manifest(),
+    }
+
+
+def _release_manifest() -> dict:
+    """Release identity block for /ready (plan 2026-09-14 §9.3, J22)."""
+    build_sha = (settings.build_sha or "").strip()
+    kb_hash = ""
+    regulation_count = 0
+    try:
+        from rag_service.retrieval import article_loader
+        ids = sorted(article_loader.list_regulation_ids())
+        regulation_count = len(ids)
+        # Stable, cheap fingerprint: sorted doc ids. Content-level hashes
+        # would mean hashing 41 YAML files on every /ready poll — the id
+        # set + build SHA covers the deploy-diff signal this needs.
+        kb_hash = hashlib.sha256("|".join(ids).encode("utf-8")).hexdigest()[:16]
+    except Exception:
+        pass
+    profile_version = "unknown"
+    try:
+        from rag_service.pipeline.nodes import visual_checks
+        stamps = []
+        for profile_id in ("3c", "toy", "appliance", "home", "battery",
+                           "cosmetic", "textile", "food_contact", "other", "common"):
+            profile = visual_checks.load_profile(profile_id)
+            stamps.append(f"{profile.profile_id}={profile.version}")
+        profile_version = ",".join(stamps)
+    except Exception:
+        pass
+    started = _PROCESS_STARTED_AT.isoformat()
+    return {
+        "buildSha": build_sha or None,
+        "releaseId": build_sha or f"dev-{started}",
+        "startedAt": started,
+        "kbHash": kb_hash or None,
+        "regulationCount": regulation_count,
+        "inspectionProfileVersion": profile_version,
+        "pipeline": "kb_anchored",
     }
 
 

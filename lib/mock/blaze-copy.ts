@@ -25,7 +25,7 @@ export const blazeCopy = {
       body:
         "以合规智能为入口，覆盖选品、合规、增长、履约与风控全链路。先上传几张产品图片，把会吞掉利润的风险点直接点亮，再决定要不要真正进入欧洲市场。",
       bodySecondary:
-        "我们把多角度图片、2.5D 模型、火焰热点、法规解释和利润看板整合成一条完整的端体验链路，同时兼顾路演展示与正式产品落地。",
+        "我们把多角度图片、图像证据分析、风险热点、法规解释和成本看板整合成一条完整的端体验链路，同时兼顾路演展示与正式产品落地。",
       ctaPrimary: "拍一张，看看你能赚多少钱",
       ctaSecondary: "查看完整 Demo",
       ctaDownload: "下载参赛计划书",
@@ -90,11 +90,14 @@ export const blazeCopy = {
       submit: "开始烧毁 · 智能分析",
       preview: "拍摄预览与输出预告",
       preset: "预制体验数据",
-      steps: ["1. 上传产品", "2. 智能拆解", "3. 风险识别", "4. 利润测算"],
+      // J21: 「智能拆解」→「图像证据分析」，与实际能力（图片观察）一致；
+      // 与 burning 页 6 阶段流水线共用同一阶段口径，不再 4 步与 6 阶段并列。
+      steps: ["1. 上传产品", "2. 图像证据分析", "3. 风险识别", "4. 利润测算"],
       previewPill: "3C 电子",
       previewInstruction: "请将产品平放，尽量保留完整轮廓与关键按键信息",
+      // J21: 「3D 拆解页」实际是图片证据舞台，没有 3D 重建能力。
       previewAutoJump:
-        "上传完成后，系统会进入 3D 拆解页，再自动跳转到火焰风险和利润结果页。",
+        "上传完成后，系统会进入图像证据分析页，再自动跳转到合规风险和成本结果页。",
       presetBadge: "先看 demo",
       insightCards: [
         {
@@ -189,19 +192,23 @@ export const blazeCopy = {
       },
     },
     burning: {
-      title: "AI 正在拆解你的产品",
+      // J21: 「AI 正在拆解你的产品」→ 图像证据分析表述。系统只做图像观察，
+      // 不存在拆解/3D 重建能力。
+      title: "AI 正在分析你的产品图像",
       body:
-        "系统会先用上传图片做一个临时扫描页，再把重点风险、法规引用和利润提示并排点亮。",
+        "系统会先用上传图片建立图像证据视图，再把重点风险、法规引用和成本提示并排点亮。",
       progress: "进度",
-      preview: "3D 爆炸拆解页",
+      // J21: 原「3D 爆炸拆解页」超出实际能力，改为图像证据分析页。
+      preview: "图像证据分析页",
       currentStage: "当前阶段",
-      autoJump: "正在生成火焰热点与利润预估，完成后会自动跳到完整风险结果页。",
+      autoJump: "正在生成风险热点与成本预估，完成后会自动跳到完整风险结果页。",
       primaryLabel: "重新上传",
       secondaryLabel: "查看 Demo",
       waiting: "等待任务启动…",
       marketsPill: "欧盟 + 英国",
       currentSessionLabel: "当前会话：",
-      stageNote: "这一步把上传图片整理为 2.5D 拆解舞台，让产品、火焰热点和法规检索进度同时可见。",
+      // J21: 原「2.5D 拆解舞台」→ 图像证据舞台（真实能力）。
+      stageNote: "这一步把上传图片整理为图像证据舞台，让产品照片、风险热点和法规检索进度同时可见。",
       retry: "重新上传",
       showDemo: "查看 Demo",
       failed: "扫描失败。",
@@ -219,29 +226,40 @@ export const blazeCopy = {
           body: "直接给出成本、整改费用和目标市场利润变化，不再只停在法规说明。",
         },
       ],
+      // J21: 与 ScanImageStage 的 6 阶段流水线（排队与预处理 / 图像观察 /
+      // 适用性判断 / 报告生成 / 引用核对 / 完成）统一为同一口径，
+      // 不再出现「4 步」与「6 阶段」并列冲突。
       analysisSteps: [
         {
-          title: "上传产品",
+          title: "上传与预处理",
           description: "读取多角度图片并建立产品素材视图。",
         },
         {
-          title: "智能拆解",
+          title: "图像观察",
           description: "识别型号、接口、铭牌、包装与警示信息。",
         },
         {
-          title: "风险识别",
-          description: "结合多市场法规库生成风险点与法规引用。",
+          title: "适用性判断",
+          description: "结合品类与市场确定适用的检查与法规。",
         },
         {
-          title: "利润测算",
-          description: "输出整改成本、时间预估与报告导出项。",
+          title: "报告生成",
+          description: "生成风险点、法规引用与整改建议。",
+        },
+        {
+          title: "引用核对",
+          description: "核对引用来源与条目，标记未验证项。",
+        },
+        {
+          title: "完成交付",
+          description: "输出成本预估与可下载报告项。",
         },
       ],
     },
     result: {
       title: "真实分析",
       summary:
-        "已根据上传图片完成视觉分析，并映射到可交互的 2.5D 风险热区。风险、整改建议与利润结果已经生成完毕。",
+        "已根据上传图片完成视觉分析，并映射到可交互的图像风险热区。风险、整改建议与成本结果已经生成完毕。",
       sessionBrief: "一页完成风险、利润和交付判断",
       sessionBriefBody:
         "结果页把视觉风险、整改建议、利润变化和报告导出放在同一条决策链路里，便于展示、复核和交付。",
@@ -379,7 +397,7 @@ export const blazeCopy = {
       body:
         "Using compliance intelligence as the entry point, Blaze Hawks covers sourcing, compliance, growth, fulfillment, and risk control. Upload a few product photos, light up the risks that can swallow margin, then decide whether to enter Europe for real.",
       bodySecondary:
-        "Multi-angle images, 2.5D modeling, fire hotspots, legal explanations, and the profit board form one complete end-to-end demo chain for roadshows and product landing.",
+        "Multi-angle images, image evidence analysis, risk hotspots, legal explanations, and the cost board form one complete end-to-end demo chain for roadshows and product landing.",
       ctaPrimary: "Upload a few shots and reveal your real margin",
       ctaSecondary: "See the Full Demo",
       ctaDownload: "Download Entry Plan",
@@ -444,11 +462,13 @@ export const blazeCopy = {
       submit: "Start Burn · Smart Analysis",
       preview: "Shot preview and output forecast",
       preset: "Preset experience data",
-      steps: ["1. Upload shots", "2. Smart breakdown", "3. Risk detection", "4. Margin estimate"],
+      // J21: renamed to image-evidence analysis (no 3D teardown capability).
+      steps: ["1. Upload shots", "2. Image evidence analysis", "3. Risk detection", "4. Cost estimate"],
       previewPill: "3C electronics",
       previewInstruction: "Lay the product flat and keep the full outline plus key labels visible",
+      // J21: "3D breakdown stage" was beyond actual capability.
       previewAutoJump:
-        "After upload, the system enters the 3D breakdown stage and then jumps to risk hotspots and margin results.",
+        "After upload, the system enters the image-evidence analysis stage and then jumps to risk and cost results.",
       presetBadge: "demo first",
       insightCards: [
         {
@@ -543,19 +563,23 @@ export const blazeCopy = {
       },
     },
     burning: {
-      title: "AI is dismantling your product",
+      // J21: "dismantling" implied 3D teardown; the system only does image
+      // observation. Renamed to image-evidence analysis wording.
+      title: "AI is analyzing your product images",
       body:
-        "The system first builds a temporary scan view from the uploaded images, then lights up risk, citation, and margin hints side by side.",
+        "The system first builds an image-evidence view from the uploaded shots, then lights up risk, citation, and cost hints side by side.",
       progress: "Progress",
-      preview: "3D Exploded Breakdown",
+      // J21: was "3D Exploded Breakdown" — beyond actual capability.
+      preview: "Image Evidence Analysis",
       currentStage: "Current stage",
-      autoJump: "Generating fire hotspots and profit estimates. You will be taken to the full result page automatically.",
+      autoJump: "Generating risk hotspots and cost estimates. You will be taken to the full result page automatically.",
       primaryLabel: "Upload again",
       secondaryLabel: "View Demo",
       waiting: "Waiting for the task to start...",
       marketsPill: "EU + UK",
       currentSessionLabel: "Session:",
-      stageNote: "This stage turns uploaded shots into a 2.5D breakdown surface where product evidence, hotspots, and rule retrieval progress stay visible together.",
+      // J21: was "2.5D breakdown surface" — the stage is an image-evidence canvas.
+      stageNote: "This stage turns uploaded shots into an image-evidence canvas where the product photo, hotspots, and rule retrieval progress stay visible together.",
       retry: "Upload again",
       showDemo: "View Demo",
       failed: "Scan failed.",
@@ -573,29 +597,40 @@ export const blazeCopy = {
           body: "Shows remediation cost and market margin shift directly instead of stopping at legal explanation.",
         },
       ],
+      // J21: unified with ScanImageStage's 6-phase pipeline (queue & preprocess /
+      // image observation / applicability / report generation / citation verify /
+      // done) — no more 4-step vs 6-phase conflict.
       analysisSteps: [
         {
-          title: "Upload shots",
+          title: "Upload & preprocess",
           description: "Read multi-angle images and build the base product view.",
         },
         {
-          title: "Smart breakdown",
+          title: "Image observation",
           description: "Detect model, ports, nameplate, packaging, and warning signals.",
         },
         {
-          title: "Risk detection",
-          description: "Generate hotspots and citations against multi-market regulation sets.",
+          title: "Applicability check",
+          description: "Determine applicable checks and regulations by category and market.",
         },
         {
-          title: "Margin estimate",
-          description: "Return remediation cost, timing, and export-ready report outputs.",
+          title: "Report generation",
+          description: "Generate hotspots, citations, and remediation guidance.",
+        },
+        {
+          title: "Citation verify",
+          description: "Check citation sources and mark unverified entries.",
+        },
+        {
+          title: "Delivery",
+          description: "Return cost estimates and export-ready report outputs.",
         },
       ],
     },
     result: {
       title: "Live Analysis",
       summary:
-        "The uploaded images have been analyzed and mapped into an interactive 2.5D risk canvas. Risks, fixes, and profit impacts are ready.",
+        "The uploaded images have been analyzed and mapped into an interactive image risk canvas. Risks, fixes, and cost impacts are ready.",
       sessionBrief: "Risk, margin, and delivery decisions in one page",
       sessionBriefBody:
         "The result page links visual risks, fixes, margin impact, and report exports into one decision chain for review and delivery.",

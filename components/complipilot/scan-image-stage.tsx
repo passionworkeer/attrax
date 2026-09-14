@@ -16,7 +16,9 @@ type ScanImageStageProps = {
 type StageStyle = CSSProperties & Record<`--${string}`, string | number>;
 
 /**
- * 2.5D disassembly-stage: the uploaded product image is the visual anchor.
+ * J21: 图像证据舞台（原「2.5D disassembly-stage」命名已纠正——系统只做
+ * 图像观察，没有 3D/拆解/空间重建能力）。the uploaded product image is the
+ * visual anchor.
  *
  * Audit 2026-09-13 §4.3: the old version decorated the loading page with
  * severity-coded hotspot pins (高危/警告) at fixed positions and a fake
@@ -87,10 +89,11 @@ export function ScanImageStage({
   const safeProgress = clamp(progress, 0, 100);
   const progressRatio = safeProgress / 100;
 
-  // 2.5D disassembly parameters — driven by progress:
+  // Image-evidence stage motion parameters — driven by progress:
   // 0   → image sits flat, no tilt, waypoints invisible, no fragments
   // 50  → card tilts ~14°, waypoints 1..3 visible, first half of phases lit
   // 100 → card tilts back to neutral, all waypoints visible, all phases lit
+  // (J21: visual tilt only — this is NOT a 3D/spatial reconstruction.)
   const tiltX = clamp((progressRatio - 0.05) * 14, -2, 14);
   const explodeScale = clamp(0.96 + (progressRatio - 0.2) * 0.18, 0.96, 1.16);
   const ringOpacity = clamp((progressRatio - 0.12) * 1.6, 0, 1);
@@ -121,8 +124,8 @@ export function ScanImageStage({
     });
   }
 
-  // Pick the first non-failed image as the "primary" image for the 2.5D card;
-  // remaining images show as ghosted orbit slices so we don't waste the
+  // Pick the first non-failed image as the "primary" image for the evidence
+  // card; remaining images show as ghosted orbit slices so we don't waste the
   // data the user uploaded.
   const primaryImage = visibleImages[0];
 
@@ -308,13 +311,13 @@ export function ScanImageStage({
         <span>
           {isPreset
             ? locale === "zh"
-              ? "DEMO PRODUCT · 单图扫描建模"
-              : "DEMO PRODUCT · SINGLE IMAGE MODEL"
+              ? "DEMO PRODUCT · 单图图像分析"
+              : "DEMO PRODUCT · SINGLE IMAGE ANALYSIS"
             : locale === "zh"
-              ? `${visibleImages.length} 个真实视角 · 2.5D 空间建模`
-              : `${visibleImages.length} REAL ANGLES · 2.5D SPATIAL MODEL`}
+              ? `${visibleImages.length} 个真实视角 · 图像证据分析`
+              : `${visibleImages.length} REAL ANGLES · IMAGE EVIDENCE ANALYSIS`}
         </span>
-        <strong>{locale === "zh" ? "AI 证据重建中" : "AI EVIDENCE RECONSTRUCTION"}</strong>
+        <strong>{locale === "zh" ? "AI 证据整理中" : "AI EVIDENCE ANALYSIS"}</strong>
       </figcaption>
     </figure>
   );

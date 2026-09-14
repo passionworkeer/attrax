@@ -9,10 +9,14 @@ Two documented counterexamples pin the behavior:
 
 1. EU Battery Regulation 2023/1542 Article 77 (battery passport) applies
    to LMT batteries, EV batteries, and industrial batteries > 2 kWh,
-   from 2027-02-18 (industrial) / 2028-08-18 (LMT). A consumer earbud
-   charging case contains a portable battery — the passport does NOT
-   apply. The audit session's report claimed it did.
-   Source: EC guidance 2026-08-21 (single-market-economy.ec.europa.eu).
+   from 2027-02-18. A consumer earbud charging case contains a portable
+   battery — the passport does NOT apply. The audit session's report
+   claimed it did.
+   Source: EC guidance 2026-08-21 (single-market-economy.ec.europa.eu)
+   — "guidance to support preparations for digital batteries passport":
+   the passport obligation for EV/LMT batteries and industrial batteries
+   > 2 kWh starts on 2027-02-18. (Earlier drafts of this module quoted
+   2028-08-18 for LMT — corrected 2026-09-14 per that guidance.)
 
 2. GB radio equipment: the official RER 2017 guidance allows CE marking
    (under conditions) as an alternative to UKCA for Great Britain;
@@ -42,10 +46,14 @@ ApplicabilityState = Literal["applicable", "not_applicable", "needs_confirmation
 
 RULES_VERSION = "applicability-rules/v1"
 
-# Earliest date the battery passport obligation bites for industrial
-# batteries > 2 kWh (Art. 77 + Art. 96 transitional). LMT follows later.
+# Earliest date the battery passport obligation bites. Per the European
+# Commission guidance of 2026-08-21 (single-market-economy.ec.europa.eu,
+# "guidance to support preparations for digital batteries passport"), the
+# passport requirement for LMT batteries, EV batteries, and industrial
+# batteries > 2 kWh starts on 2027-02-18 (both constants below).
+# (2026-09-14 J08: LMT was previously quoted as 2028-08-18 — corrected.)
 BATTERY_PASSPORT_INDUSTRIAL_FROM = date(2027, 2, 18)
-BATTERY_PASSPORT_LMT_FROM = date(2028, 8, 18)
+BATTERY_PASSPORT_LMT_FROM = date(2027, 2, 18)
 
 # Categories whose batteries are portable-class (no passport at any size
 # relevant to these products).
@@ -160,11 +168,11 @@ def _battery_regulation_decision(facts: ProductFacts, market: str) -> Applicabil
 
     # Battery-passport scoping (Art. 77): portable batteries in consumer
     # products NEVER need a passport. Only LMT / EV / industrial > 2 kWh do,
-    # and only from their effective dates.
+    # and only from their effective date (2027-02-18, EC guidance
+    # 2026-08-21).
     passport_note = (
         "电池护照 (Art. 77) 不适用于便携式电池（如耳机充电盒/普通消费电子）："
-        "仅 LMT、电动车电池及 >2 kWh 工业电池需要，工业类自 2027-02-18 起、"
-        "LMT 自 2028-08-18 起"
+        "仅 LMT、电动车电池及 >2 kWh 工业电池需要，均自 2027-02-18 起"
     )
     portable = facts.category in _PORTABLE_BATTERY_CATEGORIES or (
         facts.category == "battery" and (facts.battery_wh or 0) <= 2
