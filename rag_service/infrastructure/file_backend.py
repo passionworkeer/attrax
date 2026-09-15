@@ -153,7 +153,8 @@ class FileBackend:
         content: bytes,
     ) -> StoredUpload:
         safe_session = self._id(session_id)
-        upload_id = f"upload_{uuid.uuid4().hex}"
+        timestamp_ns = time.time_ns()
+        upload_id = f"upload_{timestamp_ns:020d}_{uuid.uuid4().hex[:8]}"
         safe_original_name = Path(original_name).name or "upload"
         suffix = Path(safe_original_name).suffix.lower()
         if not re.fullmatch(r"\.[a-z0-9]{1,8}", suffix):
@@ -193,9 +194,9 @@ class FileBackend:
             return []
         uploads = []
         with self._lock:
-            for path in sorted(directory.glob("upload_*.json")):
+            for path in directory.glob("upload_*.json"):
                 uploads.append(StoredUpload.model_validate_json(path.read_text(encoding="utf-8")))
-        return uploads
+        return sorted(uploads, key=lambda item: (item.created_at, item.upload_id))
 
     def get_upload(self, session_id: str, upload_id: str) -> StoredUpload | None:
         safe_upload = self._id(upload_id)

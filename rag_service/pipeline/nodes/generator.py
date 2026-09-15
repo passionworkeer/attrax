@@ -297,6 +297,9 @@ def generator_node(state: GraphState) -> dict:
     vision_result = state.get("vision_result", {}) or {}
     core_features = vision_result.get("core_features", []) or []
     product_type = vision_result.get("product_type", "") or ""
+    if (not product or product.strip() in {"", "产品", "undefined"}) and product_type:
+        product = product_type
+
     vision_context = _build_vision_context(vision_result)
     features = detect_features(
         "；".join(core_features),
@@ -304,6 +307,18 @@ def generator_node(state: GraphState) -> dict:
         product,
         query,
     )
+    # J09: Filter features based on user-declared product facts
+    declared_facts = state.get("declared_facts") or {}
+    if isinstance(declared_facts, dict):
+        negative_values = {"absent", "none", "no", "false", "无", "否", "0", "不含", "无内置电池"}
+        for k, v in declared_facts.items():
+            val = str(v).strip().lower()
+            if val in negative_values:
+                if k in {"battery", "builtin_battery"} and "battery" in features:
+                    features.remove("battery")
+                if k == "wireless" and "wireless" in features:
+                    features.remove("wireless")
+
     mandatory_regulations = build_anchor_list(
         category=category,
         markets=markets,

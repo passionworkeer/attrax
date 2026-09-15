@@ -327,7 +327,7 @@ class TestDeclaredFactsBoundaries:
                 f["checkId"] == "toy.battery_compartment.closure" for f in findings
             ), f"value={value!r} must not close the check"
         # And the recognized absent-like spellings DO close it.
-        for value in ("absent", "none", "no", "false", "无", " Absent "):
+        for value in ("absent", "none", "no", "false", "无", "否", " Absent "):
             findings = build_findings(
                 session_id="scan_grid",
                 category="toy",
@@ -337,6 +337,17 @@ class TestDeclaredFactsBoundaries:
             assert [
                 f for f in findings if f["checkId"] == "toy.battery_compartment.closure"
             ] == [], f"value={value!r} should close the check"
+
+        # Also builtin_battery alias
+        findings_alias = build_findings(
+            session_id="scan_grid",
+            category="toy",
+            observations=[obs("toy.battery_compartment.closure", "not_in_view", "o-batt")],
+            declared_facts={"builtin_battery": "否"},
+        )
+        assert [
+            f for f in findings_alias if f["checkId"] == "toy.battery_compartment.closure"
+        ] == []
 
     def test_hyphenated_and_region_tokens_match(self):
         # id segment and region token spellings: hyphens fold to underscores.

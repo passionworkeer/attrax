@@ -478,11 +478,38 @@ describe("productName fallback chain", () => {
       baseResult({ productName: "   " }),
       baseResult({ productCategory: "electronics", productName: undefined }),
     ];
-    for (const result of cases) {
-      const vm = buildInspectionResultViewModel({ result, sessionId: "scan_vm_test" });
+    for (const r of cases) {
+      const vm = buildInspectionResultViewModel({ result: r, sessionId: "scan_vm_test" });
       expect(vm.product.title.trim().length).toBeGreaterThan(0);
-      expect(vm.product.title).not.toContain("undefined");
     }
+  });
+
+  it("extracts real product title from observations when structured name is missing", () => {
+    const ankerResult = baseResult({
+      productName: "",
+      productCategory: "electronics",
+      inspectionObservations: [
+        observation({
+          checkId: "common.nameplate.readability",
+          observedText: "Anker 535 Charger (65W) 充电器 型号: A2332 输入: 100-240V~ 1.8A",
+        }),
+      ],
+    });
+    const vmAnker = buildInspectionResultViewModel({ result: ankerResult, sessionId: "scan_anker" });
+    expect(vmAnker.product.title).toBe("Anker 535 Charger (65W) 充电器 A2332");
+
+    const xiaomiResult = baseResult({
+      productName: "",
+      productCategory: "appliance",
+      inspectionObservations: [
+        observation({
+          checkId: "common.packaging.info",
+          observedText: "Xiaomi Smart Kettle 2 Pro | 1800W Quick Boiling | 1.7L",
+        }),
+      ],
+    });
+    const vmXiaomi = buildInspectionResultViewModel({ result: xiaomiResult, sessionId: "scan_xiaomi" });
+    expect(vmXiaomi.product.title).toBe("Xiaomi Smart Kettle 2 Pro");
   });
 });
 

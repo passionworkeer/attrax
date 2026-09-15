@@ -447,10 +447,15 @@ export function buildInspectionResultViewModel(input: {
 
   // ── Product (fallback chain, never undefined) ─────────────────────────────
   const dossier = record(reportPackage.productDossier ?? reportPackage.product_dossier);
-  const structuredName =
+  let rawName =
     text(result.productName) ||
     text(dossier.productName ?? dossier.product_name) ||
     text(dossier.product);
+  if (rawName === "产品" || rawName === "product" || rawName === "undefined") {
+    rawName = "";
+  }
+  const observedName = rawName ? null : extractProductTitleFromObservations(observations);
+  const structuredName = rawName || observedName || "";
   const category = text(result.productCategory, "other") as ProductCategory;
   const categoryLabel = CATEGORY_LABELS[category] ?? "其他";
   const productTitle =
@@ -757,4 +762,83 @@ export function findingsForObservation(vm: InspectionResultVM, observationId: st
   return vm.findings.filter((finding) =>
     finding.observations.some((observation) => observation.observationId === observationId),
   );
+}
+
+/**
+ * Extract clean product title from high-confidence observations (nameplate/packaging/brand).
+ * Avoids falling back to generic "品类（型号待确认）" when the vision model clearly read the product.
+ */
+function extractProductTitleFromObservations(observations: ObservationVM[]): string | null {
+  // 1. Check common.nameplate.readability
+  const nameplateObs = observations.find((obs) => obs.checkId === "common.nameplate.readability");
+  if (nameplateObs?.observedText) {
+    const raw = nameplateObs.observedText.trim();
+    // Pattern A: "Name: ... Model: ..." (e.g. Xiaomi)
+    const nameModelMatch = raw.match(
+      /(?:Name|品名|名称)[:：]\s*([^|,\n\r]+).*?(?:Model|型号)[:：]\s*([A-Za-z0-9_-]+)/i,
+    );
+    if (nameModelMatch) {
+      const cleanName = nameModelMatch[1].trim();
+      const cleanModel = nameModelMatch[2].trim();
+      return `${cleanName} (${cleanModel})`;
+    }
+    // Pattern B: "Anker 535 Charger (65W) 充电器 型号: A2332"
+    const ankerMatch = raw.match(
+      /^(.*?)(?:[，,\s]+)?(?:型号|Model)[:：]\s*([A-Za-z0-9_-]+)/i,
+    );
+    if (ankerMatch) {
+      const pName = ankerMatch[1].trim();
+      const mName = ankerMatch[2].trim();
+      if (pName.length >= 2 && pName.length <= 60) {
+        return pName.includes(mName) ? pName : `${pName} ${mName}`;
+      }
+      return mName;
+    }
+    // Pattern C: slash-separated title (e.g. LEGO / Harry Potter / Talking Sorting Hat / 76429 / 561 pcs)
+    if (raw.includes(" / ")) {
+      const segments = raw.split(" / ").map((s) => s.trim()).filter(Boolean);
+      const filtered = segments.filter(
+        (s) =>
+          !s.toLowerCase().includes("building set") &&
+          !s.toLowerCase().includes("ensemble") &&
+          !s.toLowerCase().includes("pcs"),
+      );
+      if (filtered.length >= 2) {
+        return filtered.slice(0, 3).join(" ");
+      }
+    }
+    // Pattern D: first meaningful phrase before "输入:" or newline
+    const firstPhrase = raw.split(/(?:输入|input|output|输出|rated|额定|made in|制造|sn|s\/n|[\r\n|])/i)[0].trim();
+    if (firstPhrase && firstPhrase.length >= 3 && firstPhrase.length <= 50) {
+      return firstPhrase;
+    }
+  }
+
+  // 2. Check common.packaging.info (e.g. "Xiaomi Smart Kettle 2 Pro | 1800W...")
+  const packObs = observations.find((obs) => obs.checkId === "common.packaging.info");
+  if (packObs?.observedText) {
+    const raw = packObs.observedText.trim();
+    const firstPart = raw.split(/[|,\n\r]/)[0].trim();
+    if (firstPart && firstPart.length >= 3 && firstPart.length <= 50) {
+      return firstPart;
+    }
+  }
+
+  // 3. Check common.brand_model.visible (e.g. "LEGO, 76429, 561 pcs/pzs")
+  const brandObs = observations.find((obs) => obs.checkId === "common.brand_model.visible");
+  if (brandObs?.observedText) {
+    const raw = brandObs.observedText.trim();
+    const parts = raw
+      .split(/[,\n\r]/)
+      .map((p) => p.trim())
+      .filter((p) => p && !p.toLowerCase().includes("pcs"));
+    if (parts.length > 0) {
+      const combined = parts.slice(0, 2).join(" ");
+      if (combined.length >= 3 && combined.length <= 50) {
+        return combined;
+      }
+    }
+  }
+
+  return null;
 }

@@ -37,7 +37,7 @@ logger = logging.getLogger(__name__)
 FEATURE_KEYWORDS: dict[str, list[str]] = {
     "battery": [
         "锂电池", "锂离子", "电池供电", "电池仓", "电池盒", "充电宝", "移动电源",
-        "battery", "lithium", "li-ion", "rechargeable", "充电",
+        "battery", "lithium", "li-ion", "rechargeable", "充电电池", "可充电", "内置电池", "纽扣电池",
     ],
     "wireless": [
         "蓝牙", "无线", "wifi", "wi-fi", "2.4g", "5g频段", "射频", "nfc",
