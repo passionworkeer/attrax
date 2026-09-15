@@ -77,11 +77,13 @@ function rowFromVMCheck(check: CheckResultVM, activeImageId: string | null): Che
   const isHazard = catalogEntry?.semantic === "hazard_presence";
 
   let visibility = best?.visibility ?? "not_assessed";
-  if (isHazard && check.findings.length === 0) {
-    if (visibility === "not_in_view" || visibility === "absent_in_visible_scope") {
-      visibility = "present_readable";
-    }
-  }
+  // P0-3 (adversarial round 4, 2026-09-15): the old code promoted
+  // hazard+zero-findings observations to `present_readable` whenever the
+  // raw visibility was `not_in_view` or `absent_in_visible_scope`. That
+  // turned unreadable hazard checks into green "已观察" badges — implying
+  // compliance was proven when the photo could not support the judgment.
+  // visibility is now passed through as-is; coverageOf() owns the hazard
+  // promotion logic (and it only fires for `present_readable`).
 
   return {
     checkId: check.checkId,
