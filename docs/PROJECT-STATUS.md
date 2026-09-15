@@ -8,7 +8,7 @@
 
 ## 一、当前架构（1 段）
 
-KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next.js BFF `POST /api/scan` → FastAPI `POST /api/v1/scans` 走线性 3 步管线 **vision → generate → verify**（LangGraph 编排壳已按 `2026-09-11-de-rag-evidence-spec.md §7.7` 塌缩移除）。锚点来自三段：① `rag_service/retrieval/must_check.py`（10 品类 × 7 市场 + must_check 特征矩阵）；② `rag_service/retrieval/kb_loader.py`（`data/kb/` 锚点 YAML）；③ `rag_service/retrieval/article_loader.py`（`data/regulations/` 44 篇法规原文 + summary）。验证层：`verify/applicability.py`（三态 ProductFacts）+ `verify/quote_matcher.py`（每条 citation 字面匹配，match_status）+ `verify/grounding.py`（grounding verifier）+ `verify/vision_cache.py`（sha256 LRU）。报告导出：PDF/DOCX 走客户端 `lib/report-export-modules/`（jsPDF + Packer），md/csv 走 `GET /api/report/[sessionId]/[reportType]`。Embedding：**无**——embedding 栈（PAI/ModelScope）已随 de-RAG §7.7 整体删除。
+KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next.js BFF `POST /api/scan` → FastAPI `POST /api/v1/scans` 走线性 3 步管线 **vision → generate → verify**（LangGraph 编排壳已按 `2026-09-11-de-rag-evidence-spec.md §7.7` 塌缩移除）。锚点来自三段：① `data/kb/anchors/*.yaml` 经 `rag_service/retrieval/kb_loader.py` 加载（**真值源**）；② `rag_service/retrieval/must_check.py` 的 `CATEGORY_REGULATIONS` / `FEATURE_REGULATIONS` 自 2026-09-11 起是 KB YAML 的计算 shim（顶部 `"""Deprecated as of 2026-09-11**` 标注），仅保留 `detect_features` / `build_anchor_list` 入口；③ `rag_service/retrieval/article_loader.py`（`data/regulations/` 44 篇法规原文 + summary）。验证层：`verify/applicability.py`（三态 ProductFacts）+ `verify/quote_matcher.py`（每条 citation 字面匹配，match_status）+ `verify/grounding.py`（grounding verifier）+ `verify/vision_cache.py`（sha256 LRU）。报告导出：PDF/DOCX 走客户端 `lib/report-export-modules/`（jsPDF + Packer），md/csv 走 `GET /api/report/[sessionId]/[reportType]`。Embedding：**无**——embedding 栈（PAI/ModelScope）已随 de-RAG §7.7 整体删除。
 
 ## 二、模块完成度
 
@@ -24,7 +24,7 @@ KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next
 | 证据/重扫循环（POST .../evidence + .../revisions） | ✅ 完成 | J10 2026-09-14 |
 | 利润独立页面 + PDF/DOCX 客户端导出 | ✅ 完成 | `app/profit/[sessionId]` + `lib/report-export-modules/profit-{pdf,docx}` |
 | Demo 模式 + DegradedBanner 接入 | ✅ 完成 | 真实路径降级显式 `degradedReason` |
-| 10 品类 × 7+ 市场覆盖 | ✅ 完成 | electronics / toys / battery / textiles / cosmetic / food_contact / appliance / 3c / home / other；EU/UK/US/CN/AU/SA/AE/JP |
+| 10 品类 × 16 市场覆盖 | ✅ 完成 | electronics / toy / battery / textile / cosmetic / food_contact / appliance / 3c / home / other（**单数**）；EU/US/UK/CN/AU/SA/AE/JP/KR/CA/SG/MX/BR/DE/FR/IT |
 | 评测（grounding eval） | ✅ 完成 | `scripts/eval_grounding.py` + `docs/annotation/grounding-eval.md` |
 | watch-dog 法规自动入库 | ✅ 完成 | `scripts/watchdog/` + `docs/WATCHDOG.md`（默认 AUTO_INGEST=true） |
 | i18n（zh/en） | ✅ 完成 | `lib/i18n.tsx` + `lib/i18n/translations.ts`，locale 由 `BlazeLocaleProvider` 统一提供 |

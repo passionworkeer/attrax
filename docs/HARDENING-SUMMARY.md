@@ -32,7 +32,7 @@
 | 13 | fail2ban 加 nginx 80/443 保护 + ignoreip 防自 ban | `/etc/fail2ban/jail.d/` |
 | 14 | Zod schema 在 3 个 `[sessionId]` 路由（防 path traversal 500 → 404）| `app/api/{scan,trace,roadmap}/[sessionId]/route.ts` |
 | 15 | `session-store.ts` 改 silent validation + `tokenFromRequest` 移除 `?token=` query | `lib/pipeline/` |
-| 16 | npm audit fix 8→0 + OOM 恢复 + RECOVERY.md | `package-lock.json` `docs/RECOVERY.md` |
+| 16 | npm audit fix 8→0 + OOM 恢复 + RECOVERY.md | `package-lock.json`（`docs/RECOVERY.md` 已 2026-09-14 退役删除） |
 
 ### 服务器配置（`docs/infra/` 快照，可一键部署）
 
@@ -67,7 +67,7 @@ docs/infra/
 | 时间 | 事件 | 处理 |
 |---|---|---|
 | 2026-06-21 09:00 | 用户跑 `gitpush` 5 轮加固 + 部署 | 部署到 120.77.36.107 |
-| 2026-06-21 19:00 | `npm audit fix` + `npm ci --omit=dev` 误删 pm2 + build OOM | 服务器挂 30+ 分钟，文档记入 `RECOVERY.md` |
+| 2026-06-21 19:00 | `npm audit fix` + `npm ci --omit=dev` 误删 pm2 + build OOM | 服务器挂 30+ 分钟；恢复步骤曾写入 `RECOVERY.md`（已 2026-09-14 删除；走 `SECURITY.md §事件响应` + `infra/NEXTJS-16-STANDALONE-NOTES.md` 兜底） |
 | 2026-06-21 22:00 | 用户从阿里云控制台强制重启 | 重建 build，恢复 0 vuln + 端到端 OK |
 
 ## 未做（明确决定不做）
@@ -84,17 +84,17 @@ docs/infra/
 ## 相关文档
 
 - [`SECURITY.md`](./SECURITY.md) — 完整安全政策（key 管理、网络暴露、SSH、HTTPS、API、进程、log、备份、监控、事件响应）
-- [`SERVER-OPS.md`](./SERVER-OPS.md) — 日常运维（pm2、logrotate、健康检查、build/deploy 流程）
-- [`RECOVERY.md`](./RECOVERY.md) — 紧急恢复 runbook（OOM、断连、备份恢复步骤）
-- [`infra/`](./infra/) — 服务器配置快照 + Ansible playbook
+- [`SERVER-OPS.md`](./SERVER-OPS.md) — ⚠️ 历史文档，随 aliyun-sz 退役删除（2026-09-14）。日常运维见 `infra/NEXTJS-16-STANDALONE-NOTES.md` + `docs/README.md §生产部署`
+- `RECOVERY.md` — ⚠️ 已删除（2026-09-14）。紧急响应见 `SECURITY.md §事件响应`
+- [`infra/`](./infra/) — 服务器配置快照（aliyun-sz 时代；lighthouse 当前 nginx 站配见 `infra/nginx-attrax-locations.conf`，其余 Ansible playbook 已退役）
 - [`plans/`](./plans/) — 历史修复计划（remediation 路线图）
-- [`PROJECT.md`](./PROJECT.md) / [`PRD.md`](./PRD.md) — 项目本身文档
+- [`PROJECT.md`](./PROJECT.md)（已 2026-09-14 移至 `archive/`）/ [`PRD.md`](./PRD.md)（顶部 banner 自承认历史）
 
 ## 给接手人的话
 
-1. **先看 `RECOVERY.md`** — 服务器挂了的应急流程
+1. **服务器挂了** — 走 `SECURITY.md §事件响应` + `infra/NEXTJS-16-STANDALONE-NOTES.md §恢复流程`（`docs/RECOVERY.md` 已退役）
 2. **再看 `SECURITY.md`** — 知道现在哪些端口/key 怎么管的
-3. **要改服务器配置** — 改 `infra/` 对应文件，跑 `docs/infra/deploy-infra.yml` 一键部署
+3. **要改服务器配置** — 改 `infra/` 对应文件；**Ansible playbook 已退役**，lighthouse 直接 scp + 改
 4. **要改代码** — 所有改动都在 git 历史里，`git log` 看 commit 标题
-5. **别动 `package-lock.json` 然后跑 `npm ci --omit=dev`** — pm2 在 devDeps，会被删
-6. **build 前必须 `pm2 stop rag-service`** — 否则 1.6GB 内存会 OOM（`SERVER-OPS.md` 5.4 节）
+5. **别动 `package-lock.json` 然后跑 `npm ci --omit=dev`** — pm2 在 devDeps，会被删（2026-06-21 事故教训）
+6. **build 前必须 `pm2 stop rag-service`** — 否则 1.6GB 内存会 OOM（`SERVER-OPS.md` 5.4 节，已退役；当前 lighthouse 内存更宽，`pm2 restart` 一般足够）

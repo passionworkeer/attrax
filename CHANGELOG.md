@@ -2,6 +2,40 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## [Unreleased] - 2026-09-15
+
+**Adversarial review round 4 (P0 + P1 + 文档同步, HEAD `2d8fa19`)**:
+
+**P0 hazard coverage honesty**:
+- `lib/result/inspection-view-model.ts:coverageOf()` — hazard+0 findings → "observed" 的旧逻辑会让 J09-skipped unreadable 检查渲染绿色"已观察" badge（用户声明 `magnets: absent` 后模糊照片被判合规）。修复：只有 `present_readable` 才 collapse 到 "observed"；其它走原 visibility 分支
+- `components/result/InspectionChecklistPanel.tsx:rowFromVMCheck()` — 删除对 hazard check 的 `not_in_view` / `absent_in_visible_scope` → `present_readable` 强制 override；visiblity 透传由 coverageOf 决定
+
+**P0 hazard matcher + immutability**:
+- `rag_service/pipeline/nodes/findings_builder.py:_is_negative_hazard_observation` — 旧 substring 匹配会被对比词 `但 / 但是 / 然而 / 不过 / but / however / yet` 引入的真实 defect 截胡（`"外壳平整，无可见裂纹…但电池仓附近可见明显氧化锈迹"` → 锈迹 finding 被静默丢弃）。修复：抽出 `_CONTRAST_MARKERS`，新增 `_is_dominantly_negative_hazard_description` 要求 negative phrase **且**无 contrast marker
+- 同文件 for-loop 直接 mutate `obs["visibility"]` — 违反 CLAUDE.md 不可变模式。修复：用 `effective_obs = {**obs, "visibility": "present_readable"}` 浅拷贝用于 rank/best，**不**写回 caller's observations list
+
+**P1 NEGATIVE_VALUES 抽共享模块**:
+- 新增 `rag_service/pipeline/nodes/declared_facts.py` — `NEGATIVE_VALUES` frozenset + `is_negative_value(value)` helper（strip + lower + set 查；非 str 返回 False）
+- `findings_builder.py` + `generator.py` 都改 import 这一个 source of truth；消除两处字面 set 重复
+
+**Chore cleanup**:
+- `components/result/InspectionChecklistPanel.tsx` — 删除 stale `CHECK_CATALOG` 导入 + `let visibility` 改 `const`（override 删除后不再 reassign）+ 移除 unused `isHazard` 分支
+- `.gitignore` — 新增 `.DS_Store`、`.screenshots/regression-*/`、`规航AI-三产品完整测试包-20260914{,.zip}`（Unicode 模式 `git check-ignore` 验证匹配）
+- `scripts/run-production-regression.ts` — 把 3 处硬编码 `/Users/wangjianjun/me/attrax/...` test-package 路径 + `localhost:3001` 风格的本地 artifact dir + 3 处硬编码 prod URL 全部改成 `__dirname` 相对路径 + env override（`ATTRAX_REGRESSION_PKG_DIR` / `ATTRAX_REGRESSION_OUT_DIR` / `ATTRAX_REGWATCH_ARTIFACT_DIR` / `ATTRAX_REGRESSION_BASE_URL`）；缺包时给出 fail-loud 错误而不是跑到一半崩
+- `.screenshots/_check.mjs` / `_verify.mjs` / `_verify_tabs.mjs` — 删除 Windows 路径泄漏 `E:/desktop/火鹰合规/` + 错误的 `localhost:3001` 端口
+
+**P2 cleanup (本次独立 sweep)**:
+- `scripts/build-deploy-tarball.sh` — 4 处注释 + 最后 log 行的 phantom `apply-upload-fix.sh` 改为 `/tmp/attrax-apply-deploy.sh`
+- `scripts/ecosystem.config.cjs` — 删 stale "pm2 cron_restart 每天 03:00 UTC 拉起" 注释块（2026-09-13 决定已改成常驻 daemon，但旧注释仍误导）
+- `docs/WATCHDOG.md` + `scripts/watchdog/README.md` — auto-ingest 契约对齐（README 旧版说"库不会自动重建"与 WATCHDOG.md + 实际代码 `ATTRAX_REGWATCH_AUTO_INGEST=true` 默认矛盾）；回滚命令去掉已删除的 `scripts/build_regulation_library.py` 引用
+- `docs/infra/NEXTJS-16-STANDALONE-NOTES.md` — 删除 phantom `pages.module.css` 引用，改成实际存在的 `components/complipilot/{homepage,flow-shell,scan-image-stage,bright-flow}.module.css`
+
+**部署 (lighthouse `43.155.141.192`)**:
+- 前端 BUILD_ID `oylglbgj1A5mqY-TZ56my` / commit `8ded0ce`（tarball 通过 `attrax-apply-deploy.sh`）
+- RAG service: 3 个 Python 文件 rsync + `ATTRAX_BUILD_SHA=8ded0ce` 手改 `.env`（pydantic-settings 启动读 .env）+ pm2 restart；pytest 59/59 全绿（含 4 例新 mixed-state + 1 例新 no-mutation）
+
+---
+
 ## [Unreleased] - 2026-09-14
 
 ### Cleanup (this batch)

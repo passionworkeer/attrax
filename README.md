@@ -11,7 +11,7 @@
 
 Attrax 是一个面向跨境电商卖家的合规风险扫描平台。用户上传产品图片，系统通过视觉识别 + 法规知识库锚定生成报告，每条结论附带可点验的法规原文引用。
 
-支持品类 10 类（electronics / toys / battery / textiles / cosmetic / food_contact 等），目标市场 7+ 个（EU / UK / US / CN / AU / SA / AE 等）。当前架构采用 **规则知识库（must_check）+ 法规原文（article_loader）+ LLM 生成** 三段式，详见 [`docs/plans/2026-09-11-de-rag-evidence-spec.md`](./docs/plans/2026-09-11-de-rag-evidence-spec.md) 中既定的 de-RAG 迁移路线。
+支持品类 10 类（**单数**：`electronics` / `toy` / `battery` / `textile` / `cosmetic` / `food_contact` / `appliance` / `3c` / `home` / `other` — 见 `lib/types.ts` + `data/kb/anchors/*.yaml`），目标市场 16 个（`EU` / `US` / `UK` / `CN` / `AU` / `SA` / `AE` / `JP` / `KR` / `CA` / `SG` / `MX` / `BR` / `DE` / `FR` / `IT` — `MARKET_IDS`）。当前架构采用 **规则知识库（must_check）+ 法规原文（article_loader）+ LLM 生成** 三段式，详见 [`docs/plans/2026-09-11-de-rag-evidence-spec.md`](./docs/plans/2026-09-11-de-rag-evidence-spec.md) 中既定的 de-RAG 迁移路线。
 
 ## 核心能力
 
@@ -68,7 +68,7 @@ npm run lint         # ESLint
 │  前端（Next.js 16 + React 19 + TypeScript）                    │
 │  app/upload → app/burning → app/result → app/profit           │
 │  components/result/* + components/regulation/*                  │
-│  lib/rag-client/{v1-adapter, evidence-api, types.gen}         │
+│  lib/rag-client/{v1-adapter,v1-result-adapter,evidence-api,client,errors,response-schemas,report-package-schema,types.gen,openapi.snapshot.json}
 └────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -122,7 +122,7 @@ attrax/
 │   │                             # FloatingEvidenceCrop, EvidenceRequestPanel）
 │   └── regulation/               # CitationChip / DocViewer
 ├── lib/                          # 前端核心库
-│   ├── rag-client/               # v1-adapter + evidence-api + types.gen
+│   ├── rag-client/               # v1-adapter + v1-result-adapter + evidence-api + client + errors + response-schemas + report-package-schema + types.gen + openapi.snapshot.json
 │   ├── report-export-modules/     # 报告导出（compliance / profit / decision /
 │   │                             #   roadmap / evidence-pack / shared）
 │   ├── hooks/useScanPolling.ts   # 轮询 hook（结果页另有 use-result-loader）
@@ -175,7 +175,7 @@ ssh lighthouse 'cd /opt/attrax && RAG_INTERNAL_SECRET=$(grep "^RAG_INTERNAL_SECR
 - API 契约 → [docs/FRONTEND-BACKEND-INTEGRATION.md](./docs/FRONTEND-BACKEND-INTEGRATION.md)
 - 历史事故 / 修复记录 → [CHANGELOG.md](./CHANGELOG.md)
 - 部署文档 → [docs/README.md](./docs/README.md) §生产部署 + [docs/infra/](./docs/infra/)
-- 当前优化方向 → [docs/plans/2026-09-14-judge-review-and-optimization-plan.md](./docs/plans/2026-09-14-judge-review-and-optimization-plan.md)（11 节、待实施 J01–J11）
+- 当前优化方向 → [docs/plans/2026-09-14-judge-review-and-optimization-plan.md](./docs/plans/2026-09-14-judge-review-and-optimization-plan.md)（11 节 J01–J11；J01 / J02 / J04–J07 / J09 / J10 / J11 已实施；J03 ViewModel + J15 合并证据请求随 2026-09-14 落地；J08 留待 spec 收尾）
 
 ---
 

@@ -13,21 +13,23 @@
 
 ## Files
 
-| File | Server path | Purpose |
-|---|---|---|
-| `nginx-nginx.conf` | `/etc/nginx/nginx.conf` | Main nginx config (http block, server_tokens, buffer/timing) |
-| `nginx-attrax-site.conf` | `/etc/nginx/sites-available/attrax` | Attrax vhost (TLS, reverse proxy, rate limit, headers) |
-| `nginx-custom-error-pages.conf` | `/etc/nginx/custom-error-pages.conf` | 404/403/5xx custom pages |
-| `sysctl-99-attrax-hardening.conf` | `/etc/sysctl.d/99-attrax-hardening.conf` | 22 kernel hardening params |
-| `sshd-00-attrax-hardening.conf` | `/etc/ssh/sshd_config.d/00-attrax-hardening.conf` | MACs, MaxAuthTries, Alives, Banner |
-| `sshd-banner.txt` | `/etc/ssh/banner` | Login legal warning |
-| `journald-00-attrax.conf` | `/etc/systemd/journald.conf.d/00-attrax.conf` | 200M cap, 14-day retention |
-| `fail2ban-filter-attrax-404-probe.conf` | `/etc/fail2ban/filter.d/attrax-404-probe.conf` | Custom 4xx probe filter |
-| `fail2ban-jail-attrax-404-probe.conf` | `/etc/fail2ban/jail.d/attrax-404-probe.conf` | Custom 404 probe jail |
-| `cron-attrax-backup` | `/etc/cron.d/attrax-backup` | Daily 03:00 backup |
-| `cron-attrax-uptime` | `/etc/cron.d/attrax-uptime` | Every 5 min health check |
-| `backup-data.sh` | `/opt/attrax/scripts/backup-data.sh` | FAISS + .env tar.gz |
-| `uptime-check.sh` | `/opt/attrax/scripts/uptime-check.sh` | `/api/health` curl |
+> ⚠️ **下列 12 行全部是 2026-06-21 aliyun-sz 时代快照**。lighthouse 当前仅 `nginx-attrax-locations.conf` 是活的；其它只能做新机参考，不要直接 scp 上 lighthouse。
+
+| File | Server path | Purpose | 状态 |
+|---|---|---|---|
+| `nginx-nginx.conf` | `/etc/nginx/nginx.conf` | Main nginx config (http block, server_tokens, buffer/timing) | ⚠️ aliyun-sz 历史快照 |
+| `nginx-attrax-site.conf` | `/etc/nginx/sites-available/attrax` | Attrax vhost (TLS, reverse proxy, rate limit, headers) | ⚠️ aliyun-sz 历史快照 |
+| `nginx-custom-error-pages.conf` | `/etc/nginx/custom-error-pages.conf` | 404/403/5xx custom pages | ⚠️ aliyun-sz 历史快照 |
+| `sysctl-99-attrax-hardening.conf` | `/etc/sysctl.d/99-attrax-hardening.conf` | 22 kernel hardening params | ⚠️ aliyun-sz 历史快照 |
+| `sshd-00-attrax-hardening.conf` | `/etc/ssh/sshd_config.d/00-attrax-hardening.conf` | MACs, MaxAuthTries, Alives, Banner | ⚠️ aliyun-sz 历史快照 |
+| `sshd-banner.txt` | `/etc/ssh/banner` | Login legal warning | ⚠️ aliyun-sz 历史快照 |
+| `journald-00-attrax.conf` | `/etc/systemd/journald.conf.d/00-attrax.conf` | 200M cap, 14-day retention | ⚠️ aliyun-sz 历史快照 |
+| `fail2ban-filter-attrax-404-probe.conf` | `/etc/fail2ban/filter.d/attrax-404-probe.conf` | Custom 4xx probe filter | ⚠️ aliyun-sz 历史快照 |
+| `fail2ban-jail-attrax-404-probe.conf` | `/etc/fail2ban/jail.d/attrax-404-probe.conf` | Custom 404 probe jail | ⚠️ aliyun-sz 历史快照 |
+| `cron-attrax-backup` | `/etc/cron.d/attrax-backup` | Daily 03:00 backup | ⚠️ aliyun-sz 历史快照 |
+| `cron-attrax-uptime` | `/etc/cron.d/attrax-uptime` | Every 5 min health check | ⚠️ aliyun-sz 历史快照 |
+| `backup-data.sh` | `/opt/attrax/scripts/backup-data.sh` | FAISS + .env tar.gz（FAISS 已删，脚本大概率已坏） | ⚠️ aliyun-sz 历史快照，**不要直接跑** |
+| `uptime-check.sh` | `/opt/attrax/scripts/uptime-check.sh` | `/api/health` curl | ⚠️ aliyun-sz 历史快照 |
 
 ## Applying to a new server
 

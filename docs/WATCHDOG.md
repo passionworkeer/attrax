@@ -36,9 +36,7 @@ ssh lighthouse "/usr/bin/pm2 logs regwatch --lines 100 --nostream"
 ## 变更处理流程（2026-09-13 起默认全自动）
 
 默认 `ATTRAX_REGWATCH_AUTO_INGEST=true`：真实变化 pass 结束即自动入库 —
-- **UPDATE**：EU CELEX 能映射到 `data/regulations/eu/*.yaml` 的源，更新
-  last_verified / checksum / raw_file / source_url + 审计 note；原文件备份到
-  `auto-{date}/backup/`；articles 正文永不机械改写
+- **UPDATE**：**仅 EU CELEX** 能机械映射到 `data/regulations/eu/*.yaml` 的源（更新 last_verified / checksum / raw_file / source_url + 审计 note；原文件备份到 `auto-{date}/backup/`；articles 正文永不机械改写）。US / CN / UK / AU / UN 等其他市场的源目前是 evidence-only（落入 `evidence/` 子目录但不入主库）—— 见 `scripts/watchdog/auto_ingest.py:_REGION_DIRS`
 - **CREATE**：可映射但库里没有的（如 WEEE 2012/19）自动建最小 public 条目
 - **MARK（删的保守形态）**：源连续 7 天失联 → `status: stale`；FR 文件
   标题/类型含 removal/revocation/repeal → `status: repealed`。绝不硬删
