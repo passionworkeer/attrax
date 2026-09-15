@@ -653,7 +653,16 @@ function coverageOf(
 ): CheckResultVM["coverage"] {
   if (!observation) return "not_assessed";
   const isHazard = checkId ? CHECK_CATALOG[checkId]?.semantic === "hazard_presence" : false;
-  if (isHazard && findingsCount === 0) {
+  // P0-3 (adversarial round 4, 2026-09-15): hazard "observed" MUST require a
+  // READABLE sighting. Previously `isHazard && findingsCount === 0` short-
+  // circuited to "observed" regardless of visibility, which let J09-skipped
+  // hazard checks (user declared a fact absent → 0 findings) and unreadable
+  // hazard observations render a green "observed" badge — implying
+  // compliance was proven when in fact we never looked. Now the panel
+  // surfaces unreadable as "reshoot" (matches the panel tone) and keeps
+  // absent_in_visible_scope as "confirm" (honest "we saw the region,
+  // no hazard present").
+  if (isHazard && findingsCount === 0 && observation.visibility === "present_readable") {
     return "observed";
   }
   switch (observation.visibility) {
