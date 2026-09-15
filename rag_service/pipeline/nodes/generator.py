@@ -8,6 +8,7 @@ import logging
 import os
 import re
 
+from rag_service.pipeline.nodes.declared_facts import is_negative_value
 from rag_service.pipeline.state import GraphState
 from rag_service.retrieval.must_check import build_anchor_list, detect_features
 from rag_service.schemas.report_package import normalize_report_package
@@ -310,14 +311,13 @@ def generator_node(state: GraphState) -> dict:
     # J09: Filter features based on user-declared product facts
     declared_facts = state.get("declared_facts") or {}
     if isinstance(declared_facts, dict):
-        negative_values = {"absent", "none", "no", "false", "无", "否", "0", "不含", "无内置电池"}
         for k, v in declared_facts.items():
-            val = str(v).strip().lower()
-            if val in negative_values:
-                if k in {"battery", "builtin_battery"} and "battery" in features:
-                    features.remove("battery")
-                if k == "wireless" and "wireless" in features:
-                    features.remove("wireless")
+            if not is_negative_value(v):
+                continue
+            if k in {"battery", "builtin_battery"} and "battery" in features:
+                features.remove("battery")
+            if k == "wireless" and "wireless" in features:
+                features.remove("wireless")
 
     mandatory_regulations = build_anchor_list(
         category=category,

@@ -44,6 +44,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from rag_service.pipeline.nodes.declared_facts import is_negative_value
 from rag_service.pipeline.nodes.visual_checks import (
     InspectionProfileCheck,
     deferred_evidence_checks,
@@ -360,9 +361,8 @@ def _check_conflicts_with_declared_facts(
             region_tokens.update(
                 token for token in region.replace("-", "_").split("_") if token
             )
-    negative_values = {"absent", "none", "no", "false", "无", "否", "0", "不含", "无内置电池"}
     for fact_key, value in declared_facts.items():
-        if str(value).strip().lower() not in negative_values:
+        if not is_negative_value(value):
             continue
         tokens = _ABSENT_FACT_KEYS.get(fact_key)
         if not tokens:
