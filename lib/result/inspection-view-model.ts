@@ -765,71 +765,91 @@ export function findingsForObservation(vm: InspectionResultVM, observationId: st
 }
 
 /**
- * Extract clean product title from high-confidence observations (nameplate/packaging/brand).
- * Avoids falling back to generic "品类（型号待确认）" when the vision model clearly read the product.
+ * Extract a high-confidence product name from observations when top-level productName is empty.
+ * Scans all observations (across multiple images) rather than stopping at the first empty one.
  */
 function extractProductTitleFromObservations(observations: ObservationVM[]): string | null {
+  const getObsText = (checkId: string): string | null => {
+    for (const obs of observations) {
+      if (obs.checkId === checkId && typeof obs.observedText === "string" && obs.observedText.trim().length > 0) {
+        return obs.observedText.trim();
+      }
+    }
+    return null;
+  };
+
   // 1. Check common.nameplate.readability
-  const nameplateObs = observations.find((obs) => obs.checkId === "common.nameplate.readability");
-  if (nameplateObs?.observedText) {
-    const raw = nameplateObs.observedText.trim();
-    // Pattern A: "Name: ... Model: ..." (e.g. Xiaomi)
-    const nameModelMatch = raw.match(
-      /(?:Name|品名|名称)[:：]\s*([^|,\n\r]+).*?(?:Model|型号)[:：]\s*([A-Za-z0-9_-]+)/i,
+  const nameplateRaw = getObsText("common.nameplate.readability");
+  if (nameplateRaw) {
+    // Pattern A: Slash-separated title (e.g. LEGO / Harry Potter / Talking Sorting Hat / 76429 / 561 pcs)
+    if (nameplateRaw.includes(" / ")) {
+      const segments = nameplateRaw.split(" / ").map((s) => s.trim()).filter(Boolean);
+      const filtered = segments.filter(
+        (s) =>
+          !s.toLowerCase().includes("building set") &&
+          !s.toLowerCase().includes("ensemble") &&
+          !s.toLowerCase().includes("set de") &&
+          !s.toLowerCase().includes("pcs"),
+      );
+      if (filtered.length >= 2) {
+        const brand = filtered[0];
+        const modelSeg = filtered.slice(1).find((s) => /^\d{4,6}$/.test(s) || /^[A-Z0-9-]{4,10}$/i.test(s));
+        if (modelSeg) {
+          const rest = filtered.filter((s) => s !== brand && s !== modelSeg && !s.toLowerCase().includes("wizarding"));
+          return `${brand} ${modelSeg}${rest.length > 0 ? ` (${rest.slice(0, 2).join(" ")})` : ""}`;
+        }
+        return filtered.slice(0, 3).join(" ");
+      }
+    }
+
+    // Pattern B: Prefix title before "Name:" / "品名:" / "型号:" (e.g. Xiaomi Smart Kettle 2 Pro ... Name: Electric Kettle Model: MJYSH01-A)
+    const prefixWithNameMatch = nameplateRaw.match(
+      /^(.*?)(?:\s*(?:\.\.\.|[,\n\r|])\s*)?(?:Name|品名|名称)[:：]\s*([^|,\n\r]+).*?(?:Model|型号)[:：]\s*([A-Za-z0-9_-]+)/i,
     );
-    if (nameModelMatch) {
-      const cleanName = nameModelMatch[1].trim();
-      const cleanModel = nameModelMatch[2].trim();
+    if (prefixWithNameMatch) {
+      const prefix = prefixWithNameMatch[1].trim();
+      const cleanName = prefixWithNameMatch[2].trim();
+      const cleanModel = prefixWithNameMatch[3].trim();
+      if (prefix.length >= 3 && prefix.length <= 60 && !prefix.toLowerCase().startsWith("name")) {
+        return prefix;
+      }
       return `${cleanName} (${cleanModel})`;
     }
-    // Pattern B: "Anker 535 Charger (65W) 充电器 型号: A2332"
-    const ankerMatch = raw.match(
+
+    // Pattern C: "Anker 535 Charger (65W) 充电器 型号: A2332"
+    const modelPrefixMatch = nameplateRaw.match(
       /^(.*?)(?:[，,\s]+)?(?:型号|Model)[:：]\s*([A-Za-z0-9_-]+)/i,
     );
-    if (ankerMatch) {
-      const pName = ankerMatch[1].trim();
-      const mName = ankerMatch[2].trim();
+    if (modelPrefixMatch) {
+      const pName = modelPrefixMatch[1].trim();
+      const mName = modelPrefixMatch[2].trim();
       if (pName.length >= 2 && pName.length <= 60) {
         return pName.includes(mName) ? pName : `${pName} ${mName}`;
       }
       return mName;
     }
-    // Pattern C: slash-separated title (e.g. LEGO / Harry Potter / Talking Sorting Hat / 76429 / 561 pcs)
-    if (raw.includes(" / ")) {
-      const segments = raw.split(" / ").map((s) => s.trim()).filter(Boolean);
-      const filtered = segments.filter(
-        (s) =>
-          !s.toLowerCase().includes("building set") &&
-          !s.toLowerCase().includes("ensemble") &&
-          !s.toLowerCase().includes("pcs"),
-      );
-      if (filtered.length >= 2) {
-        return filtered.slice(0, 3).join(" ");
-      }
-    }
+
     // Pattern D: first meaningful phrase before "输入:" or newline
-    const firstPhrase = raw.split(/(?:输入|input|output|输出|rated|额定|made in|制造|sn|s\/n|[\r\n|])/i)[0].trim();
+    const firstPhrase = nameplateRaw.split(/(?:输入|input|output|输出|rated|额定|made in|制造|sn|s\/n|[\r\n|]|\.\.\.)/i)[0].trim();
     if (firstPhrase && firstPhrase.length >= 3 && firstPhrase.length <= 50) {
       return firstPhrase;
     }
   }
 
   // 2. Check common.packaging.info (e.g. "Xiaomi Smart Kettle 2 Pro | 1800W...")
-  const packObs = observations.find((obs) => obs.checkId === "common.packaging.info");
-  if (packObs?.observedText) {
-    const raw = packObs.observedText.trim();
-    const firstPart = raw.split(/[|,\n\r]/)[0].trim();
+  const packRaw = getObsText("common.packaging.info");
+  if (packRaw) {
+    const firstPart = packRaw.split(/[|,\n\r]/)[0].trim();
     if (firstPart && firstPart.length >= 3 && firstPart.length <= 50) {
       return firstPart;
     }
   }
 
-  // 3. Check common.brand_model.visible (e.g. "LEGO, 76429, 561 pcs/pzs")
-  const brandObs = observations.find((obs) => obs.checkId === "common.brand_model.visible");
-  if (brandObs?.observedText) {
-    const raw = brandObs.observedText.trim();
-    const parts = raw
-      .split(/[,\n\r]/)
+  // 3. Check common.brand_model.visible (e.g. "LEGO; 76429; 561 pcs/pzs")
+  const brandRaw = getObsText("common.brand_model.visible");
+  if (brandRaw) {
+    const parts = brandRaw
+      .split(/[,\n\r;/]/)
       .map((p) => p.trim())
       .filter((p) => p && !p.toLowerCase().includes("pcs"));
     if (parts.length > 0) {

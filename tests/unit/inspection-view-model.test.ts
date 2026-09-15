@@ -498,18 +498,30 @@ describe("productName fallback chain", () => {
     const vmAnker = buildInspectionResultViewModel({ result: ankerResult, sessionId: "scan_anker" });
     expect(vmAnker.product.title).toBe("Anker 535 Charger (65W) 充电器 A2332");
 
-    const xiaomiResult = baseResult({
+    const legoResult = baseResult({
       productName: "",
-      productCategory: "appliance",
+      productCategory: "toy",
       inspectionObservations: [
         observation({
-          checkId: "common.packaging.info",
-          observedText: "Xiaomi Smart Kettle 2 Pro | 1800W Quick Boiling | 1.7L",
+          observationId: "o-1",
+          checkId: "common.nameplate.readability",
+          observedText: undefined,
+        }),
+        observation({
+          observationId: "o-2",
+          checkId: "common.nameplate.readability",
+          observedText:
+            "LEGO / Harry Potter / Talking Sorting Hat / 76429 / 561 pcs/pzs / Building Set / Ensemble de construction / Set de construccion / WIZARDING WORLD",
+        }),
+        observation({
+          observationId: "o-3",
+          checkId: "common.brand_model.visible",
+          observedText: "LEGO; 76429; 561 pcs/pzs",
         }),
       ],
     });
-    const vmXiaomi = buildInspectionResultViewModel({ result: xiaomiResult, sessionId: "scan_xiaomi" });
-    expect(vmXiaomi.product.title).toBe("Xiaomi Smart Kettle 2 Pro");
+    const vmLego = buildInspectionResultViewModel({ result: legoResult, sessionId: "scan_lego" });
+    expect(vmLego.product.title).toBe("LEGO 76429 (Harry Potter Talking Sorting Hat)");
   });
 });
 
