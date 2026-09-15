@@ -177,13 +177,13 @@ ssh admin@203.0.113.10 'cat /opt/attrax/.next/standalone/.next/BUILD_ID'
 - [ ] `scripts/organize-and-test.sh` 里的 `EXPECTED="8yIFraqxGih3H_gxvEx8i"` 硬编码需要改成从仓 HEAD 推算(或单独维护一个 `EXPECTED_BUILD_ID` env)
 - [ ] 本仓 README 增加"如何把本地代码同步到服务器"标准流程(目前只有 `docs/DEPLOY-CHECKLIST.md` 略提到,需要展开)
 - [ ] 删 `docs/E2E-REPORT-20260718.md` 里过时的 polling 500 描述(那是已知遗留,不该再列在"未完成")
-- [x] ~~服务器没有 git,部署时无法做 `git rev-parse HEAD` 自动校验~~ → **已完成 (2026-07-19)**:`build-deploy-tarball.sh` 在 stage 阶段自动写 `.deployed`(commit / commit_full / build_id / branch / ref / built_at),`apply-upload-fix.sh` 解包后落地到 `/opt/attrax/.next/standalone/.deployed`。当前线上版本已手动补建。以后对账 `cat .deployed` 即可,不必再手动维护本文档版本块。
+- [x] ~~服务器没有 git,部署时无法做 `git rev-parse HEAD` 自动校验~~ → **已完成 (2026-07-19)**:`build-deploy-tarball.sh` 在 stage 阶段自动写 `.deployed`(commit / commit_full / build_id / branch / ref / built_at),`attrax-apply-deploy.sh` 解包后落地到 `/opt/attrax/.next/standalone/.deployed`。当前线上版本已手动补建。以后对账 `cat .deployed` 即可,不必再手动维护本文档版本块。
 
 ## 7. 已知遗留(跟本次修复无关)
 
 | 项 | 状态 | 备注 |
 |---|---|---|
-| `/api/scan/{sessionId}` polling 偶尔 500 | 已知 | next.js 16.2.6 jest-worker 在 1.6GB 容器下的稳定性 bug,需 ECS 升配才能根治 |
+| `/api/scan/{sessionId}` polling 偶尔 500 | **待重验** | 原记录指 aliyun-sz 1.6GB 容器 + next.js 16.2.6 jest-worker；lighthouse 当前内存更宽（`nextjs` 768M + `rag-service` 1300M cap）且已部署多个 build 自 2026-07-19 起未观测到该症状。建议下次 lighthouse 真实扫描时主动打 30 分钟压测，如不复现则可降级为"已解决" |
 | 路线图 PDF/DOCX 导出 | 未实现 | ResultExportButton 对 roadmap 按钮 disabled,只支持 md/csv 走 API |
 | 文档同步(compliance) PDF/DOCX 客户端导出 | 改为跳到页内 #compliance-report anchor | ComplianceReportView 内部用 lib/report-download 下载,实际上完整链路可用 |
 | pm2 "In-memory PM2 is out-of-date" | 功能正常 | 7.0.1 in-memory vs 7.0.3 local,跑 `pm2 update` 即可消除警告 |

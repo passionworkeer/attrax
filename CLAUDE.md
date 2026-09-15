@@ -51,8 +51,8 @@
 
 ### 多市场支持
 
-- **市场**：`EU` / `UK` / `US` / `CN` / `AU` / `SA` / `AE` / `JP` 等
-- **品类（2026-09-10 起 10 个）**：`electronics` / `toys` / `battery` / `textiles` / `cosmetic` / `food_contact` / `appliance` / `3c` / `home` / `other`
+- **市场**：16 个 — `EU` / `US` / `UK` / `CN` / `AU` / `SA` / `AE` / `JP` / `KR` / `CA` / `SG` / `MX` / `BR` / `DE` / `FR` / `IT`（见 `lib/types.ts:MARKET_IDS` + `rag_service/config.py:ALLOWED_MARKETS`；2026-09-13 P0-5 audit 把 BFF/RAG allow-list 同步对齐）
+- **品类**：`electronics` / `toy` / `battery` / `textile` / `cosmetic` / `food_contact` / `appliance` / `3c` / `home` / `other`（共 10 个，**单数**；`lib/types.ts` / `data/kb/anchors/*.yaml` 全部用单数。旧文档里的 `toys` / `textiles` 是 typo）
 - **特征横切**（must_check）：`battery` / `wireless` / `mains` / `children`
 - 默认市场：`EU`, `US`
 
@@ -137,16 +137,18 @@ attrax/
 │   ├── rate-limit.ts             # 限流
 │   ├── upload-validation.ts      # 上传文件校验
 │   ├── report-localization.ts    # 报告字段本地化
-│   ├── report-export.ts          # 报告导出入口（仅 downloadEvidencePack 实际被引）
-│   ├── report-download.ts        # 报告导出（动态导入，lazy loading）
-│   ├── report-export-modules/    # 报告导出实现（compliance / profit / decision / roadmap / shared / evidence-pack；PDF/DOCX 走客户端 jsPDF/Packer，md/csv 走 app/api/report/[sessionId]/[reportType] API 路由）
+│   ├── report-export.ts          # 报告导出静态 facade（compliance / profit / decision / roadmap / evidence-pack / markdown-text 全部导出；UI 走 lib/report-download.ts 走 lazy import）
+│   ├── report-download.ts        # 报告导出（动态导入，lazy loading）—— 给 UI 消费者
+│   ├── report-export-modules/    # 报告导出实现（compliance / profit-pdf / profit-docx / profit-render-model / decision / roadmap / evidence-pack / shared / markdown-text / inspection-annex；PDF/DOCX 走客户端 jsPDF/Packer，md/csv 走 app/api/report/[sessionId]/[reportType] API 路由）
 │   ├── result-view-helpers.ts    # 结果页视图助手
+│   ├── result/                   # 统一结果 ViewModel（2026-09-14 J03/J15）
+│   │   └── inspection-view-model.ts  # buildInspectionResultViewModel —— finding↔observation↔image 真实 join + 引用去重 + 产品名 fallback + evidence request 合并
 │   ├── pipeline/                 # demo 会话 + BFF 报告导出（4 文件，全部活跃）
 │   │   ├── session-auth.ts       # 会话访问 token（哈希 + 校验）
 │   │   ├── demo-scan-session.ts  # demo 模式会话
 │   │   ├── report-package.ts     # 报告包结构归一化（normalizeReportPackage）
 │   │   └── profit-report.ts      # 利润报告合成 + RenderModel
-│   ├── mock/                     # Demo 模式模拟数据（blaze-scan-result / blaze-scenario / scan-result / roadmap / blaze-copy）
+│   ├── mock/                     # Demo 模式模拟数据（blaze-scan-result / blaze-scenario / scan-result / blaze-copy 是 mock）；roadmap 不是 mock — 是导出 RenderModel，结果页 export 链 live 也用
 │   ├── hooks/useScanPolling.ts   # 轮询 hook
 │   ├── rag-client/               # 前端 RAG 客户端
 │   │   ├── v1-adapter.ts          # 创建扫描 / 轮询
@@ -169,7 +171,7 @@ attrax/
 │   ├── pipeline/                 # 线性 3 步管线 vision → generate → verify（LangGraph 形态已于 de-RAG §7.7 塌缩移除）
 │   │   ├── runner.py             # 编排入口
 │   │   ├── state.py              # 状态定义
-│   │   └── nodes/                # vision / generator / verifier / findings_builder / visual_checks
+│   │   └── nodes/                # vision / generator / verifier / findings_builder / visual_checks / declared_facts（J09 NEGATIVE_VALUES 共享：findings_builder + generator 都从这里 import is_negative_value）
 │   ├── retrieval/                # 知识库锚定三件套
 │   │   ├── must_check.py         # CATEGORY_REGULATIONS（10 品类×7 市场）+ FEATURE_REGULATIONS
 │   │   ├── kb_loader.py          # 锚点 YAML 加载
@@ -256,10 +258,14 @@ function updateSession(session: ScanStatus, updates: Partial<ScanStatus>): ScanS
 
 ```typescript
 import { z } from "zod";
+import { MARKET_IDS, ProductCategorySchema, MarketSchema } from "@/lib/types";
 
+// 实际请求 schema（lib/schemas.ts:StartScanRequestSchema）：
+//   - category: 6 个单数品类（electronics/appliance/3c/toy/home/other）
+//   - markets: MARKET_IDS（16 个）数组；默认 ["EU","US"]
 const StartScanRequestSchema = z.object({
-  category: z.enum(["electronics", "toys", "battery", "textiles", "cosmetic", "food_contact", "appliance", "3c", "home", "other"]),
-  markets: z.array(z.enum(["EU", "US", "UK", "CN", "AU", "SA", "AE", "JP"])),
+  category: ProductCategorySchema,
+  markets: z.array(MarketSchema).min(1).default(["EU", "US"]),
   imageCount: z.number().int().min(1),
   documentCount: z.number().int().min(0).max(5),
 });
@@ -322,6 +328,22 @@ const StartScanRequestSchema = z.object({
 ---
 
 ## 最近修复
+
+### 2026-09-15 — Hazard coverage 诚实 + matcher 对比词防御 + 输入不可变（commit `2d8fa19` / HEAD）
+
+- **P0 hazard "observed" 不再撒谎**（7c7f4cb）：`lib/result/inspection-view-model.ts:coverageOf` 对 hazard+0 findings 旧逻辑是无论 visibility 都返 "observed" — J09-skipped 检查（用户声明 `magnets: absent` → 0 findings）会让模糊照片渲染绿色"已观察" badge，含义"合规已确认"，实际根本没看清。修复：只有 `present_readable` 才 collapse 到 "observed"；`not_in_view` / `present_unreadable` / `occluded` 走 "reshoot"，`absent_in_visible_scope` 走 "confirm"。`components/result/InspectionChecklistPanel.tsx:rowFromVMCheck` 同步删 hazard override
+- **P0 hazard matcher 拦对比词**（d1839f8）：`rag_service/pipeline/nodes/findings_builder.py:_is_negative_hazard_observation` 旧 substring 匹配会被 `但 / 但是 / 然而 / 不过 / but / however / yet` 引入的真实 defect 截胡（例：`"外壳平整，无可见裂纹…但电池仓附近可见明显氧化锈迹"` → 锈迹 finding 被静默丢弃）。修复：抽 `_NEGATIVE_HAZARD_PHRASES` + 新 `_CONTRAST_MARKERS`，新增 `_is_dominantly_negative_hazard_description` 要求 negative phrase **且**无 contrast marker；新增 `TestP0MixedStateHazardDescriptions` 4 例测试覆盖 rust / burn / 然而 / but / 纯 negative
+- **P0 caller observations 不可变**（d1839f8）：同文件 for-loop 旧代码 `obs["visibility"] = "present_readable"` 直接 mutate 输入 dict，违反 CLAUDE.md §不可变模式 CRITICAL。修复：浅拷贝 `effective_obs = {**obs, "visibility": "present_readable"}` 用于本地 rank + best 表项，**不**写回 caller's observations list；新增 `TestP0CallerObservationNotMutated` 测试断言调用方 dict 不变
+- **P1 NEGATIVE_VALUES 共享**（7c4d774）：新 `rag_service/pipeline/nodes/declared_facts.py` 导出 `NEGATIVE_VALUES` frozenset + `is_negative_value()` helper；`findings_builder.py` + `generator.py` 都改 import，消除字面 set 重复（两处都用 `{absent, none, no, false, 无, 否, 0, 不含, 无内置电池}`，drift 风险）
+- **chore**（498eb08 + 8ded0ce + 2d8fa19 + 2bbda21）：
+  - Panel 删 unused `CHECK_CATALOG` import + 删 stale hazard override + `let visibility` → `const`
+  - `.gitignore` 加 `.DS_Store` / `.screenshots/regression-*/` / `规航AI-三产品完整测试包-20260914{,.zip}`（Unicode 模式 `git check-ignore` 验证匹配）
+  - `scripts/run-production-regression.ts` 3 处硬编码 `/workspace/me/attrax/...` test-package 路径 + gemini artifact dir + 3 处硬编码 prod URL 全改 `__dirname` 相对 + env override
+  - `.screenshots/_check.mjs` / `_verify.mjs` / `_verify_tabs.mjs` 删 Windows 路径 + 错误 `localhost:3001` 端口
+  - `scripts/build-deploy-tarball.sh` 4 处注释 + log 行 phantom `apply-upload-fix.sh` → `/tmp/attrax-apply-deploy.sh`
+  - `scripts/ecosystem.config.cjs` 删 stale "pm2 cron_restart 03:00 UTC" 注释块
+  - `docs/WATCHDOG.md` + `scripts/watchdog/README.md` auto-ingest 契约对齐（README 旧版说"库不自动重建"与默认 `ATTRAX_REGWATCH_AUTO_INGEST=true` 矛盾）
+  - `docs/infra/NEXTJS-16-STANDALONE-NOTES.md` 删 phantom `pages.module.css`，改成实际 `components/complipilot/{homepage,flow-shell,scan-image-stage,bright-flow}.module.css`
 
 ### 2026-09-14 — Judge review batches A + A1 + B1 + C2（cdb069f / 6b57148 / 58dbbf8）
 
@@ -412,7 +434,7 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 
 ---
 
-*最后更新：2026-09-14*
+*最后更新：2026-09-15*
 
 # This is NOT the Next.js you know
 

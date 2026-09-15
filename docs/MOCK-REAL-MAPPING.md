@@ -75,7 +75,7 @@
 | 字段 | 真实 | Mock | 状态 |
 |------|------|------|------|
 | `visual[]` | ✅ 1 条（vision_result） | ✅ 1 条 | ✅ |
-| `retrieval[]` | ✅ ≤ 24 条 chunks + 12 条 user docs | ✅ 占位若干 | ✅ |
+| `retrieval[]` | ✅ ≤ 24 条 chunks（`schemas/report_package.py:204` + `generate/report_generator.py:_build_source_context` 默认 `max_chunks=24`），user docs 不在 schema 限额内（上传上限来自 Zod schema `documentCount.max(5)`） | ✅ 占位若干 | ✅ |
 | `generation[]` | ✅ 合规报告 + 包键名 + trace | ✅ 占位 | ✅ |
 
 ### 3.4 `auditMetadata`

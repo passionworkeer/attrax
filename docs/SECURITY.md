@@ -73,12 +73,12 @@ See `infra/nginx-*.conf`:
 
 ## API protection
 
-- **Rate limit**: `limit_req_zone` in nginx, 10 req/s per IP for `/api/scan`, burst 20, returns 429
+- **Rate limit**: 双层 — nginx `limit_req_zone` 对 `/api/scan` 10 req/s per IP（burst 20，429）+ BFF (`app/api/scan/route.ts`) `checkRateLimit('scan:${clientId}', 10, 60_000)` 每 client 60s 窗口 10 次（BFF 比 nginx 更严，是真实业务门槛）
 - **fail2ban**: 5 jails (`sshd`, `nginx-http-auth`, `nginx-bad-request`, `nginx-block-scanner`, `attrax-404-probe`)
   - `attrax-404-probe` is custom: bans any IP that 10-times-per-minute probes `.env`, `.git`, `wp-admin`, `phpmyadmin`, backup extensions (24-hour ban)
   - `ignoreip = 127.0.0.1/8, 203.0.113.10` (we don't ban ourselves)
 - **Session auth**: 32-byte random tokens (256 bits entropy), SHA-256 hashed, `timingSafeEqual` constant-time comparison
-- **SessionId validation**: `SessionIdSchema` in `lib/schemas.ts` + `SAFE_SESSION_ID` in `app/api/backend-session-access.ts`（regex `/^scan_[A-Za-z0-9_-]{1,64}$/`，所有 sessionId 入参均经 Zod 校验）
+- **SessionId validation**: 三层正则不统一 — `lib/schemas.ts:SessionIdSchema` 限 50 字符（`/^scan_[0-9A-Za-z_-]{1,50}$/`），`app/api/backend-session-access.ts:SAFE_SESSION_ID` + RAG `rag_service/api/v1.py:_SESSION_ID` 限 64 字符（`/^scan_[A-Za-z0-9_-]{1,64}$/`）。BFF 的 64 是外层，前端 schema 的 50 是内层；调用经 Zod 校验，64-char 范围包含 50-char 范围，没有错位风险
 - **CORS**: `RAG_ALLOWED_ORIGINS=https://203.0.113.10` (configured; 8001 only listens 127.0.0.1 so cross-origin attacks limited)
 - **Magic bytes**: `lib/upload-validation.ts` validates PNG/JPEG/WEBP/PDF/DOCX content signatures, plus size limits, plus MIME + extension checks
 
@@ -160,7 +160,7 @@ If you suspect compromise:
 2. **Snapshot**: `dd` the disk before rebooting
 3. **Audit logs**: `journalctl --since="24 hours ago"` + `tail /var/log/attrax-*.log` + `grep -E "(sk-cp-|ms-)" /var/log/`
 4. **Rotate keys**: `MINIMAX_API_KEY`（仅此一个；`PAI_API_KEY` / `MODELSCOPE_API_KEY` / `OLLAMA_*` 随 embedding 栈删除，无代码读取）on the MiniMax dashboard
-5. **Force re-key**: invalidate all sessions by `rm /opt/attrax/.next/standalone/data/sessions/*.json`
+5. **Force re-key**: invalidate all sessions by `rm /opt/attrax/data/backend/sessions/*.json`（RAG FileBackend 真值；老路径 `/opt/attrax/.next/standalone/data/sessions/` 已不存在 —— `.next/standalone/data/` 从未被 RAG 写入）
 6. **Inspect**: check `~/.ssh/authorized_keys` on root and admin for unexpected entries
 7. **Rebuild**: deploy fresh from clean git checkout
 

@@ -21,6 +21,7 @@
 | 历史服务器版本对账 | [`SERVER-VERSION.md`](./SERVER-VERSION.md)（⚠️ SUPERSEDED aliyun-sz 时代快照 → lighthouse 用 `CLAUDE.md §部署雷区`） |
 | 评测与生产证据 | [`evidence/`](./evidence/) |
 | 标注集格式（grounding eval） | [`annotation/grounding-eval.md`](./annotation/grounding-eval.md)（仍为 `eval_grounding.py` 当前格式） |
+| 现行法规源（25 条 live registry） | [`data/regulation_sources/official_sources.json`](../data/regulation_sources/official_sources.json) + [`data/regulation_supplements/README.md`](../data/regulation_supplements/README.md)（历史快照 [`regulation-data-sources-coverage-2026-05-27.md`](./archive/regulation-data-sources-coverage-2026-05-27.md) ⚠️ SUPERSEDED） |
 
 ## 快速开始（本地开发）
 
@@ -69,15 +70,14 @@ docs/
 ├── WATCHDOG.md                            ← 法规自动入库运维手册
 ├── HARDENING-SUMMARY.md                   ← ⚠️ SUPERSEDED 历史快照（16 轮加固）→ SECURITY.md
 ├── PROJECT-STATUS.md                      ← 2026-09-14 重写的当前上线评估
-├── PROJECT.md / PRD.md                    ← ⚠️ 历史产品文档，2026-09-14 移至 `docs/archive/`
+├── PROJECT.md                    ← ⚠️ 历史产品文档，2026-09-14 移至 `docs/archive/`
+├── PRD.md                        ← ⚠️ 历史产品文档，仍在原位；阅读前看顶部 banner（自承认历史）
 ├── MOCK-REAL-MAPPING.md                   ← 2026-09-14 重写的字段对照
-├── DOCUMENT-PIPELINE.md                   ← ⚠️ SUPERSEDED，2026-09-14 移至 `docs/archive/`
-├── regulation-data-sources-coverage-2026-05-27.md  ← ⚠️ SUPERSEDED 历史覆盖率快照
 ├── plans/                                 ← 修复计划与设计 spec（历史 + 当前，2026-09-11 de-RAG + 2026-09-14 judge-review 是权威）
 ├── evidence/                              ← 评测与生产证据（judge-review 2026-09-13 等历史截图）
 ├── annotation/                            ← 标注集格式（grounding eval，仍为当前格式）
 ├── superpowers/specs/                     ← ⚠️ SUPERSEDED 架构设计 spec（历史）
-└── infra/                                 ← 服务器配置快照
+└── archive/                               ← 2026-09-14 清理移入：PROJECT.md / DOCUMENT-PIPELINE.md / regulation-data-sources-coverage-2026-05-27.md / 其他退役 spec
     ├── README.md
     ├── NEXTJS-16-STANDALONE-NOTES.md      ← Next 16 standalone 部署坑（当前）
     ├── nginx-attrax-locations.conf        ← nginx 站配快照（当前）
