@@ -209,6 +209,60 @@ _ABSENT_FACT_KEYS: dict[str, set[str]] = {
 }
 
 
+_NEGATIVE_HAZARD_PHRASES: tuple[str, ...] = (
+    # English (covers vision-model English output)
+    "no visible defect", "no defect", "no visible crack", "no crack",
+    "no visible damage", "no damage", "no visible stain", "no stain",
+    "no visible rust", "no rust", "no visible tear", "no tear",
+    "no visible scratch", "no scratch", "no visible scorch",
+    "no magnets", "no cords", "no strings", "no straps",
+    "shows no visible", "without visible defect", "shows no crack",
+    # Chinese (covers vision-model Chinese output)
+    "无可见", "未见明显", "未见异常", "未发现异常", "未见裂纹",
+    "无明显", "表面平整", "整体完整", "外壳平整", "无可见损伤",
+    "不构成缺陷", "无裂纹", "无变形", "无污渍", "无鼓胀", "未见破裂",
+    "未见任何", "未出现可辨识", "未见独立", "正常无可见", "未见明显裂痕",
+    "未见裂痕", "未见破损", "未见毛刺", "未见明显的",
+)
+
+# Contrast markers that introduce a real defect AFTER a negative phrase —
+# a description that contains one of these is "mixed-state" and MUST NOT
+# be collapsed to "no defect". 2026-09-15 adversarial round 4:
+#   "外壳平整，无可见裂纹、变形、鼓胀或明显污渍，但电池仓附近可见
+#    明显氧化锈迹"  → without this fix, the whole thing was negative and the
+#    rust defect was silently dropped.
+#   "无可见光但有大量可见划痕"  → same story.
+_CONTRAST_MARKERS: tuple[str, ...] = (
+    "但", "但是", "然而", "不过", "且", "but ", "but,", "however", "yet ",
+)
+
+
+def _is_dominantly_negative_hazard_description(desc: str) -> bool:
+    """Dominantly-negative hazard description detector (P0-1, 2026-09-15).
+
+    A description counts as dominantly negative iff it contains at least one
+    of the recognized negative phrases AND no contrast marker that would
+    introduce a real defect after the negative phrasing. The previous
+    substring-only matcher could swallow real defects in mixed-state
+    descriptions like "外壳平整，无可见裂纹...但电池仓附近可见明显氧化
+    锈迹" — a hazard reading the area but reporting rust.
+
+    Empty / very short descriptions fall back to the visibility flag; the
+    caller in build_findings() already short-circuits on visibility first.
+    """
+    if not desc:
+        return False
+    lowered = desc.lower()
+    has_negative = any(p in lowered for p in _NEGATIVE_HAZARD_PHRASES)
+    if not has_negative:
+        return False
+    # Any contrast marker anywhere in the description breaks the dominantly-
+    # negative guarantee — the model went on to describe a real defect.
+    if any(m in lowered for m in _CONTRAST_MARKERS):
+        return False
+    return True
+
+
 def _is_negative_hazard_observation(obs: dict[str, Any]) -> bool:
     """Detect if an observation explicitly confirms the absence of defects/hazards.
 
@@ -218,28 +272,17 @@ def _is_negative_hazard_observation(obs: dict[str, Any]) -> bool:
     - '外壳平整，无可见裂纹、变形、鼓胀或明显污渍'
     - '画面中未见任何磁体、绳带或绳索结构'
     - '未见明显的裂痕、破损或毛刺部位'
-    Such observations confirm that the hazard is ABSENT.
+    Such observations confirm that the hazard is ABSENT — UNLESS the
+    description also introduces a real defect via a contrast marker
+    (但 / 但是 / however / etc.), in which case the description is mixed-
+    state and this returns False (P0-1 fix; see
+    _is_dominantly_negative_hazard_description).
     """
     vis = str(obs.get("visibility") or "")
     if vis == "absent_in_visible_scope":
         return True
-    desc = str(obs.get("description") or "").lower()
-    if not desc:
-        return False
-    negative_phrases = [
-        "no visible defect", "no defect", "no visible crack", "no crack",
-        "no visible damage", "no damage", "no visible stain", "no stain",
-        "no visible rust", "no rust", "no visible tear", "no tear",
-        "no visible scratch", "no scratch", "no visible scorch",
-        "no magnets", "no cords", "no strings", "no straps",
-        "shows no visible", "without visible defect", "shows no crack",
-        "无可见", "未见明显", "未见异常", "未发现异常", "未见裂纹",
-        "无明显", "表面平整", "整体完整", "外壳平整", "无可见损伤",
-        "不构成缺陷", "无裂纹", "无变形", "无污渍", "无鼓胀", "未见破裂",
-        "未见任何", "未出现可辨识", "未见独立", "正常无可见", "未见明显裂痕",
-        "未见裂痕", "未见破损", "未见毛刺", "未见明显的",
-    ]
-    return any(p in desc for p in negative_phrases)
+    desc = str(obs.get("description") or "")
+    return _is_dominantly_negative_hazard_description(desc.lower())
 
 
 VIEW_NAME_ZH: dict[str, str] = {
@@ -370,18 +413,30 @@ def build_findings(
         if not check_id:
             continue
         semantic = _semantic_of(checks.get(check_id))
+        # P0-2 (adversarial round 4, 2026-09-15): do NOT mutate the
+        # caller's observation dict. The previous code wrote back to
+        # ``obs["visibility"]`` so the rank/best loop would treat the
+        # negative description as present_readable. That violated the
+        # CLAUDE.md immutability contract — a future caller that holds a
+        # reference to the raw observations for diagnostic / audit
+        # reporting would see the visibility silently rewritten.
+        # We instead build an effective_obs (a shallow copy with the
+        # promoted visibility) and use it ONLY for local ranking and the
+        # best[check_id] entry; the caller's observations list is left
+        # untouched.
+        effective_obs = obs
         if semantic == "hazard_presence" and _is_negative_hazard_observation(obs):
             hazard_confirmed_absent.add(check_id)
             if obs.get("visibility") == "not_in_view":
-                obs["visibility"] = "present_readable"
+                effective_obs = {**obs, "visibility": "present_readable"}
 
         rank = _RANK_BY_SEMANTIC.get(semantic, _RANK_BY_SEMANTIC["required_presence"])
-        visibility = str(obs.get("visibility") or "not_assessed")
+        visibility = str(effective_obs.get("visibility") or "not_assessed")
         current = best.get(check_id)
         if current is None or rank.get(visibility, 0) > rank.get(
             str(current.get("visibility")), 0
         ):
-            best[check_id] = obs
+            best[check_id] = effective_obs
 
     for check_id, obs in best.items():
         if check_id in skipped_checks:
