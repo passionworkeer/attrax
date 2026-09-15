@@ -5,8 +5,6 @@ const targets = [
   { path: "/upload", name: "02-upload.png" },
   { path: "/burning/demo", name: "03-burning.png" },
   { path: "/regulations", name: "04-regulations.png" },
-  { path: "/trace", name: "05-trace.png" },
-  { path: "/roadmap", name: "06-roadmap.png" },
 ];
 
 const browser = await chromium.launch();

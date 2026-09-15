@@ -2,8 +2,6 @@ import { chromium } from "@playwright/test";
 
 const targets = [
   { path: "/result/demo", name: "01-result-compliance.png" },
-  { path: "/trace?sessionId=demo", name: "02-trace.png" },
-  { path: "/roadmap?sessionId=demo", name: "03-roadmap.png" },
 ];
 
 const browser = await chromium.launch();

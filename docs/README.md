@@ -69,9 +69,9 @@ docs/
 ├── WATCHDOG.md                            ← 法规自动入库运维手册
 ├── HARDENING-SUMMARY.md                   ← ⚠️ SUPERSEDED 历史快照（16 轮加固）→ SECURITY.md
 ├── PROJECT-STATUS.md                      ← 2026-09-14 重写的当前上线评估
-├── PROJECT.md / PRD.md                    ← ⚠️ 历史产品文档（含 LangGraph / cohere / trace / roadmap 等已移除内容，标 SUPERSEDED 警告）
+├── PROJECT.md / PRD.md                    ← ⚠️ 历史产品文档，2026-09-14 移至 `docs/archive/`
 ├── MOCK-REAL-MAPPING.md                   ← 2026-09-14 重写的字段对照
-├── DOCUMENT-PIPELINE.md                   ← ⚠️ SUPERSEDED 历史设计 spec（前端 docparser 流程未落地）
+├── DOCUMENT-PIPELINE.md                   ← ⚠️ SUPERSEDED，2026-09-14 移至 `docs/archive/`
 ├── regulation-data-sources-coverage-2026-05-27.md  ← ⚠️ SUPERSEDED 历史覆盖率快照
 ├── plans/                                 ← 修复计划与设计 spec（历史 + 当前，2026-09-11 de-RAG + 2026-09-14 judge-review 是权威）
 ├── evidence/                              ← 评测与生产证据（judge-review 2026-09-13 等历史截图）

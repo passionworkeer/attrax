@@ -28,16 +28,6 @@ const TEST_SCENARIOS = {
     name: 'Regulations Page',
     url: '/regulations',
     expectedStatus: 200
-  },
-  trace: {
-    name: 'Trace Page',
-    url: '/trace',
-    expectedStatus: 200
-  },
-  roadmap: {
-    name: 'Roadmap Page',
-    url: '/roadmap',
-    expectedStatus: 200
   }
 }
 

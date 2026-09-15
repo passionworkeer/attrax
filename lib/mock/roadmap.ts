@@ -1,11 +1,11 @@
 /**
  * Shared mock roadmap dataset. Consumed by:
- *   - app/roadmap/page.tsx   (fallback when /api/roadmap/[sessionId] has no items)
- *   - components/trace/ComplianceTimeline.tsx (default items)
+ *   - app/result/[sessionId]/result-export-button.tsx (fallback when reportPackage.roadmap is empty)
  *
- * Keeping this in one place prevents drift between the page-level fallback
- * and the component-level default timeline. Locale is resolved at render
- * time by reading each item's title/titleEn pair.
+ * Real sessions carry roadmap in `reportPackage.roadmap` (produced by
+ * `rag_service/api/v1.py`). This module only feeds the demo path (DEMO_MODE=true)
+ * and the fallback used when the backend returns a report without roadmap items.
+ * Locale is resolved at render time by reading each item's title/titleEn pair.
  */
 
 export interface RoadmapItem {
@@ -34,7 +34,7 @@ function dateOffset(daysFromNow: number): string {
 /**
  * Default 7-step compliance roadmap. Dates are derived from "now" so the
  * timeline always points into the future; this is demo data only — real
- * sessions are fetched via /api/roadmap/[sessionId].
+ * sessions carry roadmap items in `reportPackage.roadmap`.
  */
 export function getDefaultRoadmapItems(): RoadmapItem[] {
   return [

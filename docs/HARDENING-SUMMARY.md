@@ -88,7 +88,7 @@ docs/infra/
 - [`RECOVERY.md`](./RECOVERY.md) — 紧急恢复 runbook（OOM、断连、备份恢复步骤）
 - [`infra/`](./infra/) — 服务器配置快照 + Ansible playbook
 - [`plans/`](./plans/) — 历史修复计划（remediation 路线图）
-- [`PROJECT.md`](./PROJECT.md) / [`PRD.md`](./PRD.md) / [`RAG-ARCHITECTURE-v3.md`](./RAG-ARCHITECTURE-v3.md) — 项目本身文档
+- [`PROJECT.md`](./PROJECT.md) / [`PRD.md`](./PRD.md) — 项目本身文档
 
 ## 给接手人的话
 

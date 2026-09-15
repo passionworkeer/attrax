@@ -396,7 +396,7 @@ class TestVisionAnalyzerMimotalk:
 class TestVisionAnalyzerSingleImage:
     """Test analyze_single_image()."""
 
-    @patch.dict("os.environ", {"MIMOTALK_API_KEY": ""})
+    @patch.dict("os.environ", {"MINIMAX_API_KEY": ""})
     def test_no_api_key_returns_error_dict(self):
         analyzer = VisionAnalyzer(api_key="")
         result = analyzer.analyze_single_image(b"\x00\x01\x02", "image/jpeg")
@@ -463,7 +463,7 @@ class TestVisionAnalyzerAnalyzeImages:
         result = analyzer.analyze_images([])
         assert result == _empty_vision_result()
 
-    @patch.dict("os.environ", {"MIMOTALK_API_KEY": ""})
+    @patch.dict("os.environ", {"MINIMAX_API_KEY": ""})
     def test_no_api_key_returns_empty_result(self):
         analyzer = VisionAnalyzer(api_key="")
         result = analyzer.analyze_images([{"buffer": b"x", "mime_type": "image/jpeg"}])
