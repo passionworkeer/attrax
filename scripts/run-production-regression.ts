@@ -1,4 +1,4 @@
-import { chromium, Page } from "playwright";
+import { chromium, Page, Browser } from "playwright";
 import * as path from "path";
 import * as fs from "fs";
 
@@ -16,6 +16,16 @@ interface TestCase {
   forbiddenLabels: string[];
 }
 
+/** Path layout (run from anywhere): the test package lives one level up from
+ *  this script (repo root / 规航AI-三产品完整测试包-20260914/<case-dir>/). The
+ *  package itself is third-party judge material and is gitignored — when it
+ *  is missing the script reports a clear error rather than crashing mid-run.
+ *  Override via ATTRAX_REGRESSION_PKG_DIR to relocate the package. */
+const REPO_ROOT = path.resolve(__dirname, "..");
+const TEST_PKG_DIR =
+  process.env.ATTRAX_REGRESSION_PKG_DIR ||
+  path.join(REPO_ROOT, "规航AI-三产品完整测试包-20260914");
+
 const TEST_CASES: TestCase[] = [
   {
     name: "01-Anker-A2332-充电器-EU",
@@ -23,7 +33,7 @@ const TEST_CASES: TestCase[] = [
     categoryLabel: "3C 电子",
     targetMarketName: "欧盟",
     targetMarketCode: "EU",
-    dirPath: "/Users/wangjianjun/me/attrax/规航AI-三产品完整测试包-20260914/01-Anker-A2332-充电器-EU",
+    dirPath: path.join(TEST_PKG_DIR, "01-Anker-A2332-充电器-EU"),
     images: [
       "01-正反面整体.jpg",
       "02-铭牌标签近照.jpg",
@@ -44,7 +54,7 @@ const TEST_CASES: TestCase[] = [
     categoryLabel: "家电",
     targetMarketName: "欧盟",
     targetMarketCode: "EU",
-    dirPath: "/Users/wangjianjun/me/attrax/规航AI-三产品完整测试包-20260914/02-Xiaomi-Smart-Kettle-2-Pro-EU",
+    dirPath: path.join(TEST_PKG_DIR, "02-Xiaomi-Smart-Kettle-2-Pro-EU"),
     images: [
       "01-整机整体照.jpg",
       "02-铭牌与合规标志近照.jpg",
@@ -64,7 +74,7 @@ const TEST_CASES: TestCase[] = [
     categoryLabel: "玩具",
     targetMarketName: "美国",
     targetMarketCode: "US",
-    dirPath: "/Users/wangjianjun/me/attrax/规航AI-三产品完整测试包-20260914/03-LEGO-76429-玩具-US",
+    dirPath: path.join(TEST_PKG_DIR, "03-LEGO-76429-玩具-US"),
     images: [
       "01-产品整体照.jpg",
       "02-包装与年龄警告.jpg",
@@ -81,18 +91,47 @@ const TEST_CASES: TestCase[] = [
   },
 ];
 
-const ARTIFACT_DIR = "/Users/wangjianjun/.gemini/antigravity/brain/22f2f1a8-7e7f-4f5d-b09f-07188ee03d32/screenshots";
-const REPO_SCREENSHOT_DIR = "/Users/wangjianjun/me/attrax/.screenshots/regression-20260915";
+/** Target base URL. Defaults to production; override with ATTRAX_REGRESSION_BASE_URL
+ *  to point at staging/localhost. */
+const BASE_URL =
+  process.env.ATTRAX_REGRESSION_BASE_URL || "https://wangjianjun.xyz";
 
-async function saveScreenshot(page: Page, filename: string, locator?: any) {
-  const path1 = path.join(ARTIFACT_DIR, filename);
-  const path2 = path.join(REPO_SCREENSHOT_DIR, filename);
+/** Regression output directory. Defaults to .screenshots/regression-YYYYMMDD
+ *  next to this script (gitignored). Override with ATTRAX_REGRESSION_OUT_DIR. */
+const DEFAULT_OUT_DIR = path.join(
+  REPO_ROOT,
+  ".screenshots",
+  `regression-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}`,
+);
+const REPO_SCREENSHOT_DIR =
+  process.env.ATTRAX_REGRESSION_OUT_DIR || DEFAULT_OUT_DIR;
+
+/** Optional secondary mirror for tool-specific storage (e.g. gemini antigravity
+ *  brain). Set ATTRAX_REGRESSION_ARTIFACT_DIR=/path/to/mirror to mirror every
+ *  screenshot there in addition to REPO_SCREENSHOT_DIR. Unset by default —
+ *  most CI runs do not need this and the old hard-coded
+ *  /Users/wangjianjun/.gemini/... was a per-machine path that never worked
+ *  outside the original author's laptop. */
+const ARTIFACT_DIR = process.env.ATTRAX_REGRESSION_ARTIFACT_DIR || null;
+
+async function saveScreenshot(page: Page, filename: string, locator?: ReturnType<Page["locator"]>) {
+  if (!fs.existsSync(REPO_SCREENSHOT_DIR)) {
+    fs.mkdirSync(REPO_SCREENSHOT_DIR, { recursive: true });
+  }
+  if (ARTIFACT_DIR && !fs.existsSync(ARTIFACT_DIR)) {
+    fs.mkdirSync(ARTIFACT_DIR, { recursive: true });
+  }
+  const repoPath = path.join(REPO_SCREENSHOT_DIR, filename);
   if (locator) {
-    await locator.screenshot({ path: path1 });
-    await locator.screenshot({ path: path2 });
+    await locator.screenshot({ path: repoPath });
+    if (ARTIFACT_DIR) {
+      await locator.screenshot({ path: path.join(ARTIFACT_DIR, filename) });
+    }
   } else {
-    await page.screenshot({ path: path1, fullPage: true });
-    await page.screenshot({ path: path2, fullPage: true });
+    await page.screenshot({ path: repoPath, fullPage: true });
+    if (ARTIFACT_DIR) {
+      await page.screenshot({ path: path.join(ARTIFACT_DIR, filename), fullPage: true });
+    }
   }
   console.log(`  📸 Screenshot saved: ${filename}`);
 }
@@ -136,10 +175,36 @@ async function selectConditionalAnswer(page: Page, questionTextPartial: string, 
   }
 }
 
-async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number) {
+interface CaseResult {
+  testCase: string;
+  success: boolean;
+  sessionId?: string;
+  elapsedSeconds?: string;
+  status?: string;
+  productName?: string;
+  productCategory?: string;
+  riskPointsCount?: number;
+  complianceScore?: number;
+  source?: string;
+  reportPackageStatus?: string;
+  rawScanData?: unknown;
+  error?: string;
+}
+
+async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: number): Promise<CaseResult> {
   console.log(`\n======================================================`);
   console.log(`[Case ${caseIndex + 1}/${TEST_CASES.length}] Starting: ${testCase.name}`);
   console.log(`======================================================`);
+
+  // Fail loud if the test package (gitignored third-party data) is missing —
+  // the old hard-coded /Users/wangjianjun/... path crashed silently on
+  // every other machine.
+  if (!fs.existsSync(testCase.dirPath)) {
+    const message = `Test package directory not found: ${testCase.dirPath}. ` +
+      `Set ATTRAX_REGRESSION_PKG_DIR to point at the extracted 规航AI-三产品完整测试包-20260914/ directory.`;
+    console.error(`❌ ${message}`);
+    return { testCase: testCase.name, success: false, error: message };
+  }
 
   const context = await browser.newContext({
     viewport: { width: 1440, height: 960 },
@@ -149,7 +214,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
 
   try {
     console.log("Step 1: Navigating to upload page...");
-    await page.goto("https://wangjianjun.xyz/upload", { waitUntil: "networkidle" });
+    await page.goto(`${BASE_URL}/upload`, { waitUntil: "networkidle" });
     await page.waitForTimeout(1000);
 
     console.log(`Step 2: Selecting category "${testCase.category}"...`);
@@ -186,7 +251,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     console.log(`  Submit button enabled: ${isEnabled}, text: "${await submitBtn.innerText()}"`);
 
     const scanPromise = page.waitForResponse(
-      (resp: any) => resp.url().includes("/api/scan") && resp.request().method() === "POST",
+      (resp) => resp.url().includes("/api/scan") && resp.request().method() === "POST",
       { timeout: 30000 }
     );
     await submitBtn.click();
@@ -195,7 +260,6 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     console.log(`  Scan API response status: ${scanResp.status()}`);
     const scanJson = await scanResp.json();
     const sessionId = scanJson?.data?.sessionId || scanJson?.sessionId;
-    const accessToken = scanJson?.data?.accessToken || scanJson?.accessToken;
     console.log(`  Assigned Session ID: ${sessionId}`);
 
     console.log("Step 7: Waiting for /burning progress page...");
@@ -243,7 +307,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
 
     // Step 10: Fetch raw scan API payload to inspect data
     console.log("Step 10: Fetching raw scan payload from API...");
-    const apiUrl = `https://wangjianjun.xyz/api/scan/${sessionId}`;
+    const apiUrl = `${BASE_URL}/api/scan/${sessionId}`;
     const fetchResp = await page.evaluate(async (url: string) => {
       const res = await fetch(url);
       return { status: res.status, body: await res.json() };
@@ -258,11 +322,12 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
 
     // Step 11: Visit profit page if available
     console.log("Step 11: Visiting profit page...");
-    await page.goto(`https://wangjianjun.xyz/profit/${sessionId}`, { waitUntil: "networkidle" });
+    await page.goto(`${BASE_URL}/profit/${sessionId}`, { waitUntil: "networkidle" });
     await page.waitForTimeout(3000);
     await saveScreenshot(page, `${prefix}_07_profit_page.png`);
 
     return {
+      testCase: testCase.name,
       success: true,
       sessionId,
       elapsedSeconds,
@@ -275,15 +340,19 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
       reportPackageStatus: scanData?.result?.reportPackage?.auditMetadata?.validationStatus,
       rawScanData: scanData,
     };
-  } catch (err: any) {
-    console.error(`❌ Error in test case ${testCase.name}:`, err.message);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error(`❌ Error in test case ${testCase.name}:`, message);
     const prefix = `case_${caseIndex + 1}_${testCase.category}_v5`;
     try {
       await saveScreenshot(page, `${prefix}_error.png`);
-    } catch {}
+    } catch {
+      // best-effort error screenshot; ignore secondary failures
+    }
     return {
+      testCase: testCase.name,
       success: false,
-      error: err.message,
+      error: message,
     };
   } finally {
     await context.close();
@@ -293,10 +362,21 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
 async function main() {
   console.log("Starting Complete Online Regression Suite...");
   console.log("Timestamp:", new Date().toISOString());
-  console.log("Target Server: https://wangjianjun.xyz");
+  console.log(`Target Server: ${BASE_URL}`);
+  console.log(`Test package: ${TEST_PKG_DIR}`);
+  console.log(`Output dir: ${REPO_SCREENSHOT_DIR}`);
+  if (ARTIFACT_DIR) console.log(`Artifact mirror: ${ARTIFACT_DIR}`);
+
+  if (!fs.existsSync(TEST_PKG_DIR)) {
+    console.error(
+      `❌ Test package directory missing: ${TEST_PKG_DIR}\n` +
+      `   Set ATTRAX_REGRESSION_PKG_DIR to the extracted directory, or download + extract 规航AI-三产品完整测试包-20260914.zip next to this script.`,
+    );
+    process.exit(1);
+  }
 
   const browser = await chromium.launch({ headless: true });
-  const results: any[] = [];
+  const results: CaseResult[] = [];
 
   const filterArg = process.argv[2];
   const casesToRun = filterArg !== undefined
@@ -310,7 +390,7 @@ async function main() {
 
   for (const { tc, idx } of casesToRun) {
     const res = await runSingleCase(browser, tc, idx);
-    results.push({ testCase: tc.name, ...res });
+    results.push(res);
   }
 
   await browser.close();
