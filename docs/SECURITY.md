@@ -78,7 +78,7 @@ See `infra/nginx-*.conf`:
   - `attrax-404-probe` is custom: bans any IP that 10-times-per-minute probes `.env`, `.git`, `wp-admin`, `phpmyadmin`, backup extensions (24-hour ban)
   - `ignoreip = 127.0.0.1/8, 203.0.113.10` (we don't ban ourselves)
 - **Session auth**: 32-byte random tokens (256 bits entropy), SHA-256 hashed, `timingSafeEqual` constant-time comparison
-- **SessionId validation**: regex `/^[a-zA-Z0-9_-]+$/` in `lib/pipeline/session-store.ts` (TODO: build to activate, currently only enforced via 3 routes' Zod)
+- **SessionId validation**: `SessionIdSchema` in `lib/schemas.ts` + `SAFE_SESSION_ID` in `app/api/backend-session-access.ts`（regex `/^scan_[A-Za-z0-9_-]{1,64}$/`，所有 sessionId 入参均经 Zod 校验）
 - **CORS**: `RAG_ALLOWED_ORIGINS=https://203.0.113.10` (configured; 8001 only listens 127.0.0.1 so cross-origin attacks limited)
 - **Magic bytes**: `lib/upload-validation.ts` validates PNG/JPEG/WEBP/PDF/DOCX content signatures, plus size limits, plus MIME + extension checks
 
@@ -139,8 +139,8 @@ Manually stopped + disabled (cloud server doesn't need them):
 2. **No offsite backup** → add `rsync` to remote
 3. **No alerting on uptime failures** → add email/WeChat
 4. **Untested Zod schema on [sessionId] routes** → 3 routes patched, need rebuild
-5. **`session-store.ts` still throws on bad sessionId in old build** → rebuild
-6. **`scan-queue` job files contain base64 user uploads** → directory is 750 (admin-only), but consider encryption
+5. **`session-store.ts` 已删除**（2026-09-14 de-RAG 治理）——sessionId 校验改走 `lib/schemas.ts SessionIdSchema` + `app/api/backend-session-access.ts SAFE_SESSION_ID`，坏 sessionId 不再单独抛错
+6. **`scan-queue` 本地作业文件已删除**（2026-09-14 de-RAG 治理）——上传仅存 RAG 侧 `data/backend/uploads/`，无 base64 job 文件落地
 7. **8 npm audit vulnerabilities** (transitive: undici, hono, vite) → `npm audit fix` + rebuild
 8. **No user authentication** → anyone with the URL can scan (intentional for demo, but rate-limited)
 
@@ -159,7 +159,7 @@ If you suspect compromise:
 1. **Disconnect**: `ufw deny in` on 22/80/443 (or `iptables -I INPUT 1 -j DROP`)
 2. **Snapshot**: `dd` the disk before rebooting
 3. **Audit logs**: `journalctl --since="24 hours ago"` + `tail /var/log/attrax-*.log` + `grep -E "(sk-cp-|ms-)" /var/log/`
-4. **Rotate keys**: `MINIMAX_API_KEY`, `PAI_API_KEY` on provider dashboards
+4. **Rotate keys**: `MINIMAX_API_KEY`（仅此一个；`PAI_API_KEY` / `MODELSCOPE_API_KEY` / `OLLAMA_*` 随 embedding 栈删除，无代码读取）on the MiniMax dashboard
 5. **Force re-key**: invalidate all sessions by `rm /opt/attrax/.next/standalone/data/sessions/*.json`
 6. **Inspect**: check `~/.ssh/authorized_keys` on root and admin for unexpected entries
 7. **Rebuild**: deploy fresh from clean git checkout
