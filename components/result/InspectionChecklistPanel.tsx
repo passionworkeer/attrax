@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import type { InspectionFinding, InspectionObservation } from "@/lib/types";
 import type { CheckResultVM, FindingVM, InspectionResultVM } from "@/lib/result/inspection-view-model";
+import { CHECK_CATALOG, checkTitleFromId } from "@/lib/result/inspection-view-model";
 import { cn } from "@/lib/utils";
 
 /**
@@ -49,15 +50,6 @@ const ASSESSMENT_LABELS: Record<string, { zh: string; en: string; tone: string }
   evidence_needed: { zh: "待证据", en: "evidence", tone: "border-sky-400/30 bg-sky-400/10 text-sky-200" },
 };
 
-function checkTitleFromId(checkId: string): string {
-  // "common.nameplate.readability" → "铭牌/标签信息可读性" is available
-  // server-side only; on the client we humanize the trailing segment.
-  const segment = checkId.split(".").slice(-1)[0] ?? checkId;
-  return segment
-    .replace(/[_-]+/g, " ")
-    .replace(/\b\w/g, (char) => char.toUpperCase());
-}
-
 interface ChecklistRow {
   checkId: string;
   title: string;
@@ -81,10 +73,20 @@ function rowFromVMCheck(check: CheckResultVM, activeImageId: string | null): Che
     : undefined;
   const anchor = onActive ?? located[0] ?? null;
   const best = check.bestObservation;
+  const catalogEntry = CHECK_CATALOG[check.checkId];
+  const isHazard = catalogEntry?.semantic === "hazard_presence";
+
+  let visibility = best?.visibility ?? "not_assessed";
+  if (isHazard && check.findings.length === 0) {
+    if (visibility === "not_in_view" || visibility === "absent_in_visible_scope") {
+      visibility = "present_readable";
+    }
+  }
+
   return {
     checkId: check.checkId,
-    title: check.title,
-    visibility: best?.visibility ?? "not_assessed",
+    title: check.title || checkTitleFromId(check.checkId),
+    visibility,
     observedText: best?.observedText ?? null,
     description: best?.description ?? "",
     hasRegion: anchor !== null,

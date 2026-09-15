@@ -401,7 +401,7 @@ export function buildInspectionResultViewModel(input: {
       bestObservation,
       observations: checkObservations,
       findings: checkFindings,
-      coverage: coverageOf(bestObservation),
+      coverage: coverageOf(bestObservation, checkId, checkFindings.length),
       hasLocatedAnchor: checkFindings.some(
         (finding) => finding.locatedAnchors.length > 0,
       ) || (bestObservation?.bbox ?? null) !== null,
@@ -572,10 +572,90 @@ function pickBestObservation(observations: ObservationVM[]): ObservationVM | nul
   return best;
 }
 
+export const CHECK_CATALOG: Record<string, { title: string; semantic: "required_presence" | "hazard_presence" | "record_only" }> = {
+  "3c.battery.marking": { title: "可见电池说明(V/Ah/Wh 文字)", semantic: "required_presence" },
+  "3c.battery.spec_sheet": { title: "电芯规格书(容量/化学体系)", semantic: "required_presence" },
+  "3c.case.identity": { title: "充电盒/收纳盒识别与铭牌", semantic: "required_presence" },
+  "3c.device.identity": { title: "主设备识别与铭牌", semantic: "required_presence" },
+  "3c.ports.visible": { title: "端口形态(USB-C/Lightning/裸针)", semantic: "record_only" },
+  "3c.radio.module.confirmation": { title: "无线发射模块存在性确认(需资料)", semantic: "required_presence" },
+  "3c.wireless.declaration": { title: "无线声明文字(蓝牙/WiFi/2.4G)", semantic: "required_presence" },
+  "appliance.functional_zones.condition": { title: "功能区域状态(水槽/出雾口/加热区/通风口)", semantic: "hazard_presence" },
+  "appliance.ip_rating.marking": { title: "IP 防护等级标注(如宣称防水)", semantic: "required_presence" },
+  "appliance.nameplate.ratings": { title: "底面/背面铭牌参数", semantic: "required_presence" },
+  "appliance.power_entry.visible": { title: "供电端(插头/电源口/线缆入口)", semantic: "record_only" },
+  "appliance.safety.electrical_test": { title: "电气安全+温升+防水测试报告", semantic: "required_presence" },
+  "appliance.water_temp_warnings.text": { title: "水位/温度/倾倒警告文字", semantic: "required_presence" },
+  "battery.capacity_verification.test": { title: "实际容量/循环测试", semantic: "required_presence" },
+  "battery.condition.swelling_damage": { title: "可见鼓胀/破损/漏液疑点", semantic: "hazard_presence" },
+  "battery.label.parameters": { title: "电池标签参数(V/Ah/Wh/化学体系)", semantic: "required_presence" },
+  "battery.terminals.insulation": { title: "端子形态与绝缘包覆", semantic: "hazard_presence" },
+  "battery.transport.packaging": { title: "运输包装标识(如已拍摄)", semantic: "required_presence" },
+  "battery.un38_3.test_report": { title: "UN 38.3 测试摘要", semantic: "required_presence" },
+  "common.batch_traceability.fields": { title: "批次号/序列号/生产日期等追溯字段", semantic: "required_presence" },
+  "common.brand_model.visible": { title: "品牌与型号标识", semantic: "required_presence" },
+  "common.defects.visible": { title: "可见外观异常(裂损/变形/污渍/鼓胀)", semantic: "hazard_presence" },
+  "common.nameplate.readability": { title: "铭牌/标签信息可读性", semantic: "required_presence" },
+  "common.packaging.info": { title: "包装信息(如已拍摄)", semantic: "required_presence" },
+  "common.product.overview": { title: "产品主体与外观完整性", semantic: "record_only" },
+  "common.warning_text.language": { title: "警告文字及其语言", semantic: "required_presence" },
+  "cosmetic.batch_date.code": { title: "批号/生产日期/保质期", semantic: "required_presence" },
+  "cosmetic.ingredients.listing": { title: "成分表完整性", semantic: "required_presence" },
+  "cosmetic.net_content.marking": { title: "净含量标注", semantic: "required_presence" },
+  "cosmetic.notification.registration": { title: "市场通报/备案凭证(CPNP/SCSN/国产备案)", semantic: "required_presence" },
+  "cosmetic.safety.assessment": { title: "CPSR 安全评估报告(欧盟)", semantic: "required_presence" },
+  "cosmetic.usage_directions.text": { title: "用途与使用方法文字", semantic: "required_presence" },
+  "cosmetic.warnings.responsible_party": { title: "警告语与责任主体(欧盟 RP 地址等)", semantic: "required_presence" },
+  "electronics.adapter.external_power": { title: "外置适配器(如拍摄)", semantic: "record_only" },
+  "electronics.cable.connector_condition": { title: "线缆与接头可见状态", semantic: "hazard_presence" },
+  "electronics.emc.test_report": { title: "EMC 测试报告", semantic: "required_presence" },
+  "electronics.interface.plug_pins": { title: "接口与插脚形态", semantic: "record_only" },
+  "electronics.marks.certification_region": { title: "可见认证标志(仅记录清晰可见者,不做真伪判断)", semantic: "record_only" },
+  "electronics.nameplate.electrical_ratings": { title: "铭牌电气参数(电压/电流/功率/频率)", semantic: "required_presence" },
+  "electronics.safety.electrical_test": { title: "电气安全测试报告", semantic: "required_presence" },
+  "food_contact.coating.anomaly": { title: "涂层可见异常(疑点级,需检测确认)", semantic: "hazard_presence" },
+  "food_contact.material_declaration.text": { title: "材质声明文字(如\"食品级\"/PP/PE/不锈钢牌号)", semantic: "required_presence" },
+  "food_contact.migration_test.report": { title: "总迁移/特定迁移测试报告", semantic: "required_presence" },
+  "food_contact.surface.condition": { title: "接触面可见状态(涂层剥落/划痕/污渍)", semantic: "hazard_presence" },
+  "food_contact.temperature_usage.text": { title: "温度/用途说明(微波适用/ Oven-safe 等)", semantic: "required_presence" },
+  "home.assembly_instructions.text": { title: "安装说明(如已拍摄)", semantic: "required_presence" },
+  "home.damage.visible": { title: "可见破损/裂纹/变形", semantic: "hazard_presence" },
+  "home.edges_sharpness.visible": { title: "边缘与尖角形态", semantic: "hazard_presence" },
+  "home.flammability.test": { title: "阻燃测试报告(如适用)", semantic: "required_presence" },
+  "home.joints_loadbearing.visible": { title: "连接/承重部位可见状态", semantic: "hazard_presence" },
+  "home.mechanical_safety.test": { title: "承重/疲劳/稳定性测试报告", semantic: "required_presence" },
+  "home.purpose_contact.visible": { title: "产品用途与接触面", semantic: "record_only" },
+  "home.warning_label.text": { title: "警告标签(倾倒/承重/玻璃等)", semantic: "required_presence" },
+  "other.purpose_classification.confirmation": { title: "用途/人群/供电/接触类型确认", semantic: "record_only" },
+  "textile.accessories.visible": { title: "附件(纽扣/拉链/装饰件)可见状态", semantic: "record_only" },
+  "textile.care_instructions.label": { title: "洗护说明与图形符号", semantic: "required_presence" },
+  "textile.chemical_safety.test": { title: "化学安全测试(甲醛/偶氮/pH)", semantic: "required_presence" },
+  "textile.composition_verification.test": { title: "纤维含量定量分析", semantic: "required_presence" },
+  "textile.cords_drawstrings.visible": { title: "绳带/拉绳形态(童装头部颈部特别关注)", semantic: "hazard_presence" },
+  "textile.fiber_content.label": { title: "纤维成分标签", semantic: "required_presence" },
+  "textile.size_marking.label": { title: "尺码标注", semantic: "required_presence" },
+  "textile.traceability.label": { title: "追溯信息(产地/制造商/进口商)", semantic: "required_presence" },
+  "textile.workmanship.visible": { title: "可见做工异常(线头/破洞/色差)", semantic: "hazard_presence" },
+  "toy.age_range.label": { title: "年龄适用范围标注", semantic: "required_presence" },
+  "toy.battery_compartment.closure": { title: "电池仓闭合方式(螺丝/卡扣)", semantic: "required_presence" },
+  "toy.chemical_migration.test": { title: "化学迁移测试(重金属/增塑剂)", semantic: "required_presence" },
+  "toy.magnets_cords.visible": { title: "磁体/绳带/绳索可见形态", semantic: "hazard_presence" },
+  "toy.mechanical_physical.test": { title: "机械物理性能测试(小零件/拉力/磁通量)", semantic: "required_presence" },
+  "toy.sharp_edges.visible": { title: "可见尖锐/破损部位", semantic: "hazard_presence" },
+  "toy.small_parts.visible": { title: "可见小附件(含脱落风险目视)", semantic: "record_only" },
+  "toy.warnings.text": { title: "警告语(窒息/磁体/电池等)", semantic: "required_presence" },
+};
+
 function coverageOf(
   observation: ObservationVM | null,
+  checkId?: string,
+  findingsCount = 0,
 ): CheckResultVM["coverage"] {
   if (!observation) return "not_assessed";
+  const isHazard = checkId ? CHECK_CATALOG[checkId]?.semantic === "hazard_presence" : false;
+  if (isHazard && findingsCount === 0) {
+    return "observed";
+  }
   switch (observation.visibility) {
     case "present_readable":
       return "observed";
@@ -590,10 +670,12 @@ function coverageOf(
   }
 }
 
-/** Business title from the checkId's last segment (client fallback when no
- *  profile title exists). The full checkId is kept on the VM for diagnostics
- *  (J14: 技术字段收进诊断详情，不再直接露出). */
+/** Business title from the checkId (prefer authoritative CHECK_CATALOG title,
+ *  fallback to humanized trailing segment). */
 export function checkTitleFromId(checkId: string): string {
+  if (CHECK_CATALOG[checkId]?.title) {
+    return CHECK_CATALOG[checkId].title;
+  }
   const segment = checkId.split(".").slice(-1)[0] ?? checkId;
   return segment.replace(/[_-]+/g, " ").replace(/\b\w/g, (char) => char.toUpperCase());
 }

@@ -177,7 +177,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     }
     await page.waitForTimeout(500);
 
-    const prefix = `case_${caseIndex + 1}_${testCase.category}_v3`;
+    const prefix = `case_${caseIndex + 1}_${testCase.category}_v5`;
     await saveScreenshot(page, `${prefix}_01_upload_ready.png`);
 
     console.log("Step 6: Submitting scan...");
@@ -277,7 +277,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     };
   } catch (err: any) {
     console.error(`❌ Error in test case ${testCase.name}:`, err.message);
-    const prefix = `case_${caseIndex + 1}_${testCase.category}_v3`;
+    const prefix = `case_${caseIndex + 1}_${testCase.category}_v5`;
     try {
       await saveScreenshot(page, `${prefix}_error.png`);
     } catch {}

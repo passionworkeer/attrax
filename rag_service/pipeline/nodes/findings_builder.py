@@ -372,6 +372,8 @@ def build_findings(
         semantic = _semantic_of(checks.get(check_id))
         if semantic == "hazard_presence" and _is_negative_hazard_observation(obs):
             hazard_confirmed_absent.add(check_id)
+            if obs.get("visibility") == "not_in_view":
+                obs["visibility"] = "present_readable"
 
         rank = _RANK_BY_SEMANTIC.get(semantic, _RANK_BY_SEMANTIC["required_presence"])
         visibility = str(obs.get("visibility") or "not_assessed")
