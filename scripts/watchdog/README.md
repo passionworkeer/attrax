@@ -52,9 +52,10 @@ per pass and the loop keeps running.
 |------|--------------|
 | `no_change.json` | every source unchanged |
 | `diff.json` | real changes (added / removed / modified) with unified diffs |
-| `pending_review.json` | same changes + the next-step command for the operator |
+| `pending_review.json` | same changes + the next-step command for the operator (manual mode only) |
 | `cosmetic.json` | similarity ≥ 0.95 churn (HTML boilerplate, timestamps) |
 | `errors.json` | per-source fetch failures |
+| `applied.json` | auto-ingest succeeded, one record per source — what was UPDATEd/CREATEd/MARKed |
 
 Snapshot state lives in `data/regulation_supplements/.cache.db` (SQLite).
 
@@ -64,10 +65,18 @@ Snapshot state lives in `data/regulation_supplements/.cache.db` (SQLite).
 2. Hash differs ⇒ `difflib.SequenceMatcher` similarity against the previous
    snapshot:
    - ≥ **0.95** ⇒ `cosmetic` (snapshot updated, nothing reported)
-   - < 0.95 ⇒ `modified` / `added` / `removed` ⇒ `pending_review.json`
-3. **The regulation library is never rebuilt automatically.** Real changes
-   always stop at `pending_review.json`; the operator reviews `diff.json`
-   and runs `scripts/build_regulation_library.py` deliberately.
+   - < 0.95 ⇒ `modified` / `added` / `removed` ⇒ written into the
+     `data/regulation_supplements/watchdog-{date}/` outputs
+3. **Auto-ingest is the default** (`ATTRAX_REGWATCH_AUTO_INGEST=true`,
+   2026-09-13 起)。`auto_ingest.py` 接管真实变化：
+   - **UPDATE / CREATE / MARK / EVIDENCE** — 见 `docs/WATCHDOG.md` §变更处理流程
+   - 入库成功后**自动 rebuild `regulations_index.json`**（内联镜像
+     `_rebuild_index()`，原 `scripts/build_regulation_library.py` 已删除 —
+     不要单独运行任何 build_xxx 脚本）
+   - 当日 `applied.json` 记录干了什么；退出码改写为 0
+4. 手动审阅模式（`ATTRAX_REGWATCH_AUTO_INGEST=false`）：回到 `pending_review.json`
+   + `--ack ` / `--ack-all` 推进基线（但 snapshot 数据库的
+   `data/regulation_supplements/.cache.db` 推进仍由人工 ack 触发）。
 
 ## Env vars
 
@@ -75,6 +84,7 @@ Snapshot state lives in `data/regulation_supplements/.cache.db` (SQLite).
 |-----|---------|---------|
 | `ATTRAX_REGWATCH_ENABLED` | `true` | kill switch for the whole pass |
 | `ATTRAX_REGWATCH_RUN_AT` | `03:00` | daily run time HH:MM, server-local |
+| `ATTRAX_REGWATCH_AUTO_INGEST` | `true` | 自动入库真实变化（UPDATE/CREATE/MARK/EVIDENCE）并 rebuild `regulations_index.json`；`false` 退回人工 ack 模式 |
 | `ATTRAX_REGWATCH_NOTIFY` | `log` | comma list: `log,slack,webhook` |
 | `SLACK_WEBHOOK_URL` | — | required when `slack` is selected |
 | `ATTRAX_REGWATCH_WEBHOOK` | — | required when `webhook` is selected |

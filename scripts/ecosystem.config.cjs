@@ -56,22 +56,20 @@ module.exports = {
       },
     },
     {
-      // Feature 3: 法规自动更新 watchdog。单次运行后退出（exit 0/2/3），
-      // 由 pm2 cron_restart 每天 03:00 UTC 拉起 — 不用 APScheduler、无常驻
-      // Python 进程。退出码：0=无变化/仅 cosmetic；2=有真实变化待人工
-      // 审阅（data/regulation_supplements/watchdog-{date}/pending_review.json）；
-      // 3=部分源失败（errors.json）。注意 pm2 会把非 0 退出码记为 errored
-      // 再按 cron 拉起 — 这是预期行为，看 pm2 logs regwatch 即可。
+      // Feature 3: 法规自动更新 watchdog。2026-09-13 决定改成常驻 daemon —
+      // pm2 cron_restart 只作用于 online 进程，单次跑完退出的 app 进 stopped
+      // 态后不会重新拉起。调度改为 orchestrator 内部 sleep 循环
+      // （ATTRAX_REGWATCH_RUN_AT，默认 03:00 服务器本地时区 =
+      // Asia/Shanghai = 19:00 UTC），进程常驻、崩溃由 autorestart 兜底。
+      // 单次 pass 退出码：0=无变化/仅 cosmetic；2=有真实变化待人工审阅
+      // （pending_review.json）；3=部分源失败（errors.json）— auto_ingest
+      // 默认开（ATTRAX_REGWATCH_AUTO_INGEST=true），真实变化自动入库，
+      // 退出码改写为 0。具体见 scripts/watchdog/README.md 与 docs/WATCHDOG.md。
       name: "regwatch",
       cwd: "/opt/attrax",
       script: "/opt/attrax/.venv/bin/python",
       args: ["-m", "scripts.watchdog.orchestrator"],
       interpreter: "none",
-      // 2026-09-13: cron_restart never fired — pm2 的 cron 只作用于 online
-      // 进程，单次跑完退出的 app 进 stopped 态后不会被唤醒。调度改为
-      // orchestrator 内部 sleep 循环（ATTRAX_REGWATCH_RUN_AT，默认 03:00
-      // 服务器本地时区 = Asia/Shanghai = 19:00 UTC），进程常驻、崩溃由
-      // autorestart 兜底。
       autorestart: true,
       max_restarts: 10,
       restart_delay: 5000,

@@ -139,7 +139,7 @@ curl -sIk https://example.com/api/health                  | head -1
 
 2026-09-11 修复后：97 / 100 / 100 / 100（A11y 96→100 是 footer `proofItems b` contrast 修好的功劳）。
 
-`pages.module.css` 的 `@media (max-width: 820px)` 断点处理 hero/stats/proof/aboutDialog 等的 mobile 布局；attrax 移动体验已可用。
+`components/complipilot/{homepage,flow-shell,scan-image-stage,bright-flow}.module.css` 的 `@media (max-width: 820px)` 断点处理 hero/stats/proof/aboutDialog 等的 mobile 布局；attrax 移动体验已可用。
 
 ## 跨仓库参考
 
