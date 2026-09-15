@@ -49,7 +49,12 @@ class TestBuildFindings:
         assert findings
         action = findings[0]["suggestedAction"]
         # The electronics profile asks for ports_closeup / plug_closeup
-        assert "ports_closeup" in action or "plug_closeup" in action
+        assert (
+            "ports_closeup" in action
+            or "plug_closeup" in action
+            or "接口近照" in action
+            or "插头近照" in action
+        )
 
     def test_absent_in_visible_scope_is_suspected_not_confirmed(self):
         findings = build_findings(

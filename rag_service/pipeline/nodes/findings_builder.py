@@ -201,6 +201,32 @@ _RANK_BY_SEMANTIC: dict[str, dict[str, int]] = {
 _ABSENT_FACT_KEYS: dict[str, set[str]] = {
     # fact key → id/region tokens that depend on that fact being PRESENT
     "battery": {"battery", "batteries", "battery_compartment", "charging_case"},
+    "builtin_battery": {"battery", "batteries", "battery_compartment", "charging_case"},
+    "wireless": {"wireless", "bluetooth", "wifi", "rf"},
+    "cords_ropes": {"cords", "ropes", "straps", "elastic"},
+    "magnets": {"magnets", "magnetic"},
+}
+
+VIEW_NAME_ZH: dict[str, str] = {
+    "nameplate_closeup": "铭牌/标签近照",
+    "ports_closeup": "接口近照",
+    "plug_closeup": "插头近照",
+    "cable_closeup": "线缆近照",
+    "adapter_closeup": "适配器近照",
+    "front": "正面照",
+    "back": "背面照",
+    "side": "侧面照",
+    "package": "包装照",
+    "package_front": "包装正面照",
+    "warning_label": "警告标签照",
+    "manual": "说明书页",
+    "battery_compartment": "电池仓照片",
+    "accessories_flat": "附件平铺照",
+    "overall": "整体照",
+    "functional_side": "功能区域细节照",
+    "plug_warnings": "插头与操作警告照",
+    "ports_packaging": "接口与包装照",
+    "package_age_warning": "包装与年龄警告照",
 }
 
 
@@ -233,8 +259,9 @@ def _check_conflicts_with_declared_facts(
             region_tokens.update(
                 token for token in region.replace("-", "_").split("_") if token
             )
+    negative_values = {"absent", "none", "no", "false", "无", "否", "0", "不含", "无内置电池"}
     for fact_key, value in declared_facts.items():
-        if str(value).strip().lower() not in {"absent", "none", "no", "false", "无"}:
+        if str(value).strip().lower() not in negative_values:
             continue
         tokens = _ABSENT_FACT_KEYS.get(fact_key)
         if not tokens:
@@ -306,11 +333,15 @@ def build_findings(
             continue
         emitted_checks.add(check_id)
         title = (check.title if check else None) or check_id
-        views = (
-            "、".join(check.required_views)
-            if check and check.required_views
-            else "该区域"
-        )
+        raw_views = check.required_views if check and check.required_views else []
+        localized_views = [VIEW_NAME_ZH.get(v, v) for v in raw_views]
+        views = "、".join(localized_views) if localized_views else "该区域"
+
+        if check_id == "common.batch_traceability.fields" and visibility == "present_unreadable":
+            action = f"建议核对或补拍包含清晰「{title}」（如铭牌局部特写、独立生产批次或二维码清晰照）"
+        else:
+            action = rule["action_template"].format(views=views, title=title)
+
         findings.append(
             {
                 "findingId": f"{session_id}-finding-{len(findings) + 1}",
@@ -321,7 +352,7 @@ def build_findings(
                 "severity": rule["severity"],
                 "observationIds": [str(obs.get("observationId") or "")],
                 "citationIds": list(check.legal_anchor_refs) if check else [],
-                "suggestedAction": rule["action_template"].format(views=views, title=title),
+                "suggestedAction": action,
                 "requiredEvidence": (
                     [f"补拍视角：{views}"] if views != "该区域" else []
                 ),
