@@ -205,7 +205,42 @@ _ABSENT_FACT_KEYS: dict[str, set[str]] = {
     "wireless": {"wireless", "bluetooth", "wifi", "rf"},
     "cords_ropes": {"cords", "ropes", "straps", "elastic"},
     "magnets": {"magnets", "magnetic"},
+    "adapter_included": {"adapter", "external_power", "external_adapter"},
 }
+
+
+def _is_negative_hazard_observation(obs: dict[str, Any]) -> bool:
+    """Detect if an observation explicitly confirms the absence of defects/hazards.
+
+    Vision models frequently return present_readable (because the inspected body
+    surface was clear) or not_in_view with explicit descriptions like:
+    - 'No visible defects such as cracks, deformation, stains, or swelling are observed'
+    - '外壳平整，无可见裂纹、变形、鼓胀或明显污渍'
+    - '画面中未见任何磁体、绳带或绳索结构'
+    - '未见明显的裂痕、破损或毛刺部位'
+    Such observations confirm that the hazard is ABSENT.
+    """
+    vis = str(obs.get("visibility") or "")
+    if vis == "absent_in_visible_scope":
+        return True
+    desc = str(obs.get("description") or "").lower()
+    if not desc:
+        return False
+    negative_phrases = [
+        "no visible defect", "no defect", "no visible crack", "no crack",
+        "no visible damage", "no damage", "no visible stain", "no stain",
+        "no visible rust", "no rust", "no visible tear", "no tear",
+        "no visible scratch", "no scratch", "no visible scorch",
+        "no magnets", "no cords", "no strings", "no straps",
+        "shows no visible", "without visible defect", "shows no crack",
+        "无可见", "未见明显", "未见异常", "未发现异常", "未见裂纹",
+        "无明显", "表面平整", "整体完整", "外壳平整", "无可见损伤",
+        "不构成缺陷", "无裂纹", "无变形", "无污渍", "无鼓胀", "未见破裂",
+        "未见任何", "未出现可辨识", "未见独立", "正常无可见", "未见明显裂痕",
+        "未见裂痕", "未见破损", "未见毛刺", "未见明显的",
+    ]
+    return any(p in desc for p in negative_phrases)
+
 
 VIEW_NAME_ZH: dict[str, str] = {
     "accessories_flat": "附件平铺照",
@@ -271,7 +306,11 @@ def _check_conflicts_with_declared_facts(
     """
     if not declared_facts:
         return False
-    id_tokens = {token for token in check_id.replace("-", "_").split(".") if token}
+    id_tokens: set[str] = set()
+    for seg in check_id.replace("-", "_").split("."):
+        if seg:
+            id_tokens.add(seg)
+            id_tokens.update(part for part in seg.split("_") if part)
     region_tokens: set[str] = set()
     if check is not None:
         for region in check.target_regions:
@@ -324,11 +363,16 @@ def build_findings(
     # for hazard_presence, present_readable is the finding itself and must
     # never be short-circuited by other images.
     best: dict[str, dict[str, Any]] = {}
+    hazard_confirmed_absent: set[str] = set()
+
     for obs in observations:
         check_id = str(obs.get("checkId") or "")
         if not check_id:
             continue
         semantic = _semantic_of(checks.get(check_id))
+        if semantic == "hazard_presence" and _is_negative_hazard_observation(obs):
+            hazard_confirmed_absent.add(check_id)
+
         rank = _RANK_BY_SEMANTIC.get(semantic, _RANK_BY_SEMANTIC["required_presence"])
         visibility = str(obs.get("visibility") or "not_assessed")
         current = best.get(check_id)
@@ -345,6 +389,16 @@ def build_findings(
         check = checks.get(check_id)
         semantic = _semantic_of(check)
         visibility = str(obs.get("visibility") or "not_assessed")
+
+        # J02: if this hazard check was confirmed absent by an observation,
+        # do not turn it into a suspected_issue or demand a re-shoot for
+        # images where the region was simply not in view.
+        if semantic == "hazard_presence":
+            if _is_negative_hazard_observation(obs):
+                continue
+            if check_id in hazard_confirmed_absent and visibility in {"not_in_view", "not_assessed"}:
+                continue
+
         rule = _RULES.get((semantic, visibility))
         if rule is None:
             # (required_presence, present_readable) / hazard-absent /

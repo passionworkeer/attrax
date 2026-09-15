@@ -331,8 +331,16 @@ export default function ResultPage() {
               <h1 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl">{displayProductName}</h1>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-white/62">
                 {locale === "zh"
-                  ? `已完成 ${result.images?.length ?? 0} 张图片分析。先处理 ${criticalCount} 个高危风险，再进入 ${(result.targetMarkets ?? []).join(" / ")} 市场上架复核。`
-                  : `${result.images?.length ?? 0} images analyzed. Close ${criticalCount} critical risks before ${(result.targetMarkets ?? []).join(" / ")} launch review.`}
+                  ? criticalCount > 0
+                    ? `已完成 ${result.images?.length ?? 0} 张图片分析。先处理 ${criticalCount} 个高危风险，再进入 ${(result.targetMarkets ?? []).join(" / ")} 市场上架复核。`
+                    : inspectionVM.findings.length > 0
+                      ? `已完成 ${result.images?.length ?? 0} 张图片分析。当前无高危阻断项，建议核对下方 ${inspectionVM.findings.length} 项待办后再进入 ${(result.targetMarkets ?? []).join(" / ")} 市场上架复核。`
+                      : `已完成 ${result.images?.length ?? 0} 张图片分析，未发现阻断性合规风险，可直接进入 ${(result.targetMarkets ?? []).join(" / ")} 市场上架复核。`
+                  : criticalCount > 0
+                    ? `${result.images?.length ?? 0} images analyzed. Close ${criticalCount} critical risks before ${(result.targetMarkets ?? []).join(" / ")} launch review.`
+                    : inspectionVM.findings.length > 0
+                      ? `${result.images?.length ?? 0} images analyzed. No critical blockers; resolve ${inspectionVM.findings.length} findings before ${(result.targetMarkets ?? []).join(" / ")} launch review.`
+                      : `${result.images?.length ?? 0} images analyzed. Ready for ${(result.targetMarkets ?? []).join(" / ")} launch review.`}
               </p>
               <div className="mt-5 flex flex-wrap gap-2">
                 {(result.targetMarkets ?? []).map((market) => <GlowPill key={market}>{market} {copy.result.marketSuffix}</GlowPill>)}

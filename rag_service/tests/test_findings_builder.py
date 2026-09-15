@@ -365,3 +365,35 @@ class TestDeclaredFactsApplicability:
         check_ids = {f["checkId"] for f in findings}
         assert "toy.age_range.label" in check_ids
         assert "toy.sharp_edges.visible" in check_ids
+
+    def test_hazard_with_negative_description_generates_no_finding(self):
+        # When the vision model marks present_readable (readable surface) but
+        # explicitly writes that no defects were seen, it must NOT generate a defect finding.
+        findings = build_findings(
+            session_id="scan_x",
+            category="electronics",
+            observations=[
+                {
+                    "observationId": "o-defects",
+                    "checkId": "common.defects.visible",
+                    "imageId": "vision-image-0",
+                    "visibility": "present_readable",
+                    "observedText": None,
+                    "description": "外壳平整，无可见裂纹、变形、鼓胀或明显污渍",
+                    "region": None,
+                }
+            ],
+        )
+        assert [f for f in findings if f["checkId"] == "common.defects.visible"] == []
+
+    def test_declared_absent_cords_skips_compound_check(self):
+        # Compound check IDs like toy.magnets_cords.visible match coords_ropes=否
+        findings = build_findings(
+            session_id="scan_x",
+            category="toy",
+            observations=[
+                obs("toy.magnets_cords.visible", "not_in_view", "o-cords"),
+            ],
+            declared_facts={"cords_ropes": "否"},
+        )
+        assert [f for f in findings if f["checkId"] == "toy.magnets_cords.visible"] == []
