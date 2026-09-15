@@ -47,7 +47,9 @@ ssh lighthouse "/usr/bin/pm2 logs regwatch --lines 100 --nostream"
   `applied.json` 记录干了什么
 
 回滚：`cp data/regulation_supplements/auto-{date}/backup/{id}.yaml data/regulations/eu/{id}.yaml`
-再 `python scripts/build_regulation_library.py`（重建 index 可选，或等下次 pass）。
+即可（`regulations_index.json` 由下次 watchdog pass 内的 `_rebuild_index()` 自动重建 ——
+`scripts/build_regulation_library.py` 这个脚本已删除，被 `scripts/watchdog/auto_ingest.py:351`
+内联镜像取代，**不要单独运行任何 build_xxx 脚本**）。
 
 手动审阅模式（可选）：`ATTRAX_REGWATCH_AUTO_INGEST=false` 时恢复人工闸门 —
 pending_review.json + `--ack <SOURCE_ID>` / `--ack-all` 审批推进基线。
