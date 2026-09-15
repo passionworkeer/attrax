@@ -177,6 +177,22 @@ embedding_cache/
 # playwright MCP 临时文件（每次 browser_navigate/screenshot 都会生成）
 .playwright-mcp/
 
+# ─── AppleDouble / Finder metadata ────────────────────────────
+.DS_Store
+
+# ─── Regression screenshots ────────────────────────────────────
+# Tracked: only the baseline reference PNGs + _check.mjs / _verify.mjs /
+# _verify_tabs.mjs at the .screenshots/ root.
+# Untracked: every regression run dumps 100+ full-page PNGs (~337 MB per
+# case, never commit them — see scripts/run-production-regression.ts).
+.screenshots/regression-*/
+
+# ─── Judge / external test packages ────────────────────────────
+# 第三方评测/法官测试包（中文文件名，本地解压后留在仓外）— 仅供
+# scripts/run-production-regression.ts 读取，不应纳入版本控制。
+规航AI-三产品完整测试包-20260914/
+规航AI-三产品完整测试包-20260914.zip
+
 # ─── Nested local repository copy ────────────────────────────
 attrax/
 # 2026-07-19: explicitly exclude handoff design snapshot (850MB on disk only).
