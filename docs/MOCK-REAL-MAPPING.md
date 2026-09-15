@@ -46,7 +46,7 @@
 | `agentTrace` | RAG `agent_trace`（线性 3 步：vision / generate / verify） | 手写若干条 | ✅ 字段名一致 |
 | `retrievedChunks` | `reportPackage.retrievedChunks` | 手写若干条 | ✅ |
 | `reportPackage` | RAG `/api/v1/scans/{id}` 的 `report_package` | `createMockReportPackage()` | ✅ |
-| `modelInfo.ragProvider` | RAG `metadata.provider`（恒 `"minimax"`，见 `report_generator.py` provider property） | `"fallback-mock"` | ✅（旧版本硬编码 `"cohere-anthropic"` 已修） |
+| `modelInfo.ragProvider` | RAG `metadata.provider`（恒 `"minimax"`，见 `report_generator.py` provider property） | `"fallback-mock"` | ✅ |
 | `source` | `"real"` | `"fallback"` | ✅ |
 
 ---
@@ -63,7 +63,7 @@
 | `nodes[].id` / `type` / `label` / `labelEn` / `status` / `duration` / `confidence` / `reasoning` / `reasoningEn` | ✅ | ✅ | ✅ |
 | `decisionView.verdict` | ✅ 顶层存在 | ✅ 顶层存在 | ✅ |
 | `decisionView.riskLevel` | ✅ 顶层存在 | ✅ 顶层存在 | ✅ |
-| `nodes[].severity` | ✅ 后端产出 | ✅ mock 显式带 `severity` | ✅ |
+| `nodes[].severity` | ✅ 后端产出（`findings_builder.py` _RULES 字典按 `(semantic, visibility)` 配 severity；2026-09-15 P0-1/P0-2 hazard matcher 重写不影响 severity 真值源） | ✅ mock 显式带 `severity` | ✅ |
 | `nodes[].icon` | ❌ 后端不返回 | ✅ 前端 UI 自管 | ⚠️ UI 自管 |
 
 ### 3.2 `roadmap`
