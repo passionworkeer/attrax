@@ -397,3 +397,151 @@ class TestDeclaredFactsApplicability:
             declared_facts={"cords_ropes": "否"},
         )
         assert [f for f in findings if f["checkId"] == "toy.magnets_cords.visible"] == []
+
+
+class TestP0MixedStateHazardDescriptions:
+    """P0-1 (adversarial round 4, 2026-09-15):
+
+    A description that CONFIRMS the absence of defects (via a substring like
+    '无可见裂纹') MUST NOT silently swallow a real defect introduced later
+    in the same description via a contrast marker (但 / 但是 / however).
+    Previous substring-only matcher could drop the rust / burn / scratch
+    finding after a '但…' clause.
+    """
+
+    def test_rust_after_but_is_not_swallowed(self):
+        # common.defects.visible — hazards after 但 must surface.
+        findings = build_findings(
+            session_id="scan_x",
+            category="electronics",
+            observations=[
+                {
+                    "observationId": "o-mixed-rust",
+                    "checkId": "common.defects.visible",
+                    "imageId": "vision-image-0",
+                    "visibility": "present_readable",
+                    "observedText": None,
+                    "description": (
+                        "外壳平整，无可见裂纹、变形、鼓胀或明显污渍，"
+                        "但电池仓附近可见明显氧化锈迹"
+                    ),
+                    "region": None,
+                }
+            ],
+        )
+        defect_findings = [
+            f for f in findings if f["checkId"] == "common.defects.visible"
+        ]
+        assert len(defect_findings) == 1
+        assert defect_findings[0]["assessment"] == "suspected_issue"
+
+    def test_burn_after_but_is_not_swallowed(self):
+        findings = build_findings(
+            session_id="scan_x",
+            category="electronics",
+            observations=[
+                {
+                    "observationId": "o-mixed-burn",
+                    "checkId": "electronics.cable.connector_condition",
+                    "imageId": "vision-image-0",
+                    "visibility": "present_readable",
+                    "observedText": None,
+                    "description": "未见独立配件，但插头可见明显烧蚀痕迹",
+                    "region": None,
+                }
+            ],
+        )
+        cable_findings = [
+            f for f in findings
+            if f["checkId"] == "electronics.cable.connector_condition"
+        ]
+        assert len(cable_findings) == 1
+        assert cable_findings[0]["assessment"] == "suspected_issue"
+
+    def test_然而_and_however_also_break_dominantly_negative(self):
+        # 多样化的对比词都得拦截
+        for contrast in ("然而", "不过", "however", "but "):
+            findings = build_findings(
+                session_id="scan_x",
+                category="toy",
+                observations=[
+                    {
+                        "observationId": "o-mixed",
+                        "checkId": "toy.sharp_edges.visible",
+                        "imageId": "vision-image-0",
+                        "visibility": "present_readable",
+                        "observedText": None,
+                        "description": f"无可见裂纹 {contrast} 边缘有明显毛刺",
+                        "region": None,
+                    }
+                ],
+            )
+            sharp = [
+                f for f in findings
+                if f["checkId"] == "toy.sharp_edges.visible"
+            ]
+            assert len(sharp) == 1, f"contrast={contrast!r} must surface"
+            assert sharp[0]["assessment"] == "suspected_issue"
+
+    def test_purely_negative_description_stays_silent(self):
+        # 反例: 没有对比词的纯负面描述仍然归零 finding
+        findings = build_findings(
+            session_id="scan_x",
+            category="electronics",
+            observations=[
+                {
+                    "observationId": "o-pure-negative",
+                    "checkId": "common.defects.visible",
+                    "imageId": "vision-image-0",
+                    "visibility": "present_readable",
+                    "observedText": None,
+                    "description": "外壳平整，无可见裂纹、变形、鼓胀或明显污渍",
+                    "region": None,
+                }
+            ],
+        )
+        assert [
+            f for f in findings if f["checkId"] == "common.defects.visible"
+        ] == []
+
+
+class TestP0CallerObservationNotMutated:
+    """P0-2 (adversarial round 4, 2026-09-15):
+
+    build_findings() must NOT mutate the caller's observation dicts. The
+    old visibility-promotion path wrote to ``obs["visibility"]`` in place,
+    so any holder of a reference to the raw observations list saw a
+    silent rewrite.
+    """
+
+    def test_hazard_not_in_view_promotion_does_not_mutate_input(self):
+        # The visibility is 'not_in_view' but the description dominantly
+        # negative — the old code rewrote the dict's visibility to
+        # 'present_readable' on the caller's object. The new code returns
+        # an effective copy internally and leaves the input alone.
+        observation = {
+            "observationId": "o-not-in-view",
+            "checkId": "common.defects.visible",
+            "imageId": "vision-image-0",
+            "visibility": "not_in_view",
+            "observedText": None,
+            "description": "外壳平整，无可见裂纹、变形、鼓胀或明显污渍",
+            "region": None,
+        }
+        # Snapshot the original visibility to detect any mutation.
+        snapshot_visibility = observation["visibility"]
+        snapshot_description = observation["description"]
+        snapshot_observation_id = observation["observationId"]
+        build_findings(
+            session_id="scan_x",
+            category="electronics",
+            observations=[observation],
+        )
+        assert observation["visibility"] == snapshot_visibility
+        assert observation["description"] == snapshot_description
+        assert observation["observationId"] == snapshot_observation_id
+        # Specifically: no key may have been added or removed.
+        assert set(observation.keys()) == {
+            "observationId", "checkId", "imageId", "visibility",
+            "observedText", "description", "region",
+        }
