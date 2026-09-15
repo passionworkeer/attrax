@@ -177,7 +177,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     }
     await page.waitForTimeout(500);
 
-    const prefix = `case_${caseIndex + 1}_${testCase.category}_v2`;
+    const prefix = `case_${caseIndex + 1}_${testCase.category}_v3`;
     await saveScreenshot(page, `${prefix}_01_upload_ready.png`);
 
     console.log("Step 6: Submitting scan...");
@@ -210,7 +210,12 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     console.log(`  ✅ Reached result page in ${elapsedSeconds}s! URL: ${page.url()}`);
 
     // Wait for animations, hydration, and content to settle
-    await page.waitForTimeout(5000);
+    try {
+      await page.locator("#overview").waitFor({ state: "visible", timeout: 35000 });
+    } catch {
+      await page.waitForTimeout(5000);
+    }
+    await page.waitForTimeout(1000);
 
     console.log("Step 9: Capturing result page screenshots...");
     await saveScreenshot(page, `${prefix}_03_result_full.png`);
@@ -272,7 +277,7 @@ async function runSingleCase(browser: any, testCase: TestCase, caseIndex: number
     };
   } catch (err: any) {
     console.error(`❌ Error in test case ${testCase.name}:`, err.message);
-    const prefix = `case_${caseIndex + 1}_${testCase.category}_v2`;
+    const prefix = `case_${caseIndex + 1}_${testCase.category}_v3`;
     try {
       await saveScreenshot(page, `${prefix}_error.png`);
     } catch {}
@@ -293,9 +298,19 @@ async function main() {
   const browser = await chromium.launch({ headless: true });
   const results: any[] = [];
 
-  for (let i = 0; i < TEST_CASES.length; i++) {
-    const res = await runSingleCase(browser, TEST_CASES[i], i);
-    results.push({ testCase: TEST_CASES[i].name, ...res });
+  const filterArg = process.argv[2];
+  const casesToRun = filterArg !== undefined
+    ? TEST_CASES.map((tc, idx) => ({ tc, idx })).filter(
+        ({ tc, idx }) =>
+          idx === parseInt(filterArg, 10) ||
+          tc.category === filterArg ||
+          tc.name.includes(filterArg),
+      )
+    : TEST_CASES.map((tc, idx) => ({ tc, idx }));
+
+  for (const { tc, idx } of casesToRun) {
+    const res = await runSingleCase(browser, tc, idx);
+    results.push({ testCase: tc.name, ...res });
   }
 
   await browser.close();
