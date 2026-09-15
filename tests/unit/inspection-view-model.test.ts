@@ -691,15 +691,18 @@ describe("check rows and selection linkage", () => {
     expect(check.checkId).toBe("common.nameplate.readability");
   });
 
-  it("falls back to the checkId's last segment when there is no finding title", () => {
+  it("falls back to catalog title or checkId's last segment when there is no finding title", () => {
     const result = baseResult({
       inspectionObservations: [
         observation({ checkId: "toy.small_parts.visible" }),
+        observation({ checkId: "custom.unknown_module.custom_field" }),
       ],
     });
     const vm = buildInspectionResultViewModel({ result, sessionId: "scan_vm_test" });
-    expect(vm.checks[0].title).toBe("Visible");
+    expect(vm.checks[0].title).toBe("可见小附件(含脱落风险目视)");
     expect(vm.checks[0].checkId).toBe("toy.small_parts.visible");
+    expect(vm.checks[1].title).toBe("Custom Field");
+    expect(vm.checks[1].checkId).toBe("custom.unknown_module.custom_field");
   });
 
   it("resolveSelectionFromCheck returns the located image + observation", () => {
