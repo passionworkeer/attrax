@@ -3,7 +3,7 @@
 import { useMemo } from "react";
 import type { InspectionFinding, InspectionObservation } from "@/lib/types";
 import type { CheckResultVM, FindingVM, InspectionResultVM } from "@/lib/result/inspection-view-model";
-import { CHECK_CATALOG, checkTitleFromId } from "@/lib/result/inspection-view-model";
+import { checkTitleFromId } from "@/lib/result/inspection-view-model";
 import { cn } from "@/lib/utils";
 
 /**
@@ -73,10 +73,6 @@ function rowFromVMCheck(check: CheckResultVM, activeImageId: string | null): Che
     : undefined;
   const anchor = onActive ?? located[0] ?? null;
   const best = check.bestObservation;
-  const catalogEntry = CHECK_CATALOG[check.checkId];
-  const isHazard = catalogEntry?.semantic === "hazard_presence";
-
-  let visibility = best?.visibility ?? "not_assessed";
   // P0-3 (adversarial round 4, 2026-09-15): the old code promoted
   // hazard+zero-findings observations to `present_readable` whenever the
   // raw visibility was `not_in_view` or `absent_in_visible_scope`. That
@@ -84,6 +80,7 @@ function rowFromVMCheck(check: CheckResultVM, activeImageId: string | null): Che
   // compliance was proven when the photo could not support the judgment.
   // visibility is now passed through as-is; coverageOf() owns the hazard
   // promotion logic (and it only fires for `present_readable`).
+  const visibility = best?.visibility ?? "not_assessed";
 
   return {
     checkId: check.checkId,
