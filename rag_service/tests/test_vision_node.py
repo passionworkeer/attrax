@@ -611,6 +611,7 @@ class TestVisionAnalysisNode:
     def test_no_api_key_returns_empty_result(self, mock_get_analyzer):
         mock_analyzer = MagicMock()
         mock_analyzer.api_key = ""
+        mock_analyzer.available = False
         mock_get_analyzer.return_value = mock_analyzer
 
         state = {

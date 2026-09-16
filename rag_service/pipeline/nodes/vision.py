@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-vision.py - Vision analysis node using MiniMax-M3
+vision.py - Vision analysis node (MiniMax-M3 primary, DeepSeek fallback)
 
 Analyzes uploaded product images to extract:
 - Product type and category
@@ -8,6 +8,11 @@ Analyzes uploaded product images to extract:
 - Certification marks (CE, FCC, RoHS, etc.)
 - Warning labels and language
 - Physical characteristics
+
+The primary provider speaks Anthropic's /messages shape; the fallback speaks
+OpenAI's /chat/completions shape. Callers build messages once in the Anthropic
+shape and ``_to_openai_messages`` translates when the fallback is needed, so
+the two prompts (free-form + checklist) stay provider-agnostic.
 
 Usage: This node runs at graph entry, enriching the query with vision data.
 """
@@ -159,23 +164,120 @@ def _get_analyzer():
     return _analyzer_instance
 
 
+def _to_openai_messages(messages: list[dict]) -> list[dict]:
+    """Translate Anthropic-shaped messages into OpenAI-shaped ones.
+
+    Only the parts the vision prompts actually use are translated: ``text``
+    blocks pass through and ``image`` blocks (``source`` object) become
+    ``image_url`` blocks carrying a ``data:`` URL. Anthropic carries the image
+    as ``source.data`` + ``source.media_type``; the OpenAI-compatible endpoint
+    wants one data URL and infers the format from the bytes.
+    """
+    converted: list[dict] = []
+    for message in messages:
+        content = message.get("content")
+        if not isinstance(content, list):
+            converted.append(message)
+            continue
+        blocks: list[dict] = []
+        for block in content:
+            if not isinstance(block, dict):
+                continue
+            if block.get("type") == "image":
+                source = block.get("source") or {}
+                media_type = source.get("media_type") or "image/jpeg"
+                data = source.get("data") or ""
+                blocks.append({
+                    "type": "image_url",
+                    "image_url": {"url": f"data:{media_type};base64,{data}"},
+                })
+            elif block.get("type") == "text":
+                blocks.append({"type": "text", "text": block.get("text", "")})
+        converted.append({**message, "content": blocks})
+    return converted
+
+
 # ── VisionAnalyzer ────────────────────────────────────────────────────────
 
 class VisionAnalyzer:
-    """Vision analysis using the MiniMax Anthropic-compatible API."""
+    """Vision analysis: MiniMax Anthropic API, degrading to DeepSeek.
 
-    def __init__(self, api_key: Optional[str] = None):
-        from rag_service.config import resolve_minimax_config
+    MiniMax is the primary provider; when its call returns nothing (timeout,
+    network failure, 4xx/5xx) the same image request is retried against the
+    OpenAI-compatible fallback endpoint. ``available`` is True when either
+    provider is configured, so a deployment with only the fallback key still
+    gets visual evidence instead of a silently image-blind scan.
+    """
+
+    def __init__(self, api_key: Optional[str] = None, fallback_api_key: Optional[str] = None):
+        from rag_service.config import resolve_deepseek_config, resolve_minimax_config
         self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
+        (
+            self.fallback_api_key,
+            self.fallback_base_url,
+            self.fallback_model,
+            self.fallback_max_tokens,
+        ) = resolve_deepseek_config(fallback_api_key)
 
-    def _call_mimotalk(self, messages: list[dict], max_tokens: int = 1536) -> str:
-        """Call the MiniMax Anthropic-compatible /messages endpoint.
+    @property
+    def available(self) -> bool:
+        """True when at least one vision provider has credentials."""
+        return bool(self.api_key or self.fallback_api_key)
+
+    def _post_json(
+        self,
+        url: str,
+        api_key: str,
+        body: bytes,
+        headers: dict,
+        timeout: int = 60,
+    ) -> Optional[dict]:
+        """POST a JSON body and return the parsed response, or None.
 
         Retries up to 3 times on network/timeout class errors with exponential
         backoff (1s, 2s). HTTPError (4xx/5xx) is a business-level failure and
         is NOT retried — the request reached the server, so retrying the same
         payload is unlikely to help and could mask a real config problem.
         """
+        max_retries = 3
+        base_delays = [1, 2]  # sleeps before attempt 2 and attempt 3
+
+        for attempt in range(1, max_retries + 1):
+            req = urllib.request.Request(
+                url,
+                data=body,
+                headers={"Authorization": f"Bearer {api_key}", **headers},
+            )
+            try:
+                with _NO_PROXY_OPENER.open(req, timeout=timeout) as r:
+                    return json.loads(r.read())
+            except urllib.error.HTTPError as e:
+                # Business error — request reached server, do not retry.
+                logger.error(
+                    f"vision HTTP {e.code} ({url}): "
+                    f"{e.read().decode('utf-8', errors='replace')[:200]}"
+                )
+                return None
+            except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
+                # Network / timeout class — retryable.
+                if attempt < max_retries:
+                    delay = base_delays[attempt - 1]
+                    logger.warning(
+                        f"vision network error (attempt {attempt}/{max_retries}, {url}): "
+                        f"{type(e).__name__}: {e}; retrying in {delay}s"
+                    )
+                    time.sleep(delay)
+                    continue
+                logger.error(f"vision exhausted retries ({url}): {type(e).__name__}: {e}")
+                return None
+            except Exception as e:
+                # Unknown failure — do not retry blindly; log and bail.
+                logger.error(f"vision error ({url}): {type(e).__name__}: {e}")
+                return None
+        return None
+
+    def _call_mimotalk(self, messages: list[dict], max_tokens: int = 1536) -> str:
+        """Call the MiniMax Anthropic-compatible /messages endpoint."""
         if not self.api_key:
             return ""
 
@@ -186,46 +288,153 @@ class VisionAnalyzer:
             "messages": messages,
         }).encode("utf-8")
 
-        max_retries = 3
-        base_delays = [1, 2]  # sleeps before attempt 2 and attempt 3
+        data = self._post_json(
+            f"{self.base_url.rstrip('/')}/messages",
+            self.api_key,
+            body,
+            headers={
+                "Content-Type": "application/json",
+                "anthropic-version": "2023-06-01",
+                "x-api-key": self.api_key,
+            },
+        )
+        if not isinstance(data, dict):
+            return ""
+        content = data.get("content") or [{}]
+        if not isinstance(content, list) or not content:
+            return ""
+        first = content[0] if isinstance(content[0], dict) else {}
+        return first.get("text", "")
 
-        for attempt in range(1, max_retries + 1):
-            req = urllib.request.Request(
-                f"{self.base_url.rstrip('/')}/messages",
-                data=body,
-                headers={
-                    "Authorization": f"Bearer {self.api_key}",
-                    "Content-Type": "application/json",
-                    "anthropic-version": "2023-06-01",
-                    "x-api-key": self.api_key,
-                },
+    def _call_deepseek(self, messages: list[dict], max_tokens: Optional[int] = None) -> str:
+        """Call the DeepSeek OpenAI-compatible /chat/completions endpoint.
+
+        Fallback path only — the caller hands us Anthropic-shaped ``messages``
+        and we translate them before sending. ``max_tokens`` defaults to the
+        fallback provider's own budget, which is deliberately larger than the
+        primary's: deepseek-flash is a reasoning model and its
+        ``reasoning_content`` is billed against the same completion budget.
+        """
+        if not self.fallback_api_key:
+            return ""
+
+        budget = max_tokens or self.fallback_max_tokens
+        body = json.dumps({
+            "model": self.fallback_model,
+            "max_tokens": budget,
+            "temperature": 0.1,
+            "messages": _to_openai_messages(messages),
+        }).encode("utf-8")
+
+        data = self._post_json(
+            f"{self.fallback_base_url.rstrip('/')}/chat/completions",
+            self.fallback_api_key,
+            body,
+            headers={"Content-Type": "application/json"},
+        )
+        if not isinstance(data, dict):
+            return ""
+        choices = data.get("choices") or [{}]
+        if not isinstance(choices, list) or not choices:
+            return ""
+        first = choices[0] if isinstance(choices[0], dict) else {}
+        message = first.get("message") or {}
+        if not isinstance(message, dict):
+            return ""
+        content = message.get("content")
+        if isinstance(content, str) and content.strip():
+            return content
+        # A reasoning model can burn the whole completion budget on
+        # reasoning_content and still return HTTP 200 with an empty answer.
+        # That is a budget problem, not a provider outage — say so, otherwise
+        # it reads as "the fallback is down too" and someone re-checks the key.
+        if message.get("reasoning_content"):
+            logger.error(
+                "vision fallback (%s) spent its %d-token budget on reasoning "
+                "without emitting an answer; raise DEEPSEEK_MAX_TOKENS",
+                self.fallback_model,
+                budget,
             )
-
-            try:
-                with _NO_PROXY_OPENER.open(req, timeout=60) as r:
-                    data = json.loads(r.read())
-                    return data.get("content", [{}])[0].get("text", "")
-            except urllib.error.HTTPError as e:
-                # Business error — request reached server, do not retry.
-                logger.error(f"mimoTalk HTTP {e.code}: {e.read().decode('utf-8', errors='replace')[:200]}")
-                return ""
-            except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
-                # Network / timeout class — retryable.
-                if attempt < max_retries:
-                    delay = base_delays[attempt - 1]
-                    logger.warning(
-                        f"mimoTalk network error (attempt {attempt}/{max_retries}): "
-                        f"{type(e).__name__}: {e}; retrying in {delay}s"
-                    )
-                    time.sleep(delay)
-                    continue
-                logger.error(f"mimoTalk exhausted retries: {type(e).__name__}: {e}")
-                return ""
-            except Exception as e:
-                # Unknown failure — do not retry blindly; log and bail.
-                logger.error(f"mimoTalk error: {type(e).__name__}: {e}")
-                return ""
         return ""
+
+    def _vision_text(
+        self,
+        image_data: bytes,
+        mime_type: str,
+        prompt: str,
+        checks: Optional[list[dict]],
+        max_tokens: int,
+    ) -> str:
+        """Return the raw model text for one image, primary provider first.
+
+        Cache layering: a hit under the primary key short-circuits both
+        providers. A fallback result is cached under its own provider-keyed
+        entry so a later primary success is never served the fallback's text
+        (and vice versa). The primary is still re-attempted on the next call —
+        the fallback is a degradation, so a cached fallback answer must never
+        pre-empt a primary provider that has recovered.
+        """
+        cache = _get_vision_cache()
+        primary_key = cache.cache_key(
+            image_data, self.model, VISION_PROMPT_VERSION, checks
+        )
+        cached = cache.get(primary_key)
+        if cached:
+            return cached
+
+        messages = [{
+            "role": "user",
+            "content": [
+                {
+                    "type": "image",
+                    "source": {
+                        "type": "base64",
+                        "media_type": mime_type,
+                        "data": base64.b64encode(image_data).decode("utf-8"),
+                    },
+                },
+                {"type": "text", "text": prompt},
+            ],
+        }]
+
+        text = self._call_mimotalk(messages, max_tokens=max_tokens)
+        if text:
+            cache.put(primary_key, text)
+            return text
+
+        return self._vision_text_from_fallback(messages, image_data, checks)
+
+    def _vision_text_from_fallback(
+        self,
+        messages: list[dict],
+        image_data: bytes,
+        checks: Optional[list[dict]],
+    ) -> str:
+        """Serve one image from the fallback provider (empty when unconfigured).
+
+        The primary's ``max_tokens`` is intentionally not forwarded: the two
+        providers have different output budgets (see ``_call_deepseek``).
+        """
+        if not self.fallback_api_key:
+            return ""
+
+        cache = _get_vision_cache()
+        fallback_key = cache.cache_key(
+            image_data, self.fallback_model, VISION_PROMPT_VERSION, checks
+        )
+        cached = cache.get(fallback_key)
+        if cached:
+            return cached
+
+        text = self._call_deepseek(messages)
+        if text:
+            logger.warning(
+                "vision: primary provider (%s) failed, served by fallback (%s)",
+                self.model,
+                self.fallback_model,
+            )
+            cache.put(fallback_key, text)
+        return text
 
     # Audit P1-J: sniff magic bytes BEFORE base64-encoding so we don't waste
     # an LLM roundtrip on a corrupted / mismatched / empty upload. Mirrors the
@@ -253,7 +462,7 @@ class VisionAnalyzer:
 
     def analyze_single_image(self, image_data: bytes, mime_type: str = "image/jpeg") -> dict:
         """Analyze one image and return structured result."""
-        if not self.api_key:
+        if not self.available:
             return {"error": "no_api_key", "description": "", "certifications": []}
 
         if not self._looks_like_image(image_data, mime_type):
@@ -268,28 +477,11 @@ class VisionAnalyzer:
                 "certifications": [],
             }
 
-        b64 = base64.b64encode(image_data).decode("utf-8")
-
-        cache = _get_vision_cache()
-        cache_key = cache.cache_key(
-            image_data, self.model, VISION_PROMPT_VERSION, None
-        )
-        cached = cache.get(cache_key)
-        if cached:
-            return _parse_vision_text(cached, cached)
-
-        text = self._call_mimotalk([{
-            "role": "user",
-            "content": [
-                {"type": "image", "source": {"type": "base64", "media_type": mime_type, "data": b64}},
-                {"type": "text", "text": PROMPT},
-            ],
-        }])
+        text = self._vision_text(image_data, mime_type, PROMPT, None, 1536)
 
         if not text:
             return {"error": "vision_call_failed", "description": "", "certifications": []}
 
-        cache.put(cache_key, text)
         return _parse_vision_text(text, text)
 
     def analyze_single_image_with_checks(
@@ -307,7 +499,7 @@ class VisionAnalyzer:
         checklist call fails, so an LLM hiccup degrades to the old behavior
         instead of killing the scan.
         """
-        if not self.api_key:
+        if not self.available:
             return {"error": "no_api_key", "description": "", "certifications": [], "observations": []}
 
         if not self._looks_like_image(image_data, mime_type):
@@ -322,28 +514,7 @@ class VisionAnalyzer:
             f"- id: {item['id']}｜{item.get('title') or item['id']}" for item in checks
         )
         prompt = CHECKLIST_PROMPT_TEMPLATE.format(checklist=checklist_block)
-        b64 = base64.b64encode(image_data).decode("utf-8")
-
-        cache = _get_vision_cache()
-        cache_key = cache.cache_key(
-            image_data, self.model, VISION_PROMPT_VERSION, checks
-        )
-        cached = cache.get(cache_key)
-        if cached:
-            text = cached
-        else:
-            text = self._call_mimotalk(
-                [{
-                    "role": "user",
-                    "content": [
-                        {"type": "image", "source": {"type": "base64", "media_type": mime_type, "data": b64}},
-                        {"type": "text", "text": prompt},
-                    ],
-                }],
-                max_tokens=3072,
-            )
-            if text:
-                cache.put(cache_key, text)
+        text = self._vision_text(image_data, mime_type, prompt, checks, 3072)
         if not text:
             # Checklist call failed — fall back to the legacy prompt so the
             # scan still gets vision data (observations stay empty).
@@ -366,7 +537,7 @@ class VisionAnalyzer:
         Single-image path avoids the thread pool; multi-image runs the same
         bounded parallelism as ``analyze_images`` (≤4 workers).
         """
-        if not images or not self.api_key:
+        if not images or not self.available:
             result = _empty_vision_result()
             result["observations"] = []
             return result
@@ -615,7 +786,7 @@ class VisionAnalyzer:
         Returns:
             merged analysis: descriptions, certifications, enriched query
         """
-        if not images or not self.api_key:
+        if not images or not self.available:
             return _empty_vision_result()
 
         if len(images) == 1:
@@ -1045,7 +1216,7 @@ def vision_analysis_node(state: dict) -> dict:
         }
 
     analyzer = _get_analyzer()
-    if not analyzer or not analyzer.api_key:
+    if not analyzer or not analyzer.available:
         logger.warning("Vision analyzer not available, skipping")
         return {
             "vision_result": _empty_vision_result(),

@@ -4,6 +4,33 @@
 
 ## [Unreleased] - 2026-09-16
 
+**功能:识图供应商降级(MiniMax → DeepSeek)**
+
+**背景**
+- 识图只有 MiniMax 一条路。它偶发不可用(超时 / 401 / 5xx)时,整条扫描在第一步就丢掉视觉证据,下游 findings 全部退化成 `not_assessed`
+
+**实现**
+- `rag_service/config.py`:`DEEPSEEK_{API_KEY,BASE_URL,MODEL,MAX_TOKENS}` + `resolve_deepseek_config()`,沿用既有 `os.environ.setdefault` 桥接(让 `Settings(_env_file=None)` 也能看到 `.env` 值)
+- `rag_service/pipeline/nodes/vision.py`:
+  - `_vision_text()` 统一「缓存查找 → primary → 降级」,free-form 与 checklist 两条 prompt 共用
+  - `_call_mimotalk` / `_call_deepseek` 抽到共享的 `_post_json`(同一套重试语义:网络类重试 3 次/1s+2s,HTTPError 不重试)
+  - `_to_openai_messages()` 把 Anthropic 的 `image`+`source` 块翻译成 OpenAI 的 `image_url`+data URL
+  - `available` 改为「任一供应商有 key」——只有降级 key 的部署不再静默变瞎
+- 缓存分层:降级结果写入按 `fallback_model` 算的独立 key,不会被当成 primary 结果回放;primary 每次仍重试(可能已恢复),降级缓存只省掉重复的 DeepSeek 调用
+- 范围:**只降级识图**。报告生成(`report_generator.py`)保持 MiniMax-only,降级不影响它
+
+**踩坑(重要)**
+- `deepseek-flash` 是 reasoning 模型:`reasoning_content` 与 `content` **共用** `max_tokens` 预算,reasoning 用量随图片复杂度波动(实测单张铭牌 1.2k–4.9k tokens)
+- 沿用 primary 的预算(3072)会拿到 **HTTP 200 + `content: ""`** —— 表面像"降级也挂了 / key 不对",真实原因是预算被 reasoning 吃光
+- 故降级通道用独立预算 `DEEPSEEK_MAX_TOKENS=16384`(8192 实测已够,16384 留余量;16384/32768 均被端点接受),并在「空 content + 有 reasoning_content」时打显式错误日志指向该变量
+
+**验证**
+- pytest `rag_service/tests/` 574 passed(新增 `test_vision_fallback.py` 27 例;`conftest.py` 新增 autouse fixture 清空 `DEEPSEEK_*`,防止单测打到线上端点)
+- 真实图片:两条路都实测 —— MiniMax 正常返回;DeepSeek free-form / checklist(12 项) / 多图(3 张 → 36 observations、23 带 bbox)均返回结构化观察
+- 真实进程:把 MiniMax key 换成坏 key 启动 → 日志 `vision: primary provider (MiniMax-M3) failed, served by fallback (deepseek-flash)`,视觉仍产出 3 certs / 12 observations;扫描重试的第 2、3 次走降级缓存(未重复调 DeepSeek)
+- 本地真实扫描(MiniMax 正常):`POST /api/v1/scans` → `status=ready` / `source=real`,trace `vision mode=checklist observationCount=12`、`generate provider=minimax status=success`、`verify status=success`
+- 备注:本地 `USE_KB_INPUT` 未设时 generate 会走 `no_documents` → `degraded`。它是 `os.environ` 读取(不是 `.env`),生产由 `scripts/ecosystem.config.cjs` 注入 `USE_KB_INPUT=true`;本地需显式导出
+
 **生产事故:线上部分路由 500 + 图片全 404(`/opt/attrax/.next/standalone` 被删)**
 
 **症状**
