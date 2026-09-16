@@ -1,8 +1,14 @@
 import type { RegulationUpdate } from "./types";
 
 // Static demo data. Source URLs point to official reference sites, but entries are
-// curated examples and are not fetched or verified live.
-export const regulationUpdates: RegulationUpdate[] = [
+// curated examples and are not fetched or verified live. These are merged with
+// live watchdog data by the route (see ./watchdog-source.ts); on a fresh
+// install with no watchdog pass on record, the API serves ONLY these 30
+// entries and reports `dataset: "static-demo"`. After the first watchdog pass
+// the dataset label flips to "live+demo" and watchdog-sourced entries appear
+// alongside — they never displace curated examples for markets not yet
+// tracked by an official source.
+export const STATIC_DEMO: RegulationUpdate[] = [
   {
     id: "reg-001",
     market: "EU",

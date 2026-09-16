@@ -68,12 +68,22 @@ Snapshot state lives in `data/regulation_supplements/.cache.db` (SQLite).
    - < 0.95 ⇒ `modified` / `added` / `removed` ⇒ written into the
      `data/regulation_supplements/watchdog-{date}/` outputs
 3. **Auto-ingest is the default** (`ATTRAX_REGWATCH_AUTO_INGEST=true`,
-   2026-09-13 起)。`auto_ingest.py` 接管真实变化：
+   2026-09-13 起).`auto_ingest.py` 接管真实变化：
    - **UPDATE / CREATE / MARK / EVIDENCE** — 见 `docs/WATCHDOG.md` §变更处理流程
    - 入库成功后**自动 rebuild `regulations_index.json`**（内联镜像
      `_rebuild_index()`，原 `scripts/build_regulation_library.py` 已删除 —
      不要单独运行任何 build_xxx 脚本）
    - 当日 `applied.json` 记录干了什么；退出码改写为 0
+   - **2026-09-16 extension**: `regulation_for_source()` 不再只认 EU Cellar —
+     eCFR / Canada Justice XML / gov_html / direct_url 也都能机械映射到
+     主库（在 registry 里加 `regulation_id` 字段显式声明，或按 source_type
+     推断）。新增 `_citation_from_entry()` 给 CREATE 路径产非 EU 来源的
+     citation。
+   - **2026-09-16 verbatim replacement pass**: UPDATE 路径里，如果 YAML
+     的 `source_kind: unverified`，且新抓文本含 `Article <n>` 边界，自动
+     用真实正文覆盖 KB-condensed summaries，并把 source_kind 提升到
+     `official_verbatim`（eu_celex）或 `official_summary`（其他）。详见
+     `auto_ingest.py:_extract_articles_from_text`。
 4. 手动审阅模式（`ATTRAX_REGWATCH_AUTO_INGEST=false`）：回到 `pending_review.json`
    + `--ack ` / `--ack-all` 推进基线（但 snapshot 数据库的
    `data/regulation_supplements/.cache.db` 推进仍由人工 ack 触发）。

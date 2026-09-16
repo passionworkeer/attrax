@@ -24,13 +24,19 @@ SUPPORTED_SOURCE_TYPES = {
     "canada_justice_xml",
     "direct_url",
     "gov_html",
+    "cpsc_rss",
+    "safety_gate",
 }
 
 CONTROLLED_PRODUCT_CATEGORIES = {
+    "3c",
     "apparel",
+    "appliance",
+    "battery",
     "batteries",
     "chemicals",
     "children_products",
+    "cosmetic",
     "cosmetics",
     "electronics",
     "electrical_equipment",
@@ -40,8 +46,10 @@ CONTROLLED_PRODUCT_CATEGORIES = {
     "home_goods",
     "packaging",
     "radio",
-    "textiles",
-    "toys",
+    "textile",  # canonical singular (CLAUDE.md §多市场支持)
+    "textiles",  # legacy plural used in early registry entries
+    "toy",  # canonical singular (CLAUDE.md §多市场支持)
+    "toys",  # legacy plural used in early registry entries
     "waste_electrical",
 }
 
@@ -57,10 +65,18 @@ CONTROLLED_REGULATORY_TYPES = {
     "packaging",
     "product_safety",
     "radio",
+    "recall",
+    "scope_classification",
     "sustainability",
     "testing",
     "waste",
 }
+
+# Source types whose sole output is a parsed JSON stream — they never
+# download a regulation text snapshot. The shape test exempts them from
+# the "files must be non-empty" rule. Added 2026-09-16 with the cpsc_rss
+# and safety_gate collectors.
+_SIGNAL_STREAM_TYPES = frozenset({"cpsc_rss", "safety_gate"})
 
 
 def load_registry() -> list[dict]:
@@ -87,7 +103,11 @@ def test_registry_entries_have_required_shape_and_unique_ids():
         assert entry["channel"].strip()
         assert entry["source_url"].startswith("https://")
         assert entry["why_added"].strip()
-        assert entry["files"]
+        # Signal-stream sources (recalls feeds, RAPEX) do not snapshot a
+        # regulation text — the parsed JSON response is the only artifact.
+        # Every other source type must keep at least one raw file entry.
+        if entry["source_type"] not in _SIGNAL_STREAM_TYPES:
+            assert entry["files"], f"{entry['id']} ({entry['source_type']}) missing raw files"
         for raw_file in entry["files"]:
             assert raw_file.startswith("raw/"), raw_file
             assert "\\" not in raw_file, raw_file
@@ -120,4 +140,10 @@ def test_registry_adapter_specific_fields_are_present():
             assert len(entry["files"]) == 1
             assert entry["files"][0].endswith(".xml")
         elif source_type in {"direct_url", "gov_html"}:
-            assert len(entry["files"]) == 1
+            # Signal-stream sources have no raw files (asserted above);
+            # the rest of these types must carry one.
+            if source_type not in _SIGNAL_STREAM_TYPES:
+                assert len(entry["files"]) == 1
+        elif source_type in _SIGNAL_STREAM_TYPES:
+            # No structural assertions — JSON response is the only artifact.
+            pass

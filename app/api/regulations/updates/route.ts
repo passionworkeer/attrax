@@ -1,14 +1,17 @@
 import { NextRequest } from "next/server";
 import { unstable_cache } from "next/cache";
 import { fail, ok } from "@/lib/api-response";
-import { regulationUpdates } from "./data";
+import { STATIC_DEMO } from "./data";
 import { enrichRegulation, daysUntil, riskRank, searchableText } from "./utils";
+import { getLiveRegulationUpdates, getLiveLastVerifiedAt } from "./watchdog-source";
 
-// Cache the filtered/sorted slice. The full payload (data + meta) is cached
-// because the static-demo dataset only changes on rebuild — there is no
-// upstream to invalidate from. 5-minute TTL keeps `daysUntilEffective` from
-// drifting more than a few minutes, which is well inside the 45-day urgency
-// threshold used by the sort.
+// Cache the filtered/sorted slice. The static-demo dataset only changes on
+// rebuild — there is no upstream to invalidate from. 5-minute TTL keeps
+// `daysUntilEffective` from drifting more than a few minutes, which is well
+// inside the 45-day urgency threshold used by the sort. The watchdog live
+// data lives on disk under data/regulation_supplements/ and is refreshed
+// by `scripts/watchdog/orchestrator.py` (default 03:00 server-local); the
+// cache automatically picks up new runs the next time it revalidates.
 const CACHE_REVALIDATE_SECONDS = 300;
 
 // Upper bound for the search cache key. The slice that lands in the cache is
@@ -37,18 +40,25 @@ function normalizeSearchKey(search: string | null): string | null {
 
 const getFilteredRegulations = unstable_cache(
   async (market: string | null, search: string | null, limit: number) => {
-    let filtered = [...regulationUpdates];
+    // Merge: live watchdog records first (fresh signals from the official
+    // sources the bot tracks every day), then the curated demo entries.
+    // Demo entries stay available for markets not yet covered by an
+    // official source — the watchdog cannot replace editorial summaries.
+    const live = await getLiveRegulationUpdates();
+    const merged = [...live, ...STATIC_DEMO];
+
+    let filtered = merged;
 
     if (market && market !== "all") {
       filtered = filtered.filter(
-        (regulation) => regulation.market.toLowerCase() === market.toLowerCase()
+        (regulation) => regulation.market.toLowerCase() === market.toLowerCase(),
       );
     }
 
     if (search) {
       const searchLower = search.toLowerCase();
       filtered = filtered.filter((regulation) =>
-        searchableText(regulation).includes(searchLower)
+        searchableText(regulation).includes(searchLower),
       );
     }
 
@@ -67,16 +77,13 @@ const getFilteredRegulations = unstable_cache(
 
     const matchingCount = filtered.length;
     const returned = filtered.slice(0, limit).map(enrichRegulation);
-    const lastVerifiedAt = regulationUpdates
-      .map((r) => r.lastVerifiedAt)
-      .sort()
-      .at(-1);
+    const lastVerifiedAt = await getLiveLastVerifiedAt();
     const effectiveSoon = filtered.filter((r) => {
       const days = daysUntil(r.effectiveDate);
       return days >= 0 && days <= 45;
     }).length;
     const highRisk = filtered.filter(
-      (r) => r.riskLevel === "critical" || r.riskLevel === "high"
+      (r) => r.riskLevel === "critical" || r.riskLevel === "high",
     ).length;
 
     return {
@@ -85,9 +92,11 @@ const getFilteredRegulations = unstable_cache(
       lastVerifiedAt,
       highRisk,
       effectiveSoon,
+      hasLive: live.length > 0,
+      totalDatasetSize: merged.length,
     };
   },
-  ["regulations-updates-v1"],
+  ["regulations-updates-v2"],
   {
     revalidate: CACHE_REVALIDATE_SECONDS,
     tags: ["regulations-updates"],
@@ -110,15 +119,15 @@ export async function GET(request: NextRequest) {
     return ok({
       data: cached.data,
       meta: {
-        total: regulationUpdates.length,
+        total: cached.totalDatasetSize,
         matching: cached.matchingCount,
         returned: cached.data.length,
-        markets: new Set(regulationUpdates.map((r) => r.market)).size,
+        markets: new Set([...cached.data.map((r) => r.market)]).size,
         highRisk: cached.highRisk,
         effectiveSoon: cached.effectiveSoon,
         lastVerifiedAt: cached.lastVerifiedAt,
         timestamp: new Date().toISOString(),
-        dataset: "static-demo",
+        dataset: cached.hasLive ? "live+demo" : "static-demo",
       },
     });
   } catch (error) {
