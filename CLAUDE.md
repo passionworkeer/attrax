@@ -329,6 +329,14 @@ const StartScanRequestSchema = z.object({
 
 ## 最近修复
 
+### 2026-09-16 — 线上全站 500 + 图片 404（服务器侧 `next build` 删掉运行中的 standalone）
+
+- **症状**：线上部分路由 500、前端渲染 branded「Runtime error / Something caught fire」错误页；`/complipilot/*` 图片与视频全 404（while `/`、`/upload`、`/api/health` 仍 200，极具迷惑性）
+- **真根因**：`/opt/attrax/.next/standalone` 被删 —— pm2 `nextjs` 进程的 cwd 指向已删除目录。日志证据：`ChunkLoadError: Cannot find module '.../chunks/ssr/_1z4zay9._.js'`、`Invariant: The client reference manifest for route "/profit/[sessionId]" does not exist`、`/500 ENOENT ... pages/500.html`。触发者是当天 12:11~12:15 在服务器 `/opt/attrax` 里跑的 `npm install && npm run build`（`/tmp/attrax-build.done` = `BUILD_DONE_127`、`/tmp/attrax-build2.done` = `BUILD2_DONE_1`，两次都没成功），`next build` 开跑即清空 `.next/`
+- **修复**：本地 `scripts/build-deploy-tarball.sh` 重建完整 tarball（BUILD_ID `gaEfawLViEVVL-teld9_G` / commit `1fc4472`）→ scp → 解包出新的 `.next/standalone/` → `.next/static` 重指软链到 `standalone/.next/static` → `pm2 restart nextjs`。旧 `.next/static` 备份在 `/opt/attrax/.next/_broken-<stamp>/`
+- **验证**：`/profit/test` 500→200、`/regulations/*` 正常、全部 chunk/css 200、`/complipilot/{logo.png,ocean-poster.png,ocean-hero.mp4}` 200（正确 content-type）、真实扫描 45s 走通
+- **治本**：新增 `scripts/guard-no-server-build.mjs` + `package.json` `prebuild` 钩子 —— cwd 在 `/opt/` 下直接拒绝构建（`ATTRAX_ALLOW_SERVER_BUILD=1` 可放行），本地与服务器两侧均已实测
+
 ### 2026-09-15 — Hazard coverage 诚实 + matcher 对比词防御 + 输入不可变（commit `2d8fa19` / HEAD）
 
 - **P0 hazard "observed" 不再撒谎**（7c7f4cb）：`lib/result/inspection-view-model.ts:coverageOf` 对 hazard+0 findings 旧逻辑是无论 visibility 都返 "observed" — J09-skipped 检查（用户声明 `magnets: absent` → 0 findings）会让模糊照片渲染绿色"已观察" badge，含义"合规已确认"，实际根本没看清。修复：只有 `present_readable` 才 collapse 到 "observed"；`not_in_view` / `present_unreadable` / `occluded` 走 "reshoot"，`absent_in_visible_scope` 走 "confirm"。`components/result/InspectionChecklistPanel.tsx:rowFromVMCheck` 同步删 hazard override
@@ -388,6 +396,7 @@ const StartScanRequestSchema = z.object({
 
 ## 部署雷区
 
+- **绝不在服务器 `/opt/attrax` 里跑 `npm run build`**（2026-09-16 事故）：`next build` 一开跑就清空 `.next/`，连 pm2 正在跑的 `nextjs` 的 cwd（`.next/standalone`）一起删掉。进程不会立刻死（Linux 保留被删目录的 inode），所以 `/api/health` 和首页仍返回 200，看着像"没事"；但 Node 按需加载 chunk —— 已加载的路由照常，**没加载到的路由逐个 `ChunkLoadError` / `MODULE_NOT_FOUND` → 500 + 前端 branded「Runtime error / Something caught fire」**，同时 nginx `root /opt/attrax/.next/standalone/public` 失效 → `/complipilot/*` 图片视频全 404。构建只在本地做；`package.json` 已加 `prebuild` 守卫（`scripts/guard-no-server-build.mjs`）在 `/opt/` 下直接拒绝，确需服务器构建用 `ATTRAX_ALLOW_SERVER_BUILD=1`
 - **`pm2 restart` 不读 env 段**：只换代码 / 静态 → `pm2 restart` 足够；换 env（PM2 ecosystem env 段、cwd）→ 必须 `pm2 delete && start`，`restart` 不重读
 - **换 `.env` 文件**：`pm2 restart` 即可（pydantic-settings 每次启动读 .env）；换 ecosystem env 段才需要 delete && start
 - **Next 16 + Turbopack `output: "standalone"` 不复制 `.next/static/`**（Next 15 还会这么做）：standalone/ 里只有 server.js + 路由 manifest + 最小 node_modules；**部署时必须分别 rsync/tar `.next/standalone/` 和 `.next/static/` 两份到服务器**

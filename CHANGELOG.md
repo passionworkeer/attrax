@@ -2,6 +2,54 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## [Unreleased] - 2026-09-16
+
+**生产事故:线上部分路由 500 + 图片全 404(`/opt/attrax/.next/standalone` 被删)**
+
+**症状**
+- 部分路由 500,前端渲染 branded「Runtime error / Something caught fire」错误页
+- `/complipilot/logo.png`、`ocean-poster.png`、`ocean-hero.mp4` 全部 404
+- 干扰项:`/`、`/upload`、`/pricing`、`/api/health` 仍返回 200 —— 只 curl 首页会误判"线上正常"
+
+**真根因**
+- pm2 `nextjs` 进程的 cwd `/opt/attrax/.next/standalone` **已被删除**（`/proc/<pid>/cwd` → `... (deleted)`）
+- 触发者:当天 12:11~12:15 在服务器 `/opt/attrax` 里跑了 `npm install && npm run build`。`next build` 一开跑就清空 `.next/`,把运行中进程赖以加载 chunk 的 standalone 一起删了
+- 证据:`/tmp/attrax-build.done` = `BUILD_DONE_127`（exit 127）、`/tmp/attrax-build2.done` = `BUILD2_DONE_1`（build 卡在 "Creating an optimized production build" 后死掉），两次都没产出 standalone
+- 进程没立刻死（Linux 保留被删目录 inode），但 Node 按需加载 chunk:
+  - `ChunkLoadError: Failed to load chunk server/chunks/ssr/_1z4zay9._.js` → `Cannot find module '/opt/attrax/.next/standalone/.next/server/chunks/ssr/_1z4zay9._.js'`
+  - `Invariant: The client reference manifest for route "/profit/[sessionId]" does not exist`
+  - `Invariant: The client reference manifest for route "/regulations/[docId]" does not exist`
+  - `Failed to load static file for page: /500 ENOENT: .../standalone/.next/server/pages/500.html`（连 500 页面都加载不出）
+  - nginx `/complipilot/*` 的 `root /opt/attrax/.next/standalone/public` 一起失效 → 图片 404
+
+**修复**
+- 本地 `scripts/build-deploy-tarball.sh` 重建完整 tarball（`COPYFILE_DISABLE=1` 去掉 macOS AppleDouble `._*` 垃圾条目）→ BUILD_ID `gaEfawLViEVVL-teld9_G` / commit `1fc4472` / 112MB
+- 旧 `.next/static`（服务器上被中断构建留下的产物）备份到 `/opt/attrax/.next/_broken-<stamp>/static`
+- 解包 tarball 出新的 `.next/standalone/`；`.next/static` 重指软链 → `standalone/.next/static`；`.next/BUILD_ID` 回写；`pm2 restart nextjs`
+- 重启后 `/proc/<pid>/cwd` → `/opt/attrax/.next/standalone`（不再是 deleted）
+
+**验证**
+- 路由:`/profit/test` 500→200;`/regulations/updates` 500→404（正确语义，它本就不是合法 docId）
+- 静态:首页 16 个 chunk/css 全 200（`application/javascript` / `text/css`）；`/upload` 页资源 0 个非 200
+- 图片:`/complipilot/{logo.png,ocean-poster.png,ocean-hero.mp4}` 200 + `image/png` / `video/mp4`
+- 真实扫描:POST `/api/scan` → 45s 达到 `resultReady=true`
+- 日志回归:重启后反复打 500 路由，`nextjs-error.log` 新增错误行 **0**
+- 单测/构建:本地 `npm run build` 通过
+
+**治本(新增防回归)**
+- `scripts/guard-no-server-build.mjs` + `package.json` `prebuild` 钩子 —— cwd 在 `/opt/` 下直接拒绝 `next build` 并打印正确部署流程；逃生舱 `ATTRAX_ALLOW_SERVER_BUILD=1`
+- 已在两侧实测:本地 exit 0（放行）、`/opt/attrax` exit 1（拦截）、`ATTRAX_ALLOW_SERVER_BUILD=1` exit 0（放行）
+- `CLAUDE.md` §部署雷区 + §最近修复 记录该雷区
+
+**⚠️ 同期发现的独立线上问题（非本次代码 bug，需运营侧处理）**
+- MiniMax LLM **Token Plan 配额已耗尽**。直连 `https://api.minimaxi.com/anthropic/v1/messages` 返回:
+  `429 {"type":"rate_limit_error","message":"已达到 Token Plan 用量上限：请升级 Token Plan 套餐或购买积分补充用量。 (2056)"}`
+- 影响:每次扫描的 `generate` 节点 429 → `validationStatus: fallback` → 会话 `status: degraded`（有降级横幅，非静默）；vision 节点仍正常
+- 时间线:2026-09-15 14:34~14:38 的三次扫描仍是 `status: ready` / `validationStatus: normalized`；2026-09-16 起全部 degraded → 配额是在这之间耗尽的
+- 处理:需充值 Token Plan / 购买积分，代码侧无需改动
+
+---
+
 ## [Unreleased] - 2026-09-15
 
 **Adversarial review round 4 (P0 + P1 + 文档同步, HEAD `2d8fa19`)**:

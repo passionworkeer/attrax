@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/guard-no-server-build.mjs",
     "build": "next build",
     "start": "next start",
     "deploy:check": "node scripts/preflight-deploy.mjs --check-only",
