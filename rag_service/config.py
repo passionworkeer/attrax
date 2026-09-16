@@ -13,6 +13,20 @@ from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
+# ── 识图降级供应商（2026-09-16）────────────────────────────────────────────
+# MiniMax 的视觉端点偶发不可用（超时 / 5xx），单供应商会让整条扫描在第一步
+# 就失去视觉证据。DeepSeek 的 OpenAI 兼容端点可以承接同一张图的观察请求，
+# 因此作为视觉层的降级通道。它只服务 vision，不接管报告生成。
+DEFAULT_DEEPSEEK_BASE_URL = "https://api.deepseek.com"
+DEFAULT_DEEPSEEK_MODEL = "deepseek-flash"
+# deepseek-flash is a reasoning model: ``reasoning_content`` and the answer
+# share one completion budget, and the reasoning spend swings with image
+# complexity (measured 1.2k–4.9k tokens on a single nameplate photo). Too small
+# a budget returns HTTP 200 with EMPTY content — a silent "no answer" that looks
+# like a provider outage. 16384 leaves room for reasoning + the JSON answer.
+DEFAULT_DEEPSEEK_MAX_TOKENS = 16384
+
+
 def _parse_trusted_proxies(raw: str) -> list[str]:
     return [proxy.strip().lower() for proxy in raw.split(",") if proxy.strip()]
 
@@ -52,6 +66,12 @@ class Settings(BaseSettings):
     mimotalk_base_url: str = ""
     mimotalk_model: str = ""
 
+    # 视觉降级通道（OpenAI 兼容）。空 key = 未配置，降级关闭。
+    deepseek_api_key: str = ""
+    deepseek_base_url: str = DEFAULT_DEEPSEEK_BASE_URL
+    deepseek_model: str = DEFAULT_DEEPSEEK_MODEL
+    deepseek_max_tokens: int = DEFAULT_DEEPSEEK_MAX_TOKENS
+
     @property
     def effective_minimax_api_key(self) -> str:
         return self.minimax_api_key or self.mimotalk_api_key
@@ -69,6 +89,24 @@ class Settings(BaseSettings):
         if os.environ.get("MINIMAX_MODEL") or self.minimax_model != default:
             return self.minimax_model
         return self.mimotalk_model or default
+
+    @property
+    def effective_deepseek_base_url(self) -> str:
+        # An operator who writes ``DEEPSEEK_BASE_URL=`` (blank) means "unset",
+        # not "relative URL" — an empty base would build "/chat/completions".
+        return self.deepseek_base_url.strip().rstrip("/") or DEFAULT_DEEPSEEK_BASE_URL
+
+    @property
+    def effective_deepseek_model(self) -> str:
+        return self.deepseek_model.strip() or DEFAULT_DEEPSEEK_MODEL
+
+    @property
+    def effective_deepseek_max_tokens(self) -> int:
+        return self.deepseek_max_tokens if self.deepseek_max_tokens > 0 else DEFAULT_DEEPSEEK_MAX_TOKENS
+
+    @property
+    def vision_fallback_configured(self) -> bool:
+        return bool(self.deepseek_api_key.strip())
 
     demo_mode: bool = False
 
@@ -129,6 +167,32 @@ os.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
 os.environ.setdefault("MINIMAX_API_KEY", settings.effective_minimax_api_key)
 os.environ.setdefault("MINIMAX_BASE_URL", settings.effective_minimax_base_url)
 os.environ.setdefault("MINIMAX_MODEL", settings.effective_minimax_model)
+# Same bridge for the vision fallback provider: ``resolve_deepseek_config``
+# re-reads the process env only, so the .env-file values must land there.
+os.environ.setdefault("DEEPSEEK_API_KEY", settings.deepseek_api_key)
+os.environ.setdefault("DEEPSEEK_BASE_URL", settings.effective_deepseek_base_url)
+os.environ.setdefault("DEEPSEEK_MODEL", settings.effective_deepseek_model)
+os.environ.setdefault(
+    "DEEPSEEK_MAX_TOKENS", str(settings.effective_deepseek_max_tokens)
+)
+
+
+def resolve_deepseek_config(api_key: str | None = None) -> tuple[str, str, str, int]:
+    """Resolve the vision fallback provider (OpenAI-compatible endpoint).
+
+    ``None`` means "use configured credentials"; an explicit empty string is a
+    deliberate no-network override (same contract as ``resolve_minimax_config``).
+    The fourth element is the completion budget — it is larger than the primary
+    provider's because reasoning tokens share that budget (see
+    ``DEFAULT_DEEPSEEK_MAX_TOKENS``).
+    """
+    current = Settings(_env_file=None)
+    return (
+        current.deepseek_api_key if api_key is None else api_key,
+        current.effective_deepseek_base_url,
+        current.effective_deepseek_model,
+        current.effective_deepseek_max_tokens,
+    )
 
 
 def resolve_minimax_config(api_key: str | None = None) -> tuple[str, str, str]:

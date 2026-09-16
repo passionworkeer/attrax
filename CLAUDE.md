@@ -67,6 +67,7 @@
 | 模式 | 触发条件 | 行为 |
 |------|---------|------|
 | DEMO_MODE | `DEMO_MODE=true` 环境变量 | 使用 Mock 数据，无需 API Key |
+| 识图供应商 | MiniMax 视觉调用返回空（超时 / 网络 / 4xx / 5xx） | 同一张图的观察请求降级到 `DEEPSEEK_*`（OpenAI 兼容 `/chat/completions`，`deepseek-flash`）。未配置 key = 降级关闭，保持旧的 `vision_call_failed` 行为。**只降级识图，报告生成仍走 MiniMax** |
 | Embedding | （已删除） | de-RAG §7.7 后无 embedding 调用，不存在降级路径 |
 | 引用验证 | 生产环境 | deterministic quote matching：`verify/quote_matcher.py` 对 LLM 引用的法规条款做反向字面匹配，返回每条引用的 `match_status`；逐扫描的 `report_package.auditMetadata.verificationMode` 字段暴露真实模式（不在 `/health` 上） |
 | RAG 服务不可用 | 无法连接 localhost:8001 | 前端降级为 degraded 状态 + 红色横幅提示（sessionPayload 暴露 degradedReason，非静默 demo） |
@@ -291,6 +292,10 @@ const StartScanRequestSchema = z.object({
 | `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`；RAG 侧读取，前端只需透传场景） |
 | `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
 | `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
+| `DEEPSEEK_API_KEY` | - | 否 | **识图降级**通道 key（`rag_service` 读取）。留空 = 关闭降级 |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | 否 | 降级端点（OpenAI 兼容，非 Anthropic 形状） |
+| `DEEPSEEK_MODEL` | `deepseek-flash` | 否 | 降级模型（reasoning 模型，`content` 与 `reasoning_content` 共用 completion 预算） |
+| `DEEPSEEK_MAX_TOKENS` | `16384` | 否 | 降级通道 completion 预算。**调小会导致 HTTP 200 + 空 content**（预算被 reasoning 吃光） |
 | `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址（BFF 转发目标） |
 | `DEMO_MODE` | `false` | 否 | Demo 模式（Mock 数据，无需 API Key） |
 | `ATTRAX_DEBUG_TOKEN` | - | 否 | `=1` 时创建扫描响应体带 accessToken（默认仅 HttpOnly cookie） |
@@ -328,6 +333,14 @@ const StartScanRequestSchema = z.object({
 ---
 
 ## 最近修复
+
+### 2026-09-16 — 识图供应商降级（MiniMax → DeepSeek）
+
+- **背景**：识图只有 MiniMax 一条路，它偶发不可用时整条扫描在第一步就丢掉视觉证据
+- **实现**：`config.py` 新增 `DEEPSEEK_{API_KEY,BASE_URL,MODEL,MAX_TOKENS}`（+ `resolve_deepseek_config`，沿用 `os.environ.setdefault` 桥接 `.env`）；`pipeline/nodes/vision.py` 把消息构建与缓存抽成 `_vision_text`，MiniMax 返回空时调用 `_call_deepseek`（`_to_openai_messages` 做 Anthropic→OpenAI 形状转换）；`available` 改为「任一供应商有 key」，只有降级 key 的部署也能出视觉证据
+- **缓存分层**：降级结果存在按 `fallback_model` 计算的独立 cache key 下，永不被当作 primary 结果回放；primary 每次仍会重试（可能已恢复），降级缓存只省掉重复的 DeepSeek 调用
+- **踩坑（重要）**：`deepseek-flash` 是 reasoning 模型，`reasoning_content` 与 `content` **共用** completion 预算，且 reasoning 用量随图片复杂度波动（实测单张铭牌 1.2k–4.9k tokens）。沿用 primary 的 3072 会得到 **HTTP 200 + 空 content** —— 看起来像"降级也挂了"，实际是预算被 reasoning 吃光。故降级通道独立预算 `DEEPSEEK_MAX_TOKENS=16384`，且空 content + 有 reasoning 时打显式错误日志
+- **验证**：pytest 574 passed；真实图片实测 MiniMax 与 DeepSeek 两条路（free-form + checklist 12 项 + 多图 3 张 36 observations 全通）；真实进程内把 MiniMax key 打坏 → 日志 `served by fallback (deepseek-flash)`，视觉仍产出 3 certs / 12 observations，第 2、3 次重试走降级缓存未重复调用
 
 ### 2026-09-16 — 线上全站 500 + 图片 404（服务器侧 `next build` 删掉运行中的 standalone）
 
