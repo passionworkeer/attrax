@@ -394,19 +394,31 @@ def _identify_product_type(chunks: list[dict]) -> str:
 
 
 class ReportGenerator:
+    """Compliance report generator: MiniMax primary, DeepSeek fallback.
+
+    超时/网络错误 → 先尝试 DeepSeek 降级通道；两条都不通才返回 mock 报告。
     """
-    Compliance report generator using mimoTalk only.
-    超时/网络错误 → 返回 mock 报告，不调用其他 LLM。
-    """
+
     supports_report_package = True
 
     def __init__(self, api_key: str | None = None):
-        from rag_service.config import resolve_minimax_config
+        from rag_service.config import resolve_deepseek_config, resolve_minimax_config
         self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
+        (
+            self.fallback_api_key,
+            _openai_base,  # text-only generation speaks the Anthropic endpoint
+            self.fallback_model,
+            self.fallback_max_tokens,
+            self.fallback_base_url,
+        ) = resolve_deepseek_config()
+        # Which provider actually answered the most recent call. The report
+        # trace and reportPackage.auditMetadata surface this, so a fallback-served
+        # report must not claim to be MiniMax's.
+        self._served_by: str | None = None
 
     @property
     def provider(self) -> str:
-        return "minimax"
+        return self._served_by or "minimax"
 
     def generate_report_package(
         self,
@@ -879,11 +891,18 @@ class ReportGenerator:
     _LLM_BACKOFF_BASE = 1.0  # seconds
 
     def _generate_mimotalk(self, system: str, user_prompt: str, max_tokens: int) -> str:
-        """Call mimoTalk /v1/messages endpoint with bounded retries.
+        """Generate one completion, degrading to DeepSeek when MiniMax fails.
 
         Retries are limited to transient failures (URLError, timeout, 5xx
         HTTPError, or HTTP 429). Authentication/quota/business 4xx errors are
         re-raised so the caller can degrade to mock without burning attempts.
+
+        When a fallback key is configured the primary gets only ONE attempt:
+        3 attempts x the 90s read timeout + backoff is ~273s, which alone
+        exceeds the 280s scan budget (main._SCAN_TIMEOUT_SECS) — retrying the
+        primary to exhaustion would mean the fallback is never reached on the
+        timeout-class outage it exists for. With a fallback on hand, degrading
+        beats stalling.
         """
         body = json.dumps({
             "model": self.model,
@@ -895,8 +914,9 @@ class ReportGenerator:
             ],
         }).encode("utf-8")
 
+        max_attempts = 1 if self.fallback_api_key else self._LLM_MAX_ATTEMPTS
         last_exc: Exception | None = None
-        for attempt in range(1, self._LLM_MAX_ATTEMPTS + 1):
+        for attempt in range(1, max_attempts + 1):
             req = urllib.request.Request(
                 f"{self.base_url.rstrip('/')}/messages",
                 data=body,
@@ -908,14 +928,16 @@ class ReportGenerator:
                 },
             )
             try:
-                return self._read_mimotalk_response(req)
+                text = self._read_mimotalk_response(req)
+                self._served_by = "minimax"
+                return text
             except _TransientLLMError as e:
                 last_exc = e.cause
-                if attempt < self._LLM_MAX_ATTEMPTS:
+                if attempt < max_attempts:
                     delay = self._LLM_BACKOFF_BASE * (2 ** (attempt - 1))
                     logger.warning(
                         "mimoTalk transient failure (attempt %d/%d): %r; retrying in %.1fs",
-                        attempt, self._LLM_MAX_ATTEMPTS, e.cause, delay,
+                        attempt, max_attempts, e.cause, delay,
                     )
                     # P1-11: this sleep runs inside the executor worker
                     # thread that ``main._run_scan_request`` dispatched via
@@ -926,19 +948,75 @@ class ReportGenerator:
                     # callers; deliberately deferred.
                     time.sleep(delay)
                     continue
-                raise last_exc  # type: ignore[misc]
+                # Primary exhausted (or we deliberately only tried once):
+                # fall through to the degrade path below.
+                break
             except Exception as e:
                 # Non-transient (auth/quota/parse) — do not retry.
-                raise
+                last_exc = e
+                break
 
-        # Defensive: loop should exit via return/raise above.
-        raise last_exc if last_exc else RuntimeError("mimoTalk retry loop exited unexpectedly")
+        if not self.fallback_api_key:
+            # Defensive: the loop exits via return/break above.
+            raise last_exc if last_exc else RuntimeError(
+                "mimoTalk retry loop exited unexpectedly"
+            )
+
+        logger.warning(
+            "report generation: primary (%s) failed (%r); trying fallback (%s)",
+            self.model, last_exc, self.fallback_model,
+        )
+        try:
+            return self._generate_fallback(system, user_prompt, max_tokens)
+        except Exception as fallback_exc:
+            logger.error("report generation: fallback also failed: %r", fallback_exc)
+            # Surface the PRIMARY failure — that is what the caller's degraded
+            # path is meant to explain.
+            raise last_exc if last_exc else fallback_exc
+
+    def _generate_fallback(self, system: str, user_prompt: str, max_tokens: int) -> str:
+        """Send the same request to DeepSeek's Anthropic-compatible endpoint.
+
+        The body shape is identical (both endpoints are Anthropic
+        ``/messages``), so only the base URL, credentials and model change.
+        ``max_tokens`` is floored at the fallback budget because
+        deepseek-flash spends part of that budget on reasoning_content.
+        """
+        fallback_body = json.dumps({
+            "model": self.fallback_model,
+            "max_tokens": max(max_tokens, self.fallback_max_tokens),
+            "temperature": 0.2,
+            "system": system,
+            "messages": [
+                {"role": "user", "content": user_prompt},
+            ],
+        }).encode("utf-8")
+
+        req = urllib.request.Request(
+            f"{self.fallback_base_url.rstrip('/')}/messages",
+            data=fallback_body,
+            headers={
+                "Authorization": f"Bearer {self.fallback_api_key}",
+                "Content-Type": "application/json",
+                "anthropic-version": "2023-06-01",
+                "x-api-key": self.fallback_api_key,
+            },
+        )
+        text = self._read_mimotalk_response(req)
+        self._served_by = "deepseek"
+        return text
 
     def _read_mimotalk_response(self, req: urllib.request.Request) -> str:
-        """Execute a single mimoTalk request and return the text content.
+        """Execute a single /messages request and return its text content.
 
         Raises _TransientLLMError for retryable failures; everything else
         propagates as-is.
+
+        The answer is the concatenation of the ``text`` blocks, NOT
+        ``content[0]``: DeepSeek's Anthropic-compatible endpoint prefixes the
+        answer with a ``{"type": "thinking"}`` block, so reading block 0 by
+        position silently returns "" (and looks exactly like a provider
+        outage). MiniMax returns a single text block, so this is a no-op there.
         """
         try:
             with _NO_PROXY_OPENER.open(req, timeout=90) as r:
@@ -950,11 +1028,18 @@ class ReportGenerator:
         except (urllib.error.URLError, TimeoutError) as e:
             raise _TransientLLMError(e) from e
 
-        content = data.get("content", [{}])[0].get("text", "")
+        blocks = data.get("content")
+        if not isinstance(blocks, list):
+            blocks = [blocks] if isinstance(blocks, dict) else []
+        content = "".join(
+            block.get("text", "")
+            for block in blocks
+            if isinstance(block, dict) and block.get("type") == "text"
+        )
         if content and content.strip():
-            logger.info(f"mimoTalk report generated ({len(content)} chars)")
+            logger.info(f"LLM report generated ({len(content)} chars)")
             return content
-        raise ValueError("mimoTalk returned empty response")
+        raise ValueError("LLM returned empty response")
 
     def _mock_report(
         self,

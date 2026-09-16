@@ -4,6 +4,29 @@
 
 ## [Unreleased] - 2026-09-16
 
+**功能:报告生成降级(MiniMax 全挂时仍出真报告)**
+
+**背景**
+- 识图降级上线后,MiniMax 整体挂掉时扫描仍是 `degraded`:视觉证据拿到了,但报告生成是 MiniMax-only,只能退回 mock 包。本次把生成也接上降级,实现「MiniMax 全挂 → DeepSeek 接管 → `ready` + 真报告」
+
+**实现**
+- `rag_service/config.py`:新增 `DEEPSEEK_ANTHROPIC_BASE_URL`(默认 `https://api.deepseek.com/anthropic/v1`,**含 `/v1`**),`resolve_deepseek_config()` 扩为 5 元组
+- `rag_service/generate/report_generator.py`:
+  - `_generate_mimotalk`(唯一传输方法,4 个调用点共用:主生成 / JSON 修复 / `generate` / profit-fill)在 primary 失败后,把同一份 body 重发到 DeepSeek 的 Anthropic 兼容端点,只用 base_url + 凭据 + model 三项差异
+  - `_read_mimotalk_response` 改为拼接所有 `type=="text"` 块(跳过 `thinking`)
+  - `provider` 改为「实际服务的供应商」,默认仍 `minimax`
+- `rag_service/pipeline/nodes/generator.py`:生成后刷新 `provider`(原实现 :362 在生成前抓取、:488 复用,会把降级报告谎报成 MiniMax 的)
+- 范围:识图仍走已验证的 OpenAI 兼容端点;不做 circuit breaker(生成器是进程级单例,粘性降级会在 MiniMax 恢复后一直用 DeepSeek)
+
+**踩坑(重要,两个)**
+- **位置读取响应会恒空**:DeepSeek 的 Anthropic 端点返回 `content[0]={"type":"thinking"}`、`content[1]={"type":"text"}`。原来的 `content[0].get("text","")` 恒为 `""` → `ValueError("mimoTalk returned empty response")` → 直接走 mock 包。实测把生成器传输指向 DeepSeek,4096/16384 都拿到这个错 —— 表面像"降级也挂了 / key 不对",实际只是读错了块
+- **重试预算会吃掉降级机会**:`_LLM_MAX_ATTEMPTS=3` × `timeout=90s` + backoff(1s+2s) ≈ **273s**,而 `main._SCAN_TIMEOUT_SECS = 280`。纯超时型故障下,primary 重试就把整轮扫描预算耗尽,**DeepSeek 根本没机会被调用**。故配置了降级 key 时 primary 只试 1 次(无降级 key 时保持原来 3 次重试)。识图侧同样问题(3 × 60s),且「有降级就不要把预算耗在重试上」
+
+**验证**
+- pytest `rag_service/tests/` 587 passed(新增 `test_report_generator_fallback.py` 12 例;`conftest.py` 的 autouse fixture 补清 `DEEPSEEK_MAX_TOKENS` / `DEEPSEEK_ANTHROPIC_BASE_URL`,顺带修掉「开发者 .env 里的非默认预算会漏进断言」的潜在 flake)
+- 本地真实扫描,故意用坏 MiniMax key:`status=ready`、trace `provider=deepseek`、`reportPackage.auditMetadata.provider=deepseek`(改动前同一场景是 `degraded` + mock 包)
+- 本地真实扫描,MiniMax 正常:`provider=minimax`、`source=real`,无回归
+
 **功能:识图供应商降级(MiniMax → DeepSeek)**
 
 **背景**

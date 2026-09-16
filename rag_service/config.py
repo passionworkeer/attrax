@@ -13,17 +13,22 @@ from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
-# ── 识图降级供应商（2026-09-16）────────────────────────────────────────────
-# MiniMax 的视觉端点偶发不可用（超时 / 5xx），单供应商会让整条扫描在第一步
-# 就失去视觉证据。DeepSeek 的 OpenAI 兼容端点可以承接同一张图的观察请求，
-# 因此作为视觉层的降级通道。它只服务 vision，不接管报告生成。
+# ── DeepSeek 降级供应商（2026-09-16）────────────────────────────────────────
+# MiniMax 偶发不可用（超时 / 5xx / 401），单供应商会让整条扫描在第一步就失去
+# 视觉证据、在第二步退回 mock 包。DeepSeek 承接两个降级通道：
+#   - vision：OpenAI 兼容端点（/chat/completions），带图片块
+#   - generate：Anthropic 兼容端点（/messages），prompt 本来就是 Anthropic 形状
 DEFAULT_DEEPSEEK_BASE_URL = "https://api.deepseek.com"
+# 注意结尾的 /v1：生成器把 base 拼成 f"{base}/messages"（report_generator.py
+# `_generate_mimotalk`），漏掉 /v1 会打到 /anthropic/messages 这个不存在的路径。
+DEFAULT_DEEPSEEK_ANTHROPIC_BASE_URL = "https://api.deepseek.com/anthropic/v1"
 DEFAULT_DEEPSEEK_MODEL = "deepseek-flash"
 # deepseek-flash is a reasoning model: ``reasoning_content`` and the answer
-# share one completion budget, and the reasoning spend swings with image
-# complexity (measured 1.2k–4.9k tokens on a single nameplate photo). Too small
-# a budget returns HTTP 200 with EMPTY content — a silent "no answer" that looks
-# like a provider outage. 16384 leaves room for reasoning + the JSON answer.
+# share one completion budget, and the reasoning spend swings with input size
+# (measured 1.2k–4.9k tokens on a single nameplate photo; a full report package
+# prompt needs ~20s at 4096 vs ~38s at 16384). Too small a budget returns
+# HTTP 200 with EMPTY content — a silent "no answer" that looks like a provider
+# outage. 16384 leaves room for reasoning + the JSON answer.
 DEFAULT_DEEPSEEK_MAX_TOKENS = 16384
 
 
@@ -66,9 +71,10 @@ class Settings(BaseSettings):
     mimotalk_base_url: str = ""
     mimotalk_model: str = ""
 
-    # 视觉降级通道（OpenAI 兼容）。空 key = 未配置，降级关闭。
+    # 降级通道（OpenAI 兼容 + Anthropic 兼容）。空 key = 未配置，降级关闭。
     deepseek_api_key: str = ""
     deepseek_base_url: str = DEFAULT_DEEPSEEK_BASE_URL
+    deepseek_anthropic_base_url: str = DEFAULT_DEEPSEEK_ANTHROPIC_BASE_URL
     deepseek_model: str = DEFAULT_DEEPSEEK_MODEL
     deepseek_max_tokens: int = DEFAULT_DEEPSEEK_MAX_TOKENS
 
@@ -95,6 +101,13 @@ class Settings(BaseSettings):
         # An operator who writes ``DEEPSEEK_BASE_URL=`` (blank) means "unset",
         # not "relative URL" — an empty base would build "/chat/completions".
         return self.deepseek_base_url.strip().rstrip("/") or DEFAULT_DEEPSEEK_BASE_URL
+
+    @property
+    def effective_deepseek_anthropic_base_url(self) -> str:
+        return (
+            self.deepseek_anthropic_base_url.strip().rstrip("/")
+            or DEFAULT_DEEPSEEK_ANTHROPIC_BASE_URL
+        )
 
     @property
     def effective_deepseek_model(self) -> str:
@@ -171,20 +184,23 @@ os.environ.setdefault("MINIMAX_MODEL", settings.effective_minimax_model)
 # re-reads the process env only, so the .env-file values must land there.
 os.environ.setdefault("DEEPSEEK_API_KEY", settings.deepseek_api_key)
 os.environ.setdefault("DEEPSEEK_BASE_URL", settings.effective_deepseek_base_url)
+os.environ.setdefault(
+    "DEEPSEEK_ANTHROPIC_BASE_URL", settings.effective_deepseek_anthropic_base_url
+)
 os.environ.setdefault("DEEPSEEK_MODEL", settings.effective_deepseek_model)
 os.environ.setdefault(
     "DEEPSEEK_MAX_TOKENS", str(settings.effective_deepseek_max_tokens)
 )
 
 
-def resolve_deepseek_config(api_key: str | None = None) -> tuple[str, str, str, int]:
-    """Resolve the vision fallback provider (OpenAI-compatible endpoint).
+def resolve_deepseek_config(api_key: str | None = None) -> tuple[str, str, str, int, str]:
+    """Resolve the DeepSeek fallback provider (both compatible endpoints).
 
+    Returns ``(api_key, openai_base_url, model, max_tokens, anthropic_base_url)``.
     ``None`` means "use configured credentials"; an explicit empty string is a
     deliberate no-network override (same contract as ``resolve_minimax_config``).
-    The fourth element is the completion budget — it is larger than the primary
-    provider's because reasoning tokens share that budget (see
-    ``DEFAULT_DEEPSEEK_MAX_TOKENS``).
+    The budget is larger than the primary provider's because reasoning tokens
+    share the completion budget (see ``DEFAULT_DEEPSEEK_MAX_TOKENS``).
     """
     current = Settings(_env_file=None)
     return (
@@ -192,6 +208,7 @@ def resolve_deepseek_config(api_key: str | None = None) -> tuple[str, str, str, 
         current.effective_deepseek_base_url,
         current.effective_deepseek_model,
         current.effective_deepseek_max_tokens,
+        current.effective_deepseek_anthropic_base_url,
     )
 
 

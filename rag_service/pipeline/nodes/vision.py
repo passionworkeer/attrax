@@ -212,12 +212,14 @@ class VisionAnalyzer:
     def __init__(self, api_key: Optional[str] = None, fallback_api_key: Optional[str] = None):
         from rag_service.config import resolve_deepseek_config, resolve_minimax_config
         self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
+        # Element 5 (the Anthropic-compatible base) belongs to the generation
+        # fallback in report_generator — vision speaks the OpenAI-compatible one.
         (
             self.fallback_api_key,
             self.fallback_base_url,
             self.fallback_model,
             self.fallback_max_tokens,
-        ) = resolve_deepseek_config(fallback_api_key)
+        ) = resolve_deepseek_config(fallback_api_key)[:4]
 
     @property
     def available(self) -> bool:

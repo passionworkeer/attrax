@@ -89,13 +89,14 @@ class TestResolveDeepSeekConfig:
             "https://fb.example/v1",
             "fb-model",
             2048,
+            "https://api.deepseek.com/anthropic/v1",
         )
 
     def test_blank_base_url_and_model_fall_back_to_defaults(self, monkeypatch):
         monkeypatch.setenv("DEEPSEEK_BASE_URL", "")
         monkeypatch.setenv("DEEPSEEK_MODEL", "  ")
 
-        _, base_url, model, _ = resolve_deepseek_config()
+        _, base_url, model, _, _ = resolve_deepseek_config()
 
         assert base_url == "https://api.deepseek.com"
         assert model == "deepseek-flash"
@@ -114,10 +115,17 @@ class TestResolveDeepSeekConfig:
         Measured reasoning spend on one nameplate photo ranged 1.2k–4.9k tokens,
         so the default must sit well above the primary provider's 3072.
         """
-        _, _, _, max_tokens = resolve_deepseek_config()
+        _, _, _, max_tokens, _ = resolve_deepseek_config()
 
         assert max_tokens == 16384
         assert max_tokens > 3072
+
+    def test_anthropic_base_url_keeps_its_version_segment(self):
+        """The generator appends '/messages', so the base must carry '/v1'."""
+        _, _, _, _, anthropic_base = resolve_deepseek_config()
+
+        assert anthropic_base == "https://api.deepseek.com/anthropic/v1"
+        assert anthropic_base.endswith("/v1")
 
     def test_non_positive_budget_falls_back_to_default(self, monkeypatch):
         monkeypatch.setenv("DEEPSEEK_MAX_TOKENS", "0")
