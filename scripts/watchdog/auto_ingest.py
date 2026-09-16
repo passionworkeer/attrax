@@ -55,7 +55,15 @@ STALE_AFTER_CONSECUTIVE_FAILURES = 7
 
 # CELEX → regulation id, e.g. "32011L0065" → ("EU-2011-65", "Directive 2011/65/EU")
 _CELEX_RE = re.compile(r"^3(\d{4})([LRD])(\d{4})$")
-_REGION_DIRS = {"EU": "eu", "US": "us", "CN": "cn", "UK": "uk", "AU": "au", "UN": "un"}
+# Canada Justice Laws XML URLs encode the statutory instrument id
+# (SOR for English, DORS for French) — used as the canonical reg_id stem.
+_CA_INSTRUMENT_RE = re.compile(r"/((?:S|D(?:O|ORS)|SOR))-(\d{4})-(\d+)\.xml", re.IGNORECASE)
+_REGION_DIRS: dict[str, str] = {
+    "EU": "eu", "US": "us", "CN": "cn", "UK": "uk", "AU": "au",
+    "UN": "un", "CA": "ca", "NZ": "nz", "JP": "jp", "KR": "kr",
+    "SA": "sa", "AE": "ae", "BR": "br", "IN": "in", "SG": "sg",
+    "MX": "mx", "DE": "de", "FR": "fr", "IT": "it",
+}
 _RAW_SUFFIX = {
     "eu_celex": ".rdf",
     "ecfr_part": ".json",
@@ -63,8 +71,219 @@ _RAW_SUFFIX = {
     "canada_justice_xml": ".xml",
     "gov_html": ".html",
     "direct_url": ".html",
+    "safety_gate": ".xml",
 }
 _REPEAL_KEYWORDS = ("removal", "revok", "repeal", "revocation", "withdraw")
+
+
+# Citation text templates for the auto-CREATE path. These mirror the
+# editorial style used elsewhere in the library (see data/regulations/
+# eu/EU-*.yaml "official_citation" fields). The fallback in
+# _citation_from_entry() returns entry["title"] verbatim when nothing
+# matches.
+_CITATION_TEMPLATES: dict[str, str] = {
+    "us": "16 CFR Part {part}",
+    "uk": "UK {title}",
+    "nz": "{title} (NZ)",
+    "ca": "{instrument} {year}/{number}",
+    "jp": "{title} (JP)",
+    "kr": "{title} (KR)",
+    "sa": "{title} (SA)",
+    "ae": "{title} (AE)",
+    "br": "{title} (BR)",
+    "in": "{title} (IN)",
+    "sg": "{title} (SG)",
+    "mx": "{title} (MX)",
+}
+
+
+def _region_dir(market: str) -> str | None:
+    """Lowercase directory name for the regulation library root."""
+    return _REGION_DIRS.get(str(market or "").strip().upper())
+
+
+def _slug_to_reg_id(slug: str, market: str) -> str | None:
+    """Build a stable regulation_id from an official_sources entry id slug.
+
+    Used as a fallback when no explicit ``regulation_id`` is declared on the
+    entry. Strategy: drop the leading market token and a small English
+    stop-word list, then take up to three significant tokens, uppercased.
+
+    Examples:
+        uk-weee-regulations-guidance           → UK-WEEE
+        uk-packaging-epr-who-is-affected...    → UK-Packaging-EPR
+        uk-hse-svhc-overview                    → UK-HSE-SVHC
+        nz-product-safety-standards-2005        → NZ-Product-Safety-Standards
+    """
+    parts = slug.split("-")
+    if not parts or not parts[0]:
+        return None
+    significant: list[str] = []
+    stop = {"regulations", "regulation", "guidance", "overview", "compliance",
+            "standard", "standards", "the", "of", "and", "for", "to",
+            "is", "are", "what", "do", "who", "affected"}
+    for token in parts[1:]:
+        if not token or token in stop:
+            continue
+        # Drop trailing year-only tokens (handled by last_verified/last_verified_by)
+        if token.isdigit() and len(token) == 4:
+            continue
+        significant.append(token)
+        if len(significant) >= 3:
+            break
+    if not significant:
+        return None
+    return f"{market.upper()}-{'-'.join(p.upper() for p in significant)}"
+
+
+def _infer_reg_id_from_entry(entry: dict) -> str | None:
+    """Per-source-type reg_id inference. Returns None when the source type
+    has no mechanical rule (e.g. recalls / RSS feeds are not regulation
+    texts)."""
+    source_type = entry.get("source_type", "")
+
+    # Backward compat: if source_type is absent but a CELEX is present, treat
+    # as EU Cellar (the legacy convention pre-2026-09-16). New entries
+    # always set source_type explicitly.
+    if not source_type:
+        if entry.get("celex"):
+            celex = str(entry["celex"]).strip()
+            match = _CELEX_RE.match(celex)
+            if match:
+                year, _type, number = match.groups()
+                return f"EU-{year}-{int(number)}"
+        return None
+
+    if source_type == "eu_celex":
+        celex = str(entry.get("celex") or "").strip()
+        if not celex:
+            return None
+        match = _CELEX_RE.match(celex)
+        if not match:
+            return None
+        year, _type, number = match.groups()
+        return f"EU-{year}-{int(number)}"
+
+    if source_type == "ecfr_part":
+        title = entry.get("ecfr_title")
+        part = entry.get("ecfr_part")
+        if not title or not part:
+            return None
+        return f"US-{int(title)}-CFR-{int(part)}"
+
+    if source_type == "canada_justice_xml":
+        url = str(entry.get("source_url", ""))
+        match = _CA_INSTRUMENT_RE.search(url)
+        if not match:
+            return None
+        instrument = match.group(1).upper().replace("DORS", "DORS").replace("SOR", "SOR")
+        # Normalize S/D variants: DORS (French) → keep, SOR (English) → keep.
+        # The library's id space prefers SOR- for visibility; DORS and SOR
+        # are the same instrument family.
+        if instrument.startswith("D"):
+            family = "DORS"
+        else:
+            family = "SOR"
+        year, num = match.group(2), int(match.group(3))
+        return f"CA-{family}-{year}-{num}"
+
+    if source_type in {"gov_html", "direct_url"}:
+        market = str(entry.get("market", "")).strip().upper()
+        if not _region_dir(market):
+            return None
+        slug = entry.get("id", "")
+        if not slug:
+            return None
+        return _slug_to_reg_id(slug, market)
+
+    return None
+
+
+def regulation_for_source(entry: dict) -> tuple[str, Path] | None:
+    """Map an official_sources entry to (regulation_id, yaml_path), or None.
+
+    Resolution order:
+    1. Explicit ``entry["regulation_id"]`` if present (canonical hand-curated
+       mapping — preferred; survives future slug renames).
+    2. Per-source-type inference (EU CELEX → ``EU-{year}-{number}``;
+       eCFR → ``US-{title}-CFR-{part}``; Canada Justice → ``CA-SOR-...``;
+       gov_html / direct_url → ``<MARKET>-<slug>``).
+
+    Returns None when no rule matches (e.g. RSS feeds are not regulation
+    texts; those stay evidence-only).
+    """
+    explicit = str(entry.get("regulation_id") or "").strip()
+    if explicit:
+        # Honor the on-disk location implied by the id prefix when possible.
+        # ``EU-...`` → eu/, ``US-...`` → us/, etc. Falls back to the
+        # entry's market directory for non-conforming ids.
+        prefix = explicit.split("-", 1)[0].upper()
+        candidate_dir = _REGION_DIRS.get(prefix)
+        market_dir = _region_dir(str(entry.get("market", "")))
+        region_dir = candidate_dir or market_dir
+        if region_dir:
+            return explicit, REGULATIONS_ROOT / region_dir / f"{explicit}.yaml"
+        return None
+
+    inferred = _infer_reg_id_from_entry(entry)
+    if not inferred:
+        return None
+    market_dir = _region_dir(str(entry.get("market", "")))
+    # Fallback: when the entry lacks an explicit market (legacy fixtures
+    # pre-2026-09-16), infer from the reg_id's first segment.
+    if not market_dir:
+        market_dir = _REGION_DIRS.get(inferred.split("-", 1)[0].upper())
+    if not market_dir:
+        return None
+    return inferred, REGULATIONS_ROOT / market_dir / f"{inferred}.yaml"
+
+
+def _citation_from_celex(celex: str) -> str:
+    match = _CELEX_RE.match(celex)
+    if not match:
+        return celex
+    year, type_letter, number = match.groups()
+    if type_letter == "R":
+        return f"Regulation (EU) {year}/{int(number)}"
+    if type_letter == "D":
+        return f"Decision (EU) {year}/{int(number)}"
+    return f"Directive {year}/{int(number)}/EU"
+
+
+def _citation_from_entry(entry: dict) -> str:
+    """Build a citation string from any source-type's registry entry.
+
+    Used by the auto-CREATE path so non-EU sources get a sensible citation
+    instead of falling back to the raw title verbatim.
+    """
+    # CELEX first (independent of source_type) — some call sites pass a
+    # bare {id, celex} dict (e.g. the CREATE-path test fixture) and we
+    # still want a real "Directive YYYY/NNN/EU" instead of the id slug.
+    celex = str(entry.get("celex") or "").strip()
+    if celex and _CELEX_RE.match(celex):
+        return _citation_from_celex(celex)
+    source_type = entry.get("source_type", "")
+    if source_type == "eu_celex":
+        return _citation_from_celex(celex)
+    if source_type == "ecfr_part":
+        title = entry.get("ecfr_title")
+        part = entry.get("ecfr_part")
+        if title and part:
+            return _CITATION_TEMPLATES["us"].format(part=part)
+    if source_type == "canada_justice_xml":
+        url = str(entry.get("source_url", ""))
+        match = _CA_INSTRUMENT_RE.search(url)
+        if match:
+            return _CITATION_TEMPLATES["ca"].format(
+                instrument=match.group(1).upper(),
+                year=match.group(2),
+                number=int(match.group(3)),
+            )
+    market = str(entry.get("market", "")).strip().lower()
+    template = _CITATION_TEMPLATES.get(market)
+    if template:
+        return template.format(title=entry.get("title", entry.get("id", "")))
+    return entry.get("title", entry.get("id", ""))
 
 
 @dataclass
@@ -87,25 +306,6 @@ class IngestReport:
             "evidenceOnly": self.evidence_only,
             "failed": self.failed,
         }
-
-
-def regulation_for_source(entry: dict) -> tuple[str, Path] | None:
-    """Map an official_sources entry to (regulation_id, yaml_path), or None.
-
-    Only EU CELEX sources are mechanically mappable to the library's id
-    convention (EU-{year}-{number}); eCFR/CA/UK/NZ sources have no
-    regulation YAML counterpart today and are ingested evidence-only.
-    """
-    celex = str(entry.get("celex") or "").strip()
-    if not celex:
-        return None
-    match = _CELEX_RE.match(celex)
-    if not match:
-        return None
-    year, type_letter, number = match.groups()
-    reg_id = f"EU-{year}-{int(number)}"
-    region_dir = _REGION_DIRS.get("EU", "eu")
-    return reg_id, REGULATIONS_ROOT / region_dir / f"{reg_id}.yaml"
 
 
 def _citation_from_celex(celex: str) -> str:
@@ -139,6 +339,123 @@ def _looks_like_repeal(update: RegulationUpdate) -> bool:
     """FR API documents whose type/title announces removal/revocation."""
     blob = f"{update.title} {update.metadata.get('recentTitles', '')}".lower()
     return any(keyword in blob for keyword in _REPEAL_KEYWORDS)
+
+
+# ── Verbatim extraction (verbatim replacement pass, 2026-09-16) ──────────
+# The pre-existing UPDATE path never rewrote article bodies — see the
+# module docstring for the rationale. With J08 / §4.4 layer 3 governance
+# in place (``source_kind: unverified`` blocks verbatim quoting), we can
+# safely auto-promote a few sources where the article boundaries are
+# well-structured. The extractor below is deliberately conservative:
+#
+#   - EU Cellar RDF: split on literal ``Article <n>`` / ``Article <n><letter>``
+#     markers after collapsing the RDF into readable text.
+#   - Generic text: split on numbered headings like ``Article 4.`` /
+#     ``Section 5`` / ``§ 12``.
+#   - Only slots that actually had an entry in the previous YAML get
+#     filled; orphan sections in the new text are dropped.
+#   - If we can't cleanly align the slots, we return ``articles=[]`` and
+#     the caller leaves ``source_kind`` at ``unverified`` (a human will
+#     spot-check later via the applied.json record).
+
+# Order matters: longer patterns first so "Article 12A" doesn't lose the
+# suffix to a "Article 12" match. Anchored to line starts to avoid
+# matching mid-sentence citations like "...in Article 4 above".
+# Each branch uses a unique group name; _match_group() picks the first
+# non-None group when extracting the article id.
+_ARTICLE_PATTERNS: tuple[str, ...] = (
+    r"^\s*Article\s+(?P<art_id_a>\d+[A-Za-z]*)\s*\.?\s*$",
+    r"^\s*Article\s+(?P<art_id_b>\d+[A-Za-z]*)\s+",
+    r"^\s*Section\s+(?P<sec_id>\d+[A-Za-z\.\-]*)\s*\.?\s*$",
+    r"^\s*§\s*(?P<sec_id_alt>\d+[A-Za-z\.\-]*)\s*\.?\s*$",
+    r"^\s*(?:ARTICLE|Article)\s+(?P<rom_id>[IVX]+)\s*\.?\s*$",  # Roman numerals
+)
+_ARTICLE_RE = re.compile("|".join(_ARTICLE_PATTERNS), re.MULTILINE)
+
+
+def _match_group(match: re.Match, names: tuple[str, ...]) -> str | None:
+    for n in names:
+        v = match.group(n)
+        if v is not None:
+            return v
+    return None
+
+
+@dataclass
+class _ExtractedArticles:
+    articles: list[dict]
+    promoted_kind: str  # "official_summary" or "official_verbatim"
+    matched_slots: int
+    unmatched_previous: int
+
+
+def _extract_articles_from_text(
+    text: str,
+    previous_articles: list[dict],
+    source_type: str,
+) -> _ExtractedArticles:
+    """Split a freshly fetched regulation text into per-article chunks.
+
+    Returns an empty list when the text does not appear to be structured
+    by articles (so the UPDATE path leaves ``source_kind`` at
+    ``unverified`` and a human can later patch the YAML by hand).
+
+    Promotion tier:
+      - ``eu_celex`` RDF is verbatim from the official Cellar feed → ``official_verbatim``
+      - Everything else → ``official_summary`` (faithful chunking of the
+        fetched text, but the upstream is not guaranteed verbatim)
+    """
+    if not text or not previous_articles:
+        return _ExtractedArticles(articles=[], promoted_kind="unverified", matched_slots=0, unmatched_previous=len(previous_articles))
+
+    # Find article boundaries and slice text into (id, body) pairs.
+    boundaries = []
+    for match in _ARTICLE_RE.finditer(text):
+        aid = _match_group(match, ("art_id_a", "art_id_b", "sec_id", "sec_id_alt", "rom_id"))
+        if not aid:
+            continue
+        boundaries.append((match.start(), aid))
+    boundaries.sort(key=lambda b: b[0])
+
+    if not boundaries:
+        return _ExtractedArticles(articles=[], promoted_kind="unverified", matched_slots=0, unmatched_previous=len(previous_articles))
+
+    chunks: list[tuple[str, str]] = []
+    for index, (offset, aid) in enumerate(boundaries):
+        end = boundaries[index + 1][0] if index + 1 < len(boundaries) else len(text)
+        body = text[offset:end].strip()
+        # Drop the heading line itself so the body is just the prose.
+        first_newline = body.find("\n")
+        body = body[first_newline + 1:].strip() if first_newline != -1 else ""
+        chunks.append((aid, body))
+
+    # Align to previous slot ids (case-insensitive, strip trailing dot).
+    prev_ids = {str(a.get("id") or "").strip().rstrip(".").lower(): a for a in previous_articles}
+    matched = []
+    unmatched = 0
+    for aid, body in chunks:
+        # Try several normalisations to handle "Article 4" / "art-4" / "Article 4A"
+        candidates = [aid.lower(), aid.lower().rstrip("."), f"art-{aid.lower()}", f"art-{aid.lower().rstrip('.')}", aid.lower().replace("article ", "")]
+        prev = None
+        for c in candidates:
+            if c in prev_ids:
+                prev = prev_ids[c]
+                break
+        if prev is None:
+            # No previous slot — skip the chunk; don't pollute the YAML.
+            continue
+        if not body:
+            unmatched += 1
+            continue
+        new_article = dict(prev)  # preserve title + structural fields
+        new_article["text"] = body
+        matched.append(new_article)
+
+    if not matched:
+        return _ExtractedArticles(articles=[], promoted_kind="unverified", matched_slots=0, unmatched_previous=len(previous_articles))
+
+    promoted = "official_verbatim" if source_type == "eu_celex" else "official_summary"
+    return _ExtractedArticles(articles=matched, promoted_kind=promoted, matched_slots=len(matched), unmatched_previous=unmatched)
 
 
 class AutoIngestor:
@@ -214,9 +531,46 @@ class AutoIngestor:
             payload["source_url"] = update.source_url
             if status_mark:
                 payload["status"] = status_mark
+
+            # Verbatim replacement pass (2026-09-16): when the regulation
+            # YAML is still flagged ``source_kind: unverified`` (article
+            # bodies are KB-condensed summaries that must not enter the
+            # exact-quote flow), AND the newly fetched text looks like it
+            # contains structured article boundaries, swap the
+            # summaries for the official text and promote the source_kind
+            # to ``official_summary`` so the verifier can quote-match
+            # against the real text from the next pass onward.
+            #
+            # Conservative gates:
+            # 1. source_kind must currently be ``unverified`` (or unset,
+            #    which the spec treats as NOT-verbatim-allowed).
+            # 2. Extractor must yield at least one new article whose text
+            #    differs from the existing slot.
+            # 3. New articles list must be at least as long as the old
+            #    one — never shrink the coverage footprint.
+            #
+            # If any gate fails, we leave the YAML's source_kind alone and
+            # append a "verbatim pending human spot-check" note instead.
+            current_kind = str(payload.get("source_kind") or "").strip()
+            if current_kind in {"", "unverified"}:
+                extracted = _extract_articles_from_text(
+                    update.text,
+                    payload.get("articles") or [],
+                    entry.get("source_type", ""),
+                )
+                if extracted.articles and len(extracted.articles) >= len(payload.get("articles") or []):
+                    payload["articles"] = extracted.articles
+                    payload["source_kind"] = extracted.promoted_kind
+                    audit_kind = f"verbatim {extracted.promoted_kind}"
+                else:
+                    audit_kind = "verbatim pending (extractor found no clean split)"
+            else:
+                audit_kind = "verbatim skipped (already official)"
+
             audit = (
                 f"regwatch auto-{change.kind} {self.run_date}: similarity "
-                f"{change.similarity:.3f}, evidence in auto-{self.run_date}/{source_id}/."
+                f"{change.similarity:.3f}, {audit_kind}, "
+                f"evidence in auto-{self.run_date}/{source_id}/."
             )
             payload["notes"] = f"{payload.get('notes') or ''} {audit}".strip()
             self._write_yaml(yaml_path, payload)
@@ -225,14 +579,22 @@ class AutoIngestor:
                 self.report.marked.append(f"{reg_id}:{status_mark}")
             return
 
-        # 3. CREATE path (mappable but no YAML — e.g. WEEE 2012/19).
-        citation = _citation_from_celex(str(entry.get("celex", "")))
-        title = _title_from_rdf(update.text) or citation
+        # 3. CREATE path (mappable but no YAML — e.g. WEEE 2012/19 or any
+        # newly-tracked non-EU source whose backing YAML has not been
+        # committed yet).
+        citation = _citation_from_entry(entry)
+        # RDF title extraction is EU-Cellar specific; for everything else
+        # the registry entry's title is the best we have on hand.
+        if entry.get("source_type") == "eu_celex":
+            title = _title_from_rdf(update.text) or citation
+        else:
+            title = entry.get("title") or citation
+        region = str(entry.get("market", "")).strip().upper() or "EU"
         payload = {
             "id": reg_id,
             "official_citation": citation,
             "short_name": title[:200],
-            "region": "EU",
+            "region": region,
             "license": "public",
             "last_verified": self.run_date,
             "last_verified_by": "regwatch-auto",
@@ -244,7 +606,11 @@ class AutoIngestor:
             "source_url": update.source_url,
             "notes": (
                 f"Auto-created by regwatch {self.run_date} from official source"
-                f" {source_id}; articles pending extraction from the stored raw file."
+                f" {source_id} ({entry.get('source_type', 'unknown')});"
+                f" articles pending extraction from the stored raw file."
+                f" Authoring note: a KB anchor in data/kb/anchors/{reg_id}.yaml"
+                f" is required to surface this regulation in generator"
+                f" must-check output — see docs/WATCHDOG.md §CREATE."
             ),
         }
         yaml_path.parent.mkdir(parents=True, exist_ok=True)

@@ -1,110 +1,235 @@
 [
   {
     "id": "eu-2023-988-general-product-safety",
+    "regulation_id": "EU-2023-988",
     "market": "EU",
     "title": "Regulation (EU) 2023/988 on general product safety",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32023R0988",
     "celex": "32023R0988",
-    "files": ["raw/eu/eu-2023-988-general-product-safety.rdf", "raw/eu/eu-2023-988-general-product-safety.xhtml"],
-    "product_categories": ["general_consumer_products", "children_products", "electronics", "toys"],
-    "regulatory_types": ["product_safety", "market_surveillance", "documentation"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/reg/2023/988/oj",
+    "human_view_status": "waf_challenge_temporary",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过；偶发 WAF challenge 临时态。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2023-988-general-product-safety.rdf",
+      "raw/eu/eu-2023-988-general-product-safety.xhtml"
+    ],
+    "product_categories": [
+      "general_consumer_products",
+      "children_products",
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "market_surveillance",
+      "documentation"
+    ],
     "why_added": "Core EU general product-safety framework for online and offline consumer products."
   },
   {
     "id": "eu-2009-48-toy-safety",
+    "regulation_id": "EU-2009-48",
     "market": "EU",
     "title": "Directive 2009/48/EC on the safety of toys",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32009L0048",
     "celex": "32009L0048",
-    "files": ["raw/eu/eu-2009-48-toy-safety.rdf", "raw/eu/eu-2009-48-toy-safety.xhtml"],
-    "product_categories": ["toys", "children_products"],
-    "regulatory_types": ["product_safety", "chemical", "mechanical", "testing"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/dir/2009/48/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2009-48-toy-safety.rdf",
+      "raw/eu/eu-2009-48-toy-safety.xhtml"
+    ],
+    "product_categories": [
+      "toys",
+      "children_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "chemical",
+      "mechanical",
+      "testing"
+    ],
     "why_added": "Primary EU toy safety directive for mechanical, chemical, warning, and conformity obligations."
   },
   {
     "id": "eu-2011-65-rohs",
+    "regulation_id": "EU-2011-65",
     "market": "EU",
     "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32011L0065",
     "celex": "32011L0065",
-    "files": ["raw/eu/eu-2011-65-rohs.rdf", "raw/eu/eu-2011-65-rohs.xhtml"],
-    "product_categories": ["electronics", "electrical_equipment"],
-    "regulatory_types": ["chemical", "conformity", "documentation"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/dir/2011/65/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2011-65-rohs.rdf",
+      "raw/eu/eu-2011-65-rohs.xhtml"
+    ],
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "conformity",
+      "documentation"
+    ],
     "why_added": "Core EU hazardous-substance restriction for electrical and electronic products."
   },
   {
     "id": "eu-2012-19-weee",
+    "regulation_id": "EU-2012-19",
     "market": "EU",
     "title": "Directive 2012/19/EU on waste electrical and electronic equipment",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32012L0019",
     "celex": "32012L0019",
-    "files": ["raw/eu/eu-2012-19-weee.rdf", "raw/eu/eu-2012-19-weee.xhtml"],
-    "product_categories": ["electronics", "waste_electrical"],
-    "regulatory_types": ["waste", "sustainability", "labelling"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/dir/2012/19/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2012-19-weee.rdf",
+      "raw/eu/eu-2012-19-weee.xhtml"
+    ],
+    "product_categories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "waste",
+      "sustainability",
+      "labelling"
+    ],
     "why_added": "EU WEEE producer responsibility and waste electrical-equipment obligations."
   },
   {
     "id": "eu-2014-53-radio-equipment",
+    "regulation_id": "EU-2014-53",
     "market": "EU",
     "title": "Directive 2014/53/EU on radio equipment",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32014L0053",
     "celex": "32014L0053",
-    "files": ["raw/eu/eu-2014-53-radio-equipment.rdf", "raw/eu/eu-2014-53-radio-equipment.xhtml"],
-    "product_categories": ["electronics", "radio"],
-    "regulatory_types": ["radio", "emc", "conformity"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2014-53-radio-equipment.rdf",
+      "raw/eu/eu-2014-53-radio-equipment.xhtml"
+    ],
+    "product_categories": [
+      "electronics",
+      "radio"
+    ],
+    "regulatory_types": [
+      "radio",
+      "emc",
+      "conformity"
+    ],
     "why_added": "EU RED coverage for Wi-Fi, Bluetooth, connected, and radio-enabled products."
   },
   {
     "id": "eu-2014-30-emc",
+    "regulation_id": "EU-2014-30",
     "market": "EU",
     "title": "Directive 2014/30/EU on electromagnetic compatibility",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32014L0030",
     "celex": "32014L0030",
-    "files": ["raw/eu/eu-2014-30-emc.rdf", "raw/eu/eu-2014-30-emc.xhtml"],
-    "product_categories": ["electronics", "electrical_equipment"],
-    "regulatory_types": ["emc", "conformity", "testing"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/dir/2014/30/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2014-30-emc.rdf",
+      "raw/eu/eu-2014-30-emc.xhtml"
+    ],
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "emc",
+      "conformity",
+      "testing"
+    ],
     "why_added": "EU EMC conformity baseline for electronic and electrical equipment."
   },
   {
     "id": "eu-2014-35-low-voltage",
+    "regulation_id": "EU-2014-35",
     "market": "EU",
     "title": "Directive 2014/35/EU on low voltage electrical equipment",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32014L0035",
     "celex": "32014L0035",
-    "files": ["raw/eu/eu-2014-35-low-voltage.rdf", "raw/eu/eu-2014-35-low-voltage.xhtml"],
-    "product_categories": ["electronics", "electrical_equipment"],
-    "regulatory_types": ["product_safety", "conformity", "testing"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/dir/2014/35/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2014-35-low-voltage.rdf",
+      "raw/eu/eu-2014-35-low-voltage.xhtml"
+    ],
+    "product_categories": [
+      "electronics",
+      "electrical_equipment"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "conformity",
+      "testing"
+    ],
     "why_added": "EU electrical safety baseline for low-voltage equipment."
   },
   {
     "id": "eu-2019-1020-market-surveillance",
+    "regulation_id": "EU-2019-1020",
     "market": "EU",
     "title": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
     "channel": "Publications Office of the European Union",
     "source_type": "eu_celex",
     "source_url": "https://publications.europa.eu/resource/celex/32019R1020",
     "celex": "32019R1020",
-    "files": ["raw/eu/eu-2019-1020-market-surveillance.rdf", "raw/eu/eu-2019-1020-market-surveillance.xhtml"],
-    "product_categories": ["general_consumer_products", "electronics", "toys"],
-    "regulatory_types": ["market_surveillance", "documentation", "conformity"],
+    "human_view_url": "https://eur-lex.europa.eu/eli/reg/2019/1020/oj",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Cellar RDF via Accept: application/rdf+xml",
+    "notes": "EUR-Lex 整站 AWS WAF 挑战，Chrome 多数能过。Cellar 资源 URI 是 watchdog 抓取端点（走 Accept: application/rdf+xml 信任路径）。",
+    "files": [
+      "raw/eu/eu-2019-1020-market-surveillance.rdf",
+      "raw/eu/eu-2019-1020-market-surveillance.xhtml"
+    ],
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "market_surveillance",
+      "documentation",
+      "conformity"
+    ],
     "why_added": "EU market surveillance and economic-operator compliance context."
   },
   {
     "id": "us-16-cfr-1307-phthalates",
+    "regulation_id": "US-16-CFR-1307",
     "market": "US",
     "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
     "channel": "eCFR API (2026-05-21)",
@@ -113,13 +238,27 @@
     "ecfr_date": "2026-05-21",
     "ecfr_title": 16,
     "ecfr_part": "1307",
-    "files": ["raw/us/US_16_CFR_Part_1307_phthalates.xml"],
-    "product_categories": ["toys", "children_products", "chemicals"],
-    "regulatory_types": ["chemical", "product_safety"],
+    "human_view_url": "https://www.ecfr.gov/current/title-16/part-1307",
+    "human_view_status": "anti_bot",
+    "watchdog_actual_fetch": "federalregister.gov API (per attrax plan 2026-09-14 J08 / §4.4 layer 3)",
+    "notes": "eCFR 整站 Cloudflare 反爬，real Chrome 多数能过；watchdog 走 federalregister 开放 API 替代（CLAUDE.md 已知）。section 级同样反爬。备选 GPO govinfo (https://www.govinfo.gov/app/details/CFR-YYYY-title16-vol2/sec-XXX) — JS SPA 需要 JS 渲染。",
+    "files": [
+      "raw/us/US_16_CFR_Part_1307_phthalates.xml"
+    ],
+    "product_categories": [
+      "toys",
+      "children_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ],
     "why_added": "US CPSC phthalate restrictions for toys and child-care articles."
   },
   {
     "id": "us-16-cfr-1630-carpets-rugs",
+    "regulation_id": "US-16-CFR-1630",
     "market": "US",
     "title": "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
     "channel": "eCFR API (2026-05-21)",
@@ -128,13 +267,27 @@
     "ecfr_date": "2026-05-21",
     "ecfr_title": 16,
     "ecfr_part": "1630",
-    "files": ["raw/us/US_16_CFR_Part_1630_carpets_rugs.xml"],
-    "product_categories": ["textiles", "home_goods", "furniture"],
-    "regulatory_types": ["flammability", "testing"],
+    "human_view_url": "https://www.ecfr.gov/current/title-16/part-1630",
+    "human_view_status": "anti_bot",
+    "watchdog_actual_fetch": "federalregister.gov API (per attrax plan 2026-09-14 J08 / §4.4 layer 3)",
+    "notes": "eCFR 整站 Cloudflare 反爬，real Chrome 多数能过；watchdog 走 federalregister 开放 API 替代（CLAUDE.md 已知）。section 级同样反爬。备选 GPO govinfo (https://www.govinfo.gov/app/details/CFR-YYYY-title16-vol2/sec-XXX) — JS SPA 需要 JS 渲染。",
+    "files": [
+      "raw/us/US_16_CFR_Part_1630_carpets_rugs.xml"
+    ],
+    "product_categories": [
+      "textiles",
+      "home_goods",
+      "furniture"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "testing"
+    ],
     "why_added": "US flammability standard for carpets and rugs."
   },
   {
     "id": "us-16-cfr-1631-small-carpets-rugs",
+    "regulation_id": "US-16-CFR-1631",
     "market": "US",
     "title": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
     "channel": "eCFR API (2026-05-21)",
@@ -143,13 +296,27 @@
     "ecfr_date": "2026-05-21",
     "ecfr_title": 16,
     "ecfr_part": "1631",
-    "files": ["raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"],
-    "product_categories": ["textiles", "home_goods", "furniture"],
-    "regulatory_types": ["flammability", "testing"],
+    "human_view_url": "https://www.ecfr.gov/current/title-16/part-1631",
+    "human_view_status": "anti_bot",
+    "watchdog_actual_fetch": "federalregister.gov API (per attrax plan 2026-09-14 J08 / §4.4 layer 3)",
+    "notes": "eCFR 整站 Cloudflare 反爬，real Chrome 多数能过；watchdog 走 federalregister 开放 API 替代（CLAUDE.md 已知）。section 级同样反爬。备选 GPO govinfo (https://www.govinfo.gov/app/details/CFR-YYYY-title16-vol2/sec-XXX) — JS SPA 需要 JS 渲染。",
+    "files": [
+      "raw/us/US_16_CFR_Part_1631_small_carpets_rugs.xml"
+    ],
+    "product_categories": [
+      "textiles",
+      "home_goods",
+      "furniture"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "testing"
+    ],
     "why_added": "US flammability standard for small carpets and rugs."
   },
   {
     "id": "us-16-cfr-1633-mattresses-open-flame",
+    "regulation_id": "US-16-CFR-1633",
     "market": "US",
     "title": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
     "channel": "eCFR API (2026-05-21)",
@@ -158,13 +325,27 @@
     "ecfr_date": "2026-05-21",
     "ecfr_title": 16,
     "ecfr_part": "1633",
-    "files": ["raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"],
-    "product_categories": ["furniture", "home_goods", "textiles"],
-    "regulatory_types": ["flammability", "testing"],
+    "human_view_url": "https://www.ecfr.gov/current/title-16/part-1633",
+    "human_view_status": "anti_bot",
+    "watchdog_actual_fetch": "federalregister.gov API (per attrax plan 2026-09-14 J08 / §4.4 layer 3)",
+    "notes": "eCFR 整站 Cloudflare 反爬，real Chrome 多数能过；watchdog 走 federalregister 开放 API 替代（CLAUDE.md 已知）。section 级同样反爬。备选 GPO govinfo (https://www.govinfo.gov/app/details/CFR-YYYY-title16-vol2/sec-XXX) — JS SPA 需要 JS 渲染。",
+    "files": [
+      "raw/us/US_16_CFR_Part_1633_mattresses_open_flame.xml"
+    ],
+    "product_categories": [
+      "furniture",
+      "home_goods",
+      "textiles"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "testing"
+    ],
     "why_added": "US open-flame flammability standard for mattress sets."
   },
   {
     "id": "us-16-cfr-1700-poison-prevention-packaging",
+    "regulation_id": "US-16-CFR-1700",
     "market": "US",
     "title": "16 CFR Part 1700, Poison Prevention Packaging",
     "channel": "eCFR API (2026-05-21)",
@@ -173,153 +354,626 @@
     "ecfr_date": "2026-05-21",
     "ecfr_title": 16,
     "ecfr_part": "1700",
-    "files": ["raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"],
-    "product_categories": ["packaging", "children_products", "chemicals"],
-    "regulatory_types": ["packaging", "product_safety", "testing"],
+    "human_view_url": "https://www.ecfr.gov/current/title-16/part-1700",
+    "human_view_status": "anti_bot",
+    "watchdog_actual_fetch": "federalregister.gov API (per attrax plan 2026-09-14 J08 / §4.4 layer 3)",
+    "notes": "eCFR 整站 Cloudflare 反爬，real Chrome 多数能过；watchdog 走 federalregister 开放 API 替代（CLAUDE.md 已知）。section 级同样反爬。备选 GPO govinfo (https://www.govinfo.gov/app/details/CFR-YYYY-title16-vol2/sec-XXX) — JS SPA 需要 JS 渲染。",
+    "files": [
+      "raw/us/US_16_CFR_Part_1700_poison_prevention_packaging.xml"
+    ],
+    "product_categories": [
+      "packaging",
+      "children_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "packaging",
+      "product_safety",
+      "testing"
+    ],
     "why_added": "US child-resistant packaging requirements for hazardous household substances."
   },
   {
+    "id": "us-cpsc-recalls-rss",
+    "market": "US",
+    "title": "CPSC Recalls (RSS feed)",
+    "channel": "CPSC Newsroom RSS",
+    "source_type": "cpsc_rss",
+    "source_url": "https://www.cpsc.gov/Newsroom/RSS/Recalls",
+    "human_view_url": "https://www.cpsc.gov/Recalls",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "RSS 2.0 / Atom feed (collectors/us_cpsc.py)",
+    "notes": "Signal stream — recall activity for product categories we cover. Not a regulation text source; evidence-only (no regulation_id mapping). Items sorted by document_number so feed re-ordering does not read as a content change.",
+    "files": [],
+    "product_categories": [
+      "toys",
+      "electronics",
+      "children_products",
+      "battery",
+      "appliance",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "recall",
+      "product_safety"
+    ],
+    "why_added": "US CPSC recall announcements — early warning for product-safety incidents affecting our covered categories."
+  },
+  {
     "id": "ca-consumer-chemicals-containers-regulations-2001",
+    "regulation_id": "CA-SOR-2001-269",
     "market": "CA",
     "title": "Consumer Chemicals and Containers Regulations, 2001",
     "channel": "Justice Laws Website, Government of Canada",
     "source_type": "canada_justice_xml",
     "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2001-269.xml",
-    "files": ["raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"],
-    "product_categories": ["chemicals", "packaging", "general_consumer_products"],
-    "regulatory_types": ["chemical", "labelling", "packaging", "product_safety"],
+    "human_view_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2001-269/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "XML 端点（auto_ingest 写死 .xml 后缀）",
+    "notes": "服务器只返 text/xml 给 .xml 端点，watchdog 解析 OK；人类浏览器需走 HTML 端点（去 .xml 加 /）才能渲染。",
+    "files": [
+      "raw/ca/CA_consumer_chemicals_containers_regulations_2001.xml"
+    ],
+    "product_categories": [
+      "chemicals",
+      "packaging",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "labelling",
+      "packaging",
+      "product_safety"
+    ],
     "why_added": "Canada consumer chemical hazard classification, container, and labelling obligations."
   },
   {
     "id": "ca-surface-coating-materials-regulations",
+    "regulation_id": "CA-SOR-2016-193",
     "market": "CA",
     "title": "Surface Coating Materials Regulations",
     "channel": "Justice Laws Website, Government of Canada",
     "source_type": "canada_justice_xml",
     "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-193.xml",
-    "files": ["raw/ca/CA_surface_coating_materials_regulations.xml"],
-    "product_categories": ["children_products", "toys", "chemicals"],
-    "regulatory_types": ["chemical", "product_safety"],
+    "human_view_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-193/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "XML 端点（auto_ingest 写死 .xml 后缀）",
+    "notes": "服务器只返 text/xml 给 .xml 端点，watchdog 解析 OK；人类浏览器需走 HTML 端点（去 .xml 加 /）才能渲染。",
+    "files": [
+      "raw/ca/CA_surface_coating_materials_regulations.xml"
+    ],
+    "product_categories": [
+      "children_products",
+      "toys",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ],
     "why_added": "Canada coating-material heavy-metal and applied coating safety coverage."
   },
   {
     "id": "ca-phthalates-regulations",
+    "regulation_id": "CA-SOR-2016-188",
     "market": "CA",
     "title": "Phthalates Regulations",
     "channel": "Justice Laws Website, Government of Canada",
     "source_type": "canada_justice_xml",
     "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-188.xml",
-    "files": ["raw/ca/CA_phthalates_regulations.xml"],
-    "product_categories": ["toys", "children_products", "chemicals"],
-    "regulatory_types": ["chemical", "product_safety"],
+    "human_view_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-188/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "XML 端点（auto_ingest 写死 .xml 后缀）",
+    "notes": "服务器只返 text/xml 给 .xml 端点，watchdog 解析 OK；人类浏览器需走 HTML 端点（去 .xml 加 /）才能渲染。",
+    "files": [
+      "raw/ca/CA_phthalates_regulations.xml"
+    ],
+    "product_categories": [
+      "toys",
+      "children_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ],
     "why_added": "Canada phthalate restrictions for toys and child-care articles."
   },
   {
     "id": "ca-childrens-sleepwear-regulations",
+    "regulation_id": "CA-SOR-2016-169",
     "market": "CA",
     "title": "Children's Sleepwear Regulations",
     "channel": "Justice Laws Website, Government of Canada",
     "source_type": "canada_justice_xml",
     "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2016-169.xml",
-    "files": ["raw/ca/CA_childrens_sleepwear_regulations.xml"],
-    "product_categories": ["children_products", "apparel", "textiles"],
-    "regulatory_types": ["flammability", "labelling", "testing"],
+    "human_view_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-169/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "XML 端点（auto_ingest 写死 .xml 后缀）",
+    "notes": "服务器只返 text/xml 给 .xml 端点，watchdog 解析 OK；人类浏览器需走 HTML 端点（去 .xml 加 /）才能渲染。",
+    "files": [
+      "raw/ca/CA_childrens_sleepwear_regulations.xml"
+    ],
+    "product_categories": [
+      "children_products",
+      "apparel",
+      "textiles"
+    ],
+    "regulatory_types": [
+      "flammability",
+      "labelling",
+      "testing"
+    ],
     "why_added": "Canada children's sleepwear flammability and labelling coverage."
   },
   {
     "id": "ca-consumer-products-containing-lead-regulations",
+    "regulation_id": "CA-SOR-2018-83",
     "market": "CA",
     "title": "Consumer Products Containing Lead Regulations",
     "channel": "Justice Laws Website, Government of Canada",
     "source_type": "canada_justice_xml",
     "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml",
-    "files": ["raw/ca/CA_consumer_products_containing_lead_regulations.xml"],
-    "product_categories": ["children_products", "toys", "general_consumer_products", "chemicals"],
-    "regulatory_types": ["chemical", "product_safety"],
+    "human_view_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-83/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "XML 端点（auto_ingest 写死 .xml 后缀）",
+    "notes": "服务器只返 text/xml 给 .xml 端点，watchdog 解析 OK；人类浏览器需走 HTML 端点（去 .xml 加 /）才能渲染。",
+    "files": [
+      "raw/ca/CA_consumer_products_containing_lead_regulations.xml"
+    ],
+    "product_categories": [
+      "children_products",
+      "toys",
+      "general_consumer_products",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "product_safety"
+    ],
     "why_added": "Canada lead restrictions for affected consumer products."
   },
   {
     "id": "ca-corded-window-coverings-regulations",
+    "regulation_id": "CA-SOR-2019-97",
     "market": "CA",
     "title": "Corded Window Coverings Regulations",
     "channel": "Justice Laws Website, Government of Canada",
     "source_type": "canada_justice_xml",
     "source_url": "https://laws-lois.justice.gc.ca/eng/XML/SOR-2019-97.xml",
-    "files": ["raw/ca/CA_corded_window_coverings_regulations.xml"],
-    "product_categories": ["children_products", "home_goods"],
-    "regulatory_types": ["product_safety", "mechanical", "labelling"],
+    "human_view_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2019-97/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "XML 端点（auto_ingest 写死 .xml 后缀）",
+    "notes": "服务器只返 text/xml 给 .xml 端点，watchdog 解析 OK；人类浏览器需走 HTML 端点（去 .xml 加 /）才能渲染。",
+    "files": [
+      "raw/ca/CA_corded_window_coverings_regulations.xml"
+    ],
+    "product_categories": [
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical",
+      "labelling"
+    ],
     "why_added": "Canada strangulation-risk and product-information requirements for corded window coverings."
   },
   {
     "id": "uk-weee-regulations-guidance",
+    "regulation_id": "UK-WEEE",
     "market": "UK",
     "title": "Regulations: waste electrical and electronic equipment",
     "channel": "GOV.UK",
     "source_type": "gov_html",
     "source_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment",
-    "files": ["raw/uk/UK_weee_regulations_guidance.html"],
-    "product_categories": ["electronics", "waste_electrical"],
-    "regulatory_types": ["waste", "sustainability", "documentation"],
+    "human_view_url": "https://www.gov.uk/guidance/regulations-waste-electrical-and-electronic-equipment",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "",
+    "files": [
+      "raw/uk/UK_weee_regulations_guidance.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "waste_electrical"
+    ],
+    "regulatory_types": [
+      "waste",
+      "sustainability",
+      "documentation"
+    ],
     "why_added": "UK WEEE obligations for producers, distributors, and sellers of electrical goods."
   },
   {
     "id": "uk-packaging-epr-who-is-affected",
+    "regulation_id": "UK-Packaging-EPR",
     "market": "UK",
     "title": "Extended producer responsibility for packaging: who is affected and what to do",
     "channel": "GOV.UK",
     "source_type": "gov_html",
     "source_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do",
-    "files": ["raw/uk/UK_packaging_epr_who_is_affected.html"],
-    "product_categories": ["packaging", "general_consumer_products"],
-    "regulatory_types": ["packaging", "sustainability", "waste"],
+    "human_view_url": "https://www.gov.uk/guidance/extended-producer-responsibility-for-packaging-who-is-affected-and-what-to-do",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "",
+    "files": [
+      "raw/uk/UK_packaging_epr_who_is_affected.html"
+    ],
+    "product_categories": [
+      "packaging",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "packaging",
+      "sustainability",
+      "waste"
+    ],
     "why_added": "UK packaging EPR scope and action obligations for importers and sellers."
   },
   {
     "id": "uk-reach-compliance-guidance",
+    "regulation_id": "UK-REACH",
     "market": "UK",
     "title": "How to comply with REACH chemical regulations",
     "channel": "GOV.UK",
     "source_type": "gov_html",
     "source_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations",
-    "files": ["raw/uk/UK_reach_compliance_guidance.html"],
-    "product_categories": ["chemicals", "general_consumer_products", "electronics", "toys"],
-    "regulatory_types": ["chemical", "documentation"],
+    "human_view_url": "https://www.gov.uk/guidance/how-to-comply-with-reach-chemical-regulations",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "",
+    "files": [
+      "raw/uk/UK_reach_compliance_guidance.html"
+    ],
+    "product_categories": [
+      "chemicals",
+      "general_consumer_products",
+      "electronics",
+      "toys"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "documentation"
+    ],
     "why_added": "UK REACH compliance guidance for chemical duties after EU exit."
   },
   {
     "id": "uk-hse-svhc-overview",
+    "regulation_id": "UK-SVHC",
     "market": "UK",
     "title": "Substances of very high concern overview",
     "channel": "Health and Safety Executive",
     "source_type": "gov_html",
     "source_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm",
-    "files": ["raw/uk/UK_hse_svhc_overview.html"],
-    "product_categories": ["chemicals", "general_consumer_products"],
-    "regulatory_types": ["chemical", "documentation"],
+    "human_view_url": "https://www.hse.gov.uk/REACH/svhc-overview.htm",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "",
+    "files": [
+      "raw/uk/UK_hse_svhc_overview.html"
+    ],
+    "product_categories": [
+      "chemicals",
+      "general_consumer_products"
+    ],
+    "regulatory_types": [
+      "chemical",
+      "documentation"
+    ],
     "why_added": "UK SVHC context for chemical communication and article obligations."
   },
   {
     "id": "nz-product-safety-standards-2005",
+    "regulation_id": "NZ-PS-Toys",
     "market": "NZ",
     "title": "Children's toy standard",
     "channel": "Product Safety New Zealand",
     "source_type": "direct_url",
     "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/",
-    "files": ["raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"],
-    "product_categories": ["toys", "children_products"],
-    "regulatory_types": ["product_safety", "mechanical", "testing"],
+    "human_view_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（direct_url collector）",
+    "notes": "",
+    "files": [
+      "raw/nz/NZ_product_safety_standards_childrens_toys_2005.html"
+    ],
+    "product_categories": [
+      "toys",
+      "children_products"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical",
+      "testing"
+    ],
     "why_added": "New Zealand toy product-safety standard coverage."
   },
   {
     "id": "nz-product-safety-standards-household-cots-2016",
+    "regulation_id": "NZ-PS-Cots",
     "market": "NZ",
     "title": "Household cot standard",
     "channel": "Product Safety New Zealand",
     "source_type": "direct_url",
     "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard",
-    "files": ["raw/nz/NZ_product_safety_standards_household_cots_2016.html"],
-    "product_categories": ["children_products", "home_goods"],
-    "regulatory_types": ["product_safety", "mechanical", "testing"],
+    "human_view_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（direct_url collector）",
+    "notes": "",
+    "files": [
+      "raw/nz/NZ_product_safety_standards_household_cots_2016.html"
+    ],
+    "product_categories": [
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "mechanical",
+      "testing"
+    ],
     "why_added": "New Zealand household cot safety coverage for baby and nursery products."
+  },
+  {
+    "id": "eu-safety-gate-alerts",
+    "market": "EU",
+    "title": "Safety Gate (RAPEX) weekly notifications",
+    "channel": "European Commission Safety Gate",
+    "source_type": "safety_gate",
+    "source_url": "https://ec.europa.eu/safety-gate-alerts/api/v1/notifs/?format=json&language=en",
+    "human_view_url": "https://ec.europa.eu/safety-gate/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "Safety Gate JSON API (collectors/safety_gate.py)",
+    "notes": "Signal stream — weekly dangerous-product notifications. Not a regulation text source; evidence-only (no regulation_id mapping). Filtered to product categories we cover (electronics / toys / children / cosmetic / battery / chemical).",
+    "files": [],
+    "product_categories": [
+      "toys",
+      "electronics",
+      "children_products",
+      "battery",
+      "cosmetic",
+      "chemicals"
+    ],
+    "regulatory_types": [
+      "recall",
+      "product_safety",
+      "market_surveillance"
+    ],
+    "why_added": "EU weekly RAPEX notifications — early warning for dangerous products across all covered categories."
+  },
+  {
+    "id": "cn-samr-product-recall",
+    "regulation_id": "CN-SAMR-Recalls",
+    "market": "CN",
+    "title": "国家市场监督管理总局 召回信息",
+    "channel": "State Administration for Market Regulation (SAMR)",
+    "source_type": "gov_html",
+    "source_url": "https://www.samr.gov.cn/cjcx/zhxx/cxjj/",
+    "human_view_url": "https://www.samr.gov.cn/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector，去除导航与动态壳）",
+    "notes": "国家市场监督管理总局缺陷产品召回栏目。CN 第一个真正自动跟踪的官方源 — 之前 GB 私有标准只有 KB 摘要。",
+    "files": [
+      "raw/cn/CN_samr_product_recall.html"
+    ],
+    "product_categories": [
+      "general_consumer_products",
+      "electronics",
+      "children_products",
+      "appliance",
+      "home_goods",
+      "battery"
+    ],
+    "regulatory_types": [
+      "recall",
+      "product_safety",
+      "market_surveillance"
+    ],
+    "why_added": "中国缺陷产品召回中心 — CN 第一个非 EU Cellar 风格的官方源，自动跟踪让 CN 法规更新真正动起来。"
+  },
+  {
+    "id": "cn-cnca-ccc-updates",
+    "regulation_id": "CN-CNCA-CCC",
+    "market": "CN",
+    "title": "中国国家认证认可监督管理委员会 CCC 公告",
+    "channel": "Certification and Accreditation Administration of China (CNCA)",
+    "source_type": "gov_html",
+    "source_url": "https://www.cnca.gov.cn/cmservice/cnca/notice/list.html",
+    "human_view_url": "https://www.cnca.gov.cn/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "CCC 实施规则修订公告、目录调整公告。CN 电子电器核心入口。",
+    "files": [
+      "raw/cn/CN_cnca_ccc_updates.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "battery",
+      "3c",
+      "home_goods",
+      "children_products"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "documentation",
+      "scope_classification"
+    ],
+    "why_added": "CCC 实施规则修订与目录扩展公告 — 决定哪些 SKU 必须做 CCC、测试依据 GB 版本号。"
+  },
+  {
+    "id": "jp-meti-pse-list",
+    "regulation_id": "JP-METI-PSE",
+    "market": "JP",
+    "title": "METI 電気用品安全法 (PSE) 適用範囲",
+    "channel": "Ministry of Economy, Trade and Industry (METI)",
+    "source_type": "gov_html",
+    "source_url": "https://www.meti.go.jp/policy/consumer_appliance/pse/index.html",
+    "human_view_url": "https://www.meti.go.jp/policy/consumer_appliance/pse/index.html",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "PSE 菱形 / 圆形标识适用范围与锂电池、电安法修订公告。JP 第一个 watchdog 源。",
+    "files": [
+      "raw/jp/JP_meti_pse_list.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "battery",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "conformity",
+      "scope_classification"
+    ],
+    "why_added": "JP 电气用品安全法 (PSE) 适用范围 + 锂电池规则 — 覆盖 JP electronics/appliance/battery 三大盲点品类。"
+  },
+  {
+    "id": "kr-motie-kc-safety",
+    "regulation_id": "KR-MOTIE-KC",
+    "market": "KR",
+    "title": "KC 안전확인 (Safety Confirmation) — MOTIE",
+    "channel": "Ministry of Trade, Industry and Energy (MOTIE)",
+    "source_type": "gov_html",
+    "source_url": "https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do",
+    "human_view_url": "https://www.motie.go.kr/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "KC 安全确认目录公告 — 决定哪些 SKU 必须 KC。KR 第一个 watchdog 源。",
+    "files": [
+      "raw/kr/KR_motie_kc_safety.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "battery",
+      "children_products",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "product_safety",
+      "conformity",
+      "scope_classification"
+    ],
+    "why_added": "KR KC 安全确认 — 决定韩国强制目录 + 测试标准更新。"
+  },
+  {
+    "id": "ae-moiat-ecas",
+    "regulation_id": "AE-MoIAT-ECAS",
+    "market": "AE",
+    "title": "MoIAT ECAS 合格评定计划公告",
+    "channel": "Ministry of Industry and Advanced Technology (MoIAT)",
+    "source_type": "gov_html",
+    "source_url": "https://moiat.gov.ae/en/services/standardization-and-conformity/ecas",
+    "human_view_url": "https://moiat.gov.ae/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "ECAS 公告 + EQM 能效标签计划 — AE/UAE 第一个 watchdog 源。",
+    "files": [
+      "raw/ae/AE_moiat_ecas.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "battery",
+      "home_goods"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "scope_classification",
+      "labelling"
+    ],
+    "why_added": "UAE ECAS + EQM 能效标签 — 决定海湾国家电子产品准入。"
+  },
+  {
+    "id": "sa-saso-news",
+    "regulation_id": "SA-SASO-News",
+    "market": "SA",
+    "title": "SASO 标准与 SABER 公告",
+    "channel": "Saudi Standards, Metrology and Quality Organization (SASO)",
+    "source_type": "gov_html",
+    "source_url": "https://www.saso.gov.sa/en/news-and-events/news/",
+    "human_view_url": "https://www.saso.gov.sa/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "SASO 标准发布 + SALEEM/SABER 类目公告。SA 第一个 watchdog 源。",
+    "files": [
+      "raw/sa/SA_saso_news.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "textiles",
+      "home_goods",
+      "children_products",
+      "cosmetic"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "scope_classification",
+      "labelling"
+    ],
+    "why_added": "SA SASO 标准与 SALEEM 类目 — 决定沙特强制目录。"
+  },
+  {
+    "id": "br-inmetro-novidades",
+    "regulation_id": "BR-INMETRO",
+    "market": "BR",
+    "title": "INMETRO 强制认证目录与公告",
+    "channel": "Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO)",
+    "source_type": "gov_html",
+    "source_url": "https://www.gov.br/inmetro/pt-br/assuntos/noticias",
+    "human_view_url": "https://www.gov.br/inmetro/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "INMETRO 公告 + ANATEL Act 更新。BR 第一个 watchdog 源。",
+    "files": [
+      "raw/br/BR_inmetro_news.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "battery",
+      "home_goods",
+      "children_products",
+      "toy"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "scope_classification",
+      "testing"
+    ],
+    "why_added": "BR INMETRO 公告 + 强制目录变化 — 决定巴西产品认证范围。"
+  },
+  {
+    "id": "in-bis-crs",
+    "regulation_id": "IN-BIS-CRS",
+    "market": "IN",
+    "title": "BIS Compulsory Registration Scheme (CRS) 公告",
+    "channel": "Bureau of Indian Standards (BIS)",
+    "source_type": "gov_html",
+    "source_url": "https://www.bis.gov.in/index.php/standards-changes-orders/",
+    "human_view_url": "https://www.bis.gov.in/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "notes": "BIS CRS 目录扩展 + 标准修订。IN 第一个 watchdog 源。",
+    "files": [
+      "raw/in/IN_bis_crs.html"
+    ],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "battery",
+      "home_goods",
+      "children_products"
+    ],
+    "regulatory_types": [
+      "conformity",
+      "scope_classification",
+      "testing"
+    ],
+    "why_added": "IN BIS CRS 目录扩展 — 决定印度电子产品强制注册范围。"
   }
 ]
