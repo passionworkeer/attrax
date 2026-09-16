@@ -67,7 +67,8 @@
 | 模式 | 触发条件 | 行为 |
 |------|---------|------|
 | DEMO_MODE | `DEMO_MODE=true` 环境变量 | 使用 Mock 数据，无需 API Key |
-| 识图供应商 | MiniMax 视觉调用返回空（超时 / 网络 / 4xx / 5xx） | 同一张图的观察请求降级到 `DEEPSEEK_*`（OpenAI 兼容 `/chat/completions`，`deepseek-flash`）。未配置 key = 降级关闭，保持旧的 `vision_call_failed` 行为。**只降级识图，报告生成仍走 MiniMax** |
+| 识图供应商 | MiniMax 视觉调用返回空（超时 / 网络 / 4xx / 5xx） | 同一张图的观察请求降级到 `DEEPSEEK_*`（OpenAI 兼容 `/chat/completions`，`deepseek-flash`）。未配置 key = 降级关闭，保持旧的 `vision_call_failed` 行为 |
+| 报告生成 | MiniMax `/messages` 调用失败（超时 / 4xx / 5xx，或返回非 JSON） | 同一份 prompt 重发到 DeepSeek 的 **Anthropic 兼容**端点（`DEEPSEEK_ANTHROPIC_BASE_URL`，注意含 `/v1`），`ragProvider` 如实写 `deepseek`。两条都不通才退回 mock 包 + `degraded` |
 | Embedding | （已删除） | de-RAG §7.7 后无 embedding 调用，不存在降级路径 |
 | 引用验证 | 生产环境 | deterministic quote matching：`verify/quote_matcher.py` 对 LLM 引用的法规条款做反向字面匹配，返回每条引用的 `match_status`；逐扫描的 `report_package.auditMetadata.verificationMode` 字段暴露真实模式（不在 `/health` 上） |
 | RAG 服务不可用 | 无法连接 localhost:8001 | 前端降级为 degraded 状态 + 红色横幅提示（sessionPayload 暴露 degradedReason，非静默 demo） |
@@ -292,10 +293,11 @@ const StartScanRequestSchema = z.object({
 | `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`；RAG 侧读取，前端只需透传场景） |
 | `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
 | `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
-| `DEEPSEEK_API_KEY` | - | 否 | **识图降级**通道 key（`rag_service` 读取）。留空 = 关闭降级 |
-| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | 否 | 降级端点（OpenAI 兼容，非 Anthropic 形状） |
+| `DEEPSEEK_API_KEY` | - | 否 | **降级**通道 key（识图 + 报告生成共用，`rag_service` 读取）。留空 = 关闭降级 |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | 否 | 识图降级端点（OpenAI 兼容 `/chat/completions`） |
+| `DEEPSEEK_ANTHROPIC_BASE_URL` | `https://api.deepseek.com/anthropic/v1` | 否 | 报告生成降级端点（Anthropic 兼容；代码拼 `{base}/messages`，**必须带 `/v1`**） |
 | `DEEPSEEK_MODEL` | `deepseek-flash` | 否 | 降级模型（reasoning 模型，`content` 与 `reasoning_content` 共用 completion 预算） |
-| `DEEPSEEK_MAX_TOKENS` | `16384` | 否 | 降级通道 completion 预算。**调小会导致 HTTP 200 + 空 content**（预算被 reasoning 吃光） |
+| `DEEPSEEK_MAX_TOKENS` | `16384` | 否 | 降级通道 completion 预算（也是报告生成预算的下限）。**调小会导致 HTTP 200 + 空 content**（预算被 reasoning 吃光） |
 | `RAG_SERVICE_URL` | `http://localhost:8001` | 否 | RAG 服务地址（BFF 转发目标） |
 | `DEMO_MODE` | `false` | 否 | Demo 模式（Mock 数据，无需 API Key） |
 | `ATTRAX_DEBUG_TOKEN` | - | 否 | `=1` 时创建扫描响应体带 accessToken（默认仅 HttpOnly cookie） |
@@ -333,6 +335,16 @@ const StartScanRequestSchema = z.object({
 ---
 
 ## 最近修复
+
+### 2026-09-16 — 报告生成也降级到 DeepSeek（MiniMax 全挂时仍出真报告）
+
+- **背景**：识图降级上线后，MiniMax 整体挂掉时仍会 `degraded` —— 视觉证据有了，但报告生成是 MiniMax-only，只能退回 mock 包
+- **实现**：`report_generator.py` 的 `_generate_mimotalk`（唯一传输方法，4 个调用点共用）在 primary 失败后，把**同一份 body** 重发到 DeepSeek 的 Anthropic 兼容端点；`_read_mimotalk_response` 改为拼接所有 `type=="text"` 块；`provider` 变成「实际服务的供应商」（默认仍是 `minimax`），`pipeline/nodes/generator.py` 在生成后刷新它，否则 trace / `ragProvider` 会把降级报告谎报成 MiniMax 的
+- **两个必须知道的坑**：
+  1. **位置读取响应会恒空**：DeepSeek 的 Anthropic 端点返回 `content[0]={"type":"thinking"}`、`content[1]={"type":"text"}`。原来的 `content[0].text` 恒为 `""` → `ValueError: empty response` → mock 包。看起来完全像"降级也挂了"，实际只是读错了块
+  2. **重试预算会吃掉降级机会**：`_LLM_MAX_ATTEMPTS=3` × 90s 超时 + backoff ≈ **273s**，而 `main._SCAN_TIMEOUT_SECS=280`。纯超时故障下 primary 重试就能耗尽整轮预算，**DeepSeek 根本没机会被调用**。所以配置了降级 key 时 primary 只试 1 次 —— 有降级在手，快速降级胜过空转
+- **范围**：识图仍走已验证的 OpenAI 兼容端点（用户选择不动）；不做 circuit breaker（生成器是进程级单例，粘性降级会在 MiniMax 恢复后一直用 DeepSeek）
+- **验证**：pytest 587 passed；本地坏 key 起服务跑真实扫描 → `status=ready` / `provider=deepseek`（改动前是 `degraded`）；正常 key → 仍 `provider=minimax` / `source=real` 无回归
 
 ### 2026-09-16 — 识图供应商降级（MiniMax → DeepSeek）
 

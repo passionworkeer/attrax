@@ -44,14 +44,21 @@ def _isolated_vision_cache(tmp_path, monkeypatch):
 
 @pytest.fixture(autouse=True)
 def _disable_live_vision_fallback(monkeypatch):
-    """Keep unit tests off the live vision-fallback endpoint.
+    """Keep unit tests off the live DeepSeek fallback endpoints.
 
     ``resolve_deepseek_config`` reads the process env, and ``rag_service.config``
     seeds that env from ``rag_service/.env`` at import time — so a developer with
     a real key in their .env would have every "primary provider failed" test make
-    a real network call. Clearing the names here makes "no fallback configured"
-    the test default; fallback tests set what they need explicitly.
+    a real network call, and a non-default ``DEEPSEEK_MAX_TOKENS`` would leak
+    into the budget assertions. Clearing the names here makes "no fallback
+    configured" the test default; fallback tests set what they need explicitly.
     """
-    for name in ("DEEPSEEK_API_KEY", "DEEPSEEK_BASE_URL", "DEEPSEEK_MODEL"):
+    for name in (
+        "DEEPSEEK_API_KEY",
+        "DEEPSEEK_BASE_URL",
+        "DEEPSEEK_ANTHROPIC_BASE_URL",
+        "DEEPSEEK_MODEL",
+        "DEEPSEEK_MAX_TOKENS",
+    ):
         monkeypatch.delenv(name, raising=False)
     yield

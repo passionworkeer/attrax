@@ -483,6 +483,12 @@ def generator_node(state: GraphState) -> dict:
 
     duration_ms = int((time.time() - start_time) * 1000)
 
+    # Refresh after generation: ``provider`` was read before the call, but the
+    # generator degrades to DeepSeek when MiniMax fails, so the pre-call read
+    # would label a fallback-served report as MiniMax's.
+    if generator is not None:
+        provider = getattr(generator, "provider", None) or provider
+
     trace_entry = {
         "node": "generate",
         "provider": provider,
