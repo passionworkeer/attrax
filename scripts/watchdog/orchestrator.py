@@ -17,7 +17,8 @@ means pm2 supervises a permanently-online app and ``autorestart`` covers
 crashes; the timeslot config lives in one place (ATTRAX_REGWATCH_RUN_AT).
 
 Pass outline:
-1. Load the 25 source entries from data/regulation_sources/official_sources.json
+1. Load the source entries from data/regulation_sources/official_sources.json
+   (35 as of 2026-09-16; the count is the array's length, not a constant)
 2. Dispatch each entry to its collector (per-source failure isolation)
 3. Diff every fetched update against the SQLite snapshot (state.py)
 4. Write outputs to data/regulation_supplements/watchdog-{date}/:

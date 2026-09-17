@@ -17,13 +17,13 @@
 ### 前端（Next.js）
 
 - **框架**：Next.js ^16.2.6 + React 19.2.4 + TypeScript（strict）
-- **样式**：Tailwind CSS 4.x + shadcn/ui 4.4.0
-- **动画**：framer-motion 12.38.0
+- **样式**：Tailwind CSS 4.x + shadcn/ui 4.4.0 + `@base-ui/react` + lucide-react
 - **Markdown**：react-markdown + remark-gfm（报告渲染）
 - **导出**：jspdf（PDF）+ docx（DOCX）
 - **验证**：Zod 4.3.6（Schema 验证）
 - **测试**：Vitest（单元）+ Playwright（E2E）
 - **目录**：`app/`（页面）、`components/`（UI）、`lib/`（核心库）
+- 注：`framer-motion` / `next-themes` / `ulid` / `sonner` / `@anthropic-ai/sdk` 已于 2026-09-17 从依赖中移除（无任何 importer）；动画/主题现在走 CSS + `tw-animate-css`
 
 ### 后端 RAG 服务（Python）
 

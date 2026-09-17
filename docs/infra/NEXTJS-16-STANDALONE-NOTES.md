@@ -62,33 +62,35 @@ ssh lighthouse 'sudo cp /tmp/nginx-attrax-locations.conf /etc/nginx/snippets/ &&
 
 ## 部署标准流程
 
+部署单位是**整个 `standalone/` 目录**，本地一条命令产出、服务器一条命令落地：
+
 ```bash
-# 本地构建
-cd attrax
-pnpm build
+# 本地：build → stage(.next/static + public/ 塞进 standalone) → 校验 → 打包
+bash scripts/build-deploy-tarball.sh          # 产物 /tmp/attrax-deploy-complete.tar.gz
+# 已有 build 产物、只想重打包：bash scripts/build-deploy-tarball.sh --no-build
 
-# rsync 三件事
-rsync -avz --delete .next/standalone/  lighthouse:/opt/attrax/.next/standalone/
-rsync -avz --delete .next/static/      lighthouse:/opt/attrax/.next/static/
-rsync -avz --delete public/            lighthouse:/opt/attrax/.next/standalone/public/
+scp /tmp/attrax-deploy-complete.tar.gz lighthouse:/tmp/
 
-# 预压缩
-ssh lighthouse "cd /opt/attrax/.next/static && \
-  find . \\( -name '*.js' -o -name '*.css' \\) -print0 | \
-  while IFS= read -r -d '' f; do \
-    gzip -9 -kc \"\$f\" > \"\$f.gz\" && brotli -q 11 -c \"\$f\" > \"\$f.br\"; \
-  done"
-
-# 重启（仅代码变更）
-ssh lighthouse 'pm2 restart nextjs && pm2 save'
+# 服务器：整包替换 + 自愈 static symlink + BUILD_ID + 重启
+ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh'
 ```
+
+`attrax-apply-deploy.sh` 依次做：preflight（tarball + 现有 standalone 都在）→ 把现有
+`standalone/` 挪成 `.next/standalone-pre-deploy-<stamp>`（保留 2 份可回滚）→ 解包 →
+确认/重建 `/opt/attrax/.next/static -> standalone/.next/static` 软链 → 写
+`.next/BUILD_ID` → 打印 `.deployed` 标记 → 删 tarball → `pm2 restart nextjs --update-env`。
+
+> 早期文档里的 `pnpm build` + `rsync` 三件事流程**已废弃**：rsync 大目录会崩（`openrsync`），
+> 且手工 rsync 无法保证 `static/` 与 `public/` 同时到位 —— 那正是本仓 2026-07-19 全站
+> 无样式事故的成因，`build-deploy-tarball.sh` 的 stage + 打包 + 双重校验就是为此而做。
 
 ### ⚠️ 容易漏
 
 | 漏了就 | 症状 |
 |---|---|
-| `public/` rsync | `/complipilot/*` + favicon 404 |
-| `.next/static/` rsync | 全部 chunks/css/字体 404 |
+| tarball 里没有 `public/` | `/complipilot/*` + favicon 404 |
+| tarball 里没有 `.next/static/` | 全部 chunks/css/字体 404 |
+| 没用 `build-deploy-tarball.sh` 而是手工 tar | 上面两条同时中招（脚本内有 css≥2 / media≥5 的硬校验） |
 | `pm2 restart`（不是 reload）| 进程内仍是旧代码 |
 
 ### env 改了怎么办

@@ -20,7 +20,7 @@
 | 字段对照与 Mock/Real 映射 | [`MOCK-REAL-MAPPING.md`](./MOCK-REAL-MAPPING.md) |
 | 评测与生产证据 | [`evidence/`](./evidence/) |
 | 标注集格式（grounding eval） | [`annotation/grounding-eval.md`](./annotation/grounding-eval.md) |
-| 现行法规源（25 条 live registry） | [`data/regulation_sources/official_sources.json`](../data/regulation_sources/official_sources.json) |
+| 现行法规源（35 条 live registry） | [`data/regulation_sources/official_sources.json`](../data/regulation_sources/official_sources.json) |
 | 退役历史文档（旧 PRD / 旧合同 / 旧机加固） | [`archive/`](./archive/) |
 
 ## 快速开始（本地开发）
@@ -51,8 +51,8 @@ npm run typecheck && npm run lint
 | 操作 | 方法 |
 |---|---|
 | 源码同步 | git bundle 路线（本地 `git bundle create` → scp → 服务器 `git fetch`；服务器 ssh key 无法直接 fetch github，详见 memory `2026-09-14-lighthouse-fetch-github-fix`） |
-| 构建产物 | 本地 `npm run build` → tar `.next/standalone/` + `.next/static/` → scp 到 `/opt/attrax/.next/`（openrsync 大目录会崩，必须 tar） |
-| 静态资源 symlink | `ln -sfn /opt/attrax/public /opt/attrax/.next/standalone/public`（Next 16 standalone 不复制 public/） |
+| 构建产物 | 本地 `bash scripts/build-deploy-tarball.sh` → `/tmp/attrax-deploy-complete.tar.gz`（内含已 stage 好 `.next/static/` 与 `public/` 的整个 `standalone/`）→ scp 到服务器 → `/tmp/attrax-apply-deploy.sh` 整包替换 `.next/standalone/`（旧目录挪成 `standalone-pre-deploy-*`，保留 2 份可回滚） |
+| 静态资源 | **不需要 symlink 或 rsync `public/`**：tarball 已把 `public/` 打进 `standalone/public`，nginx 的 `/complipilot/*` 直接 `root /opt/attrax/.next/standalone/public`；`/_next/static/` 走 `alias /opt/attrax/.next/static/`（该路径是指向 `standalone/.next/static` 的 symlink，由 apply 脚本自愈） |
 | 重启 | `pm2 restart nextjs rag-service`（改 `.env` 也用 restart；改 ecosystem env 段才要 delete && start） |
 | 健康检查 | `ssh lighthouse 'curl -s http://localhost:3000/api/health'` |
 | 备份 | `/opt/attrax/backups/`（每日 03:00 cron，保留 14 份） |
