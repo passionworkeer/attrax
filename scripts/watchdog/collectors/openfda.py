@@ -128,39 +128,51 @@ def _filter_by_window(rows: list[dict], window_days: int) -> list[dict]:
     return kept
 
 
-@register("openfda_recalls")
-def collect_openfda_recalls(entry: dict) -> RegulationUpdate:
-    """Fetch OpenFDA device recalls filtered by classification tier.
+def _build_openfda_url(entry: dict) -> str:
+    """Construct the OpenFDA query URL for one registry entry.
 
-    Required entry fields (when ``source_url`` is absent):
-        - ``product_classification``: e.g. ``"Class I"`` / ``"Class II"`` /
-          ``"Class III"``. Defaults to ``"Class I"`` (highest-risk recalls
-          only — usually a short list).
-        - ``window_days`` (int): how far back to look. Defaults to 30.
-
-    Optional: ``search`` overrides the query string entirely (advanced
-    callers — power users only).
+    Entry fields:
+        - ``source_url``: the base endpoint. Defaults to the device-recall
+          service. An override replaces the base, not the query — the sort
+          and limit below are still applied, because a bare endpoint returns
+          an arbitrary slice of the archive.
+        - ``sort``: the date field to order by, ``field:desc``. Required in
+          practice: each endpoint names its date differently, and a field the
+          endpoint does not have is a hard 500 rather than an empty result.
+          Device recalls use ``event_date_initiated``; food enforcement uses
+          ``recall_initiation_date``. The default suits the device endpoint.
+        - ``search``: an OpenFDA ``search`` expression, or ``""`` / omitted
+          for no filter. Note the device endpoint has no risk-class field —
+          ``product_classification`` exists only on the drug/food enforcement
+          shapes, and asking for it returns no results rather than an error.
     """
     override_url = str(entry.get("source_url") or "").strip()
-    if override_url:
-        url = override_url
-    else:
-        classification = entry.get("product_classification") or "Class I"
-        window_days = int(entry.get("window_days") or 30)
-        search = str(entry.get("search") or "").strip()
-        if not search:
-            search = f'product_classification:"{classification}"'
-        params = {
-            "search": search,
-            "limit": 100,
-            # Without an explicit sort the API returns an arbitrary slice of
-            # the archive — the default ordering surfaced 2016 records, which
-            # the window filter then dropped, leaving an empty digest that
-            # looked exactly like "no recalls happened". Newest-first makes
-            # the window meaningful.
-            "sort": "recall_initiation_date:desc",
-        }
-        url = f"{OPENFDA_RECALLS_BASE}?{urllib.parse.urlencode(params)}"
+
+    params: dict[str, object] = {
+        "limit": 100,
+        # Without an explicit sort the API returns an arbitrary archive
+        # slice — the default ordering surfaced 2003 and 2016 records, which
+        # the window filter then dropped, leaving an empty digest that looked
+        # exactly like "nothing happened".
+        "sort": str(entry.get("sort") or "event_date_initiated:desc").strip(),
+    }
+    search = str(entry.get("search") or "").strip()
+    if search:
+        params["search"] = search
+
+    base = override_url or OPENFDA_RECALLS_BASE
+    separator = "&" if "?" in base else "?"
+    return f"{base}{separator}{urllib.parse.urlencode(params)}"
+
+
+@register("openfda_recalls")
+def collect_openfda_recalls(entry: dict) -> RegulationUpdate:
+    """Fetch OpenFDA recall / enforcement records and digest them.
+
+    See ``_build_openfda_url`` for the entry fields that shape the query,
+    and ``_normalize_recall`` for how the two endpoint shapes are unified.
+    """
+    url = _build_openfda_url(entry)
 
     body, last_modified = fetch_url(url, accept="application/json", min_bytes=16)
     try:

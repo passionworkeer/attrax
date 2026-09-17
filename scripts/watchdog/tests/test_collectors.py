@@ -470,3 +470,73 @@ def test_safety_gate_raises_on_non_json():
          patch.object(collectors_base.time, "sleep"):
         with pytest.raises(ValueError, match="JSON decode failed"):
             collect_safety_gate(entry)
+
+
+# ── OpenFDA URL building ─────────────────────────────────────────────────
+
+# Each OpenFDA endpoint names its date field differently, and asking for a
+# field the endpoint does not have is a hard HTTP 500 — not an empty result.
+# So the sort is declared per registry entry rather than assumed.
+
+
+def test_openfda_default_sort_suits_the_device_endpoint():
+    from scripts.watchdog.collectors.openfda import _build_openfda_url
+
+    url = _build_openfda_url({"id": "x"})
+    assert url.startswith("https://api.fda.gov/device/recall.json?")
+    assert "sort=event_date_initiated" in url
+    assert "limit=100" in url
+    # No filter by default: the device endpoint has no risk-class field.
+    assert "search=" not in url
+
+
+def test_openfda_entry_declares_its_own_sort_field():
+    """Food enforcement orders by recall_initiation_date; the device field
+    would 500 there."""
+    from scripts.watchdog.collectors.openfda import _build_openfda_url
+
+    url = _build_openfda_url(
+        {
+            "id": "x",
+            "source_url": "https://api.fda.gov/food/enforcement.json",
+            "sort": "recall_initiation_date:desc",
+        }
+    )
+    assert url.startswith("https://api.fda.gov/food/enforcement.json?")
+    assert "sort=recall_initiation_date" in url
+
+
+def test_openfda_search_is_optional_and_passed_through():
+    from scripts.watchdog.collectors.openfda import _build_openfda_url
+
+    filtered = _build_openfda_url({"id": "x", "search": 'product_code:"IZL"'})
+    assert "search=" in filtered
+    # An explicitly empty search is the same as omitting it.
+    assert "search=" not in _build_openfda_url({"id": "x", "search": ""})
+
+
+def test_openfda_normalize_handles_both_endpoint_shapes():
+    """The device and food endpoints name the same fields differently."""
+    from scripts.watchdog.collectors.openfda import _normalize_recall
+
+    device = _normalize_recall(
+        {
+            "product_res_number": "Z-0001-04",
+            "event_date_initiated": "20031027",
+            "recall_status": "Open, Classified",
+            "product_description": "X-Ray",
+        }
+    )
+    assert device["id"] == "Z-0001-04"
+    assert device["date"] == "20031027"
+
+    food = _normalize_recall(
+        {
+            "recall_number": "F-0276-2017",
+            "recall_initiation_date": "20160808",
+            "classification": "Class II",
+            "product_description": "Hydrolyzed fragments",
+        }
+    )
+    assert food["id"] == "F-0276-2017"
+    assert food["classification"] == "Class II"
