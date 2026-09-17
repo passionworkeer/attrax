@@ -349,11 +349,17 @@ class ScanService:
 
     def _authorized_session(self, session_id: str, access_token: str) -> ScanSession:
         session = self.backend.get_session(session_id)
-        if session is None:
-            raise ScanNotFound(session_id)
-        if session.expires_at <= utc_now():
-            self.backend.delete_session(session_id)
-            raise ScanNotFound(session_id)
+        # Anti-enumeration (adversarial eval 2026-09-17): unknown/expired and
+        # wrong-token must be indistinguishable. Returning 404 for a missing
+        # session vs 401 for a bad token would let a caller probe which
+        # session ids exist; session ids are 128-bit random, but the cheaper
+        # defence is free — collapse both to ScanUnauthorized (HTTP 401).
+        # Post-auth resource misses (e.g. an out-of-range asset index) still
+        # raise ScanNotFound → 404.
+        if session is None or session.expires_at <= utc_now():
+            if session is not None:
+                self.backend.delete_session(session_id)
+            raise ScanUnauthorized(session_id)
         if not hmac.compare_digest(_token_hash(access_token), session.access_token_hash):
             raise ScanUnauthorized(session_id)
         return session

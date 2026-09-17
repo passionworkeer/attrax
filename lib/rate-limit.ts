@@ -81,9 +81,18 @@ function trustForwardedHeaders(): boolean {
 }
 
 export function resolveClientId(request: Request): string {
+  // x-real-ip is set by our nginx with proxy_set_header X-Real-IP $remote_addr,
+  // which OVERWRITES any client-supplied value — in this topology (port 3000
+  // is loopback-only, every request arrives through nginx) it is the genuine
+  // peer address and cannot be spoofed. Trusting it gives true per-IP buckets;
+  // the previous cookie/UA fingerprint collapsed all users of one browser
+  // profile into one bucket while letting a script vary UA per request.
+  // X-Forwarded-For stays untrusted by default: $proxy_add_x_forwarded_for
+  // appends to whatever the client sent, so its leftmost entry is spoofable.
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) return `ip:${digestIdentifier(realIp)}`;
+
   if (trustForwardedHeaders()) {
-    const realIp = request.headers.get("x-real-ip")?.trim();
-    if (realIp) return `ip:${digestIdentifier(realIp)}`;
     const forwarded = request.headers.get("x-forwarded-for") ?? "";
     const leftmost = forwarded.split(",", 1)[0].trim();
     if (leftmost) return `ip:${digestIdentifier(leftmost)}`;

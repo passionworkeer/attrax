@@ -119,8 +119,10 @@ def test_create_poll_roadmap_trace_asset_and_delete_without_nextjs(tmp_path):
         deleted = client.delete(f"/api/v1/scans/{session_id}", headers=headers)
         assert deleted.status_code == 204
         missing = client.get(f"/api/v1/scans/{session_id}", headers=headers)
-        assert missing.status_code == 404
-        assert missing.json()["error"]["code"] == "NOT_FOUND"
+        # Anti-enumeration: a deleted/unknown session is indistinguishable
+        # from a wrong token — 401, never 404.
+        assert missing.status_code == 401
+        assert missing.json()["error"]["code"] == "UNAUTHORIZED"
 
 
 def test_poll_and_assets_require_the_session_bearer_token(tmp_path):

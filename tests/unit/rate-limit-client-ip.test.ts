@@ -1,15 +1,16 @@
 /**
  * Tests for clientIp — security contract:
  *
- * By default, X-Forwarded-For / X-Real-IP are NOT trusted. Anyone sending
- * these headers cannot reset their rate-limit bucket. Set
- * RATE_LIMIT_TRUST_XFF=true to honor them when deployed behind a trusted
- * reverse proxy that overwrites forwarding headers.
+ * x-real-ip IS trusted by default: in this deployment every request arrives
+ * through our nginx (port 3000 is loopback-only) whose `proxy_set_header
+ * X-Real-IP $remote_addr` overwrites any client-supplied value, so it is the
+ * genuine peer address. X-Forwarded-For is NOT trusted by default (its
+ * leftmost entry is client-controlled even behind $proxy_add_x_forwarded_for);
+ * set RATE_LIMIT_TRUST_XFF=true to honor it behind a proxy that sanitizes it.
  *
- * When XFF is untrusted, clientIp falls back to a salted SHA-256 of the
- * User-Agent (truncated) so distinct browser fingerprints get distinct
- * buckets instead of collapsing into a single global "unknown" bucket that
- * any single attacker could exhaust.
+ * When neither header is present (local dev), clientIp falls back to a salted
+ * SHA-256 of the User-Agent (truncated) so distinct browser fingerprints get
+ * distinct buckets instead of collapsing into a single global "unknown" bucket.
  */
 import { createHash } from "crypto";
 import { describe, it, expect, afterEach, beforeEach, vi } from "vitest";
@@ -42,12 +43,13 @@ describe("clientIp", () => {
       vi.unstubAllEnvs();
     });
 
-    it("returns 'unknown' regardless of X-Real-IP / XFF", () => {
+    it("trusts x-real-ip (nginx overwrites it with $remote_addr; not spoofable through our proxy)", () => {
       const req = makeRequest({
         "x-real-ip": "203.0.113.5",
         "x-forwarded-for": "1.2.3.4, 10.0.0.1",
       });
-      expect(clientIp(req)).toBe("unknown");
+      // x-real-ip wins and XFF is ignored.
+      expect(clientIp(req)).toBe(digestId("ip", "203.0.113.5"));
     });
 
     it("returns 'unknown' when no headers are set", () => {
