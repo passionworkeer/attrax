@@ -99,7 +99,9 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-          cache-dependency-path: rag_service/requirements-prod.txt
+          cache-dependency-path: |
+            rag_service/requirements-prod.txt
+            rag_service/requirements-dev.txt
 
       # The OpenAPI drift gate is a Node script that shells out to this Python
       # env, so the job needs both toolchains.
@@ -110,7 +112,7 @@ jobs:
       - name: Install RAG dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r rag_service/requirements-prod.txt pytest httpx
+          pip install -r rag_service/requirements-dev.txt
           pip check
 
       - name: Compile Python sources
@@ -184,11 +186,13 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-          cache-dependency-path: rag_service/requirements-prod.txt
+          cache-dependency-path: |
+            rag_service/requirements-prod.txt
+            rag_service/requirements-dev.txt
       - name: Install RAG dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r rag_service/requirements-prod.txt pytest httpx
+          pip install -r rag_service/requirements-dev.txt
       - name: Full backend suite (reporting)
         env:
           DEMO_MODE: "true"

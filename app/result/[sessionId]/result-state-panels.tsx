@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { SectionEyebrow } from "@/components/blaze-hawks/ui";
 import {
   CompliPilotFlowBackdrop,
@@ -43,7 +45,7 @@ return (
               <p role={failed ? "alert" : "status"} className="mt-4 text-sm leading-7 text-white/60">{displayMessage}</p>
               {failed && <div className="mt-6 flex flex-wrap gap-3">
                 <button data-retry-result type="button" onClick={onRetry} className="rounded-xl bg-[#086b83] px-5 py-3 font-semibold text-white" style={{ color: "white" }}>{locale === "zh" ? "重新加载结果" : "Retry loading"}</button>
-                <a href="/upload" className="rounded-xl border border-[#8ab8c8] px-5 py-3 font-semibold text-[#073b54]">{locale === "zh" ? "返回上传页" : "Back to upload"}</a>
+                <Link href="/upload" className="rounded-xl border border-[#8ab8c8] px-5 py-3 font-semibold text-[#073b54]">{locale === "zh" ? "返回上传页" : "Back to upload"}</Link>
               </div>}
             </div>
           </section>
