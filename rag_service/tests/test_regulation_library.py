@@ -30,9 +30,12 @@ REPO = Path(__file__).resolve().parents[2]
 
 
 class TestArticleLoader:
-    def test_list_regulation_ids_returns_44(self):
+    def test_list_regulation_ids_meets_the_baseline(self):
+        # Floor, not an exact count: the library grew from 44 to 58 on
+        # 2026-09-17 when CA/NZ/JP/KR/AE/SA/BR/IN got their first
+        # regulations. Falling below the floor means something was dropped.
         ids = article_loader.list_regulation_ids()
-        assert len(ids) == 44
+        assert len(ids) >= 44
 
     def test_load_regulation_round_trip(self):
         reg = article_loader.load_regulation("EU-2011-65")
@@ -102,9 +105,9 @@ class TestArticleLoader:
 
 
 class TestLibraryInvariants:
-    """Cross-cutting checks on the 44-file regulation library."""
+    """Cross-cutting checks on the regulation library."""
 
-    def test_library_contains_all_44_anchor_regulations(self):
+    def test_library_contains_all_anchor_regulations(self):
         """Every KB anchor's regulation_id must be loadable from the library."""
         from rag_service.retrieval.kb_loader import list_all_regulations
         article_loader.invalidate_cache()
@@ -114,26 +117,32 @@ class TestLibraryInvariants:
         assert not missing, f"KB regulations missing from library: {missing}"
 
     def test_license_split_matches_spec(self):
-        """Spec §6.2: 33 public + 11 private_with_summary."""
+        """Spec §6.2 fixed the original split at 33 public + 11
+        private_with_summary. The 2026-09-17 market expansion added public
+        regulations, so the private count is the half that must not drift:
+        each one is an authored summary of a paid standard."""
         article_loader.invalidate_cache()
         counts = {"public": 0, "private_with_summary": 0}
         for reg_id in article_loader.list_regulation_ids():
             reg = article_loader.load_regulation(reg_id)
             counts[reg["license"]] += 1
-        assert counts["public"] == 33
         assert counts["private_with_summary"] == 11
+        assert counts["public"] >= 33
 
     def test_every_regulation_has_schema_version_1(self):
         for reg_id in article_loader.list_regulation_ids():
             reg = article_loader.load_regulation(reg_id)
             assert reg["schema_version"] == 1
 
-    def test_regulations_index_exists_and_has_44(self):
+    def test_regulations_index_matches_the_library(self):
+        """The shipped index must describe the shipped YAML tree — a stale
+        index is how the frontend ends up citing regulations that no longer
+        exist."""
         index_path = REPO / "data" / "regulations" / "regulations_index.json"
         assert index_path.exists()
         data = json.loads(index_path.read_text())
-        assert data["count"] == 44
-        assert len(data["regulations"]) == 44
+        assert data["count"] == len(data["regulations"])
+        assert data["count"] == len(article_loader.list_regulation_ids())
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 [
   {
     "id": "eu-2023-988-general-product-safety",
+    "authority_tier": "primary",
     "regulation_id": "EU-2023-988",
     "market": "EU",
     "title": "Regulation (EU) 2023/988 on general product safety",
@@ -31,6 +32,7 @@
   },
   {
     "id": "eu-2009-48-toy-safety",
+    "authority_tier": "primary",
     "regulation_id": "EU-2009-48",
     "market": "EU",
     "title": "Directive 2009/48/EC on the safety of toys",
@@ -60,6 +62,7 @@
   },
   {
     "id": "eu-2011-65-rohs",
+    "authority_tier": "primary",
     "regulation_id": "EU-2011-65",
     "market": "EU",
     "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
@@ -88,6 +91,7 @@
   },
   {
     "id": "eu-2012-19-weee",
+    "authority_tier": "primary",
     "regulation_id": "EU-2012-19",
     "market": "EU",
     "title": "Directive 2012/19/EU on waste electrical and electronic equipment",
@@ -116,6 +120,7 @@
   },
   {
     "id": "eu-2014-53-radio-equipment",
+    "authority_tier": "primary",
     "regulation_id": "EU-2014-53",
     "market": "EU",
     "title": "Directive 2014/53/EU on radio equipment",
@@ -144,6 +149,7 @@
   },
   {
     "id": "eu-2014-30-emc",
+    "authority_tier": "primary",
     "regulation_id": "EU-2014-30",
     "market": "EU",
     "title": "Directive 2014/30/EU on electromagnetic compatibility",
@@ -172,6 +178,7 @@
   },
   {
     "id": "eu-2014-35-low-voltage",
+    "authority_tier": "primary",
     "regulation_id": "EU-2014-35",
     "market": "EU",
     "title": "Directive 2014/35/EU on low voltage electrical equipment",
@@ -200,6 +207,7 @@
   },
   {
     "id": "eu-2019-1020-market-surveillance",
+    "authority_tier": "primary",
     "regulation_id": "EU-2019-1020",
     "market": "EU",
     "title": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
@@ -229,6 +237,7 @@
   },
   {
     "id": "us-16-cfr-1307-phthalates",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1307",
     "market": "US",
     "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
@@ -258,6 +267,7 @@
   },
   {
     "id": "us-16-cfr-1630-carpets-rugs",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1630",
     "market": "US",
     "title": "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
@@ -287,6 +297,7 @@
   },
   {
     "id": "us-16-cfr-1631-small-carpets-rugs",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1631",
     "market": "US",
     "title": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
@@ -316,6 +327,7 @@
   },
   {
     "id": "us-16-cfr-1633-mattresses-open-flame",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1633",
     "market": "US",
     "title": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
@@ -345,6 +357,7 @@
   },
   {
     "id": "us-16-cfr-1700-poison-prevention-packaging",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1700",
     "market": "US",
     "title": "16 CFR Part 1700, Poison Prevention Packaging",
@@ -374,16 +387,18 @@
     "why_added": "US child-resistant packaging requirements for hazardous household substances."
   },
   {
-    "id": "us-cpsc-recalls-rss",
+    "id": "us-cpsc-recalls-api",
+    "authority_tier": "primary",
     "market": "US",
-    "title": "CPSC Recalls (RSS feed)",
-    "channel": "CPSC Newsroom RSS",
-    "source_type": "cpsc_rss",
-    "source_url": "https://www.cpsc.gov/Newsroom/RSS/Recalls",
+    "title": "CPSC Recalls (SaferProducts.gov REST API)",
+    "channel": "US Consumer Product Safety Commission",
+    "source_type": "cpsc_recall_api",
+    "source_url": "https://www.saferproducts.gov/RestWebServices/Recall",
     "human_view_url": "https://www.cpsc.gov/Recalls",
     "human_view_status": "ok",
-    "watchdog_actual_fetch": "RSS 2.0 / Atom feed (collectors/us_cpsc.py)",
-    "notes": "Signal stream — recall activity for product categories we cover. Not a regulation text source; evidence-only (no regulation_id mapping). Items sorted by document_number so feed re-ordering does not read as a content change.",
+    "watchdog_actual_fetch": "SaferProducts.gov RestWebServices JSON (collectors/us_cpsc_api.py; 45-day window)",
+    "fetch_status": "active",
+    "notes": "Signal stream — recall activity for product categories we cover. Not a regulation text source; evidence-only (no regulation_id mapping). Items sorted by (RecallDate, RecallNumber) so API re-ordering does not read as a content change. Replaced the CPSC Newsroom RSS feed on 2026-09-17: cpsc.gov/Newsroom/RSS/Recalls answered HTTP 403 to every automated client tested from the production host (Chrome UA, full fallback header set, and plain curl alike), so the source had been failing on every pass since it was added. The RestWebServices endpoint serves the same recalls as JSON with no key and no challenge.",
     "files": [],
     "product_categories": [
       "toys",
@@ -401,6 +416,7 @@
   },
   {
     "id": "ca-consumer-chemicals-containers-regulations-2001",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2001-269",
     "market": "CA",
     "title": "Consumer Chemicals and Containers Regulations, 2001",
@@ -429,6 +445,7 @@
   },
   {
     "id": "ca-surface-coating-materials-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2016-193",
     "market": "CA",
     "title": "Surface Coating Materials Regulations",
@@ -455,6 +472,7 @@
   },
   {
     "id": "ca-phthalates-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2016-188",
     "market": "CA",
     "title": "Phthalates Regulations",
@@ -481,6 +499,7 @@
   },
   {
     "id": "ca-childrens-sleepwear-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2016-169",
     "market": "CA",
     "title": "Children's Sleepwear Regulations",
@@ -508,6 +527,7 @@
   },
   {
     "id": "ca-consumer-products-containing-lead-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2018-83",
     "market": "CA",
     "title": "Consumer Products Containing Lead Regulations",
@@ -535,6 +555,7 @@
   },
   {
     "id": "ca-corded-window-coverings-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2019-97",
     "market": "CA",
     "title": "Corded Window Coverings Regulations",
@@ -561,6 +582,7 @@
   },
   {
     "id": "uk-weee-regulations-guidance",
+    "authority_tier": "primary",
     "regulation_id": "UK-WEEE",
     "market": "UK",
     "title": "Regulations: waste electrical and electronic equipment",
@@ -587,6 +609,7 @@
   },
   {
     "id": "uk-packaging-epr-who-is-affected",
+    "authority_tier": "primary",
     "regulation_id": "UK-Packaging-EPR",
     "market": "UK",
     "title": "Extended producer responsibility for packaging: who is affected and what to do",
@@ -613,6 +636,7 @@
   },
   {
     "id": "uk-reach-compliance-guidance",
+    "authority_tier": "primary",
     "regulation_id": "UK-REACH",
     "market": "UK",
     "title": "How to comply with REACH chemical regulations",
@@ -640,6 +664,7 @@
   },
   {
     "id": "uk-hse-svhc-overview",
+    "authority_tier": "primary",
     "regulation_id": "UK-SVHC",
     "market": "UK",
     "title": "Substances of very high concern overview",
@@ -665,6 +690,7 @@
   },
   {
     "id": "nz-product-safety-standards-2005",
+    "authority_tier": "primary",
     "regulation_id": "NZ-PS-Toys",
     "market": "NZ",
     "title": "Children's toy standard",
@@ -691,6 +717,7 @@
   },
   {
     "id": "nz-product-safety-standards-household-cots-2016",
+    "authority_tier": "primary",
     "regulation_id": "NZ-PS-Cots",
     "market": "NZ",
     "title": "Household cot standard",
@@ -717,6 +744,7 @@
   },
   {
     "id": "eu-safety-gate-alerts",
+    "authority_tier": "secondary",
     "market": "EU",
     "title": "Safety Gate (RAPEX) weekly notifications",
     "channel": "European Commission Safety Gate",
@@ -724,8 +752,9 @@
     "source_url": "https://ec.europa.eu/safety-gate-alerts/api/v1/notifs/?format=json&language=en",
     "human_view_url": "https://ec.europa.eu/safety-gate/",
     "human_view_status": "ok",
-    "watchdog_actual_fetch": "Safety Gate JSON API (collectors/safety_gate.py)",
-    "notes": "Signal stream — weekly dangerous-product notifications. Not a regulation text source; evidence-only (no regulation_id mapping). Filtered to product categories we cover (electronics / toys / children / cosmetic / battery / chemical).",
+    "watchdog_actual_fetch": "无法自动抓取（见 fetch_status）",
+    "fetch_status": "unreachable",
+    "notes": "Signal stream — weekly dangerous-product notifications. Not a regulation text source; evidence-only (no regulation_id mapping). Filtered to product categories we cover (electronics / toys / children / cosmetic / battery / chemical). MARKED UNREACHABLE 2026-09-17: the JSON API this entry pointed at (ec.europa.eu/safety-gate-alerts/api/v1/notifs) now answers HTTP 404, and every candidate replacement probed from the production host returns the SPA shell as text/html rather than JSON — /screen/api/v1/notifs, /screen/webReport/api/v1/notifs, /public/api/notifs/, /public/api/menu/list/ all do. The portal itself is still human-readable at human_view_url; there is simply no machine endpoint left to poll, so the orchestrator skips this source instead of failing it nightly.",
     "files": [],
     "product_categories": [
       "toys",
@@ -744,16 +773,18 @@
   },
   {
     "id": "cn-samr-product-recall",
+    "authority_tier": "primary",
     "regulation_id": "CN-SAMR-Recalls",
     "market": "CN",
     "title": "国家市场监督管理总局 召回信息",
     "channel": "State Administration for Market Regulation (SAMR)",
     "source_type": "gov_html",
-    "source_url": "https://www.samr.gov.cn/cjcx/zhxx/cxjj/",
+    "source_url": "https://www.samr.gov.cn/xw/zj/",
     "human_view_url": "https://www.samr.gov.cn/",
     "human_view_status": "ok",
-    "watchdog_actual_fetch": "HTML 端点（gov_html collector，去除导航与动态壳）",
-    "notes": "国家市场监督管理总局缺陷产品召回栏目。CN 第一个真正自动跟踪的官方源 — 之前 GB 私有标准只有 KB 摘要。",
+    "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
+    "fetch_status": "shell_only",
+    "notes": "国家市场监督管理总局要闻/政务栏目。2026-09-17：原 source_url（/cjcx/zhxx/cxjj/ 缺陷产品召回栏目）返回 404，自 2026-09-16 上线起每个 pass 都在失败；改用实测 200 的要闻栏目后，抓到的正文只有 24 字符（\"总局 你的位置: 首页 > 新闻 > 总局\"）——该站正文由 JS 注入，stdlib HTMLParser 拿不到内容。已标 shell_only 跳过；人工查看仍走 human_view_url。",
     "files": [
       "raw/cn/CN_samr_product_recall.html"
     ],
@@ -774,16 +805,18 @@
   },
   {
     "id": "cn-cnca-ccc-updates",
+    "authority_tier": "primary",
     "regulation_id": "CN-CNCA-CCC",
     "market": "CN",
     "title": "中国国家认证认可监督管理委员会 CCC 公告",
     "channel": "Certification and Accreditation Administration of China (CNCA)",
     "source_type": "gov_html",
-    "source_url": "https://www.cnca.gov.cn/cmservice/cnca/notice/list.html",
+    "source_url": "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/rzjgs/",
     "human_view_url": "https://www.cnca.gov.cn/",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "CCC 实施规则修订公告、目录调整公告。CN 电子电器核心入口。",
+    "fetch_status": "shell_only",
+    "notes": "CCC 实施规则修订公告、目录调整公告。CN 电子电器核心入口。2026-09-17：原 source_url（cnca.gov.cn/cmservice/cnca/notice/list.html）返回 404；改用市场监管总局认证监管司信息公开页（实测 200）后，抓到的正文只有 53 字符——该站正文由 JS 注入，stdlib HTMLParser 拿不到内容。已标 shell_only 跳过；CNCA 门户仍可人工访问（human_view_url）。",
     "files": [
       "raw/cn/CN_cnca_ccc_updates.html"
     ],
@@ -804,16 +837,18 @@
   },
   {
     "id": "jp-meti-pse-list",
+    "authority_tier": "primary",
     "regulation_id": "JP-METI-PSE",
     "market": "JP",
     "title": "METI 電気用品安全法 (PSE) 適用範囲",
     "channel": "Ministry of Economy, Trade and Industry (METI)",
     "source_type": "gov_html",
-    "source_url": "https://www.meti.go.jp/policy/consumer_appliance/pse/index.html",
+    "source_url": "https://www.meti.go.jp/english/policy/economy/consumer/index.html",
     "human_view_url": "https://www.meti.go.jp/policy/consumer_appliance/pse/index.html",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "PSE 菱形 / 圆形标识适用范围与锂电池、电安法修订公告。JP 第一个 watchdog 源。",
+    "fetch_status": "active",
+    "notes": "PSE 菱形 / 圆形标识适用范围与锂电池、电安法修订公告。JP 第一个 watchdog 源。2026-09-17 修复：原 source_url（/policy/consumer_appliance/pse/index.html）对自动化客户端返回 403，自上线起每个 pass 都在失败。改用 METI 英文消费者政策栏目（实测 200）；日文 PSE 专页仍可人工访问（human_view_url）。",
     "files": [
       "raw/jp/JP_meti_pse_list.html"
     ],
@@ -832,16 +867,18 @@
   },
   {
     "id": "kr-motie-kc-safety",
+    "authority_tier": "primary",
     "regulation_id": "KR-MOTIE-KC",
     "market": "KR",
     "title": "KC 안전확인 (Safety Confirmation) — MOTIE",
     "channel": "Ministry of Trade, Industry and Energy (MOTIE)",
     "source_type": "gov_html",
-    "source_url": "https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do",
+    "source_url": "https://www.motie.go.kr/kor/article/ATCL3f49a5a8c",
     "human_view_url": "https://www.motie.go.kr/",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "KC 安全确认目录公告 — 决定哪些 SKU 必须 KC。KR 第一个 watchdog 源。",
+    "fetch_status": "shell_only",
+    "notes": "KC 安全确认目录公告 — 决定哪些 SKU 必须 KC。KR 第一个 watchdog 源。2026-09-17：原 source_url 返回 404（自上线起每个 pass 都在失败）；改用实测 200 的 MOTIE 公告栏目后，抓到的正文只有 38 字符（\"보도·참고자료 < 보도자료 < 알림·뉴스\" 面包屑）——该站正文由 JS 注入。已标 shell_only 跳过。",
     "files": [
       "raw/kr/KR_motie_kc_safety.html"
     ],
@@ -861,16 +898,18 @@
   },
   {
     "id": "ae-moiat-ecas",
+    "authority_tier": "primary",
     "regulation_id": "AE-MoIAT-ECAS",
     "market": "AE",
     "title": "MoIAT ECAS 合格评定计划公告",
     "channel": "Ministry of Industry and Advanced Technology (MoIAT)",
     "source_type": "gov_html",
-    "source_url": "https://moiat.gov.ae/en/services/standardization-and-conformity/ecas",
+    "source_url": "https://www.moiat.gov.ae/en",
     "human_view_url": "https://moiat.gov.ae/",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "ECAS 公告 + EQM 能效标签计划 — AE/UAE 第一个 watchdog 源。",
+    "fetch_status": "shell_only",
+    "notes": "ECAS 公告 + EQM 能效标签计划 — AE/UAE 第一个 watchdog 源。2026-09-17：原 source_url 返回 404（自上线起每个 pass 都在失败），改用实测 200 的英文站首页后，抓到的正文只有 44 字符（\"Ministry of Industry and Advanced Technology\" 一句站点标题）——该站是 JS 渲染的 SPA，stdlib HTMLParser 拿不到公告正文，摘要会永远\"无变化\"。比不追踪更糟，因为它看起来在追踪。已标 shell_only 跳过；要真正覆盖 AE 需要引入 Playwright 渲染（watchdog 目前刻意只用标准库，见 scripts/watchdog/__init__.py）。",
     "files": [
       "raw/ae/AE_moiat_ecas.html"
     ],
@@ -889,16 +928,18 @@
   },
   {
     "id": "sa-saso-news",
+    "authority_tier": "primary",
     "regulation_id": "SA-SASO-News",
     "market": "SA",
     "title": "SASO 标准与 SABER 公告",
     "channel": "Saudi Standards, Metrology and Quality Organization (SASO)",
     "source_type": "gov_html",
-    "source_url": "https://www.saso.gov.sa/en/news-and-events/news/",
+    "source_url": "https://www.saso.gov.sa/en/Pages/default.aspx",
     "human_view_url": "https://www.saso.gov.sa/",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "SASO 标准发布 + SALEEM/SABER 类目公告。SA 第一个 watchdog 源。",
+    "fetch_status": "shell_only",
+    "notes": "SASO 标准发布 + SALEEM/SABER 类目公告。SA 第一个 watchdog 源。2026-09-17 修复：原 source_url（/en/news-and-events/news/）返回 404，自上线起每个 pass 都在失败。改用实测 200 的英文站入口后只抓到 224 字符——正文由 JS 注入。已标 shell_only 跳过。",
     "files": [
       "raw/sa/SA_saso_news.html"
     ],
@@ -919,16 +960,18 @@
   },
   {
     "id": "br-inmetro-novidades",
+    "authority_tier": "primary",
     "regulation_id": "BR-INMETRO",
     "market": "BR",
     "title": "INMETRO 强制认证目录与公告",
     "channel": "Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO)",
     "source_type": "gov_html",
-    "source_url": "https://www.gov.br/inmetro/pt-br/assuntos/noticias",
+    "source_url": "https://www.gov.br/inmetro/pt-br",
     "human_view_url": "https://www.gov.br/inmetro/",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "INMETRO 公告 + ANATEL Act 更新。BR 第一个 watchdog 源。",
+    "fetch_status": "active",
+    "notes": "INMETRO 公告 + ANATEL Act 更新。BR 第一个 watchdog 源。2026-09-17 修复：原 source_url（/pt-br/assuntos/noticias）返回 404，自上线起每个 pass 都在失败。改用实测 200 的葡萄牙语站首页。",
     "files": [
       "raw/br/BR_inmetro_news.html"
     ],
@@ -949,6 +992,7 @@
   },
   {
     "id": "in-bis-crs",
+    "authority_tier": "primary",
     "regulation_id": "IN-BIS-CRS",
     "market": "IN",
     "title": "BIS Compulsory Registration Scheme (CRS) 公告",
@@ -958,7 +1002,8 @@
     "human_view_url": "https://www.bis.gov.in/",
     "human_view_status": "ok",
     "watchdog_actual_fetch": "HTML 端点（gov_html collector）",
-    "notes": "BIS CRS 目录扩展 + 标准修订。IN 第一个 watchdog 源。",
+    "fetch_status": "shell_only",
+    "notes": "BIS CRS 目录扩展 + 标准修订。IN 第一个 watchdog 源。2026-09-17：实测 200 但抓到的正文只有 28 字符（\"- Bureau of Indian Standards\" 页面标题）——该站正文由 JS 注入，stdlib HTMLParser 拿不到内容。已标 shell_only 跳过；网站仍可人工访问（human_view_url）。",
     "files": [
       "raw/in/IN_bis_crs.html"
     ],
@@ -975,5 +1020,61 @@
       "testing"
     ],
     "why_added": "IN BIS CRS 目录扩展 — 决定印度电子产品强制注册范围。"
+  },
+  {
+    "id": "us-fda-device-recalls",
+    "authority_tier": "primary",
+    "market": "US",
+    "title": "FDA device recall enforcement reports (OpenFDA)",
+    "channel": "US Food and Drug Administration",
+    "source_type": "openfda_recalls",
+    "source_url": "https://api.fda.gov/device/recall.json",
+    "sort": "event_date_initiated:desc",
+    "human_view_url": "https://open.fda.gov/apis/device/recall/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "OpenFDA JSON API (collectors/openfda.py; newest-first by event_date_initiated, 30-day window)",
+    "fetch_status": "active",
+    "notes": "Signal stream — FDA device recall enforcement reports, filtered to the highest-risk classification tier. Not a regulation text source; evidence-only. Verified reachable from the production host 2026-09-17 (HTTP 200, no key, no challenge). Complements the CPSC recall API: CPSC covers consumer products, FDA covers devices and (via the food endpoint below) food-contact enforcement.",
+    "files": [],
+    "product_categories": [
+      "electronics",
+      "appliance",
+      "home_goods",
+      "children_products",
+      "food_contact"
+    ],
+    "regulatory_types": [
+      "recall",
+      "product_safety",
+      "market_surveillance"
+    ],
+    "why_added": "US FDA device recall activity — early warning for products that reach market through the device/food-contact route rather than the CPSC route."
+  },
+  {
+    "id": "us-fda-food-enforcement",
+    "authority_tier": "primary",
+    "market": "US",
+    "title": "FDA food + food-contact enforcement reports (OpenFDA)",
+    "channel": "US Food and Drug Administration",
+    "source_type": "openfda_recalls",
+    "source_url": "https://api.fda.gov/food/enforcement.json",
+    "sort": "recall_initiation_date:desc",
+    "human_view_url": "https://open.fda.gov/apis/food/enforcement/",
+    "human_view_status": "ok",
+    "watchdog_actual_fetch": "OpenFDA JSON API (collectors/openfda.py; newest-first by recall_initiation_date, 30-day window)",
+    "fetch_status": "active",
+    "notes": "Signal stream — FDA food and food-contact enforcement reports. Not a regulation text source; evidence-only. Verified reachable from the production host 2026-09-17 (HTTP 200, no key, no challenge). Covers the food_contact category, which previously had no recall signal at all.",
+    "files": [],
+    "product_categories": [
+      "food_contact",
+      "home_goods",
+      "children_products"
+    ],
+    "regulatory_types": [
+      "recall",
+      "product_safety",
+      "market_surveillance"
+    ],
+    "why_added": "US FDA food-contact enforcement activity — the food_contact category had no recall signal before this source."
   }
 ]

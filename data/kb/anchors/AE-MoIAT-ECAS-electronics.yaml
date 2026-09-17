@@ -1,0 +1,30 @@
+id: KB-electronics-AE-AE-MoIAT-ECAS
+regulation_id: AE-MoIAT-ECAS
+doc_name: Emirates Conformity Assessment Scheme (ECAS)
+official_citation: Emirates Conformity Assessment Scheme (ECAS) — Ministerial Resolutions under Federal Law No. 28/2001
+short_name: UAE ECAS (合格评定)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  - appliance
+  - battery
+  features_any: []
+  markets:
+  - AE
+key_articles: []
+key_points:
+- 阿联酋《合格评定计划》(ECAS)是 UAE 产品上市的强制性合格评定程序
+- 强制目录内产品上市前须由 MoIAT 指定公告机构(ESMA / ENAS / TUV 等)发 ECAS 证书
+- 注册 + 标签 + DoC 三大要素缺一不可
+- EQM 能效标签计划同步强制(大家电 / 空调 / 照明等)
+- 由 MoIAT 主管,缺 ECAS 证书 → 海关扣留 + 召回
+risk_hint: 缺 ECAS 证书 / EQM 标签 → 海关扣留 + 罚款
+est_cost: ECAS 测试 ¥8K-20K + 注册 ¥3K-8K + 标签 ¥1K-3K
+license: public
+source_url: https://moiat.gov.ae/en/services/standardization-and-conformity/ecas
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

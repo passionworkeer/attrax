@@ -1,7 +1,15 @@
 import { fail } from "@/lib/api-response";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 import { getScanAsset, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
-import { SessionIdSchema } from "@/lib/schemas";
+import { z } from "zod";
+
+// session_id = "scan_" + 1..50 chars of [0-9A-Za-z_-]（RAG service 构造，
+// FileBackend._SAFE_ID regex 与 application/scans.py:230 一致）。
+const SessionIdSchema = z
+  .string()
+  .min(6)
+  .max(64)
+  .regex(/^scan_[0-9A-Za-z_-]{1,50}$/);
 
 export const runtime = "nodejs";
 

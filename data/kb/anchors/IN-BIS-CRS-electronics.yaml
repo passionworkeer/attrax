@@ -1,0 +1,30 @@
+id: KB-electronics-IN-IN-BIS-CRS
+regulation_id: IN-BIS-CRS
+doc_name: Compulsory Registration Scheme (BIS CRS)
+official_citation: Compulsory Registration Scheme (CRS) — BIS Scheme-II under BIS Act 2016
+short_name: IN BIS CRS (印度强制注册)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  - appliance
+  - battery
+  features_any: []
+  markets:
+  - IN
+key_articles: []
+key_points:
+- 印度《BIS 强制注册计划》(CRS / Scheme II)对电子、电气、家电等产品目录实施注册
+- 强制目录内产品须在 BIS 认可实验室测试 + 上 BIS 官网注册
+- 标签须印"Registration No.: xxxxxx" + 印度本地进口商信息
+- 自 2018-02 起,BIS 收紧对二/三级认证机构测试报告的接受范围
+- 由 BIS + MeitY 联合主管,缺注册号 → 海关扣留 + 召回
+risk_hint: 缺 BIS CRS 注册号 → 海关扣留 + 罚款
+est_cost: BIS 测试 ¥5K-15K + 注册 ¥3K-8K + 印度代表 ¥5K-15K/年
+license: public
+source_url: https://www.bis.gov.in/index.php/standards-changes-orders/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

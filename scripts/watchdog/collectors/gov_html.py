@@ -37,6 +37,7 @@ import re
 from html.parser import HTMLParser
 
 from scripts.watchdog.collectors.base import RegulationUpdate, fetch_url
+from scripts.watchdog.registry import register
 from scripts.watchdog.state import normalize_text, text_hash
 
 # Tags whose ENTIRE contents (including nested children) should be dropped.
@@ -194,6 +195,7 @@ def _strip_chrome(html: str) -> str:
         return normalize_text(stripped)
 
 
+@register("gov_html")
 def collect_gov_html(entry: dict) -> RegulationUpdate:
     """Fetch a gov_html source and return the chrome-stripped text.
 

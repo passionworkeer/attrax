@@ -3,7 +3,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
-const STRONG_SECRET = "0123456789abcdef0123456789abcdef";
+// 48-hex 字符串 —— 与 scripts/ecosystem.config.cjs 注释承诺的「48-hex」对齐。
+// preflight-deploy.mjs 把最小长度从 32 提到 48 时这个值也要跟着加长，
+// 否则整套生产环境校验会失败。
+const STRONG_SECRET = "0123456789abcdef0123456789abcdef0123456789abcdef";
 
 function makeDeployRoot(envBody: string) {
   const root = mkdtempSync(join(tmpdir(), "attrax-deploy-"));
@@ -75,7 +78,7 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     );
     expect(result.ok).toBe(false);
     expect(result.errors).toContain("MINIMAX_API_KEY still contains the production example placeholder.");
-    expect(result.errors).toContain("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 32 characters.");
+    expect(result.errors).toContain("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 48 hex characters (see docs/RAG-INTERNAL-SECRET.md and scripts/ecosystem.config.cjs header comment).");
     expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
 

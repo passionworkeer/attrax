@@ -1,0 +1,30 @@
+id: KB-children-CA-CA-SOR-2018-83
+regulation_id: CA-SOR-2018-83
+doc_name: Consumer Products Containing Lead Regulations
+official_citation: Consumer Products Containing Lead Regulations (SOR/2018-83)
+short_name: CA Lead in Consumer Products Regs
+source: category
+primary_source: children
+applies_if:
+  category:
+  - children
+  - toy
+  - jewelry
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- 加拿大《消费品含铅法规》限制 16 岁以下儿童可能接触消费品中的总铅含量
+- 一般可触及部件铅 ≤ 90 mg/kg;儿童首饰/玩具紧固件等高风险部件 ≤ 90 mg/kg
+- 涂层(任何厚度)总铅 ≤ 90 mg/kg(与 SOR/2016-193 形成双线)
+- 由 Health Canada 主管,纳入 CCPSA 执法体系
+- 镉 ≤ 130 mg/kg(部分类别) / 邻苯在 2016-188 法规中
+risk_hint: 儿童产品铅超限 → 加拿大 + 美国双线召回
+est_cost: 总铅测试 ¥1K-3K/产品
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-83/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

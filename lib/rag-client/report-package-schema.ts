@@ -143,11 +143,15 @@ const EvidenceBundles = z
 // after the LLM returns. Front-end renders `<CitationChip>` from
 // these — chip click navigates to
 // `/regulations/{doc_id}#{article_id}?hl={start},{end}` (§4.4).
-const CitationMatchStatus = z.enum([
+// 3 值，与后端 quote_matcher (rag_service/verify/quote_matcher.py) 输出一致。
+// "unverified" 仅是前端 chip 的 fallback（match_status 缺字段时显示），不写
+// 进数据契约；前端组件在自己的类型里加这个值，避免污染 snapshot/types.gen.ts。
+const CitationMatchStatusSchema = z.enum([
   "matched",
   "fallback_article_only",
   "unmatched",
 ]);
+export { CitationMatchStatusSchema };
 
 const CitationRef = z
   .object({
@@ -156,7 +160,7 @@ const CitationRef = z
     official_citation: z.string().optional().default(""),
     quote: z.string().optional().default(""),
     quote_span: z.tuple([z.number().int(), z.number().int()]).nullable().optional(),
-    match_status: CitationMatchStatus.nullable().optional(),
+    match_status: CitationMatchStatusSchema.nullable().optional(),
   })
   .passthrough();
 

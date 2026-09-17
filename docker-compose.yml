@@ -53,6 +53,14 @@ services:
       MINIMAX_MODEL: ${MINIMAX_MODEL:-MiniMax-M3}
       MIMOTALK_API_KEY: ${MIMOTALK_API_KEY:-}
       MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
+      # DeepSeek 降级通道：vision（OpenAI 兼容）与 generate（Anthropic 兼容）
+      # 共用 key；留空则仅 primary（MiniMax）一条腿，挂了就退化到 mock。
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
+      DEEPSEEK_ANTHROPIC_BASE_URL: ${DEEPSEEK_ANTHROPIC_BASE_URL:-https://api.deepseek.com/anthropic/v1}
+      DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-flash}
+      DEEPSEEK_MAX_TOKENS: ${DEEPSEEK_MAX_TOKENS:-16384}
+      MINIMAX_THINKING_MODE: ${MINIMAX_THINKING_MODE:-adaptive}
       RAG_ALLOWED_ORIGINS: ${RAG_ALLOWED_ORIGINS:-http://localhost:3000}
       RAG_INTERNAL_SECRET: ${RAG_INTERNAL_SECRET:?RAG_INTERNAL_SECRET is required}
       ATTRAX_BUILD_SHA: ${ATTRAX_BUILD_SHA:-unknown}
@@ -60,9 +68,13 @@ services:
       NO_PROXY: "localhost,127.0.0.1,rag-service"
     volumes:
       - ./data/backend:/app/data/backend
-      # KB regulation library + per-region YAMLs are baked into the image at build
-      # time (see rag_service/Dockerfile COPY data/kb data/regulations). No host
-      # mounts are required at runtime for the de-RAG pipeline.
+      # KB regulation library + KB anchors + 法规 YAMLs 随镜像构建打入：
+      # rag_service/Dockerfile 用 `COPY . .` 把整个 build context（含
+      # data/regulations/, data/kb/anchors/, data/inspection_profiles/,
+      # data/regulation_sources/）一次性复制到 /app/data/。
+      # .dockerignore 显式排除 data/backend、data/sessions、corpus 离线缓存、
+      # regulation_eval/reports 产物，避免污染镜像。
+      # 运行时不需要 host mount 任何 KB 数据。
     restart: unless-stopped
     init: true
     security_opt:
