@@ -147,6 +147,61 @@ export function buildComplianceReport(result: ScanResult, locale: BlazeReportLoc
         .join("\n\n"));
   }
 
+  // De-RAG real scans: the LLM report body lives in `complianceReport` and the
+  // KB-verified citations in `reportPackage.citations`. `riskPoints` is only
+  // populated by the legacy/demo shapes — building the export from it produced
+  // an md file with empty 核心结论/重点法规引用/推荐整改动作 sections for
+  // every production scan.
+  const backendReport = result.complianceReport?.trim();
+  if (backendReport) {
+    const citations = result.reportPackage?.citations ?? [];
+    const citationLines = citations.map((citation) => {
+      const label = citation.official_citation || `${citation.doc_id} · ${citation.article_id}`;
+      const statusSuffix =
+        citation.match_status === "matched" ? "" : ` [${citation.match_status ?? "unverified"}]`;
+      return `- ${label}${statusSuffix}`;
+    });
+    const citationsBlock = citationLines.length
+      ? citationLines.join("\n")
+      : locale === "en"
+        ? "(No citation references attached to this scan.)"
+        : "（本次扫描暂无引用条款。）";
+
+    if (locale === "en") {
+      return `# CompliPilot · Compliance Scan Report
+
+Product name: ${localized.productName ?? "Untitled product"}
+Target markets: ${marketList(localized)}
+Compliance score: ${localized.complianceScore} / ${localized.scoreGrade}
+Generated at: ${localized.generatedAt}
+
+## Report
+
+${backendReport}
+
+## Regulatory citations
+
+${citationsBlock}
+`;
+    }
+
+    return `# 规航AI · 合规扫描报告
+
+产品名称: ${localized.productName ?? "未命名产品"}
+目标市场: ${marketList(localized)}
+当前合规得分: ${localized.complianceScore} / ${localized.scoreGrade}
+生成时间: ${localized.generatedAt}
+
+## 扫描报告
+
+${backendReport}
+
+## 重点法规引用
+
+${citationsBlock}
+`;
+  }
+
   if (locale === "en") {
     return `# CompliPilot · Compliance Scan Report
 
