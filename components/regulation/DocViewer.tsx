@@ -55,6 +55,18 @@ const HL_CLASSES =
 export function DocViewer({ regulation, hl }: DocViewerProps) {
   const articles = regulation.articles ?? [];
   const isPrivate = regulation.license === "private_with_summary";
+  const [articleId, setArticleId] = useState(hl?.articleId ?? "");
+  useEffect(() => {
+    const readHash = () => {
+      try { setArticleId(decodeURIComponent(window.location.hash.slice(1).split("?")[0])); }
+      catch { setArticleId(""); }
+    };
+    readHash();
+    window.addEventListener("hashchange", readHash);
+    return () => window.removeEventListener("hashchange", readHash);
+  }, []);
+  const activeHighlight = hl ? { ...hl, articleId: hl.articleId || articleId } : null;
+  const condensed = articles.some((article) => /condensed from KB|full official text pending/i.test(article.text ?? ""));
 
   return (
     <div className="grid gap-6 lg:grid-cols-[14rem_1fr]">
@@ -112,6 +124,7 @@ export function DocViewer({ regulation, hl }: DocViewerProps) {
 
       {/* Right column: article body */}
       <main className="glass-panel min-h-[24rem] rounded-2xl p-6">
+        {condensed && <p role="note" className="mb-5 rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm leading-7 text-amber-200">当前展示的是法规知识库摘要，尚未逐字核对官方条文，不能作为法规原文引用。请通过「原文出处」核查完整文本。</p>}
         {isPrivate ? (
           <PrivateView regulation={regulation} />
         ) : articles.length === 0 ? (
@@ -121,7 +134,7 @@ export function DocViewer({ regulation, hl }: DocViewerProps) {
         ) : (
           <PublicArticles
             articles={articles}
-            hl={hl}
+            hl={activeHighlight}
             citation={regulation.official_citation}
           />
         )}
@@ -212,19 +225,16 @@ function HighlightedBody({
   const marked = text.slice(safeStart, safeEnd);
   const post = text.slice(safeEnd);
 
-  const domRef = useState<HTMLElement | null>(null);
-
   useEffect(() => {
     // Scroll the marked span into view if the URL hash points here.
     const target = document.getElementById(articleId);
     if (target) {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }, [articleId, domRef]);
+  }, [articleId]);
 
   return (
     <p
-      id={articleId}
       data-article-id={articleId}
       className="whitespace-pre-wrap leading-relaxed text-slate-200"
     >

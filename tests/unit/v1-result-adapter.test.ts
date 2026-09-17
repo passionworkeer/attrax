@@ -118,12 +118,33 @@ describe("normalizeV1ScanResult", () => {
     expect(degraded?.financialSummary).toBeUndefined();
   });
 
+  it("preserves battery category and the configured qwen provider", () => {
+    const result = normalizeV1ScanResult(
+      session({
+        category: "battery",
+        result: {
+          productCategory: "battery",
+          targetMarkets: ["EU"],
+          complianceStatus: "WARN",
+          reportPackage: {
+            auditMetadata: { provider: "qwen" },
+          },
+        },
+      }),
+    );
+
+    expect(result?.productCategory).toBe("battery");
+    expect(result?.modelInfo?.visionProvider).toBe("qwen");
+  });
+
   it("does not silently replace a real session with the demo fixture", async () => {
     const source = await readFile("app/result/[sessionId]/page.tsx", "utf8");
-    const profitSource = await readFile("app/profit/[sessionId]/page.tsx", "utf8");
+    const profitSource = await readFile("app/profit/[sessionId]/profit-page-content.tsx", "utf8");
 
     expect(source).not.toContain("setResult(mockScanResult)");
-    expect(source).toContain('unoptimized={riskCanvasImage.url.startsWith("/api/")}');
+    const imageSource = await readFile("components/result/review-image.tsx", "utf8");
+    expect(imageSource).toContain('src={image.url}');
+    expect(source).toContain("isDemoSession ? scanResultToComplianceView");
     expect(profitSource).not.toContain("setResult(mockScanResult)");
   });
 

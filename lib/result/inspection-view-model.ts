@@ -133,6 +133,7 @@ export interface CitationVM {
   articleId: string;
   officialCitation: string;
   quote: string;
+  quoteProvenance?: string;
   quoteSpan: [number, number] | null;
   /** Never defaults to matched — missing status reads as unverified (J05). */
   matchStatus: "matched" | "fallback_article_only" | "unmatched" | "unverified";
@@ -142,6 +143,7 @@ export interface CitationVM {
 
 export interface EvidenceRequestVM {
   id: string;
+  receivedDocuments?: string[];
   /** Plan §5.3 EvidenceRequest.type — derived from the merged findings'
    *  requiredViews presence: photo views → "photo", otherwise "document"
    *  (lab/registration findings surface as documents). */
@@ -172,8 +174,7 @@ export interface InspectionResultVM {
     evidenceNeededCount: number;
     observationCount: number;
     citationCount: number;
-    /** 扫描结果修订版。后端暂无 revision 字段，固定 1；补证接口落地后
-     *  从 result/reportPackage 读取。 */
+    /** Persisted scan revision; legacy results default to revision 1. */
     revision: number;
     /** true when the scan has observations but zero findings — the page
      *  renders "observation mode" instead of a risk verdict. */
@@ -282,6 +283,7 @@ export function buildInspectionResultViewModel(input: {
       // informative paraphrase).
       if (quote.length > existing.quote.length) {
         existing.quote = quote;
+        existing.quoteProvenance = text(entry.quote_provenance ?? entry.quoteProvenance);
       }
       if (!existing.quoteSpan && validSpan) existing.quoteSpan = validSpan;
       continue;
@@ -292,6 +294,7 @@ export function buildInspectionResultViewModel(input: {
       articleId,
       officialCitation: text(entry.official_citation ?? entry.officialCitation),
       quote,
+      quoteProvenance: text(entry.quote_provenance ?? entry.quoteProvenance),
       quoteSpan: validSpan,
       matchStatus: matchStatusOf(entry),
       duplicates: 1,
@@ -335,7 +338,7 @@ export function buildInspectionResultViewModel(input: {
         bbox: observation.bbox!,
         severity: severityOf(finding),
         assessment,
-        shortTitle,
+        shortTitle: hotspotTitleForObservation(observation, shortTitle),
       }));
     return {
       findingId: text(finding.findingId, `finding-${sessionId}-${Math.random().toString(36).slice(2, 8)}`),
@@ -383,7 +386,13 @@ export function buildInspectionResultViewModel(input: {
     observationsByCheck.set(observation.checkId, list);
   }
   const checkIds: string[] = [];
-  for (const id of observationsByCheck.keys()) checkIds.push(id);
+  // A resolved document request no longer appears in findings, but its
+  // evidence-backed assessment must remain visible in the review.
+  for (const claim of (Array.isArray(reportPackage.reviewClaims) ? reportPackage.reviewClaims : [])) {
+    const id = text(record(claim).checkId);
+    if (id && !checkIds.includes(id)) checkIds.push(id);
+  }
+  for (const id of observationsByCheck.keys()) if (!checkIds.includes(id)) checkIds.push(id);
   for (const id of findingsByCheck.keys()) {
     if (!checkIds.includes(id)) checkIds.push(id);
   }
@@ -437,25 +446,31 @@ export function buildInspectionResultViewModel(input: {
       bbox: observation.bbox,
       severity: related[0]?.severity ?? null,
       assessment: related[0]?.assessment ?? null,
-      shortTitle: related[0] ? shortCheckTitle(related[0].title) : checkTitleFromId(observation.checkId),
+      shortTitle: hotspotTitleForObservation(
+        observation,
+        related[0] ? shortCheckTitle(related[0].title) : checkTitleFromId(observation.checkId),
+      ),
     });
     anchorsByImage[observation.imageId] = list;
   }
 
   // ── Evidence requests (merge by requiredViews, plan §5.3) ────────────────
   const evidenceRequests = buildEvidenceRequests(findings, sessionId);
+  for (const request of evidenceRequests) {
+    if (request.type !== "document") continue;
+    const linked = (result.reportPackage?.reviewClaims || []).filter(claim =>
+      claim.verificationVersion === "review-links/v1" && request.resolvesCheckIds.includes(claim.checkId));
+    request.receivedDocuments = [...new Set(linked.flatMap(claim => claim.documentEvidence.map(doc => doc.name)))];
+  }
 
   // ── Product (fallback chain, never undefined) ─────────────────────────────
   const dossier = record(reportPackage.productDossier ?? reportPackage.product_dossier);
-  let rawName =
-    text(result.productName) ||
-    text(dossier.productName ?? dossier.product_name) ||
-    text(dossier.product);
-  if (rawName === "产品" || rawName === "product" || rawName === "undefined") {
-    rawName = "";
-  }
-  const observedName = rawName ? null : extractProductTitleFromObservations(observations);
-  const structuredName = rawName || observedName || "";
+  const specificName = (value: unknown) => /^(product|产品|通用产品|unknown)$/i.test(text(value)) ? "" : text(value);
+  const structuredName =
+    specificName(result.productName) ||
+    specificName(dossier.productName ?? dossier.product_name) ||
+    specificName(dossier.product) ||
+    extractProductTitleFromObservations(observations) || "";
   const category = text(result.productCategory, "other") as ProductCategory;
   const categoryLabel = CATEGORY_LABELS[category] ?? "其他";
   const productTitle =
@@ -499,7 +514,7 @@ export function buildInspectionResultViewModel(input: {
       evidenceNeededCount,
       observationCount: observations.length,
       citationCount: citations.length,
-      revision: 1,
+      revision: Math.max(1, Math.floor(finiteNumber(result.revision, 1))),
       observationOnly: findings.length === 0 && observations.length > 0,
     },
     images: (Array.isArray(result.images) ? result.images : []).map((image) => ({
@@ -694,6 +709,19 @@ function shortCheckTitle(title: string): string {
   return title.length > 24 ? `${title.slice(0, 23)}…` : title;
 }
 
+function hotspotTitleForObservation(
+  observation: ObservationVM,
+  fallback: string,
+): string {
+  if (
+    observation.checkId === "common.certification_marks.visible" &&
+    observation.observedText
+  ) {
+    return observation.observedText;
+  }
+  return fallback;
+}
+
 const CATEGORY_LABELS: Record<string, string> = {
   electronics: "3C 电子",
   "3c": "3C 电子",
@@ -748,7 +776,9 @@ function buildEvidenceRequests(findings: FindingVM[], sessionId: string): Eviden
       id: `evidence-${sessionId}-${groups.size + 1}`,
       type: views.length > 0 ? "photo" : "document",
       title: views.length > 0 ? viewSlotTitle(views) : finding.title,
-      explanation: finding.suggestedAction,
+      explanation: views.length > 0
+        ? `${viewSlotTitle(views)}，请确保文字清晰、相关区域完整入镜；若产品没有该附件，请补充说明。`
+        : finding.suggestedAction,
       requiredViews: [...views],
       resolvesCheckIds: finding.checkId ? [finding.checkId] : [],
       status: "needed",

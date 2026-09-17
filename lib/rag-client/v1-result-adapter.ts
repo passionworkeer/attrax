@@ -548,6 +548,12 @@ function truncateReport(report: string): { value: string; truncated: boolean } {
   return {
     sessionId: session.sessionId,
     scanTime: session.createdAt,
+    revision: Math.max(1, Math.floor(number(result.revision, 1))),
+    revisionComparison: (() => {
+      const c = record(result.revisionComparison);
+      if (!Array.isArray(c.added) || !Array.isArray(c.removed) || !Array.isArray(c.changed)) return undefined;
+      return { previousRevision: number(c.previousRevision, 1), added: c.added.filter((v): v is string => typeof v === "string"), removed: c.removed.filter((v): v is string => typeof v === "string"), changed: c.changed.filter((v): v is string => typeof v === "string"), remaining: number(c.remaining, 0), marketChanges: Array.isArray(c.marketChanges) ? c.marketChanges.map(value=>{const row=record(value);return {market:text(row.market),checkId:text(row.checkId),before:text(row.before),after:text(row.after),beforeReason:text(row.beforeReason),afterReason:text(row.afterReason),evidenceChanged:row.evidenceChanged===true};}).filter(row=>row.market&&row.checkId) : undefined };
+    })(),
     productCategory: productCategory(result.productCategory ?? session.category),
     productName: text(result.productName) || undefined,
     targetMarkets: markets(result.targetMarkets, session.markets),
@@ -685,7 +691,7 @@ function truncateReport(report: string): { value: string; truncated: boolean } {
     latencyMs,
     loopCount,
     modelInfo: {
-      visionProvider: "minimax",
+      visionProvider: ragProvider || "minimax",
       latencyMs,
     },
     source: session.status === "degraded" ? "fallback" : "real",

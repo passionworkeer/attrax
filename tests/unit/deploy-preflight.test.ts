@@ -32,7 +32,8 @@ function makeDeployRoot(envBody: string) {
 
 function productionEnv(extra = "") {
   return `
-MINIMAX_API_KEY=minimax-key
+LLM_PROVIDER=minimax
+LLM_API_KEY=minimax-key
 RAG_INTERNAL_SECRET=${STRONG_SECRET}
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
@@ -53,14 +54,14 @@ describe("deployment preflight", () => {
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const result = validateDeployment(
       makeDeployRoot(`
-MINIMAX_API_KEY=
+LLM_API_KEY=
 RAG_INTERNAL_SECRET=
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com
 `),
     );
     expect(result.ok).toBe(false);
-    expect(result.errors).toContain("MINIMAX_API_KEY is required when DEMO_MODE is not true.");
+    expect(result.errors).toContain("LLM_API_KEY is required when DEMO_MODE is not true.");
     expect(result.errors).toContain("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
     expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
@@ -69,7 +70,7 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const result = validateDeployment(
       makeDeployRoot(`
-MINIMAX_API_KEY=your_minimax_api_key
+LLM_API_KEY=your_llm_api_key
 RAG_INTERNAL_SECRET=replace_with_a_strong_random_service_secret
 ATTRAX_BUILD_SHA=replace_with_git_commit_sha
 DEMO_MODE=false
@@ -77,7 +78,7 @@ RAG_ALLOWED_ORIGINS=https://frontend.example.com
 `),
     );
     expect(result.ok).toBe(false);
-    expect(result.errors).toContain("MINIMAX_API_KEY still contains the production example placeholder.");
+    expect(result.errors).toContain("LLM_API_KEY still contains the production example placeholder.");
     expect(result.errors).toContain("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 48 hex characters (see docs/RAG-INTERNAL-SECRET.md and scripts/ecosystem.config.cjs header comment).");
     expect(result.errors).toContain("ATTRAX_BUILD_SHA must identify the exact deployed Git commit.");
   });
@@ -114,6 +115,18 @@ DEMO_MODE=false
     const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
     const root = makeDeployRoot(`
 MIMOTALK_API_KEY=legacy-key
+RAG_INTERNAL_SECRET=${STRONG_SECRET}
+DEMO_MODE=false
+RAG_ALLOWED_ORIGINS=https://frontend.example.com
+ATTRAX_BUILD_SHA=abc123
+`);
+    expect(validateDeployment(root).ok).toBe(true);
+  });
+
+  it("accepts the current MINIMAX_API_KEY alias during migration", async () => {
+    const { validateDeployment } = await import("../../scripts/preflight-deploy.mjs");
+    const root = makeDeployRoot(`
+MINIMAX_API_KEY=minimax-key
 RAG_INTERNAL_SECRET=${STRONG_SECRET}
 DEMO_MODE=false
 RAG_ALLOWED_ORIGINS=https://frontend.example.com

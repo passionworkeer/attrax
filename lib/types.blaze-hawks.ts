@@ -2,7 +2,6 @@
  * Blaze Hawks-specific visual report shapes. Used by the handoff /profit page
  * and the financialSummary adapter. Do NOT add these to ComplianceReportResult.
  */
-import type { Market, ProductCategory } from "@/lib/types";
 
 export interface CostBreakdownItem {
   itemId: string;

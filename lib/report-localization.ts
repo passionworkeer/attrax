@@ -172,6 +172,12 @@ export function localizeComplianceReportResult(
   };
 }
 
+/** One shared, immutable body for the reader and both download formats. */
+export function prepareComplianceReport(result: ComplianceReportResult, locale: ReportLocale = "zh"): ComplianceReportResult {
+  const localized = localizeComplianceReportResult(result, locale);
+  return {...localized, complianceReport: localized.complianceReport + (result.reviewAppendix?.[locale] ?? ""), reviewAppendix: undefined};
+}
+
 export function localizeProfitReportResult(
   result: ProfitReportResult,
   locale?: ReportLocale,

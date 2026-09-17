@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { checkLabel } from "@/lib/result/check-labels";
 import type { InspectionFinding, InspectionObservation } from "@/lib/types";
 import type { CheckResultVM, FindingVM, InspectionResultVM } from "@/lib/result/inspection-view-model";
 import { checkTitleFromId } from "@/lib/result/inspection-view-model";
@@ -38,16 +39,16 @@ const VISIBILITY_LABELS: Record<string, { zh: string; en: string; tone: "ok" | "
 };
 
 const TONE_STYLES: Record<"ok" | "reshoot" | "confirm", string> = {
-  ok: "border-emerald-400/30 bg-emerald-400/10 text-emerald-200",
-  reshoot: "border-amber-400/35 bg-amber-400/10 text-amber-200",
+  ok: "border-emerald-400/30 bg-emerald-400/10 text-emerald-800",
+  reshoot: "border-amber-400/35 bg-amber-400/10 text-amber-800",
   confirm: "border-white/15 bg-white/[0.06] text-white/62",
 };
 
 /** Assessment chip for findings (suspected/confirmed/evidence-needed). */
 const ASSESSMENT_LABELS: Record<string, { zh: string; en: string; tone: string }> = {
-  suspected_issue: { zh: "疑点", en: "suspected", tone: "border-amber-400/35 bg-amber-400/10 text-amber-200" },
-  confirmed_issue: { zh: "确定问题", en: "confirmed", tone: "border-red-400/45 bg-red-400/10 text-red-200" },
-  evidence_needed: { zh: "待证据", en: "evidence", tone: "border-sky-400/30 bg-sky-400/10 text-sky-200" },
+  suspected_issue: { zh: "疑点", en: "suspected", tone: "border-amber-400/35 bg-amber-400/10 text-amber-800" },
+  confirmed_issue: { zh: "确定问题", en: "confirmed", tone: "border-red-400/45 bg-red-400/10 text-red-800" },
+  evidence_needed: { zh: "待证据", en: "evidence", tone: "border-sky-400/30 bg-sky-400/10 text-sky-800" },
 };
 
 interface ChecklistRow {
@@ -152,7 +153,11 @@ export function InspectionChecklistPanel({
   activeImageId,
   vm,
   selectedObservationId,
+  showRequests = true,
+  auditMode = false,
 }: {
+  showRequests?: boolean;
+  auditMode?: boolean;
   observations: InspectionObservation[];
   selectedCheckIds?: string[];
   findings?: InspectionFinding[];
@@ -168,6 +173,7 @@ export function InspectionChecklistPanel({
   /** Selection linkage: highlight the row whose observation is selected. */
   selectedObservationId?: string | null;
 }) {
+  const [filter, setFilter] = useState<"all" | "attention" | "observed">("attention");
   const rows = useMemo<ChecklistRow[]>(() => {
     if (vm) {
       return vm.checks
@@ -245,6 +251,9 @@ export function InspectionChecklistPanel({
     confirm: rows.filter((row) => VISIBILITY_LABELS[row.visibility]?.tone === "confirm").length,
   };
 
+  const needsReview = (row: ChecklistRow) => row.visibility !== "present_readable" || row.findings.some(finding => finding.applicability !== "not_applicable");
+  const reviewRows = auditMode ? [...rows].sort((a,b) => Number(needsReview(b)) - Number(needsReview(a))) : rows;
+  const shownRows = !auditMode || filter === "all" ? reviewRows : reviewRows.filter(row => filter === "attention" ? needsReview(row) : !needsReview(row));
   return (
     <div data-testid="inspection-checklist-panel" className="blaze-panel p-5 sm:p-7">
       <div className="flex flex-wrap items-end justify-between gap-3">
@@ -262,10 +271,10 @@ export function InspectionChecklistPanel({
           </p>
         </div>
         <div className="flex gap-2 text-xs">
-          <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-1 text-emerald-200">
+          <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-1 text-emerald-800">
             {locale === "zh" ? "已观察" : "Observed"} {counts.ok}
           </span>
-          <span className="rounded-full border border-amber-400/35 bg-amber-400/10 px-2.5 py-1 text-amber-200">
+          <span className="rounded-full border border-amber-400/35 bg-amber-400/10 px-2.5 py-1 text-amber-800">
             {locale === "zh" ? "待补拍" : "Reshoot"} {counts.reshoot}
           </span>
           <span className="rounded-full border border-white/15 bg-white/[0.06] px-2.5 py-1 text-white/62">
@@ -274,8 +283,12 @@ export function InspectionChecklistPanel({
         </div>
       </div>
 
+      {auditMode && <div className="mt-5 flex flex-wrap gap-2" aria-label={locale === "zh" ? "检查筛选" : "Filter checks"}>
+        {(["attention", "all", "observed"] as const).map(value => <button key={value} type="button" aria-pressed={filter === value} onClick={() => setFilter(value)} className={cn("min-h-10 rounded-xl border px-4 py-2 text-sm", filter === value ? "bg-[#174e68] !text-white border-[#174e68]" : "bg-white/40 text-[#315c70] border-white/60")}>{locale === "zh" ? (value === "attention" ? "优先复核" : value === "all" ? "全部检查" : "已观察 · 无疑点") : value} · {value === "all" ? rows.length : rows.filter(row => value === "attention" ? needsReview(row) : !needsReview(row)).length}</button>)}
+      </div>}
+      {auditMode && shownRows.length === 0 && <p className="mt-5 text-sm text-[#315c70]">{locale === "zh" ? "此分类暂无检查项，可切换查看全部检查。" : "No checks in this filter. View all checks."}</p>}
       <ul className="mt-5 space-y-2">
-        {rows.map((row) => {
+        {shownRows.map((row) => {
           const meta = VISIBILITY_LABELS[row.visibility] ?? VISIBILITY_LABELS.not_assessed;
           const isSelected = !!row.anchorObservation && row.anchorObservation.observationId === selectedObservationId;
           return (
@@ -297,15 +310,14 @@ export function InspectionChecklistPanel({
                 <span className="min-w-0">
                   {/* J14: business title first; the technical checkId moves to
                       the secondary mono line instead of being the headline. */}
-                  <span className="block text-sm font-medium text-white">{row.title}</span>
-                  <span className="mt-0.5 block truncate font-mono text-[10px] text-white/38">{row.checkId}</span>
+                  <span className="block text-sm font-medium text-white">{checkLabel(row.checkId, locale, row.title)}</span>
                   {row.observedText ? (
-                    <span className="mt-1 block truncate text-xs text-white/55">
+                    <span className="mt-1 block break-words text-xs text-white/55">
                       {locale === "zh" ? "读到：" : "Read: "}
                       {row.observedText}
                     </span>
                   ) : row.description ? (
-                    <span className="mt-1 block truncate text-xs text-white/55">{row.description}</span>
+                    <span className="mt-1 block break-words text-xs text-white/55">{row.description}</span>
                   ) : null}
                 </span>
                 <span
@@ -317,6 +329,7 @@ export function InspectionChecklistPanel({
                   {locale === "zh" ? meta.zh : meta.en}
                 </span>
               </button>
+              {auditMode && row.findings.length > 0 && <div className="px-4 pb-3 space-y-2">{row.findings.map(finding => <p key={finding.findingId} className="text-xs leading-6 text-[#315c70]"><strong>{locale === "zh" ? (ASSESSMENT_LABELS[finding.assessment]?.zh ?? "待复核") : finding.assessment}：</strong>{finding.title}{finding.suggestedAction ? ` · ${finding.suggestedAction}` : ""}</p>)}</div>}
             </li>
           );
         })}
@@ -327,7 +340,7 @@ export function InspectionChecklistPanel({
           observations (never by the LLM). J15: when the VM is provided the
           same block renders the MERGED evidence requests (plan §5.3) instead
           of a wall of near-duplicate cards. */}
-      {vm && vm.evidenceRequests.length > 0 ? (
+      {showRequests && vm && vm.evidenceRequests.length > 0 ? (
         <div className="mt-6 border-t border-white/10 pt-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/42">
             {locale === "zh"
@@ -347,8 +360,8 @@ export function InspectionChecklistPanel({
                     className={cn(
                       "shrink-0 rounded-full border px-2 py-0.5 text-[10px]",
                       request.type === "photo"
-                        ? "border-amber-400/35 bg-amber-400/10 text-amber-200"
-                        : "border-sky-400/30 bg-sky-400/10 text-sky-200",
+                        ? "border-amber-400/35 bg-amber-400/10 text-amber-800"
+                        : "border-sky-400/30 bg-sky-400/10 text-sky-800",
                     )}
                   >
                     {request.type === "photo"
@@ -370,7 +383,7 @@ export function InspectionChecklistPanel({
             ))}
           </ul>
         </div>
-      ) : displayFindings ? (
+      ) : showRequests && displayFindings ? (
         <div className="mt-6 border-t border-white/10 pt-5">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/42">
             {locale === "zh"

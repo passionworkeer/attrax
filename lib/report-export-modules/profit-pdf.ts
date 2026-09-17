@@ -79,7 +79,6 @@ export async function downloadProfitModelAsPdf(model: ProfitRenderModel): Promis
   y.cur += 10;
 
   // ── 4 metric cards (matches page.tsx grid) ─────────────────────────────────
-  const halfW = (contentWidth - 4) / 2;
   // On-screen the metric value uses `text-white` on a dark `blaze-panel`
   // background, which renders the value in white. PDFs/DOCXs have a *light*
   // page background, so the page's "white" tone must invert to a dark text

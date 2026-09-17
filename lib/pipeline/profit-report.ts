@@ -232,15 +232,6 @@ export function isStructuredProfitFields(v: unknown): v is StructuredProfitField
   return isRecord(v);
 }
 
-function numFromStringOrNumber(v: unknown): number | undefined {
-  if (typeof v === "number" && Number.isFinite(v)) return v;
-  if (typeof v === "string") {
-    const n = Number(v.replace(/[, $¥€£]/g, ""));
-    return Number.isFinite(n) ? n : undefined;
-  }
-  return undefined;
-}
-
 const FINANCE_TOLERANCE = 0.01;
 const FINANCE_COST_KEYS = ["bom", "packaging", "cert", "epr", "logistics", "warranty", "asp", "total", "gp"] as const;
 // Audit 2026-09-13 §10.2: gp is a profit, not a cost — it may legitimately
@@ -732,10 +723,6 @@ export function buildProfitRenderModelFromProfitReport(
   const fmt = (n: number): string => {
     if (!Number.isFinite(n) || n === 0) return isEnglish ? "—" : "—";
     return `${sym}${n.toFixed(2)}`;
-  };
-  const fmtInt = (n: number): string => {
-    if (!Number.isFinite(n) || n === 0) return isEnglish ? "—" : "—";
-    return `${sym}${n.toFixed(0)}`;
   };
   const complianceCostNum = comp.cert + comp.epr + Math.max(comp.packaging - bare.packaging, 0);
 

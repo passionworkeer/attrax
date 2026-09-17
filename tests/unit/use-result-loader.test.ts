@@ -165,3 +165,29 @@ describe("useResultLoader Hook", () => {
     });
   });
 });
+
+
+describe("result recovery UX", () => {
+  it("retries a failed request and displays the returned result", async () => {
+    sessionStorage.clear();
+    const fetcher = vi.spyOn(global, "fetch").mockResolvedValueOnce({ ok: false, status: 503 } as Response)
+      .mockResolvedValueOnce({ ok: true, json: async () => ({ status: "ready", result: { ...mockScanResult, sessionId: "retry_ux" } }) } as Response);
+    const { result } = renderHook(() => useResultLoader({sessionId: "retry_ux", isDemoSession: false, locale: "en", initialResult: null, loadingMessage: "Loading", copy: mockCopy}));
+    await vi.waitFor(() => expect(result.current.loadState).toBe("error"));
+    expect(result.current.message).toContain("temporarily unavailable");
+    act(() => result.current.retry());
+    await vi.waitFor(() => expect(result.current.loadState).toBe("ready"));
+    expect(result.current.result?.sessionId).toBe("retry_ux");
+    expect(fetcher).toHaveBeenCalledTimes(2);
+    vi.restoreAllMocks(); sessionStorage.clear();
+  });
+  it("can display a ready result when session storage is full", async () => {
+    sessionStorage.clear();
+    vi.spyOn(Storage.prototype, "setItem").mockImplementation(() => { throw new Error("QuotaExceeded"); });
+    vi.spyOn(global, "fetch").mockResolvedValueOnce({ ok: true, json: async () => ({ status: "ready", result: { ...mockScanResult, sessionId: "full_storage" } }) } as Response);
+    const { result } = renderHook(() => useResultLoader({sessionId: "full_storage", isDemoSession: false, locale: "zh", initialResult: null, loadingMessage: "Loading", copy: mockCopy}));
+    await vi.waitFor(() => expect(result.current.loadState).toBe("ready"));
+    expect(result.current.result?.sessionId).toBe("full_storage");
+    vi.restoreAllMocks(); sessionStorage.clear();
+  });
+});

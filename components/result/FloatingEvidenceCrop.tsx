@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { BoundingBox } from "@/lib/types";
 
@@ -45,7 +44,6 @@ export function FloatingEvidenceCrop({
   locale,
   cardWidth = 240,
   aspectRatio = 4 / 3,
-  unoptimized,
   maskUrl,
 }: FloatingEvidenceCropProps) {
   const [loaded, setLoaded] = useState(false);

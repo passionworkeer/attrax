@@ -1,8 +1,7 @@
 "use client";
 
 import { startTransition, useEffect, useState } from "react";
-import { createMockScanResult, mockScanResult } from "@/lib/mock/blaze-scan-result";
-import type { Market, ProductCategory, ScanResult, ScanStatus } from "@/lib/types";
+import type { ScanResult, ScanStatus } from "@/lib/types";
 import { readStoredAccessToken } from "@/lib/result-view-helpers";
 
 /**
@@ -31,6 +30,8 @@ export function useResultLoader(options: {
   const [result, setResult] = useState<ScanResult | null>(initialResult);
   // P0-1 闭环：降级原因随轮询记录，驱动顶部红色 DegradedBanner（审计 1.3）
   const [degradedReason, setDegradedReason] = useState<string | null>(null);
+  const [loadState, setLoadState] = useState<"loading" | "ready" | "error">(initialResult ? "ready" : "loading");
+  const [retryKey, setRetryKey] = useState(0);
   const [message, setMessage] = useState(loadingMessage);
   const [selectedRiskId, setSelectedRiskId] = useState<string | null>(null);
 
@@ -44,18 +45,22 @@ export function useResultLoader(options: {
     // the effect cleanup so navigation away cancels in-flight fetches.
     const abortController = new AbortController();
 
-    const cached = sessionStorage.getItem(`scan:${sessionId}`);
-    if (cached) {
+    startTransition(() => setLoadState("loading"));
+    let cached: string | null = null;
+    try { cached = sessionStorage.getItem(`scan:${sessionId}`); } catch { /* storage is optional */ }
+    if (cached && retryKey === 0) {
       try {
         const cachedResult = JSON.parse(cached) as ScanResult;
+        if (!cachedResult || cachedResult.sessionId !== sessionId || !Array.isArray(cachedResult.riskPoints)) throw new Error("Invalid cached scan");
         startTransition(() => {
           setResult(cachedResult);
           setSelectedRiskId(cachedResult.riskPoints[0]?.riskId ?? null);
           setMessage(copy.restored);
+          setLoadState("ready");
         });
         return;
       } catch {
-        sessionStorage.removeItem(`scan:${sessionId}`);
+        try { sessionStorage.removeItem(`scan:${sessionId}`); } catch { /* storage is optional */ }
       }
     }
 
@@ -75,6 +80,7 @@ export function useResultLoader(options: {
         while (!cancelled) {
           if (Date.now() - startedAt > POLL_MAX_MS) {
             startTransition(() => {
+              setLoadState("error");
               setMessage(
                 locale === "zh"
                   ? "扫描超时，请稍后刷新或重新检测。"
@@ -95,7 +101,11 @@ export function useResultLoader(options: {
           });
           if (!response.ok) {
             startTransition(() => {
-              setMessage(copy.notFound);
+              setLoadState("error");
+              setMessage(response.status === 401 || response.status === 403
+                ? locale === "zh" ? "此结果的访问凭证已失效，请从原浏览器打开或重新检测。" : "Access to this result has expired. Open it in the original browser or start a new scan."
+                : response.status === 404 ? copy.notFound
+                : locale === "zh" ? "结果服务暂时不可用，请重试加载。" : "The results service is temporarily unavailable. Retry loading.");
             });
             return;
           }
@@ -106,8 +116,9 @@ export function useResultLoader(options: {
             payload.result
           ) {
             const resultPayload = payload.result;
-            sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(resultPayload));
+            try { sessionStorage.setItem(`scan:${sessionId}`, JSON.stringify(resultPayload)); } catch { /* show the result even if storage is full */ }
             startTransition(() => {
+              setLoadState("ready");
               if ("financialSummary" in resultPayload) {
                 setResult(resultPayload);
                 setSelectedRiskId(resultPayload.riskPoints?.[0]?.riskId ?? null);
@@ -133,6 +144,7 @@ export function useResultLoader(options: {
 
           if (payload.status === "failed") {
             startTransition(() => {
+              setLoadState("error");
               setMessage(payload.error ?? copy.failed);
             });
             return;
@@ -155,6 +167,7 @@ export function useResultLoader(options: {
       } catch (error) {
         if (abortController.signal.aborted || cancelled) return;
         startTransition(() => {
+          setLoadState("error");
           setMessage(
             locale === "zh"
               ? "结果加载失败，请检查本地服务后重新检测。"
@@ -183,10 +196,13 @@ export function useResultLoader(options: {
     isDemoSession,
     locale,
     sessionId,
+    retryKey,
   ]);
 
 
   return {
+    loadState,
+    retry: () => setRetryKey((key) => key + 1),
     result,
     setResult,
     degradedReason,

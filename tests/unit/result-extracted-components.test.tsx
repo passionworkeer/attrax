@@ -3,7 +3,7 @@
  * (loading skeletons, error boundary). Pattern follows tests/unit/profit-report-view.test.tsx.
  */
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import React from 'react'
 import { SourceNotice } from '@/components/result/SourceNotice'
@@ -60,7 +60,7 @@ describe('DownloadButtons', () => {
     expect(screen.getByText(/Word EN/)).toBeInTheDocument()
   })
 
-  it('invokes onPdf with the locale when the PDF button is clicked', () => {
+  it('invokes onPdf with the locale when the PDF button is clicked', async () => {
     const onPdf = vi.fn()
     const onDocx = vi.fn()
     renderInProvider(
@@ -68,11 +68,12 @@ describe('DownloadButtons', () => {
     )
     fireEvent.click(screen.getByText(/Profit PDF EN/))
     expect(onPdf).toHaveBeenCalledWith('en')
+    await waitFor(() => expect(screen.getByText(/Profit PDF ZH/)).toBeEnabled())
     fireEvent.click(screen.getByText(/Profit PDF ZH/))
     expect(onPdf).toHaveBeenCalledWith('zh')
   })
 
-  it('invokes onDocx with the locale when the Word button is clicked', () => {
+  it('invokes onDocx with the locale when the Word button is clicked', async () => {
     const onPdf = vi.fn()
     const onDocx = vi.fn()
     renderInProvider(
@@ -80,8 +81,19 @@ describe('DownloadButtons', () => {
     )
     fireEvent.click(screen.getByText(/Word EN/))
     expect(onDocx).toHaveBeenCalledWith('en')
+    await waitFor(() => expect(screen.getByText(/Word ZH/)).toBeEnabled())
     fireEvent.click(screen.getByText(/Word ZH/))
     expect(onDocx).toHaveBeenCalledWith('zh')
+  })
+
+  it('reports export failures and enables retry', async () => {
+    const onPdf = vi.fn().mockRejectedValueOnce(new Error('font unavailable')).mockResolvedValue(undefined)
+    renderInProvider(<DownloadButtons onPdf={onPdf} onDocx={vi.fn()} />)
+    fireEvent.click(screen.getByText('PDF ZH'))
+    expect(screen.getByText('PDF ZH')).toBeDisabled()
+    await waitFor(() => expect(screen.getByRole('alert')).toHaveTextContent('导出失败'))
+    fireEvent.click(screen.getByText('PDF ZH'))
+    await waitFor(() => expect(screen.getByRole('status')).toHaveTextContent('文件已生成'))
   })
 })
 

@@ -236,6 +236,78 @@ export function pdfSectionTitle(doc: jsPDF, y: { cur: number }, margin: number, 
   y.cur += 4;
 }
 
+function pdfMarkdownHeading(
+  doc: jsPDF,
+  y: { cur: number },
+  margin: number,
+  pageWidth: number,
+  pageHeight: number,
+  title: string,
+  level: number,
+): void {
+  const needed = level === 1 ? 18 : level === 2 ? 15 : 12;
+  const { y: ny } = pdfCheckBreak(doc, y.cur, margin, pageHeight, needed);
+  y.cur = ny;
+
+  if (level === 1) {
+    y.cur += 2;
+    doc.setFillColor(15, 50, 86);
+    doc.roundedRect(margin, y.cur, pageWidth - margin * 2, 12, 2.5, 2.5, "F");
+    doc.setFont("NotoSansSC", "bold");
+    doc.setFontSize(12);
+    doc.setTextColor(255, 255, 255);
+    doc.text(title, margin + 5, y.cur + 8);
+    y.cur += 17;
+    return;
+  }
+
+  if (level === 2) {
+    y.cur += 3;
+    doc.setFillColor(37, 99, 235);
+    doc.roundedRect(margin, y.cur - 1, 2.2, 9, 1, 1, "F");
+    doc.setFont("NotoSansSC", "bold");
+    doc.setFontSize(11.5);
+    doc.setTextColor(15, 23, 42);
+    doc.text(title, margin + 6, y.cur + 5.8);
+    y.cur += 12;
+    return;
+  }
+
+  y.cur += 2;
+  doc.setFont("NotoSansSC", "bold");
+  doc.setFontSize(9.5);
+  doc.setTextColor(30, 64, 175);
+  doc.text(title, margin, y.cur + 5);
+  doc.setDrawColor(219, 234, 254);
+  doc.setLineWidth(0.25);
+  doc.line(margin, y.cur + 8, pageWidth - margin, y.cur + 8);
+  y.cur += 12;
+}
+
+function pdfCallout(
+  doc: jsPDF,
+  y: { cur: number },
+  margin: number,
+  pageWidth: number,
+  pageHeight: number,
+  text: string,
+): void {
+  doc.setFont("NotoSansSC", "normal");
+  doc.setFontSize(8.7);
+  const lines = normalizePdfLines(doc.splitTextToSize(text, pageWidth - margin * 2 - 12));
+  const height = Math.max(13, lines.length * 4.5 + 7);
+  const { y: ny } = pdfCheckBreak(doc, y.cur, margin, pageHeight, height + 3);
+  y.cur = ny;
+  doc.setFillColor(255, 251, 235);
+  doc.setDrawColor(253, 230, 138);
+  doc.roundedRect(margin, y.cur, pageWidth - margin * 2, height, 2.5, 2.5, "FD");
+  doc.setFillColor(245, 158, 11);
+  doc.roundedRect(margin, y.cur, 2.2, height, 1, 1, "F");
+  doc.setTextColor(120, 53, 15);
+  doc.text(lines, margin + 6, y.cur + 6);
+  y.cur += height + 4;
+}
+
 function normalizePdfLines(value: string | string[]): string[] {
   return Array.isArray(value) ? value : [value];
 }
@@ -300,10 +372,19 @@ export function pdfDrawTable(
 
   const header = rows[0];
   const headerPrepared = prepareRow(header);
+  const preparedRows = rows.map(prepareRow);
+  const totalHeight = preparedRows.reduce((sum, row) => sum + row.height, 0);
+
+  // Keep compact tables together. A short decision table split after one row
+  // is harder to scan than moving the whole table to the next page.
+  if (totalHeight <= pageHeight - margin * 2 && y.cur + totalHeight > pageHeight - margin) {
+    doc.addPage();
+    y.cur = margin;
+  }
 
   for (let ri = 0; ri < rows.length; ri++) {
     const row = rows[ri];
-    const prepared = prepareRow(row);
+    const prepared = preparedRows[ri];
 
     if (y.cur + prepared.height > pageHeight - margin) {
       doc.addPage();
@@ -352,6 +433,53 @@ export function pdfBullet(doc: jsPDF, y: { cur: number }, margin: number, pageWi
   y.cur += 1;
 }
 
+function pdfListItem(
+  doc: jsPDF,
+  y: { cur: number },
+  margin: number,
+  pageWidth: number,
+  pageHeight: number,
+  text: string,
+  ordered: boolean,
+  index?: number,
+  depth = 0,
+): void {
+  const clean = stripInlineMarkdown(text).replace(/^\d+[\.)]\s*/, "").replace(/^[-*•]\s*/, "");
+  doc.setFont("NotoSansSC", "normal");
+  doc.setFontSize(depth > 0 ? 7.8 : 8.6);
+  const textIndent = depth > 0 ? 8 : 13;
+  const lines = normalizePdfLines(doc.splitTextToSize(clean, pageWidth - margin * 2 - textIndent - 2));
+  const height = depth > 0 ? Math.max(5.5, lines.length * 4.1 + 1.5) : Math.max(10, lines.length * 4.6 + 5);
+  const { y: ny } = pdfCheckBreak(doc, y.cur, margin, pageHeight, height + 2);
+  y.cur = ny;
+
+  if (depth > 0) {
+    doc.setFillColor(191, 219, 254);
+    doc.roundedRect(margin + 2, y.cur + 1.2, 1.6, 1.6, 0.8, 0.8, "F");
+    doc.setFont("NotoSansSC", "normal");
+    doc.setFontSize(7.8);
+    doc.setTextColor(71, 85, 105);
+    doc.text(lines, margin + textIndent, y.cur + 3.6);
+    y.cur += height + 1;
+    return;
+  }
+
+  doc.setFillColor(248, 250, 252);
+  doc.setDrawColor(226, 232, 240);
+  doc.roundedRect(margin, y.cur, pageWidth - margin * 2, height, 2, 2, "FD");
+  doc.setFillColor(219, 234, 254);
+  doc.roundedRect(margin + 3, y.cur + 2.2, 7, 5.6, 1.4, 1.4, "F");
+  doc.setFont("NotoSansSC", "bold");
+  doc.setFontSize(7.2);
+  doc.setTextColor(30, 64, 175);
+  doc.text(ordered ? String(index ?? 1) : "•", margin + 6.5, y.cur + 6.2, { align: "center" });
+  doc.setFont("NotoSansSC", "normal");
+  doc.setFontSize(8.6);
+  doc.setTextColor(51, 65, 85);
+  doc.text(lines, margin + 13, y.cur + 6.2);
+  y.cur += height + 2.5;
+}
+
 export async function renderMarkdownPdf(
   doc: jsPDF,
   y: { cur: number },
@@ -368,7 +496,11 @@ export async function renderMarkdownPdf(
     }
 
     if (block.type === "heading") {
-      pdfSectionTitle(doc, y, margin, pageWidth, pageHeight, block.text);
+      if (/^(本次分析输入记录|Analysis input record)$/i.test(block.text) && y.cur > margin + 8) {
+        doc.addPage();
+        y.cur = margin;
+      }
+      pdfMarkdownHeading(doc, y, margin, pageWidth, pageHeight, block.text, block.level);
       await yieldFn();
       continue;
     }
@@ -380,21 +512,44 @@ export async function renderMarkdownPdf(
     }
 
     if (block.type === "listItem") {
-      pdfBullet(doc, y, margin, pageWidth, pageHeight, block.ordered ? `${block.index ?? 1}. ${block.text}` : block.text);
+      pdfListItem(doc, y, margin, pageWidth, pageHeight, block.text, block.ordered, block.index, block.depth);
       continue;
     }
 
     if (block.type === "quote") {
-      const { y: ny } = pdfCheckBreak(doc, y.cur, margin, pageHeight, 10);
-      y.cur = ny;
-      doc.setFillColor(248, 250, 252);
-      doc.setDrawColor(226, 232, 240);
-      doc.roundedRect(margin, y.cur - 2, pageWidth - margin * 2, 8, 1.5, 1.5, "FD");
-      pdfBody(doc, y, margin + 3, pageWidth - 3, pageHeight, block.text, 8.5);
+      doc.setFont("NotoSansSC", "normal");
+      doc.setFontSize(7.7);
+      const wrapped = block.text.split("\n").flatMap((line) =>
+        normalizePdfLines(doc.splitTextToSize(line || " ", pageWidth - margin * 2 - 10))
+      );
+      const lineH = 4;
+      let offset = 0;
+      while (offset < wrapped.length) {
+        const availableLines = Math.max(0, Math.floor((pageHeight - margin - y.cur - 7) / lineH));
+        if (availableLines < 2) {
+          doc.addPage();
+          y.cur = margin;
+          continue;
+        }
+        const chunk = wrapped.slice(offset, offset + availableLines);
+        const height = chunk.length * lineH + 6;
+        doc.setFillColor(248, 250, 252);
+        doc.setDrawColor(226, 232, 240);
+        doc.roundedRect(margin, y.cur, pageWidth - margin * 2, height, 2, 2, "FD");
+        doc.setFillColor(59, 130, 246);
+        doc.roundedRect(margin, y.cur, 2, height, 1, 1, "F");
+        doc.setTextColor(71, 85, 105);
+        doc.text(chunk, margin + 6, y.cur + 5);
+        y.cur += height + 3;
+        offset += chunk.length;
+      }
       continue;
     }
-
-    pdfBody(doc, y, margin, pageWidth, pageHeight, block.text, 9);
+    if (/^(状态|结论|Status|Conclusion)\s*[：:]/i.test(block.text.trim())) {
+      pdfCallout(doc, y, margin, pageWidth, pageHeight, block.text);
+    } else {
+      pdfBody(doc, y, margin, pageWidth, pageHeight, block.text, 9);
+    }
   }
 }
 

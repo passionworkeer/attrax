@@ -106,9 +106,9 @@ export async function appendEvidence(
   return payload.data;
 }
 
-export async function requestRevision(sessionId: string): Promise<RevisionQueueResponse> {
+export async function requestRevision(sessionId: string, intentKey?: string): Promise<RevisionQueueResponse> {
   const token = readStoredAccessToken(sessionId);
-  const idempotencyKey = `${sessionId}:revision`;
+  const idempotencyKey = intentKey ? `${sessionId}:revision:${intentKey}` : `${sessionId}:revision`;
   const response = await fetch(`/api/scan/${sessionId}/revisions`, {
     method: "POST",
     headers: {

@@ -130,6 +130,8 @@ export interface ChecklistItem {
 }
 
 export interface ScanResult {
+  revisionComparison?: { previousRevision: number; added: string[]; removed: string[]; changed: string[]; remaining: number; marketChanges?: Array<{market:string;checkId:string;before:string;after:string;beforeReason:string;afterReason:string;evidenceChanged:boolean}> };
+  revision?: number;
   sessionId: string;
   scanTime: string;
   productCategory: ProductCategory;
@@ -189,7 +191,7 @@ export interface ScanResult {
    * observations + deferred evidence checks, never by the LLM. */
   inspectionFindings?: InspectionFinding[];
   modelInfo?: {
-    visionProvider: "claude" | "openai" | "gemini" | "minimax" | "mock";
+    visionProvider: string;
     latencyMs: number;
   };
   source?: "real" | "fallback" | "demo";
@@ -232,6 +234,7 @@ export interface InspectionFinding {
 }
 
 export interface ComplianceReportResult {
+  reviewAppendix?: { zh: string; en: string };
   sessionId: string;
   scanTime: string;
   productCategory: ProductCategory;
@@ -478,6 +481,27 @@ export interface AuditMetadata {
 }
 
 export interface ReportPackage {
+  anchorApplicability?: Array<{regulationId:string;market:string;state:"applicable"|"not_applicable"|"needs_confirmation";reason:string;productConditions?:string[]}>;
+  reviewClaims?: Array<{
+    market: string; checkId: string; status: "supported" | "blocked" | "unknown" | "not_applicable";
+    reason: string; applicabilityReason: string; citationIds: string[]; observationIds: string[];
+    documentEvidence: Array<{documentIndex: number; name: string; quote: string}>;
+    verificationIssues: string[]; verificationVersion: string;
+  }>;
+  productEvidence?: {
+    declarations?: Record<string, string>;
+    effectiveDeclarations?: Record<string, string>;
+    documents?: Array<{
+      name: string;
+      documentIndex?: number;
+      textAvailable: boolean;
+      promptTruncated: boolean;
+      includedText?: string;
+      includedCharacters?: number;
+      extractedCharacters?: number;
+    }>;
+    imageObservationCount?: number;
+  };
   productDossier?: ProductDossier;
   product_dossier?: ProductDossier;
   evidenceBundles?: EvidenceBundle;

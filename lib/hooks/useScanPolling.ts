@@ -81,6 +81,8 @@ export function useScanPolling(
   sessionId: string,
   accessToken?: string | null,
 ) {
+  const [lastContactAt, setLastContactAt] = useState<number | null>(null);
+  const [reconnecting, setReconnecting] = useState(false);
   const [status, setStatus] = useState<ScanStatus | null>(null);
   const [displayProgress, setDisplayProgress] = useState(0);
   // J01: `completing` is mirrored into state so the returned displayProgress
@@ -176,6 +178,8 @@ export function useScanPolling(
     async function poll() {
       let intervalMs = POLL_INITIAL_INTERVAL_MS;
       const startedAt = Date.now();
+      let hasResponse = false;
+      let connectionFailures = 0;
 
       while (!cancelled) {
         let response: Response;
@@ -185,9 +189,16 @@ export function useScanPolling(
             sessionStorage.getItem(`scan-token:${sessionId}`)?.trim();
           response = await fetch(`/api/scan/${sessionId}`, {
             cache: "no-store",
+            signal: AbortSignal.timeout(15000),
             headers: token ? { Authorization: `Bearer ${token}` } : undefined,
           });
         } catch (error) {
+          if (cancelled) return;
+          if (hasResponse && connectionFailures++ < 3) {
+            setReconnecting(true);
+            await new Promise((resolve) => setTimeout(resolve, 3000));
+            continue;
+          }
           if (!cancelled) {
             setStatus(
               failedStatus(
@@ -199,6 +210,12 @@ export function useScanPolling(
           return;
         }
 
+        if (!response.ok && response.status >= 500 && hasResponse && connectionFailures++ < 3) {
+          if (cancelled) return;
+          setReconnecting(true);
+          await new Promise((resolve) => setTimeout(resolve, 3000));
+          continue;
+        }
         if (!response.ok) {
           if (!cancelled) {
             setStatus(failedStatus(sessionId, "Scan session expired."));
@@ -222,6 +239,11 @@ export function useScanPolling(
           return;
         }
 
+        if (cancelled) return;
+        hasResponse = true;
+        connectionFailures = 0;
+        setLastContactAt(Date.now());
+        setReconnecting(false);
         targetProgressRef.current = data.progress ?? 0;
         const previousStage = stageKeyRef.current;
         if (data.stageKey && data.stageKey !== previousStage) {
@@ -278,6 +300,8 @@ export function useScanPolling(
   }, [sessionId, accessToken, completedAt]);
 
   return {
+    lastContactAt,
+    reconnecting,
     status,
     /**
      * Timestamp (ms) of the first poll response that reported the completing

@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "@/lib/i18n";
-import { englishText, localizeComplianceReportResult } from "@/lib/report-localization";
+import { englishText, prepareComplianceReport } from "@/lib/report-localization";
 import { downloadReportAsDocx, downloadReportAsPdf } from "@/lib/report-download";
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
 import { DownloadButtons } from "@/components/result/DownloadButtons";
@@ -68,15 +68,15 @@ type RichChecklistItem = {
   status?: "pass" | "fail" | "warn" | "todo";
 };
 
-export function ComplianceReportView({ result }: { result: ComplianceReportResult }) {
+export function ComplianceReportView({ result, documentOnly = false }: { result: ComplianceReportResult; documentOnly?: boolean }) {
   const { t, locale } = useTranslation();
-  const viewResult = localizeComplianceReportResult(result, locale);
+  const viewResult = prepareComplianceReport(result, locale);
   const meta = STATUS_META[viewResult.complianceStatus] ?? STATUS_META.UNKNOWN;
   const gradeColor = GRADE_COLORS[viewResult.scoreGrade] ?? "text-gray-400";
   const markets = viewResult.targetMarkets.map((m) => MARKET_LABELS[m] ?? m).join(" · ");
   const raw = result as unknown as Record<string, unknown>;
   const richImages =
-    Array.isArray(raw.images) && raw.images.length > 0 ? (raw.images as ProductImage[]) : null;
+    !documentOnly && Array.isArray(raw.images) && raw.images.length > 0 ? (raw.images as ProductImage[]) : null;
   const richRiskPoints = richImages
     ? ((raw as { riskPoints?: RichRiskPoint[] }).riskPoints ?? null)
     : null;
@@ -90,12 +90,12 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
   return (
     <div className="space-y-6">
       {/* Score + Status Header */}
-      <div className="flex flex-wrap items-start gap-4">
+      {!documentOnly && <div className="flex flex-wrap items-start gap-4">
         <div className="flex flex-col items-center">
           <span className={cn("text-4xl font-bold tabular-nums sm:text-5xl", gradeColor)}>
             {viewResult.complianceScore}
           </span>
-          <span className="text-xs text-slate-400">{t("result.overallScore")}</span>
+          <span className="text-xs text-slate-400">{locale === "zh" ? "风险等级换算分" : "Risk-derived score"}</span>
         </div>
         <div className="flex flex-col gap-2">
           <div
@@ -131,10 +131,13 @@ export function ComplianceReportView({ result }: { result: ComplianceReportResul
             </span>
           </div>
         </div>
-      </div>
+      </div>}
 
       {/* Agent Trace */}
-      {viewResult.agentTrace.length > 0 && <AgentTraceTimeline trace={viewResult.agentTrace} />}
+      {viewResult.agentTrace.length > 0 && <details className="rounded-xl border border-slate-200 p-4">
+        <summary className="cursor-pointer text-sm">{locale === "zh" ? "查看分析过程（可选）" : "Analysis process (optional)"}</summary>
+        <div className="mt-4"><AgentTraceTimeline trace={viewResult.agentTrace} /></div>
+      </details>}
 
       {/* Retrieved Chunks */}
       <RetrievedChunks chunks={viewResult.retrievedChunks} />

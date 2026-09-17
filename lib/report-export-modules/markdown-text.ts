@@ -8,10 +8,10 @@
 
 type MarkdownBlock =
   | { type: "space" }
-  | { type: "heading"; level: 1 | 2 | 3; text: string }
+  | { type: "heading"; level: 1 | 2 | 3 | 4 | 5 | 6; text: string }
   | { type: "paragraph"; text: string }
   | { type: "quote"; text: string }
-  | { type: "listItem"; ordered: boolean; index?: number; text: string }
+  | { type: "listItem"; ordered: boolean; index?: number; depth: number; text: string }
   | { type: "table"; rows: string[][] };
 
 function stripInlineMarkdown(text: string): string {
@@ -79,31 +79,33 @@ export function parseMarkdownBlocks(text: string): MarkdownBlock[] {
       continue;
     }
 
-    const headingMatch = /^(#{1,3})\s+(.+)$/.exec(line);
+    const headingMatch = /^(#{1,6})\s+(.+)$/.exec(line);
     if (headingMatch) {
       blocks.push({
         type: "heading",
-        level: headingMatch[1].length as 1 | 2 | 3,
+        level: headingMatch[1].length as 1 | 2 | 3 | 4 | 5 | 6,
         text: stripInlineMarkdown(headingMatch[2]),
       });
       i += 1;
       continue;
     }
 
-    const bulletMatch = /^[-*]\s+(.+)$/.exec(line);
+    const bulletMatch = /^(\s*)[-*]\s+(.+)$/.exec(raw);
     if (bulletMatch) {
-      blocks.push({ type: "listItem", ordered: false, text: stripInlineMarkdown(bulletMatch[1]) });
+      const depth = Math.floor(bulletMatch[1].replace(/\t/g, "  ").length / 2);
+      blocks.push({ type: "listItem", ordered: false, depth, text: stripInlineMarkdown(bulletMatch[2]) });
       i += 1;
       continue;
     }
 
-    const numberedMatch = /^(\d+)\.\s+(.+)$/.exec(line);
+    const numberedMatch = /^(\s*)(\d+)\.\s+(.+)$/.exec(raw);
     if (numberedMatch) {
       blocks.push({
         type: "listItem",
         ordered: true,
-        index: Number(numberedMatch[1]),
-        text: stripInlineMarkdown(numberedMatch[2]),
+        index: Number(numberedMatch[2]),
+        depth: Math.floor(numberedMatch[1].replace(/\t/g, "  ").length / 2),
+        text: stripInlineMarkdown(numberedMatch[3]),
       });
       i += 1;
       continue;
@@ -111,8 +113,15 @@ export function parseMarkdownBlocks(text: string): MarkdownBlock[] {
 
     const quoteMatch = /^>\s?(.+)$/.exec(line);
     if (quoteMatch) {
-      blocks.push({ type: "quote", text: stripInlineMarkdown(quoteMatch[1]) });
+      const quoteLines = [stripInlineMarkdown(quoteMatch[1])];
       i += 1;
+      while (i < lines.length) {
+        const nextQuote = /^\s*>\s?(.*)$/.exec(lines[i] ?? "");
+        if (!nextQuote) break;
+        quoteLines.push(stripInlineMarkdown(nextQuote[1]));
+        i += 1;
+      }
+      blocks.push({ type: "quote", text: quoteLines.join("\n") });
       continue;
     }
 
@@ -123,7 +132,7 @@ export function parseMarkdownBlocks(text: string): MarkdownBlock[] {
       if (
         !next ||
         isTableStart(lines, i) ||
-        /^(#{1,3})\s+/.test(next) ||
+        /^(#{1,6})\s+/.test(next) ||
         /^[-*]\s+/.test(next) ||
         /^\d+\.\s+/.test(next) ||
         /^>\s?/.test(next)

@@ -610,7 +610,7 @@ export function buildRoadmapRows(
 ): RoadmapRow[] {
   return [
     ...(result.checklist ?? []).map((item, index) => ({
-      phase: locale === "en" ? item.categoryEn ?? item.category : item.category,
+      phase: locale === "en" ? item.categoryEn ?? item.category : ({ test: "检测验证", apply: "资料准备", certify: "认证办理", complete: "整改收尾" } as Record<string, string>)[item.category] ?? item.category,
       time: localizeTimeText(locale, item.estimatedTime, unknownTime),
       owner:
         locale === "zh"

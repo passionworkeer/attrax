@@ -1,0 +1,22 @@
+.workspace { min-width: 0; }
+.tabs { display: flex; gap: 8px; border-bottom: 1px solid rgba(255,255,255,.65); margin-bottom: 20px; padding: 6px; border-radius: 18px; background: rgba(222,240,250,.86); }
+.tabs button { flex: 1; min-height: 48px; padding: 12px; border-radius: 12px; color: #315c70; font-size: 14px; font-weight: 600; cursor: pointer; transition: background .2s, color .2s; }
+.tabs button[aria-selected="true"] { background: #174e68; color: #fff; box-shadow: 0 4px 12px #123f521a; }
+.tabs button:focus-visible { outline: 2px solid #0c6885; outline-offset: 3px; }
+.panel:not([hidden]) { display: grid; gap: 20px; }
+.panel[hidden] { display: none; }
+.overview { display: grid; gap: 20px; padding: 24px; color: #123f52; }
+.identity { display: flex; align-items: center; gap: 16px; }
+.identity img { width: 64px; height: 64px; border-radius: 14px; object-fit: contain; background: #fff; }
+.identity h1 { font-size: clamp(19px, 2vw, 26px); line-height: 1.35; overflow-wrap: anywhere; font-weight: 650; }
+.meta { margin-top: 8px; font-size: 12px; color: #426577; }
+.verdict { display: flex; justify-content: space-between; gap: 24px; align-items: center; border-top: 1px solid rgba(255,255,255,.65); padding-top: 20px; }
+.verdict h2 { font-size: 24px; font-weight: 650; line-height: 1.4; }
+.verdict p { margin-top: 8px; max-width: 680px; font-size: 14px; line-height: 1.8; color: #365c70; }
+.primary { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; min-height: 44px; border-radius: 12px; background: #174e68; color: #fff !important; flex-shrink: 0; font-weight: 600; font-size: 14px; }
+.secondary { font-size: 12px; text-decoration: underline; color: #315c70; min-height: 40px; margin-left: auto; flex-shrink: 0; }
+.disclosure { padding: 20px 24px; scroll-margin-top: 20px; }
+.disclosure summary { cursor: pointer; font-size: 17px; font-weight: 600; color: #123f52; }
+.disclosure[open] > summary { margin-bottom: 20px; }
+@media (max-width: 640px) { .verdict { align-items: stretch; flex-direction: column; gap: 16px; } .identity { flex-wrap: wrap; } .identity h1 { font-size: 20px; } .overview { padding: 20px; } .tabs button { padding: 10px 6px; font-size: 13px; } }
+@media (prefers-reduced-motion: reduce) { .tabs button { transition: none; } }

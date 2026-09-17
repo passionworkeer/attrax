@@ -50,7 +50,7 @@ describe("evidence-pack markdown rendering", () => {
       sessionId: "abc-123",
     });
 
-    expect(md).toContain("# Evidence Pack");
+    expect(md).toContain("# 证据包");
     expect(md).toContain("蓝牙耳机");
     expect(md).toContain("EU");
     expect(md).toContain("abc-123");
@@ -119,14 +119,14 @@ describe("evidence-pack markdown rendering", () => {
         },
       ],
     });
-    expect(md).toContain("fallback_article_only");
+    expect(md).toContain("仅定位条文");
     expect(md).not.toContain("<mark>");
     vi.restoreAllMocks();
   });
 
   it("returns a stub for empty citations", async () => {
     const md = await renderEvidencePackMarkdown({ citations: [] });
-    expect(md).toContain("No citations");
+    expect(md).toContain("本报告暂无引用");
   });
 });
 

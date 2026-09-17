@@ -78,7 +78,7 @@ export function CitationChip({ citation, showQuote = true, className }: Citation
       }
     }
     const query = params.toString();
-    return `/regulations/${encodeURIComponent(citation.doc_id)}#${encodeURIComponent(citation.article_id)}${query ? `?${query}` : ""}`;
+    return `/regulations/${encodeURIComponent(citation.doc_id)}${query ? `?${query}` : ""}#${encodeURIComponent(citation.article_id)}`;
   }, [citation.doc_id, citation.article_id, citation.quote_span, status]);
 
   return (

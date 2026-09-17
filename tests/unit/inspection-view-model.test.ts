@@ -57,6 +57,14 @@ function baseResult(overrides: Partial<ScanResult> = {}): ScanResult {
   };
 }
 
+it("uses readable model evidence when the API supplies a generic product placeholder", () => {
+  const result = baseResult({ productName: "product", inspectionObservations: [
+    { observationId: "identity", checkId: "common.brand_model.visible", imageId: "image-1",
+      visibility: "present_readable", observedText: "Anker 535 Charger; Model A2332", description: "", region: null },
+  ] });
+  expect(buildInspectionResultViewModel({ result, sessionId: result.sessionId }).product.title).toBe("Anker 535 Charger; Model A2332");
+});
+
 function observation(overrides: Record<string, unknown> = {}) {
   return {
     observationId: "obs-0",
@@ -158,6 +166,34 @@ describe("buildInspectionResultViewModel — finding/observation join", () => {
     expect(check?.observations).toHaveLength(2);
     // best observation = the readable one, which happens to be located too.
     expect(check?.bestObservation?.observationId).toBe("obs-b");
+  });
+
+  it("uses each visible certification mark as its hotspot title", () => {
+    const result = baseResult({
+      inspectionObservations: [
+        observation({
+          observationId: "mark-ce",
+          checkId: "common.certification_marks.visible",
+          observedText: "CE",
+        }),
+        observation({
+          observationId: "mark-fcc",
+          checkId: "common.certification_marks.visible",
+          observedText: "FCC",
+          region: {
+            kind: "bbox",
+            coordinateSpace: "normalized_canonical_image",
+            bbox: { x: 0.5, y: 0.6, w: 0.1, h: 0.08 },
+            verified: true,
+          },
+        }),
+      ],
+    });
+
+    const vm = buildInspectionResultViewModel({ result, sessionId: "scan_vm_test" });
+    expect(
+      vm.anchorsByImage["scan_vm_test-image-1"].map((anchor) => anchor.shortTitle),
+    ).toEqual(["CE", "FCC"]);
   });
 });
 

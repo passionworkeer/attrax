@@ -17,7 +17,6 @@
  * that mirrors the on-screen highlight experience.
  */
 import { jsPDF } from "jspdf";
-import { t as i18nT } from "@/lib/i18n";
 import {
   Paragraph,
   TextRun,
@@ -105,26 +104,28 @@ async function resolveRegulations(
  * `doc_id` so all of an article's quotes land under the same
  * regulation heading.
  */
-export async function renderEvidencePackMarkdown(input: EvidencePackInput): Promise<string> {
-  if (!input.citations.length) return "## Evidence Pack\n\n(No citations in this report.)\n";
+export async function renderEvidencePackMarkdown(input: EvidencePackInput, locale: Locale = "zh"): Promise<string> {
+  const t = (zh: string, en: string) => locale === "en" ? en : zh;
+  if (!input.citations.length) return `## ${t("证据包", "Evidence Pack")}\n\n${t("本报告暂无引用。", "No citations in this report.")}\n`;
 
   const cache = (input.regulationCache ?? {}) as Record<string, RegulationPayload>;
   await resolveRegulations(input.citations, cache);
 
   const lines: string[] = [];
-  lines.push("# Evidence Pack — 证据包");
+  lines.push("# " + t("证据包", "Evidence Pack"));
+  lines.push(t("说明：法规名称、条文及引文保留来源原文，未自动翻译。", "Note: regulation titles, articles and quotations are preserved in their source language, without automatic translation."));
   lines.push("");
   if (input.product) {
-    lines.push("**产品**：" + input.product);
+    lines.push(`**${t("产品", "Product")}**: ` + input.product);
   }
   if (input.markets?.length) {
-    lines.push("**目标市场**：" + input.markets.join(", "));
+    lines.push(`**${t("目标市场", "Target markets")}**: ` + input.markets.join(", "));
   }
   if (input.sessionId) {
-    lines.push("**扫描 ID**：" + input.sessionId);
+    lines.push(`**${t("扫描 ID", "Scan ID")}**: ` + input.sessionId);
   }
   if (input.generatedAt) {
-    lines.push("**生成时间**：" + input.generatedAt);
+    lines.push(`**${t("生成时间", "Generated at")}**: ` + input.generatedAt);
   }
   lines.push("");
   lines.push("---");
@@ -148,33 +149,35 @@ export async function renderEvidencePackMarkdown(input: EvidencePackInput): Prom
     const reg = cache[docId];
     const regTitle = reg?.official_citation ?? docId;
     const region = reg?.region ?? "?";
-    const license = reg?.license ?? "public";
+    const license = reg?.license;
+    const licenseLabel = license === "public" ? t("公开", "Public") : license === "private_with_summary" ? t("受限，仅摘要", "Restricted, summary only") : t("待确认", "Unconfirmed");
     lines.push(`## ${regTitle}`);
     lines.push("");
-    lines.push(`- **Region**: ${region}`);
-    lines.push(`- **License**: ${license}`);
+    lines.push(`- **${t("地区", "Region")}**: ${region}`);
+    lines.push(`- **${t("使用权限", "License")}**: ${licenseLabel}`);
     if (reg?.source_url) {
-      lines.push(`- **Source**: ${reg.source_url}`);
+      lines.push(`- **${t("来源", "Source")}**: ${reg.source_url}`);
     }
     if (license === "private_with_summary" && reg?.purchase_url) {
-      lines.push(`- **Purchase**: ${reg.purchase_url}`);
+      lines.push(`- **${t("购买原文", "Purchase")}**: ${reg.purchase_url}`);
     }
     lines.push("");
 
     for (const citation of items) {
-      const articleId = String(citation.article_id ?? "").trim() || "(article pending)";
+      const articleId = String(citation.article_id ?? "").trim() || t("（条款编号待确认）", "(article pending)");
       const article = reg?.articles?.find((a) => a.id === citation.article_id);
-      const articleTitle = article?.title?.trim() || "(title pending)";
+      const articleTitle = article?.title?.trim() || t("（标题待确认）", "(title pending)");
       const headerLine = "### " + articleId + " — " + articleTitle;
       lines.push(headerLine);
       lines.push("");
       if (citation.official_citation?.trim()) {
-        lines.push("**Citation**: " + citation.official_citation.trim());
+        lines.push(`**${t("法规引用", "Citation")}**: ` + citation.official_citation.trim());
       }
       if (citation.quote?.trim()) {
         // J05: a missing status must not be presented as "matched".
-        const statusLabel = citation.match_status || "unverified";
-        const quoteHeader = "**Quote** (status: " + statusLabel + "):";
+        const status = citation.match_status || "unverified";
+        const statusLabel = locale === "en" ? status : ({ matched: "已匹配", fallback_article_only: "仅定位条文", unmatched: "未匹配", unverified: "未核实" } as Record<string, string>)[status] ?? "未核实";
+        const quoteHeader = `**${t("引文", "Quote")}** (${t("状态", "status")}: ${statusLabel}):`;
         lines.push(quoteHeader);
         lines.push("");
         if (
@@ -192,7 +195,7 @@ export async function renderEvidencePackMarkdown(input: EvidencePackInput): Prom
       } else if (article && article.text) {
         lines.push(article.text);
       } else {
-        lines.push("_No article text available for this citation._");
+        lines.push(t("_此引用暂无可用条文原文。_", "_No article text available for this citation._"));
       }
       lines.push("");
     }
@@ -226,7 +229,7 @@ export async function downloadEvidencePackAsPdf(
   input: EvidencePackInput,
   locale: Locale = "zh",
 ): Promise<void> {
-  const markdown = await renderEvidencePackMarkdown(input);
+  const markdown = await renderEvidencePackMarkdown(input, locale);
   const doc = new jsPDF({ unit: "pt", format: "a4" });
   // J06 (plan §4.5): the evidence-pack used to draw with built-in
   // `helvetica`, which cannot encode CJK — every Chinese heading/quote
@@ -323,7 +326,7 @@ export async function downloadEvidencePackAsPdf(
   }
 
   const blob = doc.output("blob");
-  downloadBlob(blob as Blob, `evidence-pack-${input.sessionId ?? "report"}.pdf`);
+  downloadBlob(blob as Blob, `evidence-pack-${input.sessionId ?? "report"}-${locale}.pdf`);
 }
 
 /**
@@ -335,7 +338,7 @@ export async function downloadEvidencePackAsDocx(
   input: EvidencePackInput,
   locale: Locale = "zh",
 ): Promise<void> {
-  const markdown = await renderEvidencePackMarkdown(input);
+  const markdown = await renderEvidencePackMarkdown(input, locale);
   const paragraphs: Paragraph[] = [];
 
   for (const block of parseMarkdownBlocks(markdown)) {
@@ -428,7 +431,7 @@ export async function downloadEvidencePackAsDocx(
       sections: [{ properties: {}, children: paragraphs }],
     });
   const blob = await Packer.toBlob(doc);
-  downloadBlob(blob, `evidence-pack-${input.sessionId ?? "report"}.docx`);
+  downloadBlob(blob, `evidence-pack-${input.sessionId ?? "report"}-${locale}.docx`);
 }
 
 /** Convenience that mirrors the legacy `downloadReportAsPdf` shape. */
