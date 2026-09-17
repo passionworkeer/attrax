@@ -165,10 +165,9 @@
 
 - `tests/unit/report-package-contract.test.ts` 会喂 mock 输出给 `normalizeReportPackage`，断言不抛错 + 关键字段存在
 - `tests/unit/profit-report-render-model.test.ts` 验证 `buildProfitRenderModelFromProfitReport` 的 RenderModel 派生
-- CI 步骤 `codegen:rag-types` 重新生成 `lib/rag-client/types.gen.ts`，后端改字段时 PR 会 fail
+- CI 门控① `check:rag-contract`：由快照重生 `lib/rag-client/types.gen.ts` 并 diff，后端改字段时 PR 会 fail
+- CI 门控② `check:rag-openapi`：直接比对 `rag_service` 的真实路由与 `openapi.snapshot.json`，防止快照本身落后于后端（详见 `FRONTEND-BACKEND-INTEGRATION.md` §5）
 
 ---
 
-*最后更新：2026-09-14*
-</content>
-</invoke>
+*最后更新：2026-09-17*

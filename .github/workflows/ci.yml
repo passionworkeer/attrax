@@ -101,6 +101,12 @@ jobs:
           cache: "pip"
           cache-dependency-path: rag_service/requirements-prod.txt
 
+      # The OpenAPI drift gate is a Node script that shells out to this Python
+      # env, so the job needs both toolchains.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Install RAG dependencies
         run: |
           python -m pip install --upgrade pip
@@ -109,6 +115,15 @@ jobs:
 
       - name: Compile Python sources
         run: python -m compileall -q rag_service
+
+      # Fails when a route exists in rag_service but is absent from (or stale in)
+      # lib/rag-client/openapi.snapshot.json. Without this the snapshot silently
+      # fell behind the real API — evidence/revisions/regulations were being
+      # called by the frontend while missing from the snapshot.
+      # (Invoked directly: this job has no `npm ci`, and the script only needs
+      #  Node builtins + the Python env above.)
+      - name: RAG OpenAPI contract gate
+        run: node scripts/check-rag-openapi-drift.mjs --check
 
       - name: pytest pure-logic gate
         env:
