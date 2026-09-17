@@ -1,6 +1,6 @@
 import { getDefaultFormat, getResultForReport, getTextReportPayload, localizeResult, type BlazeExportFormat, type BlazeReportLocale, type BlazeReportType } from "@/lib/reporting";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
-import { getScan, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { getScan, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
 import { fail } from "@/lib/api-response";
 
@@ -46,7 +46,11 @@ export async function GET(
       return fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 });
     }
     try {
-      const upstream = await getScan({ sessionId, accessToken });
+      const upstream = await getScan({
+        sessionId,
+        accessToken,
+        ...upstreamForwardFrom(request),
+      });
       if (upstream.status === "processing") {
         return fail({ code: "NOT_READY", message: "Scan result is not ready" }, { status: 409 });
       }

@@ -104,11 +104,47 @@ function apiUrl(path: string): string {
   return `${getRagServiceUrl()}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-function buildAuthHeaders(accessToken: string | null): Record<string, string> {
+/**
+ * BFF → RAG 的转发上下文（限流分桶 + 跨边界日志关联）。
+ *
+ * RAG 的 _client_ip 只在 socket peer 属于 trusted_proxies 时读
+ * X-Forwarded-For；BFF 从 127.0.0.1（trusted）发起调用但不转发时，所有
+ * 用户的写请求共享同一个 127.0.0.1 限流桶（30 req/60s），一个用户就能
+ * 把其他所有人的扫描创建打成 429。透传 x-real-ip（nginx $remote_addr
+ * 覆写值，BFF 的限流也信任它）恢复按真实客户端分桶。
+ */
+export interface UpstreamForward {
+  clientIp?: string | null;
+  requestId?: string | null;
+}
+
+/**
+ * 从 BFF 入站 Request 提取转发头。只携带真实存在的值（缺省时展开为空
+ * 对象），让调用参数保持最小形状。
+ * x-real-ip：nginx `proxy_set_header X-Real-IP $remote_addr` 覆写值，
+ * 拓扑上 3000 只绑定 loopback、全部流量经 nginx，因此可信（BFF 自身限流
+ * 也以它为准，见 lib/rate-limit.ts resolveClientId）。
+ * x-request-id：由 middleware.ts 注入到转发请求头。
+ */
+export function upstreamForwardFrom(request: Request): UpstreamForward {
+  const forward: UpstreamForward = {};
+  const realIp = request.headers.get("x-real-ip")?.trim();
+  if (realIp) forward.clientIp = realIp;
+  const requestId = request.headers.get("x-request-id")?.trim();
+  if (requestId) forward.requestId = requestId;
+  return forward;
+}
+
+function buildAuthHeaders(
+  accessToken: string | null,
+  forward?: UpstreamForward,
+): Record<string, string> {
   const headers: Record<string, string> = {};
   const secret = getRagInternalSecret();
   if (secret) headers["X-Internal-Secret"] = secret;
   if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
+  if (forward?.clientIp) headers["X-Forwarded-For"] = forward.clientIp;
+  if (forward?.requestId) headers["X-Request-Id"] = forward.requestId;
   return headers;
 }
 
@@ -237,7 +273,7 @@ async function requestEnvelope<T>(
   return unwrapV1Envelope(envelope, response.status);
 }
 
-export interface CreateScanInput {
+export interface CreateScanInput extends UpstreamForward {
   query: string;
   product?: string;
   category: string;
@@ -308,14 +344,14 @@ export async function createScan(input: CreateScanInput): Promise<CreatedScanDat
     {
       method: "POST",
       body: formData,
-      headers: buildAuthHeaders(null),
+      headers: buildAuthHeaders(null, input),
     },
     RAG_SERVICE_TIMEOUT_MS,
     "SCAN_SERVICE_UNAVAILABLE",
   );
 }
 
-export interface GetScanInput {
+export interface GetScanInput extends UpstreamForward {
   sessionId: string;
   accessToken: string;
 }
@@ -325,14 +361,14 @@ export async function getScan(input: GetScanInput): Promise<V1SessionData> {
     `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}`,
     {
       method: "GET",
-      headers: buildAuthHeaders(input.accessToken),
+      headers: buildAuthHeaders(input.accessToken, input),
     },
     V1_SCAN_GET_TIMEOUT_MS,
     "SCAN_SERVICE_UNAVAILABLE",
   );
 }
 
-export interface SessionResourceInput {
+export interface SessionResourceInput extends UpstreamForward {
   sessionId: string;
   accessToken: string;
 }
@@ -366,7 +402,7 @@ export async function appendEvidence(input: AppendEvidenceInput): Promise<Append
     {
       method: "POST",
       body: formData,
-      headers: buildAuthHeaders(input.accessToken),
+      headers: buildAuthHeaders(input.accessToken, input),
     },
     RAG_SERVICE_TIMEOUT_MS,
     "SCAN_SERVICE_UNAVAILABLE",
@@ -385,7 +421,7 @@ export async function requestRevision(input: SessionResourceInput): Promise<Revi
     {
       method: "POST",
       headers: {
-        ...buildAuthHeaders(input.accessToken),
+        ...buildAuthHeaders(input.accessToken, input),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ idempotencyKey: `${input.sessionId}:revision` }),
@@ -411,7 +447,7 @@ export async function getScanAsset(
       apiUrl(
         `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/assets/${input.index}`,
       ),
-      { method: "GET", headers: buildAuthHeaders(input.accessToken) },
+      { method: "GET", headers: buildAuthHeaders(input.accessToken, input) },
       V1_SCAN_GET_TIMEOUT_MS,
     );
   } catch (error) {

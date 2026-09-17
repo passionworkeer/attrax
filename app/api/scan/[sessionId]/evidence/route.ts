@@ -6,7 +6,7 @@
  * session bearer token. Response passthrough keeps the backend envelope
  * ({status: stored|already_applied, storedCount, uploads}) intact.
  */
-import { appendEvidence, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { appendEvidence, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { fail, ok } from "@/lib/api-response";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 
@@ -78,6 +78,7 @@ export async function POST(
       accessToken,
       files,
       idempotencyKey: idempotencyKey.trim() || undefined,
+      ...upstreamForwardFrom(request),
     });
     return ok(data, { status: 202 });
   } catch (err) {
