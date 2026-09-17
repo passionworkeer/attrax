@@ -20,10 +20,10 @@
 | 市场 | 源数 | source_type | 可抓取 | 状态 |
 |------|-----:|-------------|-------:|------|
 | EU | 9 | eu_celex(8) + safety_gate(1) | 8 | Safety Gate API 已下线，标记不可达 |
-| US | 6 | ecfr_part(5) + cpsc_recall_api(1) + openfda_recalls(2) | 8 | 全部可抓 |
+| US | 8 | ecfr_part(5) + cpsc_recall_api(1) + openfda_recalls(2) | 8 | 全部可抓 |
 | CA | 6 | canada_justice_xml(6) | 6 | 全部可抓 |
 | UK | 4 | gov_html(4) | 4 | 全部可抓 |
-| CN | 2 | gov_html(2) | 2 | 200 但只有 JS 空壳，标记 shell_only |
+| CN | 2 | gov_html(2) | 0 | 200 但只有 JS 空壳，标记 shell_only |
 | NZ | 2 | direct_url(2) | 2 | 全部可抓 |
 | JP | 1 | gov_html(1) | 1 | 可抓（已改端点） |
 | KR | 1 | gov_html(1) | 0 | JS 空壳，标记 shell_only |
@@ -34,34 +34,41 @@
 
 ### 1.2 唯一域名数
 
-审计前 16 个唯一域名，审计后 20 个：
+37 个源分布在 **16 个唯一域名** 上：
 
 ```
 publications.europa.eu          8   EU Cellar RDF（A 级）
 laws-lois.justice.gc.ca         6   Canada Justice XML（A 级）
 www.ecfr.gov                    5   eCFR（C 级，机器走 federalregister.gov API）
 www.gov.uk                      3   GOV.UK 指南页（B 级）
-www.saferproducts.gov           1   CPSC 召回 REST（A 级，替代被封的 cpsc.gov RSS）
 api.fda.gov                     2   OpenFDA 设备/食品召回（A 级，新增）
 www.productsafety.govt.nz       2   NZ 强制标准（B 级）
-ec.europa.eu                    1   Safety Gate（门户可读，API 已下线）
-www.hse.gov.uk                  1   UK HSE SVHC（B 级）
 www.samr.gov.cn                 2   CN SAMR（B 级，JS 空壳）
-www.meti.go.jp                  1   JP METI（B 级，可抓）
-www.motie.go.kr                 1   KR MOTIE（B 级，JS 空壳）
-moiat.gov.ae                    1   AE MoIAT（B 级，JS 空壳）
-www.saso.gov.sa                 1   SA SASO（B 级，JS 空壳）
+www.saferproducts.gov           1   CPSC 召回 REST（A 级，替代被封的 cpsc.gov RSS）
 www.gov.br                      1   BR INMETRO（B 级，可抓）
+www.meti.go.jp                  1   JP METI（B 级，可抓）
+www.hse.gov.uk                  1   UK HSE SVHC（B 级）
+ec.europa.eu                    1   Safety Gate（门户可读，API 已下线）
+www.motie.go.kr                 1   KR MOTIE（B 级，JS 空壳）
+www.moiat.gov.ae                1   AE MoIAT（B 级，JS 空壳）
+www.saso.gov.sa                 1   SA SASO（B 级，JS 空壳）
 www.bis.gov.in                  1   IN BIS（B 级，JS 空壳）
 ```
+
+域名数与审计前同为 16，但构成变了：去掉 `www.cpsc.gov`（403 封禁）和
+`www.cnca.gov.cn`（404），加入 `api.fda.gov` 和 `www.saferproducts.gov`。
+
+**一个域名承载多个源是常态**：EU 8 个源同走 Cellar，CA 6 个源同走 Justice
+Laws。好处是通道维护一次覆盖多条法规；代价是上游改版时整批一起坏 ——
+EU 和 CA 两批目前都是健康的。
 
 ### 1.3 权威度分级
 
 | 等级 | 定义 | 源数 | 抓取通道 |
 |------|------|-----:|---------|
-| **A 一手官方 + 机器可读** | 官方发布的开放 API / RDF / XML / RSS，无需密钥、无反爬 | 24 | Cellar RDF、Federal Register API、Canada Justice XML、SaferProducts REST、OpenFDA JSON |
-| **B 官方网页** | 政府网站 HTML，需剥离导航壳 | 6 | gov_html / direct_url collector |
-| **C 有硬阻碍** | 站点封数据中心 IP，或数据 API 已下线 | 7 | 见下方"不可追踪"清单 |
+| **A 一手官方 + 机器可读** | 官方发布的开放 API / RDF / XML，无需密钥、无反爬 | 22 | Cellar RDF(8)、Federal Register API(5)、Canada Justice XML(6)、SaferProducts REST(1)、OpenFDA JSON(2) |
+| **B 官方网页** | 政府网站 HTML，需剥离导航壳 | 14 | gov_html(12) / direct_url(2)。其中 6 个实测为 JS 空壳（`shell_only`），实际只有 8 个可抓 |
+| **C 有硬阻碍** | 站点封数据中心 IP，或数据 API 已下线 | 1 | Safety Gate（`unreachable`） |
 
 判定依据是**实测**，不是站点类型。例如 eCFR 官方站自身是 Cloudflare 反爬
 （C 级），但联邦公报的开放 API 提供同样的法规变更信号（A 级）—— 所以
