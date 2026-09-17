@@ -1,0 +1,29 @@
+id: KB-textile-CA-CA-SOR-2016-169
+regulation_id: CA-SOR-2016-169
+doc_name: Children's Sleepwear Regulations
+official_citation: Children's Sleepwear Regulations (SOR/2016-169)
+short_name: CA Children's Sleepwear Regs 2016
+source: category
+primary_source: textile
+applies_if:
+  category:
+  - textile
+  - children
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- 加拿大《儿童睡衣法规》要求尺寸 0-14X 睡衣满足一定阻燃性能或贴警示标签
+- 紧身款(贴肤)豁免,但仍需满足一般纺织品易燃性法规
+- 宽松款 / 织带款(非紧身)必须通过垂直燃烧测试或贴 "远离火源" 警示标签
+- 由 Health Canada 主管 + 加拿大消费品安全法 CCPSA 强制
+- 与 US 16 CFR 1615/1616 形成北美双线阻燃合规
+risk_hint: 儿童睡衣缺阻燃测试或警示标签 → 加拿大 + 美国双线召回
+est_cost: 阻燃测试 ¥3K-8K + 标签改版 ¥1K-3K
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-169/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

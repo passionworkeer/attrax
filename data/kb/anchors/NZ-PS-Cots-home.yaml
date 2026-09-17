@@ -1,0 +1,29 @@
+id: KB-home-NZ-NZ-PS-Cots
+regulation_id: NZ-PS-Cots
+doc_name: Household Cot Product Safety Standard
+official_citation: Household Cots Product Safety Standard (Fair Trading Act 1986, s.29(1)(a))
+short_name: NZ Household Cot Standard
+source: category
+primary_source: home
+applies_if:
+  category:
+  - home
+  - children
+  features_any: []
+  markets:
+  - NZ
+key_articles: []
+key_points:
+- 新西兰《家用婴儿床产品安全标准》覆盖 0-5 岁儿童家用床(cot)的尺寸、强度、间隙、标签
+- 适用 AS/NZS 2172 系列协调标准(与 EU EN 716 体系对应)
+- 婴儿床上市前须附 DoC + 警示标签 + 安装说明 + 床垫适配声明
+- 由 MBIE / Product Safety NZ 主管,违规产品召回 + 罚款
+- 含床栏(bumper)、枕头、被子等非强制性附加品时仍受一般消费品安全要求约束
+risk_hint: 婴儿床缺 AS/NZS 2172 测试 → 召回 + 罚款
+est_cost: AS/NZS 2172 测试 ¥8K-20K + DoC 文件 ¥2K-5K
+license: public
+source_url: https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

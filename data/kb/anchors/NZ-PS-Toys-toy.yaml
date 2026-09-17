@@ -1,0 +1,29 @@
+id: KB-toy-NZ-NZ-PS-Toys
+regulation_id: NZ-PS-Toys
+doc_name: Children's Toy Product Safety Standard
+official_citation: Children's Toys Product Safety Standard (Fair Trading Act 1986, s.29(1)(a))
+short_name: NZ Children's Toy Standard
+source: category
+primary_source: toy
+applies_if:
+  category:
+  - toy
+  - children
+  features_any: []
+  markets:
+  - NZ
+key_articles: []
+key_points:
+- 新西兰《儿童玩具产品安全标准》基于 Fair Trading Act 1986 s.29(1)(a) 强制实施
+- 涵盖 14 岁以下儿童玩具的机械、物理、易燃、化学、电气、辐射危险
+- 适用 AS/NZS 8124 系列协调标准(与 EU EN 71 体系大致对应)
+- 14 岁以下儿童玩具进入 NZ 须附 DoC + 警示标签 + 通过认可实验室测试
+- 由 MBIE / Product Safety NZ 主管,违规产品召回 + 罚款
+risk_hint: 玩具缺 AS/NZS 8124 测试 → 召回 + NZ Commerce Commission 罚款
+est_cost: AS/NZS 8124 测试 ¥5K-15K + DoC 文件准备 ¥2K-5K
+license: public
+source_url: https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

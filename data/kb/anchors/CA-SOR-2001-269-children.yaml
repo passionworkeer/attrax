@@ -1,0 +1,29 @@
+id: KB-children-CA-CA-SOR-2001-269
+regulation_id: CA-SOR-2001-269
+doc_name: Consumer Chemicals and Containers Regulations, 2001
+official_citation: Consumer Chemicals and Containers Regulations, 2001 (SOR/2001-269)
+short_name: CCCR 2001 (Canada 化学品 / 容器)
+source: category
+primary_source: children
+applies_if:
+  category:
+  - children
+  - chemical
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- 加拿大《2001 消费品化学品与容器法规》,覆盖化学品分类、警示标签、儿童防护包装(CRPC)
+- 含有毒、易燃或腐蚀性物质必须标注危险性符号 + 急救说明 + 储存处置建议
+- 儿童可能接触的产品优先采用 child-resistant closure + 显著警示语
+- 由 Health Canada 主管,违规产品召回 + 罚款 + 海关扣留
+- 与 US 16 CFR 1500 / EU CLP / GHS 大致对齐,但加拿大有独立标签模板
+risk_hint: 缺少 CCCR 标签 / 警示语 → 海关扣留 + Health Canada 召回
+est_cost: 标签改版 ¥2K-5K + 第三方检测 ¥5K-15K
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2001-269/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1
