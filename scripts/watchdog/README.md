@@ -1,8 +1,12 @@
 # Regulation Watchdog
 
-Daily change detection across the 25 official regulation sources tracked in
+Daily change detection across the 35 official regulation sources tracked in
 `data/regulation_sources/official_sources.json` (EU Cellar / eCFR / CPSC RSS /
 GOV.UK / CA Justice Laws / NZ legislation / direct URLs).
+
+> The count is the length of that JSON array, not a constant — it grew from 25
+> to 35 on 2026-09-16 (see `docs/WATCHDOG.md`). When it changes again, update
+> the number here and in `orchestrator.py`'s pass outline.
 
 ## Architecture decision (2026-09-12, revised 2026-09-13)
 

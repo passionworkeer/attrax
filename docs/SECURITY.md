@@ -85,10 +85,13 @@ See `infra/nginx-*.conf`:
 
 ## API protection
 
-- **Rate limit**: 双层 — nginx `limit_req_zone` 对 `/api/scan` 10 req/s per IP（burst 20，429）+ BFF (`app/api/scan/route.ts`) `checkRateLimit('scan:${clientId}', 10, 60_000)` 每 client 60s 窗口 10 次（BFF 比 nginx 更严，是真实业务门槛）
-- **fail2ban**: 5 jails (`sshd`, `nginx-http-auth`, `nginx-bad-request`, `nginx-block-scanner`, `attrax-404-probe`)
-  - `attrax-404-probe` is custom: bans any IP that 10-times-per-minute probes `.env`, `.git`, `wp-admin`, `phpmyadmin`, backup extensions (24-hour ban)
-  - `ignoreip = 127.0.0.1/8, 198.51.100.20` (we don't ban ourselves)
+- **Rate limit**: 双层 —
+  - nginx `limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s`，应用于 `/api/scan*`（`burst=20 nodelay`）与 `/`（`burst=40 nodelay`）；即单 IP 最多约 600 次/分钟（`/etc/nginx/snippets/attrax-locations.conf`）
+  - BFF `checkRateLimit('scan:${clientId}', 10, 60_000)`（`app/api/scan/route.ts` → `lib/rate-limit.ts`）：每 client 60s 窗口 10 次，**固定窗口**（计数器 + 绝对 resetAt，非滑动窗口）
+  - **BFF 才是真实成本门槛**，比 nginx 严约 60 倍：每次放行的扫描都消耗 LLM 调用，并占用 5 个 RAG worker 槽位之一（单次最长 280s）。因此存储不可用时**降级为进程内计数**（同窗口、同 key，仅失去跨重启持久化），既不静默放行也不全站 429
+  - 单进程假设：pm2 以 fork 模式运行 `nextjs` 且未设 `instances`，故进程内计数与文件存储等效；若将来扩为多实例/多容器，需重新引入跨进程锁（见 `lib/rate-limit.ts` 模块头）
+- **fail2ban**: 4 jails — `sshd`、`nginx-auth`、`nginx-botsearch`、`recidive`（`/etc/fail2ban/jail.local`；`fail2ban-client status` 复核一致）
+  - `jail.local` 未配置 `ignoreip`（旧文档写的 `attrax-404-probe` jail 并未在 lighthouse 部署；`docs/infra/fail2ban-*.conf` 是阿里云深圳时代快照 —— 该机已退役，其中残留的 `203.0.113.10` 亦然）
 - **Session auth**: 32-byte random tokens (256 bits entropy), SHA-256 hashed, `timingSafeEqual` constant-time comparison
 - **SessionId validation**: 三层正则不统一 — `lib/schemas.ts:SessionIdSchema` 限 50 字符（`/^scan_[0-9A-Za-z_-]{1,50}$/`），`app/api/backend-session-access.ts:SAFE_SESSION_ID` + RAG `rag_service/api/v1.py:_SESSION_ID` 限 64 字符（`/^scan_[A-Za-z0-9_-]{1,64}$/`）。BFF 的 64 是外层，前端 schema 的 50 是内层；调用经 Zod 校验，64-char 范围包含 50-char 范围，没有错位风险
 - **CORS**: `RAG_ALLOWED_ORIGINS=https://example.com,http://localhost:3000` (8001 only listens on loopback 127.0.0.1 so cross-origin attacks are limited)
@@ -96,12 +99,12 @@ See `infra/nginx-*.conf`:
 
 ## Process & file permissions
 
-- `pm2` runs as `admin` (NOT root). Systemd unit (`pm2-root.service`) sets `User=admin` and `PM2_HOME=/home/admin/.pm2`
-- `admin` removed from `docker` group (no container privilege escalation)
-- `/opt/attrax` owned by `admin:admin` (recursive chown done in round 4)
-- `/etc/sudoers` admin line: `admin ALL=(root) NOPASSWD: /opt/attrax/node_modules/pm2/bin/pm2, /usr/bin/systemctl, /opt/attrax/.venv/bin/python3, /bin/kill, /bin/tee, /bin/cp, /bin/chown, /bin/chmod, /usr/sbin/nginx`
-  - Anything else requires password
+- `pm2` runs as **`ubuntu`** (NOT root), via `/etc/systemd/system/pm2-ubuntu.service` (`User=ubuntu`); `PM2_HOME=/home/ubuntu/.pm2`
+- `/opt/attrax` owned by `ubuntu:ubuntu`; `data/` additionally group-owned by `netdev` (so the `nextjs` process can write under its own uid)
+- **`/etc/sudoers` grants full passwordless sudo, not a restricted allowlist**: `ubuntu ALL=(ALL:ALL) NOPASSWD: ALL` (also duplicated in `/etc/sudoers.d/90-cloud-init-users`), plus a `lighthouse ALL=(ALL) NOPASSWD: ALL` entry. Anything running as `ubuntu` — including the three pm2-supervised apps — can become root without a password. This is broader than the operator-command allowlist earlier versions of this document described; treat a compromise of any pm2 app as a root compromise, and tighten to an explicit allowlist if that blast radius is not acceptable
+- `ubuntu` removed from the `docker` group (no container privilege escalation)
 - `unattended-upgrades` enabled for security packages
+- **Secrets**: `/opt/attrax/.rag-internal-secret` (`600`) is the single source for `RAG_INTERNAL_SECRET`; `.env` files are `600`/`640`. Never commit them (see `.gitignore` — `.env*`)
 
 ## Disabled services
 
