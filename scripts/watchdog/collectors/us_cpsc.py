@@ -11,6 +11,7 @@ from __future__ import annotations
 import xml.etree.ElementTree as ET
 
 from scripts.watchdog.collectors.base import RegulationUpdate, fetch_url
+from scripts.watchdog.registry import register
 from scripts.watchdog.state import normalize_text, text_hash
 
 CPSC_RECALLS_RSS = "https://www.cpsc.gov/Newsroom/RSS/Recalls"
@@ -18,6 +19,7 @@ CPSC_RECALLS_RSS = "https://www.cpsc.gov/Newsroom/RSS/Recalls"
 _ATOM_NS = "{http://www.w3.org/2005/Atom}"
 
 
+@register("cpsc_rss")
 def collect_cpsc_rss(entry: dict) -> RegulationUpdate:
     url = entry.get("source_url") or CPSC_RECALLS_RSS
     body, last_modified = fetch_url(url, accept="application/rss+xml; q=1.0, application/xml; q=0.9, */*; q=0.5")

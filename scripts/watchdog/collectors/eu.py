@@ -15,6 +15,7 @@ reliably move the hash. ~9MB per source is acceptable for a daily pass.
 from __future__ import annotations
 
 from scripts.watchdog.collectors.base import RegulationUpdate, fetch_url
+from scripts.watchdog.registry import register
 from scripts.watchdog.state import normalize_text, text_hash
 
 CELEX_CELLAR_URL = "https://publications.europa.eu/resource/celex/{celex}"
@@ -22,6 +23,7 @@ CELEX_CELLAR_URL = "https://publications.europa.eu/resource/celex/{celex}"
 CELLAR_ACCEPT = "application/rdf+xml"
 
 
+@register("eu_celex")
 def collect_eu_celex(entry: dict) -> RegulationUpdate:
     celex = entry.get("celex") or ""
     if not celex:

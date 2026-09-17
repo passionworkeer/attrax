@@ -313,36 +313,15 @@ def collect_generic(entry: dict) -> RegulationUpdate:
 
 
 def collect_source(entry: dict) -> RegulationUpdate:
-    """Dispatch one official_sources.json entry to its collector.
+    """Dispatch one official_sources.json entry to its registered collector.
 
-    Dispatch table (newest additions at the bottom):
-      - ``eu_celex``        → Cellar RDF (eu.py)
-      - ``ecfr_part``       → Federal Register API (us_ecfr.py)
-      - ``cpsc_rss``        → CPSC Recalls RSS (us_cpsc.py)
-      - ``gov_html``        → chrome-stripped HTML (gov_html.py) — added 2026-09-16
-      - ``safety_gate``     → RAPEX JSON API (safety_gate.py) — added 2026-09-16
-      - everything else     → ``collect_generic`` (raw bytes; safe default)
+    Implementation moved to ``scripts.watchdog.registry`` on 2026-09-17
+    (plugin-pattern refactor). Existing source types (eu_celex / ecfr_part /
+    cpsc_rss / gov_html / safety_gate) are registered when
+    ``scripts/watchdog/collectors/__init__.py`` is imported — same trigger
+    point the orchestrator already pulls. Old behaviour preserved: any
+    unmapped source type falls back to ``collect_generic`` (raw bytes).
     """
-    source_type = entry.get("source_type", "")
-    if source_type == "eu_celex":
-        from scripts.watchdog.collectors.eu import collect_eu_celex
+    from scripts.watchdog.registry import collect_source as _dispatch
 
-        return collect_eu_celex(entry)
-    if source_type == "ecfr_part":
-        from scripts.watchdog.collectors.us_ecfr import collect_ecfr_part
-
-        return collect_ecfr_part(entry)
-    if source_type == "cpsc_rss":
-        from scripts.watchdog.collectors.us_cpsc import collect_cpsc_rss
-
-        return collect_cpsc_rss(entry)
-    if source_type == "gov_html":
-        from scripts.watchdog.collectors.gov_html import collect_gov_html
-
-        return collect_gov_html(entry)
-    if source_type == "safety_gate":
-        from scripts.watchdog.collectors.safety_gate import collect_safety_gate
-
-        return collect_safety_gate(entry)
-    # direct_url / canada_justice_xml / anything new
-    return collect_generic(entry)
+    return _dispatch(entry)

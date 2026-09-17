@@ -24,6 +24,7 @@ import json
 from datetime import datetime
 
 from scripts.watchdog.collectors.base import RegulationUpdate, fetch_url
+from scripts.watchdog.registry import register
 from scripts.watchdog.state import normalize_text, text_hash
 
 SAFETY_GATE_API = (
@@ -85,6 +86,7 @@ def _is_relevant(alert: dict) -> bool:
     return any(hint in cats for hint in _COVERED_CATEGORY_HINTS)
 
 
+@register("safety_gate")
 def collect_safety_gate(entry: dict) -> RegulationUpdate:
     url = entry.get("source_url") or SAFETY_GATE_API
     # Safety Gate API responses can be small on light weeks; don't apply the
