@@ -39,10 +39,30 @@ def _all_yaml_paths() -> list[Path]:
 
 
 class TestKbFileInventory:
-    def test_44_yaml_files_exist(self):
-        # Spec §5.3: 44 unique regulations
+    #: Floor, not an exact count. The library grows as markets are covered
+    #: (44 → 58 on 2026-09-17 when CA/NZ/JP/KR/AE/SA/BR/IN got their first
+    #: regulations); shrinking below the floor means something was deleted
+    #: by accident.
+    MIN_ANCHORS = 44
+
+    def test_anchor_count_meets_the_baseline(self):
         paths = _all_yaml_paths()
-        assert len(paths) == 44, f"expected 44 YAML files, got {len(paths)}"
+        assert len(paths) >= self.MIN_ANCHORS, (
+            f"expected at least {self.MIN_ANCHORS} YAML files, got {len(paths)}"
+        )
+
+    def test_anchor_count_matches_the_regulation_library(self):
+        """Anchors and regulations are 1:1 — an anchor with no regulation
+        behind it (or vice versa) means the two trees drifted apart."""
+        from rag_service.retrieval.kb_loader import list_all_regulations
+        from rag_service.retrieval.article_loader import list_regulation_ids
+
+        anchored = set(list_all_regulations())
+        regulated = set(list_regulation_ids())
+        assert anchored == regulated, (
+            f"anchor-only: {sorted(anchored - regulated)}; "
+            f"regulation-only: {sorted(regulated - anchored)}"
+        )
 
     def test_every_yaml_parses(self):
         for path in _all_yaml_paths():
@@ -160,17 +180,17 @@ class TestKbCoverage:
         )
 
     def test_yaml_count_matches_must_check_unique(self):
-        assert len(self._yaml_keys()) == 44
-        assert len(self._must_check_keys()) == 44
+        """The two sources of truth agree on how many regulations exist."""
+        assert len(self._yaml_keys()) == len(self._must_check_keys())
 
 
 class TestKbLoaderApi:
     def test_always_include_regions_is_un_only(self):
         assert ALWAYS_INCLUDE_REGIONS == {"UN"}
 
-    def test_list_all_regulations_returns_44(self):
+    def test_list_all_regulations_meets_the_baseline(self):
         invalidate_cache()
-        assert len(list_all_regulations()) == 44
+        assert len(list_all_regulations()) >= 44
 
     def test_get_anchor_by_regulation_id_round_trip(self):
         invalidate_cache()
@@ -187,10 +207,14 @@ class TestKbLoaderApi:
         assert get_anchor_by_regulation_id("NOPE-NOT-EXIST") is None
 
     def test_get_anchors_by_category_returns_legacy_shape(self):
-        # battery category should yield the 5 anchors from must_check.py:
-        # Battery Reg 2023/1542, UN 38.3, 49 CFR 173.185, GB 31241, UK Batteries
+        # The battery category carried 5 anchors when only the original
+        # markets were covered; the 2026-09-17 expansion added battery rules
+        # for JP / KR / AE / BR / IN. Assert the originals are still there and
+        # the shape holds, rather than freezing the count.
         entries = get_anchors_by_category("battery")
-        assert len(entries) == 5
+        assert len(entries) >= 5
+        names = {e["doc_name"] for e in entries}
+        assert any("Battery" in name and "2023/1542" in name for name in names), names
         for e in entries:
             assert "doc_name" in e
             assert "region" in e
@@ -219,14 +243,19 @@ class TestKbLoaderApi:
         assert "Battery Regulation (EU) 2023/1542" in from_feat
 
     def test_license_distribution_matches_spec(self):
-        # Spec §6.2: 33 public + 11 private_with_summary
+        # Spec §6.2 fixed the original split at 33 public + 11
+        # private_with_summary. The 2026-09-17 market expansion added public
+        # regulations (CA/NZ/JP/KR/AE/SA/BR/IN), so the private count is the
+        # stable half: every private standard is an authored summary that
+        # must not silently disappear or get relabelled public.
         invalidate_cache()
         counts = {"public": 0, "private_with_summary": 0}
         for path in _all_yaml_paths():
             data = yaml.safe_load(path.read_text())
             counts[data["license"]] += 1
-        assert counts["public"] == 33
         assert counts["private_with_summary"] == 11
+        assert counts["public"] >= 33
+        assert counts["public"] + counts["private_with_summary"] == len(_all_yaml_paths())
 
     def test_invalidate_cache_clears_state(self):
         # Warm cache

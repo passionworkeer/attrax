@@ -1,9 +1,7 @@
-import io
 import pytest
-import sqlite3
 from unittest.mock import patch, MagicMock
 from scripts.watchdog.collectors.base import WAFChallengeBlockedException, fetch_url
-from scripts.watchdog.collectors.us_cpsc import collect_cpsc_rss, _parse_rss_items
+from scripts.watchdog.collectors.us_cpsc_api import collect_cpsc_recall_api
 from scripts.watchdog.state import SourceStateStore, Change, normalize_text, text_hash
 
 
@@ -29,22 +27,23 @@ def test_fetch_url_detects_waf_challenge():
     assert "WAF challenge / anti-bot interstitial detected" in str(exc_info.value)
 
 
-def test_cpsc_collector_raises_on_empty_parse_of_non_rss_page():
-    dummy_html = b"<html><body><h1>No articles here</h1><p>Generic page content</p></body></html>"
-
-    items = _parse_rss_items(dummy_html)
-    assert items == []
+def test_cpsc_collector_raises_when_the_api_does_not_return_an_array():
+    """A non-array payload (an error envelope, a schema change) must be an
+    explicit failure — silently digesting it would freeze the source."""
+    envelope = b'{"error": {"code": "NOT_FOUND", "message": "no matches"}}'
 
     mock_response = MagicMock()
-    mock_response.read.return_value = dummy_html
+    mock_response.read.return_value = envelope
     mock_response.headers.get.return_value = None
     mock_response.__enter__.return_value = mock_response
 
     with patch("urllib.request.urlopen", return_value=mock_response):
         with pytest.raises(ValueError) as exc_info:
-            collect_cpsc_rss({"id": "test_cpsc", "source_url": "https://example.com/cpsc"})
+            collect_cpsc_recall_api(
+                {"id": "test_cpsc", "source_url": "https://example.com/cpsc"}
+            )
 
-    assert "CPSC RSS feed returned 0 parsed items" in str(exc_info.value)
+    assert "expected a JSON array" in str(exc_info.value)
 
 
 def test_watchdog_source_state_store_bulk_snapshot_and_diff(tmp_path):

@@ -1,8 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-11",
-  "count": 44,
+  "generated_at": "2026-09-17",
+  "count": 58,
   "regulations": [
+    {
+      "id": "AE-MoIAT-ECAS",
+      "region": "AE",
+      "license": "public",
+      "official_citation": "Emirates Conformity Assessment Scheme (ECAS) — Ministerial Resolutions under Federal Law No. 28/2001",
+      "short_name": "UAE ECAS (合格评定)",
+      "source_url": "https://moiat.gov.ae/en/services/standardization-and-conformity/ecas",
+      "purchase_url": null,
+      "article_count": 0
+    },
     {
       "id": "AU-RCM",
       "region": "AU",
@@ -12,6 +22,76 @@
       "source_url": "https://www.acma.gov.au/standards/regulatory-compliance-mark-rcm",
       "purchase_url": null,
       "article_count": 1
+    },
+    {
+      "id": "BR-INMETRO",
+      "region": "BR",
+      "license": "public",
+      "official_citation": "Avaliação da Conformidade — Compulsório INMETRO / Portarias Inmetro",
+      "short_name": "BR Compulsory Certification Scope",
+      "source_url": "https://www.gov.br/inmetro/pt-br/assuntos/noticias",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "CA-SOR-2001-269",
+      "region": "CA",
+      "license": "public",
+      "official_citation": "Consumer Chemicals and Containers Regulations, 2001 (SOR/2001-269)",
+      "short_name": "CCCR 2001 (Canada 化学品 / 容器)",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2001-269/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "CA-SOR-2016-169",
+      "region": "CA",
+      "license": "public",
+      "official_citation": "Children's Sleepwear Regulations (SOR/2016-169)",
+      "short_name": "CA Children's Sleepwear Regs 2016",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-169/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "CA-SOR-2016-188",
+      "region": "CA",
+      "license": "public",
+      "official_citation": "Phthalates Regulations (SOR/2016-188)",
+      "short_name": "CA Phthalates Regs 2016",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-188/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "CA-SOR-2016-193",
+      "region": "CA",
+      "license": "public",
+      "official_citation": "Surface Coating Materials Regulations (SOR/2016-193)",
+      "short_name": "CA Surface Coatings Regs 2016",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-193/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "CA-SOR-2018-83",
+      "region": "CA",
+      "license": "public",
+      "official_citation": "Consumer Products Containing Lead Regulations (SOR/2018-83)",
+      "short_name": "CA Lead in Consumer Products Regs",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-83/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "CA-SOR-2019-97",
+      "region": "CA",
+      "license": "public",
+      "official_citation": "Corded Window Coverings Regulations (SOR/2019-97)",
+      "short_name": "CA Corded Window Coverings Regs",
+      "source_url": "https://laws-lois.justice.gc.ca/eng/regulations/SOR-2019-97/",
+      "purchase_url": null,
+      "article_count": 0
     },
     {
       "id": "CN-CCC-IT",
@@ -201,7 +281,7 @@
       "short_name": "EU Toy Safety Directive",
       "source_url": "https://eur-lex.europa.eu/eli/dir/2009/48/oj",
       "purchase_url": null,
-      "article_count": 6
+      "article_count": 7
     },
     {
       "id": "EU-2011-65",
@@ -262,6 +342,66 @@
       "source_url": "https://eur-lex.europa.eu/eli/reg/2023/988/oj",
       "purchase_url": null,
       "article_count": 5
+    },
+    {
+      "id": "IN-BIS-CRS",
+      "region": "IN",
+      "license": "public",
+      "official_citation": "Compulsory Registration Scheme (CRS) — BIS Scheme-II under BIS Act 2016",
+      "short_name": "IN BIS CRS (印度强制注册)",
+      "source_url": "https://www.bis.gov.in/index.php/standards-changes-orders/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "JP-METI-PSE",
+      "region": "JP",
+      "license": "public",
+      "official_citation": "電気用品安全法 (PSE Mark / Electrical Appliance and Material Safety Law)",
+      "short_name": "PSE 菱形 / 圆形 (日本电安法)",
+      "source_url": "https://www.meti.go.jp/policy/consumer_appliance/pse/index.html",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "KR-MOTIE-KC",
+      "region": "KR",
+      "license": "public",
+      "official_citation": "전기용품 및 생활용품 안전관리법 (Electrical Appliances and Household Goods Safety Control Act, KC Mark)",
+      "short_name": "KC 안전확인 (韩国电安法)",
+      "source_url": "https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "NZ-PS-Cots",
+      "region": "NZ",
+      "license": "public",
+      "official_citation": "Household Cots Product Safety Standard (Fair Trading Act 1986, s.29(1)(a))",
+      "short_name": "NZ Household Cot Standard",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "NZ-PS-Toys",
+      "region": "NZ",
+      "license": "public",
+      "official_citation": "Children's Toys Product Safety Standard (Fair Trading Act 1986, s.29(1)(a))",
+      "short_name": "NZ Children's Toy Standard",
+      "source_url": "https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/",
+      "purchase_url": null,
+      "article_count": 0
+    },
+    {
+      "id": "SA-SASO-Saber",
+      "region": "SA",
+      "license": "public",
+      "official_citation": "Saudi Product Safety Programme (SALEEM / SABER) — SASO implementing rules",
+      "short_name": "SA SALEEM / SABER (沙特产品安全)",
+      "source_url": "https://www.saso.gov.sa/en/news-and-events/news/",
+      "purchase_url": null,
+      "article_count": 0
     },
     {
       "id": "UK-Batteries",
