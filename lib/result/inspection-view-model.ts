@@ -966,7 +966,7 @@ function extractProductTitleFromObservations(observations: ObservationVM[]): str
       .map((p) => p.trim())
       .filter((p) => p && !p.toLowerCase().includes("pcs"));
     if (parts.length > 0) {
-      const combined = parts.slice(0, 2).join(" ");
+      const combined = parts.slice(0, 2).join("; ");
       if (combined.length >= 3 && combined.length <= 50) {
         return combined;
       }
