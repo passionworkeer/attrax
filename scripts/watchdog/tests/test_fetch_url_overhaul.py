@@ -19,6 +19,8 @@ from scripts.watchdog.collectors import base as collectors_base  # noqa: E402
 from scripts.watchdog.collectors.base import (  # noqa: E402
     fetch_url,
     NotModified,
+    resolve_user_agents,
+    _UA_TABLE,
     _CONDITIONAL_CACHE,
 )
 
@@ -223,3 +225,57 @@ def test_fetch_url_lru_cache_is_bounded():
     # Oldest entry was evicted; newest is present.
     assert "https://example.com/0" not in _CONDITIONAL_CACHE
     assert "https://example.com/fresh" in _CONDITIONAL_CACHE
+
+
+# ── User-Agent quarterly rotation ────────────────────────────────────────
+
+
+def test_ua_table_is_ordered_and_complete():
+    """Each row carries a quarter plus a Windows and a macOS UA. The
+    platform difference is the point of the retry rotation."""
+    assert _UA_TABLE
+    quarters = [row[0] for row in _UA_TABLE]
+    assert quarters == sorted(quarters), "table must be oldest-first"
+    for quarter, windows, macos in _UA_TABLE:
+        assert quarter.count("-Q") == 1
+        assert "Windows NT" in windows
+        assert "Macintosh" in macos
+        assert windows != macos
+
+
+def test_resolve_user_agents_picks_the_current_quarter():
+    from datetime import date
+
+    quarter, primary, fallback = resolve_user_agents(date(2026, 9, 17))
+    assert quarter == "2026-Q3"
+    assert "Chrome/124" in primary
+    assert "Chrome/120" in fallback
+
+
+def test_resolve_user_agents_advances_at_the_quarter_boundary():
+    from datetime import date
+
+    assert resolve_user_agents(date(2026, 9, 30))[0] == "2026-Q3"
+    assert resolve_user_agents(date(2026, 10, 1))[0] == "2026-Q4"
+
+
+def test_resolve_user_agents_clamps_instead_of_failing():
+    """A stale table must keep serving its newest known-good UA, and an
+    early date must not fall off the front of the table."""
+    from datetime import date
+
+    newest = _UA_TABLE[-1][0]
+    oldest = _UA_TABLE[0][0]
+    # Far future: clamp to the newest row rather than raising.
+    assert resolve_user_agents(date(2030, 1, 1))[0] == newest
+    # Before the table starts: clamp to the earliest row.
+    assert resolve_user_agents(date(2020, 1, 1))[0] == oldest
+
+
+def test_module_level_user_agent_matches_the_resolver():
+    """The constants fetch_url actually uses must agree with the resolver."""
+    from datetime import date
+
+    _, primary, fallback = resolve_user_agents(date.today())
+    assert collectors_base.USER_AGENT == primary
+    assert collectors_base._FALLBACK_USER_AGENT == fallback

@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import contextlib
+import datetime as dt
 import gzip
 import http.cookiejar
 import logging
+import os
 import threading
 import time
 import urllib.error
@@ -17,17 +19,70 @@ from scripts.watchdog.registry import register
 
 logger = logging.getLogger("attrax.regwatch.collectors")
 
-USER_AGENT = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+# ── User-Agent rotation ─────────────────────────────────────────────────
+# An edge WAF that fingerprints on browser revision serves a different
+# bucket once the advertised build looks stale, so a hardcoded UA quietly
+# degrades the pass rate over time. This table is deliberately a *manual*
+# quarterly chore rather than a scraper of the current Chrome version:
+# fetching "what is the latest Chrome" adds a network dependency to every
+# watchdog start, and a wrong-but-plausible UA is worse than a stale one.
+#
+# Add a row at the top of each quarter. ``resolve_user_agent`` picks the
+# newest row whose quarter has arrived, so an un-updated table keeps using
+# the last known-good UA instead of failing.
+#
+# Windows is the primary fingerprint and macOS the fallback: the two differ
+# in platform as well as build, which is the property that makes the retry
+# rotation useful (see fetch_url).
+_UA_TABLE: tuple[tuple[str, str, str], ...] = (
+    # (quarter, windows UA, macos UA)
+    (
+        "2026-Q3",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        " (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        " (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    ),
+    (
+        "2026-Q4",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        " (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        " (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+    ),
 )
-# Fallback User-Agent — a slightly older Chrome build, used when the primary
-# UA trips an edge WAF (some CDNs fingerprint on User-Agent revision rather
-# than block outright, and rotating to a slightly older build sometimes
-# gets a different bucket). See collect_source() / fetch_url() retry logic.
-_FALLBACK_USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
-    " (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-)
+
+
+def _quarter_of(when: "dt.date") -> str:
+    return f"{when.year}-Q{(when.month - 1) // 3 + 1}"
+
+
+def resolve_user_agents(when: "dt.date | None" = None) -> tuple[str, str, str]:
+    """Pick the (quarter, primary, fallback) UA set for ``when``.
+
+    Returns the newest entry at or before the requested quarter. Before the
+    earliest table row, the earliest row is used — a deployment running with
+    a stale table should keep its known-good UA, not fall back to something
+    untested.
+    """
+    target = when or dt.date.today()
+    selected = _UA_TABLE[0]
+    for entry in _UA_TABLE:
+        if entry[0] <= _quarter_of(target):
+            selected = entry
+        else:
+            break
+    return selected
+
+
+_resolved_quarter, USER_AGENT, _FALLBACK_USER_AGENT = resolve_user_agents()
+
+# Operator override, used by tests and by an urgent rotation that should not
+# wait for a code deploy. Set the full UA string.
+_UA_OVERRIDE = os.environ.get("ATTRAX_REGWATCH_UA")
+if _UA_OVERRIDE:
+    USER_AGENT = _UA_OVERRIDE.strip()
+
 DEFAULT_TIMEOUT = 30
 DEFAULT_RETRIES = 3
 RETRY_BACKOFF_SECONDS = 2.0
