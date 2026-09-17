@@ -23,7 +23,11 @@ from scripts.watchdog.collectors.base import (  # noqa: E402
     USER_AGENT,
     WAFChallengeBlockedException,
 )
-from scripts.watchdog.collectors.us_cpsc import _parse_rss_items  # noqa: E402
+from scripts.watchdog.collectors.us_cpsc_api import (  # noqa: E402
+    collect_cpsc_recall_api,
+    _build_url,
+    _normalize_recall,
+)
 from scripts.watchdog.collectors.gov_html import _strip_chrome  # noqa: E402
 from scripts.watchdog.collectors.safety_gate import (  # noqa: E402
     collect_safety_gate,
@@ -151,38 +155,95 @@ def test_collect_source_dispatches_by_source_type():
     assert "2019-99999" in update.text.splitlines()[0]
 
 
-# ── CPSC RSS parsing ─────────────────────────────────────────────────────
+# ── CPSC recall API ──────────────────────────────────────────────────────
+
+# Fixture shape mirrors saferproducts.gov/RestWebServices/Recall. The RSS
+# feed this replaced answered 403 to every automated client from the
+# production host, so the JSON service is now the US recall channel.
+CPSC_API_PAYLOAD = [
+    {
+        "RecallID": 10967,
+        "RecallNumber": "26761",
+        "RecallDate": "2026-09-10T00:00:00",
+        "Title": "Finger Light Toys Recalled Due to Battery Ingestion Hazard",
+        "URL": "https://www.cpsc.gov/Recalls/2026/example",
+        "Products": [{"Name": "Electronic Finger Lights"}, {"Name": "Finger Flashlights"}],
+    },
+    {
+        "RecallID": 10965,
+        "RecallNumber": "26759",
+        "RecallDate": "2026-09-03T00:00:00",
+        "Title": "Children's Sleepwear Recalled Due to Violation of Flammability Standard",
+        "URL": "https://www.cpsc.gov/Recalls/2026/example-2",
+        "Products": [{"Name": "Cotton sleepwear"}],
+    },
+]
 
 
-def test_parse_rss_items_extracts_sorted_fields():
-    rss = b"""<?xml version="1.0"?>
-    <rss version="2.0"><channel>
-      <item><title>B Recall</title><link>u2</link><pubDate>Sep 10</pubDate></item>
-      <item><title>A Recall</title><link>u1</link><pubDate>Sep 11</pubDate></item>
-    </channel></rss>"""
-    items = _parse_rss_items(rss)
-    assert len(items) == 2
-    assert items[0]["title"] == "B Recall"
-    assert items[1]["link"] == "u1"
+def test_cpsc_recall_api_builds_a_windowed_url():
+    """The default URL asks only for the recent window — the full history
+    would be pulled on every daily pass for no benefit."""
+    url = _build_url({"id": "us-cpsc", "window_days": 7})
+    assert url.startswith("https://www.saferproducts.gov/RestWebServices/Recall?")
+    assert "RecallDateStart=" in url
+    assert "format=json" in url
 
 
-def test_parse_rss_items_handles_atom_feeds():
-    atom = b"""<?xml version="1.0"?>
-    <feed xmlns="http://www.w3.org/2005/Atom">
-      <entry>
-        <title>Atom Recall</title>
-        <link href="https://example.com/a1"/>
-        <updated>2026-09-12T00:00:00Z</updated>
-      </entry>
-    </feed>"""
-    items = _parse_rss_items(atom)
-    assert len(items) == 1
-    assert items[0]["title"] == "Atom Recall"
-    assert items[0]["link"] == "https://example.com/a1"
+def test_cpsc_recall_api_override_keeps_the_window():
+    """An operator override replaces the base, not the query — otherwise
+    pointing at the bare service would fetch the whole archive."""
+    url = _build_url({"id": "us-cpsc", "source_url": "https://example.com/Recall"})
+    assert url.startswith("https://example.com/Recall?")
+    assert "RecallDateStart=" in url
 
 
-def test_parse_rss_items_returns_empty_on_garbage():
-    assert _parse_rss_items(b"not xml at all") == []
+def test_cpsc_recall_api_override_with_explicit_window_is_respected():
+    """An override that already carries a date filter is used verbatim."""
+    explicit = "https://example.com/Recall?format=json&RecallDateStart=2026-01-01"
+    assert _build_url({"id": "us-cpsc", "source_url": explicit}) == explicit
+
+
+def test_normalize_recall_extracts_the_stable_fields():
+    row = _normalize_recall(CPSC_API_PAYLOAD[0])
+    assert row["id"] == "26761"
+    assert row["date"] == "2026-09-10"
+    assert row["title"].startswith("Finger Light Toys")
+    assert "Electronic Finger Lights" in row["products"]
+
+
+def test_normalize_recall_drops_records_without_a_number():
+    assert _normalize_recall({"Title": "no number"}) is None
+
+
+def test_collect_cpsc_recall_api_builds_a_stable_sorted_digest():
+    entry = {
+        "id": "us-cpsc-recalls-api",
+        "market": "US",
+        "source_type": "cpsc_recall_api",
+        "title": "CPSC Recalls",
+    }
+    body = json.dumps(CPSC_API_PAYLOAD).encode("utf-8")
+    resp = _fake_response(body, last_modified="Wed, 17 Sep 2026 03:00:00 GMT")
+    with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp):
+        update = collect_cpsc_recall_api(entry)
+
+    assert update.source_type == "cpsc_recall_api"
+    assert update.metadata["recallCount"] == 2
+    # sorted by (date, number) — API ordering is not a content change
+    lines = update.text.splitlines()
+    assert lines[0].startswith("2026-09-03")
+    assert lines[1].startswith("2026-09-10")
+    assert update.content_hash == text_hash(update.text)
+
+
+def test_collect_cpsc_recall_api_rejects_non_array():
+    entry = {"id": "us-cpsc", "market": "US", "source_type": "cpsc_recall_api"}
+    body = b'{"unexpected": "envelope but big enough to clear the small-body guard"}'
+    resp = _fake_response(body)
+    with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp), \
+         patch.object(collectors_base.time, "sleep"):
+        with pytest.raises(ValueError, match="expected a JSON array"):
+            collect_cpsc_recall_api(entry)
 
 
 # ── WAF fallback chain (fetch_url rotation) ──────────────────────────────

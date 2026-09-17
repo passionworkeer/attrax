@@ -19,15 +19,10 @@ from scripts.watchdog.collectors.base import (
 )
 from scripts.watchdog.collectors.eu import collect_eu_celex
 from scripts.watchdog.collectors.us_ecfr import collect_ecfr_part
-from scripts.watchdog.collectors.us_cpsc import collect_cpsc_rss
+from scripts.watchdog.collectors.us_cpsc_api import collect_cpsc_recall_api
 from scripts.watchdog.collectors.gov_html import collect_gov_html
 from scripts.watchdog.collectors.safety_gate import collect_safety_gate
-from scripts.watchdog.collectors.eu_cellar_sparql import collect_eu_cellar_sparql
-from scripts.watchdog.collectors.uk_legislation import collect_uk_legislation_xml
 from scripts.watchdog.collectors.openfda import collect_openfda_recalls
-from scripts.watchdog.collectors.health_canada import collect_health_canada_recalls
-from scripts.watchdog.collectors.tga import collect_tga_rss
-from scripts.watchdog.collectors.accc_recalls import collect_accc_recalls_rss
 
 __all__ = [
     "RegulationUpdate",
@@ -35,13 +30,8 @@ __all__ = [
     "collect_generic",
     "collect_eu_celex",
     "collect_ecfr_part",
-    "collect_cpsc_rss",
+    "collect_cpsc_recall_api",
     "collect_gov_html",
     "collect_safety_gate",
-    "collect_eu_cellar_sparql",
-    "collect_uk_legislation_xml",
     "collect_openfda_recalls",
-    "collect_health_canada_recalls",
-    "collect_tga_rss",
-    "collect_accc_recalls_rss",
 ]

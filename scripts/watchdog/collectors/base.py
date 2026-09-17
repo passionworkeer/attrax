@@ -13,6 +13,8 @@ import zlib
 from collections import OrderedDict
 from dataclasses import dataclass, field
 
+from scripts.watchdog.registry import register
+
 logger = logging.getLogger("attrax.regwatch.collectors")
 
 USER_AGENT = (
@@ -368,12 +370,13 @@ def fetch_url(
 def collect_generic(entry: dict) -> RegulationUpdate:
     """Fallback handler: fetch the raw source_url and hash the body.
 
-    Covers ``direct_url``, ``canada_justice_xml``, and any future source
-    types that serve plain documents. ``gov_html`` has its own handler
-    (``collect_gov_html``) which strips navigational chrome before hashing —
-    see collectors/gov_html.py for why. For change *detection* purposes
-    the raw bytes are enough; parsing into structured YAML only happens
-    after a change is confirmed (via auto_ingest).
+    Used directly by the plain-document source types (``direct_url``,
+    ``canada_justice_xml`` — see the registrations below) and as the safety
+    net for a source_type no collector claims. ``gov_html`` has its own
+    handler (``collect_gov_html``) which strips navigational chrome before
+    hashing — see collectors/gov_html.py for why. For change *detection*
+    purposes the raw bytes are enough; parsing into structured YAML only
+    happens after a change is confirmed (via auto_ingest).
     """
     from scripts.watchdog.state import normalize_text, text_hash
 
@@ -396,12 +399,20 @@ def collect_generic(entry: dict) -> RegulationUpdate:
     )
 
 
+# The plain-document source types claim collect_generic explicitly rather
+# than relying on the dispatcher's fallback. Registering them keeps
+# REGISTRY the complete answer to "which source types exist", so a typo in
+# official_sources.json surfaces as an unknown type instead of silently
+# behaving like a working source.
+register("canada_justice_xml")(collect_generic)
+register("direct_url")(collect_generic)
+
+
 def collect_source(entry: dict) -> RegulationUpdate:
     """Dispatch one official_sources.json entry to its registered collector.
 
     Implementation moved to ``scripts.watchdog.registry`` on 2026-09-17
-    (plugin-pattern refactor). Existing source types (eu_celex / ecfr_part /
-    cpsc_rss / gov_html / safety_gate) are registered when
+    (plugin-pattern refactor). Existing source types are registered when
     ``scripts/watchdog/collectors/__init__.py`` is imported — same trigger
     point the orchestrator already pulls. Old behaviour preserved: any
     unmapped source type falls back to ``collect_generic`` (raw bytes).
