@@ -1,9 +1,23 @@
-*************************************************************************
-*  Attrax production server. Authorized access only.                    *
-*  All activity is logged and monitored.                                *
-*************************************************************************
-# Attrax data backup, daily 03:00
+# /etc/cron.d/attrax-backup — daily local data backup.
+#
+# Install:
+#   sudo cp docs/infra/cron-attrax-backup /etc/cron.d/attrax-backup
+#   sudo chown root:root /etc/cron.d/attrax-backup
+#   sudo chmod 644 /etc/cron.d/attrax-backup
+#
+# Script source of truth: scripts/backup-data.sh in this repo (deployed to
+# /opt/attrax/scripts/backup-data.sh). The two must stay in sync — see the
+# guard in tests/unit/infra-cron-references.test.ts.
+#
+# Runs as `ubuntu`: pm2 runs as ubuntu (pm2-ubuntu.service) and the backup
+# target /opt/attrax/backups is ubuntu-owned. Earlier revisions of this
+# fragment said `admin`, a user that does not exist on lighthouse.
+#
+# A cron.d file accepts only comments, KEY=VALUE environment lines and job
+# lines. Stray banner text here is a hard error for cron, so keep it clean —
+# this fragment previously carried a four-line `*****` banner that would have
+# been rejected on install.
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-0 3 * * * admin /opt/attrax/scripts/backup-data.sh >> /opt/attrax/logs/attrax-backup.log 2>&1
+0 3 * * * ubuntu /opt/attrax/scripts/backup-data.sh >> /opt/attrax/logs/attrax-backup.log 2>&1

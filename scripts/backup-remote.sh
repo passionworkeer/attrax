@@ -8,6 +8,11 @@ set -u
 LOCAL_DIR=/opt/attrax/backups
 LOG=/opt/attrax/logs/attrax-backup-remote.log
 TS=$(date -Iseconds)
+# Same precondition backup-data.sh establishes: without this, a missing log
+# directory makes the very first `>> "$LOG"` fail before anything is recorded —
+# and since it is the failure path, the evidence would be lost exactly when it
+# is most needed.
+mkdir -p "$(dirname "$LOG")"
 LATEST=$(ls -1t $LOCAL_DIR/attrax-data-*.tar.gz 2>/dev/null | head -1)
 REMOTE_DEST=$(grep "^BACKUP_REMOTE_DEST=" /opt/attrax/.env 2>/dev/null | cut -d= -f2-)
 REMOTE_DEST=${REMOTE_DEST:-${ATTRAX_BACKUP_REMOTE_DEST:-}}
