@@ -1,5 +1,5 @@
-# === 非可移植依赖（本地开发可选，不用于 Docker 构建）===
-agent-reach @ https://github.com/Panniantong/Agent-Reach/archive/main.zip#sha256=809170b0eae0876671fc676de4f0cc89716da3911483e2735e3f375240348598
--e git+https://github.com/anthropics/anthropic-sdk-python.git@97074788ac2c4381f4262de5116eac9fd9b4f192#egg=anthropic
--e d:\openclaw-work\e2b-dev_e2b\packages\python-sdk
--e e:\desktop\notebooklm-py
+# ── 开发与测试依赖 ─────────────────────────────────────────────────────────────
+-r requirements-prod.txt
+pytest==9.1.1
+pytest-asyncio==0.25.3
+httpx==0.28.1

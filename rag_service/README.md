@@ -32,7 +32,7 @@ KB 锚定合规扫描后端（FastAPI）。公开 `/api/v1`、Bearer 轮询流�
 | PDF 解析 | pdfplumber | 用户上传 PDF → 文本 |
 | 编排 | 线性 3 步（`pipeline/runner.py`） | LangGraph 已移除 |
 
-**无 embedding**：PAI / ModelScope / Ollama 均已删除，`_current_embedding_provider()` 恒返 `"none"`。
+**无 embedding**：PAI / ModelScope / Ollama 均已删除，代码中不存在任何 embedding 调用或降级路径。
 
 ## 快速开始
 
