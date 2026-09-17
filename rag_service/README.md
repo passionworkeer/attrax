@@ -52,7 +52,10 @@ cp rag_service/.env.example rag_service/.env
 
 必需（非 demo）：
 - `MINIMAX_API_KEY` — LLM（报告生成 + 视觉分析；兼容旧 `MIMOTALK_API_KEY` 别名）
-- `RAG_INTERNAL_SECRET` — BFF ↔ RAG 内部密钥（生产 fail-closed：留空拒绝启动）
+- `RAG_INTERNAL_SECRET` — BFF ↔ RAG 内部密钥（生产 fail-closed：留空拒绝启动）。
+  生产**不**在本文件维护它：真值在 `/opt/attrax/.rag-internal-secret`（`600`），由
+  `scripts/ecosystem.config.cjs` 注入 `rag-service` 与 `nextjs`（env 段优先于本
+  `.env`）。本地开发直接 export 即可。
 
 ### 3. 数据就位检查
 

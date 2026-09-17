@@ -164,8 +164,13 @@ tar -C .next -czf - static | ssh lighthouse 'mkdir -p /opt/attrax/.next/standalo
 # 服务器
 SHA=$(git rev-parse HEAD)
 ssh lighthouse "sed -i 's/^ATTRAX_BUILD_SHA=.*/ATTRAX_BUILD_SHA=${SHA}/' /opt/attrax/rag_service/.env"
-ssh lighthouse 'cd /opt/attrax && RAG_INTERNAL_SECRET=$(grep "^RAG_INTERNAL_SECRET=" /opt/attrax/rag_service/.env | cut -d= -f2) APP_ENV=production /usr/bin/pm2 start scripts/ecosystem.config.cjs --only nextjs'
+ssh lighthouse 'cd /opt/attrax && APP_ENV=production /usr/bin/pm2 start scripts/ecosystem.config.cjs --only nextjs'
 ```
+
+> `RAG_INTERNAL_SECRET` 不再手工从 `rag_service/.env` grep 出来注入。两端统一从
+> `/opt/attrax/.rag-internal-secret`（`600`）读取，由 `scripts/ecosystem.config.cjs`
+> 注入到 `rag-service` 与 `nextjs`，缺文件即启动失败（fail-closed）。轮换见
+> [`docs/SECURITY.md`](./docs/SECURITY.md) §Key management。
 
 详细部署步骤（`/opt/attrax/.next/standalone/.next/static` symlink、`public/` 链接、nginx alias 等）见 [`docs/README.md`](./docs/README.md) §生产部署 与 [`docs/infra/NEXTJS-16-STANDALONE-NOTES.md`](./docs/infra/NEXTJS-16-STANDALONE-NOTES.md)。
 

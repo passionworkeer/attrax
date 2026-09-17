@@ -1,3 +1,21 @@
+const fs = require("fs");
+
+// RAG_INTERNAL_SECRET 单一来源 = 服务器本地文件（真值不进 git，审计 4.1）。
+// 2026-09-17 之前 rag-service 读 rag_service/.env、nextjs 读启动 pm2 时 shell
+// 里 pin 住的 env，两个来源会静默分叉：rag_service/.env 里一个未轮换的弱值
+// 让两端"一致地弱"，而文档声称已轮换 48-hex。现在两端都从这里取，缺文件即
+// 抛错 → pm2 启动失败 → fail-closed 且响亮。
+// 轮换：echo -n "<48-hex>" > /opt/attrax/.rag-internal-secret && chmod 600 … 后
+//       pm2 startOrRestart scripts/ecosystem.config.cjs --only rag-service,nextjs
+const RAG_INTERNAL_SECRET_FILE = "/opt/attrax/.rag-internal-secret";
+const RAG_INTERNAL_SECRET = (
+  process.env.RAG_INTERNAL_SECRET || fs.readFileSync(RAG_INTERNAL_SECRET_FILE, "utf8")
+).trim();
+
+if (!RAG_INTERNAL_SECRET) {
+  throw new Error(`RAG_INTERNAL_SECRET is empty (source: ${RAG_INTERNAL_SECRET_FILE})`);
+}
+
 module.exports = {
   apps: [
     {
@@ -10,12 +28,9 @@ module.exports = {
       autorestart: true,
       env: {
         PYTHONUNBUFFERED: "1",
-        // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）
-        // 2026-09-12: pydantic-settings reads rag_service/.env on import,
-        // so when pm2 spawns this process without RAG_INTERNAL_SECRET
-        // in its own env, the .env fallback keeps the gate configured.
-        // To override, prefix the pm2 call: `RAG_INTERNAL_SECRET=… pm2 start …`.
-        RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || "",
+        // env 段优先于 rag_service/.env（pydantic-settings 的 env > dotenv），
+        // 因此 .env 里的同名旧值不会再遮蔽（该行已移除）。
+        RAG_INTERNAL_SECRET,
         APP_ENV: "production",
         // De-RAG has no retriever output; regulation-library articles are the
         // production evidence input for image-only scans. Allow an explicit
@@ -35,8 +50,8 @@ module.exports = {
         PORT: "3000",
         HOSTNAME: "127.0.0.1",
         RAG_SERVICE_URL: "http://127.0.0.1:8001",
-        // 2026-09-10: 真值只在服务器本地文件/环境，git 不携带（审计 4.1）
-        RAG_INTERNAL_SECRET: process.env.RAG_INTERNAL_SECRET || "",
+        // 同 rag-service：单一来源见文件头注释
+        RAG_INTERNAL_SECRET,
         DAILY_FREE_SCAN_LIMIT: "3",
         DEMO_MODE: "false",
       },

@@ -24,12 +24,24 @@ This document covers security practices for the Attrax production deployment (hi
 
 | File | Permission | Owner | Notes |
 |---|---|---|---|
-| `/opt/attrax/.env` | `600` | `admin:admin` | Top-level Next.js env (read by `.next/standalone/.env` after copy) |
-| `/opt/attrax/rag_service/.env` | `600` | `admin:admin` | RAG-specific env |
-| `/opt/attrax/.next/standalone/.env` | `600` | `root:root` | Used at Next.js runtime |
-| `/opt/attrax/backups/*.tar.gz` | `600` | `admin:admin` | Daily backup contains .env |
-| `/var/log/attrax-*.log` | `640` | `admin:admin` | May contain key on rare error; not world-readable |
-| Backup directory | `750` | `admin:admin` | Not world-readable |
+| `/opt/attrax/.rag-internal-secret` | `600` | `ubuntu:ubuntu` | **`RAG_INTERNAL_SECRET` 的唯一来源**（BFF ↔ RAG 内部认证）。由 `scripts/ecosystem.config.cjs` 注入到 `rag-service` 与 `nextjs`；不写入任何 `.env`，不进 git |
+| `/opt/attrax/.env` | `600` | `ubuntu:netdev` | Top-level Next.js env |
+| `/opt/attrax/.env.local` | `600` | `ubuntu:netdev` | |
+| `/opt/attrax/.env.production` | `600` | `ubuntu:netdev` | |
+| `/opt/attrax/rag_service/.env` | `600` | `ubuntu:ubuntu` | RAG-specific env（不含 `RAG_INTERNAL_SECRET`） |
+| `/opt/attrax/backups/*.tar.gz` | `600` | `ubuntu:ubuntu` | Daily backup contains .env |
+| Backup directory | `750` | `ubuntu:ubuntu` | Not world-readable |
+
+### 轮换 `RAG_INTERNAL_SECRET`
+
+```bash
+ssh lighthouse 'openssl rand -hex 24 | tr -d "\n" | sudo tee /opt/attrax/.rag-internal-secret >/dev/null && sudo chmod 600 /opt/attrax/.rag-internal-secret'
+ssh lighthouse 'cd /opt/attrax && pm2 startOrRestart scripts/ecosystem.config.cjs --only rag-service,nextjs'
+# 必须两端同时重启：只重启一个会让 BFF 与 RAG 的 secret 不一致 → 写端点全 401
+curl -s http://127.0.0.1:8001/api/v1/ready   # checks 应全 true
+```
+
+验证要跑一次真实扫描，`/api/health` 200 **不**代表 BFF→rag 鉴权通过。
 
 **Never** commit any `.env` file. The `RAG_ALLOWED_ORIGINS` placeholder in `.env.local.example` is documentation only.
 
