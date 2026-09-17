@@ -330,6 +330,13 @@ export interface components {
             error: components["schemas"]["ApiError"] | null;
             meta: components["schemas"]["ApiMeta"];
         };
+        /** ApiEnvelope[NoneType] */
+        ApiEnvelope_NoneType_: {
+            /** Data */
+            data: null;
+            error: components["schemas"]["ApiError"] | null;
+            meta: components["schemas"]["ApiMeta"];
+        };
         /** ApiEnvelope[dict[str, Any]] */
         ApiEnvelope_dict_str__Any__: {
             /** Data */
@@ -565,6 +572,12 @@ export interface components {
              * @default
              */
             labelEn: string;
+            /**
+             * Severity
+             * @default info
+             * @enum {string}
+             */
+            severity: "critical" | "high" | "medium" | "info";
             /**
              * Status
              * @default pending
@@ -1294,13 +1307,32 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Successful Response */
+            /** @description 原始资产字节（图片/PDF，content-type 由后端按上传类型决定） */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
                     "application/json": unknown;
+                    "*/*": string;
+                };
+            };
+            /** @description Invalid scan access token */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_NoneType_"];
+                };
+            };
+            /** @description Scan asset not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_NoneType_"];
                 };
             };
             /** @description Validation Error */
