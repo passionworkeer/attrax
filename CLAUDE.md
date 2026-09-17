@@ -289,6 +289,7 @@ const StartScanRequestSchema = z.object({
 | `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`；RAG 侧读取，前端只需透传场景） |
 | `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
 | `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
+| `MINIMAX_THINKING_MODE` | `adaptive` | 否 | 设为 `disabled` 时给 MiniMax 请求体加 `thinking:{"type":"disabled"}`（vision + generate 共用，跳过思考链降延迟）。默认 `adaptive` 保持现状；启用前先用真实请求 A/B 验证 API 接受该参数。DeepSeek 侧的思考控制（vision `thinking.disabled`、generate 回退 `reasoning.effort=none`）已无条件生效（2026-09-17 实测 41.2s→24.9s） |
 | `DEEPSEEK_API_KEY` | - | 否 | **降级**通道 key（识图 + 报告生成共用，`rag_service` 读取）。留空 = 关闭降级 |
 | `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | 否 | 识图降级端点（OpenAI 兼容 `/chat/completions`） |
 | `DEEPSEEK_ANTHROPIC_BASE_URL` | `https://api.deepseek.com/anthropic/v1` | 否 | 报告生成降级端点（Anthropic 兼容；代码拼 `{base}/messages`，**必须带 `/v1`**） |

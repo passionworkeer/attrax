@@ -186,6 +186,50 @@ def _to_openai_messages(messages: list[dict]) -> list[dict]:
 
 # ── VisionAnalyzer ────────────────────────────────────────────────────────
 
+# Vision models tile images by resolution — a 4000px phone photo costs many
+# more image tokens (latency + money) than the same photo resized to fit the
+# model's useful input grid. 1568px max side matches the largest tile most
+# multimodal providers accept without downscaling internally; smaller inputs
+# pass through byte-for-byte so the vision cache key stays stable.
+_VISION_MAX_SIDE_PX = 1568
+_VISION_JPEG_QUALITY = 85
+
+
+def _maybe_downscale(image_data: bytes) -> bytes:
+    """Downscale oversized images before the LLM call; pass small ones through.
+
+    Failure-safe by design: any decode/encode problem returns the original
+    bytes so a weird-but-valid upload still reaches the model.
+    """
+    if not image_data:
+        return image_data
+    try:
+        from io import BytesIO
+
+        from PIL import Image
+
+        with Image.open(BytesIO(image_data)) as img:
+            width, height = img.size
+            if max(width, height) <= _VISION_MAX_SIDE_PX:
+                return image_data
+            scale = _VISION_MAX_SIDE_PX / max(width, height)
+            resized = img.resize(
+                (max(1, round(width * scale)), max(1, round(height * scale))),
+                Image.LANCZOS,
+            )
+            buffer = BytesIO()
+            if resized.mode in ("RGBA", "LA", "P"):
+                background = Image.new("RGB", resized.size, (255, 255, 255))
+                background.paste(resized.convert("RGBA"), mask=resized.convert("RGBA").split()[-1])
+                background.save(buffer, format="JPEG", quality=_VISION_JPEG_QUALITY)
+            else:
+                resized.convert("RGB").save(buffer, format="JPEG", quality=_VISION_JPEG_QUALITY)
+            return buffer.getvalue()
+    except Exception as exc:  # noqa: BLE001 — any decode/encode failure keeps original bytes
+        logger.warning("vision image downscale skipped (%s); sending original bytes", exc)
+        return image_data
+
+
 class VisionAnalyzer:
     """Vision analysis: MiniMax Anthropic API, degrading to DeepSeek.
 
@@ -275,6 +319,14 @@ class VisionAnalyzer:
             "max_tokens": max_tokens,
             "temperature": 0.1,
             "messages": messages,
+            # See report_generator._generate_mimotalk — opt-in thinking
+            # disable (env MINIMAX_THINKING_MODE) for lower vision latency.
+            **(
+                {"thinking": {"type": "disabled"}}
+                if os.environ.get("MINIMAX_THINKING_MODE", "adaptive").strip().lower()
+                in {"disabled", "off", "false", "0"}
+                else {}
+            ),
         }).encode("utf-8")
 
         data = self._post_json(
@@ -308,10 +360,17 @@ class VisionAnalyzer:
             return ""
 
         budget = max_tokens or self.fallback_max_tokens
+        # deepseek-flash (V4 Flash) thinks by default at effort=high, which
+        # burns completion budget AND wall-clock time on a mechanical
+        # extraction task. Documented param (api-docs.deepseek.com
+        # thinking_mode): {"thinking": {"type": "disabled"}} on the
+        # OpenAI-compatible endpoint. Thinking mode ignores temperature,
+        # so the value is harmless either way.
         body = json.dumps({
             "model": self.fallback_model,
             "max_tokens": budget,
             "temperature": 0.1,
+            "thinking": {"type": "disabled"},
             "messages": _to_openai_messages(messages),
         }).encode("utf-8")
 
@@ -466,6 +525,7 @@ class VisionAnalyzer:
                 "certifications": [],
             }
 
+        image_data = _maybe_downscale(image_data)
         text = self._vision_text(image_data, mime_type, PROMPT, None, 1536)
 
         if not text:
@@ -503,6 +563,7 @@ class VisionAnalyzer:
             f"- id: {item['id']}｜{item.get('title') or item['id']}" for item in checks
         )
         prompt = CHECKLIST_PROMPT_TEMPLATE.format(checklist=checklist_block)
+        image_data = _maybe_downscale(image_data)
         text = self._vision_text(image_data, mime_type, prompt, checks, 3072)
         if not text:
             # Checklist call failed — fall back to the legacy prompt so the
