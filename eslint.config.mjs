@@ -27,6 +27,16 @@ const eslintConfig = defineConfig([
       "@typescript-eslint/no-explicit-any": "off",
     },
   },
+  {
+    // pm2 ecosystem configs and other .cjs files are CommonJS by definition —
+    // `require()` is the correct syntax there, not a mistake. Without this
+    // override `scripts/ecosystem.config.cjs` fails `npm run lint` (and with
+    // it the CI frontend gate) the moment it needs a Node builtin.
+    files: ["**/*.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ]);
 
 export default eslintConfig;
