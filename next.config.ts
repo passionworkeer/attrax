@@ -62,7 +62,7 @@ const nextConfig: NextConfig = {
 
   // Bundle optimization
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion", "sonner"],
+    optimizePackageImports: ["lucide-react"],
   },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];

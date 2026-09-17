@@ -26,34 +26,21 @@ export type AppLocale = "zh" | "en";
 
 import type { FinancialSummary } from "@/lib/types.blaze-hawks";
 
-export type Market =
-  | "EU"
-  | "US"
-  | "UK"
-  | "CN"
-  | "AU"
-  | "SA"
-  | "AE"
-  | "JP"
-  | "KR"
-  | "CA"
-  | "SG"
-  | "MX"
-  | "BR"
-  | "DE"
-  | "FR"
-  | "IT";
-export type ProductCategory =
-  | "electronics"
-  | "appliance"
-  | "3c"
-  | "toy"
-  | "home"
-  | "battery"
-  | "cosmetic"
-  | "textile"
-  | "food_contact"
-  | "other";
+export type Market = (typeof MARKET_IDS)[number];
+export const PRODUCT_CATEGORIES = [
+  "electronics",
+  "appliance",
+  "3c",
+  "toy",
+  "home",
+  "battery",
+  "cosmetic",
+  "textile",
+  "food_contact",
+  "other",
+] as const;
+
+export type ProductCategory = (typeof PRODUCT_CATEGORIES)[number];
 export type FlameLevel = 1 | 2 | 3;
 export type Severity = "critical" | "warning" | "info" | "unknown";
 export type ScoreGrade = "A" | "B" | "C" | "D";

@@ -6,17 +6,6 @@ import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import React from 'react'
 import type { ComplianceReportResult } from '@/lib/types'
-
-// Mock framer-motion
-vi.mock('framer-motion', () => ({
-  motion: {
-    div: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => (
-      <div {...props}>{children}</div>
-    ),
-  },
-}))
-
-// Import at the end to ensure mocks are set up first
 import { BlazeLocaleProvider } from '@/components/blaze-hawks/locale'
 import { AgentTraceTimeline, RetrievedChunks } from '@/components/result/AgentTraceView'
 

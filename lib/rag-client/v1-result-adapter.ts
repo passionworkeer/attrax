@@ -1,6 +1,7 @@
 import type { V1SessionData } from "@/lib/rag-client/v1-adapter";
 import {
   MARKET_IDS,
+  PRODUCT_CATEGORIES,
   type ChecklistItem,
   type DocumentType,
   type InspectionFinding,
@@ -18,14 +19,7 @@ import {
 type UnknownRecord = Record<string, unknown>;
 
 const MARKET_SET = new Set<string>(MARKET_IDS);
-const PRODUCT_CATEGORIES = new Set<ProductCategory>([
-  "electronics",
-  "appliance",
-  "3c",
-  "toy",
-  "home",
-  "other",
-]);
+const PRODUCT_CATEGORIES_SET = new Set<string>(PRODUCT_CATEGORIES);
 
 function record(value: unknown): UnknownRecord {
   return value && typeof value === "object" && !Array.isArray(value)
@@ -63,7 +57,7 @@ function markets(value: unknown, fallback?: string[]): Market[] {
 
 function productCategory(value: unknown): ProductCategory {
   const candidate = String(value || "other") as ProductCategory;
-  return PRODUCT_CATEGORIES.has(candidate) ? candidate : "other";
+  return PRODUCT_CATEGORIES_SET.has(candidate) ? candidate : "other";
 }
 
 // Severity → numeric rank used to roll up the highest-risk rule across the

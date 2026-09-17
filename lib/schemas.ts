@@ -1,15 +1,8 @@
 import { z } from "zod";
-import { MARKET_IDS } from "@/lib/types";
+import { MARKET_IDS, PRODUCT_CATEGORIES } from "@/lib/types";
 
 export const MarketSchema = z.enum(MARKET_IDS);
-export const ProductCategorySchema = z.enum([
-  "electronics",
-  "appliance",
-  "3c",
-  "toy",
-  "home",
-  "other",
-]);
+export const ProductCategorySchema = z.enum(PRODUCT_CATEGORIES);
 export const FlameLevelSchema = z.union([z.literal(1), z.literal(2), z.literal(3)]);
 export const SeveritySchema = z.enum(["critical", "warning", "info"]);
 export const ScoreGradeSchema = z.enum(["A", "B", "C", "D"]);
