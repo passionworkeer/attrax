@@ -22,39 +22,6 @@ export const blazeReportFiles = [
   },
 ] as const;
 
-export const blazeRoadmapRows = [
-  {
-    phase: "资料冻结",
-    time: "第 1-2 天",
-    owner: "产品 / 采购",
-    output: "铭牌、BOM、供应商资料、适配器说明",
-  },
-  {
-    phase: "标签整改",
-    time: "第 3-7 天",
-    owner: "设计 / 合规",
-    output: "铭牌、包装、多语言警示、说明书",
-  },
-  {
-    phase: "预测复核",
-    time: "第 1 周",
-    owner: "规航AI",
-    output: "法规比对、利润回算、风险热区确认",
-  },
-  {
-    phase: "正式认证",
-    time: "第 3-5 周",
-    owner: "实验室 / 代理",
-    output: "CE 技术文件、DoC、RoHS / REACH 报告",
-  },
-  {
-    phase: "上架复核",
-    time: "第 5 周",
-    owner: "运营 / 法务",
-    output: "Listing 文案、主图封面、ERP 备注",
-  },
-] as const;
-
 export const blazeReportPreviewTabs = [
   {
     value: "compliance",
