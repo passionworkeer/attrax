@@ -34,13 +34,18 @@ Public API (consumed by must_check.py shim and the generator pipeline):
     invalidate_cache() -> None
         Tests / dev: clear cache to force re-read of YAML files.
 
-Caching: loaded once per process on first call. The cache is keyed by file
-path; invalidate_cache() clears it for tests / hot-reload.
+Caching: the anchors are read once per process and then kept, but the cache
+self-invalidates — every entry point recomputes a cheap (mtime_ns, size)
+stamp over the anchors directory and rebuilds when it moved. That is what
+keeps the regwatch auto-ingest (which writes anchor YAMLs at 03:00) visible
+to a long-running process without a restart. Read paths must NOT call
+invalidate_cache() to force freshness; that turns a read-only probe into a
+full re-parse on every request (see invalidate_cache's docstring).
 """
 from __future__ import annotations
 
 import logging
-import os
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -60,6 +65,11 @@ ALWAYS_INCLUDE_REGIONS: set[str] = {"UN"}
 # ── cache ──────────────────────────────────────────────────────────────────
 _cache: dict[str, dict] | None = None
 _anchors_dir: Path = _DEFAULT_ANCHORS_DIR
+# Stamp of the files the current cache was built from:
+# {path_str: (mtime_ns, size)}. None until the first load.
+_cache_stamp: dict[str, tuple[int, int]] | None = None
+# Serializes rebuilds so concurrent scans cannot each re-parse every YAML.
+_cache_lock = threading.Lock()
 
 
 def get_anchors_dir() -> Path:
@@ -75,47 +85,84 @@ def set_anchors_dir(path: Path | str) -> None:
 
 
 def invalidate_cache() -> None:
-    """Clear the YAML cache. Tests use this between cases."""
-    global _cache
+    """Clear the YAML cache. Tests use this between cases.
+
+    Explicit-invalidation only. Read paths must NOT call this: it forces the
+    next call to re-parse every anchor YAML, so a probe that runs on a timer
+    (``_readiness_snapshot()`` in main.py, hit by the uptime monitor every
+    5 minutes) turns into a repeating full re-parse. Those paths get freshness
+    from the on-disk stamp in ``_load_all`` instead.
+    """
+    global _cache, _cache_stamp
     _cache = None
+    _cache_stamp = None  # no cache, no baseline — see article_loader's twin
+
+
+def _library_stamp() -> dict[str, tuple[int, int]]:
+    """Snapshot {(path): (mtime_ns, size)} for every anchor YAML.
+
+    One glob plus a stat per file. Used to notice an anchor edited or added
+    on disk (regwatch auto-ingest writes these at 03:00) without a restart.
+    """
+    stamp: dict[str, tuple[int, int]] = {}
+    anchors_dir = get_anchors_dir()
+    if not anchors_dir.exists():
+        return stamp
+    for path in anchors_dir.glob("*.yaml"):
+        try:
+            stat = path.stat()
+        except OSError:
+            # Vanished between glob and stat — leaving it out of the stamp
+            # makes the comparison fail, which forces a rebuild.
+            continue
+        stamp[str(path)] = (stat.st_mtime_ns, stat.st_size)
+    return stamp
 
 
 def _load_all() -> dict[str, dict]:
-    """Load every KB YAML once and cache by regulation_id."""
-    global _cache
-    if _cache is not None:
-        return _cache
+    """Load the KB YAMLs once and cache by regulation_id.
 
-    anchors_dir = get_anchors_dir()
-    if not anchors_dir.exists():
-        logger.warning("KB anchors directory does not exist: %s", anchors_dir)
-        _cache = {}
-        return _cache
+    Self-invalidating: the on-disk stamp is recomputed on every call and the
+    cache is rebuilt when it moved.
+    """
+    global _cache, _cache_stamp
+    with _cache_lock:
+        stamp = _library_stamp()
+        if _cache is not None and _cache_stamp == stamp:
+            return _cache
 
-    loaded: dict[str, dict] = {}
-    for path in anchors_dir.glob("*.yaml"):
-        try:
-            data = yaml.safe_load(path.read_text())
-        except Exception as exc:
-            logger.error("Failed to load KB YAML %s: %r", path, exc)
-            continue
-        if not isinstance(data, dict):
-            logger.error("KB YAML %s did not parse to a dict", path)
-            continue
-        reg_id = data.get("regulation_id")
-        if not reg_id:
-            logger.error("KB YAML %s missing regulation_id", path)
-            continue
-        if reg_id in loaded:
-            logger.error(
-                "Duplicate KB regulation_id %s in %s (already in %s); skipping",
-                reg_id, path, loaded[reg_id].get("_path"),
-            )
-            continue
-        data["_path"] = str(path)
-        loaded[reg_id] = data
-    _cache = loaded
-    return _cache
+        anchors_dir = get_anchors_dir()
+        if not anchors_dir.exists():
+            logger.warning("KB anchors directory does not exist: %s", anchors_dir)
+            _cache = {}
+            _cache_stamp = stamp
+            return _cache
+
+        loaded: dict[str, dict] = {}
+        for path in anchors_dir.glob("*.yaml"):
+            try:
+                data = yaml.safe_load(path.read_text())
+            except Exception as exc:
+                logger.error("Failed to load KB YAML %s: %r", path, exc)
+                continue
+            if not isinstance(data, dict):
+                logger.error("KB YAML %s did not parse to a dict", path)
+                continue
+            reg_id = data.get("regulation_id")
+            if not reg_id:
+                logger.error("KB YAML %s missing regulation_id", path)
+                continue
+            if reg_id in loaded:
+                logger.error(
+                    "Duplicate KB regulation_id %s in %s (already in %s); skipping",
+                    reg_id, path, loaded[reg_id].get("_path"),
+                )
+                continue
+            data["_path"] = str(path)
+            loaded[reg_id] = data
+        _cache = loaded
+        _cache_stamp = stamp
+        return _cache
 
 
 # ── legacy-shape adapter ────────────────────────────────────────────────────

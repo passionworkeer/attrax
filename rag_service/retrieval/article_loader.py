@@ -37,11 +37,13 @@ Cache staleness guard (plan 2026-09-14 J08 / §4.4 layer 3): the library is
 NOT read-only at runtime during development/redeploys — a regulation YAML
 edited on disk must not keep serving stale text for the rest of the process.
 Every entry point consults ``_library_stamp()`` (one cheap
-``glob + stat`` over ~44 files); if any file's (mtime_ns, size) changed or
+``glob + stat`` over the library); if any file's (mtime_ns, size) changed or
 the file set itself changed, the cache is dropped and rebuilt. A monotonically
-increasing ``cache_generation()`` counter ticks on every rebuild so
-downstream caches (verifier ``_ARTICLE_TEXT_CACHE``) can invalidate their
-own entries keyed on it.
+increasing ``cache_generation()`` counter ticks when a rebuild reflects a real
+on-disk change (and on an explicit ``invalidate_cache()``), so downstream
+caches (verifier ``_ARTICLE_TEXT_CACHE``) can invalidate their own entries
+keyed on it. Read paths must never call ``invalidate_cache()`` themselves —
+see that function's docstring.
 
 License discipline: the loader returns whatever is in the YAML — it does NOT
 enforce license restrictions. The `schema_validator` (§7.2 phase 3) enforces
@@ -51,6 +53,7 @@ the files.
 from __future__ import annotations
 
 import logging
+import threading
 from pathlib import Path
 from typing import Any
 
@@ -68,9 +71,14 @@ _regulations_root: Path = _DEFAULT_REGULATIONS_ROOT
 # Stamp of the files the current cache was built from:
 # {path_str: (mtime_ns, size)}. None until the first load.
 _cache_stamp: dict[str, tuple[int, int]] | None = None
-# Ticks every time the cache is (re)built — downstream caches key on it to
-# drop their own stale entries when the library changes on disk.
+# Ticks when the article text may have changed: a rebuild that saw a real
+# on-disk change, or an explicit invalidate_cache(). Downstream caches key on
+# it to drop their own stale entries.
 _cache_generation: int = 0
+# Serializes rebuilds: without it, concurrent scans that both miss the cache
+# would each re-parse every YAML, and the second one would also claim the
+# library "changed on disk" (see the stamp check in ``_load_all``).
+_cache_lock = threading.Lock()
 
 
 def get_regulations_root() -> Path:
@@ -86,9 +94,27 @@ def set_regulations_root(path: Path | str) -> None:
 
 
 def invalidate_cache() -> None:
-    """Clear the regulation cache. Tests / dev use this for hot-reload."""
-    global _cache
+    """Drop the cache and declare the library possibly-changed. Tests / dev only.
+
+    This is an *explicit* signal, so it ticks ``cache_generation()``
+    unconditionally — downstream caches (the verifier's article-text cache)
+    read a tick as "re-match against the files again", which is the safe
+    direction when a caller says the cache is stale.
+
+    Read paths must NOT call this. Doing so turns a read-only probe into a
+    mutation that (a) forces a full re-parse of every YAML and (b) ticks the
+    generation, discarding the verifier's cache. ``_readiness_snapshot()`` in
+    main.py used to do exactly that on every /ready request; since the uptime
+    monitor polls /ready every 5 minutes, that wiped the caches ~288x/day.
+    Read paths get freshness from the on-disk stamp in ``_load_all`` instead.
+    """
+    global _cache, _cache_stamp
     _cache = None
+    # Forget the stamp as well: "no cache, no baseline". Keeping the previous
+    # stamp would make the next rebuild look like an on-disk change even when
+    # the caller merely switched roots (or invalidated with nothing edited),
+    # which would tick the generation for a no-op.
+    _cache_stamp = None
     _rebuild_generation()
 
 
@@ -125,57 +151,62 @@ def _library_stamp() -> dict[str, tuple[int, int]]:
     return stamp
 
 
-def _library_changed() -> bool:
-    """True when the on-disk library differs from the cached snapshot."""
-    global _cache_stamp
-    if _cache is None or _cache_stamp is None:
-        return True
-    current = _library_stamp()
-    return current != _cache_stamp
-
-
 def _load_all() -> dict[str, dict]:
-    """Walk data/regulations/{region}/*.yaml once and cache by regulation id."""
-    global _cache, _cache_stamp
-    if _cache is not None and not _library_changed():
-        return _cache
+    """Walk data/regulations/{region}/*.yaml once and cache by regulation id.
 
-    stamp = _library_stamp()
-    loaded: dict[str, dict] = {}
-    root = get_regulations_root()
-    if not root.exists():
-        logger.warning("Regulations root does not exist: %s", root)
-    else:
-        for path in sorted(root.glob("*/*.yaml")):
-            try:
-                data = yaml.safe_load(path.read_text())
-            except Exception as exc:
-                logger.error("Failed to load regulation YAML %s: %r", path, exc)
-                continue
-            if not isinstance(data, dict):
-                logger.error("Regulation YAML %s did not parse to a dict", path)
-                continue
-            reg_id = data.get("id")
-            if not reg_id:
-                logger.error("Regulation YAML %s missing id", path)
-                continue
-            if reg_id in loaded:
-                logger.error(
-                    "Duplicate regulation id %s in %s (already in %s); skipping",
-                    reg_id, path, loaded[reg_id].get("_path"),
-                )
-                continue
-            data["_path"] = str(path)
-            loaded[reg_id] = data
-    if _cache is not None:
-        logger.info(
-            "regulation library changed on disk — cache rebuilt (%d regulations)",
-            len(loaded),
-        )
-        _rebuild_generation()
-    _cache = loaded
-    _cache_stamp = stamp
-    return _cache
+    Self-invalidating: the on-disk stamp is recomputed on every call and the
+    cache is dropped when it moved, so an edited / added / removed YAML is
+    picked up without a process restart. Serialized by ``_cache_lock`` so
+    concurrent scans cannot double-rebuild.
+    """
+    global _cache, _cache_stamp
+    with _cache_lock:
+        stamp = _library_stamp()
+        if _cache is not None and _cache_stamp == stamp:
+            return _cache
+
+        # Whether this rebuild is a *real* library change decides both the log
+        # line and the generation tick. Keying that off `_cache is not None`
+        # (as this used to) reported "changed on disk" for any rebuild that
+        # followed an invalidate_cache() call, even with an untouched library.
+        previous_stamp = _cache_stamp
+
+        loaded: dict[str, dict] = {}
+        root = get_regulations_root()
+        if not root.exists():
+            logger.warning("Regulations root does not exist: %s", root)
+        else:
+            for path in sorted(root.glob("*/*.yaml")):
+                try:
+                    data = yaml.safe_load(path.read_text())
+                except Exception as exc:
+                    logger.error("Failed to load regulation YAML %s: %r", path, exc)
+                    continue
+                if not isinstance(data, dict):
+                    logger.error("Regulation YAML %s did not parse to a dict", path)
+                    continue
+                reg_id = data.get("id")
+                if not reg_id:
+                    logger.error("Regulation YAML %s missing id", path)
+                    continue
+                if reg_id in loaded:
+                    logger.error(
+                        "Duplicate regulation id %s in %s (already in %s); skipping",
+                        reg_id, path, loaded[reg_id].get("_path"),
+                    )
+                    continue
+                data["_path"] = str(path)
+                loaded[reg_id] = data
+
+        _cache = loaded
+        _cache_stamp = stamp
+        if previous_stamp is not None and stamp != previous_stamp:
+            logger.info(
+                "regulation library changed on disk — cache rebuilt (%d regulations)",
+                len(loaded),
+            )
+            _rebuild_generation()
+        return _cache
 
 
 # ── public API ──────────────────────────────────────────────────────────────
