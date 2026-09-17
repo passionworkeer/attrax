@@ -21,7 +21,7 @@ log "Starting backup..."
 
 ITEMS=()
 # Environment files (contain credentials)
-for envfile in /opt/attrax/.env /opt/attrax/.env.local /opt/attrax/.env.production /opt/attrax/rag_service/.env; do
+for envfile in /opt/attrax/.env /opt/attrax/.env.local /opt/attrax/rag_service/.env; do
   if [ -f "$envfile" ]; then
     ITEMS+=("$envfile")
   fi

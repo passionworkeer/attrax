@@ -1,5 +1,5 @@
 import { getDefaultFormat, getResultForReport, getTextReportPayload, localizeResult, type BlazeExportFormat, type BlazeReportLocale, type BlazeReportType } from "@/lib/reporting";
-import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
+import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
 import { getScan, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
 import { fail } from "@/lib/api-response";
@@ -43,7 +43,10 @@ export async function GET(
   if (sessionId !== "demo") {
     const accessToken = backendAccessTokenFromRequest(request, sessionId);
     if (!accessToken) {
-      return fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 });
+      return withClearedSessionCookie(
+        fail({ code: "UNAUTHORIZED", message: "Missing access token" }, { status: 401 }),
+        sessionId,
+      );
     }
     try {
       const upstream = await getScan({
@@ -57,7 +60,10 @@ export async function GET(
       result = normalizeV1ScanResult(upstream) ?? null;
     } catch (error) {
       if (error instanceof V1EnvelopeError) {
-        return fail({ code: error.code, message: error.message }, { status: error.httpStatus });
+        const response = fail({ code: error.code, message: error.message }, { status: error.httpStatus });
+        return error.httpStatus === 401 || error.httpStatus === 403
+          ? withClearedSessionCookie(response, sessionId)
+          : response;
       }
       return fail(
         { code: "SCAN_SERVICE_UNAVAILABLE", message: "Scan service unavailable" },
