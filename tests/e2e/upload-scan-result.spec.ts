@@ -30,7 +30,7 @@ test.describe("upload scan result flow", () => {
 
     await expect(page.getByText(/1\/3 张已就绪|1\/3 ready/i)).toBeVisible();
 
-    const submit = page.locator('button[type="submit"]');
+    const submit = page.locator("#scan-submit");
     await expect(submit).toBeEnabled();
 
     const scanResponsePromise = page.waitForResponse((response) => {
@@ -81,6 +81,7 @@ test.describe("upload scan result flow", () => {
       await expect(
         page.getByRole("heading", { name: /便携式充电器|Charger|型号待确认|model TBD/i }).first(),
       ).toBeVisible();
+      await page.locator("#reports > summary").click();
       await expect(
         page.getByRole("heading", { name: /合规分析报告|Compliance Report/i }),
       ).toBeVisible();

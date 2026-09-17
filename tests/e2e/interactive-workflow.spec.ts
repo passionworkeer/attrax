@@ -15,7 +15,7 @@ test.describe("Interactive Browser Workflow E2E", () => {
       return Boolean(input && Object.keys(input).some((k) => k.startsWith("__reactProps")));
     });
 
-    const submitBtn = page.locator('button[type="submit"]');
+    const submitBtn = page.locator("#scan-submit");
     await expect(submitBtn).toBeDisabled();
 
     // Verify category buttons are interactive
@@ -53,7 +53,7 @@ test.describe("Interactive Browser Workflow E2E", () => {
 
     // Should show 1 file ready
     await expect(page.getByText(/1\/3 张已就绪|1\/3 ready/i)).toBeVisible();
-    const submitBtn = page.locator('button[type="submit"]');
+    const submitBtn = page.locator("#scan-submit");
     await expect(submitBtn).toBeEnabled();
 
     // Upload 9 files to exceed MAX_UPLOAD_FILES (8)
@@ -204,4 +204,3 @@ test.describe("Interactive Browser Workflow E2E", () => {
     }
   });
 });
-
