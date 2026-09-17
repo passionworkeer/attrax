@@ -93,9 +93,13 @@ class BboxRegion(BaseModel):
         return value
 
     def model_post_init(self, __context: Any) -> None:
-        if self.x + self.w > 1.0 + 1e-6:
+        # 容差与 rag_service/verify/grounding.py:ROUNDING_TOLERANCE = 1e-3
+        # 对齐。LLM 输出 bbox 受量化噪声影响会出 0.30000000000000004 类浮点；
+        # 这里放宽到 1e-3 与 grounding 同步避免「grounding 接受但 Pydantic
+        # 拒」导致 report_package 整体 invalid 的契约漂移。
+        if self.x + self.w > 1.0 + 1e-3:
             raise ValueError(f"x + w exceeds 1.0 (x={self.x}, w={self.w})")
-        if self.y + self.h > 1.0 + 1e-6:
+        if self.y + self.h > 1.0 + 1e-3:
             raise ValueError(f"y + h exceeds 1.0 (y={self.y}, h={self.h})")
 
 

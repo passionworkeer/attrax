@@ -38,6 +38,8 @@ data/corpus/gcc
 data/corpus/intl
 data/corpus/reference
 data/corpus/screenshot_pending
+data/regulation_eval
+data/regulation_reports
 
 docs/superpowers
 archived

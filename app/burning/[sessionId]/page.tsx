@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useRef, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -161,7 +161,10 @@ export default function BurningPage() {
   // 100 (not from when the backend said ready), so the user always sees the
   // completed bar before the route change.
   const HUNDRED_PERCENT_HOLD_MS = 600;
-  const [navigatedRef, setNavigated] = useState(false);
+  // 跨 effect 重跑的真值标（cleanup 会取消旧 timer，但 navigation 标记要跨
+  // tick 保留）。用 useRef 而非 useState：state 翻转会触发 effect 重跑 →
+  // cleanup 清掉 timer，guard 失效。
+  const navigatedRef = useRef(false);
   const realProgressComplete =
     !isDemoSession &&
     status != null &&
@@ -190,8 +193,8 @@ export default function BurningPage() {
         } catch {
           // Quota / private-mode storage failures must not block result access.
         }
-        if (navigatedRef) return;
-        setNavigated(true);
+        if (navigatedRef.current) return;
+        navigatedRef.current = true;
         router.push(`/result/${sessionId}`);
       }, Math.max(0, remaining));
       return () => window.clearTimeout(timer);
@@ -201,7 +204,6 @@ export default function BurningPage() {
     displayShowsComplete,
     holdReadyAt,
     isDemoSession,
-    navigatedRef,
     realProgressComplete,
     router,
     sessionId,
@@ -415,7 +417,7 @@ export default function BurningPage() {
               finished (ready + resultReady) but the animated bar is still
               settling, the user can reach the result page directly instead of
               being trapped by the 99% deadlock (bug J01). */}
-          {realProgressComplete && !navigatedRef ? (
+          {realProgressComplete && !navigatedRef.current ? (
             <div className="mt-6 rounded-[26px] border border-[rgba(126,231,135,0.36)] bg-[rgba(126,231,135,0.08)] p-5">
               <p className="text-sm text-[#d3ffd7]">
                 {locale === "zh"
@@ -427,8 +429,8 @@ export default function BurningPage() {
                   size="lg"
                   className="rounded-full"
                   onClick={() => {
-                    if (navigatedRef) return;
-                    setNavigated(true);
+                    if (navigatedRef.current) return;
+                    navigatedRef.current = true;
                     router.push(`/result/${sessionId}`);
                   }}
                 >

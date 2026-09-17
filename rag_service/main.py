@@ -347,20 +347,23 @@ def _enforce_secret_policy(s: "settings.__class__") -> None:
             "be open and bypass the frontend rate limit / auth."
         )
 
-    # Non-prod, non-demo, no secret: fail closed by generating an ephemeral
-    # secret. Frontend calls without the header will now 401 — the operator
-    # sees this once in the logs and can copy the secret into RAG_INTERNAL_SECRET.
+    # 非 prod、非 demo、无 secret：自动生成 ephemeral secret，写端点 401。
+    # 前端不带正确 header 就会被拦；运维从 log 看到这条 warn 后把 secret
+    # 写进 rag_service/.env 即可。
     import secrets as _s
     generated = _s.token_urlsafe(32)
     s.rag_internal_secret = generated
+    # 绝对不能把 secret 值写日志：任何 /var/log 读取者都能伪造
+    # X-Internal-Secret 绕过写端点。只打 pid 让运维能定位到进程，
+    # 真值通过 /proc/<pid>/environ 或调试器拿。
     logger.warning(
         "SECURITY: RAG_INTERNAL_SECRET was empty — generated an EPHEMERAL "
         "secret for this process. Write endpoints (/scan, /scan-multipart, "
-        "/profit-report) now require header 'X-Internal-Secret: <value>' "
-        "with this value. To wire the frontend, set RAG_INTERNAL_SECRET to a "
-        "fixed value in rag_service/.env and the frontend env, or set "
-        "DEMO_MODE=true for local dev. Ephemeral value: %s",
-        generated,
+        "/profit-report) now require header 'X-Internal-Secret: <value>'. "
+        "Wire RAG_INTERNAL_SECRET in rag_service/.env (or set DEMO_MODE=true) "
+        "for the frontend to use a stable value. (Value deliberately not "
+        "logged; read /proc/%d/environ to recover.)",
+        os.getpid(),
     )
 
 
