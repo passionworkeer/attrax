@@ -1,6 +1,7 @@
 [
   {
     "id": "eu-2023-988-general-product-safety",
+    "authority_tier": "primary",
     "regulation_id": "EU-2023-988",
     "market": "EU",
     "title": "Regulation (EU) 2023/988 on general product safety",
@@ -31,6 +32,7 @@
   },
   {
     "id": "eu-2009-48-toy-safety",
+    "authority_tier": "primary",
     "regulation_id": "EU-2009-48",
     "market": "EU",
     "title": "Directive 2009/48/EC on the safety of toys",
@@ -60,6 +62,7 @@
   },
   {
     "id": "eu-2011-65-rohs",
+    "authority_tier": "primary",
     "regulation_id": "EU-2011-65",
     "market": "EU",
     "title": "Directive 2011/65/EU on restriction of hazardous substances in electrical and electronic equipment",
@@ -88,6 +91,7 @@
   },
   {
     "id": "eu-2012-19-weee",
+    "authority_tier": "primary",
     "regulation_id": "EU-2012-19",
     "market": "EU",
     "title": "Directive 2012/19/EU on waste electrical and electronic equipment",
@@ -116,6 +120,7 @@
   },
   {
     "id": "eu-2014-53-radio-equipment",
+    "authority_tier": "primary",
     "regulation_id": "EU-2014-53",
     "market": "EU",
     "title": "Directive 2014/53/EU on radio equipment",
@@ -144,6 +149,7 @@
   },
   {
     "id": "eu-2014-30-emc",
+    "authority_tier": "primary",
     "regulation_id": "EU-2014-30",
     "market": "EU",
     "title": "Directive 2014/30/EU on electromagnetic compatibility",
@@ -172,6 +178,7 @@
   },
   {
     "id": "eu-2014-35-low-voltage",
+    "authority_tier": "primary",
     "regulation_id": "EU-2014-35",
     "market": "EU",
     "title": "Directive 2014/35/EU on low voltage electrical equipment",
@@ -200,6 +207,7 @@
   },
   {
     "id": "eu-2019-1020-market-surveillance",
+    "authority_tier": "primary",
     "regulation_id": "EU-2019-1020",
     "market": "EU",
     "title": "Regulation (EU) 2019/1020 on market surveillance and compliance of products",
@@ -229,6 +237,7 @@
   },
   {
     "id": "us-16-cfr-1307-phthalates",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1307",
     "market": "US",
     "title": "16 CFR Part 1307, Prohibition of Children's Toys and Child Care Articles Containing Specified Phthalates",
@@ -258,6 +267,7 @@
   },
   {
     "id": "us-16-cfr-1630-carpets-rugs",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1630",
     "market": "US",
     "title": "16 CFR Part 1630, Standard for the Surface Flammability of Carpets and Rugs",
@@ -287,6 +297,7 @@
   },
   {
     "id": "us-16-cfr-1631-small-carpets-rugs",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1631",
     "market": "US",
     "title": "16 CFR Part 1631, Standard for the Surface Flammability of Small Carpets and Rugs",
@@ -316,6 +327,7 @@
   },
   {
     "id": "us-16-cfr-1633-mattresses-open-flame",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1633",
     "market": "US",
     "title": "16 CFR Part 1633, Standard for the Flammability (Open Flame) of Mattress Sets",
@@ -345,6 +357,7 @@
   },
   {
     "id": "us-16-cfr-1700-poison-prevention-packaging",
+    "authority_tier": "primary",
     "regulation_id": "US-16-CFR-1700",
     "market": "US",
     "title": "16 CFR Part 1700, Poison Prevention Packaging",
@@ -375,6 +388,7 @@
   },
   {
     "id": "us-cpsc-recalls-rss",
+    "authority_tier": "secondary",
     "market": "US",
     "title": "CPSC Recalls (RSS feed)",
     "channel": "CPSC Newsroom RSS",
@@ -401,6 +415,7 @@
   },
   {
     "id": "ca-consumer-chemicals-containers-regulations-2001",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2001-269",
     "market": "CA",
     "title": "Consumer Chemicals and Containers Regulations, 2001",
@@ -429,6 +444,7 @@
   },
   {
     "id": "ca-surface-coating-materials-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2016-193",
     "market": "CA",
     "title": "Surface Coating Materials Regulations",
@@ -455,6 +471,7 @@
   },
   {
     "id": "ca-phthalates-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2016-188",
     "market": "CA",
     "title": "Phthalates Regulations",
@@ -481,6 +498,7 @@
   },
   {
     "id": "ca-childrens-sleepwear-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2016-169",
     "market": "CA",
     "title": "Children's Sleepwear Regulations",
@@ -508,6 +526,7 @@
   },
   {
     "id": "ca-consumer-products-containing-lead-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2018-83",
     "market": "CA",
     "title": "Consumer Products Containing Lead Regulations",
@@ -535,6 +554,7 @@
   },
   {
     "id": "ca-corded-window-coverings-regulations",
+    "authority_tier": "primary",
     "regulation_id": "CA-SOR-2019-97",
     "market": "CA",
     "title": "Corded Window Coverings Regulations",
@@ -561,6 +581,7 @@
   },
   {
     "id": "uk-weee-regulations-guidance",
+    "authority_tier": "primary",
     "regulation_id": "UK-WEEE",
     "market": "UK",
     "title": "Regulations: waste electrical and electronic equipment",
@@ -587,6 +608,7 @@
   },
   {
     "id": "uk-packaging-epr-who-is-affected",
+    "authority_tier": "primary",
     "regulation_id": "UK-Packaging-EPR",
     "market": "UK",
     "title": "Extended producer responsibility for packaging: who is affected and what to do",
@@ -613,6 +635,7 @@
   },
   {
     "id": "uk-reach-compliance-guidance",
+    "authority_tier": "primary",
     "regulation_id": "UK-REACH",
     "market": "UK",
     "title": "How to comply with REACH chemical regulations",
@@ -640,6 +663,7 @@
   },
   {
     "id": "uk-hse-svhc-overview",
+    "authority_tier": "primary",
     "regulation_id": "UK-SVHC",
     "market": "UK",
     "title": "Substances of very high concern overview",
@@ -665,6 +689,7 @@
   },
   {
     "id": "nz-product-safety-standards-2005",
+    "authority_tier": "primary",
     "regulation_id": "NZ-PS-Toys",
     "market": "NZ",
     "title": "Children's toy standard",
@@ -691,6 +716,7 @@
   },
   {
     "id": "nz-product-safety-standards-household-cots-2016",
+    "authority_tier": "primary",
     "regulation_id": "NZ-PS-Cots",
     "market": "NZ",
     "title": "Household cot standard",
@@ -717,6 +743,7 @@
   },
   {
     "id": "eu-safety-gate-alerts",
+    "authority_tier": "secondary",
     "market": "EU",
     "title": "Safety Gate (RAPEX) weekly notifications",
     "channel": "European Commission Safety Gate",
@@ -744,6 +771,7 @@
   },
   {
     "id": "cn-samr-product-recall",
+    "authority_tier": "primary",
     "regulation_id": "CN-SAMR-Recalls",
     "market": "CN",
     "title": "国家市场监督管理总局 召回信息",
@@ -774,6 +802,7 @@
   },
   {
     "id": "cn-cnca-ccc-updates",
+    "authority_tier": "primary",
     "regulation_id": "CN-CNCA-CCC",
     "market": "CN",
     "title": "中国国家认证认可监督管理委员会 CCC 公告",
@@ -804,6 +833,7 @@
   },
   {
     "id": "jp-meti-pse-list",
+    "authority_tier": "primary",
     "regulation_id": "JP-METI-PSE",
     "market": "JP",
     "title": "METI 電気用品安全法 (PSE) 適用範囲",
@@ -832,6 +862,7 @@
   },
   {
     "id": "kr-motie-kc-safety",
+    "authority_tier": "primary",
     "regulation_id": "KR-MOTIE-KC",
     "market": "KR",
     "title": "KC 안전확인 (Safety Confirmation) — MOTIE",
@@ -861,6 +892,7 @@
   },
   {
     "id": "ae-moiat-ecas",
+    "authority_tier": "primary",
     "regulation_id": "AE-MoIAT-ECAS",
     "market": "AE",
     "title": "MoIAT ECAS 合格评定计划公告",
@@ -889,6 +921,7 @@
   },
   {
     "id": "sa-saso-news",
+    "authority_tier": "primary",
     "regulation_id": "SA-SASO-News",
     "market": "SA",
     "title": "SASO 标准与 SABER 公告",
@@ -919,6 +952,7 @@
   },
   {
     "id": "br-inmetro-novidades",
+    "authority_tier": "primary",
     "regulation_id": "BR-INMETRO",
     "market": "BR",
     "title": "INMETRO 强制认证目录与公告",
@@ -949,6 +983,7 @@
   },
   {
     "id": "in-bis-crs",
+    "authority_tier": "primary",
     "regulation_id": "IN-BIS-CRS",
     "market": "IN",
     "title": "BIS Compulsory Registration Scheme (CRS) 公告",
