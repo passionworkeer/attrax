@@ -157,6 +157,32 @@ class _SourceOutcome:
         self.not_modified = not_modified
 
 
+def _is_fetchable(entry: dict) -> bool:
+    """Whether the watchdog should attempt this source at all.
+
+    ``official_sources.json`` may mark a source with ``fetch_status`` when
+    we already know the watchdog cannot track it. Those are skipped, and
+    the reason is recorded in the registry entry itself:
+
+    - ``"unreachable"`` — the upstream blocks automated clients from this
+      host outright (HTTP 403 at the CDN edge, or a data API that now
+      serves only its SPA shell).
+    - ``"shell_only"`` — the fetch succeeds but returns a JavaScript shell
+      with no trackable text; the digest would be a page title that never
+      changes, which reads as "no change" forever while the regulation
+      world moves. Worse than not tracking it, because it looks tracked.
+
+    Retrying either kind nightly does nothing except fill errors.json and,
+    at seven consecutive failures, mark their mapped regulations ``stale``.
+    Skipping is the honest behaviour: we know we cannot see this source,
+    and we say so once in the log.
+
+    Anything else — including a missing field — is fetchable. A source is
+    only skipped when the registry explicitly says so.
+    """
+    return str(entry.get("fetch_status") or "active").strip().lower() == "active"
+
+
 def load_sources() -> list[dict]:
     with SOURCES_PATH.open(encoding="utf-8") as handle:
         entries = json.load(handle)
@@ -240,6 +266,17 @@ def run_pass(*, dry_run: bool = False) -> int:
         return EXIT_CLEAN
 
     entries = load_sources()
+    skipped = [e for e in entries if not _is_fetchable(e)]
+    if skipped:
+        logger.info(
+            "skipping %d source(s) the registry marks as untrackable: %s",
+            len(skipped),
+            ", ".join(
+                f"{e.get('id', '?')}={str(e.get('fetch_status')).strip().lower()}"
+                for e in skipped
+            ),
+        )
+        entries = [e for e in entries if _is_fetchable(e)]
     run_date = _dt.datetime.now(_dt.timezone.utc).strftime("%Y-%m-%d")
     out_dir = SUPPLEMENTS_DIR / f"watchdog-{run_date}"
     if not dry_run:
@@ -423,7 +460,11 @@ def run_pass(*, dry_run: bool = False) -> int:
         if not real_changes and not cosmetic_changes and not errors:
             (out_dir / "no_change.json").write_text(
                 json.dumps(
-                    {"date": run_date, "sourcesChecked": len(entries)},
+                    {
+                        "date": run_date,
+                        "sourcesChecked": len(entries),
+                        "sourcesSkipped": len(skipped),
+                    },
                     indent=2,
                     ensure_ascii=False,
                 ),
@@ -485,6 +526,8 @@ def run_pass(*, dry_run: bool = False) -> int:
         f"cosmetic:        {len(cosmetic_changes)}",
         f"errors:          {len(errors)}",
     ]
+    if skipped:
+        body_lines.append(f"skipped:         {len(skipped)} (marked unreachable)")
     if ingest_report is not None:
         body_lines.append(
             "ingested:        {} created / {} updated / {} marked / {} evidence-only".format(

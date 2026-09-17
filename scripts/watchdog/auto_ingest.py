@@ -67,18 +67,12 @@ _REGION_DIRS: dict[str, str] = {
 _RAW_SUFFIX = {
     "eu_celex": ".rdf",
     "ecfr_part": ".json",
-    "cpsc_rss": ".xml",
+    "cpsc_recall_api": ".json",
     "canada_justice_xml": ".xml",
     "gov_html": ".html",
     "direct_url": ".html",
     "safety_gate": ".xml",
-    # 2026-09-17 additions
-    "eu_cellar_sparql": ".json",
-    "uk_legislation_xml": ".xml",
     "openfda_recalls": ".json",
-    "health_canada_recalls": ".json",
-    "tga_rss": ".xml",
-    "accc_recalls_rss": ".xml",
 }
 _REPEAL_KEYWORDS = ("removal", "revok", "repeal", "revocation", "withdraw")
 
@@ -203,30 +197,11 @@ def _infer_reg_id_from_entry(entry: dict) -> str | None:
             return None
         return _slug_to_reg_id(slug, market)
 
-    if source_type == "uk_legislation_xml":
-        # Two shapes share this source_type:
-        #   - a yearly Atom *feed* (ukType + year, no number) listing newly
-        #     made instruments — a discovery signal, not a regulation text,
-        #     so it stays evidence-only;
-        #   - a single instrument (ukType + year + number, with source_url
-        #     pointing at that instrument's data.xml) — mappable.
-        number = str(entry.get("number") or "").strip()
-        if not number:
-            return None
-        uk_type = str(entry.get("ukType") or "uksi").strip().upper()
-        year = str(entry.get("year") or "").strip()
-        if not year.isdigit() or not number.isdigit():
-            return None
-        return f"UK-{uk_type}-{year}-{int(number)}"
-
     # Discovery / signal streams. They tell an operator that something moved,
     # but they are not themselves a regulation text, so no YAML is created or
     # updated — the raw fetch still lands under auto-{date}/ as evidence.
-    #   - eu_cellar_sparql      : finds acts by year, for later curation
-    #   - openfda_recalls       : FDA enforcement reports
-    #   - health_canada_recalls : Health Canada recall notices
-    #   - tga_rss               : TGA safety alerts
-    #   - accc_recalls_rss      : ACCC product recalls
+    #   - openfda_recalls  : FDA device / food enforcement reports
+    #   - cpsc_recall_api  : CPSC recalls via the SaferProducts.gov API
     return None
 
 
@@ -310,15 +285,6 @@ def _citation_from_entry(entry: dict) -> str:
                 year=match.group(2),
                 number=int(match.group(3)),
             )
-    if source_type == "uk_legislation_xml":
-        number = str(entry.get("number") or "").strip()
-        year = str(entry.get("year") or "").strip()
-        if number.isdigit() and year.isdigit():
-            uk_type = str(entry.get("ukType") or "uksi").strip().lower()
-            label = {"uksi": "S.I.", "ssi": "S.S.I.", "ukpga": "c."}.get(
-                uk_type, uk_type.upper()
-            )
-            return f"{label} {year}/{int(number)}"
     market = str(entry.get("market", "")).strip().lower()
     template = _CITATION_TEMPLATES.get(market)
     if template:
