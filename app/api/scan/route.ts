@@ -7,7 +7,7 @@
  * and debugging clients.
  */
 import { NextResponse } from "next/server";
-import { createScan, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { createScan, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { ok } from "@/lib/api-response";
 import { backendSessionCookie } from "@/app/api/backend-session-access";
 import { validateUploadFile } from "@/lib/upload-validation";
@@ -271,6 +271,7 @@ export async function POST(request: Request): Promise<Response> {
       images,
       documents,
       declaredFacts,
+      ...upstreamForwardFrom(request),
     });
 
     const payload: {

@@ -78,8 +78,13 @@ export function middleware(request: NextRequest) {
   if (shouldSkip(path)) return NextResponse.next();
 
   emitSafeRequestLog(request);
-  const response = NextResponse.next();
+  // 把 request-id 注入转发给 route handler 的请求头：BFF 上游调用
+  // （v1-adapter → RAG）靠它做跨边界日志关联；只设响应头时 handler 与
+  // RAG 都看不到同一个 id。
   const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-request-id", requestId);
+  const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("X-Request-Id", requestId);
   return applySecurityHeaders(response, isApiRoute(path));
 }

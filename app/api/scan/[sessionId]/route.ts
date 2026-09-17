@@ -24,6 +24,7 @@
 import {
   getScan,
   isDemoSession,
+  upstreamForwardFrom,
   V1EnvelopeError,
 } from "@/lib/rag-client/v1-adapter";
 import { normalizeV1ScanResult } from "@/lib/rag-client/v1-result-adapter";
@@ -76,7 +77,11 @@ export async function GET(
   }
 
   try {
-    const data = await getScan({ sessionId, accessToken });
+    const data = await getScan({
+      sessionId,
+      accessToken,
+      ...upstreamForwardFrom(request),
+    });
 
     // The v1 adapter returns camelCase session fields. Map them onto the
     // legacy ScanStatus shape that the upload/burning/result pages expect.

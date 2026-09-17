@@ -18,6 +18,7 @@ import {
   getRagServiceUrl,
   isDemoSession,
   unwrapV1Envelope,
+  upstreamForwardFrom,
   V1EnvelopeError,
   type V1SessionData,
 } from "@/lib/rag-client/v1-adapter";
@@ -117,6 +118,66 @@ describe("v1-adapter", () => {
       expect(url).toBe("http://localhost:8001/api/v1/scans");
       expect(init.method).toBe("POST");
       expect(init.body).toBeInstanceOf(FormData);
+    });
+
+    it("forwards client ip + request id so RAG buckets per real client", async () => {
+      const created = {
+        sessionId: "scan_fwd",
+        accessToken: "tok-2",
+        status: "processing" as const,
+        pollUrl: "/api/v1/scans/scan_fwd",
+      };
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ data: created, error: null, meta: { requestId: "req-9" } }, { status: 202 }),
+      );
+
+      await createScan({
+        query: "test",
+        category: "electronics",
+        markets: ["EU"],
+        images: [{ buffer: Buffer.from("img"), originalName: "a.png", mimeType: "image/png" }],
+        clientIp: "203.0.113.7",
+        requestId: "req-9",
+      });
+
+      const [, init] = mockFetch.mock.calls[0] as [string, RequestInit];
+      const headers = init.headers as Record<string, string>;
+      expect(headers["X-Forwarded-For"]).toBe("203.0.113.7");
+      expect(headers["X-Request-Id"]).toBe("req-9");
+    });
+
+    it("omits forwarding headers when no forward context is given", async () => {
+      const created = {
+        sessionId: "scan_nofwd",
+        accessToken: "tok-3",
+        status: "processing" as const,
+        pollUrl: "/api/v1/scans/scan_nofwd",
+      };
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ data: created, error: null, meta: { requestId: "req-10" } }, { status: 202 }),
+      );
+
+      await createScan({
+        query: "test",
+        category: "electronics",
+        markets: ["EU"],
+        images: [{ buffer: Buffer.from("img"), originalName: "a.png", mimeType: "image/png" }],
+      });
+
+      const [, init] = mockFetch.mock.calls[0] as [string, RequestInit];
+      const headers = init.headers as Record<string, string>;
+      expect(headers["X-Forwarded-For"]).toBeUndefined();
+      expect(headers["X-Request-Id"]).toBeUndefined();
+    });
+
+    it("upstreamForwardFrom reads x-real-ip and x-request-id from the BFF request", () => {
+      const request = new Request("http://localhost/api/scan", {
+        headers: { "x-real-ip": "198.51.100.9", "x-request-id": "r-9" },
+      });
+      expect(upstreamForwardFrom(request)).toEqual({
+        clientIp: "198.51.100.9",
+        requestId: "r-9",
+      });
     });
 
     it("AbortError maps to SCAN_SERVICE_TIMEOUT", async () => {

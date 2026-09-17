@@ -6,7 +6,7 @@
  * extended) evidence set. The backend derives the idempotency key from the
  * session, so retries are no-ops.
  */
-import { requestRevision, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { requestRevision, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { fail, ok } from "@/lib/api-response";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
 
@@ -26,7 +26,11 @@ export async function POST(
   }
 
   try {
-    const data = await requestRevision({ sessionId, accessToken });
+    const data = await requestRevision({
+      sessionId,
+      accessToken,
+      ...upstreamForwardFrom(request),
+    });
     return ok(data, { status: 202 });
   } catch (err) {
     if (err instanceof V1EnvelopeError) {

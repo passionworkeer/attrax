@@ -1,6 +1,6 @@
 import { fail } from "@/lib/api-response";
 import { backendAccessTokenFromRequest } from "@/app/api/backend-session-access";
-import { getScanAsset, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { getScanAsset, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { z } from "zod";
 
 // session_id = "scan_" + 1..50 chars of [0-9A-Za-z_-]（RAG service 构造，
@@ -29,7 +29,12 @@ export async function GET(
   }
 
   try {
-    const asset = await getScanAsset({ sessionId, accessToken, index });
+    const asset = await getScanAsset({
+      sessionId,
+      accessToken,
+      index,
+      ...upstreamForwardFrom(request),
+    });
     return new Response(Buffer.from(asset.bytes), {
       headers: {
         "Content-Type": asset.contentType,
