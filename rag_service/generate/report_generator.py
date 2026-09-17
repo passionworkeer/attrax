@@ -912,6 +912,16 @@ class ReportGenerator:
             "messages": [
                 {"role": "user", "content": user_prompt},
             ],
+            # MiniMax-M3 defaults to adaptive thinking; forcing "disabled"
+            # skips the reasoning trace for lower latency. Opt-in via env:
+            # the exact API acceptance should be A/B-verified before an
+            # operator enables it (the default keeps today's wire format).
+            **(
+                {"thinking": {"type": "disabled"}}
+                if os.environ.get("MINIMAX_THINKING_MODE", "adaptive").strip().lower()
+                in {"disabled", "off", "false", "0"}
+                else {}
+            ),
         }).encode("utf-8")
 
         max_attempts = 1 if self.fallback_api_key else self._LLM_MAX_ATTEMPTS
@@ -982,10 +992,17 @@ class ReportGenerator:
         ``max_tokens`` is floored at the fallback budget because
         deepseek-flash spends part of that budget on reasoning_content.
         """
+        # Measured on the real report-package prompt (2026-09-17):
+        # effort=high (default) 41.2s / low 30.1s / none 24.9s — the thinking
+        # trace (14K chars at high) costs more than the answer itself and the
+        # output text length is unchanged. "none" is the documented way to
+        # disable thinking on the Anthropic-compatible endpoint
+        # (api-docs.deepseek.com/guides/thinking_mode).
         fallback_body = json.dumps({
             "model": self.fallback_model,
             "max_tokens": max(max_tokens, self.fallback_max_tokens),
             "temperature": 0.2,
+            "reasoning": {"effort": "none"},
             "system": system,
             "messages": [
                 {"role": "user", "content": user_prompt},
