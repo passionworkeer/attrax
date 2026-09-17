@@ -157,6 +157,13 @@ class DecisionNode(FlexibleModel):
     type: str = ""
     label: str = ""
     labelEn: str = ""
+    # severity 是该节点的风险等级（critical/high/medium/info），与 status
+    # （管线执行状态 success/pending/running/error）是两个独立维度。
+    # 前端 v1-result-adapter.ts 用它派生 riskPoints[].severity；之前完全靠
+    # FlexibleModel extra="allow" 兜底，Pydantic schema + OpenAPI snapshot +
+    # types.gen.ts 都没有这个字段 —— 一次收紧 extra 就会让前端 risk score
+    # 退化为 fallback（= 100/A）。显式声明让契约对未来重构保持稳定。
+    severity: Literal["critical", "high", "medium", "info"] = "info"
     status: str = "pending"
     duration: str = ""
     confidence: float | None = None

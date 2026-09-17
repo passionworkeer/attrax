@@ -15,21 +15,15 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { cn } from "@/lib/utils";
+import { type CitationRefContract } from "@/lib/types";
 
+// 后端 quote_matcher 只产生 3 个状态；"unverified" 是 chip 在
+// `match_status` 字段缺失时的 fallback（见 STATUS_META 与下方 ??）。
 export type CitationMatchStatus =
   | "matched"
   | "fallback_article_only"
   | "unmatched"
   | "unverified";
-
-export interface CitationRefContract {
-  doc_id: string;
-  article_id: string;
-  official_citation?: string;
-  quote?: string;
-  quote_span?: [number, number] | null;
-  match_status?: CitationMatchStatus | null;
-}
 
 const STATUS_META: Record<
   CitationMatchStatus,

@@ -9,7 +9,8 @@ import { downloadReportAsDocx, downloadReportAsPdf } from "@/lib/report-download
 import { AgentTraceTimeline, RetrievedChunks } from "@/components/result/AgentTraceView";
 import { DownloadButtons } from "@/components/result/DownloadButtons";
 import { ImageCarousel, type ProductImage } from "@/components/result/ImageCarousel";
-import { CitationsList, type CitationRefContract } from "@/components/regulation/CitationChip";
+import { CitationsList } from "@/components/regulation/CitationChip";
+import { type CitationRefContract } from "@/lib/types";
 import { downloadEvidencePack } from "@/lib/report-export";
 import type { ComplianceReportResult } from "@/lib/types";
 

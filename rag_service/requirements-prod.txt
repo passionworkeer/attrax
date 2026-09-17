@@ -36,17 +36,21 @@ beautifulsoup4==4.14.3
 lxml==6.0.2                  # bs4 后端
 defusedxml==0.7.1            # 安全 XML 解析（ingest_regulation_supplements 等脚本）
 
+# ── 视觉降采样（vision._maybe_downscale 用 PIL.Image） ──────────────────────
+# 隐式依赖：之前靠 pdfplumber 间接拉 Pillow 但版本不固定；显式声明避免上游
+# 去掉 PIL 时静默断链。
+Pillow==11.3.0
+
 # ── YAML（kb_loader / article_loader / visual_checks 直接 import） ────────────
 # 之前只靠 uvicorn[standard] 传递安装；显式声明避免瘦身 uvicorn 依赖时静默断链。
 PyYAML==6.0.3
 
-# ── LLM（唯一外部 API；urllib 调用 mimoTalk） ─────────────────────────────────
-requests==2.32.5             # regulation_collectors 辅助
+# ── 离线采集脚本（regulation_collectors 用，非服务运行时路径） ────────────────
+# scripts/collect_official_sources_from_registry.py 唯一用户；保留以便运维
+# 跑离线采集时无需单独装依赖。
+requests==2.32.5
 
 # ── 嵌入式并发 / 工具 ────────────────────────────────────────────────────────
 anyio==4.10.0
 h11==0.16.0
 sniffio==1.3.1
-
-# ── 系统 / 安全（传递依赖中含 CVE，固定安全版本） ──────────────────────────
-cryptography==43.0.3
