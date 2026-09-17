@@ -1,6 +1,7 @@
 """Shared collector plumbing: fetch helper, update record, dispatch table."""
 from __future__ import annotations
 
+import contextlib
 import gzip
 import http.cookiejar
 import logging
@@ -127,6 +128,65 @@ class WAFChallengeBlockedException(urllib.error.URLError):
     pass
 
 
+class NotModified(Exception):
+    """Raised by ``fetch_url`` when the server answers 304 Not Modified.
+
+    Modelled as an exception rather than an empty-body return because every
+    collector parses the body it gets back — an empty ``bytes`` would be fed
+    to the RDF sanity check, the JSON decoder, or the RSS parser and surface
+    as a bogus per-source failure. Raising instead lets the 304 travel
+    untouched through the collector (none of them catch bare ``Exception``)
+    up to the orchestrator, which records the source as unchanged.
+    """
+
+    def __init__(self, url: str) -> None:
+        super().__init__(f"{url} returned 304 Not Modified")
+        self.url = url
+
+
+class FetchDeadlineExceeded(urllib.error.URLError):
+    """Raised when a fetch runs past its ``fetch_deadline`` budget.
+
+    Python cannot interrupt a thread blocked in a socket read, so the
+    orchestrator's wall-clock cap is enforced *cooperatively*: the worker
+    opens a ``fetch_deadline`` budget, and ``fetch_url`` checks it before
+    every attempt / backoff sleep. Worst-case overshoot is therefore one
+    socket timeout, not an unbounded wait on a hung CDN.
+    """
+
+    pass
+
+
+# Per-thread fetch budget. The orchestrator's worker threads each open a
+# budget around their ``collect_source`` call; collectors reach ``fetch_url``
+# without threading a deadline parameter through every signature.
+_DEADLINE = threading.local()
+
+
+@contextlib.contextmanager
+def fetch_deadline(seconds: float):
+    """Bound the wall-clock time any ``fetch_url`` call in this thread may use.
+
+    Nested calls inherit the tighter of the two budgets. Restores the previous
+    budget on exit so a reused worker thread never leaks a stale deadline.
+    """
+    previous = getattr(_DEADLINE, "at", None)
+    candidate = time.monotonic() + seconds
+    _DEADLINE.at = candidate if previous is None else min(previous, candidate)
+    try:
+        yield
+    finally:
+        _DEADLINE.at = previous
+
+
+def _remaining_budget() -> float | None:
+    """Seconds left in this thread's fetch budget, or None when unbounded."""
+    at = getattr(_DEADLINE, "at", None)
+    if at is None:
+        return None
+    return at - time.monotonic()
+
+
 @dataclass
 class RegulationUpdate:
     """One fetched source, normalized for the state store."""
@@ -201,6 +261,19 @@ def fetch_url(
     cached_etag, cached_last_modified = _recall_conditional(url)
     last_error: Exception | None = None
     for attempt in range(1, retries + 1):
+        # Cooperative deadline: bail before spending another socket timeout
+        # when the worker's budget is already gone, and shrink this attempt's
+        # timeout so it cannot overshoot the remaining budget.
+        remaining = _remaining_budget()
+        if remaining is not None:
+            if remaining <= 0:
+                raise FetchDeadlineExceeded(
+                    f"{url}: fetch deadline exceeded before attempt {attempt}"
+                )
+            effective_timeout: float = max(1.0, min(timeout, remaining))
+        else:
+            effective_timeout = timeout
+
         ua = USER_AGENT if attempt == 1 else _FALLBACK_USER_AGENT
         headers = {"User-Agent": ua, "Accept": accept}
         headers.update(_PRIMARY_BASE_HEADERS)
@@ -216,7 +289,7 @@ def fetch_url(
 
         request = urllib.request.Request(url, headers=headers)
         try:
-            with urllib.request.urlopen(request, timeout=timeout) as response:
+            with urllib.request.urlopen(request, timeout=effective_timeout) as response:
                 status = getattr(response, "status", None)
                 if status is None:
                     getcode = getattr(response, "getcode", None)
@@ -226,11 +299,14 @@ def fetch_url(
                 content_encoding = response.headers.get("Content-Encoding")
 
                 if status == 304:
-                    # 304 short-circuit: body is empty by definition; the
-                    # orchestrator's text_hash + state.py replay the prior
-                    # cached hash so no false change is recorded.
+                    # 304 short-circuit: the upstream text is byte-identical
+                    # to what we last snapshotted, so there is nothing for
+                    # the collector to parse and nothing for the orchestrator
+                    # to diff. Raise rather than return an empty body —
+                    # collectors would otherwise hand ``b""`` to their RDF /
+                    # JSON / RSS parsers and record a bogus failure.
                     _remember_conditional(url, cached_etag, cached_last_modified)
-                    return b"", response_last_modified
+                    raise NotModified(url)
 
                 raw_body = response.read()
                 body = _decompress_body(raw_body, content_encoding)
@@ -262,6 +338,14 @@ def fetch_url(
 
         if attempt < retries:
             delay = RETRY_BACKOFF_SECONDS * attempt
+            remaining = _remaining_budget()
+            if remaining is not None and remaining <= delay:
+                # Sleeping through the backoff would spend the whole budget
+                # without a request in flight — fail now so the worker can
+                # move on and the source lands in errors.json.
+                raise FetchDeadlineExceeded(
+                    f"{url}: fetch deadline exceeded before retry {attempt + 1}"
+                )
             logger.debug(
                 "fetch %s failed (%s); retry %d/%d in %.1fs",
                 url[:90],

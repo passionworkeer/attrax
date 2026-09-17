@@ -19,8 +19,10 @@ crashes; the timeslot config lives in one place (ATTRAX_REGWATCH_RUN_AT).
 Pass outline:
 1. Load the source entries from data/regulation_sources/official_sources.json
    (35 as of 2026-09-16; the count is the array's length, not a constant)
-2. Dispatch each entry to its collector (per-source failure isolation)
-3. Diff every fetched update against the SQLite snapshot (state.py)
+2. Dispatch each entry to its collector (per-source failure isolation) using
+   a ThreadPoolExecutor so the 35 sources run in parallel
+3. Diff every fetched update against the SQLite snapshot (state.py) — the
+   detect_changes call shares a single SourceStateStore guarded by a lock
 4. Write outputs to data/regulation_supplements/watchdog-{date}/:
    - no_change.json    — every source unchanged
    - diff.json         — real changes (added / removed / modified)
@@ -38,6 +40,7 @@ awaiting review · 3 = one or more sources failed (others still processed) ·
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import datetime as _dt
 import json
 import logging
@@ -47,7 +50,12 @@ import sys
 import time
 from pathlib import Path
 
-from scripts.watchdog.collectors.base import collect_source
+from scripts.watchdog.collectors.base import (
+    FetchDeadlineExceeded,
+    NotModified,
+    collect_source,
+    fetch_deadline,
+)
 from scripts.watchdog.notify import build_notifiers, notify_all
 from scripts.watchdog.state import Change, SourceStateStore
 
@@ -67,6 +75,17 @@ EXIT_FATAL = 1
 # (Asia/Shanghai on lighthouse), so 03:00 CST = 19:00 UTC.
 DEFAULT_RUN_AT = "03:00"
 _SHUTDOWN = False
+
+# Parallel-fetch knobs (2026-09-17 overhaul):
+# - MAX_FETCH_WORKERS: how many sources we hit concurrently. 8 keeps total
+#   outbound bandwidth under ~1 MB/s against the smallest CDNs and is well
+#   within pm2's single-thread CPU budget when each thread blocks on I/O.
+# - PER_SOURCE_TIMEOUT_SECS: wall-clock budget per source. fetch_url already
+#   retries 3 × 30 s internally; this ceiling stops one slow CDN from
+#   stalling the pass. It is enforced cooperatively by ``fetch_deadline``
+#   (see collectors/base.py) — worst-case overshoot is one socket timeout.
+MAX_FETCH_WORKERS = 8
+PER_SOURCE_TIMEOUT_SECS = 60
 
 
 def _request_shutdown(signum, frame):  # noqa: ARG001 — signal handler signature
@@ -90,6 +109,52 @@ def _seconds_until_next_run(run_at: str) -> float:
     if target <= now:
         target += _dt.timedelta(days=1)
     return max(60.0, (target - now).total_seconds())
+
+
+def _resolve_worker_count() -> int:
+    """Read ``ATTRAX_REGWATCH_FETCH_WORKERS``; clamp to a sane range."""
+    raw = os.environ.get("ATTRAX_REGWATCH_FETCH_WORKERS")
+    if raw is None or not raw.strip():
+        return MAX_FETCH_WORKERS
+    try:
+        workers = int(raw.strip())
+    except ValueError:
+        logger.warning(
+            "invalid ATTRAX_REGWATCH_FETCH_WORKERS=%r — using %d", raw, MAX_FETCH_WORKERS
+        )
+        return MAX_FETCH_WORKERS
+    return max(1, min(workers, 64))
+
+
+class _SourceOutcome:
+    """Result of fetching and diffing one source in a worker thread.
+
+    Carries the failure as data instead of an exception so the main thread
+    can apply every outcome in a deterministic order — an exception raised
+    across the thread boundary would have to be unpacked into the same
+    fields anyway, minus the ordering guarantee.
+    """
+
+    __slots__ = ("source_id", "entry", "update", "changes", "snapshot", "error", "not_modified")
+
+    def __init__(
+        self,
+        source_id: str,
+        entry: dict,
+        *,
+        update: object | None = None,
+        changes: list[Change] | None = None,
+        snapshot: tuple[str, str, str] | None = None,
+        error: str | None = None,
+        not_modified: bool = False,
+    ) -> None:
+        self.source_id = source_id
+        self.entry = entry
+        self.update = update
+        self.changes = changes or []
+        self.snapshot = snapshot
+        self.error = error
+        self.not_modified = not_modified
 
 
 def load_sources() -> list[dict]:
@@ -203,22 +268,51 @@ def run_pass(*, dry_run: bool = False) -> int:
     updates_by_id: dict[str, object] = {}
     entries_by_id: dict[str, dict] = {}
 
-    for entry in entries:
+    # 2026-09-17: parallel fetch — every entry dispatches into a worker
+    # thread. Workers do the two thread-safe things (network fetch and
+    # ``store.detect_changes``); everything that mutates shared orchestrator
+    # state — the auto-ingestor's report, ``.auto_state.json``, the index
+    # rebuild — is applied serially on this thread after the pool drains.
+    #
+    # The per-source wall-clock cap is cooperative: each worker opens a
+    # ``fetch_deadline`` budget that ``fetch_url`` checks before every
+    # attempt, so a hung CDN cannot pin a worker past it. See
+    # ``collectors/base.py`` for why a hard thread kill is not an option.
+    worker_count = _resolve_worker_count()
+
+    def _process_one(entry: dict) -> _SourceOutcome:
+        """Fetch one source and diff it against the snapshot.
+
+        Returns an ``_SourceOutcome`` rather than raising: every failure mode
+        (transport error, deadline, 304) is a normal per-source result here,
+        because an exception crossing the thread boundary buys nothing the
+        outcome record does not already carry.
+        """
         source_id = entry.get("id") or entry.get("source_url") or "unknown"
-        entries_by_id[source_id] = entry
         try:
-            update = collect_source(entry)
+            with fetch_deadline(PER_SOURCE_TIMEOUT_SECS):
+                update = collect_source(entry)
+        except NotModified:
+            # Upstream confirmed the text is byte-identical to our snapshot.
+            # Nothing to diff and nothing to persist — the stored baseline is
+            # already correct.
+            logger.debug("source %s: 304 Not Modified", source_id)
+            return _SourceOutcome(source_id, entry, not_modified=True)
+        except FetchDeadlineExceeded as exc:
+            logger.warning(
+                "source %s exceeded the %ds fetch budget: %s",
+                source_id,
+                PER_SOURCE_TIMEOUT_SECS,
+                exc,
+            )
+            return _SourceOutcome(
+                source_id, entry, error=f"FetchDeadlineExceeded: {exc}"
+            )
         except Exception as exc:  # noqa: BLE001 — per-source isolation
             logger.warning("source %s failed: %s", source_id, exc)
-            errors.append(
-                {"sourceId": source_id, "error": f"{type(exc).__name__}: {exc}"}
+            return _SourceOutcome(
+                source_id, entry, error=f"{type(exc).__name__}: {exc}"
             )
-            if ingestor is not None:
-                ingestor.record_failure(source_id, entry)
-            continue
-        if ingestor is not None:
-            ingestor.record_success(source_id)
-            updates_by_id[source_id] = update
 
         changes = store.detect_changes(
             source_id,
@@ -231,12 +325,53 @@ def run_pass(*, dry_run: bool = False) -> int:
                 **update.metadata,
             },
         )
-        for change in changes:
+        return _SourceOutcome(
+            source_id,
+            entry,
+            update=update,
+            changes=changes,
+            snapshot=(source_id, update.text, update.content_hash),
+        )
+
+    with concurrent.futures.ThreadPoolExecutor(
+        max_workers=worker_count,
+        thread_name_prefix="regwatch",
+    ) as executor:
+        outcomes = list(executor.map(_process_one, entries))
+
+    # Apply outcomes serially, ordered by source_id so diff.json /
+    # errors.json come out byte-stable across runs of the same inputs.
+    for outcome in sorted(outcomes, key=lambda o: o.source_id):
+        source_id = outcome.source_id
+        entries_by_id[source_id] = outcome.entry
+
+        if outcome.error is not None:
+            errors.append({"sourceId": source_id, "error": outcome.error})
+            if ingestor is not None:
+                try:
+                    ingestor.record_failure(source_id, outcome.entry)
+                except Exception as exc:  # noqa: BLE001 — never let the ingestor kill the pass
+                    logger.warning(
+                        "record_failure for %s also failed: %s", source_id, exc
+                    )
+            continue
+
+        if ingestor is not None and not outcome.not_modified:
+            ingestor.record_success(source_id)
+
+        if outcome.not_modified:
+            continue
+
+        for change in outcome.changes:
             if change.kind == "cosmetic":
                 cosmetic_changes.append(change)
             else:
                 real_changes.append(change)
-        snapshots.append((source_id, update.text, update.content_hash))
+
+        if outcome.update is not None:
+            updates_by_id[source_id] = outcome.update
+        if outcome.snapshot is not None:
+            snapshots.append(outcome.snapshot)
 
     # Persist snapshots for unchanged and cosmetic-only sources.
     # Real changes (added / modified) must NOT overwrite the baseline snapshot
