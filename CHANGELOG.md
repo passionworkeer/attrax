@@ -2,6 +2,26 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## [Unreleased] - 2026-09-17
+
+**修复:/ready 轮询反复清空法规缓存(生产实测)**
+
+**背景**
+- 生产 `pm2 logs rag-service` 反复出现 `regulation library changed on disk — cache rebuilt (49 regulations)`,但库根本没变 —— 单个日志窗口内 26 次。仓库里唯一会写法规的是 03:00 的 `scripts/watchdog/auto_ingest.py`,不存在高频写入者
+- 根因:`main._readiness_snapshot()` 无条件调用 `kb_loader.invalidate_cache()` 和 `article_loader.invalidate_cache()`;而 `article_loader.invalidate_cache()` 会**无条件** `_rebuild_generation()`。uptime monitor 每 5 分钟打一次 `/ready`,即每天约 288 次 generation tick
+- 连带伤害:①`verifier._sync_article_cache()` 见 generation 变化即清空 `_ARTICLE_TEXT_CACHE`,于是两次扫描之间的轮询把引用逐字核对缓存打掉,每条 citation 重新读 YAML;②每次 `/ready` 都重新解析 49 篇法规 + 全部 KB anchors
+- 注意 `/ready` 是**读探针**。它此前是 kb_loader 唯一的热更新来源 —— 所以修复不能只是"删掉 invalidate",否则 regwatch 自动入库的新 anchor 在进程重启前不可见
+
+**实现**
+- `rag_service/retrieval/article_loader.py`:`_load_all()` 单次计算 stamp、用 `_cache_lock` 串行化(避免并发扫描各自重建);tick 与日志改由「stamp 真的变了」判定,不再用 `_cache is not None` —— 那个判据会把任何 `invalidate_cache()` 之后的例行重建都报成 "changed on disk"。`invalidate_cache()` 额外清 `_cache_stamp`("无缓存即无基线"),否则下一次重建会把"换 root / 空转"误判成磁盘变更
+- `rag_service/retrieval/kb_loader.py`:原本**没有任何** staleness 护栏(只在 `_cache is None` 时重读,长时间进程会一直吃旧 anchors)。补上同样的 stamp 自失效 + 锁,让去掉 `/ready` 的 invalidate 之后热更新仍然成立;顺带删掉未使用的 `import os`
+- `rag_service/main.py`:`_readiness_snapshot()` 不再调用 invalidate。两个 loader 都按 stamp 自失效,读路径本身就是新鲜的 —— 读探针不再改缓存状态
+
+**验证**
+- 新增 `rag_service/tests/test_readiness_cache_stability.py`(7 例):3 例锁死「/ready 不得 tick generation、不得清 verifier 缓存」;4 例锁死「去掉 invalidate 后新鲜度仍在」(`/ready` 能报出磁盘上新加的法规;kb_loader 与 article_loader 无需 invalidate 即可看到新增/改动)
+- 反向验证:把旧的 `invalidate_cache()` 两行临时加回 `_readiness_snapshot()`,前 3 例立刻全红(`assert 8 == 7`)—— 证明护栏不是空转
+- pytest `rag_service/tests/` 594 passed(原 587 + 新增 7);过程中暴露并修掉了一个既有 fixture 卫生问题:`invalidate_cache()` 残留的旧 stamp 会让"换 root 后的首次重建"看起来像磁盘变更
+
 ## [Unreleased] - 2026-09-16
 
 **功能:报告生成降级(MiniMax 全挂时仍出真报告)**

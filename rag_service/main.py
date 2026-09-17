@@ -448,8 +448,14 @@ def _readiness_snapshot() -> dict:
     library_ok = False
     try:
         from rag_service.retrieval import kb_loader, article_loader
-        kb_loader.invalidate_cache()
-        article_loader.invalidate_cache()
+        # Deliberately NO invalidate_cache() here. Both loaders self-invalidate
+        # against an on-disk stamp, so these reads already reflect the current
+        # files; the extra invalidation forced a full re-parse of the KB anchors
+        # and the regulation library on every probe and, for article_loader,
+        # ticked cache_generation() — which discards the verifier's article-text
+        # cache. The uptime monitor polls this every 5 minutes, so that amounted
+        # to roughly 288 cache wipes a day against a library that had not
+        # changed at all.
         kb_ok = len(kb_loader.list_all_regulations()) > 0
         library_ok = len(article_loader.list_regulation_ids()) > 0
     except Exception:
