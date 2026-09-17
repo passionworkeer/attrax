@@ -52,7 +52,8 @@ class TestUnverifiedTextCannotMatchVerbatim:
             "checksum_sha256: null\n"
             "schema_version: 1\n"
             "source_url: https://example.com/x\n"
-            "notes: test fixture\n"
+            "notes: test fixture\n",
+            encoding="utf-8",
         )
         monkeypatch.setattr(article_loader, "_regulations_root", tmp_path)
         article_loader.invalidate_cache()
@@ -97,7 +98,8 @@ class TestUnverifiedTextCannotMatchVerbatim:
             "checksum_sha256: null\n"
             "schema_version: 1\n"
             "source_url: https://example.com/x\n"
-            "notes: test fixture\n"
+            "notes: test fixture\n",
+            encoding="utf-8",
         )
         monkeypatch.setattr(article_loader, "_regulations_root", tmp_path)
         article_loader.invalidate_cache()
@@ -137,7 +139,8 @@ class TestUnverifiedTextCannotMatchVerbatim:
             "checksum_sha256: null\n"
             "schema_version: 1\n"
             "source_url: https://example.com/x\n"
-            "notes: test fixture\n"
+            "notes: test fixture\n",
+            encoding="utf-8",
         )
         monkeypatch.setattr(article_loader, "_regulations_root", tmp_path)
         article_loader.invalidate_cache()

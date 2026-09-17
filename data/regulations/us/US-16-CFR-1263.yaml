@@ -1,0 +1,35 @@
+id: US-16-CFR-1263
+official_citation: 16 CFR Part 1263
+short_name: 纽扣电池消费品安全
+region: US
+license: public
+language: en
+source_kind: official_verbatim
+last_verified: '2026-09-16'
+last_verified_by: official-source-excerpt-review
+source_url: https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1263
+schema_version: 1
+notes: 'Selected official eCFR excerpts, current through 2026-09-11. Not the full incorporated UL standard. Section 1263.4 concerns battery packaging, not every outer product box.'
+articles:
+- id: section-1263-1-a
+  title: §1263.1(a) — Scope and purpose (excerpt)
+  text: >-
+    This part also establishes warning label requirements for packaging of consumer products containing button cell or coin batteries, these consumer products, and instructions and manuals accompanying these consumer products. Additionally, this part establishes warning label requirements for packaging of button cell or coin batteries, including button cell or coin batteries packaged separately with a consumer product.
+- id: section-1263-1-c
+  title: §1263.1(c) — Exemption for toy products
+  text: >-
+    Any object designed, manufactured, or marketed as a plaything for children under 14 years of age that is in compliance with the battery accessibility and labeling requirements of 16 CFR part 1250 is exempt from the requirements of this part.
+- id: section-1263-3
+  title: §1263.3 — Requirements for consumer products (excerpt)
+  text: >-
+    Each consumer product containing button cell or coin batteries shall comply with ANSI/UL 4200A, Standard for Safety for Products Incorporating Button Batteries or Coin Cell Batteries, approved on August 30, 2023.
+- id: guidance-product-requirements
+  title: CPSC business guidance — product requirements
+  text: >-
+    Per ANSI/UL 4200A-2023, the requirements for consumer products containing or designed to use button cell or coin batteries are as follows: Battery compartments containing replaceable button cell or coin batteries must be secured such that they require the use of a tool or at least two independent and simultaneous hand movements to open. Button cell or coin battery compartments must not allow such batteries to be accessed or liberated as a result of use and abuse testing. The packaging for the overall product must bear a warning. The product itself must bear a warning, if practicable. Accompanying instructions and manuals must include all of the applicable warnings.
+  source_url: https://www.cpsc.gov/Business--Manufacturing/Business-Education/Business-Guidance/Button-Cell-and-Coin-Battery
+- id: guidance-certification
+  title: CPSC business guidance — certification
+  text: >-
+    Section 14(a) of the Consumer Product Safety Act (CPSA) requires manufacturers of consumer products subject to a regulation, standard, or ban enforced by the CPSC to certify that those products meet the requirements of the standard by issuing a Children's Product Certificate (CPC) for children's products or a General Certificate of Compliance (GCC) for general-use products. Certificates for products subject to section 2 of Reese's Law must include the citation "16 CFR § 1263.3 – Consumer products containing button cell or coin batteries" or "16 CFR § 1263.4 – Button cell or coin battery package labeling" depending on which requirements apply.
+  source_url: https://www.cpsc.gov/Business--Manufacturing/Business-Education/Business-Guidance/Button-Cell-and-Coin-Battery

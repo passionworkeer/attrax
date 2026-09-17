@@ -1,0 +1,25 @@
+id: US-16-CFR-1200
+official_citation: 16 CFR § 1200.2
+short_name: 美国儿童产品年龄定位规则
+region: US
+license: public
+language: en
+source_kind: official_verbatim
+last_verified: '2026-09-17'
+last_verified_by: exa-official-source-review
+source_url: https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1200/section-1200.2
+schema_version: 1
+notes: 'Official eCFR excerpts and CPSC guidance checked with Exa. An age label is one factor and is not independently determinative.'
+articles:
+- id: section-1200-2-a
+  title: §1200.2(a) — Children's product definition and four-factor test
+  text: >-
+    A children's product means a consumer product designed or intended primarily for children 12 years of age or younger. Whether a product is primarily intended for children 12 years of age or younger is determined by considering four factors: a reasonable statement by the manufacturer about intended use; representations in packaging, display, promotion, or advertising; common consumer recognition; and the Commission's Age Determination Guidelines.
+- id: section-1200-2-c1
+  title: §1200.2(c)(1) — Manufacturer age statement is not determinative
+  text: >-
+    A manufacturer's statement about the product's intended use, including the product's label, should be reasonably consistent with expected use patterns. A statement that the product is not intended for children does not preclude it from being regulated as a children's product if its primary appeal is to children 12 years of age or younger. The manufacturer's label, in and of itself, is not determinative.
+- id: section-1200-2-c2-c4
+  title: §1200.2(c)(2)-(4) — Packaging, consumer recognition and age guidance
+  text: >-
+    Product representations may be express or implied and may appear in packaging, text, illustrations, photographs, instructions, assembly manuals, or advertising. Consumer perception and reasonably foreseeable use are evaluated, and the product's appeal to different age groups may be considered under the Commission's Age Determination Guidelines.

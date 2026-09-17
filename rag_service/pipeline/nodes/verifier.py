@@ -98,8 +98,12 @@ def verifier_node(state: GraphState) -> dict:
     """Quote-match every citation in `report_package.citations`."""
     report_package = state.get("report_package") or {}
     citations = report_package.get("citations") or []
+    claim_count = len(report_package.get("reviewClaims") or []) if isinstance(report_package.get("reviewClaims"), list) else 0
+    from rag_service.verify.review_claims import validate_review_claims, reconcile_evidence_findings
 
     if not citations:
+        report_package = dict(report_package)
+        report_package["reviewClaims"] = validate_review_claims(report_package, state.get("markets") or [])
         return {
             "report_package": report_package,
             "agent_trace": [{
@@ -120,6 +124,9 @@ def verifier_node(state: GraphState) -> dict:
     report_package = dict(report_package)
     report_package["citations"] = citations
     report_package["evidencePack"] = build_evidence_pack(citations)
+    report_package["reviewClaims"] = validate_review_claims(report_package, state.get("markets") or [])
+
+    reconcile_evidence_findings(report_package, state.get("markets") or [])
 
     matched = sum(1 for c in citations if c.get("match_status") == "matched")
     fallback = sum(1 for c in citations if c.get("match_status") == "fallback_article_only")
@@ -127,6 +134,8 @@ def verifier_node(state: GraphState) -> dict:
     audit = dict(report_package.get("auditMetadata") or {})
     audit["verificationMode"] = "kb_exact_quote"
     audit["canonicalQuoteAttachedCount"] = attached_excerpts
+    audit["reviewClaimInputCount"] = claim_count
+    audit["reviewClaimLinkedCount"] = len(report_package["reviewClaims"])
     report_package["auditMetadata"] = audit
 
     return {

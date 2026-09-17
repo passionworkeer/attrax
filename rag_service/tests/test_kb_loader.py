@@ -66,7 +66,7 @@ class TestKbFileInventory:
 
     def test_every_yaml_parses(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             assert isinstance(data, dict), f"{path.name}: not a dict"
 
     def test_filename_uniqueness(self):
@@ -83,26 +83,26 @@ class TestKbSchema:
 
     def test_required_fields_present(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             missing = self.REQUIRED - data.keys()
             assert not missing, f"{path.name}: missing fields {missing}"
 
     def test_schema_version_is_1(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             assert data["schema_version"] == 1, f"{path.name}: schema_version != 1"
 
     def test_license_is_valid_enum(self):
         valid = {"public", "private_with_summary"}
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             assert data["license"] in valid, (
                 f"{path.name}: invalid license {data['license']!r}"
             )
 
     def test_public_license_has_source_url(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             if data["license"] == "public":
                 assert data.get("source_url"), (
                     f"{path.name}: public license missing source_url"
@@ -110,7 +110,7 @@ class TestKbSchema:
 
     def test_private_license_has_purchase_url(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             if data["license"] == "private_with_summary":
                 assert data.get("purchase_url"), (
                     f"{path.name}: private license missing purchase_url"
@@ -121,7 +121,7 @@ class TestKbSchema:
         # title-only (<200 chars). For our initial seed, key_articles is []
         # for all private entries.
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             if data["license"] == "private_with_summary":
                 assert not data["key_articles"], (
                     f"{path.name}: private license should not list key_articles "
@@ -130,7 +130,7 @@ class TestKbSchema:
 
     def test_applies_if_has_required_keys(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             applies = data["applies_if"]
             assert "markets" in applies, f"{path.name}: applies_if.markets missing"
             assert "category" in applies, f"{path.name}: applies_if.category missing"
@@ -138,7 +138,7 @@ class TestKbSchema:
 
     def test_markets_non_empty(self):
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             assert data["applies_if"]["markets"], (
                 f"{path.name}: applies_if.markets empty (every regulation must "
                 f"specify a market or 'GLOBAL')"
@@ -166,7 +166,7 @@ class TestKbCoverage:
     def _yaml_keys(self) -> set[tuple[str, str]]:
         keys: set[tuple[str, str]] = set()
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             markets = data["applies_if"]["markets"]
             region = markets[0] if markets and markets[0] != "GLOBAL" else ""
             keys.add((region, data["doc_name"]))
@@ -251,7 +251,7 @@ class TestKbLoaderApi:
         invalidate_cache()
         counts = {"public": 0, "private_with_summary": 0}
         for path in _all_yaml_paths():
-            data = yaml.safe_load(path.read_text())
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
             counts[data["license"]] += 1
         assert counts["private_with_summary"] == 11
         assert counts["public"] >= 33

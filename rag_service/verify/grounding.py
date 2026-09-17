@@ -8,8 +8,8 @@ Plan 2026-09-13 §7.1 step 6: "校验坐标、证据关系、引用、适用性�
   a seriously out-of-range box is REJECTED with a reason, never silently
   clipped into a "legal looking" box (audit §6 engineering constraint)
 - imageId existence and identity against the canonical image set
-- duplicate observation dedup by (check_id, image_id) so a repeated model
-  answer cannot stack two boxes on the same spot
+- duplicate observation dedup by (check_id, image_id); certification marks
+  additionally include observed text so CE/FCC/UKCA boxes can coexist
 
 The matcher-style API returns structured results instead of raising so the
 pipeline can record rejection reasons in the audit trail.
@@ -106,11 +106,12 @@ def verify_observations(
     Each observation dict carries at least ``observationId``, ``checkId``,
     ``imageId`` and (optionally) ``region.bbox``. The report lists which
     observation ids were accepted, which were rejected (with reason), and
-    which were dropped as duplicates of an already-accepted observation of
-    the same (checkId, imageId) pair.
+    which were dropped as duplicates of an already-accepted observation.
+    The certification-mark check intentionally permits multiple named marks
+    on one image while still deduplicating repeated instances of the same mark.
     """
     report = GroundingReport()
-    seen_pairs: set[tuple[str, str]] = set()
+    seen_pairs: set[tuple[str, str, str]] = set()
 
     for raw in observations:
         obs_id = str(raw.get("observationId") or raw.get("id") or "")
@@ -118,6 +119,13 @@ def verify_observations(
             obs_id = f"obs-rejected-{len(report.rejected)}"
         check_id = str(raw.get("checkId") or raw.get("check_id") or "")
         image_id = str(raw.get("imageId") or raw.get("image_id") or "")
+        mark_identity = (
+            str(raw.get("observedText") or raw.get("observed_text") or "")
+            .strip()
+            .upper()
+            if check_id == "common.certification_marks.visible"
+            else ""
+        )
 
         if not valid_entity_id(check_id):
             report.rejected.append(
@@ -133,7 +141,7 @@ def verify_observations(
         region = raw.get("region")
         if region is None:
             # region=None is a valid state (plan §6) — accept as-is.
-            key = (check_id, image_id)
+            key = (check_id, image_id, mark_identity)
             if key in seen_pairs:
                 report.deduplicated.append(obs_id)
                 continue
@@ -151,7 +159,7 @@ def verify_observations(
         if region.get("kind") == "polygon":
             # Polygon validation lands with segmentation; treat as accepted
             # but flagged unverified.
-            key = (check_id, image_id)
+            key = (check_id, image_id, mark_identity)
             if key in seen_pairs:
                 report.deduplicated.append(obs_id)
                 continue
@@ -169,7 +177,7 @@ def verify_observations(
             report.rejected.append(GroundingRejection(obs_id, reason or "invalid bbox"))
             continue
 
-        key = (check_id, image_id)
+        key = (check_id, image_id, mark_identity)
         if key in seen_pairs:
             report.deduplicated.append(obs_id)
             continue

@@ -1,0 +1,22 @@
+id: KB-toy-US-US-16-CFR-1250
+regulation_id: US-16-CFR-1250
+doc_name: Safety Standard for Toys
+official_citation: 16 CFR § 1250.2
+short_name: 美国强制玩具安全标准
+source: category
+primary_source: toy
+applies_if:
+  category: [toy]
+  features_any: []
+  markets: [US]
+key_articles: [section-1250-2-a, cpsc-version-timeline]
+key_points:
+- 被认定为玩具时，需符合16 CFR 1250.2纳入的适用ASTM F963条款
+- 适用版本取决于生产日期，不能只看证书名称或照片
+- 外观照片只能发现可见疑点，不能代替机械物理、化学或电池可接触性测试
+license: public
+source_url: https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1250/section-1250.2
+last_verified: '2026-09-17'
+verified_by: exa-official-source-review
+verification_status: verified
+schema_version: 1

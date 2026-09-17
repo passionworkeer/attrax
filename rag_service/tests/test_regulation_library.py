@@ -140,7 +140,7 @@ class TestLibraryInvariants:
         exist."""
         index_path = REPO / "data" / "regulations" / "regulations_index.json"
         assert index_path.exists()
-        data = json.loads(index_path.read_text())
+        data = json.loads(index_path.read_text(encoding="utf-8"))
         assert data["count"] == len(data["regulations"])
         assert data["count"] == len(article_loader.list_regulation_ids())
 

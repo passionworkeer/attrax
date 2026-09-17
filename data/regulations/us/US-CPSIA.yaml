@@ -1,28 +1,48 @@
 id: US-CPSIA
-official_citation: 15 USC §2056a et seq. (Pub.L. 110-314)
+official_citation: 15 USC §§ 2056b, 2063
 short_name: CPSIA (儿童产品安全法)
 region: US
 license: public
-last_verified: '2026-09-11'
-last_verified_by: llm-assisted
+last_verified: '2026-09-16'
+last_verified_by: official-source-excerpt-review
+source_kind: official_verbatim
 language: en
 source_kind: unverified
 articles:
-- id: section-2056a
-  title: General requirements for children's products
-  text: 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1% (Text condensed from KB key_points; full official
-    text pending verification against the primary source — see regulation `source_url` and `notes`.)
 - id: section-2056b
-  title: Mandatory standards for consumer products
-  text: 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1% (Text condensed from KB key_points; full official
-    text pending verification against the primary source — see regulation `source_url` and `notes`.)
-- id: section-2057c
-  title: Tracking labels for children's products
-  text: 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1% (Text condensed from KB key_points; full official
-    text pending verification against the primary source — see regulation `source_url` and `notes`.)
+  title: 15 USC §2056b(a) — Mandatory toy safety standards (excerpt)
+  text: >-
+    Beginning 180 days after August 14, 2008, the provisions of ASTM International Standard F963–07 Consumer Safety Specifications for Toy Safety (ASTM F963), as it exists on August 14, 2008 (except for section 4.2 and Annex 4 or any provision that restates or incorporates an existing mandatory standard or ban promulgated by the Commission or by statute or any provision that restates or incorporates a regulation promulgated by the Food and Drug Administration or any statute administered by the Food and Drug Administration) shall be considered to be consumer product safety standards issued by the Commission under section 2058 of this title.
+  source_url: https://www.govinfo.gov/link/uscode/15/2056b
+- id: section-2063-a1
+  title: 15 USC §2063(a)(1) — General conformity certification
+  text: >-
+    Except as provided in paragraphs (2) and (3), every manufacturer of a product which is subject to a consumer product safety rule under this chapter or similar rule, ban, standard, or regulation under any other Act enforced by the Commission and which is imported for consumption or warehousing or distributed in commerce (and the private labeler of such product if such product bears a private label) shall issue a certificate which— (A) shall certify, based on a test of each product or upon a reasonable testing program, that such product complies with all rules, bans, standards, or regulations applicable to the product under this chapter or any other Act enforced by the Commission; and (B) shall specify each such rule, ban, standard, or regulation applicable to the product.
+- id: section-2063-a2
+  title: 15 USC §2063(a)(2) — Third party testing requirement (excerpt)
+  text: >-
+    A manufacturer or private labeler shall issue either a separate certificate for each children’s product safety rule applicable to a product or a combined certificate that certifies compliance with all applicable children’s product safety rules, in which case each such rule shall be specified.
+- id: section-2063-a5
+  title: 15 USC §2063(a)(5)(A) — Tracking marks
+  text: >-
+    Effective 1 year after August 14, 2008, the manufacturer of a children’s product shall place permanent, distinguishing marks on the product and its packaging, to the extent practicable, that will enable— (i) the manufacturer to ascertain the location and date of production of the product, cohort information (including the batch, run number, or other identifying characteristic), and any other information determined by the manufacturer to facilitate ascertaining the specific source of the product by reference to those marks; and (ii) the ultimate purchaser to ascertain the manufacturer or private labeler, location and date of production of the product, and cohort information (including the batch, run number, or other identifying characteristic).
+- id: cpsc-toy-mandatory-standard
+  title: CPSC toy guidance — mandatory standard
+  text: >-
+    Section 106 of the Consumer Product Safety Improvement Act of 2008 (CPSIA), 15 U.S.C. § 2056b, made ASTM F963 a mandatory consumer product safety standard for children's toys. The requirement is codified at 16 C.F.R. part 1250, and 16 C.F.R. § 1250.2 identifies the latest Commission-accepted version of ASTM F963 that is mandatory.
+  source_url: https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety
+- id: cpsc-toy-certification
+  title: CPSC toy guidance — certification
+  text: >-
+    Section 14(a)(2) of the Consumer Product Safety Act (CPSA) requires manufacturers and importers of children's products subject to a regulation, standard, or ban enforced by the CPSC to certify that those products meet the requirements of the standard by issuing a CPC.
+  source_url: https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety
+- id: cpsc-toy-version-timeline
+  title: CPSC toy guidance — ASTM F963 version by manufacture date
+  text: >-
+    Since 16 C.F.R. part 1250 is a consumer product safety standard under the CPSA, the effective date of any successor standard is tied to the date of manufacture. Manufactured after April 20, 2024 must meet ASTM F963-23. Manufactured after February 28, 2018 must meet ASTM F963-17.
+  source_url: https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statues/Childrens-Products
-notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+source_url: https://www.govinfo.gov/link/uscode/15/2063
+notes: 'Official statutory excerpts checked 2026-09-16; PDF whitespace normalized. Section 2056b(a) contains the original incorporation provision; current ASTM edition and effective dates require 16 CFR 1250. Removed incorrect legacy 2056a/2057c anchors. This collection does not supply lead/phthalate limit provisions.'

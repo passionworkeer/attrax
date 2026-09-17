@@ -552,9 +552,13 @@ class ScanService:
         re-run is identical modulo the extended evidence set.
         """
         result = session.result if isinstance(session.result, Mapping) else {}
-        query = str(result.get("query") or result.get("complianceReport") or "").strip()
+        # Generated prose is not a user request or product evidence. Feeding
+        # it back here entrenches earlier hallucinations after supplementation.
+        query = str(result.get("originalQuery") or result.get("query") or "").strip()
         product = str(result.get("productName") or "").strip()
-        return (query or "compliance re-check")[:2000], (product or "product")[:500]
+        if product.lower() in {"product", "产品", "通用产品"}:
+            product = ""
+        return (query or f"重新根据产品照片和资料评估 {session.category} 在 {', '.join(session.markets)} 市场的合规风险")[:2000], product[:500]
 
     @staticmethod
     def _revision_declared_facts(session: ScanSession) -> dict[str, str]:
@@ -637,6 +641,10 @@ class ScanService:
             current = self.backend.get_session(job.session_id)
             if current is None:
                 return
+            from rag_service.application.revision_comparison import compare_revisions
+            comparison = compare_revisions(current.result or {}, result)
+            if comparison is not None:
+                result["revisionComparison"] = comparison
             self.backend.save_session(
                 current.transition(
                     ttl_hours=self.session_ttl_hours,
@@ -1093,6 +1101,7 @@ class ScanService:
                 latency_ms += int(duration)
         result = {
             "sessionId": job.session_id,
+            "originalQuery": job.query,
             "productName": job.product,
             "productCategory": job.category,
             "targetMarkets": job.markets,

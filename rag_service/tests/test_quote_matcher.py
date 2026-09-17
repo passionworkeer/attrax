@@ -473,3 +473,9 @@ class TestVerifierNodeIntegration:
 
 if __name__ == "__main__":
     raise SystemExit(pytest.main([__file__, "-v"]))
+def test_normalized_offsets_after_expanded_trademark_symbol():
+    from rag_service.verify.quote_matcher import match_quote
+    source = "Sorting Hat™ V39\nThis item was tested\nby Bureau Veritas."
+    span, status = match_quote(source, "This item was tested by Bureau Veritas.")
+    assert status == "matched"
+    assert source[span[0]:span[1]] == "This item was tested\nby Bureau Veritas."

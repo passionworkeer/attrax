@@ -1,0 +1,22 @@
+id: US-16-CFR-1250
+official_citation: 16 CFR § 1250.2
+short_name: 美国强制玩具安全标准
+region: US
+license: public
+language: en
+source_kind: official_verbatim
+last_verified: '2026-09-17'
+last_verified_by: exa-official-source-review
+source_url: https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1250/section-1250.2
+schema_version: 1
+notes: 'Official eCFR text and CPSC toy-safety guidance checked with Exa. ASTM F963 is incorporated by reference; the applicable edition depends on manufacture date.'
+articles:
+- id: section-1250-2-a
+  title: §1250.2(a) — Requirements for toy safety
+  text: >-
+    Each toy must comply with all applicable provisions of ASTM F963-23; the applicable edition depends on the manufacture date.
+- id: cpsc-version-timeline
+  title: CPSC toy guidance — ASTM F963 edition by manufacture date
+  text: >-
+    CPSC guidance states that toys manufactured after April 20, 2024 must meet ASTM F963-23, while toys manufactured after February 28, 2018 and on or before April 20, 2024 may be assessed against ASTM F963-17.
+  source_url: https://www.cpsc.gov/Business--Manufacturing/Business-Education/Toy-Safety

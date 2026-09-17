@@ -203,7 +203,7 @@ _ABSENT_FACT_KEYS: dict[str, set[str]] = {
     # fact key → id/region tokens that depend on that fact being PRESENT
     "battery": {"battery", "batteries", "battery_compartment", "charging_case"},
     "builtin_battery": {"battery", "batteries", "battery_compartment", "charging_case"},
-    "wireless": {"wireless", "bluetooth", "wifi", "rf"},
+    "wireless": {"wireless", "radio", "bluetooth", "wifi", "rf"},
     "cords_ropes": {"cords", "ropes", "straps", "elastic"},
     "magnets": {"magnets", "magnetic"},
     "adapter_included": {"adapter", "external_power", "external_adapter"},
@@ -391,6 +391,8 @@ def build_findings(
     are skipped instead of surfacing as 待补拍.
     """
     checks = _check_by_id(category)
+    from rag_service.pipeline.product_evidence import reconcile_declarations
+    _, declared_facts, _ = reconcile_declarations(declared_facts, observations, [])
     findings: list[dict[str, Any]] = []
     emitted_checks: set[str] = set()
     skipped_checks: set[str] = set()
@@ -427,8 +429,8 @@ def build_findings(
         effective_obs = obs
         if semantic == "hazard_presence" and _is_negative_hazard_observation(obs):
             hazard_confirmed_absent.add(check_id)
-            if obs.get("visibility") == "not_in_view":
-                effective_obs = {**obs, "visibility": "present_readable"}
+            if obs.get("visibility") == "present_readable":
+                effective_obs = {**obs, "visibility": "absent_in_visible_scope"}
 
         rank = _RANK_BY_SEMANTIC.get(semantic, _RANK_BY_SEMANTIC["required_presence"])
         visibility = str(effective_obs.get("visibility") or "not_assessed")

@@ -196,6 +196,12 @@ class FileBackend:
         with self._lock:
             for path in directory.glob("upload_*.json"):
                 uploads.append(StoredUpload.model_validate_json(path.read_text(encoding="utf-8")))
+        # Upload ids are random UUIDs, so sorting metadata filenames changes
+        # the user's upload order. Vision observations use positional
+        # ``vision-image-N`` ids; the result adapter and asset endpoint must
+        # expose images in the same order or a valid bbox is drawn on another
+        # photo. ``created_at`` is persisted with every upload and therefore
+        # provides the stable submission order across process restarts.
         return sorted(uploads, key=lambda item: (item.created_at, item.upload_id))
 
     def get_upload(self, session_id: str, upload_id: str) -> StoredUpload | None:

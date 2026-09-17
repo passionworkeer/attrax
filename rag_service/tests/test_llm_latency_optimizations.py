@@ -101,6 +101,7 @@ class TestMinimaxThinkingModeEnv:
         analyzer = VisionAnalyzer("k")
         analyzer.model = "MiniMax-M3"
         analyzer.base_url = "https://mm.example/anthropic/v1"
+        analyzer.thinking = ""
         analyzer._call_mimotalk([{"role": "user", "content": "hi"}])
         return captured["body"]
 

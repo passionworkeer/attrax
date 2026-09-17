@@ -83,10 +83,10 @@ async def lifespan(app: FastAPI):
     from rag_service.pipeline.nodes import vision as vision_node_module
 
     generator_node_module.set_generator(
-        ReportGenerator(api_key=settings.effective_minimax_api_key or None)
+        ReportGenerator(api_key=settings.effective_llm_api_key or None)
     )
     vision_node_module.set_vision_analyzer(
-        vision_node.VisionAnalyzer(settings.effective_minimax_api_key or None)
+        vision_node.VisionAnalyzer(settings.effective_llm_api_key or None)
     )
 
     # KB + regulation library sanity: a scan without these degrades to
@@ -463,14 +463,17 @@ def _readiness_snapshot() -> dict:
         library_ok = len(article_loader.list_regulation_ids()) > 0
     except Exception:
         pass
+    llm_ready = settings.demo_mode or bool(settings.effective_llm_api_key.strip())
     checks = {
         "kb_anchors": kb_ok,
         "regulation_library": library_ok,
-        "minimax_api_key": settings.demo_mode or bool(settings.effective_minimax_api_key.strip()),
+        "llm_api_key": llm_ready,
+        # Retained for existing deployment probes during the env migration.
+        "minimax_api_key": llm_ready,
         "config_loaded": True,
         "scan_service": hasattr(app.state, "scan_service"),
     }
-    gate_keys = ("kb_anchors", "regulation_library", "minimax_api_key", "config_loaded", "scan_service")
+    gate_keys = ("kb_anchors", "regulation_library", "llm_api_key", "config_loaded", "scan_service")
     return {
         "ready": all(checks[key] for key in gate_keys),
         "checks": checks,
@@ -796,11 +799,11 @@ async def _run_scan_request(
     if settings.demo_mode:
         return ScanResponse(
             status="DEMO",
-            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MINIMAX_API_KEY`。\n\n参考文档：`.env.example` 或 `rag_service/.env`",
+            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `LLM_API_KEY`。\n\n参考文档：`.env.example` 或 `rag_service/.env`",
             agent_trace=[{
                 "node": "demo",
                 "status": "DEMO",
-                "message": "demo mode active — configure MINIMAX_API_KEY for full service",
+                "message": "demo mode active — configure LLM_API_KEY for full service",
             }],
             loop_count=0,
         )
@@ -981,7 +984,7 @@ async def profit_report(req: ProfitReportRequest):
     if settings.demo_mode:
         return ProfitReportResponse(
             status="DEMO",
-            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `MINIMAX_API_KEY`。",
+            report="## Demo 模式\n\n当前运行于演示模式，未连接真实 LLM 服务。\n\n要启用完整功能，请配置环境变量 `LLM_API_KEY`。",
             product=product_type,
             market=market,
         )
@@ -994,7 +997,7 @@ async def profit_report(req: ProfitReportRequest):
         # table-tennis-racket product types (see generate/prebuilt_profit_data).
         chunks: list[dict] = []
 
-        gen = ReportGenerator(api_key=settings.effective_minimax_api_key or None)
+        gen = ReportGenerator(api_key=settings.effective_llm_api_key or None)
         return gen.generate_profit_report(
             product_type=product_type,
             market=market,

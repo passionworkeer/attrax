@@ -31,6 +31,44 @@ from rag_service.pipeline.nodes.visual_checks import (
     deferred_evidence_checks,
     load_profile,
 )
+from rag_service.pipeline.nodes.vision import VisionAnalyzer
+
+
+def test_multi_image_checklist_retries_only_empty_image_once():
+    analyzer = object.__new__(VisionAnalyzer)
+    analyzer.api_key = "test-key"
+    calls: dict[bytes, int] = {}
+
+    def fake_analyze(image_data, _mime_type, _checks):
+        calls[image_data] = calls.get(image_data, 0) + 1
+        if image_data == b"nameplate" and calls[image_data] == 1:
+            return {"description": "", "certifications": [], "observations": []}
+        return {
+            "description": image_data.decode("ascii"),
+            "certifications": [],
+            "observations": [
+                {
+                    "check_id": "common.product.overview",
+                    "visibility": "present_readable",
+                    "description": image_data.decode("ascii"),
+                    "bbox": {"x": 0.1, "y": 0.1, "w": 0.2, "h": 0.2},
+                }
+            ],
+        }
+
+    analyzer.analyze_single_image_with_checks = fake_analyze
+    result = analyzer.analyze_images_with_checks(
+        [
+            {"buffer": b"overall", "mimeType": "image/jpeg"},
+            {"buffer": b"nameplate", "mimeType": "image/jpeg"},
+            {"buffer": b"ports", "mimeType": "image/jpeg"},
+        ],
+        [{"id": "common.product.overview", "title": "产品整体"}],
+        session_id="scan_retry",
+    )
+
+    assert calls == {b"overall": 1, b"nameplate": 2, b"ports": 1}
+    assert [item["imageIndex"] for item in result["observations"]] == [0, 1, 2]
 
 
 class TestBboxRegion:
@@ -158,6 +196,37 @@ class TestVerifyObservations:
         assert report.accepted == ["o1"]
         assert report.deduplicated == ["o2"]
 
+    def test_keeps_distinct_visible_marks_for_same_check_and_image(self):
+        report = verify_observations(
+            [
+                {
+                    "observationId": "mark-ce",
+                    "checkId": "common.certification_marks.visible",
+                    "imageId": "vision-image-0",
+                    "observedText": "CE",
+                    "region": {"kind": "bbox", "bbox": {"x": 0.1, "y": 0.1, "w": 0.1, "h": 0.1}},
+                },
+                {
+                    "observationId": "mark-fcc",
+                    "checkId": "common.certification_marks.visible",
+                    "imageId": "vision-image-0",
+                    "observedText": "FCC",
+                    "region": {"kind": "bbox", "bbox": {"x": 0.3, "y": 0.1, "w": 0.1, "h": 0.1}},
+                },
+                {
+                    "observationId": "mark-ukca",
+                    "checkId": "common.certification_marks.visible",
+                    "imageId": "vision-image-0",
+                    "observedText": "UKCA",
+                    "region": {"kind": "bbox", "bbox": {"x": 0.5, "y": 0.1, "w": 0.1, "h": 0.1}},
+                },
+            ],
+            known_image_ids={"vision-image-0"},
+        )
+
+        assert report.accepted == ["mark-ce", "mark-fcc", "mark-ukca"]
+        assert report.deduplicated == []
+
     def test_annotate_verification_normalizes_bbox(self):
         observations = [
             {
@@ -213,6 +282,15 @@ class TestProfiles:
         ids = [check.id for check in electronics]
         assert any(check_id.startswith("electronics.") for check_id in ids)
         assert "common.nameplate.readability" in ids
+
+    def test_common_profile_includes_individually_grounded_certification_marks(self):
+        common = effective_checks("other")
+        check = next(
+            item for item in common
+            if item.id == "common.certification_marks.visible"
+        )
+        assert check.semantic == "record_only"
+        assert {"vision", "ocr"} <= set(check.methods)
 
     def test_aliases_map(self):
         assert load_profile("toys").profile_id == "toy"
@@ -352,3 +430,59 @@ class TestVisionTextObservationsPassthrough:
         assert by_check["common.nameplate.readability"]["region"] is None
         # The check the model skipped is backfilled, not dropped.
         assert by_check["common.brand_model.visible"]["visibility"] == "not_assessed"
+
+    def test_visible_marks_expand_to_individual_grounded_observations(self):
+        from rag_service.pipeline.nodes.vision import (
+            _parse_checklist_observations,
+            _parse_vision_text,
+        )
+
+        raw = json.dumps(
+            {
+                "product_type": "移动电源",
+                "identity_confidence": "high",
+                "visible_certification_marks": ["CE", "FCC", "UKCA"],
+                "visible_marks": [
+                    {
+                        "mark": "CE",
+                        "description": "铭牌右侧的 CE 图形",
+                        "bbox": {"x": 0.55, "y": 0.56, "w": 0.07, "h": 0.08},
+                    },
+                    {
+                        "mark": "FCC",
+                        "description": "CE 下方的 FCC 字样",
+                        "bbox": {"x": 0.55, "y": 0.67, "w": 0.09, "h": 0.06},
+                    },
+                    {
+                        "mark": "UKCA",
+                        "description": "铭牌右下角的 UKCA 图形",
+                        "bbox": {"x": 0.67, "y": 0.66, "w": 0.1, "h": 0.08},
+                    },
+                ],
+                "observations": [
+                    {
+                        "check_id": "common.certification_marks.visible",
+                        "visibility": "present_readable",
+                        "observed_text": "CE/FCC/UKCA",
+                        "description": "铭牌上可见多个标志",
+                        "bbox": {"x": 0.5, "y": 0.5, "w": 0.3, "h": 0.3},
+                    }
+                ],
+            },
+            ensure_ascii=False,
+        )
+
+        structured = _parse_vision_text(raw, raw)
+        parsed = _parse_checklist_observations(
+            structured,
+            image_index=0,
+            session_id="scan_marks",
+            selected_check_ids=["common.certification_marks.visible"],
+        )
+
+        assert [entry["observedText"] for entry in parsed] == ["CE", "FCC", "UKCA"]
+        assert len({entry["observationId"] for entry in parsed}) == 3
+        assert all(entry["region"]["kind"] == "bbox" for entry in parsed)
+        assert parsed[1]["region"]["bbox"] == {
+            "x": 0.55, "y": 0.67, "w": 0.09, "h": 0.06,
+        }

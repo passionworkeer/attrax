@@ -3,34 +3,165 @@ official_citation: Directive 2014/35/EU
 short_name: LVD (低电压安全)
 region: EU
 license: public
-last_verified: '2026-09-11'
-last_verified_by: llm-assisted
+last_verified: '2026-09-16'
+last_verified_by: EUR-Lex-snapshot-import
 language: en
 source_kind: unverified
 articles:
 - id: art-3
-  title: Placing on the market and safety objectives
-  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Making available on the market and safety objectives
+  text: Article 3 Making available on the market and safety objectives Electrical equipment may be made available on the Union
+    market only if, having been constructed in accordance with good engineering practice in safety matters in force in the
+    Union, it does not endanger the health and safety of persons and domestic animals, or property, when properly installed
+    and maintained and used in applications for which it was made. The principal elements of the safety objectives are listed
+    in Annex I.
 - id: art-6
-  title: Conformity assessment
-  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Obligations of manufacturers
+  text: Article 6 Obligations of manufacturers 1. When placing their electrical equipment on the market, manufacturers shall
+    ensure that it has been designed and manufactured in accordance with the safety objectives referred to in Article 3 and
+    set out in Annex I. 2. Manufacturers shall draw up the technical documentation referred to in Annex III and carry out
+    the conformity assessment procedure referred to in Annex III or have it carried out. Where compliance of electrical equipment
+    with the safety objectives referred to in Article 3 and set out in Annex I has been demonstrated by the conformity assessment
+    procedure referred to in the first subparagraph, manufacturers shall draw up an EU declaration of conformity and affix
+    the CE marking. 3. Manufacturers shall keep the technical documentation referred to in Annex III and the EU declaration
+    of conformity for 10 years after the electrical equipment has been placed on the market. 4. Manufacturers shall ensure
+    that procedures are in place for series production to remain in conformity with this Directive. Changes in product design
+    or characteristics and changes in the harmonised standards referred to in Article 12, the international or national standards
+    referred to in Articles 13 and 14, or in other technical specifications by reference to which conformity of electrical
+    equipment is declared shall be adequately taken into account. When deemed appropriate with regard to the risks presented
+    by electrical equipment, manufacturers shall, to protect the health and safety of consumers, carry out sample testing
+    of electrical equipment made available on the market, investigate, and, if necessary, keep a register of complaints, of
+    non-conforming electrical equipment and electrical equipment recalls, and shall keep distributors informed of any such
+    monitoring. 5. Manufacturers shall ensure that electrical equipment which they have placed on the market bears a type,
+    batch or serial number or other element allowing its identification, or, where the size or nature of the electrical equipment
+    does not allow it, that the required information is provided on its packaging or in a document accompanying the electrical
+    equipment. 6. Manufacturers shall indicate on the electrical equipment their name, registered trade name or registered
+    trade mark and the postal address at which they can be contacted or, where that is not possible, on its packaging or in
+    a document accompanying the electrical equipment. The address shall indicate a single point at which the manufacturer
+    can be contacted. The contact details shall be in a language easily understood by end-users and market surveillance authorities.
+    7. Manufacturers shall ensure that the electrical equipment is accompanied by instructions and safety information in a
+    language which can be easily understood by consumers and other end-users, as determined by the Member State concerned.
+    Such instructions and safety information, as well as any labelling, shall be clear, understandable and intelligible. 8.
+    Manufacturers who consider or have reason to believe that electrical equipment which they have placed on the market is
+    not in conformity with this Directive shall immediately take the corrective measures necessary to bring that electrical
+    equipment into conformity, to withdraw it or recall it, if appropriate. Furthermore, where the electrical equipment presents
+    a risk, manufacturers shall immediately inform the competent national authorities of the Member States in which they made
+    the electrical equipment available on the market to that effect, giving details, in particular, of the non-compliance
+    and of any corrective measures taken. 9. Manufacturers shall, further to a reasoned request from a competent national
+    authority, provide it with all the information and documentation in paper or electronic form necessary to demonstrate
+    the conformity of the electrical equipment with this Directive, in a language which can be easily understood by that authority.
+    They shall cooperate with that authority, at its request, on any action taken to eliminate the risks posed by electrical
+    equipment which they have placed on the market.
 - id: art-7
-  title: Declaration of conformity
-  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: Authorised representatives
+  text: 'Article 7 Authorised representatives 1. A manufacturer may, by a written mandate, appoint an authorised representative.
+    The obligations laid down in Article 6(1) and the obligation to draw up technical documentation referred to in Article
+    6(2) shall not form part of the authorised representative’s mandate. 2. An authorised representative shall perform the
+    tasks specified in the mandate received from the manufacturer. The mandate shall allow the authorised representative to
+    do at least the following: (a) keep the EU declaration of conformity and the technical documentation at the disposal of
+    national market surveillance authorities for 10 years after the electrical equipment has been placed on the market; (b)
+    further to a reasoned request from a competent national authority, provide that authority with all the information and
+    documentation necessary to demonstrate the conformity of electrical equipment; (c) cooperate with the competent national
+    authorities, at their request, on any action taken to eliminate the risks posed by electrical equipment covered by the
+    authorised representative’s mandate.'
 - id: annex-1
-  title: Principal safety objectives (Annex I)
-  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
+  title: ANNEX I PRINCIPAL ELEMENTS OF THE SAFETY OBJECTIVES FOR ELECTRICAL EQUIPMENT DESIGNED FOR USE WITHIN
+  text: 'ANNEX I PRINCIPAL ELEMENTS OF THE SAFETY OBJECTIVES FOR ELECTRICAL EQUIPMENT DESIGNED FOR USE WITHIN CERTAIN VOLTAGE
+    LIMITS 1. General conditions (a) the essential characteristics, the recognition and observance of which will ensure that
+    electrical equipment will be used safely and in applications for which it was made, shall be marked on the electrical
+    equipment, or, if this is not possible, on an accompanying document; (b) the electrical equipment, together with its component
+    parts, shall be made in such a way as to ensure that it can be safely and properly assembled and connected; (c) the electrical
+    equipment shall be so designed and manufactured as to ensure that protection against the hazards set out in points 2 and
+    3 is assured, providing that the equipment is used in applications for which it was made and is adequately maintained.
+    2. Protection against hazards arising from the electrical equipment Measures of a technical nature shall be laid down
+    in accordance with point 1, in order to ensure that: (a) persons and domestic animals are adequately protected against
+    the danger of physical injury or other harm which might be caused by direct or indirect contact; (b) temperatures, arcs
+    or radiation which would cause a danger, are not produced; (c) persons, domestic animals and property are adequately protected
+    against non-electrical dangers caused by the electrical equipment which are revealed by experience; (d) the insulation
+    is suitable for foreseeable conditions. 3. Protection against hazards which may be caused by external influences on the
+    electrical equipment Technical measures shall be laid down in accordance with point 1, in order to ensure that the electrical
+    equipment: (a) meets the expected mechanical requirements in such a way that persons, domestic animals and property are
+    not endangered; (b) is resistant to non-mechanical influences in expected environmental conditions, in such a way that
+    persons, domestic animals and property are not endangered; (c) does not endanger persons, domestic animals and property
+    in foreseeable conditions of overload.'
 - id: annex-2
-  title: Equipment outside the scope (Annex II)
-  text: 适用于额定电压 50-1000V AC 或 75-1500V DC 的电气设备 (Text condensed from KB key_points; full official text pending verification
-    against the primary source — see regulation `source_url` and `notes`.)
-raw_file: null
-checksum_sha256: null
+  title: ANNEX II EQUIPMENT AND PHENOMENA OUTSIDE THE SCOPE OF THIS DIRECTIVE Electrical equipment for use in
+  text: ANNEX II EQUIPMENT AND PHENOMENA OUTSIDE THE SCOPE OF THIS DIRECTIVE Electrical equipment for use in an explosive
+    atmosphere Electrical equipment for radiology and medical purposes Electrical parts for goods and passenger lifts Electricity
+    meters Plugs and socket outlets for domestic use Electric fence controllers Radio-electrical interference Specialised
+    electrical equipment, for use on ships, aircraft or railways, which complies with the safety provisions drawn up by international
+    bodies in which the Member States participate. Custom built evaluation kits destined for professionals to be used solely
+    at research and development facilities for such purposes.
+- id: art-1
+  title: Subject matter and scope
+  text: Article 1 Subject matter and scope The purpose of this Directive is to ensure that electrical equipment on the market
+    fulfils the requirements providing for a high level of protection of health and safety of persons, and of domestic animals
+    and property, while guaranteeing the functioning of the internal market. This Directive shall apply to electrical equipment
+    designed for use with a voltage rating of between 50 and 1 000 V for alternating current and between 75 and 1 500 V for
+    direct current, other than the equipment and phenomena listed in Annex II.
+- id: art-8
+  title: Obligations of importers
+  text: Article 8 Obligations of importers 1. Importers shall place only compliant electrical equipment on the market. 2.
+    Before placing electrical equipment on the market importers shall ensure that the appropriate conformity assessment procedure
+    has been carried out by the manufacturer. They shall ensure that the manufacturer has drawn up the technical documentation,
+    that the electrical equipment bears the CE marking and is accompanied by the required documents, and that the manufacturer
+    has complied with the requirements set out in Article 6(5) and (6). Where an importer considers or has reason to believe
+    that electrical equipment is not in conformity with the safety objectives referred to in Article 3 and set out in Annex
+    I, he shall not place the electrical equipment on the market until it has been brought into conformity. Furthermore, where
+    the electrical equipment presents a risk, the importer shall inform the manufacturer and the market surveillance authorities
+    to that effect. 3. Importers shall indicate on the electrical equipment their name, registered trade name or registered
+    trade mark and the postal address at which they can be contacted or, where that is not possible, on its packaging or in
+    a document accompanying the electrical equipment. The contact details shall be in a language easily understood by end-users
+    and market surveillance authorities. 4. Importers shall ensure that the electrical equipment is accompanied by instructions
+    and safety information in a language which can be easily understood by consumers and other end-users, as determined by
+    the Member State concerned. 5. Importers shall ensure that, while electrical equipment is under their responsibility,
+    its storage or transport conditions do not jeopardise its compliance with the safety objectives referred to in Article
+    3 and set out in Annex I. 6. When deemed appropriate with regard to the risks presented by electrical equipment, importers
+    shall, to protect the health and safety of consumers, carry out sample testing of electrical equipment made available
+    on the market, investigate and, if necessary, keep a register of complaints, of non-conforming electrical equipment and
+    electrical equipment recalls, and shall keep distributors informed of any such monitoring. 7. Importers who consider or
+    have reason to believe that electrical equipment which they have placed on the market is not in conformity with this Directive
+    shall immediately take the corrective measures necessary to bring that electrical equipment into conformity, to withdraw
+    it or recall it, if appropriate. Furthermore, where the electrical equipment presents a risk, importers shall immediately
+    inform the competent national authorities of the Member States in which they made the electrical equipment available on
+    the market to that effect, giving details, in particular, of the non-compliance and of any corrective measures taken.
+    8. Importers shall, for 10 years after the electrical equipment has been placed on the market, keep a copy of the EU declaration
+    of conformity at the disposal of the market surveillance authorities and ensure that the technical documentation can be
+    made available to those authorities, upon request. 9. Importers shall, further to a reasoned request from a competent
+    national authority, provide it with all the information and documentation in paper or electronic form necessary to demonstrate
+    the conformity of electrical equipment in a language which can be easily understood by that authority. They shall cooperate
+    with that authority, at its request, on any action taken to eliminate the risks posed by electrical equipment which they
+    have placed on the market.
+- id: art-15
+  title: EU declaration of conformity
+  text: Article 15 EU declaration of conformity 1. The EU declaration of conformity shall state that the fulfilment of the
+    safety objectives referred to in Article 3 and set out in Annex I has been demonstrated. 2. The EU declaration of conformity
+    shall have the model structure set out in Annex IV, shall contain the elements specified in Module A as set out in Annex
+    III and shall be continuously updated. It shall be translated into the language or languages required by the Member State
+    in which the electrical equipment is placed or made available on the market. 3. Where electrical equipment is subject
+    to more than one Union act requiring an EU declaration of conformity, a single EU declaration of conformity shall be drawn
+    up in respect of all such Union acts. That declaration shall contain the identification of the Union acts concerned including
+    their publication references. 4. By drawing up the EU declaration of conformity, the manufacturer shall assume responsibility
+    for the compliance of the electrical equipment with the requirements laid down in this Directive.
+- id: art-17
+  title: Rules and conditions for affixing the CE marking
+  text: Article 17 Rules and conditions for affixing the CE marking 1. The CE marking shall be affixed visibly, legibly and
+    indelibly to the electrical equipment or to its data plate. Where that is not possible or not warranted on account of
+    the nature of the electrical equipment, it shall be affixed to the packaging and to the accompanying documents. 2. The
+    CE marking shall be affixed before the electrical equipment is placed on the market. 3. Member States shall build upon
+    existing mechanisms to ensure correct application of the regime governing the CE marking and shall take appropriate action
+    in the event of improper use of that marking.
+- id: art-24
+  title: Penalties
+  text: Article 24 Penalties Member States shall lay down rules on penalties, applicable to infringements by economic operators
+    of the provisions of national law adopted pursuant to this Directive and shall take all measures necessary to ensure that
+    they are enforced. Such rules may include criminal penalties for serious infringements. The penalties provided for shall
+    be effective, proportionate and dissuasive.
+raw_file: data/regulation_sources/lvd-20260530.html
+checksum_sha256: 80d583f258a3119cf2845aae68ff875ada07f346e1424bffd6be9c5c79f890d6
 schema_version: 1
-source_url: https://eur-lex.europa.eu/eli/dir/2014/35/oj
-notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+source_url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014L0035-20260530
+notes: Selected sections from EUR-Lex consolidated text of 2026-05-30. Whitespace normalized. Consolidated text is a documentation
+  tool; authentic legal acts are in the Official Journal linked by EUR-Lex. Replaces unverified repeated summaries and incorrect
+  section titles.
+source_kind: official_verbatim

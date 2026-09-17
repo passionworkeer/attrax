@@ -18,6 +18,7 @@ checks:
     legal_anchor_refs:
       - EU-2009-48-toy
       - US-ASTM-F963-toy
+      - US-16-CFR-1200-toy
 
   - id: toy.warnings.text
     version: 1
@@ -29,6 +30,7 @@ checks:
     evidence_mode: visual
     legal_anchor_refs:
       - EU-2009-48-toy
+      - US-16-CFR-1263-toy
 
   # record_only: 看到小附件只记录形态;尺寸/年龄风险需量规等证据,
   # 不因能看清就判绿,也不生成整改项(plan §4.2 真值表第 5 行)。
@@ -63,6 +65,7 @@ checks:
     evidence_mode: visual
     legal_anchor_refs:
       - KB-toy-EU-2009-48
+      - US-16-CFR-1263-toy
 
   # hazard_presence: 清晰看到尖锐/裂纹/破损 → 外观疑点+原图区域;
   # 区域可见但未见异常 → 无 finding(J02 正例)。
@@ -87,6 +90,7 @@ checks:
       - EU-2009-48-toy
       - US-ASTM-F963-toy
       - US-CPSIA-toy
+      - US-16-CFR-1250-toy
 
   - id: toy.chemical_migration.test
     version: 1
@@ -98,3 +102,4 @@ checks:
     legal_anchor_refs:
       - EU-2009-48-toy
       - US-CPSIA-toy
+      - US-16-CFR-1250-toy

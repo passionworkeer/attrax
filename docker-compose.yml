@@ -48,13 +48,19 @@ services:
     environment:
       ENV: production
       DEMO_MODE: ${DEMO_MODE:-false}
+      LLM_PROVIDER: ${LLM_PROVIDER:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_THINKING: ${LLM_THINKING:-}
+      LLM_TIMEOUT_SECONDS: ${LLM_TIMEOUT_SECONDS:-240}
       MINIMAX_API_KEY: ${MINIMAX_API_KEY:-}
       MINIMAX_BASE_URL: ${MINIMAX_BASE_URL:-https://api.minimaxi.com/anthropic/v1}
       MINIMAX_MODEL: ${MINIMAX_MODEL:-MiniMax-M3}
       MIMOTALK_API_KEY: ${MIMOTALK_API_KEY:-}
       MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
       # DeepSeek 降级通道：vision（OpenAI 兼容）与 generate（Anthropic 兼容）
-      # 共用 key；留空则仅 primary（MiniMax）一条腿，挂了就退化到 mock。
+      # 共用 key；留空则只使用 primary，主通道不可用时退化到 mock。
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
       DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
       DEEPSEEK_ANTHROPIC_BASE_URL: ${DEEPSEEK_ANTHROPIC_BASE_URL:-https://api.deepseek.com/anthropic/v1}

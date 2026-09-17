@@ -111,8 +111,10 @@ def _build_position_map(original: str) -> tuple[str, list[int]]:
                 orig_indices.append(i)
                 prev_was_space = True
             continue
-        norm_chars.append(ch_norm)
-        orig_indices.append(i)
+        # Compatibility symbols can expand: ™ -> TM, ﬁ -> fi. Every
+        # normalized character must retain an offset or later quotes drift.
+        norm_chars.extend(ch_norm)
+        orig_indices.extend([i] * len(ch_norm))
         prev_was_space = False
     return ("".join(norm_chars), orig_indices)
 
@@ -141,10 +143,7 @@ def _denormalize_span(
     # last matched norm char so slicing original[start:end] yields the
     # full quoted region.
     end_orig_index = norm_index + norm_length - 1
-    if end_orig_index + 1 < len(position_map):
-        end_orig = position_map[end_orig_index + 1]
-    else:
-        end_orig = position_map[end_orig_index] + 1
+    end_orig = position_map[end_orig_index] + 1
     if end_orig <= start_orig:
         return None
     return (start_orig, end_orig)
@@ -191,6 +190,13 @@ def match_quote(
     idx = article_text.find(quote)
     if idx >= 0:
         return ((idx, idx + len(quote)), "matched")
+
+    # An ellipsis at an excerpt boundary denotes omitted surrounding text,
+    # not a change to the excerpt. Never join fragments across an internal
+    # ellipsis: that could hide a qualification or exception in the law.
+    excerpt = re.sub(r"^(?:\.{3}|…)+|(?:\.{3}|…)+$", "", quote.strip()).strip()
+    if excerpt != quote.strip() and len(excerpt) >= 20 and "..." not in excerpt and "…" not in excerpt:
+        return match_quote(article_text, excerpt)
 
     # Phase 2: whitespace + full-width normalized search
     norm_text, position_map = _build_position_map(article_text[:_NORMALIZE_SCAN_LIMIT])

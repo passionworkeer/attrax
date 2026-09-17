@@ -20,7 +20,7 @@ key_points:
 - 框架指令,按产品类别的具体实施条例 (e.g. 1275/2008 待机功耗、2019/1782 外置电源等)
 - 要求能源相关产品符合生态设计要求 (能效、材料、可修复性等)
 - 需提供符合性技术文档并加贴 CE 标志
-- 数据库 EPREL (European Product Registry for Energy Labelling) 需注册
+- EPREL注册取决于产品是否受具体能源标签授权法规覆盖，不能由家电品类或生态设计义务直接推导；未识别具体标签法规不得生成EPREL补证要求
 risk_hint: 未满足具体实施条例 → 整批产品禁入欧盟
 est_cost: 检测 ¥5K-20K + 注册 ¥2K-5K
 license: public

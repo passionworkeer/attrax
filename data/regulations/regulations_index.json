@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at": "2026-09-17",
-  "count": 58,
+  "count": 61,
   "regulations": [
     {
       "id": "AE-MoIAT-ECAS",
@@ -309,9 +309,9 @@
       "license": "public",
       "official_citation": "Directive 2014/35/EU",
       "short_name": "LVD (低电压安全)",
-      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/35/oj",
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014L0035-20260530",
       "purchase_url": null,
-      "article_count": 5
+      "article_count": 10
     },
     {
       "id": "EU-2014-53",
@@ -319,9 +319,9 @@
       "license": "public",
       "official_citation": "Directive 2014/53/EU",
       "short_name": "RED (无线电设备指令)",
-      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj",
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02014L0053-20260530",
       "purchase_url": null,
-      "article_count": 8
+      "article_count": 13
     },
     {
       "id": "EU-2023-1542",
@@ -464,6 +464,36 @@
       "article_count": 1
     },
     {
+      "id": "US-16-CFR-1200",
+      "region": "US",
+      "license": "public",
+      "official_citation": "16 CFR § 1200.2",
+      "short_name": "美国儿童产品年龄定位规则",
+      "source_url": "https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1200/section-1200.2",
+      "purchase_url": null,
+      "article_count": 3
+    },
+    {
+      "id": "US-16-CFR-1250",
+      "region": "US",
+      "license": "public",
+      "official_citation": "16 CFR § 1250.2",
+      "short_name": "美国强制玩具安全标准",
+      "source_url": "https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1250/section-1250.2",
+      "purchase_url": null,
+      "article_count": 2
+    },
+    {
+      "id": "US-16-CFR-1263",
+      "region": "US",
+      "license": "public",
+      "official_citation": "16 CFR Part 1263",
+      "short_name": "纽扣电池消费品安全",
+      "source_url": "https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1263",
+      "purchase_url": null,
+      "article_count": 5
+    },
+    {
       "id": "US-21-CFR-174",
       "region": "US",
       "license": "public",
@@ -517,11 +547,11 @@
       "id": "US-CPSIA",
       "region": "US",
       "license": "public",
-      "official_citation": "15 USC §2056a et seq. (Pub.L. 110-314)",
+      "official_citation": "15 USC §§ 2056b, 2063",
       "short_name": "CPSIA (儿童产品安全法)",
-      "source_url": "https://www.cpsc.gov/Regulations-Laws--Standards/Statues/Childrens-Products",
+      "source_url": "https://www.govinfo.gov/link/uscode/15/2063",
       "purchase_url": null,
-      "article_count": 3
+      "article_count": 7
     },
     {
       "id": "US-FCC-15-18",

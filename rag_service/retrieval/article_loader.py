@@ -178,7 +178,7 @@ def _load_all() -> dict[str, dict]:
         else:
             for path in sorted(root.glob("*/*.yaml")):
                 try:
-                    data = yaml.safe_load(path.read_text())
+                    data = yaml.safe_load(path.read_text(encoding="utf-8"))
                 except Exception as exc:
                     logger.error("Failed to load regulation YAML %s: %r", path, exc)
                     continue

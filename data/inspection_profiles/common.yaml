@@ -29,6 +29,18 @@ checks:
     evidence_mode: visual
     legal_anchor_refs: []
 
+  # record_only: 每个清晰可见的认证/环保/安全标志单独定位；识别到标志
+  # 只代表图像事实，不代表认证真实有效或产品已合规。
+  - id: common.certification_marks.visible
+    version: 1
+    title: 可见认证、环保与安全标志（逐个框选）
+    semantic: record_only
+    target_regions: [certification_mark, environmental_mark, safety_mark]
+    required_views: [nameplate_closeup, packaging]
+    methods: [vision, ocr]
+    evidence_mode: visual
+    legal_anchor_refs: []
+
   - id: common.brand_model.visible
     version: 1
     title: 品牌与型号标识
@@ -47,7 +59,8 @@ checks:
     required_views: [nameplate_closeup]
     methods: [vision, ocr]
     evidence_mode: visual
-    legal_anchor_refs: []
+    legal_anchor_refs:
+      - US-CPSIA-toy
 
   - id: common.warning_text.language
     version: 1

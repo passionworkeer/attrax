@@ -1,0 +1,22 @@
+id: KB-toy-US-US-16-CFR-1200
+regulation_id: US-16-CFR-1200
+doc_name: Definition of Children's Product
+official_citation: 16 CFR § 1200.2
+short_name: 美国儿童产品年龄定位规则
+source: category
+primary_source: toy
+applies_if:
+  category: [toy]
+  features_any: []
+  markets: [US]
+key_articles: [section-1200-2-a, section-1200-2-c1, section-1200-2-c2-c4]
+key_points:
+- 年龄标签只是四项判定因素之一，不能仅凭18+标识排除儿童产品规则
+- 需结合包装与广告呈现、消费者通常认知、合理可预见用途和CPSC年龄指南
+- 成人收藏定位与儿童玩耍吸引力冲突时，应保留适用范围待确认状态
+license: public
+source_url: https://www.ecfr.gov/current/title-16/chapter-II/subchapter-B/part-1200/section-1200.2
+last_verified: '2026-09-17'
+verified_by: exa-official-source-review
+verification_status: verified
+schema_version: 1

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-vision.py - Vision analysis node (MiniMax-M3 primary, DeepSeek fallback)
+vision.py - Vision analysis node (configured primary, DeepSeek fallback)
 
 Analyzes uploaded product images to extract:
 - Product type and category
@@ -31,6 +31,8 @@ import urllib.request
 import urllib.error
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
+
+from rag_service.llm_response import extract_text_blocks
 
 logger = logging.getLogger(__name__)
 
@@ -97,6 +99,13 @@ CHECKLIST_PROMPT_TEMPLATE = """你是产品视觉取证助手。对下面列出�
   "identity_confidence": "high|medium|low",
   "core_features": ["最多 4 条可见且与合规相关的特征"],
   "visible_certification_marks": ["仅图片中实际清晰可见的 CE/FCC/UKCA/CCC/RoHS/WEEE/REACH 标志"],
+  "visible_marks": [
+    {{
+      "mark": "单个可见标志的名称，如 CE、FCC、UKCA、WEEE、回收、双重绝缘",
+      "description": "该标志在图中的位置",
+      "bbox": {{"x": 0.0, "y": 0.0, "w": 0.0, "h": 0.0}}
+    }}
+  ],
   "questions_needed": ["需要用户补充确认的信息；没有就 []"],
   "observations": [
     {{
@@ -113,13 +122,16 @@ CHECKLIST_PROMPT_TEMPLATE = """你是产品视觉取证助手。对下面列出�
 - visibility 只能取上面五个值；清单里每一项都必须有一条 observation，不知道的用 not_in_view。
 - bbox 是归一化坐标（0.0-1.0），只有**肉眼可定位**的观察才填 bbox；not_in_view 的项 bbox 为 null。
 - absent_in_visible_scope 仅当完整标签区域清晰可见、但清单期望的字段确实未出现时使用；它不是"产品缺少该标识"的结论。
+- 对 semantic=hazard_presence 的外观缺陷/尖锐/磁体绳带检查：present_readable 表示清晰看到了危险或缺陷本身；区域清晰且未发现异常时必须用 absent_in_visible_scope。不得把“表面平整、无破损”标成缺陷 present_readable；也不要因为没有缺陷而用 not_in_view。
 - 不得推断被遮挡/内部部件的属性；不得输出法规 ID 或合规结论。
-- 只有完整、清晰可见的标志才可写入 visible_certification_marks。"""
+- 只有完整、清晰可见的标志才可写入 visible_certification_marks。
+- 对 common.certification_marks.visible：仍在 observations 中返回一条总体观察；同时把 CE、FCC、UKCA、CCC、RoHS、WEEE（划叉垃圾桶）、回收、双重绝缘、室内使用、警告三角形等每个清晰可见标志分别写入 visible_marks。每个 visible_marks 元素只包含一个标志，并给出紧贴该标志的 bbox；不得使用整块铭牌作为多个标志的共同框。若一个标志也看不清，visible_marks 返回空数组。
+"""
 
 # Bump when PROMPT / CHECKLIST_PROMPT_TEMPLATE semantics change — the
 # observation cache keys on this so stale analyses never mix with new
 # prompt behavior (plan §10.3: 图像观察按 hash＋模型＋Prompt 版本缓存).
-VISION_PROMPT_VERSION = "vision-prompt/v2-2026-09-13"
+VISION_PROMPT_VERSION = "vision-prompt/v6-hazard-semantics-2026-09-16"
 
 _analyzer_instance = None
 _is_injected = False
@@ -147,7 +159,7 @@ def _get_analyzer():
     global _analyzer_instance, _is_injected
     if _analyzer_instance is None and not _is_injected:
         from rag_service.config import settings
-        _analyzer_instance = VisionAnalyzer(settings.effective_minimax_api_key or None)
+        _analyzer_instance = VisionAnalyzer(settings.effective_llm_api_key or None)
     return _analyzer_instance
 
 
@@ -231,9 +243,9 @@ def _maybe_downscale(image_data: bytes) -> bytes:
 
 
 class VisionAnalyzer:
-    """Vision analysis: MiniMax Anthropic API, degrading to DeepSeek.
+    """Vision analysis through the configured primary, degrading to DeepSeek.
 
-    MiniMax is the primary provider; when its call returns nothing (timeout,
+    The configured Anthropic-compatible provider is primary. When its call returns nothing (timeout,
     network failure, 4xx/5xx) the same image request is retried against the
     OpenAI-compatible fallback endpoint. ``available`` is True when either
     provider is configured, so a deployment with only the fallback key still
@@ -241,8 +253,17 @@ class VisionAnalyzer:
     """
 
     def __init__(self, api_key: Optional[str] = None, fallback_api_key: Optional[str] = None):
-        from rag_service.config import resolve_deepseek_config, resolve_minimax_config
-        self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
+        from rag_service.config import (
+            resolve_deepseek_config,
+            resolve_llm_config,
+            resolve_llm_provider,
+            resolve_llm_thinking,
+            resolve_llm_timeout_seconds,
+        )
+        self.api_key, self.base_url, self.model = resolve_llm_config(api_key)
+        self.provider = resolve_llm_provider()
+        self.thinking = resolve_llm_thinking()
+        self.timeout_seconds = resolve_llm_timeout_seconds()
         # Element 5 (the Anthropic-compatible base) belongs to the generation
         # fallback in report_generator — vision speaks the OpenAI-compatible one.
         (
@@ -263,7 +284,7 @@ class VisionAnalyzer:
         api_key: str,
         body: bytes,
         headers: dict,
-        timeout: int = 60,
+        timeout: float | None = None,
     ) -> Optional[dict]:
         """POST a JSON body and return the parsed response, or None.
 
@@ -282,7 +303,7 @@ class VisionAnalyzer:
                 headers={"Authorization": f"Bearer {api_key}", **headers},
             )
             try:
-                with _NO_PROXY_OPENER.open(req, timeout=timeout) as r:
+                with _NO_PROXY_OPENER.open(req, timeout=timeout or self.timeout_seconds) as r:
                     return json.loads(r.read())
             except urllib.error.HTTPError as e:
                 # Business error — request reached server, do not retry.
@@ -309,25 +330,25 @@ class VisionAnalyzer:
                 return None
         return None
 
-    def _call_mimotalk(self, messages: list[dict], max_tokens: int = 1536) -> str:
-        """Call the MiniMax Anthropic-compatible /messages endpoint."""
+    def _call_llm(self, messages: list[dict], max_tokens: int = 1536) -> str:
+        """Call the configured Anthropic-compatible /messages endpoint."""
         if not self.api_key:
             return ""
 
-        body = json.dumps({
+        request_body = {
             "model": self.model,
             "max_tokens": max_tokens,
             "temperature": 0.1,
             "messages": messages,
-            # See report_generator._generate_mimotalk — opt-in thinking
-            # disable (env MINIMAX_THINKING_MODE) for lower vision latency.
-            **(
-                {"thinking": {"type": "disabled"}}
-                if os.environ.get("MINIMAX_THINKING_MODE", "adaptive").strip().lower()
-                in {"disabled", "off", "false", "0"}
-                else {}
-            ),
-        }).encode("utf-8")
+        }
+        thinking = self.thinking
+        if not thinking and os.environ.get("MINIMAX_THINKING_MODE", "").strip().lower() in {
+            "disabled", "off", "false", "0",
+        }:
+            thinking = "disabled"
+        if thinking in {"enabled", "disabled"}:
+            request_body["thinking"] = {"type": thinking}
+        body = json.dumps(request_body).encode("utf-8")
 
         data = self._post_json(
             f"{self.base_url.rstrip('/')}/messages",
@@ -341,11 +362,11 @@ class VisionAnalyzer:
         )
         if not isinstance(data, dict):
             return ""
-        content = data.get("content") or [{}]
-        if not isinstance(content, list) or not content:
-            return ""
-        first = content[0] if isinstance(content[0], dict) else {}
-        return first.get("text", "")
+        return extract_text_blocks(data)
+
+    def _call_mimotalk(self, messages: list[dict], max_tokens: int = 1536) -> str:
+        """Compatibility wrapper for older integrations and regression tests."""
+        return self._call_llm(messages, max_tokens=max_tokens)
 
     def _call_deepseek(self, messages: list[dict], max_tokens: Optional[int] = None) -> str:
         """Call the DeepSeek OpenAI-compatible /chat/completions endpoint.
@@ -412,8 +433,8 @@ class VisionAnalyzer:
         prompt: str,
         checks: Optional[list[dict]],
         max_tokens: int,
-    ) -> str:
-        """Return the raw model text for one image, primary provider first.
+    ) -> tuple[str, bool]:
+        """Return ``(raw_text, cache_hit)`` for one image, primary first.
 
         Cache layering: a hit under the primary key short-circuits both
         providers. A fallback result is cached under its own provider-keyed
@@ -428,7 +449,7 @@ class VisionAnalyzer:
         )
         cached = cache.get(primary_key)
         if cached:
-            return cached
+            return cached, True
 
         messages = [{
             "role": "user",
@@ -448,7 +469,7 @@ class VisionAnalyzer:
         text = self._call_mimotalk(messages, max_tokens=max_tokens)
         if text:
             cache.put(primary_key, text)
-            return text
+            return text, False
 
         return self._vision_text_from_fallback(messages, image_data, checks)
 
@@ -457,14 +478,14 @@ class VisionAnalyzer:
         messages: list[dict],
         image_data: bytes,
         checks: Optional[list[dict]],
-    ) -> str:
+    ) -> tuple[str, bool]:
         """Serve one image from the fallback provider (empty when unconfigured).
 
         The primary's ``max_tokens`` is intentionally not forwarded: the two
         providers have different output budgets (see ``_call_deepseek``).
         """
         if not self.fallback_api_key:
-            return ""
+            return "", False
 
         cache = _get_vision_cache()
         fallback_key = cache.cache_key(
@@ -472,7 +493,7 @@ class VisionAnalyzer:
         )
         cached = cache.get(fallback_key)
         if cached:
-            return cached
+            return cached, True
 
         text = self._call_deepseek(messages)
         if text:
@@ -482,7 +503,7 @@ class VisionAnalyzer:
                 self.fallback_model,
             )
             cache.put(fallback_key, text)
-        return text
+        return text, False
 
     # Audit P1-J: sniff magic bytes BEFORE base64-encoding so we don't waste
     # an LLM roundtrip on a corrupted / mismatched / empty upload. Mirrors the
@@ -526,7 +547,9 @@ class VisionAnalyzer:
             }
 
         image_data = _maybe_downscale(image_data)
-        text = self._vision_text(image_data, mime_type, PROMPT, None, 1536)
+        text, _cache_hit = self._vision_text(
+            image_data, mime_type, PROMPT, None, 1536
+        )
 
         if not text:
             return {"error": "vision_call_failed", "description": "", "certifications": []}
@@ -560,11 +583,14 @@ class VisionAnalyzer:
             }
 
         checklist_block = "\n".join(
-            f"- id: {item['id']}｜{item.get('title') or item['id']}" for item in checks
+            f"- id: {item['id']}｜{item.get('title') or item['id']}｜semantic={item.get('semantic', 'record_only')}"
+            for item in checks
         )
         prompt = CHECKLIST_PROMPT_TEMPLATE.format(checklist=checklist_block)
         image_data = _maybe_downscale(image_data)
-        text = self._vision_text(image_data, mime_type, prompt, checks, 3072)
+        text, cache_hit = self._vision_text(
+            image_data, mime_type, prompt, checks, 3072
+        )
         if not text:
             # Checklist call failed — fall back to the legacy prompt so the
             # scan still gets vision data (observations stay empty).
@@ -574,6 +600,7 @@ class VisionAnalyzer:
 
         parsed = _parse_vision_text(text, text)
         parsed.setdefault("observations", [])
+        parsed["cache_hit"] = cache_hit
         return parsed
 
     def analyze_images_with_checks(
@@ -621,9 +648,21 @@ class VisionAnalyzer:
         descriptions: list[str] = []
         seen_certs: dict[str, dict] = {}
         observations: list[dict] = []
+        cache_hits = 0
         for index, result in enumerate(raw_results):
             if not result:
                 continue
+            if not result.get("observations"):
+                retry = self.analyze_single_image_with_checks(
+                    images[index].get("buffer", b""),
+                    images[index].get(
+                        "mime_type", images[index].get("mimeType", "image/jpeg")
+                    ),
+                    checks,
+                )
+                if retry.get("observations"):
+                    result = retry
+            cache_hits += int(bool(result.get("cache_hit")))
             if result.get("description"):
                 descriptions.append(result["description"])
             for cert in result.get("certifications", []):
@@ -646,6 +685,7 @@ class VisionAnalyzer:
             "certifications": certs_list,
             "issues": [],  # checklist mode: judgments live in findings, not here
             "observations": observations,
+            "cache_hits": cache_hits,
             "images_analyzed": len(images),
             "enriched_query": _build_vision_enriched_query(combined, certs_list),
             "cert_summary": cert_str,
@@ -661,6 +701,7 @@ class VisionAnalyzer:
             "combined_description": description,
             "certifications": certs_list,
             "issues": result.get("issues", []),
+            "cache_hits": int(bool(result.get("cache_hit"))),
             "images_analyzed": 1,
             "enriched_query": _build_vision_enriched_query(description, certs_list),
             "cert_summary": ", ".join(c["mark"] for c in certs_list) if certs_list else "未发现认证标志",
@@ -1016,6 +1057,9 @@ def _parse_vision_text(raw: str, raw_response: str) -> dict:
             "observations": structured.get("observations")
             if isinstance(structured.get("observations"), list)
             else [],
+            "visible_marks": structured.get("visible_marks")
+            if isinstance(structured.get("visible_marks"), list)
+            else [],
             "raw_response": raw_response,
             "enriched_query": _build_vision_enriched_query("\n".join(description_parts), certifications),
         }
@@ -1139,11 +1183,19 @@ def _parse_checklist_observations(
 
     selected = set(selected_check_ids)
     parsed: list[dict] = []
+    raw_visible_marks = structured.get("visible_marks")
+    has_visible_marks = (
+        "common.certification_marks.visible" in selected
+        and isinstance(raw_visible_marks, list)
+        and any(isinstance(item, dict) for item in raw_visible_marks)
+    )
     for position, item in enumerate(raw_observations):
         if not isinstance(item, dict):
             continue
         check_id = str(item.get("check_id") or item.get("checkId") or "").strip()
         if check_id not in selected:
+            continue
+        if check_id == "common.certification_marks.visible" and has_visible_marks:
             continue
         visibility = str(item.get("visibility") or "").strip().lower()
         if visibility not in _VALID_VISIBILITIES:
@@ -1190,6 +1242,47 @@ def _parse_checklist_observations(
                 ),
             }
         )
+
+    if has_visible_marks:
+        for mark_position, item in enumerate(raw_visible_marks):
+            if not isinstance(item, dict):
+                continue
+            mark = str(item.get("mark") or "").strip()[:100]
+            bbox_raw = item.get("bbox") or item.get("region")
+            if not mark or not isinstance(bbox_raw, dict):
+                continue
+            try:
+                bbox = {
+                    "x": float(bbox_raw.get("x", -1)),
+                    "y": float(bbox_raw.get("y", -1)),
+                    "w": float(bbox_raw.get("w", bbox_raw.get("width", -1))),
+                    "h": float(bbox_raw.get("h", bbox_raw.get("height", -1))),
+                }
+            except (TypeError, ValueError):
+                continue
+            if not (
+                0 <= bbox["x"] <= 1
+                and 0 <= bbox["y"] <= 1
+                and 0 < bbox["w"] <= 1
+                and 0 < bbox["h"] <= 1
+            ):
+                continue
+            parsed.append(
+                {
+                    "observationId": f"{session_id}-img{image_index}-mark{mark_position}",
+                    "checkId": "common.certification_marks.visible",
+                    "imageIndex": image_index,
+                    "imageId": f"vision-image-{image_index}",
+                    "visibility": "present_readable",
+                    "observedText": mark,
+                    "description": str(item.get("description") or "").strip()[:500],
+                    "region": {
+                        "kind": "bbox",
+                        "coordinateSpace": "normalized_canonical_image",
+                        "bbox": bbox,
+                    },
+                }
+            )
 
     # Server-side full-set validation: every selected check must come back.
     # Missing ones get backfilled as not_assessed so a partial model response
