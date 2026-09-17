@@ -54,6 +54,24 @@ describe("useScanPolling", () => {
     sessionStorage.clear();
   });
 
+  it("keeps the last task state during a transient disconnect and reconnects", async () => {
+    const processing = {sessionId: "test", status: "processing", progress: 40, stageText: "generate:running", stageKey: "report"};
+    const response = {ok: true, json: async () => processing};
+    const fetchSpy = vi.fn().mockResolvedValueOnce(response).mockRejectedValueOnce(new Error("offline")).mockResolvedValue(response);
+    vi.stubGlobal("fetch", fetchSpy);
+    const {result} = renderHook(() => useScanPolling("test"));
+    await flushInitialPoll();
+    const firstContact = result.current.lastContactAt;
+    expect(firstContact).not.toBeNull();
+    await act(async () => { await vi.advanceTimersByTimeAsync(2100); });
+    expect(result.current.reconnecting).toBe(true);
+    expect(result.current.status?.status).toBe("processing");
+    expect(result.current.lastContactAt).toBe(firstContact);
+    await act(async () => { await vi.advanceTimersByTimeAsync(3100); });
+    expect(result.current.reconnecting).toBe(false);
+    expect(result.current.lastContactAt).toBeGreaterThan(firstContact!);
+  });
+
   describe("Initial state", () => {
     it("returns null status before first poll", () => {
       const fetchSpy = makeFetchMock({

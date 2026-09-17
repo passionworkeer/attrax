@@ -38,6 +38,7 @@ export interface ObservationHotspotLayerProps {
   onAnchorClick?: (anchor: LocatedAnchorVM) => void;
   /** Accessible label prefix, localized by the caller. */
   anchorLabel?: string;
+  anchorNumber?: (anchor: LocatedAnchorVM) => number;
   className?: string;
 }
 
@@ -84,6 +85,7 @@ export function ObservationHotspotLayer({
   activeFindingId,
   onAnchorClick,
   anchorLabel = "观察点",
+  anchorNumber,
   className,
 }: ObservationHotspotLayerProps) {
   if (anchors.length === 0) return null;
@@ -141,7 +143,7 @@ export function ObservationHotspotLayer({
             key={`chip-${anchor.observationId}`}
             type="button"
             onClick={() => onAnchorClick?.(anchor)}
-            aria-label={`${anchorLabel} ${index + 1}：${anchor.shortTitle}`}
+            aria-label={`${anchorLabel} ${anchorNumber?.(anchor) ?? index + 1}：${anchor.shortTitle}`}
             className={cn(
               "pointer-events-auto absolute z-[6] flex max-w-[70%] items-center gap-1.5 rounded-full border px-2 py-1 text-[10px] font-semibold text-white shadow-lg backdrop-blur-md transition hover:brightness-110",
               frame.chip,
@@ -149,7 +151,7 @@ export function ObservationHotspotLayer({
             )}
             style={style}
           >
-            <span className="font-mono">{index + 1}</span>
+            <span className="font-mono">{anchorNumber?.(anchor) ?? index + 1}</span>
             <span className="truncate">{anchor.shortTitle}</span>
           </button>
         );

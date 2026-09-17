@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "prebuild": "node scripts/guard-no-server-build.mjs",
     "build": "next build",
     "start": "next start",

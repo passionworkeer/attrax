@@ -1,3 +1,5 @@
+import { PROFIT_FEATURE_ENABLED } from "@/lib/product-scope";
+import { NextResponse } from "next/server";
 import { getDefaultFormat, getResultForReport, getTextReportPayload, localizeResult, type BlazeExportFormat, type BlazeReportLocale, type BlazeReportType } from "@/lib/reporting";
 import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
 import { getScan, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
@@ -31,6 +33,7 @@ export async function GET(
   context: { params: Promise<{ sessionId: string; reportType: string }> }
 ) {
   const { sessionId, reportType } = await context.params;
+  if (reportType === "profit" && !PROFIT_FEATURE_ENABLED) return NextResponse.json({ error: { code: "REPORT_NOT_AVAILABLE", message: "Profit reports are outside the current product scope." } }, { status: 404 });
   const searchParams = new URL(request.url).searchParams;
   const requestedFormat = searchParams.get("format") as BlazeExportFormat | null;
   const locale = (searchParams.get("lang") === "en" ? "en" : "zh") as BlazeReportLocale;

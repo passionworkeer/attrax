@@ -1,4 +1,5 @@
 "use client";
+import { PROFIT_FEATURE_ENABLED } from "@/lib/product-scope";
 
 import { useState } from "react";
 import { buttonVariants } from "@/components/ui/button";
@@ -94,6 +95,7 @@ export function ResultExportButton({
   presetKey?: "charger" | "humidifier" | "toy";
 }) {
   const [busy, setBusy] = useState(false);
+  if (reportType === "profit" && !PROFIT_FEATURE_ENABLED) return null;
   const presetQuery = presetKey ? `&preset=${presetKey}` : "";
   const roadmapNoData =
     reportType === "roadmap" &&

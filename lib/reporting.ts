@@ -1,5 +1,6 @@
 import { createMockScanResult as createBlazeMockScanResult, mockScanResult as blazeMockScanResult } from "@/lib/mock/blaze-scan-result";
 import type { ChecklistItem, ProductCategory, RegulationRef, RiskPoint, ScanResult } from "@/lib/types";
+import { reviewAnnex } from "@/lib/result/review-model";
 
 export type BlazeReportType = "compliance" | "roadmap" | "profit";
 export type BlazeExportFormat = "md" | "csv" | "pdf" | "docx";
@@ -124,6 +125,10 @@ export function localizeResult(result: ScanResult, locale: BlazeReportLocale): S
 
 export function buildComplianceReport(result: ScanResult, locale: BlazeReportLocale) {
   const localized = localizeResult(result, locale);
+  if(result.sessionId!=="demo" && result.reportPackage?.complianceReport) {
+    const body=locale==="en"?(result.reportPackage.complianceReportEn||result.reportPackage.complianceReport):result.reportPackage.complianceReport;
+    return body+reviewAnnex(result,locale);
+  }
 
   // Demo path (homepage /result/demo "65W 充电宝"): 走一份独立预制的
   // 中文 markdown,而不是 riskPoints 拼出来的——后者太碎片,导出后不是

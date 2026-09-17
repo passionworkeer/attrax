@@ -80,7 +80,7 @@ export async function downloadProfitModelAsDocx(model: ProfitRenderModel): Promi
         width: { size: 100, type: WidthType.PERCENTAGE },
         rows: [
           new TableRow({
-            children: model.metrics.map((m) => metricCell(m, ccy)),
+            children: model.metrics.map((m) => metricCell(m)),
           }),
         ],
         borders: {
@@ -290,7 +290,7 @@ export async function downloadProfitModelAsDocx(model: ProfitRenderModel): Promi
 
 // ─── Cell helpers ──────────────────────────────────────────────────────────
 
-function metricCell(m: ProfitMetricCard, ccy: string): TableCell {
+function metricCell(m: ProfitMetricCard): TableCell {
   // On-screen the metric value uses `text-white` on a dark `blaze-panel`
   // background. DOCX cells have a *light* default background, so the page's
   // "white" tone must invert to a dark text color (#073b54, the panel text

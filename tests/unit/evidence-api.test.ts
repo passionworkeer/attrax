@@ -116,4 +116,16 @@ describe("requestRevision", () => {
     );
     await expect(requestRevision("s1")).resolves.toEqual({ status: "already_queued", revision: 2 });
   });
+
+  it("keeps retries stable while separating later supplement rounds", async () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockImplementation(async () => new Response(
+      JSON.stringify({ data: { status: "queued", revision: 2 } }), { status: 202 },
+    ));
+    await requestRevision("s1", "evidence-round-a");
+    await requestRevision("s1", "evidence-round-a");
+    await requestRevision("s1", "evidence-round-b");
+    const keys = fetchSpy.mock.calls.map(([, init]) => JSON.parse(String(init?.body)).idempotencyKey);
+    expect(keys[0]).toBe(keys[1]);
+    expect(keys[2]).not.toBe(keys[0]);
+  });
 });

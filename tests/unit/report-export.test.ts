@@ -179,6 +179,14 @@ describe('parseMarkdownToPdfText', () => {
     expect(result).toMatch(/三级标题/)
   })
 
+  it('renders h4-h6 headings without leaking markdown markers', () => {
+    const result = parseMarkdownToPdfText('#### 产品识别结果\n##### 铭牌与产品追溯\n###### 批次检查')
+    expect(result).toContain('产品识别结果')
+    expect(result).toContain('铭牌与产品追溯')
+    expect(result).toContain('批次检查')
+    expect(result).not.toContain('####')
+  })
+
   it('converts bullet list markers to bullet character', () => {
     const result = parseMarkdownToPdfText('- 项一\n- 项二\n* 项三')
     expect(result).toContain('• 项一')

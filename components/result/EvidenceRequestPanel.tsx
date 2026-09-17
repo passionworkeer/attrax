@@ -23,6 +23,7 @@ export interface EvidenceRequestPanelProps {
     title: string;
     explanation?: string;
     resolvesCheckIds: string[];
+    receivedDocuments?: string[];
   }>;
   locale: "zh" | "en";
 }
@@ -40,6 +41,7 @@ export function EvidenceRequestPanel({
 }: EvidenceRequestPanelProps) {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const revisionIntent = useRef<string | null>(null);
   const [state, setState] = useState<SubmitState>({ phase: "idle" });
   const [pending, startTransition] = useTransition();
 
@@ -59,6 +61,7 @@ export function EvidenceRequestPanel({
         files.map((file) => ({ file })),
         "supplement",
       );
+      revisionIntent.current = crypto.randomUUID();
       setState({
         phase: "done",
         storedCount: result.storedCount,
@@ -75,7 +78,8 @@ export function EvidenceRequestPanel({
   const handleRevision = () => {
     startTransition(async () => {
       try {
-        await requestRevision(sessionId);
+        await requestRevision(sessionId, revisionIntent.current ?? undefined);
+        try { sessionStorage.removeItem(`scan:${sessionId}`); } catch { /* Cache is optional. */ }
         router.push(`/burning/${sessionId}`);
       } catch (error) {
         setState({
@@ -98,11 +102,11 @@ export function EvidenceRequestPanel({
             {zh ? "补充材料" : "SUPPLEMENT"}
           </p>
           <h2 className="mt-3 text-2xl font-semibold text-white sm:text-3xl">
-            {zh ? "补充证据与资料" : "Supplement evidence"}
+            {zh ? "证据待办与补充资料" : "Evidence review & supplements"}
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-7 text-white/58">
             {zh
-              ? `以下 ${requests.length} 项材料可一次补齐（覆盖 ${resolvedCount} 项检查）。上传后保留本次全部照片，重新生成修订版报告。`
+              ? `以下 ${requests.length} 项待办涉及 ${resolvedCount} 项检查。已关联的文件无需重复上传；先核对其覆盖范围，确有缺口再补充资料。`
               : `${requests.length} merged requests below cover ${resolvedCount} checks. Original photos are preserved; submitting generates a revised report.`}
           </p>
         </div>
@@ -115,7 +119,7 @@ export function EvidenceRequestPanel({
             className="rounded-[18px] border border-amber-500/25 bg-amber-500/[0.06] px-4 py-3"
           >
             <p className="text-sm font-semibold text-white">{request.title}</p>
-            {request.explanation ? (
+            {request.receivedDocuments?.length ? <p className="mt-1 text-xs leading-6 text-white/55">{zh?`已关联：${request.receivedDocuments.join("、")}。已有相关文件依据，当前仍需核对型号、批次及测试覆盖范围；仅在文件未覆盖时补充原始报告。`:`Linked: ${request.receivedDocuments.join(", ")}. Review model, batch and test scope before requesting additional reports.`}</p> : request.explanation ? (
               <p className="mt-1 text-xs leading-6 text-white/55">{request.explanation}</p>
             ) : null}
             <p className="mt-1 text-[11px] text-white/40">
@@ -143,7 +147,7 @@ export function EvidenceRequestPanel({
         <Button
           size="lg"
           className="rounded-full"
-          disabled={state.phase === "uploading"}
+          disabled={state.phase === "uploading" || pending}
           onClick={() => inputRef.current?.click()}
         >
           {state.phase === "uploading"

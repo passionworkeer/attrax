@@ -277,7 +277,6 @@ export function buildProfitRenderModel(args: {
   const { result, financialSummary: ls, profitMode, locale } = args;
   const L = locale;
   const isZh = L === "zh";
-  const t = (zh: string, en: string) => (isZh ? zh : en);
   const i = I18N.zh; // we always pick from the zh table above based on locale
 
   // ── Header ────────────────────────────────────────────────────────────────
@@ -292,7 +291,6 @@ export function buildProfitRenderModel(args: {
 
   // ── 4 metric cards ────────────────────────────────────────────────────────
   const visibleCost = "¥0";
-  const visibleCostEn = "¥0";
   // J07 (plan 2026-09-14 §4.6): fine amounts need jurisdiction, violation type,
   // currency, period AND a legal source before they can render as a number.
   // Without structured fine inputs the bare-mode exposure card states the
@@ -385,7 +383,7 @@ export function buildProfitRenderModel(args: {
   }));
 
   let runningBalance = retailBaseline;
-  const chainNodes: ProfitChainNode[] = costRows.map((row, idx) => {
+  const chainNodes: ProfitChainNode[] = costRows.map((row) => {
     runningBalance -= row.amount;
     return {
       label: row.label,

@@ -8,8 +8,10 @@
  */
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function LinkBackToReport() {
+  const router = useRouter();
   return (
     <div className="flex items-center justify-between text-xs text-slate-400">
       <Link
@@ -19,7 +21,7 @@ export function LinkBackToReport() {
         <ArrowLeft className="h-3 w-3" />
         返回首页
       </Link>
-      <span className="text-slate-500">De-RAG 文档查看器 · §7.5</span>
+      <button type="button" onClick={() => router.back()} className="min-h-10 rounded-md px-3 text-slate-300 underline">返回上一页</button>
     </div>
   );
 }

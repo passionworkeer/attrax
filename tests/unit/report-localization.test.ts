@@ -9,6 +9,7 @@ import {
   localizeComplianceReportResult,
   localizeProfitReportResult,
   localizeScanResult,
+  prepareComplianceReport,
 } from "@/lib/report-localization";
 
 const HAN = /[\u3400-\u9fff]/;
@@ -18,6 +19,16 @@ function expectNoHan(text: string | undefined) {
 }
 
 describe("report localization", () => {
+  it("prepares a single appendix without mutating the stored report", () => {
+    const report = {...createMockComplianceReportResult(), reviewAppendix:{zh:"\nUNIQUE_ZH_APPENDIX",en:"\nUNIQUE_EN_APPENDIX"}};
+    const original = report.complianceReport;
+    const first = prepareComplianceReport(report,"zh");
+    expect(prepareComplianceReport(report,"zh").complianceReport).toBe(first.complianceReport);
+    expect(prepareComplianceReport(first,"zh").complianceReport).toBe(first.complianceReport);
+    expect(report.complianceReport).toBe(original);
+    expect(first.complianceReport.match(/UNIQUE_ZH_APPENDIX/g)).toHaveLength(1);
+    expect(prepareComplianceReport(report,"en").complianceReport).toContain("UNIQUE_EN_APPENDIX");
+  });
   it("detects Han text for English-safe fallbacks", () => {
     expect(containsHan("中文")).toBe(true);
     expect(containsHan("English only")).toBe(false);

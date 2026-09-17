@@ -36,6 +36,18 @@ vi.mock("@/components/blaze-hawks/locale", () => ({
   useOptionalBlazeLocale: () => null,
 }));
 
+vi.mock("@/app/upload/category-select", () => ({
+  CategorySelect: ({ value, onChange, labels, disabled }: {
+    value: ProductCategory;
+    onChange: (value: ProductCategory) => void;
+    labels: Record<ProductCategory, string>;
+    disabled: boolean;
+  }) => <select aria-label="产品品类" value={value} disabled={disabled}
+    onChange={(event) => onChange(event.target.value as ProductCategory)}>
+    {Object.entries(labels).map(([id, label]) => <option key={id} value={id}>{label}</option>)}
+  </select>,
+}));
+
 import UploadPage from "@/app/upload/page";
 import { ComplianceReportView } from "@/components/result/ComplianceReportView";
 import { getCompliPilotCopy } from "@/lib/complipilot/copy";
@@ -44,8 +56,7 @@ import type { ComplianceReportResult } from "@/lib/types";
 import type { ProductCategory } from "@/lib/types";
 
 function changeCategory(next: ProductCategory) {
-  const select = screen.getByLabelText(/产品品类/) as HTMLSelectElement;
-  fireEvent.change(select, { target: { value: next } });
+  fireEvent.change(screen.getByLabelText(/产品品类/), { target: { value: next } });
 }
 
 describe("J17: 上传页照片槽随品类动态渲染", () => {
