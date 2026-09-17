@@ -16,6 +16,11 @@
 # Deliberately NOT covered here (other owners):
 #   - /var/log/nginx/*.log, including monitor-events.log -> the distro
 #     fragment /etc/logrotate.d/nginx.
+#   - /home/ubuntu/.pm2/logs/*.log -> the pm2-logrotate module already does
+#     this (max_size 50M, retain 10, compress, rotateInterval 0 0 * * *).
+#     Two rotators on the same files race and produce a mix of pm2's
+#     `__YYYY-MM-DD_HH-mm-ss` names and logrotate's `.1`/`.gz` names, so this
+#     fragment must stay out of that directory.
 #   - the monitor/uptime stack -> versioned in the work repo at ops/monitor/.
 
 # Cron-redirected backup logs: each run appends with >>, so no process holds
@@ -31,25 +36,12 @@
     su ubuntu ubuntu
 }
 
-# pm2 application logs (rag-service / nextjs / regwatch / portfolio).
-# pm2 keeps the descriptor open, so copytruncate: no pm2 signal or reopen is
-# needed, and truncating in place preserves the inode, hence ownership.
-/home/ubuntu/.pm2/logs/*.log {
-    daily
-    rotate 7
-    missingok
-    notifempty
-    compress
-    delaycompress
-    copytruncate
-    su ubuntu ubuntu
-}
-
 # Append-only JSONL audit trail (session ids, evidence/revision decisions).
 # Weekly rather than daily because each entry matters for post-hoc review and
-# rotating too eagerly makes the trail awkward to read. copytruncate again, for
-# the same open-descriptor reason; the original 0600 mode and ownership carry
-# over with the inode, so no create directive is used.
+# rotating too eagerly makes the trail awkward to read. copytruncate because
+# FileBackend holds the descriptor open: truncating in place preserves the
+# inode, hence the file's 0600 mode and ownership, so no create directive is
+# used.
 /opt/attrax/data/backend/audit.jsonl {
     weekly
     rotate 8
