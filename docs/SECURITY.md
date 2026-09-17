@@ -2,7 +2,7 @@
 
 > **⚠️ 历史快照（2026-06-21，aliyun-sz 部署时代）** — 生产已迁至 lighthouse（腾讯首尔，见 `docs/infra/`），文中 IP/机器细节为当时快照。安全设计原则（fail-closed secret、magic bytes 校验、fail2ban、限流）仍然有效，但涉及具体文件/路径的条目以下述修正为准：
 >
-> - `lib/pipeline/session-store.ts` 已删除（2026-09-14）——sessionId 格式校验现在在 `lib/schemas.ts` `SessionIdSchema` + `app/api/backend-session-access.ts` `SAFE_SESSION_ID`
+> - `lib/pipeline/session-store.ts` 已删除（2026-09-14）——sessionId 格式校验现在在 `app/api/scan/[sessionId]/asset/[index]/route.ts` 的内联 `SessionIdSchema` + `app/api/backend-session-access.ts` `SAFE_SESSION_ID`（`lib/schemas.ts` 已于 2026-09-17 round-5 整体删除，唯一活跃的 `SessionIdSchema` 内联进其消费者）
 > - `PAI_API_KEY` 无代码读取（embedding 栈已删），密钥旋转只需 `MINIMAX_API_KEY` / `RAG_INTERNAL_SECRET`
 > - 会话失效路径：`rm /opt/attrax/data/backend/sessions/*.json`（RAG FileBackend，非 data/sessions）
 > - `scan-queue` 本地作业文件已不存在（本地管线删除），上传仅存 RAG 侧 `data/backend/uploads/`
@@ -93,7 +93,7 @@ See `infra/nginx-*.conf`:
 - **fail2ban**: 4 jails — `sshd`、`nginx-auth`、`nginx-botsearch`、`recidive`（`/etc/fail2ban/jail.local`；`fail2ban-client status` 复核一致）
   - `jail.local` 未配置 `ignoreip`（旧文档写的 `attrax-404-probe` jail 并未在 lighthouse 部署；`docs/infra/fail2ban-*.conf` 是阿里云深圳时代快照 —— 该机已退役，其中残留的 `203.0.113.10` 亦然）
 - **Session auth**: 32-byte random tokens (256 bits entropy), SHA-256 hashed, `timingSafeEqual` constant-time comparison
-- **SessionId validation**: 三层正则不统一 — `lib/schemas.ts:SessionIdSchema` 限 50 字符（`/^scan_[0-9A-Za-z_-]{1,50}$/`），`app/api/backend-session-access.ts:SAFE_SESSION_ID` + RAG `rag_service/api/v1.py:_SESSION_ID` 限 64 字符（`/^scan_[A-Za-z0-9_-]{1,64}$/`）。BFF 的 64 是外层，前端 schema 的 50 是内层；调用经 Zod 校验，64-char 范围包含 50-char 范围，没有错位风险
+- **SessionId validation**: 三层正则 — asset BFF 路由内联 schema 限 50 字符（`/^scan_[0-9A-Za-z_-]{1,50}$/`，原 `lib/schemas.ts:SessionIdSchema`，2026-09-17 内联保留），`app/api/backend-session-access.ts:SAFE_SESSION_ID` + RAG `rag_service/api/v1.py:_SESSION_ID` 限 64 字符（`/^scan_[A-Za-z0-9_-]{1,64}$/`）。BFF 的 64 是外层，内联 schema 的 50 是内层；调用经 Zod 校验，64-char 范围包含 50-char 范围，没有错位风险
 - **CORS**: `RAG_ALLOWED_ORIGINS=https://example.com,http://localhost:3000` (8001 only listens on loopback 127.0.0.1 so cross-origin attacks are limited)
 - **Magic bytes**: `lib/upload-validation.ts` validates PNG/JPEG/WEBP/PDF/DOCX content signatures, plus size limits, plus MIME + extension checks
 
@@ -179,7 +179,7 @@ Manually stopped + disabled (cloud server doesn't need them):
 
 ## Code-level security highlights
 
-- All API inputs validated with Zod (`lib/schemas.ts`)
+- All API inputs validated at the boundary — BFF 路由内联 Zod（SessionId）、`lib/rag-client/report-package-schema.ts`（报告包契约）、`app/api/scan/route.ts`（multipart 字段手工校验）；`lib/schemas.ts` 已于 2026-09-17 删除
 - Session tokens: `crypto.randomBytes(32).toString('base64url')` + SHA-256 hash
 - File uploads: MIME + extension + magic bytes (`lib/upload-validation.ts`)
 - Reports rendered with `react-markdown` (safe HTML, no `dangerouslySetInnerHTML`)
