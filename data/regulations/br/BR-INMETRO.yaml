@@ -1,0 +1,18 @@
+id: BR-INMETRO
+official_citation: Avaliação da Conformidade — Compulsório INMETRO / Portarias Inmetro
+short_name: BR Compulsory Certification Scope
+region: BR
+license: public
+source_url: https://www.gov.br/inmetro/pt-br/assuntos/noticias
+last_verified: '2026-09-17'
+last_verified_by: manual-create
+language: en
+source_kind: official_summary
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: |
+  Manually created 2026-09-17 from official_sources.json entry br-inmetro-novidades.
+  Backed by Instituto Nacional de Metrologia, Qualidade e Tecnologia (INMETRO).
+  Authoring note: a KB anchor at data/kb/anchors/BR-INMETRO-electronics.yaml is required to surface this regulation in generator must-check output.
