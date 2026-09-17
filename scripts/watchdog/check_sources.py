@@ -52,12 +52,16 @@ PROBE_WORKERS = 8
 #: certainly a JavaScript shell: the page returns 200, the stdlib HTML
 #: parser sees only the <title> / breadcrumb text, and the digest then sits
 #: frozen forever while the regulation world moves — a source that *looks*
-#: tracked but is not. The real content-bearing sources in this registry
-#: run 1 KB–180 KB, so 500 cleanly separates the two populations. Reported
-#: as a warning rather than a failure: the fetch genuinely succeeded, and
-#: the fix (find a machine-readable endpoint, or mark it shell_only) is an
-#: operator decision.
+#: tracked but is not. The content-bearing HTML sources in this registry
+#: run 1 KB–180 KB, so 500 cleanly separates the two populations.
 THIN_DIGEST_CHARS = 500
+
+#: Only HTML-scraped sources are subject to the thin check. A JSON API
+#: returning a handful of records produces a legitimately small digest —
+#: flagging it would be a false positive that trains the operator to
+#: ignore the warning. An API that fails returns no records (which the
+#: window filter shows up as an empty digest) rather than a page shell.
+_HTML_SOURCE_TYPES = frozenset({"gov_html", "direct_url"})
 
 #: Fields every entry must carry. ``source_type`` and ``source_url`` are
 #: load-bearing; ``human_view_url`` is required because the registry's whole
@@ -108,7 +112,7 @@ def probe(entry: dict) -> dict:
         "bytes": chars,
         "hash": update.content_hash[:12],
     }
-    if chars < THIN_DIGEST_CHARS:
+    if chars < THIN_DIGEST_CHARS and source_type in _HTML_SOURCE_TYPES:
         result["status"] = "thin"
         result["error"] = (
             f"only {chars} chars of trackable text — likely a JS shell; "

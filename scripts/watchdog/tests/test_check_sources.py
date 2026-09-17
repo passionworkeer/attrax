@@ -118,6 +118,29 @@ def test_probe_flags_a_thin_digest_as_a_shell(monkeypatch):
     assert result["bytes"] < check_sources.THIN_DIGEST_CHARS
 
 
+def test_probe_does_not_flag_a_small_json_digest(monkeypatch):
+    """A JSON API returning a few records is legitimately small — flagging
+    it would be a false positive that trains operators to ignore the
+    warning."""
+
+    def _small_json(entry: dict) -> RegulationUpdate:
+        text = "Z-0001-04 | 2003-10-27 | Class I | Sedecal X-Ray | skin distance"
+        return RegulationUpdate(
+            source_id=entry["id"],
+            market="US",
+            source_type="openfda_recalls",
+            source_url=entry["source_url"],
+            title=entry["id"],
+            text=text,
+            content_hash=text_hash(text),
+        )
+
+    monkeypatch.setattr(check_sources, "collect_source", _small_json)
+    result = check_sources.probe(_entry("a", source_type="openfda_recalls"))
+    assert result["status"] == "ok"
+    assert result["bytes"] < check_sources.THIN_DIGEST_CHARS
+
+
 def test_probe_treats_304_as_healthy(monkeypatch):
     """An unchanged source is a working source — not a failure."""
 
