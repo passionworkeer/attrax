@@ -466,8 +466,17 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
 
   // Deterministic evidence score from the server-built findings. Falls back
   // to the legacy coarse rollup only for packages that carry no findings
-  // (legacy/demo shapes).
-  const rawFindings = records((reportPackage as UnknownRecord).findings);
+  // (legacy/demo shapes). Same assessment filter as inspectionFindings — a
+  // hypothetical future "resolved"/"no_issue" assessment must not deduct.
+  const rawFindings = records((reportPackage as UnknownRecord).findings)
+    .filter((finding) => {
+      const assessment = String(finding.assessment);
+      return (
+        assessment === "suspected_issue" ||
+        assessment === "evidence_needed" ||
+        assessment === "confirmed_issue"
+      );
+    });
   const evidenceFindings = rawFindings
     .map((finding) => ({ severity: text(finding.severity).toLowerCase() }))
     .filter((finding) => finding.severity.length > 0);
