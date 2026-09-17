@@ -538,18 +538,6 @@ class ScanService:
                 current = 0
         return max(0, current) + 1
 
-    def _next_revision_from_result(self, session_id: str) -> int:
-        """Revision stamp for a freshly normalized result: the stored
-        session's revision (0 when absent) + 1, so the original scan is 1
-        and each evidence re-run increments (plan §5.3)."""
-        session = self.backend.get_session(session_id)
-        if session is None:
-            return 1
-        return self._next_revision(session)
-
-    # NOTE: kept for callers outside _run_job; _normalize_result is a
-    # staticmethod and receives the revision via parameter instead.
-
     def _revision_job_fields(self, session: ScanSession) -> tuple[str, str]:
         """Recover query/product for a revision job from the stored session.
 

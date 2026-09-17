@@ -163,7 +163,8 @@
 
 ## 6. CI 自动校验
 
-- `tests/unit/report-package-contract.test.ts` 会喂 mock 输出给 `normalizeReportPackage`，断言不抛错 + 关键字段存在
+- `tests/unit/rag-client-report-package.test.ts` 用 mock 包喂 `validateReportPackage`（`lib/rag-client/report-package-schema.ts`），断言 mock 与 Pydantic 契约一致
+- `rag_service/tests/test_report_package_schema.py::test_contract_fixture_matches_python_schema` 反向校验共享夹具 `tests/fixtures/report-package.contract.json` 与 Python schema 一致（跨语言契约）
 - `tests/unit/profit-report-render-model.test.ts` 验证 `buildProfitRenderModelFromProfitReport` 的 RenderModel 派生
 - CI 门控① `check:rag-contract`：由快照重生 `lib/rag-client/types.gen.ts` 并 diff，后端改字段时 PR 会 fail
 - CI 门控② `check:rag-openapi`：直接比对 `rag_service` 的真实路由与 `openapi.snapshot.json`，防止快照本身落后于后端（详见 `FRONTEND-BACKEND-INTEGRATION.md` §5）

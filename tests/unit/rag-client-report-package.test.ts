@@ -15,7 +15,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { createMockComplianceReportResult } from "@/lib/mock/scan-result";
-import { validateReportPackage } from "@/lib/rag-client";
+import { validateReportPackage } from "@/lib/rag-client/report-package-schema";
 
 describe("mock report package contract", () => {
   it("validateReportPackage accepts the compliance-report mock", () => {
