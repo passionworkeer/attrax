@@ -130,34 +130,52 @@ Manually stopped + disabled (cloud server doesn't need them):
 
 ## Log management
 
-- `journald` capped at 200 MB, 14-day retention (`infra/journald-00-attrax.conf`)
-- `logrotate` for `/var/log/attrax-*.log`: daily, keep 14, compress
-- `/opt/attrax/logs/`: `attrax-backup.log` (admin-readable only, 750 directory)
-- Uptime cron writes to `/opt/attrax/logs/attrax-uptime.log` (no-op on success, only logs failures)
+- `journald` capped at 200 MB with 14-day retention
+- **attrax 自身日志**（`/opt/attrax/logs/*.log`、pm2 日志 `/home/ubuntu/.pm2/logs/*.log`、以及只增不减的
+  `data/backend/audit.jsonl`）由 `docs/infra/logrotate-attrax` 轮转（安装为 `/etc/logrotate.d/attrax`）。
+  2026-09-17 之前这三类**都没有**任何轮转规则，只会一直增长
+- nginx 日志（含 `monitor-events.log`）由发行版片段 `/etc/logrotate.d/nginx` 轮转
+- `/opt/attrax/logs/` 归属 `ubuntu`（不是旧文档写的 `admin`，该用户已不存在）
+- uptime 探针日志在 `/home/ubuntu/uptime.log`（成功不写，只记失败/漂移），由 work 仓的
+  `ops/monitor/uptime-check.sh` 维护
 
 ## Backup policy
 
-- **Daily 03:00 cron** (`infra/cron-attrax-backup`): `backup-attrax-prod.sh` tars `.env`, `rag_service/.env`, `data/regulation_supplements/` and SQLite state databases (De-RAG FAISS removed)
-- Backup stored in `/opt/attrax/backups/attrax-data-YYYYMMDD-HHMMSS.tar.gz` (~10 MB, permission 600)
-- Keeps last 14 backups (rotation)
-- **No offsite backup** — single-server risk. Add `rsync` to a remote before public launch.
+- **每日 03:00 cron**（`/etc/cron.d/attrax-backup`，片段见 `docs/infra/cron-attrax-backup`）：
+  `scripts/backup-data.sh` 打包 `.env` / `.env.local` / `.env.production` / `rag_service/.env`、
+  `data/kb`、`data/regulation_sources`、`data/regulation_supplements` 与 `data/**/*.db`
+  （de-RAG 之后 FAISS 索引已不存在，旧版脚本因此每次都失败）
+- 产物 `/opt/attrax/backups/attrax-data-YYYYMMDD-HHMMSS.tar.gz`，权限 `600`，保留最近 14 份
+  （实测约 4 MB —— 包含密钥，故 `umask 077`）
+- **没有可用的异地备份**：`/etc/cron.d/attrax-backup-remote` 指向的 `scripts/backup-remote.sh`
+  从未安装到服务器（每天报 `No such file or directory`），且未配置 `BACKUP_REMOTE_DEST`。
+  **单盘故障会同时失去全部 14 份备份** —— 这是当前最高优先级的运维缺口
+- 没有做过恢复演练，也没有备份完整性校验
 
 ## Uptime monitoring
 
-- **Every 5 minutes cron** (`infra/cron-attrax-uptime`): `uptime-check.sh` curls `/api/health`
-- On failure: writes to `/opt/attrax/logs/attrax-uptime.log`
-- No alerting — manual review required. Add email/WeChat webhook before public launch.
+- 每 5 分钟 cron `/etc/cron.d/uptime-monitor` → `/home/ubuntu/uptime-check.sh`（**work 仓**
+  `ops/monitor/uptime-check.sh` 是唯一来源，服务器仅存副本）
+- 探针覆盖：多站点 HTTP、前端 `/api/health`（会穿透到 RAG `/ready`）、pm2 进程内存/状态、
+  Next 构建漂移指纹、以及**磁盘水位**（单分区布局下这是唯一能提前发现"写满根分区"的手段）
+- 日志 `/home/ubuntu/uptime.log`（另有 `.fp` 指纹基线与 `~/.uptime-alert.state` 告警状态）
+- 告警：脚本支持可选 webhook（见脚本末尾 ALERT CHANNEL）；**未配置时只写日志，不会通知到人**
 
 ## Known limitations (TODO before public launch)
 
-1. **Self-signed HTTPS cert** → use real domain + Let's Encrypt
-2. **No offsite backup** → add `rsync` to remote
-3. **No alerting on uptime failures** → add email/WeChat
-4. **Untested Zod schema on [sessionId] routes** → 3 routes patched, need rebuild
-5. **`session-store.ts` 已删除**（2026-09-14 de-RAG 治理）——sessionId 校验改走 `lib/schemas.ts SessionIdSchema` + `app/api/backend-session-access.ts SAFE_SESSION_ID`，坏 sessionId 不再单独抛错
-6. **`scan-queue` 本地作业文件已删除**（2026-09-14 de-RAG 治理）——上传仅存 RAG 侧 `data/backend/uploads/`，无 base64 job 文件落地
-7. **8 npm audit vulnerabilities** (transitive: undici, hono, vite) → `npm audit fix` + rebuild
-8. **No user authentication** → anyone with the URL can scan (intentional for demo, but rate-limited)
+1. **No offsite backup** → 安装 `scripts/backup-remote.sh` + 配置 `BACKUP_REMOTE_DEST`，并做一次
+   恢复演练（当前只有单机 14 份本地 tarball）
+2. **Uptime 告警未接到人** → 配置 webhook，否则失败只落在 `/home/ubuntu/uptime.log`
+3. **`ubuntu` 拥有无密码全量 sudo**（见 §Process & file permissions）→ 收紧为显式命令白名单
+4. **备份 cron 的用户名/路径曾与文档不一致**（`admin` vs `ubuntu`、`backup-attrax-prod.sh` vs
+   `backup-data.sh`）→ 已修正，并有 `tests/unit/infra-cron-references.test.ts` 守卫 cron 片段
+5. **单点**：一台机、一个 uvicorn worker（5 并发扫描，单次最长 280s）；LLM 慢时队列会堆积
+6. **No user authentication** → anyone with the URL can scan (intentional for demo, but rate-limited)
+7. **依赖审计**：`npm audit --omit=dev --audit-level=high` 在 CI 中是 advisory（`continue-on-error`），
+   因为剩余的 sharp 升级是 breaking change，需要单独的构建回归；不是硬门控
+
+> 已过时的历史条目（自签名证书、`session-store.ts`、scan-queue 本地作业文件、`[sessionId]` 路由
+> 无 Zod 校验）均已核实修复，故从本清单移除。
 
 ## Code-level security highlights
 

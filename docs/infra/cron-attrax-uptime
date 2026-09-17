@@ -1,4 +1,0 @@
-# Attrax uptime probe — every 5 min. File lives at /etc/cron.d/attrax-uptime
-# (owner root, mode 0644). Runs uptime-check.sh as the attrax admin user, which
-# in turn calls uptime-alert.sh (FAIL/RESOLVED webhook state machine).
-*/5 * * * * admin /opt/attrax/scripts/uptime-check.sh

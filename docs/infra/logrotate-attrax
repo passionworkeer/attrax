@@ -1,0 +1,62 @@
+# /etc/logrotate.d/attrax — logs that grow on the attrax host.
+#
+# Install:
+#   sudo cp docs/infra/logrotate-attrax /etc/logrotate.d/attrax
+#   sudo logrotate -d /etc/logrotate.conf     # dry run; must print no error
+#
+# Why this file exists: neither /opt/attrax/logs/ nor the pm2 logs nor
+# data/backend/audit.jsonl was covered by any logrotate fragment, so they only
+# ever grew. audit.jsonl in particular is append-only in the application
+# (FileBackend._append_audit), which makes this rotation its only bound.
+#
+# The global /etc/logrotate.conf sets `su root adm`. Blocks that touch
+# ubuntu-owned files restate `su ubuntu ubuntu` so rotation works from the
+# app's own ownership rather than relying on root's ability to write there.
+#
+# Deliberately NOT covered here (other owners):
+#   - /var/log/nginx/*.log, including monitor-events.log -> the distro
+#     fragment /etc/logrotate.d/nginx.
+#   - the monitor/uptime stack -> versioned in the work repo at ops/monitor/.
+
+# Cron-redirected backup logs: each run appends with >>, so no process holds
+# the descriptor open and a plain create is correct.
+/opt/attrax/logs/*.log {
+    daily
+    rotate 14
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 ubuntu ubuntu
+    su ubuntu ubuntu
+}
+
+# pm2 application logs (rag-service / nextjs / regwatch / portfolio).
+# pm2 keeps the descriptor open, so copytruncate: no pm2 signal or reopen is
+# needed, and truncating in place preserves the inode, hence ownership.
+/home/ubuntu/.pm2/logs/*.log {
+    daily
+    rotate 7
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+    su ubuntu ubuntu
+}
+
+# Append-only JSONL audit trail (session ids, evidence/revision decisions).
+# Weekly rather than daily because each entry matters for post-hoc review and
+# rotating too eagerly makes the trail awkward to read. copytruncate again, for
+# the same open-descriptor reason; the original 0600 mode and ownership carry
+# over with the inode, so no create directive is used.
+/opt/attrax/data/backend/audit.jsonl {
+    weekly
+    rotate 8
+    missingok
+    notifempty
+    compress
+    delaycompress
+    copytruncate
+    su ubuntu ubuntu
+}
