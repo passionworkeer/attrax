@@ -1,0 +1,30 @@
+id: KB-electronics-KR-KR-MOTIE-KC
+regulation_id: KR-MOTIE-KC
+doc_name: Electrical Appliances and Household Goods Safety Control Act (KC)
+official_citation: 전기용품 및 생활용품 안전관리법 (Electrical Appliances and Household Goods Safety Control Act, KC Mark)
+short_name: KC 안전확인 (韩国电安法)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  - appliance
+  - battery
+  features_any: []
+  markets:
+  - KR
+key_articles: []
+key_points:
+- 韩国《电气用品及生活用品安全管理法》(KC 法)对强制目录内的电气产品实施 KC 认证
+- KC 标志有三种:安全确认(类)、安全认证(类)、供应商符合性确认(类)
+- 强制目录内产品上市前须经韩国 KTL / KETI 等认可实验室测试 + 韩国本地进口商(KC 申请人)
+- 锂电池(便携式)按 KC 62133 系列协调标准测试 + KC 标志
+- 由 MOTIE(产业通商资源部)主管,缺 KC 标志 → 海关扣留 + 召回
+risk_hint: 缺 KC 认证 → 海关扣留 + 召回
+est_cost: KC 测试 ¥5K-15K + 韩国代理人 ¥5K-15K/年 + 文件准备 ¥3K-5K
+license: public
+source_url: https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

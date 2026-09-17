@@ -1,0 +1,30 @@
+id: KB-electronics-JP-JP-METI-PSE
+regulation_id: JP-METI-PSE
+doc_name: Electrical Appliance and Material Safety Law (PSE)
+official_citation: 電気用品安全法 (PSE Mark / Electrical Appliance and Material Safety Law)
+short_name: PSE 菱形 / 圆形 (日本电安法)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  - appliance
+  - battery
+  features_any: []
+  markets:
+  - JP
+key_articles: []
+key_points:
+- 日本《电气用品安全法》(PSE 法)规定 457 类电气用品分为"特定电气用品"(菱形 PSE)与"非特定电气用品"(圆形 PSE)
+- AC 100V 电源供电 / 锂电池等强制范围内产品上市前须经日本 METI 注册实验室测试
+- 需贴 PSE 标志 + 进口商名称 + 注册合格评定机构编号 + DoC
+- 锂电池(能量密度超阈值)自 2018-02 起按 圆形 PSE 管控,2019-02 后加严
+- 由 METI(经济产业省)+ 第三方合格评定机构(QC) 联合执法
+risk_hint: 缺 PSE 认证 + 缺日语铭牌 → 海关扣留 + 召回
+est_cost: PSE 测试 ¥5K-15K + 注册 ¥3K-8K + 日语铭牌 ¥1K-3K
+license: public
+source_url: https://www.meti.go.jp/policy/consumer_appliance/pse/index.html
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

@@ -1,0 +1,29 @@
+id: KB-toy-CA-CA-SOR-2016-193
+regulation_id: CA-SOR-2016-193
+doc_name: Surface Coating Materials Regulations
+official_citation: Surface Coating Materials Regulations (SOR/2016-193)
+short_name: CA Surface Coatings Regs 2016
+source: category
+primary_source: toy
+applies_if:
+  category:
+  - toy
+  - children
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- 加拿大《表面涂层材料法规》限制铅、汞、镉等重金属在涂料中的含量
+- 用于儿童玩具 / 家具 / 婴儿用品的涂层:铅 ≤ 90 mg/kg、汞 ≤ 10 mg/kg、镉 ≤ 90 mg/kg
+- 含涂层玩具上市前需经 Health Canada 认可的实验室测试
+- 与 US 16 CFR 1303(铅涂料) + ASTM F963 形成北美双线合规
+- 含铅涂层超限 → 召回 + 罚款 + 跨境扣留
+risk_hint: 涂层含铅 → 加拿大 + 美国双线召回
+est_cost: 涂层重金属测试 ¥2K-6K/产品
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-193/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

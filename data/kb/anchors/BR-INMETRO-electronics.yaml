@@ -1,0 +1,31 @@
+id: KB-electronics-BR-BR-INMETRO
+regulation_id: BR-INMETRO
+doc_name: Compulsory Certification Scope
+official_citation: Avaliação da Conformidade — Compulsório INMETRO / Portarias Inmetro
+short_name: BR Compulsory Certification Scope
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  - appliance
+  - battery
+  - toy
+  features_any: []
+  markets:
+  - BR
+key_articles: []
+key_points:
+- 巴西《INMETRO 强制认证》覆盖电气产品、玩具、医疗器械、汽车零部件等多个目录
+- 强制目录内产品须经 INMETRO 认可 OCP(认证机构)测试 + 发证 + 印 INMETRO 标志
+- 需指定 Brazilian representative(进口商或本地代表)
+- ANATEL Act 同步强制对无线电设备发 ANATEL 证书(另立系统)
+- 由 INMETRO 主管,缺 INMETRO 标志 → 海关扣留 + 召回
+risk_hint: 缺 INMETRO / ANATEL 认证 → 海关扣留 + 罚款
+est_cost: INMETRO 测试 ¥8K-20K + 认证 ¥3K-8K + 巴西代表 ¥5K-15K/年
+license: public
+source_url: https://www.gov.br/inmetro/pt-br/assuntos/noticias
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

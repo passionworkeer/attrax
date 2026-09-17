@@ -1,0 +1,32 @@
+id: KB-electronics-SA-SA-SASO-Saber
+regulation_id: SA-SASO-Saber
+doc_name: Saudi Product Safety Programme (SALEEM / SABER)
+official_citation: Saudi Product Safety Programme (SALEEM / SABER) — SASO implementing rules
+short_name: SA SALEEM / SABER (沙特产品安全)
+source: category
+primary_source: electronics
+applies_if:
+  category:
+  - electronics
+  - appliance
+  - textile
+  - cosmetic
+  - children
+  features_any: []
+  markets:
+  - SA
+key_articles: []
+key_points:
+- 沙特《SALEEM / SABER》产品安全计划,强制目录内产品需经 SASO 认可公告机构测试 + 上传证书
+- SABER 系统发 CoC(符合性证书) + SCoC(批次符合性证书)
+- 注册 + 标签(沙语 + 英语 + 阿语警示语) + DoC 三大要素
+- 涵盖电气、纺织品、玩具、化妆品、家电等多个 SASO 公告目录
+- 由 SASO 主管,缺 SALEEM 证书 → 沙特海关扣留
+risk_hint: 缺 SALEEM 证书 / 沙语阿语标签 → 海关扣留 + 召回
+est_cost: SABER 测试 ¥5K-15K + CoC 申请 ¥2K-5K + 沙语标签 ¥1K-3K
+license: public
+source_url: https://www.saso.gov.sa/en/news-and-events/news/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1
