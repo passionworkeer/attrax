@@ -22,9 +22,11 @@ interface TestCase {
  *  is missing the script reports a clear error rather than crashing mid-run.
  *  Override via ATTRAX_REGRESSION_PKG_DIR to relocate the package. */
 const REPO_ROOT = path.resolve(__dirname, "..");
+const FIXTURES_PKG_DIR = path.join(REPO_ROOT, "tests", "fixtures", "regression-package-20260914");
+const ROOT_LEGACY_PKG_DIR = path.join(REPO_ROOT, "规航AI-三产品完整测试包-20260914");
 const TEST_PKG_DIR =
   process.env.ATTRAX_REGRESSION_PKG_DIR ||
-  path.join(REPO_ROOT, "规航AI-三产品完整测试包-20260914");
+  (fs.existsSync(FIXTURES_PKG_DIR) ? FIXTURES_PKG_DIR : ROOT_LEGACY_PKG_DIR);
 
 const TEST_CASES: TestCase[] = [
   {
