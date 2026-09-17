@@ -284,12 +284,20 @@ def evaluate_anchor(
 
     # Feature-sourced anchors hinge on feature confidence.
     if source == "feature":
+        trigger_features = set(anchor.get("trigger_features") or [])
+        if not trigger_features:
+            # Older callers may omit routing metadata; resolve it by id.
+            from rag_service.retrieval import kb_loader
+            entry = kb_loader.get_anchor_by_regulation_id(regulation_id) or {}
+            trigger_features = set((entry.get("applies_if") or {}).get("features_any") or [])
         for feature, confidence in (
             ("battery", facts.battery),
             ("wireless", facts.wireless),
             ("mains", facts.mains),
             ("children", facts.children),
         ):
+            if feature not in trigger_features:
+                continue
             if confidence == "confirmed":
                 return ApplicabilityDecision(
                     regulation_id=regulation_id,

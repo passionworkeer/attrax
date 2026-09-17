@@ -321,9 +321,9 @@ class TestDeclaredFactsApplicability:
             f for f in findings if f["checkId"] == "toy.battery_compartment.closure"
         ] == []
 
-    def test_declared_battery_absent_uses_not_applicable_reasoning_path(self):
-        # The skip is by inapplicability, not by pretending the check
-        # passed: nothing in the output claims the closure was verified.
+    def test_visible_battery_compartment_is_not_suppressed_by_absence_declaration(self):
+        # Visible component evidence requires review even if the declaration
+        # says it is absent; a declaration cannot erase contradictory evidence.
         findings = build_findings(
             session_id="scan_x",
             category="toy",
@@ -332,8 +332,10 @@ class TestDeclaredFactsApplicability:
             ],
             declared_facts={"battery": "absent"},
         )
-        for finding in findings:
-            assert finding["checkId"] != "toy.battery_compartment.closure"
+        assert any(
+            finding["checkId"] == "toy.battery_compartment.closure"
+            for finding in findings
+        )
 
     def test_without_declared_facts_battery_check_still_demands_evidence(self):
         # No user fact → keep the old behavior (evidence_needed), the

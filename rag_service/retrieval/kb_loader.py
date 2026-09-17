@@ -141,7 +141,7 @@ def _load_all() -> dict[str, dict]:
         loaded: dict[str, dict] = {}
         for path in anchors_dir.glob("*.yaml"):
             try:
-                data = yaml.safe_load(path.read_text())
+                data = yaml.safe_load(path.read_text(encoding="utf-8"))
             except Exception as exc:
                 logger.error("Failed to load KB YAML %s: %r", path, exc)
                 continue

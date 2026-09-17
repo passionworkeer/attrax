@@ -1,7 +1,7 @@
 id: KB-toy-US-US-CPSIA
 regulation_id: US-CPSIA
 doc_name: CPSIA Children Product Safety
-official_citation: 15 USC §2056a et seq. (Pub.L. 110-314)
+official_citation: 15 USC §§ 2056b, 2063
 short_name: CPSIA (儿童产品安全法)
 source: category
 primary_source: toy
@@ -13,20 +13,25 @@ applies_if:
   markets:
   - US
 key_articles:
-- section-2056a
 - section-2056b
-- section-2057c
+- section-2063-a1
+- section-2063-a2
+- section-2063-a5
+- cpsc-toy-mandatory-standard
+- cpsc-toy-certification
+- cpsc-toy-version-timeline
 key_points:
-- 适用于 12 岁以下儿童产品
-- 总铅含量限值 (基材 100 ppm, 表面涂层 90 ppm),邻苯二甲酸盐 (DEHP/DBP/BBP 等 8 种) 限值 0.1%
-- 需 ASTM F963 测试 + CPSC 认可第三方实验室
-- 需 CPC (Children's Product Certificate) + 测试报告归档
-- Tracking label (永久产品追踪标识) 必须可见且不易脱落
+- 先确认年龄定位及适用规则，18+标注不代表所有消费品安全义务均豁免
+- 15 USC 2063(a)(1)规定受CPSC规则约束产品的认证，(a)(2)涉及儿童产品认证
+- 15 USC 2063(a)(5)规定儿童产品及包装在可行范围内的永久追踪标记
+- 15 USC 2056b规定玩具标准纳入机制，具体ASTM版本及生效日期另查16 CFR 1250
+- 厂家证书和实验室完整报告是不同证据，不得把已提供证书写成未提供
+- CPSC官方指南显示2024年4月20日前生产且晚于2018年2月28日的玩具对应ASTM F963-17时间段
 risk_hint: 无 CPC 或超标 → CPSC 强制召回 + 民事处罚
 est_cost: CPC + 测试 ¥10K-25K
 license: public
 source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statues/Childrens-Products
-last_verified: '2026-09-11'
+last_verified: '2026-09-16'
 verified_by: llm-assisted
 verification_status: needs_human_review
 schema_version: 1

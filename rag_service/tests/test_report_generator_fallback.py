@@ -32,6 +32,7 @@ def _generator(with_fallback: bool = True) -> ReportGenerator:
     gen.api_key = "primary-key"
     gen.base_url = "https://primary.example/v1"
     gen.model = "primary-model"
+    gen._primary_provider = "minimax"
     gen.fallback_api_key = "fallback-key" if with_fallback else ""
     gen.fallback_base_url = "https://fallback.example/anthropic/v1"
     gen.fallback_model = "fallback-model"

@@ -177,11 +177,21 @@ def run_compliance_graph(
     state = _merge(state, vision_analysis_node(state))
     _emit(progress_callback, "vision", "done", STAGE_PROGRESS["vision"][1])
 
-    _emit(progress_callback, "applicability", "running", STAGE_PROGRESS["applicability"][0])
-    _emit(progress_callback, "applicability", "done", STAGE_PROGRESS["applicability"][1])
+    cache_hits = int((state.get("vision_result") or {}).get("cache_hits", 0))
+    original_callback = progress_callback
 
-    _emit(progress_callback, "generate", "running", STAGE_PROGRESS["generate"][0])
-    state = _merge(state, generator_node(state))
+    def evidence_progress(stage, phase, value):
+        suffix = f"|cache_hits={cache_hits}" if cache_hits else ""
+        _emit(original_callback, stage, phase + suffix, value)
+
+    progress_callback = evidence_progress
+    _emit(progress_callback, "applicability", "running", STAGE_PROGRESS["applicability"][0])
+
+    def generation_started():
+        _emit(progress_callback, "applicability", "done", STAGE_PROGRESS["applicability"][1])
+        _emit(progress_callback, "generate", "running", STAGE_PROGRESS["generate"][0])
+
+    state = _merge(state, generator_node(state, on_generation_start=generation_started))
     _emit(progress_callback, "generate", "done", STAGE_PROGRESS["generate"][1])
 
     _emit(progress_callback, "verify", "running", STAGE_PROGRESS["verify"][0])

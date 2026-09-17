@@ -136,6 +136,7 @@ def build_anchor_list(
             # regulation id — carry it through from the KB anchor.
             "regulation_id": str(kb_entry.get("regulation_id") or ""),
             "short_name": str(kb_entry.get("short_name") or ""),
+            "trigger_features": list((kb_entry.get("applies_if") or {}).get("features_any") or []),
         })
     return anchors
 

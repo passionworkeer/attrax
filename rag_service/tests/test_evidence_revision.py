@@ -124,6 +124,18 @@ def test_append_evidence_preserves_original_uploads(completed):
     assert {u.original_name for u in uploads} == {"front.png", "nameplate.png"}
 
 
+def test_revision_preserves_user_query_not_generated_report(completed):
+    backend, service, created = completed
+    session = backend.get_session(created.session_id)
+    assert session.result["originalQuery"] == "check toy"
+    assert service._revision_job_fields(session) == ("check toy", "building blocks")
+    legacy = session.model_copy(update={"result": {"productName": "product", "complianceReport": "wrong old conclusion"}})
+    query, product = service._revision_job_fields(legacy)
+    assert "wrong old conclusion" not in query
+    assert "toy" in query
+    assert product == ""
+
+
 def test_append_evidence_is_idempotent(completed):
     _, service, created = completed
     upload = SubmittedUpload(

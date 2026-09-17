@@ -61,6 +61,17 @@ MAX_MARKETS_PER_SCAN = 5
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
+    modelscope_api_key: str = ""
+
+    # Provider-neutral primary LLM configuration. Legacy MiniMax/MimoTalk
+    # names remain accepted below for existing deployments.
+    llm_provider: str = ""
+    llm_api_key: str = ""
+    llm_base_url: str = ""
+    llm_model: str = ""
+    llm_thinking: str = ""
+    llm_timeout_seconds: float = 240.0
+
     minimax_api_key: str = ""
     minimax_base_url: str = "https://api.minimaxi.com/anthropic/v1"
     minimax_model: str = "MiniMax-M3"
@@ -77,22 +88,45 @@ class Settings(BaseSettings):
     deepseek_max_tokens: int = DEFAULT_DEEPSEEK_MAX_TOKENS
 
     @property
-    def effective_minimax_api_key(self) -> str:
-        return self.minimax_api_key or self.mimotalk_api_key
+    def effective_llm_provider(self) -> str:
+        if self.llm_provider.strip():
+            return self.llm_provider.strip().lower()
+        return "qwen" if self.effective_llm_model.lower().startswith("qwen") else "minimax"
 
     @property
-    def effective_minimax_base_url(self) -> str:
+    def effective_llm_api_key(self) -> str:
+        return self.llm_api_key or self.minimax_api_key or self.mimotalk_api_key
+
+    @property
+    def effective_llm_base_url(self) -> str:
+        if self.llm_base_url:
+            return self.llm_base_url
         default = "https://api.minimaxi.com/anthropic/v1"
         if os.environ.get("MINIMAX_BASE_URL") or self.minimax_base_url != default:
             return self.minimax_base_url
         return self.mimotalk_base_url or default
 
     @property
-    def effective_minimax_model(self) -> str:
+    def effective_llm_model(self) -> str:
+        if self.llm_model:
+            return self.llm_model
         default = "MiniMax-M3"
         if os.environ.get("MINIMAX_MODEL") or self.minimax_model != default:
             return self.minimax_model
         return self.mimotalk_model or default
+
+    # Compatibility properties for integrations importing the old names.
+    @property
+    def effective_minimax_api_key(self) -> str:
+        return self.effective_llm_api_key
+
+    @property
+    def effective_minimax_base_url(self) -> str:
+        return self.effective_llm_base_url
+
+    @property
+    def effective_minimax_model(self) -> str:
+        return self.effective_llm_model
 
     @property
     def effective_deepseek_base_url(self) -> str:
@@ -174,6 +208,13 @@ settings = Settings()
 
 # Legacy lower-level clients still read these names directly. setdefault only
 # fills absent values and does not overwrite an operator's process environment.
+os.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
+os.environ.setdefault("LLM_PROVIDER", settings.effective_llm_provider)
+os.environ.setdefault("LLM_API_KEY", settings.effective_llm_api_key)
+os.environ.setdefault("LLM_BASE_URL", settings.effective_llm_base_url)
+os.environ.setdefault("LLM_MODEL", settings.effective_llm_model)
+os.environ.setdefault("LLM_THINKING", settings.llm_thinking)
+os.environ.setdefault("LLM_TIMEOUT_SECONDS", str(settings.llm_timeout_seconds))
 os.environ.setdefault("MINIMAX_API_KEY", settings.effective_minimax_api_key)
 os.environ.setdefault("MINIMAX_BASE_URL", settings.effective_minimax_base_url)
 os.environ.setdefault("MINIMAX_MODEL", settings.effective_minimax_model)
@@ -209,15 +250,28 @@ def resolve_deepseek_config(api_key: str | None = None) -> tuple[str, str, str, 
     )
 
 
-def resolve_minimax_config(api_key: str | None = None) -> tuple[str, str, str]:
-    """Resolve current process settings, preferring MINIMAX_* over aliases."""
+def resolve_llm_config(api_key: str | None = None) -> tuple[str, str, str]:
+    """Resolve provider-neutral primary config with legacy aliases."""
     current = Settings(_env_file=None)
     return (
-        # ``None`` means "use configured credentials". An explicit empty
-        # string is a deliberate no-network override used by fallback paths
-        # and tests; treating it as falsy silently reloaded the operator's
-        # local key and could issue an unintended LLM request.
-        current.effective_minimax_api_key if api_key is None else api_key,
-        current.effective_minimax_base_url,
-        current.effective_minimax_model,
+        current.effective_llm_api_key if api_key is None else api_key,
+        current.effective_llm_base_url,
+        current.effective_llm_model,
     )
+
+
+def resolve_llm_provider() -> str:
+    return Settings(_env_file=None).effective_llm_provider
+
+
+def resolve_llm_thinking() -> str:
+    return Settings(_env_file=None).llm_thinking.strip().lower()
+
+
+def resolve_llm_timeout_seconds() -> float:
+    return min(600.0, max(10.0, Settings(_env_file=None).llm_timeout_seconds))
+
+
+def resolve_minimax_config(api_key: str | None = None) -> tuple[str, str, str]:
+    """Deprecated compatibility alias for external imports."""
+    return resolve_llm_config(api_key)

@@ -9,6 +9,7 @@ Covers:
 - vision_analysis_node()
 """
 import sys, os
+import json
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
 import pytest
@@ -16,6 +17,7 @@ from unittest.mock import patch, MagicMock, call
 import urllib.error
 
 from rag_service.pipeline.nodes.vision import (
+    CHECKLIST_PROMPT_TEMPLATE,
     _parse_vision_text,
     _build_vision_enriched_query,
     _empty_vision_result,
@@ -24,6 +26,13 @@ from rag_service.pipeline.nodes.vision import (
     set_vision_analyzer,
     _get_analyzer,
 )
+
+
+def test_checklist_prompt_requires_one_visible_marks_entry_per_certification_mark():
+    assert "common.certification_marks.visible" in CHECKLIST_PROMPT_TEMPLATE
+    assert '"visible_marks"' in CHECKLIST_PROMPT_TEMPLATE
+    assert "每个 visible_marks 元素只包含一个标志" in CHECKLIST_PROMPT_TEMPLATE
+    assert "紧贴该标志的 bbox" in CHECKLIST_PROMPT_TEMPLATE
 
 
 # ─────────────────────────────────────────────
@@ -368,6 +377,24 @@ class TestVisionAnalyzerMimotalk:
         analyzer = VisionAnalyzer(api_key="test-key")
         result = analyzer._call_mimotalk([{"role": "user", "content": []}])
         assert result == "product type"
+
+    @patch("rag_service.pipeline.nodes.vision._NO_PROXY_OPENER")
+    def test_call_skips_thinking_block_and_returns_text_block(self, mock_opener):
+        mock_response = MagicMock()
+        mock_response.__enter__ = MagicMock(return_value=mock_response)
+        mock_response.__exit__ = MagicMock(return_value=False)
+        mock_response.read.return_value = json.dumps({
+            "content": [
+                {"type": "thinking", "thinking": "hidden reasoning", "signature": "sig"},
+                {"type": "text", "text": '{"product_type":"移动电源"}'},
+            ]
+        }).encode("utf-8")
+        mock_opener.open.return_value = mock_response
+
+        analyzer = VisionAnalyzer(api_key="test-key")
+        result = analyzer._call_llm([{"role": "user", "content": []}])
+
+        assert result == '{"product_type":"移动电源"}'
 
     @patch("rag_service.pipeline.nodes.vision._NO_PROXY_OPENER")
     def test_http_error_returns_empty_string(self, mock_opener):

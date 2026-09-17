@@ -58,17 +58,24 @@ def test_ready_endpoint_reports_required_api_keys(client):
     """Production readiness reports the LLM key as the sole gate
     (De-RAG §7.7: embedding stack is gone)."""
     previous_demo_mode = settings.demo_mode
+    previous_llm_key = settings.llm_api_key
     previous_minimax = settings.minimax_api_key
+    previous_mimotalk = settings.mimotalk_api_key
     settings.demo_mode = False
+    settings.llm_api_key = ""
     settings.minimax_api_key = ""
+    settings.mimotalk_api_key = ""
     try:
         resp = client.get("/ready")
     finally:
         settings.demo_mode = previous_demo_mode
+        settings.llm_api_key = previous_llm_key
         settings.minimax_api_key = previous_minimax
+        settings.mimotalk_api_key = previous_mimotalk
 
     assert resp.status_code == 503
     data = resp.json()
+    assert data["checks"]["llm_api_key"] is False
     assert data["checks"]["minimax_api_key"] is False
     # KB / regulation library still load regardless of LLM key.
     assert data["checks"]["kb_anchors"] is True
@@ -83,6 +90,7 @@ def test_readiness_returns_200_with_all_kb_checks_passing(client):
     assert data["ready"] is True
     assert data["checks"]["kb_anchors"] is True
     assert data["checks"]["regulation_library"] is True
+    assert data["checks"]["llm_api_key"] is True
     assert data["checks"]["minimax_api_key"] is True
 
 

@@ -47,6 +47,32 @@ def test_file_backend_archives_upload_with_generated_name_digest_and_safe_read(t
     assert content == b"image-bytes"
 
 
+def test_list_uploads_preserves_creation_order_instead_of_random_uuid_order(tmp_path):
+    backend = FileBackend(tmp_path)
+    first = backend.save_upload(
+        "scan_01", "image", "01-overall.jpg", "image/jpeg", b"first"
+    )
+    second = backend.save_upload(
+        "scan_01", "image", "02-nameplate.jpg", "image/jpeg", b"second"
+    )
+
+    # Force metadata filenames into the opposite lexical order. The old
+    # implementation sorted these random UUID filenames and returned the
+    # second image first, breaking vision-image-N -> asset-N mapping.
+    directory = tmp_path / "uploads" / "scan_01"
+    first_meta = directory / f"{first.upload_id}.json"
+    second_meta = directory / f"{second.upload_id}.json"
+    first_target = directory / "upload_zzzz.json"
+    second_target = directory / "upload_aaaa.json"
+    first_meta.rename(first_target)
+    second_meta.rename(second_target)
+
+    assert [item.original_name for item in backend.list_uploads("scan_01")] == [
+        "01-overall.jpg",
+        "02-nameplate.jpg",
+    ]
+
+
 def test_file_backend_rejects_tampered_upload_path_and_digest(tmp_path):
     backend = FileBackend(tmp_path)
     upload = backend.save_upload("scan_01", "image", "front.jpg", "image/jpeg", b"safe")

@@ -159,6 +159,13 @@ class TestUn38:
 
 
 class TestGenericLadder:
+    def test_wireless_anchor_ignores_unrelated_battery_candidate(self):
+        facts = ProductFacts(category="appliance", markets=["EU"], battery="candidate", wireless="confirmed")
+        entry = {**anchor("EU-2014-53", "EU", "feature"), "trigger_features": ["wireless"]}
+        decision = evaluate_anchor(entry, facts)
+        assert decision.state == "applicable"
+        assert decision.facts_basis == {"wireless": "confirmed"}
+
     def test_category_source_is_applicable(self):
         facts = ProductFacts(category="toy", markets=["EU"])
         decision = evaluate_anchor(anchor("EU-2009-48", "EU", "category"), facts)

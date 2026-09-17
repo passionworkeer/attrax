@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-report_generator.py - Compliance report generator (mimoTalk only)
+report_generator.py - Compliance report generator
 
-唯一 LLM：MiniMax-M3（Anthropic 兼容接口）
+主模型通过 Anthropic 兼容接口配置，并保留 DeepSeek 降级通道。
 - 超时/失败 → 返回 mock 结构化报告，不降级到其他 provider
 """
 import os
@@ -13,6 +13,7 @@ import urllib.request
 import urllib.error
 
 from rag_service.schemas.report_package import normalize_report_package
+from rag_service.llm_response import extract_text_blocks
 
 logger = logging.getLogger(__name__)
 
@@ -57,6 +58,7 @@ _CITATION_RULES = """
 }
 
 - 找不到合适原文引句时，引句留空字符串，引文仍保留（按条款级定位）
+- quote必须为一段连续原文，不能用省略号连接多段，不要翻译或概括；可摘短句以满足长度限制
 - 严禁编造条款号或引句——不在原文里的引文会被后端校验拒绝并标记
 - private 标准（GB/ASTM/UL/EN 等）没有条款正文，不要为其填 citations；改用 KB key_points 兜底
 """
@@ -234,7 +236,7 @@ def _build_article_source_context(article_texts: dict[str, str]) -> str:
     for i, (article_key, text) in enumerate(article_texts.items(), start=1):
         # Truncate to keep total context manageable; the spec allows
         # ~7000 chars of JSON output, so we cap each article at ~1500.
-        clipped = (text or "").strip()[:1500]
+        clipped = (text or "").strip()[:8000]
         if not clipped:
             continue
         parts.append(f"[{i}] {article_key}\n{clipped}")
@@ -394,7 +396,7 @@ def _identify_product_type(chunks: list[dict]) -> str:
 
 
 class ReportGenerator:
-    """Compliance report generator: MiniMax primary, DeepSeek fallback.
+    """Compliance report generator: configured primary, DeepSeek fallback.
 
     超时/网络错误 → 先尝试 DeepSeek 降级通道；两条都不通才返回 mock 报告。
     """
@@ -402,8 +404,17 @@ class ReportGenerator:
     supports_report_package = True
 
     def __init__(self, api_key: str | None = None):
-        from rag_service.config import resolve_deepseek_config, resolve_minimax_config
-        self.api_key, self.base_url, self.model = resolve_minimax_config(api_key)
+        from rag_service.config import (
+            resolve_deepseek_config,
+            resolve_llm_config,
+            resolve_llm_provider,
+            resolve_llm_thinking,
+            resolve_llm_timeout_seconds,
+        )
+        self.api_key, self.base_url, self.model = resolve_llm_config(api_key)
+        self._primary_provider = resolve_llm_provider()
+        self.thinking = resolve_llm_thinking()
+        self.timeout_seconds = resolve_llm_timeout_seconds()
         (
             self.fallback_api_key,
             _openai_base,  # text-only generation speaks the Anthropic endpoint
@@ -413,12 +424,12 @@ class ReportGenerator:
         ) = resolve_deepseek_config()
         # Which provider actually answered the most recent call. The report
         # trace and reportPackage.auditMetadata surface this, so a fallback-served
-        # report must not claim to be MiniMax's.
+        # report must not claim to be the primary provider's.
         self._served_by: str | None = None
 
     @property
     def provider(self) -> str:
-        return self._served_by or "minimax"
+        return self._served_by or self._primary_provider
 
     def generate_report_package(
         self,
@@ -426,7 +437,7 @@ class ReportGenerator:
         product: str,
         market: str,
         chunks: list[dict],
-        max_tokens: int = 4096,
+        max_tokens: int = 6144,
         doc_context: str = "",
         mandatory_regulations: list[dict] | None = None,
         article_texts: dict[str, str] | None = None,
@@ -471,6 +482,11 @@ class ReportGenerator:
             source_context = _build_article_source_context(article_texts or {})
         else:
             source_context = _build_source_context(chunks, max_chunks=24, max_chars=700)
+            if article_texts:
+                source_context += (
+                    "\n\n可定位条款正文（citationIds必须使用下列完整ID）：\n"
+                    + _build_article_source_context(article_texts)
+                )
 
         doc_section = (
             f"\n\n用户上传文档内容：\n{doc_context}\n"
@@ -492,8 +508,37 @@ class ReportGenerator:
             "Otherwise omit structuredFields entirely; never use example zeros or guessed values.\n"
         )
         system = REPORT_PACKAGE_SYSTEM_PROMPT.replace("{source_chunks}", finance_contract + source_context)
-        if use_kb:
-            system = system + _CITATION_RULES
+        system += (
+            "\n审阅关联契约：顶层新增 reviewClaims 数组，按每个目标市场覆盖输入索引中全部checkId，每个市场每项只输出一次。"
+            "每项字段：market（单个目标市场代码）、checkId（只能使用输入检查ID）、"
+            "status（supported/blocked/unknown/not_applicable）、reason（分项判断与理由）、"
+            "applicabilityReason（此法规为什么适用于本产品和市场）、"
+            "citationIds（只能引用本次citations已有的doc_id#article_id）、"
+            "observationIds（对应输入观察ID）、documentEvidence（[{documentIndex:从0开始的上传文件序号,quote:输入文档中的逐字原文}]）。"
+            "每个市场分别判断；照片不能证明检测合格；没有完整依据必须unknown；"
+            "不得编造引用、检查ID、观察ID或文件引文。未覆盖的检查保持待确认。"
+            "documentIndex必须照抄user_document标签上的documentIndex属性，不能从1计数。"
+            "文档优先使用提供的Available exact excerpt IDs：documentEvidence写{documentIndex:0,excerptId:\"e1\"}，系统会取回该文件的真实原句，不必重抄quote。"
+            "一个结论可选择多个不同excerptId；必须选择与该结论直接相关的句子，不可仅选择文件标题证明检测通过。"
+            "法律引用优先在citationIds选择输入中已有的完整doc_id#article_id，系统可定位原文；不必为了凑引文改写或翻译法条。"
+            "产品事实与法律判断必须区分：品牌型号、年龄标识、外观是观察结果，不要把已识别事实写成无法识别，也不要为纯事实强行引用无关法条。"
+            "涉及标签合规时说明已核对的具体要求和未核对的尺寸/位置/适用范围；仅有英文或警告图标不能判定全部标签要求符合。"
+            "厂家证书可以证明厂家声明覆盖所列标准；试验实测结论、证书批次对应和证书存在是三种不同判断，分别说明。"
+            "supported表示当前证据足以支持该项限定判断，不表示绝对准入：如果具体产品证书列出该标准、实验室和日期，可将‘证书覆盖’判断为supported，同时说明未独立复核原始试验数据。"
+            "视觉检查中，清晰观察到要求内容可支持‘标识已存在’；可见范围内明确未见缺陷可支持‘本次目视未发现异常’。不得把这类限定判断写成全面合规。"
+            "如果法规要求的追溯字段或证书与实物对应信息在已有图片和文档中仍缺失，status写blocked并明确补证动作，不要笼统写unknown。"
+            "如果图片、官方说明书和同一产品证书共同支持电池仓、警告或标准覆盖，应交叉引用这些证据完成判断。"
+            "documentEvidence.quote仅复制该文件内连续的原文句子（建议20至180字符），不能翻译、改写、拼接或用省略号删节；中文解释写入reason。"
+            "照片未显示某标识，不等于实物全部位置均不存在；未完整覆盖标识位置时，不能仅据未见标识判blocked。"
+            "每个有法规依据的分项必须填写citationIds。可以不重复输出顶层citations对象，系统会根据模型明确选择的条款ID附上标注来源的原文；不要将citationIds全部留空。"
+            "已提供的厂家声明、产品证书、实验室报告分别记录其覆盖范围、型号、版本与日期；"
+            "不要因未提供实验室原始报告而声称没有厂家证书。不得把自编摘要当作实验室合格证明。"
+            "区域条件必须具体：英文标识不能自动满足所有欧盟成员国语言要求；未选择具体成员国时说明需按销售国语言核对。"
+            "EPREL注册、能效标签、通用充电器标签只在已确定适用的具体产品范围内提出，不能泛化到所有家电。"
+            "DoC中的型号/批次格式不能证明照片实物批次相同；证书列出某标准只能证明厂家声明的覆盖范围，不能声称已复核完整试验数据。"
+            "这些分项只表示AI预检，不能替代正式准入许可。优先保留关联证据，压缩重复叙述。\n"
+        )
+        system += _CITATION_RULES
 
         user_prompt = (
             f"产品类型：{product}\n"
@@ -502,18 +547,29 @@ class ReportGenerator:
             f"{anchor_section}"
             f"{vision_section}"
             f"{doc_section}\n"
-            "请基于上述证据一次性生成四个场景内容：合规报告、成本利润报告、合规排期路线图、AI 决策视图。"
+            "请基于上述证据输出审阅报告，首先输出reviewClaims及其引用，再输出合规报告、合规排期路线图与AI决策视图。"
+            "没有成本输入时profitReport.markdown仅写‘未提供成本数据，本报告不作利润预测’，不要展开利润报告。"
             "输出必须是可解析 JSON，不要使用 Markdown 代码围栏。"
-            "为避免响应截断：整个 JSON 控制在 7000 个字符以内，"
+            "为避免响应截断：整个 JSON 控制在 12000 个字符以内，每项判断保持简短，"
             "complianceReport 与 profitReport.markdown 各不超过 1200 个汉字，"
             "roadmap.items 最多 5 项，decisionView.nodes 最多 6 项；每条 citation 必须有 claim；"
             "优先保证所有 JSON 字段闭合。"
         )
+        if self.provider == "qwen":
+            user_prompt += (
+                "\n千问本地交互限制：整个 JSON 控制在 12000 个字符以内，"
+                "reviewClaims不可省略，覆盖输入索引中全部checkId；没有充分依据的项写unknown且说明缺什么，不要填造证据。"
+                "complianceReport 不超过 500 个汉字，profitReport.markdown 不超过 80 个汉字，"
+                "roadmap.items 最多 3 项，decisionView.nodes 最多 4 项；"
+                "宁可缩短内容也必须先闭合全部 JSON 字符串、数组和对象。"
+            )
+
+        generation_max_tokens = min(max_tokens, 6144) if self.provider == "qwen" else max_tokens
 
         try:
-            raw = self._generate_mimotalk(system, user_prompt, max_tokens)
+            raw = self._generate_llm(system, user_prompt, generation_max_tokens)
         except Exception as e:
-            logger.error(f"mimoTalk package generation failed: {e!r}")
+            logger.error("%s package generation failed: %r", self.provider, e)
             return self._fallback_report_package(
                 product=product,
                 market=market,
@@ -535,19 +591,19 @@ class ReportGenerator:
                 f"<model_output>\n{raw[:12000]}\n</model_output>"
             )
             try:
-                repaired = self._generate_mimotalk(
+                repaired = self._generate_llm(
                     "你是严格的 JSON 修复器，不得创造或改写事实。",
                     repair_prompt,
-                    max_tokens,
+                    generation_max_tokens,
                 )
                 parsed = _parse_json_object(repaired)
                 if parsed is not None:
                     raw = repaired
-                    logger.info("mimoTalk package JSON repaired in one bounded retry")
+                    logger.info("%s package JSON repaired in one bounded retry", self.provider)
             except Exception as exc:
-                logger.warning("mimoTalk package JSON repair failed: %r", exc)
+                logger.warning("%s package JSON repair failed: %r", self.provider, exc)
         if parsed is None:
-            logger.warning("mimoTalk package generation returned non-JSON output")
+            logger.warning("%s package generation returned non-JSON output", self.provider)
             return self._fallback_report_package(
                 product=product,
                 market=market,
@@ -655,6 +711,11 @@ class ReportGenerator:
                 "validationErrors": validation_errors,
             },
             "citations": llm_citations if llm_citations else [],
+            "reviewClaims": (
+                package.get("reviewClaims")
+                if isinstance(package.get("reviewClaims"), list)
+                else []
+            ),
         }
         return normalize_report_package(
             normalized,
@@ -847,7 +908,7 @@ class ReportGenerator:
         doc_context: str = "",
     ) -> str:
         """
-        Generate compliance report via mimoTalk.
+        Generate a compliance report through the configured primary provider.
         On failure: returns a mock structured report.
         """
         if not chunks:
@@ -874,9 +935,9 @@ class ReportGenerator:
         system = SYSTEM_PROMPT.replace("{source_chunks}", source_context)
 
         try:
-            return self._generate_mimotalk(system, user_prompt, max_tokens)
+            return self._generate_llm(system, user_prompt, max_tokens)
         except Exception as e:
-            logger.error(f"mimoTalk failed: {e}")
+            logger.error("%s failed: %s", self.provider, e)
             return self._mock_report(product, market, query, error=f"LLM 调用失败：{e}")
 
     # Max chars fed to the JSON parser's balanced-object scan. The scan is
@@ -890,8 +951,8 @@ class ReportGenerator:
     _LLM_MAX_ATTEMPTS = 3
     _LLM_BACKOFF_BASE = 1.0  # seconds
 
-    def _generate_mimotalk(self, system: str, user_prompt: str, max_tokens: int) -> str:
-        """Generate one completion, degrading to DeepSeek when MiniMax fails.
+    def _generate_llm(self, system: str, user_prompt: str, max_tokens: int) -> str:
+        """Generate one completion, degrading to DeepSeek when the primary fails.
 
         Retries are limited to transient failures (URLError, timeout, 5xx
         HTTPError, or HTTP 429). Authentication/quota/business 4xx errors are
@@ -904,7 +965,7 @@ class ReportGenerator:
         timeout-class outage it exists for. With a fallback on hand, degrading
         beats stalling.
         """
-        body = json.dumps({
+        request_body = {
             "model": self.model,
             "max_tokens": max_tokens,
             "temperature": 0.2,
@@ -912,17 +973,15 @@ class ReportGenerator:
             "messages": [
                 {"role": "user", "content": user_prompt},
             ],
-            # MiniMax-M3 defaults to adaptive thinking; forcing "disabled"
-            # skips the reasoning trace for lower latency. Opt-in via env:
-            # the exact API acceptance should be A/B-verified before an
-            # operator enables it (the default keeps today's wire format).
-            **(
-                {"thinking": {"type": "disabled"}}
-                if os.environ.get("MINIMAX_THINKING_MODE", "adaptive").strip().lower()
-                in {"disabled", "off", "false", "0"}
-                else {}
-            ),
-        }).encode("utf-8")
+        }
+        thinking = self.thinking
+        if not thinking and os.environ.get("MINIMAX_THINKING_MODE", "").strip().lower() in {
+            "disabled", "off", "false", "0",
+        }:
+            thinking = "disabled"
+        if thinking in {"enabled", "disabled"}:
+            request_body["thinking"] = {"type": thinking}
+        body = json.dumps(request_body).encode("utf-8")
 
         max_attempts = 1 if self.fallback_api_key else self._LLM_MAX_ATTEMPTS
         last_exc: Exception | None = None
@@ -939,15 +998,15 @@ class ReportGenerator:
             )
             try:
                 text = self._read_mimotalk_response(req)
-                self._served_by = "minimax"
+                self._served_by = self._primary_provider
                 return text
             except _TransientLLMError as e:
                 last_exc = e.cause
                 if attempt < max_attempts:
                     delay = self._LLM_BACKOFF_BASE * (2 ** (attempt - 1))
                     logger.warning(
-                        "mimoTalk transient failure (attempt %d/%d): %r; retrying in %.1fs",
-                        attempt, max_attempts, e.cause, delay,
+                        "%s transient failure (attempt %d/%d): %r; retrying in %.1fs",
+                        self.provider, attempt, max_attempts, e.cause, delay,
                     )
                     # P1-11: this sleep runs inside the executor worker
                     # thread that ``main._run_scan_request`` dispatched via
@@ -969,7 +1028,7 @@ class ReportGenerator:
         if not self.fallback_api_key:
             # Defensive: the loop exits via return/break above.
             raise last_exc if last_exc else RuntimeError(
-                "mimoTalk retry loop exited unexpectedly"
+                "LLM retry loop exited unexpectedly"
             )
 
         logger.warning(
@@ -1023,7 +1082,7 @@ class ReportGenerator:
         self._served_by = "deepseek"
         return text
 
-    def _read_mimotalk_response(self, req: urllib.request.Request) -> str:
+    def _read_llm_response(self, req: urllib.request.Request, timeout: float | None = None) -> str:
         """Execute a single /messages request and return its text content.
 
         Raises _TransientLLMError for retryable failures; everything else
@@ -1036,7 +1095,7 @@ class ReportGenerator:
         outage). MiniMax returns a single text block, so this is a no-op there.
         """
         try:
-            with _NO_PROXY_OPENER.open(req, timeout=90) as r:
+            with _NO_PROXY_OPENER.open(req, timeout=timeout or self.timeout_seconds) as r:
                 data = json.loads(r.read())
         except urllib.error.HTTPError as e:
             if e.code in (429, 500, 502, 503, 504):
@@ -1045,18 +1104,23 @@ class ReportGenerator:
         except (urllib.error.URLError, TimeoutError) as e:
             raise _TransientLLMError(e) from e
 
-        blocks = data.get("content")
-        if not isinstance(blocks, list):
-            blocks = [blocks] if isinstance(blocks, dict) else []
-        content = "".join(
-            block.get("text", "")
-            for block in blocks
-            if isinstance(block, dict) and block.get("type") == "text"
-        )
+        content = extract_text_blocks(data)
         if content and content.strip():
             logger.info(f"LLM report generated ({len(content)} chars)")
             return content
         raise ValueError("LLM returned empty response")
+
+    def _generate_mimotalk(self, system: str, user_prompt: str, max_tokens: int) -> str:
+        """Compatibility wrapper for older integrations and regression tests."""
+        return self._generate_llm(system, user_prompt, max_tokens)
+
+    def _read_mimotalk_response(
+        self,
+        req: urllib.request.Request,
+        timeout: float | None = None,
+    ) -> str:
+        """Compatibility wrapper for the former provider-specific reader."""
+        return self._read_llm_response(req, timeout=timeout)
 
     def _mock_report(
         self,
@@ -1192,7 +1256,7 @@ class ReportGenerator:
         )
 
         try:
-            report_text = self._generate_mimotalk(system, user_prompt, max_tokens)
+            report_text = self._generate_llm(system, user_prompt, max_tokens)
             # LLM 返回完整 markdown 报告时直接使用
             if report_text.strip():
                 # 若 LLM 输出了完整报告结构（包含成本对比表），直接返回
@@ -1241,7 +1305,7 @@ class ReportGenerator:
             return f"""## {product_type} 合规成本与利润分析报告
 
 > 目标市场：{market} | 报告日期：—
-> ⚠️ 数据基于估算，如需精确值请配置 mimoTalk API Key。
+> ⚠️ 数据基于估算，如需精确值请配置 LLM API Key。
 
 ### 一、成本对比表（合规模式 vs 裸奔模式）
 
