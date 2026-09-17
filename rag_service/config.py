@@ -61,8 +61,6 @@ MAX_MARKETS_PER_SCAN = 5
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    modelscope_api_key: str = ""
-
     minimax_api_key: str = ""
     minimax_base_url: str = "https://api.minimaxi.com/anthropic/v1"
     minimax_model: str = "MiniMax-M3"
@@ -176,7 +174,6 @@ settings = Settings()
 
 # Legacy lower-level clients still read these names directly. setdefault only
 # fills absent values and does not overwrite an operator's process environment.
-os.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
 os.environ.setdefault("MINIMAX_API_KEY", settings.effective_minimax_api_key)
 os.environ.setdefault("MINIMAX_BASE_URL", settings.effective_minimax_base_url)
 os.environ.setdefault("MINIMAX_MODEL", settings.effective_minimax_model)

@@ -34,10 +34,10 @@ pdfplumber==0.11.8
 python-docx==1.2.0
 beautifulsoup4==4.14.3
 lxml==6.0.2                  # bs4 后端
+defusedxml==0.7.1            # 安全 XML 解析（ingest_regulation_supplements 等脚本）
 
 # ── YAML（kb_loader / article_loader / visual_checks 直接 import） ────────────
 # 之前只靠 uvicorn[standard] 传递安装；显式声明避免瘦身 uvicorn 依赖时静默断链。
-# （defusedxml 已移除：XXE 防护走 lxml 默认安全配置，无直接 import）
 PyYAML==6.0.3
 
 # ── LLM（唯一外部 API；urllib 调用 mimoTalk） ─────────────────────────────────

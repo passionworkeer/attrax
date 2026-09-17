@@ -302,12 +302,6 @@ class ProfitReportResponse(BaseModel):
     market: str
 
 
-def _current_embedding_provider() -> str:
-    """De-RAG §7.7: the embedding stack is deleted. Kept as a stub so
-    legacy monitoring payloads keep parsing; always reports 'none'."""
-    return "none"
-
-
 def _enforce_secret_policy(s: "settings.__class__") -> None:
     """P0-6 fail-closed guard for RAG_INTERNAL_SECRET at startup.
 
@@ -841,21 +835,6 @@ async def profit_report(req: ProfitReportRequest):
         product=product_type,
         market=market,
     )
-
-
-def _normalize_chunks(results: list) -> list[dict]:
-    """Normalize retriever output to the standard chunk dict format."""
-    out = []
-    for item in results:
-        if isinstance(item, dict):
-            out.append({
-                "content": item.get("content", "") or item.get("text", ""),
-                "doc_name": item.get("doc_name", "") or item.get("source", ""),
-                "chunk_id": item.get("chunk_id", ""),
-                "score": item.get("score", 0.0),
-            })
-    return out
-
 
 
 async def global_exception_handler(request: Request, exc: Exception):

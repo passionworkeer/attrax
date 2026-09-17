@@ -75,31 +75,6 @@ PROFIT_SYSTEM_PROMPT = """你是跨境电商合规财务专家。根据以下语
 """
 
 
-def _extract_numbers_from_chunk(chunk: dict, product_type: str) -> dict:
-    """
-    从单个 chunk 中提取与利润分析相关的数字。
-    返回 dict，key 为字段名，value 为提取的值（字符串）。
-    """
-    import re
-    content = chunk.get("content", "") + " " + chunk.get("rawText", "")
-    doc_name = chunk.get("doc_name", "")
-
-    def extract_num(pattern: str, default="—"):
-        m = re.search(pattern, content)
-        return m.group(1) if m else default
-
-    def extract_range(pattern: str, default="—"):
-        m = re.search(pattern, content)
-        if m:
-            return f"{m.group(1)}–{m.group(2)}"
-        return default
-
-    return {
-        "doc_name": doc_name,
-        "content_preview": content[:200],
-    }
-
-
 def _build_profit_context(chunks: list[dict], product_type: str, max_chars: int = 3000) -> str:
     """构建供 LLM 使用的利润分析语料上下文。"""
     parts = []
