@@ -4,6 +4,27 @@
 
 ## [Unreleased] - 2026-09-17
 
+**法规数据源全量实测审计:35 个源里 15 个实际没在追踪任何东西**
+
+**背景**
+- 对 35 个注册源做全量实测(生产机真实抓取,走各自 collector 完整路径),发现 9 个源 `source_url` 返回 403/404,自 2026-09-16 上线起每个 pass 都在失败 —— 生产机自己的 `errors.json` 早已逐条记录,但没有告警、没有断言、没人看。根因:`human_view_status` 是手工字段,填的是「浏览器能不能打开」,与抓取能力无关
+- 修完 URL 后暴露第二层:6 个源返回 200 但正文只有 24–224 字符(JS 渲染 SPA,stdlib `html.parser` 拿不到正文)。摘要**永远不变**,看起来像「这个源一直没变化」,比不追踪更糟
+
+**修复与新增**
+- 换通道:`us-cpsc-recalls-rss`(403)→ SaferProducts.gov REST API(新 `cpsc_recall_api` collector);JP/BR 换到实测 200 端点;CN/KR/AE/SA/IN 五个 JS 空壳标 `fetch_status: shell_only`;EU Safety Gate API 已整体下线,标 `unreachable`
+- 新增源(全部实测):`us-cpsc-recalls-api`、`us-fda-device-recalls`、`us-fda-food-enforcement`(`food_contact` 品类此前零召回信号)
+- 修掉三个「假可用」bug:OpenFDA 不显式排序会返回档案库任意切片(device 实测 2003 年记录),30 天窗口过滤后摘要为空 —— 空摘要与「真的没有召回」无法区分;且 device 端点没有 `recall_initiation_date` 字段,对它排序是 HTTP 500,须按端点声明排序字段
+- 抓取改造:并行抓取(线程池 `ATTRAX_REGWATCH_FETCH_WORKERS`,默认 8;原串行最坏 6300s)+ 协作式 60s deadline(socket 阻塞的线程杀不掉,由 `fetch_url` 在每次尝试/backoff 前检查预算);`source_type` plugin 注册表(新源 = 新文件 + `@register`);304 短路;cookie jar + Accept-Language/Encoding;大文档双信号 diff(Jaccard 对句序换位不敏感,叠加行级 LCS 取较小值);UA 季度轮换
+- 删除 5 个被数据中心 IP 段硬封的 collector(UK legislation.gov.uk / TGA / ACCC / EU Cellar SPARQL / Health Canada,带完整浏览器头也 403)
+- 新守卫:`scripts/watchdog/check_sources.py`(走真实 collector 抓一遍,报 ok/304/thin/TIME/FAIL,结构不变量测试当场抓出 `canada_justice_xml` 与 `direct_url` 两个从未显式注册的源);`fetch_status` 三态门控整个 pass(已知抓不到的源不再每晚灌 errors.json);`review.py` 复核/回滚 CLI(自动入库的配套人工闸门)
+- 数据:14 篇 9 市场法规 YAML 手工创建 + 对应 KB anchors;22 篇补 `source_kind`(11 篇凭空造的 `private_summary` 改成语义正确且已被 `quote_matcher` 处理的 `curated_summary`);`regulations_index.json` 按实际 58 篇重建;`/health/watchdog` 运维端点 + BFF 透传;OpenAPI snapshot + types.gen.ts 补齐该端点
+
+**验证**
+- pytest 776 passed(rag_service/ + scripts/watchdog/);生产机 `check_sources` **30/30 healthy, 0 thin, 0 failed**;端到端 dry-run 30 源 64 秒抓完
+- 完整审计记录(含 GitHub 同类项目调研结论:无可复用捷径)见 `docs/regulations/SOURCE-AUDIT-2026-09-17.md`
+
+## [Unreleased] - 2026-09-17
+
 **对抗审查 round 5:契约漂移 + 限流分桶 + 401 cookie + 运维配置**
 
 **背景**
