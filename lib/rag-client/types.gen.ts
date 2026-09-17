@@ -237,6 +237,32 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/health/watchdog": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Health Watchdog
+         * @description Operational view of the regulation watchdog (2026-09-17).
+         *
+         *     Read-only: returns the latest pass result + per-source state
+         *     without restarting anything or invalidating any cache. The endpoint
+         *     sits under /health/* so it stays un-gated by RAG_INTERNAL_SECRET
+         *     (operators need it during incidents when auth is the suspect) — the
+         *     payload exposes no secrets, only file-derived state.
+         */
+        get: operations["health_watchdog_health_watchdog_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/scan": {
         parameters: {
             query?: never;
@@ -1407,6 +1433,26 @@ export interface operations {
         };
     };
     ready_ready_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    health_watchdog_health_watchdog_get: {
         parameters: {
             query?: never;
             header?: never;

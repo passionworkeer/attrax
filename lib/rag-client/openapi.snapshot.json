@@ -504,6 +504,23 @@
         }
       }
     },
+    "/health/watchdog": {
+      "get": {
+        "summary": "Health Watchdog",
+        "description": "Operational view of the regulation watchdog (2026-09-17).\n\nRead-only: returns the latest pass result + per-source state\nwithout restarting anything or invalidating any cache. The endpoint\nsits under /health/* so it stays un-gated by RAG_INTERNAL_SECRET\n(operators need it during incidents when auth is the suspect) — the\npayload exposes no secrets, only file-derived state.",
+        "operationId": "health_watchdog_health_watchdog_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/scan": {
       "post": {
         "summary": "Scan",
