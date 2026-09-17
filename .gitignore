@@ -190,6 +190,8 @@ embedding_cache/
 # ─── Judge / external test packages ────────────────────────────
 # 第三方评测/法官测试包（中文文件名，本地解压后留在仓外）— 仅供
 # scripts/run-production-regression.ts 读取，不应纳入版本控制。
+tests/fixtures/regression-package-*/
+tests/fixtures/*.zip
 规航AI-三产品完整测试包-20260914/
 规航AI-三产品完整测试包-20260914.zip
 
