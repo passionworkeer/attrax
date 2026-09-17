@@ -121,6 +121,55 @@ function scoreFor(rollup: Severity): { score: number; grade: ScoreGrade } {
   }
 }
 
+function gradeFromScore(score: number): ScoreGrade {
+  if (score >= 85) return "A";
+  if (score >= 70) return "B";
+  if (score >= 55) return "C";
+  return "D";
+}
+
+// 2026-09-17 adversarial eval finding: every production scan scored 65/C
+// because the coarse rollup maps both HIGH and MEDIUM LLM riskLevel to
+// "warning". This deterministic formula scores from the server-built
+// findings (findings_builder — zero LLM involvement) instead, so different
+// products get different, explainable scores. LLM riskLevel stays display-only.
+//
+//   score = 100
+//         - 22 per critical finding
+//         - 14 per high finding
+//         -  8 per medium finding
+//         -  3 per low finding
+//   pending decisionView nodes (open evidence gaps) cap the score at 84 —
+//   an unfinished evidence chain must not grade A.
+function evidenceScore(
+  findings: { severity: string }[],
+  pendingDecisionNodes: number,
+): { score: number; grade: ScoreGrade } {
+  let score = 100;
+  for (const finding of findings) {
+    switch (finding.severity) {
+      case "critical":
+        score -= 22;
+        break;
+      case "high":
+        score -= 14;
+        break;
+      case "medium":
+        score -= 8;
+        break;
+      case "low":
+        score -= 3;
+        break;
+      // "unknown" — no deduction; the scan did not claim a problem.
+    }
+  }
+  score = Math.max(0, Math.min(100, score));
+  if (pendingDecisionNodes > 0) {
+    score = Math.min(score, 84);
+  }
+  return { score, grade: gradeFromScore(score) };
+}
+
 // Backwards-compatible legacy lookup: keeps the previous behavior — explicit
 // status string wins over derived rollup — for sessions where the backend only
 // emits complianceStatus without riskPoints (legacy/demode).
@@ -410,14 +459,25 @@ export function normalizeV1ScanResult(session: V1SessionData): ScanResult | unde
   const riskPoints = buildRisks(result, reportPackage, session.sessionId);
   const decisionView = record(reportPackage.decisionView);
   const decisionRiskLevel = text(decisionView.riskLevel);
+  const decisionNodes = records(decisionView.nodes);
+  const pendingDecisionNodes = decisionNodes.filter(
+    (node) => text(node.status) === "pending",
+  ).length;
 
-  // Derive a rollup. If we have *any* riskPoints OR an explicit riskLevel,
-  // use the rollup (matches the risk distribution the page renders). Only
-  // fall back to legacy `complianceStatus` when both are absent.
+  // Deterministic evidence score from the server-built findings. Falls back
+  // to the legacy coarse rollup only for packages that carry no findings
+  // (legacy/demo shapes).
+  const rawFindings = records((reportPackage as UnknownRecord).findings);
+  const evidenceFindings = rawFindings
+    .map((finding) => ({ severity: text(finding.severity).toLowerCase() }))
+    .filter((finding) => finding.severity.length > 0);
+
   const score =
-    riskPoints.length > 0 || decisionRiskLevel
-      ? scoreFor(rollupSeverityForScore(riskPoints, decisionRiskLevel))
-      : resultScore(result, complianceStatus);
+    evidenceFindings.length > 0
+      ? evidenceScore(evidenceFindings, pendingDecisionNodes)
+      : riskPoints.length > 0 || decisionRiskLevel
+        ? scoreFor(rollupSeverityForScore(riskPoints, decisionRiskLevel))
+        : resultScore(result, complianceStatus);
 
   const generatedAt = text(
     record(reportPackage.auditMetadata).generatedAt,

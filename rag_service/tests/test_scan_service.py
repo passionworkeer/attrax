@@ -5,7 +5,6 @@ from datetime import timedelta
 import pytest
 
 from rag_service.application.scans import (
-    ScanNotFound,
     ScanService,
     ScanSubmission,
     ScanUnauthorized,
@@ -109,7 +108,9 @@ def test_service_rejects_wrong_or_expired_session_tokens(tmp_path):
         backend.save_session(
             stored.model_copy(update={"expires_at": utc_now() - timedelta(seconds=1)})
         )
-        with pytest.raises(ScanNotFound):
+        # Anti-enumeration: an expired session is indistinguishable from a
+        # wrong token — both raise ScanUnauthorized (401), never ScanNotFound.
+        with pytest.raises(ScanUnauthorized):
             service.get_scan(created.session_id, created.access_token)
         assert backend.get_session(created.session_id) is None
 
