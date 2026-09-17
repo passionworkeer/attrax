@@ -22,6 +22,9 @@ test-results/
 
 # local-only E2E / work artifacts (spec §7.7 live-LLM probe dumps)
 /work/
+/tmp/
+/output/
+/outputs/
 
 # production
 /build

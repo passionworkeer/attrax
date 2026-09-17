@@ -1,0 +1,38 @@
+{
+  "created": "2026-09-14",
+  "products": [
+    {
+      "model": "Anker A2332",
+      "sample_role": "中国版实物出口欧盟的差距检测案例",
+      "target_market": "EU",
+      "page": "https://www.chargerlab.com/teardown-of-anker-65w-535-gan-charger-a2332/",
+      "images": [
+        "https://www.chargerlab.com/wp-content/uploads/2024/05/2024053001023345.jpeg",
+        "https://www.chargerlab.com/wp-content/uploads/2024/05/2024053001023874.jpeg",
+        "https://www.chargerlab.com/wp-content/uploads/2024/05/2024053001023438.jpeg"
+      ]
+    },
+    {
+      "model": "Xiaomi Smart Kettle 2 Pro MJJYSH01-A",
+      "declaration": "https://ce-doc.alsgp0.mi-fds.com/ce-doc/XiaomiSmartKettle2ProMJJYSH01-A.pdf",
+      "declaration_local": "xiaomi-kettle/declaration.pdf",
+      "product_page": "https://www.mi.com/global/product/xiaomi-smart-kettle-2-pro/",
+      "review_page": "https://www.mi.com/uk/product/xiaomi-smart-kettle-2-pro/review/",
+      "images": [
+        "https://i05.appmifile.com/876_comments_uk/10/01/2025/4dc2f71c306a4d92f0749a600108e529.png",
+        "https://i05.appmifile.com/32_comments_in/16/12/2024/3e088fab4349290d051bdfa1d99581ed.jpg",
+        "https://i05.appmifile.com/719_comments_in/16/12/2024/7e72d255c00a4584a14a7be3f4411248.jpg"
+      ],
+      "manual": "https://cdn.alsgp0.fds.api.mi-img.com/cwdq/2025/Xiaomi%20Smart%20Kettle%202%20Pro/EU/Xiaomi%20Smart%20Kettle%202%20Pro.pdf"
+    },
+    {
+      "model": "LEGO 76429",
+      "certificate": "https://www.lego.com/cdn/cs/legal/assets/blt13bbc05d7030c74e/76429_6470524_USDOC_EN.pdf",
+      "certificate_local": "lego-76429/product-certificate.pdf",
+      "official_product_page": "https://www.lego.com/en-us/product/talking-sorting-hat-76429",
+      "official_instructions": "https://www.lego.com/en-us/service/building-instructions/76429",
+      "warning_photo_page": "https://candidbricks.com/2024/05/20/xxl-warning-labels-on-lego-sets-spotted-in-the-us/",
+      "detail_photo_page": "https://www.brickfanatics.com/lego-76429-talking-sorting-hat-review"
+    }
+  ]
+}

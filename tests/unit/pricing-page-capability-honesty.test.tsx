@@ -38,14 +38,16 @@ import PricingPage from "@/app/pricing/page";
 import NotFound from "@/app/not-found";
 
 describe("J18: 定价页 — 未实现服务与联系方式诚实标注", () => {
-  it("不出现 .example 邮箱 / mailto 链接，改为「联系邮箱待配置（规划中）」", () => {
+  it("隐藏未配置的联系方式，并保留明确的演示方案选择", () => {
     const { container } = render(<PricingPage />);
 
     const mailtoLinks = container.querySelectorAll('a[href^="mailto:"]');
     expect(mailtoLinks).toHaveLength(0);
 
-    expect(screen.getByText(/联系邮箱待配置（规划中）/)).toBeInTheDocument();
-    expect(screen.getByText(/未接入客服通道/)).toBeInTheDocument();
+    expect(screen.queryByText(/联系邮箱待配置/)).not.toBeInTheDocument();
+    expect(screen.getAllByRole("button", { name: "选择方案" }).length).toBeGreaterThan(0);
+    expect(container.textContent).not.toMatch(/利润测算|Profit sheet/);
+    expect(screen.queryByText(/未接入客服通道/)).not.toBeInTheDocument();
   });
 
   it("专属客服 / 认证绿色通道 / 私有化部署标注「规划中」，不在方案权益里列成已包含", () => {

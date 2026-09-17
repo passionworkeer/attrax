@@ -39,9 +39,13 @@ vi.mock("@/components/blaze-hawks/locale", () => ({
 import UploadPage from "@/app/upload/page";
 import type { ProductCategory } from "@/lib/types";
 
-function changeCategory(next: ProductCategory) {
-  const select = screen.getByLabelText(/产品品类/) as HTMLSelectElement;
-  fireEvent.change(select, { target: { value: next } });
+async function changeCategory(next: ProductCategory) {
+  const labels: Partial<Record<ProductCategory, string>> = { battery: "电池/储能", toy: "玩具", electronics: "3C 电子" };
+  fireEvent.click(screen.getByRole("combobox", { name: /产品品类/ }));
+  const option = await screen.findByRole("option", { name: labels[next], exact: true });
+  fireEvent.keyDown(option, { key: "Enter" });
+  fireEvent.click(option);
+  await waitFor(() => expect(screen.getByRole("combobox", { name: /产品品类/ })).toHaveTextContent(labels[next]!));
 }
 
 function makeImageFile(name: string): File {
@@ -53,6 +57,8 @@ function makeImageFile(name: string): File {
 /** Click the "否" option of the conditional question whose text matches the
  * given pattern (several YES_NO questions render several 否 buttons). */
 function answerNoTo(questionPattern: RegExp) {
+  const summary = screen.getByText("补充产品信息（可选）").closest("summary")!;
+  if (!summary.parentElement?.hasAttribute("open")) fireEvent.click(summary);
   const group = screen
     .getAllByRole("group")
     .find((node) => questionPattern.test(node.getAttribute("aria-label") ?? ""));
@@ -88,7 +94,7 @@ describe("J17 red-team: 品类切换后旧槽位文件不泄漏/不丢失", () =
     render(<UploadPage />);
 
     // Battery category has 4 slots.
-    changeCategory("battery");
+    await changeCategory("battery");
     const slotInputs = screen.getAllByLabelText(/上传到.+槽位/) as HTMLInputElement[];
     expect(slotInputs).toHaveLength(4);
 
@@ -97,7 +103,7 @@ describe("J17 red-team: 品类切换后旧槽位文件不泄漏/不丢失", () =
     await fireEvent.change(slotInputs[3], { target: { files: [fourthSlotFile] } });
 
     // Switch to toy (3 slots).
-    changeCategory("toy");
+    await changeCategory("toy");
     expect(screen.getAllByLabelText(/上传到.+槽位/)).toHaveLength(3);
 
     // The extra file must be explicitly acknowledged as supplementary
@@ -105,7 +111,7 @@ describe("J17 red-team: 品类切换后旧槽位文件不泄漏/不丢失", () =
     expect(await screen.findByText(/另外 1 张图片会作为补充证据/)).toBeInTheDocument();
 
     // Submit: the 4th file must be INCLUDED in the images payload.
-    const submit = screen.getByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ });
+    const submit = screen.getAllByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ }).at(-1)!;
     fireEvent.click(submit);
 
     await waitFor(() => {
@@ -144,7 +150,7 @@ describe("J17 red-team: 品类切换后旧槽位文件不泄漏/不丢失", () =
       });
     }
 
-    const submit = screen.getByRole("button", { name: /开始检测|上传 1 张图片后开始检测|可开始基础预检/ });
+    const submit = screen.getAllByRole("button", { name: /开始检测|上传 1 张图片后开始检测|可开始基础预检/ }).at(-1)!;
     fireEvent.click(submit);
 
     await waitFor(() => {
@@ -183,7 +189,7 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     );
 
     render(<UploadPage />);
-    changeCategory("toy");
+    await changeCategory("toy");
 
     const slotInputs = screen.getAllByLabelText(/上传到.+槽位/) as HTMLInputElement[];
     await fireEvent.change(slotInputs[0], {
@@ -193,7 +199,7 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     // Answer the battery conditional question with 否.
     answerNoTo(/是否含电池/);
 
-    const submit = screen.getByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ });
+    const submit = screen.getAllByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ }).at(-1)!;
     fireEvent.click(submit);
 
     await waitFor(() => {
@@ -225,14 +231,14 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     );
 
     render(<UploadPage />);
-    changeCategory("toy");
+    await changeCategory("toy");
 
     const slotInputs = screen.getAllByLabelText(/上传到.+槽位/) as HTMLInputElement[];
     await fireEvent.change(slotInputs[0], {
       target: { files: [makeImageFile("toy.png")] },
     });
 
-    fireEvent.click(screen.getByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ }));
+    fireEvent.click(screen.getAllByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ }).at(-1)!);
 
     await waitFor(() => {
       expect(fetch).toHaveBeenCalled();
@@ -259,7 +265,7 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     );
 
     render(<UploadPage />);
-    changeCategory("toy");
+    await changeCategory("toy");
 
     const slotInputs = screen.getAllByLabelText(/上传到.+槽位/) as HTMLInputElement[];
     await fireEvent.change(slotInputs[0], {
@@ -269,9 +275,9 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     // Answer toy's battery question…
     answerNoTo(/是否含电池/);
     // …then switch to electronics (different question set).
-    changeCategory("electronics");
+    await changeCategory("electronics");
 
-    fireEvent.click(screen.getByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ }));
+    fireEvent.click(screen.getAllByRole("button", { name: /开始检测|上传 1 张图片后开始检测/ }).at(-1)!);
 
     await waitFor(() => {
       expect(fetch).toHaveBeenCalled();

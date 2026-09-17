@@ -22,6 +22,8 @@ import {
   useScanPolling,
 } from "@/lib/hooks/useScanPolling";
 import { cn } from "@/lib/utils";
+import { MARKET_IDS, type Market } from "@/lib/types";
+import waitingStyles from "./waiting.module.css";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
 
 function readStoredAccessToken(sessionId: string): string | null {
@@ -87,7 +89,9 @@ function localizeStageText(
           queued: "准备中…",
           vision: "识别铭牌与认证标识…",
           retrieval: "匹配多市场法规库…",
-          report: "生成合规报告与路线图…",
+          report: "正在生成合规报告",
+          verify: "核对报告引用与证据…",
+          persist: "保存报告，准备展示…",
           done: "完成",
           failed: "扫描失败",
         }
@@ -96,6 +100,8 @@ function localizeStageText(
           vision: "Detecting labels and certification marks…",
           retrieval: "Searching multi-market rule libraries…",
           report: "Generating compliance reports and roadmap…",
+          verify: "Checking citations and evidence…",
+          persist: "Saving your report…",
           done: "Done",
           failed: "Scan failed",
         };
@@ -120,12 +126,17 @@ export default function BurningPage() {
 
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [storedImageCount, setStoredImageCount] = useState<number>(0);
+  const [storedMarkets, setStoredMarkets] = useState<Market[]>([]);
 
   useEffect(() => {
     if (!isDemoSession && sessionId) {
       startTransition(() => {
         setAccessToken(readStoredAccessToken(sessionId));
         setStoredImageCount(readStoredImageCount(sessionId));
+        try {
+          setStoredMarkets((sessionStorage.getItem(`scan-markets:${sessionId}`) ?? "")
+            .split(",").filter((market): market is Market => MARKET_IDS.includes(market as Market)));
+        } catch { setStoredMarkets([]); }
       });
     }
   }, [isDemoSession, sessionId]);
@@ -133,7 +144,7 @@ export default function BurningPage() {
   // Hold-timer origin: the poller captures the timestamp of the FIRST
   // response that reported completing (event-handler context — pure-render
   // compliant). The page just consumes it; no Date.now() during render.
-  const { status, displayProgress, completedAt: holdReadyAt } = useScanPolling(sessionId, accessToken);
+  const { status, displayProgress, lastContactAt, reconnecting, completedAt: holdReadyAt } = useScanPolling(sessionId, accessToken);
 
   const displayStatus = isDemoSession
     ? {
@@ -145,7 +156,23 @@ export default function BurningPage() {
       }
     : status;
   const progress = isDemoSession ? displayStatus?.progress ?? 8 : displayProgress || 8;
-  const activeIndex = getActiveIndex(progress);
+  const stageIndex = { queued: 0, vision: 1, retrieval: 2, report: 3, done: 5, failed: 0 };
+  const phase = displayStatus?.stageText?.split(":")[0];
+  const cacheHits = Number(displayStatus?.stageText?.match(/cache_hits=(\d+)/)?.[1] ?? 0);
+  const [elapsedSeconds, setElapsedSeconds] = useState(0);
+  const [clockNow, setClockNow] = useState(0);
+  useEffect(() => {
+    const started = Date.now();
+    if (status?.status && status.status !== "processing") return;
+    const timer = window.setInterval(() => { setClockNow(Date.now()); setElapsedSeconds(Math.floor((Date.now() - started) / 1000)); }, 1000);
+    return () => window.clearInterval(timer);
+  }, [sessionId, status?.status]);
+  const contactAge = lastContactAt ? Math.max(0, Math.floor((clockNow - lastContactAt) / 1000)) : null;
+  const connectionDelayed = reconnecting || (contactAge !== null && contactAge > 15);
+  const elapsedLabel = `${String(Math.floor(elapsedSeconds / 60)).padStart(2, "0")}:${String(elapsedSeconds % 60).padStart(2, "0")}`;
+  const activeIndex = phase === "verify" ? 4 : phase === "persist" ? 5 : displayStatus?.stageKey
+    ? stageIndex[displayStatus.stageKey]
+    : getActiveIndex(progress);
   const imageCount = isDemoSession
     ? 1
     : status?.imageCount || storedImageCount;
@@ -227,7 +254,7 @@ export default function BurningPage() {
   }, [demoMarkets, isDemoSession, preset, router]);
 
   return (
-    <main className={`${brightFlow.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
+    <main className={`${brightFlow.page} ${brightFlow.scanGlass} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
       <CompliPilotFlowBackdrop tone="bright" />
       <CompliPilotFlowHeader
         backHref="/upload"
@@ -236,122 +263,38 @@ export default function BurningPage() {
         flowSubtitle={locale === "zh" ? "识别产品信息 · 检索目标市场法规 · 生成解释结论" : "Recognize · retrieve regulations · explain"}
         primaryHref="/upload"
         primaryLabel={locale === "zh" ? "重新上传" : "Upload again"}
-        secondaryHref="/result/demo"
-        secondaryLabel={locale === "zh" ? "查看演示结果" : "View demo result"}
-        statusLabel={isDemoSession ? "00:02" : `${progress}%`}
+
+        statusLabel={isDemoSession ? "00:02" : elapsedLabel}
         tone="bright"
       />
 
       <section className="mx-auto grid min-h-[960px] w-full max-w-7xl gap-6 px-6 pt-6 lg:grid-cols-[320px_1fr] xl:grid-cols-[340px_1fr]">
         <aside className="blaze-panel p-5 sm:p-6">
-          <SectionEyebrow>Step 02</SectionEyebrow>
-          <h1 className="mt-3 text-[26px] font-semibold leading-tight text-white xl:text-3xl">{copy.burning.title}</h1>
-          <p className="mt-3 text-sm leading-7 text-white/58">
-            {copy.burning.body}
-          </p>
-
-          <div className="mt-6 flex items-center justify-between">
-            {copy.burning.analysisSteps.map((step, index) => {
-              const state = index < activeIndex ? "done" : index === activeIndex ? "active" : "queued";
-              return (
-                <div key={step.title} className="flex flex-1 items-center">
-                  <div className="flex flex-col items-center gap-2">
-                    <div
-                      className={`flex size-8 items-center justify-center rounded-full border text-xs font-bold ${
-                        state === "active"
-                          ? "border-[var(--blaze-orange)] bg-[rgba(255,143,57,0.2)] text-[var(--blaze-orange)] shadow-[0_0_12px_rgba(255,143,57,0.3)]"
-                          : state === "done"
-                            ? "border-[var(--blaze-orange)] bg-[var(--blaze-orange)] text-[#0d1730]"
-                            : "border-white/10 bg-[rgba(13,19,36,0.6)] text-white/40"
-                      }`}
-                    >
-                      {state === "done" ? "✓" : index + 1}
-                    </div>
-                    <span className={`text-xs font-semibold ${state === "active" ? "text-white" : state === "done" ? "text-white/70" : "text-white/40"}`}>
-                      {step.title}
-                    </span>
-                  </div>
-                  {index < copy.burning.analysisSteps.length - 1 ? (
-                    <div className="mx-1 mb-5 h-px flex-1 bg-white/10" />
-                  ) : null}
-                </div>
-              );
-            })}
+          <SectionEyebrow>{locale === "zh" ? "正在检测" : "SCAN IN PROGRESS"}</SectionEyebrow>
+          <div className={waitingStyles.currentTask} aria-live="polite">
+            {displayStatus?.status !== "failed" && <span className={waitingStyles.activity} aria-hidden="true" />}
+            <h1 className={waitingStyles.title}>{localizeStageText(locale, phase === "verify" || phase === "persist" ? phase : displayStatus?.stageKey, undefined) ?? copy.burning.waiting}</h1>
+            <p className={waitingStyles.description}>{copy.burning.analysisSteps[activeIndex]?.description}</p>
           </div>
-
-          <div className="mt-6 flex items-center gap-4">
-            <div className="relative size-28">
-              <svg className="size-full -rotate-90" viewBox="0 0 100 100">
-                <circle
-                  cx="50" cy="50" r="45"
-                  fill="none"
-                  stroke="rgba(255,255,255,0.08)"
-                  strokeWidth="4"
-                />
-                <circle
-                  cx="50" cy="50" r="45"
-                  fill="none"
-                  stroke="var(--blaze-orange)"
-                  strokeWidth="4"
-                  strokeLinecap="round"
-                  strokeDasharray={`${2 * Math.PI * 45}`}
-                  strokeDashoffset={`${2 * Math.PI * 45 * (1 - progress / 100)}`}
-                  className="transition-[stroke-dashoffset] duration-500"
-                  style={{ filter: "drop-shadow(0 0 6px rgba(255,143,57,0.4))" }}
-                />
-              </svg>
-              <div className="absolute inset-0 grid place-items-center text-center">
-                <div>
-                  <div className="font-mono text-2xl font-bold text-white">{progress}%</div>
-                  <div className="text-xs uppercase tracking-[0.18em] text-white/42">{copy.burning.progress}</div>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <GlowPill>Session · {sessionId.slice(0, 16)}</GlowPill>
-              <p className="text-sm text-white/64">
-                {localizeStageText(locale, displayStatus?.stageKey, displayStatus?.stageText) ??
-                  copy.burning.waiting}
-              </p>
-            </div>
+          <div className={waitingStyles.timer}>
+            <span>{locale === "zh" ? "本页已等待" : "Time on this page"}</span>
+            <strong>{isDemoSession ? "00:02" : elapsedLabel}</strong>
           </div>
-
-          <div className="mt-6 space-y-3">
-            {copy.burning.analysisSteps.map((step, index) => {
-              const state =
-                index < activeIndex ? "done" : index === activeIndex ? "active" : "queued";
-              return (
-                <div
-                  key={`${index}-${step.title}`}
-                  className={`rounded-[22px] border px-4 py-4 ${
-                    state === "active"
-                      ? "border-[rgba(255,143,57,0.36)] bg-[rgba(255,143,57,0.14)]"
-                      : state === "done"
-                        ? "border-white/10 bg-white/7"
-                        : "border-white/8 bg-white/4"
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-sm font-semibold text-white">{step.title}</p>
-                    <span className="text-xs uppercase tracking-[0.18em] text-white/38">
-                      {state === "done"
-                        ? locale === "zh"
-                          ? "完成"
-                          : "done"
-                        : state === "active"
-                          ? locale === "zh"
-                            ? "进行中"
-                            : "live"
-                          : locale === "zh"
-                            ? "等待"
-                            : "wait"}
-                    </span>
-                  </div>
-                  <p className="mt-2 text-sm leading-6 text-white/54">{step.description}</p>
-                </div>
-              );
-            })}
-          </div>
+          {!isDemoSession && displayStatus?.status !== "failed" && <div className={waitingStyles.connection} data-delayed={connectionDelayed} role="status">
+            <span className={waitingStyles.connectionDot} aria-hidden="true" />
+            <div><strong>{locale === "zh" ? (connectionDelayed ? "状态同步暂时中断" : lastContactAt ? "服务连接正常" : "正在连接检测服务") : (connectionDelayed ? "Status connection interrupted" : lastContactAt ? "Service connected" : "Connecting")}</strong>
+            <p>{locale === "zh" ? (connectionDelayed ? "正在重新获取状态，请勿重复提交。" : contactAge !== null ? `${contactAge} 秒前收到任务状态` : "正在获取当前任务状态…") : (connectionDelayed ? "Reconnecting. Please do not resubmit." : contactAge !== null ? `Task status received ${contactAge}s ago` : "Fetching task status…")}</p></div>
+          </div>}
+          {displayStatus?.status === "processing" && activeIndex === 3 && elapsedSeconds >= 60 && <p className={waitingStyles.longWait}>{locale === "zh" ? "本次生成等待较久。暂未收到报告，完成后会自动展示；服务状态更新不代表模型已完成。" : "This report is taking longer. We are still waiting for its output and will open it when ready."}</p>}
+          {activeIndex === 3 && <p className={waitingStyles.explanation}>{locale === "zh" ? "正在综合产品照片、补充材料与目标市场要求，生成本次报告。这个环节通常比资料准备耗时更长。" : "Combining product images, supporting evidence and market requirements into your report. This usually takes longer than preparation."}</p>}
+          {activeIndex > 0 && <div className={waitingStyles.receipt}>
+            <h2>{locale === "zh" ? "已就绪的资料" : "Ready for analysis"}</h2>
+            <p>{locale === "zh" ? `${imageCount} 张产品照片已接收` : `${imageCount} product images received`}</p>
+            {activeIndex > 1 && <p>{cacheHits > 0 ? (locale === "zh" ? `${cacheHits} 张照片的识别结果已复用` : `Reused observations for ${cacheHits} images`) : (locale === "zh" ? "图片识别已完成" : "Image observations ready")}</p>}
+            {activeIndex > 2 && <p>{locale === "zh" ? "适用检查与法规范围已整理" : "Applicable checks and sources prepared"}</p>}
+            {cacheHits > 0 && <small>{locale === "zh" ? "相同照片无需重复识别；本次报告仍会重新分析生成。" : "Matching images need no repeat recognition. This report is generated afresh."}</small>}
+          </div>}
+          <p className={waitingStyles.next}>{locale === "zh" ? "生成后核对引用，再自动打开报告。" : "Citations are checked before your report opens automatically."}</p>
         </aside>
 
         <section className="blaze-panel min-h-[820px] p-5 sm:p-6">
@@ -364,7 +307,9 @@ export default function BurningPage() {
                 {copy.burning.stageNote}
               </p>
             </div>
-            <GlowPill>{copy.burning.marketsPill}</GlowPill>
+            <GlowPill>{storedMarkets.length
+              ? storedMarkets.map((market) => copy.upload.marketLabels[market]).join(" · ")
+              : locale === "zh" ? "按所选市场分析" : "Analyzing selected markets"}</GlowPill>
           </div>
 
           <div className="mt-6 space-y-4">
@@ -372,7 +317,8 @@ export default function BurningPage() {
               images={stageImages}
               progress={progress}
               locale={locale}
-              stageKey={displayStatus?.stageKey ?? "vision"}
+              stageKey={phase === "verify" || phase === "persist" ? phase : displayStatus?.stageKey ?? "queued"}
+              cacheHits={cacheHits}
               isPreset={isDemoSession}
             />
 
@@ -403,15 +349,6 @@ export default function BurningPage() {
                 <Button size="lg" className="rounded-full" onClick={() => router.push("/upload")}>
                   {copy.burning.retry}
                 </Button>
-                <Link
-                  href="/result/demo"
-                  className={cn(
-                    buttonVariants({ size: "lg", variant: "outline" }),
-                    "rounded-full border-white/12 bg-white/4 text-white hover:bg-white/10"
-                  )}
-                >
-                  {copy.burning.showDemo}
-                </Link>
               </div>
             </div>
           ) : null}

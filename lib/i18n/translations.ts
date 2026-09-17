@@ -210,7 +210,7 @@ export const translations = {
     regulations: {
       title: "法规动态示例",
       subtitle: "查看目标市场法规变化的结构示例（非实时数据）",
-      demoBadge: "示例数据 · static demo",
+      demoBadge: "示例数据",
       mockNotice: "本页为静态示例数据（static-demo），用于演示法规动态的呈现结构与来源追溯；条目不会实时抓取或自动校验，不代表最新监管状态。真实扫描报告中的法规引用以报告内条目为准。",
       recentUpdates: "最新更新",
       viewAll: "查看全部",
@@ -598,7 +598,7 @@ export const translations = {
     regulations: {
       title: "Regulation Update Demos",
       subtitle: "A structural sample of market regulation changes (not live data)",
-      demoBadge: "Demo data · static demo",
+      demoBadge: "Demo data",
       mockNotice: "This page shows static demo data (static-demo) to demonstrate how regulation updates and source traceability are presented; entries are not fetched or verified in real time and do not reflect the latest regulatory status. Regulation citations in real scan reports follow the in-report entries.",
       recentUpdates: "Recent Updates",
       viewAll: "View All",

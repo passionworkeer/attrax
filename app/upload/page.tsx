@@ -5,8 +5,10 @@ import { startTransition, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Camera,
+  ScanLine,
+  ShieldAlert,
+  ClipboardList,
   CheckCircle2,
-  ChevronDown,
   FileImage,
   FileText,
   Play,
@@ -20,7 +22,6 @@ import {
   SectionEyebrow,
 } from "@/components/blaze-hawks/ui";
 import {
-  CompliPilotFlowBackdrop,
   CompliPilotFlowFooter,
   CompliPilotFlowHeader,
 } from "@/components/complipilot/flow-shell";
@@ -29,6 +30,8 @@ import { MARKET_IDS, type Market, type ProductCategory } from "@/lib/types";
 import { getCategoryManifest } from "@/lib/upload/category-manifest";
 import { validateUploadFile } from "@/lib/upload-validation";
 import styles from "./upload.module.css";
+import { CategorySelect } from "./category-select";
+import { PRODUCT_SAMPLES, loadProductSample } from "@/lib/upload/product-samples";
 
 type ScanStartPayload = {
   sessionId: string;
@@ -56,38 +59,7 @@ function formatFileSize(size: number) {
   return `${(size / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-const presetConfigs: Array<{
-  category: ProductCategory;
-  markets: Market[];
-  previewImage: string;
-}> = [
-  {
-    category: "electronics",
-    markets: ["EU", "UK"],
-    previewImage: "/mock-fixtures/preset-charger-photo.png",
-  },
-  {
-    category: "appliance",
-    markets: ["EU", "US"],
-    previewImage: "/mock-fixtures/preset-humidifier-photo.png",
-  },
-  {
-    category: "toy",
-    markets: ["EU", "US"],
-    previewImage: "/mock-fixtures/preset-toy-blocks-photo.png",
-  },
-];
-
-/**
- * NOTE (B-3): the preset selection chips below ONLY change the preview image
- * shown while the user has not uploaded yet, then `router.push("/result/demo")`
- * navigates to the prebuilt demo result page — it does NOT submit a scan.
- * The primary "Start scan" button is the only way to actually run an upload
- * through `/api/scan`. The header's "查看预制 Demo" link is a plain anchor
- * that skips this page entirely. Do NOT add Server Actions or form submissions
- * here: dd6cbf5 deliberately removed that path (the legacy `formData.append(
- * "preset", "true")` approach broke uploads; see the commit message).
- */
+const presetConfigs = PRODUCT_SAMPLES;
 
 export default function UploadPage() {
   const router = useRouter();
@@ -95,8 +67,10 @@ export default function UploadPage() {
   const copy = getCompliPilotCopy(locale);
   const [files, setFiles] = useState<Array<File | null>>([]);
   const [previewUrls, setPreviewUrls] = useState<Array<string | null>>([]);
+  const uploadPanelRef = useRef<HTMLElement | null>(null);
+  const currentPreviewUrlsRef = useRef<Array<string | null>>([]);
   const bulkUploadInputRef = useRef<HTMLInputElement | null>(null);
-  const [selectedMarkets, setSelectedMarkets] = useState<Market[]>(["EU", "UK"]);
+  const [selectedMarkets, setSelectedMarkets] = useState<Market[]>(["EU"]);
   const [category, setCategory] = useState<ProductCategory>("electronics");
   const [selectedPresetIndex, setSelectedPresetIndex] = useState(0);
   const [activePreviewIndex, setActivePreviewIndex] = useState(0);
@@ -107,6 +81,9 @@ export default function UploadPage() {
   const [documentError, setDocumentError] = useState<string | null>(null);
   const documentInputRef = useRef<HTMLInputElement | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  const [loadingSample, setLoadingSample] = useState(false);
+  const [includeSampleDocument, setIncludeSampleDocument] = useState(false);
+  const [sampleNotice, setSampleNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   // J17: 品类条件问题的答案（问题 id → 用户选择的选项文案）。
   // 提交时以 `userDeclaredFacts` JSON 字段附带给 BFF；BFF 透传为
@@ -148,8 +125,8 @@ export default function UploadPage() {
   // 自动切换检查配置。改为如实的「示例预览 · <品类>」。
   const categoryLabel =
     locale === "zh"
-      ? `示例预览 · ${categoryManifest.label}`
-      : `Sample preview · ${categoryManifest.labelEn}`;
+      ? `${usingUploadedPreview ? "上传预览" : "示例预览"} · ${categoryManifest.label}`
+      : `${usingUploadedPreview ? "Upload preview" : "Sample preview"} · ${categoryManifest.labelEn}`;
   const slotCopy =
     locale === "zh"
       ? photoSlots.map((slot) => ({
@@ -168,14 +145,18 @@ export default function UploadPage() {
       : `Recommended ${slotCount} angles (${categoryManifest.labelEn})`;
 
   useEffect(() => {
-    return () => {
-      previewUrls.forEach((url) => {
-        if (url) {
-          URL.revokeObjectURL(url);
-        }
-      });
-    };
+    currentPreviewUrlsRef.current = previewUrls;
   }, [previewUrls]);
+
+  useEffect(() => () => {
+    currentPreviewUrlsRef.current.forEach((url) => { if (url) URL.revokeObjectURL(url); });
+  }, []);
+
+  useEffect(() => {
+    if (!sampleNotice) return;
+    uploadPanelRef.current?.scrollIntoView?.({ block: "start", behavior: "auto" });
+    uploadPanelRef.current?.focus({ preventScroll: true });
+  }, [sampleNotice]);
 
   function validateFiles(nextFiles: File[]) {
     const invalidType = nextFiles.find((file) => !ACCEPTED_IMAGE_TYPES.has(file.type));
@@ -438,6 +419,7 @@ export default function UploadPage() {
       }
 
       try {
+        sessionStorage.setItem(`scan-markets:${startPayload.sessionId}`, String(formData.get("markets") ?? ""));
         sessionStorage.setItem(
           `scan-image-count:${startPayload.sessionId}`,
           String(formData.getAll("images").length),
@@ -462,12 +444,13 @@ export default function UploadPage() {
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting || loadingSample) return;
 
     if (!uploadedFiles.length) {
       setError(
         locale === "zh"
-          ? "请先上传至少 1 张产品图片，或使用下方预制 Demo。"
-          : "Please upload at least one product image, or use the preset demo below."
+          ? "请先上传至少 1 张产品图片，或载入下方产品样例。"
+          : "Please upload at least one product image, or load a product sample below."
       );
       return;
     }
@@ -499,21 +482,33 @@ export default function UploadPage() {
     await submitScan(formData);
   }
 
-  function startPresetDemo(presetIndex = selectedPresetIndex) {
-    // B-3 note: 跳到 /result/demo 时附带 `?preset=` + `?markets=` query,让结果页
-    // 用 createMockScanResult(sessionId, { category, markets }) 切到对应场景
-    // (electronics/appliance/toy)并带上该场景的目标市场。之前只传 preset、markets
-    // 落回默认 EU/UK,导致 humidifier/toy 明明选了 EU/US 却显示 EU/UK,toy 还丢了
-    // US-CPSIA-TOY 法规。
-    const presetKeys = ["charger", "humidifier", "toy"] as const;
-    const key = presetKeys[presetIndex] ?? "charger";
-    const preset = presetConfigs[presetIndex] ?? presetConfigs[0];
-    router.push(`/burning/demo?preset=${key}&markets=${preset.markets.join(",")}`);
+  async function loadSelectedSample() {
+    if (loadingSample || submitting) return;
+    setLoadingSample(true);
+    setSampleNotice(null);
+    setError(null);
+    try {
+      const sample = presetConfigs[selectedPresetIndex] ?? presetConfigs[0];
+      const loaded = await loadProductSample(sample, includeSampleDocument);
+      if (!validateFiles(loaded.images)) return;
+      handleCategoryChange(sample.category);
+      setSelectedMarkets([...sample.markets]);
+      setCategoryAnswers({});
+      handleFiles(loaded.images);
+      setDocumentFiles(loaded.documents);
+      setDocumentError(null);
+      setSampleNotice(locale === "zh"
+        ? "已载入三张照片。请确认目标市场与资料，再点击开始检测。"
+        : "Three photos loaded. Review the market and documents, then start the scan.");
+    } catch {
+      setError(locale === "zh" ? "样例资料加载失败，原有上传内容已保留，请重试。" : "Could not load the sample. Your uploads were preserved. Please retry.");
+    } finally {
+      setLoadingSample(false);
+    }
   }
 
   return (
     <main className={`${styles.page} complipilot-flow blaze-flow blaze-experience min-h-screen overflow-x-hidden pb-16`}>
-      <CompliPilotFlowBackdrop tone="bright" />
 
       <div className="relative z-10">
         <CompliPilotFlowHeader
@@ -521,17 +516,20 @@ export default function UploadPage() {
           backLabel={locale === "zh" ? "返回首页" : "Back home"}
           flowTitle={locale === "zh" ? "产品合规检测" : "Product Compliance Scan"}
           flowSubtitle={locale === "zh" ? "上传产品图 · 选择目标市场 · 生成合规报告" : "Upload · choose markets · generate report"}
-          primaryLabel={locale === "zh" ? "开始检测" : "Start scan"}
-          secondaryHref="/result/demo"
-          secondaryLabel={locale === "zh" ? "查看预制 Demo" : "View preset demo"}
+          primaryFormId="product-scan-form"
+          primaryDisabled={submitting || loadingSample || uploadedFiles.length === 0}
+          primaryLabel={submitting ? (locale === "zh" ? "正在提交…" : "Submitting…") : (locale === "zh" ? "开始检测" : "Start scan")}
+
           tone="bright"
         />
 
         <form
-          className="mx-auto grid w-full max-w-[1240px] gap-6 px-6 pt-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(380px,0.92fr)]"
+          id="product-scan-form"
+          className="mx-auto grid w-full max-w-[1240px] gap-6 px-3 pt-5 sm:px-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(380px,0.92fr)]"
           onSubmit={handleSubmit}
         >
-          <section className="blaze-panel p-5 sm:p-7">
+          <fieldset disabled={loadingSample || submitting} className="contents">
+          <section id="upload-form" ref={uploadPanelRef} tabIndex={-1} className="blaze-panel min-w-0 scroll-mt-24 p-5 outline-none sm:p-7">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <SectionEyebrow>Step 01</SectionEyebrow>
@@ -565,6 +563,8 @@ export default function UploadPage() {
               ))}
             </div>
 
+            {sampleNotice && <p role="status" className={styles.sampleNotice}>{locale === "zh" ? "已载入三张照片。请确认目标市场与资料，再点击开始检测。" : "Three photos loaded. Review the market and documents, then start the scan."}</p>}
+
             {/* J17（计划 §5.4）：先选品类，下面的照片槽与提示按品类动态渲染 */}
             <div className="mt-5 flex flex-wrap items-end gap-3">
               <div className="min-w-[220px] flex-1">
@@ -578,19 +578,8 @@ export default function UploadPage() {
                 </p>
               </div>
               <div className="relative min-w-[200px] flex-[2]">
-                <select
-                  id="blaze-category"
-                  value={category}
-                  onChange={(event) => handleCategoryChange(event.target.value as ProductCategory)}
-                  className="block w-full appearance-none rounded-[16px] border border-white/44 bg-white/22 px-4 py-3 pr-10 text-sm text-white outline-none transition focus:border-white/85"
-                >
-                  {(["electronics", "appliance", "3c", "toy", "home", "battery", "cosmetic", "textile", "food_contact", "other"] as const).map((optionId) => (
-                    <option key={optionId} value={optionId} className="bg-[#e8f7fa] text-[#073b54]">
-                      {copy.upload.categoryLabels[optionId]}
-                    </option>
-                  ))}
-                </select>
-                <ChevronDown className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-white/46" />
+                <CategorySelect value={category} onChange={handleCategoryChange}
+                  labels={copy.upload.categoryLabels} disabled={loadingSample || submitting} />
               </div>
             </div>
 
@@ -619,7 +608,8 @@ export default function UploadPage() {
                 setDragActive(false);
                 handleFiles(Array.from(event.dataTransfer.files));
               }}
-              className={`mt-5 flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-[26px] border border-dashed px-5 py-7 text-center transition ${
+              aria-disabled={loadingSample || submitting}
+              className={`${styles.uploadDropzone} mt-5 flex min-h-44 cursor-pointer flex-col items-center justify-center rounded-[26px] border border-dashed px-5 py-7 text-center transition ${
                 dragActive
                   ? "scale-[1.01] border-white bg-white/46 shadow-[0_16px_45px_rgba(41,142,177,0.16)]"
                   : "border-white/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.32),rgba(215,247,250,0.16))] hover:border-white hover:bg-white/38"
@@ -685,7 +675,7 @@ export default function UploadPage() {
                   return (
                     <article
                       key={slot.title}
-                      className={`rounded-[20px] border p-3 ${
+                      className={`${styles.photoSlot} rounded-[20px] border p-3 ${
                         file ? "border-white/60 bg-white/30" : "border-white/34 bg-white/14"
                       }`}
                     >
@@ -734,7 +724,7 @@ export default function UploadPage() {
                           <>
                             <label
                               htmlFor={`blaze-upload-slot-${index}`}
-                              className="cursor-pointer rounded-full border border-white/42 bg-white/22 px-2.5 py-1.5 text-xs text-white/58 transition hover:bg-white/38 hover:text-white"
+                              className={`${styles.addPhoto} cursor-pointer rounded-full border border-white/42 bg-white/22 px-2.5 py-1.5 text-xs text-white/58 transition hover:bg-white/38 hover:text-white`}
                             >
                               {locale === "zh" ? "添加" : "Add"}
                             </label>
@@ -781,30 +771,33 @@ export default function UploadPage() {
                 帮助检查器关闭不适用的检查（例如玩具声明无电池时不再要求电池仓照片）。
                 跳过不影响提交；回答不会替代照片证据（例如年龄声明不能替代包装年龄标注）。 */}
             {categoryManifest.conditionalQuestions.length > 0 ? (
-              <fieldset className="mt-6 rounded-[22px] border border-white/24 bg-white/8 p-4">
-                <legend className="px-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/50">
+              <details className={styles.optionalQuestions}>
+              <summary>{locale === "zh" ? "补充产品信息（可选）" : "Additional product information (optional)"}<span>{Object.keys(categoryAnswers).length}/{categoryManifest.conditionalQuestions.length}</span></summary>
+              <fieldset className={styles.questionBody}>
+                <legend className="sr-only">
                   {locale === "zh"
                     ? `${categoryManifest.label} · 条件问题（用户声明，可选）`
                     : `${categoryManifest.labelEn} · Conditional questions (user declaration, optional)`}
                 </legend>
-                <p className="text-xs leading-5 text-white/48">
+                <p className={styles.questionIntro}>
                   {locale === "zh"
-                    ? "这些回答会被记录为「用户声明」用于关闭不适用的检查，但不是认证证明——照片与文件证据仍以实物为准。"
-                    : "Answers are recorded as user declarations to close inapplicable checks; they are not certification proof — photo and document evidence still decides."}
+                    ? "按实际情况选填，帮助确定检查范围。不确定可跳过；回答不替代检测证明。"
+                    : "Optional answers help define the checks. Skip anything uncertain; answers do not replace test evidence."}
                 </p>
-                <div className="mt-3 space-y-4">
-                  {categoryManifest.conditionalQuestions.map((question) => {
+                <div className={styles.questionList}>
+                  {categoryManifest.conditionalQuestions.map((question, questionIndex) => {
                     const questionText = locale === "zh" ? question.question : question.questionEn;
                     const options =
                       locale === "zh"
                         ? question.options
                         : question.optionsEn ?? question.options;
                     return (
-                      <div key={question.id}>
-                        <p className="text-sm font-semibold text-white">{questionText}</p>
-                        <div className="mt-2 flex flex-wrap gap-2" role="group" aria-label={questionText}>
-                          {options.map((option) => {
-                            const selected = categoryAnswers[question.id] === option;
+                      <div key={question.id} className={styles.questionRow}>
+                        <p className={styles.questionTitle}><span aria-hidden="true">{String(questionIndex + 1).padStart(2, "0")}</span>{questionText}</p>
+                        <div className={styles.questionOptions} role="group" aria-label={questionText}>
+                          {options.map((option, optionIndex) => {
+                            const answer = question.options[optionIndex];
+                            const selected = categoryAnswers[question.id] === answer;
                             return (
                               <button
                                 key={option}
@@ -816,16 +809,12 @@ export default function UploadPage() {
                                     if (selected) {
                                       delete next[question.id];
                                     } else {
-                                      next[question.id] = option;
+                                      next[question.id] = answer;
                                     }
                                     return next;
                                   })
                                 }
-                                className={`rounded-full border px-3 py-1.5 text-xs transition ${
-                                  selected
-                                    ? "border-white/75 bg-white/40 text-white"
-                                    : "border-white/34 bg-white/12 text-white/58 hover:bg-white/28"
-                                }`}
+                                className={styles.questionOption}
                               >
                                 {option}
                               </button>
@@ -837,9 +826,10 @@ export default function UploadPage() {
                   })}
                 </div>
               </fieldset>
+              </details>
             ) : null}
 
-            <details className="group mt-6 rounded-[22px] border border-white/24 bg-white/8 open:bg-white/12">
+            <details className={`${styles.documentPanel} group mt-6 rounded-[22px] border border-white/24 bg-white/8 open:bg-white/12`}>
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 [&::-webkit-details-marker]:hidden">
                 <div className="flex min-w-0 items-center gap-3">
                   <FileText className="size-4 shrink-0 text-white/58" />
@@ -949,10 +939,11 @@ export default function UploadPage() {
                       <button
                         key={marketId}
                         type="button"
+                        aria-pressed={active}
                         onClick={() => toggleMarket(marketId)}
-                        className={`rounded-full border px-3 py-2 text-sm transition ${
+                        className={`${styles.marketOption} rounded-full border px-3 py-2 text-sm transition ${
                           active
-                            ? "border-white/75 bg-white/40 text-white"
+                            ? styles.selectedOption
                             : "border-white/34 bg-white/12 text-white/58 hover:bg-white/28"
                         }`}
                       >
@@ -962,8 +953,9 @@ export default function UploadPage() {
                   })}
                   <button
                     type="button"
+                    aria-expanded={showAllMarkets}
                     onClick={() => setShowAllMarkets((current) => !current)}
-                    className="rounded-full border border-white/28 bg-transparent px-3 py-2 text-sm text-white/48 transition hover:bg-white/18 hover:text-white"
+                    className={`${styles.marketOption} rounded-full border border-white/28 bg-transparent px-3 py-2 text-sm transition hover:bg-white/18`}
                   >
                     {showAllMarkets
                       ? locale === "zh" ? "收起" : "Less"
@@ -978,6 +970,7 @@ export default function UploadPage() {
                 className="mt-5 rounded-[16px] border border-[rgba(196,76,63,0.24)] bg-[rgba(255,232,227,0.46)] px-4 py-3 text-sm text-[#8f3229]"
                 role="alert"
                 aria-live="polite"
+                tabIndex={-1}
               >
                 {error}
               </div>
@@ -986,8 +979,9 @@ export default function UploadPage() {
             <Button
               type="submit"
               size="lg"
-              className="mt-6 w-full rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] text-white shadow-[0_14px_42px_rgba(33,145,175,0.2)] hover:opacity-95"
-              disabled={submitting || uploadedFiles.length === 0}
+              id="scan-submit"
+              className={`${styles.submitButton} mt-6 w-full scroll-mt-28 rounded-full`}
+              disabled={submitting || loadingSample || uploadedFiles.length === 0}
             >
               {submitting
                 ? locale === "zh" ? "正在生成扫描会话…" : "Creating scan session..."
@@ -1001,7 +995,63 @@ export default function UploadPage() {
             </div>
           </section>
 
-          <aside className="space-y-5">
+          <aside className="min-w-0 space-y-5">
+            <section id="product-samples" className="blaze-panel-soft scroll-mt-24 p-5">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <SectionEyebrow>Product Samples</SectionEyebrow>
+                  <h3 className="mt-2 text-lg font-semibold text-white">
+                    {locale === "zh" ? "没有图片？先用示例体验" : "No image? Try a sample"}
+                  </h3>
+                </div>
+                <Button
+                  type="button"
+                  size="sm"
+                  className="rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] px-4 text-white shadow-[0_10px_30px_rgba(33,145,175,0.16)] hover:opacity-95"
+                  disabled={submitting || loadingSample}
+                  onClick={() => void loadSelectedSample()}
+                >
+                  <Play className="size-4" />
+                  {loadingSample
+                    ? locale === "zh" ? "载入中…" : "Loading..."
+                    : locale === "zh" ? "载入三张照片" : "Load three photos"}
+                </Button>
+              </div>
+
+              <label className="mt-4 flex items-center gap-2 text-sm text-white/80">
+                <input type="checkbox" checked={includeSampleDocument} onChange={(event) => setIncludeSampleDocument(event.target.checked)} />
+                {locale === "zh" ? "同时载入案例资料（产品摘要及已收集的官方文件）" : "Include case evidence (summary and available official documents)"}
+              </label>
+              <p className="mt-2 text-xs text-white/65">
+                {locale === "zh" ? "载入将替换当前图片与文档，不会自动开始检测。" : "Loading replaces current images and documents without starting a scan."}
+              </p>
+
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                {presetConfigs.map((preset, index) => {
+                  const active = selectedPresetIndex === index;
+                  return (
+                    <button
+                      key={preset.id}
+                      type="button"
+                      aria-pressed={active}
+                      onClick={() => {
+                        setSelectedPresetIndex(index);
+                        setSampleNotice(null);
+                        if (!uploadedFiles.length) setPreviewMode("preset");
+                      }}
+                      className={`rounded-[16px] border p-2 text-left transition ${
+                        active ? styles.selectedSample : "border-white/30 bg-white/12 hover:bg-white/24"
+                      }`}
+                    >
+                      <div className="relative aspect-[1.35/1] overflow-hidden rounded-[11px] border border-white/28 bg-white/14">
+                        <Image src={preset.previewImage} alt="" fill sizes="140px" className="object-contain" />
+                      </div>
+                      <p className="mt-2 text-xs font-semibold leading-5 text-white">{locale === "zh" ? preset.title : preset.titleEn}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
             <section className="blaze-panel p-5 sm:p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -1019,20 +1069,7 @@ export default function UploadPage() {
               <div className="mt-5 rounded-[24px] border border-white/50 bg-white/20 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.58)]">
                 <div
                   className={`${styles.previewStage} corner-marks relative aspect-[1.42/1] overflow-hidden rounded-[19px] border border-white/36 bg-[#0a4f79]`}
-                  onWheel={(event) => {
-                    if (previewMode !== "upload" || uploadedPreviewEntries.length < 2) {
-                      return;
-                    }
 
-                    const currentPosition = uploadedPreviewEntries.findIndex(
-                      (entry) => entry.index === activePreviewIndex
-                    );
-                    const direction = event.deltaY > 0 ? 1 : -1;
-                    const nextPosition =
-                      (Math.max(0, currentPosition) + direction + uploadedPreviewEntries.length) %
-                      uploadedPreviewEntries.length;
-                    setActivePreviewIndex(uploadedPreviewEntries[nextPosition].index);
-                  }}
                 >
                   {primaryPreviewSrc ? (
                     <Image
@@ -1044,7 +1081,7 @@ export default function UploadPage() {
                       }
                       fill
                       sizes="(min-width: 1024px) 42vw, 92vw"
-                      className="object-cover"
+                      className="object-contain"
                       unoptimized={usingUploadedPreview}
                     />
                   ) : (
@@ -1071,8 +1108,8 @@ export default function UploadPage() {
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
                   <p className="text-xs text-white/48">
                     {locale === "zh"
-                      ? `已上传 ${uploadedPreviewEntries.length} 张 · 点击缩略图或在主图上滚轮切换`
-                      : `${uploadedPreviewEntries.length} uploaded · click a thumbnail or use the wheel`}
+                      ? `已上传 ${uploadedPreviewEntries.length} 张 · 点击缩略图切换`
+                      : `${uploadedPreviewEntries.length} uploaded · select a thumbnail`}
                   </p>
                   <div className="flex max-w-full gap-2 overflow-x-auto pb-1">
                     {uploadedPreviewEntries.map((entry, position) => (
@@ -1114,71 +1151,28 @@ export default function UploadPage() {
                 <p className="text-sm font-semibold text-white">
                   {locale === "zh" ? "检测后你会得到" : "Your report will include"}
                 </p>
-                <div className="mt-3 grid gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                  {(locale === "zh"
-                    ? ["产品与标签识别", "风险等级与缺口", "法规依据与整改建议"]
-                    : ["Product recognition", "Risk gaps", "Sources and actions"]
-                  ).map((item) => (
-                    <div key={item} className="flex items-start gap-2 rounded-[16px] border border-white/34 bg-white/16 p-3">
-                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#08708a]" />
-                      <span className="text-xs font-medium leading-5 text-white/58">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
-
-            <section className="blaze-panel-soft p-5">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                  <SectionEyebrow>Quick Demo</SectionEyebrow>
-                  <h3 className="mt-2 text-lg font-semibold text-white">
-                    {locale === "zh" ? "没有图片？先用示例体验" : "No image? Try a sample"}
-                  </h3>
-                </div>
-                <Button
-                  type="button"
-                  size="sm"
-                  className="rounded-full border-0 bg-[linear-gradient(135deg,var(--blaze-orange),var(--blaze-red))] px-4 text-white shadow-[0_10px_30px_rgba(33,145,175,0.16)] hover:opacity-95"
-                  disabled={submitting}
-                  onClick={() => startPresetDemo()}
-                >
-                  <Play className="size-4" />
-                  {submitting
-                    ? locale === "zh" ? "启动中…" : "Starting..."
-                    : locale === "zh" ? "直接演示" : "Start demo"}
-                </Button>
-              </div>
-
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                {copy.upload.presets.map((item, index) => {
-                  const active = previewMode === "preset" && selectedPresetIndex === index;
-                  const preset = presetConfigs[index] ?? presetConfigs[0];
-                  return (
-                    <button
-                      key={item.title}
-                      type="button"
-                      aria-pressed={active}
-                      onClick={() => {
-                        setSelectedPresetIndex(index);
-                        handleCategoryChange(preset.category);
-                        setSelectedMarkets(preset.markets);
-                        setPreviewMode("preset");
-                      }}
-                      className={`rounded-[16px] border p-2 text-left transition ${
-                        active ? "border-white/65 bg-white/30" : "border-white/30 bg-white/12 hover:bg-white/24"
-                      }`}
-                    >
-                      <div className="relative aspect-[1.35/1] overflow-hidden rounded-[11px] border border-white/28 bg-white/14">
-                        <Image src={preset.previewImage} alt="" fill sizes="140px" className="object-cover" />
+                <ol className={styles.reportOutcomes}>
+                  {[
+                    { icon: ScanLine, title: locale === "zh" ? "识别与定位" : "Identify", body: locale === "zh" ? "核对产品信息与可见标识" : "Review product details and visible markings" },
+                    { icon: ShieldAlert, title: locale === "zh" ? "风险与缺口" : "Assess", body: locale === "zh" ? "梳理风险疑点与待补资料" : "Identify potential risks and missing evidence" },
+                    { icon: ClipboardList, title: locale === "zh" ? "依据与建议" : "Take action", body: locale === "zh" ? "查看法规来源与整改建议" : "Review regulatory sources and next steps" },
+                  ].map(({ icon: Icon, title, body }, index) => (
+                    <li key={title} className={styles.outcomeCard}>
+                      <div className={styles.outcomeHeading}>
+                        <span className={styles.outcomeIcon}><Icon size={18} aria-hidden="true" /></span>
+                        <span className={styles.outcomeNumber} aria-hidden="true">0{index + 1}</span>
                       </div>
-                      <p className="mt-2 truncate text-xs font-semibold text-white">{item.title}</p>
-                    </button>
-                  );
-                })}
+                      <h3 className={styles.outcomeTitle}>{title}</h3>
+                      <p className={styles.outcomeDescription}>{body}</p>
+                    </li>
+                  ))}
+                </ol>
               </div>
             </section>
+
+
           </aside>
+          </fieldset>
         </form>
         <CompliPilotFlowFooter tone="bright" />
       </div>

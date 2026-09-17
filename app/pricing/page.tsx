@@ -37,7 +37,7 @@ export default function PricingPage() {
             badge: "按次交付",
             // J18: 只列已交付能力。旧的「认证绿色通道 / 专属客服」未实现，
             // 不再列成已包含权益（移到下方「规划中」区块）。
-            features: ["单个 SKU 完整合规报告", "利润测算表导出", "风险整改建议", "7 天扫描历史保留"],
+            features: ["单个 SKU 完整合规报告", "合规证据包导出", "风险整改建议", "7 天扫描历史保留"],
           },
           {
             title: "月度会员",
@@ -65,7 +65,7 @@ export default function PricingPage() {
             price: "¥99",
             unit: "/ run",
             badge: "Pay as you go",
-            features: ["One complete SKU compliance report", "Profit sheet export", "Risk remediation advice", "7-day scan history"],
+            features: ["One complete SKU compliance report", "Compliance evidence export", "Risk remediation advice", "7-day scan history"],
           },
           {
             title: "Monthly member",
@@ -95,13 +95,13 @@ export default function PricingPage() {
       ? [
           "完整合规总报告 PDF / DOCX",
           "供应商整改路线图 CSV",
-          "利润测算与 AI 决策说明",
+          "法规依据与整改建议",
           "扫描会话证据记录（7 天）",
         ]
       : [
           "Full compliance report PDF / DOCX",
           "Supplier remediation roadmap CSV",
-          "Margin analysis and AI decision note",
+          "Regulatory evidence and remediation guidance",
           "Scan session evidence records (7 days)",
         ];
   // J18: 已交付 / 洽谈中的交付方式。私有化部署尚未交付，移入规划中区块。
@@ -169,8 +169,7 @@ export default function PricingPage() {
           flowSubtitle={locale === "zh" ? "合规报告 · 成本决策 · 整改路线" : "Reports · cost decisions · remediation roadmap"}
           primaryHref="/upload"
           primaryLabel={locale === "zh" ? "开始检测" : "Start scan"}
-          secondaryHref="/result/demo"
-          secondaryLabel={locale === "zh" ? "查看演示结果" : "View demo result"}
+
           tone="bright"
         />
 
@@ -267,8 +266,8 @@ export default function PricingPage() {
                         ? "已选择该方案"
                         : "Selected"
                       : locale === "zh"
-                        ? "立即解锁"
-                        : "Unlock now"}
+                        ? "选择方案"
+                        : "Select plan"}
                     <Zap className="size-4" />
                   </button>
                 </article>
@@ -306,24 +305,7 @@ export default function PricingPage() {
                   <LockKeyhole className="size-4" />
                   {locale === "zh" ? "演示环境 · 不会发起真实支付" : "Demo mode · no real payment"}
                 </div>
-                {/* J18: 原为 mailto:contact@attrax.example（RFC 保留域，写真实
-                    邮箱前缀会误导）。改为如实占位说明，邮箱配置后再替换。 */}
-                <div
-                  className={cn(
-                    buttonVariants({ size: "lg", variant: "outline" }),
-                    "mt-5 w-full cursor-not-allowed rounded-full border-white/16 bg-white/6 text-white/62",
-                  )}
-                  aria-disabled="true"
-                >
-                  {locale === "zh"
-                    ? "联系邮箱待配置（规划中）"
-                    : "Contact email pending setup (planned)"}
-                </div>
-                <p className="mt-2 text-[11px] leading-4 text-white/40">
-                  {locale === "zh"
-                    ? "演示阶段未接入客服通道；如需交流请通过演示现场或仓库 issue 联系。"
-                    : "No support channel is wired up in the demo; reach us via the demo booth or repo issues."}
-                </p>
+
               </div>
             </div>
 

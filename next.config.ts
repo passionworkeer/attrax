@@ -41,6 +41,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   output: "standalone",
+  // Browser QA and local operators commonly open the app via 127.0.0.1
+  // while Next initializes the dev server as localhost. Next 16 otherwise
+  // blocks dev-only chunks/HMR for that host, leaving a static page with no
+  // React handlers or polling even though every asset returns 200.
+  allowedDevOrigins: ["127.0.0.1"],
   turbopack: {
     root: process.cwd(),
   },
@@ -62,6 +67,9 @@ const nextConfig: NextConfig = {
 
   // Bundle optimization
   experimental: {
+    // Match the scan API's bounded multipart limit. The default 10MB proxy
+    // buffer truncated valid image + document submissions before formData().
+    proxyClientMaxBodySize: "50mb",
     optimizePackageImports: ["lucide-react"],
   },
   async headers() {

@@ -40,42 +40,12 @@ function findAnchorByText(exactText: string): HTMLElement | undefined {
   );
 }
 
-describe("CompliPilotHome — 60 秒演示 entry point", () => {
-  it('"查看 60 秒演示" link points directly to /result/demo (no extra tab)', () => {
-    render(<CompliPilotHome />);
-    const demoLink = findAnchorByText("查看 60 秒演示");
-    expect(demoLink, "expected a link with the exact text '查看 60 秒演示'").toBeDefined();
-    expect(demoLink).toHaveAttribute("href", "/result/demo");
-  });
-
-  it('"查看 60 秒演示" link never points to /upload', () => {
-    render(<CompliPilotHome />);
-    const demoLink = findAnchorByText("查看 60 秒演示");
-    expect(demoLink).toBeDefined();
-    expect(demoLink?.getAttribute("href")).not.toBe("/upload");
-  });
-
-  it('primary "开始合规检测" link still points to /upload (unchanged)', () => {
-    render(<CompliPilotHome />);
-    const ctaLink = findAnchorByText("开始合规检测");
-    expect(ctaLink).toBeDefined();
-    expect(ctaLink).toHaveAttribute("href", "/upload");
-  });
-
-  it('nav "开始扫描" link in header still points to /upload (real upload flow)', () => {
-    render(<CompliPilotHome />);
-    // The header "开始扫描" anchor is rendered without an exact-text match in
-    // some versions; locate by href instead.
-    const startLink = document.querySelector('a[href="/upload"]');
-    expect(startLink).toBeInTheDocument();
-  });
-
-  it('nav "演示流程" link points to /result/demo (not /upload, no extra tab)', () => {
-    // Another header entry that markets the demo flow to the user. Same fix
-    // as "查看 60 秒演示": jump straight to /result/demo.
-    render(<CompliPilotHome />);
-    const demoFlowLink = findAnchorByText("演示流程");
-    expect(demoFlowLink).toBeDefined();
-    expect(demoFlowLink).toHaveAttribute("href", "/result/demo");
+describe("CompliPilotHome — compliance entry points", () => {
+  it("hides preset demo links while preserving the real scan entry", () => {
+    const { container } = render(<CompliPilotHome />);
+    expect(container.querySelectorAll('a[href*="/result/demo"]')).toHaveLength(0);
+    expect(screen.queryByText("查看 60 秒演示")).not.toBeInTheDocument();
+    expect(findAnchorByText("开始合规检测")).toHaveAttribute("href", "/upload");
+    expect(findAnchorByText("产品方案")).toHaveAttribute("href", "/pricing");
   });
 });

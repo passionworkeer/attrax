@@ -3,6 +3,7 @@ import { Manrope, Space_Grotesk } from "next/font/google";
 import { BlazeLocaleProvider } from "@/components/blaze-hawks/locale";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
+import { PersistentOcean } from "@/components/complipilot/persistent-ocean";
 
 const manrope = Manrope({
   variable: "--font-inter",
@@ -34,7 +35,7 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         <BlazeLocaleProvider>
-          <TooltipProvider>{children}</TooltipProvider>
+          <TooltipProvider><PersistentOcean>{children}</PersistentOcean></TooltipProvider>
         </BlazeLocaleProvider>
       </body>
     </html>
