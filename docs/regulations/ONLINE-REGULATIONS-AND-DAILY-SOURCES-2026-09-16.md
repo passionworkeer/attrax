@@ -1,5 +1,11 @@
 # 火鹰合规 (Attrax) 线上法规文档与每日更新监控源清单
 
+> ⚠️ **本文的"每日监控源"部分（第二节）是 2026-09-16 的历史快照，
+> 已被 2026-09-17 实测部分推翻。** 那份清单里 9 个源的链接在当时从未
+> 抓取成功过。当前源状态、权威度分级与覆盖缺口见
+> [`SOURCE-AUDIT-2026-09-17.md`](SOURCE-AUDIT-2026-09-17.md)。
+> 第一节（线上法规文档清单）与第三节（数据目录索引）仍然有效。
+
 > 生成时间：2026-09-16  
 > 配套数据源：
 > - 线上法规索引：[`data/regulations/regulations_index.json`](file:///Users/wangjianjun/me/attrax/data/regulations/regulations_index.json)

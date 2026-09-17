@@ -70,6 +70,7 @@ docs/
 ├── PROJECT-STATUS.md                      ← 当前上线评估与系统状态
 ├── MOCK-REAL-MAPPING.md                   ← 字段对照与 Mock/Real 映射
 ├── regulations/                           ← 现行法规清单与官方源审计
+│   └── SOURCE-AUDIT-2026-09-17.md         ← 37 个源的全量实测审计（权威度/可达性/覆盖缺口）
 ├── infra/                                 ← 服务器与 nginx 现行运维快照
 ├── plans/                                 ← 修复计划与设计 spec（2026-09-11 de-RAG + 2026-09-14 judge-review）
 ├── evidence/                              ← 评测与生产证据（历史截图）

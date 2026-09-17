@@ -190,7 +190,7 @@ attrax/
 │   └── tests/                    # pytest 单元测试
 │
 ├── data/                         # 数据文件
-│   ├── regulations/              # 44 篇锚点法规 YAML（生产只读）
+│   ├── regulations/              # 58 篇锚点法规 YAML（生产只读）
 │   ├── kb/                       # KB 锚点 YAML
 │   ├── inspection_profiles/      # 视觉检查 profile（11 个 yaml）
 │   ├── regulation_sources/       # 法规数据源注册表
@@ -333,6 +333,17 @@ const StartScanRequestSchema = z.object({
 
 ## 最近修复
 
+### 2026-09-17 — 法规源全量实测审计（9 个源从未抓取成功）
+
+- **背景**：对 35 个注册源做全量实测（生产机真实抓取，走各自 collector 完整路径），发现 **9 个源的 `source_url` 返回 403/404，自 2026-09-16 上线起每个 pass 都在失败**。生产机自己的 `errors.json` 早已逐条记录，但没有告警、没有断言、没人看。根因是 `human_view_status` 是手工字段，填的是"浏览器能不能打开"，与抓取能力无关
+- **第一层修复**：CPSC RSS（403）换成 SaferProducts.gov REST API（新增 `cpsc_recall_api` collector）；CN/JP/KR/AE/SA/BR 六个源换到实测 200 的端点；EU Safety Gate API 已整体下线（所有候选端点探测均 404 或只返回 SPA 外壳），标 `fetch_status: "unreachable"`
+- **第二层问题（更隐蔽）**：修完 URL 后 6 个源返回 200 但正文只有 24–224 字符（JS 渲染的 SPA，stdlib `html.parser` 拿不到内容）。摘要**永远不变**，看起来像"这个源一直没变化"。比不追踪更糟。标 `fetch_status: "shell_only"` 并跳过；要真正覆盖需要引入 headless browser，属独立架构决定
+- **新增源**（全部实测）：`us-cpsc-recalls-api`、`us-fda-device-recalls`、`us-fda-food-enforcement`（`food_contact` 品类此前零召回信号）
+- **新工具**：`scripts/watchdog/check_sources.py` —— 把每个源走真实 collector 抓一遍，报告可达性 + 内容厚度（`thin` 检测），退出码 0/3/1。这是本次沉淀的守卫
+- **修掉的假可用 bug**：OpenFDA 不显式排序会返回档案库任意切片（实测 device 返回 2003 年记录、food 返回 2016 年记录），30 天窗口过滤后摘要为空 —— 空摘要和"真的没有召回"无法区分；且 device 端点对 `recall_initiation_date` 排序是 HTTP 500（字段不存在），须按端点声明
+- **同时**：orchestrator 并行抓取（线程池 + 协作式 60s deadline）、`source_type` plugin 注册表、`review.py` 复核/回滚 CLI、UA 季度轮换、5 个被硬封端点的 collector 删除
+- **验证**：pytest 776 passed；生产机 `check_sources` **30/30 healthy, 0 thin, 0 failed**。完整审计记录见 `docs/regulations/SOURCE-AUDIT-2026-09-17.md`
+
 ### 2026-09-16 — 报告生成也降级到 DeepSeek（MiniMax 全挂时仍出真报告）
 
 - **背景**：识图降级上线后，MiniMax 整体挂掉时仍会 `degraded` —— 视觉证据有了，但报告生成是 MiniMax-only，只能退回 mock 包
@@ -465,7 +476,7 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 
 ---
 
-*最后更新：2026-09-15*
+*最后更新：2026-09-17*
 
 # This is NOT the Next.js you know
 
