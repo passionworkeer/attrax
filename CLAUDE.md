@@ -30,7 +30,7 @@
 - **框架**：FastAPI 0.115.6（线性 3 步管线：vision → generate → verify；LangGraph 已于 de-RAG §7.7 塌缩移除）
 - **语言**：Python 3.10+
 - **Embedding**：**无**——embedding 栈（PAI/ModelScope）已随 de-RAG §7.7 整体删除，`_current_embedding_provider()` 保留 stub 恒返 `"none"`。任何文档/配置提到 PAI_API_KEY 都是过时的（无代码读取）
-- **LLM**：MiniMax-M3（Anthropic SDK，端点 `https://api.minimaxi.com/anthropic/v1`）
+- **LLM**：通过 `LLM_*` 配置 Anthropic 兼容主模型；本地可使用 Qwen，`MINIMAX_*` / `MIMOTALK_*` 仅作兼容别名
 - **检索**：不再走向量检索——当前是 **规则知识库（must_check）+ KB 锚点（kb_loader）+ 法规原文（article_loader）** 三段式
 - **PDF 解析**：pdfplumber
 - **目录**：`rag_service/`（FastAPI 服务，端口 8001）、`data/`（语料、profile、监管补充包）
@@ -67,8 +67,8 @@
 | 模式 | 触发条件 | 行为 |
 |------|---------|------|
 | DEMO_MODE | `DEMO_MODE=true` 环境变量 | 使用 Mock 数据，无需 API Key |
-| 识图供应商 | MiniMax 视觉调用返回空（超时 / 网络 / 4xx / 5xx） | 同一张图的观察请求降级到 `DEEPSEEK_*`（OpenAI 兼容 `/chat/completions`，`deepseek-flash`）。未配置 key = 降级关闭，保持旧的 `vision_call_failed` 行为 |
-| 报告生成 | MiniMax `/messages` 调用失败（超时 / 4xx / 5xx，或返回非 JSON） | 同一份 prompt 重发到 DeepSeek 的 **Anthropic 兼容**端点（`DEEPSEEK_ANTHROPIC_BASE_URL`，注意含 `/v1`），`ragProvider` 如实写 `deepseek`。两条都不通才退回 mock 包 + `degraded` |
+| 识图供应商 | 主模型视觉调用返回空（超时 / 网络 / 4xx / 5xx） | 同一张图的观察请求降级到 `DEEPSEEK_*`（OpenAI 兼容 `/chat/completions`，`deepseek-flash`）。未配置 key = 降级关闭，保持 `vision_call_failed` 行为 |
+| 报告生成 | 主模型 `/messages` 调用失败（超时 / 4xx / 5xx，或返回非 JSON） | 同一份 prompt 重发到 DeepSeek 的 **Anthropic 兼容**端点（`DEEPSEEK_ANTHROPIC_BASE_URL`，注意含 `/v1`），`ragProvider` 如实写 `deepseek`。两条都不通才退回 mock 包 + `degraded` |
 | Embedding | （已删除） | de-RAG §7.7 后无 embedding 调用，不存在降级路径 |
 | 引用验证 | 生产环境 | deterministic quote matching：`verify/quote_matcher.py` 对 LLM 引用的法规条款做反向字面匹配，返回每条引用的 `match_status`；逐扫描的 `report_package.auditMetadata.verificationMode` 字段暴露真实模式（不在 `/health` 上） |
 | RAG 服务不可用 | 无法连接 localhost:8001 | 前端降级为 degraded 状态 + 红色横幅提示（sessionPayload 暴露 degradedReason，非静默 demo） |
@@ -189,7 +189,7 @@ attrax/
 │   └── tests/                    # pytest 单元测试
 │
 ├── data/                         # 数据文件
-│   ├── regulations/              # 58 篇锚点法规 YAML（生产只读）
+│   ├── regulations/              # 61 篇锚点法规 YAML（生产只读）
 │   ├── kb/                       # KB 锚点 YAML
 │   ├── inspection_profiles/      # 视觉检查 profile（11 个 yaml）
 │   ├── regulation_sources/       # 法规数据源注册表
@@ -286,10 +286,12 @@ const SessionIdSchema = z
 
 | 变量 | 默认值 | 必填 | 说明 |
 |------|--------|------|------|
-| `MINIMAX_API_KEY` | - | 是 | LLM API Key（兼容旧 `MIMOTALK_API_KEY`；RAG 侧读取，前端只需透传场景） |
-| `MINIMAX_BASE_URL` | `https://api.minimaxi.com/anthropic/v1` | 否 | Anthropic 兼容 LLM 端点 |
-| `MINIMAX_MODEL` | `MiniMax-M3` | 否 | 模型名称 |
-| `MINIMAX_THINKING_MODE` | `adaptive` | 否 | 设为 `disabled` 时给 MiniMax 请求体加 `thinking:{"type":"disabled"}`（vision + generate 共用，跳过思考链降延迟）。默认 `adaptive` 保持现状；启用前先用真实请求 A/B 验证 API 接受该参数。DeepSeek 侧的思考控制（vision `thinking.disabled`、generate 回退 `reasoning.effort=none`）已无条件生效（2026-09-17 实测 41.2s→24.9s） |
+| `LLM_PROVIDER` | 按模型推断 | 否 | 主模型供应商标识，例如 `qwen` 或 `minimax` |
+| `LLM_API_KEY` | - | 是 | 主模型 API Key；兼容旧 `MINIMAX_API_KEY` / `MIMOTALK_API_KEY` |
+| `LLM_BASE_URL` | MiniMax Anthropic 兼容端点 | 否 | Anthropic 兼容 LLM 端点 |
+| `LLM_MODEL` | `MiniMax-M3` | 否 | 主模型名称，例如 `qwen3.8-max-0902` |
+| `LLM_THINKING` | 空 | 否 | `enabled` / `disabled`；空值保留供应商默认行为 |
+| `LLM_TIMEOUT_SECONDS` | `240` | 否 | 主模型请求超时，限制在 10–600 秒 |
 | `DEEPSEEK_API_KEY` | - | 否 | **降级**通道 key（识图 + 报告生成共用，`rag_service` 读取）。留空 = 关闭降级 |
 | `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | 否 | 识图降级端点（OpenAI 兼容 `/chat/completions`） |
 | `DEEPSEEK_ANTHROPIC_BASE_URL` | `https://api.deepseek.com/anthropic/v1` | 否 | 报告生成降级端点（Anthropic 兼容；代码拼 `{base}/messages`，**必须带 `/v1`**） |
@@ -488,12 +490,6 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 ---
 
 *最后更新：2026-09-17*
-
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
-
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
