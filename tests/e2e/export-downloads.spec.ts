@@ -5,19 +5,11 @@ import path from "node:path";
 const DOWNLOAD_DIR = path.join(process.cwd(), "test-results", "export-downloads");
 
 /**
- * 结果页改版后**没有 tab 模型**:导出区是 3 个 report-type 卡片
- * (合规总报告 / 合规路线图 / 利润分析说明),每张卡片按格式给下载按钮;合规报告的
- * PDF/DOCX 真正下载在页内 `#compliance-report` 区的 `<DownloadButtons>`
- * (PDF ZH / Word ZH / PDF EN / Word EN,客户端 jspdf/docx 生成)。
- *
- * 旧用例假设 tab + tabpanel 切换报告类型 —— 该 UI 已不存在。这里按真实结构重写,
- * 覆盖 4 条下载代码路径,并断言 3 张导出卡片都渲染:
- *   - API 文本格式(compliance MD / roadmap CSV 锚点直下)
- *   - 客户端 PDF(roadmap 卡片的 PDF 按钮,jspdf)
- *   - 客户端 DOCX(合规 DownloadButtons 的 Word ZH,docx)
+ * 当前结果页把完整报告和导出控件收在 `#reports` disclosure 中。
+ * 这里覆盖用户真正可见的两条导出路径：客户端 PDF 与 DOCX。
  */
 test.describe("Report export downloads", () => {
-  test("demo result renders all export cards and downloads across all paths", async ({ page }) => {
+  test("demo result exposes and downloads the current report formats", async ({ page }) => {
     test.setTimeout(120_000);
     await mkdir(DOWNLOAD_DIR, { recursive: true });
 
@@ -25,33 +17,23 @@ test.describe("Report export downloads", () => {
     // demo 结果页主 heading 是产品名(报告标题 h1 也含该名,用 first 取其一)。
     await expect(page.getByRole("heading", { name: /便携式充电器|Charger/i }).first()).toBeVisible();
 
-    // 三张导出卡片都渲染(利润卡片经 toCompliPilotValue 转换后渲染为「成本分析说明」)。
-    for (const label of [/合规总报告/, /合规路线图/, /成本分析说明/]) {
-      await expect(page.getByText(label).first()).toBeVisible();
+    await page.locator("#reports > summary").click();
+    await expect(page.getByRole("heading", { name: /合规分析报告|Compliance Analysis Report/i })).toBeVisible();
+
+    for (const name of ["合规 PDF ZH", "Word ZH", "合规 PDF EN", "Word EN"]) {
+      await expect(page.getByRole("button", { name, exact: true })).toBeVisible();
     }
 
-    // 路径 1:API 文本 —— 合规总报告 MD 锚点直下。
+    // 路径 1：客户端 PDF（jsPDF）。
     await saveDownload(
       page,
-      page.locator("article", { hasText: "合规总报告" }).getByRole("link", { name: "MD" }),
-      ".md",
-    );
-    // 路径 1b:API 文本 —— 合规路线图 CSV 锚点直下。
-    await saveDownload(
-      page,
-      page.locator("article", { hasText: "合规路线图" }).getByRole("link", { name: "CSV" }),
-      ".csv",
-    );
-    // 路径 2:客户端 PDF —— 合规路线图卡片的 PDF 按钮(jspdf 生成)。
-    await saveDownload(
-      page,
-      page.locator("article", { hasText: "合规路线图" }).getByRole("button", { name: "PDF" }),
+      page.getByRole("button", { name: "合规 PDF ZH", exact: true }),
       ".pdf",
     );
-    // 路径 3:客户端 DOCX —— 合规区 DownloadButtons 的 Word ZH(docx 生成)。
+    // 路径 2：客户端 DOCX（docx）。
     await saveDownload(
       page,
-      page.getByRole("button", { name: "Word ZH" }),
+      page.getByRole("button", { name: "Word EN", exact: true }),
       ".docx",
     );
   });

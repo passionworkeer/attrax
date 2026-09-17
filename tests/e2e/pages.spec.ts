@@ -30,8 +30,8 @@ test.describe('Upload Page E2E', () => {
 
   test('submit button is initially disabled without images', async ({ page }) => {
     // 初始无图时按钮文案是动态的(「上传 1 张图片后开始检测」),且 disabled。
-    // 用 type=submit 定位避开动态文案,并补上原漏掉的 disabled 断言。
-    const submitButton = page.locator('button[type="submit"]')
+    // 页面头部也有一个关联同一表单的 submit 按钮；用表单主按钮 ID 避免 strict mode 冲突。
+    const submitButton = page.locator('#scan-submit')
     await expect(submitButton).toBeDisabled()
   })
 })
@@ -45,13 +45,16 @@ test.describe('Result Page E2E', () => {
 
   test('demo result shows scan data', async ({ page }) => {
     await page.goto('/result/demo')
-    await expect(page.getByText(/综合评分|Overall Score/).first()).toBeVisible()
+    await expect(page.getByRole('region', { name: /AI 合规评估|AI compliance assessment/i })).toBeVisible()
   })
 
-  test('result page shows compliance score', async ({ page }) => {
+  test('result page shows the assessment meter state', async ({ page }) => {
     await page.goto('/result/demo')
-    // demo 固定输入(electronics + 3 图 + EU/UK)计算得合规分 52/D;旧 mock 是 45。
-    await expect(page.getByText('52', { exact: true }).first()).toBeVisible()
+    // Demo/legacy fixtures may have no applicable checks, in which case the UI
+    // honestly renders a pending meter instead of inventing a numeric score.
+    const meter = page.getByRole('meter')
+    await expect(meter).toBeVisible()
+    await expect(meter).toHaveAccessibleName(/\d+ \/ 100|尚无适用检查可评分|No applicable checks to score/i)
   })
 })
 

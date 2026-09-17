@@ -31,7 +31,15 @@ interface StoredSession {
   timer?: ReturnType<typeof setTimeout>;
 }
 
-const store = new Map<string, StoredSession>();
+// Next.js compiles the POST and GET route handlers as separate module graphs.
+// A module-local Map created by POST is therefore invisible to GET in dev/CI,
+// leaving demo scans stuck on the burning page. Both handlers still execute in
+// the same Node process, so keep this DEMO_MODE-only store on globalThis.
+const demoGlobal = globalThis as typeof globalThis & {
+  __attraxDemoScanSessions?: Map<string, StoredSession>;
+};
+const store = demoGlobal.__attraxDemoScanSessions ?? new Map<string, StoredSession>();
+demoGlobal.__attraxDemoScanSessions = store;
 
 function randomSuffix(): string {
   // 轻量随机即可(非密码学用途);避免引入 crypto 依赖。
