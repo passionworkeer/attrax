@@ -19,6 +19,7 @@ import difflib
 import hashlib
 import json
 import sqlite3
+import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -232,7 +233,22 @@ class SourceStateStore:
     def __init__(self, base_dir: Path, db_name: str = _DEFAULT_DB_NAME) -> None:
         self.db_path = Path(base_dir) / db_name
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
-        self._conn = sqlite3.connect(self.db_path)
+        # check_same_thread=False lets the orchestrator open the store once
+        # and then read / write from worker threads (the orchestrator wraps
+        # every SQLite-touching call in ``self._lock`` so we never have two
+        # statements in flight on the same connection at once).
+        self._conn = sqlite3.connect(self.db_path, check_same_thread=False)
+        # WAL lifts read/write contention so the workers' reads don't block
+        # each other; synchronous=NORMAL is fine because the watchdog is the
+        # sole writer and a crash mid-pass just means a re-fetch next time.
+        try:
+            self._conn.execute("PRAGMA journal_mode=WAL")
+        except sqlite3.DatabaseError:
+            pass
+        try:
+            self._conn.execute("PRAGMA synchronous=NORMAL")
+        except sqlite3.DatabaseError:
+            pass
         self._conn.execute(
             """
             CREATE TABLE IF NOT EXISTS source_state (
@@ -247,16 +263,22 @@ class SourceStateStore:
             """
         )
         self._conn.commit()
+        # Serializes every SQLite statement against the shared connection.
+        # Detect_changes is O(per-source) under contention but the lock is
+        # cheap (microseconds) compared to a 30-60s fetch, so the workers
+        # almost never queue.
+        self._lock = threading.Lock()
 
     # ── read / write ────────────────────────────────────────────────────
 
     def get(self, source_id: str) -> dict | None:
-        row = self._conn.execute(
-            "SELECT source_id, last_hash, last_text, last_modified,"
-            " last_checked_at, last_status, check_count FROM source_state"
-            " WHERE source_id = ?",
-            (source_id,),
-        ).fetchone()
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT source_id, last_hash, last_text, last_modified,"
+                " last_checked_at, last_status, check_count FROM source_state"
+                " WHERE source_id = ?",
+                (source_id,),
+            ).fetchone()
         if row is None:
             return None
         keys = (
@@ -279,26 +301,28 @@ class SourceStateStore:
         last_modified: str | None,
         status: str,
     ) -> None:
-        self._conn.execute(
-            """
-            INSERT INTO source_state
-                (source_id, last_hash, last_text, last_modified,
-                 last_checked_at, last_status, check_count)
-            VALUES (?, ?, ?, ?, ?, ?, 1)
-            ON CONFLICT(source_id) DO UPDATE SET
-                last_hash = excluded.last_hash,
-                last_text = excluded.last_text,
-                last_modified = excluded.last_modified,
-                last_checked_at = excluded.last_checked_at,
-                last_status = excluded.last_status,
-                check_count = source_state.check_count + 1
-            """,
-            (source_id, content_hash, text, last_modified, time.time(), status),
-        )
-        self._conn.commit()
+        with self._lock:
+            self._conn.execute(
+                """
+                INSERT INTO source_state
+                    (source_id, last_hash, last_text, last_modified,
+                     last_checked_at, last_status, check_count)
+                VALUES (?, ?, ?, ?, ?, ?, 1)
+                ON CONFLICT(source_id) DO UPDATE SET
+                    last_hash = excluded.last_hash,
+                    last_text = excluded.last_text,
+                    last_modified = excluded.last_modified,
+                    last_checked_at = excluded.last_checked_at,
+                    last_status = excluded.last_status,
+                    check_count = source_state.check_count + 1
+                """,
+                (source_id, content_hash, text, last_modified, time.time(), status),
+            )
+            self._conn.commit()
 
     def close(self) -> None:
-        self._conn.close()
+        with self._lock:
+            self._conn.close()
 
     # ── change detection ────────────────────────────────────────────────
 
@@ -374,7 +398,7 @@ class SourceStateStore:
     def bulk_snapshot(self, updates: Iterable[tuple[str, str, str]]) -> None:
         """Persist (source_id, normalized_text, hash) triples after a pass in a single atomic transaction."""
         now = time.time()
-        with self._conn:
+        with self._lock, self._conn:
             for source_id, text, content_hash in updates:
                 self._conn.execute(
                     """
@@ -394,10 +418,11 @@ class SourceStateStore:
                 )
 
     def export_report(self) -> str:
-        rows = self._conn.execute(
-            "SELECT source_id, last_status, last_checked_at, check_count"
-            " FROM source_state ORDER BY source_id"
-        ).fetchall()
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT source_id, last_status, last_checked_at, check_count"
+                " FROM source_state ORDER BY source_id"
+            ).fetchall()
         return json.dumps(
             [
                 {

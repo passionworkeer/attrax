@@ -19,11 +19,13 @@ import json
 import urllib.parse
 
 from scripts.watchdog.collectors.base import RegulationUpdate, fetch_url
+from scripts.watchdog.registry import register
 from scripts.watchdog.state import normalize_text, text_hash
 
 FR_API = "https://www.federalregister.gov/api/v1/documents.json"
 
 
+@register("ecfr_part")
 def collect_ecfr_part(entry: dict) -> RegulationUpdate:
     title = entry.get("ecfr_title")
     part = entry.get("ecfr_part")
