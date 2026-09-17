@@ -1,0 +1,18 @@
+id: NZ-PS-Cots
+official_citation: Household Cots Product Safety Standard (Fair Trading Act 1986, s.29(1)(a))
+short_name: NZ Household Cot Standard
+region: NZ
+license: public
+source_url: https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/household-cot-standard
+last_verified: '2026-09-17'
+last_verified_by: manual-create
+language: en
+source_kind: official_summary
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: |
+  Manually created 2026-09-17 from official_sources.json entry nz-product-safety-standards-household-cots-2016.
+  Backed by Product Safety New Zealand (direct_url).
+  Authoring note: a KB anchor at data/kb/anchors/NZ-PS-Cots-home.yaml is required to surface this regulation in generator must-check output.

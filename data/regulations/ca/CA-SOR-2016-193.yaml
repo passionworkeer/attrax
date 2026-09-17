@@ -1,0 +1,18 @@
+id: CA-SOR-2016-193
+official_citation: Surface Coating Materials Regulations (SOR/2016-193)
+short_name: CA Surface Coatings Regs 2016
+region: CA
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-193/
+last_verified: '2026-09-17'
+last_verified_by: manual-create
+language: en
+source_kind: official_summary
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: |
+  Manually created 2026-09-17 from official_sources.json entry ca-surface-coating-materials-regulations.
+  Backed by Government of Canada Justice Laws Website (canada_justice_xml).
+  Authoring note: a KB anchor at data/kb/anchors/CA-SOR-2016-193-toy.yaml is required to surface this regulation in generator must-check output.
