@@ -89,6 +89,9 @@ built_at=$(date -Iseconds)
 EOF
 log ".deployed: commit=${COMMIT_SHORT} build_id=${BID} ref=${UPSTREAM}"
 
+# === [4.5] 防污染清理: 严防测试包、大 zip 与运行时垃圾打入生产部署包 ===
+rm -rf "${STANDALONE}/规航AI-"* "${STANDALONE}/test-results" "${STANDALONE}/tests/fixtures/regression-package-"* "${STANDALONE}/tests/fixtures/"*.zip
+
 # === [5] 打包(把整个 standalone 连同已 stage 的 static/public 一起)===
 log "=== [5] 打包 -> ${TARBALL} ==="
 # 在 .next/ 下打包,使 tar 内路径以 standalone/ 开头(/tmp/attrax-apply-deploy.sh 解包到 .next/)
