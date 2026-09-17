@@ -16,6 +16,18 @@ if (!RAG_INTERNAL_SECRET) {
   throw new Error(`RAG_INTERNAL_SECRET is empty (source: ${RAG_INTERNAL_SECRET_FILE})`);
 }
 
+// ATTRAX_BUILD_SHA 单一来源 = /opt/attrax/.build-sha（apply-deploy.sh 从
+// standalone/.build-sha 拷过来）。启动 rag-service 时读出来注入 env；
+// 与 .deployed 保持一致，避免 /ready 与 audit 日志报旧 SHA。
+const ATTRAX_BUILD_SHA_FILE = "/opt/attrax/.build-sha";
+let ATTRAX_BUILD_SHA = "unknown";
+try {
+  ATTRAX_BUILD_SHA = fs.readFileSync(ATTRAX_BUILD_SHA_FILE, "utf8").trim() || "unknown";
+} catch (err) {
+  // 文件不存在 = 旧部署没建过 → 用 env 兜底（CI 或手工启动）
+  ATTRAX_BUILD_SHA = process.env.ATTRAX_BUILD_SHA || "unknown";
+}
+
 module.exports = {
   apps: [
     {
@@ -31,6 +43,7 @@ module.exports = {
         // env 段优先于 rag_service/.env（pydantic-settings 的 env > dotenv），
         // 因此 .env 里的同名旧值不会再遮蔽（该行已移除）。
         RAG_INTERNAL_SECRET,
+        ATTRAX_BUILD_SHA,
         APP_ENV: "production",
         // De-RAG has no retriever output; regulation-library articles are the
         // production evidence input for image-only scans. Allow an explicit

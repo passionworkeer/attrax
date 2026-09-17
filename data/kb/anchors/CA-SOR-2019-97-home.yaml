@@ -1,0 +1,28 @@
+id: KB-home-CA-CA-SOR-2019-97
+regulation_id: CA-SOR-2019-97
+doc_name: Corded Window Coverings Regulations
+official_citation: Corded Window Coverings Regulations (SOR/2019-97)
+short_name: CA Corded Window Coverings Regs
+source: category
+primary_source: home
+applies_if:
+  category:
+  - home
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- 加拿大《拉绳式窗帘法规》要求拉绳式窗帘(百叶窗、卷帘等)满足儿童安全要求
+- 必须采用无绳(short cord / cordless)或内置式安全装置(断绳器 / 紧固件 / 警示标签)
+- 涵盖销售、赠送、展示的所有拉绳窗帘
+- 由 Health Canada 主管,纳入 CCPSA 执法体系
+- 与 US 16 CFR 1260(ANSI/WCMA A100.1 兼容)形成北美双线合规
+risk_hint: 拉绳式窗帘无断绳器或无绳设计 → 召回 + 罚款
+est_cost: 改装 cordless / 加断绳器 ¥5-30/件 + 警示标签 ¥1K-2K
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2019-97/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

@@ -144,16 +144,17 @@ def test_explicit_regulation_id_takes_precedence():
     assert path.parent.name == "uk"
 
 
-def test_rss_signal_streams_return_none():
-    # cpsc_rss / safety_gate are signals, not regulation texts.
+def test_signal_streams_return_none():
+    # Recall feeds are signals, not regulation texts.
     entry = {
-        "id": "us-cpsc-recalls-rss",
-        "source_type": "cpsc_rss",
+        "id": "us-cpsc-recalls-api",
+        "source_type": "cpsc_recall_api",
         "market": "US",
     }
     assert regulation_for_source(entry) is None
-    entry["source_type"] = "safety_gate"
-    assert regulation_for_source(entry) is None
+    for signal_type in ("safety_gate", "openfda_recalls"):
+        entry["source_type"] = signal_type
+        assert regulation_for_source(entry) is None
 
 
 def test_unknown_market_for_slug_returns_none():
@@ -340,22 +341,26 @@ def test_create_missing_regulation_from_gov_html(isolated_library):
     assert payload["license"] == "public"
 
 
-def test_unmappable_rss_source_is_evidence_only(isolated_library):
+def test_unmappable_signal_source_is_evidence_only(isolated_library):
     ingestor = AutoIngestor("2026-09-13")
-    # CPSC RSS / Safety Gate: signal streams, not regulation texts.
+    # Recall feeds are signal streams, not regulation texts.
     entry = {
-        "id": "us-cpsc-recalls-rss",
-        "source_type": "cpsc_rss",
+        "id": "us-cpsc-recalls-api",
+        "source_type": "cpsc_recall_api",
         "market": "US",
     }
-    update = _update("us-cpsc-recalls-rss", "<rss>...</rss>", source_type="cpsc_rss")
-    report = ingestor.apply(
-        {"us-cpsc-recalls-rss": entry}, {"us-cpsc-recalls-rss": update}, [_change("us-cpsc-recalls-rss")]
+    update = _update(
+        "us-cpsc-recalls-api", '[{"RecallNumber": "26761"}]', source_type="cpsc_recall_api"
     )
-    assert report.evidence_only == ["us-cpsc-recalls-rss"]
+    report = ingestor.apply(
+        {"us-cpsc-recalls-api": entry},
+        {"us-cpsc-recalls-api": update},
+        [_change("us-cpsc-recalls-api")],
+    )
+    assert report.evidence_only == ["us-cpsc-recalls-api"]
     assert report.created == [] and report.updated == []
-    evidence = isolated_library.SUPPLEMENTS_DIR / "auto-2026-09-13" / "us-cpsc-recalls-rss"
-    assert (evidence / "raw.xml").exists()
+    evidence = isolated_library.SUPPLEMENTS_DIR / "auto-2026-09-13" / "us-cpsc-recalls-api"
+    assert (evidence / "raw.json").exists()
 
 
 def test_repeal_keyword_marks_regulation(isolated_library):

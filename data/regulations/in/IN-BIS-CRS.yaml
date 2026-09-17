@@ -1,0 +1,18 @@
+id: IN-BIS-CRS
+official_citation: Compulsory Registration Scheme (CRS) — BIS Scheme-II under BIS Act 2016
+short_name: IN BIS CRS (印度强制注册)
+region: IN
+license: public
+source_url: https://www.bis.gov.in/index.php/standards-changes-orders/
+last_verified: '2026-09-17'
+last_verified_by: manual-create
+language: en
+source_kind: official_summary
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: |
+  Manually created 2026-09-17 from official_sources.json entry in-bis-crs.
+  Backed by Bureau of Indian Standards (BIS).
+  Authoring note: a KB anchor at data/kb/anchors/IN-BIS-CRS-electronics.yaml is required to surface this regulation in generator must-check output.

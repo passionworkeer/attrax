@@ -1,0 +1,18 @@
+id: NZ-PS-Toys
+official_citation: Children's Toys Product Safety Standard (Fair Trading Act 1986, s.29(1)(a))
+short_name: NZ Children's Toy Standard
+region: NZ
+license: public
+source_url: https://www.productsafety.govt.nz/for-businesses/making-sure-products-are-safe/mandatory-product-safety-standards/childrens-toy-standard/
+last_verified: '2026-09-17'
+last_verified_by: manual-create
+language: en
+source_kind: official_summary
+articles: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: |
+  Manually created 2026-09-17 from official_sources.json entry nz-product-safety-standards-2005.
+  Backed by Product Safety New Zealand (direct_url).
+  Authoring note: a KB anchor at data/kb/anchors/NZ-PS-Toys-toy.yaml is required to surface this regulation in generator must-check output.

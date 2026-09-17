@@ -1,0 +1,28 @@
+id: KB-toy-CA-CA-SOR-2016-188
+regulation_id: CA-SOR-2016-188
+doc_name: Phthalates Regulations
+official_citation: Phthalates Regulations (SOR/2016-188)
+short_name: CA Phthalates Regs 2016
+source: category
+primary_source: toy
+applies_if:
+  category:
+  - toy
+  features_any: []
+  markets:
+  - CA
+key_articles: []
+key_points:
+- 加拿大《邻苯二甲酸盐法规》限制 6 种邻苯在儿童玩具和儿童护理用品中的含量
+- DEHP / DBP / BBP 浓度限值 1000 mg/kg
+- DINP / DIDP / DNOP 浓度限值 1000 mg/kg(可入口部分)
+- 由 Health Canada 强制执行,与 US 16 CFR 1307 + EU REACH Annex XVII 入口门槛大体一致
+- 邻苯超限 → 召回 + 罚款 + CPSC 与 Health Canada 双线风险
+risk_hint: 玩具邻苯超限 → 加拿大 + 美国双线召回
+est_cost: 测试 ¥3K-8K/产品(GC-MS)
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/regulations/SOR-2016-188/
+last_verified: '2026-09-17'
+verified_by: manual-create
+verification_status: needs_human_review
+schema_version: 1

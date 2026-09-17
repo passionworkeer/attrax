@@ -347,20 +347,23 @@ def _enforce_secret_policy(s: "settings.__class__") -> None:
             "be open and bypass the frontend rate limit / auth."
         )
 
-    # Non-prod, non-demo, no secret: fail closed by generating an ephemeral
-    # secret. Frontend calls without the header will now 401 — the operator
-    # sees this once in the logs and can copy the secret into RAG_INTERNAL_SECRET.
+    # 非 prod、非 demo、无 secret：自动生成 ephemeral secret，写端点 401。
+    # 前端不带正确 header 就会被拦；运维从 log 看到这条 warn 后把 secret
+    # 写进 rag_service/.env 即可。
     import secrets as _s
     generated = _s.token_urlsafe(32)
     s.rag_internal_secret = generated
+    # 绝对不能把 secret 值写日志：任何 /var/log 读取者都能伪造
+    # X-Internal-Secret 绕过写端点。只打 pid 让运维能定位到进程，
+    # 真值通过 /proc/<pid>/environ 或调试器拿。
     logger.warning(
         "SECURITY: RAG_INTERNAL_SECRET was empty — generated an EPHEMERAL "
         "secret for this process. Write endpoints (/scan, /scan-multipart, "
-        "/profit-report) now require header 'X-Internal-Secret: <value>' "
-        "with this value. To wire the frontend, set RAG_INTERNAL_SECRET to a "
-        "fixed value in rag_service/.env and the frontend env, or set "
-        "DEMO_MODE=true for local dev. Ephemeral value: %s",
-        generated,
+        "/profit-report) now require header 'X-Internal-Secret: <value>'. "
+        "Wire RAG_INTERNAL_SECRET in rag_service/.env (or set DEMO_MODE=true) "
+        "for the frontend to use a stable value. (Value deliberately not "
+        "logged; read /proc/%d/environ to recover.)",
+        os.getpid(),
     )
 
 
@@ -517,6 +520,179 @@ def _release_manifest() -> dict:
         "inspectionProfileVersion": profile_version,
         "pipeline": "kb_anchored",
     }
+
+
+def _watchdog_snapshot() -> dict:
+    """Operational telemetry for the regwatch daemon (2026-09-17).
+
+    Read-only view over the most recent ``data/regulation_supplements/
+    watchdog-YYYY-MM-DD/`` directory plus ``.cache.db`` (the SQLite
+    snapshot the orchestrator writes). The shape:
+
+      last_pass_date         — YYYY-MM-DD of the most recent pass, or None
+      last_pass_at           — ISO-8601 UTC of the most recent snapshot
+                               write across every source
+      last_pass_exit_code    — inferred from the file set:
+                                 0 (clean) / 2 (changes) / 3 (errors)
+      sources_total          — count of entries in official_sources.json
+      sources_failed_today   — count of errors.json entries
+      sources_changed_today  — count of real changes in diff.json or
+                               applied.json (created + updated + marked)
+      applied_today          — the applied.json payload (may be {})
+      errors_today           — the errors.json payload (may be [])
+      stale_regulations      — regulation_ids whose last_verified is
+                               > 180 days old (operators should refresh)
+      repealed_regulations   — regulation_ids with replaced_by set
+
+    The endpoint must not block on the daemon — it only reads disk
+    files and an SQLite database. Failures degrade to empty / null
+    fields rather than 5xx so a polled monitor does not flap when the
+    daemon has not run yet.
+    """
+    from pathlib import Path
+    import datetime as _dt
+    import sqlite3
+
+    project_root = Path(__file__).parent.parent.resolve()
+    supp = project_root / "data" / "regulation_supplements"
+    sources_path = project_root / "data" / "regulation_sources" / "official_sources.json"
+    cache_db = supp / ".cache.db"
+
+    # ── most recent watchdog pass directory ─────────────────────────
+    last_dir = None
+    last_pass_date = None
+    try:
+        watchdog_dirs = sorted(
+            (p for p in supp.glob("watchdog-*") if p.is_dir()),
+            key=lambda p: p.name,
+            reverse=True,
+        )
+        if watchdog_dirs:
+            last_dir = watchdog_dirs[0]
+            last_pass_date = last_dir.name.replace("watchdog-", "", 1)
+    except Exception as exc:
+        logger.warning("watchdog: failed to list supplement dirs: %r", exc)
+
+    # ── state.db last_pass_at ──────────────────────────────────────
+    last_pass_at = None
+    if cache_db.exists():
+        try:
+            with sqlite3.connect(cache_db) as conn:
+                row = conn.execute(
+                    "SELECT MAX(last_checked_at) FROM source_state"
+                ).fetchone()
+                if row and row[0]:
+                    last_pass_at = _dt.datetime.fromtimestamp(
+                        float(row[0]), tz=_dt.timezone.utc
+                    ).isoformat()
+        except Exception as exc:
+            logger.warning("watchdog: failed to read state.db: %r", exc)
+
+    # ── applied / errors / diff for the latest pass ─────────────────
+    applied_today: dict = {}
+    errors_today: list = []
+    sources_changed_today = 0
+    last_pass_exit_code = 0
+
+    if last_dir is not None:
+        errors_file = last_dir / "errors.json"
+        pending_file = last_dir / "pending_review.json"
+        applied_file = last_dir / "applied.json"
+        diff_file = last_dir / "diff.json"
+
+        if errors_file.exists():
+            last_pass_exit_code = 3
+            try:
+                errors_today = json.loads(errors_file.read_text(encoding="utf-8"))
+            except Exception as exc:
+                logger.warning("watchdog: errors.json unreadable: %r", exc)
+                errors_today = []
+
+        if pending_file.exists():
+            last_pass_exit_code = 2
+
+        if applied_file.exists():
+            try:
+                applied_today = json.loads(applied_file.read_text(encoding="utf-8"))
+                created_n = len(applied_today.get("created", []) or [])
+                updated_n = len(applied_today.get("updated", []) or [])
+                marked_n = len(applied_today.get("marked", []) or [])
+                sources_changed_today = created_n + updated_n + marked_n
+                # Auto-ingest applied real changes — exit code 2 only when
+                # there were also errors (mixed result) or when ingest left
+                # un-applied changes behind. Otherwise the daemon's own
+                # read of the file set decides 0/3.
+                if sources_changed_today and not errors_file.exists():
+                    last_pass_exit_code = 2
+            except Exception as exc:
+                logger.warning("watchdog: applied.json unreadable: %r", exc)
+
+        if diff_file.exists() and sources_changed_today == 0:
+            try:
+                diff_data = json.loads(diff_file.read_text(encoding="utf-8"))
+                sources_changed_today = int(diff_data.get("changeCount", 0) or 0)
+            except Exception as exc:
+                logger.warning("watchdog: diff.json unreadable: %r", exc)
+
+    # ── sources_total from the registry ─────────────────────────────
+    sources_total = 0
+    if sources_path.exists():
+        try:
+            with sources_path.open(encoding="utf-8") as handle:
+                sources_total = len(json.load(handle))
+        except Exception as exc:
+            logger.warning("watchdog: official_sources.json unreadable: %r", exc)
+
+    sources_failed_today = len(errors_today)
+
+    # ── stale / repealed from the regulation library ────────────────
+    stale_regulations: list[str] = []
+    repealed_regulations: list[str] = []
+    try:
+        from rag_service.retrieval import article_loader
+        cutoff = _dt.date.today() - _dt.timedelta(days=180)
+        for reg_id in article_loader.list_regulation_ids():
+            reg = article_loader.load_regulation(reg_id) or {}
+            if reg.get("replaced_by"):
+                repealed_regulations.append(reg_id)
+            last_verified = reg.get("last_verified")
+            if not last_verified:
+                stale_regulations.append(reg_id)
+                continue
+            try:
+                parsed = _dt.date.fromisoformat(str(last_verified))
+                if parsed < cutoff:
+                    stale_regulations.append(reg_id)
+            except ValueError:
+                stale_regulations.append(reg_id)
+    except Exception as exc:
+        logger.warning("watchdog: failed to compute stale/repealed: %r", exc)
+
+    return {
+        "last_pass_date": last_pass_date,
+        "last_pass_at": last_pass_at,
+        "last_pass_exit_code": last_pass_exit_code,
+        "sources_total": sources_total,
+        "sources_failed_today": sources_failed_today,
+        "sources_changed_today": sources_changed_today,
+        "applied_today": applied_today,
+        "errors_today": errors_today,
+        "stale_regulations": sorted(stale_regulations),
+        "repealed_regulations": sorted(repealed_regulations),
+    }
+
+
+@app.get("/health/watchdog")
+def health_watchdog():
+    """Operational view of the regulation watchdog (2026-09-17).
+
+    Read-only: returns the latest pass result + per-source state
+    without restarting anything or invalidating any cache. The endpoint
+    sits under /health/* so it stays un-gated by RAG_INTERNAL_SECRET
+    (operators need it during incidents when auth is the suspect) — the
+    payload exposes no secrets, only file-derived state.
+    """
+    return JSONResponse(_watchdog_snapshot())
 
 
 def _parse_markets(value: str) -> list[str]:

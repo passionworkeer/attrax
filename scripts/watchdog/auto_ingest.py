@@ -67,11 +67,12 @@ _REGION_DIRS: dict[str, str] = {
 _RAW_SUFFIX = {
     "eu_celex": ".rdf",
     "ecfr_part": ".json",
-    "cpsc_rss": ".xml",
+    "cpsc_recall_api": ".json",
     "canada_justice_xml": ".xml",
     "gov_html": ".html",
     "direct_url": ".html",
     "safety_gate": ".xml",
+    "openfda_recalls": ".json",
 }
 _REPEAL_KEYWORDS = ("removal", "revok", "repeal", "revocation", "withdraw")
 
@@ -196,6 +197,11 @@ def _infer_reg_id_from_entry(entry: dict) -> str | None:
             return None
         return _slug_to_reg_id(slug, market)
 
+    # Discovery / signal streams. They tell an operator that something moved,
+    # but they are not themselves a regulation text, so no YAML is created or
+    # updated — the raw fetch still lands under auto-{date}/ as evidence.
+    #   - openfda_recalls  : FDA device / food enforcement reports
+    #   - cpsc_recall_api  : CPSC recalls via the SaferProducts.gov API
     return None
 
 
@@ -293,6 +299,10 @@ class IngestReport:
     marked: list[str] = field(default_factory=list)
     evidence_only: list[str] = field(default_factory=list)
     failed: list[dict] = field(default_factory=list)
+    #: Per-source audit rows (sourceId → regulationId → action → evidence).
+    #: The flat lists above stay for backward compatibility with existing
+    #: consumers and tests; ``records`` is what the review CLI reads.
+    records: list[dict] = field(default_factory=list)
 
     @property
     def touched_regulations(self) -> set[str]:
@@ -305,6 +315,7 @@ class IngestReport:
             "marked": self.marked,
             "evidenceOnly": self.evidence_only,
             "failed": self.failed,
+            "records": self.records,
         }
 
 
@@ -505,13 +516,21 @@ class AutoIngestor:
         update: RegulationUpdate,
         change: Change,
     ) -> None:
+        # Resolve the mapping first so the evidence pin (meta.json) can record
+        # which regulation this fetch is backing — that link is what the
+        # review CLI uses to go from a regulation id back to its raw bytes.
+        mapping = regulation_for_source(entry)
+        reg_id = mapping[0] if mapping is not None else None
+
         # 1. Evidence layer (always, mapped or not).
-        evidence_dir = self._store_evidence(source_id, entry, update, change)
+        evidence_dir = self._store_evidence(source_id, entry, update, change, reg_id)
         raw_name = "raw" + _RAW_SUFFIX.get(update.source_type, ".bin")
 
-        mapping = regulation_for_source(entry)
         if mapping is None:
             self.report.evidence_only.append(source_id)
+            self.report.records.append(
+                self._record(source_id, entry, update, change, None, "evidence-only", evidence_dir)
+            )
             return
         reg_id, yaml_path = mapping
 
@@ -577,6 +596,9 @@ class AutoIngestor:
             self.report.updated.append(reg_id)
             if status_mark:
                 self.report.marked.append(f"{reg_id}:{status_mark}")
+            self.report.records.append(
+                self._record(source_id, entry, update, change, reg_id, "updated", evidence_dir)
+            )
             return
 
         # 3. CREATE path (mappable but no YAML — e.g. WEEE 2012/19 or any
@@ -616,6 +638,38 @@ class AutoIngestor:
         yaml_path.parent.mkdir(parents=True, exist_ok=True)
         self._write_yaml(yaml_path, payload)
         self.report.created.append(reg_id)
+        self.report.records.append(
+            self._record(source_id, entry, update, change, reg_id, "created", evidence_dir)
+        )
+
+    @staticmethod
+    def _record(
+        source_id: str,
+        entry: dict,
+        update: RegulationUpdate,
+        change: Change,
+        reg_id: str | None,
+        action: str,
+        evidence_dir: Path,
+    ) -> dict:
+        """One row of the source→regulation audit trail.
+
+        ``applied.json`` carries these so an operator can answer "which
+        official source moved this YAML, and where are the bytes" without
+        cross-referencing the evidence tree by hand.
+        """
+        return {
+            "sourceId": source_id,
+            "regulationId": reg_id,
+            "action": action,
+            "changeKind": change.kind,
+            "similarity": round(change.similarity, 4),
+            "sourceType": update.source_type,
+            "market": update.market,
+            "sourceUrl": update.source_url,
+            "contentHash": update.content_hash,
+            "evidenceDir": str(evidence_dir),
+        }
 
     def _store_evidence(
         self,
@@ -623,6 +677,7 @@ class AutoIngestor:
         entry: dict,
         update: RegulationUpdate,
         change: Change,
+        reg_id: str | None = None,
     ) -> Path:
         evidence_dir = self.batch_dir / source_id
         evidence_dir.mkdir(parents=True, exist_ok=True)
@@ -632,6 +687,7 @@ class AutoIngestor:
             json.dumps(
                 {
                     "sourceId": source_id,
+                    "regulationId": reg_id,
                     "market": update.market,
                     "sourceType": update.source_type,
                     "sourceUrl": update.source_url,

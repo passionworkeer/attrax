@@ -30,7 +30,7 @@
     },
     "region": {
       "type": "string",
-      "enum": ["EU", "US", "UK", "CN", "AU", "UN", "GLOBAL"]
+      "enum": ["EU", "US", "UK", "CN", "AU", "UN", "GLOBAL", "CA", "NZ", "JP", "KR", "AE", "SA", "BR", "IN", "MX", "SG", "DE", "FR", "IT"]
     },
     "license": {
       "type": "string",
@@ -61,7 +61,7 @@
     },
     "last_verified_by": {
       "type": "string",
-      "enum": ["human", "collector", "llm-assisted"]
+      "enum": ["human", "collector", "llm-assisted", "manual-create", "regwatch-auto"]
     },
     "replaces": {
       "type": "array",
@@ -79,8 +79,8 @@
     },
     "source_kind": {
       "type": "string",
-      "enum": ["official_verbatim", "official_summary", "curated_summary", "unverified"],
-      "description": "Provenance tier of the article texts (plan 2026-09-14 J08 / §4.4 layer 3). official_verbatim = verbatim text from the official source (may enter the exact-quote flow); official_summary = faithful summary of the official text; curated_summary = internal KB-derived summary, usable for candidate retrieval but must NOT be presented as verbatim; unverified = placeholder/condensed text pending verification — never claim as 原文."
+      "enum": ["official_verbatim", "official_summary", "curated_summary", "private_summary", "unverified"],
+      "description": "Provenance tier of the article texts (plan 2026-09-14 J08 / §4.4 layer 3). official_verbatim = verbatim text from the official source (may enter the exact-quote flow); official_summary = faithful summary of the official text; curated_summary = internal KB-derived summary, usable for candidate retrieval but must NOT be presented as verbatim; private_summary = paid private standard (GB/UL/ASTM/EN/AS) with only KB summary; unverified = placeholder/condensed text pending verification — never claim as 原文."
     },
     "articles": {
       "type": "array",
