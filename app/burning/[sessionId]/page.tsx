@@ -165,6 +165,11 @@ export default function BurningPage() {
   // tick 保留）。用 useRef 而非 useState：state 翻转会触发 effect 重跑 →
   // cleanup 清掉 timer，guard 失效。
   const navigatedRef = useRef(false);
+  // Render-time mirror of navigatedRef. Reading a ref during render is a
+  // React Compiler purity violation, so the JSX condition below needs its
+  // own state; the ref stays the synchronous guard inside the timer and the
+  // click handler, where two events can race in the same tick.
+  const [hasNavigated, setHasNavigated] = useState(false);
   const realProgressComplete =
     !isDemoSession &&
     status != null &&
@@ -195,6 +200,7 @@ export default function BurningPage() {
         }
         if (navigatedRef.current) return;
         navigatedRef.current = true;
+        setHasNavigated(true);
         router.push(`/result/${sessionId}`);
       }, Math.max(0, remaining));
       return () => window.clearTimeout(timer);
@@ -417,7 +423,7 @@ export default function BurningPage() {
               finished (ready + resultReady) but the animated bar is still
               settling, the user can reach the result page directly instead of
               being trapped by the 99% deadlock (bug J01). */}
-          {realProgressComplete && !navigatedRef.current ? (
+          {realProgressComplete && !hasNavigated ? (
             <div className="mt-6 rounded-[26px] border border-[rgba(126,231,135,0.36)] bg-[rgba(126,231,135,0.08)] p-5">
               <p className="text-sm text-[#d3ffd7]">
                 {locale === "zh"
@@ -431,6 +437,7 @@ export default function BurningPage() {
                   onClick={() => {
                     if (navigatedRef.current) return;
                     navigatedRef.current = true;
+                    setHasNavigated(true);
                     router.push(`/result/${sessionId}`);
                   }}
                 >

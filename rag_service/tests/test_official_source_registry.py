@@ -24,7 +24,8 @@ SUPPORTED_SOURCE_TYPES = {
     "canada_justice_xml",
     "direct_url",
     "gov_html",
-    "cpsc_rss",
+    "cpsc_recall_api",
+    "openfda_recalls",
     "safety_gate",
 }
 
@@ -74,9 +75,10 @@ CONTROLLED_REGULATORY_TYPES = {
 
 # Source types whose sole output is a parsed JSON stream — they never
 # download a regulation text snapshot. The shape test exempts them from
-# the "files must be non-empty" rule. Added 2026-09-16 with the cpsc_rss
-# and safety_gate collectors.
-_SIGNAL_STREAM_TYPES = frozenset({"cpsc_rss", "safety_gate"})
+# the "files must be non-empty" rule. cpsc_rss was replaced by
+# cpsc_recall_api on 2026-09-17 (the RSS feed 403s every automated client);
+# openfda_recalls joined the same day.
+_SIGNAL_STREAM_TYPES = frozenset({"cpsc_recall_api", "openfda_recalls", "safety_gate"})
 
 
 def load_registry() -> list[dict]:

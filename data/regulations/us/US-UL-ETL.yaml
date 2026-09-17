@@ -6,7 +6,7 @@ license: private_with_summary
 last_verified: '2026-09-11'
 last_verified_by: llm-assisted
 language: en
-source_kind: private_summary
+source_kind: curated_summary
 articles: []
 raw_file: null
 checksum_sha256: null
@@ -14,4 +14,4 @@ schema_version: 1
 purchase_url: https://www.ul.com/services/certification/ul-listing-and-classification
 notes: |
   Private standard — metadata + key_points only per spec §6.4. No article text is distributed; consumers must purchase the full standard via `purchase_url`.
-  regwatch metadata audit 2026-09-17: source_kind=private_summary; basis=license=private_with_summary, paid standard (UL/ETL) — only KB summary available, no public distribution.
+  regwatch metadata audit 2026-09-17: source_kind=curated_summary; basis=license=private_with_summary, paid standard (UL/ETL) — only KB summary available, no public distribution.
