@@ -60,5 +60,3 @@ KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next
 ---
 
 *最后更新：2026-09-14*
-</content>
-</invoke>
