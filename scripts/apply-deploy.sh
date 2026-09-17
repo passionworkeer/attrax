@@ -94,8 +94,14 @@ echo "${NEW_BID}" > "${ATTRAX_DIR}/.next/BUILD_ID"
 log "  BUILD_ID: ${NEW_BID}"
 
 # ── [6] deploy marker ──────────────────────────────────────────────────────
-log "=== [6] verify .deployed marker ==="
+log "=== [6] deploy marker ==="
 test -f "${STANDALONE}/.deployed" && cat "${STANDALONE}/.deployed"
+# 把 commit SHA 拷到 /opt/attrax/.build-sha，ecosystem.config.cjs 启动 rag-service 时
+# 读出来作为 ATTRAX_BUILD_SHA（保证 /ready 与 audit 日志与 .deployed 一致）。
+if [ -f "${STANDALONE}/.build-sha" ]; then
+  cp "${STANDALONE}/.build-sha" "${ATTRAX_DIR}/.build-sha"
+  log "  .build_sha: $(cat "${ATTRAX_DIR}/.build-sha")"
+fi
 
 # ── [7] cleanup tarball ────────────────────────────────────────────────────
 log "=== [7] cleanup tarball ==="

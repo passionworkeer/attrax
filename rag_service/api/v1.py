@@ -468,7 +468,20 @@ async def _read_evidence_uploads(
     return submitted, None
 
 
-@router.get("/scans/{session_id}/assets/{index}")
+# 二进制资产（图片/PDF）—— 用 responses 显式声明，codegen client 不会把它
+# 当 JSON 解析（参见 round-5 audit C-04：snapshot 之前声明 application/json
+# + 空 schema，types.gen.ts 派生 await res.json() → 实际是字节流会爆）。
+@router.get(
+    "/scans/{session_id}/assets/{index}",
+    responses={
+        200: {
+            "content": {"*/*": {"schema": {"type": "string", "format": "binary"}}},
+            "description": "原始资产字节（图片/PDF，content-type 由后端按上传类型决定）",
+        },
+        401: {"model": ApiEnvelope[None], "description": "Invalid scan access token"},
+        404: {"model": ApiEnvelope[None], "description": "Scan asset not found"},
+    },
+)
 def get_asset(
     request: Request,
     session_id: str,

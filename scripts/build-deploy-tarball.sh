@@ -89,6 +89,13 @@ built_at=$(date -Iseconds)
 EOF
 log ".deployed: commit=${COMMIT_SHORT} build_id=${BID} ref=${UPSTREAM}"
 
+# ATTRAX_BUILD_SHA 落地文件 — 短 commit 写到 standalone/.build-sha，让
+# apply-deploy.sh 拷到 /opt/attrax/.build-sha，ecosystem.config.cjs 启动时
+# 读出来注入 rag-service env。这样 /ready 与 audit 日志报 SHA 与 .deployed
+# 始终一致。
+echo "${COMMIT_SHORT}" > "${STANDALONE}/.build-sha"
+log ".build-sha: ${COMMIT_SHORT}"
+
 # === [4.5] 防污染清理: 严防测试包、大 zip 与运行时垃圾打入生产部署包 ===
 rm -rf "${STANDALONE}/规航AI-"* "${STANDALONE}/test-results" "${STANDALONE}/tests/fixtures/regression-package-"* "${STANDALONE}/tests/fixtures/"*.zip
 

@@ -25,6 +25,7 @@ export const MARKET_IDS = [
 export type AppLocale = "zh" | "en";
 
 import type { FinancialSummary } from "@/lib/types.blaze-hawks";
+import type { CitationRefContract } from "@/lib/rag-client/report-package-schema";
 
 export type Market = (typeof MARKET_IDS)[number];
 export const PRODUCT_CATEGORIES = [
@@ -553,9 +554,13 @@ export interface ReportPackage {
   // (and post-processed by quote_matcher in §7.4). Empty array when
   // the KB-anchored generator is off; legacy chunk-based reports
   // also keep this field empty.
-  citations?: import("@/lib/rag-client/report-package-schema").CitationRefContract[];
-  evidencePack?: import("@/lib/rag-client/report-package-schema").CitationRefContract[];
+  citations?: CitationRefContract[];
+  evidencePack?: CitationRefContract[];
 }
+
+// 单源化引用契约，避免 CitationChip 之类组件重复手写一份后字段 drift。
+// 走 type-only import（运行时无副作用），并 re-export 给组件 / lib 代码用。
+export type { CitationRefContract };
 
 export type GeneratedReportPackage = ReportPackage;
 

@@ -36,7 +36,6 @@
 | 文件 | 旧机路径 |
 |---|---|
 | `nginx-nginx.conf` | `/etc/nginx/nginx.conf` |
-| `nginx-attrax-site.conf` | `/etc/nginx/sites-available/attrax` |
 | `nginx-custom-error-pages.conf` | `/etc/nginx/custom-error-pages.conf` |
 | `sysctl-99-attrax-hardening.conf` | `/etc/sysctl.d/99-attrax-hardening.conf` |
 | `sshd-00-attrax-hardening.conf` | `/etc/ssh/sshd_config.d/00-attrax-hardening.conf` |
@@ -54,8 +53,10 @@
 
 ```bash
 # 配置片段（在仓根执行）
+# 落地的目标文件名 = `attrax-locations.conf`（不带 nginx- 前缀），与 vhost
+# 第 33 行 `include snippets/attrax-locations.conf;` 与生产实际命名一致。
 scp docs/infra/nginx-attrax-locations.conf lighthouse:/tmp/
-ssh lighthouse 'sudo cp /tmp/nginx-attrax-locations.conf /etc/nginx/snippets/ && sudo nginx -t && sudo systemctl reload nginx'
+ssh lighthouse 'sudo cp /tmp/nginx-attrax-locations.conf /etc/nginx/snippets/attrax-locations.conf && sudo nginx -t && sudo systemctl reload nginx'
 
 # cron —— 注意安装时要改名：仓内 cron-attrax-backup → /etc/cron.d/attrax-backup
 # （与服务器现有命名一致；/etc/cron.d 只接受 注释 / KEY=VALUE / 作业行）

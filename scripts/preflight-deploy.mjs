@@ -72,9 +72,9 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
       errors.push("RAG_INTERNAL_SECRET is required when DEMO_MODE is not true.");
     } else if (
       isExamplePlaceholder(env.RAG_INTERNAL_SECRET) ||
-      env.RAG_INTERNAL_SECRET.length < 32
+      env.RAG_INTERNAL_SECRET.length < 48
     ) {
-      errors.push("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 32 characters.");
+      errors.push("RAG_INTERNAL_SECRET must be a non-placeholder value of at least 48 hex characters (see docs/RAG-INTERNAL-SECRET.md and scripts/ecosystem.config.cjs header comment).");
     }
     if (!hasValue(env.RAG_ALLOWED_ORIGINS)) {
       errors.push("RAG_ALLOWED_ORIGINS is required for direct browser access in production.");
@@ -99,6 +99,17 @@ export function validateDeployment(rootDir = process.cwd(), options = {}) {
 
   for (const relativePath of ["docker-compose.yml", "Dockerfile", "rag_service/Dockerfile"]) {
     if (!existsSync(join(rootDir, relativePath))) errors.push(`${relativePath} is missing.`);
+  }
+
+  // 提醒运维：生产服务器上 RAG_INTERNAL_SECRET 单一来源是
+  // `/opt/attrax/.rag-internal-secret`（mode 600），由 scripts/ecosystem.config.cjs
+  // 启动 rag-service 时读取（fail-closed：缺文件直接抛错）。
+  // preflight 在本地跑，没法 stat 服务器上的文件；这里只是文案提示运维
+  // 部署后必须存在。服务器侧的真实 fail-closed 验证在 ecosystem.config.cjs。
+  if (!demoMode && !hasValue(env.RAG_INTERNAL_SECRET)) {
+    warnings.push(
+      "After deploy, confirm /opt/attrax/.rag-internal-secret exists on the server (mode 600) — see scripts/ecosystem.config.cjs header.",
+    );
   }
 
   if (demoMode && !hasValue(env.ATTRAX_BUILD_SHA)) {
