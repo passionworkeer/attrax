@@ -1,5 +1,12 @@
 # attrax 法规 URL 现状快照（2026-09-16）
 
+> ⚠️ **本文件是历史快照，其中的 URL 与状态已被 2026-09-17 实测推翻。**
+> 当时列出的 `human_view_status` 是手工填写的"浏览器能不能打开"，
+> 与实际抓取能力无关：这批源里有 9 个 `source_url` 返回 403/404、
+> 从未抓取成功过。当前状态见
+> [`SOURCE-AUDIT-2026-09-17.md`](SOURCE-AUDIT-2026-09-17.md)
+> 与 `data/regulation_sources/official_sources.json` 本身。
+
 > 配套：`data/regulation_sources/official_sources.json`（35 个 cron 监控源）。
 > 来源审计：把"机器抓端点"和"人类可读端点"显式分开，标注每个源的实际可读性。
 
