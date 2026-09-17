@@ -4,13 +4,15 @@
  * Polls the FastAPI v1 backend for scan status. Pages call `/api/scan/{id}`;
  * this route forwards to `/api/v1/scans/{id}` with a Bearer access token.
  *
- * Auth: token is required for real sessions. Accepted sources (in priority
- * order):
- *   1. `Authorization: Bearer <token>` header (preferred — never logged)
- *   2. `?token=<token>` query param (opt-in fallback for clients that can't
- *      send custom headers; flagged in the handoff report as a known
- *      convenience that should be removed once the upload page persists
- *      the token and sends it as a header)
+ * Auth: Bearer-only. `lib/pipeline/session-auth.ts:tokenFromRequest` reads
+ * the `Authorization: Bearer <token>` header and nothing else — a `?token=`
+ * query parameter is deliberately NOT supported, because it would land in
+ * nginx access logs (regression-guarded by tests/unit/session-auth.test.ts).
+ *
+ * Browser callers do not need to send it: creating a scan sets the HttpOnly
+ * `attrax_scan_<sessionId>` cookie (Path=/api/), which
+ * `app/api/backend-session-access.ts` falls back to, so a reload stays
+ * authorized without any token in JS memory or in the URL.
  *
  * `sessionId === "demo"` short-circuits to the legacy mock — preserves the
  * QA / design-preview flow that pages rely on.
