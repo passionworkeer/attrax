@@ -13,7 +13,15 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Create Scan */
+        /**
+         * Create Scan
+         * @description Create a scan session.
+         *
+         *     ``declared_facts`` (J09): a JSON object of user-stated product facts
+         *     (e.g. ``{"battery": "absent"}``) collected by the upload wizard's
+         *     conditional questions. Malformed JSON is ignored — the facts are an
+         *     enhancement to applicability, never a request requirement.
+         */
         post: operations["create_scan_api_v1_scans_post"];
         delete?: never;
         options?: never;
@@ -67,6 +75,56 @@ export interface paths {
         get: operations["get_trace_api_v1_scans__session_id__trace_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/scans/{session_id}/evidence": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Append Evidence
+         * @description Attach supplementary photos/documents to a completed scan.
+         *
+         *     The evidence request merge (多个待补项合并为一个请求) happens on the
+         *     frontend VM; this endpoint only persists files + idempotency marker.
+         */
+        post: operations["append_evidence_api_v1_scans__session_id__evidence_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/scans/{session_id}/revisions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Request Revision
+         * @description Idempotently queue a revision re-run over the session's evidence.
+         *
+         *     MUST be `async def`: the service's `request_revision` spawns the re-run
+         *     task via `asyncio.create_task`, which requires a RUNNING event loop. A
+         *     sync `def` handler runs in Starlette's threadpool, where there is no
+         *     running loop — the spawn raised RuntimeError and the route returned
+         *     503 SCAN_QUEUE_UNAVAILABLE for every revision request (red-team probe
+         *     2026-09-14: "coroutine 'ScanService._run_job' was never awaited").
+         */
+        post: operations["request_revision_api_v1_scans__session_id__revisions_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -164,13 +222,11 @@ export interface paths {
          *
          *     P1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s
          *     probes work without credentials (the test suite also asserts these).
-         *     Sensitive diagnostics (demo_mode, embedding_provider, embedding_status,
-         *     dense_dim_mismatch_count, warnings) are gated behind ``_is_privileged``.
+         *     Sensitive diagnostics (demo_mode, pipeline) are gated behind
+         *     ``_is_privileged``.
          *
-         *     Embedding has a graceful-degradation path: if ModelScope is unavailable,
-         *     the service falls back to Ollama, then to BM25-only. ModelScope key
-         *     absence therefore does NOT block readiness; it is reported as a warning
-         *     to privileged callers only.
+         *     De-RAG §7.7: readiness gates on the KB + regulation library (the
+         *     generator's actual inputs) instead of the deleted retrieval stack.
          */
         get: operations["ready_ready_get"];
         put?: never;
@@ -232,6 +288,32 @@ export interface paths {
          *     充电宝和乒乓球拍使用预置数据（无需 LLM 调用），其他产品尝试 LLM 填充。
          */
         post: operations["profit_report_profit_report_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/regulations/{doc_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Regulation
+         * @description Return one regulation from `data/regulations/{region}/*.yaml`.
+         *
+         *     Public responses surface `articles[]` (with `text`) so the viewer
+         *     can render the article body + apply the `hl` highlight from the
+         *     URL. Private responses (GB/ASTM/UL) only return metadata + key
+         *     points + purchase_url; `articles` is empty so the client knows to
+         *     render the "metadata only" view (spec §7.5 step 6).
+         */
+        get: operations["get_regulation_api_v1_regulations__doc_id__get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -309,8 +391,30 @@ export interface components {
              * @default 0
              */
             traceNodeCount: number;
+            finance?: components["schemas"]["FinanceValidation"];
+            decisionView?: components["schemas"]["SubReportValidation"];
+            roadmap?: components["schemas"]["SubReportValidation"];
+            evidenceBundles?: components["schemas"]["SubReportValidation"];
         } & {
             [key: string]: unknown;
+        };
+        /** Body_append_evidence_api_v1_scans__session_id__evidence_post */
+        Body_append_evidence_api_v1_scans__session_id__evidence_post: {
+            /**
+             * Idempotency Key
+             * @default
+             */
+            idempotency_key: string;
+            /**
+             * Images
+             * @default []
+             */
+            images: string[];
+            /**
+             * Documents
+             * @default []
+             */
+            documents: string[];
         };
         /** Body_create_scan_api_v1_scans_post */
         Body_create_scan_api_v1_scans_post: {
@@ -334,6 +438,11 @@ export interface components {
              * @default ["EU"]
              */
             markets: string;
+            /**
+             * Declared Facts
+             * @default
+             */
+            declared_facts: string;
             /**
              * Images
              * @default []
@@ -382,6 +491,49 @@ export interface components {
              * @default []
              */
             pdfs: string[];
+        };
+        /**
+         * CitationRef
+         * @description Per-claim citation to a specific article in a regulation.
+         *
+         *     Spec: docs/plans/2026-09-11-de-rag-evidence-spec.md §3.3 + §4.
+         *
+         *     `quote_span` is populated by `quote_matcher.match_quote` AFTER the LLM
+         *     returns its output — the LLM only fills `quote`. Front-end uses
+         *     `quote_span` to render `<mark>` highlighting on the document viewer
+         *     page (§4.4).
+         *
+         *     `match_status` is a three-state enumeration (spec §4.3):
+         *       - matched                — `quote` is found verbatim (or whitespace-normalized)
+         *                                 in the article text; `quote_span` is set.
+         *       - fallback_article_only  — article exists but quote doesn't match; chip
+         *                                 navigates to the article but no highlight.
+         *       - unmatched              — article id is unknown; chip is flagged ✗.
+         */
+        CitationRef: {
+            /** Doc Id */
+            doc_id: string;
+            /** Article Id */
+            article_id: string;
+            /**
+             * Official Citation
+             * @default
+             */
+            official_citation: string;
+            /**
+             * Quote
+             * @default
+             */
+            quote: string;
+            /** Quote Span */
+            quote_span?: [
+                number,
+                number
+            ] | null;
+            /** Match Status */
+            match_status?: ("matched" | "fallback_article_only" | "unmatched") | null;
+        } & {
+            [key: string]: unknown;
         };
         /** CreatedScanData */
         CreatedScanData: {
@@ -454,6 +606,16 @@ export interface components {
             recommendedAction: string;
             /** Nodes */
             nodes?: components["schemas"]["DecisionNode"][];
+            /**
+             * Verdict
+             * @default
+             */
+            verdict: string;
+            /**
+             * Risklevel
+             * @default
+             */
+            riskLevel: string;
         } & {
             [key: string]: unknown;
         };
@@ -498,6 +660,64 @@ export interface components {
             };
         } & {
             [key: string]: unknown;
+        };
+        /**
+         * FinanceValidation
+         * @description Per-sub-report validation, surfaced separately from the package-level
+         *     `validationStatus` so a malformed sub-report (e.g. bad currency arithmetic
+         *     in profit/finance) does NOT downgrade the whole compliance package. The
+         *     profit page reads `finance.validationStatus` to render its own notice.
+         *
+         *     Audit P0-D: extended the same pattern to decisionView/roadmap/
+         *     evidenceBundles — previously only finance had isolation, so a missing
+         *     decisionView node could still flip the package to "invalid" and trigger
+         *     the red `DegradedBanner`.
+         */
+        FinanceValidation: {
+            /**
+             * Validationstatus
+             * @default valid
+             * @enum {string}
+             */
+            validationStatus: "valid" | "invalid";
+            /** Errors */
+            errors?: string[];
+        } & {
+            [key: string]: unknown;
+        };
+        /** FinancialCostComparison */
+        FinancialCostComparison: {
+            barebone: components["schemas"]["FinancialCostSummary"];
+            compliant: components["schemas"]["FinancialCostSummary"];
+        };
+        /**
+         * FinancialCostSummary
+         * @description Per-unit finance values that may drive the detailed profit board.
+         *
+         *     Audit 2026-09-13 §10.2: ``gp`` may be NEGATIVE — a real product can
+         *     sell at a loss, and the old non-negative constraint made the model
+         *     (or a normalizer) silently clamp losses to 0 to pass validation.
+         *     Cost fields stay non-negative; only the profit fields accept losses.
+         */
+        FinancialCostSummary: {
+            /** Bom */
+            bom: number;
+            /** Packaging */
+            packaging: number;
+            /** Cert */
+            cert: number;
+            /** Epr */
+            epr: number;
+            /** Logistics */
+            logistics: number;
+            /** Warranty */
+            warranty: number;
+            /** Asp */
+            asp: number;
+            /** Total */
+            total: number;
+            /** Gp */
+            gp: number;
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -569,6 +789,7 @@ export interface components {
              * @default
              */
             references: string;
+            structuredFields?: components["schemas"]["StructuredProfitFields"] | null;
         } & {
             [key: string]: unknown;
         };
@@ -613,6 +834,20 @@ export interface components {
             decisionView: components["schemas"]["DecisionView"];
             evidenceBundles: components["schemas"]["EvidenceBundles"];
             auditMetadata: components["schemas"]["AuditMetadata"];
+            /** Citations */
+            citations?: components["schemas"]["CitationRef"][];
+            /** Evidencepack */
+            evidencePack?: components["schemas"]["CitationRef"][];
+            /** Observations */
+            observations?: {
+                [key: string]: unknown;
+            }[];
+            /** Findings */
+            findings?: {
+                [key: string]: unknown;
+            }[];
+            /** Selectedcheckids */
+            selectedCheckIds?: string[];
         } & {
             [key: string]: unknown;
         };
@@ -753,6 +988,55 @@ export interface components {
             }[] | null;
             report_package?: components["schemas"]["ReportPackage"] | null;
         };
+        /**
+         * StructuredProfitFields
+         * @description Optional extension fields; structured finance is strict when supplied.
+         *
+         *     Plan 2026-09-13 §10.2 — provenance: numbers are only trustworthy when
+         *     the source says so. ``sourceStatus`` distinguishes a real quote
+         *     ("quoted", e.g. supplier price list), a model estimate ("estimated"),
+         *     and unknown ("unknown" — the historical default when the model filled
+         *     numbers without any source). ``asOf`` + ``sourceRefs`` make the claim
+         *     checkable; the frontend renders estimated/unknown as 估算/待询价.
+         */
+        StructuredProfitFields: {
+            /** Currency */
+            currency: string;
+            costComparison: components["schemas"]["FinancialCostComparison"];
+            /**
+             * Sourcestatus
+             * @default unknown
+             * @enum {string}
+             */
+            sourceStatus: "quoted" | "estimated" | "unknown";
+            /**
+             * Asof
+             * @default
+             */
+            asOf: string;
+            /** Sourcerefs */
+            sourceRefs?: string[];
+        } & {
+            [key: string]: unknown;
+        };
+        /**
+         * SubReportValidation
+         * @description Per-scene validation tracker for `decisionView`, `roadmap`, and
+         *     `evidenceBundles`. Mirrors `FinanceValidation` so a malformed sub-scene
+         *     surfaces as a warning without downgrading the whole package (audit P0-D).
+         */
+        SubReportValidation: {
+            /**
+             * Validationstatus
+             * @default valid
+             * @enum {string}
+             */
+            validationStatus: "valid" | "invalid";
+            /** Errors */
+            errors?: string[];
+        } & {
+            [key: string]: unknown;
+        };
         /** ValidationError */
         ValidationError: {
             /** Location */
@@ -761,10 +1045,6 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
-            /** Input */
-            input?: unknown;
-            /** Context */
-            ctx?: Record<string, never>;
         };
     };
     responses: never;
@@ -917,6 +1197,78 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ApiEnvelope_list_dict_str__Any___"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    append_evidence_api_v1_scans__session_id__evidence_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_append_evidence_api_v1_scans__session_id__evidence_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_dict_str__Any__"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    request_revision_api_v1_scans__session_id__revisions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                session_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": {
+                    [key: string]: unknown;
+                } | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiEnvelope_dict_str__Any__"];
                 };
             };
             /** @description Validation Error */
@@ -1128,6 +1480,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["ProfitReportResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_regulation_api_v1_regulations__doc_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                doc_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */

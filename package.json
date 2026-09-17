@@ -21,10 +21,11 @@
     "test:pressure:load": "node tests/pressure/improved-load-test.js load",
     "test:rag": "node scripts/run-pytest.mjs",
     "test:all": "npm run test && npm run test:e2e && npm run test:rag",
-    "codegen:openapi": "node scripts/capture-openapi.mjs",
+    "codegen:openapi": "node scripts/check-rag-openapi-drift.mjs --write",
     "codegen:rag-types": "openapi-typescript lib/rag-client/openapi.snapshot.json -o lib/rag-client/types.gen.ts",
     "codegen": "npm run codegen:openapi && npm run codegen:rag-types",
-    "check:rag-contract": "npm run codegen:rag-types && git diff --exit-code lib/rag-client/types.gen.ts"
+    "check:rag-contract": "npm run codegen:rag-types && git diff --exit-code lib/rag-client/types.gen.ts",
+    "check:rag-openapi": "node scripts/check-rag-openapi-drift.mjs --check"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",

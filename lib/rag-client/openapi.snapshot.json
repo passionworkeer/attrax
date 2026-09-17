@@ -11,6 +11,7 @@
           "public-v1"
         ],
         "summary": "Create Scan",
+        "description": "Create a scan session.\n\n``declared_facts`` (J09): a JSON object of user-stated product facts\n(e.g. ``{\"battery\": \"absent\"}``) collected by the upload wizard's\nconditional questions. Malformed JSON is ignored — the facts are an\nenhancement to applicability, never a request requirement.",
         "operationId": "create_scan_api_v1_scans_post",
         "requestBody": {
           "content": {
@@ -224,6 +225,129 @@
         }
       }
     },
+    "/api/v1/scans/{session_id}/evidence": {
+      "post": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Append Evidence",
+        "description": "Attach supplementary photos/documents to a completed scan.\n\nThe evidence request merge (多个待补项合并为一个请求) happens on the\nfrontend VM; this endpoint only persists files + idempotency marker.",
+        "operationId": "append_evidence_api_v1_scans__session_id__evidence_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_append_evidence_api_v1_scans__session_id__evidence_post"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_dict_str__Any__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/scans/{session_id}/revisions": {
+      "post": {
+        "tags": [
+          "public-v1"
+        ],
+        "summary": "Request Revision",
+        "description": "Idempotently queue a revision re-run over the session's evidence.\n\nMUST be `async def`: the service's `request_revision` spawns the re-run\ntask via `asyncio.create_task`, which requires a RUNNING event loop. A\nsync `def` handler runs in Starlette's threadpool, where there is no\nrunning loop — the spawn raised RuntimeError and the route returned\n503 SCAN_QUEUE_UNAVAILABLE for every revision request (red-team probe\n2026-09-14: \"coroutine 'ScanService._run_job' was never awaited\").",
+        "operationId": "request_revision_api_v1_scans__session_id__revisions_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "session_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Session Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "additionalProperties": true
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Revision Request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_dict_str__Any__"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/scans/{session_id}/assets/{index}": {
       "get": {
         "tags": [
@@ -340,7 +464,7 @@
     "/ready": {
       "get": {
         "summary": "Ready",
-        "description": "Readiness probe — checks all critical dependencies.\nUsed by Kubernetes / load-balancer to decide whether to route traffic here.\n\nP1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s\nprobes work without credentials (the test suite also asserts these).\nSensitive diagnostics (demo_mode, embedding_provider, embedding_status,\ndense_dim_mismatch_count, warnings) are gated behind ``_is_privileged``.\n\nEmbedding has a graceful-degradation path: if ModelScope is unavailable,\nthe service falls back to Ollama, then to BM25-only. ModelScope key\nabsence therefore does NOT block readiness; it is reported as a warning\nto privileged callers only.",
+        "description": "Readiness probe — checks all critical dependencies.\nUsed by Kubernetes / load-balancer to decide whether to route traffic here.\n\nP1-5: ``ready``, ``checks``, and ``version`` are ALWAYS returned so k8s\nprobes work without credentials (the test suite also asserts these).\nSensitive diagnostics (demo_mode, pipeline) are gated behind\n``_is_privileged``.\n\nDe-RAG §7.7: readiness gates on the KB + regulation library (the\ngenerator's actual inputs) instead of the deleted retrieval stack.",
         "operationId": "ready_ready_get",
         "responses": {
           "200": {
@@ -452,6 +576,44 @@
                 "schema": {
                   "$ref": "#/components/schemas/ProfitReportResponse"
                 }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/regulations/{doc_id}": {
+      "get": {
+        "summary": "Get Regulation",
+        "description": "Return one regulation from `data/regulations/{region}/*.yaml`.\n\nPublic responses surface `articles[]` (with `text`) so the viewer\ncan render the article body + apply the `hl` highlight from the\nURL. Private responses (GB/ASTM/UL) only return metadata + key\npoints + purchase_url; `articles` is empty so the client knows to\nrender the \"metadata only\" view (spec §7.5 step 6).",
+        "operationId": "get_regulation_api_v1_regulations__doc_id__get",
+        "parameters": [
+          {
+            "name": "doc_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Doc Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           },
@@ -660,6 +822,18 @@
             "type": "integer",
             "title": "Tracenodecount",
             "default": 0
+          },
+          "finance": {
+            "$ref": "#/components/schemas/FinanceValidation"
+          },
+          "decisionView": {
+            "$ref": "#/components/schemas/SubReportValidation"
+          },
+          "roadmap": {
+            "$ref": "#/components/schemas/SubReportValidation"
+          },
+          "evidenceBundles": {
+            "$ref": "#/components/schemas/SubReportValidation"
           }
         },
         "additionalProperties": true,
@@ -668,6 +842,35 @@
           "generatedAt"
         ],
         "title": "AuditMetadata"
+      },
+      "Body_append_evidence_api_v1_scans__session_id__evidence_post": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "title": "Idempotency Key",
+            "default": ""
+          },
+          "images": {
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "type": "array",
+            "title": "Images",
+            "default": []
+          },
+          "documents": {
+            "items": {
+              "type": "string",
+              "format": "binary"
+            },
+            "type": "array",
+            "title": "Documents",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "Body_append_evidence_api_v1_scans__session_id__evidence_post"
       },
       "Body_create_scan_api_v1_scans_post": {
         "properties": {
@@ -691,10 +894,15 @@
             "title": "Markets",
             "default": "[\"EU\"]"
           },
+          "declared_facts": {
+            "type": "string",
+            "title": "Declared Facts",
+            "default": ""
+          },
           "images": {
             "items": {
               "type": "string",
-              "contentMediaType": "application/octet-stream"
+              "format": "binary"
             },
             "type": "array",
             "title": "Images",
@@ -703,7 +911,7 @@
           "documents": {
             "items": {
               "type": "string",
-              "contentMediaType": "application/octet-stream"
+              "format": "binary"
             },
             "type": "array",
             "title": "Documents",
@@ -743,7 +951,7 @@
           "images": {
             "items": {
               "type": "string",
-              "contentMediaType": "application/octet-stream"
+              "format": "binary"
             },
             "type": "array",
             "title": "Images",
@@ -752,7 +960,7 @@
           "pdfs": {
             "items": {
               "type": "string",
-              "contentMediaType": "application/octet-stream"
+              "format": "binary"
             },
             "type": "array",
             "title": "Pdfs",
@@ -761,6 +969,73 @@
         },
         "type": "object",
         "title": "Body_scan_multipart_scan_multipart_post"
+      },
+      "CitationRef": {
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "title": "Doc Id"
+          },
+          "article_id": {
+            "type": "string",
+            "title": "Article Id"
+          },
+          "official_citation": {
+            "type": "string",
+            "title": "Official Citation",
+            "default": ""
+          },
+          "quote": {
+            "type": "string",
+            "title": "Quote",
+            "default": ""
+          },
+          "quote_span": {
+            "anyOf": [
+              {
+                "prefixItems": [
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ],
+                "type": "array",
+                "maxItems": 2,
+                "minItems": 2
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Span"
+          },
+          "match_status": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "matched",
+                  "fallback_article_only",
+                  "unmatched"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Match Status"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "doc_id",
+          "article_id"
+        ],
+        "title": "CitationRef",
+        "description": "Per-claim citation to a specific article in a regulation.\n\nSpec: docs/plans/2026-09-11-de-rag-evidence-spec.md §3.3 + §4.\n\n`quote_span` is populated by `quote_matcher.match_quote` AFTER the LLM\nreturns its output — the LLM only fills `quote`. Front-end uses\n`quote_span` to render `<mark>` highlighting on the document viewer\npage (§4.4).\n\n`match_status` is a three-state enumeration (spec §4.3):\n  - matched                — `quote` is found verbatim (or whitespace-normalized)\n                            in the article text; `quote_span` is set.\n  - fallback_article_only  — article exists but quote doesn't match; chip\n                            navigates to the article but no highlight.\n  - unmatched              — article id is unknown; chip is flagged ✗."
       },
       "CreatedScanData": {
         "properties": {
@@ -875,6 +1150,16 @@
             },
             "type": "array",
             "title": "Nodes"
+          },
+          "verdict": {
+            "type": "string",
+            "title": "Verdict",
+            "default": ""
+          },
+          "riskLevel": {
+            "type": "string",
+            "title": "Risklevel",
+            "default": ""
           }
         },
         "additionalProperties": true,
@@ -953,6 +1238,100 @@
           "layer"
         ],
         "title": "EvidenceItem"
+      },
+      "FinanceValidation": {
+        "properties": {
+          "validationStatus": {
+            "type": "string",
+            "enum": [
+              "valid",
+              "invalid"
+            ],
+            "title": "Validationstatus",
+            "default": "valid"
+          },
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Errors"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "FinanceValidation",
+        "description": "Per-sub-report validation, surfaced separately from the package-level\n`validationStatus` so a malformed sub-report (e.g. bad currency arithmetic\nin profit/finance) does NOT downgrade the whole compliance package. The\nprofit page reads `finance.validationStatus` to render its own notice.\n\nAudit P0-D: extended the same pattern to decisionView/roadmap/\nevidenceBundles — previously only finance had isolation, so a missing\ndecisionView node could still flip the package to \"invalid\" and trigger\nthe red `DegradedBanner`."
+      },
+      "FinancialCostComparison": {
+        "properties": {
+          "barebone": {
+            "$ref": "#/components/schemas/FinancialCostSummary"
+          },
+          "compliant": {
+            "$ref": "#/components/schemas/FinancialCostSummary"
+          }
+        },
+        "type": "object",
+        "required": [
+          "barebone",
+          "compliant"
+        ],
+        "title": "FinancialCostComparison"
+      },
+      "FinancialCostSummary": {
+        "properties": {
+          "bom": {
+            "type": "number",
+            "title": "Bom"
+          },
+          "packaging": {
+            "type": "number",
+            "title": "Packaging"
+          },
+          "cert": {
+            "type": "number",
+            "title": "Cert"
+          },
+          "epr": {
+            "type": "number",
+            "title": "Epr"
+          },
+          "logistics": {
+            "type": "number",
+            "title": "Logistics"
+          },
+          "warranty": {
+            "type": "number",
+            "title": "Warranty"
+          },
+          "asp": {
+            "type": "number",
+            "title": "Asp"
+          },
+          "total": {
+            "type": "number",
+            "title": "Total"
+          },
+          "gp": {
+            "type": "number",
+            "title": "Gp"
+          }
+        },
+        "type": "object",
+        "required": [
+          "bom",
+          "packaging",
+          "cert",
+          "epr",
+          "logistics",
+          "warranty",
+          "asp",
+          "total",
+          "gp"
+        ],
+        "title": "FinancialCostSummary",
+        "description": "Per-unit finance values that may drive the detailed profit board.\n\nAudit 2026-09-13 §10.2: ``gp`` may be NEGATIVE — a real product can\nsell at a loss, and the old non-negative constraint made the model\n(or a normalizer) silently clamp losses to 0 to pass validation.\nCost fields stay non-negative; only the profit fields accept losses."
       },
       "HTTPValidationError": {
         "properties": {
@@ -1043,6 +1422,16 @@
             "type": "string",
             "title": "References",
             "default": ""
+          },
+          "structuredFields": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StructuredProfitFields"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "additionalProperties": true,
@@ -1129,6 +1518,43 @@
           },
           "auditMetadata": {
             "$ref": "#/components/schemas/AuditMetadata"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/CitationRef"
+            },
+            "type": "array",
+            "title": "Citations"
+          },
+          "evidencePack": {
+            "items": {
+              "$ref": "#/components/schemas/CitationRef"
+            },
+            "type": "array",
+            "title": "Evidencepack"
+          },
+          "observations": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Observations"
+          },
+          "findings": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Findings"
+          },
+          "selectedCheckIds": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Selectedcheckids"
           }
         },
         "additionalProperties": true,
@@ -1391,6 +1817,71 @@
         ],
         "title": "ScanResponse"
       },
+      "StructuredProfitFields": {
+        "properties": {
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "costComparison": {
+            "$ref": "#/components/schemas/FinancialCostComparison"
+          },
+          "sourceStatus": {
+            "type": "string",
+            "enum": [
+              "quoted",
+              "estimated",
+              "unknown"
+            ],
+            "title": "Sourcestatus",
+            "default": "unknown"
+          },
+          "asOf": {
+            "type": "string",
+            "title": "Asof",
+            "default": ""
+          },
+          "sourceRefs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sourcerefs"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "currency",
+          "costComparison"
+        ],
+        "title": "StructuredProfitFields",
+        "description": "Optional extension fields; structured finance is strict when supplied.\n\nPlan 2026-09-13 §10.2 — provenance: numbers are only trustworthy when\nthe source says so. ``sourceStatus`` distinguishes a real quote\n(\"quoted\", e.g. supplier price list), a model estimate (\"estimated\"),\nand unknown (\"unknown\" — the historical default when the model filled\nnumbers without any source). ``asOf`` + ``sourceRefs`` make the claim\ncheckable; the frontend renders estimated/unknown as 估算/待询价."
+      },
+      "SubReportValidation": {
+        "properties": {
+          "validationStatus": {
+            "type": "string",
+            "enum": [
+              "valid",
+              "invalid"
+            ],
+            "title": "Validationstatus",
+            "default": "valid"
+          },
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Errors"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "title": "SubReportValidation",
+        "description": "Per-scene validation tracker for `decisionView`, `roadmap`, and\n`evidenceBundles`. Mirrors `FinanceValidation` so a malformed sub-scene\nsurfaces as a warning without downgrading the whole package (audit P0-D)."
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -1414,13 +1905,6 @@
           "type": {
             "type": "string",
             "title": "Error Type"
-          },
-          "input": {
-            "title": "Input"
-          },
-          "ctx": {
-            "type": "object",
-            "title": "Context"
           }
         },
         "type": "object",

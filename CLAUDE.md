@@ -160,7 +160,7 @@ attrax/
 │   │   ├── errors.ts             # 错误类型
 │   │   ├── response-schemas.ts   # Zod response
 │   │   ├── report-package-schema.ts
-│   │   ├── openapi.snapshot.json # 从运行中 RAG 服务抓取的 OpenAPI
+│   │   ├── openapi.snapshot.json # OpenAPI 契约快照（由 rag_service app 对象导出）
 │   │   └── types.gen.ts          # 自动生成的 TS 类型
 │   └── upload/category-manifest.ts  # 上传品类清单（该目录唯一文件）
 │

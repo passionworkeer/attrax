@@ -228,18 +228,23 @@ export async function getScan(sessionId: string, accessToken: string) {
 
 ## 5. OpenAPI 与类型生成
 
-`GET /openapi.json` 是唯一契约源。新前端项目可直接生成 TypeScript：
+契约快照固定在 `lib/rag-client/openapi.snapshot.json`，它由 **FastAPI app 对象直接导出**（不需要起服务、不需要端口），避免"快照 vs 真实路由"长期漂移。新前端项目可直接生成 TypeScript：
 
 ```bash
-npx openapi-typescript http://localhost:8001/openapi.json -o src/api/attrax.gen.ts
+npx openapi-typescript lib/rag-client/openapi.snapshot.json -o src/api/attrax.gen.ts
 ```
 
 后端改动后的仓库维护命令：
 
-```powershell
-npm run codegen:openapi
-npm run codegen:rag-types
-npm run check:rag-contract
+```bash
+npm run codegen:openapi     # 从 rag_service 重新导出并覆盖快照
+npm run codegen:rag-types   # 由快照重生 lib/rag-client/types.gen.ts
+npm run check:rag-contract  # 门控①：types.gen.ts 必须与快照一致
+npm run check:rag-openapi   # 门控②：快照必须与 rag_service 真实路由一致
 ```
+
+两个门控缺一不可：`check:rag-contract` 只能证明 `types.gen.ts` 与**快照**同步，无法发现快照本身落后于后端；`check:rag-openapi` 直接比对路由清单（path → 方法集合），补上这一段。CI 中前者在 `frontend` job、后者在 `backend-unit` job 执行。
+
+> 历史命令 `npm run codegen:openapi` 曾走 `scripts/capture-openapi.mjs` 从运行中的服务抓 `/openapi.json`，属手动步骤且从不进 CI —— 这正是 `/evidence`、`/revisions`、`/api/v1/regulations/{doc_id}` 三条前端在用的路由长期缺席快照的原因。该脚本已被 `scripts/check-rag-openapi-drift.mjs` 取代。
 
 旧 `/scan`、`/scan-multipart`、`/profit-report` 接口仅为现有 Next.js 前端的迁移兼容面。新前端不得接入这些旧接口。
