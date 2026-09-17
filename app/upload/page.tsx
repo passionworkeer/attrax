@@ -428,9 +428,12 @@ export default function UploadPage() {
             startPayload.accessToken
           );
         } catch {
-          // sessionStorage may be disabled (private mode, quota) — the poll
-          // endpoint also accepts ?token=, so the user can still recover by
-          // reloading with the token in the URL.
+          // sessionStorage may be disabled (private mode, quota). That is not
+          // a recovery problem: the scan-creation response also set the
+          // HttpOnly `attrax_scan_<id>` cookie, and the poll endpoint accepts
+          // it (app/api/backend-session-access.ts). Nothing needs the token in
+          // JS memory, and the poll endpoint does NOT accept ?token= — putting
+          // it in the URL would land it in nginx access logs.
         }
       }
 
