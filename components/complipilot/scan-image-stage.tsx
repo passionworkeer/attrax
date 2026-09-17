@@ -8,6 +8,7 @@ import styles from "./scan-image-stage.module.css";
 type ScanImageStageProps = {
   images: string[];
   progress: number;
+  cacheHits?: number;
   locale: "zh" | "en";
   stageKey?: string;
   isPreset?: boolean;
@@ -44,17 +45,10 @@ const SCAN_WAYPOINTS: ReadonlyArray<{ left: string; top: string }> = [
 const WAYPOINT_UNLOCK_AT = [0.18, 0.28, 0.36, 0.46, 0.56, 0.66];
 
 /** Real pipeline phases — what the stage indicator actually reports. */
-const PHASE_LABELS: ReadonlyArray<{
-  key: string;
-  zh: string;
-  en: string;
-}> = [
-  { key: "queued", zh: "排队与预处理", en: "Queue & preprocess" },
-  { key: "vision", zh: "图像观察", en: "Image observation" },
-  { key: "applicability", zh: "适用性判断", en: "Applicability check" },
-  { key: "generate", zh: "报告生成", en: "Report generation" },
-  { key: "verify", zh: "引用核对", en: "Citation verify" },
-  { key: "done", zh: "完成", en: "Done" },
+const PHASE_LABELS = [
+  { key: "prepare", zh: "准备证据", en: "Prepare evidence" },
+  { key: "generate", zh: "综合分析", en: "Analyze evidence" },
+  { key: "verify", zh: "核对与交付", en: "Verify & deliver" },
 ];
 
 function clamp(value: number, min: number, max: number): number {
@@ -62,16 +56,8 @@ function clamp(value: number, min: number, max: number): number {
 }
 
 const STAGE_TO_PHASE_INDEX: Record<string, number> = {
-  queued: 0,
-  vision: 1,
-  retrieval: 2,
-  applicability: 2,
-  report: 3,
-  generate: 3,
-  verify: 4,
-  persist: 4,
-  done: 5,
-  failed: 5,
+  queued: 0, vision: 0, retrieval: 0, applicability: 0,
+  report: 1, generate: 1, verify: 2, persist: 2, done: 2, failed: 0,
 };
 
 export function ScanImageStage({
@@ -80,6 +66,7 @@ export function ScanImageStage({
   locale,
   stageKey = "vision",
   isPreset = false,
+  cacheHits = 0,
 }: ScanImageStageProps) {
   const [failedImages, setFailedImages] = useState<Set<string>>(() => new Set());
   const visibleImages = useMemo(
@@ -136,7 +123,6 @@ export function ScanImageStage({
       onPointerMove={updateTilt}
       onPointerLeave={resetTilt}
       style={{
-        "--progress": `${safeProgress * 3.6}deg`,
         "--tilt-x": "0deg",
         "--tilt-y": "0deg",
       } as StageStyle}
@@ -155,27 +141,6 @@ export function ScanImageStage({
         <span />
         <span />
         <span />
-      </div>
-
-      <div className={styles.progressDial} aria-label={`${safeProgress}%`}>
-        <div className={styles.progressDialInner}>
-          <strong>{safeProgress}%</strong>
-          <span>
-            {stageKey === "queued"
-              ? locale === "zh" ? "排队中" : "queued"
-              : stageKey === "vision"
-                ? locale === "zh" ? "图像观察" : "observation"
-                : stageKey === "retrieval"
-                  ? locale === "zh" ? "适用性判断" : "applicability"
-                  : stageKey === "report"
-                    ? locale === "zh" ? "报告生成" : "report"
-                    : stageKey === "done"
-                      ? locale === "zh" ? "完成" : "done"
-                      : locale === "zh"
-                        ? "图像观察"
-                        : "observation"}
-          </span>
-        </div>
       </div>
 
       <div className={styles.stageLayout}>
@@ -294,11 +259,9 @@ export function ScanImageStage({
                   <span className={styles.feedDot} aria-hidden="true">
                     {done ? "✓" : ""}
                   </span>
-                  <span className={styles.feedMarket}>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <span className={styles.feedCode}>
                     {locale === "zh" ? phase.zh : phase.en}
+                    <small className={styles.phaseDetail}>{locale === "zh" ? (index === 0 ? (done ? (cacheHits > 0 ? `${cacheHits} 张识别结果已复用 · 检查范围已准备` : "图片识别与检查范围已准备") : "整理照片与检查范围") : index === 1 ? (done ? "报告内容已生成" : active ? "正在生成报告，等待模型返回" : "等待证据准备") : (active ? "核对引用并保存报告" : "报告生成后开始")) : (done ? "Completed" : active ? "Processing" : "Up next")}</small>
                   </span>
                 </li>
               );

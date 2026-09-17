@@ -374,3 +374,44 @@
     display: none;
   }
 }
+
+.headerBright { background: var(--flow-header-bright-background, rgba(239,249,253,.95)); border-color: var(--flow-header-bright-border, #d8edf4); }
+.headerBright .brand, .headerBright .backLink, .headerBright .status, .headerBright .languageSwitch { color: #123f52; }
+.headerBright .brandName, .headerBright .brandCopy small { color: #466a79; }
+.headerBright .languageSwitch button { color: #385c6c; }
+.headerBright .languageSwitch .languageActive { background: #0c6980; color: #fff; }
+.headerBright .backLink, .headerBright .languageSwitch { border-color: #b8d5df; }
+.header :is(a, button):focus-visible { outline: 3px solid #08768d; outline-offset: 3px; }
+@media (max-width: 900px) {
+  .languageSwitch { display: inline-flex !important; }
+  .languageSwitch > svg { display: none; }
+}
+@media (max-width: 620px) {
+  .headerInner { gap: 8px; flex-wrap: wrap; }
+  .identityGroup { gap: 6px; }
+  .actions { gap: 6px; }
+  .logoWrap { width: 28px; height: 28px; }
+  .brandCopy strong { max-width: 100px; font-size: 12px; }
+  .primaryAction { display: none !important; }
+  .languageSwitch button { min-width: 32px; min-height: 32px; }
+}
+
+.headerBright .brandCopy strong { color: #123f52; }
+.headerBright .secondaryAction { color: #123f52 !important; }
+
+.headerBright .backLink { color: var(--flow-header-back-ink, #123f52); }
+.headerBright .brandCopy strong { color: var(--flow-header-title-ink, #123f52); }
+.headerBright .brandName { color: var(--flow-header-brand-ink, #466a79); }
+.headerBright .brandCopy small { color: var(--flow-header-subtitle-ink, #466a79); }
+.headerBright .languageSwitch {
+  color: var(--flow-language-ink, #123f52);
+  border-color: var(--flow-language-border, #b8d5df);
+  background: var(--flow-language-background, rgba(255,255,255,.08));
+}
+.headerBright .languageSwitch button { color: var(--flow-language-ink, #385c6c); transition: background .2s ease, color .2s ease, box-shadow .2s ease; }
+.headerBright .languageSwitch .languageActive { background: var(--flow-language-active-background, #0c6980); color: var(--flow-language-active-ink, #fff); }
+
+.submitAction:disabled { opacity: .5; cursor: not-allowed; }
+@media (max-width: 620px) {
+  .primaryAction.submitAction { display: inline-flex !important; min-height: 40px; padding-inline: 12px; }
+}

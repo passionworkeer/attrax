@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useDeferredValue, useState, useEffect } from "react";
 import {
   AlertTriangle,
+  ArrowLeft,
   Building2,
   Calendar,
   CheckCircle2,
@@ -16,6 +18,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { useTranslation } from "@/lib/i18n";
+import styles from "./regulations.module.css";
 
 type RiskLevel = "critical" | "high" | "medium" | "low";
 type ChangeType = "new" | "revision" | "enforcement" | "consultation";
@@ -82,10 +85,10 @@ const marketFilterKeys: Record<string, string> = {
 const marketCodes = ["all", "EU", "US", "UK", "CN", "AU", "SA", "AE", "JP", "BR", "CA", "KR", "IN"] as const;
 
 const riskClasses: Record<RiskLevel, string> = {
-  critical: "bg-red-500/15 text-red-300 ring-red-500/40",
-  high: "bg-orange-500/15 text-orange-300 ring-orange-500/40",
-  medium: "bg-amber-500/15 text-amber-300 ring-amber-500/40",
-  low: "bg-emerald-500/15 text-emerald-300 ring-emerald-500/40",
+  critical: "bg-red-50 text-red-700 ring-red-200",
+  high: "bg-orange-50 text-orange-700 ring-orange-200",
+  medium: "bg-amber-50 text-amber-700 ring-amber-200",
+  low: "bg-emerald-50 text-emerald-700 ring-emerald-200",
 };
 
 const riskBorderClasses: Record<RiskLevel, string> = {
@@ -96,10 +99,10 @@ const riskBorderClasses: Record<RiskLevel, string> = {
 };
 
 const changeTypeClasses: Record<ChangeType, string> = {
-  new: "bg-blaze-cyan/15 text-blaze-cyan ring-blaze-cyan/40",
-  revision: "bg-violet-500/15 text-violet-300 ring-violet-500/40",
-  enforcement: "bg-rose-500/15 text-rose-300 ring-rose-500/40",
-  consultation: "bg-sky-500/15 text-sky-300 ring-sky-500/40",
+  new: "bg-cyan-50 text-cyan-700 ring-cyan-200",
+  revision: "bg-violet-50 text-violet-700 ring-violet-200",
+  enforcement: "bg-rose-50 text-rose-700 ring-rose-200",
+  consultation: "bg-sky-50 text-sky-700 ring-sky-200",
 };
 
 const fallbackMeta: RegulationsMeta = {
@@ -202,8 +205,12 @@ export default function RegulationsPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] px-4 py-8 sm:px-6 lg:px-8">
+    <div className={`${styles.page} min-h-[calc(100vh-5rem)] px-4 py-8 sm:px-6 lg:px-8`}>
       <div className="mx-auto max-w-7xl">
+        <Link href="/" className={styles.backLink}>
+          <ArrowLeft className="h-4 w-4" />
+          <span>{locale === "zh" ? "返回首页" : "Back to home"}</span>
+        </Link>
         <section className="glass-panel rounded-3xl p-8 shadow-[0_30px_120px_rgba(0,0,0,0.5)]">
         <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
@@ -227,9 +234,6 @@ export default function RegulationsPage() {
           )}
         </div>
 
-        <div className="mb-6 rounded-2xl border border-amber-500/40 bg-amber-500/10 px-5 py-4 text-sm leading-6 text-amber-300">
-          {t("regulations.mockNotice")}
-        </div>
         </section>
 
         <div className="mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -333,7 +337,7 @@ export default function RegulationsPage() {
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="min-w-0 flex-1">
                       <div className="mb-3 flex flex-wrap items-center gap-2">
-                        <span className="inline-flex items-center rounded-full bg-slate-800/80 px-3 py-1 text-xs font-medium text-slate-200">
+                          <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-800 ring-1 ring-sky-200">
                           {marketLabel}
                         </span>
                         <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ring-1 ${riskClasses[regulation.riskLevel]}`}>
@@ -343,7 +347,7 @@ export default function RegulationsPage() {
                           {t(`regulations.changeTypes.${regulation.changeType}`)}
                         </span>
                         {isUrgent && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-orange-500/15 px-3 py-1 text-xs font-medium text-orange-300 ring-1 ring-orange-500/40">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-orange-50 px-3 py-1 text-xs font-medium text-orange-700 ring-1 ring-orange-200">
                             <AlertTriangle className="h-3 w-3" />
                             {t("regulations.comingSoon")}
                           </span>
@@ -403,7 +407,7 @@ export default function RegulationsPage() {
                             {categories.map((category) => (
                               <span
                                 key={category}
-                                className="inline-flex items-center rounded-full bg-slate-800/80 px-3 py-1 text-xs font-medium text-slate-200"
+                                className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-800 ring-1 ring-sky-200"
                               >
                                 {category}
                               </span>

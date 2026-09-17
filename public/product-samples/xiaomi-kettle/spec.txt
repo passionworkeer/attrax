@@ -1,0 +1,23 @@
+资料类型：测试用产品参数摘要（非厂家原始规格书）
+
+产品名称：Xiaomi Smart Kettle 2 Pro
+型号：MJJYSH01-A
+品类：智能电热水壶 / 家电
+目标测试市场：欧盟（EU）
+
+额定电压：220-240V~
+额定频率：50/60Hz
+额定功率：1800W
+容量：1.7L
+连接方式：Wi-Fi 2.4GHz（产品功能资料）
+资料核对日期：2026-09-16
+官方规格来源：https://www.mi.com/global/product/xiaomi-smart-kettle-2-pro/specs/
+厂家符合性声明：https://ce-doc.alsgp0.mi-fds.com/ce-doc/XiaomiSmartKettle2ProMJJYSH01-A.pdf
+对应型号MJJYSH01-A，SKU BHR9107EU/BHR9001GB；厂家Foshan Viomi，欧盟代表Xiaomi Technology Netherlands B.V.；英文声明签署日期2025-11-25。
+声明前两页列有电气安全报告CN24WV41 002、无线及电磁兼容报告CN2414J0 002（TÜV Rheinland），以及材料检测报告CANEC24008751201（SGS-CSTC）。这是厂家引用的报告编号，不是这些实验室报告全文；不能再表述为未提供任何符合性文件。
+官方规格可确认：型号 MJJYSH01-A，220–240V，50/60Hz，1800W，1.7L，Wi-Fi IEEE 802.11b/g/n 2.4GHz。
+包装内容：水壶、底座、用户手册各一件。底座属于该产品随附部件，不应当按缺失的外置充电适配器处理。
+证据范围：以上是厂家公开规格，不是实验室测试报告。照片中的实物版本需与型号和铭牌对应，不能因官方销售页面存在而认定上传实物已获准入。
+制造商：Xiaomi Communications Co., Ltd.
+生产商：Foshan Viomi Electrical Technology Co., Ltd.
+

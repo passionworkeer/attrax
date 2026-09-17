@@ -1,0 +1,101 @@
+.page {
+  --reg-ink: #173f52;
+  --reg-muted: #547485;
+  position: relative;
+  color: var(--reg-ink);
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.82), transparent 30%),
+    linear-gradient(180deg, rgba(230, 247, 251, 0.9), rgba(210, 238, 246, 0.82));
+  backdrop-filter: blur(8px) saturate(112%);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  background: rgba(247, 253, 255, 0.76);
+  color: #174f69;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(9, 86, 124, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(18px) saturate(130%);
+  transition: transform 160ms ease, background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.backLink:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px rgba(9, 86, 124, 0.15), inset 0 1px 0 #fff;
+}
+
+.backLink:focus-visible {
+  outline: 3px solid rgba(8, 118, 141, 0.45);
+  outline-offset: 3px;
+}
+
+.page :global(.glass-panel) {
+  border: 1px solid rgba(255, 255, 255, 0.82) !important;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(255, 255, 255, 0.62), transparent 36%),
+    linear-gradient(145deg, rgba(249, 253, 255, 0.94), rgba(226, 243, 248, 0.9)) !important;
+  color: var(--reg-ink);
+  box-shadow:
+    0 20px 62px rgba(9, 86, 124, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(126, 203, 220, 0.18) !important;
+  backdrop-filter: blur(24px) saturate(130%);
+}
+
+.page :global(.text-white),
+.page :global(.text-slate-200) {
+  color: var(--reg-ink) !important;
+}
+
+.page :global(.text-slate-300) {
+  color: #355f71 !important;
+}
+
+.page :global(.text-slate-400),
+.page :global(.text-slate-500) {
+  color: var(--reg-muted) !important;
+}
+
+.page :global(.border-white\/10) {
+  border-color: rgba(98, 153, 177, 0.24) !important;
+}
+
+.page :global(.bg-slate-900\/50),
+.page :global(.bg-slate-900\/60),
+.page :global(.bg-slate-800\/60),
+.page :global(.bg-slate-800\/80) {
+  background-color: rgba(244, 251, 253, 0.84) !important;
+}
+
+.page :global(input) {
+  color: var(--reg-ink) !important;
+  border-color: rgba(91, 150, 175, 0.28) !important;
+  background: rgba(250, 254, 255, 0.86) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+}
+
+.page :global(input::placeholder) {
+  color: #75909d !important;
+}
+
+.page :global(button) {
+  border-color: rgba(91, 150, 175, 0.24);
+}
+
+.page :global(button:hover) {
+  box-shadow: 0 8px 24px rgba(10, 101, 139, 0.12);
+}
+
+@media (max-width: 720px) {
+  .page {
+    background: linear-gradient(180deg, rgba(232, 248, 252, 0.94), rgba(213, 239, 247, 0.9));
+  }
+}

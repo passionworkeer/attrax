@@ -34,6 +34,30 @@ describe("upload page entry points", () => {
     });
   });
 
+  it.each(["header", "bottom"])("submits the same scan form from the %s button and prevents duplicate submission", async (entry) => {
+    let finish!: (value: Response) => void;
+    vi.mocked(fetch).mockImplementation(() => new Promise<Response>((resolve) => { finish = resolve; }));
+    const { container } = render(<UploadPage />);
+    const top = screen.getByRole("button", { name: "开始检测", exact: true });
+    const bottom = container.querySelector<HTMLButtonElement>("#scan-submit")!;
+    expect(top).toBeDisabled();
+    expect(bottom).toBeDisabled();
+    expect((top as HTMLButtonElement).form).toBe(bottom.form);
+    fireEvent.change(screen.getByLabelText("批量上传产品图片"), { target: { files: [new File(["photo"], "label.jpg", { type: "image/jpeg" })] } });
+    expect(top).toBeEnabled();
+    expect(bottom).toBeEnabled();
+    fireEvent.click(entry === "header" ? top : bottom);
+    expect(top).toBeDisabled();
+    expect(bottom).toBeDisabled();
+    fireEvent.click(entry === "header" ? bottom : top);
+    expect(fetch).toHaveBeenCalledTimes(1);
+    const [url, request] = vi.mocked(fetch).mock.calls[0];
+    expect(url).toBe("/api/scan");
+    expect((request?.body as FormData).getAll("images")).toHaveLength(1);
+    finish({ ok: true, json: async () => ({ sessionId: "scan_shared_form", status: "processing" }) } as Response);
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/burning/scan_shared_form"));
+  });
+
   it("uses an independent multi-file input for the large upload area", () => {
     render(<UploadPage />);
 
@@ -52,16 +76,63 @@ describe("upload page entry points", () => {
     fireEvent.change(bulkInput, { target: { files } });
 
     expect(screen.getByText("3/3 张已就绪")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /开始检测/ })).toBeEnabled();
+    expect(screen.getAllByRole("button", { name: /开始检测/ }).at(-1)!).toBeEnabled();
   });
 
-  it("opens the preset scan stage without creating a backend scan", async () => {
+  it.each([
+    ["Anker A2332 充电器", "electronics", "EU"],
+    ["小米智能电热水壶 2 Pro", "appliance", "EU"],
+    ["LEGO 76429 分院帽（18+）", "toy", "US"],
+  ])("loads %s and submits three real files", async (title, category, market) => {
+    vi.mocked(fetch).mockImplementation(async (url) => {
+      if (url === "/api/scan") return { ok: true, json: async () => ({ sessionId: "scan_sample", status: "processing" }) } as Response;
+      return { ok: true, blob: async () => new Blob(["photo"], { type: "image/jpeg" }) } as Response;
+    });
     render(<UploadPage />);
+    fireEvent.click(screen.getByRole("button", { name: title }));
+    fireEvent.click(screen.getByRole("button", { name: "载入三张照片" }));
+    await screen.findByText("已载入三张照片。请确认目标市场与资料，再点击开始检测。");
+    await waitFor(() => expect(screen.getAllByRole("button", { name: /开始检测/ }).at(-1)!).toBeEnabled());
+    expect(push).not.toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledTimes(3);
+    fireEvent.click(screen.getAllByRole("button", { name: /开始检测/ }).at(-1)!);
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/burning/scan_sample"));
+    const request = vi.mocked(fetch).mock.calls.find(([url]) => url === "/api/scan")!;
+    const body = request[1]!.body as FormData;
+    expect(body.getAll("images")).toHaveLength(3);
+    expect(body.getAll("documents")).toHaveLength(0);
+    expect(body.get("category")).toBe(category);
+    expect(body.get("markets")).toBe(market);
+  });
 
-    fireEvent.click(screen.getByRole("button", { name: "直接演示" }));
+  it("includes the summary only when selected", async () => {
+    vi.mocked(fetch).mockImplementation(async (url) => ({ ok: true, blob: async () => new Blob(["asset"], { type: String(url).endsWith(".txt") ? "text/plain" : "image/jpeg" }) }) as Response);
+    render(<UploadPage />);
+    fireEvent.click(screen.getByRole("checkbox", { name: /同时载入案例资料/ }));
+    fireEvent.click(screen.getByRole("button", { name: "载入三张照片" }));
+    await screen.findByText("anker-a2332-spec.txt");
+    expect(fetch).toHaveBeenCalledTimes(4);
+  });
 
-    await waitFor(() => expect(push).toHaveBeenCalledWith(expect.stringContaining("/burning/demo?preset=charger")));
-    expect(fetch).not.toHaveBeenCalled();
+  it("preserves existing uploads if any sample asset fails", async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: false, status: 404 } as Response);
+    render(<UploadPage />);
+    fireEvent.change(screen.getByLabelText("批量上传产品图片"), { target: { files: [new File(["photo"], "original.jpg", { type: "image/jpeg" })] } });
+    fireEvent.click(screen.getByRole("button", { name: "载入三张照片" }));
+    await screen.findByText(/样例资料加载失败/);
+    expect(screen.getByText("1/3 张已就绪")).toBeInTheDocument();
+    expect(push).not.toHaveBeenCalled();
+  });
+
+  it("keeps untouched preview URLs alive when a different slot changes", async () => {
+    const { unmount } = render(<UploadPage />);
+    const inputs = screen.getAllByLabelText(/上传到.+槽位/);
+    fireEvent.change(inputs[0], {target: {files: [new File(["one"], "one.jpg", {type: "image/jpeg"})]}});
+    fireEvent.change(inputs[1], {target: {files: [new File(["two"], "two.jpg", {type: "image/jpeg"})]}});
+    expect(URL.revokeObjectURL).not.toHaveBeenCalledWith("blob:one.jpg");
+    unmount();
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:one.jpg");
+    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:two.jpg");
   });
 
   it("renders the document upload toggle in collapsed state by default", () => {

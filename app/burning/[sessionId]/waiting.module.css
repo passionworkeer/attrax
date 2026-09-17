@@ -1,0 +1,22 @@
+.currentTask { margin-top: 28px; }
+.activity { display: block; width: 34px; height: 34px; border: 3px solid rgba(18,85,116,.15); border-top-color: #126782; border-radius: 50%; animation: working 1.4s linear infinite; margin-bottom: 22px; }
+.title { font-size: clamp(25px, 2.2vw, 32px); line-height: 1.35; font-weight: 650; color: #123f52; text-wrap: balance; }
+.description { margin-top: 14px; font-size: 14px; line-height: 1.9; color: #365e70; }
+.timer { display: flex; align-items: center; justify-content: space-between; margin-top: 28px; padding: 18px 0; border-block: 1px solid rgba(255,255,255,.4); color: #365e70; font-size: 12px; }
+.timer strong { font: 600 24px ui-monospace, monospace; color: #123f52; font-variant-numeric: tabular-nums; }
+.explanation { margin-top: 20px; font-size: 13px; line-height: 1.9; color: #365e70; }
+.receipt { margin-top: 28px; padding: 20px; border: 1px solid rgba(255,255,255,.45); border-radius: 20px; background: rgba(236,249,255,.2); }
+.receipt h2 { margin-bottom: 14px; font-size: 13px; font-weight: 650; color: #123f52; }
+.receipt p { margin: 10px 0; font-size: 12px; line-height: 1.7; color: #365e70; }
+.receipt p::before { content: "·"; margin-right: 9px; }
+.receipt small { display: block; margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.35); font-size: 12px; line-height: 1.8; color: #365e70; }
+.next { margin-top: 24px; font-size: 12px; line-height: 1.8; color: #365e70; }
+@keyframes working { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .activity { animation: none; } }
+
+.connection { display: flex; gap: 10px; margin-top: 18px; color: #20566a; font-size: 12px; line-height: 1.7; }
+.connection strong { font-weight: 600; }
+.connection p { color: #3a6275; font-size: 11px; }
+.connectionDot { width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: #237c70; margin-top: 7px; box-shadow: 0 0 0 4px rgba(35,124,112,.1); }
+.connection[data-delayed="true"] .connectionDot { background: #9c6115; }
+.longWait { margin-top: 16px; padding: 12px; background: rgba(255,244,213,.35); border-radius: 12px; color: #624a2f; font-size: 12px; line-height: 1.8; }

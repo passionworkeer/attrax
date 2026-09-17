@@ -15,6 +15,8 @@ type FlowHeaderProps = {
   flowSubtitle?: string;
   primaryHref?: string;
   primaryLabel?: string;
+  primaryFormId?: string;
+  primaryDisabled?: boolean;
   secondaryHref?: string;
   secondaryLabel?: string;
   statusLabel?: string;
@@ -65,7 +67,9 @@ export function CompliPilotFlowHeader({
   flowSubtitle,
   primaryHref = "/upload",
   primaryLabel = "开始检测",
-  secondaryHref = "/result/demo",
+  primaryFormId,
+  primaryDisabled = false,
+  secondaryHref,
   secondaryLabel = "查看演示",
   statusLabel,
   tone = "default",
@@ -76,7 +80,7 @@ export function CompliPilotFlowHeader({
     <header className={styles.header}>
       <div className={`${styles.headerInner} ${tone === "bright" ? styles.headerBright : ""}`}>
         <div className={styles.identityGroup}>
-          <Link href={backHref} className={styles.backLink}>
+          <Link href={backHref} className={styles.backLink} aria-label={backLabel ?? (locale === "zh" ? "返回" : "Back")}>
             <ChevronLeft className="size-4" />
             <span className="hidden sm:inline">
               {backLabel ?? (locale === "zh" ? "返回" : "Back")}
@@ -124,7 +128,7 @@ export function CompliPilotFlowHeader({
 
           {statusLabel ? (
             <span className={styles.status}>{statusLabel}</span>
-          ) : (
+          ) : secondaryHref && !secondaryHref.startsWith("/result/demo") ? (
             <Link
               href={secondaryHref}
               className={cn(
@@ -134,14 +138,21 @@ export function CompliPilotFlowHeader({
             >
               {secondaryLabel}
             </Link>
-          )}
+          ) : null}
 
-          <Link
+          {primaryFormId ? <button
+            type="submit"
+            form={primaryFormId}
+            disabled={primaryDisabled}
+            className={cn(buttonVariants({ size: "lg" }), styles.primaryAction, styles.submitAction)}
+          >
+            {primaryLabel}
+          </button> : <Link
             href={primaryHref}
             className={cn(buttonVariants({ size: "lg" }), styles.primaryAction)}
           >
             {primaryLabel}
-          </Link>
+          </Link>}
         </div>
       </div>
     </header>
@@ -150,7 +161,7 @@ export function CompliPilotFlowHeader({
 
 export function CompliPilotFlowFooter({ tone = "default", sessionId }: FlowFooterProps) {
   const { locale } = useBlazeLocale();
-  const resultHref = sessionId ? `/result/${sessionId}` : "/result/demo";
+  const resultHref = sessionId && sessionId !== "demo" ? `/result/${sessionId}` : null;
 
   return (
     <footer className={`${styles.footer} ${tone === "bright" ? styles.footerBright : ""}`}>
@@ -168,6 +179,7 @@ export function CompliPilotFlowFooter({ tone = "default", sessionId }: FlowFoote
         </Link>
         <nav aria-label={locale === "zh" ? "流程导航" : "Workflow navigation"}>
           <Link href="/upload">{locale === "zh" ? "图像识别" : "Image review"}</Link>
+          {resultHref && <>
           <Link href={resultHref}>{locale === "zh" ? "风险扫描" : "Risk scan"}</Link>
           <Link href={`${resultHref}#reports`}>
             {locale === "zh" ? "法规溯源" : "Citations"}
@@ -175,6 +187,7 @@ export function CompliPilotFlowFooter({ tone = "default", sessionId }: FlowFoote
           <Link href={`${resultHref}#report-previews`}>
             {locale === "zh" ? "可解释报告" : "Reports"}
           </Link>
+          </>}
         </nav>
         <p>
           {locale === "zh"
