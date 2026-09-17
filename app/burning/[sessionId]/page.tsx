@@ -161,15 +161,12 @@ export default function BurningPage() {
   // 100 (not from when the backend said ready), so the user always sees the
   // completed bar before the route change.
   const HUNDRED_PERCENT_HOLD_MS = 600;
-  // 跨 effect 重跑的真值标（cleanup 会取消旧 timer，但 navigation 标记要跨
-  // tick 保留）。用 useRef 而非 useState：state 翻转会触发 effect 重跑 →
-  // cleanup 清掉 timer，guard 失效。
+  // 去重 guard：timer 与按钮点击可能同时触发导航。ref 提供同步的"已导航"
+  // 判断（只在回调里读写，react-hooks/refs 禁止 render 期访问 ref）；
+  // state 负责渲染侧隐藏按钮。之前用 useState 当 ref 用，timer 回调里
+  // 读到的永远是调度时的旧闭包值。
   const navigatedRef = useRef(false);
-  // Render-time mirror of navigatedRef. Reading a ref during render is a
-  // React Compiler purity violation, so the JSX condition below needs its
-  // own state; the ref stays the synchronous guard inside the timer and the
-  // click handler, where two events can race in the same tick.
-  const [hasNavigated, setHasNavigated] = useState(false);
+  const [navigated, setNavigated] = useState(false);
   const realProgressComplete =
     !isDemoSession &&
     status != null &&
@@ -200,7 +197,7 @@ export default function BurningPage() {
         }
         if (navigatedRef.current) return;
         navigatedRef.current = true;
-        setHasNavigated(true);
+        setNavigated(true);
         router.push(`/result/${sessionId}`);
       }, Math.max(0, remaining));
       return () => window.clearTimeout(timer);
@@ -423,7 +420,7 @@ export default function BurningPage() {
               finished (ready + resultReady) but the animated bar is still
               settling, the user can reach the result page directly instead of
               being trapped by the 99% deadlock (bug J01). */}
-          {realProgressComplete && !hasNavigated ? (
+          {realProgressComplete && !navigated ? (
             <div className="mt-6 rounded-[26px] border border-[rgba(126,231,135,0.36)] bg-[rgba(126,231,135,0.08)] p-5">
               <p className="text-sm text-[#d3ffd7]">
                 {locale === "zh"
@@ -437,7 +434,7 @@ export default function BurningPage() {
                   onClick={() => {
                     if (navigatedRef.current) return;
                     navigatedRef.current = true;
-                    setHasNavigated(true);
+                    setNavigated(true);
                     router.push(`/result/${sessionId}`);
                   }}
                 >
