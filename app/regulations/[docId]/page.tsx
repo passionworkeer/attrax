@@ -20,10 +20,7 @@ interface PageProps {
 async function loadRegulation(
   docId: string,
 ): Promise<RegulationViewModel | null> {
-  const base =
-    process.env.RAG_SERVICE_URL ??
-    process.env.NEXT_PUBLIC_RAG_SERVICE_URL ??
-    "http://localhost:8001";
+  const base = process.env.RAG_SERVICE_URL ?? "http://localhost:8001";
   const url = `${base.replace(/\/+$/, "")}/api/v1/regulations/${encodeURIComponent(docId)}`;
   try {
     const res = await fetch(url, {

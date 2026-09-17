@@ -23,7 +23,7 @@ const ATTRAX_BUILD_SHA_FILE = "/opt/attrax/.build-sha";
 let ATTRAX_BUILD_SHA = "unknown";
 try {
   ATTRAX_BUILD_SHA = fs.readFileSync(ATTRAX_BUILD_SHA_FILE, "utf8").trim() || "unknown";
-} catch (err) {
+} catch {
   // 文件不存在 = 旧部署没建过 → 用 env 兜底（CI 或手工启动）
   ATTRAX_BUILD_SHA = process.env.ATTRAX_BUILD_SHA || "unknown";
 }

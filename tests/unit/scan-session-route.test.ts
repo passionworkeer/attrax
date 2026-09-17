@@ -54,6 +54,10 @@ describe("GET /api/scan/[sessionId]", () => {
       const res = await GET(req, ctx);
 
       expect(res.status).toBe(401);
+      // 401 附带清 cookie：浏览器不该把死 token 留在 TTL 内反复重试
+      const cleared = res.headers.get("set-cookie") ?? "";
+      expect(cleared).toContain("attrax_scan_scan_abc=");
+      expect(cleared).toContain("Max-Age=0");
       expect(mockGetScan).not.toHaveBeenCalled();
     });
 
@@ -282,6 +286,9 @@ describe("GET /api/scan/[sessionId]", () => {
       const res = await GET(req, ctx);
 
       expect(res.status).toBe(401);
+      const cleared = res.headers.get("set-cookie") ?? "";
+      expect(cleared).toContain("attrax_scan_scan_abc=");
+      expect(cleared).toContain("Max-Age=0");
     });
 
     it("returns 502 when the v1 fetch throws a non-V1 error", async () => {

@@ -43,3 +43,20 @@ export function backendSessionCookie(sessionId: string, accessToken: string): st
   const secure = process.env.NODE_ENV === "production" ? "; Secure" : "";
   return `${backendSessionCookieName(sessionId)}=${encodeURIComponent(accessToken)}; Path=/api/; Max-Age=${COOKIE_MAX_AGE_SECONDS}; HttpOnly; SameSite=Strict; Priority=High${secure}`;
 }
+
+/**
+ * 401 响应附带清 cookie：上游判定 token 失效（或 token 缺失）后，别让
+ * 浏览器把死 cookie 留在 TTL 内反复重试。session id 非法时静默跳过
+ * （本来就没有对应 cookie 可清）。
+ */
+export function withClearedSessionCookie(response: Response, sessionId: string): Response {
+  try {
+    response.headers.append(
+      "Set-Cookie",
+      `${backendSessionCookieName(sessionId)}=; Path=/api/; Max-Age=0; HttpOnly; SameSite=Strict`,
+    );
+  } catch {
+    // invalid session id — nothing to clear
+  }
+  return response;
+}

@@ -847,14 +847,6 @@ export function resolveSelectionFromFinding(
     : null;
 }
 
-/** Exported for tests + future consumers: finding → observation join used by
- *  the report exports (same revision discipline). */
-export function findingsForObservation(vm: InspectionResultVM, observationId: string): FindingVM[] {
-  return vm.findings.filter((finding) =>
-    finding.observations.some((observation) => observation.observationId === observationId),
-  );
-}
-
 /**
  * Extract a high-confidence product name from observations when top-level productName is empty.
  * Scans all observations (across multiple images) rather than stopping at the first empty one.

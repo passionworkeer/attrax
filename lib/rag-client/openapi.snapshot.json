@@ -382,10 +382,36 @@
         ],
         "responses": {
           "200": {
-            "description": "Successful Response",
+            "description": "原始资产字节（图片/PDF，content-type 由后端按上传类型决定）",
             "content": {
               "application/json": {
                 "schema": {}
+              },
+              "*/*": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid scan access token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_NoneType_"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Scan asset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiEnvelope_NoneType_"
+                }
               }
             }
           },
@@ -666,6 +692,34 @@
           "meta"
         ],
         "title": "ApiEnvelope[CreatedScanData]"
+      },
+      "ApiEnvelope_NoneType_": {
+        "properties": {
+          "data": {
+            "type": "null",
+            "title": "Data"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ApiError"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ApiMeta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "error",
+          "meta"
+        ],
+        "title": "ApiEnvelope[NoneType]"
       },
       "ApiEnvelope_dict_str__Any__": {
         "properties": {
@@ -1085,6 +1139,17 @@
             "type": "string",
             "title": "Labelen",
             "default": ""
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "critical",
+              "high",
+              "medium",
+              "info"
+            ],
+            "title": "Severity",
+            "default": "info"
           },
           "status": {
             "type": "string",

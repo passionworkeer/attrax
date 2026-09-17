@@ -129,7 +129,6 @@ attrax/
 │
 ├── lib/                          # 核心库
 │   ├── types.ts                  # TS 类型（Market/ProductCategory/ScanStatus/...）
-│   ├── schemas.ts                # Zod Schema
 │   ├── utils.ts                  # 工具函数
 │   ├── constants.ts              # 共享常量（超时/限额/限流）
 │   ├── api-response.ts           # API 响应信封（ok/fail/unwrapApiData）
@@ -252,21 +251,22 @@ function updateSession(session: ScanStatus, updates: Partial<ScanStatus>): ScanS
 
 ### Zod Schema 验证
 
-所有用户输入在系统边界验证：
+所有用户输入在系统边界验证。**注意：`lib/schemas.ts` 已于 2026-09-17 round-5 删除**（22 个 export 里 21 个零引用），校验分散在 BFF 路由与专属契约文件：
+
+- `app/api/scan/route.ts`：multipart 字段逐一校验（category / markets / images / documents / declaredFacts 的类型、数量、大小）
+- `app/api/scan/[sessionId]/asset/[index]/route.ts`：内联 `SessionIdSchema`（`^scan_[0-9A-Za-z_-]{1,50}$`，与 RAG `FileBackend._SAFE_ID` 对齐）
+- `lib/rag-client/report-package-schema.ts`：报告包 Zod 契约（`validateReportPackage`；`CitationRefContract` 的唯一来源，经 `lib/types.ts` re-export）
+- 类型单源仍在 `lib/types.ts`（`MARKET_IDS` 16 市场 / `PRODUCT_CATEGORIES` 10 品类）
 
 ```typescript
 import { z } from "zod";
-import { MARKET_IDS, ProductCategorySchema, MarketSchema } from "@/lib/types";
 
-// 实际请求 schema（lib/schemas.ts:StartScanRequestSchema）：
-//   - category: 6 个单数品类（electronics/appliance/3c/toy/home/other）
-//   - markets: MARKET_IDS（16 个）数组；默认 ["EU","US"]
-const StartScanRequestSchema = z.object({
-  category: ProductCategorySchema,
-  markets: z.array(MarketSchema).min(1).default(["EU", "US"]),
-  imageCount: z.number().int().min(1),
-  documentCount: z.number().int().min(0).max(5),
-});
+// session_id 校验（asset BFF 路由的内联实现）：
+const SessionIdSchema = z
+  .string()
+  .min(6)
+  .max(64)
+  .regex(/^scan_[0-9A-Za-z_-]{1,50}$/);
 ```
 
 ### API 响应格式
@@ -343,6 +343,17 @@ const StartScanRequestSchema = z.object({
 - **修掉的假可用 bug**：OpenFDA 不显式排序会返回档案库任意切片（实测 device 返回 2003 年记录、food 返回 2016 年记录），30 天窗口过滤后摘要为空 —— 空摘要和"真的没有召回"无法区分；且 device 端点对 `recall_initiation_date` 排序是 HTTP 500（字段不存在），须按端点声明
 - **同时**：orchestrator 并行抓取（线程池 + 协作式 60s deadline）、`source_type` plugin 注册表、`review.py` 复核/回滚 CLI、UA 季度轮换、5 个被硬封端点的 collector 删除
 - **验证**：pytest 776 passed；生产机 `check_sources` **30/30 healthy, 0 thin, 0 failed**。完整审计记录见 `docs/regulations/SOURCE-AUDIT-2026-09-17.md`
+
+### 2026-09-17 — 对抗审查 round 5（契约 / 限流 / 安全 / 运维）
+
+- **限流单桶**：RAG `_client_ip` 在 BFF（127.0.0.1，trusted proxy）不转发 XFF 时把所有用户归入同一 30 req/60s 写桶。`v1-adapter` 新增 `UpstreamForward` + `upstreamForwardFrom(request)`（x-real-ip / x-request-id），6 个 BFF 路由透传；`middleware.ts` 把 request-id 注入转发请求头
+- **契约**：`DecisionNode.severity` 在 Pydantic/snapshot/types.gen 显式声明（此前靠 `extra="allow"` 活着，前端评分依赖它）；asset 路由 OpenAPI 声明 binary 响应；snapshot + types.gen.ts 重新生成，双 gate 通过
+- **安全**：`_enforce_secret_policy` 不再把 ephemeral secret 写日志（改打 pid）；5 个 BFF 路由 401 带 `Set-Cookie: Max-Age=0` 清死 token
+- **UX**：burning 页 `navigatedRef` 从 useState 改为 ref（回调去重）+ state（渲染），修 timer 旧闭包 guard
+- **运维**：docker-compose 补 `DEEPSEEK_*`；`.build-sha` 链路让 `ATTRAX_BUILD_SHA` 与 `.deployed` 一致；preflight secret 48-hex；nginx vhost/README 文件名对齐（此前照 README 安装 `nginx -t` 失败）；`.dockerignore` 排除 eval/reports
+- **清理**：删 `lib/schemas.ts`（21/22 export 零引用）+ 对应测试、`findingsForObservation`、`blazeRoadmapRows` 死链条；`CitationRefContract` 单源化收敛
+- **误报率警示**：三路 agent 报告约一半经复核是误报（assets 实际会填充、html_parser 内部函数被 parse_html 调用、多个"死导出"实为文件内活跃类型）—— 下轮审查先验证后修改
+- **验证**：vitest 915 / pytest 655 / tsc / eslint / 双契约 gate / `npm run build` exit 0 全绿；共享工作树被另一 session 数据污染时的 pytest 失败需在独立 worktree 复测
 
 ### 2026-09-16 — 报告生成也降级到 DeepSeek（MiniMax 全挂时仍出真报告）
 

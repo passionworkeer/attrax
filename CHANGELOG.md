@@ -4,6 +4,36 @@
 
 ## [Unreleased] - 2026-09-17
 
+**对抗审查 round 5:契约漂移 + 限流分桶 + 401 cookie + 运维配置**
+
+**背景**
+- 前端 / rag_service / 跨链路契约三路并行对抗审查后的修复批次。多数发现是「靠宽容度活着」的隐性契约与配置漂移,当天功能不受影响,但会在下一次收紧重构 / 多用户并发 / docker 部署时静默退化。审查共报 ~45 项,复核后约一半为误报(见文末),全部先验证后修改
+
+**修复(按严重性)**
+- **限流单桶**:RAG `_client_ip` 只在 socket peer 属于 trusted_proxies(默认 `127.0.0.1,::1`)时读 X-Forwarded-For;BFF 从 127.0.0.1 发起所有上游调用却什么都不转发 → 全部用户共享同一个 30 req/60s 写桶,一个调用者即可把其他人的扫描创建打成 429。`v1-adapter` 新增 `UpstreamForward(clientIp/requestId)` + `upstreamForwardFrom(request)`(取 x-real-ip:nginx `$remote_addr` 覆写值,BFF 自身限流同样信任它),6 个 BFF 路由全部透传;`middleware.ts` 用 `NextResponse.next({request:{headers}})` 把 request-id 注入转发请求头,handler 与 RAG 首次能对上同一个 id
+- **DecisionNode.severity 契约缺口**:前端评分公式依赖 `decisionView.nodes[].severity`,但 Pydantic / OpenAPI snapshot / types.gen.ts 全无该字段 —— 一直靠 `extra="allow"` 兜底,一次收紧即静默退化为 fallback 100/A。`report_package.py` 显式声明 `Literal["critical","high","medium","info"]`,snapshot + types 重新生成
+- **assets 二进制响应契约**:`GET /scans/{id}/assets/{index}` 在 OpenAPI 里声明为 `application/json` + 空 schema,codegen client `await res.json()` 遇真实字节流必爆。补 `responses` 声明 binary + 401/404 envelope
+- **ephemeral secret 写日志(信息泄露)**:`_enforce_secret_policy` 的非 prod 分支把自动生成的 `RAG_INTERNAL_SECRET` 明文打进 logger.warning —— 任何能读日志的人可伪造 `X-Internal-Secret` 绕过写端点。改为只打 pid,真值提示从 `/proc/<pid>/environ` 取
+- **401 不清 cookie**:scan 轮询 / evidence / revisions / asset / report 五个 BFF 路由 401 时不发清除头,死 token 在浏览器侧存留 24h TTL 反复重试。新增 `withClearedSessionCookie()`,401/403 统一带 `Max-Age=0`
+- **burning 页导航 guard**:`navigatedRef` 名为 ref 实为 useState,timer 回调读到的是调度时的旧闭包(guard 首次恒 false);且 render 期读 ref 违反 react-hooks/refs。拆成 ref(仅回调内读写的同步去重)+ state(渲染侧隐藏按钮)
+- **报告路由信封**:`app/api/report/...` 14 处裸 `{error:{code,message}}` 统一改走 `fail()` 信封,与 scan/* 一致(监控聚合不再面对两种 error shape)
+- **运维配置**:docker-compose 补 `DEEPSEEK_*` env(docker 部署此前无法启用降级);`ATTRAX_BUILD_SHA` 增加落地链路(build tarball 写 `.build-sha` → apply-deploy 拷到 `/opt/attrax/.build-sha` → ecosystem 启动时读,与 `.deployed` 一致);preflight secret 最小长度 32→48(对齐文档承诺);nginx vhost 删不存在的 `attrax-engagement.conf` include、README 落盘文件名改 `attrax-locations.conf`(与 vhost include 一致,此前照 README 安装 `nginx -t` 直接失败);twinbuddy 时代 `nginx-attrax-site.conf` 移入 `docs/archive/`;`app/regulations/[docId]/page.tsx` 删 phantom `NEXT_PUBLIC_RAG_SERVICE_URL`;backup 清单删不存在的 `.env.production`;`.dockerignore` 排除 `data/regulation_eval|regulation_reports`
+- **依赖**:`requirements-prod.txt` 补 `Pillow`(vision 降采样隐式依赖显式化),删 0 importer 的 `cryptography`
+- **死代码**:`lib/schemas.ts` 整件(22 个 export 里 21 个零引用,`SessionIdSchema` 内联进唯一消费者)+ `tests/unit/schemas.test.ts`;`findingsForObservation`(注释声称 tests 用,实际零引用);`blazeRoadmapRows` 死链条(mock 原始数组 → complipilot 转换重导出 → 无人消费);mock 的 `createMockProfitReportEU/US`
+- **类型单源化**:`CitationRefContract` 收敛到 `report-package-schema.ts`(经 `lib/types.ts` re-export),`CitationChip` 不再手写第二份,消除字段 drift 风险
+
+**验证**
+- vitest 915 passed(新增 3 条透传单测、2 条 401 cookie 断言);tsc / eslint 0 error
+- pytest 655 passed / 5 skipped(独立 git worktree 干净检出)
+- `check:rag-openapi` / `check:rag-contract` 双 gate 通过;`npm run build` exit 0,standalone 产出正常
+- 注意:共享工作树首轮 pytest 的 8 个失败经查是另一 session 未合并的法规数据(58 vs 44 YAML)污染所致,worktree 隔离复测全绿 —— 见下条方法说明
+
+**方法说明(供下轮参考)**
+- 三路 agent 报告的误报率约 50%,典型:①「后端不填 assets」——实际 `get_scan` 从 `list_uploads` 构建;②「html_parser 四个函数死代码」——实际是 `parse_html` 的内部助手;③「ObservationVM 等死导出」——实为文件内活跃类型。所有发现均先 grep/Read 复核再改,误报无一进入本清单
+- 未处理(记录在案):`useScanPolling` 无 AbortController(卸载后 in-flight 请求跑完,无 setState 风险,低);401 后的「重新扫描」直达链路(现有文案已提示,UX 增强);RAG 侧 evidence/revisions 未加限流(revisions 有 idempotency 守卫,无成本放大);OpenAPI 各路由的 4xx/5xx responses 显式声明(目前仅 asset 路由补齐)
+
+## [Unreleased] - 2026-09-17
+
 **修复:/ready 轮询反复清空法规缓存(生产实测)**
 
 **背景**
