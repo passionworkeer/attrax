@@ -46,7 +46,7 @@
 | 前端（Next.js） | `http://localhost:3000` |
 | RAG Service（FastAPI） | `http://localhost:8001` |
 
-> **重要**：前端调用 RAG 服务时使用端口 **8001**（不是 8000），配置在 `RAG_SERVICE_URL` 环境变量，代码见 `lib/rag-client/client.ts`。
+> **重要**：前端调用 RAG 服务时使用端口 **8001**（不是 8000），配置在 `RAG_SERVICE_URL` 环境变量，代码见 `lib/rag-client/v1-adapter.ts`（唯一的 RAG HTTP 封装；旧的 `rag-client/client.ts` 已删除）。
 > docker-compose 映射为 loopback-only `127.0.0.1:${RAG_PORT:-8001}:8000`（容器内 8000，宿主机 8001）。
 
 ### 多市场支持
@@ -59,8 +59,8 @@
 ### 会话存储
 
 - **服务端**：RAG 服务自管会话（`rag_service/` FastAPI + 文件后端）
-- 前端代码：`lib/rag-client/v1-adapter.ts`（创建扫描）/ `lib/rag-client/client.ts`（HTTP 封装）/ `app/api/scan/route.ts`（BFF 路由）
-- `lib/pipeline/` 当前文件：`session-auth`、`demo-scan-session`、`report-package`、`profit-report`——全部活跃服务于 demo 路径与 BFF 报告导出
+- 前端代码：`lib/rag-client/v1-adapter.ts`（创建扫描 / 轮询 / 证据，含 HTTP 封装）/ `app/api/scan/route.ts`（BFF 路由）
+- `lib/pipeline/` 当前文件：`session-auth`、`demo-scan-session`、`profit-report`——全部活跃服务于 demo 路径与 BFF 报告导出
 
 ### 降级模式
 
@@ -145,23 +145,19 @@ attrax/
 │   ├── result-view-helpers.ts    # 结果页视图助手
 │   ├── result/                   # 统一结果 ViewModel（2026-09-14 J03/J15）
 │   │   └── inspection-view-model.ts  # buildInspectionResultViewModel —— finding↔observation↔image 真实 join + 引用去重 + 产品名 fallback + evidence request 合并
-│   ├── pipeline/                 # demo 会话 + BFF 报告导出（4 文件，全部活跃）
-│   │   ├── session-auth.ts       # 会话访问 token（哈希 + 校验）
+│   ├── pipeline/                 # demo 会话 + BFF 报告导出（3 文件，全部活跃）
+│   │   ├── session-auth.ts       # 会话访问 token（哈希 + 校验；Bearer-only，不读 ?token=）
 │   │   ├── demo-scan-session.ts  # demo 模式会话
-│   │   ├── report-package.ts     # 报告包结构归一化（normalizeReportPackage）
 │   │   └── profit-report.ts      # 利润报告合成 + RenderModel
 │   ├── mock/                     # Demo 模式模拟数据（blaze-scan-result / blaze-scenario / scan-result / blaze-copy 是 mock）；roadmap 不是 mock — 是导出 RenderModel，结果页 export 链 live 也用
 │   ├── hooks/useScanPolling.ts   # 轮询 hook
 │   ├── rag-client/               # 前端 RAG 客户端
-│   │   ├── v1-adapter.ts          # 创建扫描 / 轮询
+│   │   ├── v1-adapter.ts          # 创建扫描 / 轮询 / 证据（唯一的 RAG HTTP 封装）
 │   │   ├── v1-result-adapter.ts  # 结果字段映射
 │   │   ├── evidence-api.ts       # 补充证据 API
-│   │   ├── client.ts             # HTTP 封装
-│   │   ├── errors.ts             # 错误类型
-│   │   ├── response-schemas.ts   # Zod response
-│   │   ├── report-package-schema.ts
+│   │   ├── report-package-schema.ts  # 报告包 Zod 契约（validateReportPackage；types.ts 的 CitationRefContract 来源）
 │   │   ├── openapi.snapshot.json # OpenAPI 契约快照（由 rag_service app 对象导出）
-│   │   └── types.gen.ts          # 自动生成的 TS 类型
+│   │   └── types.gen.ts          # 由快照生成的 TS 类型（check:rag-contract 门控）
 │   └── upload/category-manifest.ts  # 上传品类清单（该目录唯一文件）
 │
 ├── rag_service/                  # Python RAG 服务（FastAPI，端口 8001）

@@ -1245,17 +1245,3 @@ class ReportGenerator:
 
 > 💡 此为降级 mock 报告，请配置 MINIMAX_API_KEY 获取精确数据。
 """
-
-    def generate_with_metadata(self, query: str, chunks: list[dict]) -> dict:
-        """Generate report with metadata."""
-        report = self.generate(
-            query=query,
-            product=chunks[0].get("product", "产品") if chunks else "产品",
-            market=chunks[0].get("market", "EU") if chunks else "EU",
-            chunks=chunks,
-        )
-        return {
-            "report": report,
-            "chunks_used": len(chunks),
-            "doc_names": list({c.get("doc_name", "") for c in chunks}),
-        }

@@ -116,19 +116,6 @@ CHECKLIST_PROMPT_TEMPLATE = """你是产品视觉取证助手。对下面列出�
 - 不得推断被遮挡/内部部件的属性；不得输出法规 ID 或合规结论。
 - 只有完整、清晰可见的标志才可写入 visible_certification_marks。"""
 
-PRODUCT_TYPE_KEYWORDS = {
-    "充电宝": ["移动电源", "power bank", "便携式充电器"],
-    "耳机": ["蓝牙耳机", "有线耳机", "earphone", "headphone", "earbuds"],
-    "加湿器": ["超声波加湿器", "humidifier", "mist maker"],
-    "电池": ["电池组", "battery pack", "锂电池", "lithium battery"],
-    "玩具": ["儿童玩具", "玩具产品", "toy", "儿童产品"],
-    "化妆品": ["美妆", "cosmetic", "护肤品"],
-    "充电器": ["电源适配器", "USB charger", "充电头", "charging adapter"],
-    "灯具": ["LED灯", "台灯", "light", "lamp", "照明"],
-    "家电": ["家用电器", "household appliance"],
-    "蓝牙音箱": ["蓝牙音箱", "蓝牙音箱", "Bluetooth speaker", "wireless speaker"],
-}
-
 # Bump when PROMPT / CHECKLIST_PROMPT_TEMPLATE semantics change — the
 # observation cache keys on this so stale analyses never mix with new
 # prompt behavior (plan §10.3: 图像观察按 hash＋模型＋Prompt 版本缓存).

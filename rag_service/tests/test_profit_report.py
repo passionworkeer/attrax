@@ -186,17 +186,3 @@ def test_template_renders_prebuilt():
         assert len(rendered) > 200, f"Template render too short for {ptype}"
         assert "## [" in rendered
         assert "成本对比" in rendered
-
-
-# ─── test: generate_with_metadata works ────────────────────────────────────────
-
-def test_generate_with_metadata_profit_report():
-    """generate_profit_report 可被 generate_with_metadata 间接调用。"""
-    gen = ReportGenerator(api_key="")
-    meta = gen.generate_with_metadata(
-        query="充电宝合规成本",
-        chunks=[CHARGER_CHUNK],
-    )
-    assert "report" in meta
-    assert "chunks_used" in meta
-    assert meta["chunks_used"] == 1

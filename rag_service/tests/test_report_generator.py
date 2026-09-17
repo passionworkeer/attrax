@@ -56,23 +56,6 @@ def test_generate_with_chunks_no_api_key(monkeypatch):
     assert result is not None
 
 
-def test_generate_with_metadata(monkeypatch):
-    """generate_with_metadata returns structured dict."""
-    monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
-    gen = ReportGenerator(api_key="")
-    chunks = [
-        {"content": "REACH restricts lead.", "doc_name": "REACH", "product": "Battery", "market": "EU"},
-        {"content": "GDPR protects data.", "doc_name": "GDPR", "product": "Battery", "market": "EU"},
-    ]
-    result = gen.generate_with_metadata("What regulations apply?", chunks)
-    assert "report" in result
-    assert "chunks_used" in result
-    assert "doc_names" in result
-    assert result["chunks_used"] == 2
-    assert "REACH" in result["doc_names"]
-    assert "GDPR" in result["doc_names"]
-
-
 def test_generate_report_package_fallback_is_validated(monkeypatch):
     """Unified package fallback includes the strong schema extension fields."""
     monkeypatch.delenv("MIMOTALK_API_KEY", raising=False)
