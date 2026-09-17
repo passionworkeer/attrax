@@ -1,10 +1,13 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { mkdtempSync, rmSync } from "fs";
+import { mkdtempSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 import { checkRateLimit } from "@/lib/rate-limit";
 
-describe("checkRateLimit - Sliding Window & Storage Behavior", () => {
+// NOTE: the implementation is a FIXED window (a counter with an absolute
+// resetAt), not a sliding window — the file name and the old describe label
+// were both wrong. See lib/rate-limit.ts.
+describe("checkRateLimit - fixed window & storage behavior", () => {
   let tempDir: string;
 
   beforeEach(() => {
@@ -72,5 +75,35 @@ describe("checkRateLimit - Sliding Window & Storage Behavior", () => {
     // Another client is unaffected
     const otherClient = `prod-client-2-${Date.now()}`;
     expect(checkRateLimit(otherClient, limit, windowMs)).toBe(true);
+  });
+
+  it("falls back to the in-process limiter when the store is unusable", () => {
+    // A regular file where a directory is expected makes mkdirSync throw
+    // ENOTDIR — standing in for a read-only or misconfigured store path.
+    const notADirectory = join(tempDir, "blocking-file");
+    writeFileSync(notADirectory, "not a directory", "utf8");
+
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("RATE_LIMIT_STORE_DIR", join(notADirectory, "nested"));
+
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      const key = `unusable-store-${Date.now()}`;
+      const limit = 2;
+
+      // Still ENFORCES the limit — an unusable store must not silently remove
+      // the only effective cap on scan creation.
+      expect(checkRateLimit(key, limit, 60_000)).toBe(true);
+      expect(checkRateLimit(key, limit, 60_000)).toBe(true);
+      expect(checkRateLimit(key, limit, 60_000)).toBe(false);
+
+      // And it must not do so silently.
+      expect(errorSpy).toHaveBeenCalled();
+      expect(String(errorSpy.mock.calls[0]?.[0])).toContain(
+        "rate_limit_store_failure_memory_fallback",
+      );
+    } finally {
+      errorSpy.mockRestore();
+    }
   });
 });

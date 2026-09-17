@@ -1,3 +1,26 @@
+/**
+ * Application-level rate limiting for the BFF.
+ *
+ * Deployment assumption: one Node process. `scripts/ecosystem.config.cjs`
+ * starts `nextjs` in pm2 fork mode with no `instances`, so a single process
+ * serves every request — and the file-backed critical section below is fully
+ * synchronous, which makes it atomic with respect to other requests in that
+ * process. That is why there is no lock file: the previous `mkdir`-as-lock
+ * scheme only ever bought cross-process safety, while costing `Atomics.wait`
+ * event-loop stalls (up to 200ms per contended request) and a 10s stale-lock
+ * window that could 429 a bucket after a crash. Re-introduce a real
+ * cross-process lock if this app is ever scaled to multiple instances or
+ * containers.
+ *
+ * This layer is the effective cost boundary for scan creation, not just
+ * defence-in-depth. nginx fronts `/api/scan*` with `zone=attrax_api`
+ * (10r/s per IP, burst 20 nodelay — /etc/nginx/snippets/attrax-locations.conf),
+ * i.e. up to ~600 requests/min per IP, roughly 60x looser than the 10/min
+ * window applied here. Each admitted scan costs LLM calls and occupies one of
+ * only 5 RAG worker slots for up to 280s, so the failure policy in
+ * `checkRateLimit` degrades to the in-process limiter rather than either
+ * opening the gate or 429-ing every scan.
+ */
 import { createHash } from "crypto";
 import {
   existsSync,
@@ -9,7 +32,7 @@ import {
   statSync,
   writeFileSync,
 } from "fs";
-import { dirname, join, resolve } from "path";
+import { join, resolve } from "path";
 
 type Bucket = { count: number; resetAt: number };
 
@@ -20,10 +43,7 @@ declare global {
 
 const EVICT_ABOVE_SIZE = 5000;
 const DEFAULT_UA_SALT = "attrax-rate-limit-v2";
-const LOCK_STALE_MS = 10_000;
-const LOCK_RETRIES = 20;
-const LOCK_RETRY_MS = 10;
-const SLEEP_BUFFER = new Int32Array(new SharedArrayBuffer(4));
+const STORE_FAILURE_LOG_INTERVAL_MS = 60_000;
 
 function buckets(): Map<string, Bucket> {
   if (!globalThis.__rateLimitBuckets) globalThis.__rateLimitBuckets = new Map();
@@ -130,32 +150,6 @@ function ensurePrivateDirectory(path: string): void {
   }
 }
 
-function sleep(ms: number): void {
-  Atomics.wait(SLEEP_BUFFER, 0, 0, ms);
-}
-
-function acquireLock(lockPath: string): boolean {
-  for (let attempt = 0; attempt < LOCK_RETRIES; attempt += 1) {
-    try {
-      mkdirSync(lockPath, { mode: 0o700 });
-      return true;
-    } catch (error) {
-      const code = (error as NodeJS.ErrnoException).code;
-      if (code !== "EEXIST") throw error;
-      try {
-        if (Date.now() - statSync(lockPath).mtimeMs > LOCK_STALE_MS) {
-          rmSync(lockPath, { recursive: true, force: true });
-          continue;
-        }
-      } catch {
-        // The lock disappeared between checks; retry immediately.
-      }
-      sleep(LOCK_RETRY_MS);
-    }
-  }
-  return false;
-}
-
 function writeBucketAtomic(path: string, bucket: Bucket): void {
   const temporary = `${path}.${process.pid}.${Date.now()}.tmp`;
   writeFileSync(temporary, JSON.stringify(bucket), { encoding: "utf8", mode: 0o600 });
@@ -206,22 +200,32 @@ function checkSharedFileRateLimit(
   ensurePrivateDirectory(directory);
   const id = createHash("sha256").update(key).digest("hex");
   const path = join(directory, `${id}.json`);
-  const lockPath = `${path}.lock`;
-  if (!acquireLock(lockPath)) return false;
 
-  try {
-    evictExpiredFileBuckets(directory, now);
-    const current = readBucket(path);
-    if (!current || current.resetAt <= now) {
-      writeBucketAtomic(path, { count: 1, resetAt: now + windowMs });
-      return true;
-    }
-    if (current.count >= limit) return false;
-    writeBucketAtomic(path, { count: current.count + 1, resetAt: current.resetAt });
+  // No lock: this function is synchronous and Node runs one request at a time
+  // on the event loop, so the read-modify-write below cannot interleave with
+  // another request in this process. See the module header for the
+  // single-instance assumption and what to do if that changes.
+  evictExpiredFileBuckets(directory, now);
+  const current = readBucket(path);
+  if (!current || current.resetAt <= now) {
+    writeBucketAtomic(path, { count: 1, resetAt: now + windowMs });
     return true;
-  } finally {
-    rmSync(lockPath, { recursive: true, force: true });
   }
+  if (current.count >= limit) return false;
+  writeBucketAtomic(path, { count: current.count + 1, resetAt: current.resetAt });
+  return true;
+}
+
+let lastStoreFailureLogAt = 0;
+
+function logStoreFailure(error: unknown): void {
+  const now = Date.now();
+  if (now - lastStoreFailureLogAt < STORE_FAILURE_LOG_INTERVAL_MS) return;
+  lastStoreFailureLogAt = now;
+  console.error("rate_limit_store_failure_memory_fallback", {
+    message: error instanceof Error ? error.message : String(error),
+    storeDirectory: storeDirectory(),
+  });
 }
 
 export function checkRateLimit(
@@ -240,11 +244,23 @@ export function checkRateLimit(
   try {
     return checkSharedFileRateLimit(key, limit, windowMs, now);
   } catch (error) {
-    console.error("rate_limit_store_failure", {
-      message: error instanceof Error ? error.message : String(error),
-      directory: dirname(storeDirectory()),
-    });
-    // Cost-control boundary: fail closed when the shared store is unavailable.
-    return false;
+    // Degrade to the in-process limiter; do NOT fail open and do NOT fail shut.
+    //
+    // Failing open would silently remove the only effective limit on scan
+    // creation (nginx permits ~600/min/IP against this limit's 10/min), and
+    // each admitted scan burns LLM budget and occupies one of 5 RAG worker
+    // slots for up to 280s — so an unwritable store directory would become a
+    // cost and capacity incident.
+    //
+    // Failing shut is the opposite over-reaction: it answered 429 to every
+    // scan submission while /api/health kept reporting healthy, i.e. a
+    // site-wide outage of the main feature caused by a disk/permissions
+    // hiccup, with nothing in the health signal to explain it.
+    //
+    // The memory limiter is a sound fallback here because this deployment
+    // runs one Node process (see the module header): it enforces the same
+    // window with the same key, losing only persistence across restarts.
+    logStoreFailure(error);
+    return checkMemoryRateLimit(key, limit, windowMs, now);
   }
 }
