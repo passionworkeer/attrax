@@ -21,7 +21,7 @@
 # 改了 rag_service/*.py 时另行 scp 并 `pm2 restart rag-service --update-env`。
 set -euo pipefail
 
-TARBALL="/tmp/attrax-deploy-complete.tar.gz"
+TARBALL="${ATTRAX_TARBALL:-/tmp/attrax-deploy-complete.tar.gz}"
 ATTRAX_DIR="${ATTRAX_DIR:-/opt/attrax}"
 STANDALONE="${ATTRAX_DIR}/.next/standalone"
 STATIC_LINK="${ATTRAX_DIR}/.next/static"
