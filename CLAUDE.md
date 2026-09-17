@@ -316,7 +316,7 @@ const StartScanRequestSchema = z.object({
 | 变量 | 说明 |
 |------|------|
 | `RAG_ALLOWED_ORIGINS` | CORS 白名单（逗号分隔） |
-| `RAG_INTERNAL_SECRET` | BFF ↔ RAG 内部认证密钥（fail-closed：prod 空 secret 拒绝启动） |
+| `RAG_INTERNAL_SECRET` | BFF ↔ RAG 内部认证密钥（fail-closed：prod 空 secret 拒绝启动）。**真值单一来源 = `/opt/attrax/.rag-internal-secret`（`600`）**，由 `scripts/ecosystem.config.cjs` 同时注入 `rag-service` 与 `nextjs`；不在任何 `.env` 或 git 中 |
 | `ATTRAX_BUILD_SHA` | 当前部署 commit SHA |
 | `SCAN_WORKER_CONCURRENCY` | 扫描 worker 并发数（默认 **5**，见 `config.py`） |
 
