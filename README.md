@@ -162,7 +162,8 @@ tar -C .next -czf - standalone | ssh lighthouse 'tar -xzf - -C /opt/attrax/.next
 tar -C .next -czf - static | ssh lighthouse 'mkdir -p /opt/attrax/.next/standalone/.next && tar -xzf - -C /opt/attrax/.next/standalone/.next'
 
 # 服务器
-ssh lighthouse 'sed -i "s/^ATTRAX_BUILD_SHA=.*/ATTRAX_BUILD_SHA=$(git -C /workspace/me/attrax rev-parse HEAD)/" /opt/attrax/rag_service/.env'
+SHA=$(git rev-parse HEAD)
+ssh lighthouse "sed -i 's/^ATTRAX_BUILD_SHA=.*/ATTRAX_BUILD_SHA=${SHA}/' /opt/attrax/rag_service/.env"
 ssh lighthouse 'cd /opt/attrax && RAG_INTERNAL_SECRET=$(grep "^RAG_INTERNAL_SECRET=" /opt/attrax/rag_service/.env | cut -d= -f2) APP_ENV=production /usr/bin/pm2 start scripts/ecosystem.config.cjs --only nextjs'
 ```
 

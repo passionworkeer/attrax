@@ -69,17 +69,17 @@ See `infra/nginx-*.conf`:
 - 11 security response headers (see infra README)
 - `proxy_intercept_errors on` + `error_page 500 =404` — upstream 5xx hidden from clients
 
-**Domain**: `https://twinbuddy.xyz` (A record → 203.0.113.10). Old self-signed cert at `/etc/nginx/ssl/attrax.{crt,key}` is kept as fallback; nginx config now points to Let's Encrypt paths.
+**Domain**: `https://example.com` (A record → 198.51.100.20 Lighthouse Seoul). SSL via Let's Encrypt certbot.
 
 ## API protection
 
 - **Rate limit**: 双层 — nginx `limit_req_zone` 对 `/api/scan` 10 req/s per IP（burst 20，429）+ BFF (`app/api/scan/route.ts`) `checkRateLimit('scan:${clientId}', 10, 60_000)` 每 client 60s 窗口 10 次（BFF 比 nginx 更严，是真实业务门槛）
 - **fail2ban**: 5 jails (`sshd`, `nginx-http-auth`, `nginx-bad-request`, `nginx-block-scanner`, `attrax-404-probe`)
   - `attrax-404-probe` is custom: bans any IP that 10-times-per-minute probes `.env`, `.git`, `wp-admin`, `phpmyadmin`, backup extensions (24-hour ban)
-  - `ignoreip = 127.0.0.1/8, 203.0.113.10` (we don't ban ourselves)
+  - `ignoreip = 127.0.0.1/8, 198.51.100.20` (we don't ban ourselves)
 - **Session auth**: 32-byte random tokens (256 bits entropy), SHA-256 hashed, `timingSafeEqual` constant-time comparison
 - **SessionId validation**: 三层正则不统一 — `lib/schemas.ts:SessionIdSchema` 限 50 字符（`/^scan_[0-9A-Za-z_-]{1,50}$/`），`app/api/backend-session-access.ts:SAFE_SESSION_ID` + RAG `rag_service/api/v1.py:_SESSION_ID` 限 64 字符（`/^scan_[A-Za-z0-9_-]{1,64}$/`）。BFF 的 64 是外层，前端 schema 的 50 是内层；调用经 Zod 校验，64-char 范围包含 50-char 范围，没有错位风险
-- **CORS**: `RAG_ALLOWED_ORIGINS=https://203.0.113.10` (configured; 8001 only listens 127.0.0.1 so cross-origin attacks limited)
+- **CORS**: `RAG_ALLOWED_ORIGINS=https://example.com,http://localhost:3000` (8001 only listens on loopback 127.0.0.1 so cross-origin attacks are limited)
 - **Magic bytes**: `lib/upload-validation.ts` validates PNG/JPEG/WEBP/PDF/DOCX content signatures, plus size limits, plus MIME + extension checks
 
 ## Process & file permissions
@@ -122,8 +122,8 @@ Manually stopped + disabled (cloud server doesn't need them):
 
 ## Backup policy
 
-- **Daily 03:00 cron** (`infra/cron-attrax-backup`): `backup-data.sh` tars `faiss/`, `.env`, `rag_service/.env`, manifest files
-- Backup stored in `/opt/attrax/backups/attrax-data-YYYYMMDD-HHMMSS.tar.gz` (~27 MB, permission 600)
+- **Daily 03:00 cron** (`infra/cron-attrax-backup`): `backup-attrax-prod.sh` tars `.env`, `rag_service/.env`, `data/regulation_supplements/` and SQLite state databases (De-RAG FAISS removed)
+- Backup stored in `/opt/attrax/backups/attrax-data-YYYYMMDD-HHMMSS.tar.gz` (~10 MB, permission 600)
 - Keeps last 14 backups (rotation)
 - **No offsite backup** — single-server risk. Add `rsync` to a remote before public launch.
 
