@@ -18,6 +18,7 @@ if str(PROJECT_ROOT) not in sys.path:
 from scripts.watchdog.collectors import base as collectors_base  # noqa: E402
 from scripts.watchdog.collectors.base import (  # noqa: E402
     fetch_url,
+    NotModified,
     _CONDITIONAL_CACHE,
 )
 
@@ -91,9 +92,13 @@ def test_fetch_url_sends_accept_language_and_accept_encoding():
     assert body == b"x" * 200
 
 
-def test_fetch_url_short_circuits_on_304_with_empty_response():
-    """Second call against a URL that 304s returns empty body so the
-    orchestrator plays back the cached hash instead of treating it as a change."""
+def test_fetch_url_raises_not_modified_on_304():
+    """Second call against a URL that 304s raises NotModified.
+
+    An empty-body return would be handed to the collector's RDF / JSON / RSS
+    parser and read as a bogus failure, so the 304 travels as an exception up
+    to the orchestrator instead.
+    """
     etag = '"abc123"'
     last_mod = "Wed, 11 Sep 2026 03:00:00 GMT"
 
@@ -108,10 +113,10 @@ def test_fetch_url_short_circuits_on_304_with_empty_response():
         collectors_base.urllib.request, "urlopen", side_effect=[first, second]
     ), patch.object(collectors_base.time, "sleep"):
         body1, _ = fetch_url("https://example.com/etag-doc")
-        body2, _ = fetch_url("https://example.com/etag-doc")
+        with pytest.raises(NotModified):
+            fetch_url("https://example.com/etag-doc")
 
     assert body1 == b"x" * 200
-    assert body2 == b""
 
 
 def test_fetch_url_sends_if_none_match_on_second_call():
@@ -128,7 +133,8 @@ def test_fetch_url_sends_if_none_match_on_second_call():
     with patch.object(collectors_base.urllib.request, "urlopen", side_effect=_fake_urlopen), \
          patch.object(collectors_base.time, "sleep"):
         fetch_url("https://example.com/revalidate")
-        fetch_url("https://example.com/revalidate")
+        with pytest.raises(NotModified):
+            fetch_url("https://example.com/revalidate")
 
     assert len(requests) == 2
     second = {k.lower(): v for k, v in requests[1].items()}
