@@ -437,7 +437,7 @@ class ReportGenerator:
         product: str,
         market: str,
         chunks: list[dict],
-        max_tokens: int = 6144,
+        max_tokens: int = 8192,
         doc_context: str = "",
         mandatory_regulations: list[dict] | None = None,
         article_texts: dict[str, str] | None = None,
@@ -547,13 +547,16 @@ class ReportGenerator:
             f"{anchor_section}"
             f"{vision_section}"
             f"{doc_section}\n"
+            "【输出预算与闭合契约】本次输出预算为 8192 tokens（约 14000 字符），尽量填满以输出更完整的报告。\n"
+            "- 所有 JSON 对象与数组必须在末尾闭合（最后一个 `}` 和 `]` 都必须有），缺一个字符下游解析器会直接拒收并丢失整份报告。\n"
+            "- 如果不确定完整内容的长度，**先闭合 JSON 框架再回头补字段值**；不要因为想写更长内容而省略末尾的闭合括号。\n"
+            "- 字段填充顺序：先 complianceReport → reviewClaims → profitReport → roadmap → decisionView，最后再补 citations。\n"
+            "- 严禁使用 Markdown 代码围栏（```json ... ```）包裹 JSON。\n"
             "请基于上述证据输出审阅报告，首先输出reviewClaims及其引用，再输出合规报告、合规排期路线图与AI决策视图。"
             "没有成本输入时profitReport.markdown仅写‘未提供成本数据，本报告不作利润预测’，不要展开利润报告。"
-            "输出必须是可解析 JSON，不要使用 Markdown 代码围栏。"
             "为避免响应截断：整个 JSON 控制在 12000 个字符以内，每项判断保持简短，"
             "complianceReport 与 profitReport.markdown 各不超过 1200 个汉字，"
-            "roadmap.items 最多 5 项，decisionView.nodes 最多 6 项；每条 citation 必须有 claim；"
-            "优先保证所有 JSON 字段闭合。"
+            "roadmap.items 最多 5 项，decisionView.nodes 最多 6 项；每条 citation 必须有 claim。"
         )
         if self.provider == "qwen":
             user_prompt += (
@@ -1106,6 +1109,22 @@ class ReportGenerator:
 
         content = extract_text_blocks(data)
         if content and content.strip():
+            # Observation: warn when the response approaches the prompt's
+            # 12000-char JSON ceiling so a production regression surfaces
+            # in logs (CLAUDE.md: 报告生成 ~16.4k 字符触顶事故).
+            # 11000 ≈ model near ceiling; 14000 ≈ past declared 8192-token budget.
+            if len(content) >= 14000:
+                logger.error(
+                    "LLM report response exceeded declared budget (%d chars ≥ 14000); "
+                    "check whether model is ignoring 8192-token prompt constraint",
+                    len(content),
+                )
+            elif len(content) >= 11000:
+                logger.warning(
+                    "LLM report response approaching JSON ceiling (%d chars ≥ 11000); "
+                    "may need repair retry",
+                    len(content),
+                )
             logger.info(f"LLM report generated ({len(content)} chars)")
             return content
         raise ValueError("LLM returned empty response")
