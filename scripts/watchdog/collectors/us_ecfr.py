@@ -46,7 +46,9 @@ def collect_ecfr_part(entry: dict) -> RegulationUpdate:
     )
     url = f"{FR_API}?{query}"
 
-    body, last_modified = fetch_url(url, accept="application/json")
+    body, last_modified = fetch_url(
+        url, source_id=entry.get("id"), accept="application/json"
+    )
     payload = json.loads(body)
     results = payload.get("results")
     if not isinstance(results, list):

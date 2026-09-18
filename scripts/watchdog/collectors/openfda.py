@@ -174,7 +174,9 @@ def collect_openfda_recalls(entry: dict) -> RegulationUpdate:
     """
     url = _build_openfda_url(entry)
 
-    body, last_modified = fetch_url(url, accept="application/json", min_bytes=16)
+    body, last_modified = fetch_url(
+        url, source_id=entry.get("id"), accept="application/json", min_bytes=16
+    )
     try:
         payload = json.loads(body)
     except json.JSONDecodeError as exc:

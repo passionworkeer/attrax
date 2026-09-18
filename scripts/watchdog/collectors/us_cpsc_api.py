@@ -86,7 +86,9 @@ def _row_sort_key(row: dict) -> tuple[str, str]:
 def collect_cpsc_recall_api(entry: dict) -> RegulationUpdate:
     """Fetch recent CPSC recalls and normalize them into a stable digest."""
     url = _build_url(entry)
-    body, last_modified = fetch_url(url, accept="application/json", min_bytes=16)
+    body, last_modified = fetch_url(
+        url, source_id=entry.get("id"), accept="application/json", min_bytes=16
+    )
     try:
         payload = json.loads(body)
     except json.JSONDecodeError as exc:

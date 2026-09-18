@@ -36,6 +36,11 @@ from scripts.watchdog.collectors.base import (  # noqa: E402
     fetch_url,
 )
 from scripts.watchdog.state import text_hash  # noqa: E402
+from scripts.watchdog.tests._http_mock import (  # noqa: E402
+    _FakeHttpxResponse,
+    client_with,
+    raises,
+)
 
 
 def _update(source_id: str, text: str, market: str = "EU") -> RegulationUpdate:
@@ -210,45 +215,56 @@ def test_run_pass_outputs_are_ordered_by_source_id(isolated_pass):
 # ── cooperative deadline ─────────────────────────────────────────────────
 
 
-def _always_fail_response():
-    raise urllib.error.URLError("network is down")
-
-
-def test_fetch_deadline_curtails_retries():
+def test_fetch_deadline_curtails_retries(monkeypatch):
     """With a short budget, fetch_url stops retrying and raises
     FetchDeadlineExceeded instead of burning all three attempts."""
-    attempts = {"n": 0}
-
-    def _open(request, timeout=30):  # noqa: ARG001
-        attempts["n"] += 1
-        raise urllib.error.URLError("down")
+    fake = client_with(raises(urllib.error.URLError("down")))
+    monkeypatch.setattr(collectors_base, "_get_http_client", lambda: fake)
 
     started = time.monotonic()
-    with patch.object(collectors_base.urllib.request, "urlopen", side_effect=_open):
-        with fetch_deadline(1.0):
-            with pytest.raises(FetchDeadlineExceeded):
-                # retries=10 × 2 s backoff would be ~20 s without the budget.
-                fetch_url("https://example.com/slow", retries=10)
+    with fetch_deadline(1.0):
+        with pytest.raises(FetchDeadlineExceeded):
+            # retries=10 × 2 s backoff would be ~20 s without the budget.
+            fetch_url("https://example.com/slow", retries=10)
     elapsed = time.monotonic() - started
 
     assert elapsed < 3.0
-    assert attempts["n"] < 10
+    assert len(fake.requests) < 10
 
 
-def test_fetch_deadline_expired_before_first_attempt():
+def test_fetch_deadline_clamps_the_per_attempt_timeout(monkeypatch):
+    """Each request timeout is min(configured, remaining budget) — so one
+    socket read cannot overshoot the orchestrator's per-source cap — and the
+    configured timeout applies once the budget is wider than it."""
+    seen: list[float] = []
+
+    def _get(url, *, headers, timeout):  # noqa: ARG001 — match client.get signature
+        seen.append(timeout)
+        return _FakeHttpxResponse(b"x" * 200)
+
+    monkeypatch.setattr(
+        collectors_base, "_get_http_client", lambda: client_with(_get)
+    )
+
+    with fetch_deadline(5.0):
+        fetch_url("https://example.com/doc", timeout=30)
+    assert seen == [pytest.approx(5.0, abs=0.5)]
+
+    with fetch_deadline(600.0):
+        fetch_url("https://example.com/doc", timeout=30)
+    assert seen[-1] == 30
+
+
+def test_fetch_deadline_expired_before_first_attempt(monkeypatch):
     """An already-spent budget fails fast, without touching the network."""
-    attempts = {"n": 0}
+    fake = client_with(raises(AssertionError("no request should be made")))
+    monkeypatch.setattr(collectors_base, "_get_http_client", lambda: fake)
 
-    def _open(request, timeout=30):  # noqa: ARG001
-        attempts["n"] += 1
-        raise AssertionError("should not have been called")
+    with fetch_deadline(-1.0):
+        with pytest.raises(FetchDeadlineExceeded):
+            fetch_url("https://example.com/nope")
 
-    with patch.object(collectors_base.urllib.request, "urlopen", side_effect=_open):
-        with fetch_deadline(-1.0):
-            with pytest.raises(FetchDeadlineExceeded):
-                fetch_url("https://example.com/nope")
-
-    assert attempts["n"] == 0
+    assert fake.requests == []
 
 
 def test_fetch_deadline_is_scoped_to_the_thread():

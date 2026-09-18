@@ -26,7 +26,6 @@ from __future__ import annotations
 import argparse
 import datetime as _dt
 import json
-import shutil
 import sys
 from pathlib import Path
 
@@ -35,11 +34,13 @@ _REPO_ROOT = Path(__file__).resolve().parents[2]
 if str(_REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(_REPO_ROOT))
 
-from scripts.watchdog.auto_ingest import AutoIngestor
+from scripts.watchdog.auto_ingest import AutoIngestor, _write_atomic
+from scripts.watchdog.collectors.base import invalidate_conditional_cache
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 SUPPLEMENTS_DIR = PROJECT_ROOT / "data" / "regulation_supplements"
 REGULATIONS_ROOT = PROJECT_ROOT / "data" / "regulations"
+SOURCES_PATH = PROJECT_ROOT / "data" / "regulation_sources" / "official_sources.json"
 
 EXIT_OK = 0
 EXIT_NOTHING_TO_DO = 4
@@ -194,6 +195,47 @@ def show_change(run_date: str, reg_id: str) -> int:
     return EXIT_OK
 
 
+def _source_ids_for_regulation(reg_id: str) -> list[str]:
+    """Find every source_id in the registry that maps to ``reg_id``.
+
+    Used to invalidate the conditional-revalidation cache on --revert: the
+    next pass must see the live upstream content, not a stale 304 replay
+    against the bytes that were just backed out. A regulation can be
+    backed by multiple sources (multiple mirror sites, an EU CELEX and a
+    gov_html summary); we invalidate every one so the worst-case pass is
+    a re-fetch, not a false no-op.
+    """
+    if not SOURCES_PATH.exists():
+        return []
+    try:
+        entries = json.loads(SOURCES_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return []
+    if not isinstance(entries, list):
+        return []
+    matched: list[str] = []
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        explicit = str(entry.get("regulation_id") or "").strip()
+        if explicit == reg_id:
+            sid = entry.get("id")
+            if sid:
+                matched.append(str(sid))
+            continue
+        # Fall back to inference: if the slug would have produced this
+        # reg_id, treat the source as a candidate. The inference rules
+        # live in auto_ingest; we re-run them via the public API.
+        from scripts.watchdog.auto_ingest import regulation_for_source
+
+        mapping = regulation_for_source(entry)
+        if mapping is not None and mapping[0] == reg_id:
+            sid = entry.get("id")
+            if sid:
+                matched.append(str(sid))
+    return matched
+
+
 def revert_change(run_date: str, reg_id: str, *, dry_run: bool) -> int:
     backup = _backup_path(run_date, reg_id)
     if not backup.exists():
@@ -221,8 +263,21 @@ def revert_change(run_date: str, reg_id: str, *, dry_run: bool) -> int:
         return EXIT_OK
 
     live.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(backup, live)
+    # H15: atomic replace, same as every other YAML writer — an interrupted
+    # revert must not leave a truncated regulation in the live tree.
+    _write_atomic(live, backup.read_text(encoding="utf-8"))
     AutoIngestor._rebuild_index()
+
+    # M19 (2026-09-18): drop cached ETag/Last-Modified for every source
+    # that maps to this regulation. Without this the next pass would
+    # receive a 304 replay against the bytes we just reverted away from,
+    # and the watchdog would happily report "no change" against a YAML
+    # that now disagrees with upstream.
+    for source_id in _source_ids_for_regulation(reg_id):
+        evicted = invalidate_conditional_cache(source_id)
+        if evicted:
+            print(f"  dropped {evicted} cached revalidators for {source_id}")
+
     print(f"\nRestored. {REGULATIONS_ROOT / 'regulations_index.json'} rebuilt.")
     print("Note: the next watchdog pass re-fetches this source; if upstream really")
     print("did change, the same update is re-applied. To keep the revert, fix the")

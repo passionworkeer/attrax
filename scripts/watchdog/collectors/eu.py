@@ -33,7 +33,9 @@ def collect_eu_celex(entry: dict) -> RegulationUpdate:
         return collect_generic(entry)
 
     url = CELEX_CELLAR_URL.format(celex=celex)
-    body, last_modified = fetch_url(url, accept=CELLAR_ACCEPT)
+    body, last_modified = fetch_url(
+        url, source_id=entry.get("id"), accept=CELLAR_ACCEPT
+    )
     # Content-sanity guard (2026-09-13 postmortem, mirroring the eCFR lesson):
     # an interstitial/error page served with HTTP 200 must never become the
     # snapshot — otherwise the next real fetch reads as a "modified" change.

@@ -14,6 +14,8 @@ Plus (in test_collectors.py): gov_html chrome stripping + safety_gate JSON.
 from __future__ import annotations
 
 import sys
+import threading
+import time
 from pathlib import Path
 
 import pytest
@@ -29,6 +31,7 @@ from scripts.watchdog.auto_ingest import (  # noqa: E402
     _citation_from_celex,
     _citation_from_entry,
     _slug_to_reg_id,
+    _write_atomic,
 )
 from scripts.watchdog.collectors.base import RegulationUpdate  # noqa: E402
 from scripts.watchdog.state import Change, text_hash  # noqa: E402
@@ -564,3 +567,177 @@ def test_update_leaves_official_alone(isolated_library):
     assert loaded["source_kind"] == "official_verbatim"
     assert loaded["articles"][0]["text"] == "Original official text"
     assert "verbatim skipped" in loaded["notes"]
+
+
+# ── H16/M20: parallel ingest (2026-09-18) ─────────────────────────────────
+
+
+def _gov_html_entry(source_id: str, reg_id: str) -> dict:
+    return {
+        "id": source_id,
+        "source_type": "gov_html",
+        "market": "UK",
+        "regulation_id": reg_id,
+    }
+
+
+def test_apply_ingests_sources_in_parallel(isolated_library, monkeypatch):
+    """Four sources must sit inside ``_store_evidence`` at the same time —
+    a barrier of size four only releases once every ingest has entered, so a
+    serial implementation would break it (BrokenBarrierError) and fail one
+    source into report.failed."""
+    ingestor = AutoIngestor("2026-09-13")
+    entries = {f"src-{i}": _gov_html_entry(f"src-{i}", f"UK-PAR-{i}") for i in range(4)}
+    updates = {
+        sid: _update(sid, f"body {sid}", source_type="gov_html") for sid in entries
+    }
+    changes = [_change(sid, kind="added") for sid in entries]
+
+    barrier = threading.Barrier(len(changes), timeout=5)
+    real_store = AutoIngestor._store_evidence
+
+    def _slow_store(self, *args, **kwargs):
+        barrier.wait()
+        return real_store(self, *args, **kwargs)
+
+    monkeypatch.setattr(AutoIngestor, "_store_evidence", _slow_store)
+
+    report = ingestor.apply(entries, updates, changes)
+
+    assert barrier.broken is False
+    assert report.failed == []
+    assert len(report.created) == 4
+
+
+def test_apply_report_order_follows_input_not_completion(isolated_library, monkeypatch):
+    """The report is merged in ``changes`` order, not thread-completion
+    order — two passes over the same input must write identical output."""
+    ingestor = AutoIngestor("2026-09-13")
+    order = ["z-slow", "a-fast", "m-fast"]
+    entries = {
+        sid: _gov_html_entry(sid, f"UK-ORD-{sid[0].upper()}") for sid in order
+    }
+    updates = {
+        sid: _update(sid, f"body {sid}", source_type="gov_html") for sid in order
+    }
+    delays = {"z-slow": 0.2, "a-fast": 0.0, "m-fast": 0.0}
+    real_store = AutoIngestor._store_evidence
+
+    def _slow_store(self, source_id, *args, **kwargs):
+        # z-slow finishes last; a completion-ordered merge would emit it last.
+        time.sleep(delays[source_id])
+        return real_store(self, source_id, *args, **kwargs)
+
+    monkeypatch.setattr(AutoIngestor, "_store_evidence", _slow_store)
+
+    report = ingestor.apply(entries, updates, [_change(sid, kind="added") for sid in order])
+
+    assert report.created == ["UK-ORD-Z", "UK-ORD-A", "UK-ORD-M"]
+    assert [r["sourceId"] for r in report.records] == order
+
+
+def test_regulation_lock_is_one_lock_per_id(isolated_library):
+    """Two sources mapped to one regulation serialize on the same lock;
+    different regulations do not share one. The registry is safe under a
+    first-use race from several threads."""
+    ingestor = AutoIngestor("2026-09-13")
+    assert ingestor._regulation_lock("EU-A") is ingestor._regulation_lock("EU-A")
+    assert ingestor._regulation_lock("EU-A") is not ingestor._regulation_lock("EU-B")
+
+    seen: list[int] = []
+
+    def _grab() -> None:
+        seen.append(id(ingestor._regulation_lock("EU-RACE")))
+
+    threads = [threading.Thread(target=_grab) for _ in range(8)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+    assert len(set(seen)) == 1
+
+
+def test_two_sources_mapped_to_one_regulation_keep_both_notes(isolated_library):
+    """The read-modify-write is serialized per regulation, so a second
+    source's update cannot read a stale payload and drop the first one's
+    audit note."""
+    ingestor = AutoIngestor("2026-09-13")
+    entry_a = {"id": "eu-rohs-a", "source_type": "eu_celex", "celex": "32011L0065"}
+    entry_b = {"id": "eu-rohs-b", "source_type": "eu_celex", "celex": "32011L0065"}
+    report = ingestor.apply(
+        {"eu-rohs-a": entry_a, "eu-rohs-b": entry_b},
+        {
+            "eu-rohs-a": _update("eu-rohs-a", "content from A"),
+            "eu-rohs-b": _update("eu-rohs-b", "content from B"),
+        },
+        [_change("eu-rohs-a"), _change("eu-rohs-b")],
+    )
+
+    payload = yaml.safe_load(
+        (isolated_library.REGULATIONS_ROOT / "eu" / "EU-2011-65.yaml").read_text()
+    )
+    assert "eu-rohs-a" in payload["notes"]
+    assert "eu-rohs-b" in payload["notes"]
+    assert report.updated == ["EU-2011-65", "EU-2011-65"]
+    assert report.failed == []
+
+
+# ── H15: atomic writes under concurrency (2026-09-18) ─────────────────────
+
+
+def test_write_atomic_never_exposes_a_partial_file(tmp_path):
+    """Eight threads rewrite the same file; a reader must only ever observe
+    a complete payload. This is what the per-call temp-file counter buys
+    over a pid-only name: two threads in one process cannot share a temp
+    file and interleave their writes."""
+    target = tmp_path / "state.json"
+    payloads = [f'{{"writer": {i}, "pad": "{"x" * 2000}"}}' for i in range(8)]
+    target.write_text(payloads[0], encoding="utf-8")
+
+    stop = threading.Event()
+    seen_bad: list[str] = []
+
+    def _reader() -> None:
+        while not stop.is_set():
+            text = target.read_text(encoding="utf-8")
+            if text not in payloads:
+                seen_bad.append(text[:80])
+
+    def _writer(payload: str) -> None:
+        for _ in range(50):
+            _write_atomic(target, payload)
+
+    reader = threading.Thread(target=_reader)
+    reader.start()
+    writers = [threading.Thread(target=_writer, args=(p,)) for p in payloads]
+    for writer in writers:
+        writer.start()
+    for writer in writers:
+        writer.join()
+    stop.set()
+    reader.join()
+
+    assert seen_bad == []
+    assert target.read_text(encoding="utf-8") in payloads
+
+
+def test_write_atomic_uses_a_fresh_temp_name_per_call(tmp_path, monkeypatch):
+    """Consecutive writes must never reuse the same temp path — that reuse
+    is exactly how two threads in one process would corrupt each other's
+    in-flight payload before the rename."""
+    import scripts.watchdog.auto_ingest as ai
+
+    target = tmp_path / "state.json"
+    sources: list[str] = []
+    real_replace = ai.os.replace
+
+    def _recording_replace(src, dst):
+        sources.append(str(src))
+        return real_replace(src, dst)
+
+    monkeypatch.setattr(ai.os, "replace", _recording_replace)
+    for i in range(3):
+        _write_atomic(target, f"payload {i}")
+
+    assert len(sources) == 3
+    assert len(set(sources)) == 3

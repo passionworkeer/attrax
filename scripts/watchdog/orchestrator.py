@@ -20,18 +20,24 @@ Pass outline:
 1. Load the source entries from data/regulation_sources/official_sources.json
    (35 as of 2026-09-16; the count is the array's length, not a constant)
 2. Dispatch each entry to its collector (per-source failure isolation) using
-   a ThreadPoolExecutor so the 35 sources run in parallel
+   a ThreadPoolExecutor so the 35 sources run in parallel. As each source's
+   fetch+diff lands, its real change is handed to a bounded ingest pool
+   (2026-09-18 H16/M20) so the evidence + YAML writes overlap the remaining
+   fetches instead of queueing on the main thread.
 3. Diff every fetched update against the SQLite snapshot (state.py) — the
    detect_changes call shares a single SourceStateStore guarded by a lock
 4. Write outputs to data/regulation_supplements/watchdog-{date}/:
    - no_change.json    — every source unchanged
-   - diff.json         — real changes (added / removed / modified)
-   - pending_review.json — changes that require human approval before the
-                           regulation library is rebuilt
+   - diff.json         — real changes (added / modified)
+   - applied.json      — auto-ingest outcome (created / updated / marked /
+                         evidence-only / failed)
+   - pending_review.json — only when auto-ingest is disabled: changes that
+                           need a human (--ack) before the baseline moves
    - errors.json       — per-source fetch failures
-5. Auto-rebuild gate: cosmetic-only changes (similarity ≥ 0.95) snapshot and
-   move on. Any real change writes pending_review.json — the rebuild is a
-   human decision, never automatic.
+5. Auto-ingest (on by default — see ATTRAX_REGWATCH_AUTO_INGEST): cosmetic-only
+   changes (similarity ≥ 0.95) snapshot and move on; a real change is applied
+   to the regulation library and only advances the baseline once it applied.
+   With auto-ingest off, nothing is applied or snapshotted until --ack.
 
 Exit codes (single-pass mode): 0 = clean / cosmetic only · 2 = real changes
 awaiting review · 3 = one or more sources failed (others still processed) ·
@@ -55,6 +61,7 @@ from scripts.watchdog.collectors.base import (
     NotModified,
     collect_source,
     fetch_deadline,
+    invalidate_conditional_cache,
 )
 from scripts.watchdog.notify import build_notifiers, notify_all
 from scripts.watchdog.state import Change, SourceStateStore
@@ -212,6 +219,11 @@ def ack_sources(ids: set[str] | None) -> int:
         source_id = entry.get("id") or entry.get("source_url") or "unknown"
         if ids is not None and source_id not in ids:
             continue
+        # M19 (2026-09-18): drop any cached ETag/Last-Modified for this
+        # source. The new baseline below is *current* upstream content, so
+        # the next pass must not get a 304 short-circuit against the
+        # pre-ack bytes.
+        invalidate_conditional_cache(source_id)
         try:
             update = collect_source(entry)
         except Exception as exc:  # noqa: BLE001 — ack what we can, report rest
@@ -294,7 +306,7 @@ def run_pass(*, dry_run: bool = False) -> int:
     }
     ingestor = None
     if auto_ingest_enabled and not dry_run:
-        from scripts.watchdog.auto_ingest import AutoIngestor
+        from scripts.watchdog.auto_ingest import INGEST_WORKERS, AutoIngestor
 
         ingestor = AutoIngestor(run_date)
 
@@ -302,14 +314,22 @@ def run_pass(*, dry_run: bool = False) -> int:
     cosmetic_changes: list[Change] = []
     snapshots: list[tuple[str, str, str]] = []
     errors: list[dict] = []
-    updates_by_id: dict[str, object] = {}
-    entries_by_id: dict[str, dict] = {}
 
     # 2026-09-17: parallel fetch — every entry dispatches into a worker
     # thread. Workers do the two thread-safe things (network fetch and
     # ``store.detect_changes``); everything that mutates shared orchestrator
-    # state — the auto-ingestor's report, ``.auto_state.json``, the index
-    # rebuild — is applied serially on this thread after the pool drains.
+    # state — ``.auto_state.json`` and the index rebuild — is applied
+    # serially on this thread.
+    #
+    # 2026-09-18 H16/M20: the per-source ingest (evidence write + YAML
+    # update) no longer waits for the fetch phase to drain. The moment a
+    # source's fetch+diff lands with a real change, ``ingest_source`` is
+    # dispatched to a small dedicated pool, so the disk-bound writes (~9 MB
+    # of evidence per source) overlap the remaining fetches instead of
+    # queueing behind them on this thread. Bounded at INGEST_WORKERS; two
+    # sources mapped to one regulation serialize on a per-regulation lock
+    # inside the ingestor. The index rebuild stays a single-threaded final
+    # step (``collect_parallel``), after every ingest writer has stopped.
     #
     # The per-source wall-clock cap is cooperative: each worker opens a
     # ``fetch_deadline`` budget that ``fetch_url`` checks before every
@@ -370,90 +390,157 @@ def run_pass(*, dry_run: bool = False) -> int:
             snapshot=(source_id, update.text, update.content_hash),
         )
 
-    with concurrent.futures.ThreadPoolExecutor(
-        max_workers=worker_count,
-        thread_name_prefix="regwatch",
-    ) as executor:
-        outcomes = list(executor.map(_process_one, entries))
+    # Ingest pool (H16/M20): bounded, separate from the fetch pool so a
+    # disk-bound ingest never occupies a fetch worker. Created only when
+    # auto-ingest is active; shut down in the ``finally`` below.
+    ingest_pool: concurrent.futures.ThreadPoolExecutor | None = None
+    ingest_jobs: list[tuple[str, "concurrent.futures.Future[object]"]] = []
+    if ingestor is not None:
+        ingest_pool = concurrent.futures.ThreadPoolExecutor(
+            max_workers=INGEST_WORKERS,
+            thread_name_prefix="regwatch-ingest",
+        )
 
-    # Apply outcomes serially, ordered by source_id so diff.json /
-    # errors.json come out byte-stable across runs of the same inputs.
-    for outcome in sorted(outcomes, key=lambda o: o.source_id):
-        source_id = outcome.source_id
-        entries_by_id[source_id] = outcome.entry
+    def _dispatch_ingest(outcome: _SourceOutcome) -> None:
+        """Queue this source's evidence + YAML work while fetches continue.
 
-        if outcome.error is not None:
-            errors.append({"sourceId": source_id, "error": outcome.error})
-            if ingestor is not None:
-                try:
-                    ingestor.record_failure(source_id, outcome.entry)
-                except Exception as exc:  # noqa: BLE001 — never let the ingestor kill the pass
-                    logger.warning(
-                        "record_failure for %s also failed: %s", source_id, exc
-                    )
-            continue
-
-        if ingestor is not None and not outcome.not_modified:
-            ingestor.record_success(source_id)
-
-        if outcome.not_modified:
-            continue
-
+        Real changes only (``added`` / ``modified`` — the same filter
+        ``AutoIngestor.apply`` uses): cosmetic changes are snapshotted, not
+        ingested, and errored sources carry no update. Failures surface as
+        data when ``collect_parallel`` drains the futures.
+        """
+        if ingestor is None or ingest_pool is None or outcome.update is None:
+            return
         for change in outcome.changes:
-            if change.kind == "cosmetic":
-                cosmetic_changes.append(change)
-            else:
-                real_changes.append(change)
-
-        if outcome.update is not None:
-            updates_by_id[source_id] = outcome.update
-        if outcome.snapshot is not None:
-            snapshots.append(outcome.snapshot)
-
-    # Persist snapshots for unchanged and cosmetic-only sources.
-    # Real changes (added / modified) must NOT overwrite the baseline snapshot
-    # until they are either auto-ingested (default) or manually approved
-    # (--ack, when auto-ingest is disabled) — otherwise subsequent passes
-    # would report no change and lose track of un-applied modifications.
-    real_change_source_ids = {c.source_id for c in real_changes}
-    ingest_report = None
-    if ingestor is not None and real_changes:
-        ingest_report = ingestor.apply(entries_by_id, updates_by_id, real_changes)  # type: ignore[arg-type]
-        for item in ingest_report.to_dict()["failed"]:
-            logger.warning("auto-ingest failed for %s: %s", item["sourceId"], item["error"])
-
-    if not dry_run:
-        if ingestor is not None:
-            if ingest_report is not None and real_changes:
-                (out_dir / "applied.json").write_text(
-                    json.dumps(
-                        {
-                            "date": run_date,
-                            "mode": "auto",
-                            **ingest_report.to_dict(),
-                        },
-                        indent=2,
-                        ensure_ascii=False,
-                    ),
-                    encoding="utf-8",
+            if change.kind in {"added", "modified"}:
+                ingest_jobs.append(
+                    (
+                        outcome.source_id,
+                        ingest_pool.submit(
+                            ingestor.ingest_source,
+                            outcome.source_id,
+                            outcome.entry,
+                            outcome.update,
+                            change,
+                        ),
+                    )
                 )
-            # Sources whose change ingested cleanly (or had no real change)
-            # advance the baseline; ingest failures stay un-snapshotted so
-            # they keep re-appearing until they apply or the operator --acks.
-            failed_ids = {f["sourceId"] for f in (ingest_report.failed if ingest_report else [])}
-            blocked_ids = (
-                real_change_source_ids & failed_ids if ingest_report else set()
-            ) if real_changes else set()
-            store.bulk_snapshot(
-                [s for s in snapshots if s[0] not in blocked_ids]
-            )
+
+    outcomes: list[_SourceOutcome] = []
+    try:
+        with concurrent.futures.ThreadPoolExecutor(
+            max_workers=worker_count,
+            thread_name_prefix="regwatch",
+        ) as executor:
+            fetch_futures = [executor.submit(_process_one, entry) for entry in entries]
+            # as_completed (not executor.map) so each source's ingest can be
+            # dispatched the moment that source's fetch lands, instead of
+            # waiting for the slowest fetch in the batch.
+            for future in concurrent.futures.as_completed(fetch_futures):
+                outcome = future.result()
+                outcomes.append(outcome)
+                _dispatch_ingest(outcome)
+
+        # Apply outcomes serially, ordered by source_id so diff.json /
+        # errors.json come out byte-stable across runs of the same inputs.
+        for outcome in sorted(outcomes, key=lambda o: o.source_id):
+            source_id = outcome.source_id
+
+            if outcome.error is not None:
+                errors.append({"sourceId": source_id, "error": outcome.error})
+                if ingestor is not None:
+                    try:
+                        ingestor.record_failure(source_id, outcome.entry)
+                    except Exception as exc:  # noqa: BLE001 — never let the ingestor kill the pass
+                        logger.warning(
+                            "record_failure for %s also failed: %s", source_id, exc
+                        )
+                continue
+
+            if ingestor is not None and not outcome.not_modified:
+                ingestor.record_success(source_id)
+
+            if outcome.not_modified:
+                continue
+
+            for change in outcome.changes:
+                if change.kind == "cosmetic":
+                    cosmetic_changes.append(change)
+                else:
+                    real_changes.append(change)
+
+            if outcome.snapshot is not None:
+                snapshots.append(outcome.snapshot)
+
+        # Persist snapshots for unchanged and cosmetic-only sources.
+        # Real changes (added / modified) must NOT overwrite the baseline snapshot
+        # until they are either auto-ingested (default) or manually approved
+        # (--ack, when auto-ingest is disabled) — otherwise subsequent passes
+        # would report no change and lose track of un-applied modifications.
+        real_change_source_ids = {c.source_id for c in real_changes}
+        ingest_report = None
+        if ingestor is not None and real_changes:
+            # Drain the ingest futures dispatched during the fetch phase, fold
+            # the outcomes into the report in source_id order, and rebuild the
+            # index once (single-threaded, after every ingest writer stopped).
+            ingest_report = ingestor.collect_parallel(ingest_jobs)
+            for item in ingest_report.to_dict()["failed"]:
+                logger.warning("auto-ingest failed for %s: %s", item["sourceId"], item["error"])
+
+        unapplied_ids: set[str] = set()
+        if not dry_run:
+            if ingestor is not None:
+                if ingest_report is not None and real_changes:
+                    (out_dir / "applied.json").write_text(
+                        json.dumps(
+                            {
+                                "date": run_date,
+                                "mode": "auto",
+                                **ingest_report.to_dict(),
+                            },
+                            indent=2,
+                            ensure_ascii=False,
+                        ),
+                        encoding="utf-8",
+                    )
+                # Sources whose change ingested cleanly (or had no real change)
+                # advance the baseline; ingest failures stay un-snapshotted so
+                # they keep re-appearing until they apply or the operator --acks.
+                failed_ids = {f["sourceId"] for f in (ingest_report.failed if ingest_report else [])}
+                blocked_ids = (
+                    real_change_source_ids & failed_ids if ingest_report else set()
+                ) if real_changes else set()
+                store.bulk_snapshot(
+                    [s for s in snapshots if s[0] not in blocked_ids]
+                )
+                unapplied_ids = blocked_ids
+            else:
+                # Auto-ingest disabled: c46fb3c semantics — real changes are not
+                # snapshotted until a human runs --ack.
+                store.bulk_snapshot(
+                    [s for s in snapshots if s[0] not in real_change_source_ids]
+                )
+                unapplied_ids = real_change_source_ids
         else:
-            # Auto-ingest disabled: c46fb3c semantics — real changes are not
-            # snapshotted until a human runs --ack.
-            store.bulk_snapshot(
-                [s for s in snapshots if s[0] not in real_change_source_ids]
-            )
-    store.close()
+            # A dry run applies nothing, so no baseline moves.
+            unapplied_ids = real_change_source_ids
+
+        # M19 (2026-09-18): for every source whose baseline did NOT advance,
+        # drop the cached ETag / Last-Modified. Those validators belong to the
+        # *new* upstream bytes (the ones this pass failed to apply), so keeping
+        # them would make the next pass send If-None-Match with the
+        # post-change validator, receive a 304, and treat the un-applied
+        # change as "unchanged" — silently forever. Dropping the entry forces
+        # a full re-fetch and re-detection. Sources that were snapshotted keep
+        # their validators (their 304s are honest).
+        for source_id in unapplied_ids:
+            invalidate_conditional_cache(source_id)
+        store.close()
+    finally:
+        # The ingest pool has nothing left to do and every writer stopped;
+        # release its workers even if the pass raised above.
+        if ingest_pool is not None:
+            ingest_pool.shutdown(wait=True)
 
     # ── write outputs ─────────────────────────────────────────────────
     if not dry_run:
