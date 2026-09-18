@@ -3,16 +3,20 @@
 /**
  * Extended unit tests for POST /api/scan (handoff BFF).
  *
- * Now that the route is a thin forwarder to FastAPI /api/v1/scans via
- * `lib/rag-client/v1-adapter`, these tests cover edge cases at the seam:
- * file validation, count limits, FormData parse failures, and error mapping.
+ * The route is a thin forwarder to FastAPI /api/v1/scans via
+ * `lib/rag-client/v1-adapter`. After the streaming rewrite the route passes
+ * the inbound multipart body straight through to `createScanStream`; per-file
+ * signature / type / size / count checks live on the RAG side
+ * (`rag_service/api/v1.py::_read_uploads`). These tests cover the seam:
+ * byte-for-byte forwarding of documents/images, header-level rejections, and
+ * upstream-error mapping.
  *
  * Run with: npm run test -- tests/unit/api-scan-post-full.test.ts
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 
-const { mockCreateScan } = vi.hoisted(() => ({
-  mockCreateScan: vi.fn(),
+const { mockCreateScanStream } = vi.hoisted(() => ({
+  mockCreateScanStream: vi.fn(),
 }));
 
 vi.mock("@/lib/rag-client/v1-adapter", async () => {
@@ -21,7 +25,7 @@ vi.mock("@/lib/rag-client/v1-adapter", async () => {
   );
   return {
     ...actual,
-    createScan: mockCreateScan,
+    createScanStream: mockCreateScanStream,
   };
 });
 
@@ -72,10 +76,24 @@ function buildFormData(
   return fd;
 }
 
+/** Read back the multipart payload the route streamed to `createScanStream`. */
+async function forwardedBodyText(callIndex = 0): Promise<string> {
+  const [input] = mockCreateScanStream.mock.calls[callIndex] as [
+    { body: ReadableStream<Uint8Array> },
+  ];
+  return await new Response(input.body).text();
+}
+
+/** Extract a text field's value from a serialized multipart body. */
+function multipartFieldValue(text: string, name: string): string | null {
+  const match = text.match(new RegExp(`name="${name}"\\r\\n\\r\\n([^\\r\\n]*)`));
+  return match ? match[1] : null;
+}
+
 describe("POST /api/scan - Validation and Error Coverage", () => {
   beforeEach(() => {
-    mockCreateScan.mockReset();
-    mockCreateScan.mockResolvedValue({
+    mockCreateScanStream.mockReset();
+    mockCreateScanStream.mockResolvedValue({
       sessionId: "scan_test",
       accessToken: "tok",
       status: "processing",
@@ -87,7 +105,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
     vi.restoreAllMocks();
   });
 
-  describe("Document forwarding", () => {
+  describe("Body forwarding", () => {
     it("forwards PDF document files to v1", async () => {
       const pdfFile = makeFile("manual.pdf", "application/pdf", minimalPdf());
 
@@ -99,10 +117,9 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [input] = mockCreateScan.mock.calls[0];
-      expect(input.documents).toHaveLength(1);
-      expect(input.documents[0].mimeType).toBe("application/pdf");
-      expect(input.documents[0].buffer).toBeInstanceOf(Buffer);
+      const text = await forwardedBodyText();
+      expect(text).toContain('name="documents"; filename="manual.pdf"');
+      expect(text).toContain("Content-Type: application/pdf");
     });
 
     it("forwards multiple PDF files", async () => {
@@ -119,8 +136,9 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [input] = mockCreateScan.mock.calls[0];
-      expect(input.documents).toHaveLength(2);
+      const text = await forwardedBodyText();
+      expect(text).toContain('filename="doc1.pdf"');
+      expect(text).toContain('filename="doc2.pdf"');
     });
 
     it("forwards plain text files", async () => {
@@ -138,8 +156,10 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [input] = mockCreateScan.mock.calls[0];
-      expect(input.documents).toHaveLength(1);
+      const text = await forwardedBodyText();
+      expect(text).toContain('filename="notes.txt"');
+      expect(text).toContain("Content-Type: text/plain");
+      expect(text).toContain("这是一份合规文档");
     });
 
     it("forwards multiple images", async () => {
@@ -153,12 +173,13 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [input] = mockCreateScan.mock.calls[0];
-      expect(input.images).toHaveLength(2);
-      expect(input.documents).toHaveLength(1);
+      const text = await forwardedBodyText();
+      expect(text).toContain('filename="front.jpg"');
+      expect(text).toContain('filename="back.jpg"');
+      expect(text).toContain('filename="doc.pdf"');
     });
 
-    it("captures originalName and mimeType on every image", async () => {
+    it("preserves originalName and mimeType on every image", async () => {
       const image = makeFile("product-photo.jpg", "image/jpeg");
 
       const { POST } = await import("@/app/api/scan/route");
@@ -169,37 +190,54 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(202);
-      const [input] = mockCreateScan.mock.calls[0];
-      expect(input.images[0].mimeType).toBe("image/jpeg");
-      expect(typeof input.images[0].originalName).toBe("string");
+      const text = await forwardedBodyText();
+      expect(text).toContain('filename="product-photo.jpg"');
+      expect(text).toContain("Content-Type: image/jpeg");
     });
   });
 
   describe("Input validation", () => {
-    it("returns 400 when FormData parsing throws", async () => {
+    it("returns 400 when a multipart request carries no body (BAD_INPUT)", async () => {
       const { POST } = await import("@/app/api/scan/route");
-      const req = {
-        headers: new Headers(),
-        formData: vi.fn().mockRejectedValue(new Error("bad multipart body")),
-      } as unknown as Request;
+      const req = new Request("http://localhost/api/scan", {
+        method: "POST",
+        headers: { "content-type": "multipart/form-data; boundary=---x" },
+      });
 
       const res = await POST(req);
 
       expect(res.status).toBe(400);
-      expect(mockCreateScan).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error.code).toBe("BAD_INPUT");
+      expect(mockCreateScanStream).not.toHaveBeenCalled();
     });
 
-    it("rejects uploads with no images", async () => {
+    it("rejects uploads with no images via the upstream IMAGE_REQUIRED 400", async () => {
+      // The image-required check moved to the RAG service
+      // (rag_service/api/v1.py `_read_uploads`); the BFF forwards the body
+      // and maps the upstream rejection through unchanged.
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockCreateScanStream.mockRejectedValueOnce(
+        new V1EnvelopeError("IMAGE_REQUIRED", "At least one image is required", 400, "req-1"),
+      );
+
       const { POST } = await import("@/app/api/scan/route");
       const fd = buildFormData({ images: [] });
       const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
       const res = await POST(req);
 
       expect(res.status).toBe(400);
-      expect(mockCreateScan).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error.code).toBe("IMAGE_REQUIRED");
+      expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
     });
 
-    it("rejects more than MAX_IMAGE_FILES images", async () => {
+    it("rejects too many images via the upstream TOO_MANY_IMAGES 400", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockCreateScanStream.mockRejectedValueOnce(
+        new V1EnvelopeError("TOO_MANY_IMAGES", "Too many images", 400, "req-1"),
+      );
+
       const { POST } = await import("@/app/api/scan/route");
       const images = Array.from({ length: 9 }, (_, i) => makeFile(`img-${i}.jpg`));
       const fd = buildFormData({ images });
@@ -207,10 +245,17 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(400);
-      expect(mockCreateScan).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error.code).toBe("TOO_MANY_IMAGES");
+      expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
     });
 
-    it("rejects unsupported image mime type", async () => {
+    it("rejects unsupported image mime type via the upstream INVALID_FILE_TYPE 400", async () => {
+      const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+      mockCreateScanStream.mockRejectedValueOnce(
+        new V1EnvelopeError("INVALID_FILE_TYPE", "Unsupported file type", 400, "req-1"),
+      );
+
       const { POST } = await import("@/app/api/scan/route");
       const gif = makeFile("anim.gif", "image/gif");
 
@@ -222,14 +267,16 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const res = await POST(req);
 
       expect(res.status).toBe(400);
-      expect(mockCreateScan).not.toHaveBeenCalled();
+      const body = await res.json();
+      expect(body.error.code).toBe("INVALID_FILE_TYPE");
+      expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
     });
 
-    it("accepts all valid product categories", async () => {
+    it("accepts all valid product categories and forwards them verbatim", async () => {
       const { POST } = await import("@/app/api/scan/route");
       const categories = ["electronics", "appliance", "3c", "toy", "home", "other"];
       for (const category of categories) {
-        mockCreateScan.mockClear();
+        mockCreateScanStream.mockClear();
         const req = new Request("http://localhost/api/scan", {
           method: "POST",
           body: buildFormData({ category }),
@@ -237,8 +284,8 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
         const res = await POST(req);
 
         expect(res.status).toBe(202);
-        const [input] = mockCreateScan.mock.calls[0];
-        expect(input.category).toBe(category);
+        const text = await forwardedBodyText();
+        expect(multipartFieldValue(text, "category")).toBe(category);
       }
     });
   });
@@ -246,7 +293,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
   describe("Response shape", () => {
     it("returns sessionId, status, pollUrl, and accessToken at top level (ok() spread)", async () => {
     vi.stubEnv("ATTRAX_DEBUG_TOKEN", "1"); // 审计 3.4：token 仅显式 opt-in 时进响应体
-      mockCreateScan.mockResolvedValueOnce({
+      mockCreateScanStream.mockResolvedValueOnce({
         sessionId: "scan_unique",
         accessToken: "tok_unique",
         status: "processing",
@@ -271,7 +318,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       const ids = new Set<string>();
       const { POST } = await import("@/app/api/scan/route");
       for (let i = 0; i < 3; i++) {
-        mockCreateScan.mockResolvedValueOnce({
+        mockCreateScanStream.mockResolvedValueOnce({
           sessionId: `scan_unique_${i}`,
           accessToken: "tok",
           status: "processing",
@@ -292,7 +339,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
   describe("V1EnvelopeError mapping", () => {
     it("4xx envelope errors map to their httpStatus", async () => {
       const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
-      mockCreateScan.mockRejectedValueOnce(
+      mockCreateScanStream.mockRejectedValueOnce(
         new V1EnvelopeError("INVALID_MARKET", "unknown market XX", 400, "req-x"),
       );
 
@@ -307,7 +354,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
 
     it("5xx envelope errors collapse to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
       const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
-      mockCreateScan.mockRejectedValueOnce(
+      mockCreateScanStream.mockRejectedValueOnce(
         new V1EnvelopeError("SCAN_SERVICE_UNAVAILABLE", "down", 503, null),
       );
 
@@ -323,7 +370,7 @@ describe("POST /api/scan - Validation and Error Coverage", () => {
       // all 5xx upstream errors to 502 (Bad Gateway) since the client is
       // talking to a BFF, not directly to the scan service.
       const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
-      mockCreateScan.mockRejectedValueOnce(
+      mockCreateScanStream.mockRejectedValueOnce(
         new V1EnvelopeError("SCAN_SERVICE_TIMEOUT", "slow", 504, null),
       );
 

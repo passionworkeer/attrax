@@ -11,7 +11,7 @@
           "public-v1"
         ],
         "summary": "Create Scan",
-        "description": "Create a scan session.\n\n``declared_facts`` (J09): a JSON object of user-stated product facts\n(e.g. ``{\"battery\": \"absent\"}``) collected by the upload wizard's\nconditional questions. Malformed JSON is ignored — the facts are an\nenhancement to applicability, never a request requirement.",
+        "description": "Create a scan session.\n\n``declared_facts`` (J09): a JSON object of user-stated product facts\n(e.g. ``{\"battery\": \"absent\"}``) collected by the upload wizard's\nconditional questions. Malformed JSON is ignored — the facts are an\nenhancement to applicability, never a request requirement.\n``userDeclaredFacts`` is the browser's legacy field name for the same\npayload (the BFF used to rename it; it now forwards the multipart body\nverbatim, so both names are accepted).\n\n``query`` is optional here: when the browser posts its form directly the\nBFF no longer synthesizes the Chinese query string, so an empty ``query``\nfalls back to the same wording the BFF used to build.",
         "operationId": "create_scan_api_v1_scans_post",
         "requestBody": {
           "content": {
@@ -968,6 +968,11 @@
           "declared_facts": {
             "type": "string",
             "title": "Declared Facts",
+            "default": ""
+          },
+          "user_declared_facts": {
+            "type": "string",
+            "title": "User Declared Facts",
             "default": ""
           },
           "images": {

@@ -4,16 +4,20 @@ vi.stubEnv("ATTRAX_DEBUG_TOKEN", "1"); // 审计 3.4：token 仅显式 opt-in �
 /**
  * Unit tests for POST /api/scan (handoff BFF).
  *
- * The route is now a thin forwarder to FastAPI /api/v1/scans via
+ * The route is a thin forwarder to FastAPI /api/v1/scans via
  * `lib/rag-client/v1-adapter`. We mock the adapter module directly so the
- * tests stay hermetic and don't need a running RAG service.
+ * tests stay hermetic and don't need a running RAG service. After the
+ * streaming refactor (H2/H3), the route passes the inbound body straight
+ * through to `createScanStream`; per-file signature / type / size checks
+ * live on the RAG side (`python-multipart` + `_valid_signature`). BFF-side
+ * assertions now exercise header-level + boundary checks only.
  *
  * Run with: npx vitest run tests/unit/scan-post-route.test.ts
  */
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-const { mockCreateScan } = vi.hoisted(() => ({
-  mockCreateScan: vi.fn(),
+const { mockCreateScanStream } = vi.hoisted(() => ({
+  mockCreateScanStream: vi.fn(),
 }));
 
 vi.mock("@/lib/rag-client/v1-adapter", async () => {
@@ -22,7 +26,7 @@ vi.mock("@/lib/rag-client/v1-adapter", async () => {
   );
   return {
     ...actual,
-    createScan: mockCreateScan,
+    createScanStream: mockCreateScanStream,
   };
 vi.unstubAllEnvs();
 });
@@ -61,8 +65,8 @@ function buildFormData(
 
 describe("POST /api/scan", () => {
   beforeEach(() => {
-    mockCreateScan.mockReset();
-    mockCreateScan.mockResolvedValue({
+    mockCreateScanStream.mockReset();
+    mockCreateScanStream.mockResolvedValue({
       sessionId: "scan_abc123",
       accessToken: "tok_test",
       status: "processing",
@@ -94,7 +98,7 @@ describe("POST /api/scan", () => {
   });
 
   it("remaps the v1 pollUrl to the Next.js BFF route /api/scan/{id}", async () => {
-    mockCreateScan.mockResolvedValue({
+    mockCreateScanStream.mockResolvedValue({
       sessionId: "scan_xyz",
       accessToken: "tok",
       status: "processing",
@@ -108,22 +112,25 @@ describe("POST /api/scan", () => {
     expect(body.pollUrl).toBe("/api/scan/scan_xyz");
   });
 
-  it("forwards the createScan input with images, category, and markets", async () => {
+  it("streams the original body byte-for-byte to the RAG adapter", async () => {
     const { POST } = await import("@/app/api/scan/route");
     const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
     await POST(req);
 
-    expect(mockCreateScan).toHaveBeenCalledTimes(1);
-    const [input] = mockCreateScan.mock.calls[0];
-    expect(input.category).toBe("electronics");
-    expect(input.markets).toEqual(["EU", "US"]);
-    expect(input.images).toHaveLength(1);
-    expect(input.images[0].buffer).toBeInstanceOf(Buffer);
-    expect(input.images[0].mimeType).toBe("image/jpeg");
-    expect(typeof input.images[0].originalName).toBe("string");
+    expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
+    const [input] = mockCreateScanStream.mock.calls[0];
+    expect(input.body).toBeInstanceOf(ReadableStream);
+    expect(input.headers.contentType).toMatch(/^multipart\/form-data; boundary=/);
   });
 
-  it("returns 400 when no images provided", async () => {
+  it("returns 400 when no images provided (upstream rejection surfaces as 400)", async () => {
+    // Streaming refactor moved image-required check to FastAPI. The route
+    // maps an upstream 400 IMAGE_REQUIRED to BFF 400 with that error code.
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScanStream.mockRejectedValueOnce(
+      new V1EnvelopeError("IMAGE_REQUIRED", "At least one image is required", 400, "req-1"),
+    );
+
     const { POST } = await import("@/app/api/scan/route");
     const fd = buildFormData({ images: [] });
     const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
@@ -131,34 +138,97 @@ describe("POST /api/scan", () => {
 
     expect(res.status).toBe(400);
     const body = await res.json();
-    expect(body.error).toBeDefined();
-    expect(mockCreateScan).not.toHaveBeenCalled();
+    expect(body.error.code).toBe("IMAGE_REQUIRED");
   });
 
-  it("parses comma-separated markets correctly", async () => {
+  it("returns 400 when markets cannot be parsed (upstream INVALID_REQUEST)", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScanStream.mockRejectedValueOnce(
+      new V1EnvelopeError("INVALID_REQUEST", "Use one to five supported markets", 400, "req-1"),
+    );
+
     const { POST } = await import("@/app/api/scan/route");
     const fd = buildFormData({ markets: "EU, UK, US" });
     const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
-    await POST(req);
-
-    const [input] = mockCreateScan.mock.calls[0];
-    expect(input.markets).toEqual(["EU", "UK", "US"]);
+    const res = await POST(req);
+    expect(res.status).toBe(400);
+    expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
   });
 
-  it("accepts multiple images", async () => {
+  it("accepts multiple images (count enforcement moved upstream)", async () => {
     const { POST } = await import("@/app/api/scan/route");
     const images = [makeFile("a.jpg"), makeFile("b.jpg"), makeFile("c.jpg")];
     const fd = buildFormData({ images });
     const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
-    await POST(req);
+    const res = await POST(req);
 
-    const [input] = mockCreateScan.mock.calls[0];
-    expect(input.images).toHaveLength(3);
+    expect(res.status).toBe(202);
+    const [input] = mockCreateScanStream.mock.calls[0];
+    expect(input.body).toBeInstanceOf(ReadableStream);
+  });
+
+  it("rejects requests with no multipart Content-Type (400 BAD_INPUT)", async () => {
+    // The scan route keeps the pre-rewrite code/status (400 BAD_INPUT); the
+    // evidence route's non-multipart rejection is 400 INVALID_REQUEST.
+    const { POST } = await import("@/app/api/scan/route");
+    const req = new Request("http://localhost/api/scan", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({}),
+    });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error.code).toBe("BAD_INPUT");
+    expect(mockCreateScanStream).not.toHaveBeenCalled();
+  });
+
+  it("rejects an unsupported category before streaming (400 INVALID_CATEGORY)", async () => {
+    // The BFF peeks the first 8KB for `category`; the upload wizard puts its
+    // text fields before the file parts so the peek can see them. Upstream
+    // re-validates too, so a miss only costs a cheap early rejection.
+    const { POST } = await import("@/app/api/scan/route");
+    const fd = new FormData();
+    fd.append("category", "not-a-real-category");
+    fd.append("markets", "EU,US");
+    fd.append("images", makeFile("test.jpg"));
+    const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
+    const res = await POST(req);
+
+    expect(res.status).toBe(400);
+    const body = await res.json();
+    expect(body.error.code).toBe("INVALID_CATEGORY");
+    expect(mockCreateScanStream).not.toHaveBeenCalled();
+  });
+
+  it("rejects a body over the 50MB Content-Length cap (413 REQUEST_TOO_LARGE)", async () => {
+    const { POST } = await import("@/app/api/scan/route");
+    const req = new Request("http://localhost/api/scan", {
+      method: "POST",
+      headers: {
+        "content-type": "multipart/form-data; boundary=---x",
+        "content-length": String(60 * 1024 * 1024),
+      },
+      body: new ReadableStream({
+        start(controller) {
+          controller.close();
+        },
+      }),
+      // Node's undici fetch/Request requires duplex when the body is a stream.
+      duplex: "half",
+    } as RequestInit);
+    const res = await POST(req);
+
+    expect(res.status).toBe(413);
+    const body = await res.json();
+    expect(body.error.code).toBe("REQUEST_TOO_LARGE");
+    expect(mockCreateScanStream).not.toHaveBeenCalled();
   });
 
   it("maps V1EnvelopeError to its httpStatus", async () => {
     const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
-    mockCreateScan.mockRejectedValueOnce(
+    mockCreateScanStream.mockRejectedValueOnce(
       new V1EnvelopeError("INVALID_REQUEST", "bad markets", 400, "req-1"),
     );
 
@@ -174,7 +244,7 @@ describe("POST /api/scan", () => {
 
   it("collapses infrastructure errors (5xx) to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
     const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
-    mockCreateScan.mockRejectedValueOnce(
+    mockCreateScanStream.mockRejectedValueOnce(
       new V1EnvelopeError("SCAN_SERVICE_UNAVAILABLE", "boom", 503, null),
     );
 
@@ -188,7 +258,7 @@ describe("POST /api/scan", () => {
   });
 
   it("maps non-V1EnvelopeError to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
-    mockCreateScan.mockRejectedValueOnce(new Error("network"));
+    mockCreateScanStream.mockRejectedValueOnce(new Error("network"));
 
     const { POST } = await import("@/app/api/scan/route");
     const req = new Request("http://localhost/api/scan", { method: "POST", body: buildFormData() });
@@ -197,31 +267,34 @@ describe("POST /api/scan", () => {
     expect(res.status).toBe(502);
   });
 
-  it("returns 400 for image over 12MB", async () => {
-    const { POST } = await import("@/app/api/scan/route");
-    // 13MB JPEG
-    const big = new Uint8Array(13 * 1024 * 1024);
-    big[0] = 0xff;
-    big[1] = 0xd8;
-    big[2] = 0xff;
-    const arrBuf = new ArrayBuffer(big.byteLength);
-    new Uint8Array(arrBuf).set(big);
-    const bigFile = new File([arrBuf], "huge.jpg", { type: "image/jpeg" });
+  it("surfaces the upstream per-file size cap as 413 FILE_TOO_LARGE", async () => {
+    // The per-file size cap moved to the RAG service's `_read_uploads`
+    // (rag_service/api/v1.py) — 413 FILE_TOO_LARGE. The BFF streams the
+    // body unconditionally and maps the upstream rejection through.
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScanStream.mockRejectedValueOnce(
+      new V1EnvelopeError("FILE_TOO_LARGE", "Uploaded file is too large", 413, "req-1"),
+    );
 
-    const fd = new FormData();
-    fd.append("images", bigFile);
-    fd.append("category", "electronics");
-    fd.append("markets", "EU,US");
-    const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
+    const { POST } = await import("@/app/api/scan/route");
+    const req = new Request("http://localhost/api/scan", {
+      method: "POST",
+      body: buildFormData({ images: [makeFile("huge.jpg")] }),
+    });
     const res = await POST(req);
 
-    expect(res.status).toBe(400);
+    expect(res.status).toBe(413);
     const body = await res.json();
-    expect(body.error.code).toBe("IMAGE_TOO_LARGE");
-    expect(mockCreateScan).not.toHaveBeenCalled();
+    expect(body.error.code).toBe("FILE_TOO_LARGE");
+    expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
   });
 
-  it("returns 400 for image with unsupported mime type", async () => {
+  it("returns 400 when upstream rejects unsupported mime type", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScanStream.mockRejectedValueOnce(
+      new V1EnvelopeError("INVALID_FILE_TYPE", "Unsupported file type", 400, "req-1"),
+    );
+
     const { POST } = await import("@/app/api/scan/route");
     const gif = new File([new Uint8Array([0, 0, 0])], "anim.gif", { type: "image/gif" });
 
@@ -234,11 +307,15 @@ describe("POST /api/scan", () => {
 
     expect(res.status).toBe(400);
     const body = await res.json();
-    expect(body.error.code).toBe("UNSUPPORTED_IMAGE_TYPE");
-    expect(mockCreateScan).not.toHaveBeenCalled();
+    expect(body.error.code).toBe("INVALID_FILE_TYPE");
   });
 
-  it("rejects more than 8 images", async () => {
+  it("returns 400 when upstream rejects too many images", async () => {
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScanStream.mockRejectedValueOnce(
+      new V1EnvelopeError("TOO_MANY_IMAGES", "Too many images", 400, "req-1"),
+    );
+
     const { POST } = await import("@/app/api/scan/route");
     const images = Array.from({ length: 9 }, (_, i) => makeFile(`img-${i}.jpg`));
     const fd = buildFormData({ images });
@@ -246,6 +323,29 @@ describe("POST /api/scan", () => {
     const res = await POST(req);
 
     expect(res.status).toBe(400);
-    expect(mockCreateScan).not.toHaveBeenCalled();
+    expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
+  });
+
+  it("DEMO_MODE parses the real form and builds a demo session without touching the adapter", async () => {
+    const previous = process.env.DEMO_MODE;
+    process.env.DEMO_MODE = "true";
+    try {
+      const { POST } = await import("@/app/api/scan/route");
+      const fd = buildFormData({ category: "toy", markets: "EU,US" });
+      const req = new Request("http://localhost/api/scan", { method: "POST", body: fd });
+      const res = await POST(req);
+
+      expect(res.status).toBe(202);
+      const body = await res.json();
+      expect(body.sessionId).toMatch(/^scan_demo_/);
+      expect(body.status).toBe("processing");
+      expect(body.pollUrl).toBe(`/api/scan/${body.sessionId}`);
+      expect(res.headers.get("set-cookie")).toContain(`attrax_scan_${body.sessionId}`);
+      // The demo branch short-circuits before the RAG forwarder.
+      expect(mockCreateScanStream).not.toHaveBeenCalled();
+    } finally {
+      if (previous === undefined) delete process.env.DEMO_MODE;
+      else process.env.DEMO_MODE = previous;
+    }
   });
 });

@@ -184,11 +184,18 @@ export async function getScan(sessionId: string, accessToken: string) {
 
 当前 Next.js 前端的真实调用链是浏览器 → `/api/scan`（BFF，HttpOnly cookie）→ RAG `/api/v1/scans`（Bearer）。对应文件：
 
-- `lib/rag-client/v1-adapter.ts` — `createScan()` / `getScan()` / `appendEvidence()` / `requestRevision()`
+- `lib/rag-client/v1-adapter.ts` — `createScanStream()` / `getScan()` / `appendEvidenceStream()` / `requestRevision()` / `streamScanAsset()`
 - `app/api/scan/route.ts` — `POST /api/scan` 创建扫描
 - `app/api/scan/[sessionId]/route.ts` — `GET /api/scan/[sessionId]` 轮询
 - `app/api/scan/[sessionId]/evidence/route.ts` — `POST /api/scan/[sessionId]/evidence` 补证据（J10）
 - `app/api/scan/[sessionId]/revisions/route.ts` — `POST /api/scan/[sessionId]/revisions` 排重扫（J10）
+
+**请求体是原样转发的**（2026-09-18 并发加固）：BFF 不再解析 multipart 再重新组装，而是把 `request.body` 这个 `ReadableStream` 直接交给上游 fetch（`duplex: "half"`），避免 50MB 上传在 Node 堆里留两份副本。由此产生两条必须遵守的约定：
+
+- 上传页的文本字段排在文件字段**前面**——BFF 只从请求体前 8KB 嗅探 `category` 做早期拒绝，文件排在前面会让嗅探落空；
+- 浏览器发出的字段名就是 RAG 看到的字段名（`category` / `markets` 逗号分隔 / `declared_facts`）。RAG 仍接受旧名 `userDeclaredFacts` 与 JSON 数组形式的 `markets`，但这只是给未刷新的旧页面兜底。
+
+文件数量、类型、魔数、总大小等逐项校验由 RAG `api/v1.py:_read_uploads` 完成——这是校验的唯一真值源。
 
 如果接入的是当前 Next.js 前端扩展，**不要**直接打 `/api/v1`，永远走 `/api/scan/*`。
 

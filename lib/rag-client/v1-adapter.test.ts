@@ -14,9 +14,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   createScan,
   getScan,
-  getScanAsset,
   getRagServiceUrl,
   isDemoSession,
+  streamScanAsset,
   unwrapV1Envelope,
   upstreamForwardFrom,
   V1EnvelopeError,
@@ -180,6 +180,59 @@ describe("v1-adapter", () => {
       });
     });
 
+    it("encodes declaredFacts as a bounded declared_facts JSON form field", async () => {
+      const created = {
+        sessionId: "scan_facts",
+        accessToken: "tok-4",
+        status: "processing" as const,
+        pollUrl: "/api/v1/scans/scan_facts",
+      };
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ data: created, error: null, meta: { requestId: "req-11" } }, { status: 202 }),
+      );
+
+      await createScan({
+        query: "test",
+        category: "electronics",
+        markets: ["EU"],
+        images: [{ buffer: Buffer.from("img"), originalName: "a.png", mimeType: "image/png" }],
+        declaredFacts: { battery: "x".repeat(500), "": "orphan", magnets: "" },
+      });
+
+      const [, init] = mockFetch.mock.calls[0] as [string, RequestInit];
+      const form = init.body as FormData;
+      // Values truncated to 200 chars; empty keys/values dropped. The RAG
+      // side re-applies the same clamping in `clamp_declared_facts`
+      // (rag_service/application/scans.py) for the streamed BFF path.
+      expect(JSON.parse(String(form.get("declared_facts")))).toEqual({
+        battery: "x".repeat(200),
+      });
+    });
+
+    it("omits declared_facts when no facts are supplied", async () => {
+      const created = {
+        sessionId: "scan_nofacts",
+        accessToken: "tok-5",
+        status: "processing" as const,
+        pollUrl: "/api/v1/scans/scan_nofacts",
+      };
+      mockFetch.mockResolvedValueOnce(
+        jsonResponse({ data: created, error: null, meta: { requestId: "req-12" } }, { status: 202 }),
+      );
+
+      await createScan({
+        query: "test",
+        category: "electronics",
+        markets: ["EU"],
+        images: [{ buffer: Buffer.from("img"), originalName: "a.png", mimeType: "image/png" }],
+        declaredFacts: {},
+      });
+
+      const [, init] = mockFetch.mock.calls[0] as [string, RequestInit];
+      const form = init.body as FormData;
+      expect(form.get("declared_facts")).toBeNull();
+    });
+
     it("AbortError maps to SCAN_SERVICE_TIMEOUT", async () => {
       const abortErr = new Error("aborted");
       abortErr.name = "AbortError";
@@ -280,7 +333,7 @@ describe("v1-adapter", () => {
   });
 
   describe("session resources", () => {
-    it("returns authenticated asset bytes and content type", async () => {
+    it("streams an authenticated asset back as the unread upstream Response", async () => {
       mockFetch.mockResolvedValueOnce(
         new Response(new Uint8Array([1, 2, 3]), {
           status: 200,
@@ -288,10 +341,29 @@ describe("v1-adapter", () => {
         }),
       );
 
-      const asset = await getScanAsset({ sessionId: "scan_abc", accessToken: "tok", index: 0 });
+      const asset = await streamScanAsset({ sessionId: "scan_abc", accessToken: "tok", index: 0 });
 
-      expect(Array.from(asset.bytes)).toEqual([1, 2, 3]);
-      expect(asset.contentType).toBe("image/png");
+      expect(asset.status).toBe(200);
+      expect(asset.headers.get("content-type")).toBe("image/png");
+      expect(Array.from(new Uint8Array(await asset.arrayBuffer()))).toEqual([1, 2, 3]);
+      const [url, init] = mockFetch.mock.calls[0] as [string, RequestInit];
+      expect(url).toBe("http://localhost:8001/api/v1/scans/scan_abc/assets/0");
+      expect((init.headers as Record<string, string>).Authorization).toBe("Bearer tok");
+    });
+
+    it("rejects invalid indexes without hitting the network", async () => {
+      await expect(
+        streamScanAsset({ sessionId: "scan_abc", accessToken: "tok", index: -1 }),
+      ).rejects.toMatchObject({ code: "NOT_FOUND", httpStatus: 404 });
+      expect(mockFetch).not.toHaveBeenCalled();
+    });
+
+    it("maps an upstream 404 to V1EnvelopeError(NOT_FOUND)", async () => {
+      mockFetch.mockResolvedValueOnce(emptyResponse(404));
+
+      await expect(
+        streamScanAsset({ sessionId: "scan_missing", accessToken: "tok", index: 2 }),
+      ).rejects.toMatchObject({ code: "NOT_FOUND", httpStatus: 404 });
     });
   });
 

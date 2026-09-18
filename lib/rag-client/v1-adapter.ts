@@ -148,6 +148,22 @@ function buildAuthHeaders(
   return headers;
 }
 
+// Merge the upstream auth/forward headers into an existing header map. Used
+// when the BFF forwards the original multipart Content-Type (so the boundary
+// matches the streamed body) and we still need to attach our auth chain.
+function mergeForwardHeaders(
+  base: Record<string, string>,
+  accessToken: string | null,
+  forward?: UpstreamForward,
+): Record<string, string> {
+  const merged: Record<string, string> = { ...base };
+  const auth = buildAuthHeaders(accessToken, forward);
+  for (const [key, value] of Object.entries(auth)) {
+    if (value) merged[key] = value;
+  }
+  return merged;
+}
+
 async function fetchWithTimeout(
   url: string,
   init: RequestInit,
@@ -290,6 +306,21 @@ export interface CreateScanInput extends UpstreamForward {
   declaredFacts?: Record<string, string>;
 }
 
+/**
+ * Headers supplied by the BFF when it forwards the inbound request's
+ * multipart body verbatim (no `await request.formData()`). The BFF must
+ * include the original `content-type` so the upstream parser sees the same
+ * boundary; everything else is added by the adapter.
+ */
+export interface StreamedMultipartHeaders {
+  contentType: string;
+}
+
+export interface CreateScanStreamInput extends UpstreamForward {
+  body: ReadableStream<Uint8Array>;
+  headers: StreamedMultipartHeaders;
+}
+
 export interface CreatedScanData {
   sessionId: string;
   accessToken: string;
@@ -345,6 +376,33 @@ export async function createScan(input: CreateScanInput): Promise<CreatedScanDat
       method: "POST",
       body: formData,
       headers: buildAuthHeaders(null, input),
+    },
+    RAG_SERVICE_TIMEOUT_MS,
+    "SCAN_SERVICE_UNAVAILABLE",
+  );
+}
+
+// Forward the original multipart body byte-for-byte to the RAG service so
+// neither the BFF nor Node buffers the full upload into heap. FastAPI's
+// `python-multipart` parses the streamed body as it arrives, identical to
+// the previous buffered path. The BFF is responsible for content-length and
+// boundary sanity (validateContentLength on the inbound request + a small
+// `peek` of the body when the inbound header is missing). The `duplex`
+// option is required by Node's undici fetch when streaming a request body.
+export async function createScanStream(input: CreateScanStreamInput): Promise<CreatedScanData> {
+  return requestEnvelope<CreatedScanData>(
+    V1_SCAN_CREATE_PATH,
+    {
+      method: "POST",
+      body: input.body,
+      headers: mergeForwardHeaders(
+        { "Content-Type": input.headers.contentType },
+        null,
+        input,
+      ),
+      // @ts-expect-error duplex is supported by Node's fetch but missing from
+      // the DOM RequestInit type. See: https://nodejs.org/api/globals.html#fetch
+      duplex: "half",
     },
     RAG_SERVICE_TIMEOUT_MS,
     "SCAN_SERVICE_UNAVAILABLE",
@@ -409,13 +467,48 @@ export async function appendEvidence(input: AppendEvidenceInput): Promise<Append
   );
 }
 
+export interface AppendEvidenceStreamInput extends SessionResourceInput {
+  body: ReadableStream<Uint8Array>;
+  headers: StreamedMultipartHeaders;
+}
+
+export async function appendEvidenceStream(
+  input: AppendEvidenceStreamInput,
+): Promise<AppendEvidenceData> {
+  return requestEnvelope<AppendEvidenceData>(
+    `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/evidence`,
+    {
+      method: "POST",
+      body: input.body,
+      headers: mergeForwardHeaders(
+        { "Content-Type": input.headers.contentType },
+        input.accessToken,
+        input,
+      ),
+      // @ts-expect-error duplex is supported by Node's fetch but missing from
+      // the DOM RequestInit type. See: https://nodejs.org/api/globals.html#fetch
+      duplex: "half",
+    },
+    RAG_SERVICE_TIMEOUT_MS,
+    "SCAN_SERVICE_UNAVAILABLE",
+  );
+}
+
 export interface RevisionQueueData {
   status: "queued" | "already_queued";
   revision: number;
   jobId?: string;
 }
 
-export async function requestRevision(input: SessionResourceInput): Promise<RevisionQueueData> {
+export interface RequestRevisionInput extends SessionResourceInput {
+  /** Client-supplied intent key. Two clicks that mean the same re-run share
+   * it (deduped by the backend); a genuinely new re-run after more evidence
+   * arrives carries a fresh one. Defaults to the session-level key so a
+   * caller that does not care still gets retry-safety. */
+  idempotencyKey?: string;
+}
+
+export async function requestRevision(input: RequestRevisionInput): Promise<RevisionQueueData> {
   return requestEnvelope<RevisionQueueData>(
     `${V1_SCAN_CREATE_PATH}/${encodeURIComponent(input.sessionId)}/revisions`,
     {
@@ -424,7 +517,9 @@ export async function requestRevision(input: SessionResourceInput): Promise<Revi
         ...buildAuthHeaders(input.accessToken, input),
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ idempotencyKey: `${input.sessionId}:revision` }),
+      body: JSON.stringify({
+        idempotencyKey: input.idempotencyKey ?? `${input.sessionId}:revision`,
+      }),
     },
     RAG_SERVICE_TIMEOUT_MS,
     "SCAN_SERVICE_UNAVAILABLE",
@@ -435,9 +530,15 @@ export interface GetScanAssetInput extends SessionResourceInput {
   index: number;
 }
 
-export async function getScanAsset(
-  input: GetScanAssetInput,
-): Promise<{ bytes: Uint8Array; contentType: string }> {
+/**
+ * Fetch a session asset and hand back the upstream `Response` unread, so the
+ * BFF can pipe `response.body` straight to the browser. Buffering here used
+ * to pin a full copy of every image in the Node heap — the result page loads
+ * its carousel concurrently, so that multiplied out to tens of MB per page
+ * view. The timeout covers the upstream headers only, exactly as the
+ * buffered version did.
+ */
+export async function streamScanAsset(input: GetScanAssetInput): Promise<Response> {
   if (!Number.isInteger(input.index) || input.index < 0) {
     throw new V1EnvelopeError("NOT_FOUND", "Invalid asset index", 404, null);
   }
@@ -469,10 +570,7 @@ export async function getScanAsset(
   if (!response.ok) {
     await throwResponseError(response, "SCAN_SERVICE_UNAVAILABLE");
   }
-  return {
-    bytes: new Uint8Array(await response.arrayBuffer()),
-    contentType: response.headers.get("content-type") || "application/octet-stream",
-  };
+  return response;
 }
 
 export function isDemoSession(sessionId: string): boolean {

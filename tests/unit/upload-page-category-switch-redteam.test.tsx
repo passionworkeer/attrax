@@ -7,8 +7,9 @@
  *     it is still valid evidence and must ride along as supplementary
  *     evidence, with the visible 「补充证据」 notice matching the behavior.
  *  b. Answered conditional questions must land in the submitted FormData as
- *     `userDeclaredFacts` JSON (the field the BFF now forwards to the
- *     backend as declared_facts).
+ *     `declared_facts` JSON (the field name the RAG `/api/v1/scans` endpoint
+ *     declares; the BFF now forwards the multipart body verbatim, so the
+ *     page uses the backend name directly).
  */
 import React from "react";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
@@ -166,7 +167,7 @@ describe("J17 red-team: 品类切换后旧槽位文件不泄漏/不丢失", () =
   });
 });
 
-describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J09 通路）", () => {
+describe("J17 red-team: 条件问题答案随提交进入 declared_facts（J09 通路）", () => {
   beforeEach(() => {
     push.mockReset();
     vi.stubGlobal("URL", {
@@ -175,7 +176,7 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     });
   });
 
-  it("玩具品类回答「是否含电池=否」后提交，userDeclaredFacts JSON 包含该答案", async () => {
+  it("玩具品类回答「是否含电池=否」后提交，declared_facts JSON 包含该答案", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn().mockResolvedValue({
@@ -210,14 +211,14 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
       RequestInit,
     ];
     const formData = init.body as FormData;
-    const declaredRaw = formData.get("userDeclaredFacts");
+    const declaredRaw = formData.get("declared_facts");
     expect(declaredRaw).toBeTruthy();
     const declared = JSON.parse(String(declaredRaw)) as Record<string, string>;
     // The toy manifest's battery question id is "battery".
     expect(declared.battery).toBe("否");
   });
 
-  it("未回答任何条件问题时，不附带 userDeclaredFacts 字段", async () => {
+  it("未回答任何条件问题时，不附带 declared_facts 字段", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn().mockResolvedValue({
@@ -248,7 +249,7 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
       RequestInit,
     ];
     const formData = init.body as FormData;
-    expect(formData.get("userDeclaredFacts")).toBeNull();
+    expect(formData.get("declared_facts")).toBeNull();
   });
 
   it("切换品类清空旧答案（旧答案不进入新品类的声明）", async () => {
@@ -289,6 +290,6 @@ describe("J17 red-team: 条件问题答案随提交进入 userDeclaredFacts（J0
     const formData = init.body as FormData;
     // The electronics manifest's builtin_battery question was never answered;
     // the toy battery answer was cleared on switch → no facts at all.
-    expect(formData.get("userDeclaredFacts")).toBeNull();
+    expect(formData.get("declared_facts")).toBeNull();
   });
 });

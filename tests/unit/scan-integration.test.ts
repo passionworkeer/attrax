@@ -3,26 +3,28 @@ vi.stubEnv("ATTRAX_DEBUG_TOKEN", "1"); // 审计 3.4：token 仅显式 opt-in �
 /**
  * scan-integration.test.ts — TRUE integration test for POST /api/scan (handoff).
  *
- * After the v1-adapter rewire, this route is a thin forwarder to FastAPI
- * `/api/v1/scans` (no local pipeline). This test exercises:
- *   1. The route handler actually calls the v1-adapter with multipart body
+ * After the v1-adapter rewire + streaming rewrite, this route is a thin
+ * forwarder to FastAPI `/api/v1/scans`: it checks headers/boundary, peeks the
+ * first 8KB for the category, then streams the inbound multipart body
+ * byte-for-byte through `createScanStream`. This test exercises:
+ *   1. The route handler actually calls the v1-adapter with the raw body
  *   2. The BFF returns the wire-shape the upload page reads
  *      (`{ sessionId, status, pollUrl, accessToken }`)
- *   3. Validation rejections don't trigger any adapter call
+ *   3. Header/boundary rejections don't trigger any adapter call
  *   4. V1 envelope errors propagate to the client with their HTTP status
  *
  * The seam we mock is `lib/rag-client/v1-adapter` — that's the single
- * forwarder the route uses. Everything inside the route handler is real
- * (form parsing, validation, multipart assembly, response shaping).
+ * forwarder the route uses. Everything inside the route handler (header
+ * checks, the category peek, response shaping) is real.
  *
  * Run with: npx vitest run tests/unit/scan-integration.test.ts
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 // Mock ONLY the v1-adapter boundary. Everything inside the route handler
-// (form parsing, validation, multipart assembly, response shaping) is real.
-const { mockCreateScan, mockGetScan } = vi.hoisted(() => ({
-  mockCreateScan: vi.fn(),
+// (header/boundary checks, the 8KB category peek, response shaping) is real.
+const { mockCreateScanStream, mockGetScan } = vi.hoisted(() => ({
+  mockCreateScanStream: vi.fn(),
   mockGetScan: vi.fn(),
 }));
 
@@ -32,7 +34,7 @@ vi.mock("@/lib/rag-client/v1-adapter", async () => {
   );
   return {
     ...actual,
-    createScan: mockCreateScan,
+    createScanStream: mockCreateScanStream,
     getScan: mockGetScan,
   };
 vi.unstubAllEnvs();
@@ -69,14 +71,32 @@ function buildFormData(opts: { images?: File[]; category?: string; markets?: str
   return fd;
 }
 
+/**
+ * Read back the multipart body the route handed to `createScanStream`. The
+ * route forwards the inbound body byte-for-byte, so this is the same payload
+ * the RAG service's `python-multipart` parser receives.
+ */
+async function forwardedBodyText(callIndex = 0): Promise<string> {
+  const [input] = mockCreateScanStream.mock.calls[callIndex] as [
+    { body: ReadableStream<Uint8Array> },
+  ];
+  return await new Response(input.body).text();
+}
+
+/** Extract a text field's value from a serialized multipart body. */
+function multipartFieldValue(text: string, name: string): string | null {
+  const match = text.match(new RegExp(`name="${name}"\\r\\n\\r\\n([^\\r\\n]*)`));
+  return match ? match[1] : null;
+}
+
 // ── Tests ───────────────────────────────────────────────────────────────────
 
 describe("POST /api/scan — handoff BFF (no v1 network)", () => {
   beforeEach(() => {
-    mockCreateScan.mockReset();
+    mockCreateScanStream.mockReset();
     mockGetScan.mockReset();
     // Default: v1 returns a valid CreatedScanData response.
-    mockCreateScan.mockResolvedValue({
+    mockCreateScanStream.mockResolvedValue({
       sessionId: "scan_test123",
       accessToken: "tok_test",
       status: "processing",
@@ -106,27 +126,34 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
     expect(body.pollUrl).toBe("/api/scan/scan_test123");
   });
 
-  it("forwards images, category, and markets to the v1 adapter", async () => {
+  it("streams images, category, and markets through to the v1 adapter", async () => {
     const images = [makeImage("front.jpg"), makeImage("back.jpg")];
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
       body: buildFormData({ images, category: "toy", markets: "EU,US,UK" }),
     });
-    await POST(req);
+    const res = await POST(req);
 
-    expect(mockCreateScan).toHaveBeenCalledTimes(1);
-    const [input] = mockCreateScan.mock.calls[0];
-    expect(input.images).toHaveLength(2);
-    expect(input.images[0].originalName).toBe("front.jpg");
-    expect(input.images[0].mimeType).toBe("image/jpeg");
-    expect(input.images[0].buffer).toBeInstanceOf(Buffer);
-    expect(input.category).toBe("toy");
-    expect(input.markets).toEqual(["EU", "US", "UK"]);
+    expect(res.status).toBe(202);
+    expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
+    const [input] = mockCreateScanStream.mock.calls[0] as [
+      { body: ReadableStream<Uint8Array>; headers: { contentType: string } },
+    ];
+    // The original Content-Type (with its boundary) travels with the body.
+    expect(input.headers.contentType).toMatch(/^multipart\/form-data; boundary=/);
+
+    // Byte-for-byte forwarding: every field the browser sent is still in the
+    // stream the RAG service will parse.
+    const text = await forwardedBodyText();
+    expect(multipartFieldValue(text, "category")).toBe("toy");
+    expect(multipartFieldValue(text, "markets")).toBe("EU,US,UK");
+    expect(text).toContain('filename="front.jpg"');
+    expect(text).toContain('filename="back.jpg"');
   });
 
   it("surfaces v1 4xx errors with their original HTTP status (validation passthrough)", async () => {
     const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
-    mockCreateScan.mockRejectedValueOnce(
+    mockCreateScanStream.mockRejectedValueOnce(
       new V1EnvelopeError("INVALID_MARKET", "unknown market XX", 400, "req-1"),
     );
 
@@ -142,7 +169,7 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
   });
 
   it("collapses v1 5xx / network errors to 502 SCAN_SERVICE_UNAVAILABLE", async () => {
-    mockCreateScan.mockRejectedValueOnce(new Error("ECONNREFUSED"));
+    mockCreateScanStream.mockRejectedValueOnce(new Error("ECONNREFUSED"));
 
     const req = new Request("http://localhost/api/scan", {
       method: "POST",
@@ -155,7 +182,15 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
     expect(body.error.code).toBe("SCAN_SERVICE_UNAVAILABLE");
   });
 
-  it("rejects requests with no images at the validation layer (no adapter call)", async () => {
+  it("forwards image-less bodies; the upstream 400 IMAGE_REQUIRED surfaces to the client", async () => {
+    // The image-required check moved to the RAG service
+    // (rag_service/api/v1.py `_read_uploads`, covered by pytest); the BFF no
+    // longer pre-rejects, it streams the body and maps the upstream answer.
+    const { V1EnvelopeError } = await import("@/lib/rag-client/v1-adapter");
+    mockCreateScanStream.mockRejectedValueOnce(
+      new V1EnvelopeError("IMAGE_REQUIRED", "At least one image is required", 400, "req-1"),
+    );
+
     const fd = new FormData();
     fd.append("category", "electronics");
     fd.append("markets", "EU");
@@ -165,8 +200,8 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
     expect(res.status).toBe(400);
     const body = await res.json();
     expect(body.success).toBe(false);
-    expect(body.error.code).toBe("BAD_INPUT");
-    expect(mockCreateScan).not.toHaveBeenCalled();
+    expect(body.error.code).toBe("IMAGE_REQUIRED");
+    expect(mockCreateScanStream).toHaveBeenCalledTimes(1);
   });
 
   it("forwards documents when supplied alongside images", async () => {
@@ -186,15 +221,15 @@ describe("POST /api/scan — handoff BFF (no v1 network)", () => {
     const res = await POST(req);
 
     expect(res.status).toBe(202);
-    const [input] = mockCreateScan.mock.calls[0];
-    expect(input.documents).toHaveLength(1);
-    expect(input.documents[0].mimeType).toBe("application/pdf");
+    const text = await forwardedBodyText();
+    expect(text).toContain('name="documents"; filename="manual.pdf"');
+    expect(text).toContain("Content-Type: application/pdf");
   });
 });
 
 describe("GET /api/scan/[sessionId] — handoff BFF (no v1 network)", () => {
   beforeEach(() => {
-    mockCreateScan.mockReset();
+    mockCreateScanStream.mockReset();
     mockGetScan.mockReset();
   });
 

@@ -1,6 +1,6 @@
 import { fail } from "@/lib/api-response";
 import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
-import { getScanAsset, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { streamScanAsset, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { z } from "zod";
 
 // session_id = "scan_" + 1..50 chars of [0-9A-Za-z_-]（RAG service 构造，
@@ -32,19 +32,25 @@ export async function GET(
   }
 
   try {
-    const asset = await getScanAsset({
+    const upstream = await streamScanAsset({
       sessionId,
       accessToken,
       index,
       ...upstreamForwardFrom(request),
     });
-    return new Response(Buffer.from(asset.bytes), {
-      headers: {
-        "Content-Type": asset.contentType,
-        "Cache-Control": "private, max-age=3600",
-        "X-Content-Type-Options": "nosniff",
-      },
+    // Pipe the upstream body through untouched instead of buffering it — the
+    // result page loads its carousel concurrently and each buffered copy
+    // stayed alive for the whole response.
+    const headers = new Headers({
+      "Content-Type": upstream.headers.get("content-type") ?? "application/octet-stream",
+      "Cache-Control": "private, max-age=3600",
+      "X-Content-Type-Options": "nosniff",
     });
+    const contentLength = upstream.headers.get("content-length");
+    if (contentLength) {
+      headers.set("Content-Length", contentLength);
+    }
+    return new Response(upstream.body, { status: 200, headers });
   } catch (error) {
     if (error instanceof V1EnvelopeError) {
       const response = fail({ code: error.code, message: error.message }, { status: error.httpStatus });

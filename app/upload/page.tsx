@@ -86,9 +86,9 @@ export default function UploadPage() {
   const [sampleNotice, setSampleNotice] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   // J17: 品类条件问题的答案（问题 id → 用户选择的选项文案）。
-  // 提交时以 `userDeclaredFacts` JSON 字段附带给 BFF；BFF 透传为
-  // declared_facts → 后端 ScanSubmission → findings_builder 关闭不适用的
-  // 检查（例如声明无电池时不再要求电池仓照片）。
+  // 提交时以 `declared_facts` JSON 字段附带给 BFF，BFF 原样转发给 RAG →
+  // 后端 ScanSubmission → findings_builder 关闭不适用的检查（例如声明无
+  // 电池时不再要求电池仓照片）。
   const [categoryAnswers, setCategoryAnswers] = useState<Record<string, string>>({});
   const uploadedFiles = files.filter((file): file is File => Boolean(file));
   // J17: 照片槽 = 当前品类 manifest 的 photoSlots（数量可变，≤8）。
@@ -456,15 +456,16 @@ export default function UploadPage() {
     }
 
     const formData = new FormData();
-    uploadedFiles.forEach((file) => formData.append("images", file));
-    documentFiles.forEach((file) => formData.append("documents", file));
+    // J17: 文本字段排在文件前面。BFF 只从请求体前几 KB 里嗅探 category
+    // 做早期拒绝（见 app/api/scan/route.ts 的 peekFirstField），文本字段
+    // 若排在图片之后会落在嗅探窗口之外，早期校验就永远拿不到值。
     formData.append("category", category);
     formData.append("markets", selectedMarkets.join(","));
     formData.append("locale", locale);
-    // J17: 附带品类条件问题的用户声明。BFF 读取该 JSON 并透传为
-    // declared_facts（见 app/api/scan/route.ts 与 lib/rag-client/
-    // v1-adapter.ts），后端 findings_builder 据此关闭不适用的检查
-    // （计划 §5.4，J09）。
+    // 字段名直接用后端 /api/v1/scans 的 declared_facts：BFF 现在把
+    // multipart 原样转发给 RAG，不再做改名（见 lib/rag-client/
+    // v1-adapter.ts 的 createScanStream）。后端 findings_builder 据此
+    // 关闭不适用的检查（计划 §5.4，J09）。
     const declaredFacts = categoryManifest.conditionalQuestions.reduce<Record<string, string>>(
       (acc, question) => {
         const answer = categoryAnswers[question.id];
@@ -476,8 +477,10 @@ export default function UploadPage() {
       {},
     );
     if (Object.keys(declaredFacts).length > 0) {
-      formData.append("userDeclaredFacts", JSON.stringify(declaredFacts));
+      formData.append("declared_facts", JSON.stringify(declaredFacts));
     }
+    uploadedFiles.forEach((file) => formData.append("images", file));
+    documentFiles.forEach((file) => formData.append("documents", file));
 
     await submitScan(formData);
   }

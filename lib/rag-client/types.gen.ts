@@ -21,6 +21,13 @@ export interface paths {
          *     (e.g. ``{"battery": "absent"}``) collected by the upload wizard's
          *     conditional questions. Malformed JSON is ignored — the facts are an
          *     enhancement to applicability, never a request requirement.
+         *     ``userDeclaredFacts`` is the browser's legacy field name for the same
+         *     payload (the BFF used to rename it; it now forwards the multipart body
+         *     verbatim, so both names are accepted).
+         *
+         *     ``query`` is optional here: when the browser posts its form directly the
+         *     BFF no longer synthesizes the Chinese query string, so an empty ``query``
+         *     falls back to the same wording the BFF used to build.
          */
         post: operations["create_scan_api_v1_scans_post"];
         delete?: never;
@@ -476,6 +483,11 @@ export interface components {
              * @default
              */
             declared_facts: string;
+            /**
+             * User Declared Facts
+             * @default
+             */
+            user_declared_facts: string;
             /**
              * Images
              * @default []
