@@ -58,7 +58,14 @@ CHECKLIST_OUTPUT = """{
 def _analyzer(**kwargs) -> VisionAnalyzer:
     kwargs.setdefault("api_key", "primary-key")
     kwargs.setdefault("fallback_api_key", "fallback-key")
-    return VisionAnalyzer(**kwargs)
+    analyzer = VisionAnalyzer(**kwargs)
+    # Legacy tests in this module assume MiniMax as primary (the original
+    # behavior before VISION_PRIMARY env was added). Force that here so
+    # existing assertions about primary = _call_mimotalk still hold.
+    # Tests for the new "deepseek primary" default live in
+    # test_vision_primary_swap.py.
+    analyzer._vision_primary = "minimax"
+    return analyzer
 
 
 def _stub_openai_response(mock_opener, text: str = "ok") -> MagicMock:
