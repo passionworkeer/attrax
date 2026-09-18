@@ -10,7 +10,7 @@
 # ATTRAX_BACKUP_REMOTE_DEST) — without one it logs "no REMOTE_DEST configured
 # (skipping)" and exits 0, i.e. it is a silent no-op.
 #
-# OFF-SITE BACKUP IS CURRENTLY NOT CONFIGURED on lighthouse, and this cron was
+# OFF-SITE BACKUP IS CURRENTLY NOT CONFIGURED on aliyun-sz, and this cron was
 # failing every day with "/opt/attrax/scripts/backup-remote.sh: No such file or
 # directory" because the script was in the repo but never installed. Two things
 # are needed before this entry is useful:

@@ -2,19 +2,19 @@
 
 完整设计见 `scripts/watchdog/README.md`。本文只覆盖服务器操作。
 
-## 部署（lighthouse）
+## 部署（aliyun-sz）
 
 ```bash
 # 1. 同步代码（与其他服务一起）
 rsync -az --delete --exclude='.venv' --exclude='.next' --exclude='node_modules' --exclude='.git' \
   --exclude='data/backend' --exclude='__pycache__' --exclude='*.pyc' \
   --exclude='data/regulation_supplements' \
-  attrax/ lighthouse:/opt/attrax/
+  attrax/ aliyun-sz:/opt/attrax/
 
 # 2. 无需 pip install — watchdog 只用标准库
 
 # 3. 注册 pm2 进程（首次）
-ssh lighthouse "cd /opt/attrax && /usr/bin/pm2 start scripts/ecosystem.config.cjs --only regwatch && /usr/bin/pm2 save"
+ssh aliyun-sz "cd /opt/attrax && /usr/bin/pm2 start scripts/ecosystem.config.cjs --only regwatch && /usr/bin/pm2 save"
 ```
 
 > ⚠️ `--exclude='data/regulation_supplements'` 保护服务器上的快照库
@@ -24,23 +24,23 @@ ssh lighthouse "cd /opt/attrax && /usr/bin/pm2 start scripts/ecosystem.config.cj
 
 ```bash
 # 看今天的运行结果
-ssh lighthouse "ls /opt/attrax/data/regulation_supplements/watchdog-$(date -u +%F)/ 2>/dev/null"
+ssh aliyun-sz "ls /opt/attrax/data/regulation_supplements/watchdog-$(date -u +%F)/ 2>/dev/null"
 
 # 手动触发一次（不等 cron）
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=/opt/attrax .venv/bin/python -m scripts.watchdog.orchestrator --once"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=/opt/attrax .venv/bin/python -m scripts.watchdog.orchestrator --once"
 
 # 看日志
-ssh lighthouse "/usr/bin/pm2 logs regwatch --lines 100 --nostream"
+ssh aliyun-sz "/usr/bin/pm2 logs regwatch --lines 100 --nostream"
 ```
 
 ## 源健康检查（改注册表后必跑）
 
 ```bash
 # 把每个源走真实 collector 抓一遍，报告可达性 + 内容厚度
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.check_sources"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.check_sources"
 
 # 只查一个源
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.check_sources --only uk-weee-regulations-guidance"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.check_sources --only uk-weee-regulations-guidance"
 ```
 
 退出码：0 = 全部正常 · 3 = 有源失败 · 1 = 注册表本身不合规。
@@ -81,13 +81,13 @@ ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watch
 
 ```bash
 # 今天入库了什么（source → regulation → action → 证据目录）
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.review --date $(date -u +%F)"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.review --date $(date -u +%F)"
 
 # 看某条变更的原始抓取内容 + meta + diff
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.review --date 2026-09-17 --show EU-2011-65"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.review --date 2026-09-17 --show EU-2011-65"
 
 # 回滚一条自动更新（从 auto-{date}/backup/ 恢复 + 重建索引）
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.review --date 2026-09-17 --revert EU-2011-65"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.review --date 2026-09-17 --revert EU-2011-65"
 
 # 只打印计划不写盘
 ... --revert EU-2011-65 --dry-run
@@ -154,7 +154,7 @@ pending_review.json + `--ack <SOURCE_ID>` / `--ack-all` 审批推进基线。
 （pm2 restart 不重读 env 段 — 与 rag-service 同一雷区）：
 
 ```bash
-ssh lighthouse "cd /opt/attrax && \
+ssh aliyun-sz "cd /opt/attrax && \
   ATTRAX_REGWATCH_NOTIFY=slack SLACK_WEBHOOK_URL=https://hooks.slack.com/... \
   /usr/bin/pm2 start scripts/ecosystem.config.cjs --only regwatch"
 ```
@@ -163,7 +163,7 @@ ssh lighthouse "cd /opt/attrax && \
 
 | 症状 | 原因 | 处理 |
 |------|------|------|
-| 全部源报错进 `errors.json` | 服务器出网受限 / DNS | `curl -I https://www.ecfr.gov` 手测；首尔机房对 EUR-Lex 偶发超时，重试机制会兜 3 次 |
+| 全部源报错进 `errors.json` | 服务器出网受限 / DNS | `curl -I https://www.ecfr.gov` 手测；aliyun-sz 机房（深圳）对 EUR-Lex 偶发超时，重试机制会兜 3 次 |
 | 某个源每天报 `modified` | 源页面有动态内容（时间戳/CSRF token）降到相似度 0.95 以下 | 在该源的 collector 里加针对性清洗，或调 `state.SIMILARITY_THRESHOLD`；`diff.json` 里看 `seqShiftSensitive` 区分"真换序"和"抖动" |
 | 某个源每天失败 | 端点 403/404，或本来就抓不到 | 跑 `check_sources --only <id>` 确认；能修就换端点，不能修就标 `fetch_status: unreachable`，别让它每晚刷 errors.json |
 | 某源摘要永远不变 | JS 空壳站（抓到的是页面标题） | 跑 `check_sources` 看是否 `thin`；确认后标 `fetch_status: shell_only` |

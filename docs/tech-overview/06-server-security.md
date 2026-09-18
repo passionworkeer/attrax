@@ -2,7 +2,7 @@
 
 ## 核心要点（30 秒读完）
 
-- **生产机**：lighthouse 腾讯云首尔 `198.51.100.20`，Ubuntu 24.04.4 LTS + 内核 6.8；`ufw` allow 22/80/443、deny 3000/8001。
+- **生产机**：aliyun-sz 阿里云深圳 `203.0.113.10`（Ubuntu 24.04.4 LTS），`ufw` allow 22/80/443、deny 3000/3001/8001/8002。
 - **nginx vhost**：`example.com` listen 443；TLS 1.2/1.3；5 个响应安全头；`location ^~ /_next/static/` 用 alias 不走 snippet（Next 16 standalone 不再复制 `.next/static`）。
 - **限流双层 + 会话鉴权**：nginx `limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s`；BFF `lib/rate-limit.ts:checkRateLimit('scan:${clientId}', 10, 60_000)`；会话 token 32-byte random + SHA-256 hash + `timingSafeEqual`。
 - **fail-closed secret**：`/opt/attrax/.rag-internal-secret`（600）单一来源；prod 空 secret → `RuntimeError` 拒启动；非 prod 自动生成 ephemeral secret。
@@ -10,7 +10,7 @@
 - **内核加固**：22 个 sysctl（SYN cookies / ptrace_scope=2 / kptr_restrict=2 / dmesg_restrict=1 / fs.protected_hardlinks）。
 - **运维缺口**：⚠️ 无异地备份（`scripts/backup-remote.sh` 未安装）；⚠️ uptime 告警 webhook 未配置（只落日志）；⚠️ `ubuntu` 有 NOPASSWD sudo 全量。
 
-> 生产机：lighthouse 腾讯云首尔 `198.51.100.20`，Ubuntu 24.04.4 LTS + 内核 6.8。配置文件快照在 `docs/infra/` 与 `docs/SECURITY.md`。
+> 生产机：aliyun-sz 阿里云深圳 `203.0.113.10`，Ubuntu 24.04.4 LTS + 内核 6.8。配置文件快照在 `docs/infra/` 与 `docs/SECURITY.md`。
 
 ## 架构与端口
 
@@ -101,7 +101,7 @@ limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
 
 - pm2 运行身份 `ubuntu`（**不**是 root），systemd `pm2-ubuntu.service` + `PM2_HOME=/home/ubuntu/.pm2`。
 - `/opt/attr` 归属 `ubuntu:ubuntu`；`data/` 还附加 `netdev` 组（让 nextjs 能写）。
-- ⚠️ **`/etc/sudoers` 给 `ubuntu` 全量 NOPASSWD sudo**（也复制在 `/etc/sudoers.d/90-cloud-init-users` + `lighthouse` 行）。任何 pm2 进程 = root 权限；这是比操作员白名单更宽松的设置，需要收紧为显式命令白名单（见 `docs/SECURITY.md §Known limitations §3`）。
+- ⚠️ **`/etc/sudoers` 给 `ubuntu` 全量 NOPASSWD sudo**（也复制在 `/etc/sudoers.d/90-cloud-init-users` + `aliyun-sz` 行）。任何 pm2 进程 = root 权限；这是比操作员白名单更宽松的设置，需要收紧为显式命令白名单（见 `docs/SECURITY.md §Known limitations §3`）。
 - `ubuntu` 已从 docker 组移除。
 - `unattended-upgrades` 开启（安全包自动更新）。
 
@@ -125,7 +125,7 @@ limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
 
 ## fail2ban
 
-4 个 jail：`sshd`、`nginx-auth`、`nginx-botsearch`、`recidive`（`/etc/fail2ban/jail.local`）。`fail2ban-client status` 复核一致。`docs/infra/fail2ban-*` 文件是阿里云深圳时代快照，**未**部署到 lighthouse。
+4 个 jail：`sshd`、`nginx-auth`、`nginx-botsearch`、`recidive`（`/etc/fail2ban/jail.local`）。`fail2ban-client status` 复核一致。`docs/infra/fail2ban-*` 是 lighthouse 时代快照；今天 aliyun-sz 又是新生产，需重新比对——其中残留的 `198.51.100.20` IP 是 1921 旧机记录。
 
 ## 备份
 

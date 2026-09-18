@@ -1,0 +1,312 @@
+# Attrax 部署 · aliyun-sz（深圳）
+
+> **2026-09-18 起生效**：attrax 整站部署到 `aliyun-sz`（深圳 203.0.113.10）。lighthouse（首尔）上的 attrax 进程已停 + nginx 站点已卸，`/opt/attrax` 数据原地保留。
+>
+> 本文是**部署操作手册**——mac 上 build → scp → aliyun-sz 上 apply → 验证。端口、nginx 配置、secret 处理、雷区。
+>
+> 历史部署：lighthouse（2026-09-18 之前 2 个月）+ 早期 aliyun-sz（2026-06 / 2026-07）。
+
+---
+
+## 1. 主机拓扑
+
+| 主机 | SSH 用户 | IP | 跑什么 |
+|---|---|---|---|
+| **aliyun-sz**（生产） | root（`id_ed25519`） | 203.0.113.10 | attrax nextjs:3001 + rag-service:8002 + regwatch；nginx 80→443，HTTPS 复用 twinbuddy 证书 |
+| **lighthouse**（仅 portfolio/study/monitor） | ubuntu（`lighthouse_seoul_new`） | 198.51.100.20 | portfolio nextjs:3002 + study/monitor 静态站。**attrax 不再跑** |
+
+实例 `Ubuntu-lrtz`（`instance_placeholder`）2026-10-11 到期，**必须续费**（这是 attrax 的生产机）。
+
+阿里云安全组默认放行 22/80/443。
+
+---
+
+## 2. aliyun-sz 上 attrax 的部署结构
+
+```
+/opt/attrax/                              ← 部署根（含源码 + build + data，与 lighthouse 同路径方便复用 ecosystem.config.cjs）
+├── .env / .env.local / .env.production   ← secret（600 root）
+├── .rag-internal-secret                  ← 48-hex 内部鉴权（600 root）
+├── .build-sha                            ← 短 commit SHA（apply-deploy.sh 从 standalone/.build-sha 拷过来）
+├── scripts/ecosystem.config.cjs          ← pm2 配置（aliyun-sz 版：nextjs:3001 / rag-service:8002 / regwatch）
+├── scripts/apply-deploy.sh               ← 服务器侧部署脚本（与 lighthouse 同源）
+├── scripts/build-deploy-tarball.sh       ← 本地 tarball 打包脚本
+├── scripts/guard-no-server-build.mjs     ← 服务器侧 next build 拒绝守卫
+├── scripts/watchdog/                     ← 法规自动入库 daemon
+├── rag_service/                          ← FastAPI 应用
+├── .venv/                                ← Python 3.12 虚拟环境（lighthouse 上的 3.10 不可用，已删重建）
+├── .next/
+│   ├── standalone/                       ← PM2 nextjs 的 cwd）
+│   │   ├── server.js
+│   │   ├── .next/                        ← 内嵌 Next 16 standalone manifest（不需 _next 软链）
+│   │   ├── app/ + components/ + lib/ + data/ + node_modules/ subset
+│   │   ├── .deployed + .build-sha        ← 部署标识
+│   │   └── public/                       ← 静态资源（Next 16 standalone 不自动复制，必须手动 cp）
+│   ├── static/                           ← nginx /_next/static/ alias 直接读这里
+│   ├── BUILD_ID
+│   ├── server/
+│   └── cache/                            ← Next.js 增量编译缓存（运行时不需要）
+└── data/                                 ← 法规 + KB + FAISS（lighthouse 上完整 copy 过来，additive，**不** --delete）
+    ├── corpus/                           ← FAISS 索引（50M）
+    ├── regulations/                      ← 16 篇 git 内 + 48 篇自动入库（生产 64 篇）
+    ├── regulation_supplements/           ← watchdog 自动入库包
+    ├── kb/anchors/                       ← KB YAML 锚点
+    └── backend/{sessions,jobs,uploads}/  ← 运行时，gitignore
+```
+
+**关键与 lighthouse 的差异**：
+- **端口**：nextjs `3001`（lighthouse 是 3000）、rag-service `8002`（lighthouse 是 8001）—— 端口偏移避免与历史 LabMemory 端口 8081/8001 撞车
+- **Python venv**：3.12（lighthouse 是 3.10）—— 不可移植，必须 aliyun-sz 上重建
+- **nginx**：直接 listen 80/443（lighthouse 上 80/443 是 attrax 专用，aliyun-sz 上原本是 twinbuddy，迁移后 attrax 接管）
+- **证书**：复用 `/etc/letsencrypt/live/twinbuddy.xyz/`，server_name = `twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10 example.com`
+
+---
+
+## 3. 部署流程（mac → aliyun-sz）
+
+### 3.1 完整流程（首次或代码改动后）
+
+```bash
+# 1. mac 本地：build + 打包 tarball
+cd /workspace/me/attrax
+npm run build                            # 必须本地 build（aliyun-sz 1.6G 内存 build OOM）
+bash scripts/build-deploy-tarball.sh     # → /tmp/attrax-deploy-complete.tar.gz
+                                          #    含 standalone + static + public + .deployed + .build-sha
+
+# 2. scp 到 aliyun-sz
+scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
+
+# 3. aliyun-sz 上：apply
+ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
+# 流程：备份旧 standalone → 解 tarball 到 /opt/attrax/.next/ → 验证软链 → 写 BUILD_ID
+#      → pm2 restart nextjs --update-env → /api/health 轮询 10 次（30s 内成功）
+```
+
+### 3.2 仅 RAG service 代码改动（不动前端 build）
+
+```bash
+scp -r rag_service/ aliyun-sz:/opt/attrax/rag_service/
+ssh aliyun-sz 'pm2 restart rag-service --update-env'
+# 注意 rag_service 端口：aliyun-sz 上是 8002
+```
+
+### 3.3 仅 .env / secret 改动
+
+```bash
+# .env 改动
+scp .env aliyun-sz:/opt/attrax/.env
+ssh aliyun-sz 'chmod 600 /opt/attrax/.env && pm2 restart rag-service nextjs --update-env'
+
+# RAG_INTERNAL_SECRET 改动（48-hex 轮换）
+echo -n "<new-48-hex>" > /tmp/.rag-internal-secret
+scp /tmp/.rag-internal-secret aliyun-sz:/tmp/.rag-internal-secret
+ssh aliyun-sz 'sudo install -m 600 -o root /tmp/.rag-internal-secret /opt/attrax/.rag-internal-secret && pm2 delete rag-service nextjs && pm2 startOrRestart /opt/attrax/scripts/ecosystem.config.cjs --only rag-service,nextjs'
+```
+
+**关键雷区**：`pm2 restart` 不读 ecosystem env 段。改 env 必须 `pm2 delete && pm2 start`。
+
+### 3.4 回滚
+
+```bash
+ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh --rollback'
+# 恢复到上一个 standalone-pre-deploy-<timestamp>/
+```
+
+### 3.5 健康检查
+
+```bash
+# 主路径（nginx 443）
+ssh aliyun-sz 'curl -skS -o /dev/null -w "HTTP %{http_code} | %{time_total}s\n" https://127.0.0.1/api/health'
+
+# nextjs 直连（绕 nginx，定位是 nginx 还是 nextjs 问题）
+ssh aliyun-sz 'curl -sS -o /dev/null -w "HTTP %{http_code} | %{time_total}s\n" http://127.0.0.1:3001/api/health'
+
+# rag-service 直连
+ssh aliyun-sz 'curl -s http://127.0.0.1:8002/ready | python3 -m json.tool'
+
+# 公网（要看证书域名匹配）
+curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://twinbuddy.xyz/api/health
+curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://203.0.113.10/api/health   # 证书域名不匹配警告但可用
+```
+
+`/api/health` 200 不代表 BFF → rag auth 通。**真实扫描** 一次（提交 + 轮询 + 看结果）才能确认 `RAG_INTERNAL_SECRET` 等关键 env 生效。
+
+---
+
+## 4. PM2 + nginx 关键配置
+
+### 4.1 PM2（aliyun-sz 版 `scripts/ecosystem.config.cjs`）
+
+```js
+// 端口偏移：nextjs 3001, rag-service 8002, 不跑 portfolio
+module.exports = {
+  apps: [
+    { name: "rag-service", cwd: "/opt/attrax",
+      script: "/opt/attrax/.venv/bin/uvicorn",
+      args: ["rag_service.main:app", "--host", "127.0.0.1", "--port", "8002", "--workers", "1"],
+      interpreter: "none", max_memory_restart: "1300M", autorestart: true,
+      env: { PYTHONUNBUFFERED: "1", RAG_INTERNAL_SECRET, ATTRAX_BUILD_SHA,
+             APP_ENV: "production", USE_KB_INPUT: "true" } },
+    { name: "nextjs", cwd: "/opt/attrax/.next/standalone", script: "server.js",
+      interpreter: "node", max_memory_restart: "768M", autorestart: true,
+      env: { NODE_ENV: "production", PORT: "3001", HOSTNAME: "127.0.0.1",
+             RAG_SERVICE_URL: "http://127.0.0.1:8002", RAG_INTERNAL_SECRET,
+             DAILY_FREE_SCAN_LIMIT: "3", DEMO_MODE: "false" } },
+    { name: "regwatch", cwd: "/opt/attrax",
+      script: "/opt/attrax/.venv/bin/python",
+      args: ["-m", "scripts.watchdog.orchestrator"],
+      interpreter: "none", autorestart: true, max_restarts: 10, restart_delay: 5000,
+      env: { PYTHONUNBUFFERED: "1", PYTHONPATH: "/opt/attrax",
+             ATTRAX_REGWATCH_ENABLED: "true", ATTRAX_REGWATCH_NOTIFY: "log",
+             ATTRAX_REGWATCH_RUN_AT: "03:00" } },
+  ],
+};
+```
+
+**对比 lighthouse**：`PORT=3000` → `3001`、`RAG_SERVICE_URL=...:8001` → `:8002`、不包含 portfolio app。
+
+### 4.2 nginx 站点
+
+`/etc/nginx/sites-available/attrax`（已部署）+ `snippets/attrax-locations.conf`（从 lighthouse 同部署包复制）。
+
+```nginx
+limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
+
+upstream attrax_nextjs {
+    server 127.0.0.1:3001;
+    keepalive 32;
+}
+
+server {  # HTTP → HTTPS redirect
+    listen 80; listen [::]:80;
+    server_name twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10 example.com;
+    location /.well-known/acme-challenge/ { root /var/www/acme-challenge; try_files $uri =404; }
+    location / { return 301 https://$host$request_uri; }
+}
+
+server {  # HTTPS
+    listen 443 ssl http2; listen [::]:443 ssl http2;
+    server_name twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10;
+    ssl_certificate     /etc/letsencrypt/live/twinbuddy.xyz/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/twinbuddy.xyz/privkey.pem;
+    # ... + attrax-locations.conf（与 lighthouse 同源）
+}
+```
+
+**关键**：static alias 直接 `/opt/attrax/.next/static/`（不是 `.next/standalone/.next/static/`，Next 16 不复制）。
+
+### 4.3 ufw
+
+```bash
+ufw allow 22/tcp
+ufw allow 80/tcp    # ACME + HTTP → HTTPS redirect
+ufw allow 443/tcp   # HTTPS
+# 阿里云安全组需独立放行（默认就开 80/443，但 DNS 切到 aliyun-sz 后要确认）
+```
+
+---
+
+## 5. Secret 处理
+
+**单一来源 = `/opt/attrax/.rag-internal-secret`**（48-hex，600 root）。`scripts/ecosystem.config.cjs` 启动时同时注入 `rag-service` 与 `nextjs`：
+
+```js
+const RAG_INTERNAL_SECRET = (process.env.RAG_INTERNAL_SECRET
+    || fs.readFileSync("/opt/attrax/.rag-internal-secret", "utf8")).trim();
+if (!RAG_INTERNAL_SECRET) throw new Error("RAG_INTERNAL_SECRET is empty");
+```
+
+**绝不要**：
+- 在 git 里写真值（旧值 `REDACTED_ROTATED_INTERNAL_SECRET` / `REDACTED_ROTATED_INTERNAL_SECRET` 在 git 历史暴露过，已全部失效）
+- 用 PM2 ecosystem env 段硬编码 secret（应该用文件）
+- 跳过 secret 直接 `pm2 restart` 启动（`APP_ENV=production` 会校验 FAISS manifest，密封失败拒绝启动）
+
+**轮换流程**：`openssl rand -hex 24 | tr -d '\n' | sudo tee /opt/attrax/.rag-internal-secret` → `chmod 600` → `pm2 delete rag-service nextjs && pm2 startOrRestart ...`
+
+---
+
+## 6. Regwatch（法规自动入库）
+
+PM2 常驻 daemon（**不是** cron-restart），每天 03:00 CST 跑一次。
+
+```bash
+# 看状态
+ssh aliyun-sz 'pm2 jlist | grep regwatch'
+ssh aliyun-sz 'pm2 logs regwatch --lines 100 --nostream'
+
+# 手动跑一次
+ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. /opt/attrax/.venv/bin/python -m scripts.watchdog.orchestrator --once'
+
+# 检查源健康
+ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. /opt/attrax/.venv/bin/python -m scripts.watchdog.check_sources'
+
+# 查看 pending review（一次性真有变化 → 写 pending_review.json）
+ssh aliyun-sz 'cat /opt/attrax/data/regulations/watchdog-$(date -u +%F)/pending_review.json 2>/dev/null'
+```
+
+默认 `ATTRAX_REGWATCH_AUTO_INGEST=true` → 真实变化自动入库，退出码改写为 0（异常时仍是 2/3）。
+
+---
+
+## 7. 数据迁移（attrax 自身的 source/data 同步）
+
+> 仅在 aliyun-sz 与 lighthouse 双跑期间需要；现 lighthouse 已停，**这条只用于全量 reimport**。
+
+`data/regulations/` 必须 **additive** 同步（不 `--delete`）：
+
+```bash
+# 1. 打包 lighthouse data（排除 .venv/node_modules 等）
+ssh lighthouse 'sudo tar --exclude=./.venv --exclude=./node_modules --exclude=./__pycache__ \
+  --exclude=./.cache --exclude=./logs --exclude=./.git/objects \
+  --exclude=./frontend/dist --exclude=./frontend/node_modules \
+  -czf /tmp/attrax-data.tgz -C /opt/attrax data'
+
+# 2. 拉过去解包
+scp lighthouse:/tmp/attrax-data.tgz aliyun-sz:/tmp/
+ssh aliyun-sz 'cd /opt/attrax && tar -xzf /tmp/attrax-data.tgz'
+
+# 3. 重建 FAISS 索引（如 KB 变化）
+ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. .venv/bin/python -c \
+  "from rag_service.indexing.auto_ingest import AutoIngestor; AutoIngestor()._rebuild_index()"'
+```
+
+**不要** `rsync --delete /opt/attrax/data/`——服务器上 git 外的生产数据（自动入库的法规 + 评测产物）会丢。
+
+---
+
+## 8. 雷区（迁移后仍生效）
+
+- **不要在 aliyun-sz 上 `npm run build`**（2026-09-16 + 2026-09-18 两次实测 OOM）：1.6G 内存 + next build 内存峰值会顶死 sshd。强制走本地 build → scp → apply-deploy.sh
+- **`pm2 restart` 不读 env 段**：env 改动必须 `pm2 delete && pm2 start`
+- **Next 16 standalone 不复制 `.next/static/`** + 不复制 `public/` 到 `standalone/public/`：必须 tarball 阶段手动 stage（`build-deploy-tarball.sh` 已做）+ 服务器侧 `apply-deploy.sh` 不重建软链（直接放在 build root）
+- **nginx `_next/static/` 用 `alias <root>/.next/static/`**（不是 standalone 内部）
+- **nginx heredoc 写 `$binary_remote_addr` 会被 shell 吞掉**——必须用 scp 上传文件或 `tee <<'EOF'`（单引号 heredoc）
+- **`/api/health` 200 不代表 RAG auth 通**——必须真实扫描一次
+- **不要 `--delete` 同步 `data/regulations/`**——自动入库数据会丢
+- **不要跳过 FAISS manifest seal**——`APP_ENV=production` 启动校验失败
+- **证书现复用 twinbuddy 的**——访问 `example.com` 或 `203.0.113.10` 会有证书域名不匹配警告。要正式切域名：DNS A 记录改 203.0.113.10 + certbot 申请 `example.com` 证书
+
+---
+
+## 9. lighthouse 上的 attrax 残留
+
+| 项 | 状态 |
+|---|---|
+| PM2 nextjs / rag-service / regwatch | 已 `pm2 delete`（进程不存在） |
+| nginx attrax 站点 | `/etc/nginx/sites-enabled/attrax` 已删，`sudo nginx -s reload` 已执行 |
+| `/opt/attrax` 数据 | **原地保留**（2.3G），不动 |
+| `~/.ssh/config` | `Host lighthouse` 仍保留（ssh 别名继续生效，portfolio 等仍用） |
+
+---
+
+## 10. 待办
+
+1. **2026-10-11 前**给 aliyun-sz 续费（迁移后这条更要紧：实例过期 attrax 整站下线）
+2. **`example.com` DNS 切换**：域名注册商改 A 记录 `203.0.113.10` + 阿里云安全组放行 80（已开）+ certbot 申请 `example.com` 证书 + 替换 nginx `ssl_certificate` 路径
+3. **数据备份异地化**：`scripts/backup-remote.sh`（lighthouse 时代）需重新校准目标，aliyun-sz 上验证一次自动跑
+4. **regwatch 健康持续监测**：30 个 source（09-17 审计后）全 healthy；接入告警（runbook §7）
+5. **访问域名 cert 不匹配告警** 用户测试时给指引（`twinbuddy.xyz` 无 warning，`example.com` 有 warning）
+
+---
+
+*最后更新：2026-09-18*

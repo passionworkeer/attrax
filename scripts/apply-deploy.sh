@@ -8,14 +8,14 @@
 #
 # 配套（本地）：
 #   bash scripts/build-deploy-tarball.sh        # -> /tmp/attrax-deploy-complete.tar.gz
-#   scp /tmp/attrax-deploy-complete.tar.gz lighthouse:/tmp/
+#   scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
 #
 # 服务器：
 #   bash /tmp/attrax-apply-deploy.sh            # 部署
 #   bash /tmp/attrax-apply-deploy.sh --rollback # 回滚到上一个 standalone
 #
 # 安装到服务器（首次或更新本脚本时）：
-#   scp scripts/apply-deploy.sh lighthouse:/tmp/attrax-apply-deploy.sh
+#   scp scripts/apply-deploy.sh aliyun-sz:/tmp/attrax-apply-deploy.sh
 #
 # 注意：本脚本只处理 Next.js（.next/standalone + .next/static + BUILD_ID + pm2 nextjs）。
 # 改了 rag_service/*.py 时另行 scp 并 `pm2 restart rag-service --update-env`。

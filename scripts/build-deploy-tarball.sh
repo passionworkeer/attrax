@@ -10,7 +10,7 @@
 #   /_next/static/chunks/*.css 全部 404、页面裸奔无样式。
 #   本脚本把"build → stage → 打包 → 校验"做成原子流程,保证 tarball 永远完整。
 #
-# 产物:/tmp/attrax-deploy-complete.tar.gz(供 lighthouse 上的 /tmp/attrax-apply-deploy.sh 消费)
+# 产物:/tmp/attrax-deploy-complete.tar.gz(供 aliyun-sz 上的 /tmp/attrax-apply-deploy.sh 消费)
 # 本机可用 ATTRAX_TARBALL=/path/to.tar.gz 覆盖产物路径(中间产物不落 /tmp)。
 #
 # 用法:
@@ -80,7 +80,7 @@ UPSTREAM="$(git -C "$PROJECT_ROOT" rev-parse --abbrev-ref --symbolic-full-name '
 BID="$(cat "${STANDALONE}/.next/BUILD_ID")"
 cat > "${STANDALONE}/.deployed" <<EOF
 # Attrax 部署标识 — 由 build-deploy-tarball.sh 写入,/tmp/attrax-apply-deploy.sh 解包后落地
-# 对账: ssh attrax 'cat /opt/attrax/.next/standalone/.deployed'
+# 对账: ssh aliyun-sz 'cat /opt/attrax/.next/standalone/.deployed'
 commit=${COMMIT_SHORT}
 commit_full=${COMMIT_FULL}
 build_id=${BID}
@@ -117,5 +117,5 @@ fi
 log "tarball 校验通过: 含 css=$TAR_CSS 个, public条目=$TAR_PUBLIC 个"
 
 log "=== 完成 ==="
-log "下一步: scp ${TARBALL} lighthouse:/tmp/ 然后 ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh'"
+log "下一步: scp ${TARBALL} aliyun-sz:/tmp/ 然后 ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'"
 log "BUILD_ID: $(cat "${STANDALONE}/.next/BUILD_ID")"

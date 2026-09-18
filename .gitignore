@@ -168,6 +168,13 @@ __pycache__/
 .coverage
 htmlcov/
 
+# ─── Server-side runtime secrets (apply-deploy.sh writes these) ──
+# .build-sha = current deploy commit (8-hex, 600 root)
+# .rag-internal-secret = 48-hex BFF↔RAG auth (600 root)
+# 真值单一来源是 /opt/attrax/{.build-sha,.rag-internal-secret}，不入库
+.build-sha
+.rag-internal-secret
+
 # ─── Docker ──────────────────────────────────────────────────
 qdrant_storage/
 
