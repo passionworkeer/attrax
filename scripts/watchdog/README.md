@@ -51,7 +51,7 @@ PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.review --date 2026
 PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.review --date 2026-09-17 --show EU-2011-65
 PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.review --date 2026-09-17 --revert EU-2011-65
 
-# Production (lighthouse): daemon under pm2 — pass at startup, then daily
+# Production (aliyun-sz): daemon under pm2 — pass at startup, then daily
 # at ATTRAX_REGWATCH_RUN_AT (server-local)
 pm2 start scripts/ecosystem.config.cjs --only regwatch
 pm2 logs regwatch --lines 100

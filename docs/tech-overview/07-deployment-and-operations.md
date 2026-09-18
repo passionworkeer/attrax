@@ -10,19 +10,19 @@
 - **监控**：`/home/ubuntu/uptime-check.sh`（work 仓）每 5 分钟 cron，覆盖 HTTP + pm2 + BUILD_ID 漂移 + 磁盘水位；⚠️ webhook 未配置。
 - **已知事故**：2026-09-16 线上全站 500（服务器误跑 build 删 standalone）；2026-07-18 load 111（meta.json 95MB 未分片 + memory_restart 900M 过低）。
 
-> 数据快照：2026-09-17。生产机 lighthouse 腾讯云首尔 `43.155.141.192`。本地路径 `/Users/wangjianjun/me/attrax/`，服务器路径 `/opt/attrax/`。
+> 数据快照：2026-09-18。生产机 aliyun-sz 阿里云深圳 `120.77.36.107`。本地路径 `/Users/wangjianjun/me/attrax/`，服务器路径 `/opt/attrax/`。
 
 ## 部署流程（git bundle + tarball）
 
-> 服务器 ssh key 无法直接 fetch GitHub（详见 memory `2026-09-14-lighthouse-fetch-github-fix`：known_hosts 缺失 + attrax_pull_key 未注册），所以源码同步走 bundle 路线。
+> 服务器 ssh key 无法直接 fetch GitHub（详见 memory `2026-09-14-lighthouse-fetch-github-fix`：known_hosts 缺失 + attrax_pull_key 未注册。aliyun-sz 沿用同一组 key，同一限制，2026-09-18），所以源码同步走 bundle 路线。
 
 ### 1) 本地打 git bundle
 
 ```bash
 cd /Users/wangjianjun/me/attrax
 git bundle create /tmp/attrax-{new_sha}.bundle old_commit..new_commit
-scp /tmp/attrax-{new_sha}.bundle lighthouse:/tmp/
-ssh lighthouse 'cd /opt/attrax && git fetch /tmp/attrax-{new_sha}.bundle new_branch:new_branch && git checkout new_branch'
+scp /tmp/attrax-{new_sha}.bundle aliyun-sz:/tmp/
+ssh aliyun-sz 'cd /opt/attrax && git fetch /tmp/attrax-{new_sha}.bundle new_branch:new_branch && git checkout new_branch'
 ```
 
 服务器 `git fetch` 后 HEAD 推进；HEAD 本身**不**被生产消费（runtime 走 standalone tarball），但它能让服务器 git diff / blame 用。
@@ -51,8 +51,8 @@ bash scripts/build-deploy-tarball.sh
 ### 3) scp + 服务器解包
 
 ```bash
-scp /tmp/attrax-deploy-complete.tar.gz lighthouse:/tmp/
-ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh /tmp/attrax-deploy-complete.tar.gz'
+scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
+ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh /tmp/attrax-deploy-complete.tar.gz'
 # apply-deploy.sh：
 #     保留当前 .next/standalone-pre-deploy-<stamp>
 #     解包新 .next/standalone/ + .next/static/
@@ -60,12 +60,12 @@ ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh /tmp/attrax-deploy-complete.tar
 #     保留最近 2 份 pre-deploy 可回滚
 ```
 
-> `openrsync` 对 `.next/standalone` 这种大目录会崩，所以全用 `tar -C .next -czf - X | ssh lighthouse 'tar -xzf -'`。
+> `openrsync` 对 `.next/standalone` 这种大目录会崩，所以全用 `tar -C .next -czf - X | ssh aliyun-sz 'tar -xzf -'`。
 
 ### 4) pm2 重启
 
 ```bash
-ssh lighthouse 'pm2 restart nextjs'
+ssh aliyun-sz 'pm2 restart nextjs'
 # 换 .env 文件 → restart 即可（pydantic-settings 每次启动读 .env）
 # 换 ecosystem env 段或 cwd → 必须 pm2 delete && start
 # 换 RAG_INTERNAL_SECRET → 同时重启 rag-service 与 nextjs（只重启一个会让 BFF/RAG secret 不一致 → 写端点全 401）
@@ -74,8 +74,8 @@ ssh lighthouse 'pm2 restart nextjs'
 ### 5) 验证
 
 ```bash
-ssh lighthouse 'curl -s http://127.0.0.1:3000/api/health'
-ssh lighthouse 'curl -s http://127.0.0.1:8001/api/v1/ready'   # checks 应全 true
+ssh aliyun-sz 'curl -s http://127.0.0.1:3001/api/health'
+ssh aliyun-sz 'curl -s http://127.0.0.1:8002/api/v1/ready'   # checks 应全 true
 # 真实扫描：跑一次完整 createScan → 轮询 → 看 ready 结果（/api/health 200 不代表 BFF→rag auth 通）
 ```
 
@@ -120,7 +120,7 @@ env 段关键：
 `/tmp/attrax-apply-deploy.sh` 在每次部署时把上一份 `.next/standalone/` 改名 `standalone-pre-deploy-<stamp>/`（保留 2 份）。回滚：
 
 ```bash
-ssh lighthouse 'cd /opt/attrax/.next && rm -rf standalone && mv standalone-pre-deploy-<新stamp> standalone && pm2 restart nextjs'
+ssh aliyun-sz 'cd /opt/attrax/.next && rm -rf standalone && mv standalone-pre-deploy-<新stamp> standalone && pm2 restart nextjs'
 ```
 
 ### ⚠️ 没有异地备份

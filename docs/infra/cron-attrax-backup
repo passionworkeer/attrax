@@ -11,7 +11,7 @@
 #
 # Runs as `ubuntu`: pm2 runs as ubuntu (pm2-ubuntu.service) and the backup
 # target /opt/attrax/backups is ubuntu-owned. Earlier revisions of this
-# fragment said `admin`, a user that does not exist on lighthouse.
+# fragment said `admin`, a user that does not exist on aliyun-sz.
 #
 # A cron.d file accepts only comments, KEY=VALUE environment lines and job
 # lines. Stray banner text here is a hard error for cron, so keep it clean —

@@ -1,7 +1,7 @@
 # 法规数据源审计（2026-09-17）
 
 对 `data/regulation_sources/official_sources.json` 全量注册表做实测审计：
-每个源的 `source_url` 都从生产机（lighthouse，腾讯云首尔）真实抓取一遍，
+每个源的 `source_url` 都从生产机（aliyun-sz，阿里云深圳）真实抓取一遍，
 走各自 collector 的完整代码路径（不是 HEAD 探测）。
 
 **结论：审计前 35 个源里 9 个从未抓取成功过。** 它们在 2026-09-16 上线，
@@ -153,7 +153,7 @@ br-inmetro-novidades       HTTP 404 Not Found
 
 ## 三、被硬封的端点（不作为抓取源）
 
-这些端点从生产机（首尔）实测**即使带完整浏览器请求头也返回 403**，
+这些端点从生产机（深圳）实测**即使带完整浏览器请求头也返回 403**，
 连人类页面也封 —— 是数据中心 IP 段级别的封禁，UA 轮换救不了。
 对应的 collector 已删除，不留在代码里当死代码。
 
@@ -249,7 +249,7 @@ PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.check_sources
 PYTHONPATH=. rag_service/.venv/bin/python -m scripts.watchdog.check_sources --json
 
 # 生产机（权威结果 —— 可达性随机房变化）
-ssh lighthouse "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.check_sources"
+ssh aliyun-sz "cd /opt/attrax && PYTHONPATH=. .venv/bin/python -m scripts.watchdog.check_sources"
 ```
 
 本次审计的完整实测输出（审计后）：

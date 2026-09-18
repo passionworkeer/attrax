@@ -2,7 +2,7 @@
 
 > 创建：2026-09-11 — 记录 2026-09-10/11 事故后修复的 attrax 部署真相。
 > 实际生产部署路径见本文件（legacy aliyun-sz 路径的 DEPLOY-CHECKLIST.md 已删除；部署入口是 `docs/README.md` §生产部署 + 仓库 CLAUDE.md §部署雷区）。
-> lighthouse 上其他 Next 16 站点的等价文档：work 仓 `ops/NEXTJS-16-DEPLOYMENT-NOTES.md`。
+> aliyun-sz 上其他 Next 16 站点的等价文档：work 仓 `ops/NEXTJS-16-DEPLOYMENT-NOTES.md`。
 
 ## TL;DR
 
@@ -54,8 +54,8 @@ location ~ ^/complipilot/.+\.(png|webp|mp4)$ {
 
 `docs/infra/nginx-attrax-locations.conf` 在 attrax 仓 `99f345d` commit 与服务器 `/etc/nginx/snippets/` 同步。修改时两边都要更新：
 ```bash
-scp docs/infra/nginx-attrax-locations.conf lighthouse:/tmp/
-ssh lighthouse 'sudo cp /tmp/nginx-attrax-locations.conf /etc/nginx/snippets/ && \
+scp docs/infra/nginx-attrax-locations.conf aliyun-sz:/tmp/
+ssh aliyun-sz 'sudo cp /tmp/nginx-attrax-locations.conf /etc/nginx/snippets/ && \
   sudo cp /etc/nginx/snippets/attrax-locations.conf /etc/nginx/snippets/attrax-locations.conf.bak-$(date +%s) && \
   sudo nginx -t && sudo systemctl reload nginx'
 ```
@@ -69,10 +69,10 @@ ssh lighthouse 'sudo cp /tmp/nginx-attrax-locations.conf /etc/nginx/snippets/ &&
 bash scripts/build-deploy-tarball.sh          # 产物 /tmp/attrax-deploy-complete.tar.gz
 # 已有 build 产物、只想重打包：bash scripts/build-deploy-tarball.sh --no-build
 
-scp /tmp/attrax-deploy-complete.tar.gz lighthouse:/tmp/
+scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
 
 # 服务器：整包替换 + 自愈 static symlink + BUILD_ID + 重启
-ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh'
+ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
 ```
 
 `attrax-apply-deploy.sh` 依次做：preflight（tarball + 现有 standalone 都在）→ 把现有
@@ -98,7 +98,7 @@ ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh'
 `pm2 restart` **不重读 ecosystem env 段**。改 env 后必须 `pm2 delete && start`：
 
 ```bash
-ssh lighthouse 'cd /opt/attrax && \
+ssh aliyun-sz 'cd /opt/attrax && \
   pm2 delete nextjs && \
   pm2 start scripts/ecosystem.config.cjs && \
   pm2 save'

@@ -10,7 +10,7 @@
 | 项目架构演进（de-RAG 路线） | [`plans/2026-09-11-de-rag-evidence-spec.md`](./plans/2026-09-11-de-rag-evidence-spec.md) |
 | 当下在修什么（judge review J01–J11） | [`plans/2026-09-14-judge-review-and-optimization-plan.md`](./plans/2026-09-14-judge-review-and-optimization-plan.md) |
 | 安全政策（key、网络、权限、headers） | [`SECURITY.md`](./SECURITY.md) |
-| 服务器挂了怎么恢复 | [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md) + 看 lighthouse 上 `pm2 logs` 排障 |
+| 服务器挂了怎么恢复 | [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md) + 看 aliyun-sz 上 `pm2 logs` 排障 |
 | watchdog 法规自动入库 | [`WATCHDOG.md`](./WATCHDOG.md) + `scripts/watchdog/README.md` |
 | Next 16 standalone 部署坑 | [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md) |
 | nginx/sysctl/sshd/fail2ban 实际配置 | [`infra/`](./infra/) |
@@ -44,9 +44,9 @@ npm run test:rag       # pytest 后端
 npm run typecheck && npm run lint
 ```
 
-## 生产部署（lighthouse 43.155.141.192）
+## 生产部署（aliyun-sz 120.77.36.107）
 
-生产环境是腾讯云首尔 lighthouse（Ubuntu 22.04），pm2 跑 `nextjs` + `rag-service` + `regwatch`，nginx 反代。**不走 docker-compose、不走 Ansible**（`docs/infra/` 下的 Ansible 文件是历史 aliyun-sz 时代的，不再维护）。
+生产环境是阿里云深圳 aliyun-sz（Ubuntu 24.04），pm2 跑 `nextjs` + `rag-service` + `regwatch`，nginx 反代。**不走 docker-compose、不走 Ansible**（`docs/infra/` 下的 Ansible 文件是历史 lighthouse 时代遗留，已退役）。
 
 | 操作 | 方法 |
 |---|---|
@@ -54,7 +54,7 @@ npm run typecheck && npm run lint
 | 构建产物 | 本地 `bash scripts/build-deploy-tarball.sh` → `/tmp/attrax-deploy-complete.tar.gz`（内含已 stage 好 `.next/static/` 与 `public/` 的整个 `standalone/`）→ scp 到服务器 → `/tmp/attrax-apply-deploy.sh` 整包替换 `.next/standalone/`（旧目录挪成 `standalone-pre-deploy-*`，保留 2 份可回滚） |
 | 静态资源 | **不需要 symlink 或 rsync `public/`**：tarball 已把 `public/` 打进 `standalone/public`，nginx 的 `/complipilot/*` 直接 `root /opt/attrax/.next/standalone/public`；`/_next/static/` 走 `alias /opt/attrax/.next/static/`（该路径是指向 `standalone/.next/static` 的 symlink，由 apply 脚本自愈） |
 | 重启 | `pm2 restart nextjs rag-service`（改 `.env` 也用 restart；改 ecosystem env 段才要 delete && start） |
-| 健康检查 | `ssh lighthouse 'curl -s http://localhost:3000/api/health'` |
+| 健康检查 | `ssh aliyun-sz 'curl -s http://localhost:3001/api/health'` |
 | 备份 | `/opt/attrax/backups/`（每日 03:00 cron，保留 14 份） |
 
 详细步骤：根目录 [`README.md`](../README.md) §部署 + [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md)。
@@ -77,7 +77,7 @@ docs/
 ├── annotation/                            ← 标注集格式（grounding eval）
 └── archive/                               ← 退役历史文档（旧 PRD / 旧合同 / 阿里云深圳旧机加固 / superpowers）
 
-> ⚠️ 2026-09-14 清理：`DEPLOYMENT.md` / `RECOVERY.md` / `E2E-REPORT-20260718.md` / `DEPLOY-CHECKLIST.md` 已删除（内容仅适用已退役的阿里云深圳 `120.77.36.107`，attrax 当前生产是腾讯云首尔 lighthouse）。
+> ⚠️ 2026-09-18 清理：attrax 又迁回阿里云深圳 `120.77.36.107`，之前 lighthouse 时代的部署文档按需比对。
 
 ## 相关链接
 

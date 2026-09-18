@@ -153,23 +153,23 @@ attrax/
 
 ## 部署
 
-生产环境是腾讯云首尔 lighthouse（`43.155.141.192`），通过 git bundle 同步源码 + 本地构建 tarball + 服务器整包替换：
+生产环境是阿里云深圳 aliyun-sz（`120.77.36.107`），通过 git bundle 同步源码 + 本地构建 tarball + 服务器整包替换：
 
 ```bash
 # 1) 本地：构建 + stage + 打包 + 校验（把 .next/static 与 public/ 一起放进 standalone/）
 bash scripts/build-deploy-tarball.sh                     # 产物 /tmp/attrax-deploy-complete.tar.gz
 
 # 2) 传到服务器
-scp /tmp/attrax-deploy-complete.tar.gz lighthouse:/tmp/
+scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
 
 # 3) 服务器：整包替换 .next/standalone/ + 自愈 static symlink + 写 BUILD_ID + 重启
-ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh'
+ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
 
 # 4) 若改了 Python（rag_service/），另需 scp 变更文件并重启 rag-service
-ssh lighthouse 'pm2 restart rag-service --update-env'
+ssh aliyun-sz 'pm2 restart rag-service --update-env'
 
 # 5) 健康校验（必须 ready=true 且 checks 五项全 true）
-ssh lighthouse 'curl -s http://127.0.0.1:8001/api/v1/ready'
+ssh aliyun-sz 'curl -s http://127.0.0.1:8002/api/v1/ready'
 ```
 
 要点：部署单位是**整个 `standalone/` 目录**（由 `build-deploy-tarball.sh` 产出、`attrax-apply-deploy.sh` 消费），不是零散文件；旧目录会被挪成 `.next/standalone-pre-deploy-<stamp>` 并保留 2 份用于回滚。`public/` 与 `.next/static/` **不需要**单独 symlink 或 rsync —— 前者已打进 tarball，后者由 apply 脚本维护 `/.next/static -> standalone/.next/static` 软链。

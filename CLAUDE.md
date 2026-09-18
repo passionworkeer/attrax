@@ -450,7 +450,7 @@ const SessionIdSchema = z
 - **裸 `pm2 start server.js --name nextjs --cwd .next/standalone` 会丢 env**：必须用 `pm2 start scripts/ecosystem.config.cjs --only nextjs` 让 env 块注入
 - **nginx `_next/static/` 用 `alias <root>/.next/static/`**（不用 snippet 的 `root $nextjs_root`）：Next 16 下 standalone/ 没有 `.next/static/`，URI 映射不到文件
 - **`/api/health` 200 不代表 BFF→rag auth 通**：还要跑一次真实扫描（提交 + 轮询 + 看结果）才能确认 `RAG_INTERNAL_SECRET` 等关键 env 生效
-- **`openrsync` 大目录会崩**：`.next/standalone` 用 `tar -C .next -czf - X | ssh lighthouse 'tar -xzf -'`；小目录 rsync OK
+- **`openrsync` 大目录会崩**：`.next/standalone` 用 `tar -C .next -czf - X | ssh aliyun-sz 'tar -xzf -'`；小目录 rsync OK
 - **服务器 git HEAD 落后**：deploy 流程只 rsync/tar **runtime 产物**，从不 `git pull`。要同步 git 用 `git bundle create /tmp/X.bundle old..new && scp && ssh fetch`
 
 ---
@@ -484,7 +484,7 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 - `docs/plans/2026-09-11-de-rag-evidence-spec.md` — de-RAG 迁移路线（执行基准）
 - `docs/plans/2026-09-14-judge-review-and-optimization-plan.md` — 当前优化方向
 - `docs/plans/2026-09-09-optimization-audit.md` — 已完成的审计
-- `docs/README.md` §生产部署 — 部署入口（lighthouse git-bundle + tar 流程）
+- `docs/README.md` §生产部署 — 部署入口（aliyun-sz git-bundle + tar 流程）
 - `CHANGELOG.md` — 历史修复 + 事故记录
 
 ---

@@ -28,13 +28,13 @@ KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next
 | 评测（grounding eval） | ✅ 完成 | `scripts/eval_grounding.py` + `docs/annotation/grounding-eval.md` |
 | watch-dog 法规自动入库 | ✅ 完成 | `scripts/watchdog/` + `docs/WATCHDOG.md`（默认 AUTO_INGEST=true） |
 | i18n（zh/en） | ✅ 完成 | `lib/i18n.tsx` + `lib/i18n/translations.ts`，locale 由 `BlazeLocaleProvider` 统一提供 |
-| 部署（lighthouse git-bundle + tar） | ✅ 完成 | `docs/README.md §生产部署` + `docs/infra/NEXTJS-16-STANDALONE-NOTES.md` |
+| 部署（aliyun-sz git-bundle + tar） | ✅ 完成 | `docs/README.md §生产部署` + `docs/infra/NEXTJS-16-STANDALONE-NOTES.md` |
 | 死代码扫描（3 subagent 对抗） | ✅ 完成 | 2026-09-14 第二轮（本次 commit）：-5962 LOC / +231 LOC |
 
 ## 三、关键约定与端口
 
 - **开发**：`http://localhost:3000`（前端） / `http://localhost:8001`（FastAPI）。docker-compose 映射为 loopback-only `127.0.0.1:${RAG_PORT:-8001}:8000`。
-- **生产**：腾讯云首尔 lighthouse `43.155.141.192`，pm2 跑 `nextjs` + `rag-service` + `regwatch`，nginx 反代，**不走 docker-compose / Ansible**（`docs/infra/` 下的 Ansible 文件是历史 aliyun-sz 时代遗留）。
+- **生产**：阿里云深圳 aliyun-sz `120.77.36.107`，pm2 跑 `nextjs` + `rag-service` + `regwatch`，nginx 反代，**不走 docker-compose / Ansible**（`docs/infra/` 下的 Ansible 文件是历史 lighthouse 时代遗留）。
 - **环境变量**（前端）：`MINIMAX_API_KEY` / `MINIMAX_BASE_URL` / `MINIMAX_MODEL` / `RAG_SERVICE_URL` / `DEMO_MODE` / `ATTRAX_BUILD_SHA`（`PAI_API_KEY` / `DAILY_FREE_SCAN_LIMIT` 无代码读取）。详见 `CLAUDE.md` §环境变量清单。
 - **RAG 服务鉴权**：`RAG_INTERNAL_SECRET`（BFF ↔ RAG 内部认证，fail-closed：prod 空 secret 拒绝启动）。
 
@@ -55,7 +55,7 @@ KB 锚定生成（knowledge-anchored generation）：用户上传图片 → Next
 
 ## 六、文档诚实性记录（2026-09-14）
 
-本次重写同步删除了 4 份仅适用已退役阿里云深圳 `120.77.36.107` 的部署文档（`DEPLOYMENT.md` / `RECOVERY.md` / `E2E-REPORT-20260718.md` / `DEPLOY-CHECKLIST.md`）。attrax 当前生产已迁至腾讯云首尔 lighthouse 一段时间，但本份项目状态报告未跟随更新；之前的 3 个月累计偏差包括：LangGraph 编排、FAISS 索引、cohere embed、trace/roadmap 孤儿页、ProfitReportView 独立组件、`lib/pipeline/scan-queue.ts` 任务队列、ModelScope API、MIMOTALK 端点、`data/faiss/`、`data/scan-queue/` 等——本快照已统一移除。下次重大重写不晚于下一次架构变更后 7 天。
+本次（2026-09-18）跟随 lighthouse → aliyun-sz 的回迁，同步审计/删除仅适用 lighthouse 时代的部署文档（`docs/infra/nginx-nginx.conf` 等旧机快照保留为历史）。
 
 ---
 

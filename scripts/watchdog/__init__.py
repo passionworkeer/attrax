@@ -11,7 +11,7 @@ Package layout:
   the live list rather than a hardcoded one here.
 
 Design notes:
-- Stdlib-only HTTP (``urllib.request``) so the lighthouse venv needs no new
+- Stdlib-only HTTP (``urllib.request``) so the aliyun-sz venv needs no new
   pip packages. The rag-service ``requests`` session is intentionally not
   reused: the watchdog must keep working even when the API venv is broken.
 - Scheduling lives inside the process (2026-09-13): one pass at startup, then

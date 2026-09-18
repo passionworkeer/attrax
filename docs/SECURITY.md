@@ -1,6 +1,6 @@
 # Attrax Security Policy
 
-> **⚠️ 历史快照（2026-06-21，aliyun-sz 部署时代）** — 生产已迁至 lighthouse（腾讯首尔，见 `docs/infra/`），文中 IP/机器细节为当时快照。安全设计原则（fail-closed secret、magic bytes 校验、fail2ban、限流）仍然有效，但涉及具体文件/路径的条目以下述修正为准：
+> **⚠️ 历史快照（2026-06-21，aliyun-sz 部署时代）** — 2026-09-18 attrax 又迁回 aliyun-sz（阿里云深圳，`120.77.36.107`，见 `docs/infra/`），文中 IP/机器细节为 2026-06 老快照；但安全设计原则（fail-closed secret、magic bytes 校验、fail2ban、限流）仍然有效，涉及具体文件/路径的条目以下述修正为准：
 >
 > - `lib/pipeline/session-store.ts` 已删除（2026-09-14）——sessionId 格式校验现在在 `app/api/scan/[sessionId]/asset/[index]/route.ts` 的内联 `SessionIdSchema` + `app/api/backend-session-access.ts` `SAFE_SESSION_ID`（`lib/schemas.ts` 已于 2026-09-17 round-5 整体删除，唯一活跃的 `SessionIdSchema` 内联进其消费者）
 > - `PAI_API_KEY` 无代码读取（embedding 栈已删），密钥旋转只需 `MINIMAX_API_KEY` / `RAG_INTERNAL_SECRET`
@@ -9,7 +9,7 @@
 >
 > Last updated: 2026-06-21 (after 11 rounds of hardening); corrections banner added 2026-09-14.
 
-This document covers security practices for the Attrax production deployment (historically at `120.77.36.107`, now lighthouse). Companion file: `infra/` contains actual server config snapshots.
+This document covers security practices for the Attrax production deployment (historically at lighthouse `43.155.141.192`, now aliyun-sz `120.77.36.107`). Companion file: `infra/` contains actual server config snapshots.
 
 ## Architecture
 
@@ -35,8 +35,8 @@ This document covers security practices for the Attrax production deployment (hi
 ### 轮换 `RAG_INTERNAL_SECRET`
 
 ```bash
-ssh lighthouse 'openssl rand -hex 24 | tr -d "\n" | sudo tee /opt/attrax/.rag-internal-secret >/dev/null && sudo chmod 600 /opt/attrax/.rag-internal-secret'
-ssh lighthouse 'cd /opt/attrax && pm2 startOrRestart scripts/ecosystem.config.cjs --only rag-service,nextjs'
+ssh aliyun-sz 'openssl rand -hex 24 | tr -d "\n" | sudo tee /opt/attrax/.rag-internal-secret >/dev/null && sudo chmod 600 /opt/attrax/.rag-internal-secret'
+ssh aliyun-sz 'cd /opt/attrax && pm2 startOrRestart scripts/ecosystem.config.cjs --only rag-service,nextjs'
 # 必须两端同时重启：只重启一个会让 BFF 与 RAG 的 secret 不一致 → 写端点全 401
 curl -s http://127.0.0.1:8001/api/v1/ready   # checks 应全 true
 ```
@@ -81,7 +81,7 @@ See `infra/nginx-*.conf`:
 - 11 security response headers (see infra README)
 - `proxy_intercept_errors on` + `error_page 500 =404` — upstream 5xx hidden from clients
 
-**Domain**: `https://wangjianjun.xyz` (A record → 43.155.141.192 Lighthouse Seoul). SSL via Let's Encrypt certbot.
+**Domain**: `https://wangjianjun.xyz` (A record → 120.77.36.107 Aliyun Shenzhen). SSL via Let's Encrypt certbot.
 
 ## API protection
 
@@ -91,7 +91,7 @@ See `infra/nginx-*.conf`:
   - **BFF 才是真实成本门槛**，比 nginx 严约 60 倍：每次放行的扫描都消耗 LLM 调用，并占用 5 个 RAG worker 槽位之一（单次最长 280s）。因此存储不可用时**降级为进程内计数**（同窗口、同 key，仅失去跨重启持久化），既不静默放行也不全站 429
   - 单进程假设：pm2 以 fork 模式运行 `nextjs` 且未设 `instances`，故进程内计数与文件存储等效；若将来扩为多实例/多容器，需重新引入跨进程锁（见 `lib/rate-limit.ts` 模块头）
 - **fail2ban**: 4 jails — `sshd`、`nginx-auth`、`nginx-botsearch`、`recidive`（`/etc/fail2ban/jail.local`；`fail2ban-client status` 复核一致）
-  - `jail.local` 未配置 `ignoreip`（旧文档写的 `attrax-404-probe` jail 并未在 lighthouse 部署；`docs/infra/fail2ban-*.conf` 是阿里云深圳时代快照 —— 该机已退役，其中残留的 `120.77.36.107` 亦然）
+  - `jail.local` 未配置 `ignoreip`（旧文档写的 `attrax-404-probe` jail 并未在 aliyun-sz 部署；`docs/infra/fail2ban-*.conf` 是 lighthouse 时代快照，今天 aliyun-sz 又成为新生产，需重新比对——其中残留的 `43.155.141.192` IP 是 1921 旧机记录）
 - **Session auth**: 32-byte random tokens (256 bits entropy), SHA-256 hashed, `timingSafeEqual` constant-time comparison
 - **SessionId validation**: 三层正则 — asset BFF 路由内联 schema 限 50 字符（`/^scan_[0-9A-Za-z_-]{1,50}$/`，原 `lib/schemas.ts:SessionIdSchema`，2026-09-17 内联保留），`app/api/backend-session-access.ts:SAFE_SESSION_ID` + RAG `rag_service/api/v1.py:_SESSION_ID` 限 64 字符（`/^scan_[A-Za-z0-9_-]{1,64}$/`）。BFF 的 64 是外层，内联 schema 的 50 是内层；调用经 Zod 校验，64-char 范围包含 50-char 范围，没有错位风险
 - **CORS**: `RAG_ALLOWED_ORIGINS=https://wangjianjun.xyz,http://localhost:3000` (8001 only listens on loopback 127.0.0.1 so cross-origin attacks are limited)
@@ -101,7 +101,7 @@ See `infra/nginx-*.conf`:
 
 - `pm2` runs as **`ubuntu`** (NOT root), via `/etc/systemd/system/pm2-ubuntu.service` (`User=ubuntu`); `PM2_HOME=/home/ubuntu/.pm2`
 - `/opt/attrax` owned by `ubuntu:ubuntu`; `data/` additionally group-owned by `netdev` (so the `nextjs` process can write under its own uid)
-- **`/etc/sudoers` grants full passwordless sudo, not a restricted allowlist**: `ubuntu ALL=(ALL:ALL) NOPASSWD: ALL` (also duplicated in `/etc/sudoers.d/90-cloud-init-users`), plus a `lighthouse ALL=(ALL) NOPASSWD: ALL` entry. Anything running as `ubuntu` — including the three pm2-supervised apps — can become root without a password. This is broader than the operator-command allowlist earlier versions of this document described; treat a compromise of any pm2 app as a root compromise, and tighten to an explicit allowlist if that blast radius is not acceptable
+- **`/etc/sudoers` grants full passwordless sudo, not a restricted allowlist**: `ubuntu ALL=(ALL:ALL) NOPASSWD: ALL` (also duplicated in `/etc/sudoers.d/90-cloud-init-users`), plus a `aliyun-sz ALL=(ALL) NOPASSWD: ALL` entry. Anything running as `ubuntu` — including the three pm2-supervised apps — can become root without a password. This is broader than the operator-command allowlist earlier versions of this document described; treat a compromise of any pm2 app as a root compromise, and tighten to an explicit allowlist if that blast radius is not acceptable
 - `ubuntu` removed from the `docker` group (no container privilege escalation)
 - `unattended-upgrades` enabled for security packages
 - **Secrets**: `/opt/attrax/.rag-internal-secret` (`600`) is the single source for `RAG_INTERNAL_SECRET`; `.env` files are `600`/`640`. Never commit them (see `.gitignore` — `.env*`)

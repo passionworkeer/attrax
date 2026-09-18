@@ -23,7 +23,7 @@
 | 监控产物目录 | `data/regulation_supplements/watchdog-YYYY-MM-DD/` |
 | 备份目录 | `data/regulation_supplements/auto-YYYY-MM-DD/` |
 | 调度 | 进程内 `time.sleep` 循环（不依赖 pm2 cron_restart，详见 §为什么自带调度） |
-| 跑批时间 | 默认 `03:00` 服务器本地时（lighthouse 上 = Asia/Shanghai = 19:00 UTC） |
+| 跑批时间 | 默认 `03:00` 服务器本地时（aliyun-sz 上 = Asia/Shanghai = 19:00 UTC） |
 | 启用开关 | `ATTRAX_REGWATCH_ENABLED=true/false`（默认开） |
 | 自动入库开关 | `ATTRAX_REGWATCH_AUTO_INGEST=true/false`（默认开） |
 

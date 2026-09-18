@@ -112,7 +112,7 @@
 ## 二、每日定时更新爬取的法规官方源清单（共 35 个，确保人类可直接打开）
 
 ### 2.1 每日爬虫运行说明
-- **托管服务**：运行在腾讯云首尔生产机 PM2 的 [`regwatch`](file:///Users/wangjianjun/me/attrax/scripts/ecosystem.config.cjs) 守护进程中。
+- **托管服务**：运行在阿里云深圳 aliyun-sz 生产机 PM2 的 [`regwatch`](file:///Users/wangjianjun/me/attrax/scripts/ecosystem.config.cjs) 守护进程中。
 - **调度频次**：每天服务器本地时间 **03:00**（Asia/Shanghai 时区）自动启动全量巡检。
 - **爬取与解析机制**：
   - **后端爬取端点**：为保证数据结构化和权威性，机器爬取层走专用的开放数据通道（如 Cellar RDF/XML、Federal Register API、Canada Justice XML 等）。

@@ -3,7 +3,7 @@
 Run modes:
 - ``python -m scripts.watchdog.orchestrator``          — daemon: run one pass
   immediately, then sleep until the next daily run time (ATTRAX_REGWATCH_RUN_AT,
-  default 03:00 **server-local** — Asia/Shanghai on lighthouse) and repeat.
+  default 03:00 **server-local** — Asia/Shanghai on aliyun-sz) and repeat.
 - ``python -m scripts.watchdog.orchestrator --once``   — single pass, exit
 - ``python -m scripts.watchdog.orchestrator --dry-run``— detect changes but do
   not write outputs or update the snapshot DB
@@ -72,7 +72,7 @@ EXIT_FATAL = 1
 
 # Default daily run time, server-local. The old docs said "03:00 UTC" — that
 # was wrong: pm2 cron and this loop both use the daemon's local zone
-# (Asia/Shanghai on lighthouse), so 03:00 CST = 19:00 UTC.
+# (Asia/Shanghai on aliyun-sz), so 03:00 CST = 19:00 UTC.
 DEFAULT_RUN_AT = "03:00"
 _SHUTDOWN = False
 

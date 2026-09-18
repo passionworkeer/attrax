@@ -6,7 +6,7 @@
 - **三段式架构**：浏览器 → Next.js 16 BFF（端口 3000，nginx 反代 443）→ FastAPI RAG（端口 8001，仅 loopback）。
 - **流水线**：线性三步 `vision → generate → verify`（无 LangGraph、无向量库），单一 LLM 调用链。
 - **法规与 KB**：44 篇法规 YAML + 44 个 KB 锚点 + 35 个 watchdog 监控源；改动自动入库。
-- **运营栈**：单台 lighthouse 腾讯云首尔（4 vCPU / 8GB）+ pm2 跑 nextjs + rag-service + regwatch 三个守护进程。
+- **运营栈**：单台 aliyun-sz 阿里云深圳（实际 2 vCPU / 1.6GB；4 vCPU / 8GB 假设需 `lscpu` 复核）+ pm2 跑 nextjs + rag-service + regwatch 三个守护进程。
 - **关键术语**：de-RAG = 去 RAG 架构（2026-09-11 之后的迁移）。KB 锚点 = 「强制 LLM 引用这些法规，不允许自创」。anchor list = 给某次扫描激活的法规集合。
 
 ## 一句话

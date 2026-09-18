@@ -2,7 +2,7 @@
 /**
  * prebuild 守卫 — 拒绝在服务器部署目录里跑 `next build`。
  *
- * 2026-09-16 事故复盘:有人在 lighthouse 的 /opt/attrax 里直接 `npm run build`。
+ * 2026-09-16 事故复盘:有人在 aliyun-sz 的 /opt/attrax 里直接 `npm run build`。
  * `next build` 一开跑就清空 `.next/`,连 pm2 正在跑的 `nextjs` 的 cwd
  * (`/opt/attrax/.next/standalone`) 一起删掉。进程不会立刻死(Linux 会保留被删
  * 目录的 inode),但 Node 是按需加载 chunk 的:
@@ -12,7 +12,7 @@
  *   - nginx `root .../standalone/public` 一起失效 → /complipilot/* 图片视频全 404
  *
  * 正确流程:本地构建 → `scripts/build-deploy-tarball.sh` 打包 →
- * scp 到 `lighthouse:/tmp/` → `bash /tmp/attrax-apply-deploy.sh`。
+ * scp 到 `aliyun-sz:/tmp/` → `bash /tmp/attrax-apply-deploy.sh`。
  *
  * 确需在该目录构建(例如刻意的灾难恢复):
  *   ATTRAX_ALLOW_SERVER_BUILD=1 npm run build
@@ -37,8 +37,8 @@ if (cwd.startsWith("/opt/")) {
       "",
       "  正确做法:",
       "    本地:  npm run build && bash scripts/build-deploy-tarball.sh",
-      "    上线:  scp /tmp/attrax-deploy-complete.tar.gz lighthouse:/tmp/",
-      "           ssh lighthouse 'bash /tmp/attrax-apply-deploy.sh'",
+      "    上线:  scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/",
+      "           ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'",
       "",
       "  确需在此目录构建: ATTRAX_ALLOW_SERVER_BUILD=1 npm run build",
       "",
