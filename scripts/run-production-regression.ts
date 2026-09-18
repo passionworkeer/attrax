@@ -93,10 +93,12 @@ const TEST_CASES: TestCase[] = [
   },
 ];
 
-/** Target base URL. Defaults to production; override with ATTRAX_REGRESSION_BASE_URL
- *  to point at staging/localhost. */
+/** Target base URL. Defaults to production (aliyun-sz, twinbuddy.xyz since the
+ * 2026-09-18 lighthouse → aliyun-sz migration — the old example.com now
+ * answers 401 from the retired box); override with ATTRAX_REGRESSION_BASE_URL
+ * to point at staging/localhost. */
 const BASE_URL =
-  process.env.ATTRAX_REGRESSION_BASE_URL || "https://example.com";
+  process.env.ATTRAX_REGRESSION_BASE_URL || "https://twinbuddy.xyz";
 
 /** Regression output directory. Defaults to .screenshots/regression-YYYYMMDD
  *  next to this script (gitignored). Override with ATTRAX_REGRESSION_OUT_DIR. */
@@ -138,6 +140,16 @@ async function saveScreenshot(page: Page, filename: string, locator?: ReturnType
   console.log(`  📸 Screenshot saved: ${filename}`);
 }
 
+/** 上传页品类选择器是 Base UI Select（触发器 #blaze-category + portal 弹层），
+ * 2026-09 起不再是原生 <select>，不能再用 page.selectOption。 */
+async function selectCategory(page: Page, categoryValue: string, categoryLabel: string) {
+  console.log(`  Configuring category: ${categoryLabel}...`);
+  await page.locator("#blaze-category").click();
+  await page.getByRole("option", { name: categoryLabel, exact: true }).click();
+}
+
+/** 市场按钮的选中态是 aria-pressed（样式走 upload.module.css），
+ * 旧的 bg-white/40 class 检测永远判为未选中，会把已选市场点反。 */
 async function selectMarketOnly(page: Page, targetMarketName: string) {
   console.log(`  Configuring target market: ${targetMarketName}...`);
   const marketButtons = page.locator("button").filter({ hasText: /^(欧盟|美国|英国|中国)$/ });
@@ -145,8 +157,7 @@ async function selectMarketOnly(page: Page, targetMarketName: string) {
   for (let i = 0; i < count; i++) {
     const btn = marketButtons.nth(i);
     const text = (await btn.innerText()).trim();
-    const className = (await btn.getAttribute("class")) || "";
-    const isActive = className.includes("bg-white/40");
+    const isActive = (await btn.getAttribute("aria-pressed")) === "true";
     if (text === targetMarketName) {
       if (!isActive) {
         await btn.click();
@@ -161,11 +172,12 @@ async function selectMarketOnly(page: Page, targetMarketName: string) {
   }
 }
 
+/** 条件声明的选项按钮挂在 role="group" 且 aria-label=完整问句 的容器下，
+ * 直接用问句前缀定位组、精确匹配选项文本，避免外层 div filter 误配到
+ * 页面其他同文本按钮。 */
 async function selectConditionalAnswer(page: Page, questionTextPartial: string, optionText: string) {
-  const container = page.locator("div").filter({
-    has: page.locator("p", { hasText: questionTextPartial }),
-  });
-  const button = container.locator("button", { hasText: optionText }).first();
+  const group = page.locator(`div[role="group"][aria-label*="${questionTextPartial}"]`).first();
+  const button = group.locator("button", { hasText: new RegExp(`^${optionText.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`) }).first();
   if (await button.isVisible()) {
     const isPressed = await button.getAttribute("aria-pressed");
     if (isPressed !== "true") {
@@ -220,7 +232,7 @@ async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: nu
     await page.waitForTimeout(1000);
 
     console.log(`Step 2: Selecting category "${testCase.category}"...`);
-    await page.selectOption("#blaze-category", testCase.category);
+    await selectCategory(page, testCase.category, testCase.categoryLabel);
     await page.waitForTimeout(500);
 
     console.log(`Step 3: Setting target market to "${testCase.targetMarketName}"...`);
@@ -239,6 +251,13 @@ async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: nu
     }
 
     console.log("Step 5: Setting conditional declarations...");
+    // 条件问题收在 <details>（summary「补充产品信息（可选）」）里，默认折叠，
+    // 不先展开的话选项按钮全部不可见。
+    const optionalDetails = page.locator("details").filter({ hasText: /补充产品信息|Additional product information/ });
+    if ((await optionalDetails.count()) > 0 && (await optionalDetails.first().getAttribute("open")) === null) {
+      await optionalDetails.first().locator("summary").click();
+      await page.waitForTimeout(300);
+    }
     for (const ans of testCase.answers) {
       await selectConditionalAnswer(page, ans.question, ans.answer);
     }
@@ -248,7 +267,9 @@ async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: nu
     await saveScreenshot(page, `${prefix}_01_upload_ready.png`);
 
     console.log("Step 6: Submitting scan...");
-    const submitBtn = page.locator('button[type="submit"]');
+    // 页头 CTA 通过 form= 属性关联表单，页面上有两个 type="submit"；
+    // 用表单内主按钮的稳定 id。
+    const submitBtn = page.locator("#scan-submit");
     const isEnabled = await submitBtn.isEnabled();
     console.log(`  Submit button enabled: ${isEnabled}, text: "${await submitBtn.innerText()}"`);
 
@@ -328,13 +349,18 @@ async function runSingleCase(browser: Browser, testCase: TestCase, caseIndex: nu
     await page.waitForTimeout(3000);
     await saveScreenshot(page, `${prefix}_07_profit_page.png`);
 
+    // 产品名顶层字段常为空（UI 走 inspection-view-model 的多级 fallback），
+    // 摘要里退而求其次取报告首行标题，仅作诊断显示。
+    const reportText = scanData?.result?.reportPackage?.complianceReport ?? scanData?.result?.complianceReport ?? "";
+    const reportTitle = typeof reportText === "string" ? (reportText.split("\n")[0] ?? "").replace(/^#+\s*/, "").trim() : "";
+
     return {
       testCase: testCase.name,
       success: true,
       sessionId,
       elapsedSeconds,
       status: scanData?.status,
-      productName: scanData?.result?.productName || scanData?.productName,
+      productName: scanData?.result?.productName || scanData?.productName || reportTitle || undefined,
       productCategory: scanData?.result?.productCategory || scanData?.productCategory,
       riskPointsCount: scanData?.result?.riskPoints?.length ?? 0,
       complianceScore: scanData?.result?.complianceScore,
@@ -418,6 +444,14 @@ async function main() {
   const summaryPath = path.join(REPO_SCREENSHOT_DIR, "summary.json");
   fs.writeFileSync(summaryPath, JSON.stringify(results, null, 2), "utf8");
   console.log(`Summary saved to ${summaryPath}`);
+
+  // 有用例失败必须以非零退出码结束，否则 CI / cron 把全挂的回归当绿色。
+  const failed = results.filter((r) => !r.success);
+  if (failed.length > 0) {
+    console.error(`\n❌ ${failed.length}/${results.length} test case(s) failed — exiting 1`);
+    process.exit(1);
+  }
+  console.log(`\n✅ All ${results.length} test case(s) passed`);
 }
 
 main().catch((err) => {

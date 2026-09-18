@@ -36,11 +36,18 @@ from __future__ import annotations
 import json
 import re
 import shutil
+import sys
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
 import yaml
+
+# 与 check_sources.py 相同：让 `python3 scripts/watchdog/auto_ingest.py` 直跑也能
+# import scripts.*（-m 方式不需要，但文件路径方式的 sys.path[0] 不含仓库根）。
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 
 from scripts.watchdog.collectors.base import RegulationUpdate
 from scripts.watchdog.state import Change

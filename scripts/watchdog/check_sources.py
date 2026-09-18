@@ -30,6 +30,13 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+# 允许两种调用方式：`python -m scripts.watchdog.check_sources`（见上文 docstring）
+# 与 `python3 scripts/watchdog/check_sources.py`。后者的 sys.path[0] 是脚本所在
+# 目录而不是仓库根，没有这段引导会 ModuleNotFoundError: No module named 'scripts'。
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
 from scripts.watchdog.collectors.base import (
     FetchDeadlineExceeded,
     NotModified,
