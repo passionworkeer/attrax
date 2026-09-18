@@ -21,4 +21,4 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-0 4 * * * ubuntu /opt/attrax/scripts/backup-remote.sh >> /opt/attrax/logs/attrax-backup-remote.log 2>&1
+0 4 * * * root /opt/attrax/scripts/backup-remote.sh >> /opt/attrax/logs/attrax-backup-remote.log 2>&1
