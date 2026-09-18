@@ -231,6 +231,7 @@ async def create_scan(
     category: Annotated[str, Form()] = "electronics",
     markets: Annotated[str, Form()] = '["EU"]',
     declared_facts: Annotated[str, Form()] = "",
+    user_declared_facts: Annotated[str, Form(alias="userDeclaredFacts")] = "",
     images: Annotated[list[UploadFile], File()] = [],
     documents: Annotated[list[UploadFile], File()] = [],
 ):
@@ -240,16 +241,29 @@ async def create_scan(
     (e.g. ``{"battery": "absent"}``) collected by the upload wizard's
     conditional questions. Malformed JSON is ignored — the facts are an
     enhancement to applicability, never a request requirement.
+    ``userDeclaredFacts`` is the browser's legacy field name for the same
+    payload (the BFF used to rename it; it now forwards the multipart body
+    verbatim, so both names are accepted).
+
+    ``query`` is optional here: when the browser posts its form directly the
+    BFF no longer synthesizes the Chinese query string, so an empty ``query``
+    falls back to the same wording the BFF used to build.
     """
     if not _authorized_create_request(request):
         return failure(request, "UNAUTHORIZED", "Internal service authorization is required", 401)
-    if not query.strip() or len(query) > 2_000 or len(product) > 500 or len(category) > 100:
+    if len(product) > 500 or len(category) > 100:
         return failure(request, "INVALID_REQUEST", "Invalid scan fields", 400)
-    if len(declared_facts) > 20_000:
-        return failure(request, "INVALID_REQUEST", "Declared facts payload is too large", 400)
     parsed_markets = _parse_markets(markets)
     if not parsed_markets:
         return failure(request, "INVALID_REQUEST", "Use one to five supported markets", 400)
+    if not query.strip():
+        query = f"评估 {category.strip()} 类产品在 {'/'.join(parsed_markets)} 市场的合规风险"
+    if not query.strip() or len(query) > 2_000:
+        return failure(request, "INVALID_REQUEST", "Invalid scan fields", 400)
+    if not declared_facts.strip():
+        declared_facts = user_declared_facts
+    if len(declared_facts) > 20_000:
+        return failure(request, "INVALID_REQUEST", "Declared facts payload is too large", 400)
     facts_payload: dict[str, str] = {}
     if declared_facts.strip():
         try:

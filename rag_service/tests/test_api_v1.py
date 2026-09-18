@@ -1,4 +1,5 @@
 import io
+import json
 import time
 import zipfile
 
@@ -26,24 +27,24 @@ def clear_operator_secret(monkeypatch):
     monkeypatch.setattr(settings, "rag_internal_secret", "")
 
 
-def build_app(tmp_path):
-    async def runner(payload):
-        return {
-            "status": "PASS",
-            "report": "## compliant",
-            "agent_trace": [{"node": "vision", "status": "success"}],
-            "loop_count": 0,
-            "documents": [{"source_id": "eu-rule", "region": "EU"}],
-            "report_package": {
-                "roadmap": {"items": [{"id": "apply-ce", "title": "Apply CE"}]},
-                "auditMetadata": {
-                    "validationStatus": "valid",
-                    "verificationMode": "nli",
-                },
+def _pipeline_result():
+    return {
+        "status": "PASS",
+        "report": "## compliant",
+        "agent_trace": [{"node": "vision", "status": "success"}],
+        "loop_count": 0,
+        "documents": [{"source_id": "eu-rule", "region": "EU"}],
+        "report_package": {
+            "roadmap": {"items": [{"id": "apply-ce", "title": "Apply CE"}]},
+            "auditMetadata": {
+                "validationStatus": "valid",
+                "verificationMode": "nli",
             },
-        }
+        },
+    }
 
-    app = FastAPI(version="test")
+
+def _mount_app(app, tmp_path, runner):
     app.state.scan_service = ScanService(
         FileBackend(tmp_path),
         runner=runner,
@@ -56,6 +57,13 @@ def build_app(tmp_path):
     }
     app.include_router(router)
     return app
+
+
+def build_app(tmp_path):
+    async def runner(payload):
+        return _pipeline_result()
+
+    return _mount_app(FastAPI(version="test"), tmp_path, runner)
 
 
 def create_scan(client: TestClient, headers=None, markets='["EU","US"]'):
@@ -292,3 +300,71 @@ def test_production_app_mounts_the_public_v1_contract():
     paths = production_app.openapi()["paths"]
     assert "/api/v1/scans" in paths
     assert "/api/v1/health" in paths
+
+
+def test_create_accepts_the_browsers_raw_form_shape(tmp_path):
+    """The BFF streams the upload wizard's multipart body verbatim.
+
+    That means the wire shape is whatever the browser built, not what the old
+    BFF-side rename produced: ``markets`` is comma-joined rather than a JSON
+    array, the Chinese ``query`` is absent, and the declared facts arrive
+    under the browser's legacy ``userDeclaredFacts`` name.
+    """
+    captured: list = []
+
+    async def runner(payload):
+        captured.append(payload)
+        return _pipeline_result()
+
+    app = _mount_app(FastAPI(version="test"), tmp_path, runner)
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/v1/scans",
+            data={
+                "category": "toy",
+                "markets": "EU,US",
+                "userDeclaredFacts": json.dumps({"battery": "否", "magnets": "否"}),
+            },
+            files={"images": ("front.png", PNG, "image/png")},
+        )
+        assert response.status_code == 202, response.text
+        session_id = response.json()["data"]["sessionId"]
+        token = response.json()["data"]["accessToken"]
+        poll_ready(client, session_id, token)
+
+    assert captured, "runner was never invoked"
+    submission = captured[0]
+    assert submission["query"] == "评估 toy 类产品在 EU/US 市场的合规风险"
+    assert submission["markets"] == ["EU", "US"]
+    assert submission["category"] == "toy"
+    assert submission["declared_facts"] == {"battery": "否", "magnets": "否"}
+
+
+def test_create_prefers_declared_facts_over_the_legacy_alias(tmp_path):
+    """Both field names on the wire: the canonical one wins."""
+    captured: list = []
+
+    async def runner(payload):
+        captured.append(payload)
+        return _pipeline_result()
+
+    app = _mount_app(FastAPI(version="test"), tmp_path, runner)
+    with TestClient(app) as client:
+        response = client.post(
+            "/api/v1/scans",
+            data={
+                "query": "check toy",
+                "category": "toy",
+                "markets": '["EU"]',
+                "declared_facts": json.dumps({"battery": "absent"}),
+                "userDeclaredFacts": json.dumps({"battery": "present"}),
+            },
+            files={"images": ("front.png", PNG, "image/png")},
+        )
+        assert response.status_code == 202, response.text
+        session_id = response.json()["data"]["sessionId"]
+        token = response.json()["data"]["accessToken"]
+        poll_ready(client, session_id, token)
+
+    assert captured[0]["declared_facts"] == {"battery": "absent"}
+    assert captured[0]["query"] == "check toy"

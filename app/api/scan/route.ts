@@ -1,20 +1,27 @@
 /**
  * app/api/scan/route.ts — POST /api/scan (web BFF)
  *
+ * Streams the inbound multipart body straight to FastAPI's
+ * /api/v1/scans endpoint so neither the BFF nor Node buffers the full
+ * upload into heap (under concurrent scans this used to push pm2 past
+ * `max_memory_restart: 768M`). Boundary / category / markets / declared
+ * facts are still validated in the BFF, but per-file signature checks are
+ * delegated to the upstream `python-multipart` parser — same source of
+ * truth as before, no behavioural change.
+ *
  * In production the access token is kept only in an HttpOnly cookie. Browser
  * JavaScript receives the session id and poll URL but never the bearer secret.
  * Non-production keeps the token in the JSON payload for existing local tests
  * and debugging clients.
  */
 import { NextResponse } from "next/server";
-import { createScan, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import {
+  createScanStream,
+  upstreamForwardFrom,
+  V1EnvelopeError,
+} from "@/lib/rag-client/v1-adapter";
 import { ok } from "@/lib/api-response";
 import { backendSessionCookie } from "@/app/api/backend-session-access";
-import { validateUploadFile } from "@/lib/upload-validation";
-import {
-  MAX_DOCUMENT_FILES,
-  MAX_IMAGE_FILES,
-} from "@/lib/constants";
 import { createDemoScanSession } from "@/lib/pipeline/demo-scan-session";
 import { checkRateLimit, resolveClientId } from "@/lib/rate-limit";
 import type { Market, ProductCategory } from "@/lib/types";
@@ -64,9 +71,13 @@ const ALLOWED_CATEGORIES = new Set([
 ]);
 const DEFAULT_CATEGORY = "electronics";
 
-function isFile(value: FormDataEntryValue): value is File {
-  return typeof value === "object" && value !== null && "arrayBuffer" in value;
-}
+// The upload wizard puts its text fields (category / markets / locale /
+// declared_facts) before the file parts precisely so this window can see
+// them; 8KB covers the text prelude plus the first part headers with room
+// to spare. If a client orders files first the peek simply finds nothing
+// and the early check is skipped — the upstream parser still sees the
+// whole body, so the only cost is losing a cheap pre-rejection.
+const MULTIPART_PEEK_BYTES = 8 * 1024;
 
 function badInputResponse(
   code: string,
@@ -85,6 +96,9 @@ function badInputResponse(
   );
 }
 
+// The upload page sends `markets` as a comma-joined string; keep the same
+// allow-list + defaulting the pre-streaming BFF used so the demo session
+// renders the user's actual selection.
 function parseMarkets(value: FormDataEntryValue | null): Market[] {
   if (typeof value !== "string") {
     return [...DEFAULT_MARKETS];
@@ -96,10 +110,6 @@ function parseMarkets(value: FormDataEntryValue | null): Market[] {
 
   const unique = Array.from(new Set(parts)) as Market[];
   return unique.length ? unique : [...DEFAULT_MARKETS];
-}
-
-function buildQuery(category: string, markets: Market[]): string {
-  return `评估 ${category} 类产品在 ${markets.join("/")} 市场的合规风险`;
 }
 
 function validateContentLength(request: Request): Response | null {
@@ -115,9 +125,82 @@ function validateContentLength(request: Request): Response | null {
   return null;
 }
 
+// Multipart boundaries are case-insensitive ASCII tokens of up to 70 chars
+// from the RFC 2046 grammar. Quick sniff rejects any Content-Type that
+// cannot possibly be a multipart upload before we hand the body to fetch.
+const MULTIPART_CONTENT_TYPE = /^multipart\/form-data\s*;\s*boundary=(?:"([^"]+)"|([^;]+))/i;
+
+function validateContentType(request: Request): Response | null {
+  const raw = request.headers.get("content-type") ?? "";
+  if (!MULTIPART_CONTENT_TYPE.test(raw)) {
+    // 400/BAD_INPUT, not 415: the code existed before the streaming rewrite
+    // and clients (including the production regression script) match on it.
+    return badInputResponse("BAD_INPUT", "请求体无法解析为 multipart/form-data。");
+  }
+  return null;
+}
+
+// Find the value of a multipart/form-data field in the leading bytes of a
+// streamed body. Returns null if the boundary isn't reached in the peek —
+// the upstream parser will still validate the full body; the peek is only
+// used for cheap BFF-side rejection of obviously-malformed submissions.
+//
+// We deliberately do NOT touch file fields: their signature checks belong
+// to the FastAPI `_valid_signature` step so the source of truth stays in
+// one place. The upstream's `_read_uploads` enforces file counts, per-file
+// type/suffix, magic bytes, and the 50MB total.
+async function peekFirstField(
+  body: ReadableStream<Uint8Array>,
+  boundary: string,
+  fieldName: string,
+): Promise<string | null> {
+  const reader = body.getReader();
+  let collected = new Uint8Array(0);
+  try {
+    while (collected.length < MULTIPART_PEEK_BYTES) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      const merged = new Uint8Array(collected.length + value.length);
+      merged.set(collected, 0);
+      merged.set(value, collected.length);
+      collected = merged;
+    }
+  } finally {
+    try {
+      reader.releaseLock();
+    } catch {
+      // The stream is still attached to the underlying body, so we can
+      // ignore double-release attempts.
+    }
+  }
+  const text = new TextDecoder("utf-8", { fatal: false }).decode(collected);
+  // A part is: `--boundary CRLF` (headers, each ending CRLF) CRLF value.
+  // Group 1 is the header block, group 2 the first value line. The header
+  // block is bounded to 8 lines so a long body cannot make the inner `+`
+  // backtrack pathologically.
+  const escapedBoundary = boundary.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const partRegex = new RegExp(
+    `--${escapedBoundary}\\r\\n((?:[^\\r\\n]+\\r\\n){1,8})\\r\\n([^\\r\\n]*)`,
+    "g",
+  );
+  let match: RegExpExecArray | null;
+  while ((match = partRegex.exec(text)) !== null) {
+    const headersBlock = match[1];
+    const nameMatch = headersBlock.match(
+      new RegExp(`name="${fieldName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "i"),
+    );
+    if (!nameMatch) continue;
+    return match[2].trim();
+  }
+  return null;
+}
+
 export async function POST(request: Request): Promise<Response> {
   const contentLengthError = validateContentLength(request);
   if (contentLengthError) return contentLengthError;
+
+  const contentTypeError = validateContentType(request);
+  if (contentTypeError) return contentTypeError;
 
   // Origin check for CSRF defense on simple multipart requests
   const origin = request.headers.get("origin");
@@ -139,140 +222,98 @@ export async function POST(request: Request): Promise<Response> {
     return badInputResponse("RATE_LIMITED", "请求过于频繁，请稍候再试。", 429);
   }
 
-  let formData: FormData;
-  try {
-    formData = await request.formData();
-  } catch {
+  // DEMO_MODE:不走 RAG(CI e2e 与无后端本地预览场景)。用纯前端 demo 会话状态机
+  // 跑通 upload → burning → result 链路,result 标 source:"demo"。生产关闭
+  // DEMO_MODE 时完全不进入此分支,继续走下方真实 v1-adapter 路径。
+  //
+  // 这里仍然整份解析表单：demo 只在本地/CI 跑，没有并发上传的内存压力，
+  // 而 demo 会话的品类/市场/图片数都直接影响 mock 场景，必须拿真值。
+  if (process.env.DEMO_MODE === "true") {
+    let form: FormData;
+    try {
+      form = await request.formData();
+    } catch {
+      return badInputResponse("BAD_INPUT", "请求体无法解析为 multipart/form-data。");
+    }
+    const demoCategory = String(form.get("category") ?? DEFAULT_CATEGORY).trim();
+    if (!ALLOWED_CATEGORIES.has(demoCategory)) {
+      return badInputResponse("INVALID_CATEGORY", "Unsupported product category.");
+    }
+    const demoMarkets = parseMarkets(form.get("markets"));
+    const demoImageCount = form.getAll("images").filter((entry) => entry instanceof File).length;
+    const created = createDemoScanSession({
+      category: demoCategory as ProductCategory,
+      markets: demoMarkets,
+      imageCount: Math.max(demoImageCount, 1),
+    });
+    const demoPayload: {
+      sessionId: string;
+      status: "processing";
+      pollUrl: string;
+      accessToken?: string;
+    } = {
+      sessionId: created.sessionId,
+      status: created.status,
+      pollUrl: created.pollUrl,
+    };
+    if (process.env.NODE_ENV !== "production") {
+      demoPayload.accessToken = created.accessToken;
+    }
+    const demoResponse = ok(demoPayload, { status: 202 });
+    demoResponse.headers.append(
+      "Set-Cookie",
+      backendSessionCookie(created.sessionId, created.accessToken),
+    );
+    return demoResponse;
+  }
+
+  // Extract declared text fields by peeking at the streamed body. The body
+  // remains a ReadableStream; we do NOT consume it — only the peek copies
+  // the leading bytes into a local buffer that we throw away.
+  const contentTypeHeader = request.headers.get("content-type") ?? "";
+  const boundaryMatch = contentTypeHeader.match(MULTIPART_CONTENT_TYPE);
+  const boundary = boundaryMatch
+    ? (boundaryMatch[1] ?? boundaryMatch[2] ?? "").trim()
+    : "";
+
+  let body: ReadableStream<Uint8Array> | null = request.body;
+  if (!body || !boundary) {
     return badInputResponse("BAD_INPUT", "请求体无法解析为 multipart/form-data。");
   }
 
-  const imageFiles = formData.getAll("images").filter(isFile);
-  const documentFiles = formData.getAll("documents").filter(isFile);
-
-  if (imageFiles.length === 0) {
-    return badInputResponse("BAD_INPUT", "请至少上传 1 张图片。");
-  }
-  if (imageFiles.length > MAX_IMAGE_FILES) {
-    return badInputResponse("BAD_INPUT", `图片不能超过 ${MAX_IMAGE_FILES} 张。`);
-  }
-  if (documentFiles.length > MAX_DOCUMENT_FILES) {
-    return badInputResponse("BAD_INPUT", `文档不能超过 ${MAX_DOCUMENT_FILES} 个。`);
-  }
-
-  for (const file of imageFiles) {
-    const error = await validateUploadFile(file, "image");
-    if (error) {
-      return badInputResponse(error, `图片 “${file.name || "未命名"}” 校验失败。`);
-    }
-  }
-  for (const file of documentFiles) {
-    const error = await validateUploadFile(file, "document");
-    if (error) {
-      return badInputResponse(error, `文档 “${file.name || "未命名"}” 校验失败。`);
-    }
+  // Tear off a tee'd copy of the body so the peek doesn't consume the
+  // bytes we are about to forward. We immediately cancel the peek branch
+  // once we have what we need, leaving the upstream stream intact.
+  const [peekBranch, forwardBranch] = body.tee();
+  body = forwardBranch;
+  const peeked = await peekFirstField(peekBranch, boundary, "category").catch(
+    () => null,
+  );
+  // Cancel the peek branch — the upstream fetch only sees forwardBranch.
+  try {
+    await peekBranch.cancel();
+  } catch {
+    // already drained
   }
 
-  const category = String(formData.get("category") ?? DEFAULT_CATEGORY).trim();
-  if (!ALLOWED_CATEGORIES.has(category)) {
+  // Early rejection only. The peek reads at most the first 8KB, so a client
+  // that orders its parts differently just loses this cheap pre-check: the
+  // body is forwarded byte-for-byte either way and the upstream decides.
+  // Note the upstream validates markets and declared_facts but NOT category
+  // against an allow-list — this check is the only category gate, which is
+  // why the upload page is expected to put text fields first.
+  const categoryRaw = peeked && peeked.trim().length > 0 ? peeked.trim() : DEFAULT_CATEGORY;
+  if (!ALLOWED_CATEGORIES.has(categoryRaw)) {
+    // Nothing downstream will read the body — release it rather than leaving
+    // the request stream dangling until the connection is torn down.
+    await body.cancel().catch(() => undefined);
     return badInputResponse("INVALID_CATEGORY", "Unsupported product category.");
   }
-  const markets = parseMarkets(formData.get("markets"));
-  if (!markets.length) {
-    return badInputResponse("INVALID_MARKETS", "Use one to five supported markets.");
-  }
-  const query = String(formData.get("query") ?? buildQuery(category, markets)).trim();
-  const product = String(formData.get("product") ?? "").trim();
-  if (!query || query.length > 2_000 || product.length > 500) {
-    return badInputResponse("INVALID_REQUEST", "Invalid scan fields.");
-  }
-
-  // J09 (plan §5.4): forward the upload wizard's conditional-question
-  // answers (userDeclaredFacts JSON) to the backend so conditionally
-  // applicable checks can be closed (e.g. toy declared no battery → the
-  // battery-compartment reshoot finding is suppressed instead of demanding
-  // a photo of a part that does not exist). Malformed JSON is ignored —
-  // the facts are an applicability enhancement, never a hard requirement.
-  // 注意命名映射：前端 form 字段是 userDeclaredFacts，v1-adapter 转发给
-  // RAG 时改名 declared_facts（两侧契约名不同，改一边要同步另一边）。
-  let declaredFacts: Record<string, string> | undefined;
-  const declaredFactsRaw = formData.get("userDeclaredFacts");
-  if (typeof declaredFactsRaw === "string" && declaredFactsRaw.trim()) {
-    try {
-      const parsed: unknown = JSON.parse(declaredFactsRaw);
-      if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
-        const bounded: Record<string, string> = {};
-        for (const [key, value] of Object.entries(parsed as Record<string, unknown>).slice(0, 32)) {
-          const keyText = String(key).slice(0, 64);
-          const valueText = String(value ?? "").slice(0, 200);
-          if (keyText && valueText) {
-            bounded[keyText] = valueText;
-          }
-        }
-        if (Object.keys(bounded).length > 0) {
-          declaredFacts = bounded;
-        }
-      }
-    } catch {
-      // Ignore malformed declared facts — the scan proceeds without them.
-    }
-  }
-
-  const [images, documents] = await Promise.all([
-    Promise.all(
-      imageFiles.map(async (file) => ({
-        buffer: Buffer.from(await file.arrayBuffer()),
-        originalName: file.name || "image",
-        mimeType: file.type || "application/octet-stream",
-      })),
-    ),
-    Promise.all(
-      documentFiles.map(async (file) => ({
-        buffer: Buffer.from(await file.arrayBuffer()),
-        originalName: file.name || "document",
-        mimeType: file.type || "application/octet-stream",
-      })),
-    ),
-  ]);
 
   try {
-    // DEMO_MODE:不走 RAG(CI e2e 与无后端本地预览场景)。用纯前端 demo 会话状态机
-    // 跑通 upload → burning → result 链路,result 标 source:"demo"。生产关闭
-    // DEMO_MODE 时完全不进入此分支,继续走下方真实 v1-adapter 路径。
-    if (process.env.DEMO_MODE === "true") {
-      const created = createDemoScanSession({
-        category: category as ProductCategory,
-        markets: markets as Market[],
-        imageCount: images.length,
-      });
-      const demoPayload: {
-        sessionId: string;
-        status: "processing";
-        pollUrl: string;
-        accessToken?: string;
-      } = {
-        sessionId: created.sessionId,
-        status: created.status,
-        pollUrl: created.pollUrl,
-      };
-      if (process.env.NODE_ENV !== "production") {
-        demoPayload.accessToken = created.accessToken;
-      }
-      const demoResponse = ok(demoPayload, { status: 202 });
-      demoResponse.headers.append(
-        "Set-Cookie",
-        backendSessionCookie(created.sessionId, created.accessToken),
-      );
-      return demoResponse;
-    }
-
-    const created = await createScan({
-      query,
-      product,
-      category,
-      markets,
-      images,
-      documents,
-      declaredFacts,
+    const created = await createScanStream({
+      body,
+      headers: { contentType: contentTypeHeader },
       ...upstreamForwardFrom(request),
     });
 

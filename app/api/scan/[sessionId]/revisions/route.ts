@@ -3,14 +3,37 @@
  * (BFF proxy for the revision re-run endpoint, plan §5.3 / J10).
  *
  * Idempotently queues a revision re-run over the session's (possibly
- * extended) evidence set. The backend derives the idempotency key from the
- * session, so retries are no-ops.
+ * extended) evidence set. The caller supplies an `idempotencyKey` naming the
+ * intent: retries of the same click collide and become a no-op, while a
+ * genuinely new re-run (more evidence arrived since) carries a fresh key and
+ * does queue. Without a key the session-level default keeps plain retries
+ * safe.
  */
 import { requestRevision, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { fail, ok } from "@/lib/api-response";
 import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
 
 export const runtime = "nodejs";
+
+// The only thing the body carries is the intent key; anything larger than
+// this is not a legitimate revision request.
+const MAX_BODY_BYTES = 2 * 1024;
+const MAX_KEY_LENGTH = 200;
+
+async function readIntentKey(request: Request): Promise<string | undefined> {
+  const raw = await request.text().catch(() => "");
+  if (!raw || raw.length > MAX_BODY_BYTES) return undefined;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return undefined;
+    const key = (parsed as Record<string, unknown>).idempotencyKey;
+    if (typeof key !== "string") return undefined;
+    const trimmed = key.trim();
+    return trimmed && trimmed.length <= MAX_KEY_LENGTH ? trimmed : undefined;
+  } catch {
+    return undefined;
+  }
+}
 
 export async function POST(
   request: Request,
@@ -25,10 +48,13 @@ export async function POST(
     );
   }
 
+  const idempotencyKey = await readIntentKey(request);
+
   try {
     const data = await requestRevision({
       sessionId,
       accessToken,
+      idempotencyKey,
       ...upstreamForwardFrom(request),
     });
     return ok(data, { status: 202 });

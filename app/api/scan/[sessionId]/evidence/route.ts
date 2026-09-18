@@ -2,18 +2,20 @@
  * app/api/scan/[sessionId]/evidence/route.ts — POST /api/scan/[sessionId]/evidence
  * (BFF proxy for the evidence-supplementation endpoint, plan §5.3 / J10).
  *
- * Forwards multipart evidence files to the FastAPI v1 backend with the
- * session bearer token. Response passthrough keeps the backend envelope
- * ({status: stored|already_applied, storedCount, uploads}) intact.
+ * Streams the inbound multipart body to the FastAPI v1 backend so neither
+ * the BFF nor Node buffers up to 50MB of evidence files into heap on the
+ * supplement path. Per-file signature checks belong to the FastAPI
+ * `_valid_signature` step — same source of truth, no behaviour change.
  */
-import { appendEvidence, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
+import { appendEvidenceStream, upstreamForwardFrom, V1EnvelopeError } from "@/lib/rag-client/v1-adapter";
 import { fail, ok } from "@/lib/api-response";
 import { backendAccessTokenFromRequest, withClearedSessionCookie } from "@/app/api/backend-session-access";
 
 export const runtime = "nodejs";
 
-const MAX_FILES = 8;
-const MAX_TOTAL_BYTES = 50 * 1024 * 1024;
+const MAX_REQUEST_BYTES = 50 * 1024 * 1024;
+
+const MULTIPART_CONTENT_TYPE = /^multipart\/form-data\s*;\s*boundary=(?:"([^"]+)"|([^;]+))/i;
 
 export async function POST(
   request: Request,
@@ -28,56 +30,42 @@ export async function POST(
     );
   }
 
-  let form: FormData;
-  try {
-    form = await request.formData();
-  } catch {
+  const contentTypeHeader = request.headers.get("content-type") ?? "";
+  if (!MULTIPART_CONTENT_TYPE.test(contentTypeHeader)) {
+    // 400/INVALID_REQUEST, not 415: this is the code the buffered
+    // implementation returned when `request.formData()` could not parse the
+    // body, and callers match on it.
     return fail(
       { code: "INVALID_REQUEST", message: "Multipart form data required" },
       { status: 400 },
     );
   }
 
-  const idempotencyKey = String(form.get("idempotency_key") ?? "");
-  const files: Array<{ buffer: Buffer; originalName: string; mimeType: string }> = [];
-  let totalBytes = 0;
-  for (const field of ["images", "documents"] as const) {
-    for (const entry of form.getAll(field)) {
-      if (!(entry instanceof File)) continue;
-      if (files.length >= MAX_FILES) {
-        return fail(
-          { code: "INVALID_REQUEST", message: "Too many evidence files" },
-          { status: 400 },
-        );
-      }
-      const buffer = Buffer.from(await entry.arrayBuffer());
-      totalBytes += buffer.byteLength;
-      if (totalBytes > MAX_TOTAL_BYTES) {
-        return fail(
-          { code: "INVALID_REQUEST", message: "Evidence upload too large" },
-          { status: 413 },
-        );
-      }
-      files.push({
-        buffer,
-        originalName: entry.name,
-        mimeType: entry.type || "application/octet-stream",
-      });
+  const contentLengthRaw = request.headers.get("content-length");
+  if (contentLengthRaw) {
+    const value = Number(contentLengthRaw);
+    if (Number.isFinite(value) && value > MAX_REQUEST_BYTES) {
+      return fail(
+        { code: "REQUEST_TOO_LARGE", message: "Evidence upload too large" },
+        { status: 413 },
+      );
     }
   }
-  if (files.length === 0) {
+
+  const body = request.body;
+  if (!body) {
     return fail(
-      { code: "INVALID_REQUEST", message: "At least one file is required" },
+      { code: "INVALID_REQUEST", message: "Multipart form data required" },
       { status: 400 },
     );
   }
 
   try {
-    const data = await appendEvidence({
+    const data = await appendEvidenceStream({
       sessionId,
       accessToken,
-      files,
-      idempotencyKey: idempotencyKey.trim() || undefined,
+      body,
+      headers: { contentType: contentTypeHeader },
       ...upstreamForwardFrom(request),
     });
     return ok(data, { status: 202 });
