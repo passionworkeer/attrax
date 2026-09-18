@@ -1,5 +1,9 @@
 const fs = require("fs");
 
+// 端口单一来源 = scripts/ports.env，由 scripts/sync-ports.js 镜像成 ports.env.cjs
+// 这里 require 进来。改端口只改 ports.env；不要在多处复制粘贴数字。
+const PORTS = require("./ports.env.cjs");
+
 // RAG_INTERNAL_SECRET 单一来源 = 服务器本地文件（真值不进 git，审计 4.1）。
 // 2026-09-17 之前 rag-service 读 rag_service/.env、nextjs 读启动 pm2 时 shell
 // 里 pin 住的 env，两个来源会静默分叉：rag_service/.env 里一个未轮换的弱值
@@ -9,11 +13,24 @@ const fs = require("fs");
 //       pm2 startOrRestart scripts/ecosystem.config.cjs --only rag-service,nextjs
 const RAG_INTERNAL_SECRET_FILE = "/opt/attrax/.rag-internal-secret";
 const RAG_INTERNAL_SECRET = (
-  process.env.RAG_INTERNAL_SECRET || fs.readFileSync(RAG_INTERNAL_SECRET_FILE, "utf8")
+  process.env.RAG_INTERNAL_SECRET || (
+    fs.existsSync(RAG_INTERNAL_SECRET_FILE)
+      ? fs.readFileSync(RAG_INTERNAL_SECRET_FILE, "utf8")
+      : ""
+  )
 ).trim();
 
+// fail-closed in production (real secret must come from the file on the server).
+// In local dev the file is absent; fall back to a placeholder so `node` / tests
+// can still require this module without crashing.
 if (!RAG_INTERNAL_SECRET) {
-  throw new Error(`RAG_INTERNAL_SECRET is empty (source: ${RAG_INTERNAL_SECRET_FILE})`);
+  if (process.env.APP_ENV === "production" || process.env.NODE_ENV === "production") {
+    throw new Error(`RAG_INTERNAL_SECRET is empty (source: ${RAG_INTERNAL_SECRET_FILE})`);
+  }
+  console.warn(
+    `[ecosystem.config.cjs] RAG_INTERNAL_SECRET missing (${RAG_INTERNAL_SECRET_FILE}); ` +
+      "using dev placeholder. Production must set the real secret on the server."
+  );
 }
 
 // ATTRAX_BUILD_SHA 单一来源 = /opt/attrax/.build-sha（apply-deploy.sh 从
@@ -34,7 +51,7 @@ module.exports = {
       name: "rag-service",
       cwd: "/opt/attrax",
       script: "/opt/attrax/.venv/bin/uvicorn",
-      args: ["rag_service.main:app", "--host", "127.0.0.1", "--port", "8001", "--workers", "1"],
+      args: ["rag_service.main:app", "--host", "127.0.0.1", "--port", String(PORTS.RAG_PORT), "--workers", "1"],
       interpreter: "none",
       max_memory_restart: "1300M",
       autorestart: true,
@@ -60,9 +77,9 @@ module.exports = {
       autorestart: true,
       env: {
         NODE_ENV: "production",
-        PORT: "3000",
+        PORT: String(PORTS.NEXTJS_PORT),
         HOSTNAME: "127.0.0.1",
-        RAG_SERVICE_URL: "http://127.0.0.1:8001",
+        RAG_SERVICE_URL: `http://127.0.0.1:${PORTS.RAG_PORT}`,
         // 同 rag-service：单一来源见文件头注释
         RAG_INTERNAL_SECRET,
         DAILY_FREE_SCAN_LIMIT: "3",
@@ -78,7 +95,7 @@ module.exports = {
       autorestart: true,
       env: {
         NODE_ENV: "production",
-        PORT: "3002",
+        PORT: String(PORTS.PORTFOLIO_PORT),
         HOSTNAME: "127.0.0.1",
         NEXT_PUBLIC_APP_URL: "https://resume.wangjianjun.xyz",
       },

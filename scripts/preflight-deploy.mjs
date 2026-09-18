@@ -161,6 +161,11 @@ function printValidation(result) {
 
 function main() {
   const root = process.cwd();
+  // 端口单一来源 sync：先跑 sync-ports.js 让 ports.env.cjs 跟 ports.env 对齐，
+  // 然后做 nginx vhost 渲染校验，保证 .template 里的占位符替换不会留下
+  // 历史的端口字面量（防 2026-09-18 那种"两边各写一遍端口"漂移）。
+  run("node", ["scripts/sync-ports.js"]);
+  run("bash", ["scripts/render-nginx-vhost.sh", "--check"]);
   const result = validateDeployment(root);
   printValidation(result);
   if (!result.ok) process.exit(1);

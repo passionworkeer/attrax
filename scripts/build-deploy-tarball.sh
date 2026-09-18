@@ -100,21 +100,46 @@ log ".build-sha: ${COMMIT_SHORT}"
 # === [4.5] 防污染清理: 严防测试包、大 zip 与运行时垃圾打入生产部署包 ===
 rm -rf "${STANDALONE}/规航AI-"* "${STANDALONE}/test-results" "${STANDALONE}/tests/fixtures/regression-package-"* "${STANDALONE}/tests/fixtures/"*.zip
 
+# === [4.6] stage ops/：端口单一来源 + nginx 渲染 + healthcheck（2026-09-18 事故防护）===
+# 这 8 个文件随 tarball 走，apply-deploy.sh [6.5] 安装到服务器：
+#   ports.env / ports.env.cjs / ecosystem.config.cjs / render-nginx-vhost.sh
+#   nginx-attrax-vhost-prod.conf.template / attrax-healthcheck.{sh,service,timer}
+# 服务器 git 可能落后（deploy 只传 runtime 产物），端口真值必须跟构建走。
+log "=== [4.6] stage ops/ ==="
+OPS_STAGE="${STANDALONE}/ops"
+rm -rf "${OPS_STAGE}"
+mkdir -p "${OPS_STAGE}"
+install -m 644 "${PROJECT_ROOT}/scripts/ports.env"                              "${OPS_STAGE}/ports.env"
+install -m 644 "${PROJECT_ROOT}/scripts/ports.env.cjs"                          "${OPS_STAGE}/ports.env.cjs"
+install -m 755 "${PROJECT_ROOT}/scripts/render-nginx-vhost.sh"                  "${OPS_STAGE}/render-nginx-vhost.sh"
+install -m 644 "${PROJECT_ROOT}/scripts/ecosystem.config.cjs"                   "${OPS_STAGE}/ecosystem.config.cjs"
+install -m 644 "${PROJECT_ROOT}/docs/infra/nginx-attrax-vhost-prod.conf.template" "${OPS_STAGE}/nginx-attrax-vhost-prod.conf.template"
+install -m 755 "${PROJECT_ROOT}/scripts/attrax-healthcheck.sh"                  "${OPS_STAGE}/attrax-healthcheck.sh"
+install -m 644 "${PROJECT_ROOT}/scripts/attrax-healthcheck.service"             "${OPS_STAGE}/attrax-healthcheck.service"
+install -m 644 "${PROJECT_ROOT}/scripts/attrax-healthcheck.timer"               "${OPS_STAGE}/attrax-healthcheck.timer"
+OPS_COUNT=$(ls -1 "${OPS_STAGE}" | wc -l | tr -d ' ')
+if [ "$OPS_COUNT" -ne 8 ]; then
+  log "ERROR: ops/ staging incomplete (expected 8 files, got ${OPS_COUNT})，中止打包"
+  exit 3
+fi
+log "ops staged: ${OPS_COUNT} files"
+
 # === [5] 打包(把整个 standalone 连同已 stage 的 static/public 一起)===
 log "=== [5] 打包 -> ${TARBALL} ==="
 # 在 .next/ 下打包,使 tar 内路径以 standalone/ 开头(/tmp/attrax-apply-deploy.sh 解包到 .next/)
 tar -C "${PROJECT_ROOT}/.next" -czf "${TARBALL}" standalone
 log "tarball 大小: $(du -sh "${TARBALL}" | cut -f1)"
 
-# === [6] 二次校验:确认 tarball 里真的有 static + public ===
+# === [6] 二次校验:确认 tarball 里真的有 static + public + ops ===
 log "=== [6] 校验 tarball 内容 ==="
 TAR_CSS=$(tar -tzf "${TARBALL}" | grep -c 'standalone/.next/static/chunks/.*\.css$' || true)
 TAR_PUBLIC=$(tar -tzf "${TARBALL}" | grep -c '^standalone/public/' || true)
-if [ "$TAR_CSS" -lt 2 ] || [ "$TAR_PUBLIC" -lt 3 ]; then
-  log "ERROR: tarball 内 static/public 缺失 (css=$TAR_CSS public条目=$TAR_PUBLIC),中止"
+TAR_OPS=$(tar -tzf "${TARBALL}" | grep -c '^standalone/ops/' || true)
+if [ "$TAR_CSS" -lt 2 ] || [ "$TAR_PUBLIC" -lt 3 ] || [ "$TAR_OPS" -lt 8 ]; then
+  log "ERROR: tarball 内 static/public/ops 缺失 (css=$TAR_CSS public条目=$TAR_PUBLIC ops=$TAR_OPS),中止"
   exit 4
 fi
-log "tarball 校验通过: 含 css=$TAR_CSS 个, public条目=$TAR_PUBLIC 个"
+log "tarball 校验通过: 含 css=$TAR_CSS 个, public条目=$TAR_PUBLIC 个, ops=$TAR_OPS 个"
 
 log "=== 完成 ==="
 log "下一步: scp ${TARBALL} aliyun-sz:/tmp/ 然后 ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'"

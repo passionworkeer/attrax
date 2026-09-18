@@ -335,6 +335,17 @@ const SessionIdSchema = z
 
 ## 最近修复
 
+### 2026-09-18 — 全站 502（nginx upstream 端口漂移）+ 端口单一来源防护
+
+- **事故**：全站 502 数小时。`/etc/nginx/sites-enabled/attrax` upstream 写 `127.0.0.1:3001`（照 `docs/infra/ALIYUN-SZ-DEPLOY.md` 旧版"aliyun-sz 端口偏移"约定配的），但 ecosystem 里 nextjs 一直监听 3000——LabMemory 已退役、偏移前提消失且 ecosystem 从未改过。pm2 三进程全 online、直连 200，只有公网 502，极具迷惑性
+- **即时修复**：upstream 3001→3000 + `nginx -s reload`，恢复 200
+- **防护（三层）**：
+  1. **端口单一来源 `scripts/ports.env`**：`ecosystem.config.cjs` require `ports.env.cjs`（`sync-ports.js` 镜像）；nginx vhost 由 `docs/infra/nginx-attrax-vhost-prod.conf.template`（`__NEXTJS_PORT__` 占位符）经 `scripts/render-nginx-vhost.sh` 渲染。8 个运维文件随 deploy tarball 走（`standalone/ops/`），apply-deploy.sh [6.5] 安装
+  2. **部署强制刷新**：apply-deploy.sh [8.5] 每次部署重渲染 vhost + `nginx -t` + reload；[8] 改用 `pm2 startOrRestart`（重读 ecosystem）——手改端口一律被覆盖回真值
+  3. **运行时自愈**：systemd timer `attrax-healthcheck.timer` 60s 一次 curl 公网 `/api/health`；连续 3 次失败 → 重渲染 vhost + reload；6 次 → `pm2 restart nextjs`；12 次 → 连 rag-service 一起重启。**实测人为改坏 upstream 后 150 秒自动恢复**。日志 `/var/log/attrax-healthcheck.log`
+- **文档纠偏**：ALIYUN-SZ-DEPLOY.md 7 处 3001/8002 旧端口全部改正（事故的书面根源就是这份文档）；新增 §4.4 防护说明 + `docs/infra/PORTS.md` 端口台账
+- **注意**：`ecosystem.config.cjs` 本地 require 会因缺 `/opt/attrax/.rag-internal-secret` 走 dev placeholder（仅打 warning）；生产 `APP_ENV=production` 仍 fail-closed 抛错
+
 ### 2026-09-17 — 法规源全量实测审计（9 个源从未抓取成功）
 
 - **背景**：对 35 个注册源做全量实测（生产机真实抓取，走各自 collector 完整路径），发现 **9 个源的 `source_url` 返回 403/404，自 2026-09-16 上线起每个 pass 都在失败**。生产机自己的 `errors.json` 早已逐条记录，但没有告警、没有断言、没人看。根因是 `human_view_status` 是手工字段，填的是"浏览器能不能打开"，与抓取能力无关
