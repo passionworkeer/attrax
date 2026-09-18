@@ -196,6 +196,8 @@ embedding_cache/
 # Untracked: every regression run dumps 100+ full-page PNGs (~337 MB per
 # case, never commit them — see scripts/run-production-regression.ts).
 .screenshots/regression-*/
+.screenshots/online-audit-*/
+/.deploy-staging/
 
 # ─── Judge / external test packages ────────────────────────────
 # 第三方评测/法官测试包（中文文件名，本地解压后留在仓外）— 仅供

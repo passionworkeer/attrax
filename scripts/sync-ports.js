@@ -17,6 +17,7 @@
 //
 // 不引入依赖；Node 内置 fs 即可。
 
+/* eslint-disable @typescript-eslint/no-require-imports */
 "use strict";
 
 const fs = require("fs");
@@ -54,11 +55,6 @@ for (const k of intKeys) {
     process.exit(2);
   }
 }
-
-const rawJson = JSON.stringify(out, null, 2)
-  .split("\n")
-  .map((l) => "  " + l)
-  .join("\n");
 
 const body = `// AUTO-GENERATED from ports.env by scripts/sync-ports.js — do not hand-edit.
 // Run \`node scripts/sync-ports.js\` after changing ports.env.

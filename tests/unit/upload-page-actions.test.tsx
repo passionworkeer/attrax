@@ -34,22 +34,17 @@ describe("upload page entry points", () => {
     });
   });
 
-  it.each(["header", "bottom"])("submits the same scan form from the %s button and prevents duplicate submission", async (entry) => {
+  it("submits the scan form from the form submit button and prevents duplicate submission", async () => {
     let finish!: (value: Response) => void;
     vi.mocked(fetch).mockImplementation(() => new Promise<Response>((resolve) => { finish = resolve; }));
     const { container } = render(<UploadPage />);
-    const top = screen.getByRole("button", { name: "开始检测", exact: true });
-    const bottom = container.querySelector<HTMLButtonElement>("#scan-submit")!;
-    expect(top).toBeDisabled();
-    expect(bottom).toBeDisabled();
-    expect((top as HTMLButtonElement).form).toBe(bottom.form);
+    const submitBtn = container.querySelector<HTMLButtonElement>("#scan-submit")!;
+    expect(submitBtn).toBeDisabled();
     fireEvent.change(screen.getByLabelText("批量上传产品图片"), { target: { files: [new File(["photo"], "label.jpg", { type: "image/jpeg" })] } });
-    expect(top).toBeEnabled();
-    expect(bottom).toBeEnabled();
-    fireEvent.click(entry === "header" ? top : bottom);
-    expect(top).toBeDisabled();
-    expect(bottom).toBeDisabled();
-    fireEvent.click(entry === "header" ? bottom : top);
+    expect(submitBtn).toBeEnabled();
+    fireEvent.click(submitBtn);
+    expect(submitBtn).toBeDisabled();
+    fireEvent.click(submitBtn);
     expect(fetch).toHaveBeenCalledTimes(1);
     const [url, request] = vi.mocked(fetch).mock.calls[0];
     expect(url).toBe("/api/scan");

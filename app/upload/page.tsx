@@ -516,10 +516,7 @@ export default function UploadPage() {
           backLabel={locale === "zh" ? "返回首页" : "Back home"}
           flowTitle={locale === "zh" ? "产品合规检测" : "Product Compliance Scan"}
           flowSubtitle={locale === "zh" ? "上传产品图 · 选择目标市场 · 生成合规报告" : "Upload · choose markets · generate report"}
-          primaryFormId="product-scan-form"
-          primaryDisabled={submitting || loadingSample || uploadedFiles.length === 0}
-          primaryLabel={submitting ? (locale === "zh" ? "正在提交…" : "Submitting…") : (locale === "zh" ? "开始检测" : "Start scan")}
-
+          hidePrimary
           tone="bright"
         />
 
