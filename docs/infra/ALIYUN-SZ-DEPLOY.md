@@ -12,7 +12,7 @@
 
 | 主机 | SSH 用户 | IP | 跑什么 |
 |---|---|---|---|
-| **aliyun-sz**（生产） | root（`id_ed25519`） | 203.0.113.10 | attrax nextjs:3001 + rag-service:8002 + regwatch；nginx 80→443，HTTPS 复用 twinbuddy 证书 |
+| **aliyun-sz**（生产） | root（`id_ed25519`） | 203.0.113.10 | attrax nextjs:3000 + rag-service:8001 + regwatch；nginx 80→443，HTTPS 复用 twinbuddy 证书。端口单一来源 = `scripts/ports.env`（见 §4.4） |
 | **lighthouse**（仅 portfolio/study/monitor） | ubuntu（`lighthouse_seoul_new`） | 198.51.100.20 | portfolio nextjs:3002 + study/monitor 静态站。**attrax 不再跑** |
 
 实例 `Ubuntu-lrtz`（`instance_placeholder`）2026-10-11 到期，**必须续费**（这是 attrax 的生产机）。
@@ -28,7 +28,9 @@
 ├── .env / .env.local / .env.production   ← secret（600 root）
 ├── .rag-internal-secret                  ← 48-hex 内部鉴权（600 root）
 ├── .build-sha                            ← 短 commit SHA（apply-deploy.sh 从 standalone/.build-sha 拷过来）
-├── scripts/ecosystem.config.cjs          ← pm2 配置（aliyun-sz 版：nextjs:3001 / rag-service:8002 / regwatch）
+├── scripts/ecosystem.config.cjs          ← pm2 配置（端口 require scripts/ports.env.cjs，与 nginx 同源）
+├── scripts/ports.env + ports.env.cjs     ← 端口单一来源（nginx upstream / ecosystem PORT / RAG_PORT 全从这里读）
+├── scripts/render-nginx-vhost.sh         ← 从 .template + ports.env 渲染 /etc/nginx/sites-enabled/attrax
 ├── scripts/apply-deploy.sh               ← 服务器侧部署脚本（与 lighthouse 同源）
 ├── scripts/build-deploy-tarball.sh       ← 本地 tarball 打包脚本
 ├── scripts/guard-no-server-build.mjs     ← 服务器侧 next build 拒绝守卫
@@ -55,7 +57,7 @@
 ```
 
 **关键与 lighthouse 的差异**：
-- **端口**：nextjs `3001`（lighthouse 是 3000）、rag-service `8002`（lighthouse 是 8001）—— 端口偏移避免与历史 LabMemory 端口 8081/8001 撞车
+- **端口**：nextjs `3000`、rag-service `8001`（与 lighthouse 相同）。⚠️ 2026-09-18 之前本文档曾写"端口偏移 3001/8002 避免与 LabMemory 撞车"——LabMemory 已于 2026-09-18 退役，偏移前提消失；且实际部署的 ecosystem 从未改过端口，nginx 照旧文档写 3001 直接导致全站 502（见 §4.4）。现在端口只认 `scripts/ports.env`
 - **Python venv**：3.12（lighthouse 是 3.10）—— 不可移植，必须 aliyun-sz 上重建
 - **nginx**：直接 listen 80/443（lighthouse 上 80/443 是 attrax 专用，aliyun-sz 上原本是 twinbuddy，迁移后 attrax 接管）
 - **证书**：复用 `/etc/letsencrypt/live/twinbuddy.xyz/`，server_name = `twinbuddy.xyz www.twinbuddy.xyz 203.0.113.10 example.com`
@@ -87,7 +89,7 @@ ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
 ```bash
 scp -r rag_service/ aliyun-sz:/opt/attrax/rag_service/
 ssh aliyun-sz 'pm2 restart rag-service --update-env'
-# 注意 rag_service 端口：aliyun-sz 上是 8002
+# 注意 rag_service 端口：8001（单一来源 scripts/ports.env 的 RAG_PORT）
 ```
 
 ### 3.3 仅 .env / secret 改动
@@ -119,10 +121,10 @@ ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh --rollback'
 ssh aliyun-sz 'curl -skS -o /dev/null -w "HTTP %{http_code} | %{time_total}s\n" https://127.0.0.1/api/health'
 
 # nextjs 直连（绕 nginx，定位是 nginx 还是 nextjs 问题）
-ssh aliyun-sz 'curl -sS -o /dev/null -w "HTTP %{http_code} | %{time_total}s\n" http://127.0.0.1:3001/api/health'
+ssh aliyun-sz 'curl -sS -o /dev/null -w "HTTP %{http_code} | %{time_total}s\n" http://127.0.0.1:3000/api/health'
 
 # rag-service 直连
-ssh aliyun-sz 'curl -s http://127.0.0.1:8002/ready | python3 -m json.tool'
+ssh aliyun-sz 'curl -s http://127.0.0.1:8001/ready | python3 -m json.tool'
 
 # 公网（要看证书域名匹配）
 curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://twinbuddy.xyz/api/health
@@ -135,45 +137,33 @@ curl -skS -o /dev/null -w "HTTP %{http_code}\n" https://203.0.113.10/api/health 
 
 ## 4. PM2 + nginx 关键配置
 
-### 4.1 PM2（aliyun-sz 版 `scripts/ecosystem.config.cjs`）
+### 4.1 PM2（`scripts/ecosystem.config.cjs`）
+
+端口全部来自 `require("./ports.env.cjs")`（单一来源，见 §4.4），不写数字字面量：
 
 ```js
-// 端口偏移：nextjs 3001, rag-service 8002, 不跑 portfolio
-module.exports = {
-  apps: [
-    { name: "rag-service", cwd: "/opt/attrax",
-      script: "/opt/attrax/.venv/bin/uvicorn",
-      args: ["rag_service.main:app", "--host", "127.0.0.1", "--port", "8002", "--workers", "1"],
-      interpreter: "none", max_memory_restart: "1300M", autorestart: true,
-      env: { PYTHONUNBUFFERED: "1", RAG_INTERNAL_SECRET, ATTRAX_BUILD_SHA,
-             APP_ENV: "production", USE_KB_INPUT: "true" } },
-    { name: "nextjs", cwd: "/opt/attrax/.next/standalone", script: "server.js",
-      interpreter: "node", max_memory_restart: "768M", autorestart: true,
-      env: { NODE_ENV: "production", PORT: "3001", HOSTNAME: "127.0.0.1",
-             RAG_SERVICE_URL: "http://127.0.0.1:8002", RAG_INTERNAL_SECRET,
-             DAILY_FREE_SCAN_LIMIT: "3", DEMO_MODE: "false" } },
-    { name: "regwatch", cwd: "/opt/attrax",
-      script: "/opt/attrax/.venv/bin/python",
-      args: ["-m", "scripts.watchdog.orchestrator"],
-      interpreter: "none", autorestart: true, max_restarts: 10, restart_delay: 5000,
-      env: { PYTHONUNBUFFERED: "1", PYTHONPATH: "/opt/attrax",
-             ATTRAX_REGWATCH_ENABLED: "true", ATTRAX_REGWATCH_NOTIFY: "log",
-             ATTRAX_REGWATCH_RUN_AT: "03:00" } },
-  ],
-};
+const PORTS = require("./ports.env.cjs");
+// rag-service:  args [..., "--port", String(PORTS.RAG_PORT), ...]
+// nextjs:       env: { PORT: String(PORTS.NEXTJS_PORT), RAG_SERVICE_URL: `http://127.0.0.1:${PORTS.RAG_PORT}`, ... }
+// portfolio:    env: { PORT: String(PORTS.PORTFOLIO_PORT), ... }   // 3002，与 lighthouse 相同
 ```
 
-**对比 lighthouse**：`PORT=3000` → `3001`、`RAG_SERVICE_URL=...:8001` → `:8002`、不包含 portfolio app。
+改端口只改 `scripts/ports.env` → `node scripts/sync-ports.js` → 重新部署（apply-deploy 会重渲染 nginx vhost + startOrRestart pm2）。
 
 ### 4.2 nginx 站点
 
-`/etc/nginx/sites-available/attrax`（已部署）+ `snippets/attrax-locations.conf`（从 lighthouse 同部署包复制）。
+`/etc/nginx/sites-enabled/attrax` **不再手写**——由 `scripts/render-nginx-vhost.sh` 从 `docs/infra/nginx-attrax-vhost-prod.conf.template` + `scripts/ports.env` 渲染生成（模板里 upstream 是 `127.0.0.1:__NEXTJS_PORT__` 占位符）。每次部署 apply-deploy.sh [8.5] 自动重渲染 + reload：
+
+```bash
+# 手动渲染（改完 ports.env 或模板后）
+ssh aliyun-sz 'bash /opt/attrax/scripts/render-nginx-vhost.sh --out /etc/nginx/sites-enabled/attrax && nginx -t && nginx -s reload'
+```
 
 ```nginx
 limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
 
 upstream attrax_nextjs {
-    server 127.0.0.1:3001;
+    server 127.0.0.1:3000;   # ← 由 ports.env.NEXTJS_PORT 渲染，勿手改
     keepalive 32;
 }
 
@@ -202,6 +192,44 @@ ufw allow 22/tcp
 ufw allow 80/tcp    # ACME + HTTP → HTTPS redirect
 ufw allow 443/tcp   # HTTPS
 # 阿里云安全组需独立放行（默认就开 80/443，但 DNS 切到 aliyun-sz 后要确认）
+```
+
+### 4.4 端口单一来源 + 502 自愈守护（2026-09-18 事故后加）
+
+**事故回顾**：2026-09-18 全站 502 数小时。根因是本文档旧版写着 aliyun-sz 端口偏移（nextjs 3001 / rag 8002），nginx vhost 照文档配了 `upstream 127.0.0.1:3001`；但实际部署的 `ecosystem.config.cjs` 从未偏移（nextjs 监听 3000）。nginx 连不上上游 → connection refused → 502。pm2 三进程全部 online、`/api/health` 直连 200，极具迷惑性。
+
+**防护架构**（三层）：
+
+1. **单一来源**：`scripts/ports.env`（`NEXTJS_PORT=3000` / `RAG_PORT=8001` / `PORTFOLIO_PORT=3002`）。
+   - `ecosystem.config.cjs` `require("./ports.env.cjs")`（由 `node scripts/sync-ports.js` 从 ports.env 镜像生成）
+   - nginx vhost = `docs/infra/nginx-attrax-vhost-prod.conf.template`（占位符 `__NEXTJS_PORT__`）经 `scripts/render-nginx-vhost.sh` 渲染
+   - 这 8 个运维文件随每次 deploy tarball 走（`standalone/ops/`），apply-deploy.sh [6.5] 安装——不依赖服务器 git 状态
+
+2. **部署时强制刷新**：apply-deploy.sh 每次部署都重渲染 vhost + `nginx -t` + reload（[8.5]），并用 `pm2 startOrRestart`（不是裸 restart）让 pm2 重读 ecosystem——手改的端口一律被覆盖回真值。[0] 步骤发现 vhost 与 ports.env 漂移时打 WARN。
+
+3. **运行时自愈**：systemd timer `attrax-healthcheck.timer`（60s 一次）curl `https://twinbuddy.xyz/api/health`（走公网域名，覆盖 nginx 这一环）：
+   - 连续 3 次失败 → level2：用 render 脚本重写 vhost + `nginx -t` + reload
+   - 连续 6 次失败 → level3：`pm2 restart nextjs`
+   - 连续 12 次失败 → level4：`pm2 restart rag-service nextjs`
+   - 恢复时打 `RECOVERED`。日志：`/var/log/attrax-healthcheck.log`；状态：`/var/lib/attrax/healthcheck/`
+   - 2026-09-18 实测：人为把 upstream 改坏 → **150 秒内自动恢复 200，无人干预**
+
+```bash
+# 查看守护状态 / 日志
+systemctl list-timers attrax-healthcheck.timer
+tail -50 /var/log/attrax-healthcheck.log
+
+# 手动触发一次健康检查
+systemctl start attrax-healthcheck.service
+```
+
+**改端口的正确流程**（只有这一条路）：
+```bash
+# 本地
+vim scripts/ports.env                 # 改 NEXTJS_PORT / RAG_PORT
+node scripts/sync-ports.js            # 镜像到 ports.env.cjs
+bash scripts/render-nginx-vhost.sh --check   # 校验渲染链路
+bash scripts/build-deploy-tarball.sh && scp ... && ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
 ```
 
 ---

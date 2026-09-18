@@ -1,0 +1,17 @@
+[Unit]
+Description=Attrax production health check (curl /api/health + tiered recovery)
+Documentation=https://github.com/passionworkeer/attrax/blob/main/scripts/attrax-healthcheck.sh
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+# ATTRAX_HEALTH_URL 走公网域名（443），确保 nginx 这一环也被覆盖；如果只
+# 走 127.0.0.1:3000 就会绕过 nginx，恰好漏掉 2026-09-18 那类事故。
+Environment=ATTRAX_HEALTH_URL=https://twinbuddy.xyz/api/health
+Environment=ATTRAX_HEALTH_LOG=/var/log/attrax-healthcheck.log
+Environment=ATTRAX_HEALTH_STATE=/var/lib/attrax/healthcheck
+ExecStart=/usr/local/bin/attrax-healthcheck.sh
+# 不要让健康检查自己崩了拖死整个 system：User=root 是因为 pm2 reload /
+# nginx reload 需要它；非 root 会直接 skip 恢复动作（脚本里已 graceful）。
+User=root

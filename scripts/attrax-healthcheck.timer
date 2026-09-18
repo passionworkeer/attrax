@@ -1,0 +1,16 @@
+[Unit]
+Description=Attrax health check timer (every 60s)
+Documentation=https://github.com/passionworkeer/attrax/blob/main/scripts/attrax-healthcheck.sh
+
+[Timer]
+# 60s 一次：足够早发现 502；开销几乎为零（单次 curl）。
+# Persistent=true 让系统重启后补跑错过的窗口（即使停了几天，也不会漏掉
+# 第一次恢复后的状态确认）。
+OnBootSec=30s
+OnUnitActiveSec=60s
+AccuracySec=5s
+Persistent=true
+Unit=attrax-healthcheck.service
+
+[Install]
+WantedBy=timers.target

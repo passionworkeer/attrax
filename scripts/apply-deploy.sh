@@ -19,12 +19,22 @@
 #
 # 注意：本脚本只处理 Next.js（.next/standalone + .next/static + BUILD_ID + pm2 nextjs）。
 # 改了 rag_service/*.py 时另行 scp 并 `pm2 restart rag-service --update-env`。
+#
+# 端口单一来源（2026-09-18 事故防护）：
+#   tarball 里带 standalone/ops/（ports.env、render-nginx-vhost.sh、vhost 模板、
+#   healthcheck 三件套、ecosystem.config.cjs）。本脚本把它们安装到服务器，
+#   再用 render-nginx-vhost.sh 重新生成 /etc/nginx/sites-enabled/attrax 并 reload，
+#   保证 nginx upstream 端口永远等于 ports.env 的 NEXTJS_PORT —— 与
+#   ecosystem.config.cjs（require ports.env.cjs）同源，杜绝 3001/3000 漂移。
 set -euo pipefail
 
 TARBALL="${ATTRAX_TARBALL:-/tmp/attrax-deploy-complete.tar.gz}"
 ATTRAX_DIR="${ATTRAX_DIR:-/opt/attrax}"
 STANDALONE="${ATTRAX_DIR}/.next/standalone"
 STATIC_LINK="${ATTRAX_DIR}/.next/static"
+REPO_DIR="${ATTRAX_REPO_DIR:-/opt/attrax}"
+RENDER_SCRIPT="${REPO_DIR}/scripts/render-nginx-vhost.sh"
+LIVE_VHOST="/etc/nginx/sites-enabled/attrax"
 STAMP="$(date -u +%Y%m%d-%H%M%S)"
 BACKUP_DIR="${ATTRAX_DIR}/.next/standalone-pre-deploy-${STAMP}"
 HEALTH_URL="${HEALTH_URL:-http://127.0.0.1:3000/api/health}"
@@ -61,17 +71,35 @@ if [ "${1:-}" = "--rollback" ]; then
   exit 0
 fi
 
+# ── [0] 端口漂移预检（只警告不阻断；真正的修复在 [6.5]+[8.5]）──────────────
+# 检查当前线上 nginx vhost 的 upstream 端口是否等于服务器上 ports.env 的
+# NEXTJS_PORT。不一致说明有人手改过 vhost —— 本次部署的 [8.5] 会用
+# render-nginx-vhost.sh 重新生成并修掉它，所以这里 warn 让操作者知情。
+if [ -f "${REPO_DIR}/scripts/ports.env" ] && [ -f "${LIVE_VHOST}" ]; then
+  expected_port="$(grep -E '^NEXTJS_PORT=' "${REPO_DIR}/scripts/ports.env" | head -1 | cut -d= -f2- | tr -d '[:space:]')"
+  live_port="$(grep -oE '127\.0\.0\.1:[0-9]+' "${LIVE_VHOST}" | head -1 | cut -d: -f2)"
+  if [ -n "${expected_port}" ] && [ -n "${live_port}" ] && [ "${live_port}" != "${expected_port}" ]; then
+    log "WARN: nginx upstream 端口漂移 — vhost=${live_port}, ports.env=${expected_port}；[8.5] 将重新渲染修复"
+  fi
+fi
+
 # ── [1] preflight ──────────────────────────────────────────────────────────
 log "=== [1] preflight ==="
 test -f "${TARBALL}" || { log "ERROR: tarball missing: ${TARBALL}"; exit 1; }
 test -d "${STANDALONE}" || { log "ERROR: no existing standalone at ${STANDALONE}"; exit 1; }
+# ops/ 必须在包里（端口单一来源链路依赖它）
+OPS_COUNT=$(tar -tzf "${TARBALL}" | grep -c '^standalone/ops/' || true)
+if [ "$OPS_COUNT" -lt 8 ]; then
+  log "ERROR: tarball 缺 standalone/ops/（只有 ${OPS_COUNT} 个文件，需要 8 个）— 用最新 build-deploy-tarball.sh 重新打包"
+  exit 1
+fi
 
 # ── [2] snapshot current standalone ────────────────────────────────────────
 log "=== [2] backup current standalone -> ${BACKUP_DIR} ==="
 mv "${STANDALONE}" "${BACKUP_DIR}"
 previous_backups | tail -n "+$((KEEP_BACKUPS + 1))" | xargs -r rm -rf
 
-# ── [3] extract ────────────────────────────────────────────────────────────
+# ── [3] extract tarball ────────────────────────────────────────────────────
 log "=== [3] extract tarball ==="
 tar -C "${ATTRAX_DIR}/.next" -xzf "${TARBALL}"
 test -f "${STANDALONE}/server.js" || { log "ERROR: extract failed (no server.js)"; exit 1; }
@@ -103,6 +131,34 @@ if [ -f "${STANDALONE}/.build-sha" ]; then
   log "  .build_sha: $(cat "${ATTRAX_DIR}/.build-sha")"
 fi
 
+# ── [6.5] 安装 ops/：端口单一来源 + nginx 渲染 + healthcheck ───────────────
+# tarball 里的 standalone/ops/ 是随构建走的运维文件真值。安装到：
+#   /opt/attrax/scripts/{ports.env,ports.env.cjs,render-nginx-vhost.sh,ecosystem.config.cjs}
+#   /opt/attrax/docs/infra/nginx-attrax-vhost-prod.conf.template
+#   /usr/local/bin/attrax-healthcheck.sh
+#   /etc/systemd/system/attrax-healthcheck.{service,timer}
+# render-nginx-vhost.sh 按 ${SCRIPT_DIR}/../docs/infra/… 解析模板路径，布局必须保持。
+log "=== [6.5] install ops files (ports / render / healthcheck) ==="
+OPS="${STANDALONE}/ops"
+mkdir -p "${REPO_DIR}/scripts" "${REPO_DIR}/docs/infra"
+install -m 644 "${OPS}/ports.env"                    "${REPO_DIR}/scripts/ports.env"
+install -m 644 "${OPS}/ports.env.cjs"                "${REPO_DIR}/scripts/ports.env.cjs"
+install -m 755 "${OPS}/render-nginx-vhost.sh"        "${REPO_DIR}/scripts/render-nginx-vhost.sh"
+install -m 644 "${OPS}/ecosystem.config.cjs"         "${REPO_DIR}/scripts/ecosystem.config.cjs"
+install -m 644 "${OPS}/nginx-attrax-vhost-prod.conf.template" "${REPO_DIR}/docs/infra/nginx-attrax-vhost-prod.conf.template"
+if [ -d /etc/systemd/system ]; then
+  install -m 755 "${OPS}/attrax-healthcheck.sh"      /usr/local/bin/attrax-healthcheck.sh
+  install -m 644 "${OPS}/attrax-healthcheck.service" /etc/systemd/system/attrax-healthcheck.service
+  install -m 644 "${OPS}/attrax-healthcheck.timer"   /etc/systemd/system/attrax-healthcheck.timer
+  systemctl daemon-reload
+  systemctl enable attrax-healthcheck.timer >/dev/null 2>&1 || true
+  systemctl start attrax-healthcheck.timer >/dev/null 2>&1 || true
+  log "  healthcheck timer enabled"
+else
+  log "  WARN: no systemd on this host — healthcheck not installed"
+fi
+log "  ops installed; render 校验: $(bash "${RENDER_SCRIPT}" --check)"
+
 # ── [7] cleanup tarball ────────────────────────────────────────────────────
 log "=== [7] cleanup tarball ==="
 rm -f "${TARBALL}"
@@ -110,7 +166,22 @@ rm -f "${TARBALL}"
 # ── [8] restart ────────────────────────────────────────────────────────────
 log "=== [8] restart pm2 nextjs ==="
 cd "${ATTRAX_DIR}"
-pm2 restart nextjs --update-env 2>&1 | tail -10
+# startOrRestart（而不是裸 pm2 restart nextjs）才会重读 ecosystem.config.cjs ——
+# 新版 ecosystem require ports.env.cjs，端口变更要靠它生效（部署雷区：
+# env 段变化必须让 pm2 重新加载配置文件）。
+pm2 startOrRestart "${REPO_DIR}/scripts/ecosystem.config.cjs" --only nextjs 2>&1 | tail -10
+
+# ── [8.5] 重新渲染 nginx vhost 并 reload（防端口漂移）──────────────────────
+# 每次部署都从 .template + ports.env 重新生成 vhost：手改过的端口、过期的
+# upstream 一律被覆盖回单一来源的值。
+log "=== [8.5] render + reload nginx vhost ==="
+if [ -w "$(dirname "${LIVE_VHOST}")" ]; then
+  bash "${RENDER_SCRIPT}" --out "${LIVE_VHOST}"
+  nginx -t
+  nginx -s reload && log "  nginx reloaded (upstream = ports.env.NEXTJS_PORT)"
+else
+  log "  WARN: ${LIVE_VHOST} 不可写，跳过渲染 — 手动运行: bash ${RENDER_SCRIPT} --out ${LIVE_VHOST} && nginx -s reload"
+fi
 
 # ── [9] health gate ────────────────────────────────────────────────────────
 # Without this the script reported success the moment pm2 accepted the restart,
