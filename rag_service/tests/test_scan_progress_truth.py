@@ -22,6 +22,8 @@ def test_cache_hit_is_observed_and_propagated_to_single_image_result(monkeypatch
     analyzer = object.__new__(vision.VisionAnalyzer)
     analyzer.api_key = "test"
     analyzer.model = "test-model"
+    analyzer.fallback_model = "fallback-model"
+    analyzer._vision_primary = "minimax"  # force minimax path so _call_llm is the primary
     monkeypatch.setattr(analyzer, "_looks_like_image", lambda *args: True)
     calls = []
     def respond(*args, **kwargs):

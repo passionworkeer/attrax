@@ -278,6 +278,15 @@ class VisionAnalyzer:
             self.fallback_model,
             self.fallback_max_tokens,
         ) = resolve_deepseek_config(fallback_api_key)[:4]
+        # VISION_PRIMARY env controls which provider runs as primary for vision.
+        # Default "deepseek" — measured 2-3x faster than MiniMax on the v7
+        # prompt and the new "双向对齐" rules keep quality aligned. MiniMax
+        # stays as the fallback path for when DeepSeek is unavailable.
+        vision_primary = (os.environ.get("VISION_PRIMARY") or "deepseek").lower().strip()
+        if vision_primary not in ("deepseek", "minimax"):
+            logger.warning("Unknown VISION_PRIMARY=%r; falling back to deepseek", vision_primary)
+            vision_primary = "deepseek"
+        self._vision_primary = vision_primary
 
     @property
     def available(self) -> bool:
@@ -448,10 +457,19 @@ class VisionAnalyzer:
         (and vice versa). The primary is still re-attempted on the next call —
         the fallback is a degradation, so a cached fallback answer must never
         pre-empt a primary provider that has recovered.
+
+        VISION_PRIMARY env (default deepseek) picks which provider runs as
+        primary. The cache key is scoped to the primary's model name so the
+        two providers never share an entry — switching VISION_PRIMARY
+        invalidates the previous provider's cache implicitly.
         """
         cache = _get_vision_cache()
+        vision_primary = getattr(self, "_vision_primary", "deepseek")
+        primary_model = (
+            self.fallback_model if vision_primary == "deepseek" else self.model
+        )
         primary_key = cache.cache_key(
-            image_data, self.model, VISION_PROMPT_VERSION, checks
+            image_data, primary_model, VISION_PROMPT_VERSION, checks
         )
         cached = cache.get(primary_key)
         if cached:
@@ -472,7 +490,13 @@ class VisionAnalyzer:
             ],
         }]
 
-        text = self._call_mimotalk(messages, max_tokens=max_tokens)
+        if vision_primary == "deepseek":
+            # DeepSeek primary: OpenAI-compatible /chat/completions. The
+            # model's own budget (self.fallback_max_tokens) applies — deepseek-flash
+            # is a reasoning model and small budgets return HTTP 200 + empty.
+            text = self._call_deepseek(messages)
+        else:
+            text = self._call_mimotalk(messages, max_tokens=max_tokens)
         if text:
             cache.put(primary_key, text)
             return text, False
@@ -489,7 +513,36 @@ class VisionAnalyzer:
 
         The primary's ``max_tokens`` is intentionally not forwarded: the two
         providers have different output budgets (see ``_call_deepseek``).
+
+        With VISION_PRIMARY=deepseek (the new default), the fallback path
+        routes to MiniMax (``_call_mimotalk``). With VISION_PRIMARY=minimax
+        the legacy path applies: fallback = DeepSeek (``_call_deepseek``).
         """
+        vision_primary = getattr(self, "_vision_primary", "deepseek")
+        if vision_primary == "deepseek":
+            # Fallback here is MiniMax (Anthropic-shaped). The legacy
+            # ``self.fallback_api_key`` slot holds the DeepSeek key, so we
+            # gate on ``self.api_key`` (MiniMax key) instead.
+            if not self.api_key:
+                return "", False
+            cache = _get_vision_cache()
+            fallback_model = self.model  # MiniMax model name for cache key
+            fallback_key = cache.cache_key(
+                image_data, fallback_model, VISION_PROMPT_VERSION, checks
+            )
+            cached = cache.get(fallback_key)
+            if cached:
+                return cached, True
+            text = self._call_mimotalk(messages)
+            if text:
+                logger.warning(
+                    "vision: primary provider (%s) failed, served by fallback (MiniMax)",
+                    self.fallback_model,
+                )
+                cache.put(fallback_key, text)
+            return text, False
+
+        # Legacy path: fallback = DeepSeek.
         if not self.fallback_api_key:
             return "", False
 
