@@ -4,10 +4,11 @@
  * Streams the inbound multipart body straight to FastAPI's
  * /api/v1/scans endpoint so neither the BFF nor Node buffers the full
  * upload into heap (under concurrent scans this used to push pm2 past
- * `max_memory_restart: 768M`). Boundary / category / markets / declared
- * facts are still validated in the BFF, but per-file signature checks are
- * delegated to the upstream `python-multipart` parser — same source of
- * truth as before, no behavioural change.
+ * `max_memory_restart: 768M`). The BFF keeps the Content-Length cap, the
+ * Content-Type check, rate limiting, and an early `category` allow-list
+ * check read from the first 8KB; per-file type / signature / count / size
+ * checks and the markets + declared-facts validation live upstream in
+ * `_read_uploads` / `create_scan`, which is the single source of truth.
  *
  * In production the access token is kept only in an HttpOnly cookie. Browser
  * JavaScript receives the session id and poll URL but never the bearer secret.
@@ -140,40 +141,67 @@ function validateContentType(request: Request): Response | null {
   return null;
 }
 
+// Read up to `peekBytes` from the front of the request body, then hand back a
+// stream that replays those bytes before continuing with the untouched rest.
+//
+// This deliberately does NOT use `body.tee()`. A tee'd branch that is read
+// part-way and then cancelled deadlocks against the surviving branch as soon
+// as the body is larger than the peek window: every request over 8KB hung
+// until the client gave up. Reading the prefix once and replaying it keeps a
+// single reader on the body, so there is no branch state to reconcile.
+async function peekAndReplay(
+  body: ReadableStream<Uint8Array>,
+  peekBytes: number,
+): Promise<{ prefix: Uint8Array; replayed: ReadableStream<Uint8Array> }> {
+  const reader = body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  while (total < peekBytes) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    total += value.length;
+  }
+  const prefix = new Uint8Array(total);
+  let offset = 0;
+  for (const chunk of chunks) {
+    prefix.set(chunk, offset);
+    offset += chunk.length;
+  }
+  const replayed = new ReadableStream<Uint8Array>({
+    start(controller) {
+      for (const chunk of chunks) controller.enqueue(chunk);
+    },
+    async pull(controller) {
+      const { value, done } = await reader.read();
+      if (done) {
+        controller.close();
+        return;
+      }
+      controller.enqueue(value);
+    },
+    cancel(reason) {
+      return reader.cancel(reason);
+    },
+  });
+  return { prefix, replayed };
+}
+
 // Find the value of a multipart/form-data field in the leading bytes of a
-// streamed body. Returns null if the boundary isn't reached in the peek —
-// the upstream parser will still validate the full body; the peek is only
-// used for cheap BFF-side rejection of obviously-malformed submissions.
+// body. Returns null when the field is not within the peek — the upstream
+// parser still sees the whole body, so the only cost is losing a cheap
+// pre-rejection, never correctness.
 //
 // We deliberately do NOT touch file fields: their signature checks belong
 // to the FastAPI `_valid_signature` step so the source of truth stays in
 // one place. The upstream's `_read_uploads` enforces file counts, per-file
 // type/suffix, magic bytes, and the 50MB total.
-async function peekFirstField(
-  body: ReadableStream<Uint8Array>,
+function peekFieldValue(
+  prefix: Uint8Array,
   boundary: string,
   fieldName: string,
-): Promise<string | null> {
-  const reader = body.getReader();
-  let collected = new Uint8Array(0);
-  try {
-    while (collected.length < MULTIPART_PEEK_BYTES) {
-      const { value, done } = await reader.read();
-      if (done) break;
-      const merged = new Uint8Array(collected.length + value.length);
-      merged.set(collected, 0);
-      merged.set(value, collected.length);
-      collected = merged;
-    }
-  } finally {
-    try {
-      reader.releaseLock();
-    } catch {
-      // The stream is still attached to the underlying body, so we can
-      // ignore double-release attempts.
-    }
-  }
-  const text = new TextDecoder("utf-8", { fatal: false }).decode(collected);
+): string | null {
+  const text = new TextDecoder("utf-8", { fatal: false }).decode(prefix);
   // A part is: `--boundary CRLF` (headers, each ending CRLF) CRLF value.
   // Group 1 is the header block, group 2 the first value line. The header
   // block is bounded to 8 lines so a long body cannot make the inner `+`
@@ -183,13 +211,10 @@ async function peekFirstField(
     `--${escapedBoundary}\\r\\n((?:[^\\r\\n]+\\r\\n){1,8})\\r\\n([^\\r\\n]*)`,
     "g",
   );
+  const escapedField = fieldName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   let match: RegExpExecArray | null;
   while ((match = partRegex.exec(text)) !== null) {
-    const headersBlock = match[1];
-    const nameMatch = headersBlock.match(
-      new RegExp(`name="${fieldName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`, "i"),
-    );
-    if (!nameMatch) continue;
+    if (!match[1].match(new RegExp(`name="${escapedField}"`, "i"))) continue;
     return match[2].trim();
   }
   return null;
@@ -276,25 +301,16 @@ export async function POST(request: Request): Promise<Response> {
     ? (boundaryMatch[1] ?? boundaryMatch[2] ?? "").trim()
     : "";
 
-  let body: ReadableStream<Uint8Array> | null = request.body;
-  if (!body || !boundary) {
+  const incoming: ReadableStream<Uint8Array> | null = request.body;
+  if (!incoming || !boundary) {
     return badInputResponse("BAD_INPUT", "请求体无法解析为 multipart/form-data。");
   }
 
-  // Tear off a tee'd copy of the body so the peek doesn't consume the
-  // bytes we are about to forward. We immediately cancel the peek branch
-  // once we have what we need, leaving the upstream stream intact.
-  const [peekBranch, forwardBranch] = body.tee();
-  body = forwardBranch;
-  const peeked = await peekFirstField(peekBranch, boundary, "category").catch(
-    () => null,
-  );
-  // Cancel the peek branch — the upstream fetch only sees forwardBranch.
-  try {
-    await peekBranch.cancel();
-  } catch {
-    // already drained
-  }
+  // Read the leading bytes to sniff `category`, then forward a stream that
+  // replays them ahead of the rest of the body. Upstream still receives every
+  // byte the client sent, in order.
+  const { prefix, replayed } = await peekAndReplay(incoming, MULTIPART_PEEK_BYTES);
+  const peeked = peekFieldValue(prefix, boundary, "category");
 
   // Early rejection only. The peek reads at most the first 8KB, so a client
   // that orders its parts differently just loses this cheap pre-check: the
@@ -302,17 +318,17 @@ export async function POST(request: Request): Promise<Response> {
   // Note the upstream validates markets and declared_facts but NOT category
   // against an allow-list — this check is the only category gate, which is
   // why the upload page is expected to put text fields first.
-  const categoryRaw = peeked && peeked.trim().length > 0 ? peeked.trim() : DEFAULT_CATEGORY;
+  const categoryRaw = peeked && peeked.length > 0 ? peeked : DEFAULT_CATEGORY;
   if (!ALLOWED_CATEGORIES.has(categoryRaw)) {
     // Nothing downstream will read the body — release it rather than leaving
     // the request stream dangling until the connection is torn down.
-    await body.cancel().catch(() => undefined);
+    await replayed.cancel().catch(() => undefined);
     return badInputResponse("INVALID_CATEGORY", "Unsupported product category.");
   }
 
   try {
     const created = await createScanStream({
-      body,
+      body: replayed,
       headers: { contentType: contentTypeHeader },
       ...upstreamForwardFrom(request),
     });
