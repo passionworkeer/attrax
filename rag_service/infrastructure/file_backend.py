@@ -80,6 +80,38 @@ class FileBackend:
         finally:
             temporary.unlink(missing_ok=True)
 
+    @staticmethod
+    def _job_lock_is_stealable(lock_path: Path) -> bool:
+        """Whether an existing job lock may be removed and retaken.
+
+        Age alone is a poor signal: a holder that paused (GC, swap) inside
+        the critical section still owns the lock, and a holder that was
+        SIGKILLed will never release it. So steal as soon as the recorded
+        holder PID is provably gone, and otherwise keep the original
+        age-based rule (`_JOB_LOCK_STALE_SECONDS`) so PID reuse can never
+        strand a job's lock forever.
+        """
+        try:
+            stat = lock_path.stat()
+        except FileNotFoundError:
+            return False
+        if time.time() - stat.st_mtime > _JOB_LOCK_STALE_SECONDS:
+            return True
+        try:
+            raw = lock_path.read_text(encoding="ascii", errors="replace").split()
+            holder_pid = int(raw[0])
+        except (OSError, ValueError, IndexError):
+            return False
+        if holder_pid == os.getpid():
+            return False
+        try:
+            os.kill(holder_pid, 0)
+        except ProcessLookupError:
+            return True
+        except PermissionError:
+            return False
+        return False
+
     @contextmanager
     def _exclusive_job_lock(self, job_id: str) -> Iterator[bool]:
         """Acquire a short-lived cross-process lock for one job transition."""
@@ -95,11 +127,7 @@ class FileBackend:
                 os.write(fd, f"{os.getpid()} {time.time()}\n".encode("ascii"))
                 break
             except FileExistsError:
-                try:
-                    stale = time.time() - lock_path.stat().st_mtime > _JOB_LOCK_STALE_SECONDS
-                except FileNotFoundError:
-                    stale = False
-                if stale and attempt == 0:
+                if attempt == 0 and self._job_lock_is_stealable(lock_path):
                     lock_path.unlink(missing_ok=True)
                     continue
                 yield False
@@ -128,10 +156,46 @@ class FileBackend:
                 return None
             return ScanSession.model_validate_json(path.read_text(encoding="utf-8"))
 
-    def purge_expired_sessions(self, now: datetime | None = None) -> int:
-        now = now or utc_now()
-        expired: list[str] = []
+    def update_session_atomic(
+        self,
+        session_id: str,
+        mutator: Any,
+    ) -> ScanSession | None:
+        """Read-modify-write a session under a single lock acquisition (H5).
+
+        ``mutator(current: ScanSession) -> ScanSession | None`` runs inside
+        ``self._lock``: the read, the transition, and the write happen back
+        to back, so concurrent progress callbacks + stage transitions +
+        lease heartbeats can never observe a torn state.
+
+        Returns the new session, or ``None`` when the mutator deleted it
+        (returns ``None``) or when the session disappeared under us.
+        """
         with self._lock:
+            path = self._session_path(session_id)
+            if not path.exists():
+                return None
+            current = ScanSession.model_validate_json(path.read_text(encoding="utf-8"))
+            updated = mutator(current)
+            if updated is None:
+                # Mutator requested delete; do not persist and signal no-op.
+                return None
+            self._write_json_atomic(path, updated.model_dump(mode="json"))
+            return updated
+
+    def purge_expired_sessions(self, now: datetime | None = None) -> int:
+        """Delete every session past its TTL; returns how many were purged.
+
+        Identification and deletion share one lock acquisition: a two-phase
+        version let a concurrent ``delete_session`` land in between, which
+        emitted a spurious ``scan_expired`` event for an already-deleted
+        session and over-counted the return value. The candidate list is
+        materialised before deleting so the deletion does not mutate the
+        directory mid-iteration.
+        """
+        now = now or utc_now()
+        with self._lock:
+            expired: list[str] = []
             for path in self.sessions_dir.glob("*.json"):
                 try:
                     session = ScanSession.model_validate_json(path.read_text(encoding="utf-8"))
@@ -139,10 +203,10 @@ class FileBackend:
                     continue
                 if session.expires_at <= now:
                     expired.append(session.session_id)
-        for session_id in expired:
-            self.delete_session(session_id)
-            self.append_audit({"event": "scan_expired", "sessionId": session_id})
-        return len(expired)
+            for session_id in expired:
+                self.delete_session(session_id)
+                self.append_audit({"event": "scan_expired", "sessionId": session_id})
+            return len(expired)
 
     def save_upload(
         self,
@@ -174,18 +238,24 @@ class FileBackend:
             size=len(content),
             sha256=hashlib.sha256(content).hexdigest(),
         )
-        with self._lock:
-            directory.mkdir(parents=True, exist_ok=True)
-            self._chmod(directory, 0o700)
-            temporary = path.with_suffix(f"{path.suffix}.{uuid.uuid4().hex}.tmp")
-            try:
-                temporary.write_bytes(content)
-                self._chmod(temporary, 0o600)
+        # The bulk byte write deliberately happens OUTSIDE ``self._lock``:
+        # holding it for up to 10MB per upload serialized every other
+        # session/job read in the process behind the slowest writer. The
+        # rename and the metadata write below are atomic and target
+        # per-upload unique names, so a reader can never observe a partial
+        # file regardless of who else is writing.
+        directory.mkdir(parents=True, exist_ok=True)
+        self._chmod(directory, 0o700)
+        temporary = path.with_suffix(f"{path.suffix}.{uuid.uuid4().hex}.tmp")
+        try:
+            temporary.write_bytes(content)
+            self._chmod(temporary, 0o600)
+            with self._lock:
                 os.replace(temporary, path)
                 self._chmod(path, 0o600)
                 self._write_json_atomic(metadata_path, upload.model_dump(mode="json"))
-            finally:
-                temporary.unlink(missing_ok=True)
+        finally:
+            temporary.unlink(missing_ok=True)
         return upload
 
     def list_uploads(self, session_id: str) -> list[StoredUpload]:
@@ -237,6 +307,32 @@ class FileBackend:
         with self._lock:
             self._write_json_atomic(self._job_path(job.job_id), job.model_dump(mode="json"))
 
+    def save_job_if_marker_absent(self, job: ScanJob) -> ScanJob | None:
+        """Persist ``job`` unless another job already carries its marker (H12).
+
+        The check and the write share one lock acquisition, so two concurrent
+        submissions with the same idempotency key cannot both see "no marker"
+        and both queue a job. Returns the job that already held the marker
+        (caller must treat the request as already queued), or ``None`` after
+        writing.
+        """
+        marker = job.idempotency_marker
+        with self._lock:
+            if marker:
+                for path in sorted(self.jobs_dir.glob("*.json")):
+                    try:
+                        existing = ScanJob.model_validate_json(
+                            path.read_text(encoding="utf-8")
+                        )
+                    except Exception:
+                        continue
+                    if existing.idempotency_marker == marker:
+                        return existing
+            self._write_json_atomic(
+                self._job_path(job.job_id), job.model_dump(mode="json")
+            )
+        return None
+
     def get_job(self, job_id: str) -> ScanJob | None:
         path = self._job_path(job_id)
         with self._lock:
@@ -271,6 +367,24 @@ class FileBackend:
                     return False
                 self.save_job(job.renew_lease(lease_seconds=lease_seconds))
                 return True
+
+    def find_job_by_marker(self, marker: str) -> ScanJob | None:
+        """Return the first job carrying ``marker``, in ANY state (H12).
+
+        Job-state-scoped listings are not enough for revision idempotency: a
+        job that has been claimed and is actively running with a live lease
+        is neither "recoverable" nor "pending retry", so a same-key retry
+        arriving mid-run would look brand new and queue a duplicate.
+        """
+        with self._lock:
+            for path in sorted(self.jobs_dir.glob("*.json")):
+                try:
+                    job = ScanJob.model_validate_json(path.read_text(encoding="utf-8"))
+                except Exception:
+                    continue
+                if job.idempotency_marker == marker:
+                    return job
+        return None
 
     def list_recoverable_jobs(self) -> list[ScanJob]:
         jobs = []
@@ -331,6 +445,49 @@ class FileBackend:
         except OSError:
             return False
         return False
+
+    def check_and_append_audit_marker(
+        self,
+        marker: str,
+        payload: dict[str, Any],
+    ) -> bool:
+        """Atomic check + append for an idempotency audit marker (H11).
+
+        Holds ``_lock`` across the existence check and the audit-line write
+        so two concurrent submissions with the same marker cannot both pass
+        the check and both append. Returns ``True`` when the marker was
+        already present (caller must short-circuit), ``False`` when this
+        call performed the append.
+        """
+        body = {
+            "timestamp": utc_now().isoformat(),
+            "codeVersion": os.environ.get("ATTRAX_BUILD_SHA", "unknown"),
+            **payload,
+            "event": marker,
+        }
+        line = json.dumps(body, ensure_ascii=False, separators=(",", ":"))
+        with self._lock:
+            already = False
+            if self.audit_path.exists():
+                try:
+                    with self.audit_path.open("r", encoding="utf-8") as stream:
+                        for existing in stream:
+                            try:
+                                parsed = json.loads(existing)
+                            except json.JSONDecodeError:
+                                continue
+                            if parsed.get("event") == marker:
+                                already = True
+                                break
+                except OSError:
+                    already = False
+            if already:
+                return True
+            self.root.mkdir(parents=True, exist_ok=True)
+            with self.audit_path.open("a", encoding="utf-8", newline="\n") as stream:
+                stream.write(line + "\n")
+            self._chmod(self.audit_path, 0o600)
+            return False
 
     def delete_session(self, session_id: str) -> None:
         safe_session = self._id(session_id)

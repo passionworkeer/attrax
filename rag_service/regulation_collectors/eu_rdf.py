@@ -42,6 +42,14 @@ CELLAR_UUID_PATTERN = re.compile(
     re.S,
 )
 
+# M18 (2026-09-18): the registry generator hands us up to 80 variant slots
+# (20 numbered slots x 4 suffixes). Probing all of them sequentially shares a
+# single per-source fetch budget, so one unreachable EU source can pin its
+# worker for a very long time and never succeed. Real captures land in the
+# first few slots (the newest Cellar representation), so only the first
+# ``MAX_CELLAR_VARIANT_PROBES`` are tried before falling back to EUR-Lex.
+MAX_CELLAR_VARIANT_PROBES = 10
+
 
 def ensure_eu_text(
     collector: "BaseCollector",
@@ -58,8 +66,9 @@ def ensure_eu_text(
 
     Mirrors the original ``Collector.ensure_eu_text`` behaviour: downloads the
     Publications Office RDF, extracts the Cellar UUID, then probes each variant
-    of ``cellar/<uuid>.<variant>/DOC_1``. When all variants fail, optionally
-    falls back to the EUR-Lex legal-content HTML endpoint.
+    of ``cellar/<uuid>.<variant>/DOC_1`` — at most ``MAX_CELLAR_VARIANT_PROBES``
+    of them (M18) — before optionally falling back to the EUR-Lex legal-content
+    HTML endpoint.
 
     Failures are recorded via ``collector.record_failure``.
     """
@@ -96,7 +105,7 @@ def ensure_eu_text(
         )
         return
 
-    for variant in variants:
+    for variant in variants[:MAX_CELLAR_VARIANT_PROBES]:
         content_url = f"https://publications.europa.eu/resource/cellar/{cellar_uuid}.{variant}/DOC_1"
         result = collector.download(
             content_url,

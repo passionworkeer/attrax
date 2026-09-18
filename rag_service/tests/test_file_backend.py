@@ -1,4 +1,7 @@
 import json
+import os
+import threading
+import time
 from datetime import timedelta
 from pathlib import Path
 
@@ -176,3 +179,89 @@ def test_legacy_session_without_expires_at_backfills_from_updated_at(tmp_path):
     assert restored.expires_at <= utc_now()
     assert backend.purge_expired_sessions() == 1
     assert backend.get_session("scan_legacy") is None
+
+
+def test_save_job_if_marker_absent_lets_only_one_of_two_racers_write(tmp_path):
+    """H12：同 marker 的两个并发提交只能落一个 job。
+
+    先前的实现是「先 find_job_by_marker、再 save_job」两步，两步之间另一个
+    请求也能看到「还没有 job」，于是排重扫会排出两份。
+    """
+    backend = FileBackend(tmp_path)
+    barrier = threading.Barrier(2)
+    written: list[object] = []
+
+    def submit(job_id: str) -> None:
+        job = ScanJob.new(
+            job_id=job_id,
+            session_id="scan_race",
+            query="q",
+            product="",
+            category="toy",
+            markets=["EU"],
+            upload_ids=[],
+            idempotency_marker="revision:scan_race:key-1",
+        )
+        barrier.wait()
+        written.append(backend.save_job_if_marker_absent(job))
+
+    threads = [threading.Thread(target=submit, args=(f"job_{index}",)) for index in range(2)]
+    for thread in threads:
+        thread.start()
+    for thread in threads:
+        thread.join()
+
+    assert sorted(result is None for result in written) == [False, True]
+    assert len(list(backend.jobs_dir.glob("*.json"))) == 1
+
+
+def test_save_job_if_marker_absent_is_a_no_op_for_unmarked_jobs(tmp_path):
+    """没有 marker 的 job（首次扫描）不受影响，各自落盘。"""
+    backend = FileBackend(tmp_path)
+
+    def make(job_id: str) -> ScanJob:
+        return ScanJob.new(
+            job_id=job_id,
+            session_id="scan_plain",
+            query="q",
+            product="",
+            category="toy",
+            markets=["EU"],
+            upload_ids=[],
+        )
+
+    assert backend.save_job_if_marker_absent(make("job_a")) is None
+    assert backend.save_job_if_marker_absent(make("job_b")) is None
+    assert len(list(backend.jobs_dir.glob("*.json"))) == 2
+
+
+def _write_lock(backend: FileBackend, job_id: str, pid: int, age_seconds: float) -> Path:
+    lock_path = backend._job_lock_path(job_id)
+    lock_path.parent.mkdir(parents=True, exist_ok=True)
+    lock_path.write_text(f"{pid} {time.time()}\n", encoding="ascii")
+    stamp = time.time() - age_seconds
+    os.utime(lock_path, (stamp, stamp))
+    return lock_path
+
+
+def test_job_lock_is_stealable_when_the_holder_process_is_gone(tmp_path):
+    """持有者已死就立刻回收，不必等满 60s 老化窗口。
+
+    否则一个被 SIGKILL 的 worker 留下的锁会让这个 job 卡住一分钟——多进程
+    部署时就是整整一分钟的扫描停摆。
+    """
+    backend = FileBackend(tmp_path)
+    # 远高于任何平台的 pid_max（Linux 上限 4194304），kill 必然 ESRCH
+    lock_path = _write_lock(backend, "job_dead", pid=2**30, age_seconds=0)
+
+    assert backend._job_lock_is_stealable(lock_path) is True
+
+
+def test_job_lock_of_a_live_holder_is_kept_until_it_ages_out(tmp_path):
+    """持有者还活着就只按老化规则处理，不抢锁。"""
+    backend = FileBackend(tmp_path)
+    fresh = _write_lock(backend, "job_live", pid=os.getpid(), age_seconds=0)
+    aged = _write_lock(backend, "job_live_old", pid=os.getpid(), age_seconds=120)
+
+    assert backend._job_lock_is_stealable(fresh) is False
+    assert backend._job_lock_is_stealable(aged) is True

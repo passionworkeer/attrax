@@ -26,12 +26,14 @@ import json
 import asyncio  # P1-7: asyncio.gather + Semaphore for multi-image dispatch
 import base64
 import logging
+import threading
 import time
 import urllib.request
 import urllib.error
 from concurrent.futures import ThreadPoolExecutor
 from typing import Optional
 
+from rag_service.lifecycle import is_shutting_down
 from rag_service.llm_response import extract_text_blocks
 
 logger = logging.getLogger(__name__)
@@ -53,6 +55,16 @@ def _make_no_proxy_opener() -> urllib.request.OpenerDirector:
 # Module-level singleton opener — ProxyHandler({}) is stateless, so a
 # single shared instance is safe to reuse across calls and across threads.
 _NO_PROXY_OPENER = _make_no_proxy_opener()
+
+# M7 (2026-09-18): cross-scan cap on concurrent vision HTTP calls. One scan
+# fans out to at most 4 images, so 5 concurrent scans can otherwise put 20
+# simultaneous HTTPS requests on the provider. The cap is deliberately
+# larger than a single scan's own fan-out (4): a scan must never starve
+# itself waiting for slots its own sibling requests hold, so the semaphore
+# only bounds the aggregate burst. Acquired around the wire call only —
+# backoff sleeps and cache lookups run outside it.
+_VISION_HTTP_CONCURRENCY = 8
+_VISION_HTTP_SEMAPHORE = threading.Semaphore(_VISION_HTTP_CONCURRENCY)
 
 PROMPT = """你是产品视觉取证助手。只记录图片中可观察到的事实；不要给出法规结论、认证结论、价格或上市建议。
 
@@ -307,6 +319,15 @@ class VisionAnalyzer:
         backoff (1s, 2s). HTTPError (4xx/5xx) is a business-level failure and
         is NOT retried — the request reached the server, so retrying the same
         payload is unlikely to help and could mask a real config problem.
+
+        M7: every wire request runs under the process-wide
+        ``_VISION_HTTP_SEMAPHORE`` so concurrent scans cannot stampede the
+        provider; the slot is released before any backoff sleep so a retrying
+        caller does not hold capacity while idle.
+        M2: a signalled shutdown abandons the remaining attempts instead of
+        burning more provider quota after the process decided to stop. Both
+        the acquire and the check sit on the request/retry path only — the
+        first attempt pays nothing but one semaphore acquire/release pair.
         """
         max_retries = 3
         base_delays = [1, 2]  # sleeps before attempt 2 and attempt 3
@@ -318,8 +339,9 @@ class VisionAnalyzer:
                 headers={"Authorization": f"Bearer {api_key}", **headers},
             )
             try:
-                with _NO_PROXY_OPENER.open(req, timeout=timeout or self.timeout_seconds) as r:
-                    return json.loads(r.read())
+                with _VISION_HTTP_SEMAPHORE:
+                    with _NO_PROXY_OPENER.open(req, timeout=timeout or self.timeout_seconds) as r:
+                        return json.loads(r.read())
             except urllib.error.HTTPError as e:
                 # Business error — request reached server, do not retry.
                 logger.error(
@@ -330,6 +352,12 @@ class VisionAnalyzer:
             except (urllib.error.URLError, TimeoutError, ConnectionError, OSError) as e:
                 # Network / timeout class — retryable.
                 if attempt < max_retries:
+                    if is_shutting_down():
+                        logger.info(
+                            "shutdown requested; abandoning remaining vision "
+                            "retries (%s)", url,
+                        )
+                        return None
                     delay = base_delays[attempt - 1]
                     logger.warning(
                         f"vision network error (attempt {attempt}/{max_retries}, {url}): "
@@ -462,6 +490,12 @@ class VisionAnalyzer:
         primary. The cache key is scoped to the primary's model name so the
         two providers never share an entry — switching VISION_PRIMARY
         invalidates the previous provider's cache implicitly.
+
+        H4: the plain ``cache.get`` stays the fast path (one file read, no
+        locks); only a miss goes through ``cache.get_or_compute`` so N
+        concurrent scans of the same image share ONE provider request
+        instead of N. The winner writes the cache and resolves the shared
+        Future — waiters read the same text without re-billing the model.
         """
         cache = _get_vision_cache()
         vision_primary = getattr(self, "_vision_primary", "deepseek")
@@ -494,12 +528,23 @@ class VisionAnalyzer:
             # DeepSeek primary: OpenAI-compatible /chat/completions. The
             # model's own budget (self.fallback_max_tokens) applies — deepseek-flash
             # is a reasoning model and small budgets return HTTP 200 + empty.
-            text = self._call_deepseek(messages)
+            text, cache_hit = cache.get_or_compute(
+                primary_key, lambda: self._call_deepseek(messages)
+            )
         else:
-            text = self._call_mimotalk(messages, max_tokens=max_tokens)
+            text, cache_hit = cache.get_or_compute(
+                primary_key,
+                lambda: self._call_mimotalk(messages, max_tokens=max_tokens),
+            )
         if text:
-            cache.put(primary_key, text)
-            return text, False
+            return text, cache_hit
+
+        if is_shutting_down():
+            # The primary just failed and the process is draining: do not
+            # open a fresh request against the fallback provider either. The
+            # first attempt of each provider still runs (no per-call
+            # overhead); only this new-request switch is skipped.
+            return "", False
 
         return self._vision_text_from_fallback(messages, image_data, checks)
 
@@ -517,6 +562,13 @@ class VisionAnalyzer:
         With VISION_PRIMARY=deepseek (the new default), the fallback path
         routes to MiniMax (``_call_mimotalk``). With VISION_PRIMARY=minimax
         the legacy path applies: fallback = DeepSeek (``_call_deepseek``).
+
+        H4: the fallback provider call rides the same singleflight as the
+        primary. The degradation path is exactly when a provider is stressed
+        (it was just tried and failed), so a burst of same-image scans would
+        otherwise turn one provider outage into N fallback requests. Cache
+        layering is unchanged — the fallback keeps its own model-scoped key,
+        and the primary is still re-attempted on the next call.
         """
         vision_primary = getattr(self, "_vision_primary", "deepseek")
         if vision_primary == "deepseek":
@@ -533,14 +585,15 @@ class VisionAnalyzer:
             cached = cache.get(fallback_key)
             if cached:
                 return cached, True
-            text = self._call_mimotalk(messages)
+            text, cache_hit = cache.get_or_compute(
+                fallback_key, lambda: self._call_mimotalk(messages)
+            )
             if text:
                 logger.warning(
                     "vision: primary provider (%s) failed, served by fallback (MiniMax)",
                     self.fallback_model,
                 )
-                cache.put(fallback_key, text)
-            return text, False
+            return text, cache_hit
 
         # Legacy path: fallback = DeepSeek.
         if not self.fallback_api_key:
@@ -554,15 +607,16 @@ class VisionAnalyzer:
         if cached:
             return cached, True
 
-        text = self._call_deepseek(messages)
+        text, cache_hit = cache.get_or_compute(
+            fallback_key, lambda: self._call_deepseek(messages)
+        )
         if text:
             logger.warning(
                 "vision: primary provider (%s) failed, served by fallback (%s)",
                 self.model,
                 self.fallback_model,
             )
-            cache.put(fallback_key, text)
-        return text, False
+        return text, cache_hit
 
     # Audit P1-J: sniff magic bytes BEFORE base64-encoding so we don't waste
     # an LLM roundtrip on a corrupted / mismatched / empty upload. Mirrors the

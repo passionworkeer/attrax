@@ -13,6 +13,7 @@ from rag_service.regulation_collectors.base import BaseCollector
 from rag_service.regulation_collectors.eu_rdf import (
     EU_CELLAR_VARIANTS_FULL,
     EU_CELLAR_VARIANTS_SHORT,
+    MAX_CELLAR_VARIANT_PROBES,
     ensure_eu_text,
 )
 
@@ -125,4 +126,40 @@ def test_ensure_eu_text_no_eurlex_fallback_records_final_failure(tmp_path, colle
         collector, entry, "32023R0001", "eu/x.rdf", "eu/x.xhtml",
         min_bytes_for_rdf=128, use_eurlex_fallback=False,
     )
+    assert any("could not download XHTML" in f["error"] for f in collector.failures)
+
+
+def test_ensure_eu_text_caps_variant_probes(tmp_path, collector):
+    """M18: the registry passes up to 80 variant slots; the resolver must
+    probe at most MAX_CELLAR_VARIANT_PROBES of them so one unreachable EU
+    source cannot pin its worker across an 80-request sweep."""
+    rdf = tmp_path / "eu" / "x.rdf"
+    _write_rdf_with_cellar(rdf, "32023R0001", "abc-uuid")
+    entry = {"id": "eu-x", "files": [], "source_url": "https://example.test/x"}
+
+    # The same 80-slot shape the registry generator produces.
+    many_variants = tuple(f"{slot:04d}.{suffix}" for slot in range(1, 21) for suffix in ("04", "03", "02", "01"))
+    assert len(many_variants) == 80
+
+    probed: list[str] = []
+
+    def fake_download(url, rel_path, **_):
+        for variant in many_variants:
+            if f".{variant}/DOC_1" in url:
+                probed.append(variant)
+        return {"status": "failed"}
+
+    collector.download = MagicMock(side_effect=fake_download)
+    ensure_eu_text(
+        collector,
+        entry,
+        "32023R0001",
+        "eu/x.rdf",
+        "eu/x.xhtml",
+        min_bytes_for_rdf=128,
+        variants=many_variants,
+        use_eurlex_fallback=False,
+    )
+
+    assert probed == list(many_variants[:MAX_CELLAR_VARIANT_PROBES])
     assert any("could not download XHTML" in f["error"] for f in collector.failures)

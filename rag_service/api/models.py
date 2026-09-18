@@ -67,6 +67,13 @@ def failure(
     details: dict[str, Any] | None = None,
 ) -> JSONResponse:
     rid = request_id(request)
+    headers = {"X-Request-Id": rid}
+    # M1 (2026-09-18): every 503 raised through this envelope is a
+    # capacity/queue condition (in-flight scan bound reached, queue backend
+    # unavailable), not a malformed request. Tell clients how long to wait
+    # before retrying instead of letting them hammer the endpoint.
+    if status_code == 503:
+        headers["Retry-After"] = "30"
     return JSONResponse(
         status_code=status_code,
         content={
@@ -74,5 +81,5 @@ def failure(
             "error": {"code": code, "message": message, "details": details},
             "meta": {"requestId": rid},
         },
-        headers={"X-Request-Id": rid},
+        headers=headers,
     )

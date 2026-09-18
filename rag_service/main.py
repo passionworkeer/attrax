@@ -11,6 +11,7 @@ import json
 import logging
 import base64
 import hashlib
+import threading
 from collections import deque
 from datetime import datetime, timezone
 from pathlib import Path
@@ -49,6 +50,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
+from rag_service import lifecycle
 from rag_service.config import settings
 from rag_service.pipeline import run_compliance_graph
 from rag_service.generate.report_generator import ReportGenerator
@@ -63,16 +65,70 @@ logger = logging.getLogger(__name__)
 
 _APP_ROOT = Path(__file__).parent.parent.resolve()
 
+# Thread-name prefixes let the bounded shutdown drain find exactly the
+# workers it owns (see _drain_executor) without touching private internals.
+_SCAN_EXECUTOR_THREAD_PREFIX = "attrax-scan-worker"
+_PROFIT_EXECUTOR_THREAD_PREFIX = "attrax-profit-worker"
+# M2 (2026-09-18): how long shutdown waits for executor workers to finish
+# their current request before proceeding. The LLM transports abort their
+# retry loops as soon as the shutdown flag is set, so this only has to cover
+# one in-flight provider round-trip — not a 3-attempt retry budget.
+_SHUTDOWN_DRAIN_GRACE_SECS = 20.0
+
 # Worker count comes from settings.scan_worker_concurrency (default 5) so
 # concurrent scans don't serialize behind a single in-flight request.
 _executor = ThreadPoolExecutor(
-    max_workers=settings.scan_worker_concurrency
+    max_workers=settings.scan_worker_concurrency,
+    thread_name_prefix=_SCAN_EXECUTOR_THREAD_PREFIX,
 )
+# M6 (2026-09-18): /profit-report runs on its own small pool. Sharing the
+# scan executor let a burst of profit reports occupy every scan worker and
+# starve submitted scans (and vice versa). Two workers absorb the usual
+# burst while keeping concurrent provider spend bounded.
+_profit_executor = ThreadPoolExecutor(
+    max_workers=2,
+    thread_name_prefix=_PROFIT_EXECUTOR_THREAD_PREFIX,
+)
+
+
+def _drain_executor(
+    executor: ThreadPoolExecutor,
+    thread_prefix: str,
+    grace_seconds: float,
+) -> None:
+    """``shutdown(wait=True)`` with a bounded fallback (M2).
+
+    The wait runs on a helper thread so this call gives the workers up to
+    ``grace_seconds`` to finish their current request; when the grace
+    expires we log and continue the shutdown instead of blocking exit
+    indefinitely on a slow provider. ``shutdown`` has already been
+    requested either way, so no new work can start.
+    """
+    finished = threading.Event()
+
+    def _wait() -> None:
+        executor.shutdown(wait=True)
+        finished.set()
+
+    waiter = threading.Thread(
+        target=_wait, name=f"{thread_prefix}-drain", daemon=True
+    )
+    waiter.start()
+    if not finished.wait(timeout=grace_seconds):
+        logger.warning(
+            "%s workers did not finish within %.0fs; continuing shutdown "
+            "(in-flight requests end at the provider timeout)",
+            thread_prefix, grace_seconds,
+        )
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Starting rag-service (De-RAG pipeline)...")
+
+    # M2: clear a shutdown flag left over from a previous lifespan cycle in
+    # this process (TestClient re-mounting the app, in-process restarts).
+    lifecycle.reset_shutdown()
 
     # P0-6: fail-closed internal-secret policy. Must run before anything that
     # would consume LLM quota. See _enforce_secret_policy for the
@@ -111,6 +167,10 @@ async def lifespan(app: FastAPI):
     app.state.scan_service = ScanService(
         FileBackend(settings.runtime_data_dir),
         runner=_run_public_scan_payload,
+        # M1: admission control — at most 2x the worker pool may be in
+        # flight (queued + running); further submissions are rejected fast
+        # with 503 + Retry-After instead of queueing up to hit the timeout.
+        max_in_flight_scans=settings.scan_worker_concurrency * 2,
     )
     app.state.readiness_provider = _readiness_snapshot
     app.state.scan_service.resume_pending()
@@ -118,19 +178,23 @@ async def lifespan(app: FastAPI):
     logger.info("rag-service ready")
     yield
     logger.info("rag-service shutting down")
+    # M2 (2026-09-18): signal FIRST, then drain. The flag makes the vision
+    # and report-generation transports abandon their retry loops between
+    # attempts, so an in-flight scan finishes its current provider request
+    # and stops — instead of burning another round-trip of provider quota
+    # after the process has decided to stop.
+    lifecycle.signal_shutdown()
     # P1-3: gracefully drain in-flight scan tasks before tearing the executor
     # down. ``wait_for_idle`` awaits every active ScanService job; bound the
     # wait to 30s (well below the 280s scan timeout) so a stuck scan can
     # never block the drain indefinitely. After the timeout, asyncio.wait_for
     # cancels the inner ``asyncio.gather(*self._tasks)`` which propagates
     # CancelledError to every in-flight ``_run_job`` (each ends in its
-    # ``finally`` block, cancelling its heartbeat). The executor futures
-    # themselves keep running in their worker threads — ``_executor.shutdown(
-    # wait=False)`` then returns immediately, leaving the workers to finish
-    # in the background. CPython's atexit joins non-daemon executor threads,
-    # so a scan mid-LLM-call (90s socket timeout × retries) can still delay
-    # actual process exit. Cancelled jobs stay claimed on disk and are
-    # recovered by resume_pending() on next start.
+    # ``finally`` block, cancelling its heartbeat). Executor futures that
+    # already started keep running in their worker threads; the bounded
+    # ``_drain_executor`` calls below give them grace to end their current
+    # request, then shutdown proceeds regardless. Cancelled jobs stay
+    # claimed on disk and are recovered by resume_pending() on next start.
     scan_service = getattr(app.state, "scan_service", None)
     if scan_service is not None:
         try:
@@ -139,9 +203,14 @@ async def lifespan(app: FastAPI):
         except asyncio.TimeoutError:
             logger.warning(
                 "in-flight scans did not finish within 30s; falling back to "
-                "hard executor shutdown"
+                "bounded executor drain"
             )
-    _executor.shutdown(wait=False)
+    _drain_executor(
+        _executor, _SCAN_EXECUTOR_THREAD_PREFIX, _SHUTDOWN_DRAIN_GRACE_SECS
+    )
+    _drain_executor(
+        _profit_executor, _PROFIT_EXECUTOR_THREAD_PREFIX, _SHUTDOWN_DRAIN_GRACE_SECS
+    )
 
 
 app = FastAPI(title="火鹰合规 RAG Service", version="0.3.0", lifespan=lifespan)
@@ -1007,7 +1076,10 @@ async def profit_report(req: ProfitReportRequest):
     loop = asyncio.get_running_loop()
     try:
         report_text = await asyncio.wait_for(
-            loop.run_in_executor(_executor, _generate),
+            # M6: the dedicated profit pool — a burst of profit reports must
+            # not occupy the scan workers (and a scan backlog must not starve
+            # profit reports).
+            loop.run_in_executor(_profit_executor, _generate),
             timeout=_PROFIT_TIMEOUT_SECS,
         )
     except asyncio.TimeoutError:

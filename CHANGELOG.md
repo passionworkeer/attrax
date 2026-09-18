@@ -4,6 +4,41 @@
 
 ## [Unreleased] - 2026-09-18
 
+**并发加固总批次:一次全栈并发审计(5 个方向)+ 修复**
+
+**背景**
+- 起因是"并发这方面有没有做很强的加固"这个问题。按前端 BFF / RAG 管线 / 存储与文件后端 / 外部采集 / 服务器基础设施五个方向各派一个审查,逐条给出 severity + file:line。结论:**底层存储与单进程内的并发原语做得好**(O_EXCL 跨进程锁、tmp+os.replace 原子写、RLock 串行化状态写、`asyncio.wait_for` 兜底),但**多进程边界、长跑生命周期、突发流量、跨子系统资源竞争这四个维度缺位**——多处靠"部署约定"活着(instances:1、单 upstream、单磁盘备份)
+- 修复原则(用户指定):**凡会拖慢当前热路径的加固一律不做**。据此明确跳过两项:audit.jsonl 与 session JSON 的逐次 fsync(happy path 上多一次落盘)。其余 HIGH + MEDIUM 全部实施,LOW 只做不引入热路径开销的
+
+**修复 — 前端 BFF**
+- **H1 限流器跨进程原子性**(`1a6bd0c`):文件桶的读-改-写用 `O_CREAT|O_EXCL` 锁文件包住(3 次指数退避 + jitter,预算 <50ms),抢不到锁退回进程内限流。此前靠 `instances: 1` 约定活着,一旦 PM2 多实例,每个 worker 各自计数、限流静默失效。同步加 production + 多实例的一次性启动告警
+- **H2/H3 请求体流式转发**(`f405713`):`POST /api/scan` 与 `/evidence` 不再 `request.formData()` 整份读进堆再重新序列化——50MB 上限 × 并发上传足以顶破 nextjs 的 `max_memory_restart(768M)`,且每请求解析+序列化各两遍。现在把 `request.body` 流直接交给上游 fetch(`duplex: "half"`),字段与文件按原字节到达 RAG
+- **契约随之变化**:浏览器发出的字段名就是 RAG 看到的字段名(上传页改发 `declared_facts`,并把文本字段排在文件前面,以便 BFF 的 8KB 嗅探能读到 `category`);RAG 的 `/api/v1/scans` 接受旧名 `userDeclaredFacts` 与逗号分隔的 `markets`,并在 `query` 为空时按 BFF 原来的措辞合成。逐文件类型/魔数/数量/总大小校验下沉到 RAG `_read_uploads`(本来就是唯一真值源);BFF 保留 Content-Length 上限、Content-Type 嗅探、限流与 category 早检
+- **嗅探器真 bug**:分段正则把「字段值」当成了「头部块」,`name="category"` 永远匹配不上 → `INVALID_CATEGORY` 早检与 category 取值一直失效。修正为 `--boundary\r\n((?:[^\r\n]+\r\n){1,8})\r\n([^\r\n]*)`
+- **M3 revision 幂等键**(`f405713`):改为客户端传入(每次点击生成),BFF 透传。此前固定 `${sessionId}:revision`,第二次重扫被静默吞掉
+- **M8 资产流式回传**(`f405713`):`streamScanAsset` 返回未读的 `Response`,BFF 直接管道 `response.body`。结果页轮播并发取图不再每张留一份完整堆副本
+
+**修复 — RAG 服务与存储**
+- **H11 幂等检查与写入同临界区**:`check_and_append_audit_marker` 在一次 `_lock` 内完成「查 + 写」,两个同 key 的并发补充证据不再双份入库
+- **H12 重扫幂等落两份**:两个来源互为补集——job 记录(在 audit 之前落盘,能覆盖崩溃窗口与「运行中且租约有效」的 job)+ audit log(job 完成后会被删除,只有它能拦住迟到的同 intent 重试,否则重试一次就再付一次完整 LLM 扫描)。落盘走 `save_job_if_marker_absent`,查与写在同一次锁内
+- **H5 session 读-改-写原子化**:新增 `update_session_atomic`,进度回调 / 阶段切换 / 租约心跳三处共用,不再互相覆盖 `stage_text`/`progress`
+- **H13 vision cache 加锁**:get(含 utime)/put/evict 全程持锁,消除过度驱逐与 mtime 抖动
+- **M3 陈旧 job 锁**:回收条件从「只看老化」改为「持有者 PID 已死立即回收,否则沿用 60s 老化」——被 SIGKILL 的 worker 留下的锁不再让该 job 停摆一分钟,PID 复用也不会永久卡死
+- **M4 会话清理**:`purge_expired_sessions` 的识别与删除合并到同一次持锁,消除并发删除导致的假 `scan_expired` 事件与超计数
+- **M5 上传锁范围**:`save_upload` 的大块字节写移到锁外,锁只覆盖原子 rename 与元数据写。此前单次 10MB 写会串行化整个后端的会话/任务读取
+
+**修复 — 外部采集(watchdog)**(`9dc1f55`)
+- **H14 连接池 + 重试抖动**:`urllib.request` 换成进程级单例 `httpx.Client`(`max_connections=8` 的 keep-alive 池),退避改为 full jitter。此前每次抓取都新建 TCP+TLS,且 8 个 worker 在 2s/4s 同一时刻齐步重试——对一个刚抖动的 CDN 是最坏的打法
+- **H15 原子写**:`_write_yaml` / `INDEX_PATH` / `.auto_state.json` 改为 tmp + `os.replace`;`safe_load` 失败不再静默 `continue`,改为记 error
+- **H16/M20 并行 ingest**:单个源抓完+diff 出真变化就立刻投进独立的有界 ingest 池(与抓取池分开),不再等抓取阶段全部排空后在主线程串行写。同 regulation 的写入用 per-regulation 锁串行;索引重建仍是收尾的单线程步骤
+- **M19 缓存命名空间**:条件请求缓存键从 URL 改为 `source_id:url`,并在 `--ack`/`--revert` 时按 source 失效
+
+**验证**
+- vitest 997/997、tsc、eslint 全绿;pytest 后端全绿;watchdog pytest 139 全绿;双 OpenAPI 契约门控通过(快照与 types.gen.ts 已按新签名重新生成)
+- **真实 HTTP 端到端**(不只是单测):Next.js dev + undici + 桩上游,确认上游收到 `transferEncoding: chunked` 且无 `Content-Length`——即请求体确实在流式转发而非缓冲;字段、文件、内部密钥完整到达
+
+---
+
 **服务器基础设施并发硬化批次:nginx 重试 / 连接限流 / TCP TIME_WAIT / pm2 graceful drain / 备份快照**
 
 **背景**

@@ -253,7 +253,7 @@ function updateSession(session: ScanStatus, updates: Partial<ScanStatus>): ScanS
 
 所有用户输入在系统边界验证。**注意：`lib/schemas.ts` 已于 2026-09-17 round-5 删除**（22 个 export 里 21 个零引用），校验分散在 BFF 路由与专属契约文件：
 
-- `app/api/scan/route.ts`：multipart 字段逐一校验（category / markets / images / documents / declaredFacts 的类型、数量、大小）
+- `app/api/scan/route.ts`：**流式转发**——只做 Content-Length 上限（413）、Content-Type 嗅探（400 `BAD_INPUT`）、限流（429）、以及从请求体前 8KB 嗅探 category 的早期拒绝（`INVALID_CATEGORY`）。文件数量/类型/魔数/总大小的逐项校验由 RAG `api/v1.py:_read_uploads` 负责（BFF 不缓冲请求体，见 2026-09-18 并发加固）
 - `app/api/scan/[sessionId]/asset/[index]/route.ts`：内联 `SessionIdSchema`（`^scan_[0-9A-Za-z_-]{1,50}$`，与 RAG `FileBackend._SAFE_ID` 对齐）
 - `lib/rag-client/report-package-schema.ts`：报告包 Zod 契约（`validateReportPackage`；`CitationRefContract` 的唯一来源，经 `lib/types.ts` re-export）
 - 类型单源仍在 `lib/types.ts`（`MARKET_IDS` 16 市场 / `PRODUCT_CATEGORIES` 10 品类）
@@ -334,6 +334,16 @@ const SessionIdSchema = z
 ---
 
 ## 最近修复
+
+### 2026-09-18 — 全栈并发加固批次（前端 BFF / RAG / 存储 / watchdog / 基础设施）
+
+- **起因与结论**：五个方向各派一个审查（前端 BFF / RAG 管线 / 存储与文件后端 / 外部采集 / 服务器基础设施）。底层原语本身是好的（O_EXCL 跨进程锁、tmp+os.replace 原子写、RLock 串行化状态写），**缺的是多进程边界、长跑生命周期、突发流量、跨子系统资源竞争**——多处靠"部署约定"活着（`instances: 1`、单 upstream、单磁盘备份）。修复原则：凡会拖慢热路径的一律不做，据此明确跳过 audit.jsonl 与 session JSON 的逐次 fsync
+- **前端 BFF 请求体改为流式转发**（f405713）：`POST /api/scan` 与 `/evidence` 不再 `request.formData()` 整份读进堆再重新序列化（50MB × 并发足以顶破 nextjs 的 `max_memory_restart: 768M`），改为把 `request.body` 流直接交给上游 fetch（`duplex: "half"`）。**契约随之变化**：浏览器发出的字段名就是 RAG 看到的字段名（上传页改发 `declared_facts`、文本字段排在文件前面，以便 BFF 的 8KB 嗅探读到 `category`）；RAG 接受旧名 `userDeclaredFacts` 与逗号分隔的 `markets`，`query` 为空时按原措辞合成；逐文件校验下沉到 RAG `_read_uploads`。同一批次修掉嗅探器正则分组取错的真 bug（`name="category"` 永远匹配不上，`INVALID_CATEGORY` 早检一直失效）、revision 幂等键改为客户端传入、资产接口改流式回传
+- **限流器跨进程原子性**（1a6bd0c）：文件桶读-改-写用 `O_CREAT|O_EXCL` 锁文件包住，抢不到锁退回进程内限流；此前靠 `instances: 1` 约定活着
+- **RAG 幂等与状态原子化**：幂等检查与写入合并到同一次持锁（H11 补充证据、H12 重扫——job 记录 + audit log 互为补集，前者覆盖崩溃窗口与运行中的 job，后者拦住 job 已删除后的迟到重试）；新增 `update_session_atomic` 统一进度/阶段/心跳三处读-改-写；vision cache 的 get/put/evict 全程持锁；`save_upload` 的大块字节写移出锁（此前单次 10MB 写串行化整个后端）；陈旧 job 锁改为「持有者 PID 已死立即回收」
+- **watchdog**（9dc1f55）：`urllib` → 进程级单例 `httpx.Client` 连接池 + full-jitter 退避；YAML/index/state 改原子写；**并行 ingest**（抓完即投独立池，与剩余抓取重叠，实测 create 1.45x / update 1.19x，真实 35 源整轮 0 失败）；条件请求缓存按 `source_id` 命名空间 + `--ack`/`--revert` 失效。审查中还发现并修掉既有缺陷：httpx 不抛异常导致 5xx 错误页被哈希成"变更"、6/7 个 collector 没传 `source_id` 使命名空间失效（加 AST 守卫防回归）、基线未推进的源不失效缓存会让未应用的变更被永久退役
+- **服务器基础设施**（71523d1）：nginx `proxy_next_upstream` 重试 5xx、`limit_conn` 每 IP 20、`multi_accept on`、上游 `max_fails=3 fail_timeout=30s`；sysctl `tcp_tw_reuse` + 全端口范围；pm2 `kill_timeout=10000`（**刻意不加 `wait_ready`**——Next.js 从不发 pm2 ready 信号）；备份先 `cp -al` 快照再打包并纳入 `backend/{sessions,jobs,uploads}`；fail2ban 不再把 5xx 计入探测失败；logrotate 属主改 root
+- **验证**：vitest 997/997、tsc、eslint 全绿；pytest 后端全绿；watchdog 139 全绿；双 OpenAPI 契约门控通过。**真实 HTTP 端到端**（Next.js dev + undici + 桩上游）确认上游收到 `transferEncoding: chunked` 且无 `Content-Length`——请求体确实在流式转发
 
 ### 2026-09-18 — 线上实测批次（回归脚本假绿 / 备份从未运行 / 3001 地雷文件 / watchdog CLI 直跑失败）
 

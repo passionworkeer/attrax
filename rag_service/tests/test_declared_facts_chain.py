@@ -1,19 +1,21 @@
 """Red-team tests for the J09 declared-facts chain (plan 2026-09-14 §5.4).
 
-The upload wizard collects conditional-question answers and posts them as
-`userDeclaredFacts`. Before this fix the chain was broken at the FIRST hop:
-the BFF never read the field, so the collected answers were dead weight.
-The minimal path is now wired end-to-end:
+The upload wizard collects conditional-question answers and posts them as a
+JSON blob. Before the J09 fix the chain was broken at the FIRST hop: the BFF
+never read the field, so the collected answers were dead weight.
 
-    upload page (userDeclaredFacts JSON)
-      → BFF app/api/scan (declaredFacts)
-        → v1-adapter createScan (declared_facts form field)
-          → api/v1.py create_scan (declared_facts Form)
-            → ScanSubmission.declared_facts
-              → ScanJob.declared_facts (persisted)
-                → _build_runner_payload (declared_facts)
-                  → run_compliance_graph(state.declared_facts)
-                    → generator_node → build_findings(declared_facts=…)
+Since the 2026-09-18 streaming rewrite the BFF forwards the multipart body
+verbatim (no rename), so the browser sends the backend's own field name:
+
+    upload page (declared_facts JSON)
+      → BFF app/api/scan (raw streamed multipart, no field rewriting)
+        → api/v1.py create_scan (declared_facts Form; legacy
+          `userDeclaredFacts` still accepted as an alias)
+          → ScanSubmission.declared_facts
+            → ScanJob.declared_facts (persisted)
+              → _build_runner_payload (declared_facts)
+                → run_compliance_graph(state.declared_facts)
+                  → generator_node → build_findings(declared_facts=…)
 
 These tests pin every hop from the Python boundary inwards, plus the
 revision re-run recovery path.
