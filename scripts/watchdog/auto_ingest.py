@@ -33,15 +33,23 @@ disabled via ``ATTRAX_REGWATCH_AUTO_INGEST=false``.
 """
 from __future__ import annotations
 
+import concurrent.futures
+import contextlib
+import itertools
 import json
+import logging
+import os
 import re
 import shutil
 import sys
+import threading
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
 import yaml
+
+logger = logging.getLogger("attrax.regwatch.auto_ingest")
 
 # 与 check_sources.py 相同：让 `python3 scripts/watchdog/auto_ingest.py` 直跑也能
 # import scripts.*（-m 方式不需要，但文件路径方式的 sys.path[0] 不含仓库根）。
@@ -59,6 +67,21 @@ INDEX_PATH = REGULATIONS_ROOT / "regulations_index.json"
 AUTO_STATE_PATH = SUPPLEMENTS_DIR / ".auto_state.json"
 
 STALE_AFTER_CONSECUTIVE_FAILURES = 7
+
+# Bounded pool for per-source ingest (2026-09-18 H16/M20). The ingest work is
+# disk-bound (evidence raw files run to ~9 MB per source; a busy pass writes
+# ~180 MB + 20 YAML rewrites), so four workers overlap those writes with each
+# other and with the orchestrator's remaining fetches instead of serializing
+# them on the orchestrator's main thread. Deliberately small: the writer is
+# one disk, and more workers would only deepen the write queue.
+INGEST_WORKERS = 4
+
+# Temp-file suffix disambiguator for _write_atomic. A per-call counter makes
+# the temp name unique across *threads in one process* (pid alone would not:
+# two ingest workers writing under the same pid would collide if they ever
+# targeted the same path, and the counter keeps that impossible even if a
+# future caller forgets the per-regulation lock).
+_TMP_COUNTER = itertools.count()
 
 # CELEX → regulation id, e.g. "32011L0065" → ("EU-2011-65", "Directive 2011/65/EU")
 _CELEX_RE = re.compile(r"^3(\d{4})([LRD])(\d{4})$")
@@ -82,6 +105,39 @@ _RAW_SUFFIX = {
     "openfda_recalls": ".json",
 }
 _REPEAL_KEYWORDS = ("removal", "revok", "repeal", "revocation", "withdraw")
+
+
+def _write_atomic(path: Path, content: str) -> None:
+    """Write ``content`` to ``path`` without ever leaving a half-written file.
+
+    ``Path.write_text`` truncates the target first and then writes the new
+    bytes — a SIGKILL or ENOSPC in between leaves the YAML / index / state
+    file empty or corrupt, which ``safe_load`` then silently skips on the
+    next pass. The watchdog runs unattended, so a single bad write means
+    the whole library drifts from the snapshot until a human notices.
+
+    The temp file is sibling to ``path`` so the rename is a single ``rename(2)``
+    on the same filesystem (atomic on POSIX, which is what the aliyun-sz
+    production host runs). ``os.replace`` is the cross-POSIX rename; on
+    Windows it would overwrite, but we do not deploy there.
+    """
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    # Unique per call: pid separates processes, the counter separates threads
+    # inside one process (ingest workers may write concurrently).
+    tmp = tmp.with_name(f"{tmp.name}.{os.getpid()}.{next(_TMP_COUNTER)}")
+    try:
+        with open(tmp, "w", encoding="utf-8", newline="") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(tmp, path)
+    except Exception:
+        # Don't leave a stale temp file lying around — next call to this
+        # helper for the same path would skip the rename.
+        with contextlib.suppress(OSError):
+            tmp.unlink()
+        raise
 
 
 # Citation text templates for the auto-CREATE path. These mirror the
@@ -476,11 +532,44 @@ def _extract_articles_from_text(
     return _ExtractedArticles(articles=matched, promoted_kind=promoted, matched_slots=len(matched), unmatched_previous=unmatched)
 
 
+@dataclass
+class IngestOutcome:
+    """Result of ingesting one source, returned instead of touching the report.
+
+    2026-09-18 H16/M20: per-source ingest now runs on worker threads, so a
+    worker cannot append to the shared ``IngestReport`` — it returns this
+    and the collecting thread folds it in (``AutoIngestor._merge``), which
+    also keeps the report ordering deterministic.
+    """
+
+    source_id: str
+    action: str  # "created" | "updated" | "evidence-only"
+    reg_id: str | None
+    evidence_dir: Path
+    record: dict
+    #: e.g. "EU-2011-65:repealed" — mirrors the old report.marked append.
+    marked: str | None = None
+
+
 class AutoIngestor:
     def __init__(self, run_date: str | None = None) -> None:
         self.run_date = run_date or date.today().isoformat()
         self.batch_dir = SUPPLEMENTS_DIR / f"auto-{self.run_date}"
         self.report = IngestReport()
+        # One lock per regulation id so two sources mapped to the same YAML
+        # serialize their read-modify-write (and their backup copy) instead
+        # of clobbering each other's audit note. ``self.report`` is only ever
+        # touched by the collecting thread.
+        self._reg_locks: dict[str, threading.Lock] = {}
+        self._reg_locks_guard = threading.Lock()
+
+    def _regulation_lock(self, reg_id: str) -> threading.Lock:
+        """Per-regulation write lock (same id → same lock instance)."""
+        with self._reg_locks_guard:
+            lock = self._reg_locks.get(reg_id)
+            if lock is None:
+                lock = self._reg_locks[reg_id] = threading.Lock()
+            return lock
 
     # ── public entry ───────────────────────────────────────────────────
 
@@ -490,31 +579,122 @@ class AutoIngestor:
         updates: dict[str, RegulationUpdate],
         changes: list[Change],
     ) -> IngestReport:
-        """Ingest every non-cosmetic change. Sources that ingest cleanly are
-        returned via report; callers advance their snapshot for those."""
-        changed_ids = [c.source_id for c in changes if c.kind in {"added", "modified"}]
-        change_by_id = {c.source_id: c for c in changes}
+        """Ingest every non-cosmetic change, over a bounded worker pool.
 
-        for source_id in changed_ids:
-            entry = entries_by_id.get(source_id)
-            update = updates.get(source_id)
+        Sources that ingest cleanly are returned via report; callers advance
+        their snapshot for those. Report ordering is by ``changes`` order,
+        not by thread completion, so two passes over the same input write
+        byte-identical ``applied.json``.
+        """
+        changed = [c for c in changes if c.kind in {"added", "modified"}]
+        jobs: list[tuple[str, dict, RegulationUpdate, Change]] = []
+        missing: list[str] = []
+        for change in changed:
+            entry = entries_by_id.get(change.source_id)
+            update = updates.get(change.source_id)
             if entry is None or update is None:
-                self.report.failed.append(
-                    {"sourceId": source_id, "error": "missing entry/update"}
-                )
-                continue
-            try:
-                self._ingest_one(source_id, entry, update, change_by_id[source_id])
-            except Exception as exc:  # noqa: BLE001 — per-source isolation
-                self.report.failed.append(
-                    {"sourceId": source_id, "error": f"{type(exc).__name__}: {exc}"}
-                )
+                missing.append(change.source_id)
+            else:
+                jobs.append((change.source_id, entry, update, change))
+
+        outcomes: dict[str, tuple[IngestOutcome | None, str | None]] = {
+            source_id: (None, "missing entry/update") for source_id in missing
+        }
+        if jobs:
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=max(1, min(INGEST_WORKERS, len(jobs))),
+                thread_name_prefix="regwatch-ingest",
+            ) as pool:
+                futures = [
+                    (
+                        source_id,
+                        pool.submit(
+                            self.ingest_source, source_id, entry, update, change
+                        ),
+                    )
+                    for source_id, entry, update, change in jobs
+                ]
+                for source_id, future in futures:
+                    outcomes[source_id] = self._resolve(future)
+
+        for change in changed:
+            outcome, error = outcomes[change.source_id]
+            self._merge(change.source_id, outcome, error)
 
         if self.report.touched_regulations:
             self._rebuild_index()
         return self.report
 
+    def collect_parallel(
+        self,
+        jobs: list[tuple[str, "concurrent.futures.Future[IngestOutcome]"]],
+    ) -> IngestReport:
+        """Drain ingest futures that were submitted during the fetch phase.
+
+        The orchestrator dispatches ``ingest_source`` into a bounded pool the
+        moment a source's fetch+diff lands, so the evidence writes overlap the
+        remaining fetches (H16/M20). This call waits for every job, folds the
+        outcomes in (source_id order — deterministic), and rebuilds the index
+        exactly once, single-threaded, after all writers have stopped.
+        """
+        collected: list[tuple[str, IngestOutcome | None, str | None]] = []
+        for source_id, future in jobs:
+            outcome, error = self._resolve(future)
+            collected.append((source_id, outcome, error))
+
+        for source_id, outcome, error in sorted(collected, key=lambda item: item[0]):
+            self._merge(source_id, outcome, error)
+
+        if self.report.touched_regulations:
+            self._rebuild_index()
+        return self.report
+
+    @staticmethod
+    def _resolve(
+        future: "concurrent.futures.Future[IngestOutcome]",
+    ) -> tuple[IngestOutcome | None, str | None]:
+        """Per-source failure isolation across the thread boundary: an
+        exception in one worker becomes a ``failed[]`` entry, never a crash
+        of the pass."""
+        try:
+            return future.result(), None
+        except Exception as exc:  # noqa: BLE001 — per-source isolation
+            return None, f"{type(exc).__name__}: {exc}"
+
+    def _merge(
+        self, source_id: str, outcome: IngestOutcome | None, error: str | None
+    ) -> None:
+        """Fold one per-source result into the shared report (collector
+        thread only) — the append order mirrors the old serial loop."""
+        if outcome is None:
+            self.report.failed.append(
+                {"sourceId": source_id, "error": error or "unknown ingest failure"}
+            )
+            return
+        if outcome.action == "created":
+            self.report.created.append(outcome.reg_id)
+        elif outcome.action == "updated":
+            self.report.updated.append(outcome.reg_id)
+        else:
+            self.report.evidence_only.append(source_id)
+        if outcome.marked:
+            self.report.marked.append(outcome.marked)
+        self.report.records.append(outcome.record)
+
     # ── per-source ─────────────────────────────────────────────────────
+
+    def ingest_source(
+        self,
+        source_id: str,
+        entry: dict,
+        update: RegulationUpdate,
+        change: Change,
+    ) -> IngestOutcome:
+        """Ingest one source. Thread-safe: the only shared state it touches
+        is the per-regulation lock (evidence and YAML paths are per-source /
+        per-regulation). Used by ``apply`` and by the orchestrator's ingest
+        pool via ``collect_parallel``."""
+        return self._ingest_one(source_id, entry, update, change)
 
     def _ingest_one(
         self,
@@ -522,7 +702,7 @@ class AutoIngestor:
         entry: dict,
         update: RegulationUpdate,
         change: Change,
-    ) -> None:
+    ) -> IngestOutcome:
         # Resolve the mapping first so the evidence pin (meta.json) can record
         # which regulation this fetch is backing — that link is what the
         # review CLI uses to go from a regulation id back to its raw bytes.
@@ -534,120 +714,138 @@ class AutoIngestor:
         raw_name = "raw" + _RAW_SUFFIX.get(update.source_type, ".bin")
 
         if mapping is None:
-            self.report.evidence_only.append(source_id)
-            self.report.records.append(
-                self._record(source_id, entry, update, change, None, "evidence-only", evidence_dir)
+            return IngestOutcome(
+                source_id=source_id,
+                action="evidence-only",
+                reg_id=None,
+                evidence_dir=evidence_dir,
+                record=self._record(
+                    source_id, entry, update, change, None, "evidence-only", evidence_dir
+                ),
             )
-            return
         reg_id, yaml_path = mapping
 
         status_mark = "repealed" if _looks_like_repeal(update) else None
 
-        # 2. UPDATE path.
-        if yaml_path.exists():
-            payload = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
-            backup_dir = self.batch_dir / "backup"
-            backup_dir.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(yaml_path, backup_dir / f"{reg_id}.yaml")
+        # Everything below mutates the regulation YAML (and its backup), so it
+        # runs under the per-regulation lock: a second source mapped to the
+        # same regulation — or record_failure's stale-marking — must serialize
+        # against this read-modify-write instead of clobbering the audit note.
+        with self._regulation_lock(reg_id):
+            # 2. UPDATE path.
+            if yaml_path.exists():
+                payload = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+                backup_dir = self.batch_dir / "backup"
+                backup_dir.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(yaml_path, backup_dir / f"{reg_id}.yaml")
 
-            payload["last_verified"] = self.run_date
-            payload["last_verified_by"] = "regwatch-auto"
-            payload["checksum_sha256"] = update.content_hash
-            payload["raw_file"] = str(evidence_dir / raw_name)
-            payload["source_url"] = update.source_url
-            if status_mark:
-                payload["status"] = status_mark
+                payload["last_verified"] = self.run_date
+                payload["last_verified_by"] = "regwatch-auto"
+                payload["checksum_sha256"] = update.content_hash
+                payload["raw_file"] = str(evidence_dir / raw_name)
+                payload["source_url"] = update.source_url
+                if status_mark:
+                    payload["status"] = status_mark
 
-            # Verbatim replacement pass (2026-09-16): when the regulation
-            # YAML is still flagged ``source_kind: unverified`` (article
-            # bodies are KB-condensed summaries that must not enter the
-            # exact-quote flow), AND the newly fetched text looks like it
-            # contains structured article boundaries, swap the
-            # summaries for the official text and promote the source_kind
-            # to ``official_summary`` so the verifier can quote-match
-            # against the real text from the next pass onward.
-            #
-            # Conservative gates:
-            # 1. source_kind must currently be ``unverified`` (or unset,
-            #    which the spec treats as NOT-verbatim-allowed).
-            # 2. Extractor must yield at least one new article whose text
-            #    differs from the existing slot.
-            # 3. New articles list must be at least as long as the old
-            #    one — never shrink the coverage footprint.
-            #
-            # If any gate fails, we leave the YAML's source_kind alone and
-            # append a "verbatim pending human spot-check" note instead.
-            current_kind = str(payload.get("source_kind") or "").strip()
-            if current_kind in {"", "unverified"}:
-                extracted = _extract_articles_from_text(
-                    update.text,
-                    payload.get("articles") or [],
-                    entry.get("source_type", ""),
-                )
-                if extracted.articles and len(extracted.articles) >= len(payload.get("articles") or []):
-                    payload["articles"] = extracted.articles
-                    payload["source_kind"] = extracted.promoted_kind
-                    audit_kind = f"verbatim {extracted.promoted_kind}"
+                # Verbatim replacement pass (2026-09-16): when the regulation
+                # YAML is still flagged ``source_kind: unverified`` (article
+                # bodies are KB-condensed summaries that must not enter the
+                # exact-quote flow), AND the newly fetched text looks like it
+                # contains structured article boundaries, swap the
+                # summaries for the official text and promote the source_kind
+                # to ``official_summary`` so the verifier can quote-match
+                # against the real text from the next pass onward.
+                #
+                # Conservative gates:
+                # 1. source_kind must currently be ``unverified`` (or unset,
+                #    which the spec treats as NOT-verbatim-allowed).
+                # 2. Extractor must yield at least one new article whose text
+                #    differs from the existing slot.
+                # 3. New articles list must be at least as long as the old
+                #    one — never shrink the coverage footprint.
+                #
+                # If any gate fails, we leave the YAML's source_kind alone and
+                # append a "verbatim pending human spot-check" note instead.
+                current_kind = str(payload.get("source_kind") or "").strip()
+                if current_kind in {"", "unverified"}:
+                    extracted = _extract_articles_from_text(
+                        update.text,
+                        payload.get("articles") or [],
+                        entry.get("source_type", ""),
+                    )
+                    if extracted.articles and len(extracted.articles) >= len(payload.get("articles") or []):
+                        payload["articles"] = extracted.articles
+                        payload["source_kind"] = extracted.promoted_kind
+                        audit_kind = f"verbatim {extracted.promoted_kind}"
+                    else:
+                        audit_kind = "verbatim pending (extractor found no clean split)"
                 else:
-                    audit_kind = "verbatim pending (extractor found no clean split)"
+                    audit_kind = "verbatim skipped (already official)"
+
+                audit = (
+                    f"regwatch auto-{change.kind} {self.run_date}: similarity "
+                    f"{change.similarity:.3f}, {audit_kind}, "
+                    f"evidence in auto-{self.run_date}/{source_id}/."
+                )
+                payload["notes"] = f"{payload.get('notes') or ''} {audit}".strip()
+                self._write_yaml(yaml_path, payload)
+                return IngestOutcome(
+                    source_id=source_id,
+                    action="updated",
+                    reg_id=reg_id,
+                    evidence_dir=evidence_dir,
+                    record=self._record(
+                        source_id, entry, update, change, reg_id, "updated", evidence_dir
+                    ),
+                    marked=f"{reg_id}:{status_mark}" if status_mark else None,
+                )
+
+            # 3. CREATE path (mappable but no YAML — e.g. WEEE 2012/19 or any
+            # newly-tracked non-EU source whose backing YAML has not been
+            # committed yet). Under the same lock so a create and an update
+            # for one regulation can never interleave.
+            citation = _citation_from_entry(entry)
+            # RDF title extraction is EU-Cellar specific; for everything else
+            # the registry entry's title is the best we have on hand.
+            if entry.get("source_type") == "eu_celex":
+                title = _title_from_rdf(update.text) or citation
             else:
-                audit_kind = "verbatim skipped (already official)"
-
-            audit = (
-                f"regwatch auto-{change.kind} {self.run_date}: similarity "
-                f"{change.similarity:.3f}, {audit_kind}, "
-                f"evidence in auto-{self.run_date}/{source_id}/."
-            )
-            payload["notes"] = f"{payload.get('notes') or ''} {audit}".strip()
+                title = entry.get("title") or citation
+            region = str(entry.get("market", "")).strip().upper() or "EU"
+            payload = {
+                "id": reg_id,
+                "official_citation": citation,
+                "short_name": title[:200],
+                "region": region,
+                "license": "public",
+                "last_verified": self.run_date,
+                "last_verified_by": "regwatch-auto",
+                "language": "en",
+                "articles": [],
+                "raw_file": str(evidence_dir / raw_name),
+                "checksum_sha256": update.content_hash,
+                "schema_version": 1,
+                "source_url": update.source_url,
+                "notes": (
+                    f"Auto-created by regwatch {self.run_date} from official source"
+                    f" {source_id} ({entry.get('source_type', 'unknown')});"
+                    f" articles pending extraction from the stored raw file."
+                    f" Authoring note: a KB anchor in data/kb/anchors/{reg_id}.yaml"
+                    f" is required to surface this regulation in generator"
+                    f" must-check output — see docs/WATCHDOG.md §CREATE."
+                ),
+            }
+            yaml_path.parent.mkdir(parents=True, exist_ok=True)
             self._write_yaml(yaml_path, payload)
-            self.report.updated.append(reg_id)
-            if status_mark:
-                self.report.marked.append(f"{reg_id}:{status_mark}")
-            self.report.records.append(
-                self._record(source_id, entry, update, change, reg_id, "updated", evidence_dir)
+            return IngestOutcome(
+                source_id=source_id,
+                action="created",
+                reg_id=reg_id,
+                evidence_dir=evidence_dir,
+                record=self._record(
+                    source_id, entry, update, change, reg_id, "created", evidence_dir
+                ),
             )
-            return
-
-        # 3. CREATE path (mappable but no YAML — e.g. WEEE 2012/19 or any
-        # newly-tracked non-EU source whose backing YAML has not been
-        # committed yet).
-        citation = _citation_from_entry(entry)
-        # RDF title extraction is EU-Cellar specific; for everything else
-        # the registry entry's title is the best we have on hand.
-        if entry.get("source_type") == "eu_celex":
-            title = _title_from_rdf(update.text) or citation
-        else:
-            title = entry.get("title") or citation
-        region = str(entry.get("market", "")).strip().upper() or "EU"
-        payload = {
-            "id": reg_id,
-            "official_citation": citation,
-            "short_name": title[:200],
-            "region": region,
-            "license": "public",
-            "last_verified": self.run_date,
-            "last_verified_by": "regwatch-auto",
-            "language": "en",
-            "articles": [],
-            "raw_file": str(evidence_dir / raw_name),
-            "checksum_sha256": update.content_hash,
-            "schema_version": 1,
-            "source_url": update.source_url,
-            "notes": (
-                f"Auto-created by regwatch {self.run_date} from official source"
-                f" {source_id} ({entry.get('source_type', 'unknown')});"
-                f" articles pending extraction from the stored raw file."
-                f" Authoring note: a KB anchor in data/kb/anchors/{reg_id}.yaml"
-                f" is required to surface this regulation in generator"
-                f" must-check output — see docs/WATCHDOG.md §CREATE."
-            ),
-        }
-        yaml_path.parent.mkdir(parents=True, exist_ok=True)
-        self._write_yaml(yaml_path, payload)
-        self.report.created.append(reg_id)
-        self.report.records.append(
-            self._record(source_id, entry, update, change, reg_id, "created", evidence_dir)
-        )
 
     @staticmethod
     def _record(
@@ -727,14 +925,22 @@ class AutoIngestor:
             mapping = regulation_for_source(entry)
             if mapping:
                 reg_id, yaml_path = mapping
-                if yaml_path.exists():
-                    payload = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
-                    payload["status"] = "stale"
-                    payload["notes"] = (
-                        f"{payload.get('notes') or ''} regwatch: source unreachable"
-                        f" for {streak} consecutive days as of {self.run_date}."
-                    ).strip()
-                    self._write_yaml(yaml_path, payload)
+                marked = False
+                # Same per-regulation lock the ingest workers take, so the
+                # stale-marking read-modify-write cannot interleave with a
+                # concurrent ingest of the same YAML (H16/M20). The index
+                # rebuild stays outside the critical section.
+                with self._regulation_lock(reg_id):
+                    if yaml_path.exists():
+                        payload = yaml.safe_load(yaml_path.read_text(encoding="utf-8")) or {}
+                        payload["status"] = "stale"
+                        payload["notes"] = (
+                            f"{payload.get('notes') or ''} regwatch: source unreachable"
+                            f" for {streak} consecutive days as of {self.run_date}."
+                        ).strip()
+                        self._write_yaml(yaml_path, payload)
+                        marked = True
+                if marked:
                     if reg_id not in self.report.marked:
                         self.report.marked.append(f"{reg_id}:stale")
                     self._rebuild_index()
@@ -762,18 +968,17 @@ class AutoIngestor:
 
     def _save_auto_state(self, state: dict) -> None:
         path = self._auto_state_path()
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(
-            json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8"
+        _write_atomic(
+            path, json.dumps(state, ensure_ascii=False, indent=2) + "\n"
         )
 
     # ── yaml + index ───────────────────────────────────────────────────
 
     @staticmethod
     def _write_yaml(path: Path, payload: dict) -> None:
-        path.write_text(
+        _write_atomic(
+            path,
             yaml.safe_dump(payload, allow_unicode=True, sort_keys=False, width=120),
-            encoding="utf-8",
         )
 
     @staticmethod
@@ -784,7 +989,12 @@ class AutoIngestor:
         for path in sorted(REGULATIONS_ROOT.glob("*/*.yaml")):
             try:
                 data = yaml.safe_load(path.read_text(encoding="utf-8"))
-            except (OSError, yaml.YAMLError):
+            except (OSError, yaml.YAMLError) as exc:
+                # 2026-09-18 H15: previously `continue`ed silently, so a
+                # half-written regulation vanished from the index without
+                # any operator signal. Log so the next pass's
+                # check_sources/health probe can flag the drift.
+                logger.error("safe_load failed for %s: %s", path, exc)
                 continue
             if isinstance(data, dict):
                 records.append(data)
@@ -808,6 +1018,7 @@ class AutoIngestor:
             ],
         }
         INDEX_PATH.parent.mkdir(parents=True, exist_ok=True)
-        INDEX_PATH.write_text(
-            json.dumps(index, ensure_ascii=False, indent=2), encoding="utf-8"
+        _write_atomic(
+            INDEX_PATH,
+            json.dumps(index, ensure_ascii=False, indent=2) + "\n",
         )

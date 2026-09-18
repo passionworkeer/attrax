@@ -202,7 +202,9 @@ def collect_gov_html(entry: dict) -> RegulationUpdate:
     Falls back to ``collect_generic`` on transport errors (the chrome
     stripper is value-add, not a hard dependency).
     """
-    body, last_modified = fetch_url(entry["source_url"])
+    body, last_modified = fetch_url(
+        entry["source_url"], source_id=entry.get("id")
+    )
     text = _strip_chrome(body.decode("utf-8", errors="replace"))
     return RegulationUpdate(
         source_id=entry["id"],

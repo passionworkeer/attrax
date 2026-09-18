@@ -18,11 +18,25 @@ if str(PROJECT_ROOT) not in sys.path:
 from scripts.watchdog.collectors import base as collectors_base  # noqa: E402
 from scripts.watchdog.collectors.base import (  # noqa: E402
     fetch_url,
+    collect_source,
     NotModified,
     resolve_user_agents,
     _UA_TABLE,
     _CONDITIONAL_CACHE,
+    _cache_key,
+    _remember_conditional,
+    invalidate_conditional_cache,
 )
+from scripts.watchdog.tests._http_mock import (  # noqa: E402
+    _FakeHttpxResponse,
+    client_with,
+    disable_http_client,
+)
+
+
+def _use_fake_client(monkeypatch, client) -> None:
+    """Route ``fetch_url`` through a stand-in httpx client (primary path)."""
+    monkeypatch.setattr(collectors_base, "_get_http_client", lambda: client)
 
 
 def _fake_response(
@@ -35,6 +49,7 @@ def _fake_response(
     cookies: list[http.cookiejar.Cookie] | None = None,
     captured_requests: list | None = None,
 ):
+    """urlopen-shaped stand-in used by the urllib *fallback* tests."""
     class _Resp:
         def __init__(self):
             self.headers = {}
@@ -56,6 +71,9 @@ def _fake_response(
         def info(self):  # pragma: no cover — unused but harmless
             return self.headers
 
+        def close(self):
+            return None
+
         def __enter__(self):
             if captured_requests is not None:
                 captured_requests.append(self)
@@ -74,19 +92,15 @@ def _reset_conditional_cache():
     _CONDITIONAL_CACHE.clear()
 
 
-def test_fetch_url_sends_accept_language_and_accept_encoding():
+def test_fetch_url_sends_accept_language_and_accept_encoding(monkeypatch):
     """Every attempt must include Accept-Language and Accept-Encoding so CDN
     WAFs see a normal browser header set, not a bare-UA bot fingerprint."""
-    captured: dict = {}
+    fake = client_with(_FakeHttpxResponse(b"x" * 200))
+    _use_fake_client(monkeypatch, fake)
 
-    def _fake_urlopen(request, timeout=30):  # noqa: ARG001 — match urllib signature
-        captured["headers"] = dict(request.header_items())
-        return _fake_response(b"x" * 200)
+    body, _ = fetch_url("https://example.com/lang")
 
-    with patch.object(collectors_base.urllib.request, "urlopen", side_effect=_fake_urlopen):
-        body, _ = fetch_url("https://example.com/lang")
-
-    headers = {k.lower(): v for k, v in captured["headers"].items()}
+    headers = {k.lower(): v for k, v in fake.requests[0]["headers"].items()}
     assert headers.get("accept-language") == "en-US,en;q=0.9"
     assert "gzip" in headers.get("accept-encoding", "")
     assert "deflate" in headers.get("accept-encoding", "")
@@ -94,7 +108,7 @@ def test_fetch_url_sends_accept_language_and_accept_encoding():
     assert body == b"x" * 200
 
 
-def test_fetch_url_raises_not_modified_on_304():
+def test_fetch_url_raises_not_modified_on_304(monkeypatch):
     """Second call against a URL that 304s raises NotModified.
 
     An empty-body return would be handed to the collector's RDF / JSON / RSS
@@ -105,42 +119,66 @@ def test_fetch_url_raises_not_modified_on_304():
     last_mod = "Wed, 11 Sep 2026 03:00:00 GMT"
 
     # First call: server returns 200 with ETag + Last-Modified.
-    first = _fake_response(
-        b"x" * 200, last_modified=last_mod, etag=etag
-    )
+    first = _FakeHttpxResponse(b"x" * 200, last_modified=last_mod, etag=etag)
     # Second call: server returns 304.
-    second = _fake_response(b"", last_modified=last_mod, etag=etag, status=304)
+    second = _FakeHttpxResponse(b"", last_modified=last_mod, etag=etag, status_code=304)
+    fake = client_with([first, second])
+    _use_fake_client(monkeypatch, fake)
 
-    with patch.object(
-        collectors_base.urllib.request, "urlopen", side_effect=[first, second]
-    ), patch.object(collectors_base.time, "sleep"):
-        body1, _ = fetch_url("https://example.com/etag-doc")
-        with pytest.raises(NotModified):
-            fetch_url("https://example.com/etag-doc")
+    body1, _ = fetch_url("https://example.com/etag-doc")
+    with pytest.raises(NotModified):
+        fetch_url("https://example.com/etag-doc")
 
     assert body1 == b"x" * 200
 
 
-def test_fetch_url_sends_if_none_match_on_second_call():
+def test_fetch_url_sends_if_none_match_on_second_call(monkeypatch):
     """The conditional revalidation headers ride along on the next request."""
     etag = '"v1"'
-    requests: list = []
 
-    def _fake_urlopen(request, timeout=30):  # noqa: ARG001
-        requests.append(dict(request.header_items()))
-        if len(requests) == 1:
-            return _fake_response(b"x" * 200, etag=etag)
-        return _fake_response(b"", etag=etag, status=304)
+    def _get(url, *, headers, timeout):  # noqa: ARG001 — match client.get signature
+        if headers.get("If-None-Match") == etag:
+            return _FakeHttpxResponse(b"", etag=etag, status_code=304)
+        return _FakeHttpxResponse(b"x" * 200, etag=etag)
 
-    with patch.object(collectors_base.urllib.request, "urlopen", side_effect=_fake_urlopen), \
-         patch.object(collectors_base.time, "sleep"):
+    fake = client_with(_get)
+    _use_fake_client(monkeypatch, fake)
+
+    fetch_url("https://example.com/revalidate")
+    with pytest.raises(NotModified):
         fetch_url("https://example.com/revalidate")
-        with pytest.raises(NotModified):
-            fetch_url("https://example.com/revalidate")
 
-    assert len(requests) == 2
-    second = {k.lower(): v for k, v in requests[1].items()}
+    assert len(fake.requests) == 2
+    second = {k.lower(): v for k, v in fake.requests[1]["headers"].items()}
     assert second.get("if-none-match") == etag
+
+
+def test_http_client_is_a_process_wide_singleton(monkeypatch):
+    """H14: ``fetch_url`` must reuse one client so connections pool. A
+    per-request client would open a fresh pool every call and defeat the
+    whole point — assert identity across calls and the pool sizing that
+    matches the orchestrator's 8 fetch workers."""
+    httpx = pytest.importorskip("httpx")
+    captured: dict = {}
+    real_client = httpx.Client
+
+    class _Recording(real_client):
+        def __init__(self, **kwargs):
+            captured.update(kwargs)
+            super().__init__(**kwargs)
+
+    collectors_base.reset_http_client()
+    monkeypatch.setattr(collectors_base.httpx, "Client", _Recording)
+    try:
+        client = collectors_base._get_http_client()
+        assert isinstance(client, real_client)
+        assert collectors_base._get_http_client() is client
+        limits = captured["limits"]
+        assert limits.max_connections == 8
+        assert limits.max_keepalive_connections == 8
+        assert captured["follow_redirects"] is True
+    finally:
+        collectors_base.reset_http_client()
 
 
 def test_fetch_url_cookies_ride_back_on_retry():
@@ -187,44 +225,134 @@ def test_fetch_url_cookies_ride_back_on_retry():
     assert "cf_clearance=abc" in cookie_value
 
 
-def test_fetch_url_decompresses_gzip():
-    """A gzip-encoded body is decoded before being returned, so the orchestrator
-    sees raw text."""
+def test_fetch_url_threads_cookies_through_the_httpx_client(monkeypatch):
+    """The CloudFront cf_clearance handshake: a Set-Cookie from attempt 1
+    must ride back on the next request. On the primary path that is the real
+    ``httpx.Client`` cookie jar — driven here through ``httpx.MockTransport``
+    at the socket boundary, so the client itself is the production one."""
+    httpx = pytest.importorskip("httpx")
+    seen_cookies: list[str] = []
+
+    def _handler(request: httpx.Request) -> httpx.Response:
+        seen_cookies.append(request.headers.get("cookie", ""))
+        if len(seen_cookies) == 1:
+            return httpx.Response(
+                200,
+                content=b"x" * 200,
+                headers={"Set-Cookie": "cf_clearance=abc; Path=/"},
+            )
+        return httpx.Response(200, content=b"y" * 200)
+
+    client = httpx.Client(
+        transport=httpx.MockTransport(_handler), follow_redirects=True
+    )
+    monkeypatch.setattr(collectors_base, "_get_http_client", lambda: client)
+    try:
+        first, _ = fetch_url("https://example.com/cookies")
+        second, _ = fetch_url("https://example.com/cookies")
+    finally:
+        client.close()
+
+    assert first == b"x" * 200
+    assert second == b"y" * 200
+    assert seen_cookies[0] == ""
+    assert "cf_clearance=abc" in seen_cookies[1]
+
+
+def test_fetch_url_decompresses_gzip(monkeypatch):
+    """The urllib fallback still decodes gzip itself (httpx auto-decodes on
+    the primary path), so a stdlib-only deployment sees raw text too."""
     raw = b"hello gzip world " * 30
     gzipped = gzip.compress(raw)
 
     resp = _fake_response(gzipped, content_encoding="gzip")
+    disable_http_client(monkeypatch)
     with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp):
         body, _ = fetch_url("https://example.com/gzip-doc")
 
     assert body == raw
 
 
-def test_fetch_url_handles_missing_content_encoding():
-    """No Content-Encoding header → body returned unchanged."""
+def test_fetch_url_handles_missing_content_encoding(monkeypatch):
+    """No Content-Encoding header → body returned unchanged (fallback path)."""
     body = b"plain text body " * 20
     resp = _fake_response(body)
+    disable_http_client(monkeypatch)
     with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp):
         out, _ = fetch_url("https://example.com/plain")
     assert out == body
 
 
-def test_fetch_url_lru_cache_is_bounded():
+def test_fetch_url_lru_cache_is_bounded(monkeypatch):
     """The ETag/Last-Modified cache evicts oldest entries past 256."""
     # Pre-fill the cache with 256 entries so the next fetch trips the cap.
+    # 2026-09-18 M19: keys are now f"{source_id}:{url}"; use the helper so
+    # the test exercises the same namespace fetch_url uses at runtime.
     for i in range(256):
-        _CONDITIONAL_CACHE[f"https://example.com/{i}"] = (None, None)
+        _CONDITIONAL_CACHE[_cache_key(f"src-{i}", f"https://example.com/{i}")] = (None, None)
     assert len(_CONDITIONAL_CACHE) == 256
 
-    resp = _fake_response(b"x" * 200, etag='"new"')
-    with patch.object(collectors_base.urllib.request, "urlopen", return_value=resp):
-        fetch_url("https://example.com/fresh")
+    fake = client_with(_FakeHttpxResponse(b"x" * 200, etag='"new"'))
+    _use_fake_client(monkeypatch, fake)
+    fetch_url("https://example.com/fresh")
 
     # After the insert: cache hit 256 → insert new → evict oldest → 256 entries.
     assert len(_CONDITIONAL_CACHE) == 256
     # Oldest entry was evicted; newest is present.
-    assert "https://example.com/0" not in _CONDITIONAL_CACHE
-    assert "https://example.com/fresh" in _CONDITIONAL_CACHE
+    assert _cache_key("src-0", "https://example.com/0") not in _CONDITIONAL_CACHE
+    assert _cache_key("", "https://example.com/fresh") in _CONDITIONAL_CACHE
+
+
+# ── M19: conditional cache namespacing reaches every collector ───────────
+
+
+def test_modules_pass_source_id_to_fetch_url():
+    """M19: the cache is keyed ``f"{source_id}:{url}"`` and
+    ``invalidate_conditional_cache(source_id)`` matches on that prefix. A
+    collector that fetches without its source_id drops out of both — its
+    validators become URL-only and --ack / --revert invalidation miss it.
+    Parse every collector module so a new source type cannot silently
+    reintroduce that hole."""
+    import ast
+
+    collectors_dir = Path(collectors_base.__file__).resolve().parent
+    offenders: list[str] = []
+    for module_path in sorted(collectors_dir.glob("*.py")):
+        tree = ast.parse(module_path.read_text(encoding="utf-8"))
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Call):
+                continue
+            func = node.func
+            name = func.id if isinstance(func, ast.Name) else getattr(func, "attr", "")
+            if name != "fetch_url":
+                continue
+            if not any(kw.arg == "source_id" for kw in node.keywords):
+                offenders.append(f"{module_path.name}:{node.lineno}")
+
+    assert offenders == [], f"fetch_url calls missing source_id=: {offenders}"
+
+
+def test_collector_replays_validators_under_its_source_id(monkeypatch):
+    """A validator seeded under (source_id, url) must be replayed by the
+    collector — proof the key matches at runtime, and therefore that
+    invalidating by source_id can reach the entry."""
+    entry = {
+        "id": "uk-weee-regulations-guidance",
+        "market": "UK",
+        "source_type": "gov_html",
+        "source_url": "https://example.com/uk-weee",
+        "title": "WEEE Regulations",
+    }
+    _remember_conditional(entry["id"], entry["source_url"], '"E1"', None)
+
+    fake = client_with(_FakeHttpxResponse(b"", status_code=304, etag='"E1"'))
+    _use_fake_client(monkeypatch, fake)
+
+    with pytest.raises(NotModified):
+        collect_source(entry)
+
+    assert fake.requests[0]["headers"]["If-None-Match"] == '"E1"'
+    assert invalidate_conditional_cache(entry["id"]) == 1
 
 
 # ── User-Agent quarterly rotation ────────────────────────────────────────

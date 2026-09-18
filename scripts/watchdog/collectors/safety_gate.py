@@ -92,7 +92,9 @@ def collect_safety_gate(entry: dict) -> RegulationUpdate:
     # Safety Gate API responses can be small on light weeks; don't apply the
     # default 64-byte minimum that gates "this looks like a challenge page"
     # for full HTML sites.
-    body, last_modified = fetch_url(url, accept="application/json", min_bytes=16)
+    body, last_modified = fetch_url(
+        url, source_id=entry.get("id"), accept="application/json", min_bytes=16
+    )
     try:
         payload = json.loads(body)
     except json.JSONDecodeError as exc:

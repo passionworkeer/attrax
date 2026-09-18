@@ -7,6 +7,7 @@ import gzip
 import http.cookiejar
 import logging
 import os
+import random
 import threading
 import time
 import urllib.error
@@ -16,6 +17,19 @@ from collections import OrderedDict
 from dataclasses import dataclass, field
 
 from scripts.watchdog.registry import register
+
+# 2026-09-18 H14: prefer httpx (connection pooling + per-host keep-alive)
+# over urllib.request, which opens a fresh socket per call. Falls back to
+# the urllib path on systems where httpx is not installed so a minimum
+# venv (stdlib only, as documented in scripts/watchdog/__init__.py) still
+# works.
+try:  # pragma: no cover — exercised on environments that ship httpx
+    import httpx  # type: ignore
+
+    _HAS_HTTPX = True
+except ImportError:  # noqa: PERF203 — module-level optional import
+    httpx = None  # type: ignore
+    _HAS_HTTPX = False
 
 logger = logging.getLogger("attrax.regwatch.collectors")
 
@@ -122,30 +136,66 @@ try:  # pragma: no cover — exercised on environments that ship brotli
 except ImportError:  # noqa: PERF203 — module-level optional import
     _HAS_BROTLI = False
 
-# 304 short-circuit cache. Keyed by URL (the only thing the orchestrator has
-# to tell us about freshness). Holds the last ETag / Last-Modified we saw so
-# we can re-validate on the next pass; on a 304, fetch_url returns empty
-# bytes and the orchestrator plays back the cached hash. LRU at 256 entries
-# to bound memory across the 35+ source sweep.
+# 304 short-circuit cache. Keyed by ``f"{source_id}:{url}"`` so two
+# distinct sources can never share a stale ETag even if a CDN reuses the
+# same header pair for genuinely different URLs. Holds the last ETag /
+# Last-Modified we saw so we can re-validate on the next pass; on a 304,
+# fetch_url raises NotModified and the orchestrator records the source as
+# unchanged (the stored baseline already holds the current bytes).
+# LRU at 256 entries to bound memory across the 35+ source sweep.
 _CONDITIONAL_CACHE_MAX = 256
 _CONDITIONAL_CACHE: "OrderedDict[str, tuple[str | None, str | None]]" = OrderedDict()
 _CONDITIONAL_CACHE_LOCK = threading.Lock()
 
 
-def _remember_conditional(url: str, etag: str | None, last_modified: str | None) -> None:
+def _cache_key(source_id: str | None, url: str) -> str:
+    """Build a namespaced cache key for the conditional-revalidation cache.
+
+    Two URLs that happen to share an ETag — a misconfigured CDN, a redirect
+    loop that lands on the same content, a behind-the-scenes rewrite — must
+    not be allowed to feed each other a 304: that would let a real change
+    slip through as a no-op. Namespacing by ``source_id`` ensures each
+    source's cache is independent.
+    """
+    return f"{source_id or ''}:{url}"
+
+
+def _remember_conditional(source_id: str | None, url: str, etag: str | None, last_modified: str | None) -> None:
+    key = _cache_key(source_id, url)
     with _CONDITIONAL_CACHE_LOCK:
-        _CONDITIONAL_CACHE[url] = (etag, last_modified)
-        _CONDITIONAL_CACHE.move_to_end(url)
+        _CONDITIONAL_CACHE[key] = (etag, last_modified)
+        _CONDITIONAL_CACHE.move_to_end(key)
         while len(_CONDITIONAL_CACHE) > _CONDITIONAL_CACHE_MAX:
             _CONDITIONAL_CACHE.popitem(last=False)
 
 
-def _recall_conditional(url: str) -> tuple[str | None, str | None]:
+def _recall_conditional(source_id: str | None, url: str) -> tuple[str | None, str | None]:
+    cached: tuple[str | None, str | None] | None
     with _CONDITIONAL_CACHE_LOCK:
-        cached = _CONDITIONAL_CACHE.get(url)
+        cached = _CONDITIONAL_CACHE.get(_cache_key(source_id, url))
     if cached is None:
         return None, None
     return cached
+
+
+def invalidate_conditional_cache(source_id: str) -> int:
+    """Drop every cached (ETag, Last-Modified) entry for ``source_id``.
+
+    Called by the ``--ack`` and ``--revert`` paths (orchestrator.ack_sources,
+    review.revert_change) and by ``run_pass`` for every source whose baseline
+    did NOT advance (failed ingest, auto-ingest off, dry run). In each case
+    the cached validators describe upstream bytes the local library does not
+    hold, so replaying them as a 304 would silently retire the change.
+
+    Returns the number of entries evicted so a test or log line can confirm
+    the cache actually moved.
+    """
+    prefix = f"{source_id}:"
+    with _CONDITIONAL_CACHE_LOCK:
+        keys = [k for k in _CONDITIONAL_CACHE if k.startswith(prefix)]
+        for key in keys:
+            _CONDITIONAL_CACHE.pop(key, None)
+    return len(keys)
 
 
 def _decompress_body(body: bytes, encoding: str | None) -> bytes:
@@ -266,9 +316,13 @@ class RegulationUpdate:
 # domain, so cross-source leakage is bounded and helps when several
 # official_sources.json entries share an upstream host.
 #
-# We install the cookie-aware opener globally so existing test code that
-# patches ``urllib.request.urlopen`` keeps intercepting the fetch (the
-# cookie processor is wired through the default opener, not a side channel).
+# 2026-09-18 H14: the httpx primary path uses the client-level
+# ``httpx.Cookies`` object for the same round-tripping — Set-Cookie from
+# a response is auto-merged into the client's cookie jar, and the next
+# request to the same domain is auto-prefixed with ``Cookie: ...``. The
+# ``_COOKIE_JAR`` below is now the *urllib fallback*'s source of truth;
+# the default-opener wiring is kept so any code path still on urllib
+# (notify.py, the urllib fallback branch) behaves identically.
 _COOKIE_JAR = http.cookiejar.CookieJar()
 _COOKIE_OPENER = urllib.request.build_opener(
     urllib.request.HTTPCookieProcessor(_COOKIE_JAR)
@@ -276,15 +330,83 @@ _COOKIE_OPENER = urllib.request.build_opener(
 urllib.request.install_opener(_COOKIE_OPENER)
 
 
+# ── httpx client singleton ─────────────────────────────────────────────
+# One process-wide httpx.Client so the 8 worker threads reuse the same
+# connection pool. ``max_connections=8`` matches the orchestrator's
+# ``MAX_FETCH_WORKERS`` — exceeding it would let one slow CDN pin all
+# sockets; falling below it would leave fetch capacity on the table.
+# ``max_keepalive_connections=8`` is set the same so the pool can keep
+# warm sockets against the top-8 hosts (the most common pattern is the
+# three CPSC / FDA / EUR-Lex CDNs handling the bulk of the sweep).
+#
+# Lazily created on first fetch so a unit-test that never touches the
+# network still imports cleanly. Tests can call ``reset_http_client()``
+# to drop the singleton between cases.
+_HTTPX_CLIENT: "httpx.Client | None" = None
+_HTTPX_CLIENT_LOCK = threading.Lock()
+
+
+def _get_http_client():
+    """Return the process-wide httpx.Client, creating it on first use.
+
+    Returns ``None`` when httpx is not installed — the fetch loop then
+    falls back to urllib.request. The client is created exactly once per
+    process so 8 worker threads share the same connection pool.
+    """
+    global _HTTPX_CLIENT
+    if not _HAS_HTTPX or httpx is None:
+        return None
+    if _HTTPX_CLIENT is not None:
+        return _HTTPX_CLIENT
+    with _HTTPX_CLIENT_LOCK:
+        if _HTTPX_CLIENT is None:
+            _HTTPX_CLIENT = httpx.Client(
+                limits=httpx.Limits(
+                    max_connections=8,
+                    max_keepalive_connections=8,
+                ),
+                timeout=httpx.Timeout(DEFAULT_TIMEOUT),
+                follow_redirects=True,
+                headers={"Accept": "*/*"},
+            )
+    return _HTTPX_CLIENT
+
+
+def reset_http_client() -> None:
+    """Drop the cached client. Tests use this between cases to avoid
+    leaking a previous-case mock into the next."""
+    global _HTTPX_CLIENT
+    with _HTTPX_CLIENT_LOCK:
+        if _HTTPX_CLIENT is not None:
+            with contextlib.suppress(Exception):
+                _HTTPX_CLIENT.close()
+            _HTTPX_CLIENT = None
+
+
 def fetch_url(
     url: str,
     *,
+    source_id: str | None = None,
     timeout: int = DEFAULT_TIMEOUT,
     retries: int = DEFAULT_RETRIES,
     accept: str = "*/*",
     min_bytes: int = MIN_CONTENT_BYTES,
 ) -> tuple[bytes, str | None]:
-    """GET ``url`` with retry + exponential backoff. Returns (body, last_modified).
+    """GET ``url`` with retry + full-jitter backoff. Returns (body, last_modified).
+
+    ``source_id`` namespaces the conditional-revalidation cache (2026-09-18
+    M19): two distinct sources sharing an ETag — a misconfigured CDN, a
+    redirect loop — must not be allowed to feed each other a 304. Passing
+    it is optional so existing callers that fetch by URL alone keep working;
+    callers that have a source in hand should always pass it.
+
+    2026-09-18 H14 transport swap: httpx.Client is the primary path now,
+    with connection pooling (``max_connections=8``, matching the
+    orchestrator's worker count) and per-host keep-alive. urllib.request
+    is the fallback when httpx is not installed. Backoff is full-jitter
+    ``random.uniform(0, RETRY_BACKOFF_SECONDS * attempt)`` so 8 workers
+    retrying against a flaky CDN do not thunder into the same 2 s/4 s
+    slots.
 
     WAF fallback chain (2026-09-16): the first attempt uses the standard
     User-Agent. If it gets blocked by a Cloudflare / Akamai challenge page
@@ -299,11 +421,11 @@ def fetch_url(
       1. ``Accept-Language`` + ``Accept-Encoding`` headers ride along on
          every attempt (they live in ``_PRIMARY_BASE_HEADERS`` and merge
          into both the primary and fallback UA request).
-      2. A process-wide ``CookieJar`` is threaded through every request:
-         after each ``urlopen`` we ``.extract_cookies(response, request)``,
-         and before each new request we ``.add_cookie_header(request)``.
-         This lets the CloudFront WAF's ``cf_clearance`` cookie ride back
-         to the origin on retries.
+      2. A process-wide ``CookieJar`` is threaded through every request
+         on the urllib fallback path; the httpx path uses the client's
+         native ``httpx.Cookies`` object for the same round-tripping.
+         Both paths preserve the CloudFront WAF's ``cf_clearance`` cookie
+         ride-back on retries.
       3. Conditional revalidation (If-None-Match / If-Modified-Since): the
          URL's last-seen ``ETag`` and ``Last-Modified`` are remembered in an
          LRU. On the next call, those headers are sent up front; a ``304``
@@ -311,11 +433,16 @@ def fetch_url(
          back the cached hash instead of treating it as a change.
       4. ``Content-Encoding: gzip / deflate / br`` responses are
          transparently decoded so the orchestrator always sees raw text.
+         httpx auto-decodes; urllib still needs ``_decompress_body``.
 
-    Raises ``urllib.error.URLError`` (or HTTPError subclass) after exhausting
-    retries so the caller can record a per-source failure.
+    Raises after exhausting retries so the caller can record a per-source
+    failure: the transport error itself (``httpx.*`` on the pooling path,
+    ``urllib.error.URLError`` on the fallback), or ``urllib.error.HTTPError``
+    for a non-2xx status. A terminal 4xx (except 429) fails on the first
+    attempt — retrying cannot fix a 404.
     """
-    cached_etag, cached_last_modified = _recall_conditional(url)
+    cached_etag, cached_last_modified = _recall_conditional(source_id, url)
+    client = _get_http_client()
     last_error: Exception | None = None
     for attempt in range(1, retries + 1):
         # Cooperative deadline: bail before spending another socket timeout
@@ -344,17 +471,39 @@ def fetch_url(
         if cached_last_modified:
             headers["If-Modified-Since"] = cached_last_modified
 
-        request = urllib.request.Request(url, headers=headers)
         try:
-            with urllib.request.urlopen(request, timeout=effective_timeout) as response:
+            if client is not None:
+                response = client.get(
+                    url, headers=headers, timeout=effective_timeout
+                )
+                # httpx has already auto-decoded Content-Encoding: gzip /
+                # deflate / br. ``response.content`` is the raw text.
+                status = response.status_code
+                response_etag = response.headers.get("ETag")
+                response_last_modified = response.headers.get("Last-Modified")
+            else:
+                response = _urllib_request_once(
+                    url, headers=headers, timeout=effective_timeout
+                )
                 status = getattr(response, "status", None)
                 if status is None:
                     getcode = getattr(response, "getcode", None)
                     status = getcode() if callable(getcode) else 200
                 response_etag = response.headers.get("ETag")
                 response_last_modified = response.headers.get("Last-Modified")
-                content_encoding = response.headers.get("Content-Encoding")
+        except Exception as exc:
+            # Network / timeout / TLS / DNS — every flavour collapses to
+            # "retry later" until we exhaust the budget, EXCEPT a terminal
+            # client error: urlopen raises HTTPError for every non-2xx
+            # status, and the old code fast-failed 4xx (except 429) instead
+            # of replaying a 404 three times.
+            last_error = _coerce_request_error(exc, url)
+            response = None
+            if _is_terminal_client_error(last_error):
+                raise
 
+        if response is not None:
+            try:
                 if status == 304:
                     # 304 short-circuit: the upstream text is byte-identical
                     # to what we last snapshotted, so there is nothing for
@@ -362,39 +511,66 @@ def fetch_url(
                     # to diff. Raise rather than return an empty body —
                     # collectors would otherwise hand ``b""`` to their RDF /
                     # JSON / RSS parsers and record a bogus failure.
-                    _remember_conditional(url, cached_etag, cached_last_modified)
+                    _remember_conditional(
+                        source_id, url, cached_etag, cached_last_modified
+                    )
                     raise NotModified(url)
 
-                raw_body = response.read()
-                body = _decompress_body(raw_body, content_encoding)
-
-                _remember_conditional(url, response_etag, response_last_modified)
-
-                if len(body) < min_bytes:
-                    raise urllib.error.URLError(
-                        f"suspiciously small response ({len(body)} bytes) from {url}"
+                # Non-success statuses must never be hashed as content. The
+                # httpx path *returns* the response for 4xx/5xx (urllib's
+                # urlopen raises), so both paths funnel through this check:
+                #   - 4xx (except 429): terminal — a retry replays the same
+                #     404/403, and the body is an error page, not upstream
+                #     text. Fast-fail.
+                #   - 5xx / 429: transient — record the error and fall
+                #     through to the backoff path. Without this, a CDN's
+                #     502 HTML page (> min_bytes) would be returned as a
+                #     "successful" fetch and hashed as a change.
+                if status is not None and status >= 400:
+                    error = urllib.error.HTTPError(
+                        url, status, f"HTTP {status}", hdrs=None, fp=None
                     )
-                lower_body = body[:2048].lower()
-                if (
-                    b"challenge-platform" in lower_body
-                    or b"<title>just a moment...</title>" in lower_body
-                    or b"cf-browser-verification" in lower_body
-                    or b"enable javascript and cookies to continue" in lower_body
-                ):
-                    raise WAFChallengeBlockedException(
-                        f"WAF challenge / anti-bot interstitial detected from {url}"
+                    if status < 500 and status != 429:
+                        raise error
+                    last_error = error
+                else:
+                    if client is not None:
+                        body = response.content
+                    else:
+                        content_encoding = response.headers.get("Content-Encoding")
+                        raw_body = response.read()
+                        body = _decompress_body(raw_body, content_encoding)
+
+                    _remember_conditional(
+                        source_id, url, response_etag, response_last_modified
                     )
-                return body, response_last_modified
-        except urllib.error.HTTPError as exc:
-            # 4xx (except 429) will not get better by retrying.
-            if 400 <= exc.code < 500 and exc.code != 429:
-                raise
-            last_error = exc
-        except (urllib.error.URLError, TimeoutError, OSError) as exc:
-            last_error = exc
+
+                    if len(body) < min_bytes:
+                        raise urllib.error.URLError(
+                            f"suspiciously small response ({len(body)} bytes) from {url}"
+                        )
+                    lower_body = body[:2048].lower()
+                    if (
+                        b"challenge-platform" in lower_body
+                        or b"<title>just a moment...</title>" in lower_body
+                        or b"cf-browser-verification" in lower_body
+                        or b"enable javascript and cookies to continue" in lower_body
+                    ):
+                        raise WAFChallengeBlockedException(
+                            f"WAF challenge / anti-bot interstitial detected from {url}"
+                        )
+                    return body, response_last_modified
+            finally:
+                # Release the socket back to the pool (httpx) / close it
+                # (urllib). httpx.Response.close() and HTTPResponse.close()
+                # are both idempotent, so an explicit early close is safe.
+                _close_response(response)
 
         if attempt < retries:
-            delay = RETRY_BACKOFF_SECONDS * attempt
+            # Full-jitter backoff (H14, 2026-09-18): uniform over the
+            # full window so 8 concurrent workers retrying against a
+            # flaky CDN do not all land in the same 2 s / 4 s slots.
+            delay = random.uniform(0, RETRY_BACKOFF_SECONDS * attempt)
             remaining = _remaining_budget()
             if remaining is not None and remaining <= delay:
                 # Sleeping through the backoff would spend the whole budget
@@ -404,7 +580,7 @@ def fetch_url(
                     f"{url}: fetch deadline exceeded before retry {attempt + 1}"
                 )
             logger.debug(
-                "fetch %s failed (%s); retry %d/%d in %.1fs",
+                "fetch %s failed (%s); retry %d/%d in %.2fs",
                 url[:90],
                 last_error,
                 attempt,
@@ -415,6 +591,70 @@ def fetch_url(
 
     assert last_error is not None
     raise last_error
+
+
+def _urllib_request_once(url: str, *, headers: dict, timeout: float):
+    """One urllib.request.urlopen call. Used by the fallback path only.
+
+    Hoisted into its own function so tests that patch
+    ``urllib.request.urlopen`` continue to intercept the fallback. httpx
+    is the primary path on any modern venv (the aliyun-sz production
+    host ships httpx 0.27 / 0.28 via rag_service/.venv).
+    """
+    request = urllib.request.Request(url, headers=headers)
+    return urllib.request.urlopen(request, timeout=timeout)
+
+
+def _coerce_request_error(exc: Exception, url: str) -> Exception:
+    """Map httpx's error hierarchy onto urllib's so callers don't have to.
+
+    The orchestrator catches ``Exception`` per-source so the precise type
+    does not matter for correctness, but for parity with the previous
+    behaviour (and the existing 4xx branch) we surface HTTP status codes
+    where httpx actually carries them.
+    """
+    if _HAS_HTTPX and httpx is not None:
+        # ``response.raise_for_status()`` is not called — we surface a
+        # plain HTTPError here with the status code in exc.code so the
+        # 4xx terminal branch matches the urllib shape. httpx.TimeoutException
+        # and httpx.RequestError both bubble through unchanged.
+        from httpx import HTTPStatusError  # type: ignore
+        if isinstance(exc, HTTPStatusError):
+            try:
+                status = exc.response.status_code
+            except Exception:
+                status = 0
+            return urllib.error.HTTPError(url, status, str(exc), hdrs=None, fp=None)
+    return exc
+
+
+def _is_terminal_client_error(exc: Exception) -> bool:
+    """Whether a transport error is a 4xx (except 429) that a retry cannot fix.
+
+    ``urllib.request.urlopen`` raises ``HTTPError`` for every non-2xx
+    status; the original fetch loop fast-failed 4xx instead of burning the
+    retry budget on a 404. httpx returns the response object instead of
+    raising, so on that path the same decision is made on the response —
+    this helper keeps the fallback path (and anything that does raise)
+    honest.
+    """
+    return (
+        isinstance(exc, urllib.error.HTTPError)
+        and 400 <= exc.code < 500
+        and exc.code != 429
+    )
+
+
+def _close_response(response) -> None:
+    """Release the underlying connection without ever masking the real error.
+
+    httpx.Response.close() and http.client.HTTPResponse.close() are both
+    idempotent, so a ``finally`` after an explicit early close is safe.
+    ``suppress`` guards the test doubles / exotic transports that never
+    grew a ``close``.
+    """
+    with contextlib.suppress(Exception):
+        response.close()
 
 
 # ── per-source-type handlers ────────────────────────────────────────────
@@ -435,7 +675,9 @@ def collect_generic(entry: dict) -> RegulationUpdate:
     """
     from scripts.watchdog.state import normalize_text, text_hash
 
-    body, last_modified = fetch_url(entry["source_url"])
+    body, last_modified = fetch_url(
+        entry["source_url"], source_id=entry.get("id")
+    )
     text = normalize_text(body)
     return RegulationUpdate(
         source_id=entry["id"],
