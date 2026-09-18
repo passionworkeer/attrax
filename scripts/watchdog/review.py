@@ -30,6 +30,11 @@ import shutil
 import sys
 from pathlib import Path
 
+# 与 check_sources.py 相同：让文件路径直跑也能 import scripts.*。
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
+
 from scripts.watchdog.auto_ingest import AutoIngestor
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
