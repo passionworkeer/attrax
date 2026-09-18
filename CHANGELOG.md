@@ -17,6 +17,7 @@
 - **嗅探器真 bug**:分段正则把「字段值」当成了「头部块」,`name="category"` 永远匹配不上 → `INVALID_CATEGORY` 早检与 category 取值一直失效。修正为 `--boundary\r\n((?:[^\r\n]+\r\n){1,8})\r\n([^\r\n]*)`
 - **M3 revision 幂等键**(`f405713`):改为客户端传入(每次点击生成),BFF 透传。此前固定 `${sessionId}:revision`,第二次重扫被静默吞掉
 - **M8 资产流式回传**(`f405713`):`streamScanAsset` 返回未读的 `Response`,BFF 直接管道 `response.body`。结果页轮播并发取图不再每张留一份完整堆副本
+- **>8KB 上传整条挂死**(`8ff0866`):嗅探 `category` 的第一版用 `body.tee()` 撕出分支、读满 8KB 后 `cancel()` 它——**任何超过嗅探窗口的请求体都会死锁**,44KB 的真实产品图在 BFF 里停到客户端超时,RAG 侧连 POST 记录都没有。阈值正好是 8KB:以下能读到 `done` 走完循环所以正常,这也是小 fixture 单测与 610 字节桩请求都漏掉它的原因。改为单 reader 读前缀 + 回放流,没有第二条分支要协调。**只有真实 socket 支撑的请求流能复现**,证据见 `docs/evidence/2026-09-18-concurrency-hardening/`
 
 **修复 — RAG 服务与存储**
 - **H11 幂等检查与写入同临界区**:`check_and_append_audit_marker` 在一次 `_lock` 内完成「查 + 写」,两个同 key 的并发补充证据不再双份入库
@@ -34,8 +35,10 @@
 - **M19 缓存命名空间**:条件请求缓存键从 URL 改为 `source_id:url`,并在 `--ack`/`--revert` 时按 source 失效
 
 **验证**
-- vitest 997/997、tsc、eslint 全绿;pytest 后端全绿;watchdog pytest 139 全绿;双 OpenAPI 契约门控通过(快照与 types.gen.ts 已按新签名重新生成)
+- vitest 998/998、tsc、eslint 全绿;pytest 后端 731 passed / 5 skipped;watchdog pytest 139 全绿;双 OpenAPI 契约门控通过(快照与 types.gen.ts 已按新签名重新生成)
 - **真实 HTTP 端到端**(不只是单测):Next.js dev + undici + 桩上游,确认上游收到 `transferEncoding: chunked` 且无 `Content-Length`——即请求体确实在流式转发而非缓冲;字段、文件、内部密钥完整到达
+- **真实产品图跑完整链路**(44KB,经真实 RAG 服务):`status=ready`、`compliance=WARN`、`declaredFacts={"battery":"否"}`、`originalQuery` 为按浏览器 category+markets 合成的原措辞、`agentTrace=[vision,generate,verify]`、`degraded` 为空
+- **死锁回归证据**:4000B / 9000B / 40000B 三档在修复前后对比(修复前 9KB 与 40KB 必然超时,修复后均返回 RAG 的 400 签名拒绝即 body 完整到达)。完整记录与复现步骤见 `docs/evidence/2026-09-18-concurrency-hardening/`
 
 ---
 
