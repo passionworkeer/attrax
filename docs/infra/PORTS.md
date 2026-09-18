@@ -10,6 +10,10 @@
 | 8001 | rag-service（uvicorn） | `ecosystem.config.cjs` args + nextjs `RAG_SERVICE_URL` |
 | 3002 | portfolio nextjs | `ecosystem.config.cjs` `PORT` |
 
+> nginx vhost 的唯一真值是 `render-nginx-vhost.sh` 渲染出的 `/etc/nginx/sites-enabled/attrax`（正规文件）。
+> 不要使用 `/etc/nginx/sites-available/attrax`——旧手工流程的副本曾残留 3001 端口（2026-09-18 502 的书面根源），
+> `apply-deploy.sh` [8.5] 每次部署都会清掉它。
+
 ## 本地开发
 
 | 端口 | 用途 |
