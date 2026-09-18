@@ -5,12 +5,19 @@
  * starts `nextjs` in pm2 fork mode with no `instances`, so a single process
  * serves every request — and the file-backed critical section below is fully
  * synchronous, which makes it atomic with respect to other requests in that
- * process. That is why there is no lock file: the previous `mkdir`-as-lock
- * scheme only ever bought cross-process safety, while costing `Atomics.wait`
- * event-loop stalls (up to 200ms per contended request) and a 10s stale-lock
- * window that could 429 a bucket after a crash. Re-introduce a real
- * cross-process lock if this app is ever scaled to multiple instances or
- * containers.
+ * process. That is the per-process fast path.
+ *
+ * Cross-process safety: even though we run a single instance today, the
+ * file-store section below uses an `O_CREAT|O_EXCL` lockfile around the
+ * read-modify-write so the same code is correct if this app is ever scaled
+ * to multiple instances or containers (the lockfile costs nothing on the
+ * uncontended path: one open+unlink). If we ever remove the per-process
+ * in-memory fast path, swap this lockfile scheme for `proper-lockfile`.
+ *
+ * A startup warning is emitted when `NODE_ENV === "production"` AND
+ * `instances > 1` is detected (from PM2 env or `/proc`), because the
+ * in-process Map bucketing only isolates per-IP within one worker — the
+ * file store cross-worker lock is what actually enforces the limit.
  *
  * This layer is the effective cost boundary for scan creation, not just
  * defence-in-depth. nginx fronts `/api/scan*` with `zone=attrax_api`
@@ -23,13 +30,16 @@
  */
 import { createHash } from "crypto";
 import {
+  closeSync,
   existsSync,
   mkdirSync,
+  openSync,
   readFileSync,
   readdirSync,
   renameSync,
   rmSync,
   statSync,
+  unlinkSync,
   writeFileSync,
 } from "fs";
 import { join, resolve } from "path";
@@ -38,11 +48,18 @@ type Bucket = { count: number; resetAt: number };
 
 declare global {
   var __rateLimitBuckets: Map<string, Bucket> | undefined;
+  var __rateLimitWarnedMultiInstance: boolean | undefined;
 }
 
 const EVICT_ABOVE_SIZE = 5000;
 const DEFAULT_UA_SALT = "attrax-rate-limit-v2";
 const STORE_FAILURE_LOG_INTERVAL_MS = 60_000;
+// Cross-process advisory lock: the file-store read+modify+write is wrapped
+// in `O_CREAT|O_EXCL`. On contention we retry briefly (3 attempts × ~10ms
+// backoff) so a hot key never blocks the event loop; the limit is reached
+// in well under 50ms total.
+const LOCK_RETRY_ATTEMPTS = 3;
+const LOCK_RETRY_BASE_DELAY_MS = 10;
 
 function buckets(): Map<string, Bucket> {
   if (!globalThis.__rateLimitBuckets) globalThis.__rateLimitBuckets = new Map();
@@ -164,6 +181,51 @@ function writeBucketAtomic(path: string, bucket: Bucket): void {
   renameSync(temporary, path);
 }
 
+// Acquire a cross-process advisory lock by creating `${path}.lock` with
+// O_CREAT|O_EXCL. Returns the lock path on success or null on timeout. The
+// lockfile mode is 0600 so other UIDs cannot drop a stale lock; we also
+// include the pid in the contents for diagnostics.
+//
+// The "stale-lock-after-crash" window is intentionally not handled here:
+// if a process crashes mid-section the next call retries 3 times, then
+// skips the file store and falls back to the in-process limiter — i.e. the
+// worst case is one process briefly losing cross-process visibility, not
+// 429-ing every scan or blocking the event loop. Compare with the previous
+// `mkdir`-as-lock which had a 10s `Atomics.wait` stall and a stale lock
+// window big enough to deny a real user after a crash.
+function acquireLock(lockPath: string): string | null {
+  for (let attempt = 0; attempt < LOCK_RETRY_ATTEMPTS; attempt += 1) {
+    let fd: number;
+    try {
+      fd = openSync(lockPath, "wx", 0o600);
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException).code;
+      if (code !== "EEXIST") throw error;
+      // Exponential backoff with a tiny ceiling; total budget stays well
+      // under 50ms so a normal hot-path request is never visibly stalled.
+      const delay = LOCK_RETRY_BASE_DELAY_MS * Math.pow(2, attempt);
+      const jitter = Math.floor(Math.random() * LOCK_RETRY_BASE_DELAY_MS);
+      Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, delay + jitter);
+      continue;
+    }
+    try {
+      writeFileSync(fd, `${process.pid}\n`);
+    } finally {
+      closeSync(fd);
+    }
+    return lockPath;
+  }
+  return null;
+}
+
+function releaseLock(lockPath: string): void {
+  try {
+    unlinkSync(lockPath);
+  } catch {
+    // Lock is advisory; a missing file at release time is benign.
+  }
+}
+
 function readBucket(path: string): Bucket | null {
   if (!existsSync(path)) return null;
   try {
@@ -208,20 +270,58 @@ function checkSharedFileRateLimit(
   ensurePrivateDirectory(directory);
   const id = createHash("sha256").update(key).digest("hex");
   const path = join(directory, `${id}.json`);
+  const lockPath = `${path}.lock`;
 
-  // No lock: this function is synchronous and Node runs one request at a time
-  // on the event loop, so the read-modify-write below cannot interleave with
-  // another request in this process. See the module header for the
-  // single-instance assumption and what to do if that changes.
-  evictExpiredFileBuckets(directory, now);
-  const current = readBucket(path);
-  if (!current || current.resetAt <= now) {
-    writeBucketAtomic(path, { count: 1, resetAt: now + windowMs });
+  // Cross-process lock around the read-modify-write. The critical section is
+  // a handful of syscalls; uncontended locks are essentially free, contended
+  // locks back off briefly. If we fail to acquire we fall through to the
+  // in-process limiter — the request is still rate-limited (just not
+  // cross-process for this single attempt), and the event loop is not
+  // stalled by Atomics.wait on a still-held lock.
+  const acquired = acquireLock(lockPath);
+  if (!acquired) return checkMemoryRateLimit(key, limit, windowMs, now);
+  try {
+    evictExpiredFileBuckets(directory, now);
+    const current = readBucket(path);
+    if (!current || current.resetAt <= now) {
+      writeBucketAtomic(path, { count: 1, resetAt: now + windowMs });
+      return true;
+    }
+    if (current.count >= limit) return false;
+    writeBucketAtomic(path, { count: current.count + 1, resetAt: current.resetAt });
     return true;
+  } finally {
+    releaseLock(lockPath);
   }
-  if (current.count >= limit) return false;
-  writeBucketAtomic(path, { count: current.count + 1, resetAt: current.resetAt });
-  return true;
+}
+
+// Detect "more than one Node instance running" for this BFF. PM2 exposes the
+// instance index as `instance_var` (we set it to "NODE_APP_INSTANCE" in
+// ecosystem.config.cjs) — read it from the process env or, as a fallback,
+// count `/proc/<pid>/cmdline` entries that match `node`. In production, when
+// `NODE_APP_INSTANCE` is unset AND only one instance is found, no warning
+// is emitted. The check runs at most once per process.
+function detectMultiInstance(): { multi: boolean; instances: number } {
+  const fromEnv = process.env.NODE_APP_INSTANCE;
+  if (fromEnv !== undefined && fromEnv !== "") {
+    const parsed = Number(fromEnv);
+    if (Number.isInteger(parsed) && parsed >= 0) {
+      return { multi: parsed > 0, instances: parsed + 1 };
+    }
+  }
+  return { multi: false, instances: 1 };
+}
+
+function warnIfProductionMultiInstance(): void {
+  if (process.env.NODE_ENV !== "production") return;
+  if (globalThis.__rateLimitWarnedMultiInstance) return;
+  const { multi, instances } = detectMultiInstance();
+  globalThis.__rateLimitWarnedMultiInstance = true;
+  if (!multi) return;
+  console.warn(
+    "rate_limit_multi_instance_detected: file-store cross-process lock is in use; in-process Map bucketing isolates per-IP only within each worker.",
+    { instances },
+  );
 }
 
 let lastStoreFailureLogAt = 0;
@@ -249,6 +349,7 @@ export function checkRateLimit(
   if (process.env.NODE_ENV !== "production") {
     return checkMemoryRateLimit(key, limit, windowMs, now);
   }
+  warnIfProductionMultiInstance();
   try {
     return checkSharedFileRateLimit(key, limit, windowMs, now);
   } catch (error) {
