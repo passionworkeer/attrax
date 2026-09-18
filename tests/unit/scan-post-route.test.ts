@@ -202,6 +202,72 @@ describe("POST /api/scan", () => {
     expect(mockCreateScanStream).not.toHaveBeenCalled();
   });
 
+  it("forwards a body larger than the 8KB peek window, byte for byte (regression)", async () => {
+    // The peek reads at most the first 8KB, then the body must continue to
+    // the upstream intact. This pins byte-exact forwarding past that window —
+    // it catches a prefix being swallowed, duplicated, or reordered.
+    //
+    // It does NOT catch the transport-level stall this replaced: the first
+    // implementation tee()'d the body, read one branch part-way and cancelled
+    // it, which deadlocked against the surviving branch for every real
+    // request over 8KB (a 44KB product photo hung until the client gave up).
+    // That only reproduces against a genuine socket-backed Node request
+    // stream — a Buffer-bodied Request here buffers everything, so the tee
+    // path never contends. The guard for it is the real-HTTP check in
+    // docs/evidence/2026-09-18-concurrency-hardening/.
+    const { POST } = await import("@/app/api/scan/route");
+    const boundary = "----regressionBoundary";
+    // 20KB image part: comfortably past the 8KB peek window.
+    const image = Buffer.alloc(20_000, 0x41);
+    const sent = Buffer.concat([
+      Buffer.from(
+        `--${boundary}\r\nContent-Disposition: form-data; name="category"\r\n\r\ntoy\r\n`,
+      ),
+      Buffer.from(
+        `--${boundary}\r\nContent-Disposition: form-data; name="markets"\r\n\r\nEU,US\r\n`,
+      ),
+      Buffer.from(
+        `--${boundary}\r\nContent-Disposition: form-data; name="images"; filename="big.jpg"\r\nContent-Type: image/jpeg\r\n\r\n`,
+      ),
+      image,
+      Buffer.from(`\r\n--${boundary}--\r\n`),
+    ]);
+
+    const req = new Request("http://localhost/api/scan", {
+      method: "POST",
+      headers: { "content-type": `multipart/form-data; boundary=${boundary}` },
+      body: sent,
+    });
+
+    let forwarded: Buffer | null = null;
+    mockCreateScanStream.mockImplementationOnce(
+      async (input: { body: ReadableStream<Uint8Array> }) => {
+        const reader = input.body.getReader();
+        const chunks: Uint8Array[] = [];
+        for (;;) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          chunks.push(value);
+        }
+        forwarded = Buffer.concat(chunks.map((chunk) => Buffer.from(chunk)));
+        return {
+          sessionId: "scan_big0001",
+          accessToken: "tok_big",
+          status: "processing" as const,
+          pollUrl: "/api/v1/scans/scan_big0001",
+        };
+      },
+    );
+
+    const res = await POST(req);
+
+    expect(res.status).toBe(202);
+    expect(forwarded).not.toBeNull();
+    // Every byte the client sent reaches the upstream, in order — the peek
+    // prefix is replayed rather than swallowed.
+    expect(Buffer.compare(forwarded!, sent)).toBe(0);
+  });
+
   it("rejects a body over the 50MB Content-Length cap (413 REQUEST_TOO_LARGE)", async () => {
     const { POST } = await import("@/app/api/scan/route");
     const req = new Request("http://localhost/api/scan", {
