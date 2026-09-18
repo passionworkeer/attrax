@@ -2,6 +2,25 @@
 
 本项目所有重要修复的根因记录,供未来对账 / post-mortem / 新人上手。
 
+## [Unreleased] - 2026-09-18
+
+**线上实测批次:回归脚本假绿 / 备份从未运行 / nginx 3001 地雷文件 / watchdog CLI 直跑失败**
+
+**背景**
+- 对 twinbuddy.xyz(aliyun-sz)做全链路实测:公网健康 + 真实扫描 + Playwright 生产回归 + 导出端点 + 服务器日志/配置审计。核心链路本身健康(真实扫描 3/3 通过,provider=minimax,source=real),实测挖出的全部是"守卫工具自身已失效"的问题——与 9-17 源审计同构:失败都有记录,没有人看
+
+**修复**
+- **生产回归脚本 UI 漂移 + 退出码假绿**(691a985):`run-production-regression.ts` 的 `selectOption("#blaze-category")` 对 Base UI Select 报 `Element is not a <select>`;市场按钮选中态检测用旧 `bg-white/40` class(现为 `aria-pressed` + CSS Module),永远判未选中会把已选市场点反;条件问题收在 `<details>` 里默认折叠,选项按钮全部不可见;页面有两个 `type="submit"`(页头 CTA 经 `form=` 关联)触发 strict mode violation。且所有用例失败时 `main()` 正常返回、退出码 0——CI/cron 把全挂的回归当绿色。全部修正 + 失败时 exit 1 + 默认 BASE_URL 改 twinbuddy.xyz(旧 wangjianjun.xyz 已随 lighthouse 退役,现 401)
+- **备份 cron 指向不存在的用户**(7fd8bd2):`cron.d/attrax-backup{,-remote}` 以 `ubuntu` 跑,但 aliyun-sz 只有 root/admin;cron 对不存在用户静默跳过,3am/4am 任务从未执行(`/opt/attrax/backups`、`/opt/attrax/logs/attrax-backup.log` 均不存在——脚本首行就会 mkdir,不存在即从未运行)。文档注释"pm2 runs as ubuntu (pm2-ubuntu.service)"描述的是 lighthouse 旧机。cron 用户改 root,`infra-cron-references.test.ts` 允许列表同步 root/admin,手动首跑验证成功(1.7M)。异地备份仍空转(BACKUP_REMOTE_DEST 未配置,单盘风险)
+- **apply-deploy 清 sites-available 3001 地雷**(389ee5c):`/etc/nginx/sites-available/attrax` 是旧手工流程副本、仍写 3001;渲染真值在 sites-enabled/attrax 正规文件,副本不被引用但任何"从 sites-available 恢复"的标准 Debian 操作都会带回 502。[8.5] 渲染后删除(仅当 sites-enabled 非软链),PORTS.md 补记单一真值
+- **watchdog CLI sys.path 引导**(691a985):`python3 scripts/watchdog/xxx.py` 直跑时 `sys.path[0]` 是脚本目录而非仓库根,`from scripts.watchdog...` 直接 ModuleNotFoundError;check_sources / review / auto_ingest 补仓库根引导(生产机 `python3 scripts/watchdog/check_sources.py` 实测踩中,修复后 30/30 healthy)
+- **孤儿 cron 清理**(服务器):`attrax-uptime` 每 5 分钟跑不存在的 `uptime-check.sh`(无 MTA 输出被丢,自 8-10 起静默失败);`attrax-data-rotation` / `attrax-queue-perms` 指向已随 de-RAG 删除的 `data/scan-queue`(2>/dev/null 空转)。全部移除
+
+**部署与验证**
+- 389ee5c tarball 部署(BUILD_ID `Et6wM48xv7j4kP69ApVCJ`):apply-deploy 新 [8.5] 首次实战(重渲染 vhost→3000 + 删地雷 + `nginx -t` + reload + health gate 2 次通过);服务器 git 经 bundle 快进对齐 HEAD
+- vitest 987 / pytest 822 全绿;生产回归 3/3(Anker EU 80 分 56s / 小米水壶 EU 75 分 128s / LEGO US 88 分 153s,全部 source=real);部署前后各一次 API 冒烟扫描通过;导出端点按契约(compliance md 200 / roadmap csv 200 / 无 cookie 401)
+- 遗留观察(未修,产品/配置决策):MiniMax 报告 ~16.4k 字符顶到输出上限后走 repair 有界重试(日志常见 `direct json.loads failed: Unterminated string` → `repaired in one bounded retry`),最终报告 ~12k 字符,功能无损
+
 ## [Unreleased] - 2026-09-17
 
 **法规数据源全量实测审计:35 个源里 15 个实际没在追踪任何东西**

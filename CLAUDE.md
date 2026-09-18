@@ -335,6 +335,17 @@ const SessionIdSchema = z
 
 ## 最近修复
 
+### 2026-09-18 — 线上实测批次（回归脚本假绿 / 备份从未运行 / 3001 地雷文件 / watchdog CLI 直跑失败）
+
+- **生产回归脚本 4 处 UI 漂移 + 退出码假绿**（691a985）：`run-production-regression.ts` 对着旧上传页 UI 写的选择器全部失效——品类选择已改 Base UI Select（非原生 `<select>`）、市场按钮选中态是 `aria-pressed`（非 `bg-white/40` class）、条件问题收在 `<details>` 里默认折叠、页面有两个 `type="submit"`（页头 CTA 经 `form=` 关联 + 表单内 `#scan-submit`）；且全挂时退出码仍为 0（CI 假绿）。全部修正后 3/3 用例通过（56s/128s/153s，source=real）。默认 BASE_URL 从已退役的 `wangjianjun.xyz`（401）改为 `twinbuddy.xyz`
+- **备份从未在 aliyun-sz 上运行过**（7fd8bd2）：`/etc/cron.d/attrax-backup{,-remote}` 以 `ubuntu` 用户跑，但本机只有 root/admin——cron 对不存在用户静默跳过，`/opt/attrax/backups` 与日志目录均不存在（脚本一旦运行必然创建，不存在 = 从未运行）。cron 用户改 root + 守卫测试允许列表同步；手动首跑成功（1.7M tarball）。**异地备份仍未配置**（`BACKUP_REMOTE_DEST` 空，cron 文档已注明单盘风险）
+- **孤儿 cron 清理**（服务器侧）：`attrax-uptime` 每 5 分钟跑不存在的 `uptime-check.sh`（无 MTA 静默失败）；`attrax-data-rotation` / `attrax-queue-perms` 指向已随 de-RAG 删除的 `data/scan-queue`（2>/dev/null 空转）。全部移除
+- **`/etc/nginx/sites-available/attrax` 3001 地雷**（389ee5c）：旧手工流程副本仍写 3001，任何"从 sites-available 恢复"的标准 Debian 操作都会把 502 带回来。apply-deploy [8.5] 渲染后顺手删除（仅当 sites-enabled/attrax 非软链）；PORTS.md 补记 vhost 唯一真值
+- **watchdog CLI 直跑失败**（691a985）：`python3 scripts/watchdog/{check_sources,review,auto_ingest}.py` 文件路径直跑时 `sys.path[0]` 不含仓库根，`ModuleNotFoundError: No module named 'scripts'`（生产机实测踩中）；三个 CLI 补仓库根引导，`-m` 方式不受影响
+- **部署**：389ee5c tarball 上线（BUILD_ID `Et6wM48xv7j4kP69ApVCJ`，apply-deploy [8.5] 首次实战：重渲染 vhost + 删地雷 + health gate 通过）；服务器 git 经 bundle 快进到 7fd8bd2（含 5d19945 防护与全部纠偏文档）
+- **验证**：vitest 987 / pytest 822 全绿；生产回归 3/3；部署前后各一次真实冒烟扫描（provider=minimax、source=real）；`check_sources` 30/30 healthy；导出端点（compliance md / roadmap csv / 401 无 cookie）符合契约
+- **遗留观察**（未修，属产品/配置决策）：MiniMax 报告在 ~16.4k 字符处顶到输出上限后走 repair 重试（日志常见 `direct json.loads failed: Unterminated string` → `repaired in one bounded retry`，最终报告 ~12k 字符，功能无损）；`docs/infra/ALIYUN-SZ-DEPLOY.md` 中残余的 3001 字样均为事故复盘叙述，非指引
+
 ### 2026-09-18 — 全站 502（nginx upstream 端口漂移）+ 端口单一来源防护
 
 - **事故**：全站 502 数小时。`/etc/nginx/sites-enabled/attrax` upstream 写 `127.0.0.1:3001`（照 `docs/infra/ALIYUN-SZ-DEPLOY.md` 旧版"aliyun-sz 端口偏移"约定配的），但 ecosystem 里 nextjs 一直监听 3000——LabMemory 已退役、偏移前提消失且 ecosystem 从未改过。pm2 三进程全 online、直连 200，只有公网 502，极具迷惑性
@@ -500,7 +511,7 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 
 ---
 
-*最后更新：2026-09-17*
+*最后更新：2026-09-18*
 
 <!-- BEGIN:nextjs-agent-rules -->
 
