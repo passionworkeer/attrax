@@ -1,7 +1,7 @@
 limit_req_zone $binary_remote_addr zone=attrax_api:10m rate=10r/s;
 
 upstream attrax_nextjs {
-    server 127.0.0.1:__NEXTJS_PORT__;
+    server 127.0.0.1:__NEXTJS_PORT__ max_fails=3 fail_timeout=30s;
     keepalive 32;
 }
 
@@ -36,6 +36,13 @@ server {
 
     client_max_body_size 50m;
     client_body_timeout  300s;
+
+    # Per-IP concurrent connection cap. Pairs with limit_req (per-IP rate
+    # cap at the location level) to bound total sockets a single client can
+    # hold open. 20 is enough for a real user with long-poll + upload + a
+    # few tabs of asset/report fetches, and well below worker_connections/2
+    # so a single client can't saturate the worker pool.
+    limit_conn attrax_conn 20;
 
     add_header Strict-Transport-Security "max-age=31536000" always;
     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
@@ -83,6 +90,16 @@ server {
     location ~ ^/api/scan(/.*)?$ {
         limit_req zone=attrax_api burst=20 nodelay;
         limit_req_status 429;
+        # H8 hardening: retry transient upstream failures. We currently have
+        # a single upstream (attrax_nextjs); with one server proxy_next_upstream
+        # is a no-op because there is no second target. Setting it anyway is
+        # intentional and future-proof: adding a second backend instance
+        # (e.g. blue/green or pm2 cluster) makes the retry policy take effect
+        # without a config change. max_fails/fail_timeout on the upstream
+        # server line (M9) marks an upstream down after 3 failures in 30s,
+        # so retries to a flapping instance are bounded.
+        proxy_next_upstream error timeout http_502 http_503 http_504;
+        proxy_next_upstream_tries 2;
         proxy_pass http://attrax_nextjs;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
@@ -96,6 +113,11 @@ server {
     location / {
         limit_req zone=attrax_api burst=40 nodelay;
         limit_req_status 429;
+        # See /api/scan for the rationale: single-upstream means retries are
+        # no-ops today, but the directive is set so adding a second backend
+        # does not require a vhost change.
+        proxy_next_upstream error timeout http_502 http_503 http_504;
+        proxy_next_upstream_tries 2;
         proxy_pass http://attrax_nextjs;
         proxy_http_version 1.1;
         proxy_set_header Host $host;

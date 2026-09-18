@@ -4,6 +4,34 @@
 
 ## [Unreleased] - 2026-09-18
 
+**服务器基础设施并发硬化批次:nginx 重试 / 连接限流 / TCP TIME_WAIT / pm2 graceful drain / 备份快照**
+
+**背景**
+- 上一轮线上实测把 nginx vhost 端口、备份 cron、3001 地雷等"工具自身已失效"的问题抓出来后,自然延伸到部署基础设施本身的并发硬化:nginx 默认配置 / sysctl 默认值 / pm2 默认行为都不防"小流量 + 长轮询"这一组合的并发陷阱。RAG long-poll (最多 280s) + 限流是按 r/s 而非并发连接数计,意味着慢客户端 + 大量并发连接可以让 worker 池打满而 `limit_req` 不报警。本次 11 项全部围绕"配置不动也活得好 + 慢客户端打不死",都是离线、零 hot path 风险
+
+**修复(按严重性)**
+- **H8 / proxy_next_upstream 重试**:`docs/infra/nginx-attrax-vhost-prod.conf.template` 在 `/api/scan` 与 `/` location 显式 `proxy_next_upstream error timeout http_502 http_503 http_504; proxy_next_upstream_tries 2;`。当前单 upstream 时 retry 是 no-op(没有第二目标),但**故意**写上,加第二个 backend 时无须改 vhost。`max_fails=3 fail_timeout=30s`(M9) 在 upstream 上先把真抖动的实例标 down、retry 不会无脑打死
+- **H10 / limit_conn 每 IP 20**:`docs/infra/nginx-nginx.conf` 加 `limit_conn_zone $binary_remote_addr zone=attrax_conn:10m;`,vhost server block 加 `limit_conn attrax_conn 20;`。`limit_req` 只卡速率不卡并发连接,慢客户端 / 并行扫描器保持连接不释放就能打满 worker;20 远高于任何真实单用户场景(long-poll + 上传 + 几 tab)、远低于 worker_connections/2
+- **H9 / multi_accept on**:`docs/infra/nginx-nginx.conf` events 块取消注释 `multi_accept on`。epoll + 现代内核下安全,减少 worker wakeup 频率
+- **M11 / sysctl TIME_WAIT**:`docs/infra/sysctl-99-attrax-hardening.conf` 加 `net.ipv4.tcp_tw_reuse = 1` + `net.ipv4.ip_local_port_range = 1024 65535`。RAG 出站连接(LLM/MiniMax/DeepSeek/Anthropic)走完会进 TIME_WAIT ~60s,默认 28k 端口在持续扫描下会耗尽;reuse + 全端口范围保住长轮询 + 流式响应下的出站重连
+- **M9 / 上游 max_fails / fail_timeout**:vhost upstream 行加 `max_fails=3 fail_timeout=30s`。nginx 默认 1 失败 / 10s 太激进,一次瞬时错误就把 upstream 标 down 10s
+- **M10 / fail2ban 不再误抓 5xx**:`docs/infra/fail2ban-filter-attrax-404-probe.conf` 删 `|5[0-9][0-9]`,只留 4xx。正常用户在 nginx reload / healthcheck 自愈期间碰到 502/503/504 会累积失败、24h 封禁——5xx 是服务端失败,不代表探测行为。sensitive-path 探测永远回 4xx,本次只损失"恶意 POST 把服务端搞挂"这一极小场景
+- **M15 / pm2 graceful drain**:`scripts/ecosystem.config.cjs` nextjs 块加 `kill_timeout: 10000`。healthcheck level-3 `pm2 restart nextjs` 在 long-poll 中途触发时,旧进程最多 10s 排空活跃连接(远小于 long-poll 280s 超时),**避免** ECONNRESET。**未加 `wait_ready: true`**:它要求应用主动 `process.send("ready")`,而 Next.js 从不发送(`node_modules/next/dist` 里唯一相关分支被 `NEXT_PRIVATE_WORKER` 挡住,standalone `server.js` 不设置该变量),加上去只会让 pm2 永远等一个不会到来的信号
+- **M16 / logrotate ownership**:`docs/infra/logrotate-attrax` 两处 `su ubuntu ubuntu` → `su root root` + `create 0640 root root`。aliyun-sz 只有 root/admin,ubuntu 用户不存在;原配置下 logrotate 静默跳过。注释更新指向本次实测
+- **M12 / 备份快照 cp -al**:`scripts/backup-data.sh` 在 tar 之前先 `cp -al` 把 `data/backend/{sessions,jobs,uploads}` 硬链接到 `/opt/attrax/backups/.snap-$STAMP/`(O(1) per file,与 live tree 共享 inode),然后 tar 快照而非 live tree,杜绝 RAG workers 写到一半被 tar 读走导致 session JSON 撕裂。tar 命令加 `--exclude='*.tmp' --exclude='*.lock'`。trap EXIT 清理快照
+- **M13 / 备份纳入 sessions/jobs/uploads**:同脚本 ITEMS 显式列这三个目录(经 M12 快照路径)。中间进行中的扫描不再丢
+- **M14 / 异地备份配置文档化**:`scripts/backup-remote.sh` 头部加 .env.example 式 docstring(rsync over SSH / NFS / S3 三种配法 + 安装步骤),日志补一句引导"set BACKUP_REMOTE_DEST in /opt/attrax/.env"。aliyun-sz 仍未配置 `BACKUP_REMOTE_DEST`(单盘风险,继承上一轮观测)
+
+**验证**
+- 本地 `bash -n scripts/backup-data.sh` / `scripts/backup-remote.sh` 语法通过
+- `node -e "require('./scripts/ecosystem.config.cjs')"` 加载成功(在 dev placeholder 模式;生产 `APP_ENV=production` 仍 fail-closed 抛错,不变)
+- nginx/logrotate 二进制本机不可用,只能视觉检查;配置文件已自检 `events {}` / `http {}` / `server {}` / `upstream {}` / `location {}` 块平衡
+- **运行时验证需 aliyun-sz 部署后**:`nginx -t` 必须通过;logrotate 跑 `logrotate -d` 看是否能 rotate;`pm2 restart nextjs` 期间 long-poll 用户不报 ECONNRESET;`/opt/attrax/backups/` 出现 `.snap-*` 目录但 tar 结束后被清理(否则 trap 没生效)
+
+**遗留观察(需上线后第一时间核对)**
+- **BACKUP_REMOTE_DEST 仍未配置**:与上一轮一致,本次只把配置入口文档化
+- **首次备份需实测**:`trap cleanup EXIT` 会在正常退出与 `set -e` 失败退出时都删快照,但仍要确认首跑后 `/opt/attrax/backups/` 无 `.snap-*` 残留,且 tarball 里确实含 `data/backend/{sessions,jobs,uploads}`(`tar -tzf attrax-data-*.tar.gz | grep backend`)
+
 **线上实测批次:回归脚本假绿 / 备份从未运行 / nginx 3001 地雷文件 / watchdog CLI 直跑失败**
 
 **背景**

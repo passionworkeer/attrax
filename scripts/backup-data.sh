@@ -3,15 +3,34 @@ set -euo pipefail
 umask 077
 
 # Attrax daily production data backup (De-RAG architecture)
-# Backs up active .env files, regulation registries, supplements and state databases
-# Keep last 14 backups (rotate)
+# Backs up active .env files, regulation registries, supplements, state
+# databases, and the live runtime state under data/backend/{sessions,jobs,
+# uploads} (mid-pipeline scans).
+# Keep last 14 backups (rotate).
+#
+# M12 hardening: data/backend/* is read live by RAG workers (FileBackend).
+# Tarring live files can produce a torn write — half an evidence manifest
+# or a partially-flushed session JSON. We snapshot via `cp -al` (hardlink
+# the file tree) into /opt/attrax/backups/.snap-$STAMP/, then tar the
+# snapshot. cp -al is O(1) per file and avoids the I/O + space cost of a
+# full copy; the underlying inodes stay shared with the live tree, so new
+# writes to the live dir don't disturb the snapshot until tar has streamed
+# it. *.tmp / *.lock are excluded — they are work-in-progress and would
+# not parse on restore anyway.
 
 BACKUP_DIR=/opt/attrax/backups
 LOGFILE=/opt/attrax/logs/attrax-backup.log
 STAMP=$(date +%Y%m%d-%H%M%S)
 ARCHIVE="$BACKUP_DIR/attrax-data-$STAMP.tar.gz"
+SNAPSHOT="$BACKUP_DIR/.snap-$STAMP"
 mkdir -p "$BACKUP_DIR"
 mkdir -p /opt/attrax/logs
+
+cleanup() {
+  # Snapshot is large and only useful while tar is running. Always remove.
+  rm -rf "$SNAPSHOT" 2>/dev/null || true
+}
+trap cleanup EXIT
 
 log() {
   echo "[$STAMP] $*" | tee -a "$LOGFILE"
@@ -46,10 +65,40 @@ if [ ${#ITEMS[@]} -eq 0 ]; then
   exit 1
 fi
 
-tar czf "$ARCHIVE" "${ITEMS[@]}" 2>> "$LOGFILE" || {
-  log "ERROR: tar failed"
-  exit 2
-}
+# Snapshot the live runtime state dirs via hardlinks (M12).
+# This includes M13 additions: sessions, jobs, uploads.
+SNAPSHOT_ITEMS=()
+for dir in /opt/attrax/data/backend/sessions /opt/attrax/data/backend/jobs /opt/attrax/data/backend/uploads; do
+  if [ -d "$dir" ]; then
+    SNAPSHOT_ITEMS+=("$dir")
+  fi
+done
+
+if [ ${#SNAPSHOT_ITEMS[@]} -gt 0 ]; then
+  mkdir -p "$SNAPSHOT"
+  for src in "${SNAPSHOT_ITEMS[@]}"; do
+    name=$(basename "$src")
+    cp -al "$src" "$SNAPSHOT/$name"
+  done
+  log "snapshot ok: $SNAPSHOT (hardlinked from ${#SNAPSHOT_ITEMS[@]} dirs)"
+  # Replace the live paths in ITEMS with their snapshot equivalents so tar
+  # reads the frozen tree, not the live one.
+  for i in "${!ITEMS[@]}"; do
+    case "${ITEMS[$i]}" in
+      /opt/attrax/data/backend/sessions|/opt/attrax/data/backend/jobs|/opt/attrax/data/backend/uploads)
+        ITEMS[$i]="$SNAPSHOT/$(basename "${ITEMS[$i]}")"
+        ;;
+    esac
+  done
+fi
+
+tar czf "$ARCHIVE" \
+  --exclude='*.tmp' \
+  --exclude='*.lock' \
+  "${ITEMS[@]}" 2>> "$LOGFILE" || {
+    log "ERROR: tar failed"
+    exit 2
+  }
 
 chmod 600 "$ARCHIVE"
 SIZE=$(du -h "$ARCHIVE" | cut -f1)

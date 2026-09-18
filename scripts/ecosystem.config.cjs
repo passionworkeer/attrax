@@ -75,6 +75,17 @@ module.exports = {
       interpreter: "node",
       max_memory_restart: "768M",
       autorestart: true,
+      // Graceful drain: kill_timeout is the SIGTERM→SIGKILL window. Without
+      // it a healthcheck level-3 `pm2 restart nextjs` mid-poll tears down
+      // in-flight long-poll requests with ECONNRESET; with it the old
+      // process gets up to 10s to finish active connections.
+      //
+      // Deliberately NO `wait_ready: true`: it requires the app to call
+      // `process.send("ready")`, and Next.js never does — the only such
+      // branch in node_modules/next/dist is gated on NEXT_PRIVATE_WORKER,
+      // which standalone server.js does not set. Adding it would only leave
+      // pm2 waiting on a signal that never arrives.
+      kill_timeout: 10000,
       env: {
         NODE_ENV: "production",
         PORT: String(PORTS.NEXTJS_PORT),

@@ -10,8 +10,12 @@
 # (FileBackend._append_audit), which makes this rotation its only bound.
 #
 # The global /etc/logrotate.conf sets `su root adm`. Blocks that touch
-# ubuntu-owned files restate `su ubuntu ubuntu` so rotation works from the
+# app-owned files restate `su root root` so rotation works from the
 # app's own ownership rather than relying on root's ability to write there.
+# aliyun-sz deployment runs as root (the previous `su ubuntu ubuntu`
+# referenced the retired lighthouse host where pm2 was installed under
+# a dedicated `pm2-ubuntu` service user; cron then silently skipped these
+# jobs — see CHANGELOG 2026-09-18 batch).
 #
 # Deliberately NOT covered here (other owners):
 #   - /var/log/nginx/*.log, including monitor-events.log -> the distro
@@ -32,8 +36,8 @@
     notifempty
     compress
     delaycompress
-    create 0640 ubuntu ubuntu
-    su ubuntu ubuntu
+    create 0640 root root
+    su root root
 }
 
 # Append-only JSONL audit trail (session ids, evidence/revision decisions).
@@ -50,5 +54,5 @@
     compress
     delaycompress
     copytruncate
-    su ubuntu ubuntu
+    su root root
 }
