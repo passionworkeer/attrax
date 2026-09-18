@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
@@ -7,9 +8,17 @@ import { MARKET_IDS } from "@/lib/types";
 import styles from "./homepage.module.css";
 import { UploadEntryLabel } from "./upload-entry-label";
 
-export function CompliPilotHome() {
-  const { locale, setLocale } = useBlazeLocale();
+export function CompliPilotHome({ initialLocale }: { initialLocale?: "zh" | "en" } = {}) {
+  const { locale: contextLocale, setLocale } = useBlazeLocale();
+  const locale = initialLocale ?? contextLocale;
   const isZh = locale === "zh";
+
+  useEffect(() => {
+    if (initialLocale && initialLocale !== contextLocale) {
+      setLocale(initialLocale);
+    }
+  }, [initialLocale, contextLocale, setLocale]);
+
   const capabilities = isZh
     ? ["图像识别", "风险扫描", "法规溯源", "可解释报告"]
     : ["Visual recognition", "Risk scanning", "Rule traceability", "Explainable reports"];
@@ -25,9 +34,6 @@ export function CompliPilotHome() {
             <Image src="/complipilot/logo.png" alt={isZh ? "规航AI" : "CompliPilot"} width={32} height={32} priority />
           </Link>
           <div className={styles.navLinks}>
-            <Link className={styles.navTextLink} href="/upload">
-              <UploadEntryLabel isZh={isZh} label={isZh ? "开始扫描" : "Start scan"} />
-            </Link>
             <Link className={styles.navTextLink} href="/pricing">
               {isZh ? "产品方案" : "Plans"}
             </Link>
@@ -65,7 +71,7 @@ export function CompliPilotHome() {
           </p>
 
           <div className={`${styles.actions} ${styles.reveal}`}>
-            <Link className={`${styles.primary} ${styles.liquid}`} href="/upload">
+            <Link className={styles.primary} href="/upload">
               <UploadEntryLabel isZh={isZh} label={isZh ? "开始合规检测" : "Start compliance scan"} />
             </Link>
           </div>

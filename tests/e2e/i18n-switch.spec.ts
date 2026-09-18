@@ -29,23 +29,23 @@ import { expect, test } from "@playwright/test";
  */
 
 test.describe("i18n 语言切换", () => {
-  test("/zh 渲染中文副标题", async ({ page }) => {
+  test("/zh 渲染中文标题", async ({ page }) => {
     await page.goto("/zh");
-    await expect(page.getByText("想出海？先烧毁！")).toBeVisible();
+    await expect(page.getByText("先合规，")).toBeVisible();
   });
 
-  test("/en 渲染英文副标题", async ({ page }) => {
+  test("/en 渲染英文标题", async ({ page }) => {
     await page.goto("/en");
-    await expect(page.getByText("Think Before You Expand")).toBeVisible();
+    await expect(page.getByText("Comply first.")).toBeVisible();
   });
 
-  test("/zh 与 /en 文案互斥(zh 页面不出现 en 副标题,en 页面不出现 zh 副标题)", async ({ page }) => {
+  test("/zh 与 /en 文案互斥(zh 页面不出现 en 标题,en 页面不出现 zh 标题)", async ({ page }) => {
     await page.goto("/zh");
-    await expect(page.getByText("想出海？先烧毁！")).toBeVisible();
-    await expect(page.getByText("Think Before You Expand")).toHaveCount(0);
+    await expect(page.getByText("先合规，")).toBeVisible();
+    await expect(page.getByText("Comply first.")).toHaveCount(0);
 
     await page.goto("/en");
-    await expect(page.getByText("Think Before You Expand")).toBeVisible();
-    await expect(page.getByText("想出海？先烧毁！")).toHaveCount(0);
+    await expect(page.getByText("Comply first.")).toBeVisible();
+    await expect(page.getByText("先合规，")).toHaveCount(0);
   });
 });

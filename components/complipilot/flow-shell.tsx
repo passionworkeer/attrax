@@ -17,6 +17,7 @@ type FlowHeaderProps = {
   primaryLabel?: string;
   primaryFormId?: string;
   primaryDisabled?: boolean;
+  hidePrimary?: boolean;
   secondaryHref?: string;
   secondaryLabel?: string;
   statusLabel?: string;
@@ -69,6 +70,7 @@ export function CompliPilotFlowHeader({
   primaryLabel = "开始检测",
   primaryFormId,
   primaryDisabled = false,
+  hidePrimary = false,
   secondaryHref,
   secondaryLabel = "查看演示",
   statusLabel,
@@ -140,19 +142,23 @@ export function CompliPilotFlowHeader({
             </Link>
           ) : null}
 
-          {primaryFormId ? <button
-            type="submit"
-            form={primaryFormId}
-            disabled={primaryDisabled}
-            className={cn(buttonVariants({ size: "lg" }), styles.primaryAction, styles.submitAction)}
-          >
-            {primaryLabel}
-          </button> : <Link
-            href={primaryHref}
-            className={cn(buttonVariants({ size: "lg" }), styles.primaryAction)}
-          >
-            {primaryLabel}
-          </Link>}
+          {!hidePrimary && primaryFormId ? (
+            <button
+              type="submit"
+              form={primaryFormId}
+              disabled={primaryDisabled}
+              className={cn(buttonVariants({ size: "lg" }), styles.primaryAction, styles.submitAction)}
+            >
+              {primaryLabel}
+            </button>
+          ) : !hidePrimary && primaryHref ? (
+            <Link
+              href={primaryHref}
+              className={cn(buttonVariants({ size: "lg" }), styles.primaryAction)}
+            >
+              {primaryLabel}
+            </Link>
+          ) : null}
         </div>
       </div>
     </header>

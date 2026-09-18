@@ -147,14 +147,14 @@ export default function PricingPage() {
           "认证绿色通道（对接实验室 / 认证机构）",
           "企业级多人协作",
           "私有化部署（法规库与产品数据留在内网）",
-          "实时法规监控订阅（当前 /regulations 为静态示例）",
+          "实时法规监控与预警订阅",
         ]
       : [
           "Dedicated support",
           "Certification fast lane (lab / body matchmaking)",
           "Enterprise multi-user collaboration",
           "Private deployment (rule libraries and product data on-prem)",
-          "Live regulation monitoring (current /regulations page is a static demo)",
+          "Live regulation monitoring & alerting subscription",
         ];
 
   return (
@@ -175,7 +175,7 @@ export default function PricingPage() {
 
       <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pt-6">
         <section className="blaze-panel overflow-hidden rounded-[28px] border border-white/8 bg-[linear-gradient(180deg,rgba(15,26,51,0.95),rgba(11,20,38,0.92))] px-8 py-12 text-center shadow-[0_28px_80px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:px-10">
-          <SectionEyebrow>Page 06</SectionEyebrow>
+          <SectionEyebrow>{locale === "zh" ? "方案与定价" : "Plans & Pricing"}</SectionEyebrow>
           <h1 className="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">
             {locale === "zh" ? "选择适合你的合规交付方式" : "Choose your compliance delivery plan"}
           </h1>

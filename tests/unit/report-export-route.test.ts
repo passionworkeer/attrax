@@ -80,4 +80,17 @@ describe("GET /api/report/[sessionId]/[reportType] Route", () => {
     const data = await res.json();
     expect(data.error.code).toBe("UNAUTHORIZED");
   });
+
+  it("returns standard API envelope with 404 when profit reports are disabled", async () => {
+    const req = new NextRequest("http://localhost:3000/api/report/demo/profit");
+    const res = await GET(req, {
+      params: Promise.resolve({ sessionId: "demo", reportType: "profit" }),
+    });
+
+    expect(res.status).toBe(404);
+    const body = await res.json();
+    expect(body.success).toBe(false);
+    expect(body.data).toBeNull();
+    expect(body.error?.code).toBe("REPORT_NOT_AVAILABLE");
+  });
 });

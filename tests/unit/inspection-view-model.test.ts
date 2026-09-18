@@ -65,6 +65,32 @@ it("uses readable model evidence when the API supplies a generic product placeho
   expect(buildInspectionResultViewModel({ result, sessionId: result.sessionId }).product.title).toBe("Anker 535 Charger; Model A2332");
 });
 
+it("rejects prompt leakages ('见electronic_ratings条目') and age marks ('18+') in favor of brand/model", () => {
+  const result = baseResult({
+    productName: "",
+    inspectionObservations: [
+      { observationId: "obs-leak", checkId: "common.nameplate.readability", imageId: "image-1",
+        visibility: "present_readable", observedText: "见electronic_ratings条目", description: "", region: null },
+      { observationId: "obs-brand", checkId: "common.brand_model.visible", imageId: "image-1",
+        visibility: "present_readable", observedText: "LEGO; 76429; 561 pcs/pzs", description: "", region: null },
+    ],
+  });
+  expect(buildInspectionResultViewModel({ result, sessionId: result.sessionId }).product.title).toBe("LEGO; 76429");
+});
+
+it("rejects pure age rating strings in nameplate and falls back to packaging info", () => {
+  const result = baseResult({
+    productName: "unknown",
+    inspectionObservations: [
+      { observationId: "obs-age", checkId: "common.nameplate.readability", imageId: "image-1",
+        visibility: "present_readable", observedText: "18+", description: "", region: null },
+      { observationId: "obs-pack", checkId: "common.packaging.info", imageId: "image-1",
+        visibility: "present_readable", observedText: "Xiaomi Smart Kettle 2 Pro | 1800W", description: "", region: null },
+    ],
+  });
+  expect(buildInspectionResultViewModel({ result, sessionId: result.sessionId }).product.title).toBe("Xiaomi Smart Kettle 2 Pro");
+});
+
 function observation(overrides: Record<string, unknown> = {}) {
   return {
     observationId: "obs-0",

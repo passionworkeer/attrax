@@ -465,7 +465,7 @@ export function buildInspectionResultViewModel(input: {
 
   // ── Product (fallback chain, never undefined) ─────────────────────────────
   const dossier = record(reportPackage.productDossier ?? reportPackage.product_dossier);
-  const specificName = (value: unknown) => /^(product|产品|通用产品|unknown)$/i.test(text(value)) ? "" : text(value);
+  const specificName = (value: unknown) => cleanTitleCandidate(text(value)) ?? "";
   const structuredName =
     specificName(result.productName) ||
     specificName(dossier.productName ?? dossier.product_name) ||
@@ -878,6 +878,48 @@ export function resolveSelectionFromFinding(
 }
 
 /**
+ * Validate and clean a product title candidate.
+ * Rejects prompt directives ("见electronic_ratings条目"), age ratings ("18+"),
+ * placeholders ("unknown", "product"), piece counts ("561 pcs/pzs"),
+ * and deduplicates consecutive repeating words.
+ */
+function cleanTitleCandidate(raw: string | null | undefined): string | null {
+  if (!raw) return null;
+  let t = raw.trim();
+  t = t.replace(/^["'“”‘’]+|["'“”‘’]+$/g, "").trim();
+
+  // Guard against prompt leakage and internal directives
+  if (/^(见.*条目|见.*项|条目|see\s+.*entry|refer\s+to)/i.test(t)) return null;
+
+  // Guard against age markings, warning text, or 1-2 digit isolated numbers
+  if (/^(\d{1,2}\s*\+|\d{1,2}\s*岁.*|\d{1,2}\s*-\s*\d{1,2}|\d{1,2}\s*(?:months?|years?|m|y)\+?|\d{1,2})$/i.test(t)) return null;
+  if (/^(choking hazard|warning|warning:|警告|注意)$/i.test(t)) return null;
+
+  // Guard against piece counts / packaging units
+  if (/^(?:\d+\s*)?(?:pcs|pzs|pieces|pièces|items)(?:\/(?:pcs|pzs|pieces|pièces|items))?$/i.test(t)) return null;
+
+  // Guard against placeholders
+  if (/^(product|products|unknown|null|undefined|none|n\/a|无|暂无|待确认|通用产品|合规检测|铭牌|readability|label)$/i.test(t)) return null;
+
+  // Guard against length bounds
+  if (t.length < 2 || t.length > 80) return null;
+
+  // Deduplicate adjacent repeated tokens e.g. "Xiaomi Xiaomi" or "米家 米家"
+  const tokens = t.split(/\s+/);
+  if (tokens.length >= 2) {
+    const deduped: string[] = [];
+    for (const tok of tokens) {
+      if (deduped.length === 0 || deduped[deduped.length - 1].toLowerCase() !== tok.toLowerCase()) {
+        deduped.push(tok);
+      }
+    }
+    t = deduped.join(" ");
+  }
+
+  return t;
+}
+
+/**
  * Extract a high-confidence product name from observations when top-level productName is empty.
  * Scans all observations (across multiple images) rather than stopping at the first empty one.
  */
@@ -902,20 +944,23 @@ function extractProductTitleFromObservations(observations: ObservationVM[]): str
           !s.toLowerCase().includes("building set") &&
           !s.toLowerCase().includes("ensemble") &&
           !s.toLowerCase().includes("set de") &&
-          !s.toLowerCase().includes("pcs"),
+          !s.toLowerCase().includes("pcs") &&
+          cleanTitleCandidate(s) !== null,
       );
       if (filtered.length >= 2) {
         const brand = filtered[0];
         const modelSeg = filtered.slice(1).find((s) => /^\d{4,6}$/.test(s) || /^[A-Z0-9-]{4,10}$/i.test(s));
         if (modelSeg) {
           const rest = filtered.filter((s) => s !== brand && s !== modelSeg && !s.toLowerCase().includes("wizarding"));
-          return `${brand} ${modelSeg}${rest.length > 0 ? ` (${rest.slice(0, 2).join(" ")})` : ""}`;
+          const cand = cleanTitleCandidate(`${brand} ${modelSeg}${rest.length > 0 ? ` (${rest.slice(0, 2).join(" ")})` : ""}`);
+          if (cand) return cand;
         }
-        return filtered.slice(0, 3).join(" ");
+        const cand = cleanTitleCandidate(filtered.slice(0, 3).join(" "));
+        if (cand) return cand;
       }
     }
 
-    // Pattern B: Prefix title before "Name:" / "品名:" / "型号:" (e.g. Xiaomi Smart Kettle 2 Pro ... Name: Electric Kettle Model: MJYSH01-A)
+    // Pattern B: Prefix title before "Name:" / "品名:" / "型号:"
     const prefixWithNameMatch = nameplateRaw.match(
       /^(.*?)(?:\s*(?:\.\.\.|[,\n\r|])\s*)?(?:Name|品名|名称)[:：]\s*([^|,\n\r]+).*?(?:Model|型号)[:：]\s*([A-Za-z0-9_-]+)/i,
     );
@@ -923,10 +968,12 @@ function extractProductTitleFromObservations(observations: ObservationVM[]): str
       const prefix = prefixWithNameMatch[1].trim();
       const cleanName = prefixWithNameMatch[2].trim();
       const cleanModel = prefixWithNameMatch[3].trim();
-      if (prefix.length >= 3 && prefix.length <= 60 && !prefix.toLowerCase().startsWith("name")) {
-        return prefix;
+      const candPrefix = cleanTitleCandidate(prefix);
+      if (candPrefix && candPrefix.length >= 3 && !candPrefix.toLowerCase().startsWith("name")) {
+        return candPrefix;
       }
-      return `${cleanName} (${cleanModel})`;
+      const candNamed = cleanTitleCandidate(`${cleanName} (${cleanModel})`);
+      if (candNamed) return candNamed;
     }
 
     // Pattern C: "Anker 535 Charger (65W) 充电器 型号: A2332"
@@ -936,40 +983,44 @@ function extractProductTitleFromObservations(observations: ObservationVM[]): str
     if (modelPrefixMatch) {
       const pName = modelPrefixMatch[1].trim();
       const mName = modelPrefixMatch[2].trim();
-      if (pName.length >= 2 && pName.length <= 60) {
-        return pName.includes(mName) ? pName : `${pName} ${mName}`;
-      }
-      return mName;
-    }
-
-    // Pattern D: first meaningful phrase before "输入:" or newline
-    const firstPhrase = nameplateRaw.split(/(?:输入|input|output|输出|rated|额定|made in|制造|sn|s\/n|[\r\n|]|\.\.\.)/i)[0].trim();
-    if (firstPhrase && firstPhrase.length >= 3 && firstPhrase.length <= 50) {
-      return firstPhrase;
+      const cand = cleanTitleCandidate(pName.includes(mName) ? pName : `${pName} ${mName}`);
+      if (cand) return cand;
+      const candModel = cleanTitleCandidate(mName);
+      if (candModel) return candModel;
     }
   }
 
-  // 2. Check common.packaging.info (e.g. "Xiaomi Smart Kettle 2 Pro | 1800W...")
-  const packRaw = getObsText("common.packaging.info");
-  if (packRaw) {
-    const firstPart = packRaw.split(/[|,\n\r]/)[0].trim();
-    if (firstPart && firstPart.length >= 3 && firstPart.length <= 50) {
-      return firstPart;
-    }
-  }
-
-  // 3. Check common.brand_model.visible (e.g. "LEGO; 76429; 561 pcs/pzs")
+  // 2. High-confidence brand & model extraction (e.g. "LEGO; 76429; 561 pcs/pzs")
   const brandRaw = getObsText("common.brand_model.visible");
   if (brandRaw) {
     const parts = brandRaw
-      .split(/[,\n\r;/]/)
+      .split(/[,\n\r;]/)
       .map((p) => p.trim())
-      .filter((p) => p && !p.toLowerCase().includes("pcs"));
+      .filter((p) => p && !/^(?:\d+\s*)?(?:pcs|pzs|pieces|pièces)(?:\/(?:pcs|pzs|pieces|pièces))?$/i.test(p) && cleanTitleCandidate(p) !== null);
     if (parts.length > 0) {
-      const combined = parts.slice(0, 2).join("; ");
-      if (combined.length >= 3 && combined.length <= 50) {
+      const combined = cleanTitleCandidate(parts.slice(0, 2).join("; "));
+      if (combined) {
         return combined;
       }
+    }
+  }
+
+  // 3. Check common.packaging.info (e.g. "Xiaomi Smart Kettle 2 Pro | 1800W...")
+  const packRaw = getObsText("common.packaging.info");
+  if (packRaw) {
+    const firstPart = packRaw.split(/[|,\n\r]/)[0].trim();
+    const cand = cleanTitleCandidate(firstPart);
+    if (cand) {
+      return cand;
+    }
+  }
+
+  // 4. Fallback: first phrase from nameplateRaw before electrical specs
+  if (nameplateRaw) {
+    const firstPhrase = nameplateRaw.split(/(?:输入|input|output|输出|rated|额定|made in|制造|sn|s\/n|[\r\n|]|\.\.\.)/i)[0].trim();
+    const cand = cleanTitleCandidate(firstPhrase);
+    if (cand) {
+      return cand;
     }
   }
 

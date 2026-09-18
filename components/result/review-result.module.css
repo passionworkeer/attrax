@@ -197,3 +197,58 @@
   .legalLinks { align-items:flex-start; }
   .legalLinks strong { width:100%; }
 }
+
+.collapsiblePanel {
+  border: 1px solid rgba(184, 211, 223, 0.6) !important;
+  border-radius: 16px !important;
+  background: rgba(220, 236, 245, 0.95) !important;
+  color: #173d50 !important;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  padding: 0 !important;
+}
+.collapsiblePanel:hover {
+  background: rgba(230, 242, 249, 1) !important;
+  border-color: rgba(7, 111, 137, 0.45) !important;
+  box-shadow: 0 4px 18px rgba(7, 111, 137, 0.1) !important;
+}
+.collapsibleSummary {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px !important;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  font-weight: 650;
+  font-size: 15px;
+  color: #14465c !important;
+  background: transparent;
+  min-height: 52px !important;
+}
+.collapsibleSummary::-webkit-details-marker {
+  display: none;
+}
+.collapsibleTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.collapsibleChevron {
+  transition: transform 0.2s ease;
+  color: #076f89;
+  flex-shrink: 0;
+}
+.collapsiblePanel[open] > .collapsibleSummary .collapsibleChevron {
+  transform: rotate(90deg);
+}
+.collapsibleHint {
+  font-size: 13px;
+  font-weight: 400;
+  color: #486e82;
+  margin-left: 12px;
+}
+.collapsibleBody {
+  padding: 4px 22px 22px;
+  border-top: 1px solid rgba(184, 211, 223, 0.4);
+}

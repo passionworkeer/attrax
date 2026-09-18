@@ -1,10 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { startTransition, useEffect, useRef, useState } from "react";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useBlazeLocale } from "@/components/blaze-hawks/locale";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { GlowPill, SectionEyebrow } from "@/components/blaze-hawks/ui";
 import {
   CompliPilotFlowBackdrop,
@@ -21,7 +20,6 @@ import {
   isDisplayableTerminalStatus,
   useScanPolling,
 } from "@/lib/hooks/useScanPolling";
-import { cn } from "@/lib/utils";
 import { MARKET_IDS, type Market } from "@/lib/types";
 import waitingStyles from "./waiting.module.css";
 import brightFlow from "@/components/complipilot/bright-flow.module.css";
