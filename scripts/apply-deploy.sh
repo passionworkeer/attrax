@@ -177,6 +177,13 @@ pm2 startOrRestart "${REPO_DIR}/scripts/ecosystem.config.cjs" --only nextjs 2>&1
 log "=== [8.5] render + reload nginx vhost ==="
 if [ -w "$(dirname "${LIVE_VHOST}")" ]; then
   bash "${RENDER_SCRIPT}" --out "${LIVE_VHOST}"
+  # 清掉旧手工流程遗留的 /etc/nginx/sites-available/attrax（2026-09-18 生产实测
+  # 发现它仍写着 3001——任何"从 sites-available 恢复"的标准 Debian 操作都会把
+  # 502 带回来）。渲染产物是 sites-enabled/attrax 正规文件、不依赖它，直接删除。
+  if [ -e /etc/nginx/sites-available/attrax ] && [ ! -L "${LIVE_VHOST}" ]; then
+    rm -f /etc/nginx/sites-available/attrax
+    log "  removed stale /etc/nginx/sites-available/attrax (unused 3001 leftover)"
+  fi
   nginx -t
   nginx -s reload && log "  nginx reloaded (upstream = ports.env.NEXTJS_PORT)"
 else
