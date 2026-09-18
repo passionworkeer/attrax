@@ -73,14 +73,16 @@ PROMPT = """你是产品视觉取证助手。只记录图片中可观察到的�
     }
   ]
 }
-只对**视觉上能定位**的问题输出 region；纯文本类问题（如"未提供说明书"）不要写 region。
-如果图片中未发现明显的视觉合规问题，issues 留空数组 []。
 
-硬性规则：
-- “图片未展示/看不清标志”只写入 unreadable_or_missing_evidence，绝不能写成“缺少认证”或“不合规”。
+硬性规则（双向对齐不同模型的偏差）：
+- "图片未展示/看不清标志"只写入 unreadable_or_missing_evidence，绝不能写成"缺少认证"或"不合规"。
 - 不得由充电盒、电池仓或 USB 接口推断为充电宝、电源适配器或移动电源；宁可使用更宽泛的产品类型。
-- 只有完整、清晰可见的标志才可写入 visible_certification_marks；文字提及或猜测不算可见标志。
-- 不确定的产品类型使用“无法识别具体产品类型”，并在 questions_needed 中说明需要哪张补拍图。"""
+- 只有完整、清晰可见的标志才可写入 visible_certification_marks 和 visible_marks；文字提及或猜测不算可见标志。
+  关键：宁可不写也不要推测——只写你在这张图的像素里实际看到的标志图形/文字。如果标志本身模糊、仅被部分遮挡、或你对其真实性有任何怀疑，不要写入。
+- 产品类型识别：能从外形、接口形状、按钮位置、显示屏、连接方式等物理特征推断时，给出最具体的产品类型（如"墙壁充电器"、"便携式蓝牙耳机"、"智能电热水壶"），而不是直接说"无法识别"。只有在完全没有可见特征、或多种产品类型无法区分时，才用"无法识别具体产品类型"。
+- 不确定的产品类型使用"无法识别具体产品类型"，并在 questions_needed 中说明需要哪张补拍图。
+- visible_marks 每个元素只写一个标志；不得用整块铭牌作为多个标志的共同框。
+- bbox 是归一化坐标（0.0-1.0），只有肉眼可定位的标志才填；看不清的位置不要乱填坐标。"""
 
 # ── Checklist observation prompt (plan 2026-09-13 §5 + §7.1 step 3) ─────────
 # The checklist path replaces free-form issue emission for categories that
@@ -118,20 +120,24 @@ CHECKLIST_PROMPT_TEMPLATE = """你是产品视觉取证助手。对下面列出�
   ]
 }}
 
-硬性规则：
+硬性规则（双向对齐不同模型的偏差）：
 - visibility 只能取上面五个值；清单里每一项都必须有一条 observation，不知道的用 not_in_view。
-- bbox 是归一化坐标（0.0-1.0），只有**肉眼可定位**的观察才填 bbox；not_in_view 的项 bbox 为 null。
+- bbox 是归一化坐标（0.0-1.0），只有**肉眼可定位**的观察才填 bbox；not_in_view 的项 bbox 为 null。模糊或仅有部分可见的项，bbox 也填 null，宁可不填也不要猜坐标。
 - absent_in_visible_scope 仅当完整标签区域清晰可见、但清单期望的字段确实未出现时使用；它不是"产品缺少该标识"的结论。
-- 对 semantic=hazard_presence 的外观缺陷/尖锐/磁体绳带检查：present_readable 表示清晰看到了危险或缺陷本身；区域清晰且未发现异常时必须用 absent_in_visible_scope。不得把“表面平整、无破损”标成缺陷 present_readable；也不要因为没有缺陷而用 not_in_view。
+- 对 semantic=hazard_presence 的外观缺陷/尖锐/磁体绳带检查：present_readable 表示清晰看到了危险或缺陷本身；区域清晰且未发现异常时必须用 absent_in_visible_scope。不得把"表面平整、无破损"标成缺陷 present_readable；也不要因为没有缺陷而用 not_in_view。
 - 不得推断被遮挡/内部部件的属性；不得输出法规 ID 或合规结论。
-- 只有完整、清晰可见的标志才可写入 visible_certification_marks。
+- 只有完整、清晰可见的标志才可写入 visible_certification_marks 和 visible_marks。关键：宁可不写也不要推测——只写你在这张图的像素里实际看到的标志图形/文字。如果标志本身模糊、被部分遮挡、或你对其真实性有任何怀疑，不要写入。
 - 对 common.certification_marks.visible：仍在 observations 中返回一条总体观察；同时把 CE、FCC、UKCA、CCC、RoHS、WEEE（划叉垃圾桶）、回收、双重绝缘、室内使用、警告三角形等每个清晰可见标志分别写入 visible_marks。每个 visible_marks 元素只包含一个标志，并给出紧贴该标志的 bbox；不得使用整块铭牌作为多个标志的共同框。若一个标志也看不清，visible_marks 返回空数组。
+- 产品类型识别：能从外形、接口、按钮、显示屏等物理特征推断时，给出最具体的产品类型（如"墙壁充电器"、"便携式蓝牙耳机"），而不是直接说"无法识别"。只有在完全没有可见特征时才用"无法识别具体产品类型"。
 """
 
 # Bump when PROMPT / CHECKLIST_PROMPT_TEMPLATE semantics change — the
 # observation cache keys on this so stale analyses never mix with new
 # prompt behavior (plan §10.3: 图像观察按 hash＋模型＋Prompt 版本缓存).
-VISION_PROMPT_VERSION = "vision-prompt/v6-hazard-semantics-2026-09-16"
+# v7-hallucination-balanced-2026-09-18: 双向对齐 MiniMax/DeepSeek 的偏差
+#   - 对所有模型：宁可不写也不要推测 visible_marks
+#   - 对保守模型：鼓励从物理特征推断产品类型，不直接说"无法识别"
+VISION_PROMPT_VERSION = "vision-prompt/v7-hallucination-balanced-2026-09-18"
 
 _analyzer_instance = None
 _is_injected = False
