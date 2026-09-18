@@ -130,7 +130,14 @@ def test_generate_report_package_fallback_is_validated(monkeypatch):
     assert validated.auditMetadata.schemaVersion == "report-package/v1"
 
 
-def test_generate_report_package_caps_default_output_for_interactive_latency(monkeypatch):
+def test_generate_report_package_default_max_tokens_for_extended_output(monkeypatch):
+    """Primary provider default is 8192 tokens (~14000 chars of headroom).
+
+    Bumped from 6144 in 2026-09-18 so MiniMax can emit longer reports
+    when the prompt carries multi-market / KB-article inputs; the
+    prompt's "12000 chars" ceiling is still enforced via the budget
+    contract at the top of user_prompt.
+    """
     _clear_llm_env(monkeypatch)
     gen = ReportGenerator(api_key="configured")
     seen = {}
@@ -148,10 +155,14 @@ def test_generate_report_package_caps_default_output_for_interactive_latency(mon
         chunks=[{"id": "r1", "content": "Article 1 safety", "doc_name": "LVD"}],
     )
 
-    assert seen["max_tokens"] == 6144
+    assert seen["max_tokens"] == 8192
+    # Closing contract: warn model that budget is 8192 tokens / ~14000 chars
+    assert "8192 tokens" in seen["prompt"]
+    assert "约 14000 字符" in seen["prompt"]
+    assert "先闭合 JSON" in seen["prompt"]
+    # Per-field ceiling remains (defensive against runaway output)
     assert "12000 个字符以内" in seen["prompt"]
     assert "每条 citation 必须有 claim" in seen["prompt"]
-    assert "优先保证所有 JSON 字段闭合" in seen["prompt"]
 
 
 def test_generate_report_package_caps_qwen_output_to_finish_interactively(monkeypatch):
