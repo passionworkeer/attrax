@@ -43,6 +43,22 @@ def _isolated_vision_cache(tmp_path, monkeypatch):
 
 
 @pytest.fixture(autouse=True)
+def _reset_lifecycle_shutdown_flag():
+    """The M2 shutdown flag is process-global state.
+
+    A test that runs the app's real lifespan (``TestClient`` startup +
+    shutdown, e.g. test_api_smoke) leaves the flag set for the rest of the
+    process, which would make every later retry/degradation test abort its
+    retries. Clear it around each test so modules stay order-independent.
+    """
+    from rag_service import lifecycle
+
+    lifecycle.reset_shutdown()
+    yield
+    lifecycle.reset_shutdown()
+
+
+@pytest.fixture(autouse=True)
 def _disable_live_vision_fallback(monkeypatch):
     """Keep unit tests off the live DeepSeek fallback endpoints.
 

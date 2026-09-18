@@ -236,6 +236,32 @@ def test_request_revision_is_idempotent(completed):
     assert second["revision"] == first["revision"]
 
 
+def test_request_revision_is_idempotent_after_the_job_completes(completed):
+    """job 完成后被删除，同一 intent 的迟到重试仍必须是 no-op。
+
+    job 记录只覆盖「还没跑完」这一段；完成的 job 会被删掉，排重只能靠
+    audit log —— 否则用户的一次点击在完成后再重试一次，就会再付一次
+    完整的 LLM 扫描。
+    """
+    backend, service, created = completed
+
+    async def scenario():
+        first = service.request_revision(
+            created.session_id, created.access_token, idempotency_key="rev-late"
+        )
+        # Job 完成时会被删掉（_run_job 的收尾路径就是 delete_job）。
+        backend.delete_job(first["jobId"])
+        second = service.request_revision(
+            created.session_id, created.access_token, idempotency_key="rev-late"
+        )
+        return first, second
+
+    first, second = asyncio.run(scenario())
+    assert first["status"] == "queued"
+    assert second["status"] == "already_queued"
+    assert second["revision"] == first["revision"]
+
+
 def test_append_evidence_enforces_upload_limit(completed):
     _, service, created = completed
     with pytest.raises(ValueError):

@@ -22,6 +22,7 @@ from rag_service.parser.docx_parser import _escape_prompt_injection, parse_docx
 
 from ..config import ALLOWED_MARKETS as _ALLOWED_MARKETS_SET
 from ..config import MAX_MARKETS_PER_SCAN as _MAX_MARKETS_PER_SCAN
+from ..config import settings as _settings
 
 _ALLOWED_MARKETS = _ALLOWED_MARKETS_SET
 _DOCUMENT_CHUNK_CHARS = 8_000
@@ -51,6 +52,16 @@ class ScanUnauthorized(ScanServiceError):
 
 class ScanNotReady(ScanServiceError):
     code = "NOT_READY"
+
+
+class ScanCapacityExceeded(ScanServiceError):
+    """In-flight scan bound reached — the submission must be retried later.
+
+    Raised by :meth:`ScanService.create_scan` before any bytes are written;
+    the API layer maps it to 503 + Retry-After (M1, 2026-09-18).
+    """
+
+    code = "CAPACITY_EXCEEDED"
 
 
 class _RetryableScanResult(Exception):
@@ -198,6 +209,13 @@ def _nested_string(source: Mapping[str, Any], *keys: str) -> str:
 
 
 class ScanService:
+    # M6 (2026-09-18): resume staggering. After an outage every recoverable
+    # job used to be spawned in one burst, occupying the whole worker pool
+    # and starving newly-submitted scans. Recovery now spawns one batch of
+    # ``_resume_batch_size`` jobs per wake-up, with this pause between
+    # batches, so a big backlog ramps up instead of landing at once.
+    _RESUME_STAGGER_SECONDS = 0.5
+
     def __init__(
         self,
         backend: ScanBackend,
@@ -207,6 +225,7 @@ class ScanService:
         retry_base_seconds: float = 2.0,
         lease_seconds: int = 600,
         session_ttl_hours: int = 24,
+        max_in_flight_scans: int | None = None,
     ):
         self.backend = backend
         self.runner = runner
@@ -214,6 +233,19 @@ class ScanService:
         self.retry_base_seconds = max(0.0, retry_base_seconds)
         self.lease_seconds = max(30, lease_seconds)
         self.session_ttl_hours = max(1, session_ttl_hours)
+        # M1 (2026-09-18): admission control. Every accepted scan holds one
+        # in-flight slot from creation until it reaches a terminal state
+        # (ready / degraded / failed) or is deleted — so the bound covers
+        # queued + running work, not just the executor pool. Without it a
+        # burst of submissions queues in the asyncio backlog and every one
+        # of them eventually hits the 280s scan timeout. The default is 2x
+        # the worker pool (one queue length of slack); main.py passes it
+        # explicitly at the composition root.
+        if max_in_flight_scans is None:
+            max_in_flight_scans = _settings.scan_worker_concurrency * 2
+        self.max_in_flight_scans = max(1, int(max_in_flight_scans))
+        self._resume_batch_size = max(1, int(_settings.scan_worker_concurrency))
+        self._admitted_sessions: set[str] = set()
         self._tasks: set[asyncio.Task[None]] = set()
         self._session_tasks: dict[str, asyncio.Task[None]] = {}
 
@@ -227,9 +259,20 @@ class ScanService:
             raise ValueError("unsupported target market")
 
         self.backend.purge_expired_sessions()
+        # M1: reject fast when the in-flight bound is already reached. This
+        # runs before any upload bytes are written and before the job is
+        # persisted, so a rejected submission costs no disk I/O; the API
+        # layer maps it to 503 + Retry-After instead of queueing it behind a
+        # backlog that would only end in timeouts.
+        if len(self._admitted_sessions) >= self.max_in_flight_scans:
+            raise ScanCapacityExceeded(
+                f"{len(self._admitted_sessions)}/{self.max_in_flight_scans} scans in flight"
+            )
         session_id = f"scan_{uuid.uuid4().hex}"
         job_id = f"job_{uuid.uuid4().hex}"
         access_token = secrets.token_urlsafe(32)
+        # The slot is held from here until a terminal state (or deletion).
+        self._admitted_sessions.add(session_id)
         session = ScanSession.new(
             session_id=session_id,
             access_token_hash=_token_hash(access_token),
@@ -273,10 +316,21 @@ class ScanService:
                 }
             )
         except Exception:
+            self._admitted_sessions.discard(session_id)
             self.backend.delete_session(session_id)
             raise
         self._spawn(job_id, session_id)
         return CreatedScan(session_id=session_id, access_token=access_token)
+
+    def _release_admission(self, session_id: str) -> None:
+        """Return the in-flight slot held by ``session_id`` (idempotent).
+
+        Called at every terminal outcome of a scan (completed, failed,
+        deleted, or its persisted state vanished). ``set.discard`` is a
+        single GIL-atomic operation, so the sync (threadpool) DELETE route
+        can call this safely; nothing iterates the set.
+        """
+        self._admitted_sessions.discard(session_id)
 
     def _track_task(
         self,
@@ -312,8 +366,13 @@ class ScanService:
         current = self._session_tasks.get(session_id)
         if current and not current.done():
             return
+        # M1: every spawn keeps the session's in-flight slot held. Recovered
+        # (post-restart) and revision jobs never passed through the admission
+        # check, so they claim their slot here — the bound must track real
+        # work, not only newly-submitted scans.
+        self._admitted_sessions.add(session_id)
         self._track_task(
-            asyncio.create_task(self._run_job(job_id)),
+            asyncio.create_task(self._run_job(job_id, session_id)),
             session_id=session_id,
         )
 
@@ -333,15 +392,38 @@ class ScanService:
         self._track_task(asyncio.create_task(retry_later()), session_id=job.session_id)
 
     def resume_pending(self) -> None:
+        """Recover persisted work after a restart (M6: staggered).
+
+        Spawning every recoverable job at once after an outage saturates the
+        whole worker pool and starves newly-submitted scans. Recovery runs
+        as a background task that spawns one batch of
+        ``_resume_batch_size`` jobs per wake-up: a normal restart (a handful
+        of jobs) waits nothing, while a large backlog ramps up. Recovered
+        jobs claim their in-flight slot at spawn time (M1), so new
+        submissions are rejected while a backlog drains instead of piling up
+        behind it.
+        """
         self.backend.purge_expired_sessions()
         now = utc_now()
-        for job in self.backend.list_recoverable_jobs():
-            self._spawn(job.job_id, job.session_id)
-        # 捡回 retry delay 期间被重启的 job:retry_later asyncio task 已丢失,
-        # next_run_at 还在未来 -> list_recoverable_jobs 不返回 -> 需重新安排 delayed spawn
-        for job in self.backend.list_pending_retry_jobs():
-            delay = max(0.0, (job.next_run_at - now).total_seconds())
-            self._schedule_retry(job, delay)
+        recoverable = self.backend.list_recoverable_jobs()
+        pending_retry = self.backend.list_pending_retry_jobs()
+        if not recoverable and not pending_retry:
+            return
+
+        async def staggered_resume() -> None:
+            for index, job in enumerate(recoverable):
+                if index and index % self._resume_batch_size == 0:
+                    await asyncio.sleep(self._RESUME_STAGGER_SECONDS)
+                self._spawn(job.job_id, job.session_id)
+            # 捡回 retry delay 期间被重启的 job:retry_later asyncio task 已丢失,
+            # next_run_at 还在未来 -> list_recoverable_jobs 不返回 -> 需重新安排 delayed spawn
+            for job in pending_retry:
+                delay = max(0.0, (job.next_run_at - now).total_seconds())
+                self._schedule_retry(job, delay)
+
+        # Tracked like any other work: wait_for_idle() (and the shutdown
+        # drain) must account for recovery that has not spawned yet.
+        self._track_task(asyncio.create_task(staggered_resume()))
 
     async def wait_for_idle(self) -> None:
         while self._tasks:
@@ -403,6 +485,12 @@ class ScanService:
         if task and not task.done():
             task.cancel()
         self.backend.delete_session(session_id)
+        # M1: the session is gone — return its in-flight slot immediately,
+        # whether the cancelled task gets to run its own release or not (a
+        # retry_later task cancelled during its sleep would otherwise leave
+        # the slot held forever). This route is sync (threadpool), so the
+        # release is a bare GIL-atomic set.discard.
+        self._release_admission(session_id)
         self.backend.append_audit({"event": "scan_deleted", "sessionId": session_id})
 
     # ── Evidence supplementation + revision re-run (plan §5.3, J10) ────────
@@ -439,8 +527,21 @@ class ScanService:
 
         key = (idempotency_key or "").strip()
         if key:
-            marker = f"evidence:{session_id}:{key}"
-            if self.backend.audit_event_exists(marker):
+            # H11: atomic check + append on the marker line. Holding the
+            # backend lock across the audit_event_exists read and the append
+            # write means two concurrent submissions with the same key
+            # cannot both pass the check and both store files.
+            already = self.backend.check_and_append_audit_marker(
+                marker=f"evidence:{session_id}:{key}",
+                payload={
+                    "sessionId": session_id,
+                    "idempotencyKey": key,
+                    "count": 0,
+                    "totalUploads": len(self.backend.list_uploads(session_id)),
+                    "phase": "short_circuit",
+                },
+            )
+            if already:
                 return {
                     "status": "already_applied",
                     "storedCount": 0,
@@ -463,9 +564,12 @@ class ScanService:
                     "size": record.size,
                 }
             )
+        # The marker was already atomically reserved above; append a second
+        # audit line that records the actual stored count + upload ids so
+        # observability tooling can still see what happened in this call.
         self.backend.append_audit(
             {
-                "event": "evidence_appended" if not key else marker,
+                "event": "evidence_appended",
                 "sessionId": session_id,
                 "idempotencyKey": key or None,
                 "count": len(stored),
@@ -494,10 +598,21 @@ class ScanService:
 
         key = (idempotency_key or "").strip()
         marker = f"revision:{session_id}:{key}" if key else None
-        if marker and self.backend.audit_event_exists(marker):
-            current = self.backend.get_session(session_id)
-            revision = self._next_revision(current or session)
-            return {"status": "already_queued", "revision": revision}
+        # H12: two sources, because each covers a window the other cannot.
+        #
+        # The job record is written BEFORE the audit append, so a crash
+        # between save_job and append_audit can no longer orphan a duplicate
+        # job — and it also covers a job that is mid-run with a live lease,
+        # which no state-scoped listing would return.
+        #
+        # The audit log outlives the job: a completed revision deletes its
+        # job file, so a late retry of the same intent would otherwise look
+        # new and pay for a second full scan.
+        if marker and (
+            self.backend.find_job_by_marker(marker)
+            or self.backend.audit_event_exists(marker)
+        ):
+            return {"status": "already_queued", "revision": self._next_revision(session)}
 
         revision = self._next_revision(session)
         job_id = f"job_{uuid.uuid4().hex}"
@@ -508,7 +623,10 @@ class ScanService:
         # once on the upload page and stay true for the same product.
         query, product = self._revision_job_fields(session)
         declared_facts = self._revision_declared_facts(session)
-        self.backend.save_job(
+        # Atomic check-again-and-write: the pre-checks above are a fast path,
+        # but only this one closes the window where two same-key requests both
+        # see "no job yet" and both queue one.
+        already = self.backend.save_job_if_marker_absent(
             ScanJob.new(
                 job_id=job_id,
                 session_id=session_id,
@@ -518,10 +636,15 @@ class ScanService:
                 markets=list(session.markets),
                 upload_ids=upload_ids,
                 declared_facts=declared_facts,
+                idempotency_marker=marker,
             )
         )
-        # The revision job carries its own marker in last_error so a crash
-        # between save_job and the audit append can't orphan duplicate jobs.
+        if already is not None:
+            return {"status": "already_queued", "revision": self._next_revision(session)}
+        # Audit append is secondary (the job record above is the source of
+        # truth for "this revision has already been queued"). It also outlives
+        # the job, so it is what makes a late retry of a COMPLETED intent a
+        # no-op instead of a second paid scan.
         self.backend.append_audit(
             {
                 "event": marker or "revision_requested",
@@ -583,9 +706,12 @@ class ScanService:
                 out[key_text] = value_text
         return out
 
-    async def _run_job(self, job_id: str) -> None:
+    async def _run_job(self, job_id: str, session_id: str) -> None:
         existing = self.backend.get_job(job_id)
         if existing is None:
+            # The job record is gone (already completed or deleted) — nothing
+            # is in flight for this session any more.
+            self._release_admission(session_id)
             return
         if existing.attempts >= self.max_attempts and existing.state != "running":
             self._mark_dead(existing, "SCAN_MAX_ATTEMPTS_EXCEEDED")
@@ -593,20 +719,27 @@ class ScanService:
 
         job = self.backend.claim_job(job_id, lease_seconds=self.lease_seconds)
         if job is None:
+            # Another worker holds the lease and owns the outcome — the slot
+            # stays held until that holder finishes.
             return
         session = self.backend.get_session(job.session_id)
         if session is None or session.expires_at <= utc_now():
             self.backend.delete_session(job.session_id)
+            self._release_admission(job.session_id)
             return
 
-        self.backend.save_session(
-            session.transition(
+        # H5: stage transition runs as a single atomic read+call+write so
+        # a concurrent lease heartbeat (which uses the same mutator below)
+        # cannot observe a half-applied status flip.
+        self.backend.update_session_atomic(
+            job.session_id,
+            lambda session: session.transition(
                 ttl_hours=self.session_ttl_hours,
                 status="processing",
                 progress=max(session.progress, 10),
                 stage_text="processing",
                 error=None,
-            )
+            ),
         )
         # P1-9 follow-up (adversarial review): track the heartbeat WITHOUT
         # session_id. _session_tasks[session_id] must keep pointing at the
@@ -640,6 +773,8 @@ class ScanService:
                 return
             current = self.backend.get_session(job.session_id)
             if current is None:
+                # Session deleted mid-run — no result to store, no slot to keep.
+                self._release_admission(job.session_id)
                 return
             from rag_service.application.revision_comparison import compare_revisions
             comparison = compare_revisions(current.result or {}, result)
@@ -656,6 +791,9 @@ class ScanService:
                 )
             )
             self.backend.delete_job(job.job_id)
+            # M1: the scan reached a terminal state — free its in-flight slot
+            # so a new submission can be admitted.
+            self._release_admission(job.session_id)
             self.backend.append_audit(
                 {
                     "event": "scan_completed",
@@ -677,6 +815,9 @@ class ScanService:
                 }
             )
         except asyncio.CancelledError:
+            # delete_scan / shutdown cancellation: the job will not produce a
+            # result here, so its slot must not stay held.
+            self._release_admission(session_id)
             raise
         except Exception as exc:
             self._handle_job_error(job, exc)
@@ -694,10 +835,17 @@ class ScanService:
                 await asyncio.sleep(interval)
                 if not self.backend.renew_job_lease(job_id, lease_seconds=self.lease_seconds):
                     return
-                current = self.backend.get_session(session_id)
-                if current is None or current.status != "processing":
-                    return
-                self.backend.save_session(current.transition(ttl_hours=self.session_ttl_hours))
+                # H5: refresh the session's expires_at under the same atomic
+                # lock used by the progress callback, so the two can never
+                # observe a torn read-modify-write.
+                self.backend.update_session_atomic(
+                    session_id,
+                    lambda session: session.transition(
+                        ttl_hours=self.session_ttl_hours
+                    )
+                    if session is not None and session.status == "processing"
+                    else None,
+                )
         except asyncio.CancelledError:
             return
 
@@ -813,6 +961,9 @@ class ScanService:
         error_type: str | None = None,
     ) -> None:
         self.backend.save_job(job.dead(reason))
+        # M1: terminal state — the in-flight slot is free again even though
+        # the session stays readable with its failure.
+        self._release_admission(job.session_id)
         session = self.backend.get_session(job.session_id)
         if session is not None:
             self.backend.save_session(
@@ -933,27 +1084,25 @@ class ScanService:
         The runner fires `(stage_key, stage_state, progress)` from inside an
         executor thread. We persist those into the session so the burning
         page can poll real progress instead of the old 10 → 100 jump (audit
-        2026-09-13 §4.1). FileBackend.save_session holds an RLock, so it's
-        safe to call concurrently with the lease heartbeat.
+        2026-09-13 §4.1). H5: the read+transition+write happens under a
+        single backend lock via update_session_atomic, so the lease
+        heartbeat and stage transitions can never observe a torn state.
         """
 
         def emit(stage_key: str, stage_state: str, progress: int) -> None:
-            try:
-                current = self.backend.get_session(job.session_id)
-            except Exception:
-                return
-            if current is None or current.status != "processing":
-                return
             stage_label = (
                 f"{stage_key}:{stage_state}" if stage_state else stage_key
             )
             try:
-                self.backend.save_session(
-                    current.transition(
+                self.backend.update_session_atomic(
+                    job.session_id,
+                    lambda current: current.transition(
                         ttl_hours=self.session_ttl_hours,
                         stage_text=stage_label,
                         progress=max(current.progress, int(progress)),
                     )
+                    if current is not None and current.status == "processing"
+                    else None,
                 )
             except Exception:
                 # Progress is best-effort. A failed write must never abort

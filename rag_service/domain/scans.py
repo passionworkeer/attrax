@@ -147,6 +147,10 @@ class ScanJob(BaseModel):
     # so findings_builder can close checks presupposing an absent component.
     # Defaulted so pre-existing job JSON (without the key) still parses.
     declared_facts: dict[str, str] = Field(default_factory=dict)
+    # H12 (2026-09-18): idempotency_marker is persisted on the job record so
+    # the revision re-run's idempotency check survives an audit-append crash.
+    # Defaulted (None) so pre-existing job JSON still parses.
+    idempotency_marker: str | None = None
     state: JobState = "queued"
     attempts: int = Field(default=0, ge=0)
     created_at: datetime = Field(default_factory=utc_now)
@@ -166,6 +170,7 @@ class ScanJob(BaseModel):
         markets: list[str],
         upload_ids: list[str],
         declared_facts: dict[str, str] | None = None,
+        idempotency_marker: str | None = None,
     ) -> "ScanJob":
         return cls(
             job_id=job_id,
@@ -176,6 +181,7 @@ class ScanJob(BaseModel):
             markets=list(markets),
             upload_ids=list(upload_ids),
             declared_facts=dict(declared_facts or {}),
+            idempotency_marker=idempotency_marker,
         )
 
     def ready_to_claim(self, now: datetime | None = None) -> bool:

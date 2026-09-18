@@ -8,10 +8,12 @@ report_generator.py - Compliance report generator
 import os
 import logging
 import json
+import threading
 import time
 import urllib.request
 import urllib.error
 
+from rag_service.lifecycle import is_shutting_down
 from rag_service.schemas.report_package import normalize_report_package
 from rag_service.llm_response import extract_text_blocks
 
@@ -425,11 +427,22 @@ class ReportGenerator:
         # Which provider actually answered the most recent call. The report
         # trace and reportPackage.auditMetadata surface this, so a fallback-served
         # report must not claim to be the primary provider's.
-        self._served_by: str | None = None
+        # M17: this generator is a process-wide singleton while scans run
+        # concurrently on executor threads, so the attribution is
+        # THREAD-LOCAL — scan A and scan B must never read each other's
+        # provider. The whole pipeline for one scan (vision → generate →
+        # verify) runs on a single executor thread, so per-thread equals
+        # per-scan. ``_reset_provider_attribution`` clears it at the start
+        # of each generation request because executor threads are reused.
+        self._attribution = threading.local()
 
     @property
     def provider(self) -> str:
-        return self._served_by or self._primary_provider
+        return getattr(self._attribution, "served_by", None) or self._primary_provider
+
+    def _reset_provider_attribution(self) -> None:
+        """Start a generation request with a fresh per-thread attribution."""
+        self._attribution.served_by = None
 
     def generate_report_package(
         self,
@@ -464,6 +477,11 @@ class ReportGenerator:
         bundles and the `normalize_report_package` call for backwards
         compatibility with the legacy path.
         """
+        # M17: a new request starts a fresh per-thread attribution; the
+        # pre-call `provider` reads below must see the primary provider, not
+        # whatever a previous scan left on this (reused) executor thread.
+        self._reset_provider_attribution()
+
         if not chunks and not article_texts:
             return self._fallback_report_package(
                 product=product,
@@ -914,6 +932,7 @@ class ReportGenerator:
         Generate a compliance report through the configured primary provider.
         On failure: returns a mock structured report.
         """
+        self._reset_provider_attribution()
         if not chunks:
             return self._mock_report(product, market, query, error="未找到合规信息，请确保语料库已正确加载。")
 
@@ -967,7 +986,14 @@ class ReportGenerator:
         primary to exhaustion would mean the fallback is never reached on the
         timeout-class outage it exists for. With a fallback on hand, degrading
         beats stalling.
+
+        M2: once shutdown has been signalled, the retry loop stops and the
+        degrade-to-DeepSeek branch is skipped — the process is draining and
+        every further attempt would only keep a worker thread (and provider
+        quota) busy after it decided to stop. The check sits on the retry
+        path only, so the first attempt pays nothing.
         """
+        self._reset_provider_attribution()
         request_body = {
             "model": self.model,
             "max_tokens": max_tokens,
@@ -1001,11 +1027,18 @@ class ReportGenerator:
             )
             try:
                 text = self._read_mimotalk_response(req)
-                self._served_by = self._primary_provider
+                self._attribution.served_by = self._primary_provider
                 return text
             except _TransientLLMError as e:
                 last_exc = e.cause
                 if attempt < max_attempts:
+                    if is_shutting_down():
+                        logger.info(
+                            "shutdown requested; abandoning remaining report-"
+                            "generation retries (attempt %d/%d)",
+                            attempt, max_attempts,
+                        )
+                        break
                     delay = self._LLM_BACKOFF_BASE * (2 ** (attempt - 1))
                     logger.warning(
                         "%s transient failure (attempt %d/%d): %r; retrying in %.1fs",
@@ -1032,6 +1065,12 @@ class ReportGenerator:
             # Defensive: the loop exits via return/break above.
             raise last_exc if last_exc else RuntimeError(
                 "LLM retry loop exited unexpectedly"
+            )
+        if is_shutting_down():
+            # Draining: do not open a fresh request against the fallback
+            # provider either — fail now so the worker thread can end.
+            raise last_exc if last_exc else RuntimeError(
+                "shutdown requested during report generation"
             )
 
         logger.warning(
@@ -1082,7 +1121,7 @@ class ReportGenerator:
             },
         )
         text = self._read_mimotalk_response(req)
-        self._served_by = "deepseek"
+        self._attribution.served_by = "deepseek"
         return text
 
     def _read_llm_response(self, req: urllib.request.Request, timeout: float | None = None) -> str:
@@ -1215,6 +1254,8 @@ class ReportGenerator:
             格式化 markdown 利润报告
         """
         from datetime import date
+
+        self._reset_provider_attribution()
 
         # 1. 确定产品类型（优先级：显式参数 > chunk 推断）
         resolved_type = product_type or _identify_product_type(chunks)
