@@ -9,9 +9,10 @@
 # /opt/attrax/scripts/backup-data.sh). The two must stay in sync — see the
 # guard in tests/unit/infra-cron-references.test.ts.
 #
-# Runs as `ubuntu`: pm2 runs as ubuntu (pm2-ubuntu.service) and the backup
-# target /opt/attrax/backups is ubuntu-owned. Earlier revisions of this
-# fragment said `admin`, a user that does not exist on aliyun-sz.
+# Runs as `root`: on the current aliyun-sz (2026-09-18 lighthouse → aliyun-sz
+# runtime migration) pm2 itself runs as root and the only regular user is
+# `admin`. An earlier revision said `ubuntu` — a user that has never existed
+# on this host, so the 3am backup silently never ran (2026-09-18 audit).
 #
 # A cron.d file accepts only comments, KEY=VALUE environment lines and job
 # lines. Stray banner text here is a hard error for cron, so keep it clean —
@@ -20,4 +21,4 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-0 3 * * * ubuntu /opt/attrax/scripts/backup-data.sh >> /opt/attrax/logs/attrax-backup.log 2>&1
+0 3 * * * root /opt/attrax/scripts/backup-data.sh >> /opt/attrax/logs/attrax-backup.log 2>&1

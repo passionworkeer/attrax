@@ -77,9 +77,10 @@ describe("docs/infra/cron-* fragments", () => {
   });
 
   it("runs jobs as a user that exists on the host", () => {
-    // lighthouse has `ubuntu` and `root`; earlier revisions said `admin`, a
-    // user that was removed when the host was rebuilt.
-    const allowed = new Set(["ubuntu", "root"]);
+    // aliyun-sz (production since the 2026-09-18 runtime migration) has only
+    // `root` and `admin`. An earlier revision allowed `ubuntu` — a user that
+    // has never existed on this host, so the backup cron silently never ran.
+    const allowed = new Set(["root", "admin"]);
     const bad = cronFragments().flatMap((file) =>
       parseFragment(file)
         .jobs.filter((job): job is Extract<ParsedLine, { kind: "job" }> => job.kind === "job")
