@@ -66,13 +66,53 @@ _PUNCT_TABLE = str.maketrans({
 })
 
 # Ellipsis shapes seen at excerpt boundaries in LLM output: "…", "...",
-# "..", "....", and whitespace-separated ". . .". `_ELLIPSIS_RE` detects
-# any of them anywhere in a string (used to block recursion across an
-# internal ellipsis); the LEAD/TAIL pair strips a run anchored at one end.
-_ELLIPSIS_ATOM = r"(?:\.(?:\s*\.)+|…)"
-_ELLIPSIS_RE = re.compile(_ELLIPSIS_ATOM)
-_ELLIPSIS_LEAD_RE = re.compile(rf"^(?:\s*{_ELLIPSIS_ATOM})+")
-_ELLIPSIS_TAIL_RE = re.compile(rf"(?:{_ELLIPSIS_ATOM}\s*)+$")
+# "..", "....", and whitespace-separated ". . .". A boundary run is stripped
+# only when it carries a full ellipsis (the "…" glyph, or 2+ periods), so an
+# ordinary sentence period survives.
+#
+# Deliberately scanned character by character, not matched with the "obvious"
+# `(?:\.(?:\s*\.)+|…)+$`: nested variable-length quantifiers make the engine
+# enumerate every partition of a dot run once the anchor fails, which is
+# exponential — measured on this file's predecessor, a quote of 35 dots plus
+# a non-ellipsis tail took 1.8s, growing ~1.7x per dot, so a 60-dot
+# table-of-contents leader ("Annex II .......... 21") would pin a scan worker
+# (the pipeline runs on a 5-thread pool) for hours while the lease heartbeat
+# kept renewing the job. A single anchored class was the next attempt and is
+# O(n^2) (the engine retries the run at every start offset); the two walks
+# below are O(n).
+_ELLIPSIS_RUN_CHARS = ".…"
+# Any ellipsis shape *inside* an excerpt. Used to refuse the boundary-strip
+# recursion: joining fragments across an internal ellipsis could hide a
+# qualification or exception in the law. `\.\s*\.` covers "..", "...",
+# ". . ."; the literal "…" covers the single-character form. (Matching at the
+# first dot keeps this linear even on a long dot run.)
+_ELLIPSIS_ANYWHERE_RE = re.compile(r"\.\s*\.|…")
+
+
+def _is_ellipsis_run_char(ch: str) -> bool:
+    return ch in _ELLIPSIS_RUN_CHARS or ch.isspace()
+
+
+def _ellipsis_dot_count(run: str) -> int:
+    """Weight of a boundary run: "…" counts as a full ellipsis, not one dot."""
+    return run.count(".") + 2 * run.count("…")
+
+
+def _strip_boundary_ellipsis(text: str) -> str:
+    """Drop a leading and/or trailing ellipsis run from ``text`` (linear)."""
+    start = 0
+    while start < len(text) and _is_ellipsis_run_char(text[start]):
+        start += 1
+    if _ellipsis_dot_count(text[:start]) >= 2:
+        text = text[start:]
+
+    end = len(text)
+    while end > 0 and _is_ellipsis_run_char(text[end - 1]):
+        end -= 1
+    if _ellipsis_dot_count(text[end:]) >= 2:
+        text = text[:end]
+
+    return text
 
 
 def _normalize(text: str) -> str:
@@ -210,15 +250,14 @@ def match_quote(
     # not a change to the excerpt. Never join fragments across an internal
     # ellipsis: that could hide a qualification or exception in the law.
     # LLM output varies the boundary shape ("...", "…", "..", ". . ."),
-    # so strip any 2+ dot run (inter-dot spaces allowed) or a "…"; the
-    # recursion is refused when any ellipsis survives inside the excerpt.
+    # so strip any 2+ dot boundary run; the recursion is refused when any
+    # ellipsis survives inside the excerpt.
     stripped = quote.strip()
-    excerpt = _ELLIPSIS_LEAD_RE.sub("", stripped)
-    excerpt = _ELLIPSIS_TAIL_RE.sub("", excerpt).strip()
+    excerpt = _strip_boundary_ellipsis(stripped).strip()
     if (
         excerpt != stripped
         and len(excerpt) >= 20
-        and not _ELLIPSIS_RE.search(excerpt)
+        and not _ELLIPSIS_ANYWHERE_RE.search(excerpt)
     ):
         return match_quote(article_text, excerpt)
 
