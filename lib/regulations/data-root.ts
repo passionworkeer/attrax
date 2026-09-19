@@ -40,25 +40,11 @@ function cwdIsStandaloneBuild(cwd: string): boolean {
   return existsAndIsReadable(path.join(cwd, "server.js"));
 }
 
-function resolveOnce(): string {
-  // 1. Explicit override (preferred for production).
-  const override = process.env.ATTRAX_PROJECT_ROOT;
-  if (override && existsAndIsReadable(override)) {
-    return override;
-  }
-
-  const cwd = path.resolve(process.cwd());
-
-  // 2. Standalone build — the project root is two levels up.
-  if (cwdIsStandaloneBuild(cwd)) {
-    const sibling = path.dirname(path.dirname(cwd));
-    if (sibling && existsAndIsReadable(sibling)) {
-      return sibling;
-    }
-  }
-
-  // 3. Cwd is the project root (local dev: `npm run dev` from the repo root).
-  return cwd;
+function resolveStandaloneRoot(cwd: string): string {
+  // Walk up from /opt/attrax/.next/standalone to /opt/attrax if the live
+  // data is reachable from there. Returns cwd unchanged if not.
+  const sibling = path.dirname(path.dirname(cwd));
+  return existsAndIsReadable(sibling) ? sibling : cwd;
 }
 
 let cachedRoot: string | null = null;
@@ -67,7 +53,21 @@ export function regulationsProjectRoot(): string {
   if (cachedRoot !== null) {
     return cachedRoot;
   }
-  const resolved = resolveOnce();
+
+  // 1. Explicit override (preferred for production).
+  const override = process.env.ATTRAX_PROJECT_ROOT;
+  if (override && existsAndIsReadable(override)) {
+    cachedRoot = override;
+    return cachedRoot;
+  }
+
+  const cwd = path.resolve(process.cwd());
+
+  // 2. Standalone build — the project root is two levels up if the live
+  //    project root is reachable from there.
+  // 3. Otherwise: cwd is the project root (local dev: `npm run dev` from
+  //    the repo root).
+  const resolved = cwdIsStandaloneBuild(cwd) ? resolveStandaloneRoot(cwd) : cwd;
   cachedRoot = resolved;
-  return resolved;
+  return cachedRoot;
 }
