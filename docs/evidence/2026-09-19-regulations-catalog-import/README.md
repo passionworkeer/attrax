@@ -14,7 +14,8 @@
 | `url-probe-report.txt` | 63 条 `source_url` 的 curl 结果（浏览器 UA、跟随跳转）。**注意它只证明主机可达**，见下 |
 | `verify-eu-eli.py` / `eu-eli-report.txt` | 15 条 EUR-Lex 链接的单独复核：按 CELEX 号打 EU Publications Office 的 Cellar 解析端点（303=存在） |
 | `mutate-orphan-anchor-test.py` | 变异验证：构造一个「有条款正文但没有任何 KB 锚点」的法规，确认 `test_kb_loader.py` 的新断言真的会失败 |
-| `screenshot-archive.png` / `screenshot-updates.png` / `screenshot-sources.png` | 三个 tab 的页面截图 |
+| `screenshot-archive.png` / `screenshot-updates.png` / `screenshot-sources.png` | 三个 tab 的页面截图（本地 dev:3001） |
+| `production-deploy.md` | 生产上线记录：BUILD_ID / commit、数据同步流程、公网核验表、部署后真实扫描冒烟 |
 
 ## 怎么复现
 

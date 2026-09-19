@@ -37,6 +37,25 @@ python3 scripts/import_regulation_docs.py --force --copy-docs  # 覆盖已有 YA
   `id` / `region` 等字段的首尾空白会被 strip 后使用。
 - 回归测试：`scripts/watchdog/tests/test_import_regulation_docs.py`。
 
+## 把新增条目同步到生产机
+
+生产机的 `/regulations` 读 `/opt/attrax/data/regulations/regulations_index.json`（不是
+`.next/standalone/data` —— 部署 tarball 会删掉那一份）。所以新增目录条目后要做两步：
+
+```bash
+# 1. additive 同步 YAML（--ignore-existing：绝不覆盖服务器上 watchdog 自动入库的条目；
+#    原件 raw/ 不同步，运行时没有任何代码读 doc_files）
+rsync -a --ignore-existing --exclude 'raw/' data/regulations/ aliyun-sz:/opt/attrax/data/regulations/
+
+# 2. 在服务器上用自己的 YAML 树重建索引（不能直接拷本地索引——本地没有服务器上
+#    watchdog 自动入库的那些法规，拷过去会把它们从档案页抹掉）
+ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. .venv/bin/python -c \
+  "from scripts.watchdog.auto_ingest import AutoIngestor; AutoIngestor._rebuild_index()"'
+```
+
+2026-09-19 实测：同步 63 条后服务器档案为 127 条 = 本地 124 条 + 服务器独有的 3 条
+自动入库 UK 法规（`UK-REACH` / `UK-WEEE` / `UK-Packaging-EPR`）。
+
 ## source_url 的实测情况
 
 清单里的 `source_url` 在 2026-09-19 全部用 curl 实测过。两类结果需要分开看：
