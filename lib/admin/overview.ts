@@ -348,6 +348,8 @@ async function buildOverview(days: number): Promise<AdminOverview> {
     coverage: { trafficSince: traffic.trafficSince, scansSince, notes },
     totals: { visitors: traffic.visitors, pageViews: traffic.pageViews, apiCalls: traffic.apiCalls, scans: sum("scans"), completed: sum("completed"), failed: sum("failed"), averageLatencyMs: latencies.length ? Math.round(latencies.reduce((a, b) => a + b, 0) / latencies.length) : null, regulations: uniqueRegulations.length, markets: markets.length, sources: sources.length, fetched: sum("fetched"), newRegulations: sum("newRegulations") },
     series, markets, categories: distribution(selectedStarts.map(row => text(row.category) || "未知")),
+    // 国家 / 角色维度待接入流量解析与登录信息；上线「真实数据」视图时再实现。
+    countries: [], roles: [],
     recentScans: selectedStarts.slice(-12).reverse().map(row => {
       const terminal = sessionTerminals.get(text(row.sessionId));
       return { id: text(row.sessionId), timestamp: text(row.timestamp), category: text(row.category) || "未知", status: terminal ? terminal.event === "scan_failed" ? "failed" : text(terminal.status) || "unknown" : "unknown", latencyMs: finite(terminal?.latencyMs) };

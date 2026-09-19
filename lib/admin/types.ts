@@ -11,6 +11,24 @@ export interface AdminDay {
   updatedRegulations: number | null;
 }
 
+export interface AdminCountry {
+  /** ISO 3166-1 alpha-2 国家代码，例如 CN / US */
+  code: string;
+  /** 中文国家名 */
+  name: string;
+  /** 该国访客的去重数（窗口内） */
+  visitors: number;
+}
+
+export interface AdminRole {
+  /** 角色标识 */
+  name: string;
+  /** 中文标签 */
+  label: string;
+  /** 该角色用户数（窗口内去重访客身份数） */
+  visitors: number;
+}
+
 export interface AdminOverview {
   generatedAt: string;
   timezone: string;
@@ -20,6 +38,10 @@ export interface AdminOverview {
   series: AdminDay[];
   markets: { name: string; count: number }[];
   categories: { name: string; count: number }[];
+  /** 用户国家分布：演示数据按身份 mock 注入；真实数据来自流量解析（待实现） */
+  countries: AdminCountry[];
+  /** 用户角色分布：同上 */
+  roles: AdminRole[];
   recentScans: { id: string; timestamp: string; category: string; status: string; latencyMs: number | null }[];
   sources: { id: string; title: string; market: string; status: string; lastFetchedAt: string | null }[];
 }

@@ -9,7 +9,7 @@
 // - 扫描量近 30 天约 280 次、90 天约 680 次（几百次量级），失败率 3–8%。
 // - 法规存量/市场/来源数量沿用生产真实规模（1052 条 / 25 市场 / 37 源），
 //   演示时与公开页面可对得上。
-import type { AdminDay, AdminOverview } from "./types";
+import type { AdminCountry, AdminDay, AdminOverview, AdminRole } from "./types";
 
 const WINDOW_MAX = 90;
 const RNG_SEED = 20260919;
@@ -80,10 +80,46 @@ const SCAN_CATEGORY_WEIGHTS: [string, number][] = [
   ["cosmetic", 0.08], ["3c", 0.08], ["home", 0.06], ["food_contact", 0.04], ["appliance", 0.02],
 ];
 
+// 演示用「访客国家」权重池 —— 中国 / 美国为主，海外目标市场次之，欧洲与
+// 东南亚分摊。顺序与权重固定，相同种子下生成的国家分布完全可重现。
+// 数字之和 ≈ 1.0；个别长尾国家 <1% 也保留，体现「在试水」。
+const COUNTRY_WEIGHTS: ReadonlyArray<readonly [string, number]> = [
+  ["CN", 0.32], ["US", 0.18], ["GB", 0.07], ["DE", 0.06], ["FR", 0.04], ["JP", 0.05],
+  ["KR", 0.04], ["SG", 0.04], ["AU", 0.03], ["CA", 0.03], ["VN", 0.03], ["IN", 0.02],
+  ["BR", 0.02], ["AE", 0.02], ["MX", 0.02], ["ID", 0.01], ["TH", 0.01], ["MY", 0.01],
+];
+const COUNTRY_NAMES: Readonly<Record<string, string>> = {
+  CN: "中国", US: "美国", GB: "英国", DE: "德国", FR: "法国", JP: "日本", KR: "韩国",
+  SG: "新加坡", AU: "澳大利亚", CA: "加拿大", VN: "越南", IN: "印度", BR: "巴西",
+  AE: "阿联酋", MX: "墨西哥", ID: "印尼", TH: "泰国", MY: "马来西亚",
+};
+
+// 演示用「用户角色」权重池 —— 平台主要面向跨境合规团队，采购 / 合规
+// / 法务三类核心角色占到 7 成以上，其余产品/管理层角色分摊。
+const ROLE_WEIGHTS: ReadonlyArray<readonly [string, number]> = [
+  ["compliance_manager", 0.28], ["procurement_lead", 0.24], ["legal_counsel", 0.18],
+  ["product_manager", 0.12], ["sales_manager", 0.07], ["founder", 0.04],
+  ["engineering", 0.03], ["operations", 0.02], ["other", 0.02],
+];
+const ROLE_LABELS: Readonly<Record<string, string>> = {
+  compliance_manager: "合规经理", procurement_lead: "采购负责人", legal_counsel: "法务顾问",
+  product_manager: "产品经理", sales_manager: "销售经理", founder: "创始人/CEO",
+  engineering: "技术研发", operations: "运营专员", other: "其他",
+};
+
+function pickWeighted(random: () => number, table: ReadonlyArray<readonly [string, number]>): string {
+  let roll = random();
+  for (const [name, weight] of table) {
+    if (roll < weight) return name;
+    roll -= weight;
+  }
+  return table[table.length - 1][0];
+}
+
 const beijingDay = (date: Date) =>
   new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
 
-function simulate(days: number): { series: AdminDay[]; distinctVisitors: number } {
+function simulate(days: number): { series: AdminDay[]; identities: { active: boolean[]; country: string; role: string }[] } {
   const random = mulberry32(RNG_SEED);
   const today = new Date();
   const dates = Array.from({ length: WINDOW_MAX }, (_, index) => {
@@ -95,7 +131,14 @@ function simulate(days: number): { series: AdminDay[]; distinctVisitors: number 
   // 访客身份模拟：前 60 天每天约 0.3 个新访客，后 30 天加速到每天约 1.1 个
   // （推广期）。约 1/5 成为常访用户（每日回访概率 0.55–0.8），其余偶尔
   // 回访（0.05–0.18）。加入当天必然出现；窗口去重 = 窗口内出现过的身份数。
-  type Identity = { active: boolean[] };
+  // 每个身份还绑定一个国家 + 角色，用于国家/角色分布。
+  // 国家级角色分配的随机数走独立 RNG（不与活动性/扫描/法规等共享），否则
+  // 新增一次 pickWeighted 调用就会改掉整棵树的随机序列，把国家级数据全
+  // 改成种子序列靠后的低权重国家（实测 30 天窗口出现「41 个访客全是 MY」
+  // 的退化）。挑了若干候选种子比对，最终用 seed+41 的中国占多数分布。
+  type Identity = { active: boolean[]; country: string; role: string };
+  const identityRng = mulberry32(RNG_SEED + 41);
+  for (let i = 0; i < 5; i++) identityRng();
   const identities: Identity[] = [];
   for (const day of dates) {
     const newcomerRate = day.index < 60 ? 0.3 : 1.2;
@@ -109,6 +152,8 @@ function simulate(days: number): { series: AdminDay[]; distinctVisitors: number 
       const activity = loyal ? 0.55 + random() * 0.25 : 0.08 + random() * 0.12;
       identities.push({
         active: dates.map(other => other.index === day.index || (returning && other.index > day.index && random() < activity * weekend(other.weekday))),
+        country: pickWeighted(identityRng, COUNTRY_WEIGHTS),
+        role: pickWeighted(identityRng, ROLE_WEIGHTS),
       });
     }
   }
@@ -129,9 +174,7 @@ function simulate(days: number): { series: AdminDay[]; distinctVisitors: number 
       fetched, newRegulations, updatedRegulations,
     };
   });
-  const windowStart = WINDOW_MAX - days;
-  const distinctVisitors = identities.filter(identity => identity.active.some((active, index) => active && index >= windowStart)).length;
-  return { series: series.slice(windowStart), distinctVisitors };
+  return { series, identities };
 }
 
 function scanId(random: () => number): string {
@@ -141,19 +184,15 @@ function scanId(random: () => number): string {
   return `scan_${id}`;
 }
 
-function pickCategory(random: () => number): string {
-  let roll = random();
-  for (const [name, weight] of SCAN_CATEGORY_WEIGHTS) {
-    if (roll < weight) return name;
-    roll -= weight;
-  }
-  return "electronics";
-}
-
 export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
   if (![7, 30, 90].includes(days)) throw new Error("演示数据仅支持 7、30、90 天");
   const now = new Date();
-  const { series, distinctVisitors } = simulate(days);
+  const { series: fullSeries, identities } = simulate(days);
+  const windowStart = WINDOW_MAX - days;
+  const series = fullSeries.slice(windowStart);
+  // 窗口去重：身份只要在窗口内某一天出现过就算一次（与真实采集行为一致）
+  const inWindow = identities.filter(identity => identity.active.some((active, index) => active && index >= windowStart));
+  const distinctVisitors = inWindow.length;
   const sum = (key: keyof AdminDay) => series.reduce((total, day) => total + Number(day[key] ?? 0), 0);
   const random = mulberry32(RNG_SEED + 7);
   const averageLatencyMs = 43000 + Math.floor(random() * 14000);
@@ -168,7 +207,7 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
     return {
       id: scanId(random),
       timestamp,
-      category: pickCategory(random),
+      category: pickWeighted(random, SCAN_CATEGORY_WEIGHTS),
       status: failed ? "failed" : degraded ? "degraded" : "ready",
       latencyMs: 32000 + Math.floor(random() * 56000),
     };
@@ -179,6 +218,27 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
   for (const [name, weight] of SCAN_CATEGORY_WEIGHTS) {
     categoryCounts.set(name, (categoryCounts.get(name) ?? 0) + Math.round(sum("scans") * weight * 0.85));
   }
+  // 国家 / 角色：按窗口内身份聚合去重（一个身份算一个用户，不管活跃几天）。
+  const countryCounts = new Map<string, number>();
+  const roleCounts = new Map<string, number>();
+  for (const identity of inWindow) {
+    countryCounts.set(identity.country, (countryCounts.get(identity.country) ?? 0) + 1);
+    roleCounts.set(identity.role, (roleCounts.get(identity.role) ?? 0) + 1);
+  }
+  const countries: AdminCountry[] = [...countryCounts]
+    .map(([code, visitors]) => ({
+      code,
+      name: COUNTRY_NAMES[code] ?? code,
+      visitors,
+    }))
+    .sort((a, b) => b.visitors - a.visitors || a.code.localeCompare(b.code));
+  const roles: AdminRole[] = [...roleCounts]
+    .map(([name, visitors]) => ({
+      name,
+      label: ROLE_LABELS[name] ?? name,
+      visitors,
+    }))
+    .sort((a, b) => b.visitors - a.visitors || a.name.localeCompare(b.name));
   return {
     generatedAt: now.toISOString(),
     timezone: "Asia/Shanghai",
@@ -189,6 +249,7 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
       notes: [
         "当前为演示数据：全部数字为固定种子模拟生成，用于产品推广展示，不代表真实运营统计。",
         "演示口径刻意贴近真实统计：访客按模拟身份跨日去重，扫描含 3–8% 失败与少量降级，法规存量与来源规模沿用生产真实数量。",
+        "国家与角色维度当前为按访客身份随机分配的演示数据，待接入流量解析与登录信息后切回真实值。",
       ],
     },
     totals: {
@@ -208,6 +269,8 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
     series,
     markets: DEMO_MARKETS.map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count),
     categories: [...categoryCounts].map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count),
+    countries,
+    roles,
     recentScans,
     sources: DEMO_SOURCES.map(([id, title, market], index) => ({
       id, title, market,

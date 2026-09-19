@@ -55,6 +55,22 @@ describe("buildDemoOverview", () => {
       expect(overview.totals.scans).toBe(overview.series.reduce((sum, day) => sum + (day.scans ?? 0), 0));
       expect(overview.totals.completed + overview.totals.failed).toBeLessThanOrEqual(overview.totals.scans + days);
       expect(overview.coverage.notes.join("")).toContain("演示");
+      // 国家与角色：每个维度的去重人数之和 ≤ 窗口去重访客总数
+      // （一个身份同时绑定一个国家 + 一个角色，所以两边求和都应等于访客总数）。
+      const countryTotal = overview.countries.reduce((sum, row) => sum + row.visitors, 0);
+      const roleTotal = overview.roles.reduce((sum, row) => sum + row.visitors, 0);
+      expect(countryTotal).toBe(overview.totals.visitors);
+      expect(roleTotal).toBe(overview.totals.visitors);
+      // 演示口径下 30 天中国应在 25%–35%，美国 ≥ 6 人
+      if (days === 30) {
+        const cn = overview.countries.find(country => country.code === "CN")?.visitors ?? 0;
+        const us = overview.countries.find(country => country.code === "US")?.visitors ?? 0;
+        expect(cn).toBeGreaterThanOrEqual(us);
+        expect(cn).toBeGreaterThanOrEqual(Math.round(overview.totals.visitors * 0.25));
+        expect(us).toBeGreaterThanOrEqual(6);
+        // 30 天窗口样本足够，角色首位应是合规经理。
+        expect(overview.roles[0]?.name).toBe("compliance_manager");
+      }
     }
   });
 
