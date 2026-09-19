@@ -857,6 +857,15 @@ class ScanService:
                     # not kill the heartbeat: without renewal the lease lapses
                     # and a second worker may re-claim a job whose first run is
                     # still producing a result. Log and retry next interval.
+                    #
+                    # The other exit path is the `renew_job_lease` False above,
+                    # which means either "job is gone" (the normal end) or
+                    # "could not take the job lock" (transient) — the two are
+                    # not distinguished, so lock contention would also stop the
+                    # heartbeat. Bounded in practice: the critical section is
+                    # milliseconds, and a scan ends well inside one lease
+                    # (lease_seconds=600 vs _SCAN_TIMEOUT_SECS=280), so the
+                    # worst case is a lease lapsing after the run has ended.
                     logger.warning(
                         "lease heartbeat for %s failed: %r", job_id, exc
                     )

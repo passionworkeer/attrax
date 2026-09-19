@@ -86,6 +86,40 @@ export function EvidenceRequestPanel({
     await handleSubmit(files);
   };
 
+  /**
+   * The API client throws server error CODES (see lib/rag-client/evidence-api.ts),
+   * and the server's own messages are English-only while this card is
+   * bilingual. A bare code in a mono span tells the user nothing — map the
+   * ones this path can produce to actionable text.
+   */
+  const describeServerError = (code: string): string => {
+    if (code === "RATE_LIMITED") {
+      return zh ? "操作过于频繁，请稍候再试。" : "Too many requests. Try again shortly.";
+    }
+    if (code === "REQUEST_TOO_LARGE" || code === "HTTP_413") {
+      return zh ? "文件过大，请压缩后重试。" : "File too large — compress it and retry.";
+    }
+    if (code === "NO_FILES") {
+      return zh ? "请至少选择 1 个文件。" : "Pick at least one file.";
+    }
+    if (code === "UNAUTHORIZED" || code === "HTTP_401") {
+      return zh
+        ? "会话已失效，请重新发起扫描。"
+        : "This session has expired — start a new scan.";
+    }
+    if (
+      code === "SCAN_SERVICE_UNAVAILABLE" ||
+      code === "HTTP_502" ||
+      code === "HTTP_503" ||
+      code === "HTTP_504"
+    ) {
+      return zh
+        ? "服务暂时不可用，请稍后重试。"
+        : "The service is temporarily unavailable — try again shortly.";
+    }
+    return zh ? `提交失败（${code}），请重试。` : `Upload failed (${code}). Try again.`;
+  };
+
   const handleSubmit = async (files: File[]) => {
     if (files.length === 0) return;
     setState({ phase: "uploading", count: files.length });
@@ -104,7 +138,9 @@ export function EvidenceRequestPanel({
     } catch (error) {
       setState({
         phase: "error",
-        message: error instanceof Error ? error.message : "UPLOAD_FAILED",
+        message: describeServerError(
+          error instanceof Error ? error.message : "UPLOAD_FAILED",
+        ),
       });
     }
   };
@@ -118,7 +154,9 @@ export function EvidenceRequestPanel({
       } catch (error) {
         setState({
           phase: "error",
-          message: error instanceof Error ? error.message : "REVISION_FAILED",
+          message: describeServerError(
+            error instanceof Error ? error.message : "REVISION_FAILED",
+          ),
         });
       }
     });
