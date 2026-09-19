@@ -1,0 +1,19 @@
+id: EU-BLUE-GUIDE-2022
+official_citation: Blue Guide 2022 on the implementation of EU product rules
+short_name: Blue Guide (欧盟产品规则实施指南)
+region: EU
+domain: 市场监督
+license: public
+source_url: https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52022XC0330%2801%29
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/Blue_Guide_2022_欧盟产品规则实施指南.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

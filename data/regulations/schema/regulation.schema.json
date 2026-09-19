@@ -30,7 +30,11 @@
     },
     "region": {
       "type": "string",
-      "enum": ["EU", "US", "UK", "CN", "AU", "UN", "GLOBAL", "CA", "NZ", "JP", "KR", "AE", "SA", "BR", "IN", "MX", "SG", "DE", "FR", "IT"]
+      "enum": ["EU", "US", "UK", "CN", "AU", "UN", "GLOBAL", "CA", "NZ", "JP", "KR", "AE", "SA", "BR", "IN", "MX", "SG", "DE", "FR", "IT", "VN", "ID", "MY", "TH", "GCC"]
+    },
+    "domain": {
+      "type": "string",
+      "description": "合规领域分类（投资准入 / 出口管制 / 反垄断 / 数据保护 / 电商平台 / 消费者保护 / 产品认证 / 劳动法 / 税务 / 金融支付 / 汽车网络安全 / 知识产权 / 市场监督 / 技术标准）。2026-09-19 attrax-docs 目录导入起写入，/regulations 法规档案页据此显示领域标签。"
     },
     "license": {
       "type": "string",
@@ -89,6 +93,11 @@
     "raw_file": {
       "type": ["string", "null"],
       "description": "Relative path (under data/regulations/) to the official PDF/HTML file, or null for private standards."
+    },
+    "doc_files": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "本地原件相对路径列表（相对 data/regulations/，通常在 {region}/raw/ 下）。原件不入版本控制（见 .gitignore），仅登记来源；单一原件时也可用 raw_file。"
     },
     "checksum_sha256": {
       "type": ["string", "null"],

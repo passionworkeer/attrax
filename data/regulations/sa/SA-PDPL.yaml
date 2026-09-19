@@ -1,0 +1,20 @@
+id: SA-PDPL
+official_citation: Personal Data Protection Law (Royal Decree No. M/19, 2021)
+short_name: 沙特个人数据保护法 (PDPL)
+region: SA
+domain: 数据保护
+license: public
+source_url: https://sdaia.gov.sa/en/sdaia/about/pages/regulationsandpolicies.aspx
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- sa/raw/沙特《个人数据保护法》（PDPL 2021年修订版合规指南）.html
+- sa/raw/沙特《个人数据保护法》（PDPL，Royal Decree M_19_2021）英文分析.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

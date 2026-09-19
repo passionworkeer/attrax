@@ -1,0 +1,19 @@
+id: CN-GB-44495
+official_citation: GB 44495-2024《汽车整车信息安全技术要求》
+short_name: GB 44495-2024 (整车信息安全)
+region: CN
+domain: 汽车网络安全
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=2DB552CAA58F589705C3DC7AD47AC2AB
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/中国GB 44495-2024汽车整车信息安全技术要求（标准简介）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

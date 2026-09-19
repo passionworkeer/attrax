@@ -1,0 +1,26 @@
+id: GLOBAL-IEC-62368-1-REF
+official_citation: IEC 62368-1 reference materials (LVD / IEC compliance guides)
+short_name: IEC 62368-1 技术参考合集
+region: GLOBAL
+domain: 技术标准
+license: public
+source_url: https://www.iec.ch/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/2 power-sonic.com-Low Voltage Directive LVD  IEC - Complete Guide-fpscreenshot.pdf
+- global/raw/3 micomlabs.com-IEC - Standard Compliance Guide - MiCOM Labs-fpscreenshot.pdf
+- global/raw/4 sgs.com-ECHA Expands Candidate List to  SVHCs  SGS USA-fpscreenshot.pdf
+- global/raw/5 greensofttech.com-One Substance Added to EU REACH SVHC List  SVHC- Update  GreenSoft-fpscreenshot.pdf
+- global/raw/7 ul.com-IEC - Ask the Engineers Question-and-Answer Page  UL Solutions-fpscreenshot.pdf
+- global/raw/8 5710ecb863a33.pdf
+- global/raw/9 advancedenergy.com-Design Considerations for Maximum Temperature per IEC Safety Standards  Advanced Energy-fpscreenshot.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 IEC / LVD / REACH 技术参考件合集（含 SGS、UL、MiCOM、Advanced
+  Energy 的公开解读页截图）；原文按钮指向 IEC 官方站。原件在 attrax-docs 里有「8 5710ecb863a33.pdf」与「10 5710ecb863a33.pdf」两份同内容副本（sha256 相同），只登记一份。

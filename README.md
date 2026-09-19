@@ -15,7 +15,7 @@ Attrax 是一个面向跨境电商卖家的合规风险扫描平台。用户上�
 
 ## 核心能力
 
-- **多市场法规覆盖**：61 篇锚点法规（公开法规全文 + 商业标准摘要），按市场 × 品类 × 特征（电池 / 无线 / 电源 / 儿童相关）三维检索
+- **多市场法规覆盖**：61 篇锚点法规（公开法规全文 + 商业标准摘要）+ 63 篇目录条目（attrax-docs 导入，覆盖越南 / 印尼 / 马来西亚 / 泰国 / 新加坡 / 海湾国家等 21 个区域），按市场 × 品类 × 特征（电池 / 无线 / 电源 / 儿童相关）三维检索
 - **视觉识别 + 事实结构化**：从产品图片提取品类与可见特征（接口、铭牌、材质等），输出结构化 observations / findings
 - **KB 锚定生成**：每条结论附 `[regulation#article]` 引用 + 原文摘录，可点开条款详情页验证
 - **引用可信度分层**：`source` / `literal` / `semantic` 三档，缺验证默认未验证（不静默给满分）
@@ -91,7 +91,7 @@ npm run lint         # ESLint
                               ▼
 ┌────────────────────────────────────────────────────────────────┐
 │  数据层                                                        │
-│  data/regulations/{region}/{reg_id}.yaml — 61 篇锚点法规条款   │
+│  data/regulations/{region}/*.yaml — 61 篇锚点 + 63 篇目录条目 │
 │  data/inspection_profiles/*.yaml — 视觉检查 profile           │
 │  data/regulation_supplements/ — watchdog 自动入库的语料包     │
 │  data/backend/sessions/ — RAG 会话文件（TTL 24h）              │

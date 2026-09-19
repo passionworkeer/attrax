@@ -134,6 +134,12 @@ data/regulation_supplements/*/raw/
 data/regulation_supplements/*.cache.db
 data/regulation_supplements/auto-*/
 data/regulation_supplements/watchdog-*/
+
+# attrax-docs 目录导入的法规原件副本（PDF/HTML，共 68 份约 46MB）。YAML 条目用
+# doc_files 记录来源，原件本身不入库；删掉后重跑
+# `python3 scripts/import_regulation_docs.py --copy-docs` 即可恢复（YAML 已存在也
+# 会补齐原件）。
+data/regulations/*/raw/
 # Human-readable indexes / reports stay tracked.
 !data/regulation_supplements/*/DOCUMENTS.md
 !data/regulation_supplements/*/README.md

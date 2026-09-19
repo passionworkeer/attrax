@@ -1,0 +1,100 @@
+{
+  "capturedAt": "2026-09-19T04:37:37.941Z",
+  "baseUrl": "http://localhost:3001",
+  "archive": {
+    "total": 124,
+    "markets": 21,
+    "withArticles": 36,
+    "byRegion": {
+      "EU": 28,
+      "US": 20,
+      "CN": 23,
+      "AU": 1,
+      "UK": 6,
+      "UN": 3,
+      "BR": 1,
+      "CA": 6,
+      "GLOBAL": 4,
+      "IN": 1,
+      "KR": 1,
+      "NZ": 2,
+      "JP": 1,
+      "SA": 4,
+      "AE": 5,
+      "GCC": 1,
+      "ID": 5,
+      "SG": 2,
+      "TH": 1,
+      "VN": 6,
+      "MY": 3
+    },
+    "byDomain": {
+      "电商平台": 6,
+      "市场监督": 4,
+      "数据保护": 16,
+      "消费者保护": 4,
+      "投资准入": 5,
+      "汽车网络安全": 3,
+      "技术标准": 2,
+      "出口管制": 4,
+      "税务": 3,
+      "知识产权": 2,
+      "产品认证": 4,
+      "劳动法": 4,
+      "反垄断": 4,
+      "金融支付": 2
+    }
+  },
+  "sources": {
+    "total": 37,
+    "matching": 37,
+    "returned": 37,
+    "markets": 12,
+    "healthy": 24,
+    "protected": 13,
+    "byHealth": {
+      "ok": 24,
+      "anti_bot": 5,
+      "waf_challenge_temporary": 1,
+      "unreachable": 7,
+      "unknown": 0
+    },
+    "byMarket": {
+      "CA": 6,
+      "NZ": 2,
+      "US": 8,
+      "EU": 9,
+      "UK": 4,
+      "BR": 1,
+      "JP": 1,
+      "IN": 1,
+      "KR": 1,
+      "AE": 1,
+      "SA": 1,
+      "CN": 2
+    }
+  },
+  "updates": {
+    "total": 42,
+    "matching": 42,
+    "dataset": "static-demo",
+    "byMarket": {
+      "EU": 7,
+      "US": 5,
+      "SA": 3,
+      "CN": 6,
+      "UN": 1,
+      "AU": 2,
+      "VN": 2,
+      "ID": 2,
+      "CA": 2,
+      "IN": 2,
+      "BR": 2,
+      "AE": 2,
+      "UK": 2,
+      "KR": 2,
+      "JP": 1,
+      "MY": 1
+    }
+  }
+}

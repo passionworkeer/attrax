@@ -1,0 +1,21 @@
+id: EU-2019-452
+official_citation: Regulation (EU) 2019/452 (FDI Screening Regulation)
+short_name: 欧盟外资审查框架 (2019/452)
+region: EU
+domain: 投资准入
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2019/452/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/欧盟外资审查框架（USSC FDI Screening 研究报告）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 清单原文把外资审查框架写成 Regulation (EU) 2021/821，该编号实为两用物项出口管制条例；外资审查框架的正确编号是
+  2019/452（分类表按 2019/452 登记）。原件只登记 USSC 研究报告一份：attrax-docs 里另一份名为「Regulation EU 2021_821」的文件与该报告 sha256 相同，是同一份内容的重名副本，避免同一原件在
+  doc_files 里出现两次。

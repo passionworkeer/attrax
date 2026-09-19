@@ -1,0 +1,19 @@
+id: EU-2011-83
+official_citation: Directive 2011/83/EU (Consumer Rights Directive)
+short_name: CRD (消费者权益指令)
+region: EU
+domain: 消费者保护
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2011/83/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/CRD_2011-83-EU_消费者权益指令.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

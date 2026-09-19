@@ -32,6 +32,7 @@ interface RawArchiveRow {
   source_url?: string | null;
   purchase_url?: string | null;
   article_count?: number;
+  domain?: string | null;
 }
 
 interface RawIndex {
@@ -54,6 +55,7 @@ function normaliseRow(raw: RawArchiveRow): ArchiveEntry {
     purchaseUrl: raw.purchase_url ?? null,
     articleCount: typeof raw.article_count === "number" ? raw.article_count : 0,
     license: raw.license ?? null,
+    domain: raw.domain ?? null,
   };
 }
 
@@ -87,6 +89,7 @@ export function searchArchive(entries: ArchiveEntry[], needle: string): ArchiveE
       entry.id.toLowerCase().includes(lower) ||
       entry.region.toLowerCase().includes(lower) ||
       entry.shortName.toLowerCase().includes(lower) ||
-      entry.officialCitation.toLowerCase().includes(lower),
+      entry.officialCitation.toLowerCase().includes(lower) ||
+      (entry.domain ?? "").toLowerCase().includes(lower),
   );
 }

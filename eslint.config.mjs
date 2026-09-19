@@ -15,6 +15,10 @@ const eslintConfig = defineConfig([
     "rag_service/.venv/**",
     ".runvenv/**",
     "coverage/**",
+    // Claude Code 的 worktree 是完整仓库副本（.gitignore 已忽略）。不排除的话
+    // `npm run lint` 会在任何存在 worktree 的机器上报几十条来自副本的错误，
+    // lint 门禁就取决于磁盘上有没有别人的工作副本，而不是这份代码。
+    ".claude/**",
     // Manual test scripts (CommonJS, not part of npm test):
     "test-doc-upload/**",
     "tests/pressure/**",

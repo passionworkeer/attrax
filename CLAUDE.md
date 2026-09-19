@@ -189,7 +189,8 @@ attrax/
 │   └── tests/                    # pytest 单元测试
 │
 ├── data/                         # 数据文件
-│   ├── regulations/              # 61 篇锚点法规 YAML（生产只读）
+│   ├── regulations/              # 法规库：61 篇锚点法规 YAML（36 篇带条款正文）+ 63 篇目录条目（attrax-docs 导入，仅元数据）→ regulations_index.json 共 124 条
+│   │   └── _imports/             # 目录导入清单（2026-09-19 attrax-docs）+ README；导入脚本 scripts/import_regulation_docs.py
 │   ├── kb/                       # KB 锚点 YAML
 │   ├── inspection_profiles/      # 视觉检查 profile（11 个 yaml）
 │   ├── regulation_sources/       # 法规数据源注册表
@@ -216,6 +217,7 @@ attrax/
 └── scripts/                      # 运维脚本
     ├── build-deploy-tarball.sh   # 部署 tarball 构建（自动写 .deployed 标识）
     ├── preflight-deploy.mjs
+    ├── import_regulation_docs.py # attrax-docs 法规目录导入（清单 → YAML → 索引）
     ├── ingest_regulation_supplements.py  # watchdog 流水线
     ├── watchdog/                 # 法规自动入库守护
     ├── ecosystem.config.cjs      # pm2 配置
@@ -334,6 +336,17 @@ const SessionIdSchema = z
 ---
 
 ## 最近修复
+
+### 2026-09-19 — attrax-docs 法规目录导入（/regulations 法规档案 61 → 124 条 / 21 区域）
+
+- **背景**：`/Users/wangjianjun/me/attrax-docs` 补齐了各地区法规原件（PDF/HTML 共 72 份，去重后 68 份唯一内容）与《出海合规法规文件清单》《法规分类表》《出海合规法律法规政策清单》三份清单；产品侧要求 `/regulations` 展示尽可能多的法规数据，不要求这些条目进入扫描引用
+- **做法**：新增 `scripts/import_regulation_docs.py` + 清单 `data/regulations/_imports/attrax-docs-2026-09-19.json`（63 条：CN 11 / EU 15 / US 5 / UK 1 / VN 6 / ID 5 / SG 2 / MY 3 / TH 1 / SA 3 / AE 4 / GCC 1 / UN 2 / GLOBAL 4）。逐条写 `data/regulations/{region}/{id}.yaml`（`articles: []`、`source_kind: unverified`、新字段 `domain` 领域分类与 `doc_files` 本地原件路径），原件复制到 `data/regulations/{region}/raw/`（68 份 46MB，gitignore，见该目录 README），最后复用 `AutoIngestor._rebuild_index()` 重建索引
+- **插件的三个既有约束**：① `_REGION_DIRS` 补 VN/ID/MY/TH/GCC/GLOBAL；② `_rebuild_index` 带上 `domain`（老条目没有该字段，前端按可选处理）；③ `rag_service/tests/test_kb_loader.py` 的「锚点 ↔ 法规 1:1」断言改为**单向** `anchored ⊆ regulated` —— 目录条目是超集，没有 KB 锚点也不进扫描。同时补上反向约束 `test_regulations_without_an_anchor_are_metadata_only`：没有锚点的法规不得带条款正文，否则真锚点丢了锚点会静默掉出所有扫描
+- **前端**：`ArchiveTab` 市场筛选加 越南/印尼/马来西亚/泰国/新加坡/海湾国家（UN 标签由「国际」改为「联合国」，新增 GLOBAL「国际」），卡片加领域标签（中英映射），搜索覆盖领域；`UpdatesTab` 市场筛选同步扩到 20 个并补 `markets.*` 文案（含 NZ——watchdog 有 2 个新西兰源，缺按钮时 NZ 卡片只能混在「全部」里且显示裸代码）；副标题数字改为动态（{archive}/{markets}/{sources}/{updates}）
+- **近期动态补卡**：`app/api/regulations/updates/data-regions.ts` 新增 12 条（reg-101…112，越南 Decree 13/53、印尼 PDP Law 与 Permenperin 75/2024、马来西亚 CBPDT 指南、沙特 PDPL 宽限期届满、中国两用物项条例与技术目录、GB 44495、EU AI Act、US INFORM、UN R155/R156），日期均核对到法规公布/生效日；`STATIC_DEMO = EDITORIAL_DEMO(30) + REGIONAL_UPDATES(12)`
+- **URL 实测口径**：63 条 source_url 全部 curl 探测过，但 **curl 对 EUR-Lex 没有区分度**——有效 ELI 与编造 ELI 都返回 202，所以 `OK 202` 只证明主机可达。EUR-Lex 的 15 条另用 Cellar 端点按 CELEX 复核（`docs/evidence/2026-09-19-regulations-catalog-import/verify-eu-eli.py`），15 条全部 303 = 文书存在。另有 18 条登记的是官方门户而非条款深链（越南 vanban.chinhphu.vn、印尼 jdih.setneg.go.id、阿联酋 u.ae 等），点「原文」到门户首页，条文以本地原件为准；其中 UN R155/R156、EU-2019-452、AE-LABOR-33-2021 在条目 `note` 写明原因
+- **对抗性审查（同日）修掉的**：`--copy-docs` 在 YAML 已存在时不复制原件（文档承诺的恢复流程失效）→ 拆成「写 YAML」「复制原件」两步 + `scripts/watchdog/tests/test_import_regulation_docs.py` 15 条回归；清单字段未 strip 会在 `run()` 抛未捕获 KeyError（且崩在索引重建前，留下库与索引不一致）；`docs` 可用 `../` 越出原件目录、同区域重名原件被静默覆盖（均改为校验期拒绝）；`MY-DATA-SHARING-2025` 编号 Act 862 → **Act 864**（862 是 2024 年财政法）；4 组重复/张冠李戴的原件登记去重（`doc_files` 72 → 68 份唯一原件）；`page.tsx` 统计接口返回非 2xx 时不再静默显示「—」而无横幅
+- **验证**：pytest 738 passed（rag_service，含库不变量）+ 156 passed（watchdog，含导入脚本回归）、vitest 998 passed、tsc、eslint 0 error；浏览器实测 `/regulations` 三个 tab（档案 124 条 × 21 区域、筛选与领域标签、近期动态 42 条含越南 2 条、NZ 筛选空态）；`verify-eu-eli.py` 15/15 存在
 
 ### 2026-09-19 — 并发加固批次部署中产出的 deploy 自愈（a1a4474）
 
@@ -511,7 +524,8 @@ npm run typecheck              # tsc --noEmit
 
 # RAG 服务
 python3 -m uvicorn rag_service.main:app --reload --port 8001
-python3 -m pytest rag_service/tests/ -v
+npm run test:rag               # rag_service/tests/（自动挑 rag_service/.venv 的 python）
+rag_service/.venv/bin/python -m pytest scripts/watchdog/tests/ -q   # watchdog + 脚本回归
 
 # 一键启动
 pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
@@ -532,7 +546,7 @@ pm2 start scripts/ecosystem.config.cjs   # 前端 + RAG 同时启动
 
 ---
 
-*最后更新：2026-09-18*
+*最后更新：2026-09-19*
 
 <!-- BEGIN:nextjs-agent-rules -->
 

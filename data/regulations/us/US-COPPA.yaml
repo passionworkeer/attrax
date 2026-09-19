@@ -1,0 +1,19 @@
+id: US-COPPA
+official_citation: Children's Online Privacy Protection Act (15 U.S.C. §§ 6501-6506) / 16 CFR Part 312
+short_name: COPPA (儿童在线隐私保护法)
+region: US
+domain: 数据保护
+license: public
+source_url: https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/美国《儿童在线隐私保护法》（COPPA）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

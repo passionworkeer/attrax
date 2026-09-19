@@ -1,0 +1,19 @@
+id: ID-PDP-LAW-27-2022
+official_citation: Law No. 27 of 2022 on Personal Data Protection
+short_name: 印尼个人数据保护法 (PDP Law 27/2022)
+region: ID
+domain: 数据保护
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- id/raw/印尼《个人数据保护法》（PDP Law No 27 of 2022）解读.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

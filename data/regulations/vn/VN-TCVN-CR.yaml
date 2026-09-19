@@ -1,0 +1,19 @@
+id: VN-TCVN-CR
+official_citation: TCVN national standards / CR conformity marking
+short_name: 越南 TCVN / CR 认证
+region: VN
+domain: 产品认证
+license: public
+source_url: https://tcvn.gov.vn/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- vn/raw/越南TCVN国家标准认证说明（越南CR标志认证信息册）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

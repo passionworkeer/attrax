@@ -1,0 +1,20 @@
+id: GLOBAL-UL-62368-1
+official_citation: UL 62368-1 (Audio/video, information and communication technology equipment — safety requirements)
+short_name: UL 62368-1 安全标准
+region: GLOBAL
+domain: 技术标准
+license: public
+source_url: https://www.ul.com/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/1 PRVV0001-R1_UL 62368-1 2019.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 UL 为付费标准；本地副本为技术参考件，原文按钮指向 UL 官方站。原件在
+  attrax-docs 里有「1 …」与「6 …」两份同内容副本（sha256 相同），只登记一份。

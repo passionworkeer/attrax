@@ -1,0 +1,19 @@
+# 目录条目 EUR-Lex 链接复核（Cellar CELEX 解析：303=存在 / 404=不存在）
+
+OK  303	EU-2016-679	32016R0679	https://eur-lex.europa.eu/eli/reg/2016/679/oj
+OK  303	EU-2022-1925	32022R1925	https://eur-lex.europa.eu/eli/reg/2022/1925/oj
+OK  303	EU-2022-2065	32022R2065	https://eur-lex.europa.eu/eli/reg/2022/2065/oj
+OK  303	EU-2019-2161	32019L2161	https://eur-lex.europa.eu/eli/dir/2019/2161/oj
+OK  303	EU-2003-88	32003L0088	https://eur-lex.europa.eu/eli/dir/2003/88/oj
+OK  303	EU-2017-2455	32017L2455	https://eur-lex.europa.eu/eli/dir/2017/2455/oj
+OK  303	EU-2019-452	32019R0452	https://eur-lex.europa.eu/eli/reg/2019/452/oj
+OK  303	EU-2024-1689	32024R1689	https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+OK  303	EU-2011-83	32011L0083	https://eur-lex.europa.eu/eli/dir/2011/83/oj
+OK  303	EU-85-374	31985L0374	https://eur-lex.europa.eu/eli/dir/1985/374/oj
+OK  303	EU-2005-29	32005L0029	https://eur-lex.europa.eu/eli/dir/2005/29/oj
+OK  303	EU-765-2008	32008R0765	https://eur-lex.europa.eu/eli/reg/2008/765/oj
+OK  303	EU-2019-1020	32019R1020	https://eur-lex.europa.eu/eli/reg/2019/1020/oj
+OK  303	EU-768-2008	32008D0768	https://eur-lex.europa.eu/eli/dec/2008/768/oj
+OK  303	EU-BLUE-GUIDE-2022	52022XC0330(01)	https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52022XC0330%2801%29
+
+EUR-Lex 条目 15 条，存在 15 条，异常 0 条

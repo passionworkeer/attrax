@@ -1,0 +1,18 @@
+id: AE-VAT-EXEC-REG
+official_citation: Cabinet Decision No. 100 of 2024 (VAT Executive Regulations amendment)
+short_name: 阿联酋 VAT 执行条例 (第 100 号内阁决定)
+region: AE
+domain: 税务
+license: public
+source_url: https://tax.gov.ae/en/legislation/vat.aspx
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,20 @@
+id: MY-DATA-SHARING-2025
+official_citation: Data Sharing Act 2025 (Act 864)
+short_name: 马来西亚数据共享法 (2025)
+region: MY
+domain: 数据保护
+license: public
+source_url: https://www.pdp.gov.my/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 清单原文把该法编号写成 Act 862，该编号实为 2024 年财政法（Finance
+  Act 2024）；数据共享法的正确编号是 Act 864（马来西亚总检察署法律库 lom.agc.gov.my 文件名为 "Act 864 - DATA SHARING ACT 2025"，国家数字局 jdn.gov.my 页面标题为 "Data
+  Sharing Act 2025 [Act 864]"）。

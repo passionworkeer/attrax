@@ -1,0 +1,19 @@
+id: VN-DECREE-13-2023
+official_citation: Decree No. 13/2023/ND-CP on Personal Data Protection
+short_name: 越南第 13 号个人数据保护法令
+region: VN
+domain: 数据保护
+license: public
+source_url: https://english.luatvietnam.vn/decree-no-13-2023-nd-cp-dated-april-17-2023-of-the-government-on-personal-data-protection-249791-doc1.html
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- vn/raw/越南《第13号个人数据保护法令》（Decree 13_2023）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,14 +1,18 @@
 import type { RegulationUpdate } from "./types";
+import { REGIONAL_UPDATES } from "./data-regions";
 
 // Static demo data. Source URLs point to official reference sites, but entries are
 // curated examples and are not fetched or verified live. These are merged with
 // live watchdog data by the route (see ./watchdog-source.ts); on a fresh
-// install with no watchdog pass on record, the API serves ONLY these 30
+// install with no watchdog pass on record, the API serves ONLY these
 // entries and reports `dataset: "static-demo"`. After the first watchdog pass
 // the dataset label flips to "live+demo" and watchdog-sourced entries appear
 // alongside — they never displace curated examples for markets not yet
 // tracked by an official source.
-export const STATIC_DEMO: RegulationUpdate[] = [
+//
+// 2026-09-19: STATIC_DEMO = EDITORIAL_DEMO (reg-001…reg-030) + REGIONAL_UPDATES
+// (reg-101…reg-112，attrax-docs 目录导入的区域补充卡片，见 ./data-regions.ts)。
+const EDITORIAL_DEMO: RegulationUpdate[] = [
   {
     id: "reg-001",
     market: "EU",
@@ -1024,3 +1028,5 @@ export const STATIC_DEMO: RegulationUpdate[] = [
     lastVerifiedAt: "2026-05-03",
   },
 ];
+
+export const STATIC_DEMO: RegulationUpdate[] = [...EDITORIAL_DEMO, ...REGIONAL_UPDATES];

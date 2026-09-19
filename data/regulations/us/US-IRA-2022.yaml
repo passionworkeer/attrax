@@ -1,0 +1,19 @@
+id: US-IRA-2022
+official_citation: Inflation Reduction Act of 2022 (Pub. L. 117-169)
+short_name: IRA (通胀削减法案)
+region: US
+domain: 出口管制
+license: public
+source_url: https://www.govinfo.gov/app/details/PLAW-117publ169
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/美国《通胀削减法案》（IRA 2022）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

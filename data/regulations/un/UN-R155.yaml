@@ -1,0 +1,20 @@
+id: UN-R155
+official_citation: UN Regulation No. 155 (Cyber Security and CSMS)
+short_name: UN R155 (车辆网络安全)
+region: UN
+domain: 汽车网络安全
+license: public
+source_url: https://www.vehicle-certification-agency.gov.uk/connected-and-automated-vehicles/cyber-security-and-software-updating/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- un/raw/联合国《UN R155车辆网络安全管理体系法规》（UNECE WP29 Certivo解读）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 UNECE 官网（unece.org）在当前网络环境不可达（HTTP 403），原文按钮指向英国车辆认证署（VCA）的
+  CSMS/SUMS 官方说明页。

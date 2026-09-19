@@ -1,0 +1,20 @@
+id: CN-DUAL-USE-REG
+official_citation: 国务院令第792号《两用物项出口管制条例》(2024)
+short_name: 两用物项出口管制条例 (2024)
+region: CN
+domain: 出口管制
+license: public
+source_url: https://www.gov.cn/zhengce/content/202410/content_6981399.htm
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/中国《两用物项出口管制条例》（2024）.html
+- cn/raw/中国《两用物项出口管制条例》（2024）说明（中国法律观察站）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

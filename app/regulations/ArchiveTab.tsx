@@ -17,10 +17,18 @@ const ARCHIVE_MARKETS = [
   "AU",
   "IN",
   "BR",
+  "MX",
   "SA",
   "AE",
+  "SG",
+  "MY",
+  "TH",
+  "VN",
+  "ID",
   "NZ",
+  "GCC",
   "UN",
+  "GLOBAL",
 ] as const;
 
 const fallbackMeta: ArchiveMeta = {
@@ -43,10 +51,18 @@ const marketLabel: Record<string, string> = {
   AU: "澳大利亚",
   IN: "印度",
   BR: "巴西",
+  MX: "墨西哥",
   SA: "沙特",
   AE: "阿联酋",
+  SG: "新加坡",
+  MY: "马来西亚",
+  TH: "泰国",
+  VN: "越南",
+  ID: "印尼",
   NZ: "新西兰",
-  UN: "国际",
+  GCC: "海湾国家",
+  UN: "联合国",
+  GLOBAL: "国际",
 };
 
 const marketLabelEn: Record<string, string> = {
@@ -60,10 +76,18 @@ const marketLabelEn: Record<string, string> = {
   AU: "Australia",
   IN: "India",
   BR: "Brazil",
+  MX: "Mexico",
   SA: "Saudi Arabia",
   AE: "UAE",
+  SG: "Singapore",
+  MY: "Malaysia",
+  TH: "Thailand",
+  VN: "Vietnam",
+  ID: "Indonesia",
   NZ: "New Zealand",
-  UN: "International",
+  GCC: "GCC",
+  UN: "United Nations",
+  GLOBAL: "International",
 };
 
 function formatDate(dateStr: string | null, locale: "zh" | "en") {
@@ -74,6 +98,24 @@ function formatDate(dateStr: string | null, locale: "zh" | "en") {
     day: "numeric",
   });
 }
+
+// 领域分类在数据里是中文（法规分类表的原始取值）；英文界面下用这张表回退。
+const domainLabelEn: Record<string, string> = {
+  投资准入: "Investment Access",
+  出口管制: "Export Control",
+  反垄断: "Antitrust",
+  数据保护: "Data Protection",
+  电商平台: "Digital Platforms",
+  消费者保护: "Consumer Protection",
+  产品认证: "Product Certification",
+  劳动法: "Labour Law",
+  税务: "Tax",
+  金融支付: "Payments",
+  汽车网络安全: "Automotive Cybersecurity",
+  知识产权: "Intellectual Property",
+  市场监督: "Market Surveillance",
+  技术标准: "Technical Standards",
+};
 
 export function ArchiveTab() {
   const { t, locale } = useTranslation();
@@ -194,6 +236,11 @@ export function ArchiveTab() {
                     <span className="inline-flex items-center rounded-full bg-sky-50 px-3 py-1 text-xs font-medium text-sky-800 ring-1 ring-sky-200">
                       {locale === "en" ? marketLabelEn[entry.region] ?? entry.region : marketLabel[entry.region] ?? entry.region}
                     </span>
+                    {entry.domain ? (
+                      <span className="inline-flex items-center rounded-full bg-violet-50 px-3 py-1 text-xs font-medium text-violet-800 ring-1 ring-violet-200">
+                        {locale === "en" ? domainLabelEn[entry.domain] ?? entry.domain : entry.domain}
+                      </span>
+                    ) : null}
                     <code className="rounded-md bg-slate-800/80 px-2 py-1 font-mono text-xs text-slate-300">
                       {entry.id}
                     </code>

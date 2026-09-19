@@ -29,6 +29,9 @@ export interface ArchiveEntry {
   purchaseUrl: string | null;
   articleCount: number;
   license: string | null;
+  /** 合规领域分类（投资准入 / 数据保护 / 产品认证 …）。2026-09-19 attrax-docs
+   *  目录导入起写入 index；更早的锚点条目没有该字段，为 null。 */
+  domain: string | null;
 }
 
 export type SourceHealth = "ok" | "anti_bot" | "waf_challenge_temporary" | "unreachable" | "unknown";

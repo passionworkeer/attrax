@@ -91,6 +91,16 @@ export const translations = {
       CA: "加拿大",
       KR: "韩国",
       IN: "印度",
+      MX: "墨西哥",
+      VN: "越南",
+      ID: "印尼",
+      MY: "马来西亚",
+      TH: "泰国",
+      SG: "新加坡",
+      NZ: "新西兰",
+      GCC: "海湾国家",
+      UN: "联合国",
+      GLOBAL: "国际",
     },
 
     // 产品分类
@@ -210,7 +220,7 @@ export const translations = {
     regulations: {
       title: "法规情报中心",
       subtitle:
-        "把守跨境电商的法规来源、抓取通道与近期动态。当前 61 篇锚定法规档案 + 37 个抓取源 + 30 条编辑示例（watchdog 真实变更待生产机首次调度后接入）。",
+        "把守跨境电商的法规来源、抓取通道与近期动态。当前 {archive} 篇法规档案（覆盖 {markets} 个区域）+ {sources} 个抓取源 + {updates} 条近期动态。",
       demoBadge: "示例数据",
       mockNotice:
         "本页为静态示例数据（static-demo），用于演示法规动态的呈现结构与来源追溯；条目不会实时抓取或自动校验，不代表最新监管状态。真实扫描报告中的法规引用以报告内条目为准。",
@@ -527,6 +537,16 @@ export const translations = {
       CA: "Canada",
       KR: "South Korea",
       IN: "India",
+      MX: "Mexico",
+      VN: "Vietnam",
+      ID: "Indonesia",
+      MY: "Malaysia",
+      TH: "Thailand",
+      SG: "Singapore",
+      NZ: "New Zealand",
+      GCC: "GCC",
+      UN: "United Nations",
+      GLOBAL: "International",
     },
 
     // Product categories
@@ -645,7 +665,7 @@ export const translations = {
     regulations: {
       title: "Regulation Intelligence Center",
       subtitle:
-        "Cross-border regulation sources, ingestion channels, and recent changes. Currently 61 anchored regulations + 37 ingestion sources + 30 editorial sample cards (live watchdog changes will be wired in after the first orchestrator pass on the production server).",
+        "Cross-border regulation sources, ingestion channels, and recent changes. Currently {archive} regulations across {markets} regions, {sources} ingestion sources, and {updates} recent updates.",
       demoBadge: "Demo data",
       mockNotice:
         "This page shows static demo data (static-demo) to demonstrate how regulation updates and source traceability are presented; entries are not fetched or verified in real time and do not reflect the latest regulatory status. Regulation citations in real scan reports follow the in-report entries.",

@@ -1,0 +1,18 @@
+id: CN-PIPL
+official_citation: 《中华人民共和国个人信息保护法》(2021)
+short_name: 个人信息保护法 (PIPL)
+region: CN
+domain: 数据保护
+license: public
+source_url: http://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
