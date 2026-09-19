@@ -92,3 +92,17 @@
   与未来真实数据完全一致，只是背后由 buildDemoOverview 喂入形态真实的
   样本。等流量解析与登录信息接入后，只需把 useMemo 替换成 fetch 即可，
   无须再改任何 UI 文案
+
+## 第五次部署（同日晚）：删除用户角色维度
+
+- BUILD_ID `da_yXDIosK4_KLmhaV68E`（commit 23299c9），health gate 第 2 次尝试通过
+- 删除「用户角色 Top N」整列：当前系统没有角色数据来源（无注册体系、
+  无角色标签），展示假数字没有意义。types / demo-data / Dashboard /
+  overview / CSS / 测试同步清理；面板更名「访客国家」（单列）
+- 生产验证：页面 0 个「角色」字样（「用户角色」「访客国家与角色分布」
+  均 0），「访客国家」面板在，🇨🇳🇺🇸🇬🇧 旗帜正常；verify-admin 9/9
+  通过（从本地 IP 对生产跑——服务器 IP 因连续验证触发了登录限流
+  429，属防护按设计生效）
+- 说明：covers
+  - 提交时误卷入另一会话在途的 rag_service article_loader 懒加载改动，
+  已拆出恢复为未提交状态，本提交仅含 6 个 admin 文件
