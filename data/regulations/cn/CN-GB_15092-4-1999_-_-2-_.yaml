@@ -1,0 +1,19 @@
+id: CN-GB_15092-4-1999_-_-2-_
+official_citation: CN-GB GB 15092.4-1999 器具开关  第2部分:独立安装开关的特殊要求
+short_name: CN-GB GB 15092.4-1999 器具开关  第2部分:独立安装开关的特殊要求
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=19B033524B53987FA2F211C89A4E2EAB
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_15092.4-1999_器具开关_第2部分_独立安装开关的特殊要求.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

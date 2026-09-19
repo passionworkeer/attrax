@@ -1,0 +1,19 @@
+id: CN-GB_27607-2011_-_
+official_citation: CN-GB GB 27607-2011 机械压力机  安全技术要求
+short_name: CN-GB GB 27607-2011 机械压力机  安全技术要求
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=79D2E82B94C06342A57FBFF3B2C3A1C3
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_27607-2011_机械压力机_安全技术要求.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

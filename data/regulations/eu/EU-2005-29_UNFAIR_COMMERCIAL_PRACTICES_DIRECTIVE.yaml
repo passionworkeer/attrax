@@ -1,0 +1,19 @@
+id: EU-2005-29_UNFAIR_COMMERCIAL_PRACTICES_DIRECTIVE
+official_citation: EU-2005-29 Unfair Commercial Practices Directive
+short_name: EU-2005-29 Unfair Commercial Practices Directive
+region: EU
+domain: other
+license: public
+source_url: https://publications.europa.eu/resource/celex/32005L0029?language=eng
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/EU-2005-29_Unfair_Commercial_Practices_Directive.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

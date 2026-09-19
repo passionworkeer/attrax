@@ -1,0 +1,19 @@
+id: US-TITLE47-USC-301_COMMUNICATIONS_ACT_GENERAL_AUTHORITY
+official_citation: US 47 USC s.301 Communications Act general authority
+short_name: US 47 USC s.301 Communications Act general authority
+region: US
+domain: other
+license: public
+source_url: https://www.govinfo.gov/link/uscode/47/301
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US-title47-USC-301_Communications_Act_general_authority.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

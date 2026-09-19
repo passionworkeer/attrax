@@ -1,0 +1,19 @@
+id: GLOBAL-ETSI_EN_301_908_
+official_citation: ETSI EN 301 908 蜂窝基站
+short_name: ETSI EN 301 908 蜂窝基站
+region: GLOBAL
+domain: other
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/301900_301999/30190801/07.01.01_60/en_30190801v070101p.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/ETSI_EN_301_908_蜂窝基站.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

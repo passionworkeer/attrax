@@ -1,0 +1,19 @@
+id: CN-GB_24613-2009_
+official_citation: CN-GB GB 24613-2009 玩具用涂料中有害物质限量
+short_name: CN-GB GB 24613-2009 玩具用涂料中有害物质限量
+region: CN
+domain: toy
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=B479D116E80C8C4B89D18DC8765C0AC6
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_24613-2009_玩具用涂料中有害物质限量.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

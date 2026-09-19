@@ -1,0 +1,19 @@
+id: SG-SG_SALE_OF_GOODS_ACT_SSO
+official_citation: SG Sale of Goods Act (SSO)
+short_name: SG Sale of Goods Act (SSO)
+region: SG
+domain: other
+license: public
+source_url: https://sso.agc.gov.sg/Act/SGA1979
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- sg/raw/SG_Sale_of_Goods_Act_SSO.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: CN-GB_15193-10-2003_-DNA
+official_citation: CN-GB GB 15193.10-2003 非程序性DNA合成试验
+short_name: CN-GB GB 15193.10-2003 非程序性DNA合成试验
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=5B812508E2AD4B90694073C6F19B2AF8
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_15193.10-2003_非程序性DNA合成试验.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

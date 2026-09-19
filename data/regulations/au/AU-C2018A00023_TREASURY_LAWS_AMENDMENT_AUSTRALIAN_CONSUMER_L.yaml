@@ -1,0 +1,19 @@
+id: AU-C2018A00023_TREASURY_LAWS_AMENDMENT_AUSTRALIAN_CONSUMER_L
+official_citation: AU Treasury Laws Amendment (Australian Consumer Law Review) (legislation.gov.au)
+short_name: AU Treasury Laws Amendment (Australian Consumer Law Review) (legislation.gov.au)
+region: AU
+domain: other
+license: public
+source_url: https://www.legislation.gov.au/C2018A00023/latest/text
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- au/raw/AU-C2018A00023_Treasury_Laws_Amendment_Australian_Consumer_Law_Review.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

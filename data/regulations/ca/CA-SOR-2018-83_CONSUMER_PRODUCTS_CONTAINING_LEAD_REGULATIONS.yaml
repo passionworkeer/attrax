@@ -1,0 +1,19 @@
+id: CA-SOR-2018-83_CONSUMER_PRODUCTS_CONTAINING_LEAD_REGULATIONS
+official_citation: CA SOR-2018-83 Consumer Products Containing Lead Regulations
+short_name: CA SOR-2018-83 Consumer Products Containing Lead Regulations
+region: CA
+domain: other
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/XML/SOR-2018-83.xml
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- ca/raw/CA-SOR-2018-83_Consumer_Products_Containing_Lead_Regulations.xml
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

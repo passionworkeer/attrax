@@ -1,0 +1,19 @@
+id: SA-SA_SDAIA_-_SDAIA-GOV-SA
+official_citation: SA SDAIA 个人数据保护法 (sdaia.gov.sa)
+short_name: SA SDAIA 个人数据保护法 (sdaia.gov.sa)
+region: SA
+domain: 数据保护
+license: public
+source_url: https://sdaia.gov.sa/en/SDAIA/about/Pages/RegulationsAndPolicies.aspx
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- sa/raw/SA_SDAIA_个人数据保护法_sdaia.gov.sa.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

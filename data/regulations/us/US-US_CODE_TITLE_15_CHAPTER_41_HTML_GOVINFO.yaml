@@ -1,0 +1,19 @@
+id: US-US_CODE_TITLE_15_CHAPTER_41_HTML_GOVINFO
+official_citation: US Code title 15 chapter 41 (HTML, govinfo)
+short_name: US Code title 15 chapter 41 (HTML, govinfo)
+region: US
+domain: other
+license: public
+source_url: https://www.govinfo.gov/content/pkg/USCODE-2023-title15/html/USCODE-2023-title15-chap41.htm
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US_Code_title_15_chapter_41_HTML_govinfo.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

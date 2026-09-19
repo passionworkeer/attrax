@@ -1,0 +1,19 @@
+id: CN-GB_19517-2009_
+official_citation: CN-GB GB 19517-2009 国家电气设备安全技术规范
+short_name: CN-GB GB 19517-2009 国家电气设备安全技术规范
+region: CN
+domain: appliance
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=1C210D7EA8BB5415ECDCE65B88C56FF3
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_19517-2009_国家电气设备安全技术规范.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

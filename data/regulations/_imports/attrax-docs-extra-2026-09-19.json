@@ -1,0 +1,135 @@
+{
+  "manifest_version": 1,
+  "generated_at": "2026-09-19T14:00:00",
+  "title": "attrax-docs 增量目录（2026-09-19 增补，未登记的有效法规原件）",
+  "source_root": "/workspace/me/attrax-docs",
+  "url_verified_at": "2026-09-19",
+  "sources": [
+    "attrax-docs/EU_regulations/",
+    "attrax-docs/欧盟/",
+    "attrax-docs/沙特阿拉伯/",
+    "attrax-docs/马来西亚/"
+  ],
+  "entries": [
+    {
+      "id": "EU-2014-30",
+      "region": "EU",
+      "domain": "electronics",
+      "official_citation": "Directive 2014/30/EU — Electromagnetic Compatibility (EMC)",
+      "short_name": "EMC 电磁兼容指令 (2014/30/EU)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/30/oj",
+      "docs": ["EU_regulations/EMC_2014-30-EU_电磁兼容指令.pdf"]
+    },
+    {
+      "id": "EU-2016-679-GDPR",
+      "region": "EU",
+      "domain": "数据保护",
+      "official_citation": "Regulation (EU) 2016/679 — General Data Protection Regulation (GDPR)",
+      "short_name": "GDPR 通用数据保护条例 (EU 2016/679)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "docs": ["EU_regulations/GDPR_(EU)_2016-679_通用数据保护条例.pdf"]
+    },
+    {
+      "id": "EU-2023-988",
+      "region": "EU",
+      "domain": "产品安全",
+      "official_citation": "Regulation (EU) 2023/988 — General Product Safety Regulation (GPSR)",
+      "short_name": "GPSR 通用产品安全法规 (EU 2023/988)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2023/988/oj",
+      "docs": ["EU_regulations/GPSR_(EU)_2023-988.pdf"]
+    },
+    {
+      "id": "EU-2014-35",
+      "region": "EU",
+      "domain": "electronics",
+      "official_citation": "Directive 2014/35/EU — Low Voltage (LVD)",
+      "short_name": "LVD 低电压指令 (2014/35/EU)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/35/oj",
+      "docs": ["EU_regulations/LVD_2014-35-EU_低电压指令.pdf"]
+    },
+    {
+      "id": "EU-1907-2006",
+      "region": "EU",
+      "domain": "环境",
+      "official_citation": "Regulation (EC) No 1907/2006 — REACH",
+      "short_name": "REACH 化学品注册评估授权限制 (EC 1907/2006)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2006/1907/oj",
+      "docs": ["EU_regulations/REACH_(EC)_1907-2006_化学品注册评估授权限制.pdf"]
+    },
+    {
+      "id": "EU-2014-53",
+      "region": "EU",
+      "domain": "wireless",
+      "official_citation": "Directive 2014/53/EU — Radio Equipment (RED)",
+      "short_name": "RED 无线电设备指令 (2014/53/EU)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj",
+      "docs": ["EU_regulations/RED_2014-53-EU_无线电设备指令.pdf"]
+    },
+    {
+      "id": "EU-2011-65",
+      "region": "EU",
+      "domain": "环境",
+      "official_citation": "Directive 2011/65/EU — RoHS",
+      "short_name": "RoHS 有害物质限制指令 (2011/65/EU)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2011/65/oj",
+      "docs": ["EU_regulations/RoHS_2011-65-EU_有害物质限制指令.pdf"]
+    },
+    {
+      "id": "EU-2009-48-TOY",
+      "region": "EU",
+      "domain": "toy",
+      "official_citation": "Directive 2009/48/EC — Toy Safety",
+      "short_name": "玩具安全指令 (2009/48/EC)",
+      "language": "en",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2009/48/oj",
+      "docs": ["EU_regulations/玩具安全法规_(EC)_2009-48.pdf"]
+    },
+    {
+      "id": "EU-2023-1542-INTERP",
+      "region": "EU",
+      "domain": "battery",
+      "official_citation": "Regulation (EU) 2023/1542 — Batteries and waste batteries",
+      "short_name": "新电池法规解读 (EU 2023/1542)",
+      "language": "zh",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2023/1542/oj",
+      "docs": ["欧盟/欧盟《新电池法规》（Regulation EU 2023_1542）解读.html"]
+    },
+    {
+      "id": "EU-2021-821-FDI",
+      "region": "EU",
+      "domain": "投资准入",
+      "official_citation": "Regulation (EU) 2021/821 — FDI Screening",
+      "short_name": "欧盟外资审查框架 (EU 2021/821)",
+      "language": "zh",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2021/821/oj",
+      "docs": ["欧盟/欧盟外资审查框架（Regulation EU 2021_821）.html"]
+    },
+    {
+      "id": "SA-SABER-SASO",
+      "region": "SA",
+      "domain": "产品安全",
+      "official_citation": "Saudi Arabia Saber / SASO Conformity Assessment",
+      "short_name": "沙特 Saber/SASO 合格评定系统",
+      "language": "zh",
+      "source_url": "https://saber.sa/",
+      "docs": ["沙特阿拉伯/沙特Saber_SASO电子认证系统说明（QIMA指南）.html"]
+    },
+    {
+      "id": "MY-PDPA-2010",
+      "region": "MY",
+      "domain": "数据保护",
+      "official_citation": "Personal Data Protection Act 2010 (Act 709)",
+      "short_name": "马来西亚 PDPA (2010, Act 709)",
+      "language": "en",
+      "source_url": "https://www.pdp.gov.my/",
+      "docs": ["马来西亚/马来西亚《个人数据保护法》（PDPA 2010，Act 709）.pdf"]
+    }
+  ]
+}

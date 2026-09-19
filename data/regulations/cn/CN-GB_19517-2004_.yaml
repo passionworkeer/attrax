@@ -1,0 +1,19 @@
+id: CN-GB_19517-2004_
+official_citation: CN-GB GB 19517-2004 国家电气设备安全技术规范
+short_name: CN-GB GB 19517-2004 国家电气设备安全技术规范
+region: CN
+domain: appliance
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=BFC2AA1620A9710A945EA12BF790B966
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_19517-2004_国家电气设备安全技术规范.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

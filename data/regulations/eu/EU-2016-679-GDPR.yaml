@@ -1,0 +1,19 @@
+id: EU-2016-679-GDPR
+official_citation: Regulation (EU) 2016/679 — General Data Protection Regulation (GDPR)
+short_name: GDPR 通用数据保护条例 (EU 2016/679)
+region: EU
+domain: 数据保护
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2016/679/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/GDPR_(EU)_2016-679_通用数据保护条例.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

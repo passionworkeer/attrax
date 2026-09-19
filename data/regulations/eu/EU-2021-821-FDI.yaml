@@ -1,0 +1,19 @@
+id: EU-2021-821-FDI
+official_citation: Regulation (EU) 2021/821 — FDI Screening
+short_name: 欧盟外资审查框架 (EU 2021/821)
+region: EU
+domain: 投资准入
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2021/821/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/欧盟外资审查框架（Regulation EU 2021_821）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

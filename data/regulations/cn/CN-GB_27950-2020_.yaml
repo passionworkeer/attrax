@@ -1,0 +1,19 @@
+id: CN-GB_27950-2020_
+official_citation: CN-GB GB 27950-2020 手消毒剂通用要求
+short_name: CN-GB GB 27950-2020 手消毒剂通用要求
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=CE4EAF7CA6BE76F28D16E42FB6CA0914
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_27950-2020_手消毒剂通用要求.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

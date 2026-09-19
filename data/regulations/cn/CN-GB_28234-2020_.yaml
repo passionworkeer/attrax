@@ -1,0 +1,19 @@
+id: CN-GB_28234-2020_
+official_citation: CN-GB GB 28234-2020 酸性电解水生成器卫生要求
+short_name: CN-GB GB 28234-2020 酸性电解水生成器卫生要求
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=978F002C3B195DBC4D66124B6A9C6701
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_28234-2020_酸性电解水生成器卫生要求.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

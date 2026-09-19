@@ -1,0 +1,19 @@
+id: GLOBAL-ETSI_EN_303345_V01-01-07_30
+official_citation: ETSI EN 303345 v01.01.07_30
+short_name: ETSI EN 303345 v01.01.07_30
+region: GLOBAL
+domain: other
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/303300_303399/303345/01.01.07_30/en_303345v010107v.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/ETSI_EN_303345_v01.01.07_30.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

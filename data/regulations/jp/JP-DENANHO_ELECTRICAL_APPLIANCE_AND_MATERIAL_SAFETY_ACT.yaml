@@ -1,0 +1,19 @@
+id: JP-DENANHO_ELECTRICAL_APPLIANCE_AND_MATERIAL_SAFETY_ACT
+official_citation: JP-DENANHO Electrical Appliance and Material Safety Act
+short_name: JP-DENANHO Electrical Appliance and Material Safety Act
+region: JP
+domain: other
+license: public
+source_url: https://laws.e-gov.go.jp/api/1/lawdata/336AC0000000234
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- jp/raw/JP-DENANHO_Electrical_Appliance_and_Material_Safety_Act.xml
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

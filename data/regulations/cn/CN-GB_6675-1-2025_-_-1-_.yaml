@@ -1,0 +1,19 @@
+id: CN-GB_6675-1-2025_-_-1-_
+official_citation: CN-GB GB 6675.1-2025 玩具安全 第1部分：基本规范
+short_name: CN-GB GB 6675.1-2025 玩具安全 第1部分：基本规范
+region: CN
+domain: toy
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=C9E23F1F4C5C26B9AB4EF697C8F38E63
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_6675.1-2025_玩具安全_第1部分_基本规范.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

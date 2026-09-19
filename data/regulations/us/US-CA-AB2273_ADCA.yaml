@@ -1,0 +1,19 @@
+id: US-CA-AB2273_ADCA
+official_citation: US CA AB2273 Age-Appropriate Design Code Act
+short_name: US CA AB2273 Age-Appropriate Design Code Act
+region: US
+domain: other
+license: public
+source_url: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US-CA-AB2273_ADCA.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

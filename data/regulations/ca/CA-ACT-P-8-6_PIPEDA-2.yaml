@@ -1,0 +1,19 @@
+id: CA-ACT-P-8-6_PIPEDA-2
+official_citation: CA P-8.6 PIPEDA [html]
+short_name: CA P-8.6 PIPEDA [html]
+region: CA
+domain: other
+license: public
+source_url: https://laws-lois.justice.gc.ca/eng/acts/P-8.6/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- ca/raw/CA-act-P-8.6_PIPEDA.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

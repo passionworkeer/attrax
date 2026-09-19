@@ -1,0 +1,19 @@
+id: CN-GB_15193-18-2003_-_ADI_
+official_citation: CN-GB GB 15193.18-2003 日容许摄入量(ADI)的制定
+short_name: CN-GB GB 15193.18-2003 日容许摄入量(ADI)的制定
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=299049D7B74209195CDAA5C24B39A093
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_15193.18-2003_日容许摄入量_ADI_的制定.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

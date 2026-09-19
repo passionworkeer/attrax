@@ -1,0 +1,19 @@
+id: MY-MY_AGC_
+official_citation: MY AGC 法令目录
+short_name: MY AGC 法令目录
+region: MY
+domain: other
+license: public
+source_url: https://www.agc.gov.my/agcportal/pages/laws.php
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- my/raw/MY_AGC_法令目录.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: US-TITLE19-USC-1304_COUNTRY_OF_ORIGIN_MARKING
+official_citation: US 19 USC s.1304 Country of origin marking
+short_name: US 19 USC s.1304 Country of origin marking
+region: US
+domain: other
+license: public
+source_url: https://www.govinfo.gov/link/uscode/19/1304
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US-title19-USC-1304_Country_of_origin_marking.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

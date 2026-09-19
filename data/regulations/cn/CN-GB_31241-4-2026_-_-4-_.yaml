@@ -1,0 +1,19 @@
+id: CN-GB_31241-4-2026_-_-4-_
+official_citation: CN-GB GB 31241.4-2026 电子电器用锂离子电池和电池组安全 第4部分：玩具
+short_name: CN-GB GB 31241.4-2026 电子电器用锂离子电池和电池组安全 第4部分：玩具
+region: CN
+domain: toy
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=79A619C598C295A52B2CA962FB934826
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_31241.4-2026_电子电器用锂离子电池和电池组安全_第4部分_玩具.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

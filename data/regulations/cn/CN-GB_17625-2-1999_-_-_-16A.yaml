@@ -1,0 +1,19 @@
+id: CN-GB_17625-2-1999_-_-_-16A
+official_citation: CN-GB GB 17625.2-1999 电磁兼容  限值  对额定电流不大于16A的设备在低压供电系统中产生的电压波动和闪烁的限制
+short_name: CN-GB GB 17625.2-1999 电磁兼容  限值  对额定电流不大于16A的设备在低压供电系统中产生的电压波动和闪烁的限制
+region: CN
+domain: electronics
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=05DB5468F1E4F03510FE95AB6686A093
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_17625.2-1999_电磁兼容_限值_对额定电流不大于16A的设备在低压供电系统中产生的电压波动和闪烁的限制.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

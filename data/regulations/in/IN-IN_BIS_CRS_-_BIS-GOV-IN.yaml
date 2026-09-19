@@ -1,0 +1,19 @@
+id: IN-IN_BIS_CRS_-_BIS-GOV-IN
+official_citation: IN BIS CRS 强制注册计划 (bis.gov.in)
+short_name: IN BIS CRS 强制注册计划 (bis.gov.in)
+region: IN
+domain: other
+license: public
+source_url: https://www.bis.gov.in/index.php/standards-changes-orders/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- in/raw/IN_BIS_CRS_强制注册计划_bis.gov.in.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

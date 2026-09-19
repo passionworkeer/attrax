@@ -1,0 +1,19 @@
+id: US-PLAW-117PUBL328_CONSOLIDATED_APPROPRIATIONS_ACT_2023_-INFORM
+official_citation: US PLAW-117publ328 Consolidated Appropriations Act 2023 (INFORM Act)
+short_name: US PLAW-117publ328 Consolidated Appropriations Act 2023 (INFORM Act)
+region: US
+domain: other
+license: public
+source_url: https://www.govinfo.gov/content/pkg/PLAW-117publ328/pdf/PLAW-117publ328.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/PLAW-117publ328_Consolidated_Appropriations_Act_2023_(INFORM_Act).pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

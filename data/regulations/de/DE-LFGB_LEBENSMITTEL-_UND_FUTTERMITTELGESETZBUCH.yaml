@@ -1,0 +1,19 @@
+id: DE-LFGB_LEBENSMITTEL-_UND_FUTTERMITTELGESETZBUCH
+official_citation: DE LFGB Lebensmittel- und Futtermittelgesetzbuch
+short_name: DE LFGB Lebensmittel- und Futtermittelgesetzbuch
+region: DE
+domain: other
+license: public
+source_url: https://www.gesetze-im-internet.de/lfgb/LFGB.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- de/raw/DE-LFGB_Lebensmittel-_und_Futtermittelgesetzbuch.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

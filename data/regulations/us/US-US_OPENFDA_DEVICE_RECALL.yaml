@@ -1,0 +1,19 @@
+id: US-US_OPENFDA_DEVICE_RECALL
+official_citation: US FDA openFDA device recalls
+short_name: US FDA openFDA device recalls
+region: US
+domain: other
+license: public
+source_url: https://api.fda.gov/device/recall.json?limit=100&sort=event_date_initiated:desc
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US_openfda_device_recall.json
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

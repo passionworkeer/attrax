@@ -1,0 +1,19 @@
+id: GLOBAL-ETSI_EN_301_489-1_EMC_
+official_citation: ETSI EN 301 489-1 EMC 通用要求
+short_name: ETSI EN 301 489-1 EMC 通用要求
+region: GLOBAL
+domain: electronics
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/301400_301499/30148901/02.02.03_60/en_30148901v020203p.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/ETSI_EN_301_489-1_EMC_通用要求.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

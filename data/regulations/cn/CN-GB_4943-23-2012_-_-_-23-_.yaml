@@ -1,0 +1,19 @@
+id: CN-GB_4943-23-2012_-_-_-23-_
+official_citation: CN-GB GB 4943.23-2012 信息技术设备  安全  第23部分：大型数据存储设备
+short_name: CN-GB GB 4943.23-2012 信息技术设备  安全  第23部分：大型数据存储设备
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=1650B9738467AA86136B1FD706C17FC3
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_4943.23-2012_信息技术设备_安全_第23部分_大型数据存储设备.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

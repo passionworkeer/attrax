@@ -1,0 +1,19 @@
+id: CN-GB_5296-3-2008_-_
+official_citation: CN-GB GB 5296.3-2008 消费品使用说明  化妆品通用标签
+short_name: CN-GB GB 5296.3-2008 消费品使用说明  化妆品通用标签
+region: CN
+domain: cosmetic
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=86DDF327060B99B817E89EF7BD0052C2
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_5296.3-2008_消费品使用说明_化妆品通用标签.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

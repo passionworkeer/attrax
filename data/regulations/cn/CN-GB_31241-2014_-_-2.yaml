@@ -1,0 +1,19 @@
+id: CN-GB_31241-2014_-_-2
+official_citation: CN-GB GB 31241-2014 便携式电子产品用锂离子电池和电池组  安全要求
+short_name: CN-GB GB 31241-2014 便携式电子产品用锂离子电池和电池组  安全要求
+region: CN
+domain: battery
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=981CA644255414F6054D114CEA5CB466
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_31241-2014_便携式电子产品用锂离子电池和电池组_安全要求.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
