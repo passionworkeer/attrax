@@ -347,6 +347,7 @@ const SessionIdSchema = z
 - **URL 实测口径**：63 条 source_url 全部 curl 探测过，但 **curl 对 EUR-Lex 没有区分度**——有效 ELI 与编造 ELI 都返回 202，所以 `OK 202` 只证明主机可达。EUR-Lex 的 15 条另用 Cellar 端点按 CELEX 复核（`docs/evidence/2026-09-19-regulations-catalog-import/verify-eu-eli.py`），15 条全部 303 = 文书存在。另有 18 条登记的是官方门户而非条款深链（越南 vanban.chinhphu.vn、印尼 jdih.setneg.go.id、阿联酋 u.ae 等），点「原文」到门户首页，条文以本地原件为准；其中 UN R155/R156、EU-2019-452、AE-LABOR-33-2021 在条目 `note` 写明原因
 - **对抗性审查（同日）修掉的**：`--copy-docs` 在 YAML 已存在时不复制原件（文档承诺的恢复流程失效）→ 拆成「写 YAML」「复制原件」两步 + `scripts/watchdog/tests/test_import_regulation_docs.py` 15 条回归；清单字段未 strip 会在 `run()` 抛未捕获 KeyError（且崩在索引重建前，留下库与索引不一致）；`docs` 可用 `../` 越出原件目录、同区域重名原件被静默覆盖（均改为校验期拒绝）；`MY-DATA-SHARING-2025` 编号 Act 862 → **Act 864**（862 是 2024 年财政法）；4 组重复/张冠李戴的原件登记去重（`doc_files` 72 → 68 份唯一原件）；`page.tsx` 统计接口返回非 2xx 时不再静默显示「—」而无横幅
 - **验证**：pytest 738 passed（rag_service，含库不变量）+ 156 passed（watchdog，含导入脚本回归）、vitest 998 passed、tsc、eslint 0 error；浏览器实测 `/regulations` 三个 tab（档案 124 条 × 21 区域、筛选与领域标签、近期动态 42 条含越南 2 条、NZ 筛选空态）；`verify-eu-eli.py` 15/15 存在
+- **部署（同日）**：ddc9967 上线，BUILD_ID `YU8SNxMLjsyFVHcWswvRm`。⚠️ 法规库要 **additive rsync + 在服务器上重建索引**（不能拷本地索引，服务器有 3 条 watchdog 自动入库的 UK 法规会被抹掉）；上线后生产档案 **127 条**（本地 124 + 3）、抓取源 37、近期动态 60（42 静态 + 18 实时）。部署后真实扫描 `ready` 68s / 5 findings / 15 citations（MiniMax 429 → 走 DeepSeek 降级，属设计内）。完整记录见 `docs/evidence/2026-09-19-regulations-catalog-import/production-deploy.md`
 
 ### 2026-09-19 — 并发加固批次部署中产出的 deploy 自愈（a1a4474）
 
