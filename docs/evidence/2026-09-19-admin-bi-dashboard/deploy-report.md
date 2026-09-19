@@ -68,3 +68,11 @@
   「真实数据 / 演示数据」切换（演示口径 30 天 42 访客 / 343 次扫描）
 - 服务器 git：分支引用更新到 ee99a27；main 保持 8108ef0——其工作树有 watchdog 未提交的
   法规增量（合并会覆盖），按既有约定服务器 git 允许落后，真实版本以 `.deployed` 为准
+
+## 第三次部署（同日晚）：默认演示数据 + 用户画像（国家/角色）
+
+- BUILD_ID `-P1opa6EbdwafsY04NNP4`（commit 098e0c5 = main tip），health gate 第 2 次尝试通过
+- 改动：默认进入演示视图，「真实数据 / 演示数据」分段按钮移除（刷新按钮改为重新生成演示样本）；新增「用户画像」面板（访客国家 Top N + 用户角色 Top N，各 9–11 条，30 天口径下 CN 12 / US 12 / GB 5；合规经理 11 / 采购 10 / 法务 7）；卡片新增国家数 + 角色数提示
+- 重要修：pickWeighted 拿字符串名当权重（`COUNTRY_WEIGHTS: [string, string, number]` 写成 `[string, number]`）→ `roll -= "中国"` 变 NaN → 30 天窗口下「42 访客全部分到一个国家 + 一个角色」的退化。修复 = 拆 COUNTRY_WEIGHTS / ROLE_WEIGHTS 为纯权重表 + COUNTRY_NAMES / ROLE_LABELS 显式映射，RNG 也独立（identityRng = mulberry32(seed+41)）
+- 真实数据路径 countries/roles 暂留空数组，notes 标注「待接入流量解析与登录信息」
+- 验证：vitest 1017 / tsc / lint 0 error；本地浏览器实测（22 行用户画像、CN/US/GB/BR/FR/KR 国旗、合规经理 + 采购负责人等角色标签）；生产 9/9 verify + 抽查页面命中演示徽章 / 用户画像 / 国旗 / 角色
