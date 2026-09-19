@@ -1,0 +1,47 @@
+===================== 开始实测 =====================
+tarball ops 数: 11
+部署前旧树标记: OLD-TREE-MARKER
+
+[2026-09-19T11:59:53+08:00] === [1] preflight ===
+[2026-09-19T11:59:53+08:00] === [2] backup current standalone -> /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/standalone-pre-deploy-20260919-035953 ===
+[2026-09-19T11:59:53+08:00] === [3] extract tarball ===
+[2026-09-19T11:59:53+08:00] === [4] verify .next/static symlink ===
+lrwxr-xr-x@ 1 wangjianjun  staff  106 Sep 19 11:59 /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/static -> /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/standalone/.next/static
+[2026-09-19T11:59:53+08:00] === [5] BUILD_ID ===
+[2026-09-19T11:59:53+08:00]   BUILD_ID: NEW-BUILD-ID
+[2026-09-19T11:59:53+08:00] === [6] deploy marker ===
+[2026-09-19T11:59:53+08:00]   .build_sha: commit=deadbeef
+[2026-09-19T11:59:53+08:00] === [6.5] install ops files (ports / render / healthcheck) ===
+[2026-09-19T11:59:53+08:00]   WARN: no systemd on this host — healthcheck not installed
+[2026-09-19T11:59:53+08:00]   ops installed; render 校验: 
+[2026-09-19T11:59:53+08:00] === [7] cleanup tarball ===
+[2026-09-19T11:59:53+08:00] === [8] restart pm2 nextjs ===
+[fake-pm2] startOrRestart /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/repo/scripts/ecosystem.config.cjs --only nextjs
+[2026-09-19T11:59:53+08:00] === [8.5] render + reload nginx vhost ===
+[2026-09-19T11:59:53+08:00]   WARN: /etc/nginx/sites-enabled/attrax 不可写，跳过渲染 — 手动运行: bash /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/repo/scripts/render-nginx-vhost.sh --out /etc/nginx/sites-enabled/attrax && nginx -s reload
+[2026-09-19T11:59:53+08:00] === [9] health gate (http://127.0.0.1:59999/api/health) ===
+[2026-09-19T11:59:53+08:00]   attempt 1: http=000000
+[2026-09-19T11:59:56+08:00]   attempt 2: http=000000
+[2026-09-19T11:59:59+08:00]   attempt 3: http=000000
+[2026-09-19T12:00:02+08:00]   attempt 4: http=000000
+[2026-09-19T12:00:05+08:00]   attempt 5: http=000000
+[2026-09-19T12:00:08+08:00]   attempt 6: http=000000
+[2026-09-19T12:00:11+08:00]   attempt 7: http=000000
+[2026-09-19T12:00:14+08:00]   attempt 8: http=000000
+[2026-09-19T12:00:18+08:00]   attempt 9: http=000000
+[2026-09-19T12:00:21+08:00]   attempt 10: http=000000
+[2026-09-19T12:00:24+08:00] ERROR: health gate failed (last http=000000) — the new build is not serving.
+[2026-09-19T12:00:24+08:00]        Roll back with: bash /Users/wangjianjun/me/attrax/scripts/apply-deploy.sh --rollback
+[2026-09-19T12:00:24+08:00]        Previous tree kept at: /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/standalone-pre-deploy-20260919-035953
+[2026-09-19T12:00:24+08:00] WARN: deploy failed (rc=1) at stage 'deployed' — auto-rolling back
+[2026-09-19T12:00:24+08:00] === rollback -> /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/standalone-pre-deploy-20260919-035953 ===
+[fake-pm2] restart nextjs --update-env
+[2026-09-19T12:00:24+08:00] rolled back; the broken tree was kept at /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/standalone-rollback-20260919-040024
+[2026-09-19T12:00:24+08:00] auto-rollback done; the failed tree was kept for inspection
+
+===================== 结果 =====================
+退出码: 1（期望非 0）
+当前线上树标记: OLD-TREE-MARKER
+备份目录: 
+rollback 暂存目录: /Users/wangjianjun/me/attrax/tmp/verify-apply-deploy-rollback/sandbox/attrax/.next/standalone-rollback-20260919-040024
+PASS: 失败后自动回滚到旧树
