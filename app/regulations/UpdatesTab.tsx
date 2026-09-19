@@ -33,6 +33,17 @@ const UPDATES_MARKETS = [
   "CA",
   "KR",
   "IN",
+  // NZ 没有静态卡片，但 watchdog 注册表里有 2 个新西兰源，真实变更会以
+  // market: "NZ" 进入列表——缺按钮时卡片只能混在「全部」里，市场标签还会因为
+  // marketLabelKeys 没有映射而显示裸代码 "NZ"。
+  "NZ",
+  "SG",
+  "MY",
+  "TH",
+  "VN",
+  "ID",
+  "GCC",
+  "UN",
 ] as const;
 
 const riskClasses: Record<RiskLevel, string> = {
@@ -69,6 +80,14 @@ const marketLabelKeys: Record<string, string> = {
   CA: "markets.CA",
   KR: "markets.KR",
   IN: "markets.IN",
+  NZ: "markets.NZ",
+  SG: "markets.SG",
+  MY: "markets.MY",
+  TH: "markets.TH",
+  VN: "markets.VN",
+  ID: "markets.ID",
+  GCC: "markets.GCC",
+  UN: "markets.UN",
 };
 
 function getDaysUntilEffective(effectiveDate: string) {
@@ -99,7 +118,9 @@ export function UpdatesTab() {
       setLoading(true);
       setLoadFailed(false);
       try {
-        const params = new URLSearchParams({ limit: "50" });
+        // limit=100: 人工整理卡片 + watchdog 实时记录（2026-09-19 目录导入后
+        // 静态侧就有 42 条），50 会把区域卡片截断在列表尾部。
+        const params = new URLSearchParams({ limit: "100" });
         if (deferredSearch) params.set("search", deferredSearch);
         if (selectedMarket !== "all") params.set("market", selectedMarket);
 

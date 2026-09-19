@@ -1,8 +1,41 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-17",
-  "count": 61,
+  "generated_at": "2026-09-19",
+  "count": 124,
   "regulations": [
+    {
+      "id": "AE-CBUAE-SVF",
+      "region": "AE",
+      "license": "public",
+      "official_citation": "CBUAE Stored Value Facilities Regulation",
+      "short_name": "阿联酋央行储值设施法规 (SVF)",
+      "source_url": "https://u.ae/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "金融支付"
+    },
+    {
+      "id": "AE-LABOR-33-2021",
+      "region": "AE",
+      "license": "public",
+      "official_citation": "Federal Decree-Law No. 33 of 2021 on the Regulation of Employment Relations",
+      "short_name": "阿联酋新劳动法 (33/2021)",
+      "source_url": "https://u.ae/en/information-and-services/jobs",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "劳动法"
+    },
+    {
+      "id": "AE-MEDIA-55-2023",
+      "region": "AE",
+      "license": "public",
+      "official_citation": "Federal Decree-Law No. 55 of 2023 on Media Regulation",
+      "short_name": "阿联酋媒体监管联邦法令 (55/2023)",
+      "source_url": "https://u.ae/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "电商平台"
+    },
     {
       "id": "AE-MoIAT-ECAS",
       "region": "AE",
@@ -12,6 +45,17 @@
       "source_url": "https://moiat.gov.ae/en/services/standardization-and-conformity/ecas",
       "purchase_url": null,
       "article_count": 0
+    },
+    {
+      "id": "AE-VAT-EXEC-REG",
+      "region": "AE",
+      "license": "public",
+      "official_citation": "Cabinet Decision No. 100 of 2024 (VAT Executive Regulations amendment)",
+      "short_name": "阿联酋 VAT 执行条例 (第 100 号内阁决定)",
+      "source_url": "https://tax.gov.ae/en/legislation/vat.aspx",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "税务"
     },
     {
       "id": "AU-RCM",
@@ -94,6 +138,17 @@
       "article_count": 0
     },
     {
+      "id": "CN-AML",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "《中华人民共和国反垄断法》(2022年修正)",
+      "short_name": "反垄断法 (2022 修正)",
+      "source_url": "https://flk.npc.gov.cn/detail?title=%E5%8F%8D%E5%9E%84%E6%96%AD%E6%B3%95&id=ff8081818234ccb501829f46c6ac2a5a",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "反垄断"
+    },
+    {
       "id": "CN-CCC-IT",
       "region": "CN",
       "license": "public",
@@ -124,6 +179,50 @@
       "article_count": 4
     },
     {
+      "id": "CN-CSL",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "《中华人民共和国网络安全法》(2016)",
+      "short_name": "网络安全法 (CSL)",
+      "source_url": "http://www.npc.gov.cn/npc/c2/c30834/201611/t20161107_2001289.html",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "CN-DSL",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "《中华人民共和国数据安全法》(2021)",
+      "short_name": "数据安全法 (DSL)",
+      "source_url": "http://www.npc.gov.cn/npc/c2/c30834/202106/t20210610_311888.html",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "CN-DUAL-USE-REG",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "国务院令第792号《两用物项出口管制条例》(2024)",
+      "short_name": "两用物项出口管制条例 (2024)",
+      "source_url": "https://www.gov.cn/zhengce/content/202410/content_6981399.htm",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "出口管制"
+    },
+    {
+      "id": "CN-ECL",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "《中华人民共和国出口管制法》(2020)",
+      "short_name": "出口管制法 (2020)",
+      "source_url": "http://www.npc.gov.cn/npc/c2/c30834/202010/t20201017_308086.html",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "出口管制"
+    },
+    {
       "id": "CN-GB-18401",
       "region": "CN",
       "license": "private_with_summary",
@@ -142,6 +241,17 @@
       "source_url": null,
       "purchase_url": "https://openstd.samr.gov.cn/",
       "article_count": 0
+    },
+    {
+      "id": "CN-GB-44495",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "GB 44495-2024《汽车整车信息安全技术要求》",
+      "short_name": "GB 44495-2024 (整车信息安全)",
+      "source_url": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=2DB552CAA58F589705C3DC7AD47AC2AB",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "汽车网络安全"
     },
     {
       "id": "CN-GB-4706",
@@ -204,6 +314,50 @@
       "article_count": 0
     },
     {
+      "id": "CN-ODI-MOFCOM",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "商务部令2014年第3号《境外投资管理办法》",
+      "short_name": "境外投资管理办法 (商务部 3 号令)",
+      "source_url": "https://policy.mofcom.gov.cn/claw/clawContent.shtml?id=6145",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "投资准入"
+    },
+    {
+      "id": "CN-ODI-NDRC",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "国家发展改革委令第11号《企业境外投资管理办法》",
+      "short_name": "企业境外投资管理办法 (发改委 11 号令)",
+      "source_url": "https://www.gov.cn/zhengce/2021-12/01/content_5713252.htm",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "投资准入"
+    },
+    {
+      "id": "CN-PIPL",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "《中华人民共和国个人信息保护法》(2021)",
+      "short_name": "个人信息保护法 (PIPL)",
+      "source_url": "http://www.npc.gov.cn/npc/c2/c30834/202108/t20210820_313088.html",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "CN-SAMR-MERGER-GUIDE",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "国家市场监督管理总局经营者集中审查规定及配套指南",
+      "short_name": "经营者集中审查指南 (SAMR)",
+      "source_url": "https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/fldj/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "反垄断"
+    },
+    {
       "id": "CN-SRRC",
       "region": "CN",
       "license": "public",
@@ -212,6 +366,17 @@
       "source_url": "https://www.miit.gov.cn/",
       "purchase_url": null,
       "article_count": 1
+    },
+    {
+      "id": "CN-TECH-EXPORT-CATALOG",
+      "region": "CN",
+      "license": "public",
+      "official_citation": "商务部、科技部公告2025年第28号《中国禁止出口限制出口技术目录》",
+      "short_name": "禁止出口限制出口技术目录 (2025 修订)",
+      "source_url": "https://www.mofcom.gov.cn/zcfb/zgdwjjmywg/art/2025/art_67e2a41850ec428eb1b7be6ec2f2bded.html",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "出口管制"
     },
     {
       "id": "EU-10-2011",
@@ -264,6 +429,28 @@
       "article_count": 4
     },
     {
+      "id": "EU-2003-88",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2003/88/EC (Working Time Directive)",
+      "short_name": "工作时间指令 (2003/88/EC)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2003/88/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "劳动法"
+    },
+    {
+      "id": "EU-2005-29",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2005/29/EC (Unfair Commercial Practices Directive)",
+      "short_name": "UCPD (不公平商业行为指令)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2005/29/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "消费者保护"
+    },
+    {
       "id": "EU-2009-125",
       "region": "EU",
       "license": "public",
@@ -292,6 +479,17 @@
       "source_url": "https://eur-lex.europa.eu/eli/dir/2011/65/oj",
       "purchase_url": null,
       "article_count": 4
+    },
+    {
+      "id": "EU-2011-83",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive 2011/83/EU (Consumer Rights Directive)",
+      "short_name": "CRD (消费者权益指令)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2011/83/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "消费者保护"
     },
     {
       "id": "EU-2014-30",
@@ -324,6 +522,83 @@
       "article_count": 13
     },
     {
+      "id": "EU-2016-679",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2016/679 (GDPR)",
+      "short_name": "GDPR (通用数据保护条例)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2016/679/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "EU-2017-2455",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive (EU) 2017/2455 (VAT e-commerce — IOSS / Union OSS)",
+      "short_name": "VAT 电商一栈式 (IOSS / Union OSS)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2017/2455/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "税务"
+    },
+    {
+      "id": "EU-2019-1020",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2019/1020 (market surveillance and product compliance)",
+      "short_name": "市场监督与产品合规 (2019/1020)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2019/1020/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "市场监督"
+    },
+    {
+      "id": "EU-2019-2161",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Directive (EU) 2019/2161 (Omnibus Directive)",
+      "short_name": "Omnibus 指令 (新消费者政纲)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2019/2161/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "消费者保护"
+    },
+    {
+      "id": "EU-2019-452",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2019/452 (FDI Screening Regulation)",
+      "short_name": "欧盟外资审查框架 (2019/452)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2019/452/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "投资准入"
+    },
+    {
+      "id": "EU-2022-1925",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2022/1925 (Digital Markets Act)",
+      "short_name": "DMA (数字市场法)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2022/1925/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "电商平台"
+    },
+    {
+      "id": "EU-2022-2065",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2022/2065 (Digital Services Act)",
+      "short_name": "DSA (数字服务法)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2022/2065/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "电商平台"
+    },
+    {
       "id": "EU-2023-1542",
       "region": "EU",
       "license": "public",
@@ -342,6 +617,171 @@
       "source_url": "https://eur-lex.europa.eu/eli/reg/2023/988/oj",
       "purchase_url": null,
       "article_count": 5
+    },
+    {
+      "id": "EU-2024-1689",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EU) 2024/1689 (AI Act)",
+      "short_name": "AI Act (人工智能法)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "电商平台"
+    },
+    {
+      "id": "EU-765-2008",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Regulation (EC) No 765/2008 (accreditation and market surveillance)",
+      "short_name": "市场监督合格评定框架 (765/2008)",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2008/765/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "市场监督"
+    },
+    {
+      "id": "EU-768-2008",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Decision No 768/2008/EC (common framework for the marketing of products)",
+      "short_name": "合格评定程序参考条款 (768/2008/EC)",
+      "source_url": "https://eur-lex.europa.eu/eli/dec/2008/768/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "市场监督"
+    },
+    {
+      "id": "EU-85-374",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Council Directive 85/374/EEC (Product Liability Directive)",
+      "short_name": "PLD (产品责任指令)",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/1985/374/oj",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "消费者保护"
+    },
+    {
+      "id": "EU-BLUE-GUIDE-2022",
+      "region": "EU",
+      "license": "public",
+      "official_citation": "Blue Guide 2022 on the implementation of EU product rules",
+      "short_name": "Blue Guide (欧盟产品规则实施指南)",
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52022XC0330%2801%29",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "市场监督"
+    },
+    {
+      "id": "GCC-GMARK",
+      "region": "GCC",
+      "license": "public",
+      "official_citation": "GCC Conformity Marking (G-Mark) — GSO technical regulation",
+      "short_name": "中东海湾 G-Mark 认证体系",
+      "source_url": "https://www.gso.org.sa/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "产品认证"
+    },
+    {
+      "id": "GLOBAL-IEC-62368-1-REF",
+      "region": "GLOBAL",
+      "license": "public",
+      "official_citation": "IEC 62368-1 reference materials (LVD / IEC compliance guides)",
+      "short_name": "IEC 62368-1 技术参考合集",
+      "source_url": "https://www.iec.ch/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "技术标准"
+    },
+    {
+      "id": "GLOBAL-UL-62368-1",
+      "region": "GLOBAL",
+      "license": "public",
+      "official_citation": "UL 62368-1 (Audio/video, information and communication technology equipment — safety requirements)",
+      "short_name": "UL 62368-1 安全标准",
+      "source_url": "https://www.ul.com/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "技术标准"
+    },
+    {
+      "id": "GLOBAL-WIPO-MADRID",
+      "region": "GLOBAL",
+      "license": "public",
+      "official_citation": "Madrid Agreement and Protocol Concerning the International Registration of Marks",
+      "short_name": "马德里协定与议定书 (商标国际注册)",
+      "source_url": "https://www.wipo.int/madrid/en/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "知识产权"
+    },
+    {
+      "id": "GLOBAL-WIPO-PCT",
+      "region": "GLOBAL",
+      "license": "public",
+      "official_citation": "Patent Cooperation Treaty (PCT)",
+      "short_name": "专利合作条约 (PCT)",
+      "source_url": "https://www.wipo.int/pct/en/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "知识产权"
+    },
+    {
+      "id": "ID-LABOR-13-2003",
+      "region": "ID",
+      "license": "public",
+      "official_citation": "Law No. 13 of 2003 concerning Manpower",
+      "short_name": "印尼人力法 (2003 年第 13 号)",
+      "source_url": "https://jdih.setneg.go.id/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "劳动法"
+    },
+    {
+      "id": "ID-LAW-5-1999",
+      "region": "ID",
+      "license": "public",
+      "official_citation": "Law No. 5 of 1999 on the Prohibition of Monopolistic Practices and Unfair Business Competition",
+      "short_name": "印尼反垄断法 (第 5 号法律)",
+      "source_url": "https://jdih.setneg.go.id/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "反垄断"
+    },
+    {
+      "id": "ID-OMNIBUS-6-2023",
+      "region": "ID",
+      "license": "public",
+      "official_citation": "Law No. 6 of 2023 (Omnibus Law on Job Creation)",
+      "short_name": "印尼创造就业法 (Omnibus Law 6/2023)",
+      "source_url": "https://jdih.setneg.go.id/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "劳动法"
+    },
+    {
+      "id": "ID-PDP-LAW-27-2022",
+      "region": "ID",
+      "license": "public",
+      "official_citation": "Law No. 27 of 2022 on Personal Data Protection",
+      "short_name": "印尼个人数据保护法 (PDP Law 27/2022)",
+      "source_url": "https://jdih.setneg.go.id/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "ID-SNI-75-2024",
+      "region": "ID",
+      "license": "public",
+      "official_citation": "Regulation of the Minister of Industry No. 75/2024 (mandatory SNI for AV equipment)",
+      "short_name": "印尼 SNI 强制认证 (工业部 75/2024)",
+      "source_url": "https://jdih.setneg.go.id/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "产品认证"
     },
     {
       "id": "IN-BIS-CRS",
@@ -374,6 +814,39 @@
       "article_count": 0
     },
     {
+      "id": "MY-CROSS-BORDER-2025",
+      "region": "MY",
+      "license": "public",
+      "official_citation": "Guidelines on the Transfer of Personal Data to Places Outside Malaysia (2025)",
+      "short_name": "马来西亚跨境数据传输指南 (2025)",
+      "source_url": "https://www.pdp.gov.my/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "MY-DATA-SHARING-2025",
+      "region": "MY",
+      "license": "public",
+      "official_citation": "Data Sharing Act 2025 (Act 864)",
+      "short_name": "马来西亚数据共享法 (2025)",
+      "source_url": "https://www.pdp.gov.my/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "MY-PDPA-2010",
+      "region": "MY",
+      "license": "public",
+      "official_citation": "Personal Data Protection Act 2010 (Act 709)",
+      "short_name": "马来西亚 PDPA (Act 709)",
+      "source_url": "https://www.pdp.gov.my/jpdpv2/laws-of-malaysia/?lang=en",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
       "id": "NZ-PS-Cots",
       "region": "NZ",
       "license": "public",
@@ -394,6 +867,17 @@
       "article_count": 0
     },
     {
+      "id": "SA-PDPL",
+      "region": "SA",
+      "license": "public",
+      "official_citation": "Personal Data Protection Law (Royal Decree No. M/19, 2021)",
+      "short_name": "沙特个人数据保护法 (PDPL)",
+      "source_url": "https://sdaia.gov.sa/en/sdaia/about/pages/regulationsandpolicies.aspx",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
       "id": "SA-SASO-Saber",
       "region": "SA",
       "license": "public",
@@ -402,6 +886,61 @@
       "source_url": "https://www.saso.gov.sa/en/news-and-events/news/",
       "purchase_url": null,
       "article_count": 0
+    },
+    {
+      "id": "SA-SFDA-MEDICAL-DEVICE",
+      "region": "SA",
+      "license": "public",
+      "official_citation": "SFDA Interim Regulation for Medical Devices (MDS-REQ1)",
+      "short_name": "沙特 SFDA 医疗器械监管要求",
+      "source_url": "https://www.sfda.gov.sa/en",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "产品认证"
+    },
+    {
+      "id": "SA-VAT-CLOUD-FIRST",
+      "region": "SA",
+      "license": "public",
+      "official_citation": "Saudi VAT Implementing Regulations & Cloud First Policy",
+      "short_name": "沙特 VAT 法规与云优先政策",
+      "source_url": "https://zatca.gov.sa/en/RulesRegulations/VAT/Pages/default.aspx",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "税务"
+    },
+    {
+      "id": "SG-PDPA-2012",
+      "region": "SG",
+      "license": "public",
+      "official_citation": "Personal Data Protection Act 2012 (2024 amendment)",
+      "short_name": "新加坡 PDPA (2024 修订)",
+      "source_url": "https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "SG-PSA-2019",
+      "region": "SG",
+      "license": "public",
+      "official_citation": "Payment Services Act 2019",
+      "short_name": "新加坡支付服务法 (PSA 2019)",
+      "source_url": "https://www.mas.gov.sg/regulation/acts/payment-services-act",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "金融支付"
+    },
+    {
+      "id": "TH-PDPA-2019",
+      "region": "TH",
+      "license": "public",
+      "official_citation": "Personal Data Protection Act B.E. 2562 (2019)",
+      "short_name": "泰国 PDPA (2019)",
+      "source_url": "https://www.mdes.go.th/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
     },
     {
       "id": "UK-Batteries",
@@ -422,6 +961,17 @@
       "source_url": "https://www.legislation.gov.uk/uksi/2013/1478/contents",
       "purchase_url": null,
       "article_count": 1
+    },
+    {
+      "id": "UK-NSI-ACT-2021",
+      "region": "UK",
+      "license": "public",
+      "official_citation": "National Security and Investment Act 2021",
+      "short_name": "NSI Act (国家安全与投资法)",
+      "source_url": "https://www.gov.uk/government/collections/national-security-and-investment-act",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "投资准入"
     },
     {
       "id": "UK-UKCA-Appliance",
@@ -462,6 +1012,28 @@
       "source_url": "https://unece.org/transport/dangerous-goods/un-manual-tests-and-criteria",
       "purchase_url": null,
       "article_count": 1
+    },
+    {
+      "id": "UN-R155",
+      "region": "UN",
+      "license": "public",
+      "official_citation": "UN Regulation No. 155 (Cyber Security and CSMS)",
+      "short_name": "UN R155 (车辆网络安全)",
+      "source_url": "https://www.vehicle-certification-agency.gov.uk/connected-and-automated-vehicles/cyber-security-and-software-updating/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "汽车网络安全"
+    },
+    {
+      "id": "UN-R156",
+      "region": "UN",
+      "license": "public",
+      "official_citation": "UN Regulation No. 156 (Software Update and SUMS)",
+      "short_name": "UN R156 (软件升级管理)",
+      "source_url": "https://www.vehicle-certification-agency.gov.uk/connected-and-automated-vehicles/cyber-security-and-software-updating/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "汽车网络安全"
     },
     {
       "id": "US-16-CFR-1200",
@@ -524,6 +1096,17 @@
       "article_count": 0
     },
     {
+      "id": "US-CA-ADCA",
+      "region": "US",
+      "license": "public",
+      "official_citation": "California Age-Appropriate Design Code Act (AB 2273)",
+      "short_name": "加州 ADCA (适龄设计规范法案)",
+      "source_url": "https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
       "id": "US-CA-Prop-65",
       "region": "US",
       "license": "public",
@@ -532,6 +1115,17 @@
       "source_url": "https://oehha.ca.gov/proposition-65",
       "purchase_url": null,
       "article_count": 2
+    },
+    {
+      "id": "US-COPPA",
+      "region": "US",
+      "license": "public",
+      "official_citation": "Children's Online Privacy Protection Act (15 U.S.C. §§ 6501-6506) / 16 CFR Part 312",
+      "short_name": "COPPA (儿童在线隐私保护法)",
+      "source_url": "https://www.ftc.gov/legal-library/browse/rules/childrens-online-privacy-protection-rule-coppa",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
     },
     {
       "id": "US-CPSC-General",
@@ -574,6 +1168,39 @@
       "article_count": 4
     },
     {
+      "id": "US-FIRRMA",
+      "region": "US",
+      "license": "public",
+      "official_citation": "Foreign Investment Risk Review Modernization Act of 2018 (FIRRMA)",
+      "short_name": "FIRRMA (外资审查现代化法案)",
+      "source_url": "https://home.treasury.gov/policy-issues/international/the-committee-on-foreign-investment-in-the-united-states-cfius",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "投资准入"
+    },
+    {
+      "id": "US-INFORM-ACT",
+      "region": "US",
+      "license": "public",
+      "official_citation": "INFORM Consumers Act (15 U.S.C. § 45f)",
+      "short_name": "INFORM 消费者法案",
+      "source_url": "https://www.ftc.gov/business-guidance/resources/INFORMAct",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "电商平台"
+    },
+    {
+      "id": "US-IRA-2022",
+      "region": "US",
+      "license": "public",
+      "official_citation": "Inflation Reduction Act of 2022 (Pub. L. 117-169)",
+      "short_name": "IRA (通胀削减法案)",
+      "source_url": "https://www.govinfo.gov/app/details/PLAW-117publ169",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "出口管制"
+    },
+    {
       "id": "US-MoCRA",
       "region": "US",
       "license": "public",
@@ -612,6 +1239,72 @@
       "source_url": null,
       "purchase_url": "https://www.ul.com/services/certification/ul-listing-and-classification",
       "article_count": 0
+    },
+    {
+      "id": "VN-COMPETITION-2018",
+      "region": "VN",
+      "license": "public",
+      "official_citation": "Law No. 23/2018/QH14 on Competition",
+      "short_name": "越南竞争法 (2018)",
+      "source_url": "https://vanban.chinhphu.vn/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "反垄断"
+    },
+    {
+      "id": "VN-CYBERSECURITY-2018",
+      "region": "VN",
+      "license": "public",
+      "official_citation": "Law No. 24/2018/QH14 on Cyber Security",
+      "short_name": "越南网络安全法 (2018)",
+      "source_url": "https://vanban.chinhphu.vn/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "VN-DECREE-13-2023",
+      "region": "VN",
+      "license": "public",
+      "official_citation": "Decree No. 13/2023/ND-CP on Personal Data Protection",
+      "short_name": "越南第 13 号个人数据保护法令",
+      "source_url": "https://english.luatvietnam.vn/decree-no-13-2023-nd-cp-dated-april-17-2023-of-the-government-on-personal-data-protection-249791-doc1.html",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "VN-DECREE-147-2024",
+      "region": "VN",
+      "license": "public",
+      "official_citation": "Decree No. 147/2024/ND-CP on internet services and online information",
+      "short_name": "越南第 147 号法令 (互联网服务管理)",
+      "source_url": "https://vanban.chinhphu.vn/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "电商平台"
+    },
+    {
+      "id": "VN-DECREE-53-2022",
+      "region": "VN",
+      "license": "public",
+      "official_citation": "Decree No. 53/2022/ND-CP (data localisation)",
+      "short_name": "越南第 53 号法令 (数据本地化)",
+      "source_url": "https://english.luatvietnam.vn/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "数据保护"
+    },
+    {
+      "id": "VN-TCVN-CR",
+      "region": "VN",
+      "license": "public",
+      "official_citation": "TCVN national standards / CR conformity marking",
+      "short_name": "越南 TCVN / CR 认证",
+      "source_url": "https://tcvn.gov.vn/",
+      "purchase_url": null,
+      "article_count": 0,
+      "domain": "产品认证"
     }
   ]
 }

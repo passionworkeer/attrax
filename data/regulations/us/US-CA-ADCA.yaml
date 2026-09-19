@@ -1,0 +1,19 @@
+id: US-CA-ADCA
+official_citation: California Age-Appropriate Design Code Act (AB 2273)
+short_name: 加州 ADCA (适龄设计规范法案)
+region: US
+domain: 数据保护
+license: public
+source_url: https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/加州《适龄设计规范法案》（ADCA，AB 2273）官方解读.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: EU-85-374
+official_citation: Council Directive 85/374/EEC (Product Liability Directive)
+short_name: PLD (产品责任指令)
+region: EU
+domain: 消费者保护
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/1985/374/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/PLD_85-374-EEC_产品责任指令.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: ID-OMNIBUS-6-2023
+official_citation: Law No. 6 of 2023 (Omnibus Law on Job Creation)
+short_name: 印尼创造就业法 (Omnibus Law 6/2023)
+region: ID
+domain: 劳动法
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- id/raw/印尼《创造就业法》（Omnibus Law No 6 of 2023，DS Avocats解读）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

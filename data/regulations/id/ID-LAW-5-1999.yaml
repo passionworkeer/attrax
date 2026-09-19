@@ -1,0 +1,19 @@
+id: ID-LAW-5-1999
+official_citation: Law No. 5 of 1999 on the Prohibition of Monopolistic Practices and Unfair Business Competition
+short_name: 印尼反垄断法 (第 5 号法律)
+region: ID
+domain: 反垄断
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- id/raw/印尼《关于禁止垄断实践和不公平商业竞争的第5号法律》（1999）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

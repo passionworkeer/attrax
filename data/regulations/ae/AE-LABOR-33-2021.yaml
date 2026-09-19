@@ -1,0 +1,20 @@
+id: AE-LABOR-33-2021
+official_citation: Federal Decree-Law No. 33 of 2021 on the Regulation of Employment Relations
+short_name: 阿联酋新劳动法 (33/2021)
+region: AE
+domain: 劳动法
+license: public
+source_url: https://u.ae/en/information-and-services/jobs
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- ae/raw/阿联酋2021年第33号联邦法令（劳动关系规范法）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 source_url 是 u.ae 的就业栏目页而非法令正文（uaelegislation.gov.ae
+  的条文页实测被 Cloudflare 拦截返回 403），法令正文以 doc_files 登记的本地原件为准。

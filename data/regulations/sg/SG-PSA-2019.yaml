@@ -1,0 +1,20 @@
+id: SG-PSA-2019
+official_citation: Payment Services Act 2019
+short_name: 新加坡支付服务法 (PSA 2019)
+region: SG
+domain: 金融支付
+license: public
+source_url: https://www.mas.gov.sg/regulation/acts/payment-services-act
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- sg/raw/新加坡《支付服务法》（PSA 2019）.html
+- sg/raw/新加坡《支付服务法》（PSA MAS官方页面）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

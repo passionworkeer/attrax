@@ -1,0 +1,19 @@
+id: ID-LABOR-13-2003
+official_citation: Law No. 13 of 2003 concerning Manpower
+short_name: 印尼人力法 (2003 年第 13 号)
+region: ID
+domain: 劳动法
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- id/raw/印尼《2003年第13号人力法》.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: US-FIRRMA
+official_citation: Foreign Investment Risk Review Modernization Act of 2018 (FIRRMA)
+short_name: FIRRMA (外资审查现代化法案)
+region: US
+domain: 投资准入
+license: public
+source_url: https://home.treasury.gov/policy-issues/international/the-committee-on-foreign-investment-in-the-united-states-cfius
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/美国《外资投资风险审查现代化法案》（FIRRMA 2018）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

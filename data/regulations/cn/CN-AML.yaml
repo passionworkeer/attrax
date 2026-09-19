@@ -1,0 +1,19 @@
+id: CN-AML
+official_citation: 《中华人民共和国反垄断法》(2022年修正)
+short_name: 反垄断法 (2022 修正)
+region: CN
+domain: 反垄断
+license: public
+source_url: https://flk.npc.gov.cn/detail?title=%E5%8F%8D%E5%9E%84%E6%96%AD%E6%B3%95&id=ff8081818234ccb501829f46c6ac2a5a
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/中国《反垄断法》（2022修正）.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

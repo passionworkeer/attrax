@@ -1,0 +1,20 @@
+id: UN-R156
+official_citation: UN Regulation No. 156 (Software Update and SUMS)
+short_name: UN R156 (软件升级管理)
+region: UN
+domain: 汽车网络安全
+license: public
+source_url: https://www.vehicle-certification-agency.gov.uk/connected-and-automated-vehicles/cyber-security-and-software-updating/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- un/raw/联合国《UN R156软件升级管理体系法规》（UN R155_R156 合规指南）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。 同 UN R155：unece.org 当前不可达，原文按钮指向英国 VCA
+  的 CSMS/SUMS 官方说明页。

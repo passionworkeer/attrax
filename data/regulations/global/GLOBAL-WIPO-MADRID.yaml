@@ -1,0 +1,19 @@
+id: GLOBAL-WIPO-MADRID
+official_citation: Madrid Agreement and Protocol Concerning the International Registration of Marks
+short_name: 马德里协定与议定书 (商标国际注册)
+region: GLOBAL
+domain: 知识产权
+license: public
+source_url: https://www.wipo.int/madrid/en/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/《马德里协定与议定书》（WIPO商标国际注册条约详情）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

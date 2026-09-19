@@ -1,0 +1,19 @@
+id: AE-MEDIA-55-2023
+official_citation: Federal Decree-Law No. 55 of 2023 on Media Regulation
+short_name: 阿联酋媒体监管联邦法令 (55/2023)
+region: AE
+domain: 电商平台
+license: public
+source_url: https://u.ae/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- ae/raw/阿联酋2023年第55号《媒体监管联邦法令》.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

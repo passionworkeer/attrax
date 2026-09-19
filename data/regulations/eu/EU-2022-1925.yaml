@@ -1,0 +1,20 @@
+id: EU-2022-1925
+official_citation: Regulation (EU) 2022/1925 (Digital Markets Act)
+short_name: DMA (数字市场法)
+region: EU
+domain: 电商平台
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2022/1925/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/欧盟《数字市场法》（DMA，Regulation EU 2022_1925）.pdf
+- eu/raw/DMA_(EU)_2022-1925_数字市场法.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

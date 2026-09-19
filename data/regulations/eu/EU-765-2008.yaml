@@ -1,0 +1,19 @@
+id: EU-765-2008
+official_citation: Regulation (EC) No 765/2008 (accreditation and market surveillance)
+short_name: 市场监督合格评定框架 (765/2008)
+region: EU
+domain: 市场监督
+license: public
+source_url: https://eur-lex.europa.eu/eli/reg/2008/765/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/Regulation_(EC)_765-2008_市场监督合格评定框架.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -48,36 +48,41 @@ export default function RegulationsPage() {
           sourcesRes.ok ? sourcesRes.json() : null,
           updatesRes.ok ? updatesRes.json() : null,
         ]);
-        setStats({
-          archive: archiveJson?.success
-            ? {
-                total: archiveJson.meta?.total ?? 0,
-                markets: archiveJson.meta?.markets ?? 0,
-                withArticles: archiveJson.meta?.withArticles ?? 0,
-                generatedAt: archiveJson.meta?.generatedAt ?? null,
-              }
-            : null,
-          sources: sourcesJson?.success
-            ? {
-                total: sourcesJson.meta?.total ?? 0,
-                markets: sourcesJson.meta?.markets ?? 0,
-                healthy: sourcesJson.meta?.healthy ?? 0,
-                protected: sourcesJson.meta?.protected ?? 0,
-              }
-            : null,
-          updates: updatesJson?.success
-            ? {
-                total: updatesJson.meta?.total ?? 0,
-                matching: updatesJson.meta?.matching ?? 0,
-                returned: updatesJson.meta?.returned ?? 0,
-                markets: updatesJson.meta?.markets ?? 0,
-                highRisk: updatesJson.meta?.highRisk ?? 0,
-                effectiveSoon: updatesJson.meta?.effectiveSoon ?? 0,
-                lastVerifiedAt: updatesJson.meta?.lastVerifiedAt ?? null,
-                dataset: updatesJson.meta?.dataset ?? null,
-              }
-            : null,
-        });
+        const archive = archiveJson?.success
+          ? {
+              total: archiveJson.meta?.total ?? 0,
+              markets: archiveJson.meta?.markets ?? 0,
+              withArticles: archiveJson.meta?.withArticles ?? 0,
+              generatedAt: archiveJson.meta?.generatedAt ?? null,
+            }
+          : null;
+        const sources = sourcesJson?.success
+          ? {
+              total: sourcesJson.meta?.total ?? 0,
+              markets: sourcesJson.meta?.markets ?? 0,
+              healthy: sourcesJson.meta?.healthy ?? 0,
+              protected: sourcesJson.meta?.protected ?? 0,
+            }
+          : null;
+        const updates = updatesJson?.success
+          ? {
+              total: updatesJson.meta?.total ?? 0,
+              matching: updatesJson.meta?.matching ?? 0,
+              returned: updatesJson.meta?.returned ?? 0,
+              markets: updatesJson.meta?.markets ?? 0,
+              highRisk: updatesJson.meta?.highRisk ?? 0,
+              effectiveSoon: updatesJson.meta?.effectiveSoon ?? 0,
+              lastVerifiedAt: updatesJson.meta?.lastVerifiedAt ?? null,
+              dataset: updatesJson.meta?.dataset ?? null,
+            }
+          : null;
+        setStats({ archive, sources, updates });
+        // HTTP 层的失败（5xx / 502 窗口）不会让 fetch 抛异常，只让 res.ok 为 false。
+        // 不在这里标记的话，副标题会一直显示「— 篇法规档案（覆盖 — 个区域）」
+        // 且没有任何横幅解释，看起来像数据本来就是空的。
+        if (!archive || !sources || !updates) {
+          setStatsFailed(true);
+        }
       } catch (error) {
         if (error instanceof DOMException && error.name === "AbortError") return;
         console.error("Failed to load regulations stats:", error);
@@ -108,7 +113,12 @@ export default function RegulationsPage() {
                 {t("regulations.title")}
               </h1>
               <p className="max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">
-                {t("regulations.subtitle")}
+                {t("regulations.subtitle", {
+                  archive: stats.archive?.total ?? "—",
+                  markets: stats.archive?.markets ?? "—",
+                  sources: stats.sources?.total ?? "—",
+                  updates: stats.updates?.matching ?? "—",
+                })}
               </p>
             </div>
             <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-slate-900/50 px-4 py-3 text-sm text-slate-300 backdrop-blur">

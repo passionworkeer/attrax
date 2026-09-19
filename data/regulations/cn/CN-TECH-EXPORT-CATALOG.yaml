@@ -1,0 +1,21 @@
+id: CN-TECH-EXPORT-CATALOG
+official_citation: 商务部、科技部公告2025年第28号《中国禁止出口限制出口技术目录》
+short_name: 禁止出口限制出口技术目录 (2025 修订)
+region: CN
+domain: 出口管制
+license: public
+source_url: https://www.mofcom.gov.cn/zcfb/zgdwjjmywg/art/2025/art_67e2a41850ec428eb1b7be6ec2f2bded.html
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/中国《禁止出口限制出口技术目录》（2025修订，商务部科技部公告第28号）.html
+- cn/raw/中国《禁止出口限制出口技术目录》（2025修订 科技部官网公告）.html
+- cn/raw/中国《禁止出口限制出口技术目录》（2025修订 CSET英文分析）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

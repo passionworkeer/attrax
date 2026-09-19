@@ -1,0 +1,19 @@
+id: VN-CYBERSECURITY-2018
+official_citation: Law No. 24/2018/QH14 on Cyber Security
+short_name: 越南网络安全法 (2018)
+region: VN
+domain: 数据保护
+license: public
+source_url: https://vanban.chinhphu.vn/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- vn/raw/越南《网络安全法》（2018）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

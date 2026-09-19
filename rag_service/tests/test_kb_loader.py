@@ -51,17 +51,51 @@ class TestKbFileInventory:
             f"expected at least {self.MIN_ANCHORS} YAML files, got {len(paths)}"
         )
 
-    def test_anchor_count_matches_the_regulation_library(self):
-        """Anchors and regulations are 1:1 — an anchor with no regulation
-        behind it (or vice versa) means the two trees drifted apart."""
+    def test_every_anchor_has_a_regulation_behind_it(self):
+        """Every KB anchor must resolve to a library entry — an anchor with no
+        regulation behind it means the two trees drifted apart.
+
+        Deliberately one-directional (anchor → regulation). Since the
+        2026-09-19 attrax-docs catalog import the library is a superset of the
+        anchors: metadata-only entries (``articles: []``, ``source_kind:
+        unverified``) are listed on /regulations but are NOT scanner anchors,
+        so they have no anchor file. The reverse drift — anchor with no
+        regulation — is the one that breaks the scan pipeline.
+        """
         from rag_service.retrieval.kb_loader import list_all_regulations
         from rag_service.retrieval.article_loader import list_regulation_ids
 
         anchored = set(list_all_regulations())
         regulated = set(list_regulation_ids())
-        assert anchored == regulated, (
-            f"anchor-only: {sorted(anchored - regulated)}; "
-            f"regulation-only: {sorted(regulated - anchored)}"
+        assert anchored <= regulated, f"anchor-only: {sorted(anchored - regulated)}"
+
+    def test_regulations_without_an_anchor_are_metadata_only(self):
+        """The library may hold entries no anchor points at — but only ones
+        that carry no scannable body.
+
+        This is the other half of the one-directional check above: relaxing
+        1:1 to ``anchored ⊆ regulated`` (2026-09-19 attrax-docs catalog
+        import) would otherwise let a *real* anchored regulation lose its
+        anchor unnoticed, because its library entry would just look like
+        another catalog row. Catalog rows are exactly the entries with
+        ``articles: []`` and a non-verbatim ``source_kind``; anything with an
+        article body must still be reachable from an anchor.
+        """
+        from rag_service.retrieval.kb_loader import list_all_regulations
+        from rag_service.retrieval.article_loader import (
+            list_regulation_ids,
+            load_regulation,
+        )
+
+        orphaned = set(list_regulation_ids()) - set(list_all_regulations())
+        offenders = []
+        for reg_id in sorted(orphaned):
+            reg = load_regulation(reg_id) or {}
+            if reg.get("articles"):
+                offenders.append(f"{reg_id} (has {len(reg['articles'])} articles)")
+        assert not offenders, (
+            "regulations with an article body but no KB anchor — these would "
+            f"silently drop out of every scan: {offenders}"
         )
 
     def test_every_yaml_parses(self):

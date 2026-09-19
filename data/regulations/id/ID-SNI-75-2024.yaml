@@ -1,0 +1,18 @@
+id: ID-SNI-75-2024
+official_citation: Regulation of the Minister of Industry No. 75/2024 (mandatory SNI for AV equipment)
+short_name: 印尼 SNI 强制认证 (工业部 75/2024)
+region: ID
+domain: 产品认证
+license: public
+source_url: https://jdih.setneg.go.id/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files: []
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

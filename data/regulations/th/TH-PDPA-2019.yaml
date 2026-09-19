@@ -1,0 +1,19 @@
+id: TH-PDPA-2019
+official_citation: Personal Data Protection Act B.E. 2562 (2019)
+short_name: 泰国 PDPA (2019)
+region: TH
+domain: 数据保护
+license: public
+source_url: https://www.mdes.go.th/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- th/raw/泰国《个人数据保护法》（PDPA 2019，B.E. 2562）英文版.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
