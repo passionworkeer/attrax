@@ -13,10 +13,13 @@
 // the cwd-based path, then a sibling-of-standalone layout (the typical
 // server layout is `/opt/attrax/.next/standalone` with the live data at
 // `/opt/attrax/data`). Falling back to the cwd-based path keeps local dev
-// (`pnpm dev` from the repo root) working as before.
+// (`npm run dev` from the repo root) working as before.
 //
-// Cache the resolved root for the lifetime of the process; the value does
-// not change at runtime.
+// Cache the resolved root in a module-level `let`. The cache is intentionally
+// isolated in a function whose ONLY side effect is the assignment, to keep
+// the optimizer from folding the dead store away (Turbopack proved eager
+// to inline `regulationsProjectRoot()` and treat the cache write as
+// redundant with the return value).
 
 import { statSync } from "node:fs";
 import path from "node:path";
@@ -37,36 +40,34 @@ function cwdIsStandaloneBuild(cwd: string): boolean {
   return existsAndIsReadable(path.join(cwd, "server.js"));
 }
 
-function siblingOfStandalone(cwd: string): string | null {
-  // Standalone layout: /opt/attrax/.next/standalone/{server.js, data/}
-  // Project root:    /opt/attrax
-  return path.dirname(path.dirname(cwd));
-}
-
-let resolvedRoot: string | null = null;
-
-export function regulationsProjectRoot(): string {
-  if (resolvedRoot) return resolvedRoot;
-
+function resolveOnce(): string {
   // 1. Explicit override (preferred for production).
   const override = process.env.ATTRAX_PROJECT_ROOT;
   if (override && existsAndIsReadable(override)) {
-    resolvedRoot = override;
-    return resolvedRoot;
+    return override;
   }
 
   const cwd = path.resolve(process.cwd());
 
   // 2. Standalone build — the project root is two levels up.
   if (cwdIsStandaloneBuild(cwd)) {
-    const sibling = siblingOfStandalone(cwd);
+    const sibling = path.dirname(path.dirname(cwd));
     if (sibling && existsAndIsReadable(sibling)) {
-      resolvedRoot = sibling;
-      return resolvedRoot;
+      return sibling;
     }
   }
 
   // 3. Cwd is the project root (local dev: `npm run dev` from the repo root).
-  resolvedRoot = cwd;
-  return resolvedRoot;
+  return cwd;
+}
+
+let cachedRoot: string | null = null;
+
+export function regulationsProjectRoot(): string {
+  if (cachedRoot !== null) {
+    return cachedRoot;
+  }
+  const resolved = resolveOnce();
+  cachedRoot = resolved;
+  return resolved;
 }
