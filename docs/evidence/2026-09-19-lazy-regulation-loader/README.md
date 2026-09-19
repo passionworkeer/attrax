@@ -64,6 +64,22 @@ YAML 并全部 `yaml.safe_load` 进内存。提出改造时假设的收益是"�
 - 基准脚本：`bench_load_impl.py`（本目录，`python3 bench_load_impl.py eager|lazy`，
   从 git HEAD 取旧实现对比，可复现）。
 
+## 生产上线与实测（2026-09-19 晚）
+
+- 服务器 git bundle 快进到 `31d4fd7`（服务器侧无本地未提交改动，ecosystem.config.cjs
+  的 scp 版本与提交版本哈希一致后收敛），`pm2 startOrRestart --only rag-service`
+  重启，`.build-sha` 同步更新为 `31d4fd7`（/ready release.buildSha 已核对）。
+- **重启 → /ready 就绪 4.26s**（纯 uvicorn 启动；旧实现此处另有 ~7s 全量预读，
+  已消除）。
+- 重启后 RSS 70.7MB（无预载）。
+- **真实冒烟扫描**（electronics EU/US，Anker 充电器图）通过：11 findings /
+  12 citations / 8 matched，与当日基线（10–12 findings / 14–17 citations）一致；
+  扫描完成后 rag-service RSS **78.2MB**，对比改造前同一服务运行 30 分钟后的
+  315.4MB，生产内存曲线明显下移（不再持有全库 + 累积预载）。
+- 注意：单次扫描墙钟时间由 LLM 供应商波动主导（MiniMax 429 降级 DeepSeek，
+  同日实测 32s–144s 不等），与本改造无关；本次改造影响的是启动/库变更路径，
+  不是 LLM 往返。
+
 ## 复现
 
 ```bash
