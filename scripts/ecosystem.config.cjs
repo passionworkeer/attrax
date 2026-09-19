@@ -53,7 +53,10 @@ module.exports = {
       script: "/opt/attrax/.venv/bin/uvicorn",
       args: ["rag_service.main:app", "--host", "127.0.0.1", "--port", String(PORTS.RAG_PORT), "--workers", "1"],
       interpreter: "none",
-      max_memory_restart: "1300M",
+      // 1.6G 物理 + 4G swap；rag + next + reg + 系统必须留出 200M 余量避免 swap 抖动。
+      // 配合 SCAN_WORKER_CONCURRENCY=3，worker 峰值约 200–300M 加上库常驻 150M，
+      // 800M 够用且超过即触发重启。
+      max_memory_restart: "800M",
       autorestart: true,
       env: {
         PYTHONUNBUFFERED: "1",
@@ -78,7 +81,9 @@ module.exports = {
       cwd: "/opt/attrax/.next/standalone",
       script: "server.js",
       interpreter: "node",
-      max_memory_restart: "768M",
+      // nextjs 在空闲时约 150M；扫描期间峰值会涨但不会超过 rag-service 的体量。
+      // 512M 既能容纳峰值也确保与 rag 800M + regwatch 256M + 系统 ≈ 1.6G 物理上限。
+      max_memory_restart: "512M",
       autorestart: true,
       // Graceful drain: kill_timeout is the SIGTERM→SIGKILL window. Without
       // it a healthcheck level-3 `pm2 restart nextjs` mid-poll tears down
