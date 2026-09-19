@@ -23,7 +23,8 @@ import path from "node:path";
 
 function existsAndIsReadable(candidate: string): boolean {
   try {
-    return fs.statSync(candidate).isDirectory();
+    fs.statSync(candidate);
+    return true;
   } catch {
     return false;
   }
