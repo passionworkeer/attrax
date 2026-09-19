@@ -17,6 +17,7 @@ Covers:
 Run: rag_service/.venv/bin/python3 -m pytest rag_service/tests/test_quote_matcher.py -v
 """
 import sys
+import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -190,6 +191,36 @@ class TestMatchQuote:
         span, status = match_quote(article, quote)
         assert status == "fallback_article_only"
         assert span is None
+
+    def test_long_dot_leader_returns_promptly(self):
+        """A PDF table-of-contents dot leader must not blow up the stripper.
+
+        The first boundary-strip implementation used nested variable-length
+        quantifiers (`(?:\\.(?:\\s*\\.)+|…\\s*)+$`). Once the end anchor failed,
+        the engine enumerated every partition of the dot run: 35 dots took
+        1.8s, growing ~1.7x per dot, so a 60-dot leader would pin a scan
+        worker (5-thread pool) for hours while the lease heartbeat kept
+        renewing the job. This locks in the linear replacement.
+        """
+        article = "Annex II lists the harmonised standards to be applied"
+        quote = "Annex II " + "." * 60 + " 21 and inform the Commission"
+        start = time.perf_counter()
+        span, status = match_quote(article, quote)
+        elapsed = time.perf_counter() - start
+        assert status == "fallback_article_only"
+        assert span is None
+        # Four orders of magnitude above the linear implementation's cost
+        # here, and far below the exponential blow-up this guards against.
+        assert elapsed < 0.5, f"boundary strip looks super-linear: {elapsed:.3f}s"
+
+    def test_single_sentence_period_is_not_stripped(self):
+        # Only runs with 2+ dot characters are boundary ellipses; a plain
+        # sentence period must stay part of the excerpt.
+        article = "The report shall be submitted by the manufacturer."
+        quote = "The report shall be submitted by the manufacturer."
+        span, status = match_quote(article, quote)
+        assert status == "matched"
+        assert span is not None
 
     def test_unmatched_returns_fallback_article_only(self):
         article = "The Commission shall establish a system."
