@@ -57,6 +57,11 @@ module.exports = {
       autorestart: true,
       env: {
         PYTHONUNBUFFERED: "1",
+        // 显式声明模块解析路径：uvicorn 作为可执行脚本启动时 sys.path[0] 是
+        // .venv/bin，能 import rag_service 靠的是 uvicorn 自己把 cwd 塞进
+        // sys.path 的隐式行为。写死 PYTHONPATH 后，改 cwd 或升级 uvicorn
+        // 都不会让 rag-service 启动即 ModuleNotFoundError（与 regwatch 一致）。
+        PYTHONPATH: "/opt/attrax",
         // env 段优先于 rag_service/.env（pydantic-settings 的 env > dotenv），
         // 因此 .env 里的同名旧值不会再遮蔽（该行已移除）。
         RAG_INTERNAL_SECRET,

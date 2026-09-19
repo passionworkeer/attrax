@@ -100,10 +100,21 @@ log ".build-sha: ${COMMIT_SHORT}"
 # === [4.5] 防污染清理: 严防测试包、大 zip 与运行时垃圾打入生产部署包 ===
 rm -rf "${STANDALONE}/规航AI-"* "${STANDALONE}/test-results" "${STANDALONE}/tests/fixtures/regression-package-"* "${STANDALONE}/tests/fixtures/"*.zip
 
+# Next.js 的 output tracing 会把 data/ 整份拷进 standalone(~59MB: 法规库、
+# KB 锚点、inspection profiles、watchdog 产物)。服务器上的权威数据在
+# /opt/attrax/data,由 watchdog 持续写入;包里的这份是构建时刻的快照,装上
+# 只会与真值分叉,还给每次部署多加 59MB。服务端读盘的三个模块
+# (lib/regulations/{data-root,sources-data,archive-data}.ts)都经
+# regulationsProjectRoot() 解析到 /opt/attrax,lib/rate-limit.ts 自建目录,
+# 都不依赖 standalone/data —— 直接删掉。
+rm -rf "${STANDALONE}/data"
+
 # === [4.6] stage ops/：端口单一来源 + nginx 渲染 + healthcheck（2026-09-18 事故防护）===
-# 这 8 个文件随 tarball 走，apply-deploy.sh [6.5] 安装到服务器：
+# 这 10 个文件随 tarball 走，apply-deploy.sh [6.5] 安装到服务器：
 #   ports.env / ports.env.cjs / ecosystem.config.cjs / render-nginx-vhost.sh
 #   nginx-attrax-vhost-prod.conf.template / attrax-healthcheck.{sh,service,timer}
+#   backup-data.sh / backup-remote.sh（cron 备份与异地备份的实际执行体——
+#   此前只在文档里写"装到 /opt/attrax/scripts/"，cron 静默 no-op）
 # 服务器 git 可能落后（deploy 只传 runtime 产物），端口真值必须跟构建走。
 log "=== [4.6] stage ops/ ==="
 OPS_STAGE="${STANDALONE}/ops"
@@ -117,15 +128,19 @@ install -m 644 "${PROJECT_ROOT}/docs/infra/nginx-attrax-vhost-prod.conf.template
 install -m 755 "${PROJECT_ROOT}/scripts/attrax-healthcheck.sh"                  "${OPS_STAGE}/attrax-healthcheck.sh"
 install -m 644 "${PROJECT_ROOT}/scripts/attrax-healthcheck.service"             "${OPS_STAGE}/attrax-healthcheck.service"
 install -m 644 "${PROJECT_ROOT}/scripts/attrax-healthcheck.timer"               "${OPS_STAGE}/attrax-healthcheck.timer"
+install -m 755 "${PROJECT_ROOT}/scripts/backup-data.sh"                         "${OPS_STAGE}/backup-data.sh"
+install -m 755 "${PROJECT_ROOT}/scripts/backup-remote.sh"                       "${OPS_STAGE}/backup-remote.sh"
 OPS_COUNT=$(ls -1 "${OPS_STAGE}" | wc -l | tr -d ' ')
-if [ "$OPS_COUNT" -ne 8 ]; then
-  log "ERROR: ops/ staging incomplete (expected 8 files, got ${OPS_COUNT})，中止打包"
+if [ "$OPS_COUNT" -ne 10 ]; then
+  log "ERROR: ops/ staging incomplete (expected 10 files, got ${OPS_COUNT})，中止打包"
   exit 3
 fi
 log "ops staged: ${OPS_COUNT} files"
 
 # === [5] 打包(把整个 standalone 连同已 stage 的 static/public 一起)===
 log "=== [5] 打包 -> ${TARBALL} ==="
+# ATTRAX_TARBALL 可指向仓库内目录（中间产物不落 /tmp），该目录可能还不存在。
+mkdir -p "$(dirname "${TARBALL}")"
 # 在 .next/ 下打包,使 tar 内路径以 standalone/ 开头(/tmp/attrax-apply-deploy.sh 解包到 .next/)
 tar -C "${PROJECT_ROOT}/.next" -czf "${TARBALL}" standalone
 log "tarball 大小: $(du -sh "${TARBALL}" | cut -f1)"
@@ -135,7 +150,7 @@ log "=== [6] 校验 tarball 内容 ==="
 TAR_CSS=$(tar -tzf "${TARBALL}" | grep -c 'standalone/.next/static/chunks/.*\.css$' || true)
 TAR_PUBLIC=$(tar -tzf "${TARBALL}" | grep -c '^standalone/public/' || true)
 TAR_OPS=$(tar -tzf "${TARBALL}" | grep -c '^standalone/ops/' || true)
-if [ "$TAR_CSS" -lt 2 ] || [ "$TAR_PUBLIC" -lt 3 ] || [ "$TAR_OPS" -lt 8 ]; then
+if [ "$TAR_CSS" -lt 2 ] || [ "$TAR_PUBLIC" -lt 3 ] || [ "$TAR_OPS" -lt 10 ]; then
   log "ERROR: tarball 内 static/public/ops 缺失 (css=$TAR_CSS public条目=$TAR_PUBLIC ops=$TAR_OPS),中止"
   exit 4
 fi

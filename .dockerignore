@@ -20,11 +20,7 @@ next-env.d.ts
 
 public/uploads
 data/sessions
-data/scan-queue
 data/backend
-data/faiss
-data/faiss_versions
-data/analysis
 data/corpus/processed
 data/corpus/eu/regulations/pdfs
 data/corpus/eu/regulations/html

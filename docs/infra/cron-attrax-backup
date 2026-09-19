@@ -21,4 +21,8 @@
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-0 3 * * * root /opt/attrax/scripts/backup-data.sh >> /opt/attrax/logs/attrax-backup.log 2>&1
+# stdout goes to /dev/null on purpose: backup-data.sh's log() already appends
+# every line to /opt/attrax/logs/attrax-backup.log via `tee -a`. Redirecting
+# stdout into that same file (the earlier `>> … 2>&1`) wrote each line twice.
+# stderr is still captured — tar's warnings are not tee'd by the script.
+0 3 * * * root /opt/attrax/scripts/backup-data.sh >/dev/null 2>>/opt/attrax/logs/attrax-backup.log
