@@ -29,17 +29,16 @@ function existsAndIsReadable(candidate: string): boolean {
   }
 }
 
-function cwdIsRepoRoot(cwd: string): boolean {
-  // Local dev: cwd is the project root, with `data/`, `app/`, etc. sitting
-  // next to each other. Standalone: cwd is the standalone tree, with `data/`
-  // as a build snapshot.
-  return existsAndIsReadable(path.join(cwd, "app"));
+function cwdIsStandaloneBuild(cwd: string): boolean {
+  // Next.js standalone build ships `server.js` at the cwd root. Local dev
+  // (`next dev` from the repo root) does not. Reliable enough — no other
+  // file in the repo root is named `server.js`.
+  return existsAndIsReadable(path.join(cwd, "server.js"));
 }
 
 function siblingOfStandalone(cwd: string): string | null {
   // Standalone layout: /opt/attrax/.next/standalone/{server.js, data/}
   // Project root:    /opt/attrax
-  if (path.basename(cwd) !== "standalone") return null;
   return path.dirname(path.dirname(cwd));
 }
 
@@ -57,21 +56,16 @@ export function regulationsProjectRoot(): string {
 
   const cwd = path.resolve(process.cwd());
 
-  // 2. Cwd is the project root (local dev: `npm run dev` from the repo root).
-  if (cwdIsRepoRoot(cwd)) {
-    resolvedRoot = cwd;
-    return resolvedRoot;
+  // 2. Standalone build — the project root is two levels up.
+  if (cwdIsStandaloneBuild(cwd)) {
+    const sibling = siblingOfStandalone(cwd);
+    if (sibling && existsAndIsReadable(sibling)) {
+      resolvedRoot = sibling;
+      return resolvedRoot;
+    }
   }
 
-  // 3. Standalone layout — the project root is two levels up.
-  const sibling = siblingOfStandalone(cwd);
-  if (sibling && cwdIsRepoRoot(sibling)) {
-    resolvedRoot = sibling;
-    return resolvedRoot;
-  }
-
-  // 4. Last resort: stick with the cwd-based path so file-not-found errors
-  // surface in the same way they would without this helper.
+  // 3. Cwd is the project root (local dev: `npm run dev` from the repo root).
   resolvedRoot = cwd;
   return resolvedRoot;
 }
