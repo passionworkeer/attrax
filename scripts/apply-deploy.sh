@@ -66,10 +66,49 @@ if [ "${1:-}" = "--rollback" ]; then
   rm -f "${STATIC_LINK}"
   ln -s "${STANDALONE}/.next/static" "${STATIC_LINK}"
   cat "${STANDALONE}/.next/BUILD_ID" > "${ATTRAX_DIR}/.next/BUILD_ID" 2>/dev/null || true
-  cd "${ATTRAX_DIR}" && pm2 restart nextjs --update-env 2>&1 | tail -5
-  log "rolled back; the broken tree was kept at ${broken}"
+  cd "${ATTRAX_DIR}"
+  # 区分两种失败：树已还原但进程没起来（exit 3，操作者需手动 pm2 restart）
+  # vs 还原本身失败（set -e 直接中止）。自动回滚的调用方据此报出准确信息。
+  if pm2 restart nextjs --update-env 2>&1 | tail -5; then
+    log "rolled back; the broken tree was kept at ${broken}"
+  else
+    log "ERROR: tree restored to ${target} but 'pm2 restart nextjs' failed — run it manually"
+    exit 3
+  fi
   exit 0
 fi
+
+# ── 失败自动回滚（2026-09-19）────────────────────────────────────────────────
+# [2] 之后旧树已挪走、新树解到一半，任何一步失败都会把站点留在半挂状态，
+# 而此前只有人工跑 `--rollback` 这一条恢复路径（docs 里一句提示）。
+# 规则（第一性原理：只对"这次部署造成的"故障回滚）：
+#   - 阶段一 preflight：还没动过线上代码，失败不回滚
+#   - 阶段二 backup_taken：[2] 已把旧树挪进备份目录 —— 此时无论解包是否成功，
+#     线上都可能没有完整可用的树，失败必须回滚（tar 坏包正是这个场景）
+#   - 阶段三 deployed：[3] 解包成功；失败同样回滚
+#   - 仅在部署前健康 = 200 时才回滚 —— 部署前就挂着的站，失败不能归因于本次
+#   - `--rollback` 子调用里 DEPLOY_STAGE 仍是 preflight，天然不会递归
+DEPLOY_STAGE="preflight"
+PRE_DEPLOY_HEALTH="$(curl -sk -m 5 -o /dev/null -w "%{http_code}" "${HEALTH_URL}" || echo 000)"
+
+rollback_on_failure() {
+  rc=$?
+  if [ "$rc" -eq 0 ] || [ "${DEPLOY_STAGE}" = "preflight" ]; then
+    return
+  fi
+  if [ "${PRE_DEPLOY_HEALTH}" != "200" ]; then
+    log "WARN: deploy failed (rc=${rc}) but the site was already unhealthy before this deploy (pre=${PRE_DEPLOY_HEALTH}) — NOT auto-rolling back."
+    log "       inspect /opt/attrax/.next/standalone-pre-deploy-${STAMP} before deciding."
+    return
+  fi
+  log "WARN: deploy failed (rc=${rc}) at stage '${DEPLOY_STAGE}' — auto-rolling back"
+  if bash "$0" --rollback; then
+    log "auto-rollback done; the failed tree was kept for inspection"
+  else
+    log "ERROR: auto-rollback FAILED — recover manually: bash $0 --rollback (previous tree: ${BACKUP_DIR})"
+  fi
+}
+trap rollback_on_failure EXIT
 
 # ── [0] 端口漂移预检（只警告不阻断；真正的修复在 [6.5]+[8.5]）──────────────
 # 检查当前线上 nginx vhost 的 upstream 端口是否等于服务器上 ports.env 的
@@ -77,7 +116,10 @@ fi
 # render-nginx-vhost.sh 重新生成并修掉它，所以这里 warn 让操作者知情。
 if [ -f "${REPO_DIR}/scripts/ports.env" ] && [ -f "${LIVE_VHOST}" ]; then
   expected_port="$(grep -E '^NEXTJS_PORT=' "${REPO_DIR}/scripts/ports.env" | head -1 | cut -d= -f2- | tr -d '[:space:]')"
-  live_port="$(grep -oE '127\.0\.0\.1:[0-9]+' "${LIVE_VHOST}" | head -1 | cut -d: -f2)"
+  # 只认 upstream 块里的 `server 127.0.0.1:PORT`（行首关键字），不认 proxy_pass
+  # 或注释里出现的地址 —— 旧实现用 `head -1` 取全文第一个 127.0.0.1:PORT，在
+  # 多 upstream（blue/green）或带历史注释的 vhost 上会读错。
+  live_port="$(grep -E '^[[:space:]]*server[[:space:]]+127\.0\.0\.1:[0-9]+' "${LIVE_VHOST}" | head -1 | grep -oE '[0-9]+$')"
   if [ -n "${expected_port}" ] && [ -n "${live_port}" ] && [ "${live_port}" != "${expected_port}" ]; then
     log "WARN: nginx upstream 端口漂移 — vhost=${live_port}, ports.env=${expected_port}；[8.5] 将重新渲染修复"
   fi
@@ -89,30 +131,37 @@ test -f "${TARBALL}" || { log "ERROR: tarball missing: ${TARBALL}"; exit 1; }
 test -d "${STANDALONE}" || { log "ERROR: no existing standalone at ${STANDALONE}"; exit 1; }
 # ops/ 必须在包里（端口单一来源链路依赖它）
 OPS_COUNT=$(tar -tzf "${TARBALL}" | grep -c '^standalone/ops/' || true)
-if [ "$OPS_COUNT" -lt 8 ]; then
-  log "ERROR: tarball 缺 standalone/ops/（只有 ${OPS_COUNT} 个文件，需要 8 个）— 用最新 build-deploy-tarball.sh 重新打包"
+if [ "$OPS_COUNT" -lt 10 ]; then
+  log "ERROR: tarball 缺 standalone/ops/（只有 ${OPS_COUNT} 个文件，需要 10 个）— 用最新 build-deploy-tarball.sh 重新打包"
   exit 1
 fi
 
 # ── [2] snapshot current standalone ────────────────────────────────────────
 log "=== [2] backup current standalone -> ${BACKUP_DIR} ==="
 mv "${STANDALONE}" "${BACKUP_DIR}"
+# 旧树已挪走：从这一刻起线上没有完整可用的树，任何失败都必须回滚（含 tar 坏包）。
+DEPLOY_STAGE="backup_taken"
 previous_backups | tail -n "+$((KEEP_BACKUPS + 1))" | xargs -r rm -rf
 
 # ── [3] extract tarball ────────────────────────────────────────────────────
 log "=== [3] extract tarball ==="
 tar -C "${ATTRAX_DIR}/.next" -xzf "${TARBALL}"
 test -f "${STANDALONE}/server.js" || { log "ERROR: extract failed (no server.js)"; exit 1; }
+# 新树已落地 —— 从这一刻起任何失败都触发上面的自动回滚（前提：部署前健康）。
+DEPLOY_STAGE="deployed"
 
 # ── [4] static symlink ─────────────────────────────────────────────────────
 log "=== [4] verify .next/static symlink ==="
 # Next 16 + Turbopack keeps chunks at the build root; nginx aliases /_next/static/
 # to this path, so a dangling link means every chunk 404s.
-if [ ! -e "${STATIC_LINK}" ]; then
-  log "  static symlink broken, recreating"
-  rm -f "${STATIC_LINK}"
-  ln -s "${STANDALONE}/.next/static" "${STATIC_LINK}"
-fi
+#
+# Rebuild UNCONDITIONALLY. Checking `[ ! -e ]` only catches a dangling link:
+# after an in-place extract the old link already resolves (same path, replaced
+# contents), so it was kept as-is even when the new build reorganized chunks —
+# which surfaces as ChunkLoadError against the new server's embedded manifest.
+# `rm -rf` on a symlink removes the link, never its target.
+rm -rf "${STATIC_LINK}"
+ln -s "${STANDALONE}/.next/static" "${STATIC_LINK}"
 ls -la "${STATIC_LINK}" | head -1
 
 # ── [5] BUILD_ID ───────────────────────────────────────────────────────────
@@ -146,6 +195,11 @@ install -m 644 "${OPS}/ports.env.cjs"                "${REPO_DIR}/scripts/ports.
 install -m 755 "${OPS}/render-nginx-vhost.sh"        "${REPO_DIR}/scripts/render-nginx-vhost.sh"
 install -m 644 "${OPS}/ecosystem.config.cjs"         "${REPO_DIR}/scripts/ecosystem.config.cjs"
 install -m 644 "${OPS}/nginx-attrax-vhost-prod.conf.template" "${REPO_DIR}/docs/infra/nginx-attrax-vhost-prod.conf.template"
+# 备份执行体：cron（/etc/cron.d/attrax-backup{,-remote}）直接调用
+# /opt/attrax/scripts/backup-data.sh 与 backup-remote.sh。此前它们只存在于
+# 文档的"手工 scp"步骤里 —— 缺失时 cron 静默失败，备份等于没跑。
+install -m 755 "${OPS}/backup-data.sh"               "${REPO_DIR}/scripts/backup-data.sh"
+install -m 755 "${OPS}/backup-remote.sh"             "${REPO_DIR}/scripts/backup-remote.sh"
 if [ -d /etc/systemd/system ]; then
   install -m 755 "${OPS}/attrax-healthcheck.sh"      /usr/local/bin/attrax-healthcheck.sh
   install -m 644 "${OPS}/attrax-healthcheck.service" /etc/systemd/system/attrax-healthcheck.service
@@ -186,7 +240,9 @@ if [ -w "$(dirname "${LIVE_VHOST}")" ]; then
   if ! grep -q "limit_conn_zone .* zone=attrax_conn:10m" "${NGINX_MAIN}"; then
     if grep -q "^[[:space:]]*keepalive_requests 100;" "${NGINX_MAIN}"; then
       log "  injecting limit_conn_zone into ${NGINX_MAIN} (http {} — required by vhost)"
-      sed -i.bak-attrax "/^[[:space:]]*keepalive_requests 100;$/a\\
+      # 备份带时间戳：固定的 .bak-attrax 会被下一次 self-heal 覆盖，且让巡检
+      # 分不清是哪次部署留下的。
+      sed -i.bak-attrax-"$(date -u +%Y%m%d-%H%M%S)" "/^[[:space:]]*keepalive_requests 100;$/a\\
     # 2026-09-18 concurrency hardening (H10): per-IP concurrent-connection cap.\\
     limit_conn_zone \$binary_remote_addr zone=attrax_conn:10m;" "${NGINX_MAIN}"
     nginx -t || { log "ERROR: nginx -t still fails after zone injection"; exit 1; }

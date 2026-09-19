@@ -101,7 +101,9 @@ def build_processed_document(
     parsed: dict[str, Any],
     collected_at: str | None,
 ) -> dict[str, Any]:
-    """Build the processed JSON document consumed by build_faiss.py."""
+    """Build the processed JSON document read back by
+    ``scripts/report_regulation_coverage.py`` (and by the regulation-library
+    ingest)."""
     raw_text = parsed["rawText"]
     market = entry.get("market", "")
     metadata = _infer_metadata(raw_text, market)
