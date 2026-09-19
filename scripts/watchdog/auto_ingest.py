@@ -93,6 +93,8 @@ _REGION_DIRS: dict[str, str] = {
     "UN": "un", "CA": "ca", "NZ": "nz", "JP": "jp", "KR": "kr",
     "SA": "sa", "AE": "ae", "BR": "br", "IN": "in", "SG": "sg",
     "MX": "mx", "DE": "de", "FR": "fr", "IT": "it",
+    "VN": "vn", "ID": "id", "MY": "my", "TH": "th", "GCC": "gcc",
+    "GLOBAL": "global",
 }
 _RAW_SUFFIX = {
     "eu_celex": ".rdf",
@@ -854,6 +856,32 @@ class AutoIngestor:
             if entry.get("pending_yaml") is True:
                 pending_dir = yaml_path.parent / "_pending"
                 pending_path = pending_dir / yaml_path.name
+                if pending_path.exists():
+                    # Never overwrite: a staged placeholder carries no value,
+                    # but an operator may already have authored articles into
+                    # it — and this source re-enters CREATE on every upstream
+                    # change (its live path never exists), so without this
+                    # guard each pass would silently discard that work.
+                    logger.warning(
+                        "pending_yaml source %s: %s already staged — leaving it untouched",
+                        source_id,
+                        pending_path,
+                    )
+                    return IngestOutcome(
+                        source_id=source_id,
+                        action="pending-exists",
+                        reg_id=reg_id,
+                        evidence_dir=evidence_dir,
+                        record=self._record(
+                            source_id,
+                            entry,
+                            update,
+                            change,
+                            reg_id,
+                            "pending-exists",
+                            evidence_dir,
+                        ),
+                    )
                 yaml_path = pending_path
                 payload["notes"] = (
                     f"{payload['notes']} PENDING: registry marked this source"
@@ -1037,6 +1065,9 @@ class AutoIngestor:
                     "source_url": r.get("source_url"),
                     "purchase_url": r.get("purchase_url"),
                     "article_count": len(r.get("articles", []) or []),
+                    # 合规领域分类（2026-09-19 attrax-docs 目录导入起写入）：
+                    # /regulations 法规档案页按它显示领域标签。老条目没有该字段。
+                    **({"domain": r["domain"]} if r.get("domain") else {}),
                     **({"status": r["status"]} if r.get("status") else {}),
                 }
                 for r in records
