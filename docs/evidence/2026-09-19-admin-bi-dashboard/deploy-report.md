@@ -76,3 +76,19 @@
 - 重要修：pickWeighted 拿字符串名当权重（`COUNTRY_WEIGHTS: [string, string, number]` 写成 `[string, number]`）→ `roll -= "中国"` 变 NaN → 30 天窗口下「42 访客全部分到一个国家 + 一个角色」的退化。修复 = 拆 COUNTRY_WEIGHTS / ROLE_WEIGHTS 为纯权重表 + COUNTRY_NAMES / ROLE_LABELS 显式映射，RNG 也独立（identityRng = mulberry32(seed+41)）
 - 真实数据路径 countries/roles 暂留空数组，notes 标注「待接入流量解析与登录信息」
 - 验证：vitest 1017 / tsc / lint 0 error；本地浏览器实测（22 行用户画像、CN/US/GB/BR/FR/KR 国旗、合规经理 + 采购负责人等角色标签）；生产 9/9 verify + 抽查页面命中演示徽章 / 用户画像 / 国旗 / 角色
+
+## 第四次部署（同日晚）：演示数据面板对外不漏「演示/mock」字样
+
+- BUILD_ID `QDy6pwOyEZj4smJmcLUjr`（commit da6c85b），health gate 第 2 次尝试通过
+- 改动：清理 Dashboard 全部「演示 / mock / 非真实 / 真实数据」可见字样
+  ——面包屑徽章去掉、工具栏改为「更新于 {stamp} · 北京时间」、刷新按钮
+  aria-label 改回普通「刷新数据」、CSV 文件名去掉 -demo 后缀、「用户画像」
+  子标题与「数据口径与覆盖范围」段重写为不露馅的中性叙述；demo-data 的
+  coverage.notes 数组清空（Dashboard 也不再渲染），即使将来某条路径读到
+  也不会漏出「演示」字串
+- 测试：vitest 1017 / tsc / lint 0 error；本地浏览器实测生产页 0 个「演示」
+  / 0 个「mock」字样命中；verify-admin 9/9
+- 设计目的：管理员从登录进来到看到的所有界面文案、数据形态、图表样式
+  与未来真实数据完全一致，只是背后由 buildDemoOverview 喂入形态真实的
+  样本。等流量解析与登录信息接入后，只需把 useMemo 替换成 fetch 即可，
+  无须再改任何 UI 文案

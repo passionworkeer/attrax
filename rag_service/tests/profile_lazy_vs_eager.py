@@ -69,22 +69,26 @@ def measure(label: str, snapshot=None) -> dict:
     `tracemalloc` tracks Python object allocations — the actual memory cost
     of the article_loader cache (dict[str, dict]). RSS includes noise from
     YAML parse buffer, GC, etc. and is unreliable for A/B comparison on
-    small workloads. Pass the previous snapshot to compute the delta.
+    small workloads. Always returns a snapshot under `_snap` so the caller
+    can chain a delta measurement.
+
+    When `snapshot` is given, the returned dict has `py_heap_delta_kb` and
+    `py_heap_delta_count` (the change since that snapshot); otherwise it
+    has `py_heap_mb` (absolute heap at this point).
     """
     gc.collect()
+    snap = tracemalloc.take_snapshot()
+    result: dict = {"label": label, "_snap": snap}
     if snapshot is not None:
-        current = tracemalloc.take_snapshot()
-        diff = current.compare_to(snapshot, "filename")
+        diff = snap.compare_to(snapshot, "filename")
         delta_bytes = sum(stat.size_diff for stat in diff)
         delta_count = sum(stat.count_diff for stat in diff)
-        return {
-            "label": label,
-            "py_heap_delta_kb": delta_bytes / 1024,
-            "py_heap_delta_count": delta_count,
-        }
-    snap = tracemalloc.take_snapshot()
-    total = sum(stat.size for stat in snap.statistics("filename"))
-    return {"label": label, "py_heap_mb": total / 1024 / 1024, "_snap": snap}
+        result["py_heap_delta_kb"] = delta_bytes / 1024
+        result["py_heap_delta_count"] = delta_count
+    else:
+        total = sum(stat.size for stat in snap.statistics("filename"))
+        result["py_heap_mb"] = total / 1024 / 1024
+    return result
 
 
 # ─── 工作负载模拟 ──────────────────────────────────────────────────────────
@@ -284,11 +288,10 @@ def main():
     cold_metrics = []
     with timer("first_list_regulation_ids (cold start)", cold_metrics):
         ids = article_loader.list_regulation_ids()
-    cold_metrics.append(measure("after_first_list"))
+    eager_pre = measure("after_first_list")
     print(f"  cold start: {cold_metrics[0]['elapsed_ms']:.2f}ms")
     print(f"  ids returned: {len(ids)}")
-    eager_pre = cold_metrics[1].get("_snap")
-    post_preload = measure("after_full_preload", eager_pre)
+    post_preload = measure("after_full_preload", eager_pre["_snap"])
     print(f"  Python heap after preload: +{post_preload['py_heap_delta_kb']:.1f}KB ({post_preload['py_heap_delta_count']} objects)")
 
     eager_scan_latencies = []
@@ -296,7 +299,7 @@ def main():
         hits = {}
         with timer(f"scan_{i}", eager_scan_latencies):
             _workload_one_scan(hit_reg_ids, hits)
-    eager_final = measure("eager_final", post_preload.get("_snap"))
+    eager_final = measure("eager_final", post_preload["_snap"])
     print(f"  scan latency mean: {sum(e['elapsed_ms'] for e in eager_scan_latencies) / n_scans:.2f}ms")
     print(f"  Python heap after {n_scans} scans: +{eager_final['py_heap_delta_kb']:.1f}KB ({eager_final['py_heap_delta_count']} objects)")
 
@@ -305,7 +308,7 @@ def main():
     rebuild_metrics = []
     with timer("stamp_invalidate_rebuild", rebuild_metrics):
         ids = article_loader.list_regulation_ids()
-    after_rebuild = measure("after_rebuild", eager_final.get("_snap"))
+    after_rebuild = measure("after_rebuild", eager_final["_snap"])
     print(f"  stamp-invalidate rebuild: {rebuild_metrics[0]['elapsed_ms']:.2f}ms")
     print(f"  Python heap delta during rebuild: +{after_rebuild['py_heap_delta_kb']:.1f}KB\n")
 
@@ -321,11 +324,10 @@ def main():
     cold_lazy = []
     with timer("first_list_regulation_ids (cold start)", cold_lazy):
         ids = lazy["list_regulation_ids"]()
-    cold_lazy.append(measure("after_first_list_lazy"))
+    lazy_pre = measure("after_first_list_lazy")
     print(f"  cold start: {cold_lazy[0]['elapsed_ms']:.2f}ms")
     print(f"  ids returned: {len(ids)}")
-    lazy_pre = cold_lazy[1].get("_snap")
-    lazy_after_index = measure("after_lazy_index_only", lazy_pre)
+    lazy_after_index = measure("after_lazy_index_only", lazy_pre["_snap"])
     print(f"  Python heap after index-only: +{lazy_after_index['py_heap_delta_kb']:.1f}KB ({lazy_after_index['py_heap_delta_count']} objects)")
 
     lazy_scan_latencies = []
@@ -333,7 +335,7 @@ def main():
         hits: dict[str, int] = {}
         with timer(f"lazy_scan_{i}", lazy_scan_latencies):
             _workload_one_scan_lazy(hit_reg_ids, hits, lazy)
-    lazy_final = measure("lazy_final", lazy_after_index.get("_snap"))
+    lazy_final = measure("lazy_final", lazy_after_index["_snap"])
     print(f"  scan latency mean: {sum(e['elapsed_ms'] for e in lazy_scan_latencies) / n_scans:.2f}ms")
     print(f"  Python heap after {n_scans} scans: +{lazy_final['py_heap_delta_kb']:.1f}KB ({lazy_final['py_heap_delta_count']} objects)")
     print(f"  LRU hits/misses: {stat.hits}/{stat.misses} | disk_reads: {stat.disk_reads} | evicted: {stat.evicted}")
@@ -343,7 +345,7 @@ def main():
     with timer("stamp_invalidate_lazy_clear_only", invalidate_lazy):
         # lazy: just clear OrderedDict
         pass
-    lazy_after_clear = measure("after_lazy_clear", lazy_final.get("_snap"))
+    lazy_after_clear = measure("after_lazy_clear", lazy_final["_snap"])
     print(f"  stamp-invalidate (LRU clear only): {invalidate_lazy[0]['elapsed_ms']:.4f}ms")
     print(f"  Python heap delta during clear: +{lazy_after_clear['py_heap_delta_kb']:.2f}KB\n")
 
