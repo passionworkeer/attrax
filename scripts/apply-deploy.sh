@@ -119,7 +119,18 @@ if [ -f "${REPO_DIR}/scripts/ports.env" ] && [ -f "${LIVE_VHOST}" ]; then
   # 只认 upstream 块里的 `server 127.0.0.1:PORT`（行首关键字），不认 proxy_pass
   # 或注释里出现的地址 —— 旧实现用 `head -1` 取全文第一个 127.0.0.1:PORT，在
   # 多 upstream（blue/green）或带历史注释的 vhost 上会读错。
-  live_port="$(grep -E '^[[:space:]]*server[[:space:]]+127\.0\.0\.1:[0-9]+' "${LIVE_VHOST}" | head -1 | grep -oE '[0-9]+$')"
+  #
+  # 端口用纯 bash 参数展开提取，不用管道：真实行形如
+  #   server 127.0.0.1:3000 max_fails=3 fail_timeout=30s;
+  # 行尾不是数字，`grep -oE '[0-9]+$'` 会匹配失败并退出非零 —— 在
+  # set -e + pipefail 下整个脚本会在任何日志之前静默退出（2026-09-19 实测
+  # 踩中：部署变成 no-op 却没有任何输出）。
+  server_line="$(grep -E '^[[:space:]]*server[[:space:]]+127\.0\.0\.1:[0-9]+' "${LIVE_VHOST}" | head -1 || true)"
+  live_port=""
+  if [ -n "${server_line}" ]; then
+    live_port="${server_line#*127.0.0.1:}"
+    live_port="${live_port%%[!0-9]*}"
+  fi
   if [ -n "${expected_port}" ] && [ -n "${live_port}" ] && [ "${live_port}" != "${expected_port}" ]; then
     log "WARN: nginx upstream 端口漂移 — vhost=${live_port}, ports.env=${expected_port}；[8.5] 将重新渲染修复"
   fi
