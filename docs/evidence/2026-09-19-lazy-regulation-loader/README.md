@@ -80,6 +80,21 @@ YAML 并全部 `yaml.safe_load` 进内存。提出改造时假设的收益是"�
   同日实测 32s–144s 不等），与本改造无关；本次改造影响的是启动/库变更路径，
   不是 LLM 往返。
 
+## 主链路生产端到端验证（同日，改动上线后）
+
+对 `https://twinbuddy.xyz` 走完整用户链路，14 项检查全过：
+
+- 页面：`/` `/upload` `/pricing` `/regulations` 全部 200
+- `POST /api/scan`（electronics EU/US，真实产品图）→ 会话创建成功
+- 轮询至 `ready`（65s；12 findings / 9 citations）
+- 报告包字段完整：findings / citations / complianceReport / profitReport /
+  decisionView / evidencePack / productDossier 全部存在
+- 结果页 `/result/{sessionId}` 200
+- 导出：compliance markdown 200（12847 字节，中文报告含真实法规引用如
+  `EU-2014-30#art-6`、`US-FCC-15#section-15-101`）；roadmap CSV 200（969 字节）
+- 资产接口 `/api/scan/{id}/asset/0` 200
+- 扫描后 rag-service RSS 79.4MB（惰性加载稳态），服务器可用内存 913MB
+
 ## 复现
 
 ```bash
