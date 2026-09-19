@@ -12,6 +12,7 @@
 
 import { readArchive } from "@/lib/regulations/archive-data";
 import { readSources } from "@/lib/regulations/sources-data";
+import { readRawStats } from "@/lib/regulations/raw-stats";
 import RegulationsClient, { type TopStats } from "@/components/regulation/RegulationsClient";
 import { getLiveRegulationUpdates } from "@/app/api/regulations/updates/watchdog-source";
 import { STATIC_DEMO } from "@/app/api/regulations/updates/data";
@@ -27,6 +28,7 @@ const EMPTY_ARCHIVE = { entries: [], generatedAt: null } as {
 };
 const EMPTY_SOURCES = { entries: [] as SourceEntry[] };
 const EMPTY_UPDATES: RegulationUpdate[] = [];
+const EMPTY_RAW_STATS = { marketsCovered: 0, totalRawFiles: 0, marketsList: [] };
 
 function countArchiveMarkets(entries: ReadonlyArray<{ region: string }>): number {
   return new Set(entries.map((e) => e.region)).size;
@@ -37,10 +39,11 @@ function countUpdatesMarkets(updates: ReadonlyArray<{ market: string }>): number
 }
 
 export default async function RegulationsPage() {
-  const [archiveResult, sourcesResult, liveUpdates] = await Promise.all([
+  const [archiveResult, sourcesResult, liveUpdates, rawStats] = await Promise.all([
     readArchive().catch(() => EMPTY_ARCHIVE),
     readSources().catch(() => EMPTY_SOURCES),
     getLiveRegulationUpdates().catch(() => EMPTY_UPDATES),
+    readRawStats().catch(() => EMPTY_RAW_STATS),
   ]);
 
   const archiveEntries = archiveResult.entries;
@@ -94,6 +97,10 @@ export default async function RegulationsPage() {
       effectiveSoon,
       lastVerifiedAt: null,
       dataset: liveUpdates.length > 0 ? "static-demo+live" : "static-demo",
+    },
+    raw: {
+      marketsCovered: rawStats.marketsCovered,
+      totalRawFiles: rawStats.totalRawFiles,
     },
   };
 

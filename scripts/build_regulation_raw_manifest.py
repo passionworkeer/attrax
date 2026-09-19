@@ -190,6 +190,21 @@ def main() -> int:
     recs = load_records(raw_root)
     print(f"载入原始记录: {len(recs)}")
 
+    # 计算原始抓取口径统计（在 _REGION_DIRS 过滤之前）：所有抓到的市场集合大小
+    # + 去重 path 数。注意用原始 market 字段（未被 map_market_to_region 过滤），
+    # 这样 ar / es / ie / tw 等 _REGION_DIRS 外的市场也计入 marketsCovered。
+    raw_markets: set[str] = set()
+    raw_paths: set[str] = set()
+    for r in recs:
+        if r.get("status") != "ok":
+            continue
+        mkt = (r.get("market") or "").strip().lower()
+        if mkt:
+            raw_markets.add(mkt.upper())
+        rel = (r.get("path") or "").strip()
+        if rel:
+            raw_paths.add(rel.replace("\\", "/"))
+
     seen_ids: set[str] = set()
     entries: list[dict] = []
     skipped: dict[str, int] = Counter()
@@ -252,6 +267,13 @@ def main() -> int:
                 "regulation-raw/_manifest_bulk.json",
                 "regulation-raw/_manifest_discovery.json",
         ],
+        "meta": {
+            # 原始抓取口径（不过滤 _REGION_DIRS）：覆盖多少市场、抓到多少原文。
+            # /regulations 页面副标题与「抓取覆盖」卡片用这两个数字，
+            # 区别于 entries.length（已入库的 attrax 合规子集）。
+            "marketsCovered": len(raw_markets),
+            "totalRawFiles": len(raw_paths),
+        },
         "entries": entries,
     }
 

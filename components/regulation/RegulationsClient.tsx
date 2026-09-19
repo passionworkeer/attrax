@@ -15,6 +15,7 @@ export interface TopStats {
   archive: { total: number; markets: number; withArticles: number; generatedAt: string | null } | null;
   sources: { total: number; markets: number; healthy: number; protected: number } | null;
   updates: { total: number; matching: number; returned: number; markets: number; highRisk: number; effectiveSoon: number; lastVerifiedAt: string | null; dataset: string | null } | null;
+  raw: { marketsCovered: number; totalRawFiles: number } | null;
 }
 
 const TAB_KEYS: TabKey[] = ["archive", "sources", "updates"];
@@ -23,6 +24,7 @@ const fallbackStats: TopStats = {
   archive: null,
   sources: null,
   updates: null,
+  raw: null,
 };
 
 export default function RegulationsClient({ initialStats }: { initialStats: TopStats }) {
@@ -76,7 +78,7 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
               dataset: updatesJson.meta?.dataset ?? null,
             }
           : null;
-        setStats({ archive, sources, updates });
+        setStats((prev) => ({ ...prev, archive, sources, updates }));
         if (!archive || !sources || !updates) {
           setStatsFailed(true);
         }
@@ -112,7 +114,9 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
               <p className="max-w-3xl text-sm leading-6 text-slate-400 sm:text-base">
                 {t("regulations.subtitle", {
                   archive: stats.archive?.total ?? "—",
-                  markets: stats.archive?.markets ?? "—",
+                  attraxMarkets: stats.archive?.markets ?? "—",
+                  marketsCovered: stats.raw?.marketsCovered ?? "—",
+                  rawFiles: stats.raw?.totalRawFiles ?? "—",
                   sources: stats.sources?.total ?? "—",
                   updates: stats.updates?.matching ?? "—",
                 })}
@@ -150,10 +154,8 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
               {stats.archive?.total ?? <span className="text-slate-500">—</span>}
             </p>
             <p className="mt-1 text-xs text-slate-500">
-              {stats.archive
-                ? `${stats.archive.markets} ${locale === "zh" ? "市场" : "markets"} · ${stats.archive.withArticles} ${
-                    locale === "zh" ? "已结构化" : "with articles"
-                  }`
+              {stats.archive && stats.raw
+                ? `${stats.archive.markets} ${locale === "zh" ? "合规区域" : "attrax markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "抓取原文" : "raw files"}`
                 : ""}
             </p>
           </div>
@@ -187,24 +189,22 @@ export default function RegulationsClient({ initialStats }: { initialStats: TopS
           </div>
           <div className="glass-panel rounded-2xl p-4">
             <div className="mb-3 flex items-center justify-between">
-              <span className="text-sm text-slate-400">{t("regulations.trackedMarkets")}</span>
+              <span className="text-sm text-slate-400">
+                {locale === "zh" ? "抓取覆盖" : "Fetch coverage"}
+              </span>
               <Search className="h-4 w-4 text-blaze-red" />
             </div>
             <p className="text-2xl font-bold text-blaze-red">
-              {new Set([
-                ...(stats.archive?.markets ? [stats.archive.markets] : []),
-                ...(stats.sources?.markets ? [stats.sources.markets] : []),
-                ...(stats.updates?.markets ? [stats.updates.markets] : []),
-              ]).size > 0
-                ? Math.max(stats.archive?.markets ?? 0, stats.sources?.markets ?? 0, stats.updates?.markets ?? 0)
-                : "—"}
+              {stats.raw?.marketsCovered ?? <span className="text-slate-500">—</span>}
             </p>
             <p className="mt-1 text-xs text-slate-500">
-              {stats.updates?.dataset
-                ? `updates · ${stats.updates.dataset}`
-                : locale === "zh"
-                  ? "updates · pending watchdog"
-                  : "updates · pending watchdog"}
+              {stats.archive && stats.raw
+                ? `${stats.archive.markets} ${locale === "zh" ? "个 attrax 合规" : "attrax markets"} · ${stats.raw.totalRawFiles} ${locale === "zh" ? "原文" : "raw"}`
+                : stats.updates?.dataset
+                  ? `updates · ${stats.updates.dataset}`
+                  : locale === "zh"
+                    ? "updates · pending watchdog"
+                    : "updates · pending watchdog"}
             </p>
           </div>
         </div>

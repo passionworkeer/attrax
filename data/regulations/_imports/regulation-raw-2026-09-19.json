@@ -1,6 +1,6 @@
 {
   "manifest_version": 1,
-  "generated_at": "2026-09-19T16:02:51",
+  "generated_at": "2026-09-19T16:29:21",
   "title": "regulation-raw 全量目录（2026-09-19 抓取）",
   "source_root": "/workspace/me/regulation-raw",
   "url_verified_at": "2026-09-19",
@@ -9,6 +9,10 @@
     "regulation-raw/_manifest_bulk.json",
     "regulation-raw/_manifest_discovery.json"
   ],
+  "meta": {
+    "marketsCovered": 70,
+    "totalRawFiles": 1334
+  },
   "entries": [
     {
       "id": "AE-AE_MOIAT_ECAS_-_MOIAT-GOV-AE",
