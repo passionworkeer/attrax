@@ -13,6 +13,7 @@
 | 服务器挂了怎么恢复 | [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md) + 看 aliyun-sz 上 `pm2 logs` 排障 |
 | watchdog 法规自动入库 | [`WATCHDOG.md`](./WATCHDOG.md) + `scripts/watchdog/README.md` |
 | Next 16 standalone 部署坑 | [`infra/NEXTJS-16-STANDALONE-NOTES.md`](./infra/NEXTJS-16-STANDALONE-NOTES.md) |
+| 服务器运维操作手册 | [`infra/SERVER-OPERATIONS.md`](./infra/SERVER-OPERATIONS.md) |
 | nginx/sysctl/sshd/fail2ban 实际配置 | [`infra/`](./infra/) |
 | 历史事故 / 修复记录 | 根目录 [`CHANGELOG.md`](../CHANGELOG.md) |
 | 历史修复计划 | [`plans/`](./plans/) |
