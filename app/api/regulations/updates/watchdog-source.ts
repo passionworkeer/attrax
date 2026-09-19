@@ -28,9 +28,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { RegulationUpdate, ChangeType, RiskLevel } from "./types";
-import { regulationsDataRoot } from "@/lib/regulations/data-root";
+import { regulationsProjectRoot } from "@/lib/regulations/data-root";
 
-const PROJECT_ROOT = regulationsDataRoot();
+const PROJECT_ROOT = regulationsProjectRoot();
 const WATCHDOG_DIR = path.join(
   PROJECT_ROOT,
   "data",
