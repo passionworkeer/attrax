@@ -47,10 +47,13 @@ let resolvedRoot: string | null = null;
 export function regulationsProjectRoot(): string {
   if (resolvedRoot) return resolvedRoot;
 
+  console.log(`[data-root] resolving; cwd=${process.cwd()} override=${process.env.ATTRAX_PROJECT_ROOT ?? "(none)"}`);
+
   // 1. Explicit override (preferred for production).
   const override = process.env.ATTRAX_PROJECT_ROOT;
   if (override && existsAndIsReadable(override)) {
     resolvedRoot = override;
+    console.log(`[data-root] using env override: ${resolvedRoot}`);
     return resolvedRoot;
   }
 
@@ -61,11 +64,14 @@ export function regulationsProjectRoot(): string {
     const sibling = siblingOfStandalone(cwd);
     if (sibling && existsAndIsReadable(sibling)) {
       resolvedRoot = sibling;
+      console.log(`[data-root] standalone build detected; using sibling: ${resolvedRoot}`);
       return resolvedRoot;
     }
+    console.log(`[data-root] standalone detected but sibling not readable: ${sibling}`);
   }
 
   // 3. Cwd is the project root (local dev: `npm run dev` from the repo root).
   resolvedRoot = cwd;
+  console.log(`[data-root] using cwd: ${resolvedRoot}`);
   return resolvedRoot;
 }
