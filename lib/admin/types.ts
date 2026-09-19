@@ -20,15 +20,6 @@ export interface AdminCountry {
   visitors: number;
 }
 
-export interface AdminRole {
-  /** 角色标识 */
-  name: string;
-  /** 中文标签 */
-  label: string;
-  /** 该角色用户数（窗口内去重访客身份数） */
-  visitors: number;
-}
-
 export interface AdminOverview {
   generatedAt: string;
   timezone: string;
@@ -40,8 +31,6 @@ export interface AdminOverview {
   categories: { name: string; count: number }[];
   /** 用户国家分布：演示数据按身份 mock 注入；真实数据来自流量解析（待实现） */
   countries: AdminCountry[];
-  /** 用户角色分布：同上 */
-  roles: AdminRole[];
   recentScans: { id: string; timestamp: string; category: string; status: string; latencyMs: number | null }[];
   sources: { id: string; title: string; market: string; status: string; lastFetchedAt: string | null }[];
 }
