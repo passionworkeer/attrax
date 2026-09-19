@@ -1,0 +1,19 @@
+id: CN-SAMR_-_-_SAMR-GOV-CN
+official_citation: CN-SAMR 市场监管总局 新闻 (samr.gov.cn)
+short_name: CN-SAMR 市场监管总局 新闻 (samr.gov.cn)
+region: CN
+domain: other
+license: public
+source_url: https://www.samr.gov.cn/xw/zj/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/CN-SAMR_市场监管总局_新闻_samr.gov.cn.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

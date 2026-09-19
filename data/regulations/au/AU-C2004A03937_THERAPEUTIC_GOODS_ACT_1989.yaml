@@ -1,0 +1,19 @@
+id: AU-C2004A03937_THERAPEUTIC_GOODS_ACT_1989
+official_citation: AU Therapeutic Goods Act 1989 (legislation.gov.au)
+short_name: AU Therapeutic Goods Act 1989 (legislation.gov.au)
+region: AU
+domain: other
+license: public
+source_url: https://www.legislation.gov.au/C2004A03937/latest/text
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- au/raw/AU-C2004A03937_Therapeutic_Goods_Act_1989.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

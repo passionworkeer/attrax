@@ -1,0 +1,19 @@
+id: CN-GB_17625-1-2022_-_-_-1-_-_-_16A
+official_citation: CN-GB GB 17625.1-2022 电磁兼容 限值 第1部分：谐波电流发射限值（设备每相输入电流≤16A）
+short_name: CN-GB GB 17625.1-2022 电磁兼容 限值 第1部分：谐波电流发射限值（设备每相输入电流≤16A）
+region: CN
+domain: electronics
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=56520E6F3446EE95475015DC395F9EFB
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_17625.1-2022_电磁兼容_限值_第1部分_谐波电流发射限值_设备每相输入电流_16A.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

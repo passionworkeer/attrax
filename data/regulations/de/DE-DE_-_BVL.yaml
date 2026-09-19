@@ -1,0 +1,19 @@
+id: DE-DE_-_BVL
+official_citation: DE 消费者保护与食品安全局 BVL
+short_name: DE 消费者保护与食品安全局 BVL
+region: DE
+domain: 消费者保护
+license: public
+source_url: https://www.bvl.bund.de/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- de/raw/DE_消费者保护与食品安全局_BVL.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

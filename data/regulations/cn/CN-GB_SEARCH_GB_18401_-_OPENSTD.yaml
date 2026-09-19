@@ -1,0 +1,19 @@
+id: CN-GB_SEARCH_GB_18401_-_OPENSTD
+official_citation: CN-GB search GB 18401 纺织产品安全 (openstd)
+short_name: CN-GB search GB 18401 纺织产品安全 (openstd)
+region: CN
+domain: textile
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/std_list?p.p1=0&p.p90=circulation_date&p.p91=desc&p.p2=GB%2018401
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/CN-GB_search_GB_18401_纺织产品安全_openstd.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

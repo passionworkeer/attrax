@@ -1,0 +1,19 @@
+id: CN-GB_18401-2003_
+official_citation: CN-GB GB 18401-2003 国家纺织产品基本安全技术规范
+short_name: CN-GB GB 18401-2003 国家纺织产品基本安全技术规范
+region: CN
+domain: textile
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=236EC2DCD4F68555D8C650F056D0DABB
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_18401-2003_国家纺织产品基本安全技术规范.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

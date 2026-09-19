@@ -1,0 +1,19 @@
+id: BR-BR_LGPD_LEI_13-709_2018_PLANALTO
+official_citation: BR LGPD Lei 13.709/2018 (planalto)
+short_name: BR LGPD Lei 13.709/2018 (planalto)
+region: BR
+domain: other
+license: public
+source_url: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- br/raw/BR_LGPD_Lei_13.709_2018_planalto.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

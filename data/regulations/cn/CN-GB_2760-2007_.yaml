@@ -1,0 +1,19 @@
+id: CN-GB_2760-2007_
+official_citation: CN-GB GB 2760-2007 食品添加剂使用卫生标准
+short_name: CN-GB GB 2760-2007 食品添加剂使用卫生标准
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=C7F3D7DB10EDB1584680669764B10398
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_2760-2007_食品添加剂使用卫生标准.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

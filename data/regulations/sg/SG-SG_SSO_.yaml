@@ -1,0 +1,19 @@
+id: SG-SG_SSO_
+official_citation: SG SSO 法规数据库
+short_name: SG SSO 法规数据库
+region: SG
+domain: other
+license: public
+source_url: https://sso.agc.gov.sg/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- sg/raw/SG_SSO_法规数据库.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

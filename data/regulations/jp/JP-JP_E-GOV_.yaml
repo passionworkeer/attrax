@@ -1,0 +1,19 @@
+id: JP-JP_E-GOV_
+official_citation: JP e-Gov 法令检索门户
+short_name: JP e-Gov 法令检索门户
+region: JP
+domain: other
+license: public
+source_url: https://elaws.e-gov.go.jp/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- jp/raw/JP_e-Gov_法令检索门户.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

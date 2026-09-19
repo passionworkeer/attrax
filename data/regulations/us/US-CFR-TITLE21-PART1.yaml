@@ -1,0 +1,19 @@
+id: US-CFR-TITLE21-PART1
+official_citation: US 21 CFR Part 1
+short_name: US 21 CFR Part 1
+region: US
+domain: electronics
+license: public
+source_url: https://www.govinfo.gov/content/pkg/CFR-2024-title21-vol1/xml/CFR-2024-title21-vol1-part1.xml
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US-CFR-title21-part1.xml
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: AE-AE_MOIAT_ECAS_-_MOIAT-GOV-AE
+official_citation: AE MoIAT ECAS 合格评定 (moiat.gov.ae)
+short_name: AE MoIAT ECAS 合格评定 (moiat.gov.ae)
+region: AE
+domain: other
+license: public
+source_url: https://www.moiat.gov.ae/en
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- ae/raw/AE_MoIAT_ECAS_合格评定_moiat.gov.ae.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

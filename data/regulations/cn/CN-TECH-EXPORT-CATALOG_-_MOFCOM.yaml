@@ -1,0 +1,19 @@
+id: CN-TECH-EXPORT-CATALOG_-_MOFCOM
+official_citation: CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom)
+short_name: CN-TECH-EXPORT-CATALOG 禁止出口限制出口技术目录 (mofcom)
+region: CN
+domain: other
+license: public
+source_url: https://www.mofcom.gov.cn/zcfb/zgdwjjmywg/art/2025/art_67e2a41850ec428eb1b7be6ec2f2bded.html
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/CN-TECH-EXPORT-CATALOG_禁止出口限制出口技术目录_mofcom.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

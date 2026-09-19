@@ -1,0 +1,19 @@
+id: GLOBAL-INTL_ILO_
+official_citation: INTL ILO 国际劳工组织
+short_name: INTL ILO 国际劳工组织
+region: GLOBAL
+domain: other
+license: public
+source_url: https://www.ilo.org/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/INTL_ILO_国际劳工组织.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

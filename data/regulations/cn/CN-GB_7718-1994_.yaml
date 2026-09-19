@@ -1,0 +1,19 @@
+id: CN-GB_7718-1994_
+official_citation: CN-GB GB 7718-1994 食品标签通用标准
+short_name: CN-GB GB 7718-1994 食品标签通用标准
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=5995C501DF7C454C4AF2EE711B597BD2
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_7718-1994_食品标签通用标准.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

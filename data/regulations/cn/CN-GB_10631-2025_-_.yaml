@@ -1,0 +1,19 @@
+id: CN-GB_10631-2025_-_
+official_citation: CN-GB GB 10631-2025 烟花爆竹 安全与质量
+short_name: CN-GB GB 10631-2025 烟花爆竹 安全与质量
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=04AD3EDC633C0117A0E19C74BD8D7A3D
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_10631-2025_烟花爆竹_安全与质量.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

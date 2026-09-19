@@ -1,0 +1,19 @@
+id: CN-GB_5296-2-1999_-_
+official_citation: CN-GB GB 5296.2-1999 消费品使用说明  家用和类似用途电器的使用说明
+short_name: CN-GB GB 5296.2-1999 消费品使用说明  家用和类似用途电器的使用说明
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=927735AD8450D99E8CCFBD21DCA7670F
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_5296.2-1999_消费品使用说明_家用和类似用途电器的使用说明.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: US-TITLE21-USC-331_FEDERAL_FOOD_DRUG_AND_COSMETIC_ACT_DEFINI
+official_citation: US 21 USC s.331 Federal Food Drug and Cosmetic Act definitions
+short_name: US 21 USC s.331 Federal Food Drug and Cosmetic Act definitions
+region: US
+domain: cosmetic
+license: public
+source_url: https://www.govinfo.gov/link/uscode/21/331
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- us/raw/US-title21-USC-331_Federal_Food_Drug_and_Cosmetic_Act_definitions.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

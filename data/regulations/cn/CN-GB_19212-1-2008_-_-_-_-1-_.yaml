@@ -1,0 +1,19 @@
+id: CN-GB_19212-1-2008_-_-_-_-1-_
+official_citation: CN-GB GB 19212.1-2008 电力变压器、电源、电抗器和类似产品的安全  第1部分：通用要求和试验
+short_name: CN-GB GB 19212.1-2008 电力变压器、电源、电抗器和类似产品的安全  第1部分：通用要求和试验
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=821FF1D565A800496AFCD9AB3F7C3AEE
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_19212.1-2008_电力变压器_电源_电抗器和类似产品的安全_第1部分_通用要求和试验.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

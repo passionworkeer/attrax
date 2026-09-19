@@ -1,0 +1,19 @@
+id: EU-2009-48-TOY
+official_citation: Directive 2009/48/EC — Toy Safety
+short_name: 玩具安全指令 (2009/48/EC)
+region: EU
+domain: toy
+license: public
+source_url: https://eur-lex.europa.eu/eli/dir/2009/48/oj
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- eu/raw/玩具安全法规_(EC)_2009-48.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

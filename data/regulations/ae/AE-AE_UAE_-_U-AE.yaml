@@ -1,0 +1,19 @@
+id: AE-AE_UAE_-_U-AE
+official_citation: AE UAE 立法门户 (u.ae)
+short_name: AE UAE 立法门户 (u.ae)
+region: AE
+domain: other
+license: public
+source_url: https://u.ae/en/information-and-services
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- ae/raw/AE_UAE_立法门户_u.ae.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

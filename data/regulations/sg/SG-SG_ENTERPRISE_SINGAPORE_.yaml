@@ -1,0 +1,19 @@
+id: SG-SG_ENTERPRISE_SINGAPORE_
+official_citation: SG Enterprise Singapore 标准与认证
+short_name: SG Enterprise Singapore 标准与认证
+region: SG
+domain: other
+license: public
+source_url: https://www.enterprisesg.gov.sg/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- sg/raw/SG_Enterprise_Singapore_标准与认证.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

@@ -1,0 +1,19 @@
+id: CN-GB_2099-1-1996_-_-_
+official_citation: CN-GB GB 2099.1-1996 家用和类似用途插头插座  第一部分:通用要求
+short_name: CN-GB GB 2099.1-1996 家用和类似用途插头插座  第一部分:通用要求
+region: CN
+domain: other
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=E35144596C58A0B9B30C110ED3B80860
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_2099.1-1996_家用和类似用途插头插座_第一部分_通用要求.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

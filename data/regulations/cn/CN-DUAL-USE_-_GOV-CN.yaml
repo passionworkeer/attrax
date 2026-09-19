@@ -1,0 +1,19 @@
+id: CN-DUAL-USE_-_GOV-CN
+official_citation: CN-DUAL-USE 两用物项出口管制条例 (gov.cn)
+short_name: CN-DUAL-USE 两用物项出口管制条例 (gov.cn)
+region: CN
+domain: 出口管制
+license: public
+source_url: https://www.gov.cn/zhengce/content/202410/content_6981399.htm
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/CN-DUAL-USE_两用物项出口管制条例_gov.cn.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

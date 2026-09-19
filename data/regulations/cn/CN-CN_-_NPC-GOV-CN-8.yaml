@@ -1,0 +1,19 @@
+id: CN-CN_-_NPC-GOV-CN-8
+official_citation: CN 民法典 (npc.gov.cn)
+short_name: CN 民法典 (npc.gov.cn)
+region: CN
+domain: other
+license: public
+source_url: http://www.npc.gov.cn/npc/c30834/202006/75ba6483b8344591abd07917e1d25cc8.shtml
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/CN_民法典_npc.gov.cn.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

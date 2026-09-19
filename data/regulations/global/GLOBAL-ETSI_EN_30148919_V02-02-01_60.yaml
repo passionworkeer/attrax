@@ -1,0 +1,19 @@
+id: GLOBAL-ETSI_EN_30148919_V02-02-01_60
+official_citation: ETSI EN 30148919 v02.02.01_60
+short_name: ETSI EN 30148919 v02.02.01_60
+region: GLOBAL
+domain: other
+license: public
+source_url: https://www.etsi.org/deliver/etsi_en/301400_301499/30148919/02.02.01_60/en_30148919v020201p.pdf
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/ETSI_EN_30148919_v02.02.01_60.pdf
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

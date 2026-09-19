@@ -1,0 +1,19 @@
+id: JP-CONSUMER-CONTRACT_CONSUMER_CONTRACT_ACT
+official_citation: JP-CONSUMER-CONTRACT Consumer Contract Act
+short_name: JP-CONSUMER-CONTRACT Consumer Contract Act
+region: JP
+domain: other
+license: public
+source_url: https://laws.e-gov.go.jp/api/1/lawdata/412AC0000000061
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- jp/raw/JP-CONSUMER-CONTRACT_Consumer_Contract_Act.xml
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

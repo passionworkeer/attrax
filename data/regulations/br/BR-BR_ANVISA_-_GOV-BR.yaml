@@ -1,0 +1,19 @@
+id: BR-BR_ANVISA_-_GOV-BR
+official_citation: BR ANVISA 食品接触材料 (gov.br)
+short_name: BR ANVISA 食品接触材料 (gov.br)
+region: BR
+domain: food_contact
+license: public
+source_url: https://www.gov.br/anvisa/pt-br
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- br/raw/BR_ANVISA_食品接触材料_gov.br.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

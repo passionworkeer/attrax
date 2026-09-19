@@ -1,0 +1,19 @@
+id: SA-SABER-SASO
+official_citation: Saudi Arabia Saber / SASO Conformity Assessment
+short_name: 沙特 Saber/SASO 合格评定系统
+region: SA
+domain: 产品安全
+license: public
+source_url: https://saber.sa/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: zh
+source_kind: unverified
+articles: []
+doc_files:
+- sa/raw/沙特Saber_SASO电子认证系统说明（QIMA指南）.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

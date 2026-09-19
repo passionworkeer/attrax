@@ -1,0 +1,19 @@
+id: GLOBAL-INTL_WIPO_MADRID_
+official_citation: INTL WIPO Madrid 商标国际注册
+short_name: INTL WIPO Madrid 商标国际注册
+region: GLOBAL
+domain: 商标专利
+license: public
+source_url: https://www.wipo.int/madrid/en/legal_texts/
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- global/raw/INTL_WIPO_Madrid_商标国际注册.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。

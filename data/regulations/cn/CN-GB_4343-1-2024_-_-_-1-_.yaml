@@ -1,0 +1,19 @@
+id: CN-GB_4343-1-2024_-_-_-1-_
+official_citation: CN-GB GB 4343.1-2024 家用电器、电动工具和类似器具的电磁兼容要求 第1部分：发射
+short_name: CN-GB GB 4343.1-2024 家用电器、电动工具和类似器具的电磁兼容要求 第1部分：发射
+region: CN
+domain: electronics
+license: public
+source_url: https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=62C1D13540CC29D48D920AC75285BFCA
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- cn/raw/GB_4343.1-2024_家用电器_电动工具和类似器具的电磁兼容要求_第1部分_发射.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: 目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
