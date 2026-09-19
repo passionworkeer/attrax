@@ -64,6 +64,7 @@ from scripts.watchdog.collectors.base import (
     invalidate_conditional_cache,
 )
 from scripts.watchdog.notify import build_notifiers, notify_all
+from scripts.watchdog.metrics import append_run_metrics
 from scripts.watchdog.state import Change, SourceStateStore
 
 logger = logging.getLogger("attrax.regwatch")
@@ -277,6 +278,7 @@ def run_pass(*, dry_run: bool = False) -> int:
         logger.info("ATTRAX_REGWATCH_ENABLED is off — nothing to do")
         return EXIT_CLEAN
 
+    started_at = _dt.datetime.now(_dt.timezone.utc)
     entries = load_sources()
     skipped = [e for e in entries if not _is_fetchable(e)]
     if skipped:
@@ -604,6 +606,21 @@ def run_pass(*, dry_run: bool = False) -> int:
                 json.dumps(errors, indent=2, ensure_ascii=False),
                 encoding="utf-8",
             )
+
+    if not dry_run:
+        append_run_metrics(
+            SUPPLEMENTS_DIR,
+            started_at=started_at,
+            output_date=run_date,
+            sources_checked=len(outcomes),
+            sources_fetched=sum(outcome.update is not None for outcome in outcomes),
+            sources_not_modified=sum(outcome.not_modified for outcome in outcomes),
+            sources_failed=sum(outcome.error is not None for outcome in outcomes),
+            sources_skipped=len(skipped),
+            fetch_errors=errors,
+            ingest_report=ingest_report.to_dict() if ingest_report is not None else None,
+            auto_ingest=auto_ingest_enabled,
+        )
 
     # ── notify ────────────────────────────────────────────────────────
     title = f"regwatch {run_date}: {len(real_changes)} change(s), {len(errors)} error(s)"

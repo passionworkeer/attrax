@@ -1,4 +1,5 @@
-import { NextResponse, type NextRequest } from "next/server";
+import { NextResponse, type NextRequest, type NextFetchEvent } from "next/server";
+import { recordTraffic } from "@/lib/admin/traffic";
 
 const SKIP_PREFIXES = [
   "/_next/",
@@ -73,7 +74,7 @@ function applySecurityHeaders(response: NextResponse, apiRoute: boolean): NextRe
   return response;
 }
 
-export function middleware(request: NextRequest) {
+export function middleware(request: NextRequest, event?: NextFetchEvent) {
   const path = request.nextUrl.pathname;
   if (shouldSkip(path)) return NextResponse.next();
 
@@ -86,9 +87,17 @@ export function middleware(request: NextRequest) {
   requestHeaders.set("x-request-id", requestId);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("X-Request-Id", requestId);
+  // 统计任务错误交由 Next 记录，主业务响应不依赖统计写入完成。
+  const recording = recordTraffic(request, response);
+  if (event) event.waitUntil(recording);
   return applySecurityHeaders(response, isApiRoute(path));
 }
 
 export const config = {
+  // middleware.ts 走 Node.js runtime 才能在统计链路里 import node:sqlite /
+  // node:crypto（实测去掉后 webpack 按 edge 目标编译，node: 协议直接报
+  // UnhandledSchemeError）。Next 16 文档声明 proxy.ts 默认 Node 且显式设置
+  // runtime 会抛错——那是新文件名的行为；旧文件名 middleware.ts 仍需显式声明。
+  runtime: "nodejs",
   matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };
