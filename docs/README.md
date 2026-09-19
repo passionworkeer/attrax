@@ -1,6 +1,6 @@
 # 火鹰合规 - 文档索引
 
-> 最后更新：2026-09-14
+> 最后更新：2026-09-19
 
 ## 入口
 
@@ -18,7 +18,7 @@
 | 历史修复计划 | [`plans/`](./plans/) |
 | 当前项目状态与完成度 | [`PROJECT-STATUS.md`](./PROJECT-STATUS.md) |
 | 字段对照与 Mock/Real 映射 | [`MOCK-REAL-MAPPING.md`](./MOCK-REAL-MAPPING.md) |
-| 评测与生产证据 | [`evidence/`](./evidence/) |
+| 评测与生产证据 | [`evidence/`](./evidence/)（2026-09-18 并发加固的实 HTTP 验证脚本见 [`evidence/2026-09-18-concurrency-hardening/`](./evidence/2026-09-18-concurrency-hardening/)） |
 | 标注集格式（grounding eval） | [`annotation/grounding-eval.md`](./annotation/grounding-eval.md) |
 | 现行法规源（35 条 live registry） | [`data/regulation_sources/official_sources.json`](../data/regulation_sources/official_sources.json) |
 | 退役历史文档（旧 PRD / 旧合同 / 旧机加固） | [`archive/`](./archive/) |
@@ -51,7 +51,7 @@ npm run typecheck && npm run lint
 | 操作 | 方法 |
 |---|---|
 | 源码同步 | git bundle 路线（本地 `git bundle create` → scp → 服务器 `git fetch`；服务器 ssh key 无法直接 fetch github，详见 memory `2026-09-14-lighthouse-fetch-github-fix`） |
-| 构建产物 | 本地 `bash scripts/build-deploy-tarball.sh` → `/tmp/attrax-deploy-complete.tar.gz`（内含已 stage 好 `.next/static/` 与 `public/` 的整个 `standalone/`）→ scp 到服务器 → `/tmp/attrax-apply-deploy.sh` 整包替换 `.next/standalone/`（旧目录挪成 `standalone-pre-deploy-*`，保留 2 份可回滚） |
+| 构建产物 | 本地 `bash scripts/build-deploy-tarball.sh` → `/tmp/attrax-deploy-complete.tar.gz`（内含已 stage 好 `.next/static/` 与 `public/` 的整个 `standalone/`）→ scp 到服务器 → `/tmp/attrax-apply-deploy.sh` 整包替换 `.next/standalone/`（旧目录挪成 `standalone-pre-deploy-*`，只留最近一份作回滚点） |
 | 静态资源 | **不需要 symlink 或 rsync `public/`**：tarball 已把 `public/` 打进 `standalone/public`，nginx 的 `/complipilot/*` 直接 `root /opt/attrax/.next/standalone/public`；`/_next/static/` 走 `alias /opt/attrax/.next/static/`（该路径是指向 `standalone/.next/static` 的 symlink，由 apply 脚本自愈） |
 | 重启 | `pm2 restart nextjs rag-service`（改 `.env` 也用 restart；改 ecosystem env 段才要 delete && start） |
 | 健康检查 | `ssh aliyun-sz 'curl -s http://localhost:3001/api/health'` |
