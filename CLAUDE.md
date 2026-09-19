@@ -335,6 +335,16 @@ const SessionIdSchema = z
 
 ## 最近修复
 
+### 2026-09-19 — 并发加固批次部署中产出的 deploy 自愈（a1a4474）
+
+- **问题**：H10 部署时 `nginx -t` 卡住。vhost 加了 `limit_conn attrax_conn 20`，但定义共享内存区的 `limit_conn_zone` 必须放在主 `/etc/nginx/nginx.conf` 的 `http {}` 段，vhost 渲染只改 `/etc/nginx/sites-enabled/attrax`，跨文件依赖无人维护
+- **现场补救**：在服务器上以 sed 注入正确行让部署走完（nginx reload 成功、HTTPS 公网 200、真实冒烟扫描通过）
+- **固化**：
+  - `docs/infra/nginx-nginx.conf` 显式收录 `limit_conn_zone $binary_remote_addr zone=attrax_conn:10m`，与 vhost 引用同源
+  - `apply-deploy.sh [8.5]` 在 render vhost 之前自检主 conf 是否含 `limit_conn_zone ... attrax_conn:10m`，缺则按同样字符串在 `keepalive_requests 100` 之后插入（idempotent）；注入后再跑一次 `nginx -t` 确认通过
+  - DEPLOY §8 雷区加一条 + PORTS.md 历史加一条 + §3.1 加 `git push` 步骤
+- **教训**：nginx `limit_*` 指令的「定义段」与「引用段」不在同一个文件时，单文件渲染会留下隐式依赖——`apply-deploy.sh` 必须能自愈
+
 ### 2026-09-18 — 全栈并发加固批次（前端 BFF / RAG / 存储 / watchdog / 基础设施）
 
 - **起因与结论**：五个方向各派一个审查（前端 BFF / RAG 管线 / 存储与文件后端 / 外部采集 / 服务器基础设施）。底层原语本身是好的（O_EXCL 跨进程锁、tmp+os.replace 原子写、RLock 串行化状态写），**缺的是多进程边界、长跑生命周期、突发流量、跨子系统资源竞争**——多处靠"部署约定"活着（`instances: 1`、单 upstream、单磁盘备份）。修复原则：凡会拖慢热路径的一律不做，据此明确跳过 audit.jsonl 与 session JSON 的逐次 fsync

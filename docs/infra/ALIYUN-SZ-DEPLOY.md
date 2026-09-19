@@ -69,6 +69,10 @@
 ### 3.1 完整流程（首次或代码改动后）
 
 ```bash
+# 0. mac 本地：把代码推到 origin（部署流程不会自己 git pull；
+#    服务器侧靠 bundle / scp 同步源码，落后 HEAD 会让运行时缺改动）
+git push origin main
+
 # 1. mac 本地：build + 打包 tarball
 cd /Users/wangjianjun/me/attrax
 npm run build                            # 必须本地 build（aliyun-sz 1.6G 内存 build OOM）
@@ -313,6 +317,7 @@ ssh aliyun-sz 'cd /opt/attrax && PYTHONPATH=. .venv/bin/python -c \
 - **不要 `--delete` 同步 `data/regulations/`**——自动入库数据会丢
 - **不要跳过 FAISS manifest seal**——`APP_ENV=production` 启动校验失败
 - **证书现复用 twinbuddy 的**——访问 `wangjianjun.xyz` 或 `120.77.36.107` 会有证书域名不匹配警告。要正式切域名：DNS A 记录改 120.77.36.107 + certbot 申请 `wangjianjun.xyz` 证书
+- **nginx `limit_conn_zone` 必须先于 vhost 引用存在（2026-09-18 并发加固批次事故）**：`limit_conn_zone` 只能在主 `/etc/nginx/nginx.conf` 的 `http {}` 段定义；vhost 只能 `limit_conn attrax_conn 20` 引用。如果只改 `docs/infra/nginx-attrax-vhost-prod.conf.template` 加 vhost 引用、忘了把 `limit_conn_zone` 收录到主 conf 的 `http {}` 段，`nginx -t` 会报 `zero size shared memory zone`，`apply-deploy.sh [8.5]` 在 render + reload 之前就 fail-stop。**两处必须同时改**：`docs/infra/nginx-nginx.conf` 显式收录 + `docs/infra/nginx-attrax-vhost-prod.conf.template` 引用；`apply-deploy.sh [8.5]` 在 render 前自检主 conf 是否含 `limit_conn_zone ... attrax_conn:10m`，缺则按同样字符串在 `keepalive_requests 100` 之后插入（idempotent），防止任何后续 PR 只改 vhost 时再次复发
 
 ---
 

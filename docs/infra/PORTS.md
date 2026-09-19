@@ -25,6 +25,7 @@
 
 - ~~nextjs 3001 / rag 8002（aliyun-sz"端口偏移避免与 LabMemory 撞车"）~~ —— LabMemory 已于 2026-09-18 退役；且实际 ecosystem 从未偏移过，nginx 照旧文档写 3001 直接导致 2026-09-18 全站 502。此后端口只认 ports.env。
 - ~~8081 / 8001（LabMemory）~~ —— 服务已下线。
+- **2026-09-18 H10 部署事故**：vhost 加 `limit_conn attrax_conn 20`，但 `limit_conn_zone` 没同步收录到主 `/etc/nginx/nginx.conf` 的 `http {}` 段；`nginx -t` 报 `zero size shared memory zone`，整个 deploy 卡住。修复见 `docs/infra/ALIYUN-SZ-DEPLOY.md` §8 雷区最后一条 + `a1a4474` commit
 
 ## 改端口流程
 

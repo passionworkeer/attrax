@@ -153,9 +153,12 @@ attrax/
 
 ## 部署
 
-生产环境是阿里云深圳 aliyun-sz（`120.77.36.107`），通过 git bundle 同步源码 + 本地构建 tarball + 服务器整包替换：
+生产环境是阿里云深圳 aliyun-sz（`120.77.36.107`），通过 git push 到 origin + 本地构建 tarball + 服务器整包替换：
 
 ```bash
+# 0) 把代码推到 origin（部署脚本不会自己 git pull，落后会缺改动）
+git push origin main
+
 # 1) 本地：构建 + stage + 打包 + 校验（把 .next/static 与 public/ 一起放进 standalone/）
 bash scripts/build-deploy-tarball.sh                     # 产物 /tmp/attrax-deploy-complete.tar.gz
 
@@ -164,15 +167,17 @@ scp /tmp/attrax-deploy-complete.tar.gz aliyun-sz:/tmp/
 
 # 3) 服务器：整包替换 .next/standalone/ + 自愈 static symlink + 写 BUILD_ID + 重启
 ssh aliyun-sz 'bash /tmp/attrax-apply-deploy.sh'
+# apply-deploy.sh [8.5] 会重新渲染 /etc/nginx/sites-enabled/attrax + nginx -t + reload，
+# 并在缺少 limit_conn_zone 时自动注入（2026-09-18 H10 自愈）—— 不要手动改服务器 nginx
 
-# 4) 若改了 Python（rag_service/），另需 scp 变更文件并重启 rag-service
-ssh aliyun-sz 'pm2 restart rag-service --update-env'
+# 4) 若改了 Python（rag_service/），另需在服务器上 git fast-forward 后重启 rag-service
+ssh aliyun-sz 'cd /opt/attrax && git fetch --prune origin && git reset --hard origin/main && pm2 restart rag-service --update-env'
 
-# 5) 健康校验（必须 ready=true 且 checks 五项全 true）
-ssh aliyun-sz 'curl -s http://127.0.0.1:8002/api/v1/ready'
+# 5) 健康校验（必须 ready=true 且 checks 六项全 true）
+ssh aliyun-sz 'curl -s http://127.0.0.1:8001/api/v1/ready | python3 -m json.tool'
 ```
 
-要点：部署单位是**整个 `standalone/` 目录**（由 `build-deploy-tarball.sh` 产出、`attrax-apply-deploy.sh` 消费），不是零散文件；旧目录会被挪成 `.next/standalone-pre-deploy-<stamp>` 并保留 2 份用于回滚。`public/` 与 `.next/static/` **不需要**单独 symlink 或 rsync —— 前者已打进 tarball，后者由 apply 脚本维护 `/.next/static -> standalone/.next/static` 软链。
+要点：部署单位是**整个 `standalone/` 目录**（由 `build-deploy-tarball.sh` 产出、`attrax-apply-deploy.sh` 消费），不是零散文件；旧目录会被挪成 `.next/standalone-pre-deploy-<stamp>` 保留一份用于回滚（每次只保留最近一份，旧的在 deploy 时删除；今天的实践）。`public/` 与 `.next/static/` **不需要**单独 symlink 或 rsync —— 前者已打进 tarball，后者由 apply 脚本维护 `/.next/static -> standalone/.next/static` 软链。
 
 > `RAG_INTERNAL_SECRET` 不再手工从 `rag_service/.env` grep 出来注入。两端统一从
 > `/opt/attrax/.rag-internal-secret`（`600`）读取，由 `scripts/ecosystem.config.cjs`
@@ -187,9 +192,10 @@ ssh aliyun-sz 'curl -s http://127.0.0.1:8002/api/v1/ready'
 - 架构设计 → [docs/plans/](./docs/plans/)（特别是 `2026-09-11-de-rag-evidence-spec.md` 与 `2026-09-14-judge-review-and-optimization-plan.md`）
 - API 契约 → [docs/FRONTEND-BACKEND-INTEGRATION.md](./docs/FRONTEND-BACKEND-INTEGRATION.md)
 - 历史事故 / 修复记录 → [CHANGELOG.md](./CHANGELOG.md)
+- 2026-09-18 全栈并发加固批次（前端 BFF 流式转发 / RAG 幂等 + 准入 / watchdog httpx 池 / nginx limit_conn / sysctl TIME_WAIT / pm2 drain / 备份快照）→ [CHANGELOG.md](./CHANGELOG.md) 「并发加固总批次」段 + 真实 HTTP 验证证据 [docs/evidence/2026-09-18-concurrency-hardening/](./docs/evidence/2026-09-18-concurrency-hardening/)
 - 部署文档 → [docs/README.md](./docs/README.md) §生产部署 + [docs/infra/](./docs/infra/)
 - 当前优化方向 → [docs/plans/2026-09-14-judge-review-and-optimization-plan.md](./docs/plans/2026-09-14-judge-review-and-optimization-plan.md)（11 节 J01–J11；J01 / J02 / J04–J07 / J09 / J10 / J11 已实施；J03 ViewModel + J15 合并证据请求随 2026-09-14 落地；J08 留待 spec 收尾）
 
 ---
 
-**最后更新**：2026-09-14
+**最后更新**：2026-09-19

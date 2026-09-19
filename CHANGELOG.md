@@ -42,6 +42,31 @@
 
 ---
 
+## [Unreleased] - 2026-09-19
+
+**并发加固批次部署 + 部署中产出的 deploy 自愈(a1a4474)**
+
+**背景**
+- H10 部署到 aliyun-sz 时 `nginx -t` 报 `zero size shared memory zone "attrax_conn"`——vhost 加了 `limit_conn attrax_conn 20`,但定义共享内存区的 `limit_conn_zone` 必须放在主 `/etc/nginx/nginx.conf` 的 `http {}` 段;vhost 渲染只改 `/etc/nginx/sites-enabled/attrax`,跨文件依赖无人维护
+- 现场以 sed 在 `keepalive_requests 100;` 之后注入正确行让部署走完(nginx reload 成功、HTTPS 公网 200、真实冒烟扫描 `status=ready` / `ragProvider=minimax` / `declaredFacts` 完整)
+
+**固化(防止任何后续 PR 只改 vhost 时再次复发)**
+- `docs/infra/nginx-nginx.conf` 显式收录 `limit_conn_zone $binary_remote_addr zone=attrax_conn:10m`,与 vhost 引用同源
+- `apply-deploy.sh [8.5]` 在 render vhost 之前自检主 conf 是否含 `limit_conn_zone ... attrax_conn:10m`,缺则按同样字符串在 `keepalive_requests 100` 之后插入(idempotent,grep 检测);插入后再跑一次 `nginx -t` 确认通过;标记缺失则 fail-stop
+
+**同步文档**
+- DEPLOY §3.1 加 `git push origin main` 步骤(部署脚本不会自己 pull)
+- DEPLOY §8 雷区末尾加 `limit_conn_zone` 跨文件依赖条目
+- PORTS.md 历史加本次事故条目
+- README.md 部署流程改 `git push` + `git fetch --prune && git reset --hard origin/main`,健康校验端口 8002→8001(RAG 实际端口),删除「保留 2 份」的说法改为只保留最近一份
+
+**清理**
+- 服务器:删 `/etc/nginx/nginx.conf.bak{,.bak2,.bak3}`(现场修复遗留)、`/tmp/{post-deploy-smoke.sh,scan.png}`(验证脚本临时产物);保留 `/tmp/attrax-apply-deploy.sh`(部署脚本的标准位置,DEPLOY 文档引用)
+- 服务器:`/opt/attrax/.next/standalone-pre-deploy-20260918-095117` 已删除(只留最新一份 `20260919-014653` 作回滚点,184M)
+- 本地:`.review-tmp/` 验证脚本归档到 `docs/evidence/2026-09-18-concurrency-hardening/` 后删除
+
+---
+
 **服务器基础设施并发硬化批次:nginx 重试 / 连接限流 / TCP TIME_WAIT / pm2 graceful drain / 备份快照**
 
 **背景**
