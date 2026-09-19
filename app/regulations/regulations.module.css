@@ -4,9 +4,9 @@
   position: relative;
   color: var(--reg-ink);
   background:
-    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.82), transparent 30%),
-    linear-gradient(180deg, rgba(230, 247, 251, 0.9), rgba(210, 238, 246, 0.82));
-  backdrop-filter: blur(8px) saturate(112%);
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.34), transparent 30%),
+    linear-gradient(180deg, rgba(230, 247, 251, 0.24), rgba(210, 238, 246, 0.18));
+  backdrop-filter: blur(4px) saturate(112%);
 }
 
 .backLink {
@@ -96,6 +96,6 @@
 
 @media (max-width: 720px) {
   .page {
-    background: linear-gradient(180deg, rgba(232, 248, 252, 0.94), rgba(213, 239, 247, 0.9));
+    background: linear-gradient(180deg, rgba(232, 248, 252, 0.24), rgba(213, 239, 247, 0.18));
   }
 }
