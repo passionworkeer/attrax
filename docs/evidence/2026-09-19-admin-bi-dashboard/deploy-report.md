@@ -56,3 +56,15 @@
 
 - `deploy-1-apply.log` —— apply-deploy 完整输出
 - `verify-prod.log` —— 生产 verify-admin.mjs 输出（不含密码与 Cookie）
+
+## 第二次部署（同日晚）：合并进 main + 首页入口 + 演示数据 + 指定密码
+
+- 变基到 main `8108ef0`（并行会话的法规死链修复已包含），main 快进到 `ee99a27` 并推送
+- BUILD_ID `k4ZwDZL2ye3KAOkgN_cE1`（commit ee99a27 = main tip），health gate 第 2 次尝试通过
+- 服务器侧：`setup-admin.mjs --password` 轮换为运营指定口令（原子替换哈希 + 清空全部旧会话），
+  口令文件 `/opt/attrax/.deploy/admin-access.txt`（0600），git 文档不记录口令明文
+- 生产验证：verify-admin 9/9 通过（30 天真实数据：法规 1052 / 25 市场 / 37 源 / 扫描 114 次 / 访客 7——
+  访客为当天下午起采集的真实计数）；首页出现「管理后台」入口；登录后 /admin 含
+  「真实数据 / 演示数据」切换（演示口径 30 天 42 访客 / 343 次扫描）
+- 服务器 git：分支引用更新到 ee99a27；main 保持 8108ef0——其工作树有 watchdog 未提交的
+  法规增量（合并会覆盖），按既有约定服务器 git 允许落后，真实版本以 `.deployed` 为准

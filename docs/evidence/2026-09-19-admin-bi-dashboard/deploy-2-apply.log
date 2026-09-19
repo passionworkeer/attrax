@@ -1,0 +1,12 @@
+[2026-09-19T17:39:34+08:00]   BUILD_ID: k4ZwDZL2ye3KAOkgN_cE1
+commit=ee99a27
+[2026-09-19T17:39:34+08:00] === [6.5] install ops files (ports / render / healthcheck) ===
+[2026-09-19T17:39:34+08:00]   healthcheck timer enabled
+[2026-09-19T17:39:35+08:00] === [8.5] render + reload nginx vhost ===
+wrote /etc/nginx/sites-enabled/attrax (upstream -> 127.0.0.1:3000)
+[2026-09-19T17:39:35+08:00]   nginx reloaded (upstream = ports.env.NEXTJS_PORT)
+[2026-09-19T17:39:35+08:00] === [9] health gate (http://127.0.0.1:3000/api/health) ===
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+[2026-09-19T17:39:38+08:00] health OK after 2 attempt(s)
+[2026-09-19T17:39:38+08:00] === DONE (BUILD_ID k4ZwDZL2ye3KAOkgN_cE1) ===
