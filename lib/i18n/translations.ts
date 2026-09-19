@@ -220,10 +220,8 @@ export const translations = {
     regulations: {
       title: "法规情报中心",
       subtitle:
-        "把守跨境电商的法规来源、抓取通道与近期动态。当前 {archive} 篇法规档案（覆盖 {markets} 个区域）+ {sources} 个抓取源 + {updates} 条近期动态。",
-      demoBadge: "示例数据",
-      mockNotice:
-        "本页为静态示例数据（static-demo），用于演示法规动态的呈现结构与来源追溯；条目不会实时抓取或自动校验，不代表最新监管状态。真实扫描报告中的法规引用以报告内条目为准。",
+        "法规库 {archive} 条目录（覆盖 {attraxMarkets} 个 attrax 合规区域 / {marketsCovered} 个抓取市场）· {rawFiles} 个抓取原文 · {sources} 个抓取源 · {updates} 条近期动态。",
+      demoBadge: "数据快照",
       tabs: {
         archive: "法规档案",
         sources: "抓取源",
@@ -241,7 +239,6 @@ export const translations = {
         license: "许可",
         indexGenerated: "档案生成",
         totalLabel: "法规档案",
-        withArticlesLabel: "已结构化",
         showing: "显示 1-{to} 条，共 {total} 条",
       },
       sources: {
@@ -285,7 +282,6 @@ export const translations = {
       showing: "显示 1-{to} 条，共 {total} 条",
       total: "法规总数",
       affectedCategories: "影响类别",
-      trackedMarkets: "覆盖市场",
       highPriority: "高优先级",
       effectiveSoon: "45 天内生效",
       lastVerified: "最近校验",
@@ -665,10 +661,8 @@ export const translations = {
     regulations: {
       title: "Regulation Intelligence Center",
       subtitle:
-        "Cross-border regulation sources, ingestion channels, and recent changes. Currently {archive} regulations across {markets} regions, {sources} ingestion sources, and {updates} recent updates.",
-      demoBadge: "Demo data",
-      mockNotice:
-        "This page shows static demo data (static-demo) to demonstrate how regulation updates and source traceability are presented; entries are not fetched or verified in real time and do not reflect the latest regulatory status. Regulation citations in real scan reports follow the in-report entries.",
+        "Archive {archive} entries (covering {attraxMarkets} attrax markets / {marketsCovered} fetched markets) · {rawFiles} raw files · {sources} ingestion sources · {updates} recent updates.",
+      demoBadge: "Data snapshot",
       tabs: {
         archive: "Archive",
         sources: "Sources",
@@ -686,7 +680,6 @@ export const translations = {
         license: "License",
         indexGenerated: "Index generated",
         totalLabel: "Archive",
-        withArticlesLabel: "With articles",
         showing: "Showing 1-{to} of {total}",
       },
       sources: {
@@ -730,7 +723,6 @@ export const translations = {
       showing: "Showing 1-{to} of {total}",
       total: "Total regulations tracked",
       affectedCategories: "Affected Categories",
-      trackedMarkets: "Markets covered",
       highPriority: "High priority",
       effectiveSoon: "Effective within 45 days",
       lastVerified: "Last verified",
