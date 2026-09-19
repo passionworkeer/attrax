@@ -18,12 +18,12 @@
 // Cache the resolved root for the lifetime of the process; the value does
 // not change at runtime.
 
-import fs from "node:fs";
+import { statSync } from "node:fs";
 import path from "node:path";
 
 function existsAndIsReadable(candidate: string): boolean {
   try {
-    fs.statSync(candidate);
+    statSync(candidate);
     return true;
   } catch {
     return false;
@@ -48,13 +48,10 @@ let resolvedRoot: string | null = null;
 export function regulationsProjectRoot(): string {
   if (resolvedRoot) return resolvedRoot;
 
-  console.log(`[data-root] resolving; cwd=${process.cwd()} override=${process.env.ATTRAX_PROJECT_ROOT ?? "(none)"}`);
-
   // 1. Explicit override (preferred for production).
   const override = process.env.ATTRAX_PROJECT_ROOT;
   if (override && existsAndIsReadable(override)) {
     resolvedRoot = override;
-    console.log(`[data-root] using env override: ${resolvedRoot}`);
     return resolvedRoot;
   }
 
@@ -63,17 +60,13 @@ export function regulationsProjectRoot(): string {
   // 2. Standalone build — the project root is two levels up.
   if (cwdIsStandaloneBuild(cwd)) {
     const sibling = siblingOfStandalone(cwd);
-    console.log(`[data-root] standalone detected; sibling=${sibling} readable=${sibling ? existsAndIsReadable(sibling) : false}`);
     if (sibling && existsAndIsReadable(sibling)) {
       resolvedRoot = sibling;
-      console.log(`[data-root] standalone build detected; using sibling: ${resolvedRoot}`);
       return resolvedRoot;
     }
-    console.log(`[data-root] standalone detected but sibling not readable: ${sibling}`);
   }
 
   // 3. Cwd is the project root (local dev: `npm run dev` from the repo root).
   resolvedRoot = cwd;
-  console.log(`[data-root] using cwd: ${resolvedRoot}`);
   return resolvedRoot;
 }
