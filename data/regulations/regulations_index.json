@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at": "2026-09-19",
-  "count": 1049,
+  "count": 1048,
   "regulations": [
     {
       "id": "AE-AE_MOIAT_ECAS_-_MOIAT-GOV-AE",
@@ -64,7 +64,7 @@
       "license": "public",
       "official_citation": "Emirates Conformity Assessment Scheme (ECAS) — Ministerial Resolutions under Federal Law No. 28/2001",
       "short_name": "UAE ECAS (合格评定)",
-      "source_url": "https://moiat.gov.ae/en/services/standardization-and-conformity/ecas",
+      "source_url": "https://moiat.gov.ae/en/services",
       "purchase_url": null,
       "article_count": 0
     },
@@ -282,7 +282,7 @@
       "license": "public",
       "official_citation": "Avaliação da Conformidade — Compulsório INMETRO / Portarias Inmetro",
       "short_name": "BR Compulsory Certification Scope",
-      "source_url": "https://www.gov.br/inmetro/pt-br/assuntos/noticias",
+      "source_url": "https://www.gov.br/inmetro/pt-br",
       "purchase_url": null,
       "article_count": 0
     },
@@ -682,7 +682,7 @@
       "license": "public",
       "official_citation": "CCC 实施规则 (信息技术设备)",
       "short_name": "CCC 认证 (信息技术设备)",
-      "source_url": "https://www.samr.gov.cn/cnca/",
+      "source_url": "https://www.samr.gov.cn/",
       "purchase_url": null,
       "article_count": 1
     },
@@ -692,7 +692,7 @@
       "license": "public",
       "official_citation": "强制性产品认证制度 (CNCA 实施规则)",
       "short_name": "CCC 认证 (中国强制)",
-      "source_url": "https://www.samr.gov.cn/cnca/",
+      "source_url": "https://www.samr.gov.cn/",
       "purchase_url": null,
       "article_count": 1
     },
@@ -900,7 +900,7 @@
       "license": "public",
       "official_citation": "国务院令第727号《化妆品监督管理条例》",
       "short_name": "化妆品监督管理条例 (CSAR)",
-      "source_url": "https://www.gov.cn/zhengce/content/2020-06/29/content_5524019.htm",
+      "source_url": "https://www.gov.cn/gongbao/content/2020/content_5525087.htm",
       "purchase_url": null,
       "article_count": 4
     },
@@ -6326,22 +6326,11 @@
       "domain": "产品安全"
     },
     {
-      "id": "KR-KR_-_-_KLRI",
+      "id": "KR-KLRI-ELAW",
       "region": "KR",
       "license": "public",
       "official_citation": "KR 国家法令信息中心 英文 (KLRI)",
       "short_name": "KR 国家法令信息中心 英文 (KLRI)",
-      "source_url": "https://elaw.klri.re.kr/eng_service/main.do",
-      "purchase_url": null,
-      "article_count": 0,
-      "domain": "other"
-    },
-    {
-      "id": "KR-KR_-_KLRI_",
-      "region": "KR",
-      "license": "public",
-      "official_citation": "KR 国家法令信息中心 (KLRI 英文)",
-      "short_name": "KR 国家法令信息中心 (KLRI 英文)",
       "source_url": "https://elaw.klri.re.kr/eng_service/main.do",
       "purchase_url": null,
       "article_count": 0,
@@ -6364,7 +6353,7 @@
       "license": "public",
       "official_citation": "전기용품 및 생활용품 안전관리법 (Electrical Appliances and Household Goods Safety Control Act, KC Mark)",
       "short_name": "KC 안전확인 (韩国电安法)",
-      "source_url": "https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do",
+      "source_url": "https://www.motie.go.kr/",
       "purchase_url": null,
       "article_count": 0
     },
@@ -6570,7 +6559,7 @@
       "license": "public",
       "official_citation": "Saudi Product Safety Programme (SALEEM / SABER) — SASO implementing rules",
       "short_name": "SA SALEEM / SABER (沙特产品安全)",
-      "source_url": "https://www.saso.gov.sa/en/news-and-events/news/",
+      "source_url": "https://www.saso.gov.sa/en/",
       "purchase_url": null,
       "article_count": 0
     },
@@ -6798,7 +6787,7 @@
       "license": "public",
       "official_citation": "UKCA Marking for Appliances",
       "short_name": "UKCA Marking (家电)",
-      "source_url": "https://www.gov.uk/government/publications/appliances-regulations-2016",
+      "source_url": "https://www.gov.uk/guidance/using-the-ukca-marking",
       "purchase_url": null,
       "article_count": 1
     },
@@ -10659,7 +10648,7 @@
       "license": "public",
       "official_citation": "15 USC §2051 et seq. (Consumer Product Safety Act)",
       "short_name": "CPSA (消费品安全法)",
-      "source_url": "https://www.cpsc.gov/Regulations-Laws--Standards/Statues",
+      "source_url": "https://www.cpsc.gov/Regulations-Laws--Standards/Statutes",
       "purchase_url": null,
       "article_count": 2
     },

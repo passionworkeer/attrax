@@ -1,0 +1,21 @@
+id: KR-KLRI-ELAW
+official_citation: KR 国家法令信息中心 英文 (KLRI)
+short_name: KR 国家法令信息中心 英文 (KLRI)
+region: KR
+domain: other
+license: public
+source_url: https://elaw.klri.re.kr/eng_service/main.do
+purchase_url: null
+last_verified: '2026-09-19'
+last_verified_by: manual-create
+language: en
+source_kind: unverified
+articles: []
+doc_files:
+- kr/raw/KR_国家法令信息中心_英文_KLRI.html
+raw_file: null
+checksum_sha256: null
+schema_version: 1
+notes: |
+  目录条目（attrax-docs 法规文件目录，2026-09-19 导入）：登记引用、区域、领域与官方链接，条款正文尚未整理（articles 为空）。
+  2026-09-19 验证修复：原两条重复条目 KR-KR_-_-_KLRI / KR-KR_-_KLRI_（各带一份 md5 相同的门户快照，合并后只保留一份）合并为本条。首轮校验曾将该 URL 误判为死链（该站对 HEAD 请求恒返 404，GET 实测 200，165KB 英文门户页 "Statutes of the Republic of Korea"），保留原深链；eng_service 下其余路径（index.do 等）确已随站点重构失效。

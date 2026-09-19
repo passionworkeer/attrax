@@ -23,7 +23,7 @@ key_points:
 risk_hint: 缺 KC 认证 → 海关扣留 + 召回
 est_cost: KC 测试 ¥5K-15K + 韩国代理人 ¥5K-15K/年 + 文件准备 ¥3K-5K
 license: public
-source_url: https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do
+source_url: https://www.motie.go.kr/
 last_verified: '2026-09-17'
 verified_by: manual-create
 verification_status: needs_human_review

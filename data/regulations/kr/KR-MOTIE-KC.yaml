@@ -3,8 +3,8 @@ official_citation: 전기용품 및 생활용품 안전관리법 (Electrical App
 short_name: KC 안전확인 (韩国电安法)
 region: KR
 license: public
-source_url: https://www.motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do
-last_verified: '2026-09-17'
+source_url: https://www.motie.go.kr/
+last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
 source_kind: official_summary
@@ -16,3 +16,4 @@ notes: |
   Manually created 2026-09-17 from official_sources.json entry kr-motie-kc-safety.
   Backed by Ministry of Trade, Industry and Energy (MOTIE).
   Authoring note: a KB anchor at data/kb/anchors/KR-MOTIE-KC-electronics.yaml is required to surface this regulation in generator must-check output.
+  2026-09-19 验证修复：旧 source_url (motie.go.kr/motie/ms/sa/safetyConfirmation/safetyConfirmation.do) 404——MOTIE 站点改版深链失效，改指根域（实测 200）。

@@ -24,7 +24,7 @@ key_points:
 risk_hint: 缺 INMETRO / ANATEL 认证 → 海关扣留 + 罚款
 est_cost: INMETRO 测试 ¥8K-20K + 认证 ¥3K-8K + 巴西代表 ¥5K-15K/年
 license: public
-source_url: https://www.gov.br/inmetro/pt-br/assuntos/noticias
+source_url: https://www.gov.br/inmetro/pt-br
 last_verified: '2026-09-17'
 verified_by: manual-create
 verification_status: needs_human_review

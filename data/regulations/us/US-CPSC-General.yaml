@@ -3,7 +3,7 @@ official_citation: 15 USC §2051 et seq. (Consumer Product Safety Act)
 short_name: CPSA (消费品安全法)
 region: US
 license: public
-last_verified: '2026-09-11'
+last_verified: '2026-09-19'
 last_verified_by: llm-assisted
 language: en
 source_kind: unverified
@@ -19,6 +19,7 @@ articles:
 raw_file: null
 checksum_sha256: null
 schema_version: 1
-source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statues
-notes: 'Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542,
-  EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.'
+source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statutes
+notes: |
+  Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542, EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.
+  2026-09-19 验证修复：旧 URL 拼写错误 "Statues"（雕像）改为 "Statutes"（法规）。外部网络已确认该页面真实存在（页面标题 "Statutes | CPSC.gov"，含 CPSA/CPSIA/FHSA 等全部法规列表）。注意：cpsc.gov 对无浏览器指纹的请求一律 403（Akamai WAF），curl 探测不可达不代表链接失效。

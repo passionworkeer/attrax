@@ -21,7 +21,7 @@ key_points:
 risk_hint: 无 UKCA → UK 市场禁售
 est_cost: 测试 ¥15K-40K
 license: public
-source_url: https://www.gov.uk/government/publications/appliances-regulations-2016
+source_url: https://www.gov.uk/guidance/using-the-ukca-marking
 last_verified: '2026-09-11'
 verified_by: llm-assisted
 verification_status: needs_human_review

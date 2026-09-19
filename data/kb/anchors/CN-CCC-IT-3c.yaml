@@ -22,7 +22,7 @@ key_points:
 risk_hint: 目录内 IT 设备无 CCC → 海关/平台拦截 + 处罚
 est_cost: 测试 ¥20K-50K
 license: public
-source_url: https://www.samr.gov.cn/cnca/
+source_url: https://www.samr.gov.cn/
 last_verified: '2026-09-11'
 verified_by: llm-assisted
 verification_status: needs_human_review

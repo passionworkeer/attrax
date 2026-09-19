@@ -30,7 +30,7 @@ key_points:
 risk_hint: 无 CPC 或超标 → CPSC 强制召回 + 民事处罚
 est_cost: CPC + 测试 ¥10K-25K
 license: public
-source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statues/Childrens-Products
+source_url: https://www.cpsc.gov/Regulations-Laws--Standards/Statutes/Childrens-Products
 last_verified: '2026-09-16'
 verified_by: llm-assisted
 verification_status: needs_human_review

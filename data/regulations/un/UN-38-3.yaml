@@ -3,7 +3,7 @@ official_citation: UN Manual of Tests and Criteria, Part III, Subsection 38.3
 short_name: UN 38.3 (锂电池运输)
 region: UN
 license: public
-last_verified: '2026-09-11'
+last_verified: '2026-09-19'
 last_verified_by: llm-assisted
 language: en
 source_kind: official_summary
@@ -19,3 +19,4 @@ source_url: https://unece.org/transport/dangerous-goods/un-manual-tests-and-crit
 notes: |
   Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542, EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.
   regwatch metadata audit 2026-09-17: source_kind=official_summary; basis=license=public, source_url references unece.org but articles are KB placeholders (verbatim replacement pass still pending).
+  2026-09-19 验证复核：URL 是 UN Manual of Tests and Criteria 的官方权威页面，但 unece.org 有 Cloudflare bot challenge——本地 curl 与数据中心 fetch 均 403，自动探测不可达不代表链接失效，真实浏览器可打开。

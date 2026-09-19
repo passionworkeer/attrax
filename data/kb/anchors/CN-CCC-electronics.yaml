@@ -23,7 +23,7 @@ key_points:
 risk_hint: 无 CCC 目录内产品未认证 → 处罚 + 平台下架 + 海关扣留
 est_cost: 测试 ¥15K-40K + 申请费 ¥5K-15K + 工厂检查 ¥10K-30K
 license: public
-source_url: https://www.samr.gov.cn/cnca/
+source_url: https://www.samr.gov.cn/
 last_verified: '2026-09-11'
 verified_by: llm-assisted
 verification_status: needs_human_review

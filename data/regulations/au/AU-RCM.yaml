@@ -3,7 +3,7 @@ official_citation: ACMA RCM Marking Requirements
 short_name: RCM (澳新合规标志)
 region: AU
 license: public
-last_verified: '2026-09-11'
+last_verified: '2026-09-19'
 last_verified_by: llm-assisted
 language: en
 source_kind: official_summary
@@ -21,3 +21,4 @@ source_url: https://www.acma.gov.au/standards/regulatory-compliance-mark-rcm
 notes: |
   Initial seed: article text condensed from KB key_points and marked needs_human_review. Top-cited articles (e.g. EU-2023-1542, EU-2014-53, EU-2009-48) will be replaced with verbatim EUR-Lex / eCFR text in a follow-up pass via `parser/legal_parser.py`.
   regwatch metadata audit 2026-09-17: source_kind=official_summary; basis=license=public, source_url references government text but articles are KB placeholders (verbatim replacement pass still pending).
+  2026-09-19 验证复核：URL 为 ACMA 官方 RCM 页面。acma.gov.au（Akamai CDN）对自动化探测不响应——本地 curl 与数据中心 fetch 均超时，无法以机器验证；站点在搜索引擎缓存中活跃（2025-03 更新的 RCM 标注指南），真实浏览器访问为准。

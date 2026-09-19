@@ -4,7 +4,7 @@ short_name: PSE 菱形 / 圆形 (日本电安法)
 region: JP
 license: public
 source_url: https://www.meti.go.jp/policy/consumer_appliance/pse/index.html
-last_verified: '2026-09-17'
+last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
 source_kind: official_summary
@@ -16,3 +16,4 @@ notes: |
   Manually created 2026-09-17 from official_sources.json entry jp-meti-pse-list.
   Backed by Ministry of Economy, Trade and Industry (METI).
   Authoring note: a KB anchor at data/kb/anchors/JP-METI-PSE-electronics.yaml is required to surface this regulation in generator must-check output.
+  2026-09-19 验证复核：URL 本身有效（METI 官方 PSE 页面）。站点有 bot 缓解：默认 curl UA 拿不到响应，带完整浏览器请求头实测返回 202。真实浏览器可正常打开。

@@ -3,8 +3,8 @@ official_citation: Saudi Product Safety Programme (SALEEM / SABER) — SASO impl
 short_name: SA SALEEM / SABER (沙特产品安全)
 region: SA
 license: public
-source_url: https://www.saso.gov.sa/en/news-and-events/news/
-last_verified: '2026-09-17'
+source_url: https://www.saso.gov.sa/en/
+last_verified: '2026-09-19'
 last_verified_by: manual-create
 language: en
 source_kind: official_summary
@@ -16,3 +16,4 @@ notes: |
   Manually created 2026-09-17 from official_sources.json entry sa-saso-news.
   Backed by Saudi Standards, Metrology and Quality Organization (SASO).
   Authoring note: a KB anchor at data/kb/anchors/SA-SASO-Saber-electronics.yaml is required to surface this regulation in generator must-check output.
+  2026-09-19 验证修复：旧 source_url (saso.gov.sa/en/news-and-events/news/) 子路径 404，改指 SASO 英文根域（实测 200，SALEEM/SABER 计划由 SASO 官网总览）。
