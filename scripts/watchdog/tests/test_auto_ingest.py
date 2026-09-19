@@ -386,6 +386,41 @@ def test_pending_yaml_stages_under_pending_subdir_not_live(isolated_library):
     assert "_pending" in payload["notes"]
 
 
+def test_pending_yaml_existing_staging_is_never_overwritten(isolated_library):
+    """A re-CREATE for an already-staged pending source must not clobber it.
+
+    A pending source re-enters CREATE on every upstream change (its live path
+    never exists), so without this guard each pass would rewrite
+    `_pending/<id>.yaml` — discarding articles an operator had already
+    authored into it.
+    """
+    pending = isolated_library.REGULATIONS_ROOT / "eu" / "_pending" / "EU-2012-19.yaml"
+    pending.parent.mkdir(parents=True, exist_ok=True)
+    pending.write_text(
+        "id: EU-2012-19\narticles:\n  - id: '1'\n    text: operator-authored\n",
+        encoding="utf-8",
+    )
+
+    ingestor = AutoIngestor("2026-09-13")
+    entry = {
+        "id": "eu-2012-19-weee",
+        "source_type": "eu_celex",
+        "celex": "32012L0019",
+        "pending_yaml": True,
+    }
+    report = ingestor.apply(
+        {"eu-2012-19-weee": entry},
+        {"eu-2012-19-weee": _update("eu-2012-19-weee", "wee rdf body")},
+        [_change("eu-2012-19-weee", kind="modified")],
+    )
+
+    payload = yaml.safe_load(pending.read_text(encoding="utf-8"))
+    assert payload["articles"][0]["text"] == "operator-authored"
+    # Reported neither as created nor updated — nothing was written.
+    assert report.created == []
+    assert report.updated == []
+
+
 def test_unmappable_signal_source_is_evidence_only(isolated_library):
     ingestor = AutoIngestor("2026-09-13")
     # Recall feeds are signal streams, not regulation texts.
