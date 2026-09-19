@@ -37,7 +37,9 @@ if [ ! -f "$PORTS_ENV" ]; then
 fi
 
 # 提取 NEXTJS_PORT（POSIX shell 友好解析）
-NEXTJS_PORT="$(grep -E '^NEXTJS_PORT=' "$PORTS_ENV" | head -1 | cut -d= -f2- | tr -d '[:space:]')"
+# `|| true` 必须有：grep 未命中退出 1，set -e + pipefail 下命令替换失败会让脚本
+# 在任何输出之前静默退出，下面的 ERROR 分支永远走不到。
+NEXTJS_PORT="$(grep -E '^NEXTJS_PORT=' "$PORTS_ENV" | head -1 | cut -d= -f2- | tr -d '[:space:]' || true)"
 if ! [[ "$NEXTJS_PORT" =~ ^[0-9]+$ ]] || [ "$NEXTJS_PORT" -lt 1 ] || [ "$NEXTJS_PORT" -gt 65535 ]; then
   echo "ERROR: NEXTJS_PORT in ports.env is missing or invalid: '$NEXTJS_PORT'" >&2
   exit 1
@@ -59,14 +61,24 @@ case "$MODE" in
 esac
 
 if [ "$CHECK_ONLY" = "1" ]; then
-  # 校验：渲染结果里必须只出现一次 upstream 块，且 server 行端口必须等于 NEXTJS_PORT
-  UPSTREAM_LINE="$(printf '%s\n' "$RENDERED" | awk '/upstream attrax_nextjs/,/^}/' | grep -E '^\s*server 127\.0\.0\.1:[0-9]+;\s*$' | head -1 | tr -s ' ')"
-  if [ -z "$UPSTREAM_LINE" ]; then
+  # 校验：渲染结果的 upstream attrax_nextjs 块里必须有 `server 127.0.0.1:PORT`
+  # 行，且 PORT 等于 ports.env 的 NEXTJS_PORT（模板若被写死字面量端口，这里就
+  # 会读出漂移）。
+  #
+  # 两点必须注意：
+  #   1. 端口不能靠"行尾数字"提取 —— 真实行是
+  #      `server 127.0.0.1:3000 max_fails=3 fail_timeout=30s;`，行尾是 `;`。
+  #      用纯 bash 参数展开：先截 `127.0.0.1:` 之后，再截到第一个非数字。
+  #   2. `|| true` 不能省 —— grep 未命中退出 1，set -e + pipefail 下命令替换
+  #      失败会让脚本在任何输出之前静默退出（2026-09-19：preflight 的第二步
+  #      因此必然静默 rc=1，整个预检失效）。未命中要走下面的 ERROR 分支。
+  SERVER_LINE="$(printf '%s\n' "$RENDERED" | awk '/upstream attrax_nextjs/,/^}/' | grep -E '^[[:space:]]*server[[:space:]]+127\.0\.0\.1:[0-9]+' | head -1 || true)"
+  if [ -z "$SERVER_LINE" ]; then
     echo "ERROR: rendered template has no upstream attrax_nextjs server line" >&2
     exit 2
   fi
-  # 提取 server 行的端口：从 `127.0.0.1:` 后取数字（避开 IP 第一段 127）
-  EFFECTIVE_PORT="$(printf '%s' "$UPSTREAM_LINE" | sed -E 's/.*127\.0\.0\.1:([0-9]+);.*/\1/' | head -1)"
+  EFFECTIVE_PORT="${SERVER_LINE#*127.0.0.1:}"
+  EFFECTIVE_PORT="${EFFECTIVE_PORT%%[!0-9]*}"
   if [ "$EFFECTIVE_PORT" != "$NEXTJS_PORT" ]; then
     echo "ERROR: upstream port drift — rendered template says :${EFFECTIVE_PORT} but ports.env says ${NEXTJS_PORT}" >&2
     exit 2
