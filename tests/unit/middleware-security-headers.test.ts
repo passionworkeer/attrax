@@ -7,10 +7,24 @@
  * failed anything. It also deliberately logs a *reduced* request record
  * (no query string, no bearer token, no referer, no raw IP), so "the log
  * stays safe" is a property worth pinning rather than trusting.
+ *
+ * @vitest-environment node
+ *     middleware 现在引入 lib/admin/traffic → node:sqlite（服务端内置模块），
+ *     jsdom 环境无法打包 Node 内置模块，此测试本就只测服务端行为。
  */
-import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach, afterAll } from "vitest";
+import { mkdirSync, mkdtempSync, rmSync } from "node:fs";
+import path from "node:path";
 import { NextRequest } from "next/server";
 import { middleware } from "@/middleware";
+
+// middleware 现在会写流量统计库：只有当项目根下存在 .admin-auth.json 时才启用。
+// 本地工作目录可能真实存在该文件（开发者跑过 setup-admin），把项目根指到
+// 一个空的临时目录，保证测试永远不落库、也不依赖机器状态。
+const SCRATCH = path.resolve(__dirname, "..", "..", "tmp");
+mkdirSync(SCRATCH, { recursive: true });
+const TRAFFICLESS_ROOT = mkdtempSync(path.join(SCRATCH, "middleware-test-"));
+afterAll(() => rmSync(TRAFFICLESS_ROOT, { recursive: true, force: true }));
 
 function makeRequest(path: string, headers: Record<string, string> = {}): NextRequest {
   return new NextRequest(new Request(`https://wangjianjun.xyz${path}`, { headers }));
@@ -21,6 +35,7 @@ describe("middleware security headers", () => {
 
   beforeEach(() => {
     infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+    vi.stubEnv("ATTRAX_PROJECT_ROOT", TRAFFICLESS_ROOT);
   });
 
   afterEach(() => {
@@ -87,6 +102,7 @@ describe("middleware request logging stays redacted", () => {
 
   beforeEach(() => {
     infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+    vi.stubEnv("ATTRAX_PROJECT_ROOT", TRAFFICLESS_ROOT);
   });
 
   afterEach(() => {

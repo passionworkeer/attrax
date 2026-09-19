@@ -41,6 +41,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   output: "standalone",
+  outputFileTracingExcludes: {
+    "/*": ["./.admin-auth.json", "./.deploy/**", "./data/admin/**"],
+  },
   // Browser QA and local operators commonly open the app via 127.0.0.1
   // while Next initializes the dev server as localhost. Next 16 otherwise
   // blocks dev-only chunks/HMR for that host, leaving a static page with no

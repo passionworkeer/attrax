@@ -141,9 +141,11 @@ install -m 644 "${PROJECT_ROOT}/scripts/attrax-healthcheck.service"             
 install -m 644 "${PROJECT_ROOT}/scripts/attrax-healthcheck.timer"               "${OPS_STAGE}/attrax-healthcheck.timer"
 install -m 755 "${PROJECT_ROOT}/scripts/backup-data.sh"                         "${OPS_STAGE}/backup-data.sh"
 install -m 755 "${PROJECT_ROOT}/scripts/backup-remote.sh"                       "${OPS_STAGE}/backup-remote.sh"
+install -m 644 "${PROJECT_ROOT}/scripts/backup-admin.mjs"                       "${OPS_STAGE}/backup-admin.mjs"
+install -m 755 "${PROJECT_ROOT}/scripts/retain-admin-audit.py"                  "${OPS_STAGE}/retain-admin-audit.py"
 OPS_COUNT=$(ls -1 "${OPS_STAGE}" | wc -l | tr -d ' ')
-if [ "$OPS_COUNT" -ne 10 ]; then
-  log "ERROR: ops/ staging incomplete (expected 10 files, got ${OPS_COUNT})，中止打包"
+if [ "$OPS_COUNT" -ne 12 ]; then
+  log "ERROR: ops/ staging incomplete (expected 12 files, got ${OPS_COUNT})，中止打包"
   exit 3
 fi
 log "ops staged: ${OPS_COUNT} files"

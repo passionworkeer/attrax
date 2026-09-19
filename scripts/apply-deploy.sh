@@ -216,6 +216,8 @@ install -m 644 "${OPS}/nginx-attrax-vhost-prod.conf.template" "${REPO_DIR}/docs/
 # 文档的"手工 scp"步骤里 —— 缺失时 cron 静默失败，备份等于没跑。
 install -m 755 "${OPS}/backup-data.sh"               "${REPO_DIR}/scripts/backup-data.sh"
 install -m 755 "${OPS}/backup-remote.sh"             "${REPO_DIR}/scripts/backup-remote.sh"
+install -m 644 "${OPS}/backup-admin.mjs"             "${REPO_DIR}/scripts/backup-admin.mjs"
+install -m 755 "${OPS}/retain-admin-audit.py"        "${REPO_DIR}/scripts/retain-admin-audit.py"
 if [ -d /etc/systemd/system ]; then
   install -m 755 "${OPS}/attrax-healthcheck.sh"      /usr/local/bin/attrax-healthcheck.sh
   install -m 644 "${OPS}/attrax-healthcheck.service" /etc/systemd/system/attrax-healthcheck.service

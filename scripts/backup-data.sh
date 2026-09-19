@@ -38,7 +38,24 @@ log() {
 
 log "Starting backup..."
 
+# 先把扫描审计日志留存进统计库再备份：审计日志轮转后看板的扫描历史仍完整，
+# 备份捕获的也是已留存的数据。留存失败不阻断备份本身（备份是兜底），
+# 但必须落日志可见——不允许静默跳过。
+if python3 /opt/attrax/scripts/retain-admin-audit.py --root /opt/attrax >>"$LOGFILE" 2>&1; then
+  log "admin audit retention ok"
+else
+  log "WARN: admin audit retention failed (see details above); backup continues"
+fi
+
+# SQLite 使用在线备份 API，保持 WAL 中的访客计数与会话一致。
+if [ -f /opt/attrax/data/admin/analytics.sqlite ] || [ -f /opt/attrax/.admin-auth.json ]; then
+  node /opt/attrax/scripts/backup-admin.mjs /opt/attrax "$SNAPSHOT/admin"
+fi
+
 ITEMS=()
+if [ -d "$SNAPSHOT/admin" ]; then
+  ITEMS+=("$SNAPSHOT/admin")
+fi
 # Environment files (contain credentials)
 for envfile in /opt/attrax/.env /opt/attrax/.env.local /opt/attrax/rag_service/.env; do
   if [ -f "$envfile" ]; then
