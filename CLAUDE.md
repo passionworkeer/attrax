@@ -339,10 +339,11 @@ const SessionIdSchema = z
 
 ## 最近修复
 
-### 2026-09-19 — 管理员运营 BI 看板 /admin（分支 `codex/admin-bi-dashboard`，已部署上线）
+### 2026-09-19 — 管理员运营 BI 看板 /admin（分支 `codex/admin-bi-dashboard`，已合并进 main 并部署上线）
 
-- **功能**：`/admin` 运营看板（Recharts，指标卡 + 服务使用趋势面积图 + 法规每日更新柱图 + 市场分布 + 近期扫描 + 抓取来源表格，7/30/90 天切换、CSV 导出）。数据口径全部来自真实运行数据，详见 `docs/admin-bi.md`
-- **鉴权**：scrypt 密码（`scripts/setup-admin.mjs` 生成，凭据 `.admin-auth.json` 0600 不进 git；生产密码在服务器 `/opt/attrax/.deploy/admin-access.txt`）+ SQLite 会话令牌哈希，HttpOnly/SameSite=Strict Cookie 8h，登录限流 5 次/15 分钟，登录/退出同源校验（生产要求 https Origin）
+- **功能**：`/admin` 运营看板（Recharts，指标卡 + 服务使用趋势面积图 + 法规每日更新柱图 + 市场分布 + 近期扫描 + 抓取来源表格，7/30/90 天切换、CSV 导出）。首页导航有「管理后台」入口。数据口径全部来自真实运行数据，详见 `docs/admin-bi.md`
+- **演示模式**：看板右上角「真实数据 / 演示数据」切换（`lib/admin/demo-data.ts` 固定种子模拟：30 天 42 位访客、扫描 343/739 次、法规规模沿用真实数量）；琥珀色标签 + 工具栏横幅 + CSV `-demo` 后缀明确标注非真实统计，每次进入默认回到真实数据
+- **鉴权**：scrypt 密码（`scripts/setup-admin.mjs` 生成或 `--password` 轮换为运营指定口令——原子替换哈希并清空旧会话；生产口令在服务器 `/opt/attrax/.deploy/admin-access.txt`，不写入 git）+ SQLite 会话令牌哈希，HttpOnly/SameSite=Strict Cookie 8h，登录限流 5 次/15 分钟，登录/退出同源校验（生产要求 https Origin），密码长度 8–256 位
 - **数据管线**：① middleware 匿名流量采集 → `data/admin/analytics.sqlite`（node:sqlite，只记 day/kind/路径分类，无 IP/参数/上传内容；仅当 `.admin-auth.json` 存在时启用）② 扫描统计来自 RAG 审计日志（懒导入 + 每日备份前 `retain-admin-audit.py` 强制留存，日志轮转不丢历史）③ 法规存量/来源读生产索引与源注册表 ④ 每日新增/更新来自 watchdog 历史快照 + 新增逐轮 `watchdog-runs.jsonl`（`orchestrator.py` 调 `metrics.py`，北京时间归档）
 - **踩坑（重要）**：`middleware.ts` 必须保留 `runtime: "nodejs"`——Next 16 下旧文件名 middleware 去掉该行会被 webpack 按 edge 目标编译，统计链路的 `node:` 内置模块直接 UnhandledSchemeError 构建失败（文档说 proxy.ts 默认 Node 且显式设置会抛错，只适用于新文件名）
 - **运维接线**：每日备份（backup-data.sh cron）先跑审计留存再备份（留存失败不阻断备份但落日志）；ops 随包 12 文件（+backup-admin.mjs/retain-admin-audit.py）；`setup-admin.mjs`/`verify-admin.mjs` 需单独 scp
