@@ -103,7 +103,12 @@ rollback_on_failure() {
   fi
   log "WARN: deploy failed (rc=${rc}) at stage '${DEPLOY_STAGE}' — auto-rolling back"
   if bash "$0" --rollback; then
+    # --rollback 用 mv 消费快照：本次的 standalone-pre-deploy-* 已被吃掉，
+    # 再手动跑一次 --rollback 会静默退回上一代。明说，避免运维照 [9] 的
+    # 提示多退一格。
     log "auto-rollback done; the failed tree was kept for inspection"
+    log "NOTE: this rollback consumed the ${STAMP} snapshot — a further manual '--rollback' would go one generation FURTHER back. Remaining snapshots:"
+    previous_backups | head -3 | sed 's/^/       /'
   else
     log "ERROR: auto-rollback FAILED — recover manually: bash $0 --rollback (previous tree: ${BACKUP_DIR})"
   fi

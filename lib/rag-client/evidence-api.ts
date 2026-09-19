@@ -97,6 +97,8 @@ export async function appendEvidence(
     const body = (await response.json().catch(() => null)) as
       | { error?: { message?: string; code?: string } }
       | null;
+    // The CODE is the client contract (callers switch on it and localize);
+    // the human-readable message stays server-side.
     throw new Error(body?.error?.code ?? `HTTP_${response.status}`);
   }
   const payload = (await response.json()) as {
@@ -121,6 +123,8 @@ export async function requestRevision(sessionId: string, intentKey?: string): Pr
     const body = (await response.json().catch(() => null)) as
       | { error?: { message?: string; code?: string } }
       | null;
+    // Same contract as appendEvidence: throw the machine-readable code and
+    // let the caller localize it.
     throw new Error(body?.error?.code ?? `HTTP_${response.status}`);
   }
   const payload = (await response.json()) as {
