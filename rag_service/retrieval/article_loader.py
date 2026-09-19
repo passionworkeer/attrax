@@ -29,16 +29,22 @@ Public API:
     invalidate_cache() -> None
         Clear the cache (tests / hot-reload).
 
-Caching: loaded once per process on first call. YAML files are small (<200 KB
-typically), so the memory cost is bounded; the cache lifetime is the process
-lifetime.
+Caching (lazy + LRU, 2026-09-19): the library is NOT pre-parsed on startup.
+``list_regulation_ids()`` builds a stat-only id index (~30ms for 724 files);
+each ``load_regulation`` / ``load_article_text`` parses its target YAML on
+first demand and keeps it in an OrderedDict-LRU (cap 2048 — a safety valve,
+not a working-set limit; see ``_LRU_MAXSIZE``). Rationale: the eager preload
+cost ~8s of startup latency and ~8s of stall on every library change, for a
+total steady-state of ~22MB of parsed dicts. Lazy removes both costs and
+keeps the steady state after warm-up.
 
 Cache staleness guard (plan 2026-09-14 J08 / §4.4 layer 3): the library is
 NOT read-only at runtime during development/redeploys — a regulation YAML
 edited on disk must not keep serving stale text for the rest of the process.
 Every entry point consults ``_library_stamp()`` (one cheap
 ``glob + stat`` over the library); if any file's (mtime_ns, size) changed or
-the file set itself changed, the cache is dropped and rebuilt. A monotonically
+the file set itself changed, the LRU is dropped (populates again on demand)
+and the path index rebuilt. A monotonically
 increasing ``cache_generation()`` counter ticks when a rebuild reflects a real
 on-disk change (and on an explicit ``invalidate_cache()``), so downstream
 caches (verifier ``_ARTICLE_TEXT_CACHE``) can invalidate their own entries
@@ -54,6 +60,7 @@ from __future__ import annotations
 
 import logging
 import threading
+from collections import OrderedDict
 from pathlib import Path
 from typing import Any
 
@@ -65,20 +72,41 @@ logger = logging.getLogger(__name__)
 _DEFAULT_REGULATIONS_ROOT = Path(__file__).resolve().parents[2] / "data" / "regulations"
 
 
-# Module-level cache: reg_id -> full YAML payload
-_cache: dict[str, dict] | None = None
+# ── cache layout (lazy + LRU, 2026-09-19) ─────────────────────────────────
+# Three independent module-level caches:
+#   _index       — reg_id → file path. Built from one glob+stat over the
+#                  library directory; cheap (no YAML parse). Rebuilt only
+#                  when the stamp says files changed.
+#   _cache       — reg_id → parsed YAML dict. OrderedDict with an eviction
+#                  cap (see _LRU_MAXSIZE — a safety valve, not a working
+#                  set). Populated on demand by _load_one(); cleared on
+#                  stamp change (no per-file re-parse).
+#   _stamp       — {path_str: (mtime_ns, size)}. Detects on-disk changes
+#                  between calls. Cleared on explicit invalidation.
+# Why this layout:
+#   - Cold start does NOT pre-read all 724 YAMLs (~7s IO+parse). The first
+#     request triggers only the cheap glob+stat for the index (~30ms).
+#   - list_regulation_ids() stays dict-lookup only via _index.
+#   - load_regulation(reg_id) / load_article_text(...) populate _cache lazily.
+#   - stamp self-invalidates: any YAML edit/add/remove → _cache cleared, _index
+#     rebuilt, generation ticks. Downstream _ARTICLE_TEXT_CACHE in verifier
+#     already keys on cache_generation() so it stays consistent.
+_index: dict[str, Path] | None = None
+_cache: "OrderedDict[str, dict]" | None = None
 _regulations_root: Path = _DEFAULT_REGULATIONS_ROOT
-# Stamp of the files the current cache was built from:
-# {path_str: (mtime_ns, size)}. None until the first load.
 _cache_stamp: dict[str, tuple[int, int]] | None = None
-# Ticks when the article text may have changed: a rebuild that saw a real
-# on-disk change, or an explicit invalidate_cache(). Downstream caches key on
-# it to drop their own stale entries.
 _cache_generation: int = 0
-# Serializes rebuilds: without it, concurrent scans that both miss the cache
-# would each re-parse every YAML, and the second one would also claim the
-# library "changed on disk" (see the stamp check in ``_load_all``).
 _cache_lock = threading.Lock()
+
+# Cache size cap. This is a SAFETY VALVE, not a working-set limit:
+# the whole library is 724 files ≈ 22MB of parsed dicts (measured RSS),
+# and every consumer either walks the whole library (/health/watchdog)
+# or touches a stable per-scan slice of it. A small LRU would thrash on
+# the full-walk routes (re-parsing ~600 files per call once past the
+# cap), so the default holds the entire library and several times
+# headroom for growth. Eviction only engages if the library grows past
+# the cap — i.e. when caching everything would actually threaten memory.
+_LRU_MAXSIZE = 2048
 
 
 def get_regulations_root() -> Path:
@@ -101,14 +129,16 @@ def invalidate_cache() -> None:
     read a tick as "re-match against the files again", which is the safe
     direction when a caller says the cache is stale.
 
-    Read paths must NOT call this. Doing so turns a read-only probe into a
-    mutation that (a) forces a full re-parse of every YAML and (b) ticks the
-    generation, discarding the verifier's cache. ``_readiness_snapshot()`` in
-    main.py used to do exactly that on every /ready request; since the uptime
-    monitor polls /ready every 5 minutes, that wiped the caches ~288x/day.
-    Read paths get freshness from the on-disk stamp in ``_load_all`` instead.
+    Read paths must NOT call this. Doing so turns a read-only probe into
+    a mutation that (a) forces a full re-parse of every YAML still in
+    _cache and (b) ticks the generation, discarding the verifier's cache.
+    ``_readiness_snapshot()`` in main.py used to do exactly that on every
+    /ready request; since the uptime monitor polls /ready every 5 minutes,
+    that wiped the caches ~288x/day. Read paths get freshness from the
+    on-disk stamp in ``_sync_index`` instead.
     """
-    global _cache, _cache_stamp
+    global _index, _cache, _cache_stamp
+    _index = None
     _cache = None
     # Forget the stamp as well: "no cache, no baseline". Keeping the previous
     # stamp would make the next rebuild look like an on-disk change even when
@@ -131,7 +161,7 @@ def _rebuild_generation() -> None:
 def _library_stamp() -> dict[str, tuple[int, int]]:
     """Snapshot {(path): (mtime_ns, size)} for every library YAML.
 
-    Cheap: one directory glob plus a stat per file (~44 entries). Used to
+    Cheap: one directory glob plus a stat per file (~724 entries). Used to
     detect on-disk edits between entry-point calls so a running process
     never keeps serving regulation text that was replaced.
     """
@@ -151,62 +181,94 @@ def _library_stamp() -> dict[str, tuple[int, int]]:
     return stamp
 
 
-def _load_all() -> dict[str, dict]:
-    """Walk data/regulations/{region}/*.yaml once and cache by regulation id.
+def _ensure_index_locked() -> "OrderedDict[str, dict]":
+    """Core of _ensure_index_locked. Caller MUST hold _cache_lock.
 
-    Self-invalidating: the on-disk stamp is recomputed on every call and the
-    cache is dropped when it moved, so an edited / added / removed YAML is
-    picked up without a process restart. Serialized by ``_cache_lock`` so
-    concurrent scans cannot double-rebuild.
+    Split out so _load_one can hold the lock across check-parse-insert
+    without re-acquiring (the lock is not reentrant).
     """
-    global _cache, _cache_stamp
-    with _cache_lock:
-        stamp = _library_stamp()
-        if _cache is not None and _cache_stamp == stamp:
-            return _cache
+    global _index, _cache, _cache_stamp
+    stamp = _library_stamp()
+    previous_stamp = _cache_stamp
+    library_changed = previous_stamp is None or stamp != previous_stamp
 
-        # Whether this rebuild is a *real* library change decides both the log
-        # line and the generation tick. Keying that off `_cache is not None`
-        # (as this used to) reported "changed on disk" for any rebuild that
-        # followed an invalidate_cache() call, even with an untouched library.
-        previous_stamp = _cache_stamp
-
-        loaded: dict[str, dict] = {}
+    if library_changed:
+        # Build _index (id → path). One stat per file, no parse.
+        new_index: dict[str, Path] = {}
         root = get_regulations_root()
-        if not root.exists():
-            logger.warning("Regulations root does not exist: %s", root)
-        else:
-            for path in sorted(root.glob("*/*.yaml")):
-                try:
-                    data = yaml.safe_load(path.read_text(encoding="utf-8"))
-                except Exception as exc:
-                    logger.error("Failed to load regulation YAML %s: %r", path, exc)
-                    continue
-                if not isinstance(data, dict):
-                    logger.error("Regulation YAML %s did not parse to a dict", path)
-                    continue
-                reg_id = data.get("id")
-                if not reg_id:
-                    logger.error("Regulation YAML %s missing id", path)
-                    continue
-                if reg_id in loaded:
-                    logger.error(
-                        "Duplicate regulation id %s in %s (already in %s); skipping",
-                        reg_id, path, loaded[reg_id].get("_path"),
-                    )
-                    continue
-                data["_path"] = str(path)
-                loaded[reg_id] = data
+        if root.exists():
+            for path in root.glob("*/*.yaml"):
+                new_index[path.stem] = path
+        _index = new_index
 
-        _cache = loaded
-        _cache_stamp = stamp
-        if previous_stamp is not None and stamp != previous_stamp:
-            logger.info(
-                "regulation library changed on disk — cache rebuilt (%d regulations)",
-                len(loaded),
-            )
+        # _cache: invalidate if library changed, otherwise init.
+        if previous_stamp is not None:
+            # Real library change — drop LRU and tick generation.
+            _cache = None
             _rebuild_generation()
-        return _cache
+            logger.info(
+                "regulation library changed on disk — LRU cleared (%d entries, gen=%d)",
+                len(_index or {}), _cache_generation,
+            )
+        # else: cold start, _cache is already None
+        _cache_stamp = stamp
+
+    # Initialize OrderedDict on cold start or after invalidation
+    if _cache is None:
+        _cache = OrderedDict()
+    return _cache
+
+
+def _load_one(reg_id: str) -> dict | None:
+    """Load (and parse) one regulation YAML, with LRU semantics.
+
+    The whole check-parse-insert sequence runs under _cache_lock: without
+    it, N threads missing the same id would each parse the same YAML
+    (thundering herd), and concurrent OrderedDict mutation (move_to_end +
+    popitem) could interleave. Parse is ~30ms for the largest file, so
+    serializing cold misses is cheap; warm hits are dict lookups.
+    """
+    with _cache_lock:
+        cache = _ensure_index_locked()
+        if reg_id in cache:
+            cache.move_to_end(reg_id)
+            return cache[reg_id]
+        index = _index
+        path = index.get(reg_id) if index else None
+        if path is None:
+            return None
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            logger.error("Failed to load regulation YAML %s: %r", path, exc)
+            return None
+        if not isinstance(data, dict):
+            logger.error("Regulation YAML %s did not parse to a dict", path)
+            return None
+        # LRU insert with eviction
+        cache[reg_id] = data
+        cache.move_to_end(reg_id)
+        if len(cache) > _LRU_MAXSIZE:
+            cache.popitem(last=False)
+        return data
+
+
+def _load_all() -> dict[str, dict]:
+    """Legacy-compatible bulk-load API used by some callers/tests.
+
+    Does NOT pre-populate the LRU; only returns the ids that a previous
+    read happened to materialize. Callers that historically did
+    ``_load_all().keys()`` for id listings should call
+    ``list_regulation_ids()`` instead, and callers that need a specific
+    regulation should call ``load_regulation(reg_id)``.
+
+    Returns a snapshot dict (safe to iterate) — later cache changes are
+    not reflected in it.
+    """
+    with _cache_lock:
+        cache = _ensure_index_locked()
+        index = _index or {}
+        return {reg_id: cache[reg_id] for reg_id in index if reg_id in cache}
 
 
 # ── public API ──────────────────────────────────────────────────────────────
@@ -214,12 +276,15 @@ def _load_all() -> dict[str, dict]:
 
 def list_regulation_ids() -> list[str]:
     """Return all regulation ids present in the library."""
-    return list(_load_all().keys())
+    with _cache_lock:
+        _ensure_index_locked()
+        index = _index or {}
+        return list(index.keys())
 
 
 def load_regulation(reg_id: str) -> dict | None:
     """Return the full regulation payload, or None if unknown."""
-    return _load_all().get(reg_id)
+    return _load_one(reg_id)
 
 
 def load_article_text(reg_id: str, article_id: str) -> str | None:
