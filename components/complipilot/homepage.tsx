@@ -40,6 +40,9 @@ export function CompliPilotHome({ initialLocale }: { initialLocale?: "zh" | "en"
             <Link className={styles.navTextLink} href="/regulations">
               {isZh ? "法规资料" : "Regulation resources"}
             </Link>
+            <Link className={styles.navTextLink} href="/admin">
+              {isZh ? "管理后台" : "Admin"}
+            </Link>
             <div className={styles.localeSwitch} role="group" aria-label={isZh ? "语言切换" : "Language switcher"}>
               <button type="button" aria-pressed={isZh} className={isZh ? styles.localeActive : undefined} onClick={() => setLocale("zh")}>中</button>
               <button type="button" aria-pressed={!isZh} className={!isZh ? styles.localeActive : undefined} onClick={() => setLocale("en")}>EN</button>

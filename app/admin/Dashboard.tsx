@@ -1,10 +1,11 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Activity, ArrowDownToLine, ArrowLeft, ArrowUpRight, BarChart3, BookOpen, CalendarDays, CheckCircle2, Database, Globe2, LayoutDashboard, LogOut, RefreshCw, ScanLine, ShieldCheck, Users, Zap } from 'lucide-react';
 import { Area, AreaChart, Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { AdminOverview } from '@/lib/admin/types';
+import { buildDemoOverview } from '@/lib/admin/demo-data';
 import styles from './admin.module.css';
 
 const number = (value: number | null) => value === null ? '—' : value.toLocaleString('zh-CN');
@@ -19,15 +20,24 @@ function Empty({ text = '当前时间范围内暂无数据' }: { text?: string }
 }
 
 export default function Dashboard() {
-  const [days, setDays] = useState(30);
-  const [data, setData] = useState<AdminOverview | null>(null);
+  const [days, setDays] = useState<7 | 30 | 90>(30);
+  const [liveData, setLiveData] = useState<AdminOverview | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [metric, setMetric] = useState<'visitors' | 'apiCalls'>('visitors');
   const [refresh, setRefresh] = useState(0);
   const [loggingOut, setLoggingOut] = useState(false);
+  // 「演示数据」为 MVP 推广预览：固定种子模拟，界面多处以琥珀色标注，
+  // 每次进入默认回到真实数据。演示数据在渲染期派生（useMemo），
+  // 真实数据走下方 effect 的 fetch。
+  const [mode, setMode] = useState<'live' | 'demo'>('live');
+  const demo = mode === 'demo';
+  const demoData = useMemo(() => (demo ? buildDemoOverview(days) : null), [demo, days]);
+  const data = demo ? demoData : liveData;
+  const busy = !demo && loading;
 
   useEffect(() => {
+    if (demo) return;
     const controller = new AbortController();
     async function load() {
       setLoading(true);
@@ -36,24 +46,24 @@ export default function Dashboard() {
         const response = await fetch(`/api/admin/overview?days=${days}`, { cache: 'no-store', signal: controller.signal });
         if (response.status === 401) { window.location.replace('/admin/login?expired=1'); return; }
         if (!response.ok) throw new Error('暂时无法获取运营数据，请稍后重试。');
-        setData(await response.json() as AdminOverview);
+        setLiveData(await response.json() as AdminOverview);
       } catch (cause) {
         if (!controller.signal.aborted) setError(cause instanceof Error ? cause.message : '数据加载失败');
       } finally { if (!controller.signal.aborted) setLoading(false); }
     }
     void load();
     return () => controller.abort();
-  }, [days, refresh]);
+  }, [days, refresh, demo]);
 
   const exportCsv = useCallback(() => {
     if (!data) return;
-    const rows = [['日期（历史UTC快照；新记录北京时间）', '独立访客', '页面访问', 'API调用', '扫描次数', '扫描完成', '扫描失败', '新增证据版本', '新增法规目录条目', '更新法规目录条目'], ...data.series.map(row => [row.date, row.visitors, row.pageViews, row.apiCalls, row.scans, row.completed, row.failed, row.fetched, row.newRegulations, row.updatedRegulations])];
+    const rows = [[demo ? '演示数据（非真实统计）· 日期' : '日期（历史UTC快照；新记录北京时间）', '独立访客', '页面访问', 'API调用', '扫描次数', '扫描完成', '扫描失败', '新增证据版本', '新增法规目录条目', '更新法规目录条目'], ...data.series.map(row => [row.date, row.visitors, row.pageViews, row.apiCalls, row.scans, row.completed, row.failed, row.fetched, row.newRegulations, row.updatedRegulations])];
     const csv = '\uFEFF' + rows.map(row => row.map(value => value === null ? '' : `"${String(value).replaceAll('"', '""')}"`).join(',')).join('\r\n');
     const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8;' }));
     const link = document.createElement('a');
-    link.href = url; link.download = `attrax-bi-${data.days}days-${data.generatedAt.slice(0, 10)}.csv`; link.click();
+    link.href = url; link.download = `attrax-bi${demo ? '-demo' : ''}-${data.days}days-${data.generatedAt.slice(0, 10)}.csv`; link.click();
     URL.revokeObjectURL(url);
-  }, [data]);
+  }, [data, demo]);
 
   async function logout() {
     setLoggingOut(true);
@@ -83,12 +93,12 @@ export default function Dashboard() {
       <div className={styles.sidebarBottom}><div className={styles.adminIdentity}><span><ShieldCheck size={19} /></span><div>管理员<span>受保护的运营工作空间</span></div></div><Link href="/"><ArrowLeft size={16} />返回前台<ArrowUpRight size={14} /></Link><button onClick={logout} disabled={loggingOut}><LogOut size={16} />{loggingOut ? '正在退出…' : '退出登录'}</button></div>
     </aside>
     <main className={styles.main} id="overview">
-      <div className={styles.breadcrumb}>工作空间<span>/</span><strong>运营概览</strong><span className={styles.privateLabel}><ShieldCheck size={13} />管理员专属</span></div>
-      <header className={styles.header}><div><div className={styles.eyebrow}>SERVICE INTELLIGENCE</div><h1>让每一次服务，都清晰可见。</h1><p>用户访问、服务调用与法规更新的运营全景。</p></div><div className={styles.headerActions}><button className={styles.iconButton} aria-label="刷新数据" title="刷新数据" disabled={loading} onClick={() => setRefresh(value => value + 1)}><RefreshCw size={17} className={loading ? styles.spin : ''} /></button><button className={styles.exportButton} onClick={exportCsv} disabled={!data || loading || data.days !== days}><ArrowDownToLine size={16} />导出数据</button></div></header>
-      <div className={styles.toolbar}><div className={styles.live}><span />{loading ? '正在更新数据' : data ? `更新于 ${stamp(data.generatedAt)}` : '等待数据'}<span className={styles.timezone}>北京时间</span></div><div className={styles.dateControl}><CalendarDays size={16} /><span>统计周期</span><div className={styles.segment} aria-label="统计天数">{[7, 30, 90].map(value => <button key={value} aria-pressed={days === value} className={days === value ? styles.selected : ''} onClick={() => setDays(value)}>近 {value} 天</button>)}</div></div></div>
+      <div className={styles.breadcrumb}>工作空间<span>/</span><strong>运营概览</strong>{demo && <span className={`${styles.privateLabel} ${styles.demoLabel}`}><BarChart3 size={13} />演示数据</span>}<span className={styles.privateLabel}><ShieldCheck size={13} />管理员专属</span></div>
+      <header className={styles.header}><div><div className={styles.eyebrow}>SERVICE INTELLIGENCE</div><h1>让每一次服务，都清晰可见。</h1><p>用户访问、服务调用与法规更新的运营全景。</p></div><div className={styles.headerActions}><div className={styles.segment} aria-label="数据来源">{([['live', '真实数据'], ['demo', '演示数据']] as const).map(([value, label]) => <button key={value} aria-pressed={mode === value} className={mode === value ? styles.selected : ''} onClick={() => setMode(value)}>{label}</button>)}</div><button className={styles.iconButton} aria-label="刷新数据" title={demo ? '演示数据为固定模拟，无需刷新' : '刷新数据'} disabled={busy || demo} onClick={() => setRefresh(value => value + 1)}><RefreshCw size={17} className={busy ? styles.spin : ''} /></button><button className={styles.exportButton} onClick={exportCsv} disabled={!data || busy || data.days !== days}><ArrowDownToLine size={16} />导出数据</button></div></header>
+      <div className={styles.toolbar}><div className={demo ? styles.liveDemo : styles.live}><span />{demo ? '演示数据 · 非真实统计' : busy ? '正在更新数据' : data ? `更新于 ${stamp(data.generatedAt)}` : '等待数据'}{!demo && <span className={styles.timezone}>北京时间</span>}</div><div className={styles.dateControl}><CalendarDays size={16} /><span>统计周期</span><div className={styles.segment} aria-label="统计天数">{([7, 30, 90] as const).map(value => <button key={value} aria-pressed={days === value} className={days === value ? styles.selected : ''} onClick={() => setDays(value)}>近 {value} 天</button>)}</div></div></div>
       {error && <div className={styles.error} role="alert"><span>{error}</span><button onClick={() => setRefresh(value => value + 1)}>重新加载</button></div>}
-      {loading && !data && <div className={styles.loading} role="status"><RefreshCw size={22} className={styles.spin} /><p>正在读取真实运营数据…</p></div>}
-      {data && totals && <div className={loading ? styles.refreshing : undefined} aria-busy={loading}>
+      {busy && !data && <div className={styles.loading} role="status"><RefreshCw size={22} className={styles.spin} /><p>正在读取真实运营数据…</p></div>}
+      {data && totals && <div className={busy ? styles.refreshing : undefined} aria-busy={busy}>
         <section className={styles.cards} aria-label="核心指标">{cards.map(card => <article className={styles.card} key={card.label}><div className={styles.cardTop}><span>{card.label}</span><span className={`${styles.metricIcon} ${styles[card.color]}`}><card.icon size={18} /></span></div><div className={styles.cardValue}>{card.value}<span>{card.suffix}</span></div><p>{card.note}</p></article>)}</section>
         <div className={styles.chartGrid}>
           <section className={styles.panel} id="traffic"><div className={styles.panelHeader}><div><h2>服务使用趋势</h2><p>观察每日访问与服务请求的变化</p></div><div className={styles.segment}>{(['visitors', 'apiCalls'] as const).map(value => <button key={value} aria-pressed={metric === value} className={metric === value ? styles.selected : ''} onClick={() => setMetric(value)}>{value === 'visitors' ? '独立访客' : 'API 调用'}</button>)}</div></div><div className={styles.chart}>{data.series.some(row => row[metric] !== null) ? <ResponsiveContainer width="100%" height="100%"><AreaChart data={data.series} margin={{ top: 12, right: 12, bottom: 0, left: -18 }}><defs><linearGradient id="trafficFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#279fb3" stopOpacity={0.28} /><stop offset="100%" stopColor="#279fb3" stopOpacity={0.015} /></linearGradient></defs><CartesianGrid stroke="#deebef" vertical={false} strokeDasharray="4 4" /><XAxis dataKey="date" tickFormatter={value => value.slice(5)} tickLine={false} axisLine={false} minTickGap={32} tick={{ fill: '#78919b', fontSize: 11 }} /><YAxis allowDecimals={false} tickLine={false} axisLine={false} tick={{ fill: '#78919b', fontSize: 11 }} /><Tooltip {...tip} /><Area type="monotone" dataKey={metric} name={metric === 'visitors' ? '独立访客' : 'API 调用'} stroke="#1595aa" strokeWidth={2.5} fill="url(#trafficFill)" connectNulls={false} dot={{ r: 2 }} activeDot={{ r: 5 }} /></AreaChart></ResponsiveContainer> : <Empty text="访问统计尚未开始记录" />}</div><div className={styles.chartFoot}><span className={styles.legendDot} />{metric === 'visitors' ? '每日匿名独立访客' : '每日 API 请求数'}<span>空缺日期表示尚无记录</span></div></section>

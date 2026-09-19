@@ -1,6 +1,10 @@
 # 管理员运营看板
 
-入口 `/admin`，未登录时跳转 `/admin/login`。沿用法规中心的海蓝色和玻璃卡片，使用 Recharts 绘制交互曲线和柱图。布局参考 GitHub `shadcndashboard/next-shadcn-dashboard` 的指标、图表、表格组合；代码在当前项目内实现。
+入口 `/admin`（首页导航「管理后台」直达），未登录时跳转 `/admin/login`。沿用法规中心的海蓝色和玻璃卡片，使用 Recharts 绘制交互曲线和柱图。布局参考 GitHub `shadcndashboard/next-shadcn-dashboard` 的指标、图表、表格组合；代码在当前项目内实现。
+
+## 演示数据（MVP 推广）
+
+看板右上角可在「真实数据 / 演示数据」间切换。演示数据由 `lib/admin/demo-data.ts` 用固定种子模拟生成：访客按身份模型跨日去重（30 天约 42 人、90 天约 53 人）、扫描近 30 天约 343 次 / 近 90 天约 739 次、失败率约 5%，法规存量与来源规模沿用生产真实数量（1052 条 / 25 市场 / 37 源）。每次进入页面默认回到真实数据；演示态以琥珀色标签与「演示数据 · 非真实统计」提示明示，CSV 导出的文件名带 `-demo` 后缀且表头注明演示口径。
 
 ## 使用与统计口径
 
@@ -14,7 +18,7 @@
 
 ## 配置与数据
 
-要求 Node.js 22.13 或更高版本，使用内置 SQLite。执行 `node scripts/setup-admin.mjs /opt/attrax` 初始化管理员：密码哈希保存在 `.admin-auth.json`，首次生成的密码保存在 `.deploy/admin-access.txt`，权限均为 0600。初始化不会覆盖已有凭据。
+要求 Node.js 22.13 或更高版本，使用内置 SQLite。执行 `node scripts/setup-admin.mjs /opt/attrax` 初始化管理员：密码哈希保存在 `.admin-auth.json`，首次生成的密码保存在 `.deploy/admin-access.txt`，权限均为 0600。初始化不会覆盖已有凭据。轮换为指定密码用 `node scripts/setup-admin.mjs /opt/attrax --password <新密码>`：原子替换哈希文件、更新口令文件，并清空 `admin_sessions`（旧会话立即失效）。登录接口接受 8–256 位密码。
 
 密码使用 scrypt；会话为随机令牌，数据库仅保存哈希，8 小时过期。Cookie 为 HttpOnly、SameSite=Strict，生产使用 Secure。登录和退出验证同源；登录失败受 15 分钟 5 次限流保护。退出会删除服务器会话，旧 Cookie 无法重放。统计 API 每次验证会话，不允许缓存。
 
