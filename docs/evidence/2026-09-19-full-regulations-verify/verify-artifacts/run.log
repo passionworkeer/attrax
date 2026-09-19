@@ -1,0 +1,19 @@
+[2026-09-19T16:20:34] === 全量法规库校验开始 ===
+[2026-09-19T16:20:34] ROOT: /Users/wangjianjun/me/attrax
+[2026-09-19T16:20:34] regulations_index.json 总条数: 1049, schema_version=1
+[2026-09-19T16:20:34] 清单 regulation-raw-2026-09-19.json: 920 条, source_root=/Users/wangjianjun/me/regulation-raw
+[2026-09-19T16:20:34] 清单 attrax-docs-extra-2026-09-19.json: 12 条, source_root=/Users/wangjianjun/me/attrax-docs
+[2026-09-19T16:20:34] 清单 attrax-docs-2026-09-19.json: 63 条, source_root=/Users/wangjianjun/me/attrax-docs
+[2026-09-19T16:20:34] --- 维度 1: 本地文件完整性 ---
+[2026-09-19T16:20:37] 维度 1 完成, 1049 条, 2.9s
+[2026-09-19T16:20:37] --- 维度 2: HTTP 可达性（4 轮 fallback） ---
+[2026-09-19T16:20:37] 待 HTTP 校验 URL 数: 876
+[2026-09-19T16:21:15] 维度 2 完成, 38.0s
+[2026-09-19T16:21:15] --- 维度 3: 内容真实性抽样 ---
+[2026-09-19T16:21:15] 维度 3 完成, 30 条抽样, 0.2s
+[2026-09-19T16:21:15] --- 维度 4: region/domain 统计 ---
+[2026-09-19T16:21:15] regions: 25, domains: 34
+[2026-09-19T16:21:16] detailed.json: /Users/wangjianjun/me/attrax/docs/evidence/2026-09-19-full-regulations-verify/_subagent-tmp/detailed.json
+[2026-09-19T16:21:16] sample.json: /Users/wangjianjun/me/attrax/docs/evidence/2026-09-19-full-regulations-verify/_subagent-tmp/sample.json
+[2026-09-19T16:21:16] summary.json: /Users/wangjianjun/me/attrax/docs/evidence/2026-09-19-full-regulations-verify/_subagent-tmp/summary.json
+[2026-09-19T16:21:16] === 校验完成 ===

@@ -1,0 +1,5225 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<!-- mobile meta -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+<meta name="format-detection" content="telephone=no">
+<title>Statutes of the Republic of Korea</title>
+<link type="text/css" rel="stylesheet" href="/css/eng_service/common.css" />
+<link type="text/css" rel="stylesheet" href="/css/eng_service/main.css" />
+<link type="text/css" rel="stylesheet" href="/css/eng_service/sub.css" />
+<link type="text/css" rel="stylesheet" href="/css/select2.min.css" />
+<link type="text/css" rel="stylesheet" href="/jquery/ui/jquery-ui-1.12.1-eng.css" />
+
+<script type="text/javascript" src="/jquery/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="/jquery/jquery-migrate-3.5.2.min.js"></script>
+<!--[if lt IE 9]><script type="text/javascript" src="../../../jquery/html5shiv.min.js"></script><![endif]-->
+<script type="text/javascript" src="/jquery/select2.min.js"></script>
+<script type="text/javascript" src="/jquery/ui/jquery-ui-1.12.1.js"></script>
+<script type="text/javascript" src="/jquery/script_eng.js"></script>
+<script type="text/javascript" src="/jquery/placeholders.min.js"></script>
+<script type="text/javascript" src="/javascript/common.js"></script>
+<script type="text/javascript" src="/javascript/page.js"></script>
+<script type="text/javascript" src="/jquery/circle/jquery.cycle.all.js"></script>
+<!-- <script src="//js.maxmind.com/js/apis/geoip2/v2.1/geoip2.js" type="text/javascript"></script> -->
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var notice_len=0;
+	var pop_len = 0;
+	// 국내/해외 아이피 체크
+	/* var onSuccess = function(location){
+	  alert(
+	      "Lookup successful:\n\n"
+	      + JSON.stringify(location, undefined, 4)
+	  );
+	};
+
+	var onError = function(error){
+	  alert(
+	      "Error:\n\n"
+	      + JSON.stringify(error, undefined, 4)
+	  );
+	};
+	geoip2.city(onSuccess, onError); */
+	
+	// 메인 법령관련 말줄임표	
+	$(".txt-ellipsis").each(function(){
+		/* var length=26; */
+		var length=34;
+		
+		$(this).each(function(){
+			if($(this).text().length >= length){
+				$(this).text($(this).text().substr(0,length)+"...");
+			}			
+		});	
+	});
+
+	//IE6 일때 경고창 띄우기
+	if( navigator.appVersion.indexOf("MSIE 6") > -1)
+   	{
+		 alert("This site is not optimized for IE6. Please use a different version of the browser.");
+   	}
+   	
+	$("#popupzone").cycle({
+		timeout:1000,
+		pager:'#left_b'
+	});	
+	
+	
+	//if(getCookie("survey_kor") != "survey_kor"){
+	//	window.open("/kor_survey.html", "설문조사", "height=832px, width=850px, fullscreen=no, location=no, menubar=no, status=no, toolbar=no,");
+	//}
+	
+	/*다중 팝업창으로 인한 쿠키값 체크 이동
+	if(getCookie("popup") == "done"){
+		$("#popupZone00").hide();
+	}
+	
+	if(getCookie("popup1") == "done1"){
+		$("#greenPopupZone01").hide();
+	}
+	*/
+	noticePopup();
+	popupZone();
+// 	$("#popupGreen").on("click",function(){
+// 		$("#greenPopupZone01").hide();
+// 	})
+	
+	$("a[href='#']").click(function(e){
+		e.preventDefault();
+	}); //a[href="#"]태그의 최상단으로 올라가는 event를 막음
+	
+	/* 검색 입력시 배경  */
+	$('#searchTxt, #searchValue').on("click focusin",function(){
+		$('.search_bg').show();
+	});
+	
+	$('#searchTxt, #searchValue').on("blur",function(){
+		$('.search_bg').hide();
+		$('#popup, #popup1').css('display','none');
+	});
+	
+	/* $(document).mouseup(function (e){
+	  var LayerPopup = $(".search_bg");
+	  if(LayerPopup.has(e.target).length === 0){
+	    LayerPopup.removeClass("on");
+	  }
+	}); */
+	
+	//한글자 미만, 검색결과 없음 레이어 팝업 닫기
+	$('.btn_close').click(function(){
+		$('.searchNotice').hide();
+	});
+	
+	//상세검색 설정 팝업 닫기
+	$(".ms-detail_close").click(function(){
+		$(".popOpen , .search_bg").hide();
+	});
+});
+function noticePopup(){
+	var seq = new Array();
+	var title = new Array();
+	var content = new Array();
+	var str = "";
+	
+	
+	if(seq.length == 0){
+		$('#popupZone00').hide();
+	}
+	notice_len = seq.length;
+	
+	for(var i=0; i<seq.length; i++){
+// 		window.open("/eng_service/noticePopup.do?seq="+seq[i],"popup"+i,"fullscreen=no, location=no, menubar=no, status=no,toolbar=no,resizable=no,width=600, height=400, left="+i+"00");
+// 		$("#titlePopup00").text(title[i]);
+// 		$("#contentPopup00").html(content[i]);
+		//동적으로 생긴 쿠키값을 해결해주기 위해 for문안에 쿠키값 체크		
+		if(getCookie('eng_popup0'+i) != "done"){
+			str += "<div class = 'textarea-box' id='eng_popup0"+i+"'>";
+			str += "<p class='txt-title' id='titlePopup0"+i+"'>"+title[i]+"</p>";
+			str += "<p class='txt-con' id='contentPopup0"+i+"'>"+content[i]+"</div> <div id='eng_popup0"+i+"_sub'><form name='frm' method='post'><p class='button-box'><label for='todayBlock"+i+"'>Please close this window today.</label><input type='checkbox' id='todayBlock"+i+"' name='todayBlock'/>";
+			str += "<a href='#' onclick='javascript:closePopup()' title='close button' class='btn-popup' id='eng_popup0"+i+"'>Close</a></p></form>";
+// 			str += "<a href='#' onclick='javascript:closePopup("+i+")' title='close button' class='btn-popup' id='popup0"+i+"'>Close</a></p></form>";
+ 			str += "</div>";
+// 		$("#mainPopupZone").html(str);	
+		}else{
+			notice_len = notice_len-1;
+		}
+	}
+	if(notice_len > 0){
+		$("#popupZone00").html(str);
+	}else{
+		$("#popupZone00").hide();
+	}
+}
+
+function popupZone(){
+	var seq = new Array();
+	var title = new Array();
+	var url = new Array();
+	var imgPath = new Array();
+	var str = "";
+	
+	
+	
+	if(seq.length == 0){
+		$('#greenPopupZone01').hide();
+	}
+	pop_len = seq.length;
+	
+	for(var i=0; i<seq.length; i++){
+		//동적으로 생긴 쿠키값을 해결해주기 위해 for문안에 쿠키값 체크
+		if(getCookie('eng_popupList0'+i) != "done"){
+				
+			str += "<div style='float:left;' id='eng_popupList0"+i+"'>";
+			str += "<a href='"+url[i]+"' target='_blank'><img src='/images/manager/popup/"+imgPath[i]+"' alt='KLRI pupu-zone'/></a>";		
+			str += "<form name='frm1' method='post'> <p class='button-box'> <span class='form'><input type='checkbox' id='todayBlock1"+i+"' name='todayBlock1'/><label for='todayBlock1"+i+"'>Please close this window today.</label></span>";
+			str += "<a href='#' onclick='javascript:closePopup1()' title='close button' class='btn-popup green' id='eng_popupList0"+i+"'>Close</a></p></form>";
+	 		str += "</div>";
+ 		}else{
+ 			pop_len = pop_len-1; 			
+ 		}
+	}	
+	if(pop_len > 0 ){		
+		$("#greenPopupZone01").html(str);
+	}else{
+		$("#greenPopupZone01").hide();
+	}
+}
+
+function goPlay()
+{
+	$("#popupzone").cycle('resume');
+}
+
+function goStop()
+{
+	$("#popupzone").cycle('pause');
+}
+function goToggle()
+{
+	$("#popupzone").cycle('toggle');
+	if($("#startStop").attr("class") == "slide_stop"){
+		$("#startStop").attr("class", "slide_start");
+	}else{
+		$("#startStop").attr("class", "slide_stop");
+	}
+}
+function goPrev()
+{
+	$("#popupzone").cycle('prev');
+}
+function goNext()
+{
+	$("#popupzone").cycle('next');
+}
+
+function getCookie(name){
+    var nameOfCookie = name + "=";
+    var x =0;
+    while (x<=document.cookie.length){
+        var y = (x+nameOfCookie.length);
+        if(document.cookie.substring(x,y) == nameOfCookie){
+            if((endOfCookie=document.cookie.indexOf(";",y))==-1)
+                endOfCookie = document.cookie.length;
+            return unescape(document.cookie.substring(y, endOfCookie));
+            }
+            x=document.cookie.indexOf(" ",x) +1;
+            if(x==0)
+            break;
+            }
+        return "";
+}
+
+//메인 스크롤버튼 클릭 시 두번째 메뉴로 이동
+function moveScroll() {
+	var offset = $('.section01').offset();
+	console.log(offset);
+    $('html, body').animate({scrollTop:offset.top - 190}, 500);
+}
+</script>
+</head>
+<body>
+<div id="wrapper">
+	<div class="search_bg"></div>
+	
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>대한민국 영문법령</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//모바일 전체메뉴 - 아코디언 메뉴 
+		var mlist = document.getElementsByClassName("mgnb_title");
+		var i;
+
+		for (i = 0; i < mlist.length; i++) {
+			mlist[i].addEventListener("click", function() {
+		    var submenu = this.nextElementSibling;
+		    this.classList.toggle("active")
+		    submenu.classList.toggle("show");
+		    if (submenu.style.maxHeight) {
+		    	submenu.style.maxHeight = null;
+		    } else {
+		    	submenu.style.maxHeight = submenu.scrollHeight + "px";
+		    } 
+		  });
+		}
+	});
+</script>
+</head>
+<body>
+	<div id="mgnb-slide" class="mobile">
+		<div class="binds">
+			<ul>
+				<li class="child">
+					<a href="javascript:;" class="mgnb_title">Law Search</a>
+					<ul class="msub_menu">
+						<li><a href="/eng_service/lawAllSearch.do?pCode=01&currentYN=Y">Search All</a></li>						
+						<li><a href="/eng_service/lawTotalSearchPart.do">By Legal Field</a></li>
+						<li><a href="/eng_service/lawTotalSearchSogan.do">By Ministry</a></li>
+						<li><a href="/eng_service/lawTotalSearchSubject.do">By Subject</a></li>
+						<li><a href="/eng_service/mostlyLawList.do">Most Viewed</a></li>
+						<li><a href="/eng_service/recentlyLawList.do">Recently Translated</a></li>
+					</ul>
+				</li>
+				<li class="child">
+					<a href="javascript:;" class="mgnb_title">Glossary</a>
+					<ul class="msub_menu">
+						<li><a href="/eng_service/newWordSearch.do">Legal Terms</a></li>
+					</ul>
+				</li>
+				<li class="child">
+					<a href="javascript:;" class="mgnb_title">About Translation Services</a>
+					<ul class="msub_menu">
+						<li><a href="/eng_service/introduction.do" >History</a></li>
+						<li><a href="/eng_service/promotion.do" >Promotional Material</a></li>
+						<li><a href="/eng_service/translationNetwork.do" >Translation Network</a></li>
+						<li><a href="/eng_service/publish.do" >Publication</a></li>
+					</ul>
+				</li>
+				<li class="child">
+					<a href="javascript:;" class="mgnb_title">Customer Service</a>
+					<ul class="msub_menu gnb05">
+						<li><a href="/eng_service/noticeList.do" >Notice</a></li>
+						<li><a href="/eng_service/serviceTabMenu.do" >Contact Us</a></li>
+						<li><a href="/eng_service/askCopyright.do" >Copyright Policy</a></li>
+						<li><a href="/eng_service/worldLawSite.do" >Legal Information Websites</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+	<!-- s : 공통 탑메뉴 영역 -->
+	<header class="main-header">
+		
+		
+		<!-- main_gnb영역 -->
+		<div class="mtop-wrap pc">
+			<nav class="mtop-menu">
+				<ul>
+					<li class="gosite_kor"><a href="/kor_service/main.do">Korean</a></li>
+					<!-- <li><a href="#none" class="btn-sitemap">SITEMAP</a></li> -->
+					<!-- <li><a href="https://openlaw.klri.re.kr/service/main/main.do">OPEN API System</a></li> -->
+				</ul>
+			</nav>			
+		</div>
+		<div class="mgnb-wrap">
+			<nav class="mgnb-menu after">
+				<input type="hidden" id="selectMenu" name="selectMenu" value="" />
+				
+				<h1>
+					<a href="https://www.klri.re.kr/" target="_blank" class="klri pc"><span class="blind">KOREA LEGISLATION RESEARCH INSTITUTE</span></a>
+					<a href="https://www.klri.re.kr/" target="_blank" class="klri_m mobile"><span class="blind">KOREA LEGISLATION RESEARCH INSTITUTE</span></a>
+					<a href="/eng_service/main.do" class="klt"><span class="blind">STATUTES OF THE REPUBLIC OF KOREA</span></a>
+				</h1>
+				 
+				<ul class="mgnb-box after">
+					<li class="depth01" id="select00">
+						<a href="/eng_service/lawAllSearch.do?pCode=01&currentYN=Y" class="gnb_title">Law Search</a>
+						<ul class="sub_menu">
+							<li><a href="/eng_service/lawAllSearch.do?pCode=01&currentYN=Y">Search All</a></li>							
+							<li><a href="/eng_service/lawTotalSearchPart.do">By Legal Field</a></li>
+							<li><a href="/eng_service/lawTotalSearchSogan.do">By Ministry</a></li>
+							<li><a href="/eng_service/lawTotalSearchSubject.do">By Subject</a></li>
+							<li><a href="/eng_service/mostlyLawList.do">Most Viewed</a></li>
+							<li><a href="/eng_service/recentlyLawList.do">Recently Translated</a></li>
+							<!-- <li><a href="/eng_service/interestLawList.do">Law in News</a></li> -->
+						</ul>
+					</li>
+					<li class="depth01" id="select01">
+						<a href="/eng_service/newWordSearch.do" class="gnb_title">Glossary</a>
+						<ul class="sub_menu">
+							<li><a href="/eng_service/newWordSearch.do">Legal Terms</a></li>
+						</ul>
+					</li>
+					<!-- <li class="depth01" id="select02">
+						<a href="/eng_service/struct.do" class="gnb_title">Korean Law</a>
+						<ul class="sub_menu">
+							<li><a href="/eng_service/struct.do">Legislation System</a></li>
+							<li><a href="/eng_service/step.do">Legislation Procedures</a></li>
+							<li><a href="/eng_service/lawStatistics.do">Statistics</a></li>
+						</ul>
+					</li> -->
+					<li class="depth01" id="select02">
+						<a href="/eng_service/introduction.do" class="gnb_title">About<br>Translation Services</a>
+						<ul class="sub_menu">
+							<li><a href="/eng_service/introduction.do" >History</a></li>
+							<li><a href="/eng_service/promotion.do" >Promotional Material</a></li>
+							<!-- <li><a href="/eng_service/translationProcess.do" >Translation Process</a></li> -->
+							<!-- <li><a href="/eng_service/translationAdvisory.do" >Advisory Committee</a></li> -->
+							<li><a href="/eng_service/translationNetwork.do" >Translation Network</a></li>
+							<li><a href="/eng_service/publish.do" >Publication</a></li>
+						</ul>
+					</li>
+					<li class="depth01" id="select03">
+						<a href="/eng_service/noticeList.do" class="gnb_title">Customer Service</a>
+						<ul class="sub_menu gnb05">
+							<li><a href="/eng_service/noticeList.do" >Notice</a></li>
+							<li><a href="/eng_service/serviceTabMenu.do" >Contact Us</a></li>
+							<li><a href="/eng_service/askCopyright.do" >Copyright Policy</a></li>
+							<!-- <li><a href="/eng_service/surveyList.do" >Customer Survey</a></li> -->
+							<li><a href="/eng_service/worldLawSite.do" >Legal Information<br>Websites</a></li>
+							<!-- <li><a href="/eng_service/servicePrivacy.do" >Privacy Policy</a></li> -->
+						</ul>
+					</li>
+				</ul>				
+				<span class="gnb_bar"></span>
+				<a href="/kor_service/main.do" class="m_gosite_kor">KOR</a>
+				<button type="button" class="toggle_search" onclick="javscript:toggleSearch();">Open Integrated Search</button>
+				<a class="toggle_menu" href="javascript:toggleMenu();">View the full menu</a>							
+			</nav>
+			<p class="sub_menuWrap"></p>
+			
+		</div>
+		<!-- main_gnb영역 -->
+		<!-- s : 통합검색 -->
+		<div class="searchLineWrap">
+			<div class="searchLine toggleSearchLine legalSearch">
+				
+
+
+
+<form id="searchForm2" action="/eng_service/lawTotalSearch.do" method="post" onsubmit="return false" autocomplete="off">
+	<input type="hidden" name="tempTxt" id="tempTxt" value=""/>
+	
+	<div class="searchBox">
+		<label>
+			<input type="text" id="searchValue" name="searchTxt" placeholder="Please enter your search term" class="searchInput searchForm2" onkeyup="searchLawnameValue(this, event, 'eng')" onkeydown="if(event.keyCode == 13) goEngSearch('searchForm2');"/>
+			<button type="submit" onclick="javascript:goEngSearch('searchForm2');"><span class="blind">Search</span></button>
+		</label>
+		<a href="#none" id="search_doption" class="btn_detail pc" title="Advanced Search button">Advanced<br>Search</a>			
+		<a href="javascript:mSearchClose();" class="btn_search_close mobile"><span class="blind">close</span></a>
+		<div class="popupArea popOpen" title="Advanced Search popUp">
+			<div class="popTitle">
+				<h3>Advanced Search</h3>
+				<a href="#" class="closeBtn" id="closeBtn" onclick="javascript:popOpenClose();">close</a>
+		<!-- 						<a href="javascript:divClose();" class="closeBtn"><img src="/images/kor_service/sub/close_btn_icon.png" alt="닫기버튼이미지"></a> -->
+			</div>
+		
+			<div class="popupInner">
+				
+			
+				<table class="PopTable">
+					<caption>Advanced Search table</caption>
+					<colgroup>
+						<col style="width:160px;">
+						<col width="*">
+					</colgroup>
+					<tbody>
+						<tr>
+							<th scope="row">Current Laws /<br/>Former Laws</th>
+							<td>
+								<ul class="decreeCheckList">
+									<li><span class="form"><input type="checkbox" id="searchType00" name="searchType" value="current" checked="checked"><label for="searchType00">Current Laws(3,059)</label></span></li>
+									<li><span class="form"><input type="checkbox" id="searchType01" name="searchType" value="history"><label for="searchType01">Former Laws(20,720)</label></span></li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Type of Laws</th>
+							<td>
+								<ul class="decreeCheckList">
+									<li><span class="form"><input type="checkbox" id="set_all01" name="set_all" value="1111" checked="checked"><label for="set_all01">All</label></span></li>
+									<li><span class="form"><input type="checkbox" id="set_law01" name="set_law" value="1000"><label for="set_law01">Statutes</label></span></li>
+									<li><span class="form"><input type="checkbox" id="set_enf01" name="set_enf" value="0100"><label for="set_enf01">Enforcement Decrees</label></span></li>
+									<li><span class="form"><input type="checkbox" id="set_rule01" name="set_rule" value="0010"><label for="set_rule01">Enforcement Rules</label></span></li>
+									<li><span class="form"><input type="checkbox" id="set_etc01" name="set_etc" value="0001"><label for="set_etc01">Others</label></span></li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Sort by</th>
+							<td>
+								<div class="decreeRadioBox">
+									<span class="form"><input type="radio" name="sorting" id="sorting101" value="1"><label for="sorting101">ABC</label></span>
+									<span class="form"><input type="radio" name="sorting" id="sorting201" value="2"><label for="sorting201">Promulgation Date</label></span>
+									<span class="form"><input type="radio" name="sorting" id="sorting301" value="3"><label for="sorting301">Enforcement Date</label></span>
+									<span class="form"><input type="radio" name="sorting" id="sorting401" value="4"><label for="sorting401">Relevance</label></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Promulgation No</th>
+							<td>
+								<div class="proclamationNo">
+									<input type="text" class="dateInput noBox" id="promStNo01" name="promStNo" maxlength="5">
+									<label for="promStNo01"></label>
+									<span>~</span>
+									<input type="text" class="dateInput noBox" id="promEdNo01" name="promEdNo" maxlength="5">
+									<label for="promEdNo01"></label>
+									<p class="exDesc">ex) 0 ~ 99999</p>
+								</div>
+		
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Promulgation Date</th>
+							<td>
+								<div class="proclamationDate">
+									<p>
+										<input type="text" class="dateInput all dateStart" id="promStDt01" name="promStDt" maxlength="8"><label for="promStDt01"></label>
+										<input type="text" class="datePicker dateStart hasDatepicker" id="promStDt201">
+										<label for="promStDt201"></label>
+									</p>
+									<span>~</span>
+									<p>
+										<input type="text" class="dateInput all dateEnd" id="promEdDt01" name="promEdDt" maxlength="8"><label for="promEdDt01"></label>
+										<input type="text" class="datePicker dateEnd hasDatepicker" id="promEdDt201">
+										<label for="promEdDt201"></label>
+									</p>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="searchNotice">
+			<p><span class="highlight2">'dragon'</span> No Search results</p>
+			<button type="button" class="btn_close">close</button>
+		</div>
+	</div>		
+</form>
+<!-- 검색어 자동완성 텍스트 창 -->
+<div style="position:absolute;z-index:8600;padding: 27px 0px 26px;background: #fff; border-radius: 0px 0px 8px 8px;display:none;" id="popup1">
+	<table id="name_table_law" style="background: #fff;">
+		<caption>Search word autocomplete text window</caption>
+    	<tbody id="name_table_body_law">
+    		<tr>
+                <th scope="row">&nbsp;</th>
+                <td>&nbsp;</td>
+            </tr>
+    	</tbody>
+	</table>
+</div>
+<!-- 검색어 자동완성 텍스트 창 -->
+			</div>
+		</div>
+		<!-- e : 통합검색 -->
+	</header>
+	<!-- e : 공통 탑메뉴 영역 -->
+
+	<!-- s : 메인컨텐츠 영역 -->
+	<div id="container" class="main_container">
+	
+		<div class="mv-wrap">
+			<div class="mv-inner">				
+				<!-- 검색영역 -->
+				<div class="mv-sbox">
+					<h2 class="blind">Statutes of the Republic of Korea Advanced Search</h2>
+					<!-- <div class="ani-title-box">
+						<p class="ani-txt"> 
+							<span class="char1">B</span>
+							<span class="char2">e</span>
+							<span class="char3">s</span>
+							<span class="char4" style="margin-right:15px;">t</span>
+							
+							<span class="char5">I</span>
+							<span class="char6" style="margin-right:15px;">n</span>
+							
+							<span class="char7">L</span>
+							<span class="char8">a</span>
+							<span class="char9" style="margin-right:15px;">w</span>
+							
+							<span class="char10 txt-light">a</span>
+							<span class="char11 txt-light">n</span>
+							<span class="char12 txt-light" style="margin-right:15px;">d</span>
+							
+							<span class="char13">D</span>
+							<span class="char14">e</span>
+							<span class="char15">v</span>
+							<span class="char16">e</span>							
+							<span class="char17">l</span>
+							<span class="char18">o</span>
+							<span class="char19">p</span>
+							<span class="char20">m</span>
+							<span class="char21">e</span>
+							<span class="char22">n</span>
+							<span class="char23">t</span>							
+						</p>
+						<p class="k-logo">
+							<img src="/images/eng_service/main_renewal/logo_mani.png" alt="k-law로고"/>
+						</p>
+					</div> -->
+					<div class="ms-detail after">
+						<form id="searchForm" action="/eng_service/lawTotalSearch.do" method="post" onsubmit="return false" autocomplete="off">
+							<input type="hidden" name="tempTxt" id="tempTxt" value=""/>
+							
+							<label>
+								<input type="text" id="searchTxt" name="searchTxt" class="ms-input searchForm" placeholder="Please enter your search term" onkeyup="searchLawname(this, event, 'eng');" onkeydown="if(event.keyCode == 13) goEngSearch('searchForm');"/>
+								<a href="javascript:goEngSearch('searchForm')" class="main-img btn-search00"><span class="blind">search button</span></a>
+							</label>
+							<!-- <a href="javascript:focusinout();" title="auto open/close" class="auto_open"><img src="/images/eng_service/sub/btn_down.png" alt="자동완성열기/닫기 버튼"></a> -->
+							<a href="#none" title="상세검색보기" id="search_doption" class="btn-search02">Advanced<br/>Search</a>
+							
+							<div class="pop-detail popOpen" title="detail popopen">				
+								<p class="ms-detail_tit">Advanced Search Setting</p>
+								<div class="pop-detail_tbl">
+									<table>
+										<caption>Advanced Search table</caption>
+										<colgroup>
+											<col style="width:160px;">
+												<col width="*">
+										</colgroup>
+										<tbody>
+											<tr>
+												<th scope="row">Current Laws /<br/>Former Laws</th>
+												<td>
+													<ul class="decreeCheckList">
+														<li><span class="form"><input type="checkbox" id="law00" name="searchType" value="current" checked="checked"><label for="law00">Current Laws(3,059)</label></span></li>
+														<li><span class="form"><input type="checkbox" id="law01" name="searchType" value="history"><label for="law01">Former Laws(20,720)</label></span></li>
+													</ul>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Type of Laws</th>
+												<td>
+													<ul>
+														<li><span class="form"><input type="checkbox" id="set_all" name="set_all" value="1111"><label for="set_all">Total</label></span></li>
+														<li><span class="form"><input type="checkbox" id="set_law" name="set_law" value="1000"><label for="set_law">Statutes</label></span></li>
+														<li><span class="form"><input type="checkbox" id="set_enf" name="set_enf" value="0100"><label for="set_enf">Enforcement Decrees</label></span></li>
+														<li><span class="form"><input type="checkbox" id="set_rule" name="set_rule" value="0010"><label for="set_rule">Enforcement Rules</label></span></li>
+														<li><span class="form"><input type="checkbox" id="set_etc" name="set_etc" value="0001"><label for="set_etc">Others</label></span></li>
+													</ul>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Sort by</th>
+												<td>
+													<div class="radio-box">
+														<span class="form"><input type="radio" name="sorting" id="sorting1" value="1"><label for="sorting1">ABC</label></span>
+														<span class="form"><input type="radio" name="sorting" id="sorting2" value="2"><label for="sorting2">Promulgation Date</label></span>
+														<span class="form"><input type="radio" name="sorting" id="sorting3" value="3"><label for="sorting3">Enforcement Date</label></span>
+														<span class="form"><input type="radio" name="sorting" id="sorting4" value="4"><label for="sorting4">relevance</label></span>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Promulgation No</th>
+												<td>
+													<div class="number-box">
+														<input type="text" class="mp-input" id="promStNo" name="promStNo" maxlength="5">
+														<label for="promStNo"></label>
+														<span>~</span>
+														<input type="text" class="mp-input" id="promEdNo" name="promEdNo" maxlength="5">
+														<label for="promEdNo"></label>
+														<p class="ex-desc">ex) 0 ~ 99999</p>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<th scope="row">Promulgation Date</th>
+												<td>
+													<div class="date-box">
+														<p>
+															<input type="text" class="md-input all dateStart" id="promStDt" name="promStDt" maxlength="8"><label for="promStDt"></label>
+															<input type="text" class="datePicker dateStart hasDatepicker" id="promStDt2">
+															<label for="promStDt2"></label>
+														</p>
+														<span>~</span>
+														<p>
+															<input type="text" class="md-input all dateEnd" id="promEdDt" name="promEdDt" maxlength="8"><label for="promEdDt"></label>
+															<input type="text" class="datePicker dateEnd hasDatepicker" id="promEdDt2">
+															<label for="promEdDt2"></label>
+														</p>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<button type="button" class="ms-detail_close">close</button>
+							</div>
+						</form>
+						<div class="searchNotice">
+							<p><span class="highlight2">'dragon'</span> No Search results</p>
+							<button type="button" class="btn_close">close</button>
+						</div>
+					</div>					
+								
+					<!-- 페이지 스크롤 버튼 -->
+					<!-- <p class="icon-scroll">
+						<button class="move-arrow" onclick="javascript:moveScroll();"><img src="/images/eng_service/main_renewal/icon_scroll.png" alt="scroll down image"/></button>
+						<span>SCROLL DOWN</span>
+					</p> -->
+				</div>
+			</div>						
+			<!-- 검색영역 e -->
+			<!-- 자주 찾는 법령, 최신 번역 법령 -->
+			<div class="latest-wrap">
+				<h3 class="blind">Most Viewed, Recently Translated</h3>
+				<ul class="latest-box after">
+					<li class="popular-con">
+						<h4>
+							<a href="/eng_service/mostlyLawList.do" title="자주찾는법령 더보기">Most Viewed</a>
+						</h4>
+						<ul class="after">
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=64717&lang=ENG', '_blank');void(0);" title="ACT ON PROMOTION OF INFORMATION AND COMMUNICATIONS NETWORK UTILIZATION AND INFORMATION PROTECTION" class="txt-ellipsis">ACT ON PROMOTION OF INFORMATION AND COMMUNICATIONS NETWORK UTILIZATION AND INFORMATION PROTECTION</a>														
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=1&lang=ENG', '_blank');void(0);" title="CONSTITUTION OF THE REPUBLIC OF KOREA" class="txt-ellipsis">CONSTITUTION OF THE REPUBLIC OF KOREA</a>														
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=53044&lang=ENG', '_blank');void(0);" title="PERSONAL INFORMATION PROTECTION ACT" class="txt-ellipsis">PERSONAL INFORMATION PROTECTION ACT</a>														
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=29453&lang=ENG', '_blank');void(0);" title="CIVIL ACT" class="txt-ellipsis">CIVIL ACT</a>														
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=62389&lang=ENG', '_blank');void(0);" title="PERSONAL INFORMATION PROTECTION ACT" class="txt-ellipsis">PERSONAL INFORMATION PROTECTION ACT</a>														
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=28627&lang=ENG', '_blank');void(0);" title="CRIMINAL ACT" class="txt-ellipsis">CRIMINAL ACT</a>														
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=43324&lang=ENG', '_blank');void(0);" title="FINANCIAL INVESTMENT SERVICES AND CAPITAL MARKETS ACT" class="txt-ellipsis">FINANCIAL INVESTMENT SERVICES AND CAPITAL MARKETS ACT</a>														
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=71019&lang=ENG', '_blank');void(0);" title="FRAMEWORK ACT ON THE DEVELOPMENT OF ARTIFICIAL INTELLIGENCE AND THE CREATION OF A FOUNDATION FOR TRUST" class="txt-ellipsis">FRAMEWORK ACT ON THE DEVELOPMENT OF ARTIFICIAL INTELLIGENCE AND THE CREATION OF A FOUNDATION FOR TRUST</a>														
+										</li>
+									
+								
+							
+						</ul>		
+					</li>
+					<li class="latest-law">
+						<h4>
+							<a href="/eng_service/recentlyLawList.do" title="최신번역법령 더보기">Recently Viewed</a>
+						</h4>
+						<ul class="after">
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=74602&lang=ENG', '_blank');void(0);" title="FRAMEWORK ACT ON RAILROAD INDUSTRY DEVELOPMENT" class="txt-ellipsis">FRAMEWORK ACT ON RAILROAD INDUSTRY DEVELOPMENT</a>											
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=73126&lang=ENG', '_blank');void(0);" title="ENFORCEMENT DECREE OF THE HOUSING AND URBAN FUND ACT" class="txt-ellipsis">ENFORCEMENT DECREE OF THE HOUSING AND URBAN FUND ACT</a>											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=74616&lang=ENG', '_blank');void(0);" title="ENFORCEMENT DECREE OF THE LANDSCAPING PROMOTION ACT" class="txt-ellipsis">ENFORCEMENT DECREE OF THE LANDSCAPING PROMOTION ACT</a>											
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=73964&lang=ENG', '_blank');void(0);" title="SEAFARERS ACT" class="txt-ellipsis">SEAFARERS ACT</a>											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=74751&lang=ENG', '_blank');void(0);" title="ENFORCEMENT DECREE OF THE ASSEMBLY AND DEMONSTRATION ACT" class="txt-ellipsis">ENFORCEMENT DECREE OF THE ASSEMBLY AND DEMONSTRATION ACT</a>											
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=73908&lang=ENG', '_blank');void(0);" title="ELECTRIC UTILITY ACT" class="txt-ellipsis">ELECTRIC UTILITY ACT</a>											
+										</li>
+									
+								
+							
+								
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=74815&lang=ENG', '_blank');void(0);" title="MEDICAL DEVICES ACT" class="txt-ellipsis">MEDICAL DEVICES ACT</a>											
+										</li>
+									
+									
+								
+							
+								
+									
+									
+										<li>
+											
+											<a href="javascript:window.open('/eng_service/lawView.do?hseq=70463&lang=ENG', '_blank');void(0);" title="ACT ON THE RESTRUCTURING OF AND SUPPORT FOR COASTAL AND INSHORE FISHERIES" class="txt-ellipsis">ACT ON THE RESTRUCTURING OF AND SUPPORT FOR COASTAL AND INSHORE FISHERIES</a>											
+										</li>
+									
+								
+							
+						</ul>		
+					</li>
+					
+				</ul>
+			</div>
+			<div class="law_category">
+			    <!-- 탭메뉴 제목 -->
+			    <div class="tab">
+			      <button class="tablinks" onclick="openTab(event, 'Tab1')">By Legal Field</button>
+			      <button class="tablinks" onclick="openTab(event, 'Tab2')">By Ministry</button>
+			      <button class="tablinks" onclick="openTab(event, 'Tab3')">By Subject</button>
+			    </div>
+			    <!-- 법령분야별 -->
+			    <div id="Tab1" class="tab_cont active">
+			      <div class="cont_container">
+			        <div class="cont_slider tab_pc">
+			          <div class="cont_slide cont_slide1">
+			          	<ul class="after">
+				            
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=01" class="field_icon00" title="Constitution/National Assembly/Election and Political Party">
+					                      <span class="icon"></span>
+					                      <span id="codeName01" class="icon_desc height" title="Constitution/National Assembly/Election and Political Party">
+					                      	
+					                    		Constitution
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=03" class="field_icon01" title="Administration/Public Official/Local Government">
+					                      <span class="icon"></span>
+					                      <span id="codeName03" class="icon_desc height" title="Administration/Public Official/Local Government">
+					                      	
+					                    		Administration
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=07" class="field_icon02" title="Court/Judicial Affairs">
+					                      <span class="icon"></span>
+					                      <span id="codeName07" class="icon_desc height" title="Court/Judicial Affairs">
+					                      	
+					                    		Court
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=04" class="field_icon03" title="Civil Affairs">
+					                      <span class="icon"></span>
+					                      <span id="codeName04" class="icon_desc height" title="Civil Affairs">
+					                      	
+					                    		Civil Affairs
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=09" class="field_icon04" title="Crimes and Criminal Procedure">
+					                      <span class="icon"></span>
+					                      <span id="codeName09" class="icon_desc height" title="Crimes and Criminal Procedure">
+					                      	
+					                    		Crimes and Criminal Procedure
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=15" class="field_icon05" title="Commercial Affairs/Civil Defence and Firefighting/Military Affairs/Conscription Affairs/Patriots and Veterans Affairs">
+					                      <span class="icon"></span>
+					                      <span id="codeName15" class="icon_desc height" title="Commercial Affairs/Civil Defence and Firefighting/Military Affairs/Conscription Affairs/Patriots and Veterans Affairs">
+					                      	
+					                    		Police&nbsp;&middot;Military
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=06" class="field_icon06" title="Education and Academy/Culture and Public Relations/Science and Technology">
+					                      <span class="icon"></span>
+					                      <span id="codeName06" class="icon_desc height" title="Education and Academy/Culture and Public Relations/Science and Technology">
+					                      	
+					                    		Education&nbsp;&middot;Culture&nbsp;&middot;Science
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=02" class="field_icon07" title="Finance and Economy/National Tax/Tarriff/Currency, State Bond and Banking">
+					                      <span class="icon"></span>
+					                      <span id="codeName02" class="icon_desc height" title="Finance and Economy/National Tax/Tarriff/Currency, State Bond and Banking">
+					                      	
+					                    		Finance and Economy
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+			              </ul>
+			          </div>
+			          <div class="cont_slide cont_slide2">
+						<ul class="after">
+				            
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=14" class="field_icon08" title="Agriculture/Livestock/Forest/Fishery/Tobacco and Ginseng">
+					                      <span class="icon"></span>
+					                      <span id="codeName14" class="icon_desc height" title="Agriculture/Livestock/Forest/Fishery/Tobacco and Ginseng">
+					                        	
+					                    		Agriculture&nbsp;&middot;<br>Fishery
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=05" class="field_icon09" title="Commerce, Trade and Industry/Industrial Standards and Measurements/Industrial Property Right/Energy Utilization and Mining/Electricity and Gas">
+					                      <span class="icon"></span>
+					                      <span id="codeName05" class="icon_desc height" title="Commerce, Trade and Industry/Industrial Standards and Measurements/Industrial Property Right/Energy Utilization and Mining/Electricity and Gas">
+					                        	
+					                    		Commerce, Trade and Industry
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=12" class="field_icon10" title="Territorial Development and Town/Housing, Agriculture and Road/Water Resources, Land and Construction">
+					                      <span class="icon"></span>
+					                      <span id="codeName12" class="icon_desc height" title="Territorial Development and Town/Housing, Agriculture and Road/Water Resources, Land and Construction">
+					                        	
+					                    		Housing, Building and Roads
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=11" class="field_icon11" title="Health and Medical Affairs/Pharmaceutical Affairs/Social Welfare">
+					                      <span class="icon"></span>
+					                      <span id="codeName11" class="icon_desc height" title="Health and Medical Affairs/Pharmaceutical Affairs/Social Welfare">
+					                        	
+					                    		Health and Welfare
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=10" class="field_icon12" title="Environment/Labor">
+					                      <span class="icon"></span>
+					                      <span id="codeName10" class="icon_desc height" title="Environment/Labor">
+					                        	
+					                    		Environment&nbsp;&middot;<br>Labor
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=16" class="field_icon13" title="Land Transportation, Aviation and Tourism/Marine Transportation">
+					                      <span class="icon"></span>
+					                      <span id="codeName16" class="icon_desc height" title="Land Transportation, Aviation and Tourism/Marine Transportation">
+					                        	
+					                    		Transportation and Tourism
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=08" class="field_icon14" title="Information and Telecommunication">
+					                      <span class="icon"></span>
+					                      <span id="codeName08" class="icon_desc height" title="Information and Telecommunication">
+					                        	
+					                    		Information and Communications
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				                  
+				                  
+				                  
+					                  <li>
+					                    
+					                    <a href="/eng_service/lawTotalSearchPart.do?pCode=13" class="field_icon15" title="Foreign Affairs">
+					                      <span class="icon"></span>
+					                      <span id="codeName13" class="icon_desc height" title="Foreign Affairs">
+					                        	
+					                    		Foreign Affairs
+					                      </span>
+					                    </a>
+					                  </li>
+				                  
+				                  
+				              
+				              
+				              
+				              
+			              </ul>
+			          </div>
+			        </div>
+			        <!-- 법령분야별 모바일 -->
+			        <ul class="cont_m after">
+			            
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=01" class="field_icon00" title="Constitution/National Assembly/Election and Political Party">
+				                      <span class="icon"></span>
+				                      <span id="codeName01" class="icon_desc height" title="Constitution/National Assembly/Election and Political Party">
+				                      	
+				                    		Constitution
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=03" class="field_icon01" title="Administration/Public Official/Local Government">
+				                      <span class="icon"></span>
+				                      <span id="codeName03" class="icon_desc height" title="Administration/Public Official/Local Government">
+				                      	
+				                    		Administration
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=07" class="field_icon02" title="Court/Judicial Affairs">
+				                      <span class="icon"></span>
+				                      <span id="codeName07" class="icon_desc height" title="Court/Judicial Affairs">
+				                      	
+				                    		Court
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=04" class="field_icon03" title="Civil Affairs">
+				                      <span class="icon"></span>
+				                      <span id="codeName04" class="icon_desc height" title="Civil Affairs">
+				                      	
+				                    		Civil Affairs
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=09" class="field_icon04" title="Crimes and Criminal Procedure">
+				                      <span class="icon"></span>
+				                      <span id="codeName09" class="icon_desc height" title="Crimes and Criminal Procedure">
+				                      	
+				                    		Crimes and Criminal Procedure
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=15" class="field_icon05" title="Commercial Affairs/Civil Defence and Firefighting/Military Affairs/Conscription Affairs/Patriots and Veterans Affairs">
+				                      <span class="icon"></span>
+				                      <span id="codeName15" class="icon_desc height" title="Commercial Affairs/Civil Defence and Firefighting/Military Affairs/Conscription Affairs/Patriots and Veterans Affairs">
+				                      	
+				                    		Police&nbsp;&middot;Military
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=06" class="field_icon06" title="Education and Academy/Culture and Public Relations/Science and Technology">
+				                      <span class="icon"></span>
+				                      <span id="codeName06" class="icon_desc height" title="Education and Academy/Culture and Public Relations/Science and Technology">
+				                      	
+				                    		Education&nbsp;&middot;Culture&nbsp;&middot;Science
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+				                  <li>
+				                    
+				                    <a href="/eng_service/lawTotalSearchPart.do?pCode=02" class="field_icon07" title="Finance and Economy/National Tax/Tarriff/Currency, State Bond and Banking">
+				                      <span class="icon"></span>
+				                      <span id="codeName02" class="icon_desc height" title="Finance and Economy/National Tax/Tarriff/Currency, State Bond and Banking">
+				                      	
+				                    		Finance and Economy
+				                      </span>
+				                    </a>
+				                  </li>
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			                  
+			                  
+			                  
+			                  
+			              
+			              
+			              
+			              
+			              <li>
+		                  	<a href="/eng_service/lawTotalSearchPart.do" class="btn_full_m">
+		                  		<span class="icon"></span>
+		                  		<span class="icon_desc">
+				                  	See All
+		                  		</span>
+		                  	</a>
+	              		  </li>
+		              </ul>
+			      </div>
+			      <div class="btn-control">
+			      	<a href="/eng_service/lawTotalSearchPart.do" class="btn_full">See All</a>
+			        <button class="btn-play">pause</button>
+			        <button class="btn-prev">prev</button>
+			        <button class="btn-next">next</button>
+			      </div>
+			    </div>
+			    <!-- 소관부처별 -->
+			    <div id="Tab2" class="tab_cont">
+			      <div class="cont_container">
+			        <div class="cont_slider tab_pc">
+			          <div class="cont_slide cont_slide1">
+			            <ul class="departmentDecree">
+			              <li>
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                    <span>Ministry</span>
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                <ul class="after">
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=6" id="soganTab_6">Ministry of Employment and Labor</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=54" id="soganTab_54">Ministry of Science and ICT</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=2" id="soganTab_2">Ministry of Education</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=3" id="soganTab_3">Ministry of National Defense</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=4" id="soganTab_4">Ministry of Land, Infrastructure and Transport</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=5" id="soganTab_5">Ministry of Finance and Economy</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=7" id="soganTab_7">Ministry of Agriculture, Food and Rural Affairs</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=8" id="soganTab_8">Ministry of Culture, Sports and Tourism</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=9" id="soganTab_9">Ministry of Justice</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=10" id="soganTab_10">Ministry of Health and Welfare</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=13" id="soganTab_13">Ministry of Trade, Industry and Resources
+</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=11" id="soganTab_11">Ministry of Gender Equality and Family</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=12" id="soganTab_12">Ministry of Foreign Affairs</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=33" id="soganTab_33">Ministry of SMEs and Startups</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=14" id="soganTab_14">Ministry of Unification</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=55" id="soganTab_55">Ministry of Oceans and Fisheries</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=15" id="soganTab_15">Ministry of the Interior and Safety</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=16" id="soganTab_16">Ministry of Climate, Energy and Environment</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=18" id="soganTab_18">Ministry of Government Legislation </a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=17" id="soganTab_17">Ministry of Patriots and Veterans Affairs</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=64" id="soganTab_64">Presidential Security Service</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=31" id="soganTab_31">Ministry of Food and Drug Safety</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=62" id="soganTab_62">Ministry of Personnel Management</a></li>
+			                    					
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=73" id="soganTab_73">Ministry of Planning and Budget</a></li>
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                    					
+			                  
+			                </ul>
+			              </li>
+			              <li class="cont2">
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                    <span>Agency / Administration</span>
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                <ul class="after">
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=20" id="soganTab_20">Prosecutors’ Office</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=21" id="soganTab_21">National Police Agency</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=22" id="soganTab_22">Korea Customs Service</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=23" id="soganTab_23">National Tax Service</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=24" id="soganTab_24">Korea Meteorological Administration</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=25" id="soganTab_25">Rural Development Administration</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=26" id="soganTab_26">Korea Heritage Service</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=27" id="soganTab_27">Defense Acquisition Program Administration</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=28" id="soganTab_28">Military Manpower Administration</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=29" id="soganTab_29">Korea Forest Service</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=66" id="soganTab_66">Saemangeum Development and Investment Agency</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=30" id="soganTab_30">National Fire Agency</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=32" id="soganTab_32">Public Procurement Service</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=34" id="soganTab_34">Ministry of Data and Statistics</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=35" id="soganTab_35">Ministry of Intellectual Property</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=36" id="soganTab_36">Korea Coast Guard</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=67" id="soganTab_67">National Agency for Administrative City Construction</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=69" id="soganTab_69">Korea AeroSpace Administration</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=70" id="soganTab_70">Korea Disease Control and Prevention Agency</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=72" id="soganTab_72">Overseas Koreans Agency</a></li>
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                </ul>
+			              </li>
+			            </ul>
+			          </div>
+			          <div class="cont_slide cont_slide2">
+			            <ul class="departmentDecree">
+			              <li>
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                    <span>Commission</span>
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                <ul class="s_line">
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=38" id="soganTab_38">Korea Fair Trade Commission</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=42" id="soganTab_42">Anti-Corruption & Civil Rights Commission</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=40" id="soganTab_40">Financial Services Commission</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=41" id="soganTab_41">Korea Communications Commission</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=39" id="soganTab_39">National Human Rights Commission of Korea</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=61" id="soganTab_61">Nuclear Safety and Security Commission</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=74" id="soganTab_74">Presidential Committee for Inspection of Collaborations for Japanese Imperialism</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=71" id="soganTab_71">Personal Information Protection Commission</a></li>
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                </ul>
+			              </li>
+			              <li>
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                    <span>Constitutional Institution</span>
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                <ul class="s_line">
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=59" id="soganTab_59">National Assembly</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=45" id="soganTab_45">Supreme Court of Korea</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=46" id="soganTab_46">Constitutional Court of Korea</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=47" id="soganTab_47">National Election Commission</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=48" id="soganTab_48">Board of Audit and Inspection of Korea</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=52" id="soganTab_52">National Unification Advisory Council</a></li>
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                </ul>
+			              </li>
+			              <li>
+			              	
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                    <span>etc.</span>
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                  
+			                
+			                <ul>
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=60" id="soganTab_60">Office for Government Policy Coordination</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=49" id="soganTab_49">National Intelligence Service Korea</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=56" id="soganTab_56">Office of National Security</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=68" id="soganTab_68">Local Government</a></li>
+			                    
+			                  
+			                    
+			                      
+			                      <li><a href="/eng_service/lawTotalSearchSogan.do?pCode=53" id="soganTab_53">etc</a></li>
+			                    
+			                  
+			                </ul>
+			              </li>
+			            </ul>
+			          </div>
+			        </div>
+			        <!-- 소관부처 - 모바일 -->
+			        <ul class="departmentDecree cont_m cont_m1 after">
+		              <li>
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                    <span>Ministry</span>
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                  
+		                
+		                <ul class="after">
+                		
+                  		 
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=6" id="soganTab_6">Ministry of Employment and Labor</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=54" id="soganTab_54">Ministry of Science and ICT</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=2" id="soganTab_2">Ministry of Education</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=3" id="soganTab_3">Ministry of National Defense</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=4" id="soganTab_4">Ministry of Land, Infrastructure and Transport</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=5" id="soganTab_5">Ministry of Finance and Economy</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=7" id="soganTab_7">Ministry of Agriculture, Food and Rural Affairs</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=8" id="soganTab_8">Ministry of Culture, Sports and Tourism</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=9" id="soganTab_9">Ministry of Justice</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=10" id="soganTab_10">Ministry of Health and Welfare</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+			                      
+		                      		<li><a href="/eng_service/lawTotalSearchSogan.do?pCode=13" id="soganTab_13">Ministry of Trade, Industry and Resources
+</a></li>
+		                    	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    
+			                    
+		                      	
+		                      	
+		                    	
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                    				
+		                  
+		                </ul>
+		                <a href="/eng_service/lawTotalSearchSogan.do" class="btn_full_m">See All<img src="../../images/kor_service/sub/plus_icon2.png" alt="See All"/></a>
+		              </li>
+		            </ul>
+			      </div>
+			      <div class="btn-control">
+			      	<a href="/eng_service/lawTotalSearchSogan.do" class="btn_full">See All</a>
+			        <button class="btn-play">pause</button>
+			        <button class="btn-prev">prev</button>
+			        <button class="btn-next">next</button>
+			      </div>
+			    </div>
+			    <!-- 생활주제별 -->
+			    <div id="Tab3" class="tab_cont">
+			      <div class="cont_container">
+			        <div class="cont_slider tab_pc">
+			          <div class="cont_slide cont_slide1">
+			            <ul>
+			              
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=01" class="subject_icon1" title="가정법률">
+				                              <span class="icon"></span>
+				                              <span id="codeName01" class="icon_desc" title="Family Law">Family Law</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=02" class="subject_icon13" title="아동·청소년/교육">
+				                              <span class="icon"></span>
+				                              <span id="codeName02" class="icon_desc" title="Child and Youth/Education">Child and Youth&nbsp;&middot;<br>Education</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=03" class="subject_icon32" title="부동산/임대차">
+				                              <span class="icon"></span>
+				                              <span id="codeName03" class="icon_desc" title="Real Estate / Lease">Real Estate</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=04" class="subject_icon51" title="금융/금전">
+				                              <span class="icon"></span>
+				                              <span id="codeName04" class="icon_desc" title="Finance / Money">Finance</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=05" class="subject_icon62" title="사업">
+				                              <span class="icon"></span>
+				                              <span id="codeName05" class="icon_desc" title="Business">Business</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=06" class="subject_icon83" title="창업">
+				                              <span class="icon"></span>
+				                              <span id="codeName06" class="icon_desc" title="Launching Business">Launching Business</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=07" class="subject_icon103" title="무역/출입국">
+				                              <span class="icon"></span>
+				                              <span id="codeName07" class="icon_desc" title="Trade/Immigration">Trade&nbsp;&middot;<br>Immigration</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=08" class="subject_icon117" title="소비자">
+				                              <span class="icon"></span>
+				                              <span id="codeName08" class="icon_desc" title="Consumer">Consumer</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            
+				                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=09" class="subject_icon132" title="문화/여가생활">
+				                              <span class="icon"></span>
+				                              <span id="codeName09" class="icon_desc" title="Culture / Leisure">Culture</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			            </ul>
+			          </div>
+			          <div class="cont_slide cont_slide2">
+						<ul>
+			              
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('10');" class="subject_icon09" title="민·형사소송">
+				                              <span class="icon"></span>
+				                              <span id="codeName10" class="icon_desc" title="Civil or Criminal Litigation">Civil or Criminal Litigation</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('11');" class="subject_icon10" title="교통/운전">
+				                              <span class="icon"></span>
+				                              <span id="codeName11" class="icon_desc" title="Traffic / Driving">Traffic</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('12');" class="subject_icon11" title="근로/노동">
+				                              <span class="icon"></span>
+				                              <span id="codeName12" class="icon_desc" title="Employment / Labor">Employment&nbsp;&middot;<br>Labor</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('13');" class="subject_icon12" title="복지">
+				                              <span class="icon"></span>
+				                              <span id="codeName13" class="icon_desc" title="Welfare">Welfare</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('14');" class="subject_icon13" title="국방/보훈">
+				                              <span class="icon"></span>
+				                              <span id="codeName14" class="icon_desc" title="National Defense / Merit Rewards">National Defense</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('15');" class="subject_icon14" title="정보통신/기술">
+				                              <span class="icon"></span>
+				                              <span id="codeName15" class="icon_desc" title="Information and Communications / Technology">Technology</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('16');" class="subject_icon15" title="환경/에너지">
+				                              <span class="icon"></span>
+				                              <span id="codeName16" class="icon_desc" title="Environment / Energy">Environment&nbsp;&middot;<br>Energy</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('17');" class="subject_icon16" title="사회안전/범죄">
+				                              <span class="icon"></span>
+				                              <span id="codeName17" class="icon_desc" title="Social Safety / Crime">Crime&nbsp;&middot;<br>Social Safety</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			              
+			                          
+			                          
+			                          
+				                          <li>
+				                            
+				                            <a href="javascript:subjectList('18');" class="subject_icon17" title="국가 및 지자체">
+				                              <span class="icon"></span>
+				                              <span id="codeName18" class="icon_desc" title="State and Local Government">State and Local Govemment</span>
+				                            </a>
+				                          </li>
+			                          
+			                          
+			                      
+			              
+			            </ul>
+			          </div>
+			        </div>
+			        <!-- 생활주제별 모바일 -->
+			        <ul class="departmentDecree cont_m after">
+		              
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=01" class="subject_icon1" title="가정법률">
+		                              <span class="icon"></span>
+		                              <span id="codeName01" class="icon_desc" title="Family Law">Family Law</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=02" class="subject_icon13" title="아동·청소년/교육">
+		                              <span class="icon"></span>
+		                              <span id="codeName02" class="icon_desc" title="Child and Youth/Education">Child and Youth&nbsp;&middot;<br>Education</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=03" class="subject_icon32" title="부동산/임대차">
+		                              <span class="icon"></span>
+		                              <span id="codeName03" class="icon_desc" title="Real Estate / Lease">Real Estate</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=04" class="subject_icon51" title="금융/금전">
+		                              <span class="icon"></span>
+		                              <span id="codeName04" class="icon_desc" title="Finance / Money">Finance</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=05" class="subject_icon62" title="사업">
+		                              <span class="icon"></span>
+		                              <span id="codeName05" class="icon_desc" title="Business">Business</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=06" class="subject_icon83" title="창업">
+		                              <span class="icon"></span>
+		                              <span id="codeName06" class="icon_desc" title="Launching Business">Launching Business</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=07" class="subject_icon103" title="무역/출입국">
+		                              <span class="icon"></span>
+		                              <span id="codeName07" class="icon_desc" title="Trade/Immigration">Trade&nbsp;&middot;<br>Immigration</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=08" class="subject_icon117" title="소비자">
+		                              <span class="icon"></span>
+		                              <span id="codeName08" class="icon_desc" title="Consumer">Consumer</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+		                          <li>
+		                            
+		                            
+		                            <a href="/eng_service/lawTotalSearchSubject.do?pCode=09" class="subject_icon132" title="문화/여가생활">
+		                              <span class="icon"></span>
+		                              <span id="codeName09" class="icon_desc" title="Culture / Leisure">Culture</span>
+		                            </a>
+		                          </li>
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+	              		
+	                          
+	                          
+	                          
+	                          
+	                      
+		              
+		              <li>
+	                  	<a href="/eng_service/lawTotalSearchSubject.do" class="btn_full_m">
+	                  		<span class="icon"></span>
+	                  		<span class="icon_desc">
+			                  	See All
+	                  		</span>
+	                  	</a>
+              		  </li>
+		            </ul>
+			      </div>
+			      <div class="btn-control">
+			      	<a href="/eng_service/lawTotalSearchSubject.do" class="btn_full">See All</a>
+			        <button class="btn-play">pause</button>
+			        <button class="btn-prev">prev</button>
+			        <button class="btn-next">next</button>
+			      </div>
+			    </div>
+		  	</div>
+		</div>
+		<div class="cotents-wrap">
+			<div class="section01">
+				<h3 class="blind">Notice,Contact Us</h3>
+				<div class="notice">
+					<h3><a href="/eng_service/noticeList.do">Notice</a></h3>
+					<ul class="notice_list">
+						
+							<li>
+								<span class="col_bu">[NOTICE]</span>
+								<a href="/eng_service/noticeView.do?seq=1477&page=1">2022 NAL-KLRI Joint Academic Seminar </a>
+								<span class="date">
+								2022-07-11
+								</span>
+							</li>
+						
+							<li>
+								<span class="col_bu">[NOTICE]</span>
+								<a href="/eng_service/noticeView.do?seq=1464&page=1">AGAIN 2021 Seoul International Forum on Translation and Interpreting</a>
+								<span class="date">
+								2021-07-27
+								</span>
+							</li>
+						
+							<li>
+								<span class="col_bu">[NOTICE]</span>
+								<a href="/eng_service/noticeView.do?seq=1462&page=1">2021 Seoul International Forum on Translation and Interpreting</a>
+								<span class="date">
+								2021-06-28
+								</span>
+							</li>
+						
+							<li>
+								<span class="col_bu">[NOTICE]</span>
+								<a href="/eng_service/noticeView.do?seq=1460&page=1">[call for papers] 2021 Seoul International Forum on Translation and Interpreting</a>
+								<span class="date">
+								2021-03-16
+								</span>
+							</li>
+						
+					</ul>
+				</div>
+				<div class="ask_wrap">
+					<h3>Contact Us</h3>
+					<p>If you have any <span>questions or comments</span> about <span>our servies</span>, let us know. We will get back to you as soon as possible.</p>
+					<a href="/eng_service/serviceTabMenu.do">
+						Go to
+					</a>
+				</div>
+			</div>
+			
+			<div class="section02">
+				<div class="englaw_total">
+					<div class="title-box">
+						<h3>Translation Statistics</h3>
+					</div>
+					<ul class="ms-total">
+						
+							
+								
+									<li class="mline">
+										<span class="name">Current Laws</span>
+										<span>3,059</span>			
+									</li>
+								
+								
+							  
+						
+							
+								
+								
+									<li>
+										<span class="name">Former Laws</span>
+										<span>20,720</span>
+									</li>
+								
+							  
+						
+					</ul>
+					<div class="sec-inner sec04">
+						<ul>
+							<li>
+								<div class="circle-box">
+									
+										
+											
+												<div>
+													<span>Current</span>
+													<span>2</span>
+												</div>
+											
+											
+										
+									
+										
+											
+											
+												<div>
+													<span>Former</span>
+													<span>0</span>
+												</div>	
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+																														
+								</div>
+								<span>Constitution</span>
+							</li>
+							<li>
+								<div class="circle-box color00">
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+												<div>
+													<span>Current</span>
+													<span>1,592</span>
+												</div>
+											
+											
+										
+									
+										
+											
+											
+												<div>
+													<span>Former</span>
+													<span>12,116</span>
+												</div>	
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+												
+								</div>
+								<span>Statutes</span>
+							</li>
+							<li>
+								<div class="circle-box color01">
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+												<div>
+													<span>Current</span>
+													<span>1,379</span>
+												</div>
+											
+											
+										
+									
+										
+											
+											
+												<div>
+													<span>Former</span>
+													<span>8,531</span>
+												</div>	
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+											
+								</div>
+								<span>Enforcement Decrees</span>
+							</li>
+							<li>
+								<div class="circle-box color02">
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+												<div>
+													<span>Current</span>
+													<span>3</span>
+												</div>
+											
+											
+										
+									
+										
+											
+											
+												<div>
+													<span>Former</span>
+													<span>9</span>
+												</div>	
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+											
+								</div>
+								<span>Enforcement Rules</span>
+							</li>
+							<li class="mr0">
+								<div class="circle-box color03">
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+											
+										
+									
+										
+											
+												<div>
+													<span>Current</span>
+													<span>83</span>
+												</div>
+											
+											
+										
+									
+										
+											
+											
+												<div>
+													<span>Former</span>
+													<span>64</span>
+												</div>	
+											
+										
+												
+								</div>
+								<span>Others</span>
+							</li>
+						</ul>				
+						<!-- <p class="btn-sec04 main-img01"><a href="https://openlaw.klri.re.kr" title="Go OPEN API System" target="_blank">OPEN API System</a></p> -->
+						<!-- <p class="sub-txt s-txt">
+							The online services for English translations of Korean Laws are used by more than 200,000 users per year.
+						</p> -->
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<!-- e : 메인컨텐츠 영역 -->
+	
+	<!-- 검색어 자동완성 텍스트 창 -->
+	<div style="position:absolute;z-index:8600;padding: 27px 0 26px 0;background: #fff;border-radius:0 0 8px 8px;display:none;" id="popup">
+		<table id="name_table" style="background-color:#fff;">
+	    	<caption>Autocomplete table</caption>
+	    	<tbody id="name_table_body">
+	    		<tr>
+                    <th scope="row">&nbsp;</th>
+                    <td>&nbsp;</td>
+                </tr>
+	    	</tbody>
+		</table>
+	</div>
+
+	<!-- s : 푸터 영역 -->
+	<footer>
+		
+<script type="text/javascript">
+	function goSelectSite() {
+		var value = document.all.select_site.value;
+		var url = "http://www.klri.re.kr/jsp/popup/janlaw.jsp";
+
+		if(value == url )
+			window.open(url,'pop_japanSearch','width=500,height=300');
+		else if(value != "none")
+			window.open(value, '_blank');
+	}
+</script>
+<div class="footerInner">
+	<div class="linkLine">
+		<a href="https://www.klri.re.kr/" title="Korea Legislation Research Institute" class="pc"><img src="/images/eng_service/main_renewal2/logo_f_eng.png" alt="klri logo" class="logo" /></a>
+		<ul>
+			<li><a href="/eng_service/servicePrivacy.do" class="diviLine" target="_blank">PRIVACY POLICY </a></li>
+			<li><a href="/eng_service/askCopyright.do" class="copyright">COPYRIGHT POLICY</a></li>
+		</ul>
+
+		<!-- <div class="familySite">
+			<span>FAMILY SITE</span>
+			<select name="select_site" id="select_site" title="패밀리 사이트">
+				<option value="http://www.klri.re.kr">한국법제연구원</option>
+				사이트연결안됨
+				<option value="http://61.81.114.30/the_web/thesa_content.asp">시소러스검색</option>
+				<option value="http://www.e-alin.org/main.do">ALIN</option>
+				바로가기 클릭 하면 아래의 팝업창 나오고 확인 누르면 사이트로 이동 http://61.81.114.19:7001/unisoft/service/web_trans/auth=eJmAFkrMkx-413784394&key=webmaster&menu=1&uniopt=011210010&url=law.e-gov.go.jp/cgi-bin/idxsearch.cgi
+				
+				<option value="http://www.klri.re.kr/jsp/popup/janlaw.jsp">일본법령서비스</option>
+			</select>
+			<button type="button" onclick="javascript:goSelectSite();">바로가기</button>
+		</div> -->
+
+		<!-- <div class="toTop">
+			<button type="button"><img src="/images/eng_service/sub/footer_goTop_btn.png" alt="Go to Top"></button>
+		</div> -->
+	</div>
+		<address class="pc">
+			15, Gukchaegyeonguwon-ro, Sejong-si (30147) Korea<span>Tel. +82-44-861-0300</span><span>Fax. +82-44-868-9913</span><br/>
+			Copyright &copy; Korea Legislation Research Institute all rights reserved.
+		</address>
+		<address class="mobile">
+			15, Gukchaegyeonguwon-ro, Sejong-si (30147) Korea<br/>
+			Tel. +82-44-861-0300<span>Fax. +82-44-868-9913</span><br/>
+			Copyright &copy; Korea Legislation Research Institute all rights reserved.
+		</address>
+		<div class="toTop mobile">
+			<button type="button"><span>TOP</span><span class="blind">페이지 맨 위로 이동</span></button>
+		</div>
+</div>
+
+<!-- modalpopup sitemap -->
+<div id="sitemapModal" class="modal-back"> 
+	<div class="sitemap-pop">
+		<h4>SITEMAP <a href="#none" title="close button" class="btn-close"><img src="/images/eng_service/sub/close_btn_icon.png" alt="close button" /></a></h4>
+		<ul class="sitemap-gnb">
+			<li>
+				<a href="/eng_service/lawTotalSearchSubject.do?pCode=01" class="gnb-title">Law Search</a>
+				<ul class="sub-gnb">
+					<li><a href="/eng_service/lawAllSearch.do?pCode=01">Search All</a></li>					
+					<li><a href="/eng_service/lawTotalSearchPart.do">By Legal Field</a></li>
+					<li><a href="/eng_service/lawTotalSearchSogan.do">By Ministry</a></li>
+					<li><a href="/eng_service/lawTotalSearchSubject.do">By Subject</a></li>
+					<li><a href="/eng_service/recentlyLawList.do">Recently Translated</a></li>
+					<li><a href="/eng_service/mostlyLawList.do">Most Viewed</a></li>
+					<li><a href="/eng_service/interestLawList.do">Law in News</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="/eng_service/newWordSearch.do" class="gnb-title">Glossary</a>
+				<ul class="sub-gnb">
+					<li><a href="/eng_service/newWordSearch.do">Legal Terms</a></li>
+					<!-- <li><a href="/eng_service/lawNameList.do">Title of Statutes and Regulations</a></li>
+					<li><a href="/eng_service/lawsystem.do">Structure of A Statute</a></li>
+					<li><a href="/eng_service/local.do">Administrative District</a></li>
+					<li><a href="/eng_service/wordGuide.do">이용안내</a></li>
+					<li><a href="/eng_service/newUpdateWord.do">Updated Terminology</a></li> -->
+				</ul>
+			</li>
+			<li>
+				<a href="/eng_service/struct.do" class="gnb-title">Korean Law</a>
+				<ul class="sub-gnb">
+					<li><a href="/eng_service/struct.do">Legislation System</a></li>
+					<li><a href="/eng_service/step.do">Legislation Procedures</a></li>
+					<li><a href="/eng_service/lawStatistics.do">Statistics</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="/eng_service/introduction.do" class="gnb-title">About KLT</a>
+				<ul class="sub-gnb">
+					<li><a href="/eng_service/introduction.do" >Organization</a></li>
+					<li><a href="/eng_service/translationProcess.do" >Translation Process</a></li>
+					<li><a href="/eng_service/translationAdvisory.do" >Advisory Committee</a></li>
+					<li><a href="/eng_service/translationNetwork.do" >Translation Network</a></li>
+					<li><a href="/eng_service/publish.do" >Publications</a></li>
+				</ul>
+			</li>
+			<li class="mr0">
+				<a href="/eng_service/noticeList.do" class="gnb-title">Customer Service</a>
+				<ul class="sub-gnb">
+					<li><a href="/eng_service/noticeList.do" >Notice</a></li>
+					<li><a href="/eng_service/serviceTabMenu.do" >Contact Us</a></li>
+					<li><a href="/eng_service/askCopyright.do" >Copyright Policy</a></li>
+					<!-- <li><a href="/eng_service/surveyList.do" >Customer Survey</a></li> -->
+					<li><a href="/eng_service/worldLawSite.do" >Legal Information</a></li>
+					<li><a href="/eng_service/servicePrivacy.do" >Privacy Policy</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+<!-- modalpopup sitemap -->
+	</footer>
+	<!-- e : 푸터 영역 -->
+	<!-- 네비게이션메뉴 -->
+	<div class="quick-nav pc">
+		<ul class="after">
+			<li>
+				<a href="https://www.klri.re.kr/" target="_blank" title="Korea Legislation Research Institute">
+					<span><i class="iconset quick-img00"></i></span>
+					Korea Legislation<br>Research Institute
+				</a>
+			</li>
+			<li>
+				<a href="" target="_blank" title="Global Legal Information">
+					<span><i class="iconset quick-img01"></i></span>
+					Global Legislation<br>Data Platform
+				</a>
+			</li>
+			<li>
+				<a href="https://www.e-alin.org/" target="_blank" title="Asia Legal Information Network">
+					<span><i class="iconset quick-img02"></i></span>
+					Asia Legal<br>Information Network
+				</a>
+			</li>
+		</ul>
+	</div>
+	<!-- 네비게이션메뉴 -->	
+	<!-- s : 메인popup -->
+	<div class="popup-zone" id="popupZone00" ></div>
+<!-- 	<div class="popup-zone" id="popupZone01" ></div> -->
+<!-- 	<div class="popup-zone" id="popupZone02" ></div> -->
+<!-- 	<div class="popup-zone" id="popupZone03" ></div> -->
+<!-- 	<div class="popup-zone" id="popupZone04" ></div> -->
+<!-- 	<div class="popup-zone" id="popupZone05" ></div> -->
+<!-- 		<div class="textarea-box"> -->
+<!-- 			<p class="txt-title" id="titlePopup00"></p> -->
+<!-- 			<p class="txt-con" id="contentPopup00"></p>	 -->
+<!-- 		</div> -->
+<!-- 		<p class="button-box"> -->
+<!-- 			<label for="todayBlock">Please close this window today.</label><input type="checkbox" id="todayBlock"/> -->
+<!-- 			<a href="#none" title="close button" class="btn-popup" id="popup00">Close</a>	 -->
+<!-- 		</p> -->
+<!-- 	</div> -->
+	<!-- e : 메인popup -->
+	<div class="popup-zone white" id="greenPopupZone01"> </div>
+	<!-- s : 메인popup (스크립트로 이동)-->
+	
+	<!-- e : 메인popup -->
+</div>
+<script type="text/javascript" src="/jquery/slide.js"></script>
+</body>
+</html>

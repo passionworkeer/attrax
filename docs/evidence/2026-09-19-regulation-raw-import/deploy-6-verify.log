@@ -1,0 +1,46 @@
+*************************************************************************
+*  Attrax production server. Authorized access only.                    *
+*  All activity is logged and monitored.                                *
+*************************************************************************
+===/api/health===
+{"timestamp":"2026-09-19T08:08:03.216Z","frontend":"ok","scanService":{"status":"ok","responseTimeMs":20,"error":null},"demoMode":false}
+===/api/regulations/archive?market=us&limit=5===
+{
+    "success": true,
+    "data": [
+        {
+            "id": "US-21-CFR-174",
+            "region": "US",
+            "officialCitation": "21 CFR Parts 174-190",
+            "shortName": "FDA 21 CFR 174-190 (FCM)",
+            "sourceUrl": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-B/part-174",
+            "purchaseUrl": null,
+            "articleCount": 12,
+            "license": "public",
+            "domain": null
+        },
+        {
+            "id": "US-CPSIA",
+            "region": "US",
+            "officialCitation": "15 USC \u00a7\u00a7 2056b, 2063",
+            "shortName": "CPSIA (\u513f\u7ae5\u4ea7\u54c1\u5b89\u5168\u6cd5)",
+            "sourceUrl": "https://www.govinfo.gov/link/uscode/15/2063",
+            "purchaseUrl": null,
+            "articleCount": 7,
+            "license": "public",
+            "domain": null
+        },
+
+===/regulations SSR 含数字===
+--- 法规档案 ---
+grep: warning: ? at start of expression
+400">法规档案
+--- 抓取源 ---
+400">抓取源
+60">抓取源
+grep: warning: ? at start of expression
+--- 近期动态 ---
+60">近期动态
+--- 副标题 ---
+当前 — 篇法规档案（覆盖 — 个区域）+ — 个抓取源 + — 条近期动态。
+grep: warning: ? at start of expression

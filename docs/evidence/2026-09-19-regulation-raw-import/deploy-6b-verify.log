@@ -1,0 +1,13 @@
+*************************************************************************
+*  Attrax production server. Authorized access only.                    *
+*  All activity is logged and monitored.                                *
+*************************************************************************
+===/api/health===
+{"timestamp":"2026-09-19T08:08:10.454Z","frontend":"ok","scanService":{"status":"ok","responseTimeMs":20,"error":null},"demoMode":false}
+===/api/regulations/archive?limit=3===
+success: True
+total: 1052
+markets: 25
+first: [('EU-2014-53', None), ('US-21-CFR-174', None), ('EU-10-2011', None)]
+===/api/regulations/archive?market=us&limit=200 计数===
+us matching: 400 total: 1052

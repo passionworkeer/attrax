@@ -218,4 +218,4 @@ URL 形如 `govinfo-cfr:title:part:format`（如 `govinfo-cfr:47:2:xml`），**�
 - 文件校验：每条 entry 的 `docs[]` 路径分别校验
   - src = `<entry._source_root>/<doc_path>`（regulation-raw → `/Users/wangjianjun/me/regulation-raw`，attrax-docs-extra → `/Users/wangjianjun/me/attrax-docs`）
   - proj = `/Users/wangjianjun/me/attrax/data/regulations/{region.lower()}/raw/<basename(doc_path)>`
-- 中间产物：`docs/evidence/2026-09-19-regulation-raw-import/_subagent-tmp/{verify.py, detailed.json, sample.json, run.log}`
+- 中间产物（verify.py / detailed.json / sample.json / run.log，2026-09-19 整理时已清理——关键结论已在本报告，逐条明细可按 verify.py 重跑复现）
