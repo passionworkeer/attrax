@@ -50,15 +50,29 @@ _NORMALIZE_SCAN_LIMIT = 64 * 1024
 
 
 _WHITESPACE_RE = re.compile(r"\s+")
-# Punctuation that is commonly remapped (fullwidth ↔ halfwidth, etc.)
-_FULLWIDTH_PUNCT = "，。；：！？（）【】《》、"
-_HALFWIDTH_PUNCT = ",.;:!?()[]<>,"
-_PUNCT_TABLE = str.maketrans(
-    {
-        f: h
-        for f, h in zip(_FULLWIDTH_PUNCT, _HALFWIDTH_PUNCT)
-    }
-)
+# Punctuation remapped before the fallback search: fullwidth ↔ halfwidth,
+# dash variants, and curly ↔ straight quotes. NFKC already folds most
+# fullwidth forms; these entries cover what it leaves alone — em/en dash
+# (U+2014/U+2013) and hyphen (U+2010) are NOT NFKC-folded to ASCII "-",
+# and the curly quote pairs fold only inconsistently. An LLM that writes
+# "-" where the statute prints "—" would otherwise miss a verbatim hit
+# and land in fallback_article_only.
+_PUNCT_TABLE = str.maketrans({
+    "，": ",", "。": ".", "；": ";", "：": ":", "！": "!", "？": "?",
+    "（": "(", "）": ")", "【": "[", "】": "]", "《": "<", "》": ">",
+    "、": ",",
+    "—": "-", "–": "-", "‐": "-",
+    "“": '"', "”": '"', "‘": "'", "’": "'",
+})
+
+# Ellipsis shapes seen at excerpt boundaries in LLM output: "…", "...",
+# "..", "....", and whitespace-separated ". . .". `_ELLIPSIS_RE` detects
+# any of them anywhere in a string (used to block recursion across an
+# internal ellipsis); the LEAD/TAIL pair strips a run anchored at one end.
+_ELLIPSIS_ATOM = r"(?:\.(?:\s*\.)+|…)"
+_ELLIPSIS_RE = re.compile(_ELLIPSIS_ATOM)
+_ELLIPSIS_LEAD_RE = re.compile(rf"^(?:\s*{_ELLIPSIS_ATOM})+")
+_ELLIPSIS_TAIL_RE = re.compile(rf"(?:{_ELLIPSIS_ATOM}\s*)+$")
 
 
 def _normalize(text: str) -> str:
@@ -68,11 +82,12 @@ def _normalize(text: str) -> str:
       1. Unicode NFKC normalization (compatibility decomposition).
       2. Collapse all whitespace runs to a single space.
       3. Fold full-width Chinese punctuation to half-width equivalents
-         (so ",", ";", ":", "!" etc. match their ASCII forms).
+         (so ",", ";", ":", "!" etc. match their ASCII forms), including
+         dash variants and curly quotes that NFKC leaves alone.
 
-    The fold is asymmetric on purpose — quotes and quotes that change
-    *meaning* are left alone. Only the punctuation that has a stable
-    half-width counterpart is mapped.
+    The fold is asymmetric on purpose — punctuation whose half-width
+    counterpart would change *meaning* is left alone. Only the marks that
+    have a stable half-width equivalent are mapped.
     """
     if not text:
         return ""
@@ -194,8 +209,17 @@ def match_quote(
     # An ellipsis at an excerpt boundary denotes omitted surrounding text,
     # not a change to the excerpt. Never join fragments across an internal
     # ellipsis: that could hide a qualification or exception in the law.
-    excerpt = re.sub(r"^(?:\.{3}|…)+|(?:\.{3}|…)+$", "", quote.strip()).strip()
-    if excerpt != quote.strip() and len(excerpt) >= 20 and "..." not in excerpt and "…" not in excerpt:
+    # LLM output varies the boundary shape ("...", "…", "..", ". . ."),
+    # so strip any 2+ dot run (inter-dot spaces allowed) or a "…"; the
+    # recursion is refused when any ellipsis survives inside the excerpt.
+    stripped = quote.strip()
+    excerpt = _ELLIPSIS_LEAD_RE.sub("", stripped)
+    excerpt = _ELLIPSIS_TAIL_RE.sub("", excerpt).strip()
+    if (
+        excerpt != stripped
+        and len(excerpt) >= 20
+        and not _ELLIPSIS_RE.search(excerpt)
+    ):
         return match_quote(article_text, excerpt)
 
     # Phase 2: whitespace + full-width normalized search

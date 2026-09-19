@@ -147,6 +147,50 @@ class TestMatchQuote:
         assert status == "matched"
         assert span is not None
 
+    def test_dash_variants_fold_to_ascii_hyphen(self):
+        # EU regulations print em/en dashes and the U+2010 hyphen; NFKC
+        # leaves all three alone, so an LLM quoting with ASCII "-" only
+        # matches after the punct fold.
+        article = (
+            "The manufacturer — or the authorised representative — shall keep "
+            "the technical documentation available."
+        )
+        quote = "The manufacturer - or the authorised representative - shall keep"
+        span, status = match_quote(article, quote)
+        assert status == "matched"
+        assert span is not None
+
+    def test_curly_quotes_fold_to_straight(self):
+        article = 'The term "manufacturer" covers the importer as well.'
+        quote = "The term “manufacturer” covers the importer as well."
+        span, status = match_quote(article, quote)
+        assert status == "matched"
+        assert span is not None
+
+    def test_boundary_ellipsis_variants_are_stripped(self):
+        # LLM excerpts mark omitted surrounding text with assorted shapes;
+        # every common one must be stripped before the recursion, not just
+        # "..." and "…".
+        article = (
+            "Member States shall ensure that the Commission is informed "
+            "without delay of any measure adopted."
+        )
+        for marker in ("... ", "…", ".. ", ".... ", ". . . "):
+            quote = f"{marker}the Commission is informed without delay"
+            span, status = match_quote(article, quote)
+            assert status == "matched", marker
+            assert span is not None, marker
+
+    def test_internal_spaced_ellipsis_blocks_recursion(self):
+        # A spaced internal ellipsis survives the boundary strip and must
+        # then block the recursion: joining the fragments would hide
+        # whatever the statute says between them.
+        article = "alpha bravo charlie delta echo foxtrot"
+        quote = ". . . alpha bravo . . . echo foxtrot . . ."
+        span, status = match_quote(article, quote)
+        assert status == "fallback_article_only"
+        assert span is None
+
     def test_unmatched_returns_fallback_article_only(self):
         article = "The Commission shall establish a system."
         quote = "this quote is completely absent from the article"
