@@ -11,7 +11,8 @@ export async function POST(request: Request) {
   if (text.length > 4096) return NextResponse.json({ error: "请求过大" }, { status: 413, headers });
   let password: unknown;
   try { password = JSON.parse(text).password; } catch { return NextResponse.json({ error: "请求格式无效" }, { status: 400, headers }); }
-  if (typeof password !== "string" || password.length < 16 || password.length > 256) return NextResponse.json({ error: "管理员密码错误" }, { status: 401, headers });
+  // 下限 8：允许运营自选的短密码（如演示口令），真正强度由 scrypt 与限流兜底。
+  if (typeof password !== "string" || password.length < 8 || password.length > 256) return NextResponse.json({ error: "管理员密码错误" }, { status: 401, headers });
   try {
     if (!verifyAdminPassword(password)) return NextResponse.json({ error: "管理员密码错误" }, { status: 401, headers });
     const response = NextResponse.json({ success: true }, { headers });
