@@ -471,15 +471,13 @@ def health(request: Request):
     """Liveness probe — minimal public surface (status only).
 
     Frontend ``/api/health`` consumes only ``status`` (see
-    ``app/api/health/route.ts``). Detailed fields (demo_mode,
-    embedding_provider, dense_dim_mismatch_count, version) are gated behind
-    ``_is_privileged`` so an unauthenticated internet caller cannot probe
-    the deployment mode or embedding provider.
+    ``app/api/health/route.ts``). Detailed fields (version, demo_mode,
+    pipeline) are gated behind ``_is_privileged`` so an unauthenticated
+    internet caller cannot probe the deployment mode.
     """
     # Liveness answers only whether this process can serve HTTP. Dependency
     # state belongs to /ready; coupling it here made a healthy process look
-    # dead whenever the optional FAISS index was not mounted (for example in
-    # BM25-only or test deployments).
+    # dead whenever an optional dependency was missing.
     body: dict = {"status": "ok"}
     if _is_privileged(request):
         body.update({

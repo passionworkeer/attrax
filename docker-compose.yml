@@ -58,7 +58,6 @@ services:
       MINIMAX_BASE_URL: ${MINIMAX_BASE_URL:-https://api.minimaxi.com/anthropic/v1}
       MINIMAX_MODEL: ${MINIMAX_MODEL:-MiniMax-M3}
       MIMOTALK_API_KEY: ${MIMOTALK_API_KEY:-}
-      MODELSCOPE_API_KEY: ${MODELSCOPE_API_KEY:-}
       # DeepSeek 降级通道：vision（OpenAI 兼容）与 generate（Anthropic 兼容）
       # 共用 key；留空则只使用 primary，主通道不可用时退化到 mock。
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}

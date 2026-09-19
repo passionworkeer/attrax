@@ -6,9 +6,8 @@ longer need to be the sole carrier of that responsibility. Existing per-file
 idempotent) to avoid disturbing working imports.
 
 Marker taxonomy (see also pyproject.toml / pytest.ini):
-  - unit            : pure-logic, no FAISS index / no external model / no network
+  - unit            : pure-logic, no external model / no network
   - integration     : touches multiple modules or in-memory fakes together
-  - requires_index  : needs a built data/faiss index (cannot run in CI yet)
   - slow            : long-running; excluded from the default fast gate
 """
 from __future__ import annotations

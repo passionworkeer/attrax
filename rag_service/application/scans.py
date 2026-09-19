@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import hashlib
 import hmac
+import logging
 import os
 import secrets
 import uuid
@@ -23,6 +24,8 @@ from rag_service.parser.docx_parser import _escape_prompt_injection, parse_docx
 from ..config import ALLOWED_MARKETS as _ALLOWED_MARKETS_SET
 from ..config import MAX_MARKETS_PER_SCAN as _MAX_MARKETS_PER_SCAN
 from ..config import settings as _settings
+
+logger = logging.getLogger(__name__)
 
 _ALLOWED_MARKETS = _ALLOWED_MARKETS_SET
 _DOCUMENT_CHUNK_CHARS = 8_000
@@ -833,19 +836,30 @@ class ScanService:
         try:
             while True:
                 await asyncio.sleep(interval)
-                if not self.backend.renew_job_lease(job_id, lease_seconds=self.lease_seconds):
-                    return
-                # H5: refresh the session's expires_at under the same atomic
-                # lock used by the progress callback, so the two can never
-                # observe a torn read-modify-write.
-                self.backend.update_session_atomic(
-                    session_id,
-                    lambda session: session.transition(
-                        ttl_hours=self.session_ttl_hours
+                try:
+                    if not self.backend.renew_job_lease(
+                        job_id, lease_seconds=self.lease_seconds
+                    ):
+                        return
+                    # H5: refresh the session's expires_at under the same atomic
+                    # lock used by the progress callback, so the two can never
+                    # observe a torn read-modify-write.
+                    self.backend.update_session_atomic(
+                        session_id,
+                        lambda session: session.transition(
+                            ttl_hours=self.session_ttl_hours
+                        )
+                        if session is not None and session.status == "processing"
+                        else None,
                     )
-                    if session is not None and session.status == "processing"
-                    else None,
-                )
+                except Exception as exc:
+                    # A transient backend fault (disk full, permissions) must
+                    # not kill the heartbeat: without renewal the lease lapses
+                    # and a second worker may re-claim a job whose first run is
+                    # still producing a result. Log and retry next interval.
+                    logger.warning(
+                        "lease heartbeat for %s failed: %r", job_id, exc
+                    )
         except asyncio.CancelledError:
             return
 

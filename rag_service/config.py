@@ -61,8 +61,6 @@ MAX_MARKETS_PER_SCAN = 5
 class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
-    modelscope_api_key: str = ""
-
     # Provider-neutral primary LLM configuration. Legacy MiniMax/MimoTalk
     # names remain accepted below for existing deployments.
     llm_provider: str = ""
@@ -208,7 +206,6 @@ settings = Settings()
 
 # Legacy lower-level clients still read these names directly. setdefault only
 # fills absent values and does not overwrite an operator's process environment.
-os.environ.setdefault("MODELSCOPE_API_KEY", settings.modelscope_api_key)
 os.environ.setdefault("LLM_PROVIDER", settings.effective_llm_provider)
 os.environ.setdefault("LLM_API_KEY", settings.effective_llm_api_key)
 os.environ.setdefault("LLM_BASE_URL", settings.effective_llm_base_url)
