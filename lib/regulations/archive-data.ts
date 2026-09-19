@@ -13,9 +13,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { ArchiveEntry } from "./types";
-import { regulationsDataRoot } from "./data-root";
+import { regulationsProjectRoot } from "./data-root";
 
-const PROJECT_ROOT = regulationsDataRoot();
+const PROJECT_ROOT = regulationsProjectRoot();
 const INDEX_PATH = path.join(
   PROJECT_ROOT,
   "data",
