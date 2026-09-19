@@ -78,6 +78,30 @@
 
 `local-scan-result.json` 为完整扫描响应（run_local_scan.py 可重跑）。
 
+## 部署（2026-09-19 晚，BUILD_ID NLkljdmddP4TF1jk_8Did）
+
+1. **tarball**：本地构建 → scp → apply-deploy（nginx reload + health gate 通过，只重启 nextjs）
+2. **数据**：additive rsync `data/regulations`（排除索引）+ `data/kb/anchors`；服务器删除
+   328 个去重变体 YAML（`server-remove-list.txt`）与 KR 孤儿 raw；服务器侧 `_rebuild_index()`
+   → count 724；`pm2 restart rag-service`
+3. **代码（rag_service 走 git 不走 tarball）**：git bundle 快进服务器仓库。期间发现服务器上有
+   admin 看板 session 的未提交热修（backup-data.sh / orchestrator.py 指标采集）——已核实这些
+   修改全部包含在本地 main 的提交链里（ee99a27/9167c99），工作树收敛到 HEAD 无损；
+   `.admin-auth.json`、`data/admin/` 等运行时文件未受影响。第一次 merge 因脏工作树中止且
+   中途 checkout 复活了变体文件，最终以 update-ref + reset --mixed + checkout 收敛，
+   过程见会话记录；收敛后 anchors=711 / YAML=724 / 索引=724
+4. **生产验证**：
+   - rag-service 启动日志 `Knowledge base ready: 711 KB anchors, 724 regulation library entries`
+   - 真实冒烟扫描（electronics EU/US，DeepSeek 降级通道）100s ready：
+     `anchorSelection = {curated 9, generatedAvailable 117, generatedSelected 19}`（新代码已生效）
+     12 引用 = 9 matched + 3 fallback_article_only（75%）
+     **新库法规逐字引用**：16 CFR 1263 纽扣电池（section-1263-1-a + guidance-product-requirements
+     两条）、47 CFR Part 15 §15.1、16 CFR Part 1505 §1505.1
+   - `/api/regulations/archive` total=724（SWR 缓存刷新后与磁盘一致）；`/regulations` 200
+   - pm2 三进程 online
+5. **缓存注意**：archive 路由 unstable_cache 300s + SWR——索引重建后最长约 6 分钟内 API
+   仍返回旧 total，属预期，不要当成数据没同步
+
 ## 边界与残留
 
 - **非扫描市场**：VN 12 / ID 8 / MY 8 / TH 4 / NZ 7 / IN 4 / GCC 2 条已建锚点但选不到，
