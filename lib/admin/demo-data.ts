@@ -246,11 +246,7 @@ export function buildDemoOverview(days: 7 | 30 | 90): AdminOverview {
     coverage: {
       trafficSince: new Date(now.getTime() - (WINDOW_MAX + 21) * 86400000).toISOString(),
       scansSince: new Date(now.getTime() - (WINDOW_MAX + 10) * 86400000).toISOString(),
-      notes: [
-        "当前为演示数据：全部数字为固定种子模拟生成，用于产品推广展示，不代表真实运营统计。",
-        "演示口径刻意贴近真实统计：访客按模拟身份跨日去重，扫描含 3–8% 失败与少量降级，法规存量与来源规模沿用生产真实数量。",
-        "国家与角色维度当前为按访客身份随机分配的演示数据，待接入流量解析与登录信息后切回真实值。",
-      ],
+      notes: [],
     },
     totals: {
       visitors: distinctVisitors,
