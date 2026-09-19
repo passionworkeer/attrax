@@ -1,0 +1,46 @@
+watchdog 自动入库状态（aliyun-sz）
+
+== 进程 ==
+$ ps aux | grep watchdog
+root 49 0.0 0.0 0 0 ? S Sep18 0:00 [watchdogd]
+root 45927 0.0 2.9 669536 49344 ? Ss 12:17 0:10 /opt/attrax/.venv/bin/python -m scripts.watchdog.orchestrator
+
+orchestrator 进程 PID 45927，启动时间 2026-09-19 12:17（与本次法规库部署同步）。
+CPU 0:10，内存 49MB（49344 KB），健康。
+
+== 最近一次跑批 ==
+$ ls -lat /opt/attrax/data/regulation_supplements/ | head
+drwxrwxr-x 21 root root  4096 Sep 19 12:17 .
+-rw-r--r--  1 root root 58171392 Sep 19 12:17 .cache.db
+drwxrwxr-x  2 root root  4096 Sep 19 12:08 watchdog-2026-09-19
+drwxrwxr-x  7 root root  4096 Sep 19 12:07 auto-2026-09-19
+-rw-r--r--  1 root root       26 Sep 19 09:46 .auto_state.json
+drwxrwxr-x  2 root root  4096 Sep 19 03:00 watchdog-2026-09-18
+
+== 9-19 watchdog-2026-09-19 内容 ==
+cosmetic.json — 2 条 NZ 微小变更（<1% diff，未触发 apply）
+  - nz-product-safety-standards-2005 (Children's toy standard)
+  - nz-product-safety-standards-household-cots-2016 (Household cot standard)
+applied.json — 3 条 UK 新法规创建成功
+  - UK-Packaging-EPR (sourceId uk-packaging-epr-who-is-affected)
+  - UK-REACH (sourceId uk-reach-compliance-guidance)
+  - UK-WEEE (sourceId uk-weee-regulations-guidance)
+diff.json — 59720 字节，记录完整 diff
+failed: []
+
+== 9-19 auto-2026-09-19 内容 ==
+4 个 source 处理：
+  uk-packaging-epr-who-is-affected   (created → applied)
+  uk-reach-compliance-guidance       (created → applied)
+  uk-weee-regulations-guidance       (created → applied)
+  jp-meti-pse-list                   (modified, similarity 0.397, 需人工 review，未自动 apply)
+
+== 日志位置 ==
+/var/log/attrax-next.log
+/var/log/attrax-next.err.log
+/var/log/attrax-rag.log
+/var/log/attrax-rag.err.log
+（无独立 watchdog 日志，watchdog 输出走 console）
+
+== 结论 ==
+watchdog 正常运转，最近一次跑批成功创建 3 条 UK 法规，JP METI-PSE 待人工 review。

@@ -1,0 +1,43 @@
+服务器 raw/ 完整性
+
+== 零字节文件 ==
+$ ssh aliyun-sz 'find /opt/attrax/data/regulations/*/raw/ -type f -size 0'
+（无输出）
+
+== 不完整文件（.tmp / .partial） ==
+$ ssh aliyun-sz 'find /opt/attrax/data/regulations/*/raw/ -type f -name "*.tmp" -o -name "*.partial"'
+（无输出）
+
+== 各 region raw 计数（本地 vs 服务器） ==
+region    local  server
+ae         5      5
+au        12     12
+br         6      6
+ca        28     28
+cn       236    236
+de        36     36
+eu       112    112
+fr         1      1
+gcc        2      2
+global    82     82
+id         7      7
+in         3      3
+it         3      3
+jp        12     12
+kr         3      3
+mx         1      1
+my         7      7
+nz         5      5
+sa         6      6
+sg        10     10
+th         4      4
+uk         6      6
+un         7      7
+us       223    223
+vn        11     11
+
+== 结论 ==
+- 零字节文件：无
+- 不完整文件：无
+- 全部 24 个 region 的 raw 计数与本地完全一致
+- 服务器 raw/ 同步健康（2026-09-19 法规库全量扩展部署已完整 rsync raw/ 文件，与 2026-09-19 attrax-docs 部署记录不同）

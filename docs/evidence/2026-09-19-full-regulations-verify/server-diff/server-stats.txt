@@ -1,0 +1,64 @@
+服务器法规库统计（aliyun-sz @ 2026-09-19）
+
+==== index ====
+count: 1052
+schema_version: 1
+generated_at: 2026-09-19
+
+==== region 分布（按 index.json） ====
+  AE: 7
+  AU: 13
+  BR: 7
+  CA: 34
+  CN: 258
+  DE: 36
+  EU: 117
+  FR: 1
+  GCC: 2
+  GLOBAL: 75
+  ID: 8
+  IN: 4
+  IT: 3
+  JP: 13
+  KR: 4
+  MX: 1
+  MY: 8
+  NZ: 7
+  SA: 7
+  SG: 9
+  TH: 4
+  UK: 14
+  UN: 8
+  US: 400
+  VN: 12
+  total: 1052
+
+==== YAML 文件（find -name "*.yaml" -not -path "*/raw/*" -not -path "*/_imports/*" -not -path "*/schema/*"） ====
+主目录共 1052 + uk/_pending/ 3 = 1055
+  ae=7 au=13 br=7 ca=34 cn=258 de=36 eu=117 fr=1 gcc=2 global=75
+  id=8 in=4 it=3 jp=13 kr=4 mx=1 my=8 nz=7 sa=7 sg=9 th=4
+  uk=14（含 3 条 watchdog 自动入库的 UK-Packaging-EPR / UK-REACH / UK-WEEE）
+  un=8 us=400 vn=12
+uk/_pending/ 子目录另有 3 条同名重复（UK-Packaging-EPR.yaml / UK-REACH.yaml / UK-WEEE.yaml）
+  → 主目录 14 + _pending 3 = 17 = server-tree.txt 中 uk/ 行数
+
+==== 零字节 / 不完整文件 ====
+  find -type f -size 0: 0
+  find -name "*.tmp" -o -name "*.partial": 0
+
+==== raw/ 计数（与本地 24 region 全部一致） ====
+  ae=5 au=12 br=6 ca=28 cn=236 de=36 eu=112 fr=1 gcc=2 global=82
+  id=7 in=3 it=3 jp=12 kr=3 mx=1 my=7 nz=5 sa=6 sg=10 th=4 uk=6
+  un=7 us=223 vn=11
+
+==== watchdog 自动入库（regulation_supplements/） ====
+  PID 45927 /opt/attrax/.venv/bin/python -m scripts.watchdog.orchestrator
+  启动时间 12:17（与本次部署同步）
+  最近一次入库: watchdog-2026-09-19 (12:17)
+  auto-2026-09-19 (12:07–12:17) 已处理 4 个 source
+    UK-Packaging-EPR (created) — similarity 0.084
+    UK-REACH (created) — similarity 0.099
+    UK-WEEE (created) — similarity 0.109
+    JP-METI-PSE (modified, similarity 0.397, 需人工 review，未自动 apply)
+  cosmetic.json 列出 2 条 NZ 微小变更（玩具/婴儿床标准），未触发 apply
+  failed: []

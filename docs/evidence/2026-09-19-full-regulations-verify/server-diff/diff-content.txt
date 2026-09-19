@@ -1,0 +1,20 @@
+md5 一致性抽样（70 条，覆盖 24 个 region 每 region 2–3 条）
+
+== 命令 ==
+本地：
+  md5 /Users/wangjianjun/me/attrax/data/regulations/<region>/<file>
+服务器：
+  ssh aliyun-sz 'md5sum /opt/attrax/data/regulations/<region>/<file>'
+
+== 结果 ==
+抽样 70 / 1049 = 6.7%
+两侧文件数匹配：70 / 70
+md5 不一致：0
+
+== 抽样清单 ==
+ae/ae-3 ae/ae-1 br/br-3 ca/ca-3 cn/cn-3 de/de-3 eu/eu-3 fr/fr-1
+gcc/gcc-2 global/global-3 id/id-3 in/in-3 it/it-3 jp/jp-3 kr/kr-3
+mx/mx-1 my/my-3 nz/nz-3 sa/sa-3 sg/sg-3 th/th-3 uk/uk-3 un/un-3
+us/us-3 vn/vn-3
+
+结论：已比对样本全部一致，无需进一步追溯。
