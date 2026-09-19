@@ -30,6 +30,7 @@ docker compose up -d rag-service
 | `product` | string | 否 | 产品名称或型号 |
 | `category` | string | 是 | 产品分类，默认 `electronics` |
 | `markets` | string | 是 | JSON 数组字符串或逗号分隔，如 `["EU","US"]` |
+| `declared_facts` | JSON string | 否 | 浏览器声明的"产品事实"JSON，例如 `{"battery":"否"}`；旧名 `userDeclaredFacts` 仍兼容。RAG 在 8KB 嗅探时读不到 category 时退化到此字段推断必检法规 |
 | `images` | File[] | 是 | 1–8 个 JPEG/PNG/WebP |
 | `documents` | File[] | 否 | 最多 5 个 PDF/DOCX/TXT/HTML |
 
