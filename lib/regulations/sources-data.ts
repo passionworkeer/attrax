@@ -15,14 +15,16 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { SourceEntry, SourceHealth } from "./types";
+import { regulationsDataRoot } from "./data-root";
 
 // `healthLabel` lives in `./health-label.ts` so client components can import
 // it without pulling in the `node:fs` reader. Re-export it for server
 // callers (the API route) to keep the public surface stable.
 export { healthLabel } from "./health-label";
 
+const PROJECT_ROOT = regulationsDataRoot();
 const SOURCES_PATH = path.join(
-  process.cwd(),
+  PROJECT_ROOT,
   "data",
   "regulation_sources",
   "official_sources.json",
