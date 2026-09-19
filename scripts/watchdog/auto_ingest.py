@@ -835,6 +835,31 @@ class AutoIngestor:
                     f" must-check output — see docs/WATCHDOG.md §CREATE."
                 ),
             }
+            # Pending-yaml guard: a source whose regulation_id points to a
+            # YAML that has never been committed (i.e. the registry entry
+            # was added in advance of authoring the library file) is marked
+            # with `pending_yaml: true` in official_sources.json. Auto-CREATE
+            # for such sources writes to a `data/regulations/{region}/_pending/`
+            # sibling directory instead of the live location, so a fetched
+            # diff cannot silently overwrite human-authored direction. The
+            # operator promotes the file with `mv` (or via review.py) once
+            # the YAML's articles + KB anchor are ready.
+            #
+            # Why `_pending/` stays invisible to the rest of the system: every
+            # live-library reader enumerates exactly one level below the root
+            # (`_rebuild_index` below and both `article_loader` walks use
+            # `*/*.yaml`), so a file two levels down is never indexed, never
+            # quotable and never served. Keep those globs single-level — or
+            # add an explicit `_pending` skip — if that ever changes.
+            if entry.get("pending_yaml") is True:
+                pending_dir = yaml_path.parent / "_pending"
+                pending_path = pending_dir / yaml_path.name
+                yaml_path = pending_path
+                payload["notes"] = (
+                    f"{payload['notes']} PENDING: registry marked this source"
+                    f" pending_yaml; staged under {pending_dir.name}/, not"
+                    f" promoted to live library yet."
+                )
             yaml_path.parent.mkdir(parents=True, exist_ok=True)
             self._write_yaml(yaml_path, payload)
             return IngestOutcome(

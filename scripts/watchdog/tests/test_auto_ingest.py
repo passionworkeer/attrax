@@ -344,6 +344,48 @@ def test_create_missing_regulation_from_gov_html(isolated_library):
     assert payload["license"] == "public"
 
 
+def test_pending_yaml_stages_under_pending_subdir_not_live(isolated_library):
+    """pending_yaml=true sources auto-stage under {region}/_pending/, not live.
+
+    Without the guard, a fetched diff for a source whose regulation_id
+    points to a YAML never committed would silently build an empty
+    `articles: []` placeholder in the live library, clobbering human
+    direction. The fix: stage under `_pending/` so an operator promotes
+    the file with `mv` (or via review.py) once articles + KB anchor are
+    ready.
+    """
+    ingestor = AutoIngestor("2026-09-13")
+    entry = {
+        "id": "eu-2012-19-weee",
+        "source_type": "eu_celex",
+        "celex": "32012L0019",
+        "pending_yaml": True,
+    }
+    update = _update("eu-2012-19-weee", "wee rdf body")
+    report = ingestor.apply(
+        {"eu-2012-19-weee": entry},
+        {"eu-2012-19-weee": update},
+        [_change("eu-2012-19-weee", kind="added")],
+    )
+
+    # Auto-CREATE was still attempted; the regulation is reported as created.
+    assert report.created == ["EU-2012-19"]
+
+    # Live path MUST NOT have a YAML for this regulation.
+    live = isolated_library.REGULATIONS_ROOT / "eu" / "EU-2012-19.yaml"
+    assert not live.exists(), f"live library file should not be written: {live}"
+
+    # The staged YAML lands under eu/_pending/.
+    pending = isolated_library.REGULATIONS_ROOT / "eu" / "_pending" / "EU-2012-19.yaml"
+    assert pending.exists(), f"pending yaml must land in _pending/: {pending}"
+    payload = yaml.safe_load(pending.read_text())
+    assert payload["official_citation"] == "Directive 2012/19/EU"
+    assert payload["articles"] == []
+    # Audit note captures why it was staged rather than promoted.
+    assert "PENDING" in payload["notes"]
+    assert "_pending" in payload["notes"]
+
+
 def test_unmappable_signal_source_is_evidence_only(isolated_library):
     ingestor = AutoIngestor("2026-09-13")
     # Recall feeds are signal streams, not regulation texts.
