@@ -23,6 +23,7 @@ from typing import Any
 
 import yaml
 
+from rag_service.domain.categories import normalize_category, normalize_category_or_other
 from rag_service.schemas.visual_inspection import (
     InspectionProfile,
     InspectionProfileCheck,
@@ -32,31 +33,12 @@ logger = logging.getLogger(__name__)
 
 _DEFAULT_DIR = Path(__file__).resolve().parents[3] / "data" / "inspection_profiles"
 
-# Category → profile mapping. The upload page's ProductCategory enum and
-# this mapping must stay in sync (same discipline as ALLOWED_MARKETS).
-CATEGORY_TO_PROFILE: dict[str, str] = {
-    "electronics": "electronics",
-    "appliance": "appliance",
-    "3c": "3c",
-    "toy": "toy",
-    "toys": "toy",
-    "home": "home",
-    "battery": "battery",
-    "batteries": "battery",
-    "cosmetic": "cosmetic",
-    "cosmetics": "cosmetic",
-    "textile": "textile",
-    "textiles": "textile",
-    "food_contact": "food_contact",
-    "other": "other",
-}
-
 
 @lru_cache(maxsize=32)
 def load_profile(profile_id: str, directory: Path | None = None) -> InspectionProfile:
-    """Load one profile YAML. Aliases resolve via CATEGORY_TO_PROFILE;
-    unknown ids fall back to ``other``."""
-    resolved = CATEGORY_TO_PROFILE.get(profile_id, profile_id)
+    """Load one profile YAML. Plural aliases resolve to their canonical
+    profile; unknown ids fall back to ``other``."""
+    resolved = normalize_category(profile_id)
     base = directory or _DEFAULT_DIR
     path = base / f"{resolved}.yaml"
     if not path.exists():
@@ -73,7 +55,7 @@ def load_profile(profile_id: str, directory: Path | None = None) -> InspectionPr
 
 def effective_checks(category: str, directory: Path | None = None) -> list[InspectionProfileCheck]:
     """Category checks + common checks, category-first, deduped by id."""
-    profile_id = CATEGORY_TO_PROFILE.get(category, "other")
+    profile_id = normalize_category_or_other(category)
     profile = load_profile(profile_id, directory)
     common = load_profile("common", directory)
     merged: list[InspectionProfileCheck] = []

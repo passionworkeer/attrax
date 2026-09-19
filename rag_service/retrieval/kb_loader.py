@@ -51,6 +51,8 @@ from typing import Any
 
 import yaml
 
+from rag_service.domain.categories import normalize_category
+
 logger = logging.getLogger(__name__)
 
 
@@ -206,8 +208,13 @@ def get_anchor_by_regulation_id(regulation_id: str) -> dict | None:
 
 
 def get_anchors_by_category(category: str) -> list[dict]:
-    """Return legacy-shaped entries whose applies_if.category contains the value."""
-    cat = (category or "").strip().lower()
+    """Return legacy-shaped entries whose applies_if.category contains the value.
+
+    Plural aliases ("toys") fold to their canonical form ("toy") first —
+    otherwise an alias matches no YAML trigger and the caller silently gets
+    an empty must-check list.
+    """
+    cat = normalize_category(category)
     out: list[dict] = []
     for payload in _load_all().values():
         cats = (payload.get("applies_if") or {}).get("category") or []
