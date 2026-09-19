@@ -100,6 +100,17 @@ log ".build-sha: ${COMMIT_SHORT}"
 # === [4.5] 防污染清理: 严防测试包、大 zip 与运行时垃圾打入生产部署包 ===
 rm -rf "${STANDALONE}/规航AI-"* "${STANDALONE}/test-results" "${STANDALONE}/tests/fixtures/regression-package-"* "${STANDALONE}/tests/fixtures/"*.zip
 
+# Next.js 的 output tracing 把整个仓库的相当一部分也拷进了 standalone
+# （rag_service/ scripts/ docs/ tests/ tmp/ …，见 docs/infra 的部署说明）。
+# 其中两类必须删：
+#   1. tmp/ —— 本地工作目录（验证脚本、下载物、甚至别人打好的 tarball）。
+#      2026-09-19 实测：一个 62MB 的中间 tarball 被追踪进来，使部署包翻倍到
+#      124MB 并随包上生产。这类内容永远不该进部署产物。
+#   2. rag_service/ 与 tests/ —— 服务端 nextjs 进程不读它们（Python 由 pm2
+#      从 /opt/attrax 单独跑；测试夹具只在 CI 用），纯属体积。
+# docs/ 与 scripts/ 体积小且留作对照，刻意保留。
+rm -rf "${STANDALONE}/tmp" "${STANDALONE}/rag_service" "${STANDALONE}/tests"
+
 # Next.js 的 output tracing 会把 data/ 整份拷进 standalone(~59MB: 法规库、
 # KB 锚点、inspection profiles、watchdog 产物)。服务器上的权威数据在
 # /opt/attrax/data,由 watchdog 持续写入;包里的这份是构建时刻的快照,装上
