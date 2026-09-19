@@ -20,11 +20,11 @@
 
 运行数据位于 `ATTRAX_PROJECT_ROOT` 下的 `data/admin/analytics.sqlite`；生产默认解析 `/opt/attrax`，不读取 standalone 的构建快照。数据库保存匿名流量和白名单扫描统计字段，不保存 IP、密码、上传内容或查询参数。凭据和运行数据不加入 Git，也排除在构建追踪之外。
 
-`scripts/backup-admin.mjs` 使用 SQLite 在线备份 API，随既有每日备份执行。迁移时同时保留数据库、凭据文件和 watchdog JSONL。轮换管理员凭据时须先备份并删除全部 `admin_sessions`，然后由维护人员使用安全流程生成新配置。
+`scripts/backup-admin.mjs` 使用 SQLite 在线备份 API，随既有每日备份执行。每日备份（`scripts/backup-data.sh`，cron 驱动）在打包前先运行 `scripts/retain-admin-audit.py` 把扫描审计导入留存库——审计日志轮转后看板历史仍完整，不依赖管理员当天是否打开过看板；留存失败不阻断备份，但会写入备份日志。迁移时同时保留数据库、凭据文件和 watchdog JSONL。轮换管理员凭据时须先备份并删除全部 `admin_sessions`，然后由维护人员使用安全流程生成新配置。
 
 ## 发布与验证
 
-在本地构建 Next.js standalone，设置 `ATTRAX_TARBALL` 为仓库 `.deploy/` 路径。服务器使用同一环境变量指向 `/opt/attrax/.deploy/`，执行 `scripts/apply-deploy.sh`。该流程保留上一版并检查健康状态。
+在本地构建 Next.js standalone，设置 `ATTRAX_TARBALL` 为仓库 `.deploy/` 路径。服务器使用同一环境变量指向 `/opt/attrax/.deploy/`，执行 `scripts/apply-deploy.sh`。该流程保留上一版并检查健康状态。ops 随包分发 12 个文件（含 `backup-admin.mjs` 与 `retain-admin-audit.py`）；`setup-admin.mjs` 与 `verify-admin.mjs` 不在 ops 清单里，需要单独 scp 到 `/opt/attrax/scripts/`。middleware.ts 在 Next 16 必须保留 `runtime: "nodejs"` 配置——去掉后 webpack 按 edge 目标编译统计链路，`node:` 内置模块直接构建失败。
 
 watchdog 的 `orchestrator.py` 和 `metrics.py` 需要单独备份、同步并重启 `regwatch`。本改动不需要重启扫描后端。
 

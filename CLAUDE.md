@@ -106,6 +106,7 @@ attrax/
 │   ├── profit/[sessionId]/       # 利润独立页面
 │   ├── pricing/page.tsx          # 商业方案
 │   ├── regulations/page.tsx      # 法规更新列表
+│   ├── admin/                    # 管理员 BI 看板（page + login + Dashboard + LoginForm，2026-09-19）
 │   └── api/                      # Next.js API 路由
 │       ├── scan/route.ts         # POST /api/scan — 创建扫描
 │       ├── scan/[sessionId]/     # GET 轮询 + asset/[index] + evidence + revisions
@@ -113,6 +114,7 @@ attrax/
 │       ├── report/[sessionId]/[reportType]/  # GET md/csv 文本导出（PDF/DOCX 在客户端）
 │       ├── regulations/updates/  # GET 法规更新
 │       ├── regulations/[docId]/  # GET 单条法规原文（evidence-pack 引用）
+│       ├── admin/{login,logout,overview}/  # 管理员会话 + 运营统计（2026-09-19）
 │       └── health/               # GET 健康检查
 │
 ├── components/                   # React 组件
@@ -336,6 +338,16 @@ const SessionIdSchema = z
 ---
 
 ## 最近修复
+
+### 2026-09-19 — 管理员运营 BI 看板 /admin（分支 `codex/admin-bi-dashboard`，已部署上线）
+
+- **功能**：`/admin` 运营看板（Recharts，指标卡 + 服务使用趋势面积图 + 法规每日更新柱图 + 市场分布 + 近期扫描 + 抓取来源表格，7/30/90 天切换、CSV 导出）。数据口径全部来自真实运行数据，详见 `docs/admin-bi.md`
+- **鉴权**：scrypt 密码（`scripts/setup-admin.mjs` 生成，凭据 `.admin-auth.json` 0600 不进 git；生产密码在服务器 `/opt/attrax/.deploy/admin-access.txt`）+ SQLite 会话令牌哈希，HttpOnly/SameSite=Strict Cookie 8h，登录限流 5 次/15 分钟，登录/退出同源校验（生产要求 https Origin）
+- **数据管线**：① middleware 匿名流量采集 → `data/admin/analytics.sqlite`（node:sqlite，只记 day/kind/路径分类，无 IP/参数/上传内容；仅当 `.admin-auth.json` 存在时启用）② 扫描统计来自 RAG 审计日志（懒导入 + 每日备份前 `retain-admin-audit.py` 强制留存，日志轮转不丢历史）③ 法规存量/来源读生产索引与源注册表 ④ 每日新增/更新来自 watchdog 历史快照 + 新增逐轮 `watchdog-runs.jsonl`（`orchestrator.py` 调 `metrics.py`，北京时间归档）
+- **踩坑（重要）**：`middleware.ts` 必须保留 `runtime: "nodejs"`——Next 16 下旧文件名 middleware 去掉该行会被 webpack 按 edge 目标编译，统计链路的 `node:` 内置模块直接 UnhandledSchemeError 构建失败（文档说 proxy.ts 默认 Node 且显式设置会抛错，只适用于新文件名）
+- **运维接线**：每日备份（backup-data.sh cron）先跑审计留存再备份（留存失败不阻断备份但落日志）；ops 随包 12 文件（+backup-admin.mjs/retain-admin-audit.py）；`setup-admin.mjs`/`verify-admin.mjs` 需单独 scp
+- **验证**：vitest 1005（含 admin-overview 聚合夹具测试）/ watchdog 160（含 metrics 4 例）/ tsc / eslint 0 error；本地浏览器实测（登录、真实数据渲染、流量入账、交互、过期提示）；生产 `verify-admin.mjs` 9/9 + 部署后抽查（法规 1052/25 市场/37 源，扫描 7 天 93 次全完成，流量采集计数中）。部署记录见 `docs/evidence/2026-09-19-admin-bi-dashboard/`
+- **已知现象**：巡检 ingest 窗口（每日 03:00 起数十秒）内读看板可能看到索引重建的瞬时值，自愈；82 条无时间戳旧审计不进曲线（界面标注）
 
 ### 2026-09-19 — attrax-docs 法规目录导入（/regulations 法规档案 61 → 124 条 / 21 区域）
 
